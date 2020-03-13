@@ -2,7 +2,13 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSearchTitle } from "Components/GameRow/GameRowSearchTitle";
-import type { SearchProps } from "Components/GameRow/GameRow";
+
+type SearchProps = {
+  /** The search query */
+  query?: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
+};
 
 export const GameRowSearchText = ({
   name,

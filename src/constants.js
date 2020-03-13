@@ -327,6 +327,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
@@ -369,6 +370,9 @@ export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };
+
+export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
+export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
 
 export const JURISDICTIONS = {
   DGA: "DGA",

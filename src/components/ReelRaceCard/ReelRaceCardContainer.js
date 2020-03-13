@@ -1,35 +1,37 @@
 // @flow
-import { connect } from "react-redux";
-import {
-  reelRacesTranslationsSelector,
-  reelRacesByIdSelector,
-  optInForReelRace,
-} from "Models/reelRaces";
-import { launchGame } from "Models/games";
-import { gameSelector } from "Models/schema";
+import React from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { ReelRaceCard } from "./ReelRaceCard";
+import { OptInForReelRace, ReelRaceCardQuery } from "./ReelRaceCard.graphql";
 
-export default connect(
-  (state, { id }) => {
-    const reelRace = reelRacesByIdSelector(id)(state);
+type Props = {
+  reelRace: A.ReelRaceCard_ReelRace,
+};
 
-    if (!reelRace) {
-      return {};
-    }
+export const ReelRaceCardContainer = ({ reelRace }: Props) => {
+  const { id } = reelRace;
+  const { data, loading } = useQuery(ReelRaceCardQuery);
+  const [optInForReelRace] = useMutation(OptInForReelRace, {
+    variables: {
+      id,
+    },
+    optimisticResponse: {
+      __typename: "Mutation",
+      optInForReelRace: {
+        __typename: "ReelRace",
+        id,
+        optedIn: true,
+      },
+    },
+  });
 
-    return {
-      ...reelRace,
-      game: gameSelector(reelRace.gameSlug)(state),
-      t: reelRacesTranslationsSelector(state),
-    };
-  },
-  {
-    optInForReelRace,
-    launchGame,
-  },
-  (stateProps, dispatchProps, ownProps) => ({
-    ...stateProps,
-    optIn: () => dispatchProps.optInForReelRace(ownProps.id),
-    launchGame: () => dispatchProps.launchGame(stateProps.gameSlug),
-  })
-)(ReelRaceCard);
+  return (
+    <ReelRaceCard
+      reelRace={reelRace}
+      optIn={optInForReelRace}
+      loading={loading}
+      locale={data?.session?.locale}
+    />
+  );
+};

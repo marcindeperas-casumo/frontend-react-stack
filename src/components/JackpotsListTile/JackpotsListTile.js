@@ -1,27 +1,32 @@
 // @flow
-import React, { PureComponent } from "react";
-import { GameRow } from "Components/GameRow";
+import * as React from "react";
+import classNames from "classnames";
+import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
+import { launchGame } from "Services/LaunchGameService";
+
 import "./JackpotsListTile.scss";
 
 type Props = {
-  ids?: Array<string>,
+  games?: Array<A.GameRow_Game>,
+  isScrolling?: boolean,
 };
-
-export default class JackpotsListTile extends PureComponent<Props> {
-  render() {
-    const { ids = [] } = this.props;
-
-    return (
-      <>
-        {ids.map(slug => (
-          <div key={slug} className="u-padding-y--sm">
-            <GameRow
-              id={slug}
-              className="t-background-white t-border-r--md t-box-shadow"
-            />
-          </div>
-        ))}
-      </>
-    );
-  }
-}
+// __FIX__ this should be the source of truth for the MustDrop and
+// standard jackpot tiles.
+export const JackpotsListTile = ({ games = [], isScrolling = false }: Props) =>
+  games.map<React.Node>(game => (
+    <div key={game.id} className="u-padding-y--sm">
+      <GameRow
+        game={game}
+        className={classNames(
+          "t-background-white u-padding--md t-border-r--md",
+          {
+            "t-box-shadow": !isScrolling,
+          }
+        )}
+        onLaunchGame={() => launchGame({ slug: game.slug })}
+        renderText={() => <GameRowText name={game.name} />}
+      />
+    </div>
+  ));

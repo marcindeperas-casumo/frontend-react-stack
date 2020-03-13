@@ -1,20 +1,20 @@
 // @flow
 import React, { PureComponent } from "react";
-import classNames from "classnames";
 import SectionList from "Components/SectionList";
-import { GameRow } from "Components/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
+import * as A from "Types/apollo";
 
-type Props = {
+export type Props = {
   list: {
-    games: Array<string>,
+    games: Array<A.GameSearchSuggestionsList_Game>,
     title: string,
     location: string,
   },
   loading: boolean,
-  className?: string,
 };
 
 export class GameSearchSuggestionsList extends PureComponent<Props> {
@@ -32,14 +32,19 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
     return games && games.length && !this.props.loading ? (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: location }}>
         <SectionList
-          className={classNames("u-padding-x--md", this.props.className)}
+          className="u-padding-x--md u-game-search-max-width"
           sections={[
             {
               title,
               data: games,
             },
           ]}
-          renderItem={id => <GameRow id={id} search />}
+          renderItem={game => (
+            <GameRow
+              game={game}
+              renderText={() => <GameRowSearchText name={game.name} search />}
+            />
+          )}
         />
       </TrackProvider>
     ) : (

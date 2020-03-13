@@ -1,4 +1,3 @@
 // @flow
-export {
-  GamesVirtualListContainer as GamesVirtualList,
-} from "./GamesVirtualListContainer";
+export { GamesVirtualList } from "./GamesVirtualList";
+export { GamesVirtualListTitle } from "./GamesVirtualListTitle";

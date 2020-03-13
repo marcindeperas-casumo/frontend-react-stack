@@ -9,7 +9,7 @@ export const COLORS = {
   GREY_LIGHT_1: "grey-light-1",
 };
 
-export const RESULT_BADGES = 10;
+export const RESULT_BADGES_COUNT = 10;
 
 export const EVOLUTION_LOBBY_TYPES = {
   MONEYWHEEL: "MoneyWheel",

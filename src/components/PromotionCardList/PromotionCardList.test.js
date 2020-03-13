@@ -1,56 +1,27 @@
 import React from "react";
 import { mount } from "enzyme";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
-import MockStore from "Components/MockStore/index";
-import defaultState from "Models/__mocks__/state.mock";
-import PromotionCardList from "./PromotionCardList";
+import { PromotionCardList } from "./PromotionCardList";
 
-const fetchCampaign = jest.fn();
-const fetchPromotions = jest.fn();
-const promotionSlugs = ["page-1", "page-2"];
+const promotions = [
+  { id: "page-1", slug: "page-1", title: "Promotion 1" },
+  { id: "page-2", slug: "page-2", title: "Promotion 2" },
+];
 
 describe("<PromotionCardList /> - Mobile and Tablet", () => {
   let rendered;
 
   beforeEach(() => {
     setMobileViewport();
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-        />
-      </MockStore>
-    );
+    rendered = mount(<PromotionCardList slug="foo" promotions={promotions} />);
   });
 
   test("should not render ScrollableListPaginated component", () => {
     expect(rendered.find("ScrollableListPaginated")).toHaveLength(0);
   });
 
-  test("should render a scrollable component", () => {
-    expect(rendered.find("Scrollable").exists()).toBe(true);
-  });
-
-  test("should fetch the page on component mount", () => {
-    expect(fetchCampaign).toHaveBeenCalled();
-  });
-
-  test("should not render the scrollable component if promotionSlugs is empty", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={[]}
-        />
-      </MockStore>
-    );
-
-    expect(rendered.find("Scrollable").exists()).toBe(false);
+  test("should render a ScrollableList component", () => {
+    expect(rendered.find("ScrollableList")).toHaveLength(1);
   });
 });
 
@@ -59,23 +30,14 @@ describe("<PromotionCardList /> - Desktop", () => {
 
   beforeEach(() => {
     setDesktopViewport();
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-        />
-      </MockStore>
-    );
+    rendered = mount(<PromotionCardList slug="foo" promotions={promotions} />);
   });
 
   test("should render ScrollableListPaginated component", () => {
     expect(rendered.find("ScrollableListPaginated")).toHaveLength(1);
   });
 
-  test("should fetch the page on component mount", () => {
-    expect(fetchCampaign).toHaveBeenCalled();
+  test("should render a ScrollableList component", () => {
+    expect(rendered.find("ScrollableList")).toHaveLength(0);
   });
 });

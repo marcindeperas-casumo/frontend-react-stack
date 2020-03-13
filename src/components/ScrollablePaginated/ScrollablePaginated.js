@@ -40,6 +40,7 @@ type Props = {
   cacheBuster?: string,
   /** The number of items that will be shown on both the current page and next/previous pages */
   overlappingItemCount: number,
+  defaultWidth: number,
 };
 
 export default class ScrollablePaginated extends React.PureComponent<
@@ -51,6 +52,7 @@ export default class ScrollablePaginated extends React.PureComponent<
     duration: 300,
     className: "c-scrollable-paginated",
     overlappingItemCount: 2,
+    defaultWidth: 40,
   };
 
   gridRef = React.createRef<GridRef>();
@@ -203,6 +205,7 @@ export default class ScrollablePaginated extends React.PureComponent<
             scrollHandler={this.scrollHandler}
             overscanColumnCount={this.props.overscanColumnCount}
             cacheBuster={this.props.cacheBuster}
+            defaultWidth={this.props.defaultWidth}
           />
         </div>
         {this.buttonRenderer()}

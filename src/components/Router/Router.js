@@ -8,7 +8,7 @@ import {
   LazyTopLists,
   LazyGameSearch,
   LazyMustDropJackpots,
-  LazyGameProviders,
+  LazyGameProviderGames,
   LazyLiveCasinoDetails,
   LazyPromotions,
   LazyPromotionDetail,
@@ -42,7 +42,9 @@ export const Router = () => {
       <LazyMustDropJackpots
         path={translateRoute(ROUTE_IDS.MUST_DROP_JACKPOTS)}
       />
-      <LazyGameProviders path={translateRoute(ROUTE_IDS.GAME_PROVIDER_GAMES)} />
+      <LazyGameProviderGames
+        path={translateRoute(ROUTE_IDS.GAME_PROVIDER_GAMES)}
+      />
       <LazyLiveCasinoDetails
         path={translateRoute(ROUTE_IDS.LIVE_CASINO_DETAILS)}
       />

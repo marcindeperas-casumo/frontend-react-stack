@@ -4,12 +4,12 @@ import classNames from "classnames";
 import "./GameTileHeart.scss";
 
 type Props = {
-  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => any,
   isActive: boolean,
   className?: string,
 };
 
-export const GameTileHeart = ({ onClick, isActive, className }: Props) => (
+export const GameTileHeart = ({ onClick, isActive, className = "" }: Props) => (
   <svg
     onClick={onClick}
     className={classNames(
