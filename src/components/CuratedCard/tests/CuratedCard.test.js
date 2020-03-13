@@ -86,7 +86,7 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe(`/en/promotions/${curatedPromotionMock.promotionSlug}`);
+    expect(href).toBe(`/promotions/${curatedPromotionMock.promotionSlug}`);
   });
 
   test("should not call onLaunchGame if not game", () => {
