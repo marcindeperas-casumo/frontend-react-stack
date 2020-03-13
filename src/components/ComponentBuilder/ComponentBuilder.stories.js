@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
-import MockStore from "Components/MockStore";
 import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
 import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
@@ -36,19 +35,6 @@ const mocks = [
     },
   },
 ];
-
-const state = {
-  schema: {
-    cms: {
-      foo: {
-        slug: "foo",
-        fields: {
-          content_builder: componentDefinitions,
-        },
-      },
-    },
-  },
-};
 
 const stories = storiesOf("ComponentBuilder", module);
 
