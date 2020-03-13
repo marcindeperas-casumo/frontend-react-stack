@@ -52,7 +52,7 @@ export const TopCard = {
       "R",
       "L"
     ],
-    image: "https://lob.egcvi.com/thumbnail/topctm1_bs_med_L.jpg",
+    image: "/images/live-casino/topctm1_bs_med_L.jpg",
     type: "TopCard",
     betBehind: null,
     bets: null,
