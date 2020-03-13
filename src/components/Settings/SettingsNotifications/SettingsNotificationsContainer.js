@@ -1,7 +1,9 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { Mutation, Query } from "react-apollo";
 import { adopt } from "react-adopt";
+import { connect } from "react-redux";
+import { jurisdictionSelector } from "Models/handshake";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { dataIdFromObject } from "Services/apolloCacheUtils";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -214,5 +216,10 @@ export const withContainer = (Component: Function) => (
   </Composed>
 );
 
+export const withConnect = (Component: React.AbstractComponent<any>) =>
+  connect(state => ({
+    jurisdiction: jurisdictionSelector(state),
+  }))(Component);
+
 export const SettingsNotificationsContainer = () =>
-  withContainer(SettingsNotifications);
+  withContainer(withConnect(SettingsNotifications));
