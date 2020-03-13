@@ -1,8 +1,10 @@
 export const gamesListMock = {
+  __typename: "GamesList",
   id: "latestPlayedGames",
   name: "Continue playing",
   games: [
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_thumbnail.jpg",
@@ -14,6 +16,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2019/07/Sticky_bandits_wild_Thumbnail_BG.png",
@@ -25,6 +28,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Thumb.jpg",
@@ -36,6 +40,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
@@ -47,6 +52,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2018/10/dragons_fire_thumbnail.jpg",
@@ -58,6 +64,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2017/09/rapunzels_tower_thumbnail.jpg",
@@ -69,6 +76,7 @@ export const gamesListMock = {
       isInMyList: false,
     },
     {
+      __typename: "Game",
       isInMaintenance: false,
       backgroundImage:
         "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolfbgthumb.jpg",
