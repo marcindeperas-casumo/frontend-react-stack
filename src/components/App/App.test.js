@@ -17,7 +17,6 @@ describe("App", () => {
       <Provider store={store}>
         <App
           onAppStarted={fn}
-          routeParams={[]}
           subscribeToUpdates={() => {}}
           unsubscribeToUpdates={() => {}}
         />
@@ -73,7 +72,6 @@ describe("App", () => {
           onAppStarted={() => {}}
           isAuthenticated={true}
           activeComponents={["foo"]}
-          routeParams={[]}
           subscribeToUpdates={subscribeFn}
           unsubscribeToUpdates={() => {}}
           playerId={"123"}

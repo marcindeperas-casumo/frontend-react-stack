@@ -1,34 +1,38 @@
 // @flow
-import type { DateTime } from "luxon";
+import { DateTime } from "luxon";
+import { CURRENCIES } from "Src/constants";
 
-export type AnnualOverview = {
-  currency: string,
-  betsAmount: number,
-  winningsAmount: number,
-  depositsAmount: number,
-  withdrawalsAmount: number,
-  awardedBonusesAmount: number,
-  convertedBonusesAmount: number,
-  startingBalanceAmount: number,
-  endBalanceAmount: number,
-  pdfUrl?: string,
+type RealBonusAmountType = {
+  real: number,
+  bonus: number,
 };
 
-export type AnnualOverviewWrapper = {
-  data?: AnnualOverview,
+export type AnnualOverviewType = {
+  currency: $Values<typeof CURRENCIES>,
+  startingBalance: RealBonusAmountType,
+  endingBalance: RealBonusAmountType,
+  bets: RealBonusAmountType,
+  wins: RealBonusAmountType,
+  deposits: number,
+  withdrawals: number,
+  bonus: {
+    awarded: number,
+    converted: number,
+  },
+  realMoneyGiven: number,
+};
+
+export type AnnualOverviewTypeWrapper = {
+  data?: AnnualOverviewType,
   meta: {
     isFetching?: boolean,
-    isPdfUrlFetching?: boolean,
   },
 };
 
-export type WalletTotalsProps = {
+export type WalletTransactionsProps = {
   walletId: string,
   startTime: DateTime,
   endTime: DateTime,
-};
-
-export type WalletTransactionsProps = WalletTotalsProps & {
   perPage?: number,
 };
 
@@ -43,23 +47,6 @@ export type FetchAnnualOverviewProps = {
 export type Action = {
   name: string,
   type: string,
-};
-
-export type FetchAnnualOverviewPdfUrlProps = {
-  /** The full name of a player to generate pdf for */
-  name: string,
-  /** Player's Identification Number */
-  dni: string,
-  /** The year for which to generate the pdf */
-  year: number,
-  /** All the properties below are sent as formatted amounts with currency */
-  startingBalance: string,
-  endingBalance: string,
-  totalDeposits: string,
-  totalWithdrawals: string,
-  totalWagers: string,
-  totalWins: string,
-  totalBonusesConverted: string,
 };
 
 export type AmountWithCodeResponseRaw = {
@@ -81,9 +68,4 @@ export type TransactionResponseRaw = {
   walletId: string,
   walletUpdateSource: string,
   withdrawalLocked: boolean,
-};
-
-export type StartingEndBalance = {
-  startingBalanceAmount: number,
-  endBalanceAmount: number,
 };

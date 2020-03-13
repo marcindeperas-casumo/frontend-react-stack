@@ -1,46 +1,30 @@
+// @flow
 import React from "react";
-import { shallow, mount } from "enzyme";
-import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
-import MockStore from "Components/MockStore/index";
-import defaultState from "Models/__mocks__/state.mock";
+import { shallow } from "enzyme";
+import { games } from "./__mocks__";
+import { ProviderGamesList } from "./ProviderGamesList";
 
 describe("ProviderGamesList", () => {
   test("renders skeleton while loading", () => {
-    const rendered = shallow(<ProviderGamesList areGamesLoaded={false} />);
-    expect(rendered.find("GameListSkeleton")).toHaveLength(1);
-  });
-
-  test("renders error if in maintenance", () => {
     const rendered = shallow(
-      <ProviderGamesList provider={{ inMaintenance: true }} />
+      <ProviderGamesList
+        loading={true}
+        games={[]}
+        gamesCount={0}
+        onLoadMore={() => Promise.resolve(true)}
+      />
     );
-    expect(rendered.find("ErrorMessage")).toHaveLength(1);
+    expect(rendered.find("ProviderGamesListSkeleton")).toHaveLength(1);
   });
 
-  test("renders error on error message", () => {
+  test("renders a virtual list with the games if not loading", () => {
     const rendered = shallow(
-      <ProviderGamesList error={"Provider doesn't exist"} />
-    );
-    expect(rendered.find("ErrorMessage")).toHaveLength(1);
-  });
-
-  test("calls fetchGames() on mount", () => {
-    const mock = jest.fn();
-    shallow(<ProviderGamesList fetchGames={mock} />);
-    expect(mock).toHaveBeenCalled();
-  });
-
-  test("renders provider virtuallist", () => {
-    const provider = {
-      inMaintenance: false,
-      name: "nyx",
-      games: ["bloodsuckers", "easter-island"],
-    };
-
-    const rendered = mount(
-      <MockStore state={defaultState}>
-        <ProviderGamesList provider={provider} areGamesLoaded={true} />
-      </MockStore>
+      <ProviderGamesList
+        loading={false}
+        games={games}
+        gamesCount={games.length}
+        onLoadMore={() => Promise.resolve(true)}
+      />
     );
 
     expect(rendered.find("VirtualList")).toHaveLength(1);

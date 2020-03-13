@@ -1,5 +1,5 @@
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
-import { VERTICALS } from "Src/constants";
+import { VERTICALS, COMPLIANCE_STATE_PROPERTY } from "Src/constants";
 import * as storage from "Lib/storage";
 import {
   handshakeSelector,
@@ -14,10 +14,10 @@ import {
   countrySelector,
   currencySelector,
   walletAmountSelector,
+  bonusAmountSelector,
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-  isTestEnv,
   languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
@@ -32,6 +32,9 @@ import {
   verticalSelector,
   featureFlagSelector,
   playerCasumoNameSelector,
+  jurisdictionSelector,
+  registrationDateSelector,
+  complianceStatePropertySelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -247,6 +250,26 @@ describe("Handshake selectors", () => {
     expect(walletAmountSelector(state)).toEqual(777);
   });
 
+  test("bonusAmountSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p3" },
+          "common/composition/players": {
+            players: {
+              p3: {
+                id: "p3",
+                bonus: { balance: { amount: 777 } },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(bonusAmountSelector(state)).toEqual(777);
+  });
+
   test("marketSelector", () => {
     const state = {
       handshake: {
@@ -310,33 +333,6 @@ describe("Handshake selectors", () => {
       };
 
       expect(isGamesHandshakeLoaded(state)).toBe(false);
-    });
-  });
-
-  describe("isTestEnv", () => {
-    test("returns false when site url is www.casumo.com", () => {
-      const state = {
-        handshake: {
-          app: {
-            "common/composition/context": { siteUrl: "https://www.casumo.com" },
-          },
-        },
-      };
-
-      expect(isTestEnv(state)).toBe(false);
-    });
-    test("returns false when site url is www.casumotest.com", () => {
-      const state = {
-        handshake: {
-          app: {
-            "common/composition/context": {
-              siteUrl: "https://www.casumotest.com",
-            },
-          },
-        },
-      };
-
-      expect(isTestEnv(state)).toBe(true);
     });
   });
 
@@ -593,6 +589,71 @@ describe("Handshake selectors", () => {
 
     test("returns FALSE if the feature-flag is not in the handshake nor in the localStorage", () => {
       expect(featureFlagSelector("unknown")(stateMock)).toBe(false);
+    });
+  });
+
+  describe("jurisdictionSelector()", () => {
+    test("jurisdictionSelector", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", jurisdiction: "UKGC" } },
+            },
+          },
+        },
+      };
+
+      expect(jurisdictionSelector(state)).toEqual("UKGC");
+    });
+  });
+
+  describe("registrationDateSelector()", () => {
+    test("it returns correct piece of state", () => {
+      const registrationDate = 1564746916000;
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", registrationDate } },
+            },
+          },
+        },
+      };
+
+      expect(registrationDateSelector(state)).toEqual(registrationDate);
+    });
+  });
+
+  describe("complianceStatePropertySelector()", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                complianceState: { DGA: { prop: "value" }, AML: "any value" },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    test("should return object for DGA compliance state property", () => {
+      expect(
+        complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.DGA)(state)
+      ).toEqual({ prop: "value" });
+    });
+
+    test("should return 'any value' for AML complaince state property", () => {
+      expect(
+        complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.AML)(state)
+      ).toEqual("any value");
     });
   });
 });

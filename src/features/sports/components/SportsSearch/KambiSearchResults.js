@@ -3,9 +3,12 @@ import * as React from "react";
 import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
+import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
+import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
 import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/components/GraphQL";
@@ -28,30 +31,15 @@ export const TOP_SEARCHES_QUERY = gql`
     }
   }
 `;
-type GroupByResultTypeType = (
-  A.SearchQuery_search[]
-) => { [string]: A.SearchQuery_search[] };
 
-const groupByResultType: GroupByResultTypeType = groupBy(
-  result => resultTypesGroupingMap[result.type]
-);
+const TOTAL_RECENT_SEARCH_ITEMS = 8;
+const TOTAL_POPULAR_SEARCH_ITEMS = 4;
 
-const TOTAL_PLACEHOLDER_ITEMS = 5;
-
-// TODO: adampilks - make these properly dynamic translations
-// eslint-disable-next-line no-unused-vars
-const resultTypesTranslationsMap = {
-  PARTICIPANT: "Team",
-  SPORT: "Sport",
-  REGION: "Region",
-  LEAGUE: "League",
-};
-
-const resultTypesGroupingMap = {
-  PARTICIPANT: "Team",
-  SPORT: "Sports, Regions & Leagues",
-  REGION: "Sports, Regions & Leagues",
-  LEAGUE: "Sports, Regions & Leagues",
+const resultType = {
+  PARTICIPANT: "PARTICIPANT",
+  SPORT: "SPORT",
+  LEAGUE: "LEAGUE",
+  REGION: "REGION",
 };
 
 export const SEARCH_QUERY = gql`
@@ -60,6 +48,7 @@ export const SEARCH_QUERY = gql`
       type
       id
       localizedName
+      country
 
       sport {
         icon
@@ -105,6 +94,8 @@ type State = {
   searchHistory: Array<A.SearchQuery_search>,
 };
 
+type TrackSearchClickListType = "popular" | "history" | "result";
+
 class KambiSearchResults extends React.Component<Props, State> {
   state = {
     searchHistory: [],
@@ -125,7 +116,39 @@ class KambiSearchResults extends React.Component<Props, State> {
     super(props);
 
     this.state.searchHistory = this.persisted.searchHistory.get();
+    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
+
+  trackSearchInitiated = (query: string, results: boolean) =>
+    tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INITIATED, {
+      query,
+      results,
+    });
+
+  trackSearchClick = (
+    resultOrGroup: A.SearchQuery_search | A.TopSearches_topSearches,
+    list: TrackSearchClickListType
+  ) => {
+    // will have either props
+    const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
+    const name = propOr(prop("localizedName", resultOrGroup), "name")(
+      resultOrGroup
+    );
+
+    if (list === "result") {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
+        query: this.props.query,
+        id,
+        name,
+      });
+    } else {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION, {
+        list,
+        id,
+        name,
+      });
+    }
+  };
 
   saveSearchHistory = (searchResult: A.SearchQuery_search) => {
     this.setState(prevState => {
@@ -152,7 +175,7 @@ class KambiSearchResults extends React.Component<Props, State> {
       </GroupTitle>
       <Query
         query={TOP_SEARCHES_QUERY}
-        variables={({ count: 5 }: A.TopSearchesVariables)}
+        variables={({ count }: A.TopSearchesVariables)}
       >
         {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
@@ -171,32 +194,16 @@ class KambiSearchResults extends React.Component<Props, State> {
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
-          result => this.renderSearchResult(result, true),
+          result => this.renderSearchResult(result, true, "history"),
           take(count, this.state.searchHistory)
         )}
       </>
     ) : null;
 
-  renderSearchResultsPlaceholder = () => {
-    const searchHistoryCount = this.state.searchHistory.length;
-
-    const noOfSearchHistoryItems = Math.min(
-      searchHistoryCount,
-      TOTAL_PLACEHOLDER_ITEMS
-    );
-
-    const noOfPopularSearchItems = Math.max(
-      TOTAL_PLACEHOLDER_ITEMS - searchHistoryCount,
-      0
-    );
-
-    return (
-      <>
-        {this.renderSearchHistory(noOfSearchHistoryItems)}
-        {this.renderPopularSearches(noOfPopularSearchItems)}
-      </>
-    );
-  };
+  renderSearchResultsPlaceholder = () =>
+    this.state.searchHistory.length
+      ? this.renderSearchHistory(TOTAL_RECENT_SEARCH_ITEMS)
+      : this.renderPopularSearches(TOTAL_POPULAR_SEARCH_ITEMS);
 
   renderPopularSearchItem = (eventGroup: A.TopSearches_topSearches) => {
     const [sport = eventGroup] = eventGroup.parentGroups;
@@ -215,6 +222,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={eventGroup.termKey}
             onClick={() => {
               this.props.onResultClick(eventGroup);
+              this.trackSearchClick(eventGroup, "popular");
               navigateClient();
             }}
           >
@@ -238,7 +246,8 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   renderSearchResult = (
     result: A.SearchQuery_search,
-    renderAllTextAsMatched: boolean = false
+    renderAllTextAsMatched: boolean = false,
+    trackType: TrackSearchClickListType = "result"
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
       value: string
@@ -270,10 +279,11 @@ class KambiSearchResults extends React.Component<Props, State> {
             onClick={() => {
               this.saveSearchHistory(result);
               this.props.onResultClick(result);
+              this.trackSearchClick(result, trackType);
               navigateClient();
             }}
           >
-            <Flex className="u-padding-left" spacing="md" align="center">
+            <Flex className="u-padding-left" spacing="md" align="end">
               {result.sport && (
                 <img
                   src={result.sport.icon}
@@ -283,7 +293,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <Flex.Block>
+              <div className="u-margin-x u-text-overflow--ellipsis">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -292,7 +302,25 @@ class KambiSearchResults extends React.Component<Props, State> {
                   search={this.props.query}
                   text={result.localizedName}
                 />
-              </Flex.Block>
+              </div>
+              {result.type === resultType.PARTICIPANT && result.sport && (
+                <Text
+                  size="sm"
+                  tag="span"
+                  className="t-color-chrome u-text-nowrap"
+                >
+                  {result.sport.name}
+                </Text>
+              )}
+              {result.type === resultType.LEAGUE && (
+                <Text
+                  size="sm"
+                  tag="span"
+                  className="t-color-chrome u-text-nowrap"
+                >
+                  {result.country}
+                </Text>
+              )}
             </Flex>
           </ResultRow>
         )}
@@ -323,26 +351,15 @@ class KambiSearchResults extends React.Component<Props, State> {
             );
           }
 
-          const groupedResults: {
-            [string]: A.SearchQuery_search[],
-          } = groupByResultType(res.data.search);
+          if (isEmpty(res.data.search)) {
+            this.trackSearchInitiated(this.props.query, false);
 
-          if (isEmpty(groupedResults)) {
             return this.renderNoResultsFound();
           }
 
-          return (
-            <>
-              {Object.keys(groupedResults).map(typeTitle => (
-                <React.Fragment key={typeTitle}>
-                  <GroupTitle>{typeTitle}</GroupTitle>
-                  {groupedResults[typeTitle].map(result =>
-                    this.renderSearchResult(result)
-                  )}
-                </React.Fragment>
-              ))}
-            </>
-          );
+          this.trackSearchInitiated(this.props.query, true);
+
+          return res.data.search.map(result => this.renderSearchResult(result));
         }}
       </Query>
     );

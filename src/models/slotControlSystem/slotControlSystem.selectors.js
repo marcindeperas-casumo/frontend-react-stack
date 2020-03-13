@@ -1,9 +1,10 @@
 // @flow
 import { createSelector } from "reselect";
-import { propOr, pipe, pick, path, identity } from "ramda";
+import { propOr, pipe, pick, path, pathOr, identity } from "ramda";
 import { getPage } from "Models/cms";
 import { getFetch } from "Models/fetch";
-import { CMS_SLUGS, ACTION_TYPES } from "Models/slotControlSystem";
+import type { GameCategory } from "Api/api.casinoPlayerGames";
+import { CMS_SLUGS, ACTION_TYPES } from "./slotControlSystem.constants";
 import type {
   ActiveSessionType,
   EndedSessionType,
@@ -11,7 +12,7 @@ import type {
 } from "./slotControlSystem.types";
 
 export const configurationFormContentSelector = createSelector(
-  getPage(CMS_SLUGS.CONFIGURATION_SCREEN),
+  getPage(CMS_SLUGS.BEFORE_PLAYING),
   getPage(CMS_SLUGS.UNITS),
   (configurationFormContent, unitsContent) => ({
     ...propOr({}, "fields", configurationFormContent),
@@ -44,14 +45,8 @@ export const isCreatingSessionSelector: (s: Object) => boolean = createSelector(
 export const activeSessionSelector: (
   s: Object
 ) => ?ActiveSessionType = createSelector(
-  isFetchingActiveSessionSelector,
   path(["slotControlSystem", "activeSession"]),
-  (isFetching, activeSession) => {
-    if (isFetching) {
-      return null;
-    }
-    return activeSession;
-  }
+  identity
 );
 
 export const endedSessionSelector: (
@@ -67,3 +62,16 @@ export const activeExclusionSelector: (
   path(["slotControlSystem", "activeExclusion"]),
   identity
 );
+
+export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
+  path(["slotControlSystem", "lastUpdateTime"]),
+  identity
+);
+
+export const slugToCategorySelector = (
+  slug: ?string
+): ((s: Object) => GameCategory | null) =>
+  createSelector(
+    pathOr(null, ["slotControlSystem", "slugToCategoryMap", slug]),
+    identity
+  );

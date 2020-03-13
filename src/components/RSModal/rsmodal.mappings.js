@@ -1,15 +1,22 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { REACT_APP_MODAL } from "Src/constants";
+import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
+import { overlayContentCmsSlug } from "Models/compliance/denmark";
 import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
-import {
-  MODALS as SCS_MODALS,
-  CMS_SLUGS as SCS_CMS_SLUGS,
-} from "Models/slotControlSystem";
+import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { TermsAndConditions } from "./TermsAndConditions";
-import { SlotControlSystem } from "./SlotControlSystem";
+import {
+  BeforePlaying,
+  BeforeLoggingOut,
+  AfterLimitsReached,
+  TimeRemainingNotification,
+  PeriodicReminderNotification,
+  LimitAlmostConsumedNotification,
+} from "./SlotControlSystem";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
@@ -35,13 +42,37 @@ export const mappings: Mapping = {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
   },
-  [SCS_MODALS.CONFIGURATION]: {
-    slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
-    Content: SlotControlSystem,
-  },
   REALITY_CHECK_MODAL: {
     slug: REALITY_CHECK_CMS_SLUG,
     Content: RealityCheck,
+  },
+  DANISH_ENTRY_OVERLAY: {
+    slug: overlayContentCmsSlug,
+    Content: DanishEntryOverlayContainer,
+  },
+  SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.PERIODIC_REMINDER_NOTIFICATION,
+    Content: PeriodicReminderNotification,
+  },
+  SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.LIMIT_ALMOST_CONSUMED_NOTIFICATION,
+    Content: LimitAlmostConsumedNotification,
+  },
+  SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.TIME_REMAINING_NOTIFICATION,
+    Content: TimeRemainingNotification,
+  },
+  [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
+    slug: SCS_CMS_SLUGS.BEFORE_PLAYING,
+    Content: BeforePlaying,
+  },
+  [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT]: {
+    slug: SCS_CMS_SLUGS.AFTER_PLAYING,
+    Content: BeforeLoggingOut,
+  },
+  [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED]: {
+    slug: SCS_CMS_SLUGS.AFTER_PLAYING,
+    Content: AfterLimitsReached,
   },
 };
 

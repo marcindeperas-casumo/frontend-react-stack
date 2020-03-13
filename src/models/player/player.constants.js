@@ -1,5 +1,5 @@
 // @flow
-export const SLUGS = {
-  MENU: "mobile.menu-2",
-  PAYMENTS: "features.payments",
+
+export const ACTION_TYPES = {
+  SET_LOGOUT_STARTED: "PLAYER/SET_LOGOUT_STARTED",
 };

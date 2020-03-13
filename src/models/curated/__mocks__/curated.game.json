@@ -1,0 +1,25 @@
+{
+  "name": "Topwheel Treasures",
+  "slug": "topwheel-treasures",
+  "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
+  "logo": "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
+  "hasPlayForFun": false,
+  "inMaintenanceMode": false,
+  "jackpotId": null,
+  "tableId": "munbzmuueehqaavs",
+  "lobby": {
+    "tableId": "munbzmuueehqaavs",
+    "type": "MoneyWheel",
+    "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_mw_med_L.jpg",
+    "bets": {
+      "symbol": "£",
+      "min": 0.1,
+      "max": 2500
+    },
+    "players": 0,
+    "results": ["01", "10", "02", "02", "01", "02", "01", "02", "01"],
+    "betBehind": null,
+    "seats": null,
+    "provider": "casumo"
+  }
+}

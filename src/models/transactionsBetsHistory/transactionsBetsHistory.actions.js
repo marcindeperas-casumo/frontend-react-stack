@@ -12,14 +12,3 @@ export function initFetchAnnualOverview({
     type: types.ANNUAL_OVERVIEW_FETCH_INIT,
   };
 }
-
-export function initFetchAnnualOverviewPdfUrl({
-  year,
-  meta = {},
-}: FetchAnnualOverviewProps) {
-  return {
-    year,
-    meta,
-    type: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
-  };
-}

@@ -4,7 +4,9 @@ import { types as fetchTypes } from "Models/fetch";
 import {
   ACTION_TYPES,
   type NewSessionRequestType,
+  type ActiveSessionType,
 } from "Models/slotControlSystem";
+import type { GameCategory } from "Api/api.casinoPlayerGames";
 
 export function initFetchActiveSessionAction() {
   return {
@@ -23,5 +25,20 @@ export function initCreateSessionAction(asyncCallData: NewSessionRequestType) {
     asyncCall: createSession,
     asyncCallData,
     postFetch: ACTION_TYPES.UPDATE_SESSION,
+  };
+}
+
+export function updateActiveSessionStats(data: ActiveSessionType) {
+  return {
+    type: ACTION_TYPES.UPDATE_ACTIVE_SESSION_STATS,
+    data,
+  };
+}
+
+export function updateSlugToCategoryMap(slug: string, category: GameCategory) {
+  return {
+    type: ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP,
+    slug,
+    category,
   };
 }

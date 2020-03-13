@@ -1,45 +1,26 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import ProviderGamesList from "Components/ProviderGamesList";
-import ProviderGamesListPresentational from "Components/ProviderGamesList/ProviderGamesList";
-import MockStore from "Components/MockStore";
-import isNotChromatic from "Storybook/isNotChromatic";
-import defaultState from "Models/__mocks__/state.mock";
+import { ProviderGamesList } from "./ProviderGamesList";
+import { games } from "./__mocks__";
 import "./ProviderGamesList.stories.scss";
+
 const stories = storiesOf("ProviderGamesList", module);
 
-const games = [
-  "bloodsuckers",
-  "easter-island",
-  "starburst",
-  "bakers-treat",
-  "rapunzels-tower",
-  "big-bad-wolf",
-  "book-of-ra-deluxe",
-  "diamond-mine",
-];
-const provider = {
-  inMaintenance: false,
-  name: "Nyx",
-  slug: "casumo-services-ltd-nyx",
-  games,
-};
-
-stories.add("ProviderGamesList (Presentational)", () => (
-  <MockStore>
-    <ProviderGamesListPresentational
-      areGamesLoaded={true}
-      provider={provider}
-      count={games.length}
-    />
-  </MockStore>
+stories.add("Default", () => (
+  <ProviderGamesList
+    loading={false}
+    games={games}
+    gamesCount={games.length}
+    onLoadMore={() => Promise.resolve(true)}
+  />
 ));
 
-if (isNotChromatic) {
-  stories.add("ProviderGamesList (Connected)", () => (
-    <MockStore state={defaultState}>
-      <ProviderGamesList provider={provider.slug} />
-    </MockStore>
-  ));
-}
+stories.add("Loading State", () => (
+  <ProviderGamesList
+    loading={true}
+    games={[]}
+    gamesCount={0}
+    onLoadMore={() => Promise.resolve(true)}
+  />
+));

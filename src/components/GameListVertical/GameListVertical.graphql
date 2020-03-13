@@ -1,0 +1,6 @@
+#import "../GameRow/GameRow.graphql"
+query GameListVerticalQuery($slugs: [String!]!) {
+    gamesBySlugs(slugs: $slugs) {
+      ...GameRow_Game
+    }
+}

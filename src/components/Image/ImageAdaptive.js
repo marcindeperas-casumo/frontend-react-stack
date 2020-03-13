@@ -4,13 +4,14 @@ import Picture from "@casumo/cmp-picture";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import type { Pictures } from "@casumo/cudl-react-prop-types";
 import { head } from "ramda";
-import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
+import { LOW_RES_IMAGE_SETTINGS, DEVICE_PIXEL_RATIO } from "../../constants";
 
-type Props = {|
+type Props = {
   className: string,
   images: Pictures,
   isIntersecting: boolean,
-|};
+  alt?: string,
+};
 
 export default class ImageAdaptive extends PureComponent<Props> {
   static defaultProps = {
@@ -18,22 +19,29 @@ export default class ImageAdaptive extends PureComponent<Props> {
   };
 
   render() {
-    const { className, images, isIntersecting } = this.props;
+    const { className, images, isIntersecting, alt } = this.props;
 
     // loading `<Picture>` on top when ready instead,
     // not replacing when `isIntersecting` untill we find a better fix
     // another solution could be delaying the replacement
     return (
-      <React.Fragment>
+      <>
         <ResponsiveImage
           className={className}
           src={head(images).src}
-          {...LOW_RES_IMAGE_SETTINGS}
+          imgixOpts={LOW_RES_IMAGE_SETTINGS}
+          dpr={1}
+          alt={alt}
         />
         {isIntersecting && (
-          <Picture className={className} images={images} dpr={3} />
+          <Picture
+            className={className}
+            images={images}
+            dpr={DEVICE_PIXEL_RATIO}
+            alt={alt}
+          />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

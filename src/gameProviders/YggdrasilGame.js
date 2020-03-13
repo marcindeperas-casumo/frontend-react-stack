@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
+// ISSUES:
 // back to lobby and other urls are coming from backend
 
 export class YggdrasilGame extends BaseIframeGame {

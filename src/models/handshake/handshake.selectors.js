@@ -10,7 +10,6 @@ import {
   complement,
   anyPass,
   propSatisfies,
-  includes,
 } from "ramda";
 import * as storage from "Lib/storage";
 import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
@@ -105,6 +104,11 @@ export const walletAmountSelector = createSelector(
   path(["wallet", "balance", "amount"])
 );
 
+export const bonusAmountSelector = createSelector(
+  playerSelector,
+  path(["bonus", "balance", "amount"])
+);
+
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")
@@ -123,14 +127,6 @@ export const gamesHandshakeSelector = createSelector(
 export const isGamesHandshakeLoaded = createSelector(
   gamesHandshakeSelector,
   complement(anyPass([isNil, isEmpty]))
-);
-
-export const isTestEnv = createSelector(
-  applicationHandshakeSelector,
-  compose(
-    propSatisfies(includes("casumotest"), "siteUrl"),
-    prop("common/composition/context")
-  )
 );
 
 export const languageSelector = createSelector(
@@ -229,3 +225,19 @@ export const featureFlagSelector = (featureFlag: string) =>
       return false;
     }
   );
+
+export const jurisdictionSelector = createSelector(
+  playerSelector,
+  prop("jurisdiction")
+);
+
+export const complianceStatePropertySelector = (complianceProperty: string) =>
+  createSelector(
+    playerSelector,
+    path(["complianceState", complianceProperty])
+  );
+
+export const registrationDateSelector = createSelector(
+  playerSelector,
+  prop("registrationDate")
+);

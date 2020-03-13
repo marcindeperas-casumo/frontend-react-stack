@@ -7,11 +7,11 @@ import * as A from "Types/apollo";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
-import { logout } from "Services/Logout";
 
 type Props = {
   playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
   labels: A.PLAYER_SECTIONS_LABELS_QUERY,
+  logout: () => void,
 };
 
 const SettingsSection = ({ title, description, href }) => (
@@ -29,7 +29,8 @@ export class SettingsSections extends PureComponent<Props> {
     const {
       playerLoginHistory: {
         player: {
-          loginHistory: [lastLogin],
+          // 0-indexed is the currentSession, 1-indexed is refering to last session
+          loginHistory: [, previousLogin],
         },
       },
       labels: {
@@ -42,6 +43,7 @@ export class SettingsSections extends PureComponent<Props> {
         accountActivity,
         logout: logoutLabel,
       },
+      logout,
     } = this.props;
 
     return (
@@ -67,10 +69,10 @@ export class SettingsSections extends PureComponent<Props> {
           />
         </Flex.Item>
         <Flex.Item className="u-text-align-center">
-          {lastLogin && (
+          {previousLogin && (
             <SettingsSectionsLastLogin
               currentSessionMessageLabel={currentSessionMessage}
-              time={lastLogin.loginTime}
+              time={previousLogin.loginTime}
               lastSessionMessageLabel={lastSessionMessage}
               accountActivityLabel={accountActivity}
             />

@@ -17,6 +17,7 @@ const mockedProps = {
   errorMessage: "Error has occurred",
   fetchTranslations: () => {},
 };
+jest.mock("Utils/hooks/useGameCategory");
 
 jest.mock("../../utils/hooks/useGameLaunchData.js", () => ({
   useGameLaunchData: jest.fn().mockImplementation(({ slug }) => {

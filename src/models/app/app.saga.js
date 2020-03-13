@@ -1,5 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { fetchAppHandshake, isAuthenticated } from "Models/handshake";
+import { initFetchActiveSessionAction } from "Models/slotControlSystem";
 import { waitForSelector } from "Utils";
 
 export function* appSaga() {
@@ -12,6 +13,8 @@ export function* appSaga() {
   // This is under the assumption that the react-stack will only run in logged
   // in mode
   yield call(waitForSelector, isAuthenticated);
+
+  yield put(initFetchActiveSessionAction());
 }
 
 export default appSaga;

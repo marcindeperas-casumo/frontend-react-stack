@@ -34,7 +34,6 @@ const GameProviderAvatar = ({
         mark={logo}
         src={background}
         imgixOpts={imgixOpts}
-        dpr={3}
         {...rest}
       />
     </a>

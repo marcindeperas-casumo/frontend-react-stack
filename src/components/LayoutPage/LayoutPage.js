@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
-import { Desktop } from "Components/ResponsiveLayout";
+import { FullscreenView } from "Components/FullscreenView";
+import "./LayoutPage.scss";
 
 type Props = {
   children: string,
@@ -9,18 +9,8 @@ type Props = {
 
 export const LayoutPage = (props: Props) => {
   return (
-    <Flex spacing="none">
-      <Desktop>
-        <Flex.Item
-          style={{ width: "260px" }}
-          className="u-position-relative u-height--screen u-overflow-y--auto"
-        >
-          <div>{/* sidebar goes here */}</div>
-        </Flex.Item>
-      </Desktop>
-      <Flex.Block>
-        <div className="u-height--screen">{props.children}</div>
-      </Flex.Block>
-    </Flex>
+    <FullscreenView className="u-height--full u-width--full t-background-chrome-dark-3">
+      {props.children}
+    </FullscreenView>
   );
 };

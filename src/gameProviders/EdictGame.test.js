@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { EdictGame } from "./EdictGame";
+import { EdictGame, COMMANDS } from "./EdictGame";
 
 describe("EdictGame", () => {
   const gameData = {
@@ -28,7 +28,7 @@ describe("EdictGame", () => {
 
   test("should set api commands", () => {
     expect(model.api.features.instantPause).toBe(true);
-    expect(model.api.commands.pause).toBe("pauseGame");
-    expect(model.api.commands.resume).toBe("resumeGame");
+    expect(model.api.commands.pause).toBe(COMMANDS.PAUSE);
+    expect(model.api.commands.resume).toBe(COMMANDS.RESUME);
   });
 });

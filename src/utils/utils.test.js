@@ -2,6 +2,7 @@
 import * as React from "react";
 import { mount } from "enzyme";
 import { F } from "ramda";
+import { Settings, DateTime } from "luxon";
 import {
   bridgeFactory,
   generateColumns,
@@ -20,6 +21,9 @@ import {
   convertTimestampToLuxonDate,
   interpolateTimeInterval,
   canBeInterpolated,
+  formatTime,
+  timeRemainingBeforeStart,
+  isTestEnv,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -56,6 +60,36 @@ describe("bridgeFactory()", () => {
     bridge.off(event, () => {});
     bridge.emit(event, payload);
     expect(mock).toBeCalledTimes(2);
+  });
+});
+
+describe("isTestEnv", () => {
+  test("returns false when site url is www.casumo.com", () => {
+    const { location } = window;
+    // eslint-disable-next-line fp/no-delete
+    delete window.location;
+
+    window.location = {
+      href: "https://www.casumo.com",
+      origin: "https://www.casumo.com",
+    };
+
+    expect(isTestEnv()).toBe(false);
+    window.location = location;
+  });
+  test("returns true when site url is www.casumotest.com", () => {
+    const { location } = window;
+    // eslint-disable-next-line fp/no-delete
+    delete window.location;
+
+    window.location = {
+      href: "https://www.casumotest.com",
+      origin: "https://www.casumotest.com",
+    };
+
+    expect(isTestEnv()).toBe(true);
+
+    window.location = location;
   });
 });
 
@@ -343,6 +377,12 @@ describe("interpolate()", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
   });
+
+  test("should replace currency with value if provided", () => {
+    const input = "I am a {{  var  }} to be replaced with {{ something | € }}";
+    const output = "I am a variable to be replaced with 12";
+    expect(interpolate(input, { var: "variable", something: 12 })).toBe(output);
+  });
 });
 
 describe("interpolateWithJSX()", () => {
@@ -431,6 +471,26 @@ describe("convertHoursToDays()", () => {
       };
 
       expect(interpolateTimeInterval(props)).toEqual("3days");
+    });
+  });
+
+  describe("formatTime()", () => {
+    test("should properly format Unix time in millis as localized 24-hour time with seconds", () => {
+      expect(formatTime(1576758921344)).toEqual(
+        expect.stringMatching(/^\d\d:35:21/)
+      );
+    });
+  });
+
+  describe("timeRemainingBeforeStart", () => {
+    test("should calculate the remaining time given a start time", () => {
+      Settings.now = () => new Date(2020, 2, 14).valueOf();
+      const currentDateInMs = DateTime.local().ts;
+      const startTime = 1584230400000;
+      const remainingTime = timeRemainingBeforeStart(startTime);
+      const timeDifference = startTime - currentDateInMs;
+
+      expect(timeDifference).toEqual(remainingTime);
     });
   });
 });

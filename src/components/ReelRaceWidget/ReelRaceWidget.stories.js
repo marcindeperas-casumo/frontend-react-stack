@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import MockDate from "mockdate";
-import { PLAYING_STATE } from "Models/playing";
 import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
@@ -31,9 +30,10 @@ const props = {
     promoted: false,
   },
   scheduledGame: {
+    id: "ID",
     name: "Gonzo&#8217;s Quest",
     slug: "gonzos-quest",
-    logoBackground:
+    backgroundImage:
       "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
     logo:
       "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
@@ -65,7 +65,7 @@ const props = {
   subscribeReelRacesUpdates: () => {},
   unsubscribeReelRacesUpdates: () => {},
   playing: {
-    state: PLAYING_STATE.STARTED,
+    isPlaying: true,
     gameId: "bar",
   },
   playerId: "123",

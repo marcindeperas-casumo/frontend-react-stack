@@ -1,6 +1,8 @@
 // @flow
 import { equals } from "ramda";
+import debounce from "lodash.debounce";
 import logger from "Services/logger";
+import { expandIframeHeightToMatchItsParent } from "./utils";
 import { BaseGame } from "./BaseGame";
 import type {
   IframeGameApi,
@@ -52,11 +54,7 @@ export class BaseIframeGame extends BaseGame {
     return {
       ...super.componentProps,
       allow: "autoplay",
-      style: {
-        width: "100%",
-        height: "100%",
-        border: 0,
-      },
+      scrolling: "no",
       src: this.props.gameData.url || null,
       title: IFRAME_ID,
       id: IFRAME_ID,
@@ -66,13 +64,15 @@ export class BaseIframeGame extends BaseGame {
   pauseGame() {
     const { current: gameElement } = this.props.gameRef;
     const { pause: pauseCommand } = this.api.commands;
-    const { instantPause } = this.api.features;
 
     return new Promise<void>((resolve, reject) => {
-      if (gameElement instanceof HTMLIFrameElement && pauseCommand) {
+      if (!pauseCommand) {
+        resolve();
+      }
+      if (gameElement instanceof HTMLIFrameElement) {
         gameElement.contentWindow.postMessage(pauseCommand, this.targetDomain);
 
-        if (instantPause || this.isGameIdle) {
+        if (this.api.features.instantPause || this.isGameIdle) {
           resolve();
         } else {
           this.resolveOnIdle(gameElement, resolve);
@@ -135,15 +135,29 @@ export class BaseIframeGame extends BaseGame {
     }
   }
 
+  debouncedOnScreenResize = debounce(
+    () => expandIframeHeightToMatchItsParent(this.props.gameRef),
+    500
+  );
+
   onMount() {
     super.onMount();
-    window.addEventListener("message", event => {
-      this.messageGuard(event);
-    });
+
+    const { current: gameIframe } = this.props.gameRef;
+
+    if (gameIframe) {
+      gameIframe.addEventListener("load", () => {
+        this.debouncedOnScreenResize();
+      });
+    }
+
+    window.addEventListener("resize", this.debouncedOnScreenResize);
+    window.addEventListener("message", this.messageGuard.bind(this));
   }
 
   onUnmount() {
     super.onUnmount();
-    window.removeEventListener("message", this.messageGuard);
+    window.removeEventListener("resize", this.debouncedOnScreenResize);
+    window.removeEventListener("message", this.messageGuard.bind(this));
   }
 }

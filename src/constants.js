@@ -26,6 +26,8 @@ export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
+export const REACT_APP_EVENT_INIT_MANUAL_LOGOUT =
+  "REACT_APP_EVENT/initManualLogout";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
@@ -64,11 +66,8 @@ export const ENVIRONMENTS = {
 
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
-export const LOW_RES_IMAGE_SETTINGS = {
-  mark: "",
-  dpr: 1,
-  imgixOpts: { w: 5, blur: 2000 },
-};
+export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
+export const DEVICE_PIXEL_RATIO = Math.ceil(window.devicePixelRatio);
 export const GAME_LIST_IDS = {
   POPULAR_GAMES: "popularGames",
   LIVE_CASINO_GAMES: "liveCasinoGames", // TODO: remove this by using unique ids everywhere in the CMS
@@ -88,9 +87,10 @@ export const GAME_LIST_IDS = {
 };
 
 export const ROUTE_IDS = {
-  DEPOSIT: "DEPOSIT",
   LOGIN: "LOGIN",
   PLAY: "PLAY",
+  PLAY_NATIVE: "PLAY_NATIVE",
+  DEPOSIT: "DEPOSIT",
   PRACTICE: "PRACTICE",
   TOP_LISTS: "TOP_LISTS",
   GAMES_SEARCH: "GAMES_SEARCH",
@@ -105,15 +105,22 @@ export const ROUTE_IDS = {
   PLAYER_SETTINGS_NOTIFICATIONS: "PLAYER_SETTINGS_NOTIFICATIONS",
   PLAYER_SETTINGS_ACCOUNT_DETAILS: "PLAYER_SETTINGS_ACCOUNT_DETAILS",
   PLAYER_SETTINGS_REALITY_CHECK: "PLAYER_SETTINGS_REALITY_CHECK",
+  PLAYER_PLAY_OKAY_SETTINGS: "PLAYER_PLAY_OKAY_SETTINGS",
   SPORTS: "SPORTS",
   TRANSACTION_HISTORY: "TRANSACTION_HISTORY",
   TRANSACTION_HISTORY_BETS: "TRANSACTION_HISTORY_BETS",
   TRANSACTION_ANNUAL_OVERVIEW: "TRANSACTION_ANNUAL_OVERVIEW",
+  CASH_DEPOSIT: "CASH_DEPOSIT",
+  PLAY_OKAY: "PLAY_OKAY",
+  FAQ: "FAQ",
+  ABOUT_CASUMO: "ABOUT_CASUMO",
 };
 
 export const ROUTES = {
   [ROUTE_IDS.LOGIN]: "log-in",
+  [ROUTE_IDS.DEPOSIT]: "deposit",
   [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
+  [ROUTE_IDS.PLAY_NATIVE]: "gamelaunchers/:slug/launch",
   [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
@@ -129,12 +136,16 @@ export const ROUTES = {
   [ROUTE_IDS.PLAYER_SETTINGS_ACCOUNT_DETAILS]:
     "player/settings/account-details",
   [ROUTE_IDS.PLAYER_SETTINGS_REALITY_CHECK]: "player/settings/reality-check",
+  [ROUTE_IDS.PLAYER_PLAY_OKAY_SETTINGS]: "player/play-okay-settings",
   [ROUTE_IDS.SPORTS]: "sports",
   [ROUTE_IDS.TRANSACTION_HISTORY]: "cash/history",
   [ROUTE_IDS.TRANSACTION_HISTORY_BETS]: "cash/history/bets",
   [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
     "cash/history/transactions-annual-overview/:selectedYear",
-  [ROUTE_IDS.DEPOSIT]: "cash/deposit",
+  [ROUTE_IDS.CASH_DEPOSIT]: "cash/deposit",
+  [ROUTE_IDS.PLAY_OKAY]: "play-okay",
+  [ROUTE_IDS.FAQ]: "faq",
+  [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
 };
 
 export const TRANSLATED_ROUTES = {
@@ -152,6 +163,11 @@ export const TRANSLATED_ROUTES = {
     de: "spielen",
     DEFAULT: "play",
   },
+};
+
+export const COMPLIANCE_STATE_PROPERTY = {
+  DGA: "DGA",
+  AML: "AML",
 };
 
 export const MARKETS = {
@@ -221,7 +237,7 @@ export const CURRENCY_SYMBOLS = {
   USD: "\u0024", // $
 };
 
-export const CURRENCIES = {
+export const CURRENCIES = Object.freeze({
   EUR: "EUR",
   GBP: "GBP",
   DKK: "KR",
@@ -230,7 +246,7 @@ export const CURRENCIES = {
   NZD: "NZD",
   INR: "INR",
   USD: "USD",
-};
+});
 
 export const VERTICALS = {
   SPORTS: "SPORTS",
@@ -248,6 +264,32 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
+  MIXPANEL_SPORTS_PAGEVIEW: "Sports Page View",
+  MIXPANEL_SPORTS_SEARCH_INTENT: "Sports Search Intent",
+  MIXPANEL_SPORTS_SEARCH_INITIATED: "Sports Search Initiated",
+  MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION: "Sports Search Clicked Suggestion",
+  MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT: "Sports Search Clicked Result",
+  MIXPANEL_SPORTS_ONBOARDING_START: "Sports Onboarding - starts",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
+    "Sports Onboarding - selected a favorite sport",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
+    "Sports Onboarding - deselected a favorite sport",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL:
+    "Sports Onboarding - clicked all sports",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT:
+    "Sports Onboarding - add a league intent",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE:
+    "Sports Onboarding - removed a league from edit sports",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED:
+    "Sports Onboarding - added a league from edit sports",
+  MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES: "Sports Onboarding - chose leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED:
+    "Sports Onboarding - deselected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED:
+    "Sports Onboarding - selected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
+    "Sports Onboarding - expanded leagues of a Country",
+  MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -262,6 +304,19 @@ export const EVENT_PROPS = {
   SPORTS_STATE: "State",
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
+  SPORTS_PAGE_TYPE: "type",
+  SPORTS_PAGE_TITLE: "title",
+  SPORTS_PAGE_PATH: "path",
+  SPORTS_ID: "sport id",
+  SPORTS_NAME: "sport name",
+  SPORTS_SELECTED: "sports selected",
+  SPORTS_SELECTED_NUMBER: "number of sports selected",
+  LEAGUES_SELECTED: "leagues selected",
+  LEAGUES_SELECTED_NUMBER: "number of leagues selected",
+  COMPETITION_ID: "league id",
+  COMPETITION_NAME: "league name",
+  COUNTRY_ID: "country id",
+  COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };
@@ -272,6 +327,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
@@ -284,7 +340,12 @@ export const REACT_APP_MODAL = {
   },
   ID: {
     TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
+    DANISH_ENTRY_OVERLAY: "DANISH_ENTRY_OVERLAY",
     SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
+    SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT:
+      "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
+    SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED:
+      "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
@@ -308,4 +369,15 @@ export const MODALS = {
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
+};
+
+export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
+export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
+
+export const JURISDICTIONS = {
+  DGA: "DGA",
+  DGOJ: "DGOJ",
+  MGA: "MGA",
+  SGA: "SGA",
+  UKGC: "UKGC",
 };

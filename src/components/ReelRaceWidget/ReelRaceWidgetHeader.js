@@ -58,7 +58,7 @@ export function ReelRaceWidgetHeader(props: Props) {
       onClick={props.launchGame}
     >
       <GameThumb
-        src={scheduledGame.logoBackground}
+        src={scheduledGame.backgroundImage}
         alt={scheduledGame.name}
         mark={scheduledGame.logo}
       />

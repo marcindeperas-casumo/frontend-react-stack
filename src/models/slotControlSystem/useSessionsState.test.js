@@ -13,17 +13,19 @@ import endedSessionMock from "./__mocks__/endedSession.mock";
 import activeExclusionMock from "./__mocks__/activeExclusion.mock";
 
 describe("useSessionsState", () => {
-  const lastUpdateTime = Date.now();
+  const now = 1575462653148;
+  const lastUpdateTime = now;
   const activeSession = {
     ...activeSessionMock,
-    lastUpdateTime,
   };
-  const endTime = Date.now() - 10000;
+  const endTime = now - 10000;
   const lastEndedSession = {
     ...endedSessionMock,
     endTime,
   };
   const slotControlSystem: StateType = {
+    slugToCategoryMap: {},
+    lastUpdateTime,
     activeSession,
     lastEndedSession,
     activeExclusion: null,
@@ -33,8 +35,16 @@ describe("useSessionsState", () => {
       isFetching: false,
     },
   };
+  let nowSpy;
 
-  test("returns object with activeSession, isFetching, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
+  beforeEach(() => {
+    nowSpy = jest.spyOn(Date, "now").mockImplementation(() => now);
+  });
+  afterEach(() => {
+    nowSpy.mockClear();
+  });
+
+  test("returns object with activeSession, isFetching, isSynced, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
     const state = {
       fetch,
       slotControlSystem,
@@ -48,32 +58,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      lastEndedSession,
-      lastEndedSessionDuringLastHour: true,
-      activeExclusion: null,
-    });
-  });
-
-  test("does not return activeSession if it's older than 1 minute", () => {
-    const state = {
-      fetch,
-      slotControlSystem: {
-        ...slotControlSystem,
-        activeSession: {
-          ...activeSessionMock,
-          lastUpdateTime: Date.now() - 7 * 60 * 1000,
-        },
-      },
-    };
-    const wrapper = mount(
-      <MockStore state={state}>
-        <HookWrapper hook={useSessionsState} args={[]} />
-      </MockStore>
-    );
-
-    expectHook(wrapper).toEqual({
-      activeSession: null,
-      isFetching: true,
+      isSynced: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
@@ -97,6 +82,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      isSynced: true,
       lastEndedSession: null,
       lastEndedSessionDuringLastHour: false,
       activeExclusion: null,
@@ -120,6 +106,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      isSynced: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: activeExclusionMock,

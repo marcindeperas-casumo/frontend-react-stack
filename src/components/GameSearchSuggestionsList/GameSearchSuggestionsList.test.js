@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { GameSearchSuggestionsList } from "./GameSearchSuggestionsList";
 
-describe("GameSearch", () => {
+describe("GameSearchSuggestionsList", () => {
   test("Should render a SectionList", () => {
     const rendered = shallow(
       <GameSearchSuggestionsList
@@ -11,6 +11,7 @@ describe("GameSearch", () => {
           title: "Latest Played",
           games: ["starburst"],
           location: "latestPlayedGames",
+          type: "",
         }}
         loading={false}
       />
@@ -32,6 +33,7 @@ describe("GameSearch", () => {
           games: [],
           title: "",
           location: "whatever",
+          type: "",
         }}
         loading={false}
       />
@@ -47,6 +49,7 @@ describe("GameSearch", () => {
           games: ["whatever"],
           title: "",
           location: "whatever",
+          type: "",
         }}
         loading
       />

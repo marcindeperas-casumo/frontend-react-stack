@@ -33,12 +33,7 @@ describe("BaseGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/react-stack/navigation-bubbler.html?target=games/top"
+      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games/top"
     );
   });
-
-  expect(model.onMount).toBeInstanceOf(Function);
-  expect(model.onUnmount).toBeInstanceOf(Function);
-  expect(model.pauseGame).toBeInstanceOf(Function);
-  expect(model.resumeGame).toBeInstanceOf(Function);
 });

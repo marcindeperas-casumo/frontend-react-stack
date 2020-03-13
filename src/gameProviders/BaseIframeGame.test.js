@@ -22,11 +22,7 @@ export const baseIframeGameProps = {
   src: "src",
   title: "casumo-game",
   id: "casumo-game",
-  style: {
-    border: 0,
-    height: "100%",
-    width: "100%",
-  },
+  scrolling: "no",
 };
 
 describe("BaseIframeGame", () => {
@@ -63,7 +59,7 @@ describe("BaseIframeGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/react-stack/navigation-bubbler.html?target=games/top"
+      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games/top"
     );
   });
 
@@ -71,4 +67,18 @@ describe("BaseIframeGame", () => {
   expect(model.onUnmount).toBeInstanceOf(Function);
   expect(model.pauseGame).toBeInstanceOf(Function);
   expect(model.resumeGame).toBeInstanceOf(Function);
+
+  test("parseMessageData should return data unaltered", () => {
+    const messageData = "SOME_MESSAGE";
+    const parsedData = model.parseMessageData(messageData);
+
+    expect(parsedData).toBe(messageData);
+  });
+
+  test("extractEventId should return original data as identifier", () => {
+    const messageData = "SOME_MESSAGE";
+    const eventIdentifier = model.extractEventId(messageData);
+
+    expect(eventIdentifier).toBe(messageData);
+  });
 });

@@ -11,7 +11,6 @@ const PromotionGalleryCardImage = ({ image }) => {
           className="o-ratio__content c-promotion-gallery-card__img"
           src={image}
           imgixOpts={imgixOpts}
-          dpr={3}
         />
       </div>
     </div>

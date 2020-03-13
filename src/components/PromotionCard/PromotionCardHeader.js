@@ -4,7 +4,7 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const PromotionCardHeader = ({ badge, dates }) => {
+export const PromotionCardHeader = ({ badge, dates }) => {
   return (
     <Flex
       className="u-padding-x--lg u-line-height--1"
@@ -33,12 +33,9 @@ const PromotionCardHeader = ({ badge, dates }) => {
             height="40px"
             src={badge}
             imgixOpts={{ w: 40, h: 40 }}
-            dpr={3}
           />
         )}
       </Flex.Item>
     </Flex>
   );
 };
-
-export default PromotionCardHeader;

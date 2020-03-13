@@ -23,7 +23,9 @@ describe("Models/GameProviders/Sagas", () => {
 
       const response = { foo: "response" };
       expect(generator.next({ response }).value).toEqual(
-        call(normalizeData, { [`${ENTITY_KEYS.GAME_PROVIDER}s`]: response })
+        call(normalizeData, {
+          [`${ENTITY_KEYS.GAME_PROVIDER}s`]: response.gameStudios,
+        })
       );
 
       const entities = { someEntity: { id: 1 } };

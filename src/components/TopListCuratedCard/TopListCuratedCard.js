@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import { CuratedCard } from "Components/CuratedCard";
+// __FIX__ Why can't it resolve "Components/CuratedCard"?
+import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 
 export const WELCOME_OFFER_SLUG = "welcome-offer-test";
 

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 
+export * from "./modal.selectors";
+
 export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",
@@ -11,6 +13,12 @@ export const type = {
 export type ModalId =
   | "TERMS_AND_CONDITIONS_SPAIN"
   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
+  | "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT"
+  | "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED"
+  | "SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION"
+  | "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION"
+  | "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION"
+  | "DANISH_ENTRY_OVERLAY"
   | "REALITY_CHECK_MODAL";
 type ModalReturnCode =
   | "CLOSED" // click on "x"

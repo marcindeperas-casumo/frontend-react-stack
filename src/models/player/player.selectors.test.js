@@ -7,6 +7,8 @@ import {
   playerPaymentsTextsSelector,
   playerBonusTextSelector,
   playerBalanceAmountSelector,
+  playerSessionIsValidSelector,
+  playerLogoutStartedSelector,
 } from "./player.selectors";
 
 const wallet = {
@@ -21,6 +23,12 @@ const handshake = {
       players: {
         "id-123": {
           wallet: {
+            balance: {
+              amount: 111,
+              iso4217CurrencyCode: "USD",
+            },
+          },
+          bonus: {
             balance: {
               amount: 111,
               iso4217CurrencyCode: "USD",
@@ -83,8 +91,8 @@ describe("Player selectors", () => {
       expect(playerWalletBonusSelector(state)).toEqual(wallet.bonus);
     });
 
-    test("Should get 0", () => {
-      expect(playerWalletBonusSelector(state2)).toEqual(0);
+    test("Should get handshake amount", () => {
+      expect(playerWalletBonusSelector(state2)).toEqual(111);
     });
   });
 
@@ -148,6 +156,34 @@ describe("Player selectors", () => {
         handshake.app["common/composition/players"].players["id-123"].wallet
           .balance.amount
       );
+    });
+  });
+
+  describe("playerSessionIsValidSelector", () => {
+    test("returns true if player sessionValid is true", () => {
+      expect(
+        playerSessionIsValidSelector({ player: { sessionValid: true } })
+      ).toBe(true);
+    });
+
+    test("returns false if player sessionValid is false", () => {
+      expect(
+        playerSessionIsValidSelector({ player: { sessionValid: false } })
+      ).toBe(false);
+    });
+  });
+
+  describe("playerLogoutStartedSelector", () => {
+    test("returns true if player logoutStarted is true", () => {
+      expect(
+        playerLogoutStartedSelector({ player: { logoutStarted: true } })
+      ).toBe(true);
+    });
+
+    test("returns false if player logoutStarted is false", () => {
+      expect(
+        playerLogoutStartedSelector({ player: { logoutStarted: false } })
+      ).toBe(false);
     });
   });
 });

@@ -1,0 +1,14 @@
+#import "./GameSearchSuggestionsList.graphql"
+
+query GameSearchSuggestionsListContainerQuery(
+  $titleId: String!
+  $listId: String!
+) {
+  title: getText(id: $titleId)
+  gamesList(listId: $listId) {
+    id
+    games {
+      ...GameSearchSuggestionsList_Game
+    }
+  }
+}

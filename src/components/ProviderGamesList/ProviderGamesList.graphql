@@ -1,0 +1,11 @@
+#import "../GameRow/GameRow.graphql"
+
+query GameStudioQuery($slug: String!, $page: Int!, $pageSize: Int!) {
+  gameStudio(slug: $slug) {
+    id
+    gamesCount
+    games(page: $page, pageSize: $pageSize) {
+      ...GameRow_Game
+    }
+  }
+}

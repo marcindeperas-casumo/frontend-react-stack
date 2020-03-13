@@ -4,20 +4,18 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import GameTileImage from "Components/GameTile/GameTileImage";
-import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
+import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
+import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import type { Game } from "Types/game";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
+import * as A from "Types/apollo";
 
 export type Props = {
   className?: string,
-  game: Game,
+  game: A.GameTile_Game,
   imgixOpts?: Object,
-  onLaunchGame: Function,
-  onFavouriteGame: Function,
   ratio?: string,
-  isInMyList?: boolean,
 };
 
 export const DEFAULT_CLASSES =
@@ -26,18 +24,23 @@ export const DEFAULT_CLASSES =
 export const GameTile = ({
   className,
   game = {},
-  onLaunchGame,
-  onFavouriteGame,
   imgixOpts = {
     w: 170,
     q: 70,
   },
   ratio = "game-tile",
-  isInMyList = false,
 }: Props) => {
-  const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
+  const {
+    isInMaintenance,
+    backgroundImage,
+    logo,
+    name,
+    slug,
+    id,
+    isInMyList,
+  } = game;
 
-  if (inMaintenanceMode) {
+  if (isInMaintenance) {
     return (
       <GameTileInMaintenance
         ratio={ratio}
@@ -60,10 +63,10 @@ export const GameTile = ({
           `o-ratio--${ratio}`,
           className
         )}
-        onClick={onLaunchGame}
+        onClick={() => launchGame({ slug: game.slug })}
       >
         <GameTileImage
-          logoBackground={logoBackground}
+          logoBackground={backgroundImage}
           logo={logo}
           name={name}
           imgixOpts={imgixOpts}
@@ -95,9 +98,9 @@ export const GameTile = ({
               }}
             >
               <GameTileHeart
-                className="u-padding u-width--2xlg"
-                onClick={onFavouriteGame}
-                isActive={isInMyList}
+                gameId={id}
+                gameSlug={slug}
+                isInMyList={isInMyList}
               />
             </TrackClick>
           </Flex.Item>

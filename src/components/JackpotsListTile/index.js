@@ -1,3 +1,3 @@
 // @flow
 export type * from "./JackpotsListTile"; // eslint-disable-line import/export
-export { default } from "./JackpotsListTile";
+export { JackpotsListTile } from "./JackpotsListTile"; // eslint-disable-line import/export

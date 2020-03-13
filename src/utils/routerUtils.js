@@ -1,5 +1,5 @@
 // @flow
-
+import { navigate } from "@reach/router";
 import { interpolate, canBeInterpolated } from "Utils";
 import { ROUTES, TRANSLATED_ROUTES } from "Src/constants";
 
@@ -19,3 +19,9 @@ export const routeTranslator = (language: string) => {
     return path;
   };
 };
+
+export const navigateToRerender = () => {
+  navigate(window.location.pathname);
+};
+
+export const navigateToRootWithReload = () => window.location.assign("/");
