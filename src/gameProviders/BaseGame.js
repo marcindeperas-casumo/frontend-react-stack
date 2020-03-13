@@ -1,5 +1,5 @@
 // @flow
-import { routeTranslator } from "Utils";
+import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { GAME_ACTIVE_EVENT_NAME, GAME_IDLE_EVENT_NAME } from "./constants";
@@ -21,9 +21,12 @@ export class BaseGame {
     const getRoute = routeTranslator(this.props.language);
     const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
     const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
-    const langPart = tld === "es" ? "" : `${this.props.language}/`;
 
-    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${langPart}${encodedTranslatedRoute}`;
+    if (isTLDMarketSpecific(tld)) {
+      return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
+    }
+
+    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.props.language}/${encodedTranslatedRoute}`;
   }
 
   goToLobby() {
