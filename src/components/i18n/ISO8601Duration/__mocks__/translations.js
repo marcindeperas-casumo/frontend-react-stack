@@ -3,7 +3,7 @@ import type { DurationTranslations } from "../ISO8601Duration.types";
 
 export default ({
   "year_singular": "{{value}} year",
-  "year_plural": "{value} years",
+  "year_plural": "{{value}} years",
   "year_abbreviated": "{{value}}y",
 
   "month_singular": "{{value}} month",

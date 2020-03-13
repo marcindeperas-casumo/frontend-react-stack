@@ -18,5 +18,12 @@ stories.add("Default", () => (
       t={t}
       fetchTranslations={() => {}}
     />
+    <br />
+    <ISO8601Duration
+      preferAbbreviated
+      duration="P2Y2M2DT2H2M2.002S"
+      t={t}
+      fetchTranslations={() => {}}
+    />
   </div>
 ));
