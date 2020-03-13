@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import List from "@casumo/cmp-list";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
-import { actWait } from "Utils";
+import { actWait } from "Utils/apolloTestUtils";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRow } from "Components/ValuableRow";
