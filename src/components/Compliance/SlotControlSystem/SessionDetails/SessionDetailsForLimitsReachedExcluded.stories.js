@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { number } from "@storybook/addon-knobs/react";
 import MockStore from "Components/MockStore";
+import durationTranslationsMock from "Components/i18n/ISO8601Duration/__mocks__/translations";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import { SessionDetailsForLimitsReachedExcluded } from "./SessionDetailsForLimitsReachedExcluded";
 
@@ -19,18 +20,13 @@ const t = {
   limits_reached_exclusion_text:
     "You've chosen to take a break after playing. You may continue playing in {{time}}.",
 };
-const tUnits = {
-  seconds: "{{seconds}} seconds",
-  minutes: "{{minutes}} minutes",
-  hours: "{{ hours }} hours",
-  days: "{{days}} days",
-};
+
 const state = {
   schema: {
     cms: {
-      units: {
+      "i18n.durations": {
         fields: {
-          ...tUnits,
+          ...durationTranslationsMock,
         },
       },
     },

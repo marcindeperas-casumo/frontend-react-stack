@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import t from "./__mocks__/translations.json";
+import t from "./__mocks__/translations.js";
 import { ISO8601Duration } from "./ISO8601Duration";
 
 const stories = storiesOf("i18n/ISO8601Duration", module);
