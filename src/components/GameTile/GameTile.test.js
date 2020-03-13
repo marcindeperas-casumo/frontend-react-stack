@@ -1,8 +1,12 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { GameTile } from "Components/GameTile/GameTile";
-import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
+import MockStore from "Components/MockStore";
+import { launchGame } from "Services/LaunchGameService";
+import { GameTile } from "./GameTile";
+import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "./GameTileInMaintenanceContainer";
 import gameInfo from "./__mocks__/Game.json";
+
+jest.mock("../../applicationService/LaunchGameService.js");
 
 describe("GameTile", () => {
   test("should render GameTileImage", () => {
@@ -16,7 +20,7 @@ describe("GameTile", () => {
 
     expect(rendered.find("GameTileImage").length).toBe(1);
     expect(renderedGameTileImageProps.logoBackground).toBe(
-      gameInfo.logoBackground
+      gameInfo.backgroundImage
     );
     expect(renderedGameTileImageProps.logo).toBe(gameInfo.logo);
     expect(renderedGameTileImageProps.name).toBe(gameInfo.name);
@@ -39,21 +43,24 @@ describe("GameTile", () => {
   });
 
   test("should not render GameTileInMaintenance when inMaintenanceMode is true", () => {
-    const inMaintenanceModeGame = { ...gameInfo, inMaintenanceMode: true };
-    const rendered = shallow(<GameTile game={inMaintenanceModeGame} />);
-    expect(rendered.find(GameTileInMaintenance).length).toBe(1);
+    const game = { ...gameInfo, isInMaintenance: true };
+    const rendered = shallow(<GameTile game={game} />);
+
+    expect(rendered.find(GameTileInMaintenance)).toHaveLength(1);
   });
 
-  test("should launchGame if component is clicked", () => {
-    const onLaunchGame = jest.fn();
+  test("should launchGame if component is clickedd", () => {
     const rendered = mount(
-      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
+      <MockStore>
+        <GameTile game={gameInfo} />
+      </MockStore>
     );
+
     rendered
       .find("Flex")
       .first()
       .simulate("click");
 
-    expect(onLaunchGame).toHaveBeenCalled();
+    expect(launchGame).toHaveBeenCalledTimes(1);
   });
 });

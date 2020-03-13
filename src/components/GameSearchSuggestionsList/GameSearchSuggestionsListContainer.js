@@ -1,12 +1,15 @@
 // @flow
-import { connect } from "react-redux";
-import {
-  gameSearchSuggestedList,
-  isSuggestedLoadingSelector,
-} from "Models/gameSearch";
+import React from "react";
 import { GameSearchSuggestionsList } from "./GameSearchSuggestionsList";
+import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
+import type { Props as UseGameSearchSuggestionsProps } from "./useGameSearchSuggestions";
 
-export const GameSearchSuggestionsListContainer = connect(state => ({
-  list: gameSearchSuggestedList(state),
-  loading: isSuggestedLoadingSelector(state),
-}))(GameSearchSuggestionsList);
+type Props = UseGameSearchSuggestionsProps;
+
+export const GameSearchSuggestionsListContainer = ({
+  searchResults,
+}: Props) => {
+  const { list, loading } = useGameSearchSuggestions({ searchResults });
+
+  return <GameSearchSuggestionsList list={list} loading={loading} />;
+};

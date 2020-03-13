@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
+import { GamesVirtualList } from "./GamesVirtualList";
 
 const gamesArray = ["easter-island", "starburst"];
 

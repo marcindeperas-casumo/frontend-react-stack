@@ -1,76 +1,62 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
+import classNames from "classnames";
+import * as A from "Types/apollo";
 import ScrollableList from "Components/ScrollableList";
-import PromotionCardContainer from "Components/PromotionCard";
+import { PromotionCard } from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
-type Props = {
-  promotionsSlugs: Array<string>,
-  fetchCampaign: () => void,
-  fetchPromotions: () => void,
-  title?: string,
-  seeMore: string,
+type Props = A.PromotionsListQuery_promotionsList & {
+  seeMoreText: string,
 };
 
-const promotionCardContainerRenderer = ({ id }) => (
-  <PromotionCardContainer
-    slug={`promotions.${id}`}
-    link={`promotions/${id}`}
-    key={id}
-  />
-);
+export const PromotionCardList = ({
+  name = "",
+  promotions,
+  seeMoreText,
+}: Props) => {
+  const seeMoreUrl = "/promotions";
 
-class PromotionCardList extends PureComponent<Props> {
-  componentDidMount() {
-    this.props.fetchCampaign();
-    this.props.fetchPromotions();
-  }
-
-  render() {
-    const { title = "", promotionsSlugs, seeMore } = this.props;
-    const hasNoPromotionSlugs = !promotionsSlugs.length;
-    const seeMoreUrl = "/promotions";
-    const itemClassName = "c-promotion-card";
-
-    if (hasNoPromotionSlugs) {
-      return null;
-    }
-
-    return (
-      <div className="u-margin-x--3xlg@desktop">
-        <div className="o-wrapper">
-          <MobileAndTablet>
-            <ScrollableList
-              itemClassName={itemClassName}
-              title={title}
-              seeMoreText={seeMore}
-              seeMoreUrl={seeMoreUrl}
-              itemIds={promotionsSlugs}
-              Component={promotionCardContainerRenderer}
-            />
-          </MobileAndTablet>
-          <Desktop>
-            <ScrollableListPaginated
-              list={{
-                title,
-                itemIds: promotionsSlugs,
-              }}
-              Component={promotionCardContainerRenderer}
-              className={itemClassName}
-              itemControlClass="c-scrollable-list-paginated__button"
-              tileHeight={318}
-              seeMore={{
-                text: seeMore,
-                url: seeMoreUrl,
-              }}
-            />
-          </Desktop>
-        </div>
+  const itemRenderer = ({ columnIndex, style }) => (
+    <div style={style}>
+      <div
+        className={classNames("c-promotion-card", {
+          "u-margin-left": columnIndex > 0,
+        })}
+      >
+        <PromotionCard promotion={promotions[columnIndex]} />
       </div>
-    );
-  }
-}
+    </div>
+  );
 
-export default PromotionCardList;
+  return (
+    <div className="u-margin-x--3xlg@desktop">
+      <div className="o-wrapper">
+        <MobileAndTablet>
+          <ScrollableList
+            itemClassName="c-promotion-card"
+            title={name}
+            seeMoreText={seeMoreText}
+            seeMoreUrl={seeMoreUrl}
+            items={promotions}
+            itemRenderer={i => <PromotionCard promotion={promotions[i]} />}
+          />
+        </MobileAndTablet>
+        <Desktop>
+          <ScrollableListPaginated
+            title={name}
+            itemCount={promotions.length}
+            itemRenderer={itemRenderer}
+            tileHeight={318}
+            seeMore={{
+              text: seeMoreText,
+              url: seeMoreUrl,
+            }}
+          />
+        </Desktop>
+      </div>
+    </div>
+  );
+};

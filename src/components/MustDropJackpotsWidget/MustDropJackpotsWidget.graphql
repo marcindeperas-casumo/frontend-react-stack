@@ -1,0 +1,6 @@
+#import "../MustDropJackpot/MustDropJackpot.graphql"
+
+fragment MustDropJackpotsWidget_MustDropJackpot on MustDropJackpot {
+    ...MustDropJackpot_MustDropJackpot
+}
+

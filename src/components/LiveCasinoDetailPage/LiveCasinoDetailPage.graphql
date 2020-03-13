@@ -1,0 +1,10 @@
+#import "../GameRow/GameRow.graphql"
+
+query LiveCasinoDetailPageQuery {
+    groupedLiveCasinoGames {
+      title
+      games {
+        ...GameRow_Game
+      }
+    }
+}
