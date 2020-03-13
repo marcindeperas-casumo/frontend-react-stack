@@ -1,11 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { ComponentBuilder } from "Components/ComponentBuilder";
-import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
-import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
 import MockStore from "Components/MockStore";
-import isNotChromatic from "Storybook/isNotChromatic";
+import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 
 const componentDefinitions = [
   { acf_fc_layout: "GAMES_LIST", id: "popularGames" },
@@ -34,46 +31,15 @@ const state = {
 
 const stories = storiesOf("ComponentBuilder", module);
 
-const ComponentBuilderStory = () => (
-  <MockStore state={state}>
-    <ComponentBuilder slug="foo" />
-  </MockStore>
-);
-
 const ComponentBuilderRendererStory = () => (
   <MockStore state={state}>
     <ComponentBuilderRenderer componentDefinitions={componentDefinitions} />
   </MockStore>
 );
 
-const ComponentBuilderCMSStory = () => (
-  <MockStore state={state}>
-    <ComponentBuilderCMS
-      fetch={() => {}}
-      componentDefinitions={componentDefinitions}
-    />
-  </MockStore>
-);
-
-if (isNotChromatic) {
-  stories.add("ComponentBuilder (Connected)", ComponentBuilderStory, {
-    info: {
-      text: `This component is rendering out components defined in a CMS page (indentified by its slug).
-      If the page is not fetched yet it will start fetching it.`,
-    },
-  });
-}
-
 stories.add("ComponentBuilderRenderer", ComponentBuilderRendererStory, {
   info: {
     text:
       "This component is rendering out components defined by a data structure.",
-  },
-});
-
-stories.add("ComponentBuilderCMS", ComponentBuilderCMSStory, {
-  info: {
-    text: `The component is rendering out the components defined by a data structure,
-      and also calls the 'fetch' prop on component mount.`,
   },
 });

@@ -1,35 +1,36 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import MustDropJackpotList from "Components/MustDropJackpotList/MustDropJackpotList";
-import TrackProvider from "Components/TrackProvider";
+import { useQuery } from "@apollo/react-hooks";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
-import {
-  isGameListFetchedFactory,
-  mustDropJackpotsIdsSelector,
-} from "Models/schema";
-import { initFetchTopLists } from "Models/games";
+import TrackProvider from "Components/TrackProvider";
+import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
+import * as A from "Types/apollo";
+import { MustDropJackpotList } from "./MustDropJackpotList";
+import { MustDropJackpotGamesListQuery } from "./MustDropJackpotListContainer.graphql";
 
-const MustDropJackpotListConnected = connect(
-  state => ({
-    areGamesLoaded: isGameListFetchedFactory(
-      GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES
-    )(state),
-    ids: mustDropJackpotsIdsSelector(state),
-  }),
-  { initFetchTopLists }
-)(MustDropJackpotList);
+const MustDropJackpotListContainer = () => {
+  const { data, loading } = useQuery<
+    A.MustDropJackpotGamesListQuery,
+    A.MustDropJackpotGamesListQueryVariables
+  >(MustDropJackpotGamesListQuery, {
+    variables: {
+      id: GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES,
+    },
+  });
 
-type Props = {};
+  if (loading) {
+    return <GameListSkeleton className="u-padding--md" hasTitle={false} />;
+  }
 
-const MustDropJackpotListContainer = (props: Props) => {
-  return (
-    <TrackProvider
-      data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Page" }}
-    >
-      <MustDropJackpotListConnected {...props} />
-    </TrackProvider>
-  );
+  if (data && data.gamesList && data.gamesList.games) {
+    return (
+      <TrackProvider
+        data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Page" }}
+      >
+        <MustDropJackpotList jackpots={data.gamesList.games} />
+      </TrackProvider>
+    );
+  }
 };
 
 export default MustDropJackpotListContainer;

@@ -27,6 +27,8 @@ export type ReelRacesTranslations = {
   compete_for: string,
   title: string,
   caveat_short: ?string, // for some reason it's rather "false" than empty
+  prize_win_tagline?: string,
+  spin_count?: string,
 };
 
 type LeaderboardEntryRaw = {

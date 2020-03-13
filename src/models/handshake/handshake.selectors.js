@@ -164,7 +164,7 @@ export const localeSelector = createSelector(
 
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
-  pathOr({}, ["tournamentCampaign", "tournamentChannels"])
+  pathOr([], ["tournamentCampaign", "tournamentChannels"])
 );
 
 export const walletIdSelector = createSelector(

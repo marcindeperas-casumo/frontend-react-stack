@@ -1,26 +1,45 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
-import { getField, fetchPageBySlug } from "Models/cms";
-
-// This is the field that holds the component definitions under a CMS page
-const field = "content_builder";
+import { useQuery } from "@apollo/react-hooks";
+import { propOr } from "ramda";
+import gql from "graphql-tag";
+import logger from "Services/logger";
+import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 
 type Props = {
   /** The slug of the CMS page containing the component definitions. */
   slug: string,
 };
 
-const ComponentBuilderConnected = connect(
-  (state, { slug }) => ({
-    componentDefinitions: getField({ slug, field })(state),
-  }),
-  (dispatch, { slug }) => ({
-    fetch: () => dispatch(fetchPageBySlug(slug)),
-  })
-)(ComponentBuilderCMS);
+const QUERY = gql`
+  query componentBuilderQuery($id: String!) {
+    componentDefinitionJSON: getCMSFieldAsJSON(id: $id)
+  }
+`;
 
 export const ComponentBuilderContainer = ({ slug }: Props) => {
-  return <ComponentBuilderConnected slug={slug} />;
+  const cmsField = "content_builder";
+  const id = `root:${slug}:fields.${cmsField}`;
+  const variables = { id };
+  const { data, loading } = useQuery(QUERY, { variables });
+  const componentDefinitionJSON = propOr(null, "componentDefinitionJSON", data);
+
+  if (loading) {
+    return null;
+  }
+
+  try {
+    return (
+      <ComponentBuilderRenderer
+        componentDefinitions={JSON.parse(componentDefinitionJSON)}
+      />
+    );
+  } catch (e) {
+    logger.error(
+      "ComponentBuilder: could not parse component definition JSON",
+      { componentDefinitionJSON }
+    );
+
+    return null;
+  }
 };

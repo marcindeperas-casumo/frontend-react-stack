@@ -85,7 +85,7 @@ describe("PromotionGallery", () => {
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
-        seeMore="👀"
+        seeMoreText="👀"
       />
     );
 

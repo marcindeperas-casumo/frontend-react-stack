@@ -1,12 +1,11 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import { isEmpty, prop } from "ramda";
+import { isEmpty } from "ramda";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
-import GameTile from "Components/GameTile";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
 export const DEFAULT_SPACING = "default";
@@ -17,56 +16,53 @@ export const PADDING_PER_DEVICE = {
 };
 
 type Props = {
-  title: string,
-  /** url to "see more" page, if null will not render "see more" button */
+  title: ?string,
+  /** url to "see more" page, if null will not render "see more" link */
   seeMoreUrl?: string,
-  itemIds: Array<string>,
-  Component: Function,
+  items: Array<any>,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
-  seeMoreText: string,
+  seeMoreText?: string,
   itemClassName?: string,
+  itemRenderer: (i: number) => React.Node,
 };
 
-export default class ScrollableList extends PureComponent<Props> {
+export default class ScrollableList extends React.PureComponent<Props> {
   static defaultProps = {
-    itemIds: [],
+    items: [],
     spacing: DEFAULT_SPACING,
-    Component: GameTile,
   };
 
-  keyGetter = (i: number) => prop(i, this.props.itemIds);
-
-  itemRenderer = (i: number) => {
-    const { Component, itemIds } = this.props;
-    return <Component id={itemIds[i]} />;
-  };
+  keyGetter = (i: number) => this.props.items[i].id;
 
   render() {
     const {
-      itemIds,
+      items,
       seeMoreText,
       seeMoreUrl,
       spacing,
       title,
       itemClassName,
+      itemRenderer,
     } = this.props;
 
-    if (isEmpty(itemIds)) {
+    if (isEmpty(items)) {
       return null;
     }
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitleRow
-          paddingLeft
-          seeMore={{ text: seeMoreText, url: seeMoreUrl }}
-          title={title}
-        />
+        {title && (
+          <ScrollableListTitleRow
+            paddingLeft
+            seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+            title={title}
+          />
+        )}
         <Scrollable
-          numberOfItems={itemIds.length}
+          numberOfItems={items.length}
           keyGetter={this.keyGetter}
-          itemRenderer={this.itemRenderer}
+          itemRenderer={itemRenderer}
           itemClassName={itemClassName}
           padding={PADDING_PER_DEVICE}
           itemSpacing={spacing}

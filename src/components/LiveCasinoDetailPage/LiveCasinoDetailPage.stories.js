@@ -2,15 +2,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
-import MockStore from "Components/MockStore";
-import LiveCasinoDetailPageConnected from ".";
+import { groupedLiveCasinoGames } from "./__mocks__";
+import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";
 
 if (isNotChromatic) {
   const stories = storiesOf("LiveCasinoDetailPage", module);
-  // this component is using GameRow inside, it will not work without connected store
-  stories.add("Default (Connected)", () => (
-    <MockStore>
-      <LiveCasinoDetailPageConnected />
-    </MockStore>
+  stories.add("Default", () => (
+    <LiveCasinoDetailPage groupedLiveCasinoGames={groupedLiveCasinoGames} />
   ));
 }

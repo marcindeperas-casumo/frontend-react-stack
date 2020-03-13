@@ -1,0 +1,34 @@
+fragment LiveCasinoCard_Lobby_Bets on Bets {
+  symbol
+  min
+  max
+}
+
+fragment LiveCasinoCard_Lobby on LiveCasinoTable {
+  id
+  tableId
+  symbol
+  numberOfPlayers
+  seats
+  provider
+  results
+  image
+  type
+  betBehind
+  bets {
+    ...LiveCasinoCard_Lobby_Bets
+  }
+}
+
+fragment LiveCasinoCard on Game {
+  backgroundImage
+  id
+  isInMaintenance
+  isInMyList
+  liveCasinoLobby {
+    ...LiveCasinoCard_Lobby
+  }
+  logo
+  name
+  slug
+}

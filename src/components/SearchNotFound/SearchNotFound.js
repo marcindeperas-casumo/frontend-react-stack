@@ -14,18 +14,10 @@ export type Props = {
   title: string,
   /** The not found text content to render */
   content: string,
-  /** The function that fecthes search page on the CMS */
-  startFetch: () => void,
   className?: string,
 };
 
-class SearchNotFound extends PureComponent<Props> {
-  componentDidMount() {
-    const { startFetch } = this.props;
-
-    startFetch();
-  }
-
+export class SearchNotFound extends PureComponent<Props> {
   render() {
     const { image, title, content } = this.props;
 
@@ -61,5 +53,3 @@ class SearchNotFound extends PureComponent<Props> {
     );
   }
 }
-
-export default SearchNotFound;
