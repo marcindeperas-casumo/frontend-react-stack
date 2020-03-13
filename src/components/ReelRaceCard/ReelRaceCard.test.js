@@ -13,6 +13,7 @@ const props = {
   promoted: false,
   formattedPrize: "€20",
   remainingSpins: 99,
+  status: "Scheduled",
   game: {
     id: "fa9aa550-6be1-11e4-a1d6-005056a03af2",
     name: "Jack and the Beanstalk",
@@ -67,6 +68,11 @@ describe("ReelRaceCard", () => {
         durationTemplate: "{{{duration}}} min",
         minBet: "Min Bet",
         caveatShort: "false",
+      },
+      status: "Scheduled",
+      playing: {
+        isPlaying: true,
+        gameId: "foo",
       },
     };
 

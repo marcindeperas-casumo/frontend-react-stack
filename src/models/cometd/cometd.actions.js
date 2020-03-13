@@ -48,6 +48,18 @@ export const unsubscribeReelRaceUpdates = (channelPrefix, playerId) => {
   });
 };
 
+export const subscribeReelRaceLeaderboard = (tournamentId, playerId) => {
+  return subscribe({
+    channel: `${CHANNELS.REEL_RACES}/tournaments/${tournamentId}/leaderboard/${playerId}`,
+  });
+};
+
+export const unsubscribeReelRaceLeaderboard = (tournamentId, playerId) => {
+  return unsubscribe({
+    channel: `${CHANNELS.REEL_RACES}/tournaments/${tournamentId}/leaderboard/${playerId}`,
+  });
+};
+
 export const subscribeToPlayerUpdates = (playerId, sessionId) => {
   return subscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
