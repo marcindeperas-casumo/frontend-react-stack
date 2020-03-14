@@ -56,7 +56,7 @@ export const CuratedCardFooterGameDesktop = ({
               </TrackClick>
               <Button
                 id="gtm-curated-more"
-                href={`/en/play/${game.slug}`}
+                href={`/play/${game.slug}`}
                 variant="outline"
                 className="u-pointer-events-initial u-display--none@mobile u-padding u-padding--md@desktop u-margin-left--lg"
               >

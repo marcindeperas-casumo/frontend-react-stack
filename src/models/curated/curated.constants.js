@@ -13,6 +13,6 @@ export const CURATED_TYPE = {
 };
 
 export const CARD_CLICK_URL = {
-  [CURATED_TYPE.PROMOTION]: "/en/promotions/#promotionSlug",
-  [CURATED_TYPE.WELCOME_OFFER]: "/en/cash/deposit",
+  [CURATED_TYPE.PROMOTION]: "/promotions/#promotionSlug",
+  [CURATED_TYPE.WELCOME_OFFER]: "/cash/deposit",
 };
