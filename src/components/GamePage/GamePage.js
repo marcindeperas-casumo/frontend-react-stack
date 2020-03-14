@@ -10,6 +10,7 @@ import {
   useTranslations,
   useJurisdiction,
   useGameCategory,
+  useDispatchPlaying,
 } from "Utils/hooks";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
@@ -40,6 +41,11 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
+
+  useDispatchPlaying({
+    isPlaying: true,
+    gameId: slug,
+  });
 
   useBeforePlayingModal({
     canLaunch: Boolean(
