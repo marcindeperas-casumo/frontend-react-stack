@@ -1,40 +1,43 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import {
-  mustDropJackpotsIdsSelector,
-  gameListTitleSelectorFactory,
-} from "Models/schema";
-import { marketSelector } from "Models/handshake";
-import { getField } from "Models/cms";
+import { useQuery } from "@apollo/react-hooks";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
+import * as A from "Types/apollo";
 import MustDropJackpotsList from "./MustDropJackpotsList";
+import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
-type Props = {
-  id: string,
-  title: string,
-};
+const MustDropJackpotsListContainer = () => {
+  const { data, loading } = useQuery<
+    A.MustDropJackpotsGamesListQuery,
+    A.MustDropJackpotsGamesListQueryVariables
+  >(MustDropJackpotsGamesListQuery, {
+    variables: {
+      id: GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES,
+      numberOfGames: 20,
+    },
+  });
 
-const MustDropJackpotsListConnected = connect(state => ({
-  ids: mustDropJackpotsIdsSelector(state),
-  title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
-    state
-  ),
-  seeMore: getField({
-    slug: `built-pages.top-lists-${marketSelector(state)}`,
-    field: "more_link",
-  })(state),
-}))(MustDropJackpotsList);
+  if (loading) {
+    // __FIX__ - do we need a skeleton here?
+    return null;
+  }
 
-const MustDropJackpotsListContainer = ({ id, title }: Props) => {
-  return (
-    <TrackProvider
-      data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
-    >
-      <MustDropJackpotsListConnected id={id} title={title} />
-    </TrackProvider>
-  );
+  if (data && data.gamesList && data.gamesList.games) {
+    return (
+      <TrackProvider
+        data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
+      >
+        <MustDropJackpotsList
+          jackpots={data.gamesList.games}
+          name={data.gamesList?.name}
+          seeMoreText={data?.seeMoreText}
+        />
+      </TrackProvider>
+    );
+  }
+
+  return null;
 };
 
 export default MustDropJackpotsListContainer;

@@ -13,7 +13,7 @@ type Props = {
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
-  seeMore: string,
+  seeMoreText: string,
 };
 
 const marginPerDevice = {
@@ -34,7 +34,7 @@ class PromotionGallery extends PureComponent<Props> {
       titleColor,
       backgroundColor,
       promotionsSlugs,
-      seeMore,
+      seeMoreText,
     } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
@@ -65,7 +65,7 @@ class PromotionGallery extends PureComponent<Props> {
                 tag="span"
                 className={classNames(titleColor && `t-color-${titleColor}`)}
               >
-                {seeMore}
+                {seeMoreText}
               </Text>
             </a>
           </Flex.Item>

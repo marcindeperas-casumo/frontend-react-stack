@@ -1,0 +1,27 @@
+fragment CuratedCard_Game on Game {
+  id
+  backgroundImage
+  logo
+  name
+  slug
+}
+
+query CuratedCardQuery($slug: String!) {
+    curatedCard(slug: $slug) {
+      id
+      slug
+      type
+      image
+      header
+      subtitle
+      promotionSlug
+      promotionLegalText
+      launchGameText
+      smallImage
+      mediumImage
+      largeImage
+      game {
+        ...CuratedCard_Game
+      }
+    }
+}

@@ -17,7 +17,7 @@ export const GameRowTrackMoreIcon = ({
       eventName={EVENTS.MIXPANEL_GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
-      <a href={`/en/play/${slug}`}>
+      <a href={`/play/${slug}`}>
         <MoreIcon className="t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding" />
       </a>
     </TrackClick>

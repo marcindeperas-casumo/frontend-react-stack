@@ -4,6 +4,7 @@ import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { EdictGame } from "./EdictGame";
+import { EvolutionGame } from "./EvolutionGame";
 import { NetentGame } from "./NetentGame";
 import { ThunderkickGame } from "./ThunderkickGame";
 import { YggdrasilGame } from "./YggdrasilGame";
@@ -15,6 +16,7 @@ import { RelaxGame } from "./RelaxGame";
 import { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
+import { NyxGame } from "./NyxGame";
 
 export type GameProps = {
   providerType: GameProviderType,
@@ -24,7 +26,7 @@ export const models = {
   [PROVIDERS.EDICT_DESKTOP]: EdictGame,
   [PROVIDERS.EDICT_MOBILE]: EdictGame,
   [PROVIDERS.EVOLUTION_DESKTOP]: BaseIframeGame,
-  [PROVIDERS.EVOLUTION_MOBILE]: BaseIframeGame,
+  [PROVIDERS.EVOLUTION_MOBILE]: EvolutionGame,
   [PROVIDERS.GREENTUBE_HTML5]: GreentubeGame,
   [PROVIDERS.MICROGAMING_FLASH]: MicrogamingGame,
   [PROVIDERS.MICROGAMING_HTML5]: MicrogamingGame,
@@ -34,7 +36,7 @@ export const models = {
   [PROVIDERS.NETENT_FLASH]: NetentGame,
   [PROVIDERS.NETENT_LIVE]: NetentGame,
   [PROVIDERS.NETENT_GAME_INCLUSION]: NetentGame,
-  [PROVIDERS.NYX_HTML5]: BaseIframeGame,
+  [PROVIDERS.NYX_HTML5]: NyxGame,
   [PROVIDERS.NYX_FLASH]: BaseIframeGame,
   [PROVIDERS.PLAYNGO_DESKTOP]: PlayNGoDesktopGame,
   [PROVIDERS.PLAYNGO_MOBILE]: PlayNGoMobileGame,

@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import { CuratedCard } from "Components/CuratedCard";
+// __FIX__ Why can't it resolve "Components/CuratedCard"?
+import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { VERTICALS } from "Src/constants";
 import "./WelcomeOfferCuratedCard.scss";

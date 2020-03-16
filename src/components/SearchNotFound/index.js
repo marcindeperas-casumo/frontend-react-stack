@@ -1,2 +1,3 @@
 // @flow
-export { default } from "./SearchNotFoundContainer";
+export { SearchNotFound } from "./SearchNotFound";
+export type { Props } from "./SearchNotFound";

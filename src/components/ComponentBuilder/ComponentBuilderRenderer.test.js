@@ -13,7 +13,7 @@ describe("ComponentBuilderRenderer", () => {
       <ComponentBuilderRenderer componentDefinitions={componentDefinitions} />
     );
 
-    expect(rendered.find("GameListHorizontalContainer")).toHaveLength(1);
+    expect(rendered.find("GameListHorizontalCMS")).toHaveLength(1);
     expect(rendered.find("ContentHtml")).toHaveLength(1);
   });
 

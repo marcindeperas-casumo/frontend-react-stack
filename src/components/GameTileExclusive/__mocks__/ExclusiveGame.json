@@ -2,7 +2,7 @@
   "name": "Jammin Jars",
   "slug": "jammin-jars",
   "logo": "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjar-logo-480x580.png",
-  "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
+  "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
   "hasPlayForFun": true,
   "inMaintenanceMode": false,
   "jackpotId": null

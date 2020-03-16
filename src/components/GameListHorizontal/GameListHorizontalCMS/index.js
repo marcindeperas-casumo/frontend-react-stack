@@ -1,0 +1,1 @@
+export { GameListHorizontalCMS } from "./GameListHorizontalCMS";

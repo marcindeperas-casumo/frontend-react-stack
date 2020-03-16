@@ -1,35 +1,24 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import List from "@casumo/cmp-list";
-import { GameRow } from "Components/GameRow";
-import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
+import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 
 type Props = {
-  ids: Array<string>,
-  areGamesLoaded: boolean,
-  initFetchTopLists: () => void,
+  jackpots: Array<A.MustDropJackpotGamesListQuery_gamesList_games>,
 };
-export default class MustDropJackpotList extends PureComponent<Props> {
-  componentDidMount() {
-    const { areGamesLoaded, initFetchTopLists } = this.props;
-    if (!areGamesLoaded) {
-      initFetchTopLists();
-    }
-  }
 
-  render() {
-    const { ids, areGamesLoaded } = this.props;
-
-    return !areGamesLoaded ? (
-      <GameListSkeleton className="u-padding--md" hasTitle={false} />
-    ) : (
-      <div className="u-padding-x--md u-padding-bottom--md o-list-wrapper">
-        <List
-          items={ids}
-          data-test="must-drop-jackpots-list"
-          render={id => <GameRow id={id} />}
+export const MustDropJackpotList = ({ jackpots }: Props) => (
+  <div className="u-padding-x--md u-padding-bottom--md o-list-wrapper">
+    <List
+      items={jackpots}
+      render={jackpot => (
+        <GameRow
+          game={jackpot}
+          renderText={() => <GameRowText name={jackpot.name} />}
         />
-      </div>
-    );
-  }
-}
+      )}
+    />
+  </div>
+);

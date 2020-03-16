@@ -24,6 +24,7 @@ import {
   optedInReelRacesSelector,
   adventureLevelsSelector,
   localeSelector,
+  tournamentChannelsSelector,
   walletIdSelector,
   playerNameSelector,
   socialSecurityNumberSelector,
@@ -404,6 +405,30 @@ describe("Handshake selectors", () => {
     };
 
     expect(localeSelector(state)).toEqual("sv-SE");
+  });
+
+  test("tournamentChannelsSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                tournamentCampaign: {
+                  tournamentChannels: ["/public/tournaments/123"],
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(tournamentChannelsSelector(state)).toEqual([
+      "/public/tournaments/123",
+    ]);
   });
 
   test("walletIdSelector", () => {

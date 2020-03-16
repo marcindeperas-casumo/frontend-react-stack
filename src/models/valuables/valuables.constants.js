@@ -27,5 +27,5 @@ export const VALUABLE_REQUIREMENT_TYPES: { [string]: A.RequirementType } = {
   DEPOSIT: "deposit",
 };
 
-export const VALUABLE_LOCKED_URL = "/en/player/valuables";
-export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
+export const VALUABLE_LOCKED_URL = "/player/valuables";
+export const VALUABLE_DEPOSIT_URL = "/cash/deposit";

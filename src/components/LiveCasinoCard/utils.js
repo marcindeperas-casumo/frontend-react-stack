@@ -129,42 +129,44 @@ const getBaccaratColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
-export const getBadgeColor = (type: string, n: string) => {
+export const getBadgeColor = (type: string, liveCasinoResult: string) => {
   if (type === TYPES.MONEYWHEEL) {
-    return getMoneyWheelColor(n);
+    return getMoneyWheelColor(liveCasinoResult);
   }
   if (type === TYPES.ROULETTE) {
-    return getRouletteColor(n);
+    return getRouletteColor(liveCasinoResult);
   }
   if (type === TYPES.TOPCARD) {
-    return getTopCardColor(n);
+    return getTopCardColor(liveCasinoResult);
   }
   if (type === TYPES.MONOPOLY) {
-    return getMonopolyColor(n);
+    return getMonopolyColor(liveCasinoResult);
   }
   if (type === TYPES.BACCARAT) {
-    return getBaccaratColor(n);
+    return getBaccaratColor(liveCasinoResult);
   }
 
   return COLORS.BLACK;
 };
 
-export const getBadgeBorderColor = (type: string, n: string) => {
+export const getBadgeBorderColor = (type: string, liveCasinoResult: string) => {
   if (type === TYPES.MONOPOLY) {
-    return prop(n, monopolyResultsBorderColor);
+    return prop(liveCasinoResult, monopolyResultsBorderColor);
   }
 
   return null;
 };
 
-export const getResultsDisplay = (type: string, n: string) => {
+export const getResultsDisplay = (type: string, liveCasinoResult: string) => {
   if (type === TYPES.TOPCARD) {
-    return propOr(n, n, topCardLettersDisplay);
+    return propOr(liveCasinoResult, liveCasinoResult, topCardLettersDisplay);
   }
 
   if (type === TYPES.MONOPOLY) {
-    return propOr(n, n, monopolyResultsDisplay);
+    return propOr(liveCasinoResult, liveCasinoResult, monopolyResultsDisplay);
   }
 
-  return isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
+  return isNaN(parseInt(liveCasinoResult, 10))
+    ? liveCasinoResult
+    : parseInt(liveCasinoResult, 10);
 };

@@ -9,3 +9,4 @@
 **/.history/**
 **/coverage/**
 **/flow-typed/npm/**
+/src/types/apollo.js

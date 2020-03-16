@@ -89,6 +89,7 @@ export const GAME_LIST_IDS = {
 export const ROUTE_IDS = {
   LOGIN: "LOGIN",
   PLAY: "PLAY",
+  PLAY_NATIVE: "PLAY_NATIVE",
   DEPOSIT: "DEPOSIT",
   PRACTICE: "PRACTICE",
   TOP_LISTS: "TOP_LISTS",
@@ -119,6 +120,7 @@ export const ROUTES = {
   [ROUTE_IDS.LOGIN]: "log-in",
   [ROUTE_IDS.DEPOSIT]: "deposit",
   [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
+  [ROUTE_IDS.PLAY_NATIVE]: "gamelaunchers/:slug/launch",
   [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
@@ -267,6 +269,27 @@ export const EVENTS = {
   MIXPANEL_SPORTS_SEARCH_INITIATED: "Sports Search Initiated",
   MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION: "Sports Search Clicked Suggestion",
   MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT: "Sports Search Clicked Result",
+  MIXPANEL_SPORTS_ONBOARDING_START: "Sports Onboarding - starts",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
+    "Sports Onboarding - selected a favorite sport",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
+    "Sports Onboarding - deselected a favorite sport",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL:
+    "Sports Onboarding - clicked all sports",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT:
+    "Sports Onboarding - add a league intent",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE:
+    "Sports Onboarding - removed a league from edit sports",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED:
+    "Sports Onboarding - added a league from edit sports",
+  MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES: "Sports Onboarding - chose leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED:
+    "Sports Onboarding - deselected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED:
+    "Sports Onboarding - selected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
+    "Sports Onboarding - expanded leagues of a Country",
+  MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -284,6 +307,16 @@ export const EVENT_PROPS = {
   SPORTS_PAGE_TYPE: "type",
   SPORTS_PAGE_TITLE: "title",
   SPORTS_PAGE_PATH: "path",
+  SPORTS_ID: "sport id",
+  SPORTS_NAME: "sport name",
+  SPORTS_SELECTED: "sports selected",
+  SPORTS_SELECTED_NUMBER: "number of sports selected",
+  LEAGUES_SELECTED: "leagues selected",
+  LEAGUES_SELECTED_NUMBER: "number of leagues selected",
+  COMPETITION_ID: "league id",
+  COMPETITION_NAME: "league name",
+  COUNTRY_ID: "country id",
+  COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };
@@ -294,6 +327,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
@@ -335,4 +369,15 @@ export const MODALS = {
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
+};
+
+export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
+export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
+
+export const JURISDICTIONS = {
+  DGA: "DGA",
+  DGOJ: "DGOJ",
+  MGA: "MGA",
+  SGA: "SGA",
+  UKGC: "UKGC",
 };

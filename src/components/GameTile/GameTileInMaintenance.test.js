@@ -15,7 +15,7 @@ describe("GameTile", () => {
 
     expect(rendered.find("GameTileImage").length).toBe(1);
     expect(renderedGameTileImageProps.logoBackground).toBe(
-      gameInfo.logoBackground
+      gameInfo.backgroundImage
     );
     expect(renderedGameTileImageProps.logo).toBe(gameInfo.logo);
     expect(renderedGameTileImageProps.name).toBe(gameInfo.name);

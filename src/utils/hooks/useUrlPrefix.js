@@ -8,7 +8,7 @@ const isTLDMarketSpecific: string => boolean = R.pipe(
   R.anyPass([
     R.equals("com"),
     R.equals("dev"),
-    R.equals("local"),
+    R.equals("tech"),
     R.equals("localhost"),
   ]),
   R.not

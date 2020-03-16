@@ -2,6 +2,7 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
   useGameLaunchData,
@@ -10,7 +11,7 @@ import {
   useJurisdiction,
   useGameCategory,
 } from "Utils/hooks";
-import { DGOJBar } from "Components/Compliance/DGOJBar";
+import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -18,6 +19,7 @@ import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
+import { isNativeByUserAgent } from "GameProviders";
 import "./GamePage.scss";
 
 type Props = {
@@ -65,19 +67,27 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     return <LoaderGlobal />;
   }
 
+  const isNative = isNativeByUserAgent();
+
   return (
     <Flex
-      className="u-height--full t-background-chrome-dark-3 t-color-white"
+      className={classNames(
+        isNative ? "u-height--screen" : "u-height--full",
+        "u-width--screen t-background-chrome-dark-3 t-color-white"
+      )}
       direction="vertical"
       spacing="none"
     >
-      {isDGOJ && (
-        <Flex.Item>
-          <DGOJBar />
-        </Flex.Item>
-      )}
+      <Flex.Item>
+        <PlayOkayBar />
+      </Flex.Item>
       <Flex.Block className="u-position-relative">
-        <div className="c-game-page__game-wrapper">
+        <div
+          className={classNames(
+            "c-game-page__game-wrapper",
+            gameProviderModel.gameWrapperClasses || []
+          )}
+        >
           <GameLauncher
             gameProviderModel={gameProviderModel}
             className="c-game-page__game-launcher"

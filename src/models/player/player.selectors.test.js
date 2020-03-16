@@ -8,6 +8,7 @@ import {
   playerBonusTextSelector,
   playerBalanceAmountSelector,
   playerSessionIsValidSelector,
+  playerLogoutStartedSelector,
 } from "./player.selectors";
 
 const wallet = {
@@ -168,6 +169,20 @@ describe("Player selectors", () => {
     test("returns false if player sessionValid is false", () => {
       expect(
         playerSessionIsValidSelector({ player: { sessionValid: false } })
+      ).toBe(false);
+    });
+  });
+
+  describe("playerLogoutStartedSelector", () => {
+    test("returns true if player logoutStarted is true", () => {
+      expect(
+        playerLogoutStartedSelector({ player: { logoutStarted: true } })
+      ).toBe(true);
+    });
+
+    test("returns false if player logoutStarted is false", () => {
+      expect(
+        playerLogoutStartedSelector({ player: { logoutStarted: false } })
       ).toBe(false);
     });
   });
