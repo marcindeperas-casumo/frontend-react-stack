@@ -23,14 +23,7 @@ export const LayoutPage = (props: Props) => {
         "u-width--screen t-background-chrome-dark-3"
       )}
     >
-      <Flex
-        direction="horizontal"
-        className={classNames(
-          isSidebarVisible && "c-layout--sidebar-open",
-          "u-height--full"
-        )}
-        spacing="none"
-      >
+      <Flex direction="horizontal" className="u-height--full" spacing="none">
         {isSidebarVisible && <Sidebar />}
         <div className="c-layout-content t-background-chrome-dark-3">
           {props.children}
