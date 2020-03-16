@@ -16,7 +16,6 @@ type Props = {
   fetchTranslations: () => void,
   subscribeReelRacesUpdates: () => void,
   unsubscribeReelRacesUpdates: () => void,
-  launchGame: () => void,
   areTranslationsFetched: boolean,
   scheduledGame: A.GameRow_Game,
   gameSlug: string,
@@ -85,7 +84,7 @@ export function ReelRaceWidget(props: Props) {
   return (
     <Flex
       direction="vertical"
-      className="t-border-bottom t-border-current-color t-color-grey-dark-2"
+      className="t-background-white t-border-bottom t-border-current-color t-color-grey-dark-2"
     >
       <ReelRaceWidgetHeader
         promoted={reelRace.promoted}
