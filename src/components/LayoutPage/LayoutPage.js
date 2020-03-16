@@ -6,7 +6,6 @@ import { isMobile } from "@casumo/fe-toolkit-ismobile";
 import classNames from "classnames";
 import { FullscreenView } from "Components/FullscreenView";
 import Sidebar from "Components/Sidebar";
-import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
 
 type Props = {
@@ -14,8 +13,8 @@ type Props = {
 };
 
 export const LayoutPage = (props: Props) => {
-  const isSidebarFixed = useIsScreenMinimumTablet();
   const isNative = isNativeByUserAgent();
+  const isSidebarVisible = !isMobile(window);
 
   return (
     <FullscreenView
@@ -25,11 +24,14 @@ export const LayoutPage = (props: Props) => {
       )}
     >
       <Flex
-        direction={isSidebarFixed ? "horizontal" : "vertical"}
-        className="c-layout--sidebar-open u-height--full"
+        direction="horizontal"
+        className={classNames(
+          isSidebarVisible && "c-layout--sidebar-open",
+          "u-height--full"
+        )}
         spacing="none"
       >
-        {!isMobile(window) && <Sidebar />}
+        {isSidebarVisible && <Sidebar />}
         <div className="c-layout-content t-background-chrome-dark-3">
           {props.children}
         </div>
