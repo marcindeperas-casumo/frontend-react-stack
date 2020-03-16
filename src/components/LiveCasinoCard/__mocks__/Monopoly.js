@@ -11,7 +11,7 @@ export const Monopoly = {
     numberOfPlayers: 1,
     provider: "evolution",
     results: ["2", "5", "5", "5", "2", "4r", "10", "5", "2r", "2r"],
-    image: "https://lob.egcvi.com/thumbnail/mdc2_mw_en_med_L.jpg",
+    image: "/images/live-casino/mdc2_mw_en_med_L.jpg",
     type: "Monopoly",
     betBehind: null,
     bets: null,

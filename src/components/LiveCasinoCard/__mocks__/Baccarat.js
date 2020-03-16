@@ -11,7 +11,7 @@ export const Baccarat = {
     numberOfPlayers: null,
     provider: "evolution",
     results: ["T", "T", "T", "B", "T", "P", "P", "P", "B"],
-    image: "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
+    image: "/images/live-casino/lightr1_imr_med_L.jpg",
     type: "Baccarat",
     betBehind: null,
     bets: null,
