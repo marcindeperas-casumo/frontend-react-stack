@@ -6,7 +6,6 @@ import {
 } from "Models/reelRaceWidget";
 import { gameSelector } from "Models/schema";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
-import { launchGame } from "Models/games";
 import { playingSelector } from "Models/playing";
 import {
   fetchPageBySlug as fetchTranslations,
@@ -53,7 +52,6 @@ export default connect(
   dispatch => ({
     fetchReelRaces: () => dispatch(initReelRacesSaga()),
     fetchTranslations: () => dispatch(fetchTranslations(slug)),
-    launchGame: gameId => dispatch(launchGame(gameId)),
     subscribeReelRacesUpdates: (tournamentChannels, playerId) => {
       tournamentChannels.map(channelPrefix => {
         return dispatch(subscribeReelRaceUpdates(channelPrefix, playerId));
@@ -73,7 +71,6 @@ export default connect(
       ...stateProps,
       ...dispatchProps,
       fetchTranslations: () => dispatchProps.fetchTranslations(slug),
-      launchGame: () => dispatchProps.launchGame(stateProps.gameSlug),
       subscribeReelRacesUpdates: () => {
         return dispatchProps.subscribeReelRacesUpdates(
           tournamentChannels,

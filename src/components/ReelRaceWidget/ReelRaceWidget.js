@@ -16,7 +16,6 @@ type Props = {
   fetchTranslations: () => void,
   subscribeReelRacesUpdates: () => void,
   unsubscribeReelRacesUpdates: () => void,
-  launchGame: () => void,
   areTranslationsFetched: boolean,
   scheduledGame: A.GameRow_Game,
   gameSlug: string,
