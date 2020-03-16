@@ -715,6 +715,44 @@ export type ReelRaceListQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: PlayAgainGameBySlugQuery
+// ====================================================
+
+export type PlayAgainGameBySlugQuery_gamesBySlugs = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+};
+export type PlayAgainGameBySlugQuery = {
+  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>,
+};
+export type PlayAgainGameBySlugQueryVariables = {
+  slug: string,
+};
+
+// ====================================================
+// GraphQL query operation: PlayAgainLatestPlayedQuery
+// ====================================================
+
+export type PlayAgainLatestPlayedQuery_gamesList_games = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+};
+export type PlayAgainLatestPlayedQuery_gamesList = {
+  games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
+};
+export type PlayAgainLatestPlayedQuery = {
+  gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
+};
+
+// ====================================================
 // GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
 // ====================================================
 
@@ -2042,6 +2080,19 @@ export type ReelRaceCard_ReelRace = {
   formattedPrize: string,
   remainingSpins: number,
   translations: ReelRaceCard_ReelRace_translations,
+};
+
+// ====================================================
+// GraphQL fragment: AfterLimitsReached_Game
+// ====================================================
+
+export type AfterLimitsReached_Game = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
 };
 
 // ====================================================

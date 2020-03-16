@@ -18,41 +18,46 @@ import {
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
 
-const gameFields = `
-  id
-  slug
-  logo
-  logoBackground
-  name
+const GAME_FRAGMENT = gql`
+  fragment AfterLimitsReached_Game on Game {
+    __typename
+    id
+    slug
+    backgroundImage
+    logo
+    name
+  }
 `;
 
 export const GAME_BY_SLUG_QUERY = gql`
-  query playAgainGameBySlugQuery($slug: String!) {
+  query PlayAgainGameBySlugQuery($slug: String!) {
     gamesBySlugs(slugs: [$slug]) {
-      ${gameFields}
+      ...AfterLimitsReached_Game
     }
   }
+  ${GAME_FRAGMENT}
 `;
 
 export const LATEST_PLAYED_QUERY = gql`
-  query latestPlayedQuery {
+  query PlayAgainLatestPlayedQuery {
     gamesList(listId: "latestPlayedGames") {
       games(numberOfGames: 1) {
-        ${gameFields}
+        ...AfterLimitsReached_Game
       }
     }
   }
+  ${GAME_FRAGMENT}
 `;
 
-type GameBySlugQueryResult = {
+type PlayAgainGameBySlugQueryResult = {
   gamesBySlugs: Array<A.GameRow_Game>,
 };
 
-type GameBySlugQueryVars = {
+type PlayAgainGameBySlugQueryVars = {
   slug: string,
 };
 
-type LatestPlayedQueryResult = {
+type PlayAgainLatestPlayedQueryResult = {
   gamesList: any,
 };
 
@@ -77,17 +82,17 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const locale = useLocale();
   const gameSlug = getSlugFromGamePage();
   const isPlayRouteActive = Boolean(gameSlug);
-  const gameQueryProps = useQuery<GameBySlugQueryResult, GameBySlugQueryVars>(
-    GAME_BY_SLUG_QUERY,
-    {
-      skip: !isPlayRouteActive,
-      variables: { slug: gameSlug || "" },
-    }
-  );
+  const gameQueryProps = useQuery<
+    PlayAgainGameBySlugQueryResult,
+    PlayAgainGameBySlugQueryVars
+  >(GAME_BY_SLUG_QUERY, {
+    skip: !isPlayRouteActive,
+    variables: { slug: gameSlug || "" },
+  });
   const gameBySlug: ?A.GameRow_Game = path(["data", "gamesBySlugs", 0])(
     gameQueryProps
   );
-  const latestPlayedQueryProps = useQuery<LatestPlayedQueryResult, _>(
+  const latestPlayedQueryProps = useQuery<PlayAgainLatestPlayedQueryResult, _>(
     LATEST_PLAYED_QUERY,
     {
       skip: isPlayRouteActive,

@@ -5,18 +5,20 @@ const gonzosQuestId = "cd476c51-0842-11e2-b0fd-005056bf4a60";
 const deadOrAlive2Id = "23b59520-65cb-11e9-8dbf-0242ac110002";
 
 export const gonzosQuest = {
+  __typename: "Game",
   id: gonzosQuestId,
   slug: "gonzos-quest",
-  logo: "/logo-img.png",
-  logoBackground: "/logo-bg.png",
+  backgroundImage: "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+  logo: "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
   name: "Gonzo's Quest",
 };
 
 export const deadOrAlive2 = {
+  __typename: "Game",
   id: deadOrAlive2Id,
   slug: "deadoralive2",
-  logo: "/logo-img.png",
-  logoBackground: "/logo-bg.png",
+  backgroundImage: "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+  logo: "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
   name: "Dead or Alive 2",
 };
 

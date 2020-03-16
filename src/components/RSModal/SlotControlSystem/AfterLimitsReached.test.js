@@ -3,7 +3,6 @@ import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { waitAndUpdateWrapper } from "Utils";
-import { useTranslations } from "Utils/hooks";
 import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
 import {
@@ -22,7 +21,6 @@ import {
 } from "./__mocks__/afterLimitsReached.mocks";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
-jest.mock("Utils/hooks/useTranslations");
 
 describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
   const mock = (fn: any) => fn;
@@ -74,7 +72,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     const closeModal = jest.fn();
     const dismissModal = jest.fn();
     const rendered = mount(
-      <MockStore state={{}}>
+      <MockStore state={{}} queryMocks={queryMocks}>
         <AfterLimitsReached
           t={null}
           config={{}}
@@ -150,13 +148,12 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     mock(useSessionsState).mockReturnValue(
       stateWithLastEndedSessionAndExclusion
     );
-    mock(useTranslations).mockReturnValue({});
 
     const acceptModal = jest.fn();
     const closeModal = jest.fn();
     const dismissModal = jest.fn();
     const rendered = mount(
-      <MockStore state={{}}>
+      <MockStore state={{}} queryMocks={queryMocks}>
         <AfterLimitsReached
           t={null}
           config={{}}
