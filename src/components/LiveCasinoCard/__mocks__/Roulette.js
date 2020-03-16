@@ -11,7 +11,7 @@ export const Roulette = {
     numberOfPlayers: 6,
     provider: "evolution",
     results: ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
-    image: "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
+    image: "/images/live-casino/lightr1_imr_med_L.jpg",
     type: "Roulette",
     betBehind: null,
     bets: {
