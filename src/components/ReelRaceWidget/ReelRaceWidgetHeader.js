@@ -3,6 +3,7 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import type { ReelRacesTranslations } from "Models/reelRaces";
+import { ROUTE_IDS } from "Src/constants";
 import type { Playing } from "Models/playing";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
@@ -10,9 +11,9 @@ import { interpolate } from "Utils";
 import { GameThumb } from "Components/GameThumb";
 import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
 import "./ReelRaceWidget.scss";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 
 type Props = {
-  launchGame: () => void,
   scheduledGame: A.GameRow_Game,
   gameSlug: string,
   playing: Playing,
@@ -24,6 +25,7 @@ type Props = {
 export function ReelRaceWidgetHeader(props: Props) {
   const { t, scheduledGame, gameSlug, playing, promoted, prize } = props;
 
+  const { navigateToKO } = useCrossCodebaseNavigation();
   const competeForText = interpolate(t.compete_for, { prize });
 
   if (playing.gameId === gameSlug) {
@@ -55,7 +57,7 @@ export function ReelRaceWidgetHeader(props: Props) {
     <Flex
       align="center"
       className="u-padding--md u-cursor-pointer u-position-relative"
-      onClick={props.launchGame}
+      onClick={() => navigateToKO(ROUTE_IDS.PLAY, { slug: props.gameSlug })}
     >
       <GameThumb
         src={scheduledGame.backgroundImage}
