@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import * as A from "Types/apollo";
+import { JURISDICTIONS } from "Src/constants";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
@@ -16,6 +17,7 @@ type Props = {
   setNewsletterSubscription: (active: boolean) => void,
   setSMSNewsletterSubscription: (active: boolean) => void,
   labels: A.NOTIFICATIONS_LABELS_QUERY,
+  jurisdiction: string,
 };
 
 export class SettingsNotifications extends PureComponent<Props> {
@@ -52,6 +54,7 @@ export class SettingsNotifications extends PureComponent<Props> {
         inGameSessionUpdatesOffLabel,
         inGameSessionUpdatesFrequencyLabel,
       },
+      jurisdiction,
     } = this.props;
 
     return (
@@ -62,14 +65,16 @@ export class SettingsNotifications extends PureComponent<Props> {
             isEnabled={withdrawalNotifications}
             onChange={setWithdrawalNotifications}
           />
-          <RealityCheckField
-            enabled={canChangeInterval}
-            link="/player/settings/reality-check"
-            title={notificationsInGameSessionUpdatesLabel}
-            interval={intervalInMinutes}
-            frequencyLabel={inGameSessionUpdatesFrequencyLabel}
-            frequencyOffLabel={inGameSessionUpdatesOffLabel}
-          />
+          {jurisdiction !== JURISDICTIONS.DGOJ && (
+            <RealityCheckField
+              enabled={canChangeInterval}
+              link="/player/settings/reality-check"
+              title={notificationsInGameSessionUpdatesLabel}
+              interval={intervalInMinutes}
+              frequencyLabel={inGameSessionUpdatesFrequencyLabel}
+              frequencyOffLabel={inGameSessionUpdatesOffLabel}
+            />
+          )}
         </div>
         <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
           <SettingsRow
