@@ -1,6 +1,6 @@
 // @flow
 import type { JackpotInfo } from "./jackpotInfo";
-import type { liveCasinoLobby } from "./liveCasinoLobby";
+import type { LiveCasinoLobby } from "./liveCasinoLobby";
 export type Game = {
   name: string,
   slug: string,
@@ -11,5 +11,5 @@ export type Game = {
   jackpotInfo: ?JackpotInfo,
   jackpotId: void | string,
   tableId: void | string,
-  lobby: liveCasinoLobby,
+  lobby: LiveCasinoLobby,
 };

@@ -14,12 +14,12 @@ describe("RSModal/SlotControlSystem/BeforeLoggingOut", () => {
   const mock = (fn: any) => fn;
   const noActiveSessionState = {
     activeSession: null,
-    isFresh: true,
+    isSynced: true,
     isFetching: false,
   };
   const stateWithSession = {
     activeSession: activeSessionMock,
-    isFresh: true,
+    isSynced: true,
     isFetching: false,
   };
 

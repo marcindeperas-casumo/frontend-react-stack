@@ -1,70 +1,53 @@
 // @flow
 import * as React from "react";
-import type { ReelRacesTranslations } from "Models/reelRaces";
+import classNames from "classnames";
 import ScrollableList from "Components/ScrollableList";
-import ReelRaceCard from "Components/ReelRaceCard";
+import * as A from "Types/apollo";
+// __FIX__ Why can't it resolve "Components/ReelRaceCard"?
+import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/ReelRaceCardContainer";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
-type Props = {
-  areTranslationsFetched: boolean,
-  fetchReelRaces: () => void,
-  fetchTranslations: () => void,
-  subscribeReelRacesUpdates: () => void,
-  unsubscribeReelRacesUpdates: () => void,
-  t: ReelRacesTranslations & { more_link: string },
-  reelRacesIds: Array<string>,
-  isFetched: boolean,
-};
-
-export class ReelRacesList extends React.PureComponent<Props> {
-  componentDidMount() {
-    if (!this.props.isFetched) {
-      this.props.fetchReelRaces();
-    }
-
-    if (!this.props.areTranslationsFetched) {
-      this.props.fetchTranslations();
-    }
-
-    this.props.subscribeReelRacesUpdates();
-  }
-
-  componentWillUnmount() {
-    this.props.unsubscribeReelRacesUpdates();
-  }
-
+export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
   render() {
-    if (!this.props.areTranslationsFetched) {
-      return null;
-    }
-    const { t } = this.props;
+    const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
+
+    const itemRenderer = ({ columnIndex, style }) => (
+      <div style={style}>
+        <div
+          className={classNames("c-reel-race-card", {
+            "u-margin-left": columnIndex > 0,
+          })}
+        >
+          <ReelRaceCard reelRace={reelRaces[columnIndex]} />
+        </div>
+      </div>
+    );
 
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
           <MobileAndTablet>
             <ScrollableList
-              title={t.title}
-              seeMoreText={t.more_link}
+              title={title}
+              itemClassName="c-reel-race-card"
+              seeMoreText={seeMore}
               seeMoreUrl={seeMoreUrl}
-              itemIds={this.props.reelRacesIds}
+              items={reelRaces}
+              itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
               Component={ReelRaceCard}
             />
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={{
-                title: t.title,
-                itemIds: this.props.reelRacesIds,
-              }}
-              Component={ReelRaceCard}
-              className="c-reel-race-card"
+              title={title}
+              itemCount={reelRaces.length}
+              itemRenderer={itemRenderer}
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
-                text: t.more_link,
+                text: seeMore,
                 url: seeMoreUrl,
               }}
             />

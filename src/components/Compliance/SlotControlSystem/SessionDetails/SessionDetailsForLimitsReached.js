@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
-import { GameRow } from "Components/GameRow";
+import { GameRowSessionDetails } from "Components/GameRow";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { Header } from "./Header";
 import { SessionDetailsBody } from "./SessionDetailsBody";
@@ -41,10 +41,10 @@ export function SessionDetailsForLimitsReached(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {Boolean(playAgainGameId) && (
+      {playAgainGameId && (
         <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
-          <GameRow id={playAgainGameId} />
+          <GameRowSessionDetails slug={playAgainGameId} />
         </div>
       )}
       <SessionDetailsBody

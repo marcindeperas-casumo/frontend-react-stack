@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
 import MockStore from "Components/MockStore";
 import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
@@ -60,15 +61,17 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     const closeModal = jest.fn();
     const dismissModal = jest.fn();
     const rendered = mount(
-      <MockStore state={{}}>
-        <AfterLimitsReached
-          t={null}
-          config={{}}
-          acceptModal={acceptModal}
-          closeModal={closeModal}
-          dismissModal={dismissModal}
-        />
-      </MockStore>
+      <MockedProvider>
+        <MockStore state={{}}>
+          <AfterLimitsReached
+            t={null}
+            config={{}}
+            acceptModal={acceptModal}
+            closeModal={closeModal}
+            dismissModal={dismissModal}
+          />
+        </MockStore>
+      </MockedProvider>
     );
     const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
 

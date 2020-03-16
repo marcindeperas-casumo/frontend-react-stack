@@ -1,0 +1,9 @@
+#import "./../GameRow/GameRow.graphql"
+
+query MustDropJackpotGamesListQuery($id: String!) {
+  gamesList(listId: $id) {
+    games {
+      ...GameRow_Game
+    }
+  }
+}

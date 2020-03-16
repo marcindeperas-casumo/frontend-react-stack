@@ -1,36 +1,58 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
-import { fetchGamesByProvider } from "Models/games";
-import {
-  gameProviderBySlug,
-  areProviderGamesLoaded,
-  types,
-  gameProviderGameCount,
-} from "Models/gameProviders";
-import { isFetchError } from "Models/fetch";
-
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
+import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
+import { GameStudioQuery } from "./ProviderGamesList.graphql";
 type Props = {
   /** Provider slug whose games will be fetched */
   provider: string,
 };
 
-const ProviderGamesListConnected = connect(
-  (state, { provider }) => ({
-    areGamesLoaded: areProviderGamesLoaded(provider)(state),
-    provider: gameProviderBySlug(provider)(state),
-    error: isFetchError(types.GET_GAME_PROVIDER_ERROR)(state),
-    count: gameProviderGameCount(provider)(state),
-  }),
-  (dispatch, { provider }) => ({
-    fetchGames: (page, pageSize) =>
-      dispatch(fetchGamesByProvider(provider, page, pageSize)),
-  })
-)(ProviderGamesList);
+export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
+  const { data, loading, fetchMore } = useQuery<
+    A.GameStudioQuery,
+    A.GameStudioQueryVariables
+  >(GameStudioQuery, {
+    variables: { slug, page: 0, pageSize: PAGE_SIZE },
+  });
+  const games = data?.gameStudio?.games || [];
+  const gamesCount = data?.gameStudio?.gamesCount || 0;
+  const nextPage = Math.floor(games.length / PAGE_SIZE);
 
-const ProviderGamesListContainer = (props: Props) => (
-  <ProviderGamesListConnected {...props} />
-);
+  const fetchMoreGames = () => {
+    return fetchMore<A.GameSearchQueryVariables>({
+      variables: {
+        page: nextPage,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (
+          !fetchMoreResult ||
+          !fetchMoreResult.gameStudio ||
+          !prev.gameStudio
+        ) {
+          return prev;
+        }
 
-export default ProviderGamesListContainer;
+        return {
+          gameStudio: {
+            ...prev.gameStudio,
+            games: [
+              ...prev.gameStudio.games,
+              ...fetchMoreResult.gameStudio.games,
+            ],
+          },
+        };
+      },
+    });
+  };
+
+  return (
+    <ProviderGamesList
+      games={games}
+      loading={loading && !games}
+      gamesCount={gamesCount}
+      onLoadMore={fetchMoreGames}
+    />
+  );
+};

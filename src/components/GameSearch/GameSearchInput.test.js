@@ -30,26 +30,11 @@ describe("GameSearchInput", () => {
     expect(rendered.find("SearchInput").prop("placeholder")).toBe(placeholder);
   });
 
-  test("should call fetchSearchResults when component updates query", () => {
-    const rendered = shallow(<GameSearchInput />);
-    const instance = rendered.instance();
-    const fetchSearchResults = jest.spyOn(instance, "fetchSearchResults");
+  test("should debounce onChange", () => {
+    const onChange = jest.fn();
+    const rendered = shallow(<GameSearchInput onChange={onChange} />);
 
-    expect(fetchSearchResults).toHaveBeenCalledTimes(0);
-
-    rendered
-      .find("SearchInput")
-      .simulate("change", { target: { value: "Let me pass this test 👀" } });
-    expect(fetchSearchResults).toHaveBeenCalledTimes(1);
-  });
-
-  test("should debounce fetchSearchResults", () => {
-    const initFetchGameSearchCount = jest.fn();
-    const rendered = shallow(
-      <GameSearchInput initFetchGameSearchCount={initFetchGameSearchCount} />
-    );
-
-    expect(initFetchGameSearchCount).toHaveBeenCalledTimes(0);
+    expect(onChange).toHaveBeenCalledTimes(0);
 
     rendered
       .find("SearchInput")
@@ -63,7 +48,7 @@ describe("GameSearchInput", () => {
 
     clock.tick(500);
 
-    expect(initFetchGameSearchCount).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   test("should call clear search when onClear (handleClearSearchInput) is called", () => {

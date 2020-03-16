@@ -2,6 +2,7 @@
 import * as React from "react";
 import { mount } from "enzyme";
 import { F } from "ramda";
+import { Settings, DateTime } from "luxon";
 import {
   bridgeFactory,
   generateColumns,
@@ -21,6 +22,7 @@ import {
   interpolateTimeInterval,
   canBeInterpolated,
   formatTime,
+  timeRemainingBeforeStart,
   isTestEnv,
 } from "./utils";
 
@@ -477,6 +479,18 @@ describe("convertHoursToDays()", () => {
       expect(formatTime(1576758921344)).toEqual(
         expect.stringMatching(/^\d\d:35:21/)
       );
+    });
+  });
+
+  describe("timeRemainingBeforeStart", () => {
+    test("should calculate the remaining time given a start time", () => {
+      Settings.now = () => new Date(2020, 2, 14).valueOf();
+      const currentDateInMs = DateTime.local().ts;
+      const startTime = 1584230400000;
+      const remainingTime = timeRemainingBeforeStart(startTime);
+      const timeDifference = startTime - currentDateInMs;
+
+      expect(timeDifference).toEqual(remainingTime);
     });
   });
 });
