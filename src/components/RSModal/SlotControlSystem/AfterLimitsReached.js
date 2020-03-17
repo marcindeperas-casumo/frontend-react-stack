@@ -49,18 +49,6 @@ export const LATEST_PLAYED_QUERY = gql`
   ${GAME_FRAGMENT}
 `;
 
-type PlayAgainGameBySlugQueryResult = {
-  gamesBySlugs: Array<A.GameRow_Game>,
-};
-
-type PlayAgainGameBySlugQueryVars = {
-  slug: string,
-};
-
-type PlayAgainLatestPlayedQueryResult = {
-  gamesList: any,
-};
-
 type ContentType = {
   session_details_header: string,
   balance: string,
@@ -83,24 +71,29 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const gameSlug = getSlugFromGamePage();
   const isPlayRouteActive = Boolean(gameSlug);
   const gameQueryProps = useQuery<
-    PlayAgainGameBySlugQueryResult,
-    PlayAgainGameBySlugQueryVars
+    A.PlayAgainGameBySlugQuery,
+    A.PlayAgainGameBySlugQueryVariables
   >(GAME_BY_SLUG_QUERY, {
     skip: !isPlayRouteActive,
     variables: { slug: gameSlug || "" },
   });
-  const gameBySlug: ?A.GameRow_Game = path(["data", "gamesBySlugs", 0])(
-    gameQueryProps
-  );
-  const latestPlayedQueryProps = useQuery<PlayAgainLatestPlayedQueryResult, _>(
+  const gameBySlug: ?A.AfterLimitsReached_Game = path([
+    "data",
+    "gamesBySlugs",
+    0,
+  ])(gameQueryProps);
+  const latestPlayedQueryProps = useQuery<A.PlayAgainLatestPlayedQuery, _>(
     LATEST_PLAYED_QUERY,
     {
       skip: isPlayRouteActive,
     }
   );
-  const gameById: ?A.GameRow_Game = path(["data", "gamesList", "games", 0])(
-    latestPlayedQueryProps
-  );
+  const gameById: ?A.AfterLimitsReached_Game = path([
+    "data",
+    "gamesList",
+    "games",
+    0,
+  ])(latestPlayedQueryProps);
 
   const tForModalSkin = {
     modal_title: props.t?.limits_reached_modal_title || "",

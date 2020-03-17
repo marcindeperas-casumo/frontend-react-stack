@@ -21,7 +21,7 @@ type Props = {
     limits_reached_play_again_header: string,
   },
   locale: string,
-  playAgainGame: ?A.GameRow_Game,
+  playAgainGame: ?A.AfterLimitsReached_Game,
   /**
    * This action is triggered instead of the default which
    * could not work in the game iframe.
