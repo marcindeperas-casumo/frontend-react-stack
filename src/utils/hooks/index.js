@@ -16,3 +16,5 @@ export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 export { useJurisdiction } from "./useJurisdiction";
 export { useIsSidebarOpen } from "./useIsSidebarOpen";
 export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
+export { useIsAuthenticated } from "./useIsAuthenticated";
+export { useDispatchPlaying } from "./useDispatchPlaying";

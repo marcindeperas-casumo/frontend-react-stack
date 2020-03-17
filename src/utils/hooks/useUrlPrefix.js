@@ -1,18 +1,8 @@
 // @flow
-import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
 import { URL_PREFIXES } from "Src/constants";
 import { marketSelector } from "Models/handshake";
-
-const isTLDMarketSpecific: string => boolean = R.pipe(
-  R.anyPass([
-    R.equals("com"),
-    R.equals("dev"),
-    R.equals("tech"),
-    R.equals("localhost"),
-  ]),
-  R.not
-);
+import { isTLDMarketSpecific } from "Utils";
 
 export function useUrlPrefix(): string | null {
   return useSelector(state => {

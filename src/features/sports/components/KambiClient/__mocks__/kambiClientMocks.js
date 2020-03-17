@@ -1,9 +1,7 @@
 import { assocPath } from "ramda";
 import { SESSION_TOUCH } from "Models/apollo/mutations";
-import {
-  LAUNCH_KAMBI_MUTATION,
-  LAUNCHABLE_KAMBI_CLIENT_QUERY,
-} from "../LaunchableKambiClient";
+import { LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
+import { LAUNCHABLE_KAMBI_CLIENT_QUERY } from "../LaunchableKambiClient";
 
 const launchKambiMutationMock = {
   request: {
