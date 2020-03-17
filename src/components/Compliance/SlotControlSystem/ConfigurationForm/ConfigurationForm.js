@@ -19,9 +19,15 @@ const SCREEN_TYPES = {
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
 };
 // these are given in seconds
-const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
+const HOUR = 60 * 60;
+const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, HOUR, 240 * 60];
 const STATUS_ALERTS_EVERY_OPTS = [5 * 60, 10 * 60, 15 * 60];
-const WANT_BREAK_AFTER_YES_OPTS = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
+const WANT_BREAK_AFTER_YES_OPTS = [
+  HOUR,
+  24 * HOUR,
+  7 * 24 * HOUR,
+  30 * 24 * HOUR,
+];
 
 export type ConfigurationFormContent = {
   limit_your_budget: string,
