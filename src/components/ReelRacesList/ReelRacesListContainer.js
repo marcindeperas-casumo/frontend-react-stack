@@ -2,6 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as R from "ramda";
+import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import { timeRemainingBeforeStart } from "Src/utils";
 import * as A from "Types/apollo";
 import { ReelRacesList } from "./ReelRacesList";
@@ -23,6 +24,9 @@ export const ReelRacesListContainer = () => {
   const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
     ReelRaceListQuery,
     {
+      variables: {
+        limit: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+      },
       pollInterval,
     }
   );
