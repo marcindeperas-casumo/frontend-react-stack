@@ -1,30 +1,39 @@
 // @flow
-import React, { useEffect } from "react";
-import { Settings } from "luxon";
-import LazyPortal from "Components/LazyPortal";
-import { Router } from "Components/Router";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
-import { ROUTE_IDS } from "Src/constants";
-
+import React, { useEffect, useState } from "react";
+import bridge from "Src/DurandalReactBridge";
+import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import { AppLiS } from "./AppLiS";
+import { AppLoS } from "./AppLoS";
 type Props = {
   onAppStarted: () => void,
   subscribeToUpdates: Function,
   unsubscribeToUpdates: Function,
   playerId: string,
   sessionId: string,
-  locale: string,
-  isAuthenticated: boolean,
+  isAuthenticatedHandshake: boolean,
   isAppHandshakeLoaded: Boolean,
-  activeComponents: Array<string>,
 };
 
 export const App = (props: Props) => {
-  const { onAppStarted, playerId, sessionId, locale } = props;
-  const { navigateToKO } = useCrossCodebaseNavigation();
+  const { onAppStarted, playerId, sessionId, isAuthenticatedHandshake } = props;
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    isAuthenticatedHandshake
+  );
 
   useEffect(() => {
-    onAppStarted();
-  }, [onAppStarted]);
+    setIsAuthenticated(isAuthenticatedHandshake);
+
+    if (!isAuthenticatedHandshake) {
+      onAppStarted();
+      bridge.on(REACT_APP_EVENT_ON_LOGIN, () => {
+        if (!isAuthenticated) {
+          setIsAuthenticated(true);
+          onAppStarted(); // fetch new handshake with session
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticatedHandshake]);
 
   useEffect(() => {
     if (playerId && sessionId) {
@@ -35,32 +44,9 @@ export const App = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerId, sessionId]);
 
-  useEffect(() => {
-    if (locale) {
-      // eslint-disable-next-line fp/no-mutation
-      Settings.defaultLocale = locale;
-    }
-  }, [locale]);
-
   if (!props.isAppHandshakeLoaded) {
     return null;
   }
 
-  if (!props.isAuthenticated) {
-    navigateToKO(ROUTE_IDS.LOGIN);
-    return null;
-  }
-
-  return (
-    <>
-      <Router></Router>
-      <LazyPortal
-        hostElementId="react-host-deposit-limits"
-        loader={() =>
-          import("Components/Compliance/DepositLimits/DepositLimitsView")
-        }
-        namedExport="DepositLimitsViewContainer"
-      />
-    </>
-  );
+  return isAuthenticated ? <AppLiS /> : <AppLoS />;
 };

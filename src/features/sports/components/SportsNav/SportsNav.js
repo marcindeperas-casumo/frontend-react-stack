@@ -12,6 +12,7 @@ import {
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
+import { useIsAuthenticated } from "Utils/hooks";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -25,7 +26,8 @@ const renderSportsNav = (
   currentHash: string,
   liveState: LiveState,
   data,
-  client
+  client,
+  isAuthenticated: boolean
 ) => {
   const [isLiveActive] = liveState;
   const isNavItemSelected = navItemUtils.isNavItemSelected(currentHash);
@@ -89,7 +91,7 @@ const renderSportsNav = (
           <SportsMainNav
             {...commonProps}
             navItems={navItems}
-            canEdit={true}
+            canEdit={isAuthenticated}
             onEdit={openChooseFavouritesModal}
             cacheBuster={mainNavCacheBuster}
           />
@@ -104,7 +106,7 @@ const renderSportsNav = (
             <SportsSubNav
               {...commonProps}
               navItems={selectedNavItem.subNav || []}
-              canEdit={selectedNavItem.canEdit}
+              canEdit={selectedNavItem.canEdit && isAuthenticated}
               onEdit={openChooseFavouriteLeaguesModal}
               cacheBuster={subNavCacheBuster}
             />
@@ -116,6 +118,7 @@ const renderSportsNav = (
 };
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
+  const isAuthenticated = useIsAuthenticated();
   const { client } = React.useContext(getApolloContext());
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
@@ -123,6 +126,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const variables = { live: isLiveActive };
   const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
+    fetchPolicy: "cache-and-network",
   });
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
@@ -168,6 +172,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     currentHash,
     [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
     data,
-    client
+    client,
+    isAuthenticated
   );
 };
