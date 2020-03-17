@@ -3,6 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import MockDate from "mockdate";
 import { isChromatic } from "Storybook/isNotChromatic";
+import MockStore from "Components/MockStore";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
 const stories = storiesOf("ReelRaceWidget", module);
@@ -58,7 +59,6 @@ const props = {
     caveat_short: "false",
   },
   areTranslationsFetched: true,
-  launchGame: () => {},
   fetchTranslations: () => {},
   fetchReelRaces: () => {},
   isReelRacesFetched: () => {},
@@ -75,8 +75,10 @@ const props = {
 
 stories.add("Default", () => {
   return (
-    <div style={{ width: "300px" }}>
-      <ReelRaceWidget {...props} />
-    </div>
+    <MockStore>
+      <div style={{ width: "300px" }}>
+        <ReelRaceWidget {...props} />
+      </div>
+    </MockStore>
   );
 });

@@ -81,10 +81,7 @@ export const GameTile = ({
               eventName={EVENTS.MIXPANEL_GAME_DETAILS}
               data={{ [EVENT_PROPS.GAME_NAME]: name }}
             >
-              <a
-                className="u-padding u-display--block"
-                href={`/en/play/${slug}`}
-              >
+              <a className="u-padding u-display--block" href={`/play/${slug}`}>
                 <MoreIcon className="t-color-white" />
               </a>
             </TrackClick>

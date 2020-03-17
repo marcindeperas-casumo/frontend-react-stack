@@ -345,3 +345,13 @@ export const timeRemainingBeforeStart = (time: number): number => {
     .diffNow()
     .valueOf();
 };
+
+export const isTLDMarketSpecific: string => boolean = R.pipe(
+  R.anyPass([
+    R.equals("com"),
+    R.equals("dev"),
+    R.equals("tech"),
+    R.equals("localhost"),
+  ]),
+  R.not
+);
