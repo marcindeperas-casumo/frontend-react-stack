@@ -37,6 +37,9 @@ export const Router = () => {
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY_NATIVE)} />
       <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
+      <LazyPlayForFunGamePage
+        path={translateRoute(ROUTE_IDS.PRACTICE_NATIVE)}
+      />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
       <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
       <LazyMustDropJackpots
