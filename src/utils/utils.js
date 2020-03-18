@@ -327,7 +327,9 @@ export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromSeconds(value);
 };
 
-export const convertLuxonDurationObjectToSeconds = (duration: Object) => {
+export const convertLuxonDurationObjectToSeconds = (
+  duration: Object
+): number => {
   return Number.parseInt(Duration.fromObject(duration).toFormat("s"));
 };
 
