@@ -7,7 +7,7 @@ import {
   actWait,
   waitAndUpdateWrapper,
   getCacheWithIntrospections,
-} from "Utils";
+} from "Utils/apolloTestUtils";
 import { ValuableCard } from "Components/ValuableCard";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";

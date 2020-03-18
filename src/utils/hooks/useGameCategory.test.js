@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import { getGameCategory } from "Api/api.casinoPlayerGames";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { waitAndUpdateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { useGameCategory } from "./useGameCategory";
 
 jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests here 🐛

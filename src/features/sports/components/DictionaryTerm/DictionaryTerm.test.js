@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { waitAndUpdateWrapper, actWait } from "Utils";
+import { waitAndUpdateWrapper, actWait } from "Utils/apolloTestUtils";
 import { DictionaryTerm } from "./DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
