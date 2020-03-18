@@ -24,6 +24,7 @@ import {
   formatTime,
   timeRemainingBeforeStart,
   isTestEnv,
+  convertLuxonDurationObjectToSeconds,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -491,6 +492,18 @@ describe("convertHoursToDays()", () => {
       const timeDifference = startTime - currentDateInMs;
 
       expect(timeDifference).toEqual(remainingTime);
+    });
+  });
+
+  describe("convertLuxonDurationObjectToSeconds()", () => {
+    test("should return 3600 if given { hours: 1 }", () => {
+      expect(convertLuxonDurationObjectToSeconds({ hours: 1 })).toEqual(3600);
+    });
+
+    test("should return 172980 if given { days: 2, minutes: 3 }", () => {
+      expect(
+        convertLuxonDurationObjectToSeconds({ days: 2, minutes: 3 })
+      ).toEqual(172980);
     });
   });
 });
