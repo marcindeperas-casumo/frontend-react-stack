@@ -4,7 +4,10 @@ import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
-import { interpolateTimeInterval } from "Utils";
+import {
+  interpolateTimeInterval,
+  convertLuxonDurationObjectToSeconds,
+} from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -18,16 +21,23 @@ const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
 };
-// these are given in seconds
-const HOUR = 60 * 60;
-const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, HOUR, 240 * 60];
-const STATUS_ALERTS_EVERY_OPTS = [5 * 60, 10 * 60, 15 * 60];
+const LIMIT_YOUR_TIME_OPTS = [
+  { minutes: 15 },
+  { minutes: 30 },
+  { hours: 1 },
+  { hours: 4 },
+].map(convertLuxonDurationObjectToSeconds);
+const STATUS_ALERTS_EVERY_OPTS = [
+  { minutes: 5 },
+  { minutes: 10 },
+  { minutes: 15 },
+].map(convertLuxonDurationObjectToSeconds);
 const WANT_BREAK_AFTER_YES_OPTS = [
-  HOUR,
-  24 * HOUR,
-  7 * 24 * HOUR,
-  30 * 24 * HOUR,
-];
+  { hours: 1 },
+  { days: 1 },
+  { days: 7 },
+  { days: 30 },
+].map(convertLuxonDurationObjectToSeconds);
 
 export type ConfigurationFormContent = {
   limit_your_budget: string,

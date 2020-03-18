@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { DateTime } from "luxon";
+import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
@@ -325,6 +325,10 @@ export const interpolateTimeInterval = ({
 
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromSeconds(value);
+};
+
+export const convertLuxonDurationObjectToSeconds = (duration: Object) => {
+  return Number.parseInt(Duration.fromObject(duration).toFormat("s"));
 };
 
 export const getDateTimeDifferenceFromNow = (value: DateTime) => {
