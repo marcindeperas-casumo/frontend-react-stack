@@ -6,6 +6,7 @@ const PnpWebpackPlugin = require("pnp-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const safePostCssParser = require("postcss-safe-parser");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -28,6 +29,10 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";
 
+  const fileNamePattern = `[name].[${
+    isEnvProduction ? "contenthash" : "hash"
+  }]`;
+
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
   // In development, we always serve from the root. This makes config easier.
@@ -45,7 +50,8 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const env = getClientEnvironment(publicUrl);
 
   const styleLoaders = [
-    require.resolve("style-loader"),
+    isEnvProduction && MiniCssExtractPlugin.loader,
+    isEnvDevelopment && require.resolve("style-loader"),
     {
       loader: require.resolve("css-loader"),
       options: {
@@ -77,7 +83,9 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
     {
       loader: require.resolve("sass-loader"),
       options: {
-        includePaths: cudl,
+        sassOptions: {
+          includePaths: cudl,
+        },
         sourceMap: isEnvProduction && shouldUseSourceMap,
       },
     },
@@ -128,7 +136,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       path: isEnvProduction ? paths.appBuild : undefined,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
-      filename: `${staticFolderName}/js/bundle.js`,
+      filename: `${staticFolderName}/js/${fileNamePattern}.js`,
       publicPath: publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
@@ -140,6 +148,25 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/")),
     },
     optimization: {
+      namedModules: true,
+      namedChunks: true,
+      moduleIds: isEnvProduction ? "hashed" : false,
+      splitChunks: {
+        chunks: "async",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/](?!@formatjs[\\/]intl-relativetimeformat[\\/])/,
+            name(module) {
+              if (module.context.includes("@casumo")) {
+                return "cudl";
+              }
+
+              return "vendors";
+            },
+            chunks: "all",
+          },
+        },
+      },
       minimize: isEnvProduction,
       minimizer: [
         // This is only used in production mode
@@ -257,7 +284,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
           oneOf: [
             isStorybook && {
               test: /\.md$/,
-              loader: require.resolve("raw-loader"), // storybook dependency, shouldn't be added to package.json!
+              loader: require.resolve("raw-loader"),
             },
             // Chromatic occasionally fails to load font files.
             // Inline the fonts into the storybook css to guarantee they are available.
@@ -403,6 +430,12 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
       new webpack.DefinePlugin(env.stringified),
+      // In production we want styles to live in .css files so we can show
+      // loaders and other stuff before whole bundle gets loaded
+      isEnvProduction &&
+        new MiniCssExtractPlugin({
+          filename: `${staticFolderName}/css/${fileNamePattern}.css`,
+        }),
       // This is necessary to emit hot updates (currently CSS only):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use
@@ -420,10 +453,13 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       // having to parse `index.html`.
       new ManifestPlugin({
         fileName: `${staticFolderName}/manifest.json`,
-        publicPath: publicPath,
-        // we are fitering out everything other than .js and .css files
-        // this manifest is used by durendal app to load all chunks
-        filter: x => [/\.js$/, /\.css$/].some(re => re.test(x.path)),
+        publicPath,
+        // we need chunks that are not .map files and don't contain path in the name
+        // seems like async chunks that will be loaded automatically always contain path in the name
+        filter: x =>
+          x.isChunk &&
+          !x.name.endsWith(".map") &&
+          !x.name.startsWith(staticFolderName),
       }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical

@@ -12,7 +12,7 @@ export const BlackjackFull = {
     seats: 0,
     provider: "casumo",
     results: null,
-    image: "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
+    image: "/images/live-casino/lightr1_imr_med_L.jpg",
     type: "Blackjack",
     betBehind: true,
     bets: {

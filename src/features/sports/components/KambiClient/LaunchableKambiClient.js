@@ -12,20 +12,10 @@ import {
   countrySelector,
   languageSelector,
 } from "Models/handshake";
-import { SESSION_TOUCH } from "Models/apollo/mutations";
+import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
 import { MutateOnMount } from "Features/sports/components/GraphQL";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
-
-export const LAUNCH_KAMBI_MUTATION = gql`
-  mutation LaunchKambi {
-    launchKambi {
-      clientBootstrapUrl
-      providerPlayerId
-      ticket
-    }
-  }
-`;
 
 export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClientQuery {

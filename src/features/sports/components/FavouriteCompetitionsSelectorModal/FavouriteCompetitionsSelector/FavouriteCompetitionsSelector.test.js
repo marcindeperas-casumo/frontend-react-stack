@@ -2,7 +2,8 @@ import React from "react";
 import { all, equals, F } from "ramda";
 import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
-import { waitAndUpdateWrapper, isNilOrEmpty } from "Utils";
+import { isNilOrEmpty } from "Utils";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   FavouriteCompetitionsSelector,
