@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { actWait } from "Utils";
+import { actWait } from "Utils/apolloTestUtils";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
   withFavouritesMock,

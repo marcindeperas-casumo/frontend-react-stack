@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { waitAndUpdateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { DEVICES } from "Src/constants";
 import { HookWrapper } from "Utils/HookWrapper";
 import { ThunderkickGame } from "GameProviders";

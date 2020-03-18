@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { MockedProvider } from "@apollo/react-testing";
-import { waitAndUpdateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
 import {
   withMockQueries,

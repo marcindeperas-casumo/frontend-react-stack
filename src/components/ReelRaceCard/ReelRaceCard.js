@@ -218,7 +218,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "u-overflow-hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
-            `t-color-yellow-light-1`,
+            "t-color-caution",
             "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
@@ -232,9 +232,10 @@ export class ReelRaceCard extends React.Component<Props> {
             imgixOpts={{
               w: 348,
               h: 232,
-              blur: 100,
               high: -70,
               fit: "crop",
+              blendAlpha: 55,
+              blendColor: "000000",
             }}
           />
 
