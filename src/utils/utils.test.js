@@ -496,7 +496,7 @@ describe("convertHoursToDays()", () => {
   });
 
   describe("convertLuxonDurationObjectToSeconds()", () => {
-    test("should return 360 if given { hours: 1 }", () => {
+    test("should return 3600 if given { hours: 1 }", () => {
       expect(convertLuxonDurationObjectToSeconds({ hours: 1 })).toEqual(3600);
     });
 
