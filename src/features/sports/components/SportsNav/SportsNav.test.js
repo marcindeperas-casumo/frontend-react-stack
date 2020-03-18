@@ -48,13 +48,4 @@ describe("<SportsNav/>", () => {
 
     expect(rendered.find(SportsSubNav)).toHaveLength(1);
   });
-  /*
-  test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
-  });
-
-  test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
-  });
-  */
 });
