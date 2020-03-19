@@ -1,15 +1,11 @@
 // @flow
 import * as React from "react";
-import { useInterval } from "react-use";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { navigateById } from "Services/NavigationService";
 import { interpolateWithJSX } from "Utils";
-import {
-  ISO8601DurationContainer,
-  convertSecondsToISO8601Duration,
-} from "Components/i18n/ISO8601Duration";
+import { Countdown } from "Components/i18n/Countdown";
 import StillOnBreakImage from "./StillOnBreak.svg";
 import "./StillOnBreak.scss";
 
@@ -25,27 +21,10 @@ type Props = {
 
 export function StillOnBreak(props: Props) {
   const { t } = props;
-  const [elapsedSecs, setElapsedSecs] = React.useState<number>(0);
-  const secondsTillEnd = props.secondsTillEnd - elapsedSecs;
-  const duration = convertSecondsToISO8601Duration(secondsTillEnd, {
-    isShort: true,
-  });
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
-  const timeInterval = (
-    <ISO8601DurationContainer
-      duration={duration}
-      t={{ separator: " " }}
-      preferAbbreviated
-    />
-  );
-
-  useInterval(
-    () => setElapsedSecs(elapsedSecs + 1),
-    secondsTillEnd <= 0 ? null : 1000
-  );
 
   return (
     <Flex direction="vertical">
@@ -58,7 +37,19 @@ export function StillOnBreak(props: Props) {
         {t.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {interpolateWithJSX({ time: timeInterval }, t.still_on_break_subtext)}
+        {interpolateWithJSX(
+          {
+            time: (
+              <Countdown
+                secondsTillEnd={props.secondsTillEnd}
+                t={{ separator: " " }}
+                preferShort
+                preferAbbreviated
+              />
+            ),
+          },
+          t.still_on_break_subtext
+        )}
       </Text>
       <Button
         size="md"
