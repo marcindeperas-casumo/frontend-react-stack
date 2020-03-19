@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
-import { Countdown } from "Components/i18n/Countdown";
+import { ISO8601DurationTimer } from "Components/i18n/ISO8601DurationTimer";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -36,7 +36,7 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
         {interpolateWithJSX(
           {
             time: (
-              <Countdown
+              <ISO8601DurationTimer
                 secondsTillEnd={props.secondsTillEndOfBreak}
                 t={{ separator: " " }}
                 preferShort
