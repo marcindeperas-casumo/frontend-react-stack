@@ -1,14 +1,10 @@
 // @flow
 import * as React from "react";
-import { useInterval } from "react-use";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
-import {
-  ISO8601DurationContainer,
-  convertSecondsToISO8601Duration,
-} from "Components/i18n/ISO8601Duration";
+import { Countdown } from "Components/i18n/Countdown";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -32,30 +28,22 @@ type Props = {
 
 export function SessionDetailsForLimitsReachedExcluded(props: Props) {
   const { t, onClickButton, locale, lastEndedSession } = props;
-  const [elapsedSecs, setElapsedSecs] = React.useState<number>(0);
-  const secondsTillEnd = props.secondsTillEndOfBreak - elapsedSecs;
-  const duration = convertSecondsToISO8601Duration(secondsTillEnd, {
-    isShort: true,
-  });
-  const timeInterval = (
-    <ISO8601DurationContainer
-      duration={duration}
-      t={{ separator: " " }}
-      preferAbbreviated
-    />
-  );
-
-  useInterval(
-    () => setElapsedSecs(elapsedSecs + 1),
-    secondsTillEnd <= 0 ? null : 1000
-  );
 
   return (
     <Flex direction="vertical">
       <div className="u-padding--sm t-background-grey-light-2" />
       <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
         {interpolateWithJSX(
-          { time: timeInterval },
+          {
+            time: (
+              <Countdown
+                secondsTillEnd={props.secondsTillEndOfBreak}
+                t={{ separator: " " }}
+                preferShort
+                preferAbbreviated
+              />
+            ),
+          },
           t?.limits_reached_exclusion_text
         )}
       </Text>
