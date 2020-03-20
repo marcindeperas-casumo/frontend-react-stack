@@ -112,12 +112,11 @@ export class ReelRaceCard extends React.Component<Props> {
           >
             {t.endingIn}
           </Text>
-          <Text tag="div" size="lg" className="u-font-weight-bold">
+          <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={endTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
-              myProp="yes"
             />
           </Text>
         </Flex>
