@@ -6,7 +6,11 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import * as A from "Types/apollo";
-import { interpolate, convertHoursToDays } from "Utils";
+import {
+  interpolate,
+  convertHoursToDays,
+  addPointerEventStylesToLinkElements,
+} from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
@@ -218,7 +222,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
             className="u-margin-bottom--lg"
           >
             <Flex.Item>
-              <Text className="center">{content}</Text>
+              <Text className="center">
+                <DangerousHtml
+                  html={addPointerEventStylesToLinkElements(content)}
+                />
+              </Text>
             </Flex.Item>
             {this.wageringRequirementsExist && (
               <Flex.Item className="u-margin-top--xlg">
@@ -246,7 +254,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               <Text className="t-color-grey" size="sm">
-                {caveat}
+                <DangerousHtml
+                  html={addPointerEventStylesToLinkElements(caveat || "")}
+                />
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">

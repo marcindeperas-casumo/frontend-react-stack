@@ -17,6 +17,7 @@ import {
   type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
+import { addPointerEventStylesToLinkElements } from "Utils";
 import ValuableSelector from "./valuable-selector.svg";
 import "./ValuableRow.scss";
 
@@ -135,7 +136,7 @@ export class ValuableRow extends PureComponent<Props> {
                 <Text className="u-margin-top" size="sm" tag="div">
                   <DangerousHtml
                     data-test="valuable-row-description"
-                    html={description}
+                    html={addPointerEventStylesToLinkElements(description)}
                   />
                 </Text>
               )}
@@ -145,7 +146,9 @@ export class ValuableRow extends PureComponent<Props> {
                   size="2xs"
                   tag="div"
                 >
-                  <DangerousHtml html={caveat} />
+                  <DangerousHtml
+                    html={addPointerEventStylesToLinkElements(caveat || "")}
+                  />
                 </Text>
               )}
             </Flex.Block>
