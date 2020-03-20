@@ -181,8 +181,6 @@ export class ReelRaceCard extends React.Component<Props> {
       minBet,
       formattedPrize,
       promoted,
-      optedIn,
-      startTime,
     } = this.props.reelRace;
 
     const trackData = {
