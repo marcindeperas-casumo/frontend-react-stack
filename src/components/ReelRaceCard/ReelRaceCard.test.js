@@ -92,6 +92,7 @@ describe("ReelRaceCard", () => {
       ...props,
       optedIn: true,
       startTime: now,
+      status: "Started",
       endTime: now + 30 * minute,
       launchGame: launchGame,
     };
@@ -123,6 +124,7 @@ describe("ReelRaceCard", () => {
       ...props,
       optedIn: true,
       promoted: true,
+      status: "Scheduled",
       startTime: now,
       endTime: now + 30 * minute,
     };
