@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -197,14 +196,6 @@ export class ReelRaceCard extends React.Component<Props> {
     };
 
     if (isLocaleLoading) {
-      return null;
-    }
-
-    if (R.isEmpty(game)) {
-      return null;
-    }
-
-    if (timeRemainingBeforeStart(startTime) <= 0 && !optedIn) {
       return null;
     }
 
