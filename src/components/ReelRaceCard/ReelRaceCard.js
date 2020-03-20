@@ -166,7 +166,6 @@ export class ReelRaceCard extends React.Component<Props> {
       translations: t,
       game,
       spinLimit,
-      minBet,
       formattedPrize,
       promoted,
     } = this.props.reelRace;
@@ -175,7 +174,6 @@ export class ReelRaceCard extends React.Component<Props> {
       [EVENT_PROPS.LOCATION]: "Reel Race",
       spinLimit,
       timeLimit: this.duration,
-      minBet,
       mainPrize: formattedPrize,
       name: game.name,
       isPromoted: promoted,
@@ -270,12 +268,6 @@ export class ReelRaceCard extends React.Component<Props> {
                   })}
                   bottom={t.duration}
                 />
-              )}
-              {minBet && (
-                <>
-                  <div className="c-reel-race__separator u-margin-x--md" />
-                  <Column top={minBet} bottom={t.minBet} />
-                </>
               )}
             </Flex>
 
