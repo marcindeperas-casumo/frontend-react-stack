@@ -3,7 +3,10 @@ import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import { VALUABLE_STATES } from "Models/valuables";
-import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
+import {
+  waitAndUpdateWrapper,
+  getCacheWithIntrospections,
+} from "Utils/apolloTestUtils";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRow } from "Components/ValuableRow";

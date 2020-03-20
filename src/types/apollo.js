@@ -713,6 +713,9 @@ export type ReelRaceListQuery = {
   seeMore: string,
   reelRaces: Array<ReelRaceListQuery_reelRaces>,
 };
+export type ReelRaceListQueryVariables = {
+  limit: number,
+};
 
 // ====================================================
 // GraphQL query operation: PlayAgainGameBySlugQuery

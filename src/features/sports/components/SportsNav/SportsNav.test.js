@@ -6,7 +6,7 @@ import {
   SportsMainNav,
   SportsSubNav,
 } from "Features/sports/components/SportsNav";
-import { waitAndUpdateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 jest.mock("Utils/hooks/useIsAuthenticated");
