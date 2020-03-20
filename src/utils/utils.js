@@ -127,6 +127,18 @@ export const makeProtocolAwareUrl = (url: string) => {
   return url;
 };
 
+export const addPointerEventStylesToLinkElements = (s: string) => {
+  // allow links be clickable in <Cards... components,
+  // through the link layer
+  const extraStyle = `
+    position: relative;
+    pointer-events: all;
+    z-index: 100;
+  `;
+
+  return s.replace(/(<a.*)(>)(.*<\/a>)/g, `$1 style="${extraStyle}"$2$3`);
+};
+
 export const stringToHTML = (s: string) => {
   return { __html: s };
 };
