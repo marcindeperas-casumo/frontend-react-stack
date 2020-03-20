@@ -19,19 +19,6 @@ import { BridgeToLogoutService } from "Services/BridgeToLogoutService";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
-// $FlowIgnore
-if (!Intl.RelativeTimeFormat) {
-  import("@formatjs/intl-relativetimeformat/polyfill");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/ja");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/de");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/en");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/da");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/fi");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/nb");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/sv");
-  import("@formatjs/intl-relativetimeformat/dist/locale-data/es");
-}
-
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 BridgeToNavigationService();
