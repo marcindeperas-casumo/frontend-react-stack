@@ -101,9 +101,8 @@ export class ReelRaceCard extends React.Component<Props> {
   }
 
   get countdown() {
-    const { translations: t, endTime, startTime } = this.props.reelRace;
-
-    if (timeRemainingBeforeStart(startTime) <= 0) {
+    const { translations: t, endTime, startTime, status } = this.props.reelRace;
+    if (status === "Started") {
       return (
         <Flex direction="vertical" spacing="none">
           <Text
@@ -113,11 +112,12 @@ export class ReelRaceCard extends React.Component<Props> {
           >
             {t.endingIn}
           </Text>
-          <Text tag="span" size="lg" className="u-font-weight-bold">
+          <Text tag="div" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={endTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
+              myProp="yes"
             />
           </Text>
         </Flex>
