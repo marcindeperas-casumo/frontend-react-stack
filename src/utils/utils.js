@@ -127,7 +127,7 @@ export const makeProtocolAwareUrl = (url: string) => {
   return url;
 };
 
-export const processRawLinks = (s: string) => {
+export const addExtraStylesToLinkElements = (s: string) => {
   // allow links be clickable in <Cards... components,
   // through the link layer
   const extraStyle = `
@@ -140,7 +140,7 @@ export const processRawLinks = (s: string) => {
 };
 
 export const stringToHTML = (s: string) => {
-  return { __html: processRawLinks(s) };
+  return { __html: s };
 };
 
 export function generateColumns<T>(

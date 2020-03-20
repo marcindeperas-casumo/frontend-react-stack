@@ -25,7 +25,7 @@ import {
   timeRemainingBeforeStart,
   isTestEnv,
   convertLuxonDurationObjectToSeconds,
-  processRawLinks,
+  addExtraStylesToLinkElements,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -517,7 +517,7 @@ describe("convertHoursToDays()", () => {
         <a href="http://gmail.com" rel="extra attr">check this email</a>.
       `;
 
-      const processed = processRawLinks(before);
+      const processed = addExtraStylesToLinkElements(before);
 
       const foundAddedStyle = (processed.match(/pointer-events: all;/g) || [])
         .length;
