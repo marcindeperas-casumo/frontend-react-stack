@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import * as R from "ramda";
-import { timeRemainingBeforeStart } from "Src/utils";
+import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
@@ -11,21 +10,16 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 // We are going to move to use subscriptions once the GraphQL server is ready for it
 const pollInterval = 8000;
 
-export const getValidReelRaces = (
-  reelRaces: Array<A.ReelRaceListQuery_reelRaces>
-): Array<A.ReelRaceListQuery_reelRaces> =>
-  reelRaces.filter(
-    ({ game, startTime, optedIn }) =>
-      !R.isEmpty(game) && (optedIn || timeRemainingBeforeStart(startTime) > 0)
-  );
-
 export const ReelRacesListContainer = () => {
-  const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
-    ReelRaceListQuery,
-    {
-      pollInterval,
-    }
-  );
+  const { data, loading } = useQuery<
+    A.ReelRaceListQuery,
+    A.ReelRaceListQueryVariables
+  >(ReelRaceListQuery, {
+    variables: {
+      limit: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+    },
+    pollInterval,
+  });
 
   if (loading) {
     // We need a beaut skeleton!
@@ -33,12 +27,11 @@ export const ReelRacesListContainer = () => {
   }
 
   const reelRaces = data?.reelRaces || [];
-  const validReelRaces = getValidReelRaces(reelRaces);
 
-  if (data && validReelRaces && validReelRaces.length) {
+  if (data && reelRaces && reelRaces.length) {
     return (
       <ReelRacesList
-        reelRaces={validReelRaces}
+        reelRaces={reelRaces}
         title={data.title}
         seeMore={data.seeMore}
       />
