@@ -508,7 +508,7 @@ describe("convertHoursToDays()", () => {
     });
   });
 
-  describe("processRawLinks", () => {
+  describe("addExtraStylesToLinkElements", () => {
     test("should add extra styles to all links in given text", () => {
       const before = `
         Sample text, 
