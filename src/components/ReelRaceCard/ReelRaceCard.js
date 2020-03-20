@@ -24,8 +24,6 @@ import "./ReelRaceCard.scss";
 type Props = {
   reelRace: A.ReelRaceCard_ReelRace,
   optIn: () => void,
-  locale: string,
-  loading: boolean,
 };
 
 const Column = (props: {
@@ -164,7 +162,6 @@ export class ReelRaceCard extends React.Component<Props> {
   };
 
   render() {
-    const isLocaleLoading = this.props.loading || !this.props.locale;
     const {
       translations: t,
       game,
@@ -183,10 +180,6 @@ export class ReelRaceCard extends React.Component<Props> {
       name: game.name,
       isPromoted: promoted,
     };
-
-    if (isLocaleLoading) {
-      return null;
-    }
 
     return (
       <TrackProvider data={trackData}>
