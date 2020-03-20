@@ -44,47 +44,6 @@ const minute = 60 * 1000;
 const launchGame = jest.fn();
 
 describe("ReelRaceCard", () => {
-  describe("Empty game object", () => {
-    const reelRace = {
-      id: "edc71c70-56d6-11e9-8587-0242ac11000b",
-      startTime: 1580882400000,
-      optedIn: false,
-      endTime: 1580883600000,
-      spinLimit: 140,
-      minBet: null,
-      promoted: false,
-      formattedPrize: "€20",
-      remainingSpins: 99,
-      game: {},
-      translations: {
-        optedInCtaSingleGameShort: "Play",
-        optIn: "Opt in",
-        optedIn: "Opted in",
-        endingIn: "Ending in",
-        startingIn: "Starting in:",
-        competeFor: "Compete for {{prize}}",
-        spins: "Spins",
-        duration: "Duration",
-        durationTemplate: "{{{duration}}} min",
-        minBet: "Min Bet",
-        caveatShort: "false",
-      },
-      status: "Scheduled",
-      playing: {
-        isPlaying: true,
-        gameId: "foo",
-      },
-    };
-
-    const rendered = shallow(
-      <ReelRaceCard reelRace={reelRace} locale="en" loading={false} />
-    );
-
-    test("should not show any card if game object is empty", () => {
-      expect(rendered.isEmptyRender()).toEqual(true);
-    });
-  });
-
   describe("Scheduled", () => {
     const now = Date.now();
     const reelRace = {
