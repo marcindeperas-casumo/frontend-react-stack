@@ -14,7 +14,6 @@ import {
   appAutomaticLogoutSaga,
 } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
-import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
 import {
   liveCasinoTypes,
   fetchAllLiveCasinoGamesSaga,
@@ -114,7 +113,6 @@ export default function* rootSaga(dispatch: any): * {
     ),
     statsUpdateNotificationSaga
   );
-  yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(
     takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
