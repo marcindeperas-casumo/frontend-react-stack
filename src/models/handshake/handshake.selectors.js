@@ -106,7 +106,7 @@ export const walletAmountSelector = createSelector(
 
 export const bonusAmountSelector = createSelector(
   playerSelector,
-  path(["bonus", "balance", "amount"])
+  pathOr(0, ["bonus", "balance", "amount"])
 );
 
 export const marketSelector = createSelector(
