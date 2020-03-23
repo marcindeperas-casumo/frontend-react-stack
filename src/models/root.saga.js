@@ -57,11 +57,6 @@ import {
 } from "Models/playerGames";
 import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 import {
-  types as reelRacesTypes,
-  fetchReelRacesSaga,
-  reelRacesUpdatesSaga,
-} from "Models/reelRaces";
-import {
   actionTypes as adventureActionTypes,
   fetchAdventurerSaga,
   adventureUpdatesSaga,
@@ -109,11 +104,6 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.LIVE_CASINO_TABLE),
     liveCasinoUpdatesSaga
-  );
-  yield fork(
-    takeEvery,
-    takeChannel(cometdChannels.REEL_RACES),
-    reelRacesUpdatesSaga
   );
   yield fork(
     takeEvery,
@@ -212,7 +202,6 @@ export default function* rootSaga(dispatch) {
     gameSearchTypes.GAME_SEARCH_FETCH_LATEST_PLAYED,
     fetchLatestPlayedSaga
   );
-  yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
   yield fork(
     takeEvery,
     adventureActionTypes.ADVENTURER_INIT,

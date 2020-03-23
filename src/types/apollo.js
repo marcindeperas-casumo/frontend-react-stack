@@ -719,6 +719,47 @@ export type ReelRaceListQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: ReelRaceWidgetQuery
+// ====================================================
+
+export type ReelRaceWidgetQuery_reelRaces_game = {
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
+  winsInARow: number,
+  triples: number,
+  wins: number,
+  bigWins: number,
+  megaWins: number,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+  boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
+};
+export type ReelRaceWidgetQuery_reelRaces = {
+  id: string,
+  game: ReelRaceWidgetQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  promoted: boolean,
+  spinLimit: number,
+  formattedPrize: string,
+  cometdChannels: Array<string>,
+  leaderboard: Array<ReelRaceWidgetQuery_reelRaces_leaderboard>,
+};
+export type ReelRaceWidgetQuery = {
+  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+};
+
+// ====================================================
 // GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
 // ====================================================
 
