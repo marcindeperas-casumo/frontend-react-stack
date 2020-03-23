@@ -1,3 +1,4 @@
+// @flow
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   periodicReminderNotificationSaga,
@@ -20,13 +21,6 @@ import {
   liveCasinoUpdatesSaga,
 } from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
-import {
-  types as gameTypes,
-  launchGameSaga,
-  fetchGamesBySlugsSaga,
-  fetchGamesByProviderSaga,
-  updateMyListSaga,
-} from "Models/games";
 import { types as cmsTypes, fetchPageBySlugSaga } from "Models/cms";
 import {
   TYPES as jackpotsMustDropTypes,
@@ -67,18 +61,12 @@ import {
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/compliance/denmark";
 
-export default function* rootSaga(dispatch) {
+export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
 
-  // __FIX__ (REMOVE) Fetch
-  // yield fork(takeEvery, gameTypes.INIT_FETCH_GAME_LISTS, fetchGameListSaga);
-
   // __FIX__ Fetch anything.
   yield fork(takeEvery, fetchTypes.FETCH, fetchSaga);
-
-  // __FIX__ Launches a game
-  yield fork(takeEvery, gameTypes.LAUNCH_GAME, launchGameSaga);
 
   // __FIX__ Fetches a page by slug
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);
@@ -154,16 +142,16 @@ export default function* rootSaga(dispatch) {
     statsUpdateNotificationSaga
   );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
-  yield fork(
-    takeEvery,
-    gameTypes.FETCH_GAMES_BY_SLUGS_START,
-    fetchGamesBySlugsSaga
-  );
-  yield fork(
-    takeEvery,
-    gameTypes.FETCH_GAMES_BY_PROVIDER_START,
-    fetchGamesByProviderSaga
-  );
+  // yield fork(
+  //   takeEvery,
+  //   gameTypes.FETCH_GAMES_BY_SLUGS_START,
+  //   fetchGamesBySlugsSaga
+  // );
+  // yield fork(
+  //   takeEvery,
+  //   gameTypes.FETCH_GAMES_BY_PROVIDER_START,
+  //   fetchGamesByProviderSaga
+  // );
   yield fork(
     takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
@@ -217,7 +205,6 @@ export default function* rootSaga(dispatch) {
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_INIT,
     fetchAnnualOverviewSaga
   );
-  yield fork(takeEvery, gameTypes.UPDATE_MY_LIST, updateMyListSaga);
   yield fork(takeEvery, appTypes.APP_STARTED, danishOverlaySaga);
   yield fork(takeLatest, appTypes.APP_MANUAL_LOGOUT_INIT, appManualLogoutSaga);
   yield fork(
