@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
-import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
-import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
 import { CURRENCIES } from "Src/constants";
+import { GameRow } from "./GameRow";
+import { GameRowText } from "./GameRowText";
+import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
+import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
 
 describe("<GameRow />", () => {
   let launchGame;

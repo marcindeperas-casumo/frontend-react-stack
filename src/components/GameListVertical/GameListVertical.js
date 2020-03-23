@@ -1,10 +1,8 @@
 // @flow
 import React from "react";
 import List from "@casumo/cmp-list";
-import { launchGame } from "Services/LaunchGameService";
 import { GameListSkeleton } from "Components/GameListSkeleton";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
+import { GameRow, GameRowText } from "Components/GameRow";
 import * as A from "Types/apollo";
 
 type Props = {
@@ -31,7 +29,6 @@ export const GameListVertical = ({ games, loading = false }: Props) => {
           <GameRow
             game={game}
             renderText={() => <GameRowText name={game.name} />}
-            onLaunchGame={() => launchGame({ slug: game.slug })}
           />
         )}
       />
