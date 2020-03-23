@@ -20,13 +20,7 @@ import {
   fetchAllLiveCasinoGamesSaga,
   liveCasinoUpdatesSaga,
 } from "Models/liveCasino";
-import { jackpotsUpdatesSaga } from "Models/jackpots";
 import { types as cmsTypes, fetchPageBySlugSaga } from "Models/cms";
-import {
-  TYPES as jackpotsMustDropTypes,
-  fetchJackpotsMustDropSaga,
-  jackpotsMustDropUpdateSaga,
-} from "Models/jackpotsMustDrop";
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
@@ -66,19 +60,6 @@ export default function* rootSaga(dispatch: any): * {
   // __FIX__ CometD
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
-
-  // __FIX__ Jackpots
-  yield fork(takeEvery, jackpotsMustDropTypes.FETCH, fetchJackpotsMustDropSaga);
-  yield fork(
-    takeEvery,
-    takeChannel(cometdChannels.JACKPOTS),
-    jackpotsUpdatesSaga
-  );
-  yield fork(
-    takeEvery,
-    takeChannel(cometdChannels.MUST_DROP_JACKPOTS),
-    jackpotsMustDropUpdateSaga
-  );
 
   yield fork(
     takeEvery,

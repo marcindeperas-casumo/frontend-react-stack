@@ -17,7 +17,6 @@ import {
   getCasinoPlayerGamesBatch,
 } from "Api/api.casinoPlayerGames";
 import { GAME_LIST_IDS } from "Src/constants";
-import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { convertHTMLToString } from "Utils";
 
@@ -203,17 +202,8 @@ const handleListsFetchErrors = promises => {
   );
 };
 
-export const fetchJackpots = async ({ market, currency }) => {
-  try {
-    const { jackpots } = await getJackpots({
-      market,
-      currencyCode: currency,
-    });
-
-    return jackpots;
-  } catch (e) {
-    return [];
-  }
+export const fetchJackpots = ({ market, currency }) => {
+  return [];
 };
 
 export const fetchGames = async ({
