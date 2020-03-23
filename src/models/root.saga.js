@@ -14,11 +14,6 @@ import {
   appAutomaticLogoutSaga,
 } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
-import {
-  liveCasinoTypes,
-  fetchAllLiveCasinoGamesSaga,
-  liveCasinoUpdatesSaga,
-} from "Models/liveCasino";
 import { types as cmsTypes, fetchPageBySlugSaga } from "Models/cms";
 import {
   CHANNELS as cometdChannels,
@@ -60,11 +55,6 @@ export default function* rootSaga(dispatch: any): * {
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
 
-  yield fork(
-    takeEvery,
-    takeChannel(cometdChannels.LIVE_CASINO_TABLE),
-    liveCasinoUpdatesSaga
-  );
   yield fork(
     takeEvery,
     takeMessageFromChannel(
@@ -112,11 +102,6 @@ export default function* rootSaga(dispatch: any): * {
       cometdMessages.STATS_UPDATED_NOTIFICATION
     ),
     statsUpdateNotificationSaga
-  );
-  yield fork(
-    takeEvery,
-    liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
-    fetchAllLiveCasinoGamesSaga
   );
   yield fork(
     takeEvery,
