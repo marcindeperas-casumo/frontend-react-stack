@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
@@ -10,6 +10,7 @@ import {
   SessionDetailsForLimitsReached,
   SessionDetailsForLimitsReachedExcluded,
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
+import { lastGamePlayedQueryMock } from "./__mocks__/LastGamePlayedQuery.mock";
 import { AfterLimitsReached } from "./AfterLimitsReached";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
@@ -33,7 +34,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     isFetching: false,
   };
 
-  test("it renders nothing if there is no last ended session", () => {
+  test("it renders nothing if there is no last ended session", async () => {
     mock(useSessionsState).mockReturnValue(noLastEndedSessionState);
 
     const acceptModal = jest.fn();
@@ -50,46 +51,19 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
         />
       </MockStore>
     );
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.isEmptyRender()).toEqual(true);
   });
 
-  test("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion; also Session Details are injected with latest played game id.", () => {
+  test("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion; also Session Details are injected with latest played game id.", async () => {
     mock(useSessionsState).mockReturnValue(stateWithLastEndedSession);
 
     const acceptModal = jest.fn();
     const closeModal = jest.fn();
     const dismissModal = jest.fn();
     const rendered = mount(
-      <MockedProvider>
-        <MockStore state={{}}>
-          <AfterLimitsReached
-            t={null}
-            config={{}}
-            acceptModal={acceptModal}
-            closeModal={closeModal}
-            dismissModal={dismissModal}
-          />
-        </MockStore>
-      </MockedProvider>
-    );
-    const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
-
-    expect(foundWrapper).toHaveLength(1);
-
-    expect(foundWrapper.prop("playAgainGameId")).toEqual("reel-heist");
-  });
-
-  test("it renders SessionDetailsForLimitsReachedExcluded if there is last ended session and active exclusion", () => {
-    mock(useSessionsState).mockReturnValue(
-      stateWithLastEndedSessionAndExclusion
-    );
-
-    const acceptModal = jest.fn();
-    const closeModal = jest.fn();
-    const dismissModal = jest.fn();
-    const rendered = mount(
-      <MockStore state={{}}>
+      <MockStore state={{}} queryMocks={[lastGamePlayedQueryMock]}>
         <AfterLimitsReached
           t={null}
           config={{}}
@@ -99,6 +73,35 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
         />
       </MockStore>
     );
+    await waitAndUpdateWrapper(rendered);
+
+    const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
+
+    expect(foundWrapper).toHaveLength(1);
+
+    expect(foundWrapper.prop("playAgainGameId")).toEqual("reel-heist");
+  });
+
+  test("it renders SessionDetailsForLimitsReachedExcluded if there is last ended session and active exclusion", async () => {
+    mock(useSessionsState).mockReturnValue(
+      stateWithLastEndedSessionAndExclusion
+    );
+
+    const acceptModal = jest.fn();
+    const closeModal = jest.fn();
+    const dismissModal = jest.fn();
+    const rendered = mount(
+      <MockStore state={{}} queryMocks={[lastGamePlayedQueryMock]}>
+        <AfterLimitsReached
+          t={null}
+          config={{}}
+          acceptModal={acceptModal}
+          closeModal={closeModal}
+          dismissModal={dismissModal}
+        />
+      </MockStore>
+    );
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(SessionDetailsForLimitsReachedExcluded)).toHaveLength(
       1

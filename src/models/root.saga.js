@@ -1,5 +1,5 @@
 // @flow
-import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
+import { fork, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   periodicReminderNotificationSaga,
   limitAlmostConsumedNotificationSaga,
@@ -36,14 +36,6 @@ import {
   takeChannel,
   takeMessageFromChannel,
 } from "Models/cometd";
-import {
-  types as gameSearchTypes,
-  gameSearchCountSaga,
-  clearSearchResultsSaga,
-  fetchGameSearchPageSaga,
-  fetchLatestPlayedSaga,
-  resetGameSearchScrollPositionSaga,
-} from "Models/gameSearch";
 import {
   types as playerGamesTypes,
   fetchPlayerGamesSaga,
@@ -142,16 +134,6 @@ export default function* rootSaga(dispatch: any): * {
     statsUpdateNotificationSaga
   );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
-  // yield fork(
-  //   takeEvery,
-  //   gameTypes.FETCH_GAMES_BY_SLUGS_START,
-  //   fetchGamesBySlugsSaga
-  // );
-  // yield fork(
-  //   takeEvery,
-  //   gameTypes.FETCH_GAMES_BY_PROVIDER_START,
-  //   fetchGamesByProviderSaga
-  // );
   yield fork(
     takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
@@ -166,29 +148,6 @@ export default function* rootSaga(dispatch: any): * {
     takeEvery,
     playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
     fetchPlayerGamesCountSaga
-  );
-  yield all([
-    fork(
-      takeLatest,
-      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
-      gameSearchCountSaga
-    ),
-    fork(
-      takeEvery,
-      gameSearchTypes.GAME_SEARCH_FETCH_PAGE,
-      fetchGameSearchPageSaga
-    ),
-    fork(
-      takeLatest,
-      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
-      resetGameSearchScrollPositionSaga
-    ),
-    fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
-  ]);
-  yield fork(
-    takeLatest,
-    gameSearchTypes.GAME_SEARCH_FETCH_LATEST_PLAYED,
-    fetchLatestPlayedSaga
   );
   yield fork(
     takeEvery,
