@@ -14,26 +14,20 @@ if (isChromatic) {
 const stories = storiesOf("ReelRaceCard", module);
 
 const minute = 60 * 1000;
+
 const now = Date.now();
-const timeOptions = {
-  scheduled: {
-    startTime: now + 30 * minute,
-    endTime: now + 60 * minute,
-  },
-  ongoing: {
-    startTime: now,
-    endTime: now + 30 * minute,
-  },
-};
+const startTime = now + 30 * minute;
+const endTime = now + 60 * minute;
 
 stories.add("Default", () => {
-  const time = select("Time", ["scheduled", "ongoing"], "scheduled");
+  const status = select("Status", ["Scheduled", "Started"], "Scheduled");
   const reelRace = {
     ...reelRaceMock,
     promoted: select("Promoted", [false, true], false),
     optedIn: select("Opted In", [false, true], false),
-    startTime: timeOptions[time].startTime,
-    endTime: timeOptions[time].endTime,
+    status,
+    startTime,
+    endTime,
   };
 
   return (
