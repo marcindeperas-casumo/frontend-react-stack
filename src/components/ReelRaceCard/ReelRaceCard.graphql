@@ -11,6 +11,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
     optedIn
     endTime
     startTime
+    status
     spinLimit
     minBet
     promoted
