@@ -24,11 +24,6 @@ import {
   takeChannel,
   takeMessageFromChannel,
 } from "Models/cometd";
-import {
-  types as playerGamesTypes,
-  fetchPlayerGamesSaga,
-  fetchPlayerGamesCountSaga,
-} from "Models/playerGames";
 import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 import {
   actionTypes as adventureActionTypes,
@@ -102,16 +97,6 @@ export default function* rootSaga(dispatch: any): * {
       cometdMessages.STATS_UPDATED_NOTIFICATION
     ),
     statsUpdateNotificationSaga
-  );
-  yield fork(
-    takeEvery,
-    playerGamesTypes.PLAYER_GAMES_FETCH,
-    fetchPlayerGamesSaga
-  );
-  yield fork(
-    takeEvery,
-    playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
-    fetchPlayerGamesCountSaga
   );
   yield fork(
     takeEvery,

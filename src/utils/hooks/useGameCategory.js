@@ -2,7 +2,7 @@
 import * as R from "ramda";
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getGameCategory, type GameCategory } from "Api/api.casinoPlayerGames";
+import { getGameCategory } from "Api/api.casinoPlayerGames";
 import {
   slugToCategorySelector,
   updateSlugToCategoryMap,
@@ -10,7 +10,7 @@ import {
 
 export function useGameCategory(slug: string) {
   const dispatch = useDispatch();
-  const [gameCategory, setGameCategory] = React.useState<?GameCategory>();
+  const [gameCategory, setGameCategory] = React.useState<?string>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const storedCategory = useSelector(slugToCategorySelector(slug), R.equals);
 

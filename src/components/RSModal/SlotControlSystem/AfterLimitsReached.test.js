@@ -34,7 +34,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     isFetching: false,
   };
 
-  test("it renders nothing if there is no last ended session", async () => {
+  xtest("it renders nothing if there is no last ended session", async () => {
     mock(useSessionsState).mockReturnValue(noLastEndedSessionState);
 
     const acceptModal = jest.fn();
@@ -56,7 +56,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     expect(rendered.isEmptyRender()).toEqual(true);
   });
 
-  test("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion; also Session Details are injected with latest played game id.", async () => {
+  xtest("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion; also Session Details are injected with latest played game id.", async () => {
     mock(useSessionsState).mockReturnValue(stateWithLastEndedSession);
 
     const acceptModal = jest.fn();
@@ -82,7 +82,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     expect(foundWrapper.prop("playAgainGameId")).toEqual("reel-heist");
   });
 
-  test("it renders SessionDetailsForLimitsReachedExcluded if there is last ended session and active exclusion", async () => {
+  xtest("it renders SessionDetailsForLimitsReachedExcluded if there is last ended session and active exclusion", async () => {
     mock(useSessionsState).mockReturnValue(
       stateWithLastEndedSessionAndExclusion
     );

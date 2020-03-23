@@ -1,5 +1,4 @@
 // @flow
-import type { GameCategory } from "Api/api.casinoPlayerGames";
 import { END_SESSION_REASONS } from "Models/slotControlSystem";
 
 export type GameSessionStatsType = {
@@ -48,7 +47,7 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
-  slugToCategoryMap: { [string]: GameCategory },
+  slugToCategoryMap: { [string]: string },
 };
 
 export type SessionStateResponseType = {
