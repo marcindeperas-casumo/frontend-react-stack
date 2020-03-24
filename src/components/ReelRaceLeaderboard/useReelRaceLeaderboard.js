@@ -2,27 +2,21 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
+import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
-import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
-import { reelRaceStartedSelector } from "Models/reelRaceWidget";
+import { playerIdSelector } from "Models/handshake";
 
 // After is mounted we show initial leaderboard from reelRace.
 // It shows new leaderboard only when event happens.
-export function useReelRaceLeaderboard() {
+export function useReelRaceLeaderboard(
+  tournamentId: string,
+  cometdChannels: Array<string>,
+  initialLeaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard> = []
+): Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard> {
   const [leaderboard, setLeaderboard] = React.useState([]);
-
-  const { tournamentId, leaderboard: reelRaceLeaderboard } = useSelector(
-    reelRaceStartedSelector,
-    shallowEqual
-  );
-
   const playerId = useSelector(playerIdSelector, shallowEqual);
-  const tournamentChannels = useSelector(
-    tournamentChannelsSelector,
-    shallowEqual
-  );
 
-  const getVisibleLeaderBoard = list => {
+  const getVisibleLeaderboard = list => {
     const sorted = R.pipe(
       R.values,
       R.sortBy(R.prop("position"))
@@ -38,13 +32,13 @@ export function useReelRaceLeaderboard() {
   };
 
   const subscriptionHandler = ({ data }) => {
-    setLeaderboard(getVisibleLeaderBoard(data.leaderboard));
+    setLeaderboard(getVisibleLeaderboard(data.leaderboard));
   };
 
   React.useEffect(() => {
-    setLeaderboard(getVisibleLeaderBoard(reelRaceLeaderboard));
+    setLeaderboard(getVisibleLeaderboard(initialLeaderboard));
     // why do we have to subscribe to all channels?
-    tournamentChannels.forEach(channel =>
+    cometdChannels.forEach(channel =>
       cometd.subscribe(
         `${channel}/tournaments/players/${playerId}/tournaments/${tournamentId}/leaderboard`,
         subscriptionHandler
@@ -52,14 +46,14 @@ export function useReelRaceLeaderboard() {
     );
 
     return function cleanup() {
-      tournamentChannels.forEach(channel =>
+      cometdChannels.forEach(channel =>
         cometd.unsubscribe(
           `${channel}/tournaments/players/${playerId}/tournaments/${tournamentId}/leaderboard`
         )
       );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tournamentId, tournamentChannels]);
+  }, [tournamentId, cometdChannels]);
 
   return leaderboard;
 }
