@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuablesCardDefaultIcon } from "Components/ValuableThumbnail/icons";
 import DangerousHtml from "Components/DangerousHtml";
-import { addPointerEventStylesToLinkElements } from "Utils";
 import "./ValuableRow.scss";
 
 type Props = {
@@ -21,10 +20,7 @@ export const ValuableRowShell = ({ text }: Props) => (
     </Flex.Item>
     <Flex align="center" className="u-margin-left">
       <Text className="u-font-weight-bold" size="sm" tag="span">
-        <DangerousHtml
-          data-test="valuable-row-title"
-          html={addPointerEventStylesToLinkElements(text)}
-        />
+        <DangerousHtml data-test="valuable-row-title" html={text} />
       </Text>
     </Flex>
   </Flex>
