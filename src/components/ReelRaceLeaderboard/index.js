@@ -1,4 +1,2 @@
 // @flow
-export {
-  ReelRaceLeaderboardContainer as ReelRaceLeaderboard,
-} from "./ReelRaceLeaderboardContainer";
+export { ReelRaceLeaderboard } from "./ReelRaceLeaderboard";

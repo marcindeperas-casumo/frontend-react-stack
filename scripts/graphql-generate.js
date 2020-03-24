@@ -170,6 +170,7 @@ function shouldPrintComment(comment) {
     " eslint-disable ",
     " This file was automatically generated and should not be edited.",
     "*\n * \n ", // empty 3-line block comment
+    " @generated",
   ];
 
   return !notWantedComments.some(y => comment === y);
