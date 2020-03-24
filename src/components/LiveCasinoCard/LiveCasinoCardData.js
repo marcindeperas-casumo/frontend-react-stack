@@ -4,8 +4,7 @@ import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { CMSField } from "Components/CMSField";
-import type { LiveCasinoLobby } from "Types/liveCasinoLobby";
+import * as A from "Types/apollo";
 import {
   EVOLUTION_LOBBY_TYPES as TYPES,
   RESULT_BADGES_COUNT,
@@ -14,14 +13,15 @@ import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 type Props = {|
-  liveCasinoLobby: LiveCasinoLobby,
+  liveCasinoLobby: A.LiveCasinoCard_Lobby,
+  blackjackText: Object,
 |};
 
 const getTextColor = (color: string) =>
   contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
 const renderResults = ({ results, type }) => {
-  if (!results) {
+  if (!results || !type) {
     return null;
   }
 
@@ -58,21 +58,18 @@ const renderResults = ({ results, type }) => {
   );
 };
 
-const renderSeats = ({ seats }) => {
+const renderSeats = ({ liveCasinoLobby, blackjackText }) => {
   return (
     <Text
       size="sm"
       tag="span"
       className="t-color-white u-font-weight-bold u-text-transform-capitalize"
     >
-      {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
+      {liveCasinoLobby.seats || `${blackjackText.betBehindText}`}{" "}
+      {liveCasinoLobby.seats ? `${blackjackText.openSeatsText}` : ""}
     </Text>
   );
 };
-
-const getText = field => (
-  <CMSField slug="mobile.live-casino-cards-content" field={field} />
-);
 
 const isIn = flip(contains);
 
@@ -84,14 +81,20 @@ const liveCasinoTypes = [
   TYPES.BACCARAT,
 ];
 
-const LobbyType = ({ liveCasinoLobby }) =>
+const LobbyType = ({ liveCasinoLobby, blackjackText }) =>
   cond([
     [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby)],
-    [equals(TYPES.BLACKJACK), () => renderSeats(liveCasinoLobby)],
+    [
+      equals(TYPES.BLACKJACK),
+      () => renderSeats({ liveCasinoLobby, blackjackText }),
+    ],
     [T, () => null],
   ])(liveCasinoLobby.type);
 
-export const LiveCasinoCardData = ({ liveCasinoLobby }: Props) => {
+export const LiveCasinoCardData = ({
+  liveCasinoLobby,
+  blackjackText,
+}: Props) => {
   return (
     <Flex
       align="center"
@@ -107,7 +110,10 @@ export const LiveCasinoCardData = ({ liveCasinoLobby }: Props) => {
         align="center"
         className="u-width--full u-position-relative"
       >
-        <LobbyType liveCasinoLobby={liveCasinoLobby} />
+        <LobbyType
+          liveCasinoLobby={liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
         <div className="c-card-data__badges-mask u-width--full u-height--full u-position-absolute" />
       </Flex>
     </Flex>

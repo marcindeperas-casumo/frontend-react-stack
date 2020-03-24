@@ -11,11 +11,19 @@ import {
   BlackjackFull,
 } from "./__mocks__";
 
+const blackjackText = {
+  betBehindText: "Bet behind",
+  openSeatsText: "Seats left",
+};
+
 describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
     test("renders 10 results with correct values", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={Roulette.liveCasinoLobby} />
+        <LiveCasinoCardData
+          liveCasinoLobby={Roulette.liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
       );
       const results = Roulette.liveCasinoLobby.results.slice(0, 10);
       const numbersTexts = component
@@ -34,7 +42,10 @@ describe("LiveCasinoCardData", () => {
   describe("TopCard (Football Studio)", () => {
     test("renders 10 Football letter results", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={TopCard.liveCasinoLobby} />
+        <LiveCasinoCardData
+          liveCasinoLobby={TopCard.liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
       );
       const data = component.find("LobbyType").shallow();
       const results = TopCard.liveCasinoLobby.results
@@ -51,7 +62,10 @@ describe("LiveCasinoCardData", () => {
   describe("MoneyWheel", () => {
     test("renders 10 results with no leading 0", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={MoneyWheel.liveCasinoLobby} />
+        <LiveCasinoCardData
+          liveCasinoLobby={MoneyWheel.liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
       );
       const data = component.find("LobbyType").shallow();
       const results = MoneyWheel.liveCasinoLobby.results
@@ -69,27 +83,28 @@ describe("LiveCasinoCardData", () => {
   describe("Blackjack (Open Seats)", () => {
     test("should render open seats text", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={Blackjack.liveCasinoLobby} />
+        <LiveCasinoCardData
+          liveCasinoLobby={Blackjack.liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
       );
       const data = component.find("LobbyType").shallow();
-      const cmsField = data.find("Connect(CMSField)").props().field;
 
-      expect(cmsField).toEqual("open_seats");
+      expect(data.find(Text).contains(blackjackText.openSeatsText)).toBe(true);
     });
   });
 
   describe("Blackjack No Seats", () => {
     test("renders bet behind text", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={BlackjackFull.liveCasinoLobby} />
+        <LiveCasinoCardData
+          liveCasinoLobby={BlackjackFull.liveCasinoLobby}
+          blackjackText={blackjackText}
+        />
       );
       const data = component.find("LobbyType").shallow();
-      const cmsField = data
-        .find(Text)
-        .find("Connect(CMSField)")
-        .props().field;
 
-      expect(cmsField).toEqual("bet_behind");
+      expect(data.find(Text).contains(blackjackText.betBehindText)).toBe(true);
     });
   });
 });

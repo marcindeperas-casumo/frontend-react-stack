@@ -18,6 +18,7 @@ export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
   onLaunchGame: Function,
   playNowText: string,
+  blackjackText: Object,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
@@ -68,7 +69,10 @@ export default class LiveCasinoCard extends PureComponent<Props> {
               />
             </TrackClick>
           </div>
-          <LiveCasinoCardData liveCasinoLobby={this.liveCasinoLobby} />
+          <LiveCasinoCardData
+            liveCasinoLobby={this.liveCasinoLobby}
+            blackjackText={this.props.blackjackText}
+          />
         </Flex>
       </div>
     );
