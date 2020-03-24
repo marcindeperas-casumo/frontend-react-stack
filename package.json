@@ -26,7 +26,6 @@
     "@formatjs/intl-relativetimeformat": "^4.5.9",
     "@reach/router": "^1.2.1",
     "@researchgate/react-intersection-observer": "^1.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link-context": "^1.0.19",
@@ -60,7 +59,6 @@
     "reselect": "^4.0.0",
     "rollbar": "^2.7.1",
     "sass-resources-loader": "^2.0.1",
-    "sonarqube-scanner": "^2.5.0",
     "store": "^2.0.12"
   },
   "scripts": {
@@ -74,7 +72,6 @@
     "pact:can-i-deploy": "node pact/can-i-deploy.js",
     "pact:ci": "yarn pact && yarn pact:publish && yarn pact:can-i-deploy",
     "test:ci": "CI=yes npm run test --coverage",
-    "sonar": "node sonar-project.js",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint '**/*.js'",
     "lint:css": "stylelint '**/*.scss'",

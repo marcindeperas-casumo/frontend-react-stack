@@ -32,16 +32,15 @@ Started by: *${env.gitAuthor}* :eyes:
         throw ex
     }
 } else {
-    def builder = new PluggablePipelineBuilder(this)
-    builder.checkout()
+    new PluggablePipelineBuilder(this)
+            .checkout()
             .customStep('Install dependencies', this.&installDependencies)
             .customStep('Tests', this.&runTests)
             .parallel([
                     "Flow"             : { it.customStepTask('Flow', this.&runFlow) },
                     "Lint"             : { it.customStepTask('Lint', this.&runLint) },
                     "Visual Regression": { it.customStepTask('Visual Regression', this.&runChromatic) },
-                    "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) },
-                    "Sonar"            : { it.customStepTask('Sonar', this.&sonar) }
+                    "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
             ])
             .customStep('Build', this.&runBuild)
             .with(Docker) { it.publishDockerImage() }
@@ -76,25 +75,6 @@ def runLint() {
 
 def runChromatic() {
     sh "yarn chromatic"
-}
-
-def sonar(apply_fix = true) {
-    try {
-        if (env.BRANCH_NAME != 'master') {
-            sh "yarn sonar -Dsonar.pullrequest.branch=${env.BRANCH_NAME} -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.github.repository=frontend-react-stack"
-
-        } else {
-            sh "yarn sonar"
-        }
-
-    } catch (e) {
-        if (apply_fix) {
-            sh "sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /home/jenkins/.sonar/native-sonar-scanner/\$(ls -1tr /home/jenkins/.sonar/native-sonar-scanner/ | head -1)/bin/sonar-scanner"
-            sonar(false)
-        } else {
-            throw e
-        }
-    }
 }
 
 def rollbarDeployTracking() {
