@@ -7,7 +7,7 @@ import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 // check out context and events
 // check out unmount scenario
 
-declare var Engage: {
+type Engage = {
   request: Function,
   addEventListener: Function,
   removeEventListener: Function,
@@ -21,35 +21,39 @@ export class PlayNGoDesktopGame extends BaseGame {
     };
   }
 
+  engage: Engage;
+
   onMount() {
     const { url = null } = this.props.gameData;
 
     if (url) {
       injectScript(url).then(() => {
-        // clear out previous engage session to ensure FS work correctly
-        Engage.request(COMMANDS.END_GAME);
+        this.engage = window.Engage;
 
-        Engage.addEventListener(
-          EVENTS.ON_GAME_ROUND_START.type,
-          this.setGameAsActive.bind(this)
-        );
-        Engage.addEventListener(
-          EVENTS.ON_GAME_ROUND_END.type,
-          this.setGameAsIdle.bind(this)
-        );
+        if (this.engage) {
+          this.engage.request(COMMANDS.END_GAME);
+          this.engage.addEventListener(
+            EVENTS.ON_GAME_ROUND_START.type,
+            this.setGameAsActive.bind(this)
+          );
+          this.engage.addEventListener(
+            EVENTS.ON_GAME_ROUND_END.type,
+            this.setGameAsIdle.bind(this)
+          );
+        }
       });
     }
   }
 
   onUnmount() {
-    if (Engage) {
+    if (this.engage) {
       // clear out previous engage session
-      Engage.request(COMMANDS.END_GAME);
-      Engage.removeEventListener(
+      this.engage.request(COMMANDS.END_GAME);
+      this.engage.removeEventListener(
         EVENTS.ON_GAME_ROUND_START.type,
         this.setGameAsActive.bind(this)
       );
-      Engage.removeEventListener(
+      this.engage.removeEventListener(
         EVENTS.ON_GAME_ROUND_END.type,
         this.setGameAsIdle.bind(this)
       );
@@ -58,8 +62,8 @@ export class PlayNGoDesktopGame extends BaseGame {
 
   pauseGame() {
     return new Promise<void>((resolve, reject) => {
-      if (Engage) {
-        Engage.request(COMMANDS.PAUSE);
+      if (this.engage) {
+        this.engage.request(COMMANDS.PAUSE);
 
         if (this.isGameIdle) {
           resolve();
@@ -73,16 +77,16 @@ export class PlayNGoDesktopGame extends BaseGame {
   }
 
   resumeGame() {
-    if (Engage) {
-      Engage.request(COMMANDS.RESUME);
+    if (this.engage) {
+      this.engage.request(COMMANDS.RESUME);
     }
   }
 
   resolveOnIdle(resolve: (result: void) => void, reject: () => void) {
-    if (Engage) {
-      Engage.addEventListener(EVENTS.ON_GAME_ROUND_END.type, function() {
+    if (this.engage) {
+      this.engage.addEventListener(EVENTS.ON_GAME_ROUND_END.type, function() {
         resolve();
-        Engage.removeEventListener(EVENTS.ON_GAME_ROUND_END.type, this);
+        this.engage.removeEventListener(EVENTS.ON_GAME_ROUND_END.type, this);
       });
     } else {
       reject();
