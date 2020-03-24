@@ -49,6 +49,10 @@ export const useGameLaunchData = ({ slug, playForFun }: Props) => {
         setFailed(true);
       }
     })();
+
+    return () => {
+      setGameProviderModel(null);
+    };
   }, [environment, language, playForFun, slug]);
 
   const pauseGame = (): Promise<void> => {

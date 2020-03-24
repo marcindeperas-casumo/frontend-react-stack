@@ -32,6 +32,7 @@ const props = {
           "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
         slug: "jack-the-beanstalk",
       },
+      status: "Scheduled",
       translations: {
         optedInCtaSingleGameShort: "Play",
         optIn: "Opt in",
@@ -65,6 +66,7 @@ const props = {
           "https://cms.casumo.com/wp-content/uploads/2018/04/wild_heist_thumbnail.jpg",
         slug: "wild-heist-at-peacock-manor",
       },
+      status: "Scheduled",
       translations: {
         optedInCtaSingleGameShort: "Play",
         optIn: "Opt in",
