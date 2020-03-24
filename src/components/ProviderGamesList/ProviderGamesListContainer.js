@@ -18,12 +18,13 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
   });
   const games = data?.gameStudio?.games || [];
   const gamesCount = data?.gameStudio?.gamesCount || 0;
-  const nextPage = Math.floor(games.length / PAGE_SIZE);
+  const [pageNumber, setPageNumber] = React.useState(1);
 
   const fetchMoreGames = () => {
+    setPageNumber(pageNumber + 1);
     return fetchMore<A.GameSearchQueryVariables>({
       variables: {
-        page: nextPage,
+        page: pageNumber,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (
