@@ -1,9 +1,8 @@
 #!groovy
-import com.casumo.jenkins.PluggablePipelineBuilder
 
 @Library('casumo-jenkins-libraries') _
 
-
+import com.casumo.jenkins.PluggablePipelineBuilder
 import com.casumo.jenkins.pipeline.features.DeployService
 import com.casumo.jenkins.pipeline.features.Docker
 import com.casumo.jenkins.pipeline.features.release.Release
