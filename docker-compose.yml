@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  react-stack:
+    build: .
+    container_name: react-stack
+    ports:
+      - "3000:80"

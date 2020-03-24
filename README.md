@@ -87,6 +87,14 @@ ssh <assigned-ssh-username>@live-release
 deploy-service frontend-react-stack master
 ```
 
+### Run the Docker container locally
+
+```sh
+# Run the following command to run the container locally in a non-detached mode.
+# (the service will be listening on port :3000)
+docker-compose up --build
+```
+
 ## FAQ
 
 ### Can I link CUDL components?
