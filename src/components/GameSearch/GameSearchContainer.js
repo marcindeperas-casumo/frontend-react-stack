@@ -26,8 +26,11 @@ export const GameSearchContainer = () => {
   const inputPromptPlaceholder = cmsData?.searchSuggestionText || "";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
+  const [pageNumber, setPageNumber] = React.useState(1);
 
   React.useEffect(() => {
+    setPageNumber(1);
+
     refetch({
       query: searchQuery,
       pageSize: 50,
@@ -36,11 +39,12 @@ export const GameSearchContainer = () => {
   }, [searchQuery, refetch]);
 
   const fetchMoreRows = () => {
+    setPageNumber(pageNumber + 1);
     return fetchMore<A.GameSearchQueryVariables>({
       variables: {
         query: searchQuery,
         pageSize: 50,
-        page: searchResults.length / 50,
+        page: pageNumber,
       },
       updateQuery: (prevData, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
