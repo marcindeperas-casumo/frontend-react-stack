@@ -1,0 +1,43 @@
+query GameDetailsQuery($slug: String!) {
+  game(slug: $slug) {
+    ...GameDetails_Game
+  }
+  playButtonText: getText(
+    id: "root:mobile.game-details:fields.play_button_text"
+  )
+  practiceButtonText: getText(
+    id: "root:mobile.game-details:fields.practice_button_text"
+  )
+  signUpButtonText: getText(
+    id: "root:mobile.game-details:fields.sign_up_button_text"
+  )
+  trophiesHeading: getText(
+    id: "root:mobile.game-details:fields.trophies_heading"
+  )
+  gameInMaintenanceText: getText(
+    id: "root:mobile.game-details:fields.game_in_maintenance_text"
+  )
+  gameOnlyOnDesktopText: getText(
+    id: "root:mobile.game-details:fields.game_only_on_desktop_text"
+  )
+  allGamesText: getText(id: "root:mobile.game-details:fields.all_games_text")
+  gameReviewsHeadingText: getText(
+    id: "root:mobile.game-details:fields.game_reviews_heading_text"
+  )
+}
+
+fragment GameDetails_Game on Game {
+  name
+  logo
+  backgroundImage
+  slug
+  description
+  categories
+  media {
+    type
+    path
+    order
+  }
+  hasPlayForFun
+  isInMaintenance
+}

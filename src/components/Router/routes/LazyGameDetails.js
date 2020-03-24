@@ -1,14 +1,14 @@
 import React from "react";
 import LazyPortal from "Components/LazyPortal";
-import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
+import { GameDetailsSkeleton } from "Components/GameDetails/GameDetailsSkeleton";
 
 export const LazyGameDetails = props => {
   return (
     <LazyPortal
       hostElementId="react-host-game-details"
       loader={() => import("Components/GameDetails")}
-      fallback={<GameListSkeleton hasTitle={false} />}
-      namedExport="GameDetails"
+      fallback={<GameDetailsSkeleton />}
+      namedExport="GameDetailsContainer"
       props={{ slug: props.slug }}
     />
   );

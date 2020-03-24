@@ -13,12 +13,12 @@ export const GameDetailsImage = ({ image, mark }: Props) => (
       className="o-ratio__content u-object-fit-cover"
       src={image}
       mark={mark}
-      dpr={3}
       imgixOpts={{
         ar: "375:164",
         fit: "crop",
         markscale: 55,
         markalign: "middle,center",
+        w: "500",
       }}
     />
   </div>

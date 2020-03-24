@@ -48,25 +48,27 @@ export type CuratedCardQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: GetGame
+// GraphQL query operation: GameDetailsQuery
 // ====================================================
 
-export type GetGame_game_media = {
+export type GameDetailsQuery_game_media = {
   type: string,
   path: string,
   order: number,
 };
-export type GetGame_game = {
+export type GameDetailsQuery_game = {
   name: string,
   logo: string,
   backgroundImage: string,
+  slug: string,
   description: ?string,
   categories: ?Array<?string>,
-  media: Array<GetGame_game_media>,
+  media: Array<GameDetailsQuery_game_media>,
   hasPlayForFun: boolean,
+  isInMaintenance: boolean,
 };
-export type GetGame = {
-  game: ?GetGame_game,
+export type GameDetailsQuery = {
+  game: ?GameDetailsQuery_game,
   playButtonText: string,
   practiceButtonText: string,
   signUpButtonText: string,
@@ -76,7 +78,7 @@ export type GetGame = {
   allGamesText: string,
   gameReviewsHeadingText: string,
 };
-export type GetGameVariables = {
+export type GameDetailsQueryVariables = {
   slug: string,
 };
 
@@ -1820,6 +1822,27 @@ export type CuratedCard_Game = {
   logo: string,
   name: string,
   slug: string,
+};
+
+// ====================================================
+// GraphQL fragment: GameDetails_Game
+// ====================================================
+
+export type GameDetails_Game_media = {
+  type: string,
+  path: string,
+  order: number,
+};
+export type GameDetails_Game = {
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  slug: string,
+  description: ?string,
+  categories: ?Array<?string>,
+  media: Array<GameDetails_Game_media>,
+  hasPlayForFun: boolean,
+  isInMaintenance: boolean,
 };
 
 // ====================================================

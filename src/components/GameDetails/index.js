@@ -1,2 +1,2 @@
 // @flow
-export { GameDetails } from "./GameDetails";
+export { GameDetailsContainer as default } from "./GameDetailsContainer";

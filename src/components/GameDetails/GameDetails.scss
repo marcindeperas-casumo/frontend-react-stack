@@ -1,0 +1,5 @@
+.c-game-details {
+  @include cudl-breakpoint(tablet orientation portrait) {
+    max-width: 498px;
+  }
+}
