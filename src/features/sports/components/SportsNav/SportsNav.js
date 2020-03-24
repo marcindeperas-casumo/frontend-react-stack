@@ -12,7 +12,7 @@ import {
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
-import { useIsAuthenticated } from "Utils/hooks/useIsAuthenticated";
+import { useIsAuthenticated } from "Utils/hooks";
 
 export type LiveState = [boolean, (boolean) => void];
 
