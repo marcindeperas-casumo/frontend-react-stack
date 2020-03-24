@@ -14,7 +14,7 @@ import "./LiveCasinoCardData.scss";
 
 type Props = {|
   liveCasinoLobby: A.LiveCasinoCard_Lobby,
-  blackjackText: Object,
+  blackjackText: A.LiveCasinoCardCmsQuery,
 |};
 
 const getTextColor = (color: string) =>
