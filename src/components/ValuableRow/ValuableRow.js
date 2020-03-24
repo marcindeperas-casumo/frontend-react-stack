@@ -17,7 +17,6 @@ import {
   type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
-import { addPointerEventStylesToLinkElements } from "Utils";
 import ValuableSelector from "./valuable-selector.svg";
 import "./ValuableRow.scss";
 
@@ -86,13 +85,23 @@ export class ValuableRow extends PureComponent<Props> {
     return coinValueToSpinType(this.props.coinValue);
   }
 
+  onClick = (event: SyntheticEvent<HTMLElement>) => {
+    const linkClickEvent = event.currentTarget.tagName === "A";
+    if (linkClickEvent) {
+      return;
+    }
+
+    if (this.props.onClick) {
+      this.props.onClick();
+    }
+  };
+
   render() {
     const {
       caveat,
       description,
       valuableState,
       onMoreInfo,
-      onClick,
       isSelected,
     } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
@@ -106,7 +115,7 @@ export class ValuableRow extends PureComponent<Props> {
           {isSelected && <ValuableSelector />}
         </Flex.Item>
         <Flex.Item className="u-padding-right--md o-flex--1">
-          <Flex data-test="valuable-row" onClick={onClick}>
+          <Flex data-test="valuable-row" onClick={this.onClick}>
             <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
               <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
                 <ValuableThumbnail
@@ -136,7 +145,7 @@ export class ValuableRow extends PureComponent<Props> {
                 <Text className="u-margin-top" size="sm" tag="div">
                   <DangerousHtml
                     data-test="valuable-row-description"
-                    html={addPointerEventStylesToLinkElements(description)}
+                    html={description}
                   />
                 </Text>
               )}
@@ -146,9 +155,7 @@ export class ValuableRow extends PureComponent<Props> {
                   size="2xs"
                   tag="div"
                 >
-                  <DangerousHtml
-                    html={addPointerEventStylesToLinkElements(caveat || "")}
-                  />
+                  <DangerousHtml html={caveat} />
                 </Text>
               )}
             </Flex.Block>
