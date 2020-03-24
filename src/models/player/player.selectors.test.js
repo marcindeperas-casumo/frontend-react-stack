@@ -152,10 +152,13 @@ describe("Player selectors", () => {
     });
 
     test("Getting balance amount from handshake", () => {
-      expect(playerBalanceAmountSelector(state2)).toEqual(
+      const result =
         handshake.app["common/composition/players"].players["id-123"].wallet
-          .balance.amount
-      );
+          .balance.amount -
+        handshake.app["common/composition/players"].players["id-123"].bonus
+          .balance.amount;
+
+      expect(playerBalanceAmountSelector(state2)).toEqual(result);
     });
   });
 

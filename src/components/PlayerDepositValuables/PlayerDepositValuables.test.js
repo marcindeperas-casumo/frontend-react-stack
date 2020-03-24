@@ -5,7 +5,10 @@ import { launchModal } from "Services/LaunchModalService";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
 import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
-import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
+import {
+  waitAndUpdateWrapper,
+  getCacheWithIntrospections,
+} from "Utils/apolloTestUtils";
 import { MODALS } from "Src/constants";
 import { PlayerDepositValuables } from "./PlayerDepositValuables";
 

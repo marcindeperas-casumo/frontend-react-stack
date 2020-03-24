@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -52,44 +51,36 @@ const THIRTY_MINUTES = 30 * 60 * 1000;
 export class ReelRaceCard extends React.Component<Props> {
   get button() {
     const { translations: t, game, optedIn, startTime } = this.props.reelRace;
-
-    if (timeRemainingBeforeStart(startTime) <= 0) {
-      if (optedIn) {
-        return (
-          <TrackClick
-            eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
-            data={{ state: BUTTON_STATE.PLAY }}
-          >
-            <Button
-              size="sm"
-              variant="primary"
-              className="u-padding-y--md u-padding-x--lg"
-              onClick={() => launchGame({ slug: game.slug })}
-            >
-              <PlayIcon size="sm" className="c-reel-race__button-icon" />
-              <span className="u-margin-left">
-                {t.optedInCtaSingleGameShort}
-              </span>
-            </Button>
-          </TrackClick>
-        );
-      }
-
-      return null;
-    }
-
     const active = {
       label: t.optIn || "",
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPT_IN },
       onClick: this.props.optIn,
     };
-
     const disabled = {
       label: t.optedIn || "",
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPTED_IN },
     };
+
+    if (timeRemainingBeforeStart(startTime) <= 0 && optedIn) {
+      return (
+        <TrackClick
+          eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
+          data={{ state: BUTTON_STATE.PLAY }}
+        >
+          <Button
+            size="sm"
+            variant="primary"
+            className="u-padding-y--md u-padding-x--lg"
+            onClick={() => launchGame({ slug: game.slug })}
+          >
+            <PlayIcon size="sm" className="c-reel-race__button-icon" />
+            <span className="u-margin-left">{t.optedInCtaSingleGameShort}</span>
+          </Button>
+        </TrackClick>
+      );
+    }
 
     return (
       <OptInButton
@@ -102,9 +93,8 @@ export class ReelRaceCard extends React.Component<Props> {
   }
 
   get countdown() {
-    const { translations: t, endTime, startTime } = this.props.reelRace;
-
-    if (timeRemainingBeforeStart(startTime) <= 0) {
+    const { translations: t, endTime, startTime, status } = this.props.reelRace;
+    if (status === "Started") {
       return (
         <Flex direction="vertical" spacing="none">
           <Text
@@ -182,8 +172,6 @@ export class ReelRaceCard extends React.Component<Props> {
       minBet,
       formattedPrize,
       promoted,
-      optedIn,
-      startTime,
     } = this.props.reelRace;
 
     const trackData = {
@@ -200,14 +188,6 @@ export class ReelRaceCard extends React.Component<Props> {
       return null;
     }
 
-    if (R.isEmpty(game)) {
-      return null;
-    }
-
-    if (timeRemainingBeforeStart(startTime) <= 0 && !optedIn) {
-      return null;
-    }
-
     return (
       <TrackProvider data={trackData}>
         <Flex
@@ -218,7 +198,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "u-overflow-hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
-            `t-color-yellow-light-1`,
+            "t-color-caution",
             "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
@@ -232,9 +212,10 @@ export class ReelRaceCard extends React.Component<Props> {
             imgixOpts={{
               w: 348,
               h: 232,
-              blur: 100,
               high: -70,
               fit: "crop",
+              blendAlpha: 55,
+              blendColor: "000000",
             }}
           />
 

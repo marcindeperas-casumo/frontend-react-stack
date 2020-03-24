@@ -11,7 +11,6 @@ import { ContentButton } from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import { PromotionTeaserList } from "Components/PromotionTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
-import PromotionGallery from "Components/PromotionGallery";
 import { ContentMediaList } from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
@@ -39,7 +38,6 @@ export const COMPONENT_MAPPING = {
   // PROMOTION_CARDS_VERTICAL is getting deprecated; use PROMOTION_LIST_VERTICAL instead
   PROMOTION_CARDS_VERTICAL: PromotionTeaserList,
   PROMOTION_LIST_VERTICAL: PromotionTeaserList,
-  PROMOTION_CARDS_GALLERY: PromotionGallery,
   THUMBNAIL_LIST: ContentMediaList,
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
   PROMOTION_TITLE: PromotionTitle,

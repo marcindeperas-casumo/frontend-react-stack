@@ -20,13 +20,13 @@ type Props = {
   locale: string,
   currency: string,
   playerId?: string,
-  ticket: string,
+  ticket?: string,
   onNavigate: string => any,
   homeRoute?: string,
   isHidden?: boolean,
   searchMode: boolean,
   isBetslipVisible?: boolean,
-  sessionKeepAlive: () => Promise<ExecutionResult<A.SessionTouch>>,
+  sessionKeepAlive?: () => Promise<ExecutionResult<A.SessionTouch>>,
   onLoginCompleted?: () => void,
 };
 

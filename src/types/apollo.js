@@ -701,6 +701,7 @@ export type ReelRaceListQuery_reelRaces = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,
@@ -712,6 +713,9 @@ export type ReelRaceListQuery = {
   title: string,
   seeMore: string,
   reelRaces: Array<ReelRaceListQuery_reelRaces>,
+};
+export type ReelRaceListQueryVariables = {
+  limit: number,
 };
 
 // ====================================================
@@ -1289,19 +1293,6 @@ export type FREEBET_QUERY = {
 };
 
 // ====================================================
-// GraphQL mutation operation: LaunchKambi
-// ====================================================
-
-export type LaunchKambi_launchKambi = {
-  clientBootstrapUrl: string,
-  providerPlayerId: string,
-  ticket: string,
-};
-export type LaunchKambi = {
-  launchKambi: ?LaunchKambi_launchKambi,
-};
-
-// ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
 // ====================================================
 
@@ -1676,6 +1667,33 @@ export type SessionTouch = {
 };
 
 // ====================================================
+// GraphQL mutation operation: LaunchKambi
+// ====================================================
+
+export type LaunchKambi_launchKambi = {
+  clientBootstrapUrl: string,
+  providerPlayerId: ?string,
+  ticket: ?string,
+};
+export type LaunchKambi = {
+  launchKambi: ?LaunchKambi_launchKambi,
+};
+
+// ====================================================
+// GraphQL mutation operation: LaunchKambiLoS
+// ====================================================
+
+export type LaunchKambiLoS_launchKambi = {
+  clientBootstrapUrl: string,
+};
+export type LaunchKambiLoS = {
+  launchKambi: ?LaunchKambiLoS_launchKambi,
+};
+export type LaunchKambiLoSVariables = {
+  playForFun: boolean,
+};
+
+// ====================================================
 // GraphQL query operation: ActiveModals
 // ====================================================
 
@@ -2036,6 +2054,7 @@ export type ReelRaceCard_ReelRace = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,

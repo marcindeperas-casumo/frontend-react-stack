@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { DateTime } from "luxon";
+import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
@@ -125,6 +125,18 @@ export const makeProtocolAwareUrl = (url: string) => {
   }
 
   return url;
+};
+
+export const addPointerEventStylesToLinkElements = (s: string) => {
+  // allow links be clickable in <Cards... components,
+  // through the link layer
+  const extraStyle = `
+    position: relative;
+    pointer-events: all;
+    z-index: 100;
+  `;
+
+  return s.replace(/(<a.*)(>)(.*<\/a>)/g, `$1 style="${extraStyle}"$2$3`);
 };
 
 export const stringToHTML = (s: string) => {
@@ -325,6 +337,12 @@ export const interpolateTimeInterval = ({
 
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromSeconds(value);
+};
+
+export const convertLuxonDurationObjectToSeconds = (
+  duration: Object
+): number => {
+  return Number.parseInt(Duration.fromObject(duration).toFormat("s"));
 };
 
 export const getDateTimeDifferenceFromNow = (value: DateTime) => {
