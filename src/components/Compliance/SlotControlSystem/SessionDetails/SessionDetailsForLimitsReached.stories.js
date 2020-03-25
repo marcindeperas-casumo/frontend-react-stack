@@ -3,7 +3,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import MockStore from "Components/MockStore";
-import game from "Components/GameTile/__mocks__/Game.json";
+import gameMock from "Components/GameTile/__mocks__/Game.json";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import { SessionDetailsForLimitsReached } from "./SessionDetailsForLimitsReached";
 
@@ -28,7 +28,7 @@ stories.add("Default", () => {
       <SessionDetailsForLimitsReached
         t={t}
         locale="en-GB"
-        playAgainGame={game}
+        playAgainGame={gameMock}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}
         onClickPlayAgain={action("onClickPlayAgain")}

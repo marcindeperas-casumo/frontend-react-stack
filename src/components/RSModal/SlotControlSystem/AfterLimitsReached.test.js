@@ -21,6 +21,14 @@ import {
 } from "./__mocks__/afterLimitsReached.mocks";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
+/*
+ * 10ms is a random pick, sufficiently small.
+ * With this setup Jest takes control over timers and knows when async test ends.
+ * With previous one, using waitAndUpdateWrapper, it does not always follow when a suite
+ * of async tests finishes which sometimes leads to considering a test ended while
+ * it still runs. This results in act() warnings and also Thrown: undefined from the test
+ * runner.
+ */
 jest.useFakeTimers();
 
 describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {

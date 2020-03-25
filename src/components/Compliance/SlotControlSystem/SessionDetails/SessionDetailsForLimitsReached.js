@@ -43,12 +43,12 @@ export function SessionDetailsForLimitsReached(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {Boolean(playAgainGame) && (
+      {playAgainGame && (
         <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow
             game={playAgainGame}
-            renderText={() => <GameRowText name={playAgainGame?.name || ""} />}
+            renderText={() => <GameRowText name={playAgainGame.name} />}
           />
         </div>
       )}

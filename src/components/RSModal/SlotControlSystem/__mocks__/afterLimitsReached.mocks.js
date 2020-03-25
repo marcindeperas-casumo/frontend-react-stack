@@ -1,11 +1,11 @@
 // @flow
-import { GAME_BY_SLUG_QUERY, LATEST_PLAYED_QUERY } from "Components/RSModal/SlotControlSystem/AfterLimitsReached";
+import { PlayAgainGameBySlugQuery, PlayAgainLatestPlayedQuery } from "Components/RSModal/SlotControlSystem/AfterLimitsReached.graphql";
 
 const gonzosQuestId = "cd476c51-0842-11e2-b0fd-005056bf4a60";
 const deadOrAlive2Id = "23b59520-65cb-11e9-8dbf-0242ac110002";
 
 export const gonzosQuest = {
-  __typename: "Game",
+  // __typename: "Game",
   id: gonzosQuestId,
   slug: "gonzos-quest",
   backgroundImage: "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
@@ -14,7 +14,7 @@ export const gonzosQuest = {
 };
 
 export const deadOrAlive2 = {
-  __typename: "Game",
+  // __typename: "Game",
   id: deadOrAlive2Id,
   slug: "deadoralive2",
   backgroundImage: "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
@@ -25,7 +25,7 @@ export const deadOrAlive2 = {
 export const queryMocks = [
   {
     request: {
-      query: GAME_BY_SLUG_QUERY,
+      query: PlayAgainGameBySlugQuery,
       variables: {
         slug: "gonzos-quest",
       },
@@ -40,7 +40,7 @@ export const queryMocks = [
   },
   {
     request: {
-      query: LATEST_PLAYED_QUERY,
+      query: PlayAgainLatestPlayedQuery,
     },
     result: {
       data: {

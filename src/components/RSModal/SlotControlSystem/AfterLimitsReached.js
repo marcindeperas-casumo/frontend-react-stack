@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { path } from "ramda";
 import * as A from "Types/apollo";
@@ -17,37 +16,10 @@ import {
   SessionDetailsForLimitsReachedExcluded,
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
-
-const GAME_FRAGMENT = gql`
-  fragment AfterLimitsReached_Game on Game {
-    __typename
-    id
-    slug
-    backgroundImage
-    logo
-    name
-  }
-`;
-
-export const GAME_BY_SLUG_QUERY = gql`
-  query PlayAgainGameBySlugQuery($slug: String!) {
-    gamesBySlugs(slugs: [$slug]) {
-      ...AfterLimitsReached_Game
-    }
-  }
-  ${GAME_FRAGMENT}
-`;
-
-export const LATEST_PLAYED_QUERY = gql`
-  query PlayAgainLatestPlayedQuery {
-    gamesList(listId: "latestPlayedGames") {
-      games(numberOfGames: 1) {
-        ...AfterLimitsReached_Game
-      }
-    }
-  }
-  ${GAME_FRAGMENT}
-`;
+import {
+  PlayAgainGameBySlugQuery,
+  PlayAgainLatestPlayedQuery,
+} from "./AfterLimitsReached.graphql";
 
 type ContentType = {
   session_details_header: string,
@@ -73,7 +45,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const gameQueryProps = useQuery<
     A.PlayAgainGameBySlugQuery,
     A.PlayAgainGameBySlugQueryVariables
-  >(GAME_BY_SLUG_QUERY, {
+  >(PlayAgainGameBySlugQuery, {
     skip: !isPlayRouteActive,
     variables: { slug: gameSlug || "" },
   });
@@ -83,7 +55,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
     0,
   ])(gameQueryProps);
   const latestPlayedQueryProps = useQuery<A.PlayAgainLatestPlayedQuery, _>(
-    LATEST_PLAYED_QUERY,
+    PlayAgainLatestPlayedQuery,
     {
       skip: isPlayRouteActive,
     }
@@ -114,7 +86,9 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
       return navigateToRerender();
     }
     // otherwise perform full browser redirect
-    navigateToKO(ROUTE_IDS.PLAY, { slug: gameById?.slug || "" });
+    if (gameById) {
+      return navigateToKO(ROUTE_IDS.PLAY, { slug: gameById.slug });
+    }
   };
 
   if (!lastEndedSession) {
