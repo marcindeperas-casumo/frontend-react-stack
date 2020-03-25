@@ -1,15 +1,13 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { launchGame } from "Services/LaunchGameService";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
+import * as A from "Types/apollo";
+import { GameRow, GameRowText } from "Components/GameRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import type { Game } from "Types/game";
 
 type ProviderGamesListRowProps = {
   style: string,
-  game: Game,
+  game: A.GameStudioQuery_gameStudio_games,
 };
 
 export const ProviderGamesListRow = ({
@@ -17,11 +15,7 @@ export const ProviderGamesListRow = ({
   game,
 }: ProviderGamesListRowProps) => (
   <div className="u-padding-x--md u-padding-y t-border-bottom" style={style}>
-    <GameRow
-      game={game}
-      onLaunchGame={() => launchGame({ slug: game.slug })}
-      renderText={() => <GameRowText name={game.name} />}
-    />
+    <GameRow game={game} renderText={() => <GameRowText name={game.name} />} />
   </div>
 );
 

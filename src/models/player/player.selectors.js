@@ -76,8 +76,8 @@ export const playerBalanceAmountSelector = createSelector(
   playerWalletAmountSelector,
   walletAmountSelector,
   bonusAmountSelector,
-  (walletAmount, handsakeWalletAmount, handshakeBonusAmount) => {
-    return walletAmount || handsakeWalletAmount - handshakeBonusAmount;
+  (walletAmount, handshakeWalletAmount, handshakeBonusAmount) => {
+    return walletAmount || handshakeWalletAmount - handshakeBonusAmount;
   }
 );
 

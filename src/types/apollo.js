@@ -701,6 +701,7 @@ export type ReelRaceListQuery_reelRaces = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,
@@ -753,6 +754,59 @@ export type PlayAgainLatestPlayedQuery_gamesList = {
 };
 export type PlayAgainLatestPlayedQuery = {
   gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
+};
+// GraphQL query operation: ReelRaceWidgetQuery
+// ====================================================
+
+export type ReelRaceWidgetQuery_reelRaces_game = {
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
+  winsInARow: number,
+  triples: number,
+  wins: number,
+  bigWins: number,
+  megaWins: number,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+  boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
+};
+export type ReelRaceWidgetQuery_reelRaces = {
+  id: string,
+  game: ReelRaceWidgetQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  promoted: boolean,
+  spinLimit: number,
+  formattedPrize: string,
+  cometdChannels: Array<string>,
+  leaderboard: Array<ReelRaceWidgetQuery_reelRaces_leaderboard>,
+};
+export type ReelRaceWidgetQuery = {
+  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+};
+
+// ====================================================
+// GraphQL query operation: LastGamePlayed
+// ====================================================
+
+export type LastGamePlayed_gamesList_games = {
+  slug: string,
+};
+export type LastGamePlayed_gamesList = {
+  games: Array<LastGamePlayed_gamesList_games>,
+};
+export type LastGamePlayed = {
+  gamesList: ?LastGamePlayed_gamesList,
 };
 
 // ====================================================
@@ -2091,6 +2145,7 @@ export type ReelRaceCard_ReelRace = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,

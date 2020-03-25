@@ -1,3 +1,5 @@
 // @flow
-export type * from "./GameRowContainer";
-export { GameRowContainer as GameRow } from "./GameRowContainer";
+export { GameRow } from "./GameRow";
+export { GameRowText } from "./GameRowText";
+export { GameRowSearchTitle } from "./GameRowSearchTitle";
+export { GameRowSearchText } from "./GameRowSearchText";

@@ -3,7 +3,6 @@ import { createSelector } from "reselect";
 import { propOr, pipe, pick, path, pathOr, identity } from "ramda";
 import { getPage } from "Models/cms";
 import { getFetch } from "Models/fetch";
-import type { GameCategory } from "Api/api.casinoPlayerGames";
 import { CMS_SLUGS, ACTION_TYPES } from "./slotControlSystem.constants";
 import type {
   ActiveSessionType,
@@ -70,7 +69,7 @@ export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
 
 export const slugToCategorySelector = (
   slug: ?string
-): ((s: Object) => GameCategory | null) =>
+): ((s: Object) => string | null) =>
   createSelector(
     pathOr(null, ["slotControlSystem", "slugToCategoryMap", slug]),
     identity

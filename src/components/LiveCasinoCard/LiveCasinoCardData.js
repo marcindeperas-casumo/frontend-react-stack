@@ -5,7 +5,7 @@ import { cond, contains, equals, flip, T } from "ramda";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { CMSField } from "Components/CMSField";
-import type { LiveCasinoLobby } from "Types/liveCasinoLobby";
+import * as A from "Types/apollo";
 import {
   EVOLUTION_LOBBY_TYPES as TYPES,
   RESULT_BADGES_COUNT,
@@ -14,7 +14,7 @@ import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 type Props = {|
-  liveCasinoLobby: LiveCasinoLobby,
+  liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
 |};
 
 const getTextColor = (color: string) =>

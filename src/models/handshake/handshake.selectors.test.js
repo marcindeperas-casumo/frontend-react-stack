@@ -16,8 +16,6 @@ import {
   walletAmountSelector,
   bonusAmountSelector,
   marketSelector,
-  gamesHandshakeSelector,
-  isGamesHandshakeLoaded,
   languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
@@ -250,24 +248,30 @@ describe("Handshake selectors", () => {
     expect(walletAmountSelector(state)).toEqual(777);
   });
 
-  test("bonusAmountSelector", () => {
-    const state = {
-      handshake: {
-        app: {
-          "common/composition/session": { id: "p3" },
-          "common/composition/players": {
-            players: {
-              p3: {
-                id: "p3",
-                bonus: { balance: { amount: 777 } },
+  describe("bonusAmountSelector", () => {
+    test("it returns amount if it is defined in handshake", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p3" },
+            "common/composition/players": {
+              players: {
+                p3: {
+                  id: "p3",
+                  bonus: { balance: { amount: 777 } },
+                },
               },
             },
           },
         },
-      },
-    };
+      };
 
-    expect(bonusAmountSelector(state)).toEqual(777);
+      expect(bonusAmountSelector(state)).toEqual(777);
+    });
+
+    test("it returns 0 if bonus prop is undefined", () => {
+      expect(bonusAmountSelector({})).toEqual(0);
+    });
   });
 
   test("marketSelector", () => {
@@ -288,52 +292,6 @@ describe("Handshake selectors", () => {
     };
 
     expect(marketSelector(state)).toEqual("foo");
-  });
-
-  test("gamesHandshakeSelector", () => {
-    const state = {
-      handshake: {
-        games: {
-          foo: "game-bar",
-        },
-      },
-    };
-
-    expect(gamesHandshakeSelector(state)).toEqual({
-      foo: "game-bar",
-    });
-  });
-
-  describe("isGamesHandshakeLoaded", () => {
-    test("when game handshake is present", () => {
-      const state = {
-        handshake: {
-          games: {
-            foo: "game-bar",
-          },
-        },
-      };
-
-      expect(isGamesHandshakeLoaded(state)).toBe(true);
-    });
-
-    test("when game handshake is not present", () => {
-      const state = {
-        handshake: {},
-      };
-
-      expect(isGamesHandshakeLoaded(state)).toBe(false);
-    });
-
-    test("when game handshake is empty", () => {
-      const state = {
-        handshake: {
-          games: {},
-        },
-      };
-
-      expect(isGamesHandshakeLoaded(state)).toBe(false);
-    });
   });
 
   describe("languageSelector()", () => {

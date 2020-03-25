@@ -4,7 +4,6 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import type { ReelRacesTranslations } from "Models/reelRaces";
 import { ROUTE_IDS } from "Src/constants";
-import type { Playing } from "Models/playing";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
@@ -13,64 +12,34 @@ import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
 import "./ReelRaceWidget.scss";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 
-type Props = {
-  scheduledGame: A.GameRow_Game,
-  gameSlug: string,
-  playing: Playing,
+type Props = A.ReelRaceWidgetQuery_reelRaces & {
   t: ReelRacesTranslations,
-  promoted: boolean,
-  prize: string,
 };
 
-export function ReelRaceWidgetHeader(props: Props) {
-  const { t, scheduledGame, gameSlug, playing, promoted, prize } = props;
-
+export function ReelRaceWidgetHeader({ t, ...props }: Props) {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const competeForText = interpolate(t.compete_for, { prize });
-
-  if (playing.gameId === gameSlug) {
-    if (!scheduledGame.name) {
-      return null;
-    }
-
-    return (
-      <Flex direction="vertical" justify="space-between">
-        <Text
-          size="xs"
-          tag="div"
-          className="u-text-transform-uppercase u-padding-x--md u-font-weight-black u-padding-top--md u-text-align-center t-color-plum"
-        >
-          {scheduledGame.name}
-        </Text>
-        <Text
-          size="xs"
-          tag="div"
-          className="u-font-weight-bold u-text-align-center"
-        >
-          {competeForText}
-        </Text>
-      </Flex>
-    );
-  }
+  const competeForText = interpolate(t.compete_for, {
+    prize: props.formattedPrize,
+  });
 
   return (
     <Flex
       align="center"
       className="u-padding--md u-cursor-pointer u-position-relative"
-      onClick={() => navigateToKO(ROUTE_IDS.PLAY, { slug: props.gameSlug })}
+      onClick={() => navigateToKO(ROUTE_IDS.PLAY, { slug: props.game.slug })}
     >
       <GameThumb
-        src={scheduledGame.backgroundImage}
-        alt={scheduledGame.name}
-        mark={scheduledGame.logo}
+        src={props.game.backgroundImage}
+        alt={props.game.name}
+        mark={props.game.logo}
       />
-      {promoted && <GrandReelRaceBadge className="c-reel-race__badge" />}
+      {props.promoted && <GrandReelRaceBadge className="c-reel-race__badge" />}
       <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
         <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
           {competeForText}
         </Text>
         <Text tag="span" size="xs">
-          <DangerousHtml html={scheduledGame.name} />
+          <DangerousHtml html={props.game.name} />
         </Text>
       </Flex>
     </Flex>

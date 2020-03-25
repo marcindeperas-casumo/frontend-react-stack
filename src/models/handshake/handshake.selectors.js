@@ -13,7 +13,7 @@ import {
 } from "ramda";
 import * as storage from "Lib/storage";
 import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
-import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
+import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 
@@ -106,7 +106,7 @@ export const walletAmountSelector = createSelector(
 
 export const bonusAmountSelector = createSelector(
   playerSelector,
-  path(["bonus", "balance", "amount"])
+  pathOr(0, ["bonus", "balance", "amount"])
 );
 
 export const marketSelector = createSelector(
@@ -117,16 +117,6 @@ export const marketSelector = createSelector(
 export const hasMadeFirstDepositSelector = createSelector(
   playerSelector,
   propSatisfies(complement(isNil), "firstDepositDate")
-);
-
-export const gamesHandshakeSelector = createSelector(
-  handshakeSelector,
-  prop(GAMES_HANDSHAKE_KEY)
-);
-
-export const isGamesHandshakeLoaded = createSelector(
-  gamesHandshakeSelector,
-  complement(anyPass([isNil, isEmpty]))
 );
 
 export const languageSelector = createSelector(

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
-import { stringToHTML } from "Utils";
+import { stringToHTML, addPointerEventStylesToLinkElements } from "Utils";
 
 export type CuratedCardFooterTextProps = {
   text: string,
@@ -14,7 +14,9 @@ export const CuratedCardFooterText = ({ text }: CuratedCardFooterTextProps) => {
         className="t-color-white u-margin-bottom u-opacity-75"
         size="xs"
         tag="div"
-        dangerouslySetInnerHTML={stringToHTML(text)}
+        dangerouslySetInnerHTML={stringToHTML(
+          addPointerEventStylesToLinkElements(text)
+        )}
       />
     </div>
   );
