@@ -6,12 +6,10 @@ import Scrollable from "@casumo/cmp-scrollable";
 import type { CellRendererParams } from "react-virtualized";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import * as A from "Types/apollo";
-import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
+import { GameRow, GameRowText } from "Components/GameRow";
 import { generateColumns } from "Utils";
 
 const PADDING_PER_DEVICE = {
@@ -41,7 +39,6 @@ const JackpotsColumn = ({
       render={jackpot => (
         <GameRow
           game={jackpot}
-          locale={locale}
           className="t-background-white u-padding--md t-border-r--md t-box-shadow"
           renderText={() => (
             <GameRowText
@@ -51,7 +48,6 @@ const JackpotsColumn = ({
               jackpot={jackpot.jackpot}
             />
           )}
-          onLaunchGame={() => launchGame({ slug: jackpot.slug })}
         />
       )}
     />

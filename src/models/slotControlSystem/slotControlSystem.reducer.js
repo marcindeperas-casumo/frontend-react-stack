@@ -1,7 +1,6 @@
 // @flow
 import * as R from "ramda";
 import { createReducer } from "Utils";
-import type { GameCategory } from "Api/api.casinoPlayerGames";
 import type {
   StateType,
   SessionStateResponseType,
@@ -42,7 +41,7 @@ const handlers = {
   },
   [ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP]: (
     state,
-    { slug, category }: { slug: string, category: GameCategory }
+    { slug, category }: { slug: string, category: string }
   ) => {
     return {
       ...state,

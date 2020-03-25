@@ -1,9 +1,10 @@
+// @flow
 import { put, select } from "redux-saga/effects";
 import { updateEntity, ENTITY_KEYS } from "Models/schema";
 import { adventurerRawSelector } from "Models/adventure";
 import { translateBeltNumberToColor } from "./adventure.utils";
 
-export function* adventureUpdatesSaga(action) {
+export function* adventureUpdatesSaga(action: *): * {
   const { data } = action;
   const currentProgression = yield select(adventurerRawSelector);
 

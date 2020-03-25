@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { GameRowSearchTitle } from "Components/GameRow/GameRowSearchTitle";
+import { GameRowSearchTitle } from "Components/GameRow";
 
 type SearchProps = {
   /** The search query */

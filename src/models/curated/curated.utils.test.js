@@ -1,6 +1,5 @@
-import { types } from "Models/cms";
 import { CURATED_SLUG } from "./curated.constants";
-import { prefixCuratedSlug, takeFetchedCuratedPages } from "./curated.utils";
+import { prefixCuratedSlug } from "./curated.utils";
 
 describe("Models/curated/utils", () => {
   describe("prefixCuratedSlug()", () => {
@@ -24,22 +23,6 @@ describe("Models/curated/utils", () => {
       expect(prefixCuratedSlug(null)).toEqual("");
       expect(prefixCuratedSlug(false)).toEqual("");
       expect(prefixCuratedSlug()).toEqual("");
-    });
-  });
-
-  describe("takeFetchedCuratedPages()", () => {
-    test("returns TRUE if the action means that a curated page has been fetched", () => {
-      const action = {
-        type: `${types.FETCH_PAGE_BY_SLUG_COMPLETE}-${CURATED_SLUG}.foo`,
-      };
-      expect(takeFetchedCuratedPages(action)).toBe(true);
-    });
-
-    test("returns FALSE otherwise", () => {
-      const action = {
-        type: "foo-bar",
-      };
-      expect(takeFetchedCuratedPages(action)).toBe(false);
     });
   });
 });

@@ -39,7 +39,8 @@ Started by: *${env.gitAuthor}* :eyes:
                     "Flow"             : { it.customStepTask('Flow', this.&runFlow) },
                     "Lint"             : { it.customStepTask('Lint', this.&runLint) },
                     "Visual Regression": { it.customStepTask('Visual Regression', this.&runChromatic) },
-                    "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
+                    // uncomment after adding first pact test
+                    // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
             ])
             .customStep('Build', this.&runBuild)
             .with(Docker) { it.publishDockerImage() }
