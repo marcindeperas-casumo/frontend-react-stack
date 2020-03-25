@@ -51,44 +51,36 @@ const THIRTY_MINUTES = 30 * 60 * 1000;
 export class ReelRaceCard extends React.Component<Props> {
   get button() {
     const { translations: t, game, optedIn, startTime } = this.props.reelRace;
-
-    if (timeRemainingBeforeStart(startTime) <= 0) {
-      if (optedIn) {
-        return (
-          <TrackClick
-            eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
-            data={{ state: BUTTON_STATE.PLAY }}
-          >
-            <Button
-              size="sm"
-              variant="primary"
-              className="u-padding-y--md u-padding-x--lg"
-              onClick={() => launchGame({ slug: game.slug })}
-            >
-              <PlayIcon size="sm" className="c-reel-race__button-icon" />
-              <span className="u-margin-left">
-                {t.optedInCtaSingleGameShort}
-              </span>
-            </Button>
-          </TrackClick>
-        );
-      }
-
-      return null;
-    }
-
     const active = {
       label: t.optIn || "",
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPT_IN },
       onClick: this.props.optIn,
     };
-
     const disabled = {
       label: t.optedIn || "",
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPTED_IN },
     };
+
+    if (timeRemainingBeforeStart(startTime) <= 0 && optedIn) {
+      return (
+        <TrackClick
+          eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
+          data={{ state: BUTTON_STATE.PLAY }}
+        >
+          <Button
+            size="sm"
+            variant="primary"
+            className="u-padding-y--md u-padding-x--lg"
+            onClick={() => launchGame({ slug: game.slug })}
+          >
+            <PlayIcon size="sm" className="c-reel-race__button-icon" />
+            <span className="u-margin-left">{t.optedInCtaSingleGameShort}</span>
+          </Button>
+        </TrackClick>
+      );
+    }
 
     return (
       <OptInButton

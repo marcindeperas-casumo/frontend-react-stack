@@ -28,7 +28,6 @@ yarn-error.log*
 .cache
 .history
 .out
-.gradle
 pact/pacts/
 pact/logs/
 .settings/
