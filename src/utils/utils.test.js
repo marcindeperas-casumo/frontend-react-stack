@@ -527,14 +527,5 @@ describe("convertHoursToDays()", () => {
         .length;
       expect(foundAddedStyle).toBe(LINKS_AMOUNT);
     });
-
-    test("should add preventBubbling to each link in given text", () => {
-      const processed = addPointerEventStylesToLinkElements(before);
-
-      const foundAddedStyle = (
-        processed.match(/onclick="event.stopPropagation\(\);"/g) || []
-      ).length;
-      expect(foundAddedStyle).toBe(LINKS_AMOUNT);
-    });
   });
 });
