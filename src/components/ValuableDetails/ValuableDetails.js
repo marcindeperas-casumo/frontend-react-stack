@@ -247,9 +247,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Badge>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
-              <Text className="t-color-grey" size="sm">
-                <DangerousHtml html={caveat || ""} />
-              </Text>
+              {caveat && (
+                <Text className="t-color-grey" size="sm">
+                  <DangerousHtml html={caveat} />
+                </Text>
+              )}
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
               <hr className="c-valuable-details__separator t-border t-border-r--pill" />
