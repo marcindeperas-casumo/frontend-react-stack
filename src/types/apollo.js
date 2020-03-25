@@ -760,6 +760,20 @@ export type ReelRaceWidgetQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: LastGamePlayed
+// ====================================================
+
+export type LastGamePlayed_gamesList_games = {
+  slug: string,
+};
+export type LastGamePlayed_gamesList = {
+  games: Array<LastGamePlayed_gamesList_games>,
+};
+export type LastGamePlayed = {
+  gamesList: ?LastGamePlayed_gamesList,
+};
+
+// ====================================================
 // GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
 // ====================================================
 

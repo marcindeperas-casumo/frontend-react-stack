@@ -1,0 +1,7 @@
+query LastGamePlayed {
+  gamesList(listId: "latestPlayedGames") {
+    games(numberOfGames: 1) {
+      slug
+    }
+  }
+}
