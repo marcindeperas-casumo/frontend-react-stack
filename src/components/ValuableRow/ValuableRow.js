@@ -87,6 +87,9 @@ export class ValuableRow extends PureComponent<Props> {
 
   onClick = (event: SyntheticEvent<HTMLElement>) => {
     const linkClickEvent = event.currentTarget.tagName === "A";
+
+    // Stop the bubbling and prevent the ValuableRow from opening a popup if an actual link was clicked
+    // inside the content.
     if (linkClickEvent) {
       return;
     }
