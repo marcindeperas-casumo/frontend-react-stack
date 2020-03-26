@@ -5,6 +5,9 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
   availableListTitleLabel: getText(
     id: "root:mobile.valuables:fields.available_valuables"
   )
+  usedListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.active_item_label"
+  )
   lockedListTitleLabel: getText(
     id: "root:mobile.valuables:fields.locked_valuables"
   )

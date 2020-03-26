@@ -54,9 +54,10 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
     const expectedAvailable = mocks.allValuables.filter(
-      val =>
-        val.valuableState === VALUABLE_STATES.FRESH ||
-        val.valuableState === VALUABLE_STATES.USED
+      val => val.valuableState === VALUABLE_STATES.FRESH
+    ).length;
+    const expectedUsed = mocks.allValuables.filter(
+      val => val.valuableState === VALUABLE_STATES.USED
     ).length;
     const expectedLocked = mocks.allValuables.filter(
       val => val.valuableState === VALUABLE_STATES.LOCKED
@@ -68,12 +69,17 @@ describe("PlayerValuableListVertical", () => {
       .find(ValuablesVerticalList)
       .find({ "data-test-id": "list-available" })
       .find(ValuableRow).length;
+    const actualUsed = rendered
+      .find(ValuablesVerticalList)
+      .find({ "data-test-id": "list-used" })
+      .find(ValuableRow).length;
     const actualLocked = rendered
       .find(ValuablesVerticalList)
       .find({ "data-test-id": "list-locked" })
       .find(ValuableRow).length;
 
     expect(actualAvailable).toEqual(expectedAvailable);
+    expect(actualUsed).toEqual(expectedUsed);
     expect(actualLocked).toEqual(expectedLocked);
   });
 });

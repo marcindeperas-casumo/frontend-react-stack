@@ -15,6 +15,9 @@ export function PlayerValuableListVertical() {
   const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
     UseValuable
   );
+  if (!translations) {
+    return null;
+  }
   const consumeValuable = (id: string) =>
     mutateValuable({
       variables: {
@@ -24,19 +27,23 @@ export function PlayerValuableListVertical() {
     });
   const {
     availableListTitleLabel,
+    usedListTitleLabel,
     lockedListTitleLabel,
     noValuablesLabel,
   } = translations;
-  const getAvailableValuables = getValuablesByState([
-    VALUABLE_STATES.FRESH,
-    VALUABLE_STATES.USED,
-  ]);
+  const getAvailableValuables = getValuablesByState([VALUABLE_STATES.FRESH]);
+  const getUsedValuables = getValuablesByState([VALUABLE_STATES.USED]);
   const getLockedValuables = getValuablesByState([VALUABLE_STATES.LOCKED]);
   const sections = [
     {
       id: "list-available",
       title: availableListTitleLabel,
       data: getAvailableValuables(valuables),
+    },
+    {
+      id: "list-used",
+      title: usedListTitleLabel,
+      data: getUsedValuables(valuables),
     },
     {
       id: "list-locked",
