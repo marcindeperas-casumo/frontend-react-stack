@@ -103,7 +103,11 @@ export class NetentGame extends BaseGame {
             this.setupEvents(extend);
           },
           (error: {}) => {
-            logger.error("Cannot load game", { error });
+            logger.error("Cannot load game", {
+              provider: "NETENT",
+              error,
+              config: this.config,
+            });
           }
         );
     });

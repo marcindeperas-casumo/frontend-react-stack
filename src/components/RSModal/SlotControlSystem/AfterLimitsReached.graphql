@@ -1,4 +1,5 @@
 fragment AfterLimitsReached_Game on Game {
+  __typename
   id
   slug
   backgroundImage
