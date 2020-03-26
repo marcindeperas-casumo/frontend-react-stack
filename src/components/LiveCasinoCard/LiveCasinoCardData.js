@@ -65,8 +65,8 @@ const renderSeats = ({ liveCasinoLobby, blackjackText }) => {
       tag="span"
       className="t-color-white u-font-weight-bold u-text-transform-capitalize"
     >
-      {liveCasinoLobby.seats || `${blackjackText.betBehindText}`}{" "}
-      {liveCasinoLobby.seats ? `${blackjackText.openSeatsText}` : ""}
+      {liveCasinoLobby.seats || blackjackText.betBehindText}{" "}
+      {liveCasinoLobby.seats ? blackjackText.openSeatsText : ""}
     </Text>
   );
 };
