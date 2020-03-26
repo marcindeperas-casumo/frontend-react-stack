@@ -190,33 +190,6 @@ export type GameStudiosQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: GameRowSessionDetailsQuery
-// ====================================================
-
-export type GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type GameRowSessionDetailsQuery_gamesBySlugs_lobby = {
-  bets: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets,
-};
-export type GameRowSessionDetailsQuery_gamesBySlugs = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  lobby: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby,
-};
-export type GameRowSessionDetailsQuery = {
-  gamesBySlugs: Array<GameRowSessionDetailsQuery_gamesBySlugs>,
-};
-export type GameRowSessionDetailsQueryVariables = {
-  slugs: Array<string>,
-};
-
-// ====================================================
 // GraphQL query operation: GameSearchQuery
 // ====================================================
 
@@ -719,42 +692,6 @@ export type ReelRaceListQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: PlayAgainGameBySlugQuery
-// ====================================================
-
-export type PlayAgainGameBySlugQuery_gamesBySlugs = {
-  __typename: "Game",
-  id: string,
-  slug: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-export type PlayAgainGameBySlugQuery = {
-  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>,
-};
-export type PlayAgainGameBySlugQueryVariables = {
-  slug: string,
-};
-
-// ====================================================
-// GraphQL query operation: PlayAgainLatestPlayedQuery
-// ====================================================
-
-export type PlayAgainLatestPlayedQuery_gamesList_games = {
-  __typename: "Game",
-  id: string,
-  slug: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-export type PlayAgainLatestPlayedQuery_gamesList = {
-  games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
-};
-export type PlayAgainLatestPlayedQuery = {
-  gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
-};
 // GraphQL query operation: ReelRaceWidgetQuery
 // ====================================================
 
@@ -796,17 +733,42 @@ export type ReelRaceWidgetQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: LastGamePlayed
+// GraphQL query operation: PlayAgainGameBySlugQuery
 // ====================================================
 
-export type LastGamePlayed_gamesList_games = {
+export type PlayAgainGameBySlugQuery_gamesBySlugs = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+};
+export type PlayAgainGameBySlugQuery = {
+  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>,
+};
+export type PlayAgainGameBySlugQueryVariables = {
   slug: string,
 };
-export type LastGamePlayed_gamesList = {
-  games: Array<LastGamePlayed_gamesList_games>,
+
+// ====================================================
+// GraphQL query operation: PlayAgainLatestPlayedQuery
+// ====================================================
+
+export type PlayAgainLatestPlayedQuery_gamesList_games = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
 };
-export type LastGamePlayed = {
-  gamesList: ?LastGamePlayed_gamesList,
+export type PlayAgainLatestPlayedQuery_gamesList = {
+  id: ?string,
+  games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
+};
+export type PlayAgainLatestPlayedQuery = {
+  gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
 };
 
 // ====================================================
