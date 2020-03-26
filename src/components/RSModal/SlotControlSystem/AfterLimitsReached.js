@@ -1,17 +1,19 @@
 // @flow
 import * as React from "react";
-import { head, endsWith } from "ramda";
+import { endsWith } from "ramda";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { ROUTE_IDS } from "Src/constants";
 import { navigateToRerender } from "Utils";
 import { useLocale, useCrossCodebaseNavigation } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
-import { useLatestPlayed } from "Models/gameSearch";
 import { type ModalContentComponent } from "Components/RSModal";
 import {
   SessionDetailsForLimitsReached,
   SessionDetailsForLimitsReachedExcluded,
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
+import { LastGamePlayed } from "./LastGamePlayed.graphql";
 
 type ContentType = {
   session_details_header: string,
@@ -32,9 +34,12 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const { activeExclusion, lastEndedSession } = useSessionsState();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const locale = useLocale();
-  const { latestPlayedIds } = useLatestPlayed();
-  const latestPlayedId = head(latestPlayedIds);
-  const isPlayRouteActive = endsWith(`${latestPlayedId}/launch`);
+  const { data, loading } = useQuery<A.LastGamePlayed, _>(LastGamePlayed);
+  if (loading || !data || !data.gamesList) {
+    return null;
+  }
+  const lastGamePlayedSlug = data.gamesList.games[0].slug;
+  const isPlayRouteActive = endsWith(`${lastGamePlayedSlug}/launch`);
   const tForModalSkin = {
     modal_title: props.t?.limits_reached_modal_title || "",
   };
@@ -54,7 +59,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
       return navigateToRerender();
     }
     // otherwise perform full browser redirect
-    navigateToKO(ROUTE_IDS.PLAY, { slug: latestPlayedId });
+    navigateToKO(ROUTE_IDS.PLAY, { slug: lastGamePlayedSlug });
   };
 
   if (!lastEndedSession) {
@@ -84,7 +89,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
         locale={locale}
         lastEndedSession={lastEndedSession}
         onClickButton={onClickButton}
-        playAgainGameId={latestPlayedId}
+        playAgainGameId={lastGamePlayedSlug}
         onClickPlayAgain={onClickPlayAgain}
       />
     </ModalSkin>

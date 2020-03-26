@@ -1,100 +1,74 @@
 // @flow
 import * as React from "react";
-import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
-import { ReelRaceLeaderboard } from "Components/ReelRaceLeaderboard";
+import { useQuery } from "@apollo/react-hooks";
+import {
+  slug,
+  getCurrentReelRace,
+  type ReelRacesTranslations,
+} from "Models/reelRaces";
 import * as A from "Types/apollo";
-import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
-import type { Playing } from "Models/playing";
+import { ReelRaceLeaderboard } from "Components/ReelRaceLeaderboard";
+import { useTranslations } from "Utils/hooks";
+import { ReelRaceWidgetQuery } from "./ReelRaceWidget.graphql";
 import { ReelRaceWidgetHeader } from "./ReelRaceWidgetHeader";
 import { ReelRaceWidgetInfo } from "./ReelRaceWidgetInfo";
-import "./ReelRaceWidget.scss";
 
-type Props = {
-  fetchReelRaces: () => void,
-  isReelRacesFetched: () => void,
-  fetchTranslations: () => void,
-  subscribeReelRacesUpdates: () => void,
-  unsubscribeReelRacesUpdates: () => void,
-  areTranslationsFetched: boolean,
-  scheduledGame: A.GameRow_Game,
-  gameSlug: string,
-  playing: Playing,
-  t: ReelRacesTranslations,
-  playerId: string,
-  playerSpins: number,
-  reelRaceStarted: ReelRace | null,
-  reelRaceScheduled: ReelRace | null,
-};
-
+type Props = {};
 export function ReelRaceWidget(props: Props) {
-  const {
-    reelRaceStarted,
-    reelRaceScheduled,
-    isReelRacesFetched,
-    areTranslationsFetched,
-    fetchReelRaces,
-    fetchTranslations,
-    subscribeReelRacesUpdates,
-    unsubscribeReelRacesUpdates,
-  } = props;
-
-  const reelRace = reelRaceStarted || reelRaceScheduled;
+  const t = useTranslations<ReelRacesTranslations>(slug);
+  const { data, loading, refetch } = useQuery<A.ReelRaceWidgetQuery, _>(
+    ReelRaceWidgetQuery
+  );
 
   React.useEffect(() => {
-    if (!isReelRacesFetched) {
-      fetchReelRaces();
+    let timeoutId; // eslint-disable-line fp/no-let
+    const thirtyMinutes = 30 * 60 * 1000;
+
+    function scheduleTimeout() {
+      const nextUpdate = thirtyMinutes - (Date.now() % thirtyMinutes);
+      // eslint-disable-next-line fp/no-mutation
+      timeoutId = setTimeout(() => {
+        refetch();
+        scheduleTimeout();
+      }, nextUpdate);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isReelRacesFetched]);
 
-  React.useEffect(() => {
-    if (!areTranslationsFetched) {
-      fetchTranslations();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [areTranslationsFetched]);
+    scheduleTimeout();
 
-  React.useEffect(() => {
-    const timeRemaining = (reelRaceActive: ReelRace): number =>
-      DateTime.fromMillis(
-        reelRaceStarted ? reelRaceActive.endTime : reelRaceActive.startTime
-      )
-        .diffNow()
-        .valueOf();
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [refetch]);
 
-    if (reelRace && reelRace.tournamentId) {
-      subscribeReelRacesUpdates();
-      const timer = setTimeout(() => {
-        fetchReelRaces();
-      }, timeRemaining(reelRace));
-
-      return () => {
-        unsubscribeReelRacesUpdates();
-        clearTimeout(timer);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reelRace]);
-
-  if (!reelRace) {
+  if (loading || !data || !data.reelRaces) {
     return null;
   }
+
+  const reelRace = getCurrentReelRace(data.reelRaces);
+
+  if (!reelRace || !t) {
+    return null;
+  }
+
+  const hasStarted = reelRace.startTime < Date.now();
 
   return (
     <Flex
       direction="vertical"
       className="t-background-white t-border-bottom t-border-current-color t-color-grey-dark-2"
     >
-      <ReelRaceWidgetHeader
-        promoted={reelRace.promoted}
-        prize={reelRace.prize}
-        {...props}
-      />
-      {reelRaceStarted ? (
-        <ReelRaceLeaderboard endTime={reelRace.endTime} {...props} />
+      <ReelRaceWidgetHeader {...reelRace} t={t} />
+      {hasStarted ? (
+        <ReelRaceLeaderboard
+          t={t}
+          id={reelRace.id}
+          initialLeaderboard={reelRace.leaderboard}
+          cometdChannels={reelRace.cometdChannels}
+          endTime={reelRace.endTime}
+        />
       ) : (
-        <ReelRaceWidgetInfo reelRace={reelRace} {...props} />
+        <ReelRaceWidgetInfo {...reelRace} t={t} />
       )}
     </Flex>
   );

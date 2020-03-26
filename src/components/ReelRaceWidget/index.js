@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./ReelRaceWidgetContainer";
+export { ReelRaceWidget } from "./ReelRaceWidget";

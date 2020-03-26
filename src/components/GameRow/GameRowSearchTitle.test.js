@@ -1,6 +1,7 @@
+// @flow
 import React from "react";
 import { shallow } from "enzyme";
-import { GameRowSearchTitle } from "Components/GameRow/GameRowSearchTitle";
+import { GameRowSearchTitle } from "Components/GameRow";
 
 describe("<GameRowSearchTitle />", () => {
   const name = "I'm a game title";

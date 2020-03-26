@@ -13,7 +13,7 @@ import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 type Props = {|
-  liveCasinoLobby: A.LiveCasinoCard_Lobby,
+  liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
   blackjackText: A.LiveCasinoCardCmsQuery,
 |};
 
