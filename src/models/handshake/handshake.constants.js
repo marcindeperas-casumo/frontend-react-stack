@@ -2,7 +2,6 @@ export const APP_HANDSHAKE_KEY = "app";
 export const GAMES_HANDSHAKE_KEY = "games";
 export const types = {
   FETCH_APP_HANDSHAKE: "HANDSHAKE/FETCH_APP_HANDSHAKE",
-  FETCH_GAMES_HANDSHAKE: "HANDSHAKE/FETCH_GAMES_HANDSHAKE",
   UPDATE_HANDSHAKE: "HANDSHAKE/UPDATE_HANDSHAKE",
 };
 // Add the rest of the keys and replace them where required.

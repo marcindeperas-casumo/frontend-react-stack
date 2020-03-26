@@ -2,17 +2,14 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import * as A from "Types/apollo";
 import Timer from "Components/Timer";
+import type { ReelRacesTranslations } from "Models/reelRaces";
 
-type Props = {
+type Props = A.ReelRaceWidgetQuery_reelRaces & {
   t: ReelRacesTranslations,
-  reelRace: ReelRace,
 };
-
-export function ReelRaceWidgetInfo(props: Props) {
-  const { t, reelRace } = props;
-
+export function ReelRaceWidgetInfo({ t, ...props }: Props) {
   return (
     <Flex
       direction="horizontal"
@@ -25,8 +22,7 @@ export function ReelRaceWidgetInfo(props: Props) {
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
           <Timer
-            key={reelRace.startTime}
-            endTime={reelRace.startTime}
+            endTime={props.startTime}
             render={o => `${o.minutes}:${o.seconds}`}
             onEnd={() => "00:00"}
           />
@@ -37,7 +33,7 @@ export function ReelRaceWidgetInfo(props: Props) {
           {t.spins}
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
-          {reelRace.spins}
+          {props.spinLimit}
         </Text>
       </Flex>
     </Flex>

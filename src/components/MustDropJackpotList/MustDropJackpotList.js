@@ -2,8 +2,7 @@
 import React from "react";
 import List from "@casumo/cmp-list";
 import * as A from "Types/apollo";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
+import { GameRow, GameRowText } from "Components/GameRow";
 
 type Props = {
   jackpots: Array<A.MustDropJackpotGamesListQuery_gamesList_games>,

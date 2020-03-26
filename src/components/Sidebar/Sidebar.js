@@ -3,7 +3,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import { ROUTE_IDS } from "Src/constants";
-import ReelRaceWidget from "Components/ReelRaceWidget";
+import { ReelRaceWidget } from "Components/ReelRaceWidget";
 import {
   useCrossCodebaseNavigation,
   useTranslations,

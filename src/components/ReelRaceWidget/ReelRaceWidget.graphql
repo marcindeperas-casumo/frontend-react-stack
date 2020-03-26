@@ -1,0 +1,32 @@
+query ReelRaceWidgetQuery {
+    reelRaces(limit: 2) {
+        id
+        game {
+            slug
+            name
+            logo
+            backgroundImage
+        }
+        startTime
+        endTime
+        optedIn
+        promoted
+        spinLimit
+        formattedPrize
+        cometdChannels
+        leaderboard {
+            playerId
+            playerName
+            position
+            points
+            remainingSpins
+            boosters {
+                winsInARow
+                triples
+                wins
+                bigWins
+                megaWins
+            }
+        }
+    }
+}

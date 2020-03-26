@@ -1,8 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import SectionList from "Components/SectionList";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
+import { GameRow, GameRowSearchText } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";

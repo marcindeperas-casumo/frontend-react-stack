@@ -2,7 +2,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
-import { launchGame } from "Services/LaunchGameService";
 import { GameRow } from "../GameRow";
 import { GameRowText } from "../GameRowText";
 import { GameRowSessionDetailsQuery } from "./GameRowSessionDetails.graphql";
@@ -28,10 +27,6 @@ export const GameRowSessionDetailsContainer = ({ slug }: Props) => {
   }
 
   return (
-    <GameRow
-      game={game}
-      onLaunchGame={() => launchGame({ slug: game.slug })}
-      renderText={() => <GameRowText name={game.name} />}
-    />
+    <GameRow game={game} renderText={() => <GameRowText name={game.name} />} />
   );
 };
