@@ -27,6 +27,8 @@ fragment ReelRaceCard_ReelRace on ReelRace {
         duration
         durationTemplate
         caveatShort
+        today
+        tomorrow
     }
 }
 

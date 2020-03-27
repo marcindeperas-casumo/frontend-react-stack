@@ -92,6 +92,7 @@ export class ReelRaceCard extends React.Component<Props> {
 
   get countdown() {
     const { translations: t, endTime, startTime, status } = this.props.reelRace;
+
     if (status === "Started") {
       return (
         <Flex direction="vertical" spacing="none">
@@ -135,6 +136,8 @@ export class ReelRaceCard extends React.Component<Props> {
     }
 
     const startTimeDate = DateTime.fromMillis(startTime);
+    const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
+
     return (
       <Flex spacing="none">
         <ClockIcon className="u-margin-right" />
@@ -143,8 +146,9 @@ export class ReelRaceCard extends React.Component<Props> {
           size="sm"
           className="t-color-white u-font-weight-bold u-text-transform-capitalize"
         >
-          {startTimeDate.toRelativeCalendar()} {""}
-          {startTimeDate.toFormat("t")}
+          {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
+            "t"
+          )}`}
         </Text>
       </Flex>
     );
