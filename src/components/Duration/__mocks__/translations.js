@@ -1,5 +1,5 @@
 // @flow
-import type { DurationTranslations } from "../ISO8601Duration.types";
+import type { DurationTranslations } from "../Duration.types";
 
 export default ({
   "year_singular": "{{value}} year",

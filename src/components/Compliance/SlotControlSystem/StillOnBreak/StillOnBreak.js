@@ -7,7 +7,7 @@ import Flex from "@casumo/cmp-flex";
 import { navigateById } from "Services/NavigationService";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
-import { ISO8601DurationContainer } from "Components/i18n/ISO8601Duration";
+import { DurationContainer } from "Components/Duration";
 import StillOnBreakImage from "./StillOnBreak.svg";
 import "./StillOnBreak.scss";
 
@@ -46,7 +46,7 @@ export function StillOnBreak(props: Props) {
                 endTime={props.endTime}
                 onEnd={() => "00:00"}
                 render={state => (
-                  <ISO8601DurationContainer
+                  <DurationContainer
                     duration={R.omit(["hasEnded"], state)}
                     t={{ separator: " " }}
                     preferShort

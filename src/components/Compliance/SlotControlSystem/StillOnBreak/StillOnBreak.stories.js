@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import MockDate from "mockdate";
 import { isChromatic } from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
-import durationTranslationsMock from "Components/i18n/ISO8601Duration/__mocks__/translations";
+import durationTranslationsMock from "Components/Duration/__mocks__/translations";
 import { StillOnBreak } from "./StillOnBreak";
 
 const t = {

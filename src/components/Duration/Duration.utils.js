@@ -1,8 +1,5 @@
 // @flow
-import type {
-  DurationTranslations,
-  LuxonDurationKey,
-} from "./ISO8601Duration.types";
+import type { DurationTranslations, LuxonDurationKey } from "./Duration.types";
 
 const LUXON_KEY_TO_CMS_KEY_ABBREVIATED = {
   years: "year_abbreviated",

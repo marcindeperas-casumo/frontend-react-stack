@@ -1,7 +1,7 @@
 // @flow
-import { durationToTranslationKey } from "./ISO8601Duration.utils";
+import { durationToTranslationKey } from "./Duration.utils";
 
-describe("Components/i18n/ISO8601Duration.utils", () => {
+describe("Components/Duration.utils", () => {
   describe("durationToTranslationKey()", () => {
     test("it returns week_abbreviated if preferAbbreviated is true and week is requested", () => {
       expect(durationToTranslationKey("weeks", 3, true)).toEqual(

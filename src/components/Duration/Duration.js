@@ -1,14 +1,14 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { Duration } from "luxon";
+import { Duration as LuxonDuration } from "luxon";
 import { interpolate } from "Utils";
-import { durationToTranslationKey } from "./ISO8601Duration.utils";
+import { durationToTranslationKey } from "./Duration.utils";
 import type {
   DurationTranslations,
   LuxonDurationKey,
   LuxonDurationObject,
-} from "./ISO8601Duration.types";
+} from "./Duration.types";
 
 type Props = {
   /**
@@ -23,7 +23,7 @@ type Props = {
   fetchTranslations: () => void,
 };
 
-export function ISO8601Duration(props: Props): string {
+export function Duration(props: Props): string {
   React.useEffect(props.fetchTranslations, []);
 
   if (!props.t) {
@@ -32,7 +32,7 @@ export function ISO8601Duration(props: Props): string {
 
   const duration: LuxonDurationObject =
     typeof props.duration === "string"
-      ? Duration.fromISO(props.duration).toObject()
+      ? LuxonDuration.fromISO(props.duration).toObject()
       : props.duration;
 
   return R.pipe(
