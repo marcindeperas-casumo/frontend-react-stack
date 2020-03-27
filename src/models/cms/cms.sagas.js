@@ -11,14 +11,8 @@ import { getChildrenAndParent, setSlug } from "./cms.utils";
 
 // TODO: Handle failed fetches and timed out fetches.
 export function* fetchPageBySlugSaga(action) {
-  // As every <CMSField /> component can initiate a request to
-  // fetch a particular CMS page, there can be a lot of
-  // requests for fetching the same page at the same time.
-  // The reason is that they will start the fetching before the first
-  // saga could update the fetch-info on the store.
-  // By putting every fetch-cms-saga to the end of the event loop
-  // we can make sure that we only request every CMS page once
-  // through the network.
+  // This is to make sure that we only request every CMS page once
+  // we can make sure that we only request every CMS page once through the network.
   yield call(delay, 0);
 
   const { slug } = action;
