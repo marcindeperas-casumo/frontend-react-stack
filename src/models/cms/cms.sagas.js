@@ -11,8 +11,9 @@ import { getChildrenAndParent, setSlug } from "./cms.utils";
 
 // TODO: Handle failed fetches and timed out fetches.
 export function* fetchPageBySlugSaga(action) {
-  // This is to make sure that we only request every CMS page once
-  // we can make sure that we only request every CMS page once through the network.
+  // By putting every fetch-cms-saga to the end of the event loop
+  // we can make sure that we only request every CMS page once
+  // through the network.
   yield call(delay, 0);
 
   const { slug } = action;
