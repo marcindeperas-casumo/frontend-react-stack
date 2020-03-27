@@ -1,7 +1,7 @@
 // @flow
 import { ReelRaceListQuery } from "../ReelRacesListContainer.graphql";
 
-export const reelRaces = [
+const reelRaces = [
   {
     id: "e84d5f50-6de3-11ea-a450-0242ac110006",
     game: {
@@ -109,7 +109,7 @@ export const reelRaces = [
   },
 ];
 
-export const reelRacesTranslations = {
+const reelRacesTranslations = {
   title: "Reel Race",
   seeMore: "See More",
 };
@@ -117,7 +117,7 @@ export const reelRacesTranslations = {
 export const reelRacesListQueryMock = {
   request: {
     query: ReelRaceListQuery,
-    variables: { limit: 3 },
+    variables: { limit: reelRaces.length },
   },
   result: {
     data: {
