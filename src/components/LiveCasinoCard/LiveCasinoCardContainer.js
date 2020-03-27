@@ -22,7 +22,7 @@ export const LiveCasinoCardContainer = ({ game, playNowText }: Props) => {
 
   return game.liveCasinoLobby ? (
     <LiveCasinoCard
-      blackjackText={{
+      t={{
         betBehindText: data?.betBehindText,
         openSeatsText: data?.openSeatsText,
       }}

@@ -16,7 +16,7 @@ import {
 
 const stories = storiesOf("LiveCasinoCard", module);
 const playNowText = "Play now 👻";
-const blackjackText = {
+const t = {
   betBehindText: "Bet behind",
   openSeatsText: "Seats left",
 };
@@ -28,7 +28,7 @@ stories.add("Card MoneyWheel", () => (
         playNowText={playNowText}
         game={MoneyWheel}
         launchGame={action(MoneyWheel.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -41,7 +41,7 @@ stories.add("Card Roulette", () => (
         playNowText={playNowText}
         game={Roulette}
         launchGame={action(Roulette.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -54,7 +54,7 @@ stories.add("Card Blackjack Open Seats", () => (
         playNowText={playNowText}
         game={Blackjack}
         launchGame={action(Blackjack.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -67,7 +67,7 @@ stories.add("Card Blackjack Full", () => (
         playNowText={playNowText}
         game={BlackjackFull}
         launchGame={action(BlackjackFull.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -80,7 +80,7 @@ stories.add("Card TopCard (Football)", () => (
         playNowText={playNowText}
         game={TopCard}
         launchGame={action(TopCard.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -93,7 +93,7 @@ stories.add("Card Monopoly", () => (
         playNowText={playNowText}
         game={Monopoly}
         launchGame={action(Monopoly.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>
@@ -106,7 +106,7 @@ stories.add("Card Baccarat", () => (
         playNowText={playNowText}
         game={Baccarat}
         launchGame={action(Baccarat.slug)}
-        blackjackText={blackjackText}
+        t={t}
       />
     </MockStore>
   </div>

@@ -14,7 +14,7 @@ import "./LiveCasinoCardData.scss";
 
 type Props = {|
   liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
-  blackjackText: A.LiveCasinoCardCmsQuery,
+  t: A.LiveCasinoCardCmsQuery,
 |};
 
 const getTextColor = (color: string) =>
@@ -58,15 +58,15 @@ const renderResults = ({ results, type }) => {
   );
 };
 
-const renderSeats = ({ liveCasinoLobby, blackjackText }) => {
+const renderSeats = ({ liveCasinoLobby, t }) => {
   return (
     <Text
       size="sm"
       tag="span"
       className="t-color-white u-font-weight-bold u-text-transform-capitalize"
     >
-      {liveCasinoLobby.seats || blackjackText.betBehindText}{" "}
-      {liveCasinoLobby.seats ? blackjackText.openSeatsText : ""}
+      {liveCasinoLobby.seats || t.betBehindText}{" "}
+      {liveCasinoLobby.seats ? t.openSeatsText : ""}
     </Text>
   );
 };
@@ -81,20 +81,14 @@ const liveCasinoTypes = [
   TYPES.BACCARAT,
 ];
 
-const LobbyType = ({ liveCasinoLobby, blackjackText }) =>
+const LobbyType = ({ liveCasinoLobby, t }) =>
   cond([
     [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby)],
-    [
-      equals(TYPES.BLACKJACK),
-      () => renderSeats({ liveCasinoLobby, blackjackText }),
-    ],
+    [equals(TYPES.BLACKJACK), () => renderSeats({ liveCasinoLobby, t })],
     [T, () => null],
   ])(liveCasinoLobby.type);
 
-export const LiveCasinoCardData = ({
-  liveCasinoLobby,
-  blackjackText,
-}: Props) => {
+export const LiveCasinoCardData = ({ liveCasinoLobby, t }: Props) => {
   return (
     <Flex
       align="center"
@@ -110,10 +104,7 @@ export const LiveCasinoCardData = ({
         align="center"
         className="u-width--full u-position-relative"
       >
-        <LobbyType
-          liveCasinoLobby={liveCasinoLobby}
-          blackjackText={blackjackText}
-        />
+        <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} />
         <div className="c-card-data__badges-mask u-width--full u-height--full u-position-absolute" />
       </Flex>
     </Flex>

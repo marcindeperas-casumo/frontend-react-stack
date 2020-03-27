@@ -11,7 +11,7 @@ import {
   BlackjackFull,
 } from "./__mocks__";
 
-const blackjackText = {
+const t = {
   betBehindText: "Bet behind",
   openSeatsText: "Seats left",
 };
@@ -20,10 +20,7 @@ describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
     test("renders 10 results with correct values", () => {
       const component = shallow(
-        <LiveCasinoCardData
-          liveCasinoLobby={Roulette.liveCasinoLobby}
-          blackjackText={blackjackText}
-        />
+        <LiveCasinoCardData liveCasinoLobby={Roulette.liveCasinoLobby} t={t} />
       );
       const results = Roulette.liveCasinoLobby.results.slice(0, 10);
       const numbersTexts = component
@@ -42,10 +39,7 @@ describe("LiveCasinoCardData", () => {
   describe("TopCard (Football Studio)", () => {
     test("renders 10 Football letter results", () => {
       const component = shallow(
-        <LiveCasinoCardData
-          liveCasinoLobby={TopCard.liveCasinoLobby}
-          blackjackText={blackjackText}
-        />
+        <LiveCasinoCardData liveCasinoLobby={TopCard.liveCasinoLobby} t={t} />
       );
       const data = component.find("LobbyType").shallow();
       const results = TopCard.liveCasinoLobby.results
@@ -64,7 +58,7 @@ describe("LiveCasinoCardData", () => {
       const component = shallow(
         <LiveCasinoCardData
           liveCasinoLobby={MoneyWheel.liveCasinoLobby}
-          blackjackText={blackjackText}
+          t={t}
         />
       );
       const data = component.find("LobbyType").shallow();
@@ -83,14 +77,11 @@ describe("LiveCasinoCardData", () => {
   describe("Blackjack (Open Seats)", () => {
     test("should render open seats text", () => {
       const component = shallow(
-        <LiveCasinoCardData
-          liveCasinoLobby={Blackjack.liveCasinoLobby}
-          blackjackText={blackjackText}
-        />
+        <LiveCasinoCardData liveCasinoLobby={Blackjack.liveCasinoLobby} t={t} />
       );
       const data = component.find("LobbyType").shallow();
 
-      expect(data.find(Text).contains(blackjackText.openSeatsText)).toBe(true);
+      expect(data.find(Text).contains(t.openSeatsText)).toBe(true);
     });
   });
 
@@ -99,12 +90,12 @@ describe("LiveCasinoCardData", () => {
       const component = shallow(
         <LiveCasinoCardData
           liveCasinoLobby={BlackjackFull.liveCasinoLobby}
-          blackjackText={blackjackText}
+          t={t}
         />
       );
       const data = component.find("LobbyType").shallow();
 
-      expect(data.find(Text).contains(blackjackText.betBehindText)).toBe(true);
+      expect(data.find(Text).contains(t.betBehindText)).toBe(true);
     });
   });
 });
