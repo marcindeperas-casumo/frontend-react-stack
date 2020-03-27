@@ -190,33 +190,6 @@ export type GameStudiosQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: GameRowSessionDetailsQuery
-// ====================================================
-
-export type GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type GameRowSessionDetailsQuery_gamesBySlugs_lobby = {
-  bets: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets,
-};
-export type GameRowSessionDetailsQuery_gamesBySlugs = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  lobby: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby,
-};
-export type GameRowSessionDetailsQuery = {
-  gamesBySlugs: Array<GameRowSessionDetailsQuery_gamesBySlugs>,
-};
-export type GameRowSessionDetailsQueryVariables = {
-  slugs: Array<string>,
-};
-
-// ====================================================
 // GraphQL query operation: GameSearchQuery
 // ====================================================
 
@@ -385,6 +358,15 @@ export type JackpotsQuery = {
 };
 export type JackpotsQueryVariables = {
   numberOfGames: number,
+};
+
+// ====================================================
+// GraphQL query operation: LiveCasinoCardCmsQuery
+// ====================================================
+
+export type LiveCasinoCardCmsQuery = {
+  betBehindText: string,
+  openSeatsText: string,
 };
 
 // ====================================================
@@ -701,6 +683,7 @@ export type ReelRaceListQuery_reelRaces = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,
@@ -715,6 +698,86 @@ export type ReelRaceListQuery = {
 };
 export type ReelRaceListQueryVariables = {
   limit: number,
+};
+
+// ====================================================
+// GraphQL query operation: ReelRaceWidgetQuery
+// ====================================================
+
+export type ReelRaceWidgetQuery_reelRaces_game = {
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
+  winsInARow: number,
+  triples: number,
+  wins: number,
+  bigWins: number,
+  megaWins: number,
+};
+export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+  boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
+};
+export type ReelRaceWidgetQuery_reelRaces = {
+  id: string,
+  game: ReelRaceWidgetQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  promoted: boolean,
+  spinLimit: number,
+  formattedPrize: string,
+  cometdChannels: Array<string>,
+  leaderboard: Array<ReelRaceWidgetQuery_reelRaces_leaderboard>,
+};
+export type ReelRaceWidgetQuery = {
+  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+};
+
+// ====================================================
+// GraphQL query operation: PlayAgainGameBySlugQuery
+// ====================================================
+
+export type PlayAgainGameBySlugQuery_gamesBySlugs = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+};
+export type PlayAgainGameBySlugQuery = {
+  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>,
+};
+export type PlayAgainGameBySlugQueryVariables = {
+  slug: string,
+};
+
+// ====================================================
+// GraphQL query operation: PlayAgainLatestPlayedQuery
+// ====================================================
+
+export type PlayAgainLatestPlayedQuery_gamesList_games = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+};
+export type PlayAgainLatestPlayedQuery_gamesList = {
+  id: ?string,
+  games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
+};
+export type PlayAgainLatestPlayedQuery = {
+  gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
 };
 
 // ====================================================
@@ -2053,12 +2116,26 @@ export type ReelRaceCard_ReelRace = {
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
+  status: ?string,
   spinLimit: number,
   minBet: ?string,
   promoted: boolean,
   formattedPrize: string,
   remainingSpins: number,
   translations: ReelRaceCard_ReelRace_translations,
+};
+
+// ====================================================
+// GraphQL fragment: AfterLimitsReached_Game
+// ====================================================
+
+export type AfterLimitsReached_Game = {
+  __typename: "Game",
+  id: string,
+  slug: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
 };
 
 // ====================================================

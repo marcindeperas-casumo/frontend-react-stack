@@ -1,12 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import {
-  SportsNav,
-  SportsMainNav,
-  SportsSubNav,
-} from "Features/sports/components/SportsNav";
-import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
+import { SportsNav } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 jest.mock("Utils/hooks/useIsAuthenticated");
@@ -38,23 +33,4 @@ describe("<SportsNav/>", () => {
     expect(renderedOnEventPage.isEmptyRender()).toBe(true);
     expect(renderedOnBethistoryPage.isEmptyRender()).toBe(true);
   });
-
-  test("should render without errors once data is resolved", async () => {
-    const rendered = renderMocked(<SportsNav currentHash="#home" />);
-
-    await waitAndUpdateWrapper(rendered);
-
-    expect(rendered.find(SportsMainNav)).toHaveLength(1);
-
-    expect(rendered.find(SportsSubNav)).toHaveLength(1);
-  });
-  /*
-  test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
-  });
-
-  test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
-  });
-  */
 });

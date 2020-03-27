@@ -50,4 +50,9 @@
   padding: 0 !important;
 }
 
+// https://jira.casumocave.com/browse/PRS-354 fast fix, should be send later to kambi css
+.KambiBC-betoffer-labels__label {
+  margin: auto 0 !important;
+}
+
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */

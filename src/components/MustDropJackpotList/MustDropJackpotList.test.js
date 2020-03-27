@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import List from "@casumo/cmp-list";
 import { MustDropJackpotList } from "Components/MustDropJackpotList/MustDropJackpotList";
-import { GameRow } from "Components/GameRow/GameRow";
+import { GameRow } from "Components/GameRow";
 import jackpots from "./__mocks__/response.games.mock";
 
 describe("<MustDropJackpotList />", () => {

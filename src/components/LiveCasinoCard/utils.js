@@ -129,7 +129,7 @@ const getBaccaratColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
-export const getBadgeColor = (type: string, liveCasinoResult: string) => {
+export const getBadgeColor = (type: ?string, liveCasinoResult: string) => {
   if (type === TYPES.MONEYWHEEL) {
     return getMoneyWheelColor(liveCasinoResult);
   }
@@ -149,7 +149,10 @@ export const getBadgeColor = (type: string, liveCasinoResult: string) => {
   return COLORS.BLACK;
 };
 
-export const getBadgeBorderColor = (type: string, liveCasinoResult: string) => {
+export const getBadgeBorderColor = (
+  type: ?string,
+  liveCasinoResult: string
+) => {
   if (type === TYPES.MONOPOLY) {
     return prop(liveCasinoResult, monopolyResultsBorderColor);
   }
@@ -157,7 +160,7 @@ export const getBadgeBorderColor = (type: string, liveCasinoResult: string) => {
   return null;
 };
 
-export const getResultsDisplay = (type: string, liveCasinoResult: string) => {
+export const getResultsDisplay = (type: ?string, liveCasinoResult: string) => {
   if (type === TYPES.TOPCARD) {
     return propOr(liveCasinoResult, liveCasinoResult, topCardLettersDisplay);
   }

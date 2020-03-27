@@ -25,6 +25,7 @@ import {
   timeRemainingBeforeStart,
   isTestEnv,
   convertLuxonDurationObjectToSeconds,
+  addPointerEventStylesToLinkElements,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -504,6 +505,27 @@ describe("convertHoursToDays()", () => {
       expect(
         convertLuxonDurationObjectToSeconds({ days: 2, minutes: 3 })
       ).toEqual(172980);
+    });
+  });
+
+  describe("addPointerEventStylesToLinkElements", () => {
+    const before = `
+      Sample text, 
+      <a href="http://google.com" rel="extra attr">check this website</a>
+      another link goes here: 
+      <a href="http://gmail.com" rel="extra attr">check this email</a>.
+
+      Another paragraph: <a href="http://google.com" rel="extra attr">check this website</a>.
+    `;
+
+    const LINKS_AMOUNT = 3;
+
+    test("should add extra styles to all links in given text", () => {
+      const processed = addPointerEventStylesToLinkElements(before);
+
+      const foundAddedStyle = (processed.match(/pointer-events: all;/g) || [])
+        .length;
+      expect(foundAddedStyle).toBe(LINKS_AMOUNT);
     });
   });
 });

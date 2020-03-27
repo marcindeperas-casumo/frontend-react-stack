@@ -21,8 +21,8 @@ module.exports = ({ config, mode }) => {
        * Resolves hooks to their mocks in stories if the mock exists.
        *
        * Example:
-       * `import { useLocale } from "Hooks/useLocale";` ---> will resolve to:
-       *   `"Hooks/__mocks__/useLocale"` if it exists.
+       * `import { useLocale } from "Utils/hooks/useLocale";` ---> will resolve to:
+       *   `"Utils/hooks/__mocks__/useLocale"` if it exists.
        *
        * Bare in mind that the related mock file will be **always** used if it exists
        * (like old auto-mocking feature in jest).

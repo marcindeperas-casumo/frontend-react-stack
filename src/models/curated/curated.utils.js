@@ -1,8 +1,8 @@
+// @flow
 import * as R from "ramda";
-import { types } from "Models/cms";
 import { CURATED_SLUG } from "./curated.constants";
 
-export const prefixCuratedSlug = slug => {
+export const prefixCuratedSlug = (slug: string) => {
   const isString = typeof slug === "string";
   const prefix = `${CURATED_SLUG}.`;
   const isPrefixed = isString && R.startsWith(prefix, slug);
@@ -16,10 +16,4 @@ export const prefixCuratedSlug = slug => {
   }
 
   return slug;
-};
-
-export const takeFetchedCuratedPages = action => {
-  return action.type.startsWith(
-    `${types.FETCH_PAGE_BY_SLUG_COMPLETE}-${CURATED_SLUG}`
-  );
 };
