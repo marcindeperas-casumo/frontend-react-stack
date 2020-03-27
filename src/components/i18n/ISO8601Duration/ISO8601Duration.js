@@ -7,11 +7,16 @@ import { durationToTranslationKey } from "./ISO8601Duration.utils";
 import type {
   DurationTranslations,
   LuxonDurationKey,
+  LuxonDurationObject,
 } from "./ISO8601Duration.types";
 
 type Props = {
-  duration: string, // ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
+  /**
+   * string is ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
+   */
+  duration: string | LuxonDurationObject,
   preferAbbreviated?: boolean,
+  preferShort?: boolean,
   t: DurationTranslations & {
     separator: string,
   },
@@ -25,10 +30,22 @@ export function ISO8601Duration(props: Props): string {
     return "";
   }
 
-  const duration = Duration.fromISO(props.duration).toObject();
+  const duration: LuxonDurationObject =
+    typeof props.duration === "string"
+      ? Duration.fromISO(props.duration).toObject()
+      : props.duration;
 
   return R.pipe(
-    R.filter(R.has(R.__, duration)), // we could just iterate over duration but it would create issue with preserving proper order in output
+    // we could just iterate over duration but it would create issue with preserving proper order in output
+    R.filter(R.has(R.__, duration)),
+    // drop items from the beginning which values in duration are lte 0
+    R.dropWhile(
+      R.pipe(
+        R.prop(R.__, duration),
+        R.lte(R.__, 0)
+      )
+    ),
+    R.when(R.always(props.preferShort), R.take(2)),
     R.map((key: LuxonDurationKey) => {
       const value = duration[key];
 

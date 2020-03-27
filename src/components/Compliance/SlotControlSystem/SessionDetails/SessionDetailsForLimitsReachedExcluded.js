@@ -1,10 +1,12 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
-import { ISO8601DurationTimer } from "Components/i18n/ISO8601DurationTimer";
+import Timer from "Components/Timer";
+import { ISO8601DurationContainer } from "Components/i18n/ISO8601Duration";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -21,7 +23,7 @@ type Props = {
     limits_reached_exclusion_text: string,
   },
   onClickButton: () => void,
-  secondsTillEndOfBreak: number,
+  endTime: number,
   locale: string,
   lastEndedSession: EndedSessionType,
 };
@@ -36,11 +38,17 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
         {interpolateWithJSX(
           {
             time: (
-              <ISO8601DurationTimer
-                secondsTillEnd={props.secondsTillEndOfBreak}
-                t={{ separator: " " }}
-                preferShort
-                preferAbbreviated
+              <Timer
+                endTime={props.endTime}
+                onEnd={() => "00:00"}
+                render={state => (
+                  <ISO8601DurationContainer
+                    duration={R.omit(["hasEnded"], state)}
+                    t={{ separator: " " }}
+                    preferShort
+                    preferAbbreviated
+                  />
+                )}
               />
             ),
           },

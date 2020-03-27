@@ -9,6 +9,10 @@ export type LuxonDurationKey =
   | "seconds"
   | "milliseconds";
 
+export type LuxonDurationObject = {
+  [LuxonDurationKey]: number,
+};
+
 export type DurationTranslations = {
   year_singular: string,
   year_plural: string,

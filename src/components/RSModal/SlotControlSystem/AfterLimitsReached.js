@@ -102,9 +102,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
           t={props.t}
           locale={locale}
           lastEndedSession={lastEndedSession}
-          secondsTillEndOfBreak={
-            (activeExclusion.expiringTime - Date.now()) / 1000
-          }
+          endTime={activeExclusion.expiringTime}
           onClickButton={onClickButton}
         />
       </ModalSkin>

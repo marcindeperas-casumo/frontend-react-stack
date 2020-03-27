@@ -1,17 +1,8 @@
 // @flow
-import { Duration } from "luxon";
 import type {
   DurationTranslations,
   LuxonDurationKey,
 } from "./ISO8601Duration.types";
-
-type OptionsType = {
-  /**
-   * Display only first non-zero major unit and a subunit i.e. hours and minutes.
-   */
-  isShort?: boolean,
-  withMillis?: boolean,
-};
 
 const LUXON_KEY_TO_CMS_KEY_ABBREVIATED = {
   years: "year_abbreviated",
@@ -43,39 +34,6 @@ const LUXON_KEY_TO_CMS_KEY_PLURAL = {
   seconds: "second_plural",
   milliseconds: "millisecond_plural",
 };
-
-export function convertSecondsToISO8601Duration(
-  seconds: number,
-  opts: OptionsType = {}
-): string {
-  const { isShort, withMillis } = opts;
-  const duration = Duration.fromMillis(seconds * 1000).shiftTo(
-    "days",
-    "hours",
-    "minutes",
-    "seconds"
-  );
-
-  if (!withMillis) {
-    duration.set({ seconds: parseInt(duration.seconds) });
-  }
-
-  if (!isShort) {
-    return duration.toISO();
-  }
-
-  if (duration.days > 0) {
-    return `P${duration.days}DT${duration.hours}H`;
-  }
-  if (duration.hours > 0) {
-    return `PT${duration.hours}H${duration.minutes}M`;
-  }
-  if (duration.minutes > 0) {
-    return `PT${duration.minutes}M${duration.seconds}S`;
-  }
-
-  return `PT${duration.seconds}S`;
-}
 
 export function durationToTranslationKey(
   durationKey: LuxonDurationKey,
