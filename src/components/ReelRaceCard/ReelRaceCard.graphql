@@ -13,6 +13,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
     startTime
     status
     spinLimit
+    minBet
     promoted
     formattedPrize
     remainingSpins
@@ -26,9 +27,8 @@ fragment ReelRaceCard_ReelRace on ReelRace {
         spins
         duration
         durationTemplate
+        minBet
         caveatShort
-        today
-        tomorrow
     }
 }
 
@@ -36,5 +36,11 @@ mutation OptInForReelRace($id: String!) {
     optInForReelRace(id: $id) {
         id
         optedIn
+    }
+}
+
+query ReelRaceCardQuery {
+    session {
+        locale
     }
 }

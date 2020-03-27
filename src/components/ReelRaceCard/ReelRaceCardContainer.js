@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { ReelRaceCard } from "./ReelRaceCard";
-import { OptInForReelRace } from "./ReelRaceCard.graphql";
+import { OptInForReelRace, ReelRaceCardQuery } from "./ReelRaceCard.graphql";
 
 type Props = {
   reelRace: A.ReelRaceCard_ReelRace,
@@ -11,6 +11,7 @@ type Props = {
 
 export const ReelRaceCardContainer = ({ reelRace }: Props) => {
   const { id } = reelRace;
+  const { data, loading } = useQuery(ReelRaceCardQuery);
   const [optInForReelRace] = useMutation(OptInForReelRace, {
     variables: {
       id,
@@ -25,5 +26,12 @@ export const ReelRaceCardContainer = ({ reelRace }: Props) => {
     },
   });
 
-  return <ReelRaceCard reelRace={reelRace} optIn={optInForReelRace} />;
+  return (
+    <ReelRaceCard
+      reelRace={reelRace}
+      optIn={optInForReelRace}
+      loading={loading}
+      locale={data?.session?.locale}
+    />
+  );
 };

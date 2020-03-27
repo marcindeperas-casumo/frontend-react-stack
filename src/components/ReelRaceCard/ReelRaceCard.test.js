@@ -54,7 +54,9 @@ describe("ReelRaceCard", () => {
       endTime: now + 60 * minute,
     };
 
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
+    const rendered = shallow(
+      <ReelRaceCard reelRace={reelRace} locale="en" loading={false} />
+    );
 
     test('should show "Starting In" text', () => {
       expect(rendered.contains(props.translations.startingIn)).toBe(true);
@@ -94,7 +96,9 @@ describe("ReelRaceCard", () => {
       endTime: now + 30 * minute,
       launchGame: launchGame,
     };
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
+    const rendered = shallow(
+      <ReelRaceCard reelRace={reelRace} locale="en" loading={false} />
+    );
 
     test('should show "Ending In" text', () => {
       expect(rendered.contains(props.translations.endingIn)).toBe(true);
@@ -124,7 +128,9 @@ describe("ReelRaceCard", () => {
       startTime: now,
       endTime: now + 30 * minute,
     };
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
+    const rendered = shallow(
+      <ReelRaceCard reelRace={reelRace} locale="en" loading={false} />
+    );
 
     expect(rendered.find(".c-reel-race__badge")).toHaveLength(1);
   });
