@@ -1,0 +1,23 @@
+fragment AfterLimitsReached_Game on Game {
+  __typename
+  id
+  slug
+  backgroundImage
+  logo
+  name
+}
+
+query PlayAgainGameBySlugQuery($slug: String!) {
+  gamesBySlugs(slugs: [$slug]) {
+    ...AfterLimitsReached_Game
+  }
+}
+
+query PlayAgainLatestPlayedQuery {
+  gamesList(listId: "latestPlayedGames") {
+    id
+    games(numberOfGames: 1) {
+      ...AfterLimitsReached_Game
+    }
+  }
+}
