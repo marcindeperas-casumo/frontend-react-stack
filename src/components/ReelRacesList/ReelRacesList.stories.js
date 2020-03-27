@@ -45,6 +45,8 @@ const props = {
         durationTemplate: "{{{duration}}} min",
         minBet: "Min Bet",
         caveatShort: "false",
+        today: "Today",
+        tomorrow: "Tomorrow",
       },
     },
     {
@@ -79,6 +81,8 @@ const props = {
         durationTemplate: "{{{duration}}} min",
         minBet: "Min Bet",
         caveatShort: "false",
+        today: "Today",
+        tomorrow: "Tomorrow",
       },
     },
   ],

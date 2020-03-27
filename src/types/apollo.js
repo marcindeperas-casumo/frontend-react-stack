@@ -643,17 +643,6 @@ export type OptInForReelRaceVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: ReelRaceCardQuery
-// ====================================================
-
-export type ReelRaceCardQuery_session = {
-  locale: string,
-};
-export type ReelRaceCardQuery = {
-  session: ReelRaceCardQuery_session,
-};
-
-// ====================================================
 // GraphQL query operation: ReelRaceListQuery
 // ====================================================
 
@@ -674,8 +663,9 @@ export type ReelRaceListQuery_reelRaces_translations = {
   spins: string,
   duration: string,
   durationTemplate: string,
-  minBet: string,
   caveatShort: string,
+  today: string,
+  tomorrow: string,
 };
 export type ReelRaceListQuery_reelRaces = {
   id: string,
@@ -685,7 +675,6 @@ export type ReelRaceListQuery_reelRaces = {
   endTime: BigInt,
   status: ?string,
   spinLimit: number,
-  minBet: ?string,
   promoted: boolean,
   formattedPrize: string,
   remainingSpins: number,
@@ -2107,8 +2096,9 @@ export type ReelRaceCard_ReelRace_translations = {
   spins: string,
   duration: string,
   durationTemplate: string,
-  minBet: string,
   caveatShort: string,
+  today: string,
+  tomorrow: string,
 };
 export type ReelRaceCard_ReelRace = {
   id: string,
@@ -2118,7 +2108,6 @@ export type ReelRaceCard_ReelRace = {
   endTime: BigInt,
   status: ?string,
   spinLimit: number,
-  minBet: ?string,
   promoted: boolean,
   formattedPrize: string,
   remainingSpins: number,
