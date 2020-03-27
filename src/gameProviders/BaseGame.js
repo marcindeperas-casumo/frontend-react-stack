@@ -63,31 +63,7 @@ export class BaseGame {
     }
   }
 
-  onResize = () => {
-    // Reference to app's host element
-    const hostElement = document.querySelector("#root");
+  onMount() {}
 
-    if (hostElement) {
-      // setting temporarily to large amount
-      // to cater for ios issue on rotation
-      // https://jira.casumocave.com/browse/PRCA-424
-      // eslint-disable-next-line fp/no-mutation
-      hostElement.style.height = "2000px";
-
-      setTimeout(() => {
-        // Removing the effect created above shortly after
-        // as only needed till brower settles after rotation
-        // eslint-disable-next-line fp/no-mutation
-        hostElement.style.height = "";
-      }, 500);
-    }
-  };
-
-  onMount() {
-    window.addEventListener("resize", this.onResize);
-  }
-
-  onUnmount() {
-    window.removeEventListener("resize", this.onResize);
-  }
+  onUnmount() {}
 }
