@@ -29,20 +29,9 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     };
   });
 
-  const translations = {
-    listTitleLabel: data?.listTitleLabel || "",
-    availableListTitleLabel: data?.availableListTitleLabel || "",
-    lockedListTitleLabel: data?.lockedListTitleLabel || "",
-    hoursLabel: data?.hoursLabel || "",
-    minutesLabel: data?.minutesLabel || "",
-    seeAllLabel: data?.seeAllLabel || "",
-    noValuablesLabel: data?.noValuablesLabel || "",
-    dontUseValuableLabel: data?.dontUseValuableLabel || "",
-  };
-
   return {
     loading,
-    translations,
+    translations: data,
     valuables: (R.pathOr([], ["player", "valuables"], data): $ElementType<
       $ElementType<PlayerValuablesQuery, "player">,
       "valuables"

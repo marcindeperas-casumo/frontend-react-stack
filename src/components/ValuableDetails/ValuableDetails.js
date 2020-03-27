@@ -274,20 +274,22 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
-            <Button
-              className="u-width--full"
-              onClick={() => this.handleAction(actionButtonProps)}
-              data-test="valuable-action-button"
-              variant="primary"
-            >
-              <ActionButtonContent
-                text={actionButtonProps.text}
-                isLocked={valuableState === VALUABLE_STATES.LOCKED}
-                data-test="expiration-badge-content"
-              />
-            </Button>
-          </div>
+          {valuableState !== VALUABLE_STATES.USED && (
+            <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
+              <Button
+                className="u-width--full"
+                onClick={() => this.handleAction(actionButtonProps)}
+                data-test="valuable-action-button"
+                variant="primary"
+              >
+                <ActionButtonContent
+                  text={actionButtonProps.text}
+                  isLocked={valuableState === VALUABLE_STATES.LOCKED}
+                  data-test="expiration-badge-content"
+                />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );
