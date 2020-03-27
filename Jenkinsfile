@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('casumo-jenkins-libraries@revert-147-customstep') _
+@Library('casumo-jenkins-libraries') _
 
 import com.casumo.jenkins.PluggablePipelineBuilder
 import com.casumo.jenkins.pipeline.features.DeployService
