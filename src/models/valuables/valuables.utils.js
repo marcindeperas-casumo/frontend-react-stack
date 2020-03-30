@@ -34,7 +34,9 @@ export const isAboutToExpire = (hours: number): boolean =>
   hours >= 0 && hours <= 24;
 
 export const showStateBadge = (valuableState: ValuableState, hours: number) =>
-  valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
+  valuableState === VALUABLE_STATES.LOCKED ||
+  valuableState === VALUABLE_STATES.USED ||
+  isAboutToExpire(hours);
 
 export const getValuablesByState = (states: ValuableState[]) =>
   filter(({ valuableState }) => includes(valuableState, states));

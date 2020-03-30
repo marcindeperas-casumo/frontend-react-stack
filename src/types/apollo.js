@@ -544,6 +544,7 @@ export type PlayerValuablesQuery_player = {
 export type PlayerValuablesQuery = {
   listTitleLabel: string,
   availableListTitleLabel: string,
+  usedListTitleLabel: string,
   lockedListTitleLabel: string,
   hoursLabel: string,
   minutesLabel: string,
