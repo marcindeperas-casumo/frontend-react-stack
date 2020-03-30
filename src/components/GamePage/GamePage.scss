@@ -15,6 +15,14 @@ $directions: (top, left, bottom, right);
   }
 }
 
+.c-game-page__game-content-borders {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
 .c-game-page__game-launcher {
   border: 0;
   height: 100%;

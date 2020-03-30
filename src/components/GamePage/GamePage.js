@@ -1,9 +1,9 @@
 // @flow
-
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import LoaderGlobal from "@casumo/cmp-loader-global";
+import { VerticalStretcher } from "Components/VerticalStretcher";
 import {
   useGameLaunchData,
   useCrossCodebaseNavigation,
@@ -59,7 +59,7 @@ export const GamePage = ({ slug, playForFun }: Props) => {
 
   if (error) {
     return (
-      <Flex className="t-background-chrome-light-2 u-height--screen">
+      <Flex className="t-background-chrome-light-2 u-height--full">
         <ErrorMessage
           errorMessage={errorMessages?.general_error_title || ""}
           retry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
@@ -73,32 +73,34 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   }
 
   return (
-    <Flex
-      className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
-      direction="vertical"
-      spacing="none"
-    >
-      <Flex.Item>
-        <PlayOkayBar />
-      </Flex.Item>
-      <Flex.Block className="u-position-relative">
-        <div
-          className={classNames(
-            "c-game-page__game-wrapper",
-            gameProviderModel.gameWrapperClasses || []
-          )}
-        >
-          <GameLauncher
-            gameProviderModel={gameProviderModel}
-            className="c-game-page__game-launcher"
-          />
-        </div>
-      </Flex.Block>
-      {shouldShowSlotControlSystem && (
+    <VerticalStretcher>
+      <Flex
+        className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
+        direction="vertical"
+        spacing="none"
+      >
         <Flex.Item>
-          <InfoBar />
+          <PlayOkayBar />
         </Flex.Item>
-      )}
-    </Flex>
+        <Flex.Block className="u-position-relative o-flex c-game-page__game-content-borders">
+          <div
+            className={classNames(
+              "c-game-page__game-wrapper",
+              gameProviderModel.gameWrapperClasses || []
+            )}
+          >
+            <GameLauncher
+              gameProviderModel={gameProviderModel}
+              className="c-game-page__game-launcher"
+            />
+          </div>
+        </Flex.Block>
+        {shouldShowSlotControlSystem && (
+          <Flex.Item>
+            <InfoBar />
+          </Flex.Item>
+        )}
+      </Flex>
+    </VerticalStretcher>
   );
 };
