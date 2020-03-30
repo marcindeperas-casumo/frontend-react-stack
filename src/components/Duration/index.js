@@ -1,2 +1,2 @@
 // @flow
-export { DurationContainer } from "./DurationContainer";
+export { Duration } from "./Duration";

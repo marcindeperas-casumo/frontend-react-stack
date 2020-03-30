@@ -38,4 +38,5 @@ export type DurationTranslations = {
   millisecond_singular: string,
   millisecond_plural: string,
   millisecond_abbreviated: string,
+  separator: string,
 };

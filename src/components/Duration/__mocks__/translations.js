@@ -35,6 +35,4 @@ export default ({
   "millisecond_abbreviated": "{{value}}ms",
 
   "separator": ", "
-}: DurationTranslations & {
-  separator: string,
-});
+}: DurationTranslations);

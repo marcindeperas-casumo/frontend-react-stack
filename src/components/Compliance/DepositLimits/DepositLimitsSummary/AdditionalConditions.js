@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Text from "@casumo/cmp-text";
 import { interpolateWithJSX } from "Utils";
-import { DurationContainer } from "Components/Duration";
+import { Duration } from "Components/Duration";
 import type { DepositLimitPreadjust } from "Models/playOkay/depositLimits";
 
 type Props = DepositLimitPreadjust & {
@@ -23,11 +23,9 @@ export function AdditionalConditions(props: Props) {
     R.join(" "),
     interpolateWithJSX({
       postIncreaseWindow: (
-        <DurationContainer duration={props.increaseProhibitedAfterwardsFor} />
+        <Duration duration={props.increaseProhibitedAfterwardsFor} />
       ),
-      revocationWindow: (
-        <DurationContainer duration={props.increaseEffectiveAfter} />
-      ),
+      revocationWindow: <Duration duration={props.increaseEffectiveAfter} />,
     })
   )(props.rules);
 

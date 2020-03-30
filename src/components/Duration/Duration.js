@@ -1,14 +1,16 @@
 // @flow
-import * as React from "react";
 import * as R from "ramda";
 import { Duration as LuxonDuration } from "luxon";
 import { interpolate } from "Utils";
+import { useTranslations } from "Utils/hooks";
 import { durationToTranslationKey } from "./Duration.utils";
 import type {
   DurationTranslations,
   LuxonDurationKey,
   LuxonDurationObject,
 } from "./Duration.types";
+
+export const CMS_SLUG = "i18n.durations";
 
 type Props = {
   /**
@@ -17,19 +19,17 @@ type Props = {
   duration: string | LuxonDurationObject,
   preferAbbreviated?: boolean,
   preferShort?: boolean,
-  t: DurationTranslations & {
-    separator: string,
-  },
-  fetchTranslations: () => void,
+  separator?: string,
 };
 
 export function Duration(props: Props): string {
-  React.useEffect(props.fetchTranslations, []);
+  const t = useTranslations<DurationTranslations>(CMS_SLUG);
 
-  if (!props.t) {
+  if (!t) {
     return "";
   }
 
+  const separator = props?.separator || t.separator;
   const duration: LuxonDurationObject =
     typeof props.duration === "string"
       ? LuxonDuration.fromISO(props.duration).toObject()
@@ -50,13 +50,13 @@ export function Duration(props: Props): string {
       const value = duration[key];
 
       return interpolate(
-        props.t[durationToTranslationKey(key, value, props.preferAbbreviated)],
+        t[durationToTranslationKey(key, value, props.preferAbbreviated)],
         {
           value: value.toString(),
         }
       );
     }),
-    R.join(props.t.separator)
+    R.join(separator)
   )([
     "years",
     "months",

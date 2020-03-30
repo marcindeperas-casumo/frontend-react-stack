@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
-import { DurationContainer } from "Components/Duration";
+import { Duration } from "Components/Duration";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -42,9 +42,9 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
                 endTime={props.endTime}
                 onEnd={() => "00:00"}
                 render={state => (
-                  <DurationContainer
+                  <Duration
                     duration={R.omit(["hasEnded"], state)}
-                    t={{ separator: " " }}
+                    separator=" "
                     preferShort
                     preferAbbreviated
                   />
