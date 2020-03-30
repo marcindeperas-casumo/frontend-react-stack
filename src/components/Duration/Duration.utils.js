@@ -1,36 +1,17 @@
 // @flow
-import type { DurationTranslations, LuxonDurationKey } from "./Duration.types";
-
-const LUXON_KEY_TO_CMS_KEY_ABBREVIATED = {
-  years: "year_abbreviated",
-  months: "month_abbreviated",
-  weeks: "week_abbreviated",
-  days: "day_abbreviated",
-  hours: "hour_abbreviated",
-  minutes: "minute_abbreviated",
-  seconds: "second_abbreviated",
-  milliseconds: "millisecond_abbreviated",
-};
-const LUXON_KEY_TO_CMS_KEY_SINGULAR = {
-  years: "year_singular",
-  months: "month_singular",
-  weeks: "week_singular",
-  days: "day_singular",
-  hours: "hour_singular",
-  minutes: "minute_singular",
-  seconds: "second_singular",
-  milliseconds: "millisecond_singular",
-};
-const LUXON_KEY_TO_CMS_KEY_PLURAL = {
-  years: "year_plural",
-  months: "month_plural",
-  weeks: "week_plural",
-  days: "day_plural",
-  hours: "hour_plural",
-  minutes: "minute_plural",
-  seconds: "second_plural",
-  milliseconds: "millisecond_plural",
-};
+import * as R from "ramda";
+import { interpolate } from "Utils";
+import {
+  LUXON_DURATION_KEYS,
+  LUXON_KEY_TO_CMS_KEY_ABBREVIATED,
+  LUXON_KEY_TO_CMS_KEY_PLURAL,
+  LUXON_KEY_TO_CMS_KEY_SINGULAR,
+} from "./Duration.constants";
+import type {
+  DurationTranslations,
+  LuxonDurationKey,
+  LuxonDurationObject,
+} from "./Duration.types";
 
 export function durationToTranslationKey(
   durationKey: LuxonDurationKey,
@@ -45,4 +26,40 @@ export function durationToTranslationKey(
   }
 
   return LUXON_KEY_TO_CMS_KEY_SINGULAR[durationKey];
+}
+
+type InterpolateDurationObjectProps = {
+  duration: LuxonDurationObject,
+  separator: string,
+  t: DurationTranslations,
+  preferShort?: boolean,
+  preferAbbreviated?: boolean,
+};
+
+export function interpolateDurationObject(
+  props: InterpolateDurationObjectProps
+): string {
+  return R.pipe(
+    // we could just iterate over duration but it would create issue with preserving proper order in output
+    R.filter(R.has(R.__, props.duration)),
+    // drop items from the beginning which values in duration are lte 0
+    R.dropWhile(
+      R.pipe(
+        R.prop(R.__, props.duration),
+        R.lte(R.__, 0)
+      )
+    ),
+    R.when(R.always(props.preferShort), R.take(2)),
+    R.map((key: LuxonDurationKey) => {
+      const value = props.duration[key];
+
+      return interpolate(
+        props.t[durationToTranslationKey(key, value, props.preferAbbreviated)],
+        {
+          value: value.toString(),
+        }
+      );
+    }),
+    R.join(props.separator)
+  )(LUXON_DURATION_KEYS);
 }
