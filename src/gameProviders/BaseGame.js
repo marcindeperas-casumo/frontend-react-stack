@@ -64,14 +64,14 @@ export class BaseGame {
     }
   }
 
-  onResize() {
+  onResize = () => {
     if (this.props.gameRef) {
       expandIframeHeightToMatchItsParent(this.props.gameRef);
     }
-  }
+  };
 
   onMount() {
-    window.addEventListener("resize", this.onResize.bind(this));
+    window.addEventListener("resize", this.onResize);
   }
 
   onUnmount() {
