@@ -93,6 +93,8 @@ export class NetentGame extends BaseGame {
   }
 
   onMount() {
+    super.onMount();
+
     injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
       // $FlowFixMe - Flow does not support optional method calls
       window.netent // eslint-disable-line no-unused-expressions
@@ -114,6 +116,8 @@ export class NetentGame extends BaseGame {
   }
 
   onUnmount() {
+    super.onUnmount();
+
     if (this.extend) {
       this.teardownEvents(this.extend);
     }
