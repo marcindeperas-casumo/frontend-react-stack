@@ -2,6 +2,7 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
+import { expandIframeHeightToMatchItsParent } from "./utils";
 import { GAME_ACTIVE_EVENT_NAME, GAME_IDLE_EVENT_NAME } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
@@ -63,7 +64,17 @@ export class BaseGame {
     }
   }
 
-  onMount() {}
+  onResize() {
+    if (this.props.gameRef) {
+      expandIframeHeightToMatchItsParent(this.props.gameRef);
+    }
+  }
 
-  onUnmount() {}
+  onMount() {
+    window.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  onUnmount() {
+    window.removeEventListener("resize", this.onResize);
+  }
 }
