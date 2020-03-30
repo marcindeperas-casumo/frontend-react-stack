@@ -94,16 +94,22 @@ export class NetentGame extends BaseGame {
 
   onMount() {
     injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
-      netent.launch(
-        this.config,
-        (extend: Extend) => {
-          this.extend = extend;
-          this.setupEvents(extend);
-        },
-        (error: {}) => {
-          logger.error("Cannot load game", { error });
-        }
-      );
+      // $FlowFixMe - Flow does not support optional method calls
+      window.netent // eslint-disable-line no-unused-expressions
+        ?.launch(
+          this.config,
+          (extend: Extend) => {
+            this.extend = extend;
+            this.setupEvents(extend);
+          },
+          (error: {}) => {
+            logger.error("Cannot load game", {
+              provider: "NETENT",
+              error,
+              config: this.config,
+            });
+          }
+        );
     });
   }
 

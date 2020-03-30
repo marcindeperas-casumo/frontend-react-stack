@@ -509,19 +509,23 @@ describe("convertHoursToDays()", () => {
   });
 
   describe("addPointerEventStylesToLinkElements", () => {
-    test("should add extra styles to all links in given text", () => {
-      const before = `
-        Sample text, 
-        <a href="http://google.com" rel="extra attr">check this website</a>
-        another link goes here: 
-        <a href="http://gmail.com" rel="extra attr">check this email</a>.
-      `;
+    const before = `
+      Sample text, 
+      <a href="http://google.com" rel="extra attr">check this website</a>
+      another link goes here: 
+      <a href="http://gmail.com" rel="extra attr">check this email</a>.
 
+      Another paragraph: <a href="http://google.com" rel="extra attr">check this website</a>.
+    `;
+
+    const LINKS_AMOUNT = 3;
+
+    test("should add extra styles to all links in given text", () => {
       const processed = addPointerEventStylesToLinkElements(before);
 
       const foundAddedStyle = (processed.match(/pointer-events: all;/g) || [])
         .length;
-      expect(foundAddedStyle).toBe(2);
+      expect(foundAddedStyle).toBe(LINKS_AMOUNT);
     });
   });
 });

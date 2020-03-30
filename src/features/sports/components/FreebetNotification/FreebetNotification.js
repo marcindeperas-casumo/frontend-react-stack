@@ -31,7 +31,12 @@ type Props = {
 // The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
 // although locked valuables don't have this badge, so we can mock this data now.
 // Ideally <ValuableThumbnail> shouldn't make these properties mandatory.
-const MOCKED_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
+const MOCKED_TRANSLATIONS = {
+  hoursLabel: "",
+  minutesLabel: "",
+  lockedListTitleLabel: "",
+  usedListTitleLabel: "",
+};
 
 export const FreebetNotification = (props: Props) => (
   <Media

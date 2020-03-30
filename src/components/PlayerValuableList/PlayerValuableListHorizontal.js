@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { useMutation } from "@apollo/react-hooks";
 import Scrollable from "@casumo/cmp-scrollable";
 import * as A from "Types/apollo";
@@ -38,15 +37,11 @@ export function PlayerValuableListHorizontal() {
   const showModal = setSelectedValuable;
   const closeModal = () => setSelectedValuable(null);
 
-  if (loading) {
+  if (loading || !translations) {
     return <GameListHorizontalSkeleton />;
   }
 
   const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
-  const valuableThumbnailTranslations = R.pick(
-    ["hoursLabel", "minutesLabel"],
-    translations
-  );
   const noValuablesAvailable = !valuables.length;
 
   const keyGetter = (i: number) => valuables[i].id;
@@ -56,7 +51,7 @@ export function PlayerValuableListHorizontal() {
       <div className="c-valuable-list__valuable-card">
         <ValuableCard
           {...valuables[i]}
-          translations={valuableThumbnailTranslations}
+          translations={translations}
           onCardClick={() => showModal(valuables[i])}
           className="t-box-shadow"
         />
@@ -95,7 +90,7 @@ export function PlayerValuableListHorizontal() {
               <div className="c-valuable-list__valuable-card">
                 <ValuableCard
                   {...selectedValuable}
-                  translations={valuableThumbnailTranslations}
+                  translations={translations}
                   caveat={null}
                   className="t-box-shadow--lg"
                 />

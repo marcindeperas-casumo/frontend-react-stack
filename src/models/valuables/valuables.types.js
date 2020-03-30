@@ -19,6 +19,8 @@ export type DurationTranslations = {
 };
 
 export type ValuableThumbnailTranslations = {
+  usedListTitleLabel: string,
+  lockedListTitleLabel: string,
   hoursLabel: string,
   minutesLabel: string,
 };

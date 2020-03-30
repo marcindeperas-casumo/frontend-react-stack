@@ -32,3 +32,12 @@ fragment LiveCasinoCard on Game {
   name
   slug
 }
+
+query LiveCasinoCardCmsQuery {
+  betBehindText: getText(
+    id: "root:mobile.live-casino-cards-content:fields.bet_behind"
+  )
+  openSeatsText: getText(
+    id: "root:mobile.live-casino-cards-content:fields.open_seats"
+  )
+}
