@@ -62,7 +62,6 @@ export type GameDetailsQuery_game = {
   backgroundImage: string,
   slug: string,
   description: ?string,
-  categories: ?Array<?string>,
   media: Array<GameDetailsQuery_game_media>,
   hasPlayForFun: boolean,
   isInMaintenance: boolean,
@@ -71,12 +70,7 @@ export type GameDetailsQuery = {
   game: ?GameDetailsQuery_game,
   playButtonText: string,
   practiceButtonText: string,
-  signUpButtonText: string,
-  trophiesHeading: string,
   gameInMaintenanceText: string,
-  gameOnlyOnDesktopText: string,
-  allGamesText: string,
-  gameReviewsHeadingText: string,
 };
 export type GameDetailsQueryVariables = {
   slug: string,
@@ -1839,7 +1833,6 @@ export type GameDetails_Game = {
   backgroundImage: string,
   slug: string,
   description: ?string,
-  categories: ?Array<?string>,
   media: Array<GameDetails_Game_media>,
   hasPlayForFun: boolean,
   isInMaintenance: boolean,

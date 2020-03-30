@@ -8,21 +8,8 @@ query GameDetailsQuery($slug: String!) {
   practiceButtonText: getText(
     id: "root:mobile.game-details:fields.practice_button_text"
   )
-  signUpButtonText: getText(
-    id: "root:mobile.game-details:fields.sign_up_button_text"
-  )
-  trophiesHeading: getText(
-    id: "root:mobile.game-details:fields.trophies_heading"
-  )
   gameInMaintenanceText: getText(
-    id: "root:mobile.game-details:fields.game_in_maintenance_text"
-  )
-  gameOnlyOnDesktopText: getText(
-    id: "root:mobile.game-details:fields.game_only_on_desktop_text"
-  )
-  allGamesText: getText(id: "root:mobile.game-details:fields.all_games_text")
-  gameReviewsHeadingText: getText(
-    id: "root:mobile.game-details:fields.game_reviews_heading_text"
+    id: "root:mobile.game-details:fields.temporarily_unavailable"
   )
 }
 
@@ -32,7 +19,6 @@ fragment GameDetails_Game on Game {
   backgroundImage
   slug
   description
-  categories
   media {
     type
     path
