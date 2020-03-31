@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
-import { useRaf } from "react-use";
+import * as R from "ramda";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { navigateById } from "Services/NavigationService";
-import { interpolate, interpolateTimeInterval } from "Utils";
+import { interpolateWithJSX } from "Utils";
+import Timer from "Components/Timer";
+import { Duration } from "Components/Duration";
 import StillOnBreakImage from "./StillOnBreak.svg";
 import "./StillOnBreak.scss";
 
@@ -14,33 +16,17 @@ type Props = {
     still_on_break: string,
     still_on_break_subtext: string,
     still_on_break_button_label: string,
-    days?: string,
-    minutes?: string,
-    hours?: string,
-    seconds: string,
   },
   onClick: () => void,
-  secondsTillEnd: number,
-  fetchContent: () => void,
+  endTime: number,
 };
 
 export function StillOnBreak(props: Props) {
-  const { t, secondsTillEnd, fetchContent } = props;
-  const millisTillEnd = secondsTillEnd * 1000;
+  const { t } = props;
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
-
-  const elapsedTimePercentage = useRaf(millisTillEnd, 1000);
-  const timeInterval = interpolateTimeInterval({
-    seconds: secondsTillEnd * (1 - elapsedTimePercentage),
-    t,
-  });
-
-  React.useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
 
   return (
     <Flex direction="vertical">
@@ -53,7 +39,25 @@ export function StillOnBreak(props: Props) {
         {t.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {interpolate(t.still_on_break_subtext, { time: timeInterval })}
+        {interpolateWithJSX(
+          {
+            time: (
+              <Timer
+                endTime={props.endTime}
+                onEnd={() => "00:00"}
+                render={state => (
+                  <Duration
+                    duration={R.omit(["hasEnded"], state)}
+                    separator=" "
+                    preferShort
+                    preferAbbreviated
+                  />
+                )}
+              />
+            ),
+          },
+          t.still_on_break_subtext
+        )}
       </Text>
       <Button
         size="md"
