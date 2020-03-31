@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import {
   compose,
   prop,
+  propOr,
   path,
   pathOr,
   isNil,
@@ -16,6 +17,7 @@ import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
+export const DEFAULT_MARKET = MARKETS.___en;
 
 export const handshakeSelector = (state: Object) => state.handshake;
 
@@ -111,7 +113,7 @@ export const bonusAmountSelector = createSelector(
 
 export const marketSelector = createSelector(
   playerSelector,
-  prop("market")
+  propOr(DEFAULT_MARKET, "market")
 );
 
 export const hasMadeFirstDepositSelector = createSelector(
