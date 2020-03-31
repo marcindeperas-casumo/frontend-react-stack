@@ -24,6 +24,7 @@ const commands = [
     [
       "codegen:generate",
       TYPE_FILE_LOCATION,
+      `--config=codegen.apollo.config.js`,
       "--target=flow",
       `--includes=src/**/!(apollo).{js,graphql}`,
       "--outputFlat",
