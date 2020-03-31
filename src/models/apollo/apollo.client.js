@@ -15,6 +15,7 @@ import {
   sessionIdSelector,
   languageSelector,
 } from "Models/handshake";
+import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import introspectionQueryResultData from "./introspections.json";
@@ -23,8 +24,6 @@ import { typeDefs } from "./typedefs";
 import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
-
-const GRAPHQL_API_URL = "/graphql/casumo/";
 
 export const apolloClient = getApolloClient();
 
@@ -80,7 +79,7 @@ function getContextLink() {
 
 function getHttpLink() {
   return new HttpLink({
-    uri: GRAPHQL_API_URL,
+    uri: config.graphqlUrl,
     credentials: "same-origin",
     useGETForQueries: true,
     fetch: getFetchExtendedWithMarketAndLocale(),
