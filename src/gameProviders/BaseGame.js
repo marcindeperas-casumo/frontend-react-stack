@@ -71,10 +71,10 @@ export class BaseGame {
   };
 
   onMount() {
-    window.addEventListener("resize", this.onResize);
+    window.addEventListener("resize", () => this && this.onResize());
   }
 
   onUnmount() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("resize", () => this && this.onResize());
   }
 }
