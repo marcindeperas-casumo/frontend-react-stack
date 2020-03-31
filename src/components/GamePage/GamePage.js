@@ -19,8 +19,6 @@ import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
-import { Mobile } from "Components/ResponsiveLayout";
-import { ORIENTATION_VALUES } from "Components/ResponsiveLayout/ResponsiveLayout.types";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import "./GamePage.scss";
 import type { GameProviderModel } from "GameProviders";
@@ -41,9 +39,6 @@ export const GamePageRender = (
       spacing="none"
     >
       <Flex.Item>
-        <Mobile orientation={ORIENTATION_VALUES.LANDSCAPE}>
-          <InfoBar />
-        </Mobile>
         <PlayOkayBar />
       </Flex.Item>
       <Flex.Block className="u-position-relative o-flex c-game-page__game-content-borders">
