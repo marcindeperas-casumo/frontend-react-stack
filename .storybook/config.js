@@ -33,6 +33,18 @@ addDecorator((Component, story) => {
   return globalDecorator(Component);
 });
 
+/**
+ * Disabling the general wrapper in your story:
+ *
+ *     storiesOf('Button', module)
+ *        .addParameters({ noGlobalDecorator: true });
+ *
+ * or:
+ *     story.add('Button', () => <Button />, {
+ *       noGlobalDecorator: true
+ *     })
+ */
+
 addParameters({
   backgrounds: [
     { name: "light", value: "#ffffff", default: true },
