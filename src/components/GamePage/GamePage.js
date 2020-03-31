@@ -19,13 +19,54 @@ import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
+import { Mobile } from "Components/ResponsiveLayout";
+import { ORIENTATION_VALUES } from "Components/ResponsiveLayout/ResponsiveLayout.types";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import "./GamePage.scss";
+import type { GameProviderModel } from "GameProviders";
 
 type Props = {
   slug: string,
   playForFun: boolean,
 };
+
+export const GamePageRender = (
+  gameProviderModel: GameProviderModel,
+  shouldShowSlotControlSystem: boolean
+) => (
+  <VerticalStretcher>
+    <Flex
+      className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
+      direction="vertical"
+      spacing="none"
+    >
+      <Flex.Item>
+        <Mobile orientation={ORIENTATION_VALUES.LANDSCAPE}>
+          <InfoBar />
+        </Mobile>
+        <PlayOkayBar />
+      </Flex.Item>
+      <Flex.Block className="u-position-relative o-flex c-game-page__game-content-borders">
+        <div
+          className={classNames(
+            "c-game-page__game-wrapper",
+            gameProviderModel.gameWrapperClasses || []
+          )}
+        >
+          <GameLauncher
+            gameProviderModel={gameProviderModel}
+            className="c-game-page__game-launcher"
+          />
+        </div>
+      </Flex.Block>
+      {shouldShowSlotControlSystem && (
+        <Flex.Item>
+          <InfoBar />
+        </Flex.Item>
+      )}
+    </Flex>
+  </VerticalStretcher>
+);
 
 export const GamePage = ({ slug, playForFun }: Props) => {
   const { isDGOJ } = useJurisdiction();
@@ -72,35 +113,5 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     return <LoaderGlobal />;
   }
 
-  return (
-    <VerticalStretcher>
-      <Flex
-        className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
-        direction="vertical"
-        spacing="none"
-      >
-        <Flex.Item>
-          <PlayOkayBar />
-        </Flex.Item>
-        <Flex.Block className="u-position-relative o-flex c-game-page__game-content-borders">
-          <div
-            className={classNames(
-              "c-game-page__game-wrapper",
-              gameProviderModel.gameWrapperClasses || []
-            )}
-          >
-            <GameLauncher
-              gameProviderModel={gameProviderModel}
-              className="c-game-page__game-launcher"
-            />
-          </div>
-        </Flex.Block>
-        {shouldShowSlotControlSystem && (
-          <Flex.Item>
-            <InfoBar />
-          </Flex.Item>
-        )}
-      </Flex>
-    </VerticalStretcher>
-  );
+  return GamePageRender(gameProviderModel, shouldShowSlotControlSystem);
 };
