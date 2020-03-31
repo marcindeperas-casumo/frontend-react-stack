@@ -1,9 +1,5 @@
 import { combineReducers } from "redux";
-import {
-  types,
-  APP_HANDSHAKE_KEY,
-  GAMES_HANDSHAKE_KEY,
-} from "./handshake.constants";
+import { types, APP_HANDSHAKE_KEY } from "./handshake.constants";
 
 const DEFAULT_STATE = {};
 
@@ -22,5 +18,4 @@ const handshakeReducerFactory = key => (state = DEFAULT_STATE, action) => {
 
 export default combineReducers({
   app: handshakeReducerFactory(APP_HANDSHAKE_KEY),
-  games: handshakeReducerFactory(GAMES_HANDSHAKE_KEY),
 });

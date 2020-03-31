@@ -3,9 +3,7 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
-import { launchGame } from "Services/LaunchGameService";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
+import { GameRow, GameRowSearchText } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import {
@@ -52,7 +50,6 @@ export const GameSearch = (props: Props) => {
   const GameRowHighlightSearch = game => (
     <GameRow
       game={game}
-      onLaunchGame={() => launchGame({ slug: game.slug })}
       renderText={() => (
         <GameRowSearchText
           name={game.name}

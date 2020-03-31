@@ -54,7 +54,9 @@ describe("ValuableRow", () => {
   });
 
   test("should call the onClick on click of ValuableRow", () => {
-    rendered.find({ "data-test": "valuable-row" }).simulate("click");
+    rendered
+      .find({ "data-test": "valuable-row" })
+      .simulate("click", { currentTarget: {} });
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

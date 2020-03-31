@@ -2,9 +2,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
-import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowText } from "Components/GameRow/GameRowText";
-import { launchGame } from "Services/LaunchGameService";
+import { GameRow, GameRowText } from "Components/GameRow";
 
 import "./JackpotsListTile.scss";
 
@@ -25,7 +23,6 @@ export const JackpotsListTile = ({ games = [], isScrolling = false }: Props) =>
             "t-box-shadow": !isScrolling,
           }
         )}
-        onLaunchGame={() => launchGame({ slug: game.slug })}
         renderText={() => <GameRowText name={game.name} />}
       />
     </div>

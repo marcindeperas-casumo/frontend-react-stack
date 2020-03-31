@@ -1,7 +1,10 @@
+// @flow
 const boosters = {
   triples: 0,
   bigWins: 0,
   megaWins: 0,
+  wins: 0,
+  winsInARow: 0,
 };
 
 export const leaderboard = [
