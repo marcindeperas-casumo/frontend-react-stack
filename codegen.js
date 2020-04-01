@@ -1,6 +1,8 @@
-const schema = require("./apollo.config").client.service.url;
+const schema = require("./codegen.apollo.config").client.service.url;
 
 module.exports = {
+  // It fetches the schema from the GraphQL Service instance on test.
+  // Make sure that you are on the inner network (by using a VPN or connecting to the office network) otherwise it won't work.
   schema,
   documents: [
     {
