@@ -141,11 +141,7 @@ export class ReelRaceCard extends React.Component<Props> {
     return (
       <Flex spacing="none">
         <ClockIcon className="u-margin-right" />
-        <Text
-          tag="span"
-          size="sm"
-          className="t-color-white u-font-weight-bold u-text-transform-capitalize"
-        >
+        <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
           {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
             "t"
           )}`}
