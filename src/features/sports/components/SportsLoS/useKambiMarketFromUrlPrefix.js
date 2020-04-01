@@ -1,7 +1,11 @@
 // @flow
 import { pickBy, keys, head } from "ramda";
-import { URL_PREFIXES, LANGUAGES, MARKETS } from "Src/constants";
-import { DEFAULT_LANGUAGE } from "Models/handshake";
+import {
+  URL_PREFIXES,
+  LANGUAGES,
+  MARKETS,
+  DEFAULT_LANGUAGE,
+} from "Src/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
 
 const DEFAULT_KAMBI_MARKET = "GB";

@@ -200,6 +200,10 @@ export const LANGUAGES = {
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
 };
+
+export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
+export const DEFAULT_MARKET = MARKETS.___en;
+
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "en-CA",
