@@ -65,7 +65,7 @@
 }
 
 .u-left-shell-offset {
-  left: var(--shell-offset-left);
+  left: var(--shell-offset-left, 0);
 }
 
 .u-top-auto {
