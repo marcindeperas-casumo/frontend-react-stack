@@ -19,8 +19,7 @@ export const GameDetailsContainer = ({ slug }: { slug: string }) => {
     return <GameDetailsSkeleton />;
   }
 
-  // games don't always exist
-  if (!loading && !data) {
+  if (!loading && data && !data.game) {
     navigateById({ routeId: "404" });
   }
 

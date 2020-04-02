@@ -14,6 +14,7 @@ query GameDetailsQuery($slug: String!) {
 }
 
 fragment GameDetails_Game on Game {
+  id
   name
   logo
   backgroundImage
