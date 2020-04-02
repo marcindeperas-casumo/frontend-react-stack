@@ -1,37 +1,22 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import LoaderGlobal from "@casumo/cmp-loader-global";
-import { VerticalStretcher } from "Components/VerticalStretcher";
-import {
-  useGameLaunchData,
-  useCrossCodebaseNavigation,
-  useTranslations,
-  useJurisdiction,
-  useGameCategory,
-  useDispatchPlaying,
-} from "Utils/hooks";
-import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
-import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
-import { isSlotGame } from "Models/slotControlSystem";
-import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
-import { ROUTE_IDS } from "Src/constants";
-import { ErrorMessage } from "Components/ErrorMessage";
+import Flex from "@casumo/cmp-flex";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
-import "./GamePage.scss";
+import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
+import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 
 type Props = {
-  slug: string,
-  playForFun: boolean,
+  gameProviderModel: GameProviderModel,
+  shouldShowSlotControlSystem: boolean,
 };
 
-export const GamePageRender = (
-  gameProviderModel: GameProviderModel,
-  shouldShowSlotControlSystem: boolean
-) => (
+export const GamePage = ({
+  gameProviderModel,
+  shouldShowSlotControlSystem,
+}: Props) => (
   <VerticalStretcher>
     <Flex
       className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
@@ -62,51 +47,3 @@ export const GamePageRender = (
     </Flex>
   </VerticalStretcher>
 );
-
-export const GamePage = ({ slug, playForFun }: Props) => {
-  const { isDGOJ } = useJurisdiction();
-  const { navigateToKO } = useCrossCodebaseNavigation();
-  const errorMessages = useTranslations("mobile.errors");
-  const { loading, gameCategory } = useGameCategory(slug);
-  const shouldShowSlotControlSystem =
-    !loading && isDGOJ && isSlotGame(gameCategory);
-  const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
-    {
-      playForFun,
-      slug,
-    }
-  );
-  useRealityCheckModal({ pauseGame, resumeGame });
-
-  useDispatchPlaying({
-    isPlaying: true,
-    gameId: slug,
-  });
-
-  useBeforePlayingModal({
-    canLaunch: Boolean(
-      !playForFun &&
-        !error &&
-        !loading &&
-        gameProviderModel &&
-        shouldShowSlotControlSystem
-    ),
-  });
-
-  if (error) {
-    return (
-      <Flex className="t-background-chrome-light-2 u-height--full">
-        <ErrorMessage
-          errorMessage={errorMessages?.general_error_title || ""}
-          retry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
-        />
-      </Flex>
-    );
-  }
-
-  if (!gameProviderModel || loading) {
-    return <LoaderGlobal />;
-  }
-
-  return GamePageRender(gameProviderModel, shouldShowSlotControlSystem);
-};

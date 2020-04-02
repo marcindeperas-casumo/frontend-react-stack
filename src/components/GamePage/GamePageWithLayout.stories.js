@@ -1,7 +1,7 @@
 // @flow
 import React, { useEffect } from "react";
 import { storiesOf } from "@storybook/react";
-import { GamePageRender } from "Components/GamePage";
+import { GamePage } from "Components/GamePage";
 import { LayoutPage } from "Components/LayoutPage";
 import { BaseGame } from "GameProviders";
 import MockStore from "Components/MockStore";
@@ -65,7 +65,10 @@ stories.add(
     return (
       <MockStore>
         <LayoutPage>
-          {GamePageRender(gameProviderModel, shouldShowSlotControlSystem)}
+          <GamePage
+            gameProviderModel={gameProviderModel}
+            shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+          />
         </LayoutPage>
       </MockStore>
     );
