@@ -4,7 +4,7 @@ import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { GameDetailsImage } from "./GameDetailsImage";
-import { GameDetailsImageInMaintenance } from "./GameDetailsImageInMaintenance";
+import { GameDetailsMedia } from "./GameDetailsMedia";
 import { GameDetailsButtons } from "./GameDetailsButtons";
 
 import "./GameDetails.scss";
@@ -20,14 +20,18 @@ export const GameDetails = ({ data }: Props) => {
 
   return (
     <div className="c-game-details u-margin-x--auto u-padding-bottom--lg@tablet">
-      <div className="t-background-white u-overflow-hidden u-margin-x--md@tablet t-border-r--md@tablet">
+      <div className="t-background-white u-overflow-hidden u-margin-x--md@tablet t-border-r--md@tablet t-border-r--md@desktop">
         {data.game.isInMaintenance ? (
-          <GameDetailsImageInMaintenance
+          <GameDetailsImage
             image={data.game.backgroundImage}
             mark={data.game.logo}
             alt={data.game.name}
-            text={data.gameInMaintenanceText}
-          />
+            className="t-greyscale"
+          >
+            <Text className="t-color-white o-ratio__content o-flex o-flex-justify--center o-flex-align--end u-padding-bottom">
+              {data.gameInMaintenanceText}
+            </Text>
+          </GameDetailsImage>
         ) : (
           <GameDetailsImage
             image={data.game.backgroundImage}
@@ -36,22 +40,23 @@ export const GameDetails = ({ data }: Props) => {
           />
         )}
         <div className="u-padding--md">
-          <Text size="md" className="u-font-weight-bold u-margin-bottom--md">
+          <Text
+            size="md"
+            data-testid="game-name-text"
+            className="u-font-weight-bold u-margin-bottom--md"
+          >
             {data.game.name}
           </Text>
           {data.game.description && (
-            <Text tag="div" className="u-margin-bottom">
+            <Text
+              tag="div"
+              data-testid="game-description-text"
+              className="u-margin-bottom--2xlg"
+            >
               <DangerousHtml html={data.game.description} />
             </Text>
           )}
-          {data.game.media.map((media: A.GameDetailsQuery_game_media) => (
-            <img
-              key={media.path}
-              className="u-margin-y"
-              src={media.path}
-              alt={data.game?.name}
-            />
-          ))}
+          <GameDetailsMedia media={data.game.media} name={data.game.name} />
         </div>
         {data.game && !data.game.isInMaintenance && (
           <GameDetailsButtons
