@@ -23,7 +23,7 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
 
   const fetchMoreGames = () => {
     setPageNumber(pageNumber + 1);
-    return fetchMore<A.GameSearchQueryVariables>({
+    return fetchMore<A.GameStudioQueryVariables>({
       variables: {
         page: pageNumber,
       },
