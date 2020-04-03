@@ -7,12 +7,12 @@ import { isNativeByUserAgent } from "GameProviders";
 
 export type Props = {
   children?: Element<*>,
-  swipeUpOverlayAvailable: boolean,
+  swipeToFillAvailable: boolean,
 };
 
 export const VerticalStretcher = ({
   children,
-  swipeUpOverlayAvailable = false,
+  swipeToFillAvailable = false,
 }: Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
@@ -20,7 +20,7 @@ export const VerticalStretcher = ({
   const isNative = isNativeByUserAgent();
 
   useEffect(() => {
-    const debouncedScrollTo0 = debounce(() => {
+    const debouncedScrollToTop = debounce(() => {
       window.scrollTo(0, 0);
     }, 50);
 
@@ -59,17 +59,17 @@ export const VerticalStretcher = ({
      * and then game stays like that and you can't do anything about it because usually game canvas prevents default
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
-    window.addEventListener("scroll", debouncedScrollTo0);
+    window.addEventListener("scroll", debouncedScrollToTop);
 
     return () => {
-      window.removeEventListener("scroll", debouncedScrollTo0);
+      window.removeEventListener("scroll", debouncedScrollToTop);
       clearInterval(interval);
     };
   });
 
   return (
     <div ref={heightContainer} className="u-width--full">
-      {swipeUpOverlayAvailable && !isNative && showSwipePanel && (
+      {swipeToFillAvailable && !isNative && showSwipePanel && (
         <div className="c-game-page__swipe-panel">
           <div className="o-flex u-width--full u-height--full o-flex-align--center"></div>
         </div>
