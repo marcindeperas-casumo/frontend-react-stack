@@ -54,14 +54,16 @@ export class NetentGame extends BaseGame {
       sessionId = null,
       staticServer = "",
       gameServer = "",
+      lang = "",
     } = this.props.gameData;
+
     return {
       gameId: gameId,
       sessionId: sessionId,
       staticServer: decodeURIComponent(staticServer),
       gameServerURL: decodeURIComponent(gameServer),
       lobbyURL: "#",
-      language: this.props.language,
+      language: lang,
       width: "100%",
       height: "100%",
       enforceRatio: false,
