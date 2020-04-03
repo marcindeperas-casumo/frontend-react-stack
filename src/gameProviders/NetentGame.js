@@ -54,14 +54,16 @@ export class NetentGame extends BaseGame {
       sessionId = null,
       staticServer = "",
       gameServer = "",
+      lang = "",
     } = this.props.gameData;
+
     return {
       gameId: gameId,
       sessionId: sessionId,
       staticServer: decodeURIComponent(staticServer),
       gameServerURL: decodeURIComponent(gameServer),
       lobbyURL: "#",
-      language: this.props.language,
+      language: lang,
       width: "100%",
       height: "100%",
       enforceRatio: false,
@@ -94,16 +96,22 @@ export class NetentGame extends BaseGame {
 
   onMount() {
     injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
-      netent.launch(
-        this.config,
-        (extend: Extend) => {
-          this.extend = extend;
-          this.setupEvents(extend);
-        },
-        (error: {}) => {
-          logger.error("Cannot load game", { error });
-        }
-      );
+      // $FlowFixMe - Flow does not support optional method calls
+      window.netent // eslint-disable-line no-unused-expressions
+        ?.launch(
+          this.config,
+          (extend: Extend) => {
+            this.extend = extend;
+            this.setupEvents(extend);
+          },
+          (error: {}) => {
+            logger.error("Cannot load game", {
+              provider: "NETENT",
+              error,
+              config: this.config,
+            });
+          }
+        );
     });
   }
 

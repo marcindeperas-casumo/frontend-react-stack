@@ -24,8 +24,6 @@ import "./ReelRaceCard.scss";
 type Props = {
   reelRace: A.ReelRaceCard_ReelRace,
   optIn: () => void,
-  locale: string,
-  loading: boolean,
 };
 
 const Column = (props: {
@@ -94,6 +92,7 @@ export class ReelRaceCard extends React.Component<Props> {
 
   get countdown() {
     const { translations: t, endTime, startTime, status } = this.props.reelRace;
+
     if (status === "Started") {
       return (
         <Flex direction="vertical" spacing="none">
@@ -137,16 +136,15 @@ export class ReelRaceCard extends React.Component<Props> {
     }
 
     const startTimeDate = DateTime.fromMillis(startTime);
+    const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
+
     return (
       <Flex spacing="none">
         <ClockIcon className="u-margin-right" />
-        <Text
-          tag="span"
-          size="sm"
-          className="t-color-white u-font-weight-bold u-text-transform-capitalize"
-        >
-          {startTimeDate.toRelativeCalendar()} {""}
-          {startTimeDate.toFormat("t")}
+        <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
+          {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
+            "t"
+          )}`}
         </Text>
       </Flex>
     );
@@ -164,12 +162,10 @@ export class ReelRaceCard extends React.Component<Props> {
   };
 
   render() {
-    const isLocaleLoading = this.props.loading || !this.props.locale;
     const {
       translations: t,
       game,
       spinLimit,
-      minBet,
       formattedPrize,
       promoted,
     } = this.props.reelRace;
@@ -178,15 +174,10 @@ export class ReelRaceCard extends React.Component<Props> {
       [EVENT_PROPS.LOCATION]: "Reel Race",
       spinLimit,
       timeLimit: this.duration,
-      minBet,
       mainPrize: formattedPrize,
       name: game.name,
       isPromoted: promoted,
     };
-
-    if (isLocaleLoading) {
-      return null;
-    }
 
     return (
       <TrackProvider data={trackData}>
@@ -277,12 +268,6 @@ export class ReelRaceCard extends React.Component<Props> {
                   })}
                   bottom={t.duration}
                 />
-              )}
-              {minBet && (
-                <>
-                  <div className="c-reel-race__separator u-margin-x--md" />
-                  <Column top={minBet} bottom={t.minBet} />
-                </>
               )}
             </Flex>
 

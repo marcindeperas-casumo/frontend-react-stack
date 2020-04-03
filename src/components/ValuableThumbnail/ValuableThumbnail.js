@@ -123,10 +123,10 @@ function getStateBadgeText(
   valuableState: ValuableState
 ): ?string {
   if (valuableState === VALUABLE_STATES.LOCKED) {
-    return VALUABLE_STATES.LOCKED;
-  }
-
-  if (isAboutToExpire(expiryTimeLeft.hours)) {
+    return translations.lockedListTitleLabel;
+  } else if (valuableState === VALUABLE_STATES.USED) {
+    return translations.usedListTitleLabel;
+  } else if (isAboutToExpire(expiryTimeLeft.hours)) {
     const { minutes, hours } = expiryTimeLeft;
 
     if (hours < 1) {

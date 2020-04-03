@@ -218,7 +218,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
             className="u-margin-bottom--lg"
           >
             <Flex.Item>
-              <Text className="center">{content}</Text>
+              <Text className="center">
+                <DangerousHtml html={content} />
+              </Text>
             </Flex.Item>
             {this.wageringRequirementsExist && (
               <Flex.Item className="u-margin-top--xlg">
@@ -245,9 +247,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Badge>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
-              <Text className="t-color-grey" size="sm">
-                {caveat}
-              </Text>
+              {caveat && (
+                <Text className="t-color-grey" size="sm">
+                  <DangerousHtml html={caveat} />
+                </Text>
+              )}
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
               <hr className="c-valuable-details__separator t-border t-border-r--pill" />
@@ -270,20 +274,22 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
-            <Button
-              className="u-width--full"
-              onClick={() => this.handleAction(actionButtonProps)}
-              data-test="valuable-action-button"
-              variant="primary"
-            >
-              <ActionButtonContent
-                text={actionButtonProps.text}
-                isLocked={valuableState === VALUABLE_STATES.LOCKED}
-                data-test="expiration-badge-content"
-              />
-            </Button>
-          </div>
+          {valuableState !== VALUABLE_STATES.USED && (
+            <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
+              <Button
+                className="u-width--full"
+                onClick={() => this.handleAction(actionButtonProps)}
+                data-test="valuable-action-button"
+                variant="primary"
+              >
+                <ActionButtonContent
+                  text={actionButtonProps.text}
+                  isLocked={valuableState === VALUABLE_STATES.LOCKED}
+                  data-test="expiration-badge-content"
+                />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );

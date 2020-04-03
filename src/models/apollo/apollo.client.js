@@ -7,12 +7,15 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
+import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { DEVICES } from "Src/constants";
 import {
   marketSelector,
   currencySelector,
   sessionIdSelector,
   languageSelector,
 } from "Models/handshake";
+import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import introspectionQueryResultData from "./introspections.json";
@@ -22,11 +25,10 @@ import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
-const GRAPHQL_API_URL = "/graphql/casumo/";
-
 export const apolloClient = getApolloClient();
 
 const { showDisabledGames } = getDeveloperOptions();
+const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
 
 export function getApolloClient(): ApolloClientType {
   return new ApolloClient({
@@ -69,6 +71,7 @@ function getContextLink() {
         "X-Market": market,
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
+        "X-Request-Device": device,
       },
     };
   });
@@ -76,7 +79,7 @@ function getContextLink() {
 
 function getHttpLink() {
   return new HttpLink({
-    uri: GRAPHQL_API_URL,
+    uri: config.graphqlUrl,
     credentials: "same-origin",
     useGETForQueries: true,
     fetch: getFetchExtendedWithMarketAndLocale(),

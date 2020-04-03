@@ -85,13 +85,26 @@ export class ValuableRow extends PureComponent<Props> {
     return coinValueToSpinType(this.props.coinValue);
   }
 
+  onClick = (event: SyntheticEvent<HTMLElement>) => {
+    const linkClickEvent = event.currentTarget.tagName === "A";
+
+    // Stop the bubbling and prevent the ValuableRow from opening a popup if an actual link was clicked
+    // inside the content.
+    if (linkClickEvent) {
+      return;
+    }
+
+    if (this.props.onClick) {
+      this.props.onClick();
+    }
+  };
+
   render() {
     const {
       caveat,
       description,
       valuableState,
       onMoreInfo,
-      onClick,
       isSelected,
     } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
@@ -105,7 +118,7 @@ export class ValuableRow extends PureComponent<Props> {
           {isSelected && <ValuableSelector />}
         </Flex.Item>
         <Flex.Item className="u-padding-right--md o-flex--1">
-          <Flex data-test="valuable-row" onClick={onClick}>
+          <Flex data-test="valuable-row" onClick={this.onClick}>
             <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
               <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
                 <ValuableThumbnail
