@@ -15,7 +15,11 @@ $directions: (top, left, bottom, right);
   }
 }
 
-.c-game-page__game-content-borders {
+.c-game-page__flexible-game-container {
+  // This tells it's children to have only space it gives them, not more
+  // but also growing up to whole remaining flex space. Prevents games to grow outside
+  // its bounds, and ensures the right height/width pattern to be later used to force resize
+  // game-canvas containers which is needed for some of the providers
   flex-grow: 1;
   flex-shrink: 1;
   height: 100%;

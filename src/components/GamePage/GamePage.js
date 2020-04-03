@@ -26,7 +26,7 @@ export const GamePage = ({
       <Flex.Item>
         <PlayOkayBar />
       </Flex.Item>
-      <Flex.Block className="u-position-relative o-flex c-game-page__game-content-borders">
+      <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
         <div
           className={classNames(
             "c-game-page__game-wrapper",
