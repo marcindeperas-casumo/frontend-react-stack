@@ -38,8 +38,11 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
 
         const sortByGameName = R.sortBy(R.prop("name"));
 
+        // We are already checking if gameStudio exists few lines above, no idea why this keeps complaining
         const mergedGames = [
-          ...prev.gameStudio.games,
+          // $FlowFixMe
+          ...prev?.gameStudio.games,
+          // $FlowFixMe
           ...fetchMoreResult.gameStudio.games,
         ];
 
