@@ -1,8 +1,9 @@
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
-import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
-import { withContainer } from "./SettingsSectionsContainer";
+import { act } from "react-dom/test-utils";
+import MockStore from "Components/MockStore";
+import { SettingsSections } from "./SettingsSections";
+import { SettingsSectionsContainer } from "./SettingsSectionsContainer";
 import {
   playerSectionsQueryMock,
   playerSectionsLabelsQueryMock,
@@ -10,86 +11,104 @@ import {
   playerSectionsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
-let Component, SettingsSectionsContainer;
-// TODO PCC-469 REMOVE REACT-ADOPT AND REWRITE COMPONENTS/TESTS
-describe.skip("SettingsSections", () => {
-  beforeEach(() => {
-    Component = props => <div />;
-    SettingsSectionsContainer = () => withContainer(Component);
-  });
+jest.useFakeTimers();
 
+describe("SettingsSections", () => {
   describe("Player Settings", () => {
     test("should render loader", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        <MockStore
+          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockedProvider>
+        </MockStore>
       );
+
+      act(() => jest.runAllTimers());
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
-    test("should show error", async () => {
+    test("should show error", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryErrorMock, playerSectionsLabelsQueryMock]}
+        <MockStore
+          queryMocks={[
+            playerSectionsQueryErrorMock,
+            playerSectionsLabelsQueryMock,
+          ]}
         >
           <SettingsSectionsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.advanceTimersByTime(10);
+        rendered.update();
+      });
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should pass correct player to child", async () => {
+    test("should pass correct player to child", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        <MockStore
+          queryAddTypename
+          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.advanceTimersByTime(10);
+        rendered.update();
+      });
 
       expect(
-        rendered.find("Component").prop("playerLoginHistory")
+        rendered.find(SettingsSections).prop("playerLoginHistory")
       ).toStrictEqual(playerSectionsQueryMock.result.data);
     });
   });
 
   describe("Labels", () => {
-    test("should show error", async () => {
+    test("should show error", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryErrorMock]}
+        <MockStore
+          queryMocks={[
+            playerSectionsQueryMock,
+            playerSectionsLabelsQueryErrorMock,
+          ]}
         >
           <SettingsSectionsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.advanceTimersByTime(10);
+        rendered.update();
+      });
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should pass correct player to child", async () => {
+    test("should pass correct player to child", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        <MockStore
+          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.advanceTimersByTime(10);
+        rendered.update();
+      });
 
       expect(
-        JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
+        JSON.parse(
+          JSON.stringify(rendered.find(SettingsSections).prop("labels"))
+        )
       ).toStrictEqual(playerSectionsLabelsQueryMock.result.data);
     });
   });
