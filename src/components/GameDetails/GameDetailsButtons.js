@@ -20,47 +20,45 @@ export const GameDetailsButtons = ({
   playButtonText,
   hasPlayForFun,
   practiceButtonText,
-}: Props) => {
-  return (
-    <div className="u-zindex--content-overlay u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
+}: Props) => (
+  <div className="u-zindex--content-overlay u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
+    <TrackClick
+      eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+      data={{
+        [EVENT_PROPS.GAME_NAME]: name,
+        [EVENT_PROPS.GAME_PLAY_TYPE]: "money",
+      }}
+    >
+      <Button
+        className="u-width--full u-margin-bottom--md"
+        variant="primary"
+        onClick={() => launchGame({ slug })}
+      >
+        <PlayIcon size="sm" className="u-margin-right--sm" />
+        <span>{playButtonText}</span>
+      </Button>
+    </TrackClick>
+    {hasPlayForFun && (
       <TrackClick
         eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
         data={{
           [EVENT_PROPS.GAME_NAME]: name,
-          [EVENT_PROPS.GAME_PLAY_TYPE]: "money",
+          [EVENT_PROPS.GAME_PLAY_TYPE]: "free",
         }}
       >
         <Button
-          className="u-width--full u-margin-bottom--md"
-          variant="primary"
-          onClick={() => launchGame({ slug })}
+          className="u-width--full"
+          variant="secondary"
+          onClick={() =>
+            launchGame({
+              slug,
+              hasPlayForFun,
+            })
+          }
         >
-          <PlayIcon size="sm" className="u-margin-right--sm" />
-          <span>{playButtonText}</span>
+          {practiceButtonText}
         </Button>
       </TrackClick>
-      {hasPlayForFun && (
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
-          data={{
-            [EVENT_PROPS.GAME_NAME]: name,
-            [EVENT_PROPS.GAME_PLAY_TYPE]: "free",
-          }}
-        >
-          <Button
-            className="u-width--full"
-            variant="secondary"
-            onClick={() =>
-              launchGame({
-                slug,
-                hasPlayForFun,
-              })
-            }
-          >
-            {practiceButtonText}
-          </Button>
-        </TrackClick>
-      )}
-    </div>
-  );
-};
+    )}
+  </div>
+);
