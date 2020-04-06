@@ -323,6 +323,7 @@ export const EVENT_PROPS = {
   COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
+  IS_PLAY_FOR_FUN: "Play for fun",
 };
 
 export const EVENT_LOCATIONS = {
@@ -332,6 +333,7 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
   LIVE_CASINO_DETAILS: "Live Casino - Details Page",
+  GAME_DETAILS: "Game details",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
