@@ -17,7 +17,7 @@ export const GameDetailsButtons = ({
   hasPlayForFun,
   practiceButtonText,
 }: Props) => (
-  <div className="u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
+  <div className="u-zindex--content-overlay u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
     <Button
       className="u-width--full u-margin-bottom--md"
       variant="primary"
