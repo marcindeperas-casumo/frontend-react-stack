@@ -323,7 +323,7 @@ export const EVENT_PROPS = {
   COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
-  IS_PLAY_FOR_FUN: "Play for fun",
+  GAME_PLAY_TYPE: "Game play type",
 };
 
 export const EVENT_LOCATIONS = {

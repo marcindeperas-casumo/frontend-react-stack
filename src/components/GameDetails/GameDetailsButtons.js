@@ -27,7 +27,7 @@ export const GameDetailsButtons = ({
         eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
         data={{
           [EVENT_PROPS.GAME_NAME]: name,
-          [EVENT_PROPS.IS_PLAY_FOR_FUN]: false,
+          [EVENT_PROPS.GAME_PLAY_TYPE]: "money",
         }}
       >
         <Button
@@ -44,7 +44,7 @@ export const GameDetailsButtons = ({
           eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
           data={{
             [EVENT_PROPS.GAME_NAME]: name,
-            [EVENT_PROPS.IS_PLAY_FOR_FUN]: true,
+            [EVENT_PROPS.GAME_PLAY_TYPE]: "free",
           }}
         >
           <Button
