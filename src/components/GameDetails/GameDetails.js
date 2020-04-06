@@ -19,8 +19,8 @@ export const GameDetails = ({ data }: Props) => {
   }
 
   return (
-    <div className="c-game-details u-margin-x--auto u-padding-bottom--lg@tablet">
-      <div className="t-background-white u-overflow-hidden u-margin-x--md@tablet t-border-r--md@tablet t-border-r--md@desktop">
+    <div className="c-game-details u-margin-x--auto u-padding-bottom--lg@tablet u-padding-bottom--lg@desktop">
+      <div className="t-background-white u-overflow-hidden u-margin-x--md@tablet t-border-r--md@tablet u-margin-x--md@desktop t-border-r--md@desktop">
         {data.game.isInMaintenance ? (
           <GameDetailsImage
             image={data.game.backgroundImage}
