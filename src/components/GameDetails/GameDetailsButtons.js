@@ -52,7 +52,7 @@ export const GameDetailsButtons = ({
           onClick={() =>
             launchGame({
               slug,
-              hasPlayForFun,
+              playForFun: true,
             })
           }
         >
