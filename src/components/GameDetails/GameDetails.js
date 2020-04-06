@@ -61,6 +61,7 @@ export const GameDetails = ({ data }: Props) => {
         {data.game && !data.game.isInMaintenance && (
           <GameDetailsButtons
             slug={data.game.slug}
+            name={data.game.name}
             playButtonText={data.playButtonText}
             hasPlayForFun={data.game.hasPlayForFun}
             practiceButtonText={data.practiceButtonText}
