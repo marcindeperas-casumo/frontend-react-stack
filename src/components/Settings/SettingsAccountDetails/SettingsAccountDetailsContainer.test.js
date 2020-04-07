@@ -99,9 +99,7 @@ describe("AccountDetails", () => {
       });
 
       expect(
-        JSON.parse(
-          JSON.stringify(rendered.find(SettingsAccountDetails).prop("labels"))
-        ) //for some reason, this prop's object prototype is null
+        rendered.find(SettingsAccountDetails).prop("labels")
       ).toStrictEqual(playerSettingsLabelsQueryMock.result.data);
     });
   });
