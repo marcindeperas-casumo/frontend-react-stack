@@ -29,8 +29,7 @@ describe("SettingsSections", () => {
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
-    // TODO PCC-531 skip it because query properties error, loading, data are all undefined
-    test.skip("should show error", () => {
+    test("should show error", () => {
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -106,11 +105,9 @@ describe("SettingsSections", () => {
         rendered.update();
       });
 
-      expect(
-        JSON.parse(
-          JSON.stringify(rendered.find(SettingsSections).prop("labels"))
-        )
-      ).toStrictEqual(playerSectionsLabelsQueryMock.result.data);
+      expect(rendered.find(SettingsSections).prop("labels")).toStrictEqual(
+        playerSectionsLabelsQueryMock.result.data
+      );
     });
   });
 });
