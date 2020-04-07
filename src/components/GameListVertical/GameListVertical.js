@@ -23,7 +23,6 @@ export const GameListVertical = ({ games, loading = false }: Props) => {
   return (
     <div className="o-list-wrapper">
       <List
-        itemSpacing="none"
         items={games}
         render={game => (
           <GameRow

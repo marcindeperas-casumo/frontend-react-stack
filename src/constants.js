@@ -95,6 +95,7 @@ export const ROUTE_IDS = {
   PRACTICE_NATIVE: "PRACTICE_NATIVE",
   TOP_LISTS: "TOP_LISTS",
   GAMES_SEARCH: "GAMES_SEARCH",
+  GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
   LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
@@ -124,6 +125,7 @@ export const ROUTES = {
   [ROUTE_IDS.PRACTICE]: "practise/:slug/launch",
   [ROUTE_IDS.PLAY_NATIVE]: "gamelaunchers-play/:slug/launch",
   [ROUTE_IDS.PRACTICE_NATIVE]: "gamelaunchers-practise/:slug/launch",
+  [ROUTE_IDS.GAME_DETAILS]: "{{play}}/:slug",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
@@ -321,6 +323,7 @@ export const EVENT_PROPS = {
   COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
+  GAME_PLAY_TYPE: "Game play type",
 };
 
 export const EVENT_LOCATIONS = {
@@ -330,6 +333,7 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
   LIVE_CASINO_DETAILS: "Live Casino - Details Page",
+  GAME_DETAILS: "Game details",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
