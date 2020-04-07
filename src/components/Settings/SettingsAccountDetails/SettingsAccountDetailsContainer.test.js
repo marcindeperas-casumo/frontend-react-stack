@@ -29,8 +29,7 @@ describe("AccountDetails", () => {
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
-    // TODO PCC-531 skip it because query properties error, loading, data are all undefined
-    test.skip("should show error", () => {
+    test("should show error", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerSettingsLabelsQueryMock, playerSettingsQueryErrorMock]}
