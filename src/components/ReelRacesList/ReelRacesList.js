@@ -8,7 +8,14 @@ import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/R
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
-export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
+type Props = {
+  title: ?string,
+  seeMore: ?string,
+};
+
+type ReelRacesListProps = Props & A.ReelRaceListQuery;
+
+export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
   render() {
     const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
@@ -32,7 +39,7 @@ export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
             <ScrollableList
               title={title}
               itemClassName="c-reel-race-card"
-              seeMoreText={seeMore}
+              seeMoreText={seeMore || ""}
               seeMoreUrl={seeMoreUrl}
               items={reelRaces}
               itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
@@ -47,7 +54,7 @@ export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
-                text: seeMore,
+                text: seeMore || "",
                 url: seeMoreUrl,
               }}
             />

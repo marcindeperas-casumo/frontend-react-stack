@@ -651,8 +651,6 @@ export type ReelRaceListQuery_reelRaces = {
   translations: ReelRaceListQuery_reelRaces_translations,
 };
 export type ReelRaceListQuery = {
-  title: string,
-  seeMore: string,
   reelRaces: Array<ReelRaceListQuery_reelRaces>,
 };
 export type ReelRaceListQueryVariables = {

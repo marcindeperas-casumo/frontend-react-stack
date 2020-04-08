@@ -1,10 +1,6 @@
 #import "../ReelRaceCard/ReelRaceCard.graphql"
 
 query ReelRaceListQuery($limit: Int!) {
-    title: getText(id: "root:reel-races.reel-race-templates:fields.title")
-    seeMore: getText(
-        id: "root:built-pages.top-lists-translations:fields.more_link"
-    )
     reelRaces(limit: $limit) {
         id
         ...ReelRaceCard_ReelRace
