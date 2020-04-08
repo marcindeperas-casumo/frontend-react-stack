@@ -252,14 +252,6 @@ export type GameSearchSuggestionsListContainerQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: GameTileInMaintenanceCmsQuery
-// ====================================================
-
-export type GameTileInMaintenanceCmsQuery = {
-  temporaryUnavailableText: string,
-};
-
-// ====================================================
 // GraphQL query operation: GameTileHeartQuery
 // ====================================================
 
