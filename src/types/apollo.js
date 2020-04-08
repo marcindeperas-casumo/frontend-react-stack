@@ -247,11 +247,9 @@ export type GameSearchSuggestionsListContainerQuery_gamesList = {
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
-  title: string,
   gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList,
 };
 export type GameSearchSuggestionsListContainerQueryVariables = {
-  titleId: string,
   listId: string,
 };
 

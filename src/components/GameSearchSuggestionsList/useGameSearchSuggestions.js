@@ -2,6 +2,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { EVENT_LOCATIONS } from "Src/constants";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import { GameSearchSuggestionsListContainerQuery } from "./GameSearchSuggestionsListContainer.graphql";
 
 export type Props = {
@@ -19,7 +20,6 @@ export const useGameSearchSuggestions = ({ searchResults }: Props) => {
     A.GameSearchSuggestionsListContainerQueryVariables
   >(GameSearchSuggestionsListContainerQuery, {
     variables: {
-      titleId: `${PAGE_ROOT}.similar_games`,
       listId: "suggestedGames",
     },
   });
@@ -31,7 +31,6 @@ export const useGameSearchSuggestions = ({ searchResults }: Props) => {
     A.GameSearchSuggestionsListContainerQueryVariables
   >(GameSearchSuggestionsListContainerQuery, {
     variables: {
-      titleId: `${PAGE_ROOT}.continue_playing`,
       listId: "latestPlayedGames",
     },
   });
@@ -40,9 +39,14 @@ export const useGameSearchSuggestions = ({ searchResults }: Props) => {
     A.GameSearchSuggestionsListContainerQueryVariables
   >(GameSearchSuggestionsListContainerQuery, {
     variables: {
-      titleId: `${PAGE_ROOT}.popular_games`,
       listId: "popularGames",
     },
+  });
+
+  const { t } = useTranslationsGql({
+    suggestedGamesTitle: `${PAGE_ROOT}.similar_games`,
+    continuePlayingTitle: `${PAGE_ROOT}.continue_playing`,
+    popularGamesTitle: `${PAGE_ROOT}.popular_games`,
   });
 
   const loading =
@@ -56,21 +60,21 @@ export const useGameSearchSuggestions = ({ searchResults }: Props) => {
   ) {
     list = {
       games: suggestedGamesData?.gamesList?.games,
-      title: suggestedGamesData?.title,
+      title: t.suggestedGamesTitle,
       location: EVENT_LOCATIONS.SUGGESTED_GAMES,
       type: "suggested",
     };
   } else if (latestPlayedGamesData?.gamesList?.games?.length) {
     list = {
       games: latestPlayedGamesData?.gamesList?.games,
-      title: latestPlayedGamesData?.title,
+      title: t.continuePlayingTitle,
       location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
       type: "latest",
     };
   } else {
     list = {
       games: popularGamesData?.gamesList?.games || [],
-      title: popularGamesData?.title || "",
+      title: t.popularGamesTitle,
       location: EVENT_LOCATIONS.POPULAR_GAMES,
       type: "popular",
     };
