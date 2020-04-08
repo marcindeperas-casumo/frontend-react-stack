@@ -1,10 +1,9 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { launchGame } from "Services/LaunchGameService";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import * as A from "Types/apollo";
-import { LiveCasinoCardCmsQuery } from "./LiveCasinoCard.graphql";
 
 type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
@@ -12,9 +11,10 @@ type Props = {
 };
 
 export const LiveCasinoCardContainer = ({ game, playNowText }: Props) => {
-  const { data, loading } = useQuery<A.LiveCasinoCardCmsQuery, _>(
-    LiveCasinoCardCmsQuery
-  );
+  const { t, loading } = useTranslationsGql({
+    betBehindText: "root:mobile.live-casino-cards-content:fields.bet_behind",
+    openSeatsText: "root:mobile.live-casino-cards-content:fields.open_seats",
+  });
 
   if (loading) {
     return null;
@@ -22,10 +22,7 @@ export const LiveCasinoCardContainer = ({ game, playNowText }: Props) => {
 
   return game.liveCasinoLobby ? (
     <LiveCasinoCard
-      t={{
-        betBehindText: data?.betBehindText,
-        openSeatsText: data?.openSeatsText,
-      }}
+      t={t}
       game={game}
       playNowText={playNowText}
       onLaunchGame={() => launchGame({ slug: game?.slug })}

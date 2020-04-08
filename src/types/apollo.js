@@ -341,15 +341,6 @@ export type JackpotsQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: LiveCasinoCardCmsQuery
-// ====================================================
-
-export type LiveCasinoCardCmsQuery = {
-  betBehindText: string,
-  openSeatsText: string,
-};
-
-// ====================================================
 // GraphQL query operation: LiveCasinoDetailPageQuery
 // ====================================================
 
