@@ -1,21 +1,23 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import * as A from "Types/apollo";
 import { useGameSearchSuggestions } from "Components/GameSearchSuggestionsList/useGameSearchSuggestions";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import { SearchNotFoundWithGameSuggestions } from "./SearchNotFoundWithGameSuggestions";
-import { SearchNotFoundWithGameSuggestionsContainerQuery } from "./GameSearchNotFoundContainer.graphql";
 
 export const SearchNotFoundWithGameSuggestionsContainer = () => {
-  const { data, loading: translationsLoading } = useQuery<
-    A.SearchNotFoundWithGameSuggestionsContainerQuery,
-    _
-  >(SearchNotFoundWithGameSuggestionsContainerQuery);
   const { list, loading: listLoading } = useGameSearchSuggestions({
     searchResults: [],
   });
 
-  if (translationsLoading) {
+  const { t, loading: cmsLoading } = useTranslationsGql({
+    image: "root:mobile.games-search:fields.no_results_image",
+    title: "root:mobile.games-search:fields.no_results_title",
+    contentLatest:
+      "root:mobile.games-search:fields.no_results_continue_playing",
+    contentPopular: "root:mobile.games-search:fields.no_results_popular",
+  });
+
+  if (cmsLoading) {
     return null;
   }
 
@@ -25,16 +27,16 @@ export const SearchNotFoundWithGameSuggestionsContainer = () => {
       return "";
     }
 
-    return list.type === "latest" ? data?.contentLatest : data?.contentPopular;
+    return list.type === "latest" ? t?.contentLatest : t?.contentPopular;
   };
 
   return (
     <SearchNotFoundWithGameSuggestions
-      image={data?.image || ""}
-      title={data?.title || ""}
+      image={t?.image || ""}
+      title={t?.title || ""}
       content={getContent() || ""}
       list={list}
-      loading={translationsLoading}
+      loading={cmsLoading}
     />
   );
 };

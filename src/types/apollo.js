@@ -738,17 +738,6 @@ export type PlayAgainLatestPlayedQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
-// ====================================================
-
-export type SearchNotFoundWithGameSuggestionsContainerQuery = {
-  image: string,
-  title: string,
-  contentLatest: string,
-  contentPopular: string,
-};
-
-// ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_LABELS_QUERY
 // ====================================================
 
