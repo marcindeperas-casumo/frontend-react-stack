@@ -18,10 +18,14 @@ export const GameTileInMaintenanceContainer = ({
   game,
   imgixOpts,
 }: Props) => {
-  const { t } = useTranslationsGql({
+  const { t, loading } = useTranslationsGql({
     temporaryUnavailableText:
       "root:mobile.game-details:fields.temporarily_unavailable",
   });
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <GameTileInMaintenance
