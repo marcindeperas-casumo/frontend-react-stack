@@ -64,10 +64,10 @@ export function PlayerValuableListHorizontal() {
       <ScrollableListTitleRow
         paddingLeft
         seeMore={{
-          text: noValuablesAvailable ? "" : seeAllLabel,
+          text: noValuablesAvailable ? "" : seeAllLabel || "",
           url: seeAllUrl,
         }}
-        title={listTitleLabel}
+        title={listTitleLabel || ""}
       />
       {noValuablesAvailable ? (
         <EmptyValuablesList message={noValuablesLabel} />

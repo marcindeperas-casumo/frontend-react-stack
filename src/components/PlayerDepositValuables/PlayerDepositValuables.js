@@ -45,7 +45,7 @@ export const PlayerDepositValuables = () => {
           />
         </Flex.Item>
         <Flex.Item>
-          <ValuableRowShell text={translations.dontUseValuableLabel} />
+          <ValuableRowShell text={translations.dontUseValuableLabel || ""} />
         </Flex.Item>
       </Flex>
       <div className="u-position-sticky--bottom u-padding-bottom--md">
