@@ -137,8 +137,6 @@ export type GameListLiveCasinoQuery_gamesList = {
   games: Array<GameListLiveCasinoQuery_gamesList_games>,
 };
 export type GameListLiveCasinoQuery = {
-  seeMoreText: string,
-  playNowText: string,
   gamesList: ?GameListLiveCasinoQuery_gamesList,
 };
 export type GameListLiveCasinoQueryVariables = {
@@ -1765,6 +1763,23 @@ export type KambiClientVisible = {
 
 export type SearchVisible = {
   isSearchVisible: boolean,
+};
+
+// ====================================================
+// GraphQL query operation: TranslationsQuery
+// ====================================================
+
+export type TranslationsQuery_one = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery_two = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery = {
+  one: ?TranslationsQuery_one,
+  two: ?TranslationsQuery_two,
 };
 
 // ====================================================
