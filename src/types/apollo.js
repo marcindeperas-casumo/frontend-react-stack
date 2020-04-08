@@ -557,7 +557,6 @@ export type PromotionsListQuery_promotionsList = {
   promotions: Array<PromotionsListQuery_promotionsList_promotions>,
 };
 export type PromotionsListQuery = {
-  seeMoreText: string,
   promotionsList: ?PromotionsListQuery_promotionsList,
 };
 export type PromotionsListQueryVariables = {

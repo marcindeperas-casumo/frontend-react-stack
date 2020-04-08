@@ -2,6 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import { PromotionCardList } from "./PromotionCardList";
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
@@ -19,14 +20,18 @@ const PromotionCardListContainer = ({ slug }: Props) => {
     },
   });
 
-  if (loading) {
+  const { t, loading: cmsLoading } = useTranslationsGql({
+    seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
+  });
+
+  if (loading || cmsLoading) {
     return <PromotionCardListSkeleton />;
   }
 
   if (data && data.promotionsList && data.promotionsList.promotions.length) {
     return (
       <PromotionCardList
-        seeMoreText={data.seeMoreText}
+        seeMoreText={t.seeMoreText}
         id={data.promotionsList.id}
         name={data.promotionsList.name}
         promotions={data.promotionsList.promotions}

@@ -9,7 +9,7 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
 type Props = A.PromotionsListQuery_promotionsList & {
-  seeMoreText: string,
+  seeMoreText: ?string,
 };
 
 export const PromotionCardList = ({
@@ -38,7 +38,7 @@ export const PromotionCardList = ({
           <ScrollableList
             itemClassName="c-promotion-card"
             title={name}
-            seeMoreText={seeMoreText}
+            seeMoreText={seeMoreText || ""}
             seeMoreUrl={seeMoreUrl}
             items={promotions}
             itemRenderer={i => <PromotionCard promotion={promotions[i]} />}
@@ -51,7 +51,7 @@ export const PromotionCardList = ({
             itemRenderer={itemRenderer}
             tileHeight={318}
             seeMore={{
-              text: seeMoreText,
+              text: seeMoreText || "",
               url: seeMoreUrl,
             }}
           />
