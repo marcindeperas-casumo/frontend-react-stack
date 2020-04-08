@@ -46,7 +46,3 @@ const MustDropJackpotsListContainer = () => {
 };
 
 export default MustDropJackpotsListContainer;
-
-// seeMoreText: getText(
-//   id: "root:built-pages.top-lists-translations:fields.more_link"
-// )
