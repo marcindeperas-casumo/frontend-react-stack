@@ -10,9 +10,3 @@ query GameSearchQuery($query: String!, $page: Int!, $pageSize: Int!) {
     }
   }
 }
-
-query GameSearchCMSQuery {
-  searchSuggestionText: getText(
-    id: "root:mobile.games-search:fields.input_prompt"
-  )
-}

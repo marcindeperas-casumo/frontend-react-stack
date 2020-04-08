@@ -223,14 +223,6 @@ export type GameSearchQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: GameSearchCMSQuery
-// ====================================================
-
-export type GameSearchCMSQuery = {
-  searchSuggestionText: string,
-};
-
-// ====================================================
 // GraphQL query operation: GameSearchSuggestionsListContainerQuery
 // ====================================================
 
