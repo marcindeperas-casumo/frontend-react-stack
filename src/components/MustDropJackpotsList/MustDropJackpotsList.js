@@ -22,7 +22,7 @@ export type Props = {
   jackpots: Array<A.GameRow_Game>,
   className?: string,
   name: ?string,
-  seeMoreText: string,
+  seeMoreText: ?string,
 };
 
 const MUST_DROP_WIDGET_ID = "must-drop-jackpots-widget";
@@ -90,7 +90,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               {name && (
                 <ScrollableListTitleRow
                   paddingLeft
-                  seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+                  seeMore={{ text: seeMoreText || "", url: seeMoreUrl }}
                   title={name}
                 />
               )}
@@ -109,7 +109,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               itemCount={this.columns.length}
               itemRenderer={this.desktopMustDropJackpotRenderer}
               tileHeight={288} // each GameRow height (96px) * n rows (3)
-              seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+              seeMore={{ text: seeMoreText || "", url: seeMoreUrl }}
             />
           </Desktop>
         </div>

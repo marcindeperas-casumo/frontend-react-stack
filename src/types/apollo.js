@@ -423,7 +423,6 @@ export type MustDropJackpotsGamesListQuery_gamesList = {
   games: Array<MustDropJackpotsGamesListQuery_gamesList_games>,
 };
 export type MustDropJackpotsGamesListQuery = {
-  seeMoreText: string,
   gamesList: ?MustDropJackpotsGamesListQuery_gamesList,
 };
 export type MustDropJackpotsGamesListQueryVariables = {

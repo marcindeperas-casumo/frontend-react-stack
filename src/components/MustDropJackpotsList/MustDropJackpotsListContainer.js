@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
@@ -18,7 +19,11 @@ const MustDropJackpotsListContainer = () => {
     },
   });
 
-  if (loading) {
+  const { t, loading: cmsLoading } = useTranslationsGql({
+    seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
+  });
+
+  if (loading || cmsLoading) {
     // __FIX__ - do we need a skeleton here?
     return null;
   }
@@ -31,7 +36,7 @@ const MustDropJackpotsListContainer = () => {
         <MustDropJackpotsList
           jackpots={data.gamesList.games}
           name={data.gamesList?.name}
-          seeMoreText={data?.seeMoreText}
+          seeMoreText={t.seeMoreText}
         />
       </TrackProvider>
     );
@@ -41,3 +46,7 @@ const MustDropJackpotsListContainer = () => {
 };
 
 export default MustDropJackpotsListContainer;
+
+// seeMoreText: getText(
+//   id: "root:built-pages.top-lists-translations:fields.more_link"
+// )
