@@ -1,39 +1,3 @@
-export const testMock = {
-  "0": {
-    tableId: 1,
-    games: [
-      {
-        gameId: "game1",
-      },
-      {
-        gameId: "game2",
-      },
-    ],
-  },
-  "1": {
-    tableId: 2,
-    games: [
-      {
-        gameId: "game3",
-      },
-      {
-        gameId: "game4",
-      },
-    ],
-  },
-  "2": {
-    tableId: 3,
-    games: [
-      {
-        gameId: "game1",
-      },
-      {
-        gameId: "game2",
-      },
-    ],
-  },
-};
-
 export const getOpenTablesMockData = {
   "0": {
     tableId: 1,
