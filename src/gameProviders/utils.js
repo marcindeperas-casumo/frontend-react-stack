@@ -9,7 +9,7 @@ import type { GameRef } from "./types";
 export const isNativeByUserAgent = (): boolean =>
   navigator.userAgent.search("com.casumo") >= 0;
 
-export const expandIframeHeightToMatchItsParent = (iframeRef: GameRef) => {
+export const expandElementHeightToMatchItsParent = (iframeRef: GameRef) => {
   if (iframeRef.current) {
     /* eslint-disable fp/no-mutation */
     iframeRef.current.style.height = `${iframeRef.current.parentElement
