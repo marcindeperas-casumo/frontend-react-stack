@@ -298,8 +298,12 @@ export const isCmsEntryEmpty = R.pipe(
   R.equals("")
 );
 
-export const convertHoursToDays = (hours: number) => {
-  return Math.floor(hours / 24);
+export const convertHoursToDaysRoundUp = (hours: number) => {
+  if (hours < 24) {
+    return 0;
+  }
+
+  return Math.ceil(hours / 24);
 };
 
 type InterpolateTimeIntervalType = {
