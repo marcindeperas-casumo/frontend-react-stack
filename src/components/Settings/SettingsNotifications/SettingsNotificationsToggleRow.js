@@ -12,7 +12,7 @@ export const SettingsNotificationsToggleRow = ({
 }: {
   label: string,
   isEnabled: boolean,
-  onChange: (active: boolean) => void,
+  onChange: (active: boolean) => any,
   className?: string,
 }) => (
   <SettingsRow

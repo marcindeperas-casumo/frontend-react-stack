@@ -11,7 +11,7 @@ export const SettingsNotificationsSubscriptionRow = ({
 }: {
   label: string,
   isEnabled: boolean,
-  onChange: (active: boolean) => void,
+  onChange: (active: boolean) => any,
 }) => (
   <SettingsRow
     padding="md"

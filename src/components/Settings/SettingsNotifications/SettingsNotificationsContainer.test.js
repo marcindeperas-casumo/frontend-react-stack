@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
-import { withContainer } from "Components/Settings/SettingsNotifications/SettingsNotificationsContainer";
+import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
 import {
   withMockQueries,
   playerContactSettingsQueryMock,
@@ -11,8 +11,6 @@ import {
   notificationsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 import {
-  withdrawalNotificationsMock,
-  withdrawalNotificationsErrorMock,
   adventurerPublicityMock,
   adventurerPublicityErrorMock,
   contactByPostMock,
@@ -25,14 +23,8 @@ import {
   SMSNewsletterSubscriptionErrorMock,
 } from "./__mocks__/Mutations.mock";
 
-let Component, SettingsNotificationsContainer;
 describe("Notifications", () => {
   describe("Component", () => {
-    beforeEach(() => {
-      Component = props => <div />;
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
@@ -112,93 +104,7 @@ describe("Notifications", () => {
     });
   });
 
-  describe("Withdrawal Notifications", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input
-          type="button"
-          onClick={() => props.setWithdrawalNotifications(false)}
-        />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
-    test("should toggle to false", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(withdrawalNotificationsMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      //initial value should be the one from the query
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(true);
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      //optimisticResponse kicks in here
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      //actual response from the mutation
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(false);
-    });
-
-    test("should revert to initial value on error", async () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={withMockQueries(withdrawalNotificationsErrorMock)}
-        >
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(true);
-
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .withdrawalNotifications
-      ).toBe(true);
-    });
-  });
-
   describe("Adventurer Publicity", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input
-          type="button"
-          onClick={() => props.setAdventurerPublicity(false)}
-        />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(adventurerPublicityMock)}>
@@ -263,13 +169,6 @@ describe("Notifications", () => {
   });
 
   describe("Contact By Post", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input type="button" onClick={() => props.setContactByPost(false)} />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPostMock)}>
@@ -334,13 +233,6 @@ describe("Notifications", () => {
   });
 
   describe("Contact By Phone", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input type="button" onClick={() => props.setContactByPhone(false)} />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPhoneMock)}>
@@ -405,16 +297,6 @@ describe("Notifications", () => {
   });
 
   describe("Newsletter Subscription", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input
-          type="button"
-          onClick={() => props.setNewsletterSubscription(false)}
-        />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(newsletterSubscriptionMock)}>
@@ -481,16 +363,6 @@ describe("Notifications", () => {
   });
 
   describe("SMS Newsletter Subscription", () => {
-    beforeEach(() => {
-      Component = props => (
-        <input
-          type="button"
-          onClick={() => props.setSMSNewsletterSubscription(false)}
-        />
-      );
-      SettingsNotificationsContainer = () => withContainer(Component);
-    });
-
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(SMSNewsletterSubscriptionMock)}>

@@ -1,34 +1,26 @@
 // @flow
 import React, { PureComponent } from "react";
 import * as A from "Types/apollo";
-import { JURISDICTIONS } from "Src/constants";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
-import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
-import { SettingsNotificationsToggleRow as ToggleRow } from "./SettingsNotificationsToggleRow";
 import { RealityCheckField } from "./SettingsNotificationsFields";
+import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
+import { NewsletterSubscriptionContainer } from "./NewsletterSubscriptionContainer";
+import { SmsSubscriptionContainer } from "./SmsSubscriptionContainer";
+import { ContactByPostContainer } from "./ContactByPostContainer";
+import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
-  setAdventurerPublicity: (active: boolean) => void,
-  setWithdrawalNotifications: (active: boolean) => void,
-  setContactByPost: (active: boolean) => void,
-  setContactByPhone: (active: boolean) => void,
-  setNewsletterSubscription: (active: boolean) => void,
-  setSMSNewsletterSubscription: (active: boolean) => void,
   labels: A.NOTIFICATIONS_LABELS_QUERY,
-  jurisdiction: string,
+  isDGOJ: boolean,
 };
 
 export class SettingsNotifications extends PureComponent<Props> {
   render() {
     const {
-      setWithdrawalNotifications,
-      setContactByPost,
-      setContactByPhone,
-      setNewsletterSubscription,
-      setSMSNewsletterSubscription,
       player: {
+        id: playerId,
         details: {
           contactSettings: {
             withdrawalNotifications,
@@ -54,18 +46,20 @@ export class SettingsNotifications extends PureComponent<Props> {
         inGameSessionUpdatesOffLabel,
         inGameSessionUpdatesFrequencyLabel,
       },
-      jurisdiction,
+      isDGOJ,
     } = this.props;
 
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
         <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
-          <ToggleRow
-            label={notificationsApprovedWithdrawalsEmailLabel}
-            isEnabled={withdrawalNotifications}
-            onChange={setWithdrawalNotifications}
+          <WithdrawalNotificationsContainer
+            playerId={playerId}
+            withdrawalNotifications={withdrawalNotifications}
+            notificationsApprovedWithdrawalsEmailLabel={
+              notificationsApprovedWithdrawalsEmailLabel
+            }
           />
-          {jurisdiction !== JURISDICTIONS.DGOJ && (
+          {!isDGOJ && (
             <RealityCheckField
               enabled={canChangeInterval}
               link="/player/settings/reality-check"
@@ -87,28 +81,28 @@ export class SettingsNotifications extends PureComponent<Props> {
             className="t-border-bottom--none u-margin-top"
           />
 
-          <SubscriptionRow
-            label={subscriptionsEmailLabel}
-            isEnabled={subscribedToNewsletters}
-            onChange={setNewsletterSubscription}
+          <NewsletterSubscriptionContainer
+            playerId={playerId}
+            subscribedToNewsletters={subscribedToNewsletters}
+            subscriptionsEmailLabel={subscriptionsEmailLabel}
           />
 
-          <SubscriptionRow
-            label={subscriptionsSMSLabel}
-            isEnabled={subscribedToSMSNewsletters}
-            onChange={setSMSNewsletterSubscription}
+          <SmsSubscriptionContainer
+            playerId={playerId}
+            subscribedToSMSNewsletters={subscribedToSMSNewsletters}
+            subscriptionsSMSLabel={subscriptionsSMSLabel}
           />
 
-          <SubscriptionRow
-            label={subscriptionsPhoneLabel}
-            isEnabled={contactByPhone}
-            onChange={setContactByPhone}
+          <ContactByPhoneContainer
+            playerId={playerId}
+            subscriptionsPhoneLabel={subscriptionsPhoneLabel}
+            contactByPhone={contactByPhone}
           />
 
-          <SubscriptionRow
-            label={subscriptionsPostLabel}
-            isEnabled={contactByPost}
-            onChange={setContactByPost}
+          <ContactByPostContainer
+            playerId={playerId}
+            subscriptionsPostLabel={subscriptionsPostLabel}
+            contactByPost={contactByPost}
           />
         </div>
       </div>
