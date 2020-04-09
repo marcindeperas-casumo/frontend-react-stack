@@ -29,7 +29,7 @@ export const GamePage = ({
       <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
         <div
           className={classNames(
-            "c-game-page__game-wrapper",
+            "u-inset-0 u-position-absolute",
             gameProviderModel.gameWrapperClasses || []
           )}
         >

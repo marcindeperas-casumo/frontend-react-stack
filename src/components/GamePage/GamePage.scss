@@ -1,13 +1,5 @@
 $directions: (top, left, bottom, right);
 
-.c-game-page__game-wrapper {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 @each $direction in $directions {
   /* stylelint-disable-next-line xi/selector-pattern */
   .u-safe-area-inset-#{$direction} {
