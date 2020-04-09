@@ -987,28 +987,6 @@ export type PLAYER_SECTIONS_LABELS_QUERY = {
 };
 
 // ====================================================
-// GraphQL query operation: ValuableDetailsQuery
-// ====================================================
-
-export type ValuableDetailsQuery = {
-  termsAndConditionLabel: string,
-  cashUnlockedActionLabel: string,
-  spinsUnlockedActionLabel: string,
-  playToUnlockLabel: string,
-  depositToUnlockLabel: string,
-  depositNowLabel: string,
-  expirationTimeLabel: string,
-  termsAndConditionsContent: string,
-  wageringStatus: string,
-  minute_singular: string,
-  minute_plural: string,
-  hour_singular: string,
-  hour_plural: string,
-  day_singular: string,
-  day_plural: string,
-};
-
-// ====================================================
 // GraphQL query operation: GlossaryQuery
 // ====================================================
 
