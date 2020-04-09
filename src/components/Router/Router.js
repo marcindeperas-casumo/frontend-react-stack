@@ -7,6 +7,7 @@ import { ROUTE_IDS } from "Src/constants";
 import {
   LazyTopLists,
   LazyGameSearch,
+  LazyGameDetails,
   LazyMustDropJackpots,
   LazyGameProviderGames,
   LazyLiveCasinoDetails,
@@ -42,6 +43,7 @@ export const Router = () => {
       />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
       <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
+      <LazyGameDetails path={translateRoute(ROUTE_IDS.GAME_DETAILS)} />
       <LazyMustDropJackpots
         path={translateRoute(ROUTE_IDS.MUST_DROP_JACKPOTS)}
       />
