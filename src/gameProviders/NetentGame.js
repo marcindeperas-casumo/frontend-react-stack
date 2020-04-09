@@ -1,15 +1,7 @@
 // @flow
 import logger from "Services/logger";
-import { ENVIRONMENTS } from "Src/constants";
-import { injectScript } from "Utils";
+import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
-
-export const NETENT_SCRIPT_URL = {
-  [ENVIRONMENTS.TEST]:
-    "https://casumo-static-test.casinomodule.com/gameinclusion/library/gameinclusion.js",
-  [ENVIRONMENTS.PRODUCTION]:
-    "https://casumo-static.casinomodule.com/gameinclusion/library/gameinclusion.js",
-};
 
 declare var netent: { launch: Function };
 
@@ -52,14 +44,18 @@ export class NetentGame extends BaseGame {
     const {
       gameId = null,
       sessionId = null,
+      liveCasinoHost = null,
+      casinoId = null,
       staticServer = "",
       gameServer = "",
       lang = "",
     } = this.props.gameData;
 
     return {
-      gameId: gameId,
-      sessionId: sessionId,
+      gameId,
+      sessionId,
+      liveCasinoHost,
+      casinoId,
       staticServer: decodeURIComponent(staticServer),
       gameServerURL: decodeURIComponent(gameServer),
       lobbyURL: "#",
@@ -95,24 +91,21 @@ export class NetentGame extends BaseGame {
   }
 
   onMount() {
-    injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
-      // $FlowFixMe - Flow does not support optional method calls
-      window.netent // eslint-disable-line no-unused-expressions
-        ?.launch(
-          this.config,
-          (extend: Extend) => {
-            this.extend = extend;
-            this.setupEvents(extend);
-          },
-          (error: {}) => {
-            logger.error("Cannot load game", {
-              provider: "NETENT",
-              error,
-              config: this.config,
-            });
-          }
-        );
-    });
+    tryLaunchGame(
+      this.props.environment,
+      this.config,
+      (extend: Extend) => {
+        this.extend = extend;
+        this.setupEvents(extend);
+      },
+      (error: {}) => {
+        logger.error("Cannot load game", {
+          provider: "NETENT",
+          error,
+          config: this.config,
+        });
+      }
+    );
   }
 
   onUnmount() {
