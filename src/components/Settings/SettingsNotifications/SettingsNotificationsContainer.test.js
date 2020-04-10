@@ -15,8 +15,6 @@ import {
   adventurerPublicityErrorMock,
   contactByPostMock,
   contactByPostErrorMock,
-  contactByPhoneMock,
-  contactByPhoneErrorMock,
   newsletterSubscriptionMock,
   newsletterSubscriptionErrorMock,
   SMSNewsletterSubscriptionMock,
@@ -228,70 +226,6 @@ describe("Notifications", () => {
       expect(
         rendered.find("Component").prop("player").details.contactSettings
           .contactByPost
-      ).toBe(true);
-    });
-  });
-
-  describe("Contact By Phone", () => {
-    test("should toggle to false", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(contactByPhoneMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      //initial value should be the one from the query
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
-      ).toBe(true);
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      //optimisticResponse kicks in here
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      //actual response from the mutation
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
-      ).toBe(false);
-    });
-
-    test("should revert to initial value on error", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(contactByPhoneErrorMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
-      ).toBe(true);
-
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .contactByPhone
       ).toBe(true);
     });
   });
