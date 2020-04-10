@@ -4,7 +4,7 @@ import { ENVIRONMENTS, DEVICES } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import MockStore from "Components/MockStore";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { GamePage } from "./GamePage";
+import { GamePageContainer } from "./GamePageContainer";
 
 const mockedOnMount = jest.fn();
 const SUCCESSFUL_SLUG = "successfully-loaded-game";
@@ -43,7 +43,7 @@ describe("GamePage", () => {
   test("should not render if error occurs", () => {
     const rendered = mount(
       <MockStore>
-        <GamePage {...mockedProps} />
+        <GamePageContainer {...mockedProps} />
       </MockStore>
     );
     expect(rendered.find(ErrorMessage)).toHaveLength(1);
@@ -55,7 +55,7 @@ describe("GamePage", () => {
     };
     mount(
       <MockStore>
-        <GamePage {...props} />
+        <GamePageContainer {...props} />
       </MockStore>
     );
     expect(mockedOnMount).toBeCalledTimes(1);
@@ -67,7 +67,7 @@ describe("GamePage", () => {
     };
     const rendered = mount(
       <MockStore>
-        <GamePage {...props} />
+        <GamePageContainer {...props} />
       </MockStore>
     );
     expect(rendered.find("div#game-wrapper")).toHaveLength(1);
