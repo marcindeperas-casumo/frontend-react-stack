@@ -1,162 +1,123 @@
+// @flow
 import React from "react";
+import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
-import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
+import MockStore from "Components/MockStore";
+import { SettingsNotifications } from "./SettingsNotifications";
 import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
 import {
-  withMockQueries,
   playerContactSettingsQueryMock,
   playerContactSettingsQueryErrorMock,
   notificationsLabelsQueryMock,
   notificationsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
-import {
-  adventurerPublicityMock,
-  adventurerPublicityErrorMock,
-} from "./__mocks__/Mutations.mock";
+
+jest.useFakeTimers();
 
 describe("Notifications", () => {
   describe("Component", () => {
     test("should render loader", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
+        <MockStore
+          queryAddTypename
+          queryMocks={[
+            playerContactSettingsQueryMock,
+            notificationsLabelsQueryMock,
+          ]}
         >
           <SettingsNotificationsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
-    test("should pass correct player data to children", async () => {
+    test("should pass correct player data to children", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
+        <MockStore
+          queryAddTypename
+          queryMocks={[
+            playerContactSettingsQueryMock,
+            notificationsLabelsQueryMock,
+          ]}
         >
           <SettingsNotificationsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.runAllTimers();
+        rendered.update();
+      });
 
-      expect(
-        JSON.parse(JSON.stringify(rendered.find("Component").prop("player")))
-      ).toStrictEqual(playerContactSettingsQueryMock.result.data.player);
+      expect(rendered.find(SettingsNotifications).prop("player")).toStrictEqual(
+        playerContactSettingsQueryMock.result.data.player
+      );
     });
 
-    test("should pass correct labels to children", async () => {
+    test("should pass correct labels to children", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
+        <MockStore
+          queryAddTypename
+          queryMocks={[
+            playerContactSettingsQueryMock,
+            notificationsLabelsQueryMock,
+          ]}
         >
           <SettingsNotificationsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.runAllTimers();
+        rendered.update();
+      });
 
-      expect(
-        JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
-      ).toStrictEqual(notificationsLabelsQueryMock.result.data);
+      expect(rendered.find(SettingsNotifications).prop("labels")).toStrictEqual(
+        notificationsLabelsQueryMock.result.data
+      );
     });
 
-    test("should show error when settings fail to load", async () => {
+    test("should show error when settings fail to load", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryAddTypename
+          queryMocks={[
             playerContactSettingsQueryErrorMock,
             notificationsLabelsQueryMock,
           ]}
         >
           <SettingsNotificationsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.runAllTimers();
+        rendered.update();
+      });
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should show error when labels fail to load", async () => {
+    test("should show error when labels fail to load", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryAddTypename
+          queryMocks={[
             playerContactSettingsQueryMock,
             notificationsLabelsQueryErrorMock,
           ]}
         >
           <SettingsNotificationsContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      act(() => {
+        jest.runAllTimers();
+        rendered.update();
+      });
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
-    });
-  });
-
-  describe("Adventurer Publicity", () => {
-    test("should toggle to false", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(adventurerPublicityMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      //initial value should be the one from the query
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(true);
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      //optimisticResponse kicks in here
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      //actual response from the mutation
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(false);
-    });
-
-    test("should revert to initial value on error", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(adventurerPublicityErrorMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(true);
-
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .adventurerPublic
-      ).toBe(true);
     });
   });
 });
