@@ -13,8 +13,6 @@ import {
 import {
   adventurerPublicityMock,
   adventurerPublicityErrorMock,
-  SMSNewsletterSubscriptionMock,
-  SMSNewsletterSubscriptionErrorMock,
 } from "./__mocks__/Mutations.mock";
 
 describe("Notifications", () => {
@@ -158,72 +156,6 @@ describe("Notifications", () => {
       expect(
         rendered.find("Component").prop("player").details.contactSettings
           .adventurerPublic
-      ).toBe(true);
-    });
-  });
-
-  describe("SMS Newsletter Subscription", () => {
-    test("should toggle to false", async () => {
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(SMSNewsletterSubscriptionMock)}>
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      //initial value should be the one from the query
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
-      ).toBe(true);
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      //optimisticResponse kicks in here
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      //actual response from the mutation
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
-      ).toBe(false);
-    });
-
-    test("should revert to initial value on error", async () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={withMockQueries(SMSNewsletterSubscriptionErrorMock)}
-        >
-          <SettingsNotificationsContainer />
-        </MockedProvider>
-      );
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
-      ).toBe(true);
-
-      rendered.find("Component").simulate("click");
-
-      rendered.update();
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
-      ).toBe(false);
-
-      await waitAndUpdateWrapper(rendered);
-
-      expect(
-        rendered.find("Component").prop("player").details.contactSettings
-          .subscribedToSMSNewsletters
       ).toBe(true);
     });
   });
