@@ -51,10 +51,10 @@ export const GameListHorizontalLiveCasino = ({
           <ScrollableList
             itemClassName="c-live-casino-card u-margin-bottom--sm"
             itemRenderer={i => (
-              <LiveCasinoCard game={games[i]} playNowText={playNowText} />
+              <LiveCasinoCard game={games[i]} playNowText={playNowText || ""} />
             )}
             items={games}
-            seeMoreText={seeMoreText}
+            seeMoreText={seeMoreText || ""}
             seeMoreUrl={seeMoreUrl}
             title={name}
           />
@@ -67,7 +67,7 @@ export const GameListHorizontalLiveCasino = ({
             itemControlClass="c-scrollable-list-paginated__live_casino-button"
             tileHeight={305}
             seeMore={{
-              text: seeMoreText,
+              text: seeMoreText || "",
               url: seeMoreUrl,
             }}
           />
