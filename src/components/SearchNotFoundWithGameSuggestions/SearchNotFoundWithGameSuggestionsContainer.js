@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { useGameSearchSuggestions } from "Components/GameSearchSuggestionsList/useGameSearchSuggestions";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundWithGameSuggestions } from "./SearchNotFoundWithGameSuggestions";
 
 export const SearchNotFoundWithGameSuggestionsContainer = () => {

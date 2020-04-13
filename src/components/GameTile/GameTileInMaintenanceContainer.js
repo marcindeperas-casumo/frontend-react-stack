@@ -2,7 +2,7 @@
 import React from "react";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 
 type Props = {
   ratio: string,

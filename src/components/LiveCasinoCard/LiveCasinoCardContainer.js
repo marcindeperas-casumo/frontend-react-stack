@@ -2,7 +2,7 @@
 import React from "react";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { launchGame } from "Services/LaunchGameService";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import * as A from "Types/apollo";
 
 type Props = {

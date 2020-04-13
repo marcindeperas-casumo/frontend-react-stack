@@ -4,7 +4,7 @@ import * as R from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { type ValuableType } from "Models/valuables";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 

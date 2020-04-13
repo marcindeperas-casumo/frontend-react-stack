@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
 
 export const GameSearchContainer = () => {

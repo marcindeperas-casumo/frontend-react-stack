@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 

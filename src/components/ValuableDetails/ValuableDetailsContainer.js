@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { ValuableDetails } from "./ValuableDetails";
 
 export const ValuableDetailsContainer = props => {
