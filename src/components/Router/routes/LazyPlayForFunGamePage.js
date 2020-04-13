@@ -3,7 +3,7 @@ import { LayoutPage } from "Components/LayoutPage";
 
 const LazyComponent = React.lazy(() =>
   import("Components/GamePage").then(module => ({
-    default: module.GamePage,
+    default: module.GamePageContainer,
   }))
 );
 

@@ -2,6 +2,7 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
+import { expandElementHeightToMatchItsParent } from "./utils";
 import { GAME_ACTIVE_EVENT_NAME, GAME_IDLE_EVENT_NAME } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
@@ -64,22 +65,8 @@ export class BaseGame {
   }
 
   onResize = () => {
-    // Reference to app's host element
-    const hostElement = document.querySelector("#root");
-
-    if (hostElement) {
-      // setting temporarily to large amount
-      // to cater for ios issue on rotation
-      // https://jira.casumocave.com/browse/PRCA-424
-      // eslint-disable-next-line fp/no-mutation
-      hostElement.style.height = "2000px";
-
-      setTimeout(() => {
-        // Removing the effect created above shortly after
-        // as only needed till brower settles after rotation
-        // eslint-disable-next-line fp/no-mutation
-        hostElement.style.height = "";
-      }, 500);
+    if (this.props.gameRef) {
+      expandElementHeightToMatchItsParent(this.props.gameRef);
     }
   };
 
@@ -88,6 +75,8 @@ export class BaseGame {
   }
 
   onUnmount() {
-    window.removeEventListener("resize", this.onResize);
+    if (this) {
+      window.removeEventListener("resize", this.onResize);
+    }
   }
 }
