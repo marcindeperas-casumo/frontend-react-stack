@@ -14,7 +14,6 @@ import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
 import { ValuableDetails } from "./ValuableDetails";
 import { ValuableDetailsWithModal } from "./ValuableDetailsWithModal";
-import ValuableDetailsMockQuery from "./__mocks__/query.valuableDetails.mock";
 import { mockValuable as mockData } from "./__mocks__/Valuables.mock";
 
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
@@ -54,7 +53,7 @@ stories.add("Default - With modal", () => {
   const valuableDetailsMock = mockData(VALUABLE_TYPES.CASH);
 
   return (
-    <MockStore state={defaultState} queryMocks={[ValuableDetailsMockQuery]}>
+    <MockStore state={defaultState}>
       <ValuableDetailsWithModal
         isOpen={true}
         onClose={() => {}}
