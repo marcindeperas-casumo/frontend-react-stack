@@ -20,7 +20,9 @@ import {
   gonzosQuest,
 } from "./__mocks__/afterLimitsReached.mocks";
 
-jest.mock("Models/slotControlSystem/useSessionsState");
+jest.mock("Models/slotControlSystem/useSessionsState", () => ({
+  useSessionsState: jest.fn(),
+}));
 /*
  * 10ms is a random pick, sufficiently small.
  * With this setup Jest takes control over timers and knows when async test ends.

@@ -9,20 +9,21 @@ import {
   PrizeIcon,
 } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
-import { useLocale, useActiveGameSession } from "Utils/hooks";
+import { useSessionsState } from "Models/slotControlSystem";
+import { useLocale } from "Utils/hooks";
 import Timer from "Components/Timer";
 
 export function InfoBar() {
   const locale = useLocale();
-  const activeGameSession = useActiveGameSession();
+  const { activeSession } = useSessionsState();
 
-  if (!activeGameSession) {
+  if (!activeSession) {
     return null;
   }
 
   const currencyFormatter = (value: number) =>
     formatCurrency({
-      currency: activeGameSession.stats.currency,
+      currency: activeSession.stats.currency,
       locale,
       value,
     });
@@ -41,7 +42,7 @@ export function InfoBar() {
               className="u-margin-right--sm t-color-chrome-dark-1"
             />
             <Timer
-              startTime={activeGameSession.startedTime}
+              startTime={activeSession.startedTime}
               render={state =>
                 `${state.hours}:${state.minutes}:${state.seconds}`
               }
@@ -52,28 +53,28 @@ export function InfoBar() {
               size="sm"
               className="u-margin-right--sm t-color-chrome-dark-1"
             />
-            {currencyFormatter(activeGameSession.stats.remainingBalance)}
+            {currencyFormatter(activeSession.stats.remainingBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <CreditCardIcon
               size="sm"
               className="u-margin-right--sm t-color-chrome-dark-1"
             />
-            {currencyFormatter(activeGameSession.stats.consumedBalance)}
+            {currencyFormatter(activeSession.stats.consumedBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <ArrowsSpinIcon
               size="sm"
               className="u-margin-right--sm t-color-chrome-dark-1"
             />
-            {currencyFormatter(activeGameSession.stats.totalBets)}
+            {currencyFormatter(activeSession.stats.totalBets)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <PrizeIcon
               size="sm"
               className="u-margin-right--sm t-color-chrome-dark-1"
             />
-            {currencyFormatter(activeGameSession.stats.totalWins)}
+            {currencyFormatter(activeSession.stats.totalWins)}
           </Flex>
         </Flex>
       </Text>
