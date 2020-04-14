@@ -7,7 +7,7 @@ import KambiClient from "Features/sports/components/KambiClient/KambiClient";
 import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
-import { useKambiMarketFromUrlPrefix } from "./useKambiMarketFromUrlPrefix";
+import { useKambiMarketFromUrlPrefix } from "Features/sports/hooks/useKambiMarketFromUrlPrefix";
 
 export const SportsLoSContainer = ({ urlPrefix }: { urlPrefix: string }) => {
   const [bootstrapUrl, setBootstrapUrl] = useState("");

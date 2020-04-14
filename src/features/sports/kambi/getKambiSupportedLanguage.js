@@ -1,50 +1,6 @@
 /* @flow */
 import { contains } from "ramda";
-
-export const KAMBI_SUPPORTED_LANGUAGES = [
-  "de_AT",
-  "el_GR",
-  "it_IT",
-  "ru_RU",
-  "pl_PL",
-  "fr_BE",
-  "ro_RO",
-  "en_AU",
-  "tr_TR",
-  "pt_BR",
-  "fr_FR",
-  "cs_CZ",
-  "de_DE",
-  "hu_HU",
-  "de_CH",
-  "es_MX",
-  "es_CO",
-  "es_ES",
-  "es_CL",
-  "nl_NL",
-  "es_PE",
-  "fr_CA",
-  "ro_MD",
-  "nl_BE",
-  "sv_SE",
-  "da_DK",
-  "bg_BG",
-  "fr_CH",
-  "ru_MD",
-  "en_IE",
-  "hr_HR",
-  "fi_FI",
-  "en_GB",
-  "et_EE",
-  "en_CA",
-  "en_US",
-  "ka_GE",
-  "lv_LV",
-  "lt_LT",
-  "no_NO",
-  "en_ZA",
-  "pt_PT",
-];
+import { KAMBI_SUPPORTED_LANGUAGES } from "Features/sports/constants";
 
 export const getKambiSupportedLanguage = (language: string): string =>
   contains(language, KAMBI_SUPPORTED_LANGUAGES) ? language : "en_GB";

@@ -3,16 +3,15 @@ import { pickBy, keys, head } from "ramda";
 import {
   URL_PREFIXES,
   LANGUAGES,
-  MARKETS,
   DEFAULT_LANGUAGE,
+  DEFAULT_MARKET,
 } from "Src/constants";
+import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
-
-const DEFAULT_KAMBI_MARKET = "GB";
 
 export const useKambiMarketFromUrlPrefix = (urlPrefix: string) => {
   const market =
-    head(keys(pickBy(v => v === urlPrefix, URL_PREFIXES))) || MARKETS.___en;
+    head(keys(pickBy(v => v === urlPrefix, URL_PREFIXES))) || DEFAULT_MARKET;
   const language = LANGUAGES[market] || DEFAULT_LANGUAGE;
   const kambiMarket =
     head(market.split("_")).toUpperCase() || DEFAULT_KAMBI_MARKET;
