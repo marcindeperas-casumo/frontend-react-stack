@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import * as R from "ramda";
 import * as A from "Types/apollo";
 import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
 import { GameStudioQuery } from "./ProviderGamesList.graphql";
@@ -22,7 +23,7 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
 
   const fetchMoreGames = () => {
     setPageNumber(pageNumber + 1);
-    return fetchMore<A.GameSearchQueryVariables>({
+    return fetchMore<A.GameStudioQueryVariables>({
       variables: {
         page: pageNumber,
       },
@@ -35,13 +36,15 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
           return prev;
         }
 
+        const mergedGames = [
+          ...R.prop("games", prev.gameStudio),
+          ...R.prop("games", fetchMoreResult.gameStudio),
+        ];
+
         return {
           gameStudio: {
             ...prev.gameStudio,
-            games: [
-              ...prev.gameStudio.games,
-              ...fetchMoreResult.gameStudio.games,
-            ],
+            games: R.sortBy(R.prop("name"), mergedGames),
           },
         };
       },

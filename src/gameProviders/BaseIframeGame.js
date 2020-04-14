@@ -1,8 +1,6 @@
 // @flow
 import { equals } from "ramda";
-import debounce from "lodash.debounce";
 import logger from "Services/logger";
-import { expandIframeHeightToMatchItsParent } from "./utils";
 import { BaseGame } from "./BaseGame";
 import type {
   IframeGameApi,
@@ -135,29 +133,13 @@ export class BaseIframeGame extends BaseGame {
     }
   }
 
-  debouncedOnScreenResize = debounce(
-    () => expandIframeHeightToMatchItsParent(this.props.gameRef),
-    500
-  );
-
   onMount() {
     super.onMount();
-
-    const { current: gameIframe } = this.props.gameRef;
-
-    if (gameIframe) {
-      gameIframe.addEventListener("load", () => {
-        this.debouncedOnScreenResize();
-      });
-    }
-
-    window.addEventListener("resize", this.debouncedOnScreenResize);
     window.addEventListener("message", this.messageGuard.bind(this));
   }
 
   onUnmount() {
     super.onUnmount();
-    window.removeEventListener("resize", this.debouncedOnScreenResize);
     window.removeEventListener("message", this.messageGuard.bind(this));
   }
 }
