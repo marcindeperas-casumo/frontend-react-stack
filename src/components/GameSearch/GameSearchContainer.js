@@ -51,19 +51,15 @@ export const GameSearchContainer = () => {
           return prevData;
         }
 
-        const sortByGameName = R.sortBy(R.prop("name"));
-
         const mergedResults = [
           ...prevData.gamesSearch.results,
           ...fetchMoreResult.gamesSearch.results,
         ];
 
-        const sortedResults = sortByGameName(mergedResults);
-
         return R.mergeDeepRight(prevData, {
           gamesSearch: {
             searchResultsCount: fetchMoreResult.gamesSearch.resultsCount,
-            results: sortedResults,
+            results: R.sortBy(R.prop("name"), mergedResults),
           },
         });
       },
