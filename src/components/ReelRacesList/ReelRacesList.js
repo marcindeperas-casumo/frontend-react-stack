@@ -39,7 +39,7 @@ export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
             <ScrollableList
               title={title}
               itemClassName="c-reel-race-card"
-              seeMoreText={seeMore || ""}
+              seeMoreText={seeMore}
               seeMoreUrl={seeMoreUrl}
               items={reelRaces}
               itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
@@ -54,7 +54,7 @@ export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
-                text: seeMore || "",
+                text: seeMore,
                 url: seeMoreUrl,
               }}
             />
