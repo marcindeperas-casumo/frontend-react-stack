@@ -20,6 +20,7 @@ export type NetentGameLaunchData = {|
   providerName: string,
   providerType: string,
   height: string,
+  lang: string,
 |};
 
 export type GameLaunchData = IframeGameLaunchData | NetentGameLaunchData;

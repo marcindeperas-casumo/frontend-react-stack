@@ -1,5 +1,5 @@
 //@flow
-import { expandIframeHeightToMatchItsParent } from "./utils";
+import { expandElementHeightToMatchItsParent } from "./utils";
 
 describe("Game providers utils", () => {
   test("should set iframe size to fits it's parent size", () => {
@@ -7,7 +7,7 @@ describe("Game providers utils", () => {
       current: (document.createElement("iframe"): HTMLIFrameElement),
     };
 
-    expandIframeHeightToMatchItsParent(gameRef);
+    expandElementHeightToMatchItsParent(gameRef);
 
     //expecting 0px as unmounted element will always have 0 width/height
     expect(gameRef.current.style.height).toEqual("0px");

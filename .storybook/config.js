@@ -16,14 +16,34 @@ function loadStories() {
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
-addDecorator(Story => (
+const globalDecorator = Component => (
   <>
     <div id="portal-host-element" />
     <div className="o-wrapper u-padding">
-      <Story />
+      <Component />
     </div>
   </>
-));
+);
+
+addDecorator((Component, story) => {
+  if (story.parameters.noGlobalDecorator) {
+    return <Component />;
+  }
+
+  return globalDecorator(Component);
+});
+
+/**
+ * Disabling the general wrapper in your story:
+ *
+ *     storiesOf('Button', module)
+ *        .addParameters({ noGlobalDecorator: true });
+ *
+ * or:
+ *     story.add('Button', () => <Button />, {
+ *       noGlobalDecorator: true
+ *     })
+ */
 
 addParameters({
   backgrounds: [

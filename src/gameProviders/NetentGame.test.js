@@ -2,7 +2,8 @@
 import * as utils from "Utils";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { NETENT_SCRIPT_URL, NetentGame } from "./NetentGame";
+import { NetentGame } from "./NetentGame";
+import { NETENT_SCRIPT_URL } from "./netentConstants";
 
 jest.mock("../utils/utils.js", () => ({
   ...jest.requireActual("../utils/utils.js"),
@@ -20,6 +21,7 @@ describe("NetentGame", () => {
     staticServer: "https://casumo-static.casinomodule.com",
     width: "123",
     height: "234",
+    lang: "en",
   };
 
   const gameRef = { current: null };
@@ -48,6 +50,8 @@ describe("NetentGame", () => {
       gameServerURL: gameData.gameServer,
       sessionId: gameData.sessionId,
       staticServer: gameData.staticServer,
+      casinoId: "casumo",
+      liveCasinoHost: null,
       lobbyURL: "#",
       height: "100%",
       width: "100%",
