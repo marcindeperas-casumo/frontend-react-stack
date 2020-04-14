@@ -7,7 +7,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import "./ValuableRow.scss";
 
 type Props = {
-  text: string,
+  text: ?string,
 };
 
 export const ValuableRowShell = ({ text }: Props) => (
@@ -20,7 +20,7 @@ export const ValuableRowShell = ({ text }: Props) => (
     </Flex.Item>
     <Flex align="center" className="u-margin-left">
       <Text className="u-font-weight-bold" size="sm" tag="span">
-        <DangerousHtml data-test="valuable-row-title" html={text} />
+        <DangerousHtml data-test="valuable-row-title" html={text || ""} />
       </Text>
     </Flex>
   </Flex>
