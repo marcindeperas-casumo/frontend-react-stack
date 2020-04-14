@@ -6,7 +6,7 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import * as A from "Types/apollo";
-import { interpolate, convertHoursToDays } from "Utils";
+import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
@@ -81,7 +81,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
       return { key: "minutes", value: minutes };
     }
 
-    return { key: "days", value: convertHoursToDays(hours) };
+    // more than 24h will be treated as 2 days
+    return { key: "days", value: convertHoursToDaysRoundUp(hours) };
   }
 
   get expirationBadgeColour(): string {

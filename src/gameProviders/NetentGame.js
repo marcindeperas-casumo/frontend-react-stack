@@ -91,6 +91,8 @@ export class NetentGame extends BaseGame {
   }
 
   onMount() {
+    super.onMount();
+
     tryLaunchGame(
       this.props.environment,
       this.config,
@@ -109,6 +111,8 @@ export class NetentGame extends BaseGame {
   }
 
   onUnmount() {
+    super.onUnmount();
+
     if (this.extend) {
       this.teardownEvents(this.extend);
     }
