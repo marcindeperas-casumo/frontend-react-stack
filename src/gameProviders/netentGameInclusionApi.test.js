@@ -1,13 +1,13 @@
 import { getOpenTablesMockData } from "./netentMocks";
 import {
-  mapGamesToTables,
+  getOpenTablesByGame,
   getFirstOpenTableForGame,
 } from "./netentGameinclusionApi";
 
 describe("Netent GameInclusion model", () => {
-  describe("mapGamesToTables", () => {
+  describe("getOpenTablesByGame", () => {
     test("it should return properly mapped gameId => openTables", () => {
-      expect(mapGamesToTables(getOpenTablesMockData)).toStrictEqual({
+      expect(getOpenTablesByGame(getOpenTablesMockData)).toStrictEqual({
         lcroulette_mobile_sw: { openTables: [1] },
         lcroulette_not_mobile_sw: { openTables: [1] },
         lcblackjackcd_mobilelr_phy_sw: { openTables: [101, 102] },
