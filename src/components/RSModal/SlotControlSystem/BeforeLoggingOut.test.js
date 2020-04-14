@@ -7,7 +7,9 @@ import { useSessionsState } from "Models/slotControlSystem/useSessionsState";
 import { SessionDetailsForLogout } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { BeforeLoggingOut } from "./BeforeLoggingOut";
 
-jest.mock("Models/slotControlSystem/useSessionsState");
+jest.mock("Models/slotControlSystem/useSessionsState", () => ({
+  useSessionsState: jest.fn(),
+}));
 jest.mock("Utils/hooks");
 
 describe("RSModal/SlotControlSystem/BeforeLoggingOut", () => {
