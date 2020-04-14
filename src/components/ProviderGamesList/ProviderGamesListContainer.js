@@ -36,7 +36,6 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
           return prev;
         }
 
-        // We are already checking if gameStudio exists few lines above, no idea why this keeps complaining
         const mergedGames = [
           ...R.prop("games", prev.gameStudio),
           ...R.prop("games", fetchMoreResult.gameStudio),
