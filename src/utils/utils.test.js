@@ -17,7 +17,7 @@ import {
   interpolateWithJSX,
   isCmsEntryEmpty,
   findOr,
-  convertHoursToDays,
+  convertHoursToDaysRoundUp,
   convertTimestampToLuxonDate,
   interpolateTimeInterval,
   canBeInterpolated,
@@ -417,9 +417,23 @@ describe("isCmsEntryEmpty()", () => {
 describe("convertHoursToDays()", () => {
   test("should convert hours to days", () => {
     const hours = 26;
+    const expectedValue = 2;
+
+    expect(convertHoursToDaysRoundUp(hours)).toEqual(expectedValue);
+  });
+
+  test("should return 0 for any value less than 24", () => {
+    const hours = 23;
+    const expectedValue = 0;
+
+    expect(convertHoursToDaysRoundUp(hours)).toEqual(expectedValue);
+  });
+
+  test("should return 1 for 24", () => {
+    const hours = 24;
     const expectedValue = 1;
 
-    expect(convertHoursToDays(hours)).toEqual(expectedValue);
+    expect(convertHoursToDaysRoundUp(hours)).toEqual(expectedValue);
   });
 
   describe("convertTimestampToLuxonDate()", () => {
