@@ -15,13 +15,15 @@ type Props = {
   numberOfGames: number,
 };
 
+const pollInterval = 20000;
+
 export const GameListHorizontalDefaultContainer = ({
   id,
   numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
 }: Props) => {
   const { data, loading } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
-    { variables: { id, numberOfGames } }
+    { pollInterval, variables: { id, numberOfGames } }
   );
 
   if (loading) {
