@@ -9,6 +9,12 @@ import {
 import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
 
+/**
+ * `useKambiMarketFromUrlPrefix` not to be confused with hooks/useUrlPrefix.js
+ * which returns a urlPrefix based on market taken from LiS handshake.
+ * This one instead takes a urlPrefix as argument, and resolves market, kambiMarket
+ * and locale from it, since we do not have this info in LoS handshake.
+ */
 export function useKambiMarketFromUrlPrefix(
   urlPrefix: string
 ): {
