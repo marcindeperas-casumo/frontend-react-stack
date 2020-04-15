@@ -12,7 +12,9 @@ import { useSessionsState } from "Models/slotControlSystem/useSessionsState";
 import { useWalletAmount } from "Utils/hooks";
 import { BeforePlaying } from "./BeforePlaying";
 
-jest.mock("Models/slotControlSystem/useSessionsState");
+jest.mock("Models/slotControlSystem/useSessionsState", () => ({
+  useSessionsState: jest.fn(),
+}));
 jest.mock("Utils/hooks/useWalletAmount");
 
 describe("RSModal/SlotControlSystem/BeforePlaying", () => {

@@ -9,7 +9,13 @@ import {
 import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
 
-export const useKambiMarketFromUrlPrefix = (urlPrefix: string) => {
+export function useKambiMarketFromUrlPrefix(
+  urlPrefix: string
+): {
+  market: string,
+  kambiMarket: string,
+  locale: string,
+} {
   const market =
     head(keys(pickBy(v => v === urlPrefix, URL_PREFIXES))) || DEFAULT_MARKET;
   const language = LANGUAGES[market] || DEFAULT_LANGUAGE;
@@ -22,4 +28,4 @@ export const useKambiMarketFromUrlPrefix = (urlPrefix: string) => {
     kambiMarket,
     locale,
   };
-};
+}

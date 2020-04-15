@@ -1,7 +1,8 @@
 // @flow
 import * as utils from "Utils";
 import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
-import { NETENT_SCRIPT_URL, NetentGame } from "./NetentGame";
+import { NetentGame } from "./NetentGame";
+import { NETENT_SCRIPT_URL } from "./netentConstants";
 
 jest.mock("../utils/utils.js", () => ({
   ...jest.requireActual("../utils/utils.js"),
@@ -48,6 +49,8 @@ describe("NetentGame", () => {
       gameServerURL: gameData.gameServer,
       sessionId: gameData.sessionId,
       staticServer: gameData.staticServer,
+      casinoId: "casumo",
+      liveCasinoHost: null,
       lobbyURL: "#",
       height: "100%",
       width: "100%",

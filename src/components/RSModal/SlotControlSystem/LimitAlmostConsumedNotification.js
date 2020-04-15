@@ -5,7 +5,8 @@ import Button from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import type { ModalContentComponent } from "Components/RSModal";
 import { formatCurrency, interpolate } from "Utils";
-import { useActiveGameSession, useLocale } from "Utils/hooks";
+import { useLocale } from "Utils/hooks";
+import { useSessionsState } from "Models/slotControlSystem";
 import { ModalSkin } from "./ModalSkin";
 
 type ContentType = {|
@@ -19,9 +20,9 @@ export function LimitAlmostConsumedNotification({
   ...props
 }: ModalContentComponent<ContentType>) {
   const locale = useLocale();
-  const activeGameSession = useActiveGameSession();
+  const { activeSession } = useSessionsState();
 
-  if (!activeGameSession || !t) {
+  if (!activeSession || !t) {
     return null;
   }
 
@@ -36,8 +37,8 @@ export function LimitAlmostConsumedNotification({
           {interpolate(t.modal_body, {
             amount: formatCurrency({
               locale,
-              currency: activeGameSession.stats.currency,
-              value: activeGameSession.stats.remainingBalance,
+              currency: activeSession.stats.currency,
+              value: activeSession.stats.remainingBalance,
             }),
           })}
         </Text>
