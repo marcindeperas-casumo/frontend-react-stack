@@ -9,6 +9,8 @@ import { SportsNav } from "Features/sports/components/SportsNav";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 import { useKambiMarketFromUrlPrefix } from "Features/sports/hooks/useKambiMarketFromUrlPrefix";
 
+import "./SportsLoSContainer.scss";
+
 export const SportsLoSContainer = ({ urlPrefix }: { urlPrefix: string }) => {
   const [bootstrapUrl, setBootstrapUrl] = useState("");
   const [currency, setCurrency] = useState("");
