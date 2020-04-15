@@ -1,13 +1,18 @@
 // @flow
 import React from "react";
-import { useTranslations } from "Utils/hooks";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import { ErrorMessage } from "../ErrorMessage";
 
 // TODO: Figure out how it is the best way to show
 // a user-feedback in these cases.
 export function ErrorBoundaryUserFeedback() {
-  const mobileErrorMessages = useTranslations("mobile.errors");
-  const translatedErrorMessage = mobileErrorMessages?.general_error_title;
+  const { t, loading } = useTranslationsGql({
+    errorText: "root:mobile.errors:fields.general_error_title",
+  });
 
-  return <ErrorMessage errorMessage={translatedErrorMessage} />;
+  if (loading) {
+    return null;
+  }
+
+  return <ErrorMessage errorMessage={t.errorText} />;
 }
