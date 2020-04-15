@@ -11,9 +11,10 @@ import "./GameDetails.scss";
 
 type Props = {
   data: A.GameDetailsQuery,
+  t: Object,
 };
 
-export const GameDetails = ({ data }: Props) => {
+export const GameDetails = ({ data, t }: Props) => {
   if (!data.game) {
     return null;
   }
@@ -29,7 +30,7 @@ export const GameDetails = ({ data }: Props) => {
             className="t-greyscale"
           >
             <Text className="t-color-white o-ratio__content o-flex o-flex-justify--center o-flex-align--end u-padding-bottom">
-              {data.gameInMaintenanceText}
+              {t.gameInMaintenanceText}
             </Text>
           </GameDetailsImage>
         ) : (
@@ -62,9 +63,9 @@ export const GameDetails = ({ data }: Props) => {
           <GameDetailsButtons
             slug={data.game.slug}
             name={data.game.name}
-            playButtonText={data.playButtonText}
+            playButtonText={t.playButtonText}
             hasPlayForFun={data.game.hasPlayForFun}
-            practiceButtonText={data.practiceButtonText}
+            practiceButtonText={t.practiceButtonText}
           />
         )}
       </div>

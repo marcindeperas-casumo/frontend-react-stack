@@ -68,9 +68,6 @@ export type GameDetailsQuery_game = {
 };
 export type GameDetailsQuery = {
   game: ?GameDetailsQuery_game,
-  playButtonText: string,
-  practiceButtonText: string,
-  gameInMaintenanceText: string,
 };
 export type GameDetailsQueryVariables = {
   slug: string,
