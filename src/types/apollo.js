@@ -541,6 +541,15 @@ export type PlayerValuablesQuery_player = {
   valuables: Array<PlayerValuablesQuery_player_valuables>,
 };
 export type PlayerValuablesQuery = {
+  listTitleLabel: string,
+  availableListTitleLabel: string,
+  usedListTitleLabel: string,
+  lockedListTitleLabel: string,
+  hoursLabel: string,
+  minutesLabel: string,
+  seeAllLabel: string,
+  noValuablesLabel: string,
+  dontUseValuableLabel: string,
   player: PlayerValuablesQuery_player,
 };
 export type PlayerValuablesQueryVariables = {

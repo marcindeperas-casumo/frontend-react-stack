@@ -1,4 +1,31 @@
 query PlayerValuablesQuery($valuableType: ValuableType)  {
+  listTitleLabel: getText(
+    id: "root:mobile.valuables:fields.your_valuables"
+  )
+  availableListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.available_valuables"
+  )
+  usedListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.active_item_label"
+  )
+  lockedListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.locked_valuables"
+  )
+  hoursLabel: getText(
+    id: "root:units:fields.hours_abbreviated"
+  )
+  minutesLabel: getText(
+    id: "root:units:fields.minutes_abbreviated"
+  )
+  seeAllLabel: getText(
+    id: "root:mobile.valuables:fields.see_all_valuables_link"
+  )
+  noValuablesLabel: getText(
+    id: "root:mobile.valuables:fields.no_valuables"
+  )
+  dontUseValuableLabel: getText(
+    id: "root:mobile.deposit:fields.dont_use_valuable_label"
+  )
   player {
     valuables (valuableType: $valuableType) {
       __typename
