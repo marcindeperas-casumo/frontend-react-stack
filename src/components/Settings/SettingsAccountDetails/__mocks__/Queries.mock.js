@@ -1,4 +1,6 @@
+// @flow
 import gql from "graphql-tag";
+import { generateTranslationsQuery, generateTranslationsQueryMock } from "Utils/apolloTestUtils";
 import { PLAYER_SETTINGS_QUERY } from "../PlayerSettingsQuery.graphql";
 
 export const playerSettingsQueryMock = {
@@ -54,84 +56,33 @@ export const playerSettingsQueryErrorMock = {
   },
 };
 
-const LABELS_QUERY = gql`
-  query TranslationsQuery {
-    name: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_name_label"
-    ) { id, text }
-    email: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_email_label"
-    ) { id, text }
-    password: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_password_label"
-    ) { id, text }
-    mobileNumber: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_mobile_number_label"
-    ) { id, text }
-    address: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_address_label"
-    ) { id, text }
-    edit: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_edit_label"
-    ) { id, text }
-    verify: getCMSField(
-      id: "root:player-settings-component:fields.account_settings_verify_label"
-    ) { id, text }
-    gamblingExtent: getCMSField(
-      id: "root:mobile.settings:fields.gambling_extent_label"
-    ) { id, text }
-  }
-`;
-
-export const playerSettingsLabelsQueryMock = {
-  request: {
-    query: LABELS_QUERY,
-  },
-  result: {
-    data: {
-      name: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_name_label",
-        text: "Name"
-      },
-      email: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_email_label",
-        text: "Email"
-      },
-      password: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_password_label",
-        text: "Password"
-      },
-      mobileNumber: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_mobile_number_label",
-        text: "Mobile number"
-      },
-      address: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_name_label",
-        text: "Address"
-      },
-      edit: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_edit_label",
-        text: ""
-      },
-      verify: {
-        __typename: "CmsText",
-        id: "root:player-settings-component:fields.account_settings_verify_label",
-        text: "Verify"
-      },
-      gamblingExtent: {
-        __typename: "CmsText",
-        id: "root:mobile.settings:fields.gambling_extent_label",
-        text: "Estimated monthly deposit"
-      },
-    },
-  },
+const labelsKeyIdMap = {
+  name: "root:player-settings-component:fields.account_settings_name_label",
+  email: "root:player-settings-component:fields.account_settings_email_label",
+  password: "root:player-settings-component:fields.account_settings_password_label",
+  mobileNumber: "root:player-settings-component:fields.account_settings_mobile_number_label",
+  address: "root:player-settings-component:fields.account_settings_address_label",
+  edit: "root:player-settings-component:fields.account_settings_edit_label",
+  verify: "root:player-settings-component:fields.account_settings_verify_label",
+  gamblingExtent: "root:mobile.settings:fields.gambling_extent_label",
 };
+
+export const LABELS_QUERY = generateTranslationsQuery(labelsKeyIdMap);
+
+export const playerSettingsLabelsQueryMock = generateTranslationsQueryMock(
+  LABELS_QUERY,
+  labelsKeyIdMap,
+  {
+    name: "Name",
+    email: "Email",
+    password: "Password",
+    mobileNumber: "Mobile Number",
+    address: "Address",
+    edit: "Edit",
+    verify: "Verify",
+    gamblingExtent: "Gambling Extent",
+  }
+);
 
 export const playerSettingsLabelsQueryErrorMock = {
   ...playerSettingsLabelsQueryMock,

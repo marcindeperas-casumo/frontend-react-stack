@@ -3,7 +3,7 @@ import * as R from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-const generateQueries = R.pipe(
+export const generateQueries = R.pipe(
   R.mapObjIndexed(
     (value, key) => `${key}: getCMSField(id: "${value}") { id, text }`
   ),
