@@ -11,7 +11,7 @@ export function ErrorBoundaryUserFeedback() {
   });
 
   if (loading) {
-    return null;
+    return <div>Something went wrong, we are working on it.</div>;
   }
 
   return <ErrorMessage errorMessage={t.errorText} />;
