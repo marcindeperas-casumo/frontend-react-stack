@@ -105,9 +105,9 @@ describe("SettingsSections", () => {
         rendered.update();
       });
 
-      expect(rendered.find(SettingsSections).prop("labels")).toStrictEqual(
-        playerSectionsLabelsQueryMock.result.data
-      );
+      expect(
+        Object.keys(rendered.find(SettingsSections).prop("labels"))
+      ).toStrictEqual(Object.keys(playerSectionsLabelsQueryMock.result.data));
     });
   });
 });
