@@ -84,7 +84,7 @@ describe("AccountDetails", () => {
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should pass correct player to child", () => {
+    test("should pass correct labels to child", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
@@ -99,8 +99,8 @@ describe("AccountDetails", () => {
       });
 
       expect(
-        rendered.find(SettingsAccountDetails).prop("labels")
-      ).toStrictEqual(playerSettingsLabelsQueryMock.result.data);
+        Object.keys(rendered.find(SettingsAccountDetails).prop("labels"))
+      ).toEqual(Object.keys(playerSettingsLabelsQueryMock.result.data));
     });
   });
 });
