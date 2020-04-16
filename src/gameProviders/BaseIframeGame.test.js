@@ -1,6 +1,5 @@
 // @flow
-import { ENVIRONMENTS } from "Src/constants";
-import { DEFAULT_LANGUAGE } from "Models/handshake";
+import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export const baseIframeGameApi = {
