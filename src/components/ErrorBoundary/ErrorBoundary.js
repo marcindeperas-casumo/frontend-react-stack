@@ -26,7 +26,7 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
   render() {
     if (this.state.hasError) {
       if (this.props.withoutUserFeedback) {
-        return null;
+        return <div>Something went wrong, we are working on it.</div>;
       }
       return <ErrorBoundaryUserFeedback />;
     }
