@@ -7,27 +7,37 @@ import KambiClient from "Features/sports/components/KambiClient/KambiClient";
 import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
-import { useLanguage } from "Utils/hooks";
+import { useKambiMarketFromUrlPrefix } from "Features/sports/hooks/useKambiMarketFromUrlPrefix";
 
-export const SportsLoSContainer = () => {
-  const [bootstrapUrl, setBootstrapUrl] = useState(null);
+import "./SportsLoSContainer.scss";
+
+export const SportsLoSContainer = ({ urlPrefix }: { urlPrefix: string }) => {
+  const [bootstrapUrl, setBootstrapUrl] = useState("");
+  const [currency, setCurrency] = useState("");
   const [launchKambi, { data }] = useMutation<
     A.LaunchKambiLoS,
     A.LaunchKambiLoSVariables
   >(LAUNCH_KAMBI_LOS_MUTATION);
 
-  const language = useLanguage();
+  const { market, kambiMarket, locale } = useKambiMarketFromUrlPrefix(
+    urlPrefix
+  );
 
   useEffect(() => {
-    if (!bootstrapUrl) {
-      launchKambi({ variables: { playForFun: true } });
-      if (data && data.launchKambi) {
-        setBootstrapUrl(data.launchKambi.clientBootstrapUrl);
-      }
+    if (market && launchKambi) {
+      launchKambi({ variables: { playForFun: true, market } });
     }
-  }, [bootstrapUrl, data, launchKambi]);
+  }, [launchKambi, market]);
 
-  if (!language || !bootstrapUrl) {
+  useEffect(() => {
+    if (data && data.launchKambi && !bootstrapUrl) {
+      const { clientBootstrapUrl, currency: marketCurrency } = data.launchKambi;
+      setBootstrapUrl(clientBootstrapUrl);
+      marketCurrency && setCurrency(marketCurrency);
+    }
+  }, [bootstrapUrl, data]);
+
+  if (!bootstrapUrl || !currency) {
     return <SportsShellSkeleton />;
   }
 
@@ -37,9 +47,9 @@ export const SportsLoSContainer = () => {
         {({ currentHash }) => <SportsNav currentHash={currentHash} />}
       </SportsHashWatcher>
       <KambiClient
-        currency={"GBP"}
-        market={"GB"}
-        locale={`${language}_GB`}
+        currency={currency}
+        market={kambiMarket}
+        locale={locale}
         bootstrapUrl={bootstrapUrl}
         homeRoute={"#filter/football"}
       />
