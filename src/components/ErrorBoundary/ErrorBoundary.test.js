@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import logger from "Services/logger";
+import MockStore from "Components/MockStore";
 import { ErrorBoundary } from "./ErrorBoundary";
 
 jest.mock("Services/logger");
@@ -54,9 +55,11 @@ describe("<ErrorBoundary />", () => {
       throw new Error("Test");
     };
     const rendered = mount(
-      <ErrorBoundary>
-        <Component />
-      </ErrorBoundary>
+      <MockStore>
+        <ErrorBoundary>
+          <Component />
+        </ErrorBoundary>
+      </MockStore>
     );
 
     expect(rendered.find("ErrorBoundaryUserFeedback")).toHaveLength(1);
@@ -72,9 +75,11 @@ describe("<ErrorBoundary />", () => {
     };
 
     mount(
-      <ErrorBoundary>
-        <Component />
-      </ErrorBoundary>
+      <MockStore>
+        <ErrorBoundary>
+          <Component />
+        </ErrorBoundary>
+      </MockStore>
     );
 
     const firstArg = logError.mock.calls[0][0];
