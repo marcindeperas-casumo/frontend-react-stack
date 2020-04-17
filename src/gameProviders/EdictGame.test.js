@@ -1,6 +1,5 @@
 // @flow
-import { DEFAULT_LANGUAGE } from "Models/handshake";
-import { ENVIRONMENTS } from "Src/constants";
+import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { EdictGame, COMMANDS } from "./EdictGame";
 
 describe("EdictGame", () => {

@@ -1,5 +1,7 @@
+// @flow
+import gql from "graphql-tag";
+import { generateTranslationsQuery, generateTranslationsQueryMock } from "Utils/apolloTestUtils";
 import { PLAYER_SETTINGS_QUERY } from "../PlayerSettingsQuery.graphql";
-import PLAYER_SETTINGS_LABELS_QUERY from "../PlayerSettingsLabelsQuery.graphql";
 
 export const playerSettingsQueryMock = {
   request: {
@@ -54,23 +56,33 @@ export const playerSettingsQueryErrorMock = {
   },
 };
 
-export const playerSettingsLabelsQueryMock = {
-  request: {
-    query: PLAYER_SETTINGS_LABELS_QUERY,
-  },
-  result: {
-    data: {
-      address: "Address",
-      edit: "",
-      email: "Email",
-      verify: "Verify",
-      gamblingExtent: "Estimated monthly deposit",
-      mobileNumber: "Mobile number",
-      name: "Name",
-      password: "Password",
-    },
-  },
+const labelsKeyIdMap = {
+  name: "root:player-settings-component:fields.account_settings_name_label",
+  email: "root:player-settings-component:fields.account_settings_email_label",
+  password: "root:player-settings-component:fields.account_settings_password_label",
+  mobileNumber: "root:player-settings-component:fields.account_settings_mobile_number_label",
+  address: "root:player-settings-component:fields.account_settings_address_label",
+  edit: "root:player-settings-component:fields.account_settings_edit_label",
+  verify: "root:player-settings-component:fields.account_settings_verify_label",
+  gamblingExtent: "root:mobile.settings:fields.gambling_extent_label",
 };
+
+export const LABELS_QUERY = generateTranslationsQuery(labelsKeyIdMap);
+
+export const playerSettingsLabelsQueryMock = generateTranslationsQueryMock(
+  LABELS_QUERY,
+  labelsKeyIdMap,
+  {
+    name: "Name",
+    email: "Email",
+    password: "Password",
+    mobileNumber: "Mobile Number",
+    address: "Address",
+    edit: "Edit",
+    verify: "Verify",
+    gamblingExtent: "Gambling Extent",
+  }
+);
 
 export const playerSettingsLabelsQueryErrorMock = {
   ...playerSettingsLabelsQueryMock,

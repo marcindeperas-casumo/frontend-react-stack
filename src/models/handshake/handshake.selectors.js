@@ -12,10 +12,13 @@ import {
   propSatisfies,
 } from "ramda";
 import * as storage from "Lib/storage";
-import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
+import {
+  INTL_LOCALES,
+  LANGUAGES,
+  VERTICALS,
+  DEFAULT_LANGUAGE,
+} from "Src/constants";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
-
-export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 
 export const handshakeSelector = (state: Object) => state.handshake;
 
