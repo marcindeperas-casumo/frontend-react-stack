@@ -15,7 +15,7 @@ type Props = {
   numberOfGames: number,
 };
 
-const pollInterval = 20000;
+const pollInterval = 30000;
 
 export const GameListHorizontalDefaultContainer = ({
   id,
