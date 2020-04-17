@@ -2,7 +2,6 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -10,7 +9,10 @@ import type {
   DepositLimitsSelected,
   PendingDepositLimitsChangesSelected,
 } from "Models/playOkay/depositLimits";
-import { LimitHeader } from "Components/Compliance/LimitHeader";
+import {
+  LimitHeader,
+  LimitHeaderButton,
+} from "Components/Compliance/LimitHeader";
 import { PendingChanges } from "./PendingChanges";
 import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
@@ -71,16 +73,20 @@ export function DepositLimitsOverview(props: Props) {
         spacing="none"
         className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg t-background-white"
       >
-        <LimitHeader title={t.deposit_limits} icon={<DepositLimitsIcon />}>
+        <LimitHeader
+          variesForDesktop
+          title={t.deposit_limits}
+          icon={<DepositLimitsIcon />}
+        >
           {shouldShowAddButton && (
-            <Button onClick={props.add} variant="secondary">
+            <LimitHeaderButton variesForDesktop onClick={props.add}>
               {t.add}
-            </Button>
+            </LimitHeaderButton>
           )}
           {shouldShowRemoveButton && (
-            <Button onClick={props.removeAll} variant="secondary">
+            <LimitHeaderButton variesForDesktop onClick={props.removeAll}>
               {t.remove_all}
-            </Button>
+            </LimitHeaderButton>
           )}
         </LimitHeader>
         <Flex className="c-deposit-limits__limits-list">
