@@ -25,3 +25,11 @@ $directions: (top, left, bottom, right);
   margin: 0;
   width: 100%;
 }
+
+.c-game-page__swipe-panel {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: calc(100vh + 100px);
+  position: absolute;
+  width: 100vw;
+  z-index: 10;
+}

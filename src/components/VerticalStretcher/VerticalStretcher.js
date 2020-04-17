@@ -12,16 +12,19 @@ export type Props = {
 
 export const VerticalStretcher = ({
   children,
-  swipeToFillAvailable = false,
+  swipeToFillAvailable = true,
 }: Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
+  const [controllScroll, setControllScroll] = useState(true);
 
   const isNative = isNativeByUserAgent();
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
-      window.scrollTo(0, 0);
+      if (controllScroll) {
+        window.scrollTo(0, 0);
+      }
     }, 50);
 
     const interval = setInterval(() => {
@@ -46,8 +49,10 @@ export const VerticalStretcher = ({
          */
         if (window.innerHeight < document.body?.clientHeight) {
           setShowSwipePanel(true);
+          setControllScroll(false);
         } else {
           setShowSwipePanel(false);
+          setControllScroll(true);
         }
       }
     }, 100);
@@ -71,7 +76,11 @@ export const VerticalStretcher = ({
     <div ref={heightContainer} className="u-width--full">
       {swipeToFillAvailable && !isNative && showSwipePanel && (
         <div className="c-game-page__swipe-panel">
-          <div className="o-flex u-width--full u-height--full o-flex-align--center"></div>
+          <div className="o-flex u-width--full u-height--screen">
+            <div className="t-color-gainsboro u-width--full u-text-align-center o-flex__item-align--center">
+              Swipe up to play
+            </div>
+          </div>
         </div>
       )}
       {children}
