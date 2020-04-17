@@ -65,6 +65,7 @@ export default class KambiClient extends React.Component<Props> {
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
+      loginUrl: "/log-in",
     };
 
     window.widgetSettings = {

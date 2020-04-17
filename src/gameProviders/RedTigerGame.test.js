@@ -1,6 +1,5 @@
 // @flow
-import { DEFAULT_LANGUAGE } from "Models/handshake";
-import { ENVIRONMENTS } from "Src/constants";
+import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { RedTigerGame, COMMANDS } from "./RedTigerGame";
 
 describe("RedTigerGame", () => {
