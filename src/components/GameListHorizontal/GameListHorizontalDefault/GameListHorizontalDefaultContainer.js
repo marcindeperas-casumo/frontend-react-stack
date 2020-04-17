@@ -1,7 +1,11 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
+import {
+  EVENT_PROPS,
+  GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+  POLL_INTERVAL,
+} from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
@@ -15,15 +19,13 @@ type Props = {
   numberOfGames: number,
 };
 
-const pollInterval = 30000;
-
 export const GameListHorizontalDefaultContainer = ({
   id,
   numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
 }: Props) => {
   const { data, loading } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
-    { pollInterval, variables: { id, numberOfGames } }
+    { pollInterval: POLL_INTERVAL.GAMES_LIST, variables: { id, numberOfGames } }
   );
 
   if (loading) {
