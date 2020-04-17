@@ -6,7 +6,7 @@ import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 export function LimitHeaderButton(props: {
   onClick: () => void,
   children: React.Node,
-  variesForDesktop?: boolean,
+  variesForDesktop?: true,
 }) {
   if (props.variesForDesktop) {
     return (
