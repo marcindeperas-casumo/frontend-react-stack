@@ -18,7 +18,10 @@ export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
   onLaunchGame: Function,
   playNowText: string,
-  t: Object,
+  t: {
+    betBehindText: ?string,
+    openSeatsText: ?string,
+  },
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {

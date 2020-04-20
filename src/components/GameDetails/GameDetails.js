@@ -11,7 +11,11 @@ import "./GameDetails.scss";
 
 type Props = {
   data: A.GameDetailsQuery,
-  t: Object,
+  t: {
+    gameInMaintenanceText: ?string,
+    playButtonText: ?string,
+    practiceButtonText: ?string,
+  },
 };
 
 export const GameDetails = ({ data, t }: Props) => {
