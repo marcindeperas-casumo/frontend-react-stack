@@ -1,44 +1,45 @@
 // @flow
 import React from "react";
-import { Query } from "react-apollo";
-import { adopt } from "react-adopt";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import { SettingsAccountDetails } from "Components/Settings/SettingsAccountDetails/SettingsAccountDetails";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import PLAYER_SETTINGS_LABELS_QUERY from "./PlayerSettingsLabelsQuery.graphql";
-import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery";
+import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery.graphql";
 
-const Composed = adopt({
-  labels: ({ render }) => (
-    <Query query={PLAYER_SETTINGS_LABELS_QUERY}>{render}</Query>
-  ),
-  settings: ({ render }) => (
-    <Query query={PLAYER_SETTINGS_QUERY}>{render}</Query>
-  ),
-});
+export function SettingsAccountDetailsContainer() {
+  const labels = useTranslationsGql({
+    name: "root:player-settings-component:fields.account_settings_name_label",
+    email: "root:player-settings-component:fields.account_settings_email_label",
+    password:
+      "root:player-settings-component:fields.account_settings_password_label",
+    mobileNumber:
+      "root:player-settings-component:fields.account_settings_mobile_number_label",
+    address:
+      "root:player-settings-component:fields.account_settings_address_label",
+    edit: "root:player-settings-component:fields.account_settings_edit_label",
+    verify:
+      "root:player-settings-component:fields.account_settings_verify_label",
+    gamblingExtent: "root:mobile.settings:fields.gambling_extent_label",
+  });
+  const settings = useQuery<A.PLAYER_SETTINGS_QUERY, _>(PLAYER_SETTINGS_QUERY);
 
-export const withContainer = (Component: Function) => (
-  <Composed>
-    {({ labels, settings }) => {
-      if (labels.loading || settings.loading) {
-        return <SettingsRowListSkeleton count={6} />;
-      }
-      if (settings.error) {
-        return <ErrorMessage retry={() => settings.refetch()} />;
-      }
-      if (labels.error) {
-        return <ErrorMessage retry={() => labels.refetch()} />;
-      }
+  if (labels.loading || settings.loading) {
+    return <SettingsRowListSkeleton count={6} />;
+  }
+  if (!settings.data || settings.error) {
+    return <ErrorMessage retry={() => settings.refetch()} />;
+  }
+  if (!labels.t.name) {
+    return <ErrorMessage />;
+  }
 
-      return (
-        <Component
-          labels={labels.data}
-          player={settings.data.player}
-          refetchSettings={settings.refetch}
-        />
-      );
-    }}
-  </Composed>
-);
-export const SettingsAccountDetailsContainer = () =>
-  withContainer(SettingsAccountDetails);
+  return (
+    <SettingsAccountDetails
+      labels={labels.t}
+      player={settings.data.player}
+      refetchSettings={settings.refetch}
+    />
+  );
+}
