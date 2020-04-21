@@ -16,7 +16,16 @@ import {
 
 type Props = {
   player: A.SETTINGS_PLAYER,
-  labels: A.PLAYER_SETTINGS_LABELS_QUERY,
+  labels: {
+    name: ?string,
+    email: ?string,
+    password: ?string,
+    mobileNumber: ?string,
+    address: ?string,
+    edit: ?string,
+    verify: ?string,
+    gamblingExtent: ?string,
+  },
   refetchSettings: () => {},
 };
 
@@ -28,7 +37,7 @@ const RowTemplate = ({
   action,
   onClick,
 }: {
-  label: string,
+  label: ?string,
   value?: Node,
   action?: Node,
   onClick?: () => void,

@@ -1697,12 +1697,14 @@ export type LaunchKambi = {
 
 export type LaunchKambiLoS_launchKambi = {
   clientBootstrapUrl: string,
+  currency: ?string,
 };
 export type LaunchKambiLoS = {
   launchKambi: ?LaunchKambiLoS_launchKambi,
 };
 export type LaunchKambiLoSVariables = {
   playForFun: boolean,
+  market: string,
 };
 
 // ====================================================

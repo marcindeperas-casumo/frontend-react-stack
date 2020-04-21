@@ -1,7 +1,6 @@
 // @flow
 import * as utils from "Utils";
-import { DEFAULT_LANGUAGE } from "Models/handshake";
-import { ENVIRONMENTS } from "Src/constants";
+import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { NetentGame } from "./NetentGame";
 import { NETENT_SCRIPT_URL } from "./netentConstants";
 

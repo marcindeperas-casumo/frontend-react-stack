@@ -50,6 +50,14 @@
   padding: 0 !important;
 }
 
+// move betslip on desktop only so chat icon does not overlap PRS-176
+#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
+  .mod-KambiBC-betslip,
+#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
+  .mod-KambiBC-betslip__outer-wrapper {
+  right: 95px !important;
+}
+
 // https://jira.casumocave.com/browse/PRS-354 fast fix, should be send later to kambi css
 .KambiBC-betoffer-labels__label {
   margin: auto 0 !important;

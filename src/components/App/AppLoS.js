@@ -1,13 +1,12 @@
 // @flow
 import React from "react";
-import LazyPortal from "Components/LazyPortal";
-import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
+import { Router as ReachRouter } from "@reach/router";
+import { LazySportsLoS } from "Features/sports/components/SportsLoS";
 
-export const AppLoS = () => (
-  <LazyPortal
-    hostElementId="sports-los-portal"
-    loader={() => import("Features/sports/components/SportsLoS")}
-    fallback={<SportsShellSkeleton />}
-    namedExport="SportsLoSContainer"
-  />
-);
+export const AppLoS = () => {
+  return (
+    <ReachRouter>
+      <LazySportsLoS path={"/react-stack/:urlPrefix/sports"} />
+    </ReachRouter>
+  );
+};

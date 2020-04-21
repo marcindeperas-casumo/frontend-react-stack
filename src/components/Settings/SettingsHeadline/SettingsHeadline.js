@@ -3,8 +3,8 @@ import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 
 type Props = {
-  title: string,
-  description: string,
+  title: ?string,
+  description: ?string,
 };
 
 export class SettingsHeadline extends PureComponent<Props> {

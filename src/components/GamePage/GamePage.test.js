@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { ENVIRONMENTS, DEVICES } from "Src/constants";
-import { DEFAULT_LANGUAGE } from "Models/handshake";
+import { ENVIRONMENTS, DEVICES, DEFAULT_LANGUAGE } from "Src/constants";
 import MockStore from "Components/MockStore";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GamePageContainer } from "./GamePageContainer";

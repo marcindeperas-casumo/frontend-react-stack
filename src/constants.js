@@ -202,6 +202,10 @@ export const LANGUAGES = {
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
 };
+
+export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
+export const DEFAULT_MARKET = MARKETS.___en;
+
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "en-CA",
@@ -386,4 +390,11 @@ export const JURISDICTIONS = {
   MGA: "MGA",
   SGA: "SGA",
   UKGC: "UKGC",
+};
+
+export const POLL_INTERVAL = {
+  GAMES_LIST: 30000,
+  JACKPOTS: 30000,
+  JACKPOTS_MUST_DROP: 30000,
+  REEL_RACES: 8000,
 };
