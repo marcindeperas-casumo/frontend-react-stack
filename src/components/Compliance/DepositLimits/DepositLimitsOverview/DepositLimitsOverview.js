@@ -3,6 +3,11 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import { useMedia } from "react-use";
+import {
+  getMediaQuery,
+  desktopBreakpoint,
+} from "Components/ResponsiveLayout/ResponsiveLayout.utils";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -50,6 +55,7 @@ export function DepositLimitsOverview(props: Props) {
   const shouldShowAddButton = props.limits.length !== 3;
   const shouldShowRemoveButton =
     !shouldShowAddButton && props.canIncreaseLimits;
+  const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
 
   return (
     <Flex
@@ -121,6 +127,7 @@ export function DepositLimitsOverview(props: Props) {
       <DepositLimitsSuspendAccount
         t={t}
         showOldSuspendAccountView={props.showOldSuspendAccountView}
+        className={`u-width--${isDesktop ? "1/2" : "full"}`}
       />
       <DepositLimitsHistoryContainer />
     </Flex>

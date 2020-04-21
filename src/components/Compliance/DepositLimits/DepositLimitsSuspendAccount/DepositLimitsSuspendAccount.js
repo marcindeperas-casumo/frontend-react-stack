@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import Button from "@casumo/cmp-button";
+import classNames from "classnames";
 import bridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW } from "Src/constants";
 import { LimitHeader } from "Components/Compliance/LimitHeader";
@@ -12,6 +13,7 @@ type Props = {
     add: string,
   },
   showOldSuspendAccountView: void => void,
+  className?: string,
 };
 
 export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
@@ -20,7 +22,12 @@ export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
   }
 
   return (
-    <div className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--lg">
+    <div
+      className={classNames(
+        "t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--lg",
+        props.className
+      )}
+    >
       <LimitHeader title={t.suspend_account} icon={<SuspendAccountIcon />}>
         <Button
           data-test-id="suspendAccountButton"
