@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsAccountDetails } from "Components/Settings/SettingsAccountDetails/SettingsAccountDetails";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";

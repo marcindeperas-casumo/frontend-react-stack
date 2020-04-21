@@ -1,31 +1,3 @@
-query ValuableDetailsQuery {
-    termsAndConditionLabel: getText(
-      id: "root:valuable-details-component:fields.terms_and_conditions_title"
-    )
-    cashUnlockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_money")
-    spinsUnlockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_spins")
-    playToUnlockLabel: getText(
-      id: "root:valuable-details-component:fields.play_to_unlock"
-    )
-    depositToUnlockLabel: getText(
-      id: "root:valuable-details-component:fields.deposit_to_unlock"
-    )
-    depositNowLabel: getText(
-      id: "root:valuable-details-component:fields.deposit_now"
-    )
-    expirationTimeLabel: getText(
-        id: "root:valuable-details-component:fields.expirationTimeLabel"
-    )
-    termsAndConditionsContent: getText(id: "root:uk-welcome-bonus-terms:content")
-    wageringStatus: getText(id: "root:valuable-details-component:fields.wagering_status")
-    minute_singular: getText(id: "root:units:fields.minute_singular")
-    minute_plural: getText(id: "root:units:fields.minutes")
-    hour_singular: getText(id: "root:units:fields.hour_singular")
-    hour_plural: getText(id: "root:units:fields.hours")
-    day_singular: getText(id: "root:units:fields.day_singular")
-    day_plural: getText(id: "root:units:fields.days")
-}
-
 fragment ValuableDetails_PlayerValuable on PlayerValuable {
   __typename
   id

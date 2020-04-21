@@ -6,7 +6,7 @@ import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** The text to show */
-  title: string,
+  title: ?string,
   /** Whether applying padding left or not */
   paddingLeft?: boolean,
 };
@@ -27,7 +27,7 @@ export default function ScrollableListTitle({ title, paddingLeft }: Props) {
       data-test="scrollable-list-title"
       tag="h3"
     >
-      <DangerousHtml html={title} />
+      <DangerousHtml html={title || ""} />
     </Text>
   );
 }
