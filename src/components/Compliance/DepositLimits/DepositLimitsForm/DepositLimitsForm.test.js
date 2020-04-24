@@ -2,7 +2,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsForm } from "./DepositLimitsForm";
-import t from "./__mocks__/cms.json";
+import t from "./__mocks__/cms";
 
 const limitsDefault = {
   currency: "EUR",

@@ -18,7 +18,7 @@ import { Pill } from "Components/Pill";
 import { TextInput } from "Components/Compliance/TextInput";
 import { useDepositLimitInputs } from "./DepositLimitsForm.hooks";
 import { validate } from "./DepositLimitsForm.utils";
-import type { FormProps } from "./DepositLimitsForm.types";
+import type { FormPropsWithTranslations } from "./DepositLimitsForm.types";
 import { limitTypes } from "..";
 import "./styles.scss";
 
@@ -26,13 +26,8 @@ import "./styles.scss";
 DepositLimitsForm.defaultProps = {
   initiallyVisible: "daily",
   lock: undefined,
-  limitChanges: {
-    daily: null,
-    weekly: null,
-    monthly: null,
-  },
 };
-export function DepositLimitsForm({ t, ...props }: FormProps) {
+export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
   React.useEffect(() => {
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,14 +39,14 @@ export function DepositLimitsForm({ t, ...props }: FormProps) {
     ...props.limits,
     ...props.limitChanges, // if we are going back from summary screen this will contain some values
   });
-  const inputError = validate(visible, limitInputs, { t, ...props });
+  const inputError = validate(visible, limitInputs, props, t);
   const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
   const flexItemWidth = `u-width--${isDesktop ? "1/2" : "full"}`;
 
   const handleNextButton = React.useCallback(() => {
     // if any limit is invalid it should be fixed before we can proceed
     const invalid = limitTypes.find(limit =>
-      validate(limit, limitInputs, { t, ...props })
+      validate(limit, limitInputs, props, t)
     );
     if (invalid) {
       setVisible(invalid);
