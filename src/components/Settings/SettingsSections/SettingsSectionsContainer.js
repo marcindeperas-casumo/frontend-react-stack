@@ -7,7 +7,7 @@ import { appManualLogoutInit } from "Models/app";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import PLAYER_LOGIN_HISTORY_QUERY from "./PlayerLoginHistoryQuery.graphql";
 
 export function SettingsSectionsContainer() {

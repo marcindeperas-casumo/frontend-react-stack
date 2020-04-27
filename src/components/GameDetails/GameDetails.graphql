@@ -2,15 +2,6 @@ query GameDetailsQuery($slug: String!) {
   game(slug: $slug) {
     ...GameDetails_Game
   }
-  playButtonText: getText(
-    id: "root:mobile.game-details:fields.play_button_text"
-  )
-  practiceButtonText: getText(
-    id: "root:mobile.game-details:fields.practice_button_text"
-  )
-  gameInMaintenanceText: getText(
-    id: "root:mobile.game-details:fields.temporarily_unavailable"
-  )
 }
 
 fragment GameDetails_Game on Game {

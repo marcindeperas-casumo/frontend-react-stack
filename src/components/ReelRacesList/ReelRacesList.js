@@ -8,7 +8,14 @@ import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/R
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
-export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
+type Props = {
+  title: ?string,
+  seeMore: ?string,
+};
+
+type ReelRacesListProps = Props & A.ReelRaceListQuery;
+
+export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
   render() {
     const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";

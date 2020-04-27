@@ -12,7 +12,7 @@ import {
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
 import introspectionQueryResultData from "Models/apollo/introspections.json";
-import { generateQueries } from "Utils/hooks/useTranslationGql";
+import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
 
 // https://github.com/wesbos/waait/blob/master/index.js
 export function wait(amount: number = 0): Promise<void> {

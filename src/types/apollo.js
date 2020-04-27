@@ -68,9 +68,6 @@ export type GameDetailsQuery_game = {
 };
 export type GameDetailsQuery = {
   game: ?GameDetailsQuery_game,
-  playButtonText: string,
-  practiceButtonText: string,
-  gameInMaintenanceText: string,
 };
 export type GameDetailsQueryVariables = {
   slug: string,
@@ -166,8 +163,6 @@ export type GameListLiveCasinoQuery_gamesList = {
   games: Array<GameListLiveCasinoQuery_gamesList_games>,
 };
 export type GameListLiveCasinoQuery = {
-  seeMoreText: string,
-  playNowText: string,
   gamesList: ?GameListLiveCasinoQuery_gamesList,
 };
 export type GameListLiveCasinoQueryVariables = {
@@ -252,14 +247,6 @@ export type GameSearchQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: GameSearchCMSQuery
-// ====================================================
-
-export type GameSearchCMSQuery = {
-  searchSuggestionText: string,
-};
-
-// ====================================================
 // GraphQL query operation: GameSearchSuggestionsListContainerQuery
 // ====================================================
 
@@ -284,20 +271,10 @@ export type GameSearchSuggestionsListContainerQuery_gamesList = {
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
-  title: string,
   gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList,
 };
 export type GameSearchSuggestionsListContainerQueryVariables = {
-  titleId: string,
   listId: string,
-};
-
-// ====================================================
-// GraphQL query operation: GameTileInMaintenanceCmsQuery
-// ====================================================
-
-export type GameTileInMaintenanceCmsQuery = {
-  temporaryUnavailableText: string,
 };
 
 // ====================================================
@@ -390,15 +367,6 @@ export type JackpotsQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: LiveCasinoCardCmsQuery
-// ====================================================
-
-export type LiveCasinoCardCmsQuery = {
-  betBehindText: string,
-  openSeatsText: string,
-};
-
-// ====================================================
 // GraphQL query operation: LiveCasinoDetailPageQuery
 // ====================================================
 
@@ -481,7 +449,6 @@ export type MustDropJackpotsGamesListQuery_gamesList = {
   games: Array<MustDropJackpotsGamesListQuery_gamesList_games>,
 };
 export type MustDropJackpotsGamesListQuery = {
-  seeMoreText: string,
   gamesList: ?MustDropJackpotsGamesListQuery_gamesList,
 };
 export type MustDropJackpotsGamesListQueryVariables = {
@@ -616,7 +583,6 @@ export type PromotionsListQuery_promotionsList = {
   promotions: Array<PromotionsListQuery_promotionsList_promotions>,
 };
 export type PromotionsListQuery = {
-  seeMoreText: string,
   promotionsList: ?PromotionsListQuery_promotionsList,
 };
 export type PromotionsListQueryVariables = {
@@ -711,8 +677,6 @@ export type ReelRaceListQuery_reelRaces = {
   translations: ReelRaceListQuery_reelRaces_translations,
 };
 export type ReelRaceListQuery = {
-  title: string,
-  seeMore: string,
   reelRaces: Array<ReelRaceListQuery_reelRaces>,
 };
 export type ReelRaceListQueryVariables = {
@@ -797,17 +761,6 @@ export type PlayAgainLatestPlayedQuery_gamesList = {
 };
 export type PlayAgainLatestPlayedQuery = {
   gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
-};
-
-// ====================================================
-// GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
-// ====================================================
-
-export type SearchNotFoundWithGameSuggestionsContainerQuery = {
-  image: string,
-  title: string,
-  contentLatest: string,
-  contentPopular: string,
 };
 
 // ====================================================
@@ -1066,28 +1019,6 @@ export type PLAYER_SECTIONS_LABELS_QUERY = {
   lastSessionMessage: string,
   accountActivity: string,
   logout: string,
-};
-
-// ====================================================
-// GraphQL query operation: ValuableDetailsQuery
-// ====================================================
-
-export type ValuableDetailsQuery = {
-  termsAndConditionLabel: string,
-  cashUnlockedActionLabel: string,
-  spinsUnlockedActionLabel: string,
-  playToUnlockLabel: string,
-  depositToUnlockLabel: string,
-  depositNowLabel: string,
-  expirationTimeLabel: string,
-  termsAndConditionsContent: string,
-  wageringStatus: string,
-  minute_singular: string,
-  minute_plural: string,
-  hour_singular: string,
-  hour_plural: string,
-  day_singular: string,
-  day_plural: string,
 };
 
 // ====================================================
@@ -1806,6 +1737,23 @@ export type KambiClientVisible = {
 
 export type SearchVisible = {
   isSearchVisible: boolean,
+};
+
+// ====================================================
+// GraphQL query operation: TranslationsQuery
+// ====================================================
+
+export type TranslationsQuery_one = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery_two = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery = {
+  one: ?TranslationsQuery_one,
+  two: ?TranslationsQuery_two,
 };
 
 // ====================================================
