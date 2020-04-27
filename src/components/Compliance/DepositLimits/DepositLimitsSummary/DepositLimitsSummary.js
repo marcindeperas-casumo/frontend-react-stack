@@ -87,7 +87,9 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       spacing="none"
       className="u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full t-background-white c-deposit-limits-container"
     >
-      <Text className="u-font-weight-bold">{t.summary_title}</Text>
+      <Text className={`u-font-weight-bold ${flexChildWidth}`}>
+        {t.summary_title}
+      </Text>
       {limitTypes.map(x => (
         <Flex
           key={x}
