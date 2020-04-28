@@ -21,10 +21,13 @@ export const gameDetails = {
     hasPlayForFun: true,
     isInMaintenance: false,
   },
+};
+
+export const t = {
   playButtonText: "Play",
   practiceButtonText: "Play for fun",
   gameInMaintenanceText: "Temporarily unavailable",
-};
+}
 
 export const gameDetailsInMaintenance = evolve(
   {

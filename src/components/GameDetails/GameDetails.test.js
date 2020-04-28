@@ -10,6 +10,7 @@ import { GameDetailsMedia } from "./GameDetailsMedia";
 import {
   gameDetails,
   gameDetailsInMaintenance,
+  t,
 } from "./__mocks__/gameDetailsMock";
 
 describe("GameDetailsMedia", () => {
@@ -81,13 +82,14 @@ describe("GameDetails", () => {
         data={{
           game: null,
         }}
+        t={t}
       />
     );
     expect(rendered.equals(null)).toBe(true);
   });
 
   test("should render game artwork, name and description", () => {
-    const rendered = shallow(<GameDetails data={gameDetails} />);
+    const rendered = shallow(<GameDetails data={gameDetails} t={t} />);
     expect(rendered.find(GameDetailsImage).length).toBe(1);
     expect(
       rendered
@@ -103,19 +105,23 @@ describe("GameDetails", () => {
   });
 
   test("should render GameDetailsButtons if game isn't in maintenance", () => {
-    const rendered = shallow(<GameDetails data={gameDetails} />);
+    const rendered = shallow(<GameDetails data={gameDetails} t={t} />);
 
     expect(rendered.find(GameDetailsButtons).length).toBe(1);
   });
 
   test("should not render GameDetailsButtons if game is in maintenance", () => {
-    const rendered = shallow(<GameDetails data={gameDetailsInMaintenance} />);
+    const rendered = shallow(
+      <GameDetails data={gameDetailsInMaintenance} t={t} />
+    );
 
     expect(rendered.find(GameDetailsButtons).length).toBe(0);
   });
 
   test("should render GameDetailsImage with maintenance message when in maintenace", () => {
-    const rendered = shallow(<GameDetails data={gameDetailsInMaintenance} />);
+    const rendered = shallow(
+      <GameDetails data={gameDetailsInMaintenance} t={t} />
+    );
     expect(rendered.find(GameDetailsImage).length).toBe(1);
     expect(
       rendered

@@ -8,9 +8,9 @@ import { launchModal } from "Services/LaunchModalService";
 import { MODALS } from "Src/constants";
 
 type SettingsSectionsLastLoginType = {
-  currentSessionMessageLabel: string,
-  lastSessionMessageLabel: string,
-  accountActivityLabel: string,
+  currentSessionMessageLabel: ?string,
+  lastSessionMessageLabel: ?string,
+  accountActivityLabel: ?string,
   time: number,
 };
 
@@ -42,7 +42,7 @@ export const SettingsSectionsLastLogin = ({
       </Text>
       <Text size="sm" className="t-color-chrome-dark-1 u-margin-bottom">
         <ContentReplacer
-          value={lastSessionMessageLabel}
+          value={lastSessionMessageLabel || ""}
           replacements={{
             lastLoginDate: `<span class="t-color-chrome-dark-2">${dateObject.toLocaleString(
               DateTime.DATE_FULL

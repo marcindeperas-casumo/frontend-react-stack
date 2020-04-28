@@ -9,7 +9,7 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
 type Props = A.PromotionsListQuery_promotionsList & {
-  seeMoreText: string,
+  seeMoreText: ?string,
 };
 
 export const PromotionCardList = ({

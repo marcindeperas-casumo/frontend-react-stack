@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { ErrorMessage } from "../ErrorMessage";
 
 // TODO: Figure out how it is the best way to show

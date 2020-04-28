@@ -7,6 +7,7 @@ import { GameDetails } from "./GameDetails";
 import {
   gameDetails,
   gameDetailsInMaintenance,
+  t,
 } from "./__mocks__/gameDetailsMock";
 
 const stories = storiesOf("GameDetails", module);
@@ -20,20 +21,20 @@ stories.add("Default", () => {
     },
   };
 
-  return <GameDetails data={data} />;
+  return <GameDetails data={data} t={t} />;
 });
 
 stories.add("In Maintenance", () => (
-  <GameDetails data={gameDetailsInMaintenance} />
+  <GameDetails data={gameDetailsInMaintenance} t={t} />
 ));
 
 stories.add(
   "Default (mobile)",
-  () => <GameDetails data={gameDetails} />,
+  () => <GameDetails data={gameDetails} t={t} />,
   viewports.mobile
 );
 stories.add(
   "Default (tablet)",
-  () => <GameDetails data={gameDetails} />,
+  () => <GameDetails data={gameDetails} t={t} />,
   viewports.tablet
 );
