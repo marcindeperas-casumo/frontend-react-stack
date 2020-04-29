@@ -7,11 +7,6 @@
   }
 }
 
-.c-single-limit__button {
-  // needed because t-color-plum is overriden by button color
-  color: cudl-palette(plum);
-}
-
 .c-single-limit__more-icon {
   right: map-get($cudl-spacer-sizes, 2xlg) * -1;
   top: 0;

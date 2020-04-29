@@ -107,9 +107,9 @@ export function SinglePeriodLimitOverview(props: Props) {
           >
             <button
               type="button"
-              className="c-single-limit__button Button-c-button u-width--full u-padding--md"
+              className="Button-c-button u-width--full u-padding--md"
             >
-              {t.adjust_limit}
+              <span className="t-color-plum">{t.adjust_limit}</span>
             </button>
           </Flex>
         </Flex>
