@@ -16,13 +16,13 @@ export const PADDING_PER_DEVICE = {
 };
 
 type Props = {
-  title: ?string,
+  title?: ?string,
   /** url to "see more" page, if null will not render "see more" link */
   seeMoreUrl?: string,
   items: Array<any>,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
-  seeMoreText?: string,
+  seeMoreText?: ?string,
   itemClassName?: string,
   itemRenderer: (i: number) => React.Node,
 };

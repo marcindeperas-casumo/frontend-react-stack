@@ -7,7 +7,7 @@ import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
 type Props = {
   /** The list title */
-  title: string,
+  title: ?string,
   /** The seeMore text, url, and color */
   seeMore?: SeeMoreProps,
   /** Whether applying padding left or not */

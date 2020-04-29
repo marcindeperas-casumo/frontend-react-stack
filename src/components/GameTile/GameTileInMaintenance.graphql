@@ -3,9 +3,3 @@ fragment GameTileInMaintenance_Game on Game {
   logo
   name
 }
-
-query GameTileInMaintenanceCmsQuery {
-  temporaryUnavailableText: getText(
-    id: "root:mobile.game-details:fields.temporarily_unavailable"
-  )
-}

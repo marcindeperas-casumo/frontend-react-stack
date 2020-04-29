@@ -10,7 +10,16 @@ import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsH
 
 type Props = {
   playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
-  labels: A.PLAYER_SECTIONS_LABELS_QUERY,
+  labels: {
+    accountDetailsTitle: ?string,
+    accountDetailsDescription: ?string,
+    notificationsTitle: ?string,
+    notificationsDescription: ?string,
+    currentSessionMessage: ?string,
+    lastSessionMessage: ?string,
+    accountActivity: ?string,
+    logout: ?string,
+  },
   logout: () => void,
 };
 
@@ -83,7 +92,7 @@ export class SettingsSections extends PureComponent<Props> {
             onClick={logout}
             variant="primary"
           >
-            {logoutLabel}
+            {logoutLabel || ""}
           </Button>
         </Flex.Item>
       </Flex>

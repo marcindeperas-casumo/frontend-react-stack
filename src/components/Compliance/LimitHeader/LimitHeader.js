@@ -9,7 +9,7 @@ export function LimitHeader(props: {
   title: string,
   icon: React.Node,
   children: ?React.Node,
-  variesForDesktop?: true,
+  variesForDesktop?: boolean,
 }) {
   if (props.variesForDesktop) {
     return (

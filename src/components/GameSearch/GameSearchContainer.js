@@ -4,10 +4,8 @@ import { useQuery } from "@apollo/react-hooks";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
-import {
-  GameSearchQuery,
-  GameSearchCMSQuery,
-} from "./GameSearchContainer.graphql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { GameSearchQuery } from "./GameSearchContainer.graphql";
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -22,8 +20,10 @@ export const GameSearchContainer = () => {
       page: 0,
     },
   });
-  const { data: cmsData } = useQuery(GameSearchCMSQuery);
-  const inputPromptPlaceholder = cmsData?.searchSuggestionText || "";
+  const { t } = useTranslationsGql({
+    searchSuggestionText: "root:mobile.games-search:fields.input_prompt",
+  });
+  const inputPromptPlaceholder = t?.searchSuggestionText || "";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
   const [pageNumber, setPageNumber] = React.useState(1);
