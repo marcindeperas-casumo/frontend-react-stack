@@ -3,7 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
 import debounce from "lodash.debounce";
+import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
+import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import HandSymbol from "./assets/hand.svg";
 
 export type Props = {
   children?: Element<*>,
@@ -19,6 +22,10 @@ export const VerticalStretcher = ({
   const [controllScroll, setControllScroll] = useState(true);
 
   const isNative = isNativeByUserAgent();
+
+  const { t } = useTranslationsGql({
+    swipeUpText: "root:features.swipe-up-to-play:fields.swipe_up_text",
+  });
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
@@ -76,11 +83,19 @@ export const VerticalStretcher = ({
     <div ref={heightContainer} className="u-width--full">
       {swipeToFillAvailable && !isNative && showSwipePanel && (
         <div className="c-game-page__swipe-panel">
-          <div className="o-flex u-width--full u-height--screen">
-            <div className="t-color-gainsboro u-width--full u-text-align-center o-flex__item-align--center">
-              Swipe up to play
-            </div>
-          </div>
+          <Flex
+            justify="center"
+            direction="vertical"
+            align="center"
+            className="u-width--full u-height--screen c-game-page__swipeup-details"
+          >
+            <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
+              <HandSymbol className="c-game-page__swipe-hand-symbol" />
+            </Flex.Item>
+            <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
+              {t.swipeUpText}
+            </Flex.Item>
+          </Flex>
         </div>
       )}
       {children}
