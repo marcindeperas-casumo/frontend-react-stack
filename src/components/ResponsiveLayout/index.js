@@ -6,3 +6,4 @@ export {
   Mobile,
   MobileAndTablet,
 } from "./ResponsiveLayout";
+export { getMediaQuery, desktopBreakpoint } from "./ResponsiveLayout.utils";
