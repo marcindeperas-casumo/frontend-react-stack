@@ -5,7 +5,7 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { MessageText } from "./MessageText";
 import HandSymbol from "./assets/hand.svg";
 import "./VerticalStretcher.scss";
 
@@ -23,10 +23,6 @@ export const VerticalStretcher = ({
   const [controllScroll, setControllScroll] = useState(true);
 
   const isNative = isNativeByUserAgent();
-
-  const { t, loading } = useTranslationsGql({
-    swipeUpText: "root:mobile.game-launch:fields.swipe_up_text",
-  });
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
@@ -59,7 +55,7 @@ export const VerticalStretcher = ({
           setShowSwipePanel(true);
           setControllScroll(false);
         } else {
-          setShowSwipePanel(false);
+          setShowSwipePanel(true);
           setControllScroll(true);
         }
       }
@@ -93,13 +89,9 @@ export const VerticalStretcher = ({
             <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
               <HandSymbol className="c-game-page__swipe-hand-symbol" />
             </Flex.Item>
-            {!loading ? (
-              <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
-                {t.swipeUpText}
-              </Flex.Item>
-            ) : (
-              ""
-            )}
+            <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
+              <MessageText />
+            </Flex.Item>
           </Flex>
         </div>
       )}
