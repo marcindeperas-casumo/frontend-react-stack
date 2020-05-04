@@ -21,7 +21,8 @@ export const GameListHorizontalLiveCasino = ({
   seeMoreText,
   playNowText,
 }: Props) => {
-  const { name, games } = list;
+  const { name } = list;
+  const games = list.games.filter(x => x.liveCasinoLobby);
   const seeMoreUrl = "/games/live-casino-details";
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
