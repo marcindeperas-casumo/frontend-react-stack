@@ -9,9 +9,9 @@ import TrackClick from "Components/TrackClick";
 type Props = {
   slug: string,
   name: string,
-  playButtonText: string,
+  playButtonText: ?string,
   hasPlayForFun: boolean,
-  practiceButtonText: string,
+  practiceButtonText: ?string,
 };
 
 export const GameDetailsButtons = ({
@@ -56,7 +56,7 @@ export const GameDetailsButtons = ({
             })
           }
         >
-          {practiceButtonText}
+          {practiceButtonText || ""}
         </Button>
       </TrackClick>
     )}

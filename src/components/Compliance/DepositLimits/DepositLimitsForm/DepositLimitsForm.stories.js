@@ -3,7 +3,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { DepositLimitsForm } from "./DepositLimitsForm";
-import t from "./__mocks__/cms.json";
+import t from "./__mocks__/cms";
 
 const stories = storiesOf("DepositLimitsForm", module);
 

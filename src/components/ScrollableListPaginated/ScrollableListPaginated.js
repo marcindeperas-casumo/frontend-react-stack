@@ -11,7 +11,7 @@ import "./ScrollableListPaginated.scss";
 
 export type SeeMoreProps = {
   /** The text to render on the seeMore button. */
-  text?: string,
+  text?: ?string,
   /** The link where to redirect once clicking the seeMore button. */
   url?: string,
   /** The seeMore text color */

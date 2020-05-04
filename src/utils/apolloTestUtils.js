@@ -4,6 +4,7 @@
  */
 
 // @flow
+import gql from "graphql-tag";
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
 import {
@@ -11,6 +12,7 @@ import {
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
 import introspectionQueryResultData from "Models/apollo/introspections.json";
+import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
 
 // https://github.com/wesbos/waait/blob/master/index.js
 export function wait(amount: number = 0): Promise<void> {
@@ -41,4 +43,38 @@ export function getCacheWithIntrospections() {
   });
 
   return new InMemoryCache({ fragmentMatcher });
+}
+
+export function generateTranslationsQuery(translationKeyIdMap: {
+  [string]: string,
+}) {
+  return gql`
+    query TranslationsQuery {
+      ${generateQueries(translationKeyIdMap)}
+    }
+  `;
+}
+
+export function generateTranslationsQueryMock(
+  query: any,
+  translationKeyIdMap: { [string]: string },
+  translationKeyValueMap: { [string]: string }
+) {
+  return {
+    request: {
+      query,
+    },
+    result: {
+      data: Object.entries(translationKeyIdMap).reduce((accu, [key, id]) => {
+        return {
+          ...accu,
+          [key]: {
+            __typename: "CmsText",
+            id,
+            text: translationKeyValueMap[key],
+          },
+        };
+      }, {}),
+    },
+  };
 }

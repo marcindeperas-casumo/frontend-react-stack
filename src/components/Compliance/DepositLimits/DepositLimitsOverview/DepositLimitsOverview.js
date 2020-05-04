@@ -2,7 +2,6 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -10,7 +9,10 @@ import type {
   DepositLimitsSelected,
   PendingDepositLimitsChangesSelected,
 } from "Models/playOkay/depositLimits";
-import { LimitHeader } from "Components/Compliance/LimitHeader";
+import {
+  LimitHeader,
+  LimitHeaderButton,
+} from "Components/Compliance/LimitHeader";
 import { PendingChanges } from "./PendingChanges";
 import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
@@ -69,18 +71,22 @@ export function DepositLimitsOverview(props: Props) {
         align="stretch"
         justify="space-between"
         spacing="none"
-        className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg t-background-white"
+        className="t-border-r--none@mobile t-border-r u-overflow-hidden t-background-white"
       >
-        <LimitHeader title={t.deposit_limits} icon={<DepositLimitsIcon />}>
+        <LimitHeader
+          variesForDesktop
+          title={t.deposit_limits}
+          icon={<DepositLimitsIcon />}
+        >
           {shouldShowAddButton && (
-            <Button onClick={props.add} variant="secondary">
+            <LimitHeaderButton variesForDesktop onClick={props.add}>
               {t.add}
-            </Button>
+            </LimitHeaderButton>
           )}
           {shouldShowRemoveButton && (
-            <Button onClick={props.removeAll} variant="secondary">
+            <LimitHeaderButton variesForDesktop onClick={props.removeAll}>
               {t.remove_all}
-            </Button>
+            </LimitHeaderButton>
           )}
         </LimitHeader>
         <Flex className="c-deposit-limits__limits-list">
@@ -128,7 +134,7 @@ export function DepositLimitsOverview(props: Props) {
 }
 
 const SectionHeader = (props: { children: string }) => (
-  <Text className="u-font-weight-black u-padding--md u-padding-top--none t-color-grey-dark-1">
+  <Text className="u-font-weight-black u-padding--md u-padding-top--lg u-padding-top--2xlg@desktop t-color-grey-dark-1">
     {props.children}
   </Text>
 );

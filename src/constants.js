@@ -391,3 +391,10 @@ export const JURISDICTIONS = {
   SGA: "SGA",
   UKGC: "UKGC",
 };
+
+export const POLL_INTERVAL = {
+  GAMES_LIST: 30000,
+  JACKPOTS: 30000,
+  JACKPOTS_MUST_DROP: 30000,
+  REEL_RACES: 8000,
+};

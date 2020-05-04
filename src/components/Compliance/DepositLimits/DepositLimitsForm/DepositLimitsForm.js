@@ -1,65 +1,33 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { useMedia } from "react-use";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
-import type {
-  AllLimits,
-  AllLimitsOnlyValues,
-  LimitLock,
-  DepositKinds,
-  ResponsibleGamblingTest,
-  DepositLimitsAdjustment,
-} from "Models/playOkay/depositLimits";
-import { formatCurrency, interpolate, getSymbolForCurrency } from "Utils";
+import {
+  MobileAndTablet,
+  Desktop,
+  getMediaQuery,
+  desktopBreakpoint,
+} from "Components/ResponsiveLayout";
+import type { DepositKinds } from "Models/playOkay/depositLimits";
+import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
 import { TextInput } from "Components/Compliance/TextInput";
 import { useDepositLimitInputs } from "./DepositLimitsForm.hooks";
+import { validate } from "./DepositLimitsForm.utils";
+import type { FormPropsWithTranslations } from "./DepositLimitsForm.types";
 import { limitTypes } from "..";
 import "./styles.scss";
-
-type Props = {
-  currency: string,
-  locale: string,
-  t: {
-    daily_short: string,
-    daily: string,
-    weekly_short: string,
-    weekly: string,
-    monthly_short: string,
-    monthly: string,
-    remove_selected: string,
-    inputValidation: {
-      lock: string,
-      lowest_limit: string,
-      highest_limit: string,
-      cant_be_higher: string,
-      cant_be_lower: string,
-      has_to_be_lower_than_pending_adjustment: string,
-      has_to_be_lower_while_locked: string,
-      has_to_be_lower_after_responsible_gambling_test_failed: string,
-    },
-  },
-  responsibleGamblingTestRequired?: boolean,
-  responsibleGamblingTest: ResponsibleGamblingTest,
-  limits: AllLimits,
-  limitChanges: AllLimitsOnlyValues,
-  initiallyVisible: DepositKinds,
-  applyLimitsChanges: AllLimitsOnlyValues => void,
-  lock: ?LimitLock,
-  pendingLimitChanges: ?DepositLimitsAdjustment,
-  fetchTranslations: () => void,
-};
 
 // eslint-disable-next-line fp/no-mutation
 DepositLimitsForm.defaultProps = {
   initiallyVisible: "daily",
   lock: undefined,
-  limitChanges: {},
 };
-export function DepositLimitsForm({ t, ...props }: Props) {
+export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
   React.useEffect(() => {
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,11 +39,15 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     ...props.limits,
     ...props.limitChanges, // if we are going back from summary screen this will contain some values
   });
-  const inputError = validate(visible);
+  const inputError = validate(visible, limitInputs, props, t);
+  const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
+  const flexItemWidth = `u-width--${isDesktop ? "1/2" : "full"}`;
 
   const handleNextButton = React.useCallback(() => {
     // if any limit is invalid it should be fixed before we can proceed
-    const invalid = limitTypes.find(limit => validate(limit));
+    const invalid = limitTypes.find(limit =>
+      validate(limit, limitInputs, props, t)
+    );
     if (invalid) {
       setVisible(invalid);
     } else {
@@ -85,15 +57,17 @@ export function DepositLimitsForm({ t, ...props }: Props) {
 
   return (
     <Flex
+      align={isDesktop ? "center" : "stretch"}
       direction="vertical"
-      className="u-padding--md u-height--full t-background-white"
+      className="u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full t-background-white"
     >
-      <Flex align="center" justify="space-between">
-        <Text className="u-font-weight-bold t-color-chrome-dark-3">
-          {t[visible]}
-        </Text>
-      </Flex>
+      <Text
+        className={`u-font-weight-bold t-color-chrome-dark-3 ${flexItemWidth}`}
+      >
+        {t[visible]}
+      </Text>
       <TextInput
+        className={flexItemWidth}
         currencySign={getSymbolForCurrency({
           locale: props.locale,
           currency: props.currency,
@@ -103,7 +77,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       <Text
         data-test-id="inputValidation"
         size="sm"
-        className="t-color-negative"
+        className={`t-color-negative ${flexItemWidth}`}
       >
         {inputError}
       </Text>
@@ -111,7 +85,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
         align="stretch"
         justify="space-between"
         spacing="none"
-        className="u-padding-y--md"
+        className={`u-padding-y--md ${flexItemWidth}`}
       >
         {limitTypes.map(limitName => (
           <Pill
@@ -119,7 +93,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
             onClick={() => setVisible(limitName)}
             isActive={visible === limitName}
             inactiveClassNames="o-flex--1 t-background-grey-light-2 c-deposit-limits-form-pill__container"
-            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container c-deposit-limits-form-pill--active"
+            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container t-background-plum t-color-white"
           >
             <Flex
               align="center"
@@ -141,94 +115,30 @@ export function DepositLimitsForm({ t, ...props }: Props) {
             </Flex>
           </Pill>
         ))}
+        <Desktop>
+          <MainButton
+            disabled={Boolean(inputError)}
+            onClick={handleNextButton}
+          />
+        </Desktop>
       </Flex>
       <Flex.Block />
-      <Button
-        variant="primary"
-        className="u-padding-y"
-        disabled={Boolean(inputError)}
-        onClick={handleNextButton}
-      >
-        <ArrowRightIcon size="md" className="t-color-white" />
-      </Button>
+      <MobileAndTablet>
+        <MainButton disabled={Boolean(inputError)} onClick={handleNextButton} />
+      </MobileAndTablet>
     </Flex>
   );
+}
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
-  function validate(currentLimit: DepositKinds): ?string {
-    const currentLimitNotEqual: DepositKinds => Boolean = R.complement(
-      R.equals(currentLimit)
-    );
-    const currentLimitValue = limitInputs[currentLimit].value || 0;
-    if (currentLimitNotEqual("daily")) {
-      const i = limitTypes.indexOf(currentLimit) - 1;
-      const previousLimitValue = limitInputs[limitTypes[i]].value || 0;
-      if (previousLimitValue > currentLimitValue) {
-        return interpolate(t.input_validation.cant_be_lower, {
-          affectedLimitType: t[`${limitTypes[i]}_short`],
-        });
-      }
-    }
-    if (currentLimitNotEqual("monthly")) {
-      const i = limitTypes.indexOf(currentLimit) + 1;
-      const nextLimitValue = limitInputs[limitTypes[i]].value || 0;
-      if (nextLimitValue < currentLimitValue) {
-        return interpolate(t.input_validation.cant_be_higher, {
-          affectedLimitType: t[`${limitTypes[i]}_short`],
-        });
-      }
-    }
-    if (currentLimitValue < 10) {
-      return t.input_validation.lowest_limit;
-    }
-    if (currentLimitValue > 20000) {
-      return t.input_validation.highest_limit;
-    }
-
-    const limitBeforeChange = props.limits[currentLimit];
-    if (currentLimitValue > limitBeforeChange) {
-      const replacements = {
-        currentLimit: formatCurrency({
-          locale: props.locale,
-          currency: props.currency,
-          value: limitBeforeChange,
-        }),
-      };
-      if (props.lock) {
-        return interpolate(
-          t.input_validation.has_to_be_lower_while_locked,
-          replacements
-        );
-      }
-      if (
-        props.responsibleGamblingTestRequired &&
-        !props.responsibleGamblingTest
-          .responsibleGamblingQuestionnaireAttemptAllowed
-      ) {
-        return interpolate(
-          t.input_validation
-            .has_to_be_lower_after_responsible_gambling_test_failed,
-          replacements
-        );
-      }
-    }
-
-    if (props.pendingLimitChanges?.value) {
-      const pendingChange = props.pendingLimitChanges.value[currentLimit];
-      if (currentLimitValue > pendingChange) {
-        return interpolate(
-          t.input_validation.has_to_be_lower_than_pending_adjustment,
-          {
-            pendingChange: formatCurrency({
-              locale: props.locale,
-              currency: props.currency,
-              value: pendingChange,
-            }),
-          }
-        );
-      }
-    }
-
-    return null;
-  }
+function MainButton(props: { disabled: boolean, onClick: () => void }) {
+  return (
+    <Button
+      variant="primary"
+      className="u-padding-y u-padding-x@desktop u-margin-left--2xlg@desktop u-margin-top--4xlg u-margin-top--none@desktop"
+      disabled={props.disabled}
+      onClick={props.onClick}
+    >
+      <ArrowRightIcon size="md" className="t-color-white" />
+    </Button>
+  );
 }

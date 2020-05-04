@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import * as A from "Types/apollo";
-import { GameTileInMaintenanceCmsQuery } from "./GameTileInMaintenance.graphql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 
 type Props = {
   ratio: string,
@@ -19,9 +18,10 @@ export const GameTileInMaintenanceContainer = ({
   game,
   imgixOpts,
 }: Props) => {
-  const { data, loading } = useQuery<A.GameTileInMaintenanceCmsQuery, _>(
-    GameTileInMaintenanceCmsQuery
-  );
+  const { t, loading } = useTranslationsGql({
+    temporaryUnavailableText:
+      "root:mobile.game-details:fields.temporarily_unavailable",
+  });
 
   if (loading) {
     return null;
@@ -29,7 +29,7 @@ export const GameTileInMaintenanceContainer = ({
 
   return (
     <GameTileInMaintenance
-      temporaryUnavailableText={data?.temporaryUnavailableText}
+      temporaryUnavailableText={t.temporaryUnavailableText}
       ratio={ratio}
       className={className}
       game={game}

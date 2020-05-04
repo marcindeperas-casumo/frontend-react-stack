@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
 import TrackProvider from "Components/TrackProvider";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
