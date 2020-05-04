@@ -23,8 +23,8 @@ export const VerticalStretcher = ({
 
   const isNative = isNativeByUserAgent();
 
-  const { t } = useTranslationsGql({
-    swipeUpText: "root:features.swipe-up-to-play:fields.swipe_up_text",
+  const { t, loading } = useTranslationsGql({
+    swipeUpText: "root:mobile.game-launch:fields.swipe_up_text",
   });
 
   useEffect(() => {
@@ -92,9 +92,13 @@ export const VerticalStretcher = ({
             <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
               <HandSymbol className="c-game-page__swipe-hand-symbol" />
             </Flex.Item>
-            <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
-              {t.swipeUpText}
-            </Flex.Item>
+            {!loading ? (
+              <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
+                {t.swipeUpText}
+              </Flex.Item>
+            ) : (
+              ""
+            )}
           </Flex>
         </div>
       )}

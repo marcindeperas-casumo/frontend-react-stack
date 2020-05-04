@@ -40,6 +40,11 @@ $directions: (top, left, bottom, right);
   width: 64px;
 }
 
+.c-game-page__swipeup-text-container {
+  text-align: center;
+  width: 200px;
+}
+
 @media (orientation: landscape) {
   .c-game-page__swipeup-details {
     flex-direction: row;
@@ -50,13 +55,14 @@ $directions: (top, left, bottom, right);
   }
 
   .c-game-page__swipeup-text-container {
-    margin-top: 80px !important;
+    text-align: left;
   }
 }
 
 @media (orientation: portrait) {
   .c-game-page__swipeup-text-container {
     margin-top: 80px !important;
+    text-align: center;
   }
 }
 
