@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import MustDropJackpot from "Components/MustDropJackpot";
+import { MustDropJackpot } from "Components/MustDropJackpot";
 import * as A from "Types/apollo";
 
 type Props = {
