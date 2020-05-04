@@ -7,5 +7,9 @@ export const MessageText = () => {
     swipeUpText: "root:mobile.game-launch:fields.swipe_up_text",
   });
 
-  return <span>{loading ? "" : t.swipeUpText}</span>;
+  if (loading) {
+    return null;
+  }
+
+  return <span>{t.swipeUpText}</span>;
 };
