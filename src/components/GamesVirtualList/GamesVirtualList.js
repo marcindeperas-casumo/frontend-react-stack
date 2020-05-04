@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
+import "./GamesVirtualList.scss";
 
 export const ROW_HEIGHT = 74;
 export const ROW_HEIGHT_BIG = 129;
@@ -64,7 +65,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
 
     return (
       <Flex
-        className="t-border-bottom t-color-grey-0 t-border-current"
+        className="t-border-bottom t-color-grey-0 t-background-grey-0:hover t-border-current c-game-virtual-list-row"
         key={key}
         index={index}
         style={style}
