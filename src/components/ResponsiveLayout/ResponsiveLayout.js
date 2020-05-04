@@ -107,3 +107,13 @@ export const Mobile = ({
     </RenderIfMatchBreakpoint>
   );
 };
+
+export const isMobile: boolean = window.matchMedia(
+  getMediaQuery(mobileBreakpoint)
+).matches;
+export const isDesktop: boolean = window.matchMedia(
+  getMediaQuery(desktopBreakpoint)
+).matches;
+export const isTablet: boolean = window.matchMedia(
+  getMediaQuery(tabletBreakpoint)
+).matches;
