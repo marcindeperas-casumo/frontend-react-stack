@@ -7,6 +7,7 @@ import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
 import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
 import HandSymbol from "./assets/hand.svg";
+import "./VerticalStretcher.scss";
 
 export type Props = {
   children?: Element<*>,
