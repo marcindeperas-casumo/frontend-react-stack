@@ -55,7 +55,7 @@ export const VerticalStretcher = ({
           setShowSwipePanel(true);
           setControllScroll(false);
         } else {
-          setShowSwipePanel(true);
+          setShowSwipePanel(false);
           setControllScroll(true);
         }
       }
