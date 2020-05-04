@@ -5,7 +5,7 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
-import { useTranslationsGql } from "Utils/hooks/useTranslationGql";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import HandSymbol from "./assets/hand.svg";
 import "./VerticalStretcher.scss";
 
