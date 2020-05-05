@@ -12,7 +12,7 @@ export function LimitHeaderBig(props: {
       align="center"
       justify="space-between"
       spacing="none"
-      className="u-padding--md"
+      className="u-padding-x--md u-padding-y--lg"
     >
       <Text tag="span" size="lg" className="u-font-weight-bold o-flex--1">
         {props.title}
