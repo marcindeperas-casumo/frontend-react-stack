@@ -719,6 +719,7 @@ export type GameStudioQuery_gameStudio_games = {
 };
 export type GameStudioQuery_gameStudio = {
   id: string,
+  name: string,
   gamesCount: number,
   games: Array<?GameStudioQuery_gameStudio_games>,
 };
