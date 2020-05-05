@@ -3,14 +3,9 @@ import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
 import { routeTranslator } from "Utils";
-import { ROUTE_IDS } from "Src/constants";
+import { ROUTE_IDS, TRANSLATED_ROUTES } from "Src/constants";
 import {
-  LazyTopLists,
-  LazyGameSearch,
   LazyGameDetails,
-  LazyMustDropJackpots,
-  LazyGameProviderGames,
-  LazyLiveCasinoDetails,
   LazyPromotions,
   LazyPromotionDetail,
   LazyPlayerValuables,
@@ -26,6 +21,7 @@ import {
   LazyRealMoneyGamePage,
   LazyPlayForFunGamePage,
 } from "./routes";
+import { GameBrowser } from "./GameBrowser";
 
 export const Router = () => {
   const language = useLanguage();
@@ -35,24 +31,17 @@ export const Router = () => {
 
   return (
     <ReachRouter {...reachRouterProps}>
+      {Object.values(TRANSLATED_ROUTES.GAMES).map(x => (
+        // $FlowIgnore: it is string
+        <GameBrowser key={x} path={`${x}/*`} />
+      ))}
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY_NATIVE)} />
       <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
       <LazyPlayForFunGamePage
         path={translateRoute(ROUTE_IDS.PRACTICE_NATIVE)}
       />
-      <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
-      <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
       <LazyGameDetails path={translateRoute(ROUTE_IDS.GAME_DETAILS)} />
-      <LazyMustDropJackpots
-        path={translateRoute(ROUTE_IDS.MUST_DROP_JACKPOTS)}
-      />
-      <LazyGameProviderGames
-        path={translateRoute(ROUTE_IDS.GAME_PROVIDER_GAMES)}
-      />
-      <LazyLiveCasinoDetails
-        path={translateRoute(ROUTE_IDS.LIVE_CASINO_DETAILS)}
-      />
       <LazyPromotions path={translateRoute(ROUTE_IDS.PROMOTIONS)} />
       <LazyPromotionDetail path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)} />
       <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
