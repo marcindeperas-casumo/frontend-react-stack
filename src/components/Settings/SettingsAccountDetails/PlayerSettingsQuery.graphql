@@ -1,0 +1,42 @@
+query PLAYER_SETTINGS_QUERY {
+  player {
+    ...SETTINGS_PLAYER
+  }
+}
+
+fragment SETTINGS_PLAYER on Player {
+  id
+  __typename
+  details {
+    __typename
+    name {
+      __typename
+      first
+      last
+    }
+    canChangePassword
+    extentOfGambling {
+      __typename
+      canChange
+      label
+    }
+    phoneNumber {
+      __typename
+      prefix
+      number
+      verified
+    }
+    address {
+      __typename
+      city
+      street
+      postCode
+      country {
+        __typename
+        code
+        name
+      }
+    }
+    email
+  }
+}

@@ -134,7 +134,7 @@ export function DepositLimitsOverview(props: Props) {
 }
 
 const SectionHeader = (props: { children: string }) => (
-  <Text className="u-font-weight-black u-padding--md u-padding-top--none t-color-grey-dark-1">
+  <Text className="u-font-weight-black u-padding--md u-padding-top--lg u-padding-top--2xlg@desktop t-color-grey-dark-1">
     {props.children}
   </Text>
 );

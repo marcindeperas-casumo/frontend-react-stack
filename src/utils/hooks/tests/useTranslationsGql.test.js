@@ -2,7 +2,7 @@ import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 import { MockedProvider } from "@apollo/react-testing";
 import gql from "graphql-tag";
-import { useTranslationsGql } from "../useTranslationGql";
+import { useTranslationsGql } from "../useTranslationsGql";
 
 // We need this because Apollo's useQuery hook works in an async manner.
 // Unfortunately waitForNextUpdate() didn't work, so we ended up going this way.

@@ -1,10 +1,30 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { ValuableDetailsQuery } from "./ValuableDetails.graphql"; // to convert to js
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { ValuableDetails } from "./ValuableDetails";
 
 export const ValuableDetailsContainer = props => {
-  const { data, loading } = useQuery(ValuableDetailsQuery);
+  const { t, loading } = useTranslationsGql({
+    termsAndConditionLabel:
+      "root:valuable-details-component:fields.terms_and_conditions_title",
+    cashUnlockedActionLabel:
+      "root:valuable-details-component:fields.use_bonus_money",
+    spinsUnlockedActionLabel:
+      "root:valuable-details-component:fields.use_bonus_spins",
+    playToUnlockLabel: "root:valuable-details-component:fields.play_to_unlock",
+    depositToUnlockLabel:
+      "root:valuable-details-component:fields.deposit_to_unlock",
+    depositNowLabel: "root:valuable-details-component:fields.deposit_now",
+    expirationTimeLabel:
+      "root:valuable-details-component:fields.expirationTimeLabel",
+    termsAndConditionsContent: "root:uk-welcome-bonus-terms:content",
+    wageringStatus: "root:valuable-details-component:fields.wagering_status",
+    minute_singular: "root:units:fields.minute_singular",
+    minute_plural: "root:units:fields.minutes",
+    hour_singular: "root:units:fields.hour_singular",
+    hour_plural: "root:units:fields.hours",
+    day_singular: "root:units:fields.day_singular",
+    day_plural: "root:units:fields.days",
+  });
 
-  return loading ? null : <ValuableDetails {...props} translations={data} />;
+  return loading ? null : <ValuableDetails {...props} translations={t} />;
 };

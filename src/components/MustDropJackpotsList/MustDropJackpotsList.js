@@ -22,7 +22,7 @@ export type Props = {
   jackpots: Array<A.GameRow_Game>,
   className?: string,
   name: ?string,
-  seeMoreText: string,
+  seeMoreText: ?string,
 };
 
 const MUST_DROP_WIDGET_ID = "must-drop-jackpots-widget";

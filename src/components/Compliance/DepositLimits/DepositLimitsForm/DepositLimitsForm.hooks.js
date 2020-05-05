@@ -1,16 +1,10 @@
 // @flow
 import * as React from "react";
-
-type Limits = {
-  daily: ?number,
-  weekly: ?number,
-  monthly: ?number,
-};
-
-type LimitInput = {
-  value: ?number,
-  onChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
-};
+import type {
+  Limits,
+  LimitInput,
+  LimitInputs,
+} from "./DepositLimitsForm.types";
 
 function useInput(initialValue: ?number = null): LimitInput {
   const [value, setValue] = React.useState(initialValue);
@@ -27,7 +21,7 @@ function useInput(initialValue: ?number = null): LimitInput {
   };
 }
 
-export function useDepositLimitInputs(initialLimits: Limits) {
+export function useDepositLimitInputs(initialLimits: Limits): LimitInputs {
   const daily = useInput(initialLimits.daily);
   const weekly = useInput(initialLimits.weekly);
   const monthly = useInput(initialLimits.monthly);
