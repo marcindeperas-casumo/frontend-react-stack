@@ -4,20 +4,18 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CogIcon, BriefcaseIcon, PlayokayIcon } from "@casumo/cmp-icons";
-import { navigateById } from "Services/NavigationService";
 import { TabletAndDesktop } from "Components/ResponsiveLayout";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
-import "./styles.scss";
 
-export function DepositLimitsTopNavigation() {
-  const { t } = useTranslationsGql({
-    yourStuffLabel:
-      "root:shared.playokay.dgoj.deposit-limits:fields.top_navi_your_stuff_label",
-    detailsLabel:
-      "root:shared.playokay.dgoj.deposit-limits:fields.top_navi_details_label",
-    playOkayLabel:
-      "root:shared.playokay.dgoj.deposit-limits:fields.top_navi_playokay_label",
-  });
+type Props = {
+  t: {
+    yourStuffLabel: ?string,
+    detailsLabel: ?string,
+    playOkayLabel: ?string,
+  },
+  action: (params: { routeId: string, params?: Object }) => void,
+};
+
+export function DepositLimitsTopNavigation({ t, action }: Props) {
   const items = [
     {
       icon: <BriefcaseIcon size="lg" />,
@@ -40,21 +38,18 @@ export function DepositLimitsTopNavigation() {
 
   return (
     <TabletAndDesktop>
-      <Flex
-        align="center"
-        justify="center"
-        className="u-padding-top--lg u-font-weight-bold"
-      >
+      <Flex align="center" justify="center" className="u-padding-y--2xlg">
         {items.map(({ routeId, ...item }) => (
           <Flex
+            key={routeId}
             direction="vertical"
             align="center"
             // $FlowIgnore
             className={classNames("u-cursor-pointer", item?.className)}
-            onClick={() => navigateById({ routeId })}
+            onClick={() => action({ routeId })}
           >
             {item.icon}
-            <Text className="u-margin-top--md u-margin-bottom">
+            <Text className="u-margin-top--md u-margin-bottom u-font-weight-bold">
               {item.label}
             </Text>
             <div

@@ -1,2 +1,4 @@
 // @flow
-export { DepositLimitsTopNavigation } from "./DepositLimitsTopNavigation";
+export {
+  DepositLimitsTopNavigationContainer,
+} from "./DepositLimitsTopNavigationContainer";
