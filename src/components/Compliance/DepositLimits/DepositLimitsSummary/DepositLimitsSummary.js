@@ -1,14 +1,9 @@
 // @flow
 import * as React from "react";
-import { useMedia } from "react-use";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
-import {
-  getMediaQuery,
-  desktopBreakpoint,
-} from "Components/ResponsiveLayout/ResponsiveLayout.utils";
 import { formatCurrency } from "Utils";
 import {
   diffLimits,
@@ -58,8 +53,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
     after: props.newLimits,
   });
   const [req, setReq] = React.useState(false);
-  const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
-  const flexChildWidth = `u-width--${isDesktop ? "1/2" : "full"}`;
+  const flexChildWidth = "u-width--1/2@desktop";
 
   const SubmitButton = (
     <Button
@@ -82,10 +76,9 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
   return (
     <Flex
       direction="vertical"
-      align={isDesktop ? "center" : "stretch"}
       justify="space-between"
       spacing="none"
-      className="u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full t-background-white c-deposit-limits-container"
+      className="o-flex-align--center@desktop u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full t-background-white c-deposit-limits-container"
     >
       <Text className={`u-font-weight-bold ${flexChildWidth}`}>
         {t.summary_title}
