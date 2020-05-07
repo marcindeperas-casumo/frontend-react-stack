@@ -1,17 +1,11 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { useMedia } from "react-use";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
-import {
-  MobileAndTablet,
-  Desktop,
-  getMediaQuery,
-  desktopBreakpoint,
-} from "Components/ResponsiveLayout";
+import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import type { DepositKinds } from "Models/playOkay/depositLimits";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
@@ -40,8 +34,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
     ...props.limitChanges, // if we are going back from summary screen this will contain some values
   });
   const inputError = validate(visible, limitInputs, props, t);
-  const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
-  const flexItemWidth = `u-width--${isDesktop ? "1/2" : "full"}`;
+  const flexItemWidth = "u-width--1/2@desktop";
 
   const handleNextButton = React.useCallback(() => {
     // if any limit is invalid it should be fixed before we can proceed
@@ -57,9 +50,8 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
 
   return (
     <Flex
-      align={isDesktop ? "center" : "stretch"}
       direction="vertical"
-      className="u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full t-background-white"
+      className="o-flex-align--center@desktop u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full t-background-white"
     >
       <Text
         className={`u-font-weight-bold t-color-chrome-dark-3 ${flexItemWidth}`}
