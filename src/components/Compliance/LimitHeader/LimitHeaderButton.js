@@ -29,7 +29,7 @@ export function LimitHeaderButton(props: {
 function NormalVariant(props: { onClick: () => void, children: React.Node }) {
   return (
     <Button onClick={props.onClick} variant="secondary">
-      {props.children}
+      <span className="t-color-black">{props.children}</span>
     </Button>
   );
 }

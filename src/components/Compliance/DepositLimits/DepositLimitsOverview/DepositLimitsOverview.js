@@ -127,6 +127,7 @@ export function DepositLimitsOverview(props: Props) {
       <DepositLimitsSuspendAccount
         t={t}
         showOldSuspendAccountView={props.showOldSuspendAccountView}
+        className="u-width--1/2@desktop"
       />
       <DepositLimitsHistoryContainer />
     </Flex>
