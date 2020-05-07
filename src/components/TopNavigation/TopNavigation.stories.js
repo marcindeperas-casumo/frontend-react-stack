@@ -2,7 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { DepositLimitsTopNavigation } from "./DepositLimitsTopNavigation";
+import { TopNavigation } from "./TopNavigation";
 
 const t = {
   yourStuffLabel: "Your Stuff",
@@ -10,7 +10,6 @@ const t = {
   playOkayLabel: "Play Okay Settings",
 };
 
-storiesOf("DepositLimits/DepositLimitsTopNavigation", module).add(
-  "Default",
-  () => <DepositLimitsTopNavigation t={t} action={action("Navigated away")} />
-);
+storiesOf("TopNavigation", module).add("Default", () => (
+  <TopNavigation t={t} action={action("Navigated away")} />
+));

@@ -15,7 +15,7 @@ type Props = {
   action: (params: { routeId: string, params?: Object }) => void,
 };
 
-export function DepositLimitsTopNavigation({ t, action }: Props) {
+export function TopNavigation({ t, action }: Props) {
   const items = [
     {
       icon: <BriefcaseIcon size="lg" />,
@@ -26,7 +26,6 @@ export function DepositLimitsTopNavigation({ t, action }: Props) {
       icon: <CogIcon size="lg" />,
       label: t.detailsLabel,
       routeId: "settings",
-      className: "u-margin-x--lg",
     },
     {
       icon: <PlayokayIcon size="lg" />,
@@ -38,27 +37,31 @@ export function DepositLimitsTopNavigation({ t, action }: Props) {
 
   return (
     <TabletAndDesktop>
-      <Flex align="center" justify="center" className="u-padding-y--2xlg">
-        {items.map(({ routeId, ...item }) => (
-          <Flex
-            key={routeId}
-            direction="vertical"
-            align="center"
-            // $FlowIgnore
-            className={classNames("u-cursor-pointer", item?.className)}
-            onClick={() => action({ routeId })}
-          >
-            {item.icon}
-            <Text className="u-margin-top--md u-margin-bottom u-font-weight-bold">
-              {item.label}
-            </Text>
-            <div
-              className={classNames(
-                "t-border-r u-width--full u-height--sm",
-                item.isActive && "t-background-plum"
-              )}
-            />
-          </Flex>
+      <Flex
+        spacing="lg"
+        align="center"
+        justify="center"
+        className="u-padding-y--2xlg"
+      >
+        {items.map(({ routeId, isActive = false, ...item }) => (
+          <Flex.Item key={routeId}>
+            <Flex
+              direction="vertical"
+              align="center"
+              className="u-cursor-pointer"
+              onClick={() => action({ routeId })}
+            >
+              {item.icon}
+              <Text className="u-margin-top--md u-margin-bottom u-font-weight-bold">
+                {item.label}
+              </Text>
+              <div
+                className={classNames("t-border-r u-width--full u-height--sm", {
+                  "t-background-plum": isActive,
+                })}
+              />
+            </Flex>
+          </Flex.Item>
         ))}
       </Flex>
     </TabletAndDesktop>
