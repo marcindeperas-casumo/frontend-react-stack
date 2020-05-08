@@ -3,9 +3,9 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
-import { SettingsNotifications } from "./SettingsNotifications";
 import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
+import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { withMockQueries } from "./__mocks__/Queries.mock";
 import {
   contactByPhoneMock,
@@ -13,24 +13,6 @@ import {
 } from "./__mocks__/Mutations.mock";
 
 jest.useFakeTimers();
-
-const simulateClick = (rendered: any) => {
-  rendered
-    .find(ContactByPhoneContainer)
-    .find("Checkbox")
-    .simulate("click");
-};
-
-const actWithClick = (rendered: any) => {
-  simulateClick(rendered);
-  jest.runAllTimers();
-  rendered.update();
-};
-
-const getContactByPhoneProp = (rendered: any): boolean => {
-  return rendered.find(SettingsNotifications).prop("player").details
-    .contactSettings.contactByPhone;
-};
 
 describe("SettingsNotifications - Contact By Phone", () => {
   test("should toggle to false", () => {
@@ -46,11 +28,11 @@ describe("SettingsNotifications - Contact By Phone", () => {
     });
 
     //initial value should be the one from the query
-    expect(getContactByPhoneProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
 
-    actWithClick(rendered);
+    actWithClick(rendered, ContactByPhoneContainer);
     //optimisticResponse kicks in here
-    expect(getContactByPhoneProp(rendered)).toBe(false);
+    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(false);
 
     act(() => {
       jest.runAllTimers();
@@ -58,7 +40,7 @@ describe("SettingsNotifications - Contact By Phone", () => {
     });
 
     //actual response from the mutation
-    expect(getContactByPhoneProp(rendered)).toBe(false);
+    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
@@ -73,10 +55,10 @@ describe("SettingsNotifications - Contact By Phone", () => {
       rendered.update();
     });
 
-    expect(getContactByPhoneProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
 
-    actWithClick(rendered);
+    actWithClick(rendered, ContactByPhoneContainer);
 
-    expect(getContactByPhoneProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
   });
 });
