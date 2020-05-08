@@ -6,7 +6,7 @@ import { SetWithdrawalNotifications } from "./Mutations.graphql";
 import { WITHDRAWAL_NOTIFICATION_FRAGMENT } from "./PlayerContactSettingsQuery";
 import { SettingsNotificationsToggleRow as ToggleRow } from "./SettingsNotificationsToggleRow";
 import {
-  getCacheUpdater,
+  getApolloCacheUpdater,
   onMutationError,
 } from "./SettingsNotifications.utils";
 
@@ -34,7 +34,7 @@ export function WithdrawalNotificationsContainer({
         setWithdrawalNotifications({
           variables: { input: { on: value } },
           optimisticResponse: { setWithdrawalNotifications: value },
-          update: getCacheUpdater({
+          update: getApolloCacheUpdater({
             playerId,
             fragment: WITHDRAWAL_NOTIFICATION_FRAGMENT,
             getContactSettingsField: result => ({

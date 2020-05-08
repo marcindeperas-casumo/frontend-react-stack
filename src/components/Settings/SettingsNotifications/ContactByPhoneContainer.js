@@ -6,7 +6,7 @@ import { SetContactByPhone } from "./Mutations.graphql";
 import { CONTACT_BY_PHONE_FRAGMENT } from "./PlayerContactSettingsQuery";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import {
-  getCacheUpdater,
+  getApolloCacheUpdater,
   onMutationError,
 } from "./SettingsNotifications.utils";
 
@@ -34,7 +34,7 @@ export function ContactByPhoneContainer({
         setContactByPhone({
           variables: { input: { on: value } },
           optimisticResponse: { setContactByPhone: value },
-          update: getCacheUpdater({
+          update: getApolloCacheUpdater({
             playerId,
             fragment: CONTACT_BY_PHONE_FRAGMENT,
             getContactSettingsField: result => ({

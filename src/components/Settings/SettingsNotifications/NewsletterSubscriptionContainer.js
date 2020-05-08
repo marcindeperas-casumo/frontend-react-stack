@@ -6,7 +6,7 @@ import { SetNewsletterSubscription } from "./Mutations.graphql";
 import { SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT } from "./PlayerContactSettingsQuery";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import {
-  getCacheUpdater,
+  getApolloCacheUpdater,
   onMutationError,
 } from "./SettingsNotifications.utils";
 
@@ -34,7 +34,7 @@ export function NewsletterSubscriptionContainer({
         setNewsletterSubscription({
           variables: { input: { on: value } },
           optimisticResponse: { setNewsletterSubscription: value },
-          update: getCacheUpdater({
+          update: getApolloCacheUpdater({
             playerId,
             fragment: SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT,
             getContactSettingsField: result => ({

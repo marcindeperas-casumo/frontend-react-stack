@@ -2,17 +2,17 @@
 import { dataIdFromObject } from "Services/apolloCacheUtils";
 import logger from "Services/logger";
 
-type GetCacheUpdaterProps = {
+type GetApolloCacheUpdaterProps = {
   playerId: string,
   getContactSettingsField: Object => Object,
   fragment: string,
 };
 
-export const getCacheUpdater = ({
+export const getApolloCacheUpdater = ({
   fragment,
   playerId,
   getContactSettingsField,
-}: GetCacheUpdaterProps) => (cache: any, result: Object) => {
+}: GetApolloCacheUpdaterProps) => (cache: any, result: Object) => {
   try {
     cache.writeFragment({
       id: dataIdFromObject({ __typename: "Player", id: playerId }),

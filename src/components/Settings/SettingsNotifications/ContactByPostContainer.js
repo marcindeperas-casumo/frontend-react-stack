@@ -6,7 +6,7 @@ import { SetContactByPost } from "./Mutations.graphql";
 import { CONTACT_BY_POST_FRAGMENT } from "./PlayerContactSettingsQuery";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import {
-  getCacheUpdater,
+  getApolloCacheUpdater,
   onMutationError,
 } from "./SettingsNotifications.utils";
 
@@ -34,7 +34,7 @@ export function ContactByPostContainer({
         setContactByPost({
           variables: { input: { on: value } },
           optimisticResponse: { setContactByPost: value },
-          update: getCacheUpdater({
+          update: getApolloCacheUpdater({
             playerId,
             fragment: CONTACT_BY_POST_FRAGMENT,
             getContactSettingsField: result => ({
