@@ -3,9 +3,9 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
-import { SettingsNotifications } from "./SettingsNotifications";
 import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
 import { ContactByPostContainer } from "./ContactByPostContainer";
+import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { withMockQueries } from "./__mocks__/Queries.mock";
 import {
   contactByPostMock,
@@ -13,24 +13,6 @@ import {
 } from "./__mocks__/Mutations.mock";
 
 jest.useFakeTimers();
-
-const simulateClick = (rendered: any) => {
-  rendered
-    .find(ContactByPostContainer)
-    .find("Checkbox")
-    .simulate("click");
-};
-
-const actWithClick = (rendered: any) => {
-  simulateClick(rendered);
-  jest.runAllTimers();
-  rendered.update();
-};
-
-const getBooleanProp = (rendered: any): boolean => {
-  return rendered.find(SettingsNotifications).prop("player").details
-    .contactSettings.contactByPost;
-};
 
 describe("SettingsNotifications - Contact By Post", () => {
   test("should toggle to false", () => {
@@ -46,11 +28,11 @@ describe("SettingsNotifications - Contact By Post", () => {
     });
 
     //initial value should be the one from the query
-    expect(getBooleanProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPostContainer)).toBe(true);
 
-    actWithClick(rendered);
+    actWithClick(rendered, ContactByPostContainer);
     //optimisticResponse kicks in here
-    expect(getBooleanProp(rendered)).toBe(false);
+    expect(isCheckboxChecked(rendered, ContactByPostContainer)).toBe(false);
 
     act(() => {
       jest.runAllTimers();
@@ -58,7 +40,7 @@ describe("SettingsNotifications - Contact By Post", () => {
     });
 
     //actual response from the mutation
-    expect(getBooleanProp(rendered)).toBe(false);
+    expect(isCheckboxChecked(rendered, ContactByPostContainer)).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
@@ -73,10 +55,10 @@ describe("SettingsNotifications - Contact By Post", () => {
       rendered.update();
     });
 
-    expect(getBooleanProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPostContainer)).toBe(true);
 
-    actWithClick(rendered);
+    actWithClick(rendered, ContactByPostContainer);
 
-    expect(getBooleanProp(rendered)).toBe(true);
+    expect(isCheckboxChecked(rendered, ContactByPostContainer)).toBe(true);
   });
 });
