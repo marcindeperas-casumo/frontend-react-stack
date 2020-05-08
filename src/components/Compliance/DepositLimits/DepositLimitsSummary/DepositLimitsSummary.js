@@ -53,12 +53,13 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
     after: props.newLimits,
   });
   const [req, setReq] = React.useState(false);
+  const flexChildWidth = "u-width--1/2@desktop";
 
   const SubmitButton = (
     <Button
       data-test-id="submit-button"
       variant="primary"
-      className="u-padding-y--md"
+      className="u-padding-y--md u-width--full"
       disabled={req}
       loading={req}
       onClick={() => {
@@ -75,18 +76,20 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
   return (
     <Flex
       direction="vertical"
-      align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
+      className="o-flex-align--center@desktop u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full t-background-white c-deposit-limits-container"
     >
-      <Text className="u-font-weight-bold">{t.summary_title}</Text>
+      <Text className={`u-font-weight-bold ${flexChildWidth}`}>
+        {t.summary_title}
+      </Text>
       {limitTypes.map(x => (
         <Flex
           key={x}
           data-test-id={`limit-${x}`}
           align="center"
           onClick={() => props.edit(x)}
+          className={flexChildWidth}
         >
           <LimitChangeIcon change={limitsDiff[x]} />
           <Flex
@@ -117,14 +120,14 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"
-          className="t-border-r u-padding-y--lg u-padding-x--md"
+          className={`t-border-r u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
           style={{ backgroundColor: "#f2f2f2" }}
         >
           <AdditionalConditions {...props.preadjust} t={t} />
           {SubmitButton}
         </Flex>
       ) : (
-        SubmitButton
+        <div className={flexChildWidth}>{SubmitButton}</div>
       )}
     </Flex>
   );

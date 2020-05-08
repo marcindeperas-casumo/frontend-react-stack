@@ -3,3 +3,9 @@
     border-radius: 0;
   }
 }
+
+.t-border-r--none\@mobile {
+  @include cudl-breakpoint(mobile tablet) {
+    border-radius: 0;
+  }
+}

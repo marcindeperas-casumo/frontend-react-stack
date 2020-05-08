@@ -3,7 +3,6 @@ import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
 import { DirectionRightIcon, MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
 import { formatCurrency, interpolate } from "Utils";
@@ -106,9 +105,12 @@ export function SinglePeriodLimitOverview(props: Props) {
             justify="center"
             className="c-single-limit__hovered u-height--full u-width--full t-border-r u-position-absolute u-padding--lg"
           >
-            <Button variant="secondary" className="u-width--full u-padding--md">
-              {t.adjust_limit}
-            </Button>
+            <button
+              type="button"
+              className="Button-c-button u-width--full u-padding--md"
+            >
+              <span className="t-color-plum">{t.adjust_limit}</span>
+            </button>
           </Flex>
         </Flex>
       </Desktop>

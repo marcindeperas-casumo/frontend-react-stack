@@ -15,17 +15,20 @@ export function GoBack({ t, ...props }: Props) {
   return (
     <Flex
       align="center"
-      className="u-margin-bottom--2xlg u-margin-left--lg u-margin-top"
+      className="u-padding-y--2xlg u-margin-left--lg u-margin-right--2xlg"
       onClick={props.goBack}
     >
       <Flex
         align="center"
         justify="center"
-        className="t-border-r--circle u-padding--md t-background-plum-dark-1 u-margin-x--lg"
+        className="t-border-r--circle t-background-grey-dark-3 u-padding--md u-margin-x--lg"
       >
         <ArrowLeftIcon size="sm" className="t-color-white" />
       </Flex>
-      <Text size="md" className="t-color-plum-dark-1 u-font-weight-black">
+      <Text
+        size="md"
+        className="u-font-weight-black o-flex__block u-text-align-center"
+      >
         {t.deposit_limits}
       </Text>
     </Flex>
