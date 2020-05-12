@@ -41,13 +41,6 @@ export function ContactByPostContainer() {
         setContactByPost({
           variables: { input: { on: value } },
           optimisticResponse: { setContactByPost: value },
-          // update: getApolloCacheUpdater({
-          //   playerId,
-          //   fragment: CONTACT_BY_POST_FRAGMENT,
-          //   getContactSettingsField: result => ({
-          //     contactByPost: result.data.setContactByPost,
-          //   }),
-          // }),
         })
       }
     />

@@ -24,7 +24,6 @@ export class SettingsNotifications extends PureComponent<Props> {
         details: {
           contactSettings: {
             withdrawalNotifications,
-            subscribedToNewsletters,
             subscribedToSMSNewsletters,
           },
         },
@@ -35,7 +34,6 @@ export class SettingsNotifications extends PureComponent<Props> {
       labels: {
         subscriptionsTitle,
         subscriptionsDescription,
-        subscriptionsEmailLabel,
         subscriptionsSMSLabel,
         notificationsApprovedWithdrawalsEmailLabel,
         notificationsInGameSessionUpdatesLabel,
@@ -77,11 +75,7 @@ export class SettingsNotifications extends PureComponent<Props> {
             className="t-border-bottom--none u-margin-top"
           />
 
-          <NewsletterSubscriptionContainer
-            playerId={playerId}
-            subscribedToNewsletters={subscribedToNewsletters}
-            subscriptionsEmailLabel={subscriptionsEmailLabel}
-          />
+          <NewsletterSubscriptionContainer />
 
           <SmsSubscriptionContainer
             playerId={playerId}

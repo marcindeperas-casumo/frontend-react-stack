@@ -5,9 +5,6 @@
     subscriptionsDescription: getText(
       id: "root:player-settings-component:fields.subscriptions_description"
     )
-    subscriptionsEmailLabel: getText(
-      id: "root:player-settings-component:fields.subscriptions_email_label"
-    )
     subscriptionsSMSLabel: getText(
       id: "root:player-settings-component:fields.subscriptions_sms_label"
     )
