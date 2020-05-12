@@ -5,7 +5,7 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
-import { actWithClick } from "./MutationContainerTestUtils";
+import { actWithClick, isCheckboxChecked } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {
   contactByPhoneMock,
@@ -49,11 +49,11 @@ describe("SettingsNotifications - Contact By Phone", () => {
     });
 
     // initial value should be the one from the query
-    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
+    expect(isCheckboxChecked(rendered)).toBe(true);
 
     actWithClick(rendered);
     // optimisticResponse kicks in here
-    expect(rendered.find("Checkbox").prop("checked")).toBe(false);
+    expect(isCheckboxChecked(rendered)).toBe(false);
 
     act(() => {
       jest.runAllTimers();
@@ -61,7 +61,7 @@ describe("SettingsNotifications - Contact By Phone", () => {
     });
 
     // actual response from the mutation
-    expect(rendered.find("Checkbox").prop("checked")).toBe(false);
+    expect(isCheckboxChecked(rendered)).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
@@ -92,11 +92,11 @@ describe("SettingsNotifications - Contact By Phone", () => {
     });
 
     // initial value should be the one from the query
-    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
+    expect(isCheckboxChecked(rendered)).toBe(true);
 
     actWithClick(rendered);
 
     // the same state because mutation failed
-    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
+    expect(isCheckboxChecked(rendered)).toBe(true);
   });
 });

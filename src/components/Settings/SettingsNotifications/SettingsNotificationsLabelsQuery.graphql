@@ -11,12 +11,6 @@
     subscriptionsSMSLabel: getText(
       id: "root:player-settings-component:fields.subscriptions_sms_label"
     )
-    subscriptionsPhoneLabel: getText(
-      id: "root:player-settings-component:fields.subscriptions_phone_label"
-    )
-    subscriptionsPostLabel: getText(
-      id: "root:player-settings-component:fields.subscriptions_post_label"
-    )
     notificationsApprovedWithdrawalsEmailLabel: getText(
       id: "root:player-settings-component:fields.notifications_approved_withdrawals_email_label"
     )
