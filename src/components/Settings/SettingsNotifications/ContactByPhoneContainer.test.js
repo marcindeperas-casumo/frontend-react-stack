@@ -3,22 +3,43 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
-import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
-import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
-import { withMockQueries } from "./__mocks__/Queries.mock";
+import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
+import { actWithClick } from "./MutationContainerTestUtils";
+import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {
   contactByPhoneMock,
   contactByPhoneErrorMock,
 } from "./__mocks__/Mutations.mock";
 
 jest.useFakeTimers();
+jest.mock("Utils/hooks/useTranslationsGql", () => ({
+  useTranslationsGql: () => ({
+    t: {},
+    loading: false,
+  }),
+}));
 
 describe("SettingsNotifications - Contact By Phone", () => {
   test("should toggle to false", () => {
+    const queryMocks = [
+      ...contactByPhoneMock,
+      // first fetch before mutation
+      getPlayerSettingQueryMock(
+        SettingsNotificationsContactByPhoneQuery,
+        "contactByPhone",
+        true
+      ),
+      // second fetch after mutation due to refetchQueries
+      getPlayerSettingQueryMock(
+        SettingsNotificationsContactByPhoneQuery,
+        "contactByPhone",
+        false
+      ),
+    ];
     const rendered = mount(
-      <MockStore queryMocks={withMockQueries(contactByPhoneMock)}>
-        <SettingsNotificationsContainer />
+      <MockStore queryMocks={queryMocks}>
+        <ContactByPhoneContainer />
       </MockStore>
     );
 
@@ -27,26 +48,41 @@ describe("SettingsNotifications - Contact By Phone", () => {
       rendered.update();
     });
 
-    //initial value should be the one from the query
-    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
+    // initial value should be the one from the query
+    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
 
-    actWithClick(rendered, ContactByPhoneContainer);
-    //optimisticResponse kicks in here
-    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(false);
+    actWithClick(rendered);
+    // optimisticResponse kicks in here
+    expect(rendered.find("Checkbox").prop("checked")).toBe(false);
 
     act(() => {
       jest.runAllTimers();
       rendered.update();
     });
 
-    //actual response from the mutation
-    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(false);
+    // actual response from the mutation
+    expect(rendered.find("Checkbox").prop("checked")).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
+    const queryMocks = [
+      ...contactByPhoneErrorMock,
+      // first fetch before mutation
+      getPlayerSettingQueryMock(
+        SettingsNotificationsContactByPhoneQuery,
+        "contactByPhone",
+        true
+      ),
+      // second fetch after mutation due to refetchQueries
+      getPlayerSettingQueryMock(
+        SettingsNotificationsContactByPhoneQuery,
+        "contactByPhone",
+        false
+      ),
+    ];
     const rendered = mount(
-      <MockStore queryMocks={withMockQueries(contactByPhoneErrorMock)}>
-        <SettingsNotificationsContainer />
+      <MockStore queryMocks={queryMocks}>
+        <ContactByPhoneContainer />
       </MockStore>
     );
 
@@ -55,10 +91,12 @@ describe("SettingsNotifications - Contact By Phone", () => {
       rendered.update();
     });
 
-    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
+    // initial value should be the one from the query
+    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
 
-    actWithClick(rendered, ContactByPhoneContainer);
+    actWithClick(rendered);
 
-    expect(isCheckboxChecked(rendered, ContactByPhoneContainer)).toBe(true);
+    // the same state because mutation failed
+    expect(rendered.find("Checkbox").prop("checked")).toBe(true);
   });
 });

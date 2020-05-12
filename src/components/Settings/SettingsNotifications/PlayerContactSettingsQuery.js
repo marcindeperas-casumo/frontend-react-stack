@@ -46,17 +46,6 @@ export const SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT = gql`
   }
 `;
 
-export const CONTACT_BY_PHONE_FRAGMENT = gql`
-  fragment Contact_Settings_Player_contactByPhone on Player {
-    __typename
-    details {
-      contactSettings {
-        contactByPhone
-      }
-    }
-  }
-`;
-
 export const CONTACT_BY_POST_FRAGMENT = gql`
   fragment Contact_Settings_Player_contactByPost on Player {
     __typename
@@ -77,7 +66,6 @@ export const PLAYER_CONTACT_SETTINGS_QUERY = gql`
       ...Contact_Settings_Player_realityCheck
       ...Contact_Settings_Player_subscribedToNewsletters
       ...Contact_Settings_Player_subscribedToSMSNewsletters
-      ...Contact_Settings_Player_contactByPhone
       ...Contact_Settings_Player_contactByPost
     }
   }
@@ -86,6 +74,5 @@ export const PLAYER_CONTACT_SETTINGS_QUERY = gql`
   ${REALITY_CHECK_FRAGMENT}
   ${SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT}
   ${SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT}
-  ${CONTACT_BY_PHONE_FRAGMENT}
   ${CONTACT_BY_POST_FRAGMENT}
 `;

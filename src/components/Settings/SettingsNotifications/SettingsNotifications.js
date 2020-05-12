@@ -26,7 +26,6 @@ export class SettingsNotifications extends PureComponent<Props> {
             withdrawalNotifications,
             subscribedToNewsletters,
             subscribedToSMSNewsletters,
-            contactByPhone,
             contactByPost,
           },
         },
@@ -39,7 +38,6 @@ export class SettingsNotifications extends PureComponent<Props> {
         subscriptionsDescription,
         subscriptionsEmailLabel,
         subscriptionsSMSLabel,
-        subscriptionsPhoneLabel,
         subscriptionsPostLabel,
         notificationsApprovedWithdrawalsEmailLabel,
         notificationsInGameSessionUpdatesLabel,
@@ -93,11 +91,7 @@ export class SettingsNotifications extends PureComponent<Props> {
             subscriptionsSMSLabel={subscriptionsSMSLabel}
           />
 
-          <ContactByPhoneContainer
-            playerId={playerId}
-            subscriptionsPhoneLabel={subscriptionsPhoneLabel}
-            contactByPhone={contactByPhone}
-          />
+          <ContactByPhoneContainer />
 
           <ContactByPostContainer
             playerId={playerId}

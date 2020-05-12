@@ -1,5 +1,6 @@
 import NOTIFICATIONS_LABELS_QUERY from "../SettingsNotificationsLabelsQuery.graphql";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "../PlayerContactSettingsQuery";
+import { SettingsNotificationsContactByPhoneQuery } from "../ContactByPhone.graphql";
 
 export const playerContactSettingsQueryMock = {
   request: {
@@ -42,6 +43,27 @@ export const playerContactSettingsQueryErrorMock = {
     errors: [{ foo: "bar" }],
   },
 };
+
+export const getPlayerSettingQueryMock = (query, name, value) => ({
+  request: {
+    query,
+  },
+  result: {
+    data: {
+      player: {
+        __typename: "Player",
+        id: 1,
+        details: {
+          __typename: "PlayerDetails",
+          contactSettings: {
+            __typename: "PlayerContactSettings",
+            [name]: value,
+          },
+        },
+      },
+    },
+  },
+});
 
 export const notificationsLabelsQueryMock = {
   request: {

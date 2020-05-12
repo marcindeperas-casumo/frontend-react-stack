@@ -1,18 +1,21 @@
 // @flow
+import { act } from "react-dom/test-utils";
 import { type ReactWrapper } from "enzyme";
 
 const findCheckbox = (rendered: ReactWrapper<any>, ParentComponent: any) =>
-  rendered.find(ParentComponent).find("Checkbox");
+  rendered.find("Checkbox");
 
 export const isCheckboxChecked = (rendered: any, ParentComponent: any) =>
-  findCheckbox(rendered, ParentComponent).prop("checked");
+  findCheckbox(rendered).prop("checked");
 
 export const simulateClick = (rendered: any, ParentComponent: any) => {
-  findCheckbox(rendered, ParentComponent).simulate("click");
+  findCheckbox(rendered).simulate("click");
 };
 
 export const actWithClick = (rendered: any, ParentComponent: any) => {
-  simulateClick(rendered, ParentComponent);
-  jest.runAllTimers();
-  rendered.update();
+  act(() => {
+    simulateClick(rendered);
+    jest.runAllTimers();
+    rendered.update();
+  });
 };

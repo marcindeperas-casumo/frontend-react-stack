@@ -9,7 +9,7 @@ export const SettingsNotificationsSubscriptionRow = ({
   isEnabled,
   onChange,
 }: {
-  label: string,
+  label: ?string,
   isEnabled: boolean,
   onChange: (active: boolean) => any,
 }) => (

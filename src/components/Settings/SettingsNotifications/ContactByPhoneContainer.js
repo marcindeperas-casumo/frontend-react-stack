@@ -1,46 +1,46 @@
 // @flow
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
+import { ErrorMessage } from "Components/ErrorMessage";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SetContactByPhone } from "./Mutations.graphql";
-import { CONTACT_BY_PHONE_FRAGMENT } from "./PlayerContactSettingsQuery";
+import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
-import {
-  getApolloCacheUpdater,
-  onMutationError,
-} from "./SettingsNotifications.utils";
+import { onMutationError } from "./SettingsNotifications.utils";
 
-type Props = {
-  playerId: string,
-  contactByPhone: boolean,
-  subscriptionsPhoneLabel: string,
-};
-
-export function ContactByPhoneContainer({
-  playerId,
-  contactByPhone,
-  subscriptionsPhoneLabel,
-}: Props) {
+export function ContactByPhoneContainer() {
+  const { t, loading: cmsLoading } = useTranslationsGql({
+    subscriptionsPhoneLabel:
+      "root:player-settings-component:fields.subscriptions_phone_label",
+  });
   const [setContactByPhone] = useMutation<
     A.SetContactByPhone,
     A.SetContactByPhoneVariables
-  >(SetContactByPhone, { onError: onMutationError });
+  >(SetContactByPhone, {
+    onError: onMutationError,
+    refetchQueries: [{ query: SettingsNotificationsContactByPhoneQuery }],
+  });
+  const { data, error, loading, refetch } = useQuery<_, _>(
+    SettingsNotificationsContactByPhoneQuery
+  );
+
+  if (loading || cmsLoading) {
+    return <SettingsRowListSkeleton count={1} />;
+  }
+  if (!data || error) {
+    return <ErrorMessage retry={() => refetch()} />;
+  }
 
   return (
     <SubscriptionRow
-      label={subscriptionsPhoneLabel}
-      isEnabled={contactByPhone}
+      label={t.subscriptionsPhoneLabel}
+      isEnabled={data.player.details.contactSettings.contactByPhone}
       onChange={value =>
         setContactByPhone({
           variables: { input: { on: value } },
           optimisticResponse: { setContactByPhone: value },
-          update: getApolloCacheUpdater({
-            playerId,
-            fragment: CONTACT_BY_PHONE_FRAGMENT,
-            getContactSettingsField: result => ({
-              contactByPhone: result.data.setContactByPhone,
-            }),
-          }),
         })
       }
     />
