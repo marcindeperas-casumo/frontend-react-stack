@@ -5,9 +5,6 @@
     subscriptionsDescription: getText(
       id: "root:player-settings-component:fields.subscriptions_description"
     )
-    notificationsApprovedWithdrawalsEmailLabel: getText(
-      id: "root:player-settings-component:fields.notifications_approved_withdrawals_email_label"
-    )
     notificationsInGameSessionUpdatesLabel: getText(
       id: "root:player-settings-component:fields.notifications_ingame_session_updates_label"
     )

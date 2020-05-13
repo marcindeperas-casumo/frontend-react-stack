@@ -1,6 +1,5 @@
 import NOTIFICATIONS_LABELS_QUERY from "../SettingsNotificationsLabelsQuery.graphql";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "../PlayerContactSettingsQuery";
-import { SettingsNotificationsContactByPhoneQuery } from "../ContactByPhone.graphql";
 
 export const playerContactSettingsQueryMock = {
   request: {
@@ -15,12 +14,7 @@ export const playerContactSettingsQueryMock = {
           __typename: "PlayerDetails",
           contactSettings: {
             __typename: "PlayerContactSettings",
-            withdrawalNotifications: true,
             adventurerPublic: true,
-            subscribedToNewsletters: true,
-            subscribedToSMSNewsletters: true,
-            contactByPhone: true,
-            contactByPost: true,
           },
         },
         playOk: {
@@ -73,11 +67,6 @@ export const notificationsLabelsQueryMock = {
     data: {
       subscriptionsTitle: "foo",
       subscriptionsDescription: "foo",
-      subscriptionsEmailLabel: "foo",
-      subscriptionsSMSLabel: "foo",
-      subscriptionsPhoneLabel: "foo",
-      subscriptionsPostLabel: "foo",
-      notificationsApprovedWithdrawalsEmailLabel: "foo",
       notificationsInGameSessionUpdatesLabel: "foo",
       inGameSessionUpdatesOffLabel: "foo",
       inGameSessionUpdatesFrequencyLabel: "foo",

@@ -9,7 +9,7 @@ import { useTranslationsGql } from "../useTranslationsGql";
 jest.useFakeTimers();
 
 const QUERY = gql`
-  query TranslationsQuery {
+  query TranslationsTestQuery {
     one: getCMSField(
       id: "root:built-pages.top-lists-translations:fields.more_link"
     ) {

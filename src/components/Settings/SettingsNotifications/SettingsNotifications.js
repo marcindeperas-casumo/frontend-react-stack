@@ -20,10 +20,6 @@ export class SettingsNotifications extends PureComponent<Props> {
   render() {
     const {
       player: {
-        id: playerId,
-        details: {
-          contactSettings: { withdrawalNotifications },
-        },
         playOk: {
           realityCheck: { canChangeInterval, intervalInMinutes },
         },
@@ -31,7 +27,6 @@ export class SettingsNotifications extends PureComponent<Props> {
       labels: {
         subscriptionsTitle,
         subscriptionsDescription,
-        notificationsApprovedWithdrawalsEmailLabel,
         notificationsInGameSessionUpdatesLabel,
         inGameSessionUpdatesOffLabel,
         inGameSessionUpdatesFrequencyLabel,
@@ -42,13 +37,8 @@ export class SettingsNotifications extends PureComponent<Props> {
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
         <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
-          <WithdrawalNotificationsContainer
-            playerId={playerId}
-            withdrawalNotifications={withdrawalNotifications}
-            notificationsApprovedWithdrawalsEmailLabel={
-              notificationsApprovedWithdrawalsEmailLabel
-            }
-          />
+          <WithdrawalNotificationsContainer />
+
           {!isDGOJ && (
             <RealityCheckField
               enabled={canChangeInterval}
