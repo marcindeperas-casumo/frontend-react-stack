@@ -24,9 +24,10 @@ export function SmsSubscriptionContainer() {
       { query: SettingsNotificationsSubscribedToSmsNewslettersQuery },
     ],
   });
-  const { data, error, loading, refetch } = useQuery<_, _>(
-    SettingsNotificationsSubscribedToSmsNewslettersQuery
-  );
+  const { data, error, loading, refetch } = useQuery<
+    A.SettingsNotificationsSubscribedToSmsNewslettersQuery,
+    _
+  >(SettingsNotificationsSubscribedToSmsNewslettersQuery);
 
   if (loading || cmsLoading) {
     return <SettingsRowListSkeleton count={1} />;

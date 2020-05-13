@@ -22,9 +22,10 @@ export function ContactByPostContainer() {
     onError: onMutationError,
     refetchQueries: [{ query: SettingsNotificationsContactByPostQuery }],
   });
-  const { data, error, loading, refetch } = useQuery<_, _>(
-    SettingsNotificationsContactByPostQuery
-  );
+  const { data, error, loading, refetch } = useQuery<
+    A.SettingsNotificationsContactByPostQuery,
+    _
+  >(SettingsNotificationsContactByPostQuery);
 
   if (loading || cmsLoading) {
     return <SettingsRowListSkeleton count={1} />;

@@ -24,9 +24,10 @@ export function WithdrawalNotificationsContainer() {
       { query: SettingsNotificationsWithdrawalNotificationsQuery },
     ],
   });
-  const { data, error, loading, refetch } = useQuery<_, _>(
-    SettingsNotificationsWithdrawalNotificationsQuery
-  );
+  const { data, error, loading, refetch } = useQuery<
+    A.SettingsNotificationsWithdrawalNotificationsQuery,
+    _
+  >(SettingsNotificationsWithdrawalNotificationsQuery);
 
   if (loading || cmsLoading) {
     return <SettingsRowListSkeleton count={1} />;

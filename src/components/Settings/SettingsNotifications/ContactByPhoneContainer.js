@@ -22,9 +22,10 @@ export function ContactByPhoneContainer() {
     onError: onMutationError,
     refetchQueries: [{ query: SettingsNotificationsContactByPhoneQuery }],
   });
-  const { data, error, loading, refetch } = useQuery<_, _>(
-    SettingsNotificationsContactByPhoneQuery
-  );
+  const { data, error, loading, refetch } = useQuery<
+    A.SettingsNotificationsContactByPhoneQuery,
+    _
+  >(SettingsNotificationsContactByPhoneQuery);
 
   if (loading || cmsLoading) {
     return <SettingsRowListSkeleton count={1} />;
