@@ -1,4 +1,3 @@
-import NOTIFICATIONS_LABELS_QUERY from "../SettingsNotificationsLabelsQuery.graphql";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "../PlayerContactSettingsQuery";
 
 export const playerContactSettingsQueryMock = {
@@ -59,30 +58,7 @@ export const getPlayerSettingQueryMock = (query, name, value) => ({
   },
 });
 
-export const notificationsLabelsQueryMock = {
-  request: {
-    query: NOTIFICATIONS_LABELS_QUERY,
-  },
-  result: {
-    data: {
-      subscriptionsTitle: "foo",
-      subscriptionsDescription: "foo",
-      notificationsInGameSessionUpdatesLabel: "foo",
-      inGameSessionUpdatesOffLabel: "foo",
-      inGameSessionUpdatesFrequencyLabel: "foo",
-    },
-  },
-};
-
-export const notificationsLabelsQueryErrorMock = {
-  ...notificationsLabelsQueryMock,
-  result: {
-    errors: [{ foo: "bar" }],
-  },
-};
-
 export const withMockQueries = mock => [
   ...mock,
   playerContactSettingsQueryMock,
-  notificationsLabelsQueryMock,
 ];

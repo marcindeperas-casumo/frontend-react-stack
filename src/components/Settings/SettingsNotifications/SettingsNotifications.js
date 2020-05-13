@@ -12,7 +12,13 @@ import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
-  labels: A.NOTIFICATIONS_LABELS_QUERY,
+  labels: {
+    subscriptionsTitle: ?string,
+    subscriptionsDescription: ?string,
+    notificationsInGameSessionUpdatesLabel: ?string,
+    inGameSessionUpdatesOffLabel: ?string,
+    inGameSessionUpdatesFrequencyLabel: ?string,
+  },
   isDGOJ: boolean,
 };
 

@@ -13,10 +13,10 @@ const RealityCheck = ({
   frequencyOffLabel,
   enabled,
 }: {
-  title: string,
+  title: ?string,
   interval: number,
-  frequencyLabel: string,
-  frequencyOffLabel: string,
+  frequencyLabel: ?string,
+  frequencyOffLabel: ?string,
   enabled: boolean,
 }) => (
   <SettingsRow text={<Text className="t-color-chrome-dark-2">{title}</Text>}>
@@ -24,7 +24,7 @@ const RealityCheck = ({
       {interval ? (
         <Text tag="span" className="t-color-plum u-font-weight-bold">
           <ContentReplacer
-            value={frequencyLabel}
+            value={frequencyLabel || ""}
             replacements={{ amount: interval }}
           />
         </Text>
@@ -58,10 +58,10 @@ export const RealityCheckField = ({
 }: {
   link: string,
   enabled: boolean,
-  title: string,
+  title: ?string,
   interval: number,
-  frequencyLabel: string,
-  frequencyOffLabel: string,
+  frequencyLabel: ?string,
+  frequencyOffLabel: ?string,
   enabled: boolean,
 }) => (
   <LinkOrNode link={link} enabled={enabled}>

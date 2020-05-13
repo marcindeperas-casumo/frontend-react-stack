@@ -8,11 +8,15 @@ import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer
 import {
   playerContactSettingsQueryMock,
   playerContactSettingsQueryErrorMock,
-  notificationsLabelsQueryMock,
-  notificationsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
 jest.useFakeTimers();
+jest.mock("Utils/hooks/useTranslationsGql", () => ({
+  useTranslationsGql: () => ({
+    t: {},
+    loading: false,
+  }),
+}));
 
 describe("Notifications", () => {
   describe("Component", () => {
@@ -20,10 +24,7 @@ describe("Notifications", () => {
       const rendered = mount(
         <MockStore
           queryAddTypename
-          queryMocks={[
-            playerContactSettingsQueryMock,
-            notificationsLabelsQueryMock,
-          ]}
+          queryMocks={[playerContactSettingsQueryMock]}
         >
           <SettingsNotificationsContainer />
         </MockStore>
@@ -36,10 +37,7 @@ describe("Notifications", () => {
       const rendered = mount(
         <MockStore
           queryAddTypename
-          queryMocks={[
-            playerContactSettingsQueryMock,
-            notificationsLabelsQueryMock,
-          ]}
+          queryMocks={[playerContactSettingsQueryMock]}
         >
           <SettingsNotificationsContainer />
         </MockStore>
@@ -55,58 +53,11 @@ describe("Notifications", () => {
       );
     });
 
-    test("should pass correct labels to children", () => {
-      const rendered = mount(
-        <MockStore
-          queryAddTypename
-          queryMocks={[
-            playerContactSettingsQueryMock,
-            notificationsLabelsQueryMock,
-          ]}
-        >
-          <SettingsNotificationsContainer />
-        </MockStore>
-      );
-
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
-      });
-
-      expect(rendered.find(SettingsNotifications).prop("labels")).toStrictEqual(
-        notificationsLabelsQueryMock.result.data
-      );
-    });
-
     test("should show error when settings fail to load", () => {
       const rendered = mount(
         <MockStore
           queryAddTypename
-          queryMocks={[
-            playerContactSettingsQueryErrorMock,
-            notificationsLabelsQueryMock,
-          ]}
-        >
-          <SettingsNotificationsContainer />
-        </MockStore>
-      );
-
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
-      });
-
-      expect(rendered.find("ErrorMessage")).toHaveLength(1);
-    });
-
-    test("should show error when labels fail to load", () => {
-      const rendered = mount(
-        <MockStore
-          queryAddTypename
-          queryMocks={[
-            playerContactSettingsQueryMock,
-            notificationsLabelsQueryErrorMock,
-          ]}
+          queryMocks={[playerContactSettingsQueryErrorMock]}
         >
           <SettingsNotificationsContainer />
         </MockStore>
