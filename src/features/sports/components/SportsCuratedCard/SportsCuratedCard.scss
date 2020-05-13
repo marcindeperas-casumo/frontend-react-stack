@@ -4,19 +4,16 @@
 // to make it smaller.
 //prettier-ignore
 $curated-card-ratios: (
-  mobile: 110px,
-  phablet: (
-    264/496
-  ) * 100%,
-  tablet: (
-    254/545
-  ) * 100%,
-  desktop: (
-    432/1181
-  ) * 100%,
+  mobile: 120px,
+  phablet: 130px,
+  tablet: 110px,
 );
 
 // stylelint-disable-next-line
 .c-sports-curated-card.c-sports-curated-card::before {
   @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
+}
+// stylelint-disable-next-line
+.c-sports-curated-card > div > .o-flex--vertical {
+  padding-bottom: 0 !important;
 }
