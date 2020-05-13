@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent, type Node } from "react";
+import * as React from "react";
 import { EditIcon, ExclamationMarkIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -38,8 +38,8 @@ const RowTemplate = ({
   onClick,
 }: {
   label: ?string,
-  value?: Node,
-  action?: Node,
+  value?: React.Node,
+  action?: React.Node,
   onClick?: () => void,
 }) => (
   <div onClick={onClick}>
@@ -49,11 +49,7 @@ const RowTemplate = ({
   </div>
 );
 
-export class SettingsAccountDetails extends PureComponent<Props> {
-  static defaultProps = {
-    labels: {},
-  };
-
+export class SettingsAccountDetails extends React.PureComponent<Props> {
   componentDidMount() {
     const { refetchSettings } = this.props;
     onOldStackEvent(KO_EVENTS.ACCOUNT_SETTINGS.COMMAND_EXECUTED, data => {
