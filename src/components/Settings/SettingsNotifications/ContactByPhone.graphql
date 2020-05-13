@@ -1,0 +1,10 @@
+query SettingsNotificationsContactByPhoneQuery {
+  player {
+    id
+    details {
+      contactSettings {
+        contactByPhone
+      }
+    }
+  }
+}

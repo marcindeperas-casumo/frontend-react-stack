@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
@@ -6,20 +7,22 @@ import { SettingsAccountDetails } from "./SettingsAccountDetails";
 import { SettingsAccountDetailsContainer } from "./SettingsAccountDetailsContainer";
 import {
   playerSettingsQueryMock,
-  playerSettingsLabelsQueryMock,
   playerSettingsQueryErrorMock,
-  playerSettingsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
 jest.useFakeTimers();
+jest.mock("Utils/hooks/useTranslationsGql", () => ({
+  useTranslationsGql: () => ({
+    t: {},
+    loading: false,
+  }),
+}));
 
 describe("AccountDetails", () => {
   describe("Player Settings", () => {
     test("should render loader", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
-        >
+        <MockedProvider mocks={[playerSettingsQueryMock]}>
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
@@ -31,9 +34,7 @@ describe("AccountDetails", () => {
 
     test("should show error", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSettingsLabelsQueryMock, playerSettingsQueryErrorMock]}
-        >
+        <MockedProvider mocks={[playerSettingsQueryErrorMock]}>
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
@@ -48,59 +49,19 @@ describe("AccountDetails", () => {
 
     test("should pass correct player to child", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
-        >
+        <MockedProvider mocks={[playerSettingsQueryMock]}>
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
 
       act(() => {
-        jest.advanceTimersByTime(10);
+        jest.runAllTimers();
         rendered.update();
       });
 
       expect(
         rendered.find(SettingsAccountDetails).prop("player")
       ).toStrictEqual(playerSettingsQueryMock.result.data.player);
-    });
-  });
-
-  describe("Labels", () => {
-    test("should show error", () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[playerSettingsLabelsQueryErrorMock, playerSettingsQueryMock]}
-        >
-          <SettingsAccountDetailsContainer />
-        </MockedProvider>
-      );
-
-      act(() => {
-        jest.advanceTimersByTime(10);
-        rendered.update();
-      });
-
-      expect(rendered.find("ErrorMessage")).toHaveLength(1);
-    });
-
-    test("should pass correct labels to child", () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
-        >
-          <SettingsAccountDetailsContainer />
-        </MockedProvider>
-      );
-
-      act(() => {
-        jest.advanceTimersByTime(10);
-        rendered.update();
-      });
-
-      expect(
-        Object.keys(rendered.find(SettingsAccountDetails).prop("labels"))
-      ).toEqual(Object.keys(playerSettingsLabelsQueryMock.result.data));
     });
   });
 });

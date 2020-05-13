@@ -49,7 +49,7 @@ export function generateTranslationsQuery(translationKeyIdMap: {
   [string]: string,
 }) {
   return gql`
-    query TranslationsQuery {
+    query TranslationsTestQuery {
       ${generateQueries(translationKeyIdMap)}
     }
   `;
