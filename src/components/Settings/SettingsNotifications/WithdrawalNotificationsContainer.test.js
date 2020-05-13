@@ -4,7 +4,7 @@ import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
-import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
+// import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { withMockQueries } from "./__mocks__/Queries.mock";
 import {
@@ -32,17 +32,13 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
 
     //initial value should be the one from the query
     // expect(getWithdrawalNotificationsProp(rendered)).toBe(true);
-    expect(isCheckboxChecked(rendered, WithdrawalNotificationsContainer)).toBe(
-      true
-    );
+    expect(isCheckboxChecked(rendered)).toBe(true);
 
-    actWithClick(rendered, WithdrawalNotificationsContainer);
+    actWithClick(rendered);
 
     //optimisticResponse kicks in here
     // expect(getWithdrawalNotificationsProp(rendered)).toBe(false);
-    expect(isCheckboxChecked(rendered, WithdrawalNotificationsContainer)).toBe(
-      false
-    );
+    expect(isCheckboxChecked(rendered)).toBe(false);
 
     act(() => {
       jest.runAllTimers();
@@ -51,9 +47,7 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
 
     //actual response from the mutation
     // expect(getWithdrawalNotificationsProp(rendered)).toBe(false);
-    expect(isCheckboxChecked(rendered, WithdrawalNotificationsContainer)).toBe(
-      false
-    );
+    expect(isCheckboxChecked(rendered)).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
@@ -69,15 +63,11 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
     });
 
     // expect(getWithdrawalNotificationsProp(rendered)).toBe(true);
-    expect(isCheckboxChecked(rendered, WithdrawalNotificationsContainer)).toBe(
-      true
-    );
+    expect(isCheckboxChecked(rendered)).toBe(true);
 
-    actWithClick(rendered, WithdrawalNotificationsContainer);
+    actWithClick(rendered);
 
     // expect(getWithdrawalNotificationsProp(rendered)).toBe(true);
-    expect(isCheckboxChecked(rendered, WithdrawalNotificationsContainer)).toBe(
-      true
-    );
+    expect(isCheckboxChecked(rendered)).toBe(true);
   });
 });

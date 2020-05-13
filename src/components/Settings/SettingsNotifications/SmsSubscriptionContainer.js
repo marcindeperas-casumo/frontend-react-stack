@@ -1,47 +1,48 @@
 // @flow
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
+import { ErrorMessage } from "Components/ErrorMessage";
 import { SetSMSNewsletterSubscription } from "./Mutations.graphql";
-import { SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT } from "./PlayerContactSettingsQuery";
+import { SettingsNotificationsSubscribedToSmsNewslettersQuery } from "./SmsSubscription.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
-import {
-  getApolloCacheUpdater,
-  onMutationError,
-} from "./SettingsNotifications.utils";
+import { onMutationError } from "./SettingsNotifications.utils";
 
-type Props = {
-  playerId: string,
-  subscribedToSMSNewsletters: boolean,
-  subscriptionsSMSLabel: string,
-};
-
-export function SmsSubscriptionContainer({
-  playerId,
-  subscriptionsSMSLabel,
-  subscribedToSMSNewsletters,
-}: Props) {
+export function SmsSubscriptionContainer() {
+  const { t, loading: cmsLoading } = useTranslationsGql({
+    subscriptionsSMSLabel:
+      "root:player-settings-component:fields.subscriptions_sms_label",
+  });
   const [setSMSNewsletterSubscription] = useMutation<
     A.SetSMSNewsletterSubscription,
     A.SetSMSNewsletterSubscriptionVariables
-  >(SetSMSNewsletterSubscription, { onError: onMutationError });
+  >(SetSMSNewsletterSubscription, {
+    onError: onMutationError,
+    refetchQueries: [
+      { query: SettingsNotificationsSubscribedToSmsNewslettersQuery },
+    ],
+  });
+  const { data, error, loading, refetch } = useQuery<_, _>(
+    SettingsNotificationsSubscribedToSmsNewslettersQuery
+  );
+
+  if (loading || cmsLoading) {
+    return <SettingsRowListSkeleton count={1} />;
+  }
+  if (!data || error) {
+    return <ErrorMessage retry={() => refetch()} />;
+  }
 
   return (
     <SubscriptionRow
-      label={subscriptionsSMSLabel}
-      isEnabled={subscribedToSMSNewsletters}
+      label={t.subscriptionsSMSLabel}
+      isEnabled={data.player.details.contactSettings.subscribedToSMSNewsletters}
       onChange={value =>
         setSMSNewsletterSubscription({
           variables: { input: { on: value } },
           optimisticResponse: { setSMSNewsletterSubscription: value },
-          update: getApolloCacheUpdater({
-            playerId,
-            fragment: SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT,
-            getContactSettingsField: result => ({
-              subscribedToSMSNewsletters:
-                result.data.setSMSNewsletterSubscription,
-            }),
-          }),
         })
       }
     />

@@ -22,10 +22,7 @@ export class SettingsNotifications extends PureComponent<Props> {
       player: {
         id: playerId,
         details: {
-          contactSettings: {
-            withdrawalNotifications,
-            subscribedToSMSNewsletters,
-          },
+          contactSettings: { withdrawalNotifications },
         },
         playOk: {
           realityCheck: { canChangeInterval, intervalInMinutes },
@@ -34,7 +31,6 @@ export class SettingsNotifications extends PureComponent<Props> {
       labels: {
         subscriptionsTitle,
         subscriptionsDescription,
-        subscriptionsSMSLabel,
         notificationsApprovedWithdrawalsEmailLabel,
         notificationsInGameSessionUpdatesLabel,
         inGameSessionUpdatesOffLabel,
@@ -77,11 +73,7 @@ export class SettingsNotifications extends PureComponent<Props> {
 
           <NewsletterSubscriptionContainer />
 
-          <SmsSubscriptionContainer
-            playerId={playerId}
-            subscribedToSMSNewsletters={subscribedToSMSNewsletters}
-            subscriptionsSMSLabel={subscriptionsSMSLabel}
-          />
+          <SmsSubscriptionContainer />
 
           <ContactByPhoneContainer />
 

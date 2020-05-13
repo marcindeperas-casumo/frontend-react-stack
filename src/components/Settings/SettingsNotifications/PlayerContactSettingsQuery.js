@@ -24,17 +24,6 @@ export const ADVENTURER_PUBLIC_FRAGMENT = gql`
   }
 `;
 
-export const SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT = gql`
-  fragment Contact_Settings_Player_subscribedToSMSNewsletters on Player {
-    __typename
-    details {
-      contactSettings {
-        subscribedToSMSNewsletters
-      }
-    }
-  }
-`;
-
 export const PLAYER_CONTACT_SETTINGS_QUERY = gql`
   query PLAYER_CONTACT_SETTINGS_QUERY {
     player {
@@ -42,11 +31,9 @@ export const PLAYER_CONTACT_SETTINGS_QUERY = gql`
       ...Contact_Settings_Player_withdrawalNotifications
       ...Contact_Settings_Player_adventurerPublic
       ...Contact_Settings_Player_realityCheck
-      ...Contact_Settings_Player_subscribedToSMSNewsletters
     }
   }
   ${WITHDRAWAL_NOTIFICATION_FRAGMENT}
   ${ADVENTURER_PUBLIC_FRAGMENT}
   ${REALITY_CHECK_FRAGMENT}
-  ${SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT}
 `;
