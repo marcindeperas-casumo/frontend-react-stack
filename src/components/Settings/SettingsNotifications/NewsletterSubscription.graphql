@@ -1,0 +1,10 @@
+query SettingsNotificationsSubscribedToNewslettersQuery {
+  player {
+    id
+    details {
+      contactSettings {
+        subscribedToNewsletters
+      }
+    }
+  }
+}

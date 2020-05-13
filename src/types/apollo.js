@@ -57,6 +57,7 @@ export type GameDetailsQuery_game_media = {
   order: number,
 };
 export type GameDetailsQuery_game = {
+  id: string,
   name: string,
   logo: string,
   backgroundImage: string,
@@ -764,21 +765,6 @@ export type PlayAgainLatestPlayedQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: PLAYER_SETTINGS_LABELS_QUERY
-// ====================================================
-
-export type PLAYER_SETTINGS_LABELS_QUERY = {
-  name: string,
-  email: string,
-  password: string,
-  mobileNumber: string,
-  address: string,
-  edit: string,
-  verify: string,
-  gamblingExtent: string,
-};
-
-// ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_QUERY
 // ====================================================
 
@@ -826,6 +812,42 @@ export type PLAYER_SETTINGS_QUERY_player = {
 };
 export type PLAYER_SETTINGS_QUERY = {
   player: PLAYER_SETTINGS_QUERY_player,
+};
+
+// ====================================================
+// GraphQL query operation: SettingsNotificationsContactByPhoneQuery
+// ====================================================
+
+export type SettingsNotificationsContactByPhoneQuery_player_details_contactSettings = {
+  contactByPhone: boolean,
+};
+export type SettingsNotificationsContactByPhoneQuery_player_details = {
+  contactSettings: SettingsNotificationsContactByPhoneQuery_player_details_contactSettings,
+};
+export type SettingsNotificationsContactByPhoneQuery_player = {
+  id: string,
+  details: SettingsNotificationsContactByPhoneQuery_player_details,
+};
+export type SettingsNotificationsContactByPhoneQuery = {
+  player: SettingsNotificationsContactByPhoneQuery_player,
+};
+
+// ====================================================
+// GraphQL query operation: SettingsNotificationsContactByPostQuery
+// ====================================================
+
+export type SettingsNotificationsContactByPostQuery_player_details_contactSettings = {
+  contactByPost: boolean,
+};
+export type SettingsNotificationsContactByPostQuery_player_details = {
+  contactSettings: SettingsNotificationsContactByPostQuery_player_details_contactSettings,
+};
+export type SettingsNotificationsContactByPostQuery_player = {
+  id: string,
+  details: SettingsNotificationsContactByPostQuery_player_details,
+};
+export type SettingsNotificationsContactByPostQuery = {
+  player: SettingsNotificationsContactByPostQuery_player,
 };
 
 // ====================================================
@@ -895,16 +917,29 @@ export type SetContactByPostVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: SettingsNotificationsSubscribedToNewslettersQuery
+// ====================================================
+
+export type SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings = {
+  subscribedToNewsletters: boolean,
+};
+export type SettingsNotificationsSubscribedToNewslettersQuery_player_details = {
+  contactSettings: SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings,
+};
+export type SettingsNotificationsSubscribedToNewslettersQuery_player = {
+  id: string,
+  details: SettingsNotificationsSubscribedToNewslettersQuery_player_details,
+};
+export type SettingsNotificationsSubscribedToNewslettersQuery = {
+  player: SettingsNotificationsSubscribedToNewslettersQuery_player,
+};
+
+// ====================================================
 // GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
 // ====================================================
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
-  withdrawalNotifications: boolean,
   adventurerPublic: boolean,
-  subscribedToNewsletters: boolean,
-  subscribedToSMSNewsletters: boolean,
-  contactByPhone: boolean,
-  contactByPost: boolean,
 };
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
   contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
@@ -936,14 +971,45 @@ export type PLAYER_CONTACT_SETTINGS_QUERY = {
 export type NOTIFICATIONS_LABELS_QUERY = {
   subscriptionsTitle: string,
   subscriptionsDescription: string,
-  subscriptionsEmailLabel: string,
-  subscriptionsSMSLabel: string,
-  subscriptionsPhoneLabel: string,
-  subscriptionsPostLabel: string,
-  notificationsApprovedWithdrawalsEmailLabel: string,
   notificationsInGameSessionUpdatesLabel: string,
   inGameSessionUpdatesOffLabel: string,
   inGameSessionUpdatesFrequencyLabel: string,
+};
+
+// ====================================================
+// GraphQL query operation: SettingsNotificationsSubscribedToSmsNewslettersQuery
+// ====================================================
+
+export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings = {
+  subscribedToSMSNewsletters: boolean,
+};
+export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details = {
+  contactSettings: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings,
+};
+export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player = {
+  id: string,
+  details: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details,
+};
+export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
+  player: SettingsNotificationsSubscribedToSmsNewslettersQuery_player,
+};
+
+// ====================================================
+// GraphQL query operation: SettingsNotificationsWithdrawalNotificationsQuery
+// ====================================================
+
+export type SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings = {
+  withdrawalNotifications: boolean,
+};
+export type SettingsNotificationsWithdrawalNotificationsQuery_player_details = {
+  contactSettings: SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings,
+};
+export type SettingsNotificationsWithdrawalNotificationsQuery_player = {
+  id: string,
+  details: SettingsNotificationsWithdrawalNotificationsQuery_player_details,
+};
+export type SettingsNotificationsWithdrawalNotificationsQuery = {
+  player: SettingsNotificationsWithdrawalNotificationsQuery_player,
 };
 
 // ====================================================
@@ -1004,21 +1070,6 @@ export type PLAYER_LOGIN_HISTORY_QUERY_player = {
 };
 export type PLAYER_LOGIN_HISTORY_QUERY = {
   player: PLAYER_LOGIN_HISTORY_QUERY_player,
-};
-
-// ====================================================
-// GraphQL query operation: PLAYER_SECTIONS_LABELS_QUERY
-// ====================================================
-
-export type PLAYER_SECTIONS_LABELS_QUERY = {
-  accountDetailsTitle: string,
-  accountDetailsDescription: string,
-  notificationsTitle: string,
-  notificationsDescription: string,
-  currentSessionMessage: string,
-  lastSessionMessage: string,
-  accountActivity: string,
-  logout: string,
 };
 
 // ====================================================
@@ -1757,6 +1808,23 @@ export type TranslationsQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: TranslationsTestQuery
+// ====================================================
+
+export type TranslationsTestQuery_one = {
+  id: string,
+  text: string,
+};
+export type TranslationsTestQuery_two = {
+  id: string,
+  text: string,
+};
+export type TranslationsTestQuery = {
+  one: ?TranslationsTestQuery_one,
+  two: ?TranslationsTestQuery_two,
+};
+
+// ====================================================
 // GraphQL fragment: CuratedCard_Game
 // ====================================================
 
@@ -1778,6 +1846,7 @@ export type GameDetails_Game_media = {
   order: number,
 };
 export type GameDetails_Game = {
+  id: string,
   name: string,
   logo: string,
   backgroundImage: string,
@@ -2175,21 +2244,6 @@ export type SETTINGS_PLAYER = {
 };
 
 // ====================================================
-// GraphQL fragment: Contact_Settings_Player_withdrawalNotifications
-// ====================================================
-
-export type Contact_Settings_Player_withdrawalNotifications_details_contactSettings = {
-  withdrawalNotifications: boolean,
-};
-export type Contact_Settings_Player_withdrawalNotifications_details = {
-  contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings,
-};
-export type Contact_Settings_Player_withdrawalNotifications = {
-  __typename: "Player",
-  details: Contact_Settings_Player_withdrawalNotifications_details,
-};
-
-// ====================================================
 // GraphQL fragment: Contact_Settings_Player_adventurerPublic
 // ====================================================
 
@@ -2202,66 +2256,6 @@ export type Contact_Settings_Player_adventurerPublic_details = {
 export type Contact_Settings_Player_adventurerPublic = {
   __typename: "Player",
   details: Contact_Settings_Player_adventurerPublic_details,
-};
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_subscribedToNewsletters
-// ====================================================
-
-export type Contact_Settings_Player_subscribedToNewsletters_details_contactSettings = {
-  subscribedToNewsletters: boolean,
-};
-export type Contact_Settings_Player_subscribedToNewsletters_details = {
-  contactSettings: Contact_Settings_Player_subscribedToNewsletters_details_contactSettings,
-};
-export type Contact_Settings_Player_subscribedToNewsletters = {
-  __typename: "Player",
-  details: Contact_Settings_Player_subscribedToNewsletters_details,
-};
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_subscribedToSMSNewsletters
-// ====================================================
-
-export type Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings = {
-  subscribedToSMSNewsletters: boolean,
-};
-export type Contact_Settings_Player_subscribedToSMSNewsletters_details = {
-  contactSettings: Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings,
-};
-export type Contact_Settings_Player_subscribedToSMSNewsletters = {
-  __typename: "Player",
-  details: Contact_Settings_Player_subscribedToSMSNewsletters_details,
-};
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_contactByPhone
-// ====================================================
-
-export type Contact_Settings_Player_contactByPhone_details_contactSettings = {
-  contactByPhone: boolean,
-};
-export type Contact_Settings_Player_contactByPhone_details = {
-  contactSettings: Contact_Settings_Player_contactByPhone_details_contactSettings,
-};
-export type Contact_Settings_Player_contactByPhone = {
-  __typename: "Player",
-  details: Contact_Settings_Player_contactByPhone_details,
-};
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_contactByPost
-// ====================================================
-
-export type Contact_Settings_Player_contactByPost_details_contactSettings = {
-  contactByPost: boolean,
-};
-export type Contact_Settings_Player_contactByPost_details = {
-  contactSettings: Contact_Settings_Player_contactByPost_details_contactSettings,
-};
-export type Contact_Settings_Player_contactByPost = {
-  __typename: "Player",
-  details: Contact_Settings_Player_contactByPost_details,
 };
 
 // ====================================================
