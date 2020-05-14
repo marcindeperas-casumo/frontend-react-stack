@@ -6,6 +6,10 @@ import { jurisdictionSelector } from "Models/handshake";
 type UseJurisdictionType = {
   jurisdiction: string,
   isDGOJ: boolean,
+  isDGA: boolean,
+  isMGA: boolean,
+  isSGA: boolean,
+  isUKGC: boolean,
 };
 
 export function useJurisdiction(): UseJurisdictionType {

@@ -1,0 +1,10 @@
+query SettingsNotificationsContactByPostQuery {
+  player {
+    id
+    details {
+      contactSettings {
+        contactByPost
+      }
+    }
+  }
+}

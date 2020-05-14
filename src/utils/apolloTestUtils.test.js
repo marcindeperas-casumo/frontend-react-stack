@@ -14,7 +14,7 @@ describe("apolloTestUtils", () => {
       });
 
       expect(query).toEqual(gql`
-        query TranslationsQuery {
+        query TranslationsTestQuery {
           one: getCMSField(id: "root:one-id") {
             id
             text

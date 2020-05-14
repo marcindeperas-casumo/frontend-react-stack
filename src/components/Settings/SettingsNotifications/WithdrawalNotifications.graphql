@@ -1,0 +1,10 @@
+query SettingsNotificationsWithdrawalNotificationsQuery {
+  player {
+    id
+    details {
+      contactSettings {
+        withdrawalNotifications
+      }
+    }
+  }
+}
