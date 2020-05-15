@@ -19,7 +19,8 @@ query CuratedCardQuery($slug: String!) {
       launchGameText
       smallImage
       mediumImage
-      largeImage
+      largeImage,
+      sportsRoute,
       game {
         ...CuratedCard_Game
       }

@@ -1,12 +1,19 @@
 // @flow
 import React from "react";
+import { getApolloContext } from "@apollo/react-hooks";
 import classNames from "classnames";
 import Card from "@casumo/cmp-card";
 import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import * as A from "Types/apollo";
-import { getIsGame, getLink, getTrackData } from "./CuratedCard.utils";
+import {
+  getIsGame,
+  getIsSports,
+  getLink,
+  getTrackData,
+} from "./CuratedCard.utils";
 import { CuratedCardBackground } from "./CuratedCardBackground";
 import { CuratedCardFooter } from "./CuratedCardFooter";
 import { CuratedCardHeader } from "./CuratedCardHeader";
@@ -18,18 +25,39 @@ type Props = {
   onLaunchGame: () => void,
 };
 
+const navigatetoSportsHash = (client, path) => {
+  client.mutate<A.NavigateClient>({
+    mutation: NAVIGATE_CLIENT_MUTATION,
+    variables: {
+      path,
+      trackingLocation: "CuratedCard",
+    },
+  });
+};
+
 export const CuratedCard = ({
   className,
   curatedCard,
   onLaunchGame,
 }: Props) => {
+  const { client } = React.useContext(getApolloContext());
+
   if (!curatedCard) {
     return null;
   }
 
   const link = getLink(curatedCard);
   const isGame = getIsGame(curatedCard);
+  const isSports = getIsSports(curatedCard);
   const trackData = getTrackData(curatedCard);
+  const getOnClickType = () => {
+    if (isGame) {
+      return onLaunchGame;
+    }
+    if (isSports) {
+      return navigatetoSportsHash(client, curatedCard.sportsRoute);
+    }
+  };
 
   return (
     <div
@@ -48,7 +76,7 @@ export const CuratedCard = ({
       >
         <CuratedCardBackground
           link={link}
-          onClick={isGame ? onLaunchGame : null}
+          onClick={getOnClickType}
           image={curatedCard.image}
           smallImage={curatedCard.smallImage}
           mediumImage={curatedCard.mediumImage}

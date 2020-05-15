@@ -7,6 +7,7 @@ export const CURATED_TYPE = {
   GAME: "game",
   PROMOTION: "promotion",
   WELCOME_OFFER: "welcome offer",
+  SPORTS: "sports",
 };
 
 export const CURATED_URL = {
@@ -15,6 +16,7 @@ export const CURATED_URL = {
 };
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
+export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;
 
 export const getLink = ({ type, promotionSlug }) => {
   const url = CURATED_URL[type] || null;
