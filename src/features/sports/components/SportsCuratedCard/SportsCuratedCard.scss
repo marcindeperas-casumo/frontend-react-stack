@@ -1,0 +1,19 @@
+@import "~Styles/settings.breakpoints";
+
+// We need to override the original Curated Card height on mobile
+// to make it smaller.
+//prettier-ignore
+$curated-card-ratios: (
+  mobile: 120px,
+  phablet: 130px,
+  tablet: 110px,
+);
+
+// stylelint-disable-next-line
+.c-sports-curated-card.c-sports-curated-card::before {
+  @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
+}
+// stylelint-disable-next-line
+.c-sports-curated-card > div > .o-flex--vertical {
+  padding-bottom: 0 !important;
+}

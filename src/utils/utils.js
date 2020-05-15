@@ -134,7 +134,7 @@ export const addPointerEventStylesToLinkElements = (s: string) => {
     pointer-events: all;
   `;
 
-  return s.replace(/(<a.*)(>)(.*<\/a>)/g, `$1 style="${extraStyle}"$2$3`);
+  return s && s.replace(/(<a.*)(>)(.*<\/a>)/g, `$1 style="${extraStyle}"$2$3`);
 };
 
 export const stringToHTML = (s: string) => {

@@ -38,6 +38,7 @@ export type CuratedCardQuery_curatedCard = {
   smallImage: ?string,
   mediumImage: ?string,
   largeImage: ?string,
+  sportsRoute: ?string,
   game: ?CuratedCardQuery_curatedCard_game,
 };
 export type CuratedCardQuery = {
@@ -965,18 +966,6 @@ export type PLAYER_CONTACT_SETTINGS_QUERY = {
 };
 
 // ====================================================
-// GraphQL query operation: NOTIFICATIONS_LABELS_QUERY
-// ====================================================
-
-export type NOTIFICATIONS_LABELS_QUERY = {
-  subscriptionsTitle: string,
-  subscriptionsDescription: string,
-  notificationsInGameSessionUpdatesLabel: string,
-  inGameSessionUpdatesOffLabel: string,
-  inGameSessionUpdatesFrequencyLabel: string,
-};
-
-// ====================================================
 // GraphQL query operation: SettingsNotificationsSubscribedToSmsNewslettersQuery
 // ====================================================
 
@@ -1791,23 +1780,6 @@ export type SearchVisible = {
 };
 
 // ====================================================
-// GraphQL query operation: TranslationsQuery
-// ====================================================
-
-export type TranslationsQuery_one = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery_two = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery = {
-  one: ?TranslationsQuery_one,
-  two: ?TranslationsQuery_two,
-};
-
-// ====================================================
 // GraphQL query operation: TranslationsTestQuery
 // ====================================================
 
@@ -1822,6 +1794,23 @@ export type TranslationsTestQuery_two = {
 export type TranslationsTestQuery = {
   one: ?TranslationsTestQuery_one,
   two: ?TranslationsTestQuery_two,
+};
+
+// ====================================================
+// GraphQL query operation: TranslationsQuery
+// ====================================================
+
+export type TranslationsQuery_one = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery_two = {
+  id: string,
+  text: string,
+};
+export type TranslationsQuery = {
+  one: ?TranslationsQuery_one,
+  two: ?TranslationsQuery_two,
 };
 
 // ====================================================

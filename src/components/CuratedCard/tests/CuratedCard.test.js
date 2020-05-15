@@ -11,13 +11,19 @@ import {
   CuratedCardHeaderSimple,
   CuratedCardHeaderWithSubtitle,
 } from "../CuratedCardHeader";
-import { curatedGameMock, curatedPromotionMock } from "../__mocks__";
+import {
+  curatedGameMock,
+  curatedPromotionMock,
+  curatedSportsMock,
+} from "../__mocks__";
 
 describe("CuratedCard", () => {
   let onLaunchGame;
+  let navigateToSportsHash;
 
   beforeEach(() => {
     onLaunchGame = jest.fn();
+    navigateToSportsHash = jest.fn();
   });
 
   test("should render nothing if curated-card is not defined", () => {
@@ -112,5 +118,20 @@ describe("CuratedCard", () => {
     cardBackground.simulate("click");
 
     expect(onLaunchGame).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call navigateToSportsHash if curated type is SPORTS", () => {
+    const component = mount(
+      <CuratedCard
+        onLaunchGame={onLaunchGame}
+        navigateToSportsHash={navigateToSportsHash}
+        curatedCard={curatedSportsMock}
+      />
+    );
+    const cardBackground = component.find("CuratedCardBackground");
+
+    cardBackground.simulate("click");
+
+    expect(navigateToSportsHash).toHaveBeenCalledTimes(1);
   });
 });
