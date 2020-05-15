@@ -6,8 +6,8 @@ import Card from "@casumo/cmp-card";
 import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
-import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import * as A from "Types/apollo";
+import type { NavigateToSportsHashType } from "Features/sports/utils";
 import {
   getIsGame,
   getIsSports,
@@ -23,22 +23,14 @@ type Props = {
   className?: string,
   curatedCard: ?A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
-};
-
-const navigatetoSportsHash = (client, path) => {
-  client.mutate<A.NavigateClient>({
-    mutation: NAVIGATE_CLIENT_MUTATION,
-    variables: {
-      path,
-      trackingLocation: "CuratedCard",
-    },
-  });
+  navigateToSportsHash: (args: NavigateToSportsHashType) => void,
 };
 
 export const CuratedCard = ({
   className,
   curatedCard,
   onLaunchGame,
+  navigateToSportsHash,
 }: Props) => {
   const { client } = React.useContext(getApolloContext());
 
@@ -52,10 +44,14 @@ export const CuratedCard = ({
   const trackData = getTrackData(curatedCard);
   const getOnClickType = () => {
     if (isGame) {
-      return onLaunchGame;
+      return onLaunchGame();
     }
     if (isSports) {
-      return navigatetoSportsHash(client, curatedCard.sportsRoute);
+      return navigateToSportsHash({
+        client,
+        path: curatedCard.sportsRoute,
+        trackingLocation: "CuratedCard",
+      });
     }
   };
 

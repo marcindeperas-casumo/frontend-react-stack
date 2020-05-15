@@ -3,6 +3,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
+import { navigateToSportsHash } from "Features/sports/utils";
 import { CuratedCardQuery } from "./CuratedCard.graphql";
 import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 import { CuratedCard } from "./CuratedCard";
@@ -26,6 +27,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
     <CuratedCard
       className={className}
       curatedCard={data?.curatedCard}
+      navigateToSportsHash={navigateToSportsHash}
       onLaunchGame={() =>
         launchGame({ slug: data?.curatedCard?.game?.slug || "" })
       }
