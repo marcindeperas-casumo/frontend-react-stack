@@ -4,53 +4,69 @@ import classNames from "classnames";
 import { Link, useMatch } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { HeartIcon, SearchIcon } from "@casumo/cmp-icons";
+import { HeartIcon, PlayIcon, SearchIcon } from "@casumo/cmp-icons";
 
 const NavLinkDesktop = ({
   Icon,
   text,
   to,
+  active,
 }: {
   Icon: React.StatelessFunctionalComponent<any>,
   text: string,
   to: string,
-}) => {
-  const match = useMatch(to);
-  const active = Boolean(match);
+  active?: boolean,
+}) => (
+  <Flex.Item>
+    <Link to={to}>
+      <Flex
+        direction="vertical"
+        align="center"
+        justify="center"
+        className={classNames("u-padding--sm", {
+          "t-color-grey-90": active,
+          "t-color-grey-70": !active,
+        })}
+      >
+        <Icon size="md" />
+        <Text className="u-font-weight-bold">{text}</Text>
+      </Flex>
+      <Flex
+        style={{ height: 3 }}
+        className={classNames("t-border-r", {
+          "t-background-purple-60": active,
+        })}
+      />
+    </Link>
+  </Flex.Item>
+);
+export const TopNavDesktop = () => {
+  const match = useMatch("search");
+  const searchActive = Boolean(match);
 
   return (
-    <Flex.Item>
-      <Link to={to}>
-        <Flex
-          direction="vertical"
-          align="center"
-          justify="center"
-          className={classNames("u-padding--sm", {
-            "t-color-chrome-dark-3": active,
-            "t-color-chrome-dark-2": !active,
-          })}
-        >
-          <Icon size="md" />
-          <Text className="u-font-weight-bold">{text}</Text>
-        </Flex>
-        <Flex
-          style={{ height: 3 }}
-          className={classNames("t-border-r", {
-            "t-background-plum": active,
-          })}
+    <Flex
+      className="o-wrapper u-padding-top--xlg"
+      align="center"
+      justify="center"
+    >
+      <Flex spacing="lg" className="u-padding-y">
+        <NavLinkDesktop
+          Icon={PlayIcon}
+          text="Casino"
+          to="."
+          active={!searchActive}
         />
-      </Link>
-    </Flex.Item>
+        <NavLinkDesktop
+          Icon={SearchIcon}
+          text="Search"
+          to="search"
+          active={searchActive}
+        />
+      </Flex>
+    </Flex>
   );
 };
-export const TopNavDesktop = () => (
-  <Flex className="o-wrapper u-padding-y--xlg" align="center" justify="center">
-    <Flex spacing="lg" className="u-padding-y">
-      <NavLinkDesktop Icon={HeartIcon} text="Top lists" to="top" />
-      <NavLinkDesktop Icon={SearchIcon} text="Search" to="search" />
-    </Flex>
-  </Flex>
-);
 
 const NavLinkMobile = ({
   Icon,
@@ -79,8 +95,8 @@ const NavLinkMobile = ({
           align="center"
           justify="center"
           className={classNames("u-padding", {
-            "t-color-chrome-dark-3": active,
-            "t-color-chrome-dark-2": !active,
+            "t-color-grey-90": active,
+            "t-color-grey-70": !active,
           })}
         >
           <Icon className="u-padding-y" />
@@ -91,7 +107,7 @@ const NavLinkMobile = ({
         <Flex
           style={{ height: 3 }}
           className={classNames("t-border-r", {
-            "t-background-plum": active,
+            "t-background-purple-60": active,
           })}
         />
       </Link>
