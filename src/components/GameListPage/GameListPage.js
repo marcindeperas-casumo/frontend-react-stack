@@ -42,7 +42,7 @@ export function GameListPage({ listId }: Props) {
 
   const { games } = data.gamesList;
 
-  if (isMobile) {
+  if (isMobile()) {
     return (
       <GamesVirtualList
         games={games}

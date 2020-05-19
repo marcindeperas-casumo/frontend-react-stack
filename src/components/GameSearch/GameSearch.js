@@ -70,7 +70,7 @@ export const GameSearch = (props: Props) => {
           <div
             className={classNames(
               "c-game-search-virtual-list u-game-search-max-width u-padding--xlg@desktop",
-              { "t-background-white": !isMobile }
+              { "t-background-white": !isMobile() }
             )}
           >
             <GamesVirtualList

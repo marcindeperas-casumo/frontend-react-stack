@@ -63,7 +63,7 @@ export const ProviderGamesList = ({
       }}
     >
       <div className="c-provider-games-list">
-        {isMobile ? (
+        {isMobile() ? (
           <VirtualList
             scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
             isRowLoaded={({ index }) => Boolean(games[index])}
