@@ -209,6 +209,29 @@ export type GameListLiveCasinoQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: GameListPageQuery
+// ====================================================
+
+export type GameListPageQuery_gamesList_games = {
+  isInMaintenance: boolean,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
+  id: string,
+  isInMyList: boolean,
+};
+export type GameListPageQuery_gamesList = {
+  games: Array<GameListPageQuery_gamesList_games>,
+};
+export type GameListPageQuery = {
+  gamesList: ?GameListPageQuery_gamesList,
+};
+export type GameListPageQueryVariables = {
+  listId: string,
+};
+
+// ====================================================
 // GraphQL query operation: GameListVerticalQuery
 // ====================================================
 
