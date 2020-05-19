@@ -1,0 +1,9 @@
+#import "../GameTile/GameTile.graphql"
+
+query GameListPageQuery($listId: String!) {
+  gamesList(listId: $listId) {
+    games {
+      ...GameTile_Game
+    }
+  }
+}
