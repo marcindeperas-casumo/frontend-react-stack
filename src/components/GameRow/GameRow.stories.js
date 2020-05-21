@@ -55,6 +55,7 @@ stories.add("Search with match", () => (
       <GameRowSearchText
         name={game.name}
         search={{ query: "gon", highlightSearchQuery: true }}
+        renderSecondaryText={() => <p>Test 2</p>}
       />
     )}
   />

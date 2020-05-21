@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
@@ -20,7 +21,13 @@ type Props = {
 
 export const GameRow = (props: Props) => {
   const { game, renderText } = props;
-  const onLaunchGame = () => launchGame({ slug: game.slug });
+  const onLaunchGame = () => {
+    if (game.isInMaintenance) {
+      return;
+    }
+
+    launchGame({ slug: game.slug });
+  };
 
   return (
     <Flex align="center" className={props.className || ""}>
@@ -30,7 +37,11 @@ export const GameRow = (props: Props) => {
           data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
         >
           <Flex align="center">
-            <Flex.Item className="o-flex__item--no-shrink">
+            <Flex.Item
+              className={classNames("o-flex__item--no-shrink", {
+                "t-greyscale": game.isInMaintenance,
+              })}
+            >
               <GameThumb
                 src={game.backgroundImage}
                 alt={game.name}
@@ -44,7 +55,11 @@ export const GameRow = (props: Props) => {
       {game.lobby ? (
         <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
       ) : (
-        <GameRowTrackMoreIcon name={game.name} slug={game.slug} />
+        <GameRowTrackMoreIcon
+          name={game.name}
+          slug={game.slug}
+          isInMaintenance={game.isInMaintenance}
+        />
       )}
     </Flex>
   );

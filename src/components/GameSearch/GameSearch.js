@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
+import Text from "@casumo/cmp-text";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow, GameRowSearchText } from "Components/GameRow";
@@ -47,6 +49,11 @@ export const GameSearch = (props: Props) => {
     inputPromptPlaceholder,
   } = props;
 
+  const { t } = useTranslationsGql({
+    gameInMaintenanceText:
+      "root:mobile.game-details:fields.temporarily_unavailable",
+  });
+
   const GameRowHighlightSearch = game => (
     <GameRow
       game={game}
@@ -54,6 +61,11 @@ export const GameSearch = (props: Props) => {
         <GameRowSearchText
           name={game.name}
           search={{ query, highlightSearchQuery: true }}
+          renderSecondaryText={() =>
+            game.isInMaintenance ? (
+              <Text className="u-test">{t.gameInMaintenanceText}</Text>
+            ) : null
+          }
         />
       )}
     />
