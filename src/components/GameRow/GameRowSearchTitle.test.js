@@ -86,6 +86,7 @@ describe("<GameRowSearchTitle />", () => {
 
   test("should render classname `t-color-grey-dark-2` if isInMaintenance is set to false and an empty query is passed down", () => {
     const query = "";
+    isInMaintenance = false;
     const rendered = shallow(
       <GameRowSearchTitle
         query={query}
