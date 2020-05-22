@@ -54,8 +54,8 @@ stories.add("Search with match", () => (
     renderText={() => (
       <GameRowSearchText
         name={game.name}
+        isInMaintenance={game.isInMaintenance}
         search={{ query: "gon", highlightSearchQuery: true }}
-        renderSecondaryText={() => <p>Test 2</p>}
       />
     )}
   />
@@ -65,6 +65,12 @@ stories.add("Search with no match", () => (
   <GameRow
     game={game}
     onLaunchGame={action(gonzosQuest)}
-    renderText={() => <GameRowSearchText name={game.name} search />}
+    renderText={() => (
+      <GameRowSearchText
+        name={game.name}
+        isInMaintenance={game.isInMaintenance}
+        search
+      />
+    )}
   />
 ));

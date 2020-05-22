@@ -13,11 +13,12 @@ type SearchProps = {
 type Props = {
   name: string,
   search: SearchProps | boolean,
+  isInMaintenance: boolean,
   renderSecondaryText?: () => React.Node,
 };
 
 export const GameRowSearchText = (props: Props) => {
-  const { name, search, renderSecondaryText } = props;
+  const { name, search, renderSecondaryText, isInMaintenance } = props;
   /* eslint-disable fp/no-let, fp/no-mutation */
   let highlightSearchQuery, query;
 
@@ -34,9 +35,10 @@ export const GameRowSearchText = (props: Props) => {
       <GameRowSearchTitle
         highlightSearchQuery={highlightSearchQuery}
         name={name}
+        isInMaintenance={isInMaintenance}
         query={query}
       />
-      {renderSecondaryText && renderSecondaryText()}
+      {isInMaintenance && renderSecondaryText && renderSecondaryText()}
     </Flex.Block>
   );
 };

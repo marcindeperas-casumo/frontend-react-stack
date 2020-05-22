@@ -41,7 +41,13 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
           renderItem={game => (
             <GameRow
               game={game}
-              renderText={() => <GameRowSearchText name={game.name} search />}
+              renderText={() => (
+                <GameRowSearchText
+                  name={game.name}
+                  search
+                  isInMaintenance={game.isInMaintenance}
+                />
+              )}
             />
           )}
         />

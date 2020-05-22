@@ -8,11 +8,9 @@ import { EVENTS, EVENT_PROPS } from "Src/constants";
 export const GameRowTrackMoreIcon = ({
   name,
   slug,
-  isInMaintenance,
 }: {
   name: string,
   slug: string,
-  isInMaintenance: boolean,
 }) => (
   <Flex.Item className="o-flex__item--no-shrink">
     <TrackClick
@@ -20,7 +18,7 @@ export const GameRowTrackMoreIcon = ({
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/play/${slug}`}>
-        <MoreIcon className="t-color-chrome-dark-2 t-border-r--circle u-padding" />
+        <MoreIcon className="t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding" />
       </a>
     </TrackClick>
   </Flex.Item>

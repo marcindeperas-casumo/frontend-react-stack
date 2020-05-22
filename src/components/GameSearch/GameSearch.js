@@ -61,9 +61,12 @@ export const GameSearch = (props: Props) => {
         <GameRowSearchText
           name={game.name}
           search={{ query, highlightSearchQuery: true }}
+          isInMaintenance={game.isInMaintenance}
           renderSecondaryText={() =>
             game.isInMaintenance ? (
-              <Text className="u-test">{t.gameInMaintenanceText}</Text>
+              <Text className="u-padding-top--sm t-color-grey-dark-2" size="sm">
+                {t.gameInMaintenanceText}
+              </Text>
             ) : null
           }
         />

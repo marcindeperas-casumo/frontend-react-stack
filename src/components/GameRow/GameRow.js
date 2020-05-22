@@ -9,6 +9,7 @@ import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
+import "./GameRow.scss";
 
 type Props = {
   /** The Game object */
@@ -39,7 +40,8 @@ export const GameRow = (props: Props) => {
           <Flex align="center">
             <Flex.Item
               className={classNames("o-flex__item--no-shrink", {
-                "t-greyscale": game.isInMaintenance,
+                "t-greyscale c-game-row__game-thumb--maintenance":
+                  game.isInMaintenance,
               })}
             >
               <GameThumb

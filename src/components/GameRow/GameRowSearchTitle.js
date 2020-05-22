@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import MaskText from "Components/MaskText";
 import DangerousHtml from "Components/DangerousHtml";
@@ -11,6 +12,8 @@ type Props = {
   name: string,
   /** Whether highlight the search query on the game title or not  */
   highlightSearchQuery?: boolean,
+  /** Whether the game is in maintenance mode or not */
+  isInMaintenance: boolean,
 };
 
 const TextMatch = value => (
@@ -30,14 +33,19 @@ const TextMaskColored = props => (
 
 export class GameRowSearchTitle extends PureComponent<Props> {
   render() {
-    const { query, name, highlightSearchQuery } = this.props;
+    const { query, name, highlightSearchQuery, isInMaintenance } = this.props;
 
     return (
       <Text className="u-font-weight-bold" tag="div" size="sm">
         {highlightSearchQuery && query ? (
           <TextMaskColored text={name} search={query} />
         ) : (
-          <DangerousHtml className="t-color-grey-dark-2" html={name} />
+          <DangerousHtml
+            className={classNames(
+              `t-color-grey-${isInMaintenance ? "light-1" : "dark-2"}`
+            )}
+            html={name}
+          />
         )}
       </Text>
     );

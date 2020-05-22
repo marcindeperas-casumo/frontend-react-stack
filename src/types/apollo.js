@@ -1888,6 +1888,7 @@ export type GameSearch_Game = {
   name: string,
   slug: string,
   lobby: ?GameSearch_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================
