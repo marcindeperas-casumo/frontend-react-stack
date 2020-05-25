@@ -38,9 +38,6 @@ export function SettingsSectionsContainer() {
   if (!playerLoginHistory.data || playerLoginHistory.error) {
     return <ErrorMessage retry={() => playerLoginHistory.refetch()} />;
   }
-  if (!labels.t.logout) {
-    return <ErrorMessage />;
-  }
 
   return (
     <SettingsSections

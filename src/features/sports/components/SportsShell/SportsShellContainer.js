@@ -110,13 +110,14 @@ export class SportsShellContainer extends React.Component<{}> {
                     />
 
                     {/* Top Content Area */}
-                    <WelcomeOfferCuratedCard />
 
                     {data.isSearchVisible ? (
                       <SportsSearch />
                     ) : (
                       <SportsNav currentHash={currentHash} />
                     )}
+
+                    <WelcomeOfferCuratedCard />
                   </div>
                 )}
               </SportsHashWatcher>
