@@ -38,7 +38,7 @@ export const GameRowSearchText = (props: Props) => {
         isInMaintenance={isInMaintenance}
         query={query}
       />
-      {isInMaintenance && renderSecondaryText && renderSecondaryText()}
+      {renderSecondaryText && renderSecondaryText()}
     </Flex.Block>
   );
 };

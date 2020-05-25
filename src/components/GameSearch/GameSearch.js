@@ -54,6 +54,12 @@ export const GameSearch = (props: Props) => {
       "root:mobile.game-details:fields.temporarily_unavailable",
   });
 
+  const GameMaintenanceText = () => (
+    <Text className="u-padding-top--sm t-color-grey-dark-2" size="sm">
+      {t.gameInMaintenanceText}
+    </Text>
+  );
+
   const GameRowHighlightSearch = game => (
     <GameRow
       game={game}
@@ -64,9 +70,7 @@ export const GameSearch = (props: Props) => {
           isInMaintenance={game.isInMaintenance}
           renderSecondaryText={() =>
             game.isInMaintenance ? (
-              <Text className="u-padding-top--sm t-color-grey-dark-2" size="sm">
-                {t.gameInMaintenanceText}
-              </Text>
+              <GameMaintenanceText></GameMaintenanceText>
             ) : null
           }
         />
