@@ -57,11 +57,7 @@ export const GameRow = (props: Props) => {
       {game.lobby ? (
         <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
       ) : (
-        <GameRowTrackMoreIcon
-          name={game.name}
-          slug={game.slug}
-          isInMaintenance={game.isInMaintenance}
-        />
+        <GameRowTrackMoreIcon name={game.name} slug={game.slug} />
       )}
     </Flex>
   );
