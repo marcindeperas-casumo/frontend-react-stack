@@ -69,9 +69,7 @@ export const GameSearch = (props: Props) => {
           search={{ query, highlightSearchQuery: true }}
           isInMaintenance={game.isInMaintenance}
           renderSecondaryText={() =>
-            game.isInMaintenance ? (
-              <GameMaintenanceText></GameMaintenanceText>
-            ) : null
+            game.isInMaintenance && <GameMaintenanceText></GameMaintenanceText>
           }
         />
       )}
