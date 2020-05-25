@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import MaskText from "Components/MaskText";
 import DangerousHtml from "Components/DangerousHtml";
@@ -41,9 +40,7 @@ export class GameRowSearchTitle extends PureComponent<Props> {
           <TextMaskColored text={name} search={query} />
         ) : (
           <DangerousHtml
-            className={classNames(
-              `t-color-grey-${isInMaintenance ? "light-1" : "dark-2"}`
-            )}
+            className={`t-color-grey-${isInMaintenance ? "light-1" : "dark-2"}`}
             html={name}
           />
         )}
