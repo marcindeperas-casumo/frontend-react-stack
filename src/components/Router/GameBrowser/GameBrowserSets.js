@@ -27,7 +27,17 @@ const GameSetButton = ({
   return (
     <Flex.Item>
       <Link to={to}>
-        <Button variant={active ? "primary" : "secondary"}>
+        <Button
+          variant={active ? "primary" : "secondary"}
+          style={
+            active
+              ? {}
+              : {
+                  color: "#444e5d",
+                  backgroundColor: "#fff",
+                }
+          }
+        >
           <Icon className="u-margin-right" />
           {text}
         </Button>
