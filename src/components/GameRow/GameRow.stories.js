@@ -78,7 +78,7 @@ stories.add("Search with no match", () => (
 ));
 
 stories.add("Showing Games in maintenance mode", () => {
-  const isInMaintenance = boolean("In maintenance mode", game.isInMaintenance);
+  const isInMaintenance = boolean("In maintenance mode", true);
 
   return (
     <GameRow
