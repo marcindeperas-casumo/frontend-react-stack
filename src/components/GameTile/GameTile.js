@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
+import { isMobile } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -83,16 +84,23 @@ export const GameTile = ({
           align="end"
           className="u-width--full o-ratio__content"
         >
-          <Flex.Item onClick={e => e.stopPropagation()}>
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-              data={{ [EVENT_PROPS.GAME_NAME]: name }}
-            >
-              <a className="u-padding u-display--block" href={`/play/${slug}`}>
-                <MoreIcon className="t-color-white" />
-              </a>
-            </TrackClick>
-          </Flex.Item>
+          {isMobile() ? (
+            <Flex.Item onClick={e => e.stopPropagation()}>
+              <TrackClick
+                eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+                data={{ [EVENT_PROPS.GAME_NAME]: name }}
+              >
+                <a
+                  className="u-padding u-display--block"
+                  href={`/play/${slug}`}
+                >
+                  <MoreIcon className="t-color-white" />
+                </a>
+              </TrackClick>
+            </Flex.Item>
+          ) : (
+            <Flex.Item />
+          )}
           <Flex.Item onClick={e => e.stopPropagation()}>
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
