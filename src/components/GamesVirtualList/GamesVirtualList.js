@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
+import "./GamesVirtualList.scss";
 
 const ROW_HEIGHT = 74;
 
@@ -58,7 +59,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
 
     return (
       <div
-        className="u-padding-x--md u-padding-y t-border-bottom t-color-chrome-light-2 t-border--current-color"
+        className="u-padding-x--md u-padding-y t-border-bottom t-color-chrome-light-2 t-border--current-color c-game-virtual-list-row"
         key={key}
         index={index}
         style={style}

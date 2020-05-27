@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import List from "@casumo/cmp-list";
 import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
@@ -18,6 +19,7 @@ import {
   GamesVirtualList,
   GamesVirtualListTitle,
 } from "Components/GamesVirtualList";
+import { isMobile } from "Components/ResponsiveLayout";
 
 import "./GameSearch.scss";
 
@@ -65,7 +67,12 @@ export const GameSearch = (props: Props) => {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
-          <div className="c-game-search-virtual-list u-game-search-max-width">
+          <div
+            className={classNames(
+              "c-game-search-virtual-list u-game-search-max-width u-padding--xlg@desktop",
+              { "t-background-white": !isMobile() }
+            )}
+          >
             <GamesVirtualList
               renderItem={GameRowHighlightSearch}
               renderTitle={title => <GamesVirtualListTitle title={title} />}

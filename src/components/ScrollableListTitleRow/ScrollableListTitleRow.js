@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ScrollableListTitle from "Components/ScrollableListTitle";
@@ -29,11 +30,11 @@ export class ScrollableListTitleRow extends PureComponent<Props> {
         </Flex.Item>
         {seeMore?.url && (
           <Flex.Item className="u-padding-right--md">
-            <a href={seeMore?.url}>
+            <Link to={seeMore?.url}>
               <Text tag="h3" className={seeMore?.color || "t-color-text-link"}>
                 {seeMore?.text}
               </Text>
-            </a>
+            </Link>
           </Flex.Item>
         )}
       </Flex>

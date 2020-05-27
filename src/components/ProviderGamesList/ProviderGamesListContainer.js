@@ -54,6 +54,7 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
   return (
     <ProviderGamesList
       games={games}
+      studioName={data?.gameStudio?.name}
       loading={loading && !games}
       gamesCount={gamesCount}
       onLoadMore={fetchMoreGames}

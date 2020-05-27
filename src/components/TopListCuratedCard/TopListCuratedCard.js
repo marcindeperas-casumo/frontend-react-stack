@@ -28,8 +28,10 @@ export const TopListCuratedCard = ({
     : normalizedSlug;
 
   return (
-    <div className="u-margin-top--md@mobile u-margin-top--md@phablet u-margin-top--lg@tablet u-margin-x--md@mobile u-margin-x--md@phablet u-margin-x--3xlg@tablet t-border-r--md u-overflow-hidden t-border-r--none@desktop">
-      <CuratedCard slug={computedSlug} />
+    <div className="u-margin-top--md@mobile u-margin-x--md@mobile u-margin-x--3xlg@desktop">
+      <div className="o-wrapper u-overflow-hidden t-border-r--md">
+        <CuratedCard slug={computedSlug} />
+      </div>
     </div>
   );
 };
