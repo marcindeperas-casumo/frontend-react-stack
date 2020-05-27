@@ -3,7 +3,7 @@ import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
 
 export const BridgeToNavigationService = () => {
-  bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, () => {
+  bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, ({ config, params }) => {
     const path = window.location.href.replace(window.location.origin, "");
 
     // In the current implmentation, links clicked on the durandal side
