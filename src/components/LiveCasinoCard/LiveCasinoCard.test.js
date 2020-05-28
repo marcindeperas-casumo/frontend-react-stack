@@ -1,23 +1,30 @@
 import React from "react";
 import { shallow } from "enzyme";
-import LiveCasinoCard from "./LiveCasinoCard";
+import { launchGame } from "Services/LaunchGameService";
+import { LiveCasinoCard } from "./LiveCasinoCard";
+
+const t = {
+  playNowText: "play now",
+  betBehindText: "bet behind",
+  openSeatsText: "open seats",
+};
+
+jest.mock("Services/LaunchGameService", () => ({
+  launchGame: jest.fn(),
+}));
 
 describe("LiveCasinoCard", () => {
   test("returns null if no lobby", () => {
     const game = {};
-    const rendered = shallow(
-      <LiveCasinoCard game={game} onLaunchGame={() => {}} />
-    );
+    const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
 
     expect(rendered.isEmptyRender()).toBe(true);
   });
 
-  test("onLaunchGame is called when clicking in card header", () => {
-    const onLaunchGame = jest.fn();
+  test("launchGame is called when clicking in card header", () => {
+    launchGame.mockClear();
     const game = { liveCasinoLobby: { tableId: "table" } };
-    const rendered = shallow(
-      <LiveCasinoCard game={game} onLaunchGame={onLaunchGame} />
-    );
+    const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
 
     rendered
       .find("Card")
@@ -25,15 +32,13 @@ describe("LiveCasinoCard", () => {
       .find("div.o-ratio--live-casino-card")
       .simulate("click");
 
-    expect(onLaunchGame).toBeCalledTimes(1);
+    expect(launchGame).toBeCalledTimes(1);
   });
 
-  test("onLaunchGame is called when clicking in card content", () => {
-    const onLaunchGame = jest.fn();
+  test("launchGame is called when clicking in card content", () => {
+    launchGame.mockClear();
     const game = { liveCasinoLobby: { tableId: "table" } };
-    const rendered = shallow(
-      <LiveCasinoCard game={game} onLaunchGame={onLaunchGame} />
-    );
+    const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
 
     rendered
       .find("Card")
@@ -43,6 +48,6 @@ describe("LiveCasinoCard", () => {
       .childAt(0)
       .simulate("click");
 
-    expect(onLaunchGame).toBeCalledTimes(1);
+    expect(launchGame).toBeCalledTimes(1);
   });
 });

@@ -5,6 +5,7 @@ import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { prop } from "ramda";
+import { launchGame } from "Services/LaunchGameService";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
@@ -16,15 +17,14 @@ import * as A from "Types/apollo";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
-  onLaunchGame: Function,
-  playNowText: string,
   t: {
-    betBehindText: ?string,
-    openSeatsText: ?string,
+    playNowText: string,
+    betBehindText: string,
+    openSeatsText: string,
   },
 };
 
-export default class LiveCasinoCard extends PureComponent<Props> {
+export class LiveCasinoCard extends PureComponent<Props> {
   static defaultProps = {
     isInMyList: false,
   };
@@ -41,7 +41,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
-        onClick={this.props.onLaunchGame}
+        onClick={this.onLaunchGame}
       >
         <ImageLazy
           className="o-ratio__content"
@@ -81,11 +81,13 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     );
   };
 
+  onLaunchGame = () => launchGame({ slug: this.props.game.slug });
+
   renderContent = () => {
-    const { game, onLaunchGame, playNowText } = this.props;
+    const { game } = this.props;
 
     return (
-      <Flex onClick={onLaunchGame} className="u-padding-x--md">
+      <Flex onClick={this.onLaunchGame} className="u-padding-x--md">
         <Flex.Block>
           <Text
             tag="h3"
@@ -101,7 +103,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
             <ButtonPrimary size="sm" className="u-text-transform-capitalize">
-              <span>{playNowText}</span>
+              <span>{this.props.t.playNowText}</span>
             </ButtonPrimary>
           </TrackClick>
         </Flex.Item>
