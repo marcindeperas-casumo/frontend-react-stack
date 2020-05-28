@@ -1,13 +1,14 @@
 // @flow
 import * as React from "react";
-import { renderHook } from "@testing-library/react-hooks";
-import { act } from "react-dom/test-utils";
+import { renderHook, act } from "@testing-library/react-hooks";
 import MockStore from "Components/MockStore";
 import { type PlayOkayReduxStore } from "Models/playOkay";
 import {
   useTimeLimitsFormState,
   limitErrorMessage,
 } from "./useTimeLimitsFormState";
+
+jest.useFakeTimers();
 
 const prepareState = (daily, weekly, monthly) => {
   const playOkay: PlayOkayReduxStore = {
