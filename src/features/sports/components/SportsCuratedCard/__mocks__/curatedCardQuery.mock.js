@@ -4,14 +4,14 @@ export const curatedCardQueryMock = {
   request: {
     query: CuratedCardQuery,
     variables: {
-      slug: "curated-sports",
+      slug: "sports",
     },
   },
   result: {
     data: {
       curatedCard: {
-        id: "curated-sports",
-        slug: "curated-sports",
+        id: "sports",
+        slug: "sports",
         type: "sports",
         image: null,
         smallImage:
@@ -20,12 +20,13 @@ export const curatedCardQueryMock = {
           "https://cms.casumo.com/wp-content/uploads/2019/09/Tablet-1@4x.png",
         largeImage:
           "https://cms.casumo.com/wp-content/uploads/2019/09/Tablet-1@4x.png",
-        header: "Get your</br>Sports Free Bets",
-        subtitle: "yay",
+        header: "Bundesliga is happening",
+        subtitle: "Yay, Football",
         promotionSlug: null,
-        promotionLegalText: "",
-        launchGameText: "",
+        promotionLegalText: null,
+        launchGameText: null,
         game: null,
+        sportsRoute: "filter/sports",
       },
     },
   },

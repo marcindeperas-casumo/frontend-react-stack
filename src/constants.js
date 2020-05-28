@@ -118,6 +118,9 @@ export const ROUTE_IDS = {
   ABOUT_CASUMO: "ABOUT_CASUMO",
 };
 
+// As Native needs to be able to know about those routes via the Native bridge, if the new route you are
+// adding is not present on casumo-frontend, the very route needs to be added here:
+// https://github.com/Casumo/casumo-frontend/blob/master/web/mobile/gulp/generate-native-routing-config.js
 export const ROUTES = {
   [ROUTE_IDS.LOGIN]: "log-in",
   [ROUTE_IDS.DEPOSIT]: "deposit",
