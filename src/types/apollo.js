@@ -497,34 +497,42 @@ export type LiveCasinoDetailPageQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: MustDropJackpotGamesListQuery
+// GraphQL query operation: LiveCasinoDetailPageDesktopQuery
 // ====================================================
 
-export type MustDropJackpotGamesListQuery_gamesList_games_lobby_bets = {
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets = {
+  symbol: ?string,
   min: ?number,
   max: ?number,
+};
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
   symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets,
 };
-export type MustDropJackpotGamesListQuery_gamesList_games_lobby = {
-  bets: ?MustDropJackpotGamesListQuery_gamesList_games_lobby_bets,
-};
-export type MustDropJackpotGamesListQuery_gamesList_games = {
-  id: string,
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   backgroundImage: string,
+  id: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  liveCasinoLobby: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby,
   logo: string,
   name: string,
   slug: string,
-  lobby: ?MustDropJackpotGamesListQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
 };
-export type MustDropJackpotGamesListQuery_gamesList = {
-  games: Array<MustDropJackpotGamesListQuery_gamesList_games>,
+export type LiveCasinoDetailPageDesktopQuery_gamesList = {
+  games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>,
 };
-export type MustDropJackpotGamesListQuery = {
-  gamesList: ?MustDropJackpotGamesListQuery_gamesList,
-};
-export type MustDropJackpotGamesListQueryVariables = {
-  id: string,
+export type LiveCasinoDetailPageDesktopQuery = {
+  gamesList: ?LiveCasinoDetailPageDesktopQuery_gamesList,
 };
 
 // ====================================================

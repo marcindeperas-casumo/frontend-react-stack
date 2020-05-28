@@ -35,10 +35,7 @@ export const GameListHorizontalLiveCasino = ({
       <div style={style}>
         <div className={elementClassNames}>
           <div className="u-margin-bottom--sm">
-            <LiveCasinoCard
-              game={games[columnIndex]}
-              playNowText={playNowText}
-            />
+            <LiveCasinoCard game={games[columnIndex]} />
           </div>
         </div>
       </div>
