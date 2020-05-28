@@ -5,8 +5,8 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
-import { MessageText } from "./MessageText";
-import HandSymbol from "./assets/hand.svg";
+import { SwipeUpMessageText } from "./SwipeUpMessageText";
+import HandSymbol from "./icons/hand.svg";
 import "./VerticalStretcher.scss";
 
 export type Props = {
@@ -76,9 +76,12 @@ export const VerticalStretcher = ({
     };
   });
 
+  const shouldShowSwipePanel =
+    swipeToFillAvailable && !isNative && showSwipePanel;
+
   return (
     <div ref={heightContainer} className="u-width--full">
-      {swipeToFillAvailable && !isNative && showSwipePanel && (
+      {shouldShowSwipePanel && (
         <div className="c-game-page__swipe-panel">
           <Flex
             justify="center"
@@ -90,7 +93,7 @@ export const VerticalStretcher = ({
               <HandSymbol className="c-game-page__swipe-hand-symbol" />
             </Flex.Item>
             <Flex.Item className="t-color-white c-game-page__swipeup-text-container">
-              <MessageText />
+              <SwipeUpMessageText />
             </Flex.Item>
           </Flex>
         </div>

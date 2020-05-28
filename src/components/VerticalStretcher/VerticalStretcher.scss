@@ -3,7 +3,7 @@
   height: calc(100vh + 100px);
   position: absolute;
   width: 100vw;
-  z-index: 10;
+  z-index: cudl-z("content-overlay");
 }
 
 .c-game-page__swipe-hand-symbol {

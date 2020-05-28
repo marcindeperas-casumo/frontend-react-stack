@@ -2,7 +2,7 @@
 import React from "react";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 
-export const MessageText = () => {
+export const SwipeUpMessageText = () => {
   const { t, loading } = useTranslationsGql({
     swipeUpText: "root:mobile.game-launch:fields.swipe_up_text",
   });
