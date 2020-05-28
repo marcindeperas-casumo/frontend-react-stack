@@ -1,15 +1,15 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
-import { SettingsAccountDetails } from "Components/Settings/SettingsAccountDetails/SettingsAccountDetails";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
+import { SettingsAccountDetails } from "./SettingsAccountDetails";
 import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery.graphql";
 
 export function SettingsAccountDetailsContainer() {
-  const labels = useTranslationsGql({
+  const { t, loading: cmsLoading } = useTranslationsGql({
     name: "root:player-settings-component:fields.account_settings_name_label",
     email: "root:player-settings-component:fields.account_settings_email_label",
     password:
@@ -23,23 +23,23 @@ export function SettingsAccountDetailsContainer() {
       "root:player-settings-component:fields.account_settings_verify_label",
     gamblingExtent: "root:mobile.settings:fields.gambling_extent_label",
   });
-  const settings = useQuery<A.PLAYER_SETTINGS_QUERY, _>(PLAYER_SETTINGS_QUERY);
+  const { data, error, loading, refetch } = useQuery<
+    A.PLAYER_SETTINGS_QUERY,
+    _
+  >(PLAYER_SETTINGS_QUERY);
 
-  if (labels.loading || settings.loading) {
+  if (cmsLoading || loading) {
     return <SettingsRowListSkeleton count={6} />;
   }
-  if (!settings.data || settings.error) {
-    return <ErrorMessage retry={() => settings.refetch()} />;
-  }
-  if (!labels.t.name) {
-    return <ErrorMessage />;
+  if (!data || error) {
+    return <ErrorMessage retry={() => refetch()} />;
   }
 
   return (
     <SettingsAccountDetails
-      labels={labels.t}
-      player={settings.data.player}
-      refetchSettings={settings.refetch}
+      labels={t}
+      player={data.player}
+      refetchSettings={refetch}
     />
   );
 }

@@ -14,6 +14,9 @@
 [options]
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+# The following is increasing the size of the allocated hash table from the default value of ~8mb to ~32mb
+# https://github.com/facebook/flow/issues/3143#issuecomment-270946030
+sharedmemory.hash_table_pow=21
 
 esproposal.optional_chaining=enable
 

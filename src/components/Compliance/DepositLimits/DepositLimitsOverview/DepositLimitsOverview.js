@@ -71,7 +71,7 @@ export function DepositLimitsOverview(props: Props) {
         align="stretch"
         justify="space-between"
         spacing="none"
-        className="t-border-r--none@mobile t-border-r u-overflow-hidden t-background-white"
+        className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg"
       >
         <LimitHeader
           variesForDesktop
@@ -89,7 +89,7 @@ export function DepositLimitsOverview(props: Props) {
             </LimitHeaderButton>
           )}
         </LimitHeader>
-        <Flex className="c-deposit-limits__limits-list">
+        <Flex className="c-deposit-limits__limits-list t-background-white">
           {props.limits.map((x, i) => {
             const shouldRenderSeparator = props.limits.length - 2 >= i;
             const progressPercentage =
@@ -127,6 +127,7 @@ export function DepositLimitsOverview(props: Props) {
       <DepositLimitsSuspendAccount
         t={t}
         showOldSuspendAccountView={props.showOldSuspendAccountView}
+        className="u-width--1/2@desktop"
       />
       <DepositLimitsHistoryContainer />
     </Flex>

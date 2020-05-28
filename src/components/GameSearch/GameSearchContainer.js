@@ -59,7 +59,12 @@ export const GameSearchContainer = () => {
         return R.mergeDeepRight(prevData, {
           gamesSearch: {
             searchResultsCount: fetchMoreResult.gamesSearch.resultsCount,
-            results: R.sortBy(R.prop("name"), mergedResults),
+            // if searching let the server define the order of results.
+            // without the sorting scrolling really fast would mess up the list ordering.
+            // https://github.com/Casumo/frontend-react-stack/pull/1012
+            results: searchQuery
+              ? mergedResults
+              : R.sortBy(R.prop("name"), mergedResults),
           },
         });
       },

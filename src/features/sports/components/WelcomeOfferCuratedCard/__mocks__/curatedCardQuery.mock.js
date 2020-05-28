@@ -27,6 +27,7 @@ export const curatedCardQueryMock = {
           "Min bet £10 at odds 1.6 or higher, receive £10 Free bet. Qualifying and Free bet must be placed within 35 days of registration. Free bet available after qualifying bet settled. Free bet non-withdrawable. T&Cs apply",
         launchGameText: "Get your Welcome Bonus",
         game: null,
+        sportsRoute: null,
       },
     },
   },
