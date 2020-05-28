@@ -35,6 +35,7 @@ import {
   fetchAnnualOverviewSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/playOkay";
+// eslint-disable-next-line no-unused-vars
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 
 export default function* rootSaga(dispatch: any): * {
@@ -121,5 +122,6 @@ export default function* rootSaga(dispatch: any): * {
     takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
-  yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
+  // Epic PCC-593: will be uncommented when the whole flow is implemented
+  // yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
 }

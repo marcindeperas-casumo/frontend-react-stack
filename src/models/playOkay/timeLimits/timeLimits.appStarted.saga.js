@@ -1,6 +1,7 @@
 // @flow
 import { type Saga } from "redux-saga";
 import { put, select, call, take } from "redux-saga/effects";
+import * as R from "ramda";
 import { waitForSelector } from "Utils";
 import { jurisdictionSelector, playerIdSelector } from "Models/handshake";
 import { showModal, isModalHiddenSelector } from "Models/modal";
@@ -36,9 +37,9 @@ export function* appStartedSaga(): Saga {
     yield take(types.PLAYOK_FETCH_ALL_LIMITS_COMPLETED);
   }
 
-  const loginTimeLimit = yield select(loginTimeLimitsSelector);
+  const loginTimeLimits = yield select(loginTimeLimitsSelector);
 
-  if (!loginTimeLimit) {
+  if (R.isEmpty(loginTimeLimits)) {
     // wait till any previous modal has been closed
     yield call(waitForSelector, isModalHiddenSelector);
 

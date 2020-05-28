@@ -31,18 +31,16 @@ export type UseTimeLimitsFormStateType = {
 };
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
-  const savedTimeLimits = useSelector<LoginTimeLimits | void>(
-    loginTimeLimitsSelector
-  );
+  const savedTimeLimits = useSelector<LoginTimeLimits>(loginTimeLimitsSelector);
 
   const [hrsPerDay, setHrsPerDay] = React.useState<number>(
-    savedTimeLimits?.daily
+    savedTimeLimits?.daily || 0
   );
   const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(
-    savedTimeLimits?.weekly
+    savedTimeLimits?.weekly || 0
   );
   const [hrsPerMonth, setHrsPerMonth] = React.useState<number>(
-    savedTimeLimits?.monthly
+    savedTimeLimits?.monthly || 0
   );
 
   const [minHrsPerDay] = React.useState<number>(DEFAULT.minHrsPerDay);
@@ -60,50 +58,21 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
   );
   const [maxHrsPerMonth] = React.useState<number>(DEFAULT.maxHrsPerMonth);
 
-  const [
-    dailyLimitErrorMessage,
-    setDailyLimitErrorMessage,
-  ] = React.useState<string>("");
-  const [
-    weeklyLimitErrorMessage,
-    setWeeklyLimitErrorMessage,
-  ] = React.useState<string>("");
-  const [
-    monthlyLimitErrorMessage,
-    setMonthlyLimitErrorMessage,
-  ] = React.useState<string>("");
-
-  React.useEffect(() => {
-    const dailyErrorMessage = limitErrorMessage(
-      minHrsPerDay,
-      maxHrsPerDay,
-      hrsPerDay
-    );
-    const weeklyErrorMessage = limitErrorMessage(
-      minHrsPerWeek,
-      maxHrsPerWeek,
-      hrsPerWeek
-    );
-    const monthlyErrorMessage = limitErrorMessage(
-      minHrsPerMonth,
-      maxHrsPerMonth,
-      hrsPerMonth
-    );
-
-    setDailyLimitErrorMessage(dailyErrorMessage);
-    setWeeklyLimitErrorMessage(weeklyErrorMessage);
-    setMonthlyLimitErrorMessage(monthlyErrorMessage);
-  }, [
-    hrsPerDay,
-    hrsPerWeek,
-    hrsPerMonth,
+  const dailyLimitErrorMessage = limitErrorMessage(
     minHrsPerDay,
     maxHrsPerDay,
+    hrsPerDay
+  );
+  const weeklyLimitErrorMessage = limitErrorMessage(
     minHrsPerWeek,
     maxHrsPerWeek,
+    hrsPerWeek
+  );
+  const monthlyLimitErrorMessage = limitErrorMessage(
     minHrsPerMonth,
     maxHrsPerMonth,
-  ]);
+    hrsPerMonth
+  );
 
   React.useEffect(() => {
     if (hrsPerDay > 0) {
@@ -121,7 +90,6 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
 
   React.useEffect(() => {
     if (hrsPerMonth > 0) {
-      // setMaxHrsPerDay(Math.min(DEFAULT.maxHrsPerDay, hrsPerMonth));
       setMaxHrsPerWeek(Math.min(DEFAULT.maxHrsPerWeek, hrsPerMonth));
     }
   }, [hrsPerMonth]);
