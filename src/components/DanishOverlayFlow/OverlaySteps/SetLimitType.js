@@ -1,8 +1,9 @@
+// @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
-import { limitPeriod } from "Models/compliance/denmark";
+import { limitPeriod } from "Models/playOkay";
 
 const ButtonElement = ({ text, onClick }) => (
   <Flex.Item>
@@ -20,7 +21,12 @@ const ButtonElement = ({ text, onClick }) => (
   </Flex.Item>
 );
 
-export const SetLimitType = ({ t, chooseLimitType }) => (
+type Props = {
+  t: any,
+  chooseLimitType: string => void,
+};
+
+export const SetLimitType = ({ t, chooseLimitType }: Props) => (
   <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
     <Text className="u-padding-x u-padding-y--lg">{t.modal_description}</Text>
     <Flex

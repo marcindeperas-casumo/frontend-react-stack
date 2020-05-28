@@ -356,6 +356,7 @@ export const REACT_APP_MODAL = {
       "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
     SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED:
       "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED",
+    TIME_LIMITS_FORM: "TIME_LIMITS_FORM",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

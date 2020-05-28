@@ -3,8 +3,9 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { TextInput } from "Components/Compliance/TextInput";
-import { textInputOnChange } from "./TimeLimitsForm.utils";
+import { type LoginTimeLimits } from "Models/playOkay";
+import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
+import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
 type Props = {
   t: {
@@ -15,78 +16,82 @@ type Props = {
     hrs_per_month: string,
     placeholder_enter_amount: string,
   },
+  onClickCta: (limits: LoginTimeLimits) => void,
 };
 
-export function TimeLimitsForm({ t }: Props) {
-  const [hrsPerDay, setHrsPerDay] = React.useState();
-  const [hrsPerWeek, setHrsPerWeek] = React.useState();
-  const [hrsPerMonth, setHrsPerMonth] = React.useState();
+export function TimeLimitsForm({ t, onClickCta }: Props) {
+  const {
+    hrsPerDay,
+    hrsPerWeek,
+    hrsPerMonth,
+    minHrsPerDay,
+    minHrsPerWeek,
+    minHrsPerMonth,
+    maxHrsPerDay,
+    maxHrsPerWeek,
+    maxHrsPerMonth,
+    setHrsPerDay,
+    setHrsPerWeek,
+    setHrsPerMonth,
+    dailyLimitErrorMessage,
+    weeklyLimitErrorMessage,
+    monthlyLimitErrorMessage,
+  } = useTimeLimitsFormState();
+
+  const limits: LoginTimeLimits = {
+    daily: hrsPerDay,
+    weekly: hrsPerWeek,
+    monthly: hrsPerMonth,
+  };
 
   return (
     <Flex
       direction="vertical"
       align="stretch"
       spacing="md"
-      className="u-padding"
+      className="u-padding u-padding--lg@desktop"
     >
       <Flex.Item>
-        <Text className="u-font-weight-bold u-text-align-center">
+        <Text className="u-font-weight-bold u-text-align-center u-margin-top">
           {t.top_header}
         </Text>
       </Flex.Item>
+      <TimeLimitsFormRow
+        value={hrsPerDay}
+        min={minHrsPerDay}
+        max={maxHrsPerDay}
+        setter={setHrsPerDay}
+        errorMessage={dailyLimitErrorMessage}
+        t={{ ...t, hrs_per_period: t.hrs_per_day }}
+      />
+      <TimeLimitsFormRow
+        value={hrsPerWeek}
+        min={minHrsPerWeek}
+        max={maxHrsPerWeek}
+        setter={setHrsPerWeek}
+        errorMessage={weeklyLimitErrorMessage}
+        t={{ ...t, hrs_per_period: t.hrs_per_week }}
+      />
+      <TimeLimitsFormRow
+        value={hrsPerMonth}
+        min={minHrsPerMonth}
+        max={maxHrsPerMonth}
+        setter={setHrsPerMonth}
+        errorMessage={monthlyLimitErrorMessage}
+        t={{ ...t, hrs_per_period: t.hrs_per_month }}
+      />
       <Flex.Item>
-        <Flex align="center" spacing="md">
-          <Flex.Item className="u-width--2/3">
-            <TextInput
-              currencySign=""
-              value={hrsPerDay}
-              inputClassName="u-text-align-right u-font t-color-green"
-              onChange={textInputOnChange(setHrsPerDay)}
-            />
-          </Flex.Item>
-          <Flex.Item>
-            <Text tag="span" className="u-text-nowrap">
-              {t.hrs_per_day}
-            </Text>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item>
-        <Flex align="center" spacing="md">
-          <Flex.Item className="u-width--2/3">
-            <TextInput
-              currencySign=""
-              value={hrsPerWeek}
-              inputClassName="u-text-align-right u-font t-color-green"
-              onChange={textInputOnChange(setHrsPerWeek)}
-            />
-          </Flex.Item>
-          <Flex.Item>
-            <Text tag="span" className="u-text-nowrap">
-              {t.hrs_per_week}
-            </Text>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item>
-        <Flex align="center" spacing="md">
-          <Flex.Item className="u-width--2/3">
-            <TextInput
-              currencySign=""
-              value={hrsPerMonth}
-              inputClassName="u-text-align-right u-font t-color-green"
-              onChange={textInputOnChange(setHrsPerMonth)}
-            />
-          </Flex.Item>
-          <Flex.Item>
-            <Text tag="span" className="u-text-nowrap">
-              {t.hrs_per_month}
-            </Text>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item>
-        <Button variant="primary" className="u-width--full">
+        <Button
+          disabled={
+            dailyLimitErrorMessage ||
+            weeklyLimitErrorMessage ||
+            monthlyLimitErrorMessage
+          }
+          variant="primary"
+          className="u-width--full u-margin-top--md u-margin-top--3xlg@desktop"
+          size="md"
+          onClick={() => onClickCta(limits)}
+        >
           {t.cta}
         </Button>
       </Flex.Item>

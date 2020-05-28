@@ -34,7 +34,8 @@ import {
   types as transactionsBetsHistoryTypes,
   fetchAnnualOverviewSaga,
 } from "Models/transactionsBetsHistory";
-import { danishOverlaySaga } from "Models/compliance/denmark";
+import { danishOverlaySaga } from "Models/playOkay";
+import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -120,4 +121,5 @@ export default function* rootSaga(dispatch: any): * {
     takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
+  yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
 }

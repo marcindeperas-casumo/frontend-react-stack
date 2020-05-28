@@ -1,7 +1,9 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import MockStore from "Components/MockStore";
 import cmsMock from "./__mocks__/cms";
+import stateMock from "./__mocks__/state";
 import { TimeLimitsForm } from "./TimeLimitsForm";
 
 const stories = storiesOf(
@@ -10,5 +12,9 @@ const stories = storiesOf(
 );
 
 stories.add("Default", () => {
-  return <TimeLimitsForm t={cmsMock} />;
+  return (
+    <MockStore state={stateMock}>
+      <TimeLimitsForm t={cmsMock} onClickCta={() => {}} />
+    </MockStore>
+  );
 });

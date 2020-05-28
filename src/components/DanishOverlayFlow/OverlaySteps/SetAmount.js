@@ -4,7 +4,7 @@ import Button from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { TextInput } from "Components/Compliance/TextInput";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
-import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
+import { limitPeriod, minFirstDepositLimit } from "Models/playOkay";
 import type { CmsContent } from "../DanishEntryOverlay";
 
 type Props = {
