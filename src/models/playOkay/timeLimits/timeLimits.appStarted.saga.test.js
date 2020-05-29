@@ -81,7 +81,7 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
   });
 
   test("it should wait till any open modal is closed", () => {
-    expect(generator.next().value).toEqual(
+    expect(generator.next([]).value).toEqual(
       call(waitForSelector, isModalHiddenSelector)
     );
   });
