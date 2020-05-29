@@ -445,6 +445,7 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   name: string,
   slug: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 export type MustDropJackpotsGamesListQuery_gamesList = {
   name: ?string,
@@ -1865,6 +1866,7 @@ export type GameRow_Game = {
   name: string,
   slug: string,
   lobby: ?GameRow_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================
@@ -1886,6 +1888,7 @@ export type GameSearch_Game = {
   name: string,
   slug: string,
   lobby: ?GameSearch_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================
