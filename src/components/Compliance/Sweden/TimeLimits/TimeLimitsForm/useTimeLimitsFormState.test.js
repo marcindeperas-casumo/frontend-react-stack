@@ -30,7 +30,7 @@ const prepareWrapper = state => ({ children }) => (
   <MockStore state={state}>{children}</MockStore>
 );
 
-describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () => {
+describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () => {
   test("it returns values initially set from Redux store", () => {
     const daily = 5;
     const weekly = 10;
