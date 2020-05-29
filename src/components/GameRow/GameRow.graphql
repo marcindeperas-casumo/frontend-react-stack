@@ -11,4 +11,5 @@ fragment GameRow_Game on Game {
       symbol
     }
   }
+  isInMaintenance
 }
