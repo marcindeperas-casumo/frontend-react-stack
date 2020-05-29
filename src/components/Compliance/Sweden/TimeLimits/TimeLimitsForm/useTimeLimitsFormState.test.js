@@ -51,6 +51,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerDay(10);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -66,6 +67,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerWeek(19);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -81,6 +83,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerMonth(17);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -95,6 +98,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerMonth(201);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -110,6 +114,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerDay(201);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -117,8 +122,10 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
       limitErrorMessage(1, weekly, 201)
     );
 
+    // eslint-disable-next-line sonarjs/no-identical-functions
     act(() => {
       result.current.setHrsPerDay(10);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -135,6 +142,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerWeek(newValue);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -144,6 +152,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerWeek(100);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -153,6 +162,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerWeek(29);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -170,6 +180,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerMonth(newValue);
+      jest.runAllTimers();
       rerender();
     });
 
@@ -179,6 +190,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     act(() => {
       result.current.setHrsPerMonth(100);
+      jest.runAllTimers();
       rerender();
     });
 
