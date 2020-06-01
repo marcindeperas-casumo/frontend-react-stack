@@ -36,7 +36,14 @@ const LiveCasinoDetailPage = React.lazy(() =>
     default: module.LiveCasinoDetailPage,
   }))
 );
-const LiveCasinoPage = isMobile() ? LiveCasinoDetailPage : GameListPage;
+const LiveCasinoDetailPageDesktop = React.lazy(() =>
+  import("Components/LiveCasinoDetailPage").then(module => ({
+    default: module.LiveCasinoDetailPageDesktop,
+  }))
+);
+const LiveCasinoPage = isMobile()
+  ? LiveCasinoDetailPage
+  : LiveCasinoDetailPageDesktop;
 
 const TopList = () => (
   <ComponentBuilder path="top" slug="built-pages.top-lists-{{market}}" />
@@ -64,7 +71,7 @@ export const GameBrowser = () => (
             <Redirect from="/" to="top" noThrow />
             <TopList path="top" />
             <GameSearch path="search" />
-            <LiveCasinoPage path="live-casino" listId="liveCasino" />
+            <LiveCasinoPage path="live-casino" />
             {/* $FlowIgnore:  missing 'provider' prop will come from ':provider' part in path */}
             <ProviderGamesList path="provider/:provider" />
             <GameListPage path="slots" listId="slotGames" />
