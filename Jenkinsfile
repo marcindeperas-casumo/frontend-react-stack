@@ -17,7 +17,7 @@ if (env.BRANCH_NAME == "master") {
                 .with(Release) { it.release() }
                 .with(DeployService) { it.deployToProduction('frontend-react-stack') }
                 .customStep('Rollbar Deploy Tracking', this.&rollbarDeployTracking)
-                .build('js-builder-8G')
+                .build('js-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
 Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda:
@@ -46,7 +46,7 @@ Started by: *${env.gitAuthor}* :eyes:
             .with(Docker) { it.publishDockerImage() }
             .with(Release) { it.release() }
             .with(DeployService) { it.deployToTest('frontend-react-stack') }
-            .build('js-builder-8G')
+            .build('js-builder')
 }
 
 def installDependencies() {
