@@ -7,9 +7,9 @@ const DEFAULT = {
   minHrsPerDay: 1,
   maxHrsPerDay: 23,
   minHrsPerWeek: 1,
-  maxHrsPerWeek: 161,
+  maxHrsPerWeek: 167,
   minHrsPerMonth: 1,
-  maxHrsPerMonth: 713,
+  maxHrsPerMonth: 671,
 };
 
 export type UseTimeLimitsFormStateType = {

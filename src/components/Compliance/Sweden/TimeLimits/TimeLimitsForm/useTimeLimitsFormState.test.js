@@ -30,7 +30,7 @@ const prepareWrapper = state => ({ children }) => (
   <MockStore state={state}>{children}</MockStore>
 );
 
-describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () => {
+describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () => {
   test("it returns values initially set from Redux store", () => {
     const daily = 5;
     const weekly = 10;
@@ -45,14 +45,12 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
   test("it updates minHrsPerWeek and minHrsPerMonth when hrsPerDay changes", () => {
     const wrapper = prepareWrapper(prepareState(5, 10, 15));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
 
     act(() => {
       result.current.setHrsPerDay(10);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.minHrsPerWeek).toEqual(10);
@@ -61,14 +59,12 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
   test("it updates maxHrsPerDay and minHrsPerMonth when hrsPerWeek changes", () => {
     const wrapper = prepareWrapper(prepareState(null, null, null));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
 
     act(() => {
       result.current.setHrsPerWeek(19);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.maxHrsPerDay).toEqual(19);
@@ -77,14 +73,12 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
   test("it updates maxHrsPerWeek when hrsPerMonth changes", () => {
     const wrapper = prepareWrapper(prepareState(1, 1, 1));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
 
     act(() => {
       result.current.setHrsPerMonth(17);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.maxHrsPerWeek).toEqual(17);
@@ -92,41 +86,34 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
   test("it updates maxHrsPerWeek when hrsPerMonth changes but only to the max allowed value", () => {
     const wrapper = prepareWrapper(prepareState(1, 1, 1));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
 
     act(() => {
       result.current.setHrsPerMonth(201);
-      jest.runAllTimers();
-      rerender();
     });
 
-    expect(result.current.maxHrsPerWeek).toEqual(161);
+    expect(result.current.maxHrsPerWeek).toEqual(167);
   });
 
   test("it updates dailyLimitErrorMessage when hrsPerDay changes to value outside of range", () => {
     const weekly = 10;
     const wrapper = prepareWrapper(prepareState(3, weekly, 30));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
 
     act(() => {
       result.current.setHrsPerDay(201);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.dailyLimitErrorMessage).toEqual(
       limitErrorMessage(1, weekly, 201)
     );
 
-    // eslint-disable-next-line sonarjs/no-identical-functions
     act(() => {
       result.current.setHrsPerDay(10);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.dailyLimitErrorMessage).toEqual("");
@@ -135,15 +122,13 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
   test("it updates weeklyLimitErrorMessage when hrsPerWeek changes to value outside of range", () => {
     const monthly = 30;
     const wrapper = prepareWrapper(prepareState(3, 10, monthly));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
     const newValue = 170;
 
     act(() => {
       result.current.setHrsPerWeek(newValue);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.weeklyLimitErrorMessage).toEqual(
@@ -152,8 +137,6 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
     act(() => {
       result.current.setHrsPerWeek(100);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.weeklyLimitErrorMessage).toEqual(
@@ -162,8 +145,6 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
     act(() => {
       result.current.setHrsPerWeek(29);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.weeklyLimitErrorMessage).toEqual("");
@@ -173,15 +154,13 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
     const weekly = 10;
     const monthly = 30;
     const wrapper = prepareWrapper(prepareState(3, weekly, monthly));
-    const { result, rerender } = renderHook(() => useTimeLimitsFormState(), {
+    const { result } = renderHook(() => useTimeLimitsFormState(), {
       wrapper,
     });
     const newValue = 7;
 
     act(() => {
       result.current.setHrsPerMonth(newValue);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.monthlyLimitErrorMessage).toEqual(
@@ -190,8 +169,6 @@ describe.skip("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()"
 
     act(() => {
       result.current.setHrsPerMonth(100);
-      jest.runAllTimers();
-      rerender();
     });
 
     expect(result.current.monthlyLimitErrorMessage).toEqual("");
