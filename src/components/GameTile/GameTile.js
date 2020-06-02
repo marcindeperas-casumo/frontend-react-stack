@@ -109,11 +109,7 @@ export const GameTile = ({
                 [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
               }}
             >
-              <GameTileHeart
-                gameId={id}
-                gameSlug={slug}
-                isInMyList={isInMyList}
-              />
+              <GameTileHeart gameId={id} gameSlug={slug} />
             </TrackClick>
           </Flex.Item>
         </Flex>

@@ -1,6 +1,9 @@
 // @flow
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { GameTileHeart } from "Components/GameTileHeart/GameTileHeart";
+import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 import {
   useAddGameToMyList,
   useRemoveGameFromMyList,
@@ -9,17 +12,23 @@ import {
 type Props = {
   className?: string,
   gameId: string,
-  isInMyList: boolean,
 };
 
 export const GameTileHeartContainer = ({
   className = "u-padding u-width--2xlg",
   gameId,
-  isInMyList,
 }: Props) => {
+  const { data, loading } = useQuery<A.GameTileHeartQuery, _>(
+    GameTileHeartQuery
+  );
   const addGame = useAddGameToMyList(gameId);
   const removeGame = useRemoveGameFromMyList(gameId);
 
+  if (loading) {
+    return null;
+  }
+
+  const isInMyList = (data?.gamesList?.games || []).find(x => x.id === gameId);
   const onFavouriteGame = isInMyList ? removeGame : addGame;
 
   return (

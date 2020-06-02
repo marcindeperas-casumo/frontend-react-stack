@@ -67,8 +67,6 @@ export class LiveCasinoCard extends PureComponent<Props> {
               <GameTileHeart
                 className="u-width--4xlg u-height--4xlg u-padding--md"
                 gameId={this.props.game.id}
-                gameSlug={this.props.game.slug}
-                isInMyList={this.props.game.isInMyList}
               />
             </TrackClick>
           </div>
