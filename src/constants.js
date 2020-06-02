@@ -98,7 +98,7 @@ export const ROUTE_IDS = {
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
-  LIVE_CASINO: "LIVE_CASINO",
+  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
@@ -133,7 +133,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
+  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -339,7 +339,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
-  LIVE_CASINO: "Live Casino - Details Page",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
   GAME_DETAILS: "Game details",
 };
 

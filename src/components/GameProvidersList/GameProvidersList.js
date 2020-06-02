@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { Link } from "@reach/router";
 import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
 import Scrollable from "@casumo/cmp-scrollable";
@@ -36,12 +35,7 @@ export const GameProvidersList = ({ title = "", gameStudios = [] }: Props) => {
     return (
       <div style={style}>
         <div className={elementClassNames}>
-          <Link
-            to={`../provider/${gameStudios[columnIndex].slug}`}
-            className="o-ratio"
-          >
-            <GameProviderAvatar {...gameStudios[columnIndex]} />
-          </Link>
+          <GameProviderAvatar {...gameStudios[columnIndex]} />
         </div>
       </div>
     );
@@ -56,14 +50,7 @@ export const GameProvidersList = ({ title = "", gameStudios = [] }: Props) => {
             <Scrollable
               numberOfItems={gameStudios.length}
               keyGetter={i => gameStudios[i].id}
-              itemRenderer={i => (
-                <Link
-                  to={`../provider/${gameStudios[i].slug}`}
-                  className="o-ratio"
-                >
-                  <GameProviderAvatar {...gameStudios[i]} />
-                </Link>
-              )}
+              itemRenderer={i => <GameProviderAvatar {...gameStudios[i]} />}
               itemClassName="c-game-provider-avatar"
               padding={PADDING_PER_DEVICE}
               itemSpacing={DEFAULT_SPACING}

@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
@@ -8,6 +9,7 @@ import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
+import "./GameRow.scss";
 
 type Props = {
   /** The Game object */
@@ -20,7 +22,13 @@ type Props = {
 
 export const GameRow = (props: Props) => {
   const { game, renderText } = props;
-  const onLaunchGame = () => launchGame({ slug: game.slug });
+  const onLaunchGame = () => {
+    if (game.isInMaintenance) {
+      return;
+    }
+
+    launchGame({ slug: game.slug });
+  };
 
   return (
     <Flex align="center" className={props.className || ""}>
@@ -30,7 +38,12 @@ export const GameRow = (props: Props) => {
           data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
         >
           <Flex align="center">
-            <Flex.Item className="o-flex__item--no-shrink">
+            <Flex.Item
+              className={classNames("o-flex__item--no-shrink", {
+                "t-greyscale c-game-row__game-thumb--maintenance":
+                  game.isInMaintenance,
+              })}
+            >
               <GameThumb
                 src={game.backgroundImage}
                 alt={game.name}

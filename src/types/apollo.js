@@ -173,29 +173,6 @@ export type GameListLiveCasinoQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: GameListPageQuery
-// ====================================================
-
-export type GameListPageQuery_gamesList_games = {
-  isInMaintenance: boolean,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  id: string,
-  isInMyList: boolean,
-};
-export type GameListPageQuery_gamesList = {
-  games: Array<GameListPageQuery_gamesList_games>,
-};
-export type GameListPageQuery = {
-  gamesList: ?GameListPageQuery_gamesList,
-};
-export type GameListPageQueryVariables = {
-  listId: string,
-};
-
-// ====================================================
 // GraphQL query operation: GameListVerticalQuery
 // ====================================================
 
@@ -468,6 +445,7 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   name: string,
   slug: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 export type MustDropJackpotsGamesListQuery_gamesList = {
   name: ?string,
@@ -636,7 +614,6 @@ export type GameStudioQuery_gameStudio_games = {
 };
 export type GameStudioQuery_gameStudio = {
   id: string,
-  name: string,
   gamesCount: number,
   games: Array<?GameStudioQuery_gameStudio_games>,
 };
@@ -1889,6 +1866,7 @@ export type GameRow_Game = {
   name: string,
   slug: string,
   lobby: ?GameRow_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================
@@ -1910,6 +1888,7 @@ export type GameSearch_Game = {
   name: string,
   slug: string,
   lobby: ?GameSearch_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================

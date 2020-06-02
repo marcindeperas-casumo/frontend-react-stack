@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import List from "@casumo/cmp-list";
+import Text from "@casumo/cmp-text";
+import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow, GameRowSearchText } from "Components/GameRow";
@@ -19,7 +20,6 @@ import {
   GamesVirtualList,
   GamesVirtualListTitle,
 } from "Components/GamesVirtualList";
-import { isMobile } from "Components/ResponsiveLayout";
 
 import "./GameSearch.scss";
 
@@ -49,6 +49,17 @@ export const GameSearch = (props: Props) => {
     inputPromptPlaceholder,
   } = props;
 
+  const { t } = useTranslationsGql({
+    gameInMaintenanceText:
+      "root:mobile.game-details:fields.temporarily_unavailable",
+  });
+
+  const GameMaintenanceText = () => (
+    <Text className="u-padding-top--sm t-color-grey-dark-2" size="sm">
+      {t.gameInMaintenanceText}
+    </Text>
+  );
+
   const GameRowHighlightSearch = game => (
     <GameRow
       game={game}
@@ -56,6 +67,10 @@ export const GameSearch = (props: Props) => {
         <GameRowSearchText
           name={game.name}
           search={{ query, highlightSearchQuery: true }}
+          isInMaintenance={game.isInMaintenance}
+          renderSecondaryText={() =>
+            game.isInMaintenance && <GameMaintenanceText></GameMaintenanceText>
+          }
         />
       )}
     />
@@ -67,12 +82,7 @@ export const GameSearch = (props: Props) => {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
-          <div
-            className={classNames(
-              "c-game-search-virtual-list u-game-search-max-width u-padding--xlg@desktop",
-              { "t-background-white": !isMobile() }
-            )}
-          >
+          <div className="c-game-search-virtual-list u-game-search-max-width">
             <GamesVirtualList
               renderItem={GameRowHighlightSearch}
               renderTitle={title => <GamesVirtualListTitle title={title} />}

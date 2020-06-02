@@ -8,6 +8,13 @@ import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWith
 import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
 
+jest.mock("Utils/hooks/useTranslationsGql", () => ({
+  useTranslationsGql: () => ({
+    t: {},
+    loading: false,
+  }),
+}));
+
 describe("GameSearch", () => {
   const clearSearch = jest.fn();
   const inputPromptPlaceholder = "whatever";
