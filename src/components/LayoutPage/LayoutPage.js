@@ -2,7 +2,7 @@
 import React from "react";
 import "./LayoutPage.scss";
 import Flex from "@casumo/cmp-flex";
-import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { isMobile } from "@casumo/is-mobile";
 import { FullscreenView } from "Components/FullscreenView";
 import Sidebar from "Components/Sidebar";
 

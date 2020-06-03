@@ -1,7 +1,7 @@
 // @flow
 
 import { useRef, useState, useEffect } from "react";
-import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { isMobile } from "@casumo/is-mobile";
 import { useSelector } from "react-redux";
 import logger from "Services/logger";
 import {
