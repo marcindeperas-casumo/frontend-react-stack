@@ -6,6 +6,7 @@ import type { spacerSizes } from "@casumo/cudl-react-prop-types";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { VirtualGridMeasurer } from "./VirtualGridMeasurer";
+import "./virtualGrid.scss";
 
 type Props<T> = {
   dataList: Array<T>,
