@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import { EVENT_PROPS } from "Src/constants";
+import { EVENT_PROPS, MARKETS } from "Src/constants";
 
 export const CURATED_SLUG_PREFIX = "curated.";
 
@@ -7,19 +7,26 @@ export const CURATED_TYPE = {
   GAME: "game",
   PROMOTION: "promotion",
   WELCOME_OFFER: "welcome offer",
+  JP_WELCOME_OFFER: "Japan welcome offer",
   SPORTS: "sports",
 };
 
 export const CURATED_URL = {
   [CURATED_TYPE.PROMOTION]: "/promotions/#promotionSlug",
   [CURATED_TYPE.WELCOME_OFFER]: "/cash/deposit",
+  [CURATED_TYPE.JP_WELCOME_OFFER]: "/promotions/welcome-offer/",
 };
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
 export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;
 
-export const getLink = ({ type, promotionSlug }) => {
+export const getLink = ({ type, promotionSlug, market = "" }) => {
   const url = CURATED_URL[type] || null;
+  const jpMarket = market.toUpperCase() === MARKETS.jp_ja.toUpperCase();
+
+  if (type === CURATED_TYPE.WELCOME_OFFER && jpMarket) {
+    return CURATED_URL[CURATED_TYPE.JP_WELCOME_OFFER];
+  }
 
   if (type === CURATED_TYPE.PROMOTION) {
     return R.replace("#promotionSlug", promotionSlug, url);

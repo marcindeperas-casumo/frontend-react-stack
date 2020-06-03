@@ -1,19 +1,22 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import { connect } from "react-redux";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import { navigateToSportsHash } from "Features/sports/utils";
+import { marketSelector } from "Models/handshake";
 import { CuratedCardQuery } from "./CuratedCard.graphql";
 import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 import { CuratedCard } from "./CuratedCard";
 
 type Props = {
   className?: string,
+  market: string,
   slug: string,
 };
 
-export const CuratedCardContainer = ({ className, slug }: Props) => {
+export const CuratedCardData = ({ className, market, slug }: Props) => {
   const variables = { slug };
   const { data, loading } = useQuery<A.CuratedCardQuery, _>(CuratedCardQuery, {
     variables,
@@ -26,6 +29,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
   return (
     <CuratedCard
       className={className}
+      market={market}
       curatedCard={data?.curatedCard}
       navigateToSportsHash={navigateToSportsHash}
       onLaunchGame={() =>
@@ -34,3 +38,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
     />
   );
 };
+
+export const CuratedCardContainer = connect(state => ({
+  market: marketSelector(state).toUpperCase(),
+}))(CuratedCardData);
