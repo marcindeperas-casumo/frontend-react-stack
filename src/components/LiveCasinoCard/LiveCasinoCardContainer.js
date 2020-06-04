@@ -19,5 +19,5 @@ export const LiveCasinoCardContainer = ({ game }: Props) => {
     return null;
   }
 
-  return game.liveCasinoLobby ? <LiveCasinoCard t={t} game={game} /> : null;
+  return <LiveCasinoCard t={t} game={game} />;
 };

@@ -93,7 +93,9 @@ export class LiveCasinoCard extends PureComponent<Props> {
           >
             {convertHTMLToString(game.name)}
           </Text>
-          <Text tag="span">{renderBets(this.liveCasinoLobby.bets)}</Text>
+          {this.liveCasinoLobby && (
+            <Text tag="span">{renderBets(this.liveCasinoLobby.bets)}</Text>
+          )}
         </Flex.Block>
         <Flex.Item>
           <TrackClick
@@ -118,9 +120,65 @@ export class LiveCasinoCard extends PureComponent<Props> {
     );
   };
 
+  renderHeaderNoLobby = () => {
+    return (
+      <div
+        className="o-ratio o-ratio--live-casino-card"
+        onClick={this.onLaunchGame}
+      >
+        <ImageLazy
+          className="o-ratio__content t-border-r"
+          src={this.props.game.backgroundImage}
+          mark={this.props.game.logo}
+          alt={this.props.game.name}
+          width={330}
+          height={186}
+          imgixOpts={{
+            h: 186,
+            q: 70,
+            crop: "faces",
+            fit: "crop",
+          }}
+        />
+        <Flex
+          direction="vertical"
+          align="end"
+          justify="space-between"
+          className="o-ratio__content u-font-weight-bold"
+          style={{
+            background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <div className="t-color-white" onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: this.props.game.name,
+                [EVENT_PROPS.IS_FAVOURITE]: !this.props.game.isInMyList,
+              }}
+            >
+              <GameTileHeart
+                className="u-width--4xlg u-height--4xlg u-padding--md"
+                gameId={this.props.game.id}
+              />
+            </TrackClick>
+          </div>
+        </Flex>
+      </div>
+    );
+  };
+
   render() {
     if (!this.liveCasinoLobby) {
-      return null;
+      return (
+        <Card
+          className="u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
+          spacing="md"
+          header={this.renderHeaderNoLobby}
+          footer={() => <LiveCasinoCardFooter provider="casumo" />}
+          content={this.renderContent}
+        />
+      );
     }
 
     return (
