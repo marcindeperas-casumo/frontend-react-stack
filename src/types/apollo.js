@@ -41,8 +41,12 @@ export type CuratedCardQuery_curatedCard = {
   sportsRoute: ?string,
   game: ?CuratedCardQuery_curatedCard_game,
 };
+export type CuratedCardQuery_session = {
+  market: string,
+};
 export type CuratedCardQuery = {
   curatedCard: ?CuratedCardQuery_curatedCard,
+  session: CuratedCardQuery_session,
 };
 export type CuratedCardQueryVariables = {
   slug: string,
@@ -191,6 +195,7 @@ export type GameListVerticalQuery_gamesBySlugs = {
   name: string,
   slug: string,
   lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
+  isInMaintenance: boolean,
 };
 export type GameListVerticalQuery = {
   gamesBySlugs: Array<GameListVerticalQuery_gamesBySlugs>,
@@ -234,6 +239,7 @@ export type GameSearchQuery_gamesSearch_results = {
   name: string,
   slug: string,
   lobby: ?GameSearchQuery_gamesSearch_results_lobby,
+  isInMaintenance: boolean,
 };
 export type GameSearchQuery_gamesSearch = {
   resultsCount: number,
@@ -267,6 +273,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   name: string,
   slug: string,
   lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
   id: ?string,
@@ -355,6 +362,7 @@ export type JackpotsQuery_gamesList_games = {
   name: string,
   slug: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
 export type JackpotsQuery_gamesList = {
@@ -387,6 +395,7 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   name: string,
   slug: string,
   lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
+  isInMaintenance: boolean,
 };
 export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames = {
   title: string,
@@ -415,6 +424,7 @@ export type MustDropJackpotGamesListQuery_gamesList_games = {
   name: string,
   slug: string,
   lobby: ?MustDropJackpotGamesListQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 export type MustDropJackpotGamesListQuery_gamesList = {
   games: Array<MustDropJackpotGamesListQuery_gamesList_games>,
@@ -611,6 +621,7 @@ export type GameStudioQuery_gameStudio_games = {
   name: string,
   slug: string,
   lobby: ?GameStudioQuery_gameStudio_games_lobby,
+  isInMaintenance: boolean,
 };
 export type GameStudioQuery_gameStudio = {
   id: string,
@@ -1910,6 +1921,7 @@ export type GameSearchSuggestionsList_Game = {
   name: string,
   slug: string,
   lobby: ?GameSearchSuggestionsList_Game_lobby,
+  isInMaintenance: boolean,
 };
 
 // ====================================================
@@ -1963,6 +1975,7 @@ export type Jackpots_Game = {
   name: string,
   slug: string,
   lobby: ?Jackpots_Game_lobby,
+  isInMaintenance: boolean,
   jackpot: ?Jackpots_Game_jackpot,
 };
 
