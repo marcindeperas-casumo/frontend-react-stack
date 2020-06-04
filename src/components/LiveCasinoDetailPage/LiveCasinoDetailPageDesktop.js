@@ -42,7 +42,7 @@ export const LiveCasinoDetailPageDesktop = () => {
     return null;
   }
 
-  const games = data.gamesList.games.filter(x => x.liveCasinoLobby);
+  const games = data.gamesList.games;
 
   return (
     <Wrapper>
