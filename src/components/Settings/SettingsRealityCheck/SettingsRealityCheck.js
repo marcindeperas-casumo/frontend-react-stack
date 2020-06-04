@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { SettingsNotificationsToggleRow as ToggleRow } from "Components/Settings/SettingsNotifications/SettingsNotificationsToggleRow";
 import { PillSelector } from "Components/PillSelector";
@@ -47,7 +47,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           />
         )}
         <div className="u-padding--md">
-          <Text className="t-color-chrome-dark-2">
+          <Text className="t-color-grey-70">
             {labels.inGameSessionUpdatesFrequencyLabel}
           </Text>
           <PillSelector
@@ -57,18 +57,17 @@ export class SettingsRealityCheck extends PureComponent<Props> {
             value={interval}
             onChange={onChange}
           />
-          <Button
-            variant="primary"
+          <ButtonPrimary
             size="md"
             loading={isLoading}
             className="u-width--full u-margin-top--xlg"
             onClick={onSave}
           >
             {labels.save}
-          </Button>
+          </ButtonPrimary>
           <div
             onClick={() => window.history.back()}
-            className="u-margin-top--lg u-text-align-center u-cursor-pointer t-color-text-link u-font-weight-bold"
+            className="u-margin-top--lg u-text-align-center u-cursor-pointer t-color-blue-60 u-font-weight-bold"
           >
             {labels.cancel}
           </div>

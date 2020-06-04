@@ -35,10 +35,7 @@ export class SearchNotFound extends PureComponent<Props> {
             <Text className="u-margin-bottom--sm u-font-weight-bold">
               <DangerousHtml html={title} />
             </Text>
-            <Text
-              className="u-margin-bottom--none t-color-grey-dark-1"
-              size="sm"
-            >
+            <Text className="u-margin-bottom--none t-color-grey-50" size="sm">
               <DangerousHtml html={content} />
             </Text>
           </div>

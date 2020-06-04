@@ -2,7 +2,7 @@
 import * as React from "react";
 import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
 import {
   interpolateTimeInterval,
@@ -167,7 +167,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS)}
         onChangeBreak={setBreakAfter}
       />
-      <Button
+      <ButtonPrimary
         size="md"
         variant="primary"
         disabled={
@@ -187,7 +187,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
           {t.play}
         </span>
         <PlayIcon />
-      </Button>
+      </ButtonPrimary>
     </Flex>
   );
 }

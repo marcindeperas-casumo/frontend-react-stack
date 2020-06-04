@@ -68,7 +68,7 @@ export class SettingsAccountDetails extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
-        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+        <div className="t-elevation--30@tablet t-elevation--30@desktop">
           <Name {...labelsAndDetails} />
           <Email {...labelsAndDetails} />
           <ExtentOfGambling {...labelsAndDetails} />
@@ -99,7 +99,7 @@ const Email = ({ labels, details }) => (
     label={labels.email}
     value={details.email}
     action={
-      <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+      <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
     }
   />
 );
@@ -115,7 +115,7 @@ const ExtentOfGambling = ({ labels, details }) => {
         }
         label={labels.gamblingExtent}
         action={
-          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+          <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
         }
         value={details.extentOfGambling.label}
       />
@@ -131,7 +131,7 @@ const Password = ({ labels }) => {
       label={labels.password}
       value={PASSWORD_PLACEHOLDER_VALUE}
       action={
-        <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+        <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
       }
     />
   );
@@ -145,7 +145,7 @@ const VerifiedMobileNumber = ({ labels, details }) => (
     label={labels.mobileNumber}
     value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
     action={
-      <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+      <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
     }
   />
 );
@@ -160,11 +160,11 @@ const UnverifiedMobileNumber = ({ labels, details }) => (
           <Flex.Item>
             <ExclamationMarkIcon
               size="sm"
-              className="t-color-negative t-border--current-color t-border t-border-r--circle t-border-width--md"
+              className="t-color-red-30 t-border--current-color t-border t-border-r--circle t-border-width--md"
             />
           </Flex.Item>
           <Flex.Item>
-            <Text tag="strong" size="sm" className="t-color-negative">
+            <Text tag="strong" size="sm" className="t-color-red-30">
               {labels.verify}
             </Text>
           </Flex.Item>

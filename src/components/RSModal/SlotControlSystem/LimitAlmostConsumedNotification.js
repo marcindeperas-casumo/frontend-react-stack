@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import type { ModalContentComponent } from "Components/RSModal";
 import { formatCurrency, interpolate } from "Utils";
@@ -43,13 +43,9 @@ export function LimitAlmostConsumedNotification({
           })}
         </Text>
         <div className="o-flex--1" />
-        <Button
-          variant="primary"
-          className="u-margin--md"
-          onClick={props.acceptModal}
-        >
+        <ButtonPrimary className="u-margin--md" onClick={props.acceptModal}>
           {t.continue_playing_button}
-        </Button>
+        </ButtonPrimary>
       </Flex>
     </ModalSkin>
   );

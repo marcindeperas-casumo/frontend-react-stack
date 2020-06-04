@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
 import {
@@ -56,9 +56,8 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
   const flexChildWidth = "u-width--1/2@desktop";
 
   const SubmitButton = (
-    <Button
+    <ButtonPrimary
       data-test-id="submit-button"
-      variant="primary"
       className="u-padding-y--md u-width--full"
       disabled={req}
       loading={req}
@@ -70,7 +69,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff)
         ? t.save_limits_button_conditions
         : t.save_limits_button}
-    </Button>
+    </ButtonPrimary>
   );
 
   return (
@@ -112,7 +111,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
                 {props.newLimits[x] ? t[x] : t[`${x}_removed`]}
               </Text>
             </Flex>
-            <MoreIcon className="t-color-grey-light-1" />
+            <MoreIcon className="t-color-grey-5" />
           </Flex>
         </Flex>
       ))}

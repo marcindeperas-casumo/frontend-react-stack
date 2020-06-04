@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import Button from "@casumo/cmp-button";
+import { ButtonSecondary } from "@casumo/cmp-button";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 
 export function LimitHeaderButton(props: {
@@ -12,7 +12,7 @@ export function LimitHeaderButton(props: {
     return (
       <>
         <Desktop>
-          <a href="#" onClick={props.onClick} className="t-color-plum">
+          <a href="#" onClick={props.onClick} className="t-color-purple-60">
             {props.children}
           </a>
         </Desktop>
@@ -28,8 +28,8 @@ export function LimitHeaderButton(props: {
 
 function NormalVariant(props: { onClick: () => void, children: React.Node }) {
   return (
-    <Button onClick={props.onClick} variant="secondary">
+    <ButtonSecondary onClick={props.onClick}>
       <span className="t-color-black">{props.children}</span>
-    </Button>
+    </ButtonSecondary>
   );
 }

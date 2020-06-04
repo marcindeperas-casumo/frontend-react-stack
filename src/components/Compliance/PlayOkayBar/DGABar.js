@@ -22,7 +22,7 @@ export const DGABar = () => (
     justify="end"
     align="center"
     spacing="md"
-    className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
+    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
       <FullscreenToggle elementOverride={document.body} />
@@ -30,7 +30,7 @@ export const DGABar = () => (
     <Flex.Item>
       <Text tag="span" size="2xs">
         <a
-          className="t-color-grey-light-1 u-display--flex"
+          className="t-color-grey-5 u-display--flex"
           href={links.rofus}
           rel="noopener noreferrer"
           target="_blank"
@@ -53,7 +53,7 @@ export const DGABar = () => (
         <DanishLicenseIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
-    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-light-1 u-display--flex">
+    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
       <ClockIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>

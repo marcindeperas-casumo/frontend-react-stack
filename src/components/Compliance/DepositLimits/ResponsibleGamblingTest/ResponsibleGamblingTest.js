@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { ProgressBar } from "Components/ProgressBar";
 
 type Props = {
@@ -54,22 +54,20 @@ export function ResponsibleGamblingTest({
         </Text>
       </Flex>
       <Flex align="stretch" justify="space-between">
-        <Button
-          variant="primary"
+        <ButtonPrimary
           className="o-flex--1 u-margin-right"
           data-test-id="buttonYes"
           onClick={() => next(1)}
         >
           {t.yes}
-        </Button>
-        <Button
-          variant="secondary"
+        </ButtonPrimary>
+        <ButtonSecondary
           className="o-flex--1 u-margin-left"
           data-test-id="buttonNo"
           onClick={() => next(0)}
         >
           {t.no}
-        </Button>
+        </ButtonSecondary>
       </Flex>
     </Flex>
   );

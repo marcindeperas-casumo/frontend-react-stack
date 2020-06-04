@@ -57,7 +57,7 @@ export function TopNavigation({ t, action }: Props) {
               </Text>
               <div
                 className={classNames("t-border-r u-width--full u-height--sm", {
-                  "t-background-plum": isActive,
+                  "t-background-purple-60": isActive,
                 })}
               />
             </Flex>

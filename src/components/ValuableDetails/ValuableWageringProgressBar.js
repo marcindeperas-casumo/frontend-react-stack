@@ -38,9 +38,9 @@ export const ValuableWageringProgressBar = ({
       <div className="u-margin-top--md">
         <ProgressBar
           data-test="valuable-wagering-progress-bar"
-          fillerClassNames="t-background-grey-light-2"
+          fillerClassNames="t-background-grey-0"
           progress={percentageWagered(leftToWager, wageringThreshold)}
-          trackClassNames="t-background-green-light-1"
+          trackClassNames="t-background-green-unknown-cudl-class"
         />
       </div>
     </>

@@ -1,6 +1,6 @@
 // @flow
 import React, { useEffect } from "react";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { DownloadIcon } from "@casumo/cmp-icons";
 
 export type PdfButtonProps = {
@@ -23,9 +23,8 @@ export function PdfButton({
   }, [fetchHref, href]);
 
   return (
-    <Button
+    <ButtonPrimary
       href={href}
-      variant="primary"
       className="u-margin-top--lg u-margin-bottom--md"
       disabled={isDisabled}
       loading={isDisabled}
@@ -33,6 +32,6 @@ export function PdfButton({
     >
       <DownloadIcon />
       {label}
-    </Button>
+    </ButtonPrimary>
   );
 }

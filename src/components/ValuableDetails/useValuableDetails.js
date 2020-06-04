@@ -62,7 +62,7 @@ export const useValuableDetails = (
             translations={translations}
             {...selectedValuable}
             caveat={null}
-            className="t-box-shadow--lg"
+            className="t-elevation--30"
           />
         </div>
       </ValuableDetailsWithModal>

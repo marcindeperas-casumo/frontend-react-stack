@@ -11,8 +11,8 @@ export const Finish = ({
 }) => (
   <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
     <div className="u-padding u-padding-top-lg">
-      <TickIcon size="xlg" className="t-color-plum" />
-      <Text className="t-color-plum u-font-2xlg u-font-weight-bold">
+      <TickIcon size="xlg" className="t-color-purple-60" />
+      <Text className="t-color-purple-60 u-font-2xlg u-font-weight-bold">
         {limitSavedInfoText}
       </Text>
       <div className="u-padding-top">{playOkayInfoText}</div>

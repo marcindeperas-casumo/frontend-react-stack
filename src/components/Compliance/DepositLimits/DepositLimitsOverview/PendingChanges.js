@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonSecondary } from "@casumo/cmp-button";
 import { ClockIcon } from "@casumo/cmp-icons";
 import DangerousHtml from "Components/DangerousHtml";
 import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/depositLimits";
@@ -39,11 +39,11 @@ export function PendingChanges(props: Props) {
       className="u-padding-x--md u-padding-y--lg t-border-top t-background-white"
     >
       <Flex align="center" justify="space-between" spacing="none">
-        <ClockIcon size="sm" className="t-color-caution" />
+        <ClockIcon size="sm" className="t-color-yellow-30" />
         <Text
           tag="span"
           size="sm"
-          className="u-margin-left--md t-color-grey-dark-1 o-flex--1"
+          className="u-margin-left--md t-color-grey-50 o-flex--1"
         >
           {props.allRemoved ? (
             <DangerousHtml html={t.pending_remove_all} />
@@ -52,7 +52,7 @@ export function PendingChanges(props: Props) {
               <Text
                 tag="span"
                 size="sm"
-                className="t-color-warning u-font-weight-bold"
+                className="t-color-orange-30 u-font-weight-bold"
               >
                 {t.pending_increase}{" "}
               </Text>
@@ -70,8 +70,7 @@ export function PendingChanges(props: Props) {
           )}
         </Text>
       </Flex>
-      <Button
-        variant="secondary"
+      <ButtonSecondary
         className="o-flex--1 u-margin-top--lg"
         data-test-id="cancel-pending-limit-change"
         onClick={props.limitCancel}
@@ -79,7 +78,7 @@ export function PendingChanges(props: Props) {
         {props.allRemoved
           ? t.cancel_pending_remove_all
           : t.cancel_pending_increases}
-      </Button>
+      </ButtonSecondary>
     </Flex>
   );
 }

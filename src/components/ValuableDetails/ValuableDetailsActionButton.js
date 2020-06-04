@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import Button from "@casumo/cmp-button";
+import { Button } from "@casumo/cmp-button";
 
 type Props = {
   text: string,

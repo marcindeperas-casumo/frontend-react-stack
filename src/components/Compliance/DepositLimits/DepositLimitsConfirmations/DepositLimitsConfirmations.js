@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
 import { WildDots } from "Components/WildDots";
 
@@ -83,15 +83,13 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
     >
       <Text
         size="xlg"
-        className="u-font-weight-black t-color-plum-dark-1"
+        className="u-font-weight-black t-color-purple-80"
         data-test-id="txt"
       >
         {t[translationKeys.title]}
       </Text>
       {typeof translationKeys.content === "string" && (
-        <Text className="t-color-grey-dark-1">
-          {t[translationKeys.content]}
-        </Text>
+        <Text className="t-color-grey-50">{t[translationKeys.content]}</Text>
       )}
       <Flex.Block />
       <Flex direction="vertical">
@@ -103,8 +101,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
             />
           </Flex>
         )}
-        <Button
-          variant="primary"
+        <ButtonPrimary
           className="u-padding-y--md"
           onClick={() => {
             if (isLastPage) {
@@ -120,7 +117,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
           ) : (
             <ArrowRightIcon className="t-color-white" />
           )}
-        </Button>
+        </ButtonPrimary>
       </Flex>
     </Flex>
   );

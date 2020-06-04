@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import type { ModalContentComponent } from "Components/RSModal";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
@@ -82,13 +82,13 @@ export function PeriodicReminderNotification({
           })}
         />
         <div className="o-flex--1" />
-        <Button
+        <ButtonPrimary
           variant="primary"
           className="u-margin--md"
           onClick={props.acceptModal}
         >
           {t.continue_playing_button}
-        </Button>
+        </ButtonPrimary>
       </Flex>
     </ModalSkin>
   );

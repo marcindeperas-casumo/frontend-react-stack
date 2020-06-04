@@ -52,7 +52,7 @@ export function ReelRaceLeaderboard(props: Props) {
           direction="horizontal"
           key={p.playerId}
           className={classNames({
-            "u-font-weight-bold t-background-turquoise t-color-white":
+            "u-font-weight-bold t-background-teal-50 t-color-white":
               playerId === p.playerId,
           })}
         >

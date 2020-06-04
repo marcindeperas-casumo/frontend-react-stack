@@ -30,7 +30,7 @@ export const PromotionCard = ({ promotion }: Props) => {
         data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
       >
         <Card
-          className="o-ratio__content t-border-r--md t-background-white t-box-shadow"
+          className="o-ratio__content t-border-r--md t-background-white t-elevation--10"
           spacing="none"
           header={() => (
             <PromotionCardHeader

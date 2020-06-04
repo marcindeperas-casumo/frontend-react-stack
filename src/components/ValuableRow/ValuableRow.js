@@ -120,7 +120,7 @@ export class ValuableRow extends PureComponent<Props> {
         <Flex.Item className="u-padding-right--md o-flex--1">
           <Flex data-test="valuable-row" onClick={this.onClick}>
             <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
-              <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
+              <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-elevation--10">
                 <ValuableThumbnail
                   backgroundRenderer={this.image}
                   coinValue={this.props.coinValue}
@@ -154,7 +154,7 @@ export class ValuableRow extends PureComponent<Props> {
               )}
               {caveat && (
                 <Text
-                  className="t-color-grey-light-1 u-margin-top--md"
+                  className="t-color-grey-5 u-margin-top--md"
                   size="2xs"
                   tag="div"
                 >
@@ -169,7 +169,7 @@ export class ValuableRow extends PureComponent<Props> {
                     e.stopPropagation();
                     onMoreInfo();
                   }}
-                  className="t-color-grey"
+                  className="t-color-grey-20"
                 />
               </Flex.Item>
             )}

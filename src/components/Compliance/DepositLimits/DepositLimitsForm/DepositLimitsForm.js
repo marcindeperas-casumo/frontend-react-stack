@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
@@ -53,9 +53,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       direction="vertical"
       className="o-flex-align--center@desktop u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full t-background-white"
     >
-      <Text
-        className={`u-font-weight-bold t-color-chrome-dark-3 ${flexItemWidth}`}
-      >
+      <Text className={`u-font-weight-bold t-color-grey-90 ${flexItemWidth}`}>
         {t[visible]}
       </Text>
       <TextInput
@@ -69,7 +67,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       <Text
         data-test-id="inputValidation"
         size="sm"
-        className={`t-color-negative ${flexItemWidth}`}
+        className={`t-color-red-30 ${flexItemWidth}`}
       >
         {inputError}
       </Text>
@@ -84,8 +82,8 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
             key={limitName}
             onClick={() => setVisible(limitName)}
             isActive={visible === limitName}
-            inactiveClassNames="o-flex--1 t-background-grey-light-2 c-deposit-limits-form-pill__container"
-            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container t-background-plum t-color-white"
+            inactiveClassNames="o-flex--1 t-background-grey-0 c-deposit-limits-form-pill__container"
+            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container t-background-purple-60 t-color-white"
           >
             <Flex
               align="center"
@@ -124,13 +122,12 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
 
 function MainButton(props: { disabled: boolean, onClick: () => void }) {
   return (
-    <Button
-      variant="primary"
+    <ButtonPrimary
       className="u-padding-y u-padding-x@desktop u-margin-left--2xlg@desktop u-margin-top--4xlg u-margin-top--none@desktop"
       disabled={props.disabled}
       onClick={props.onClick}
     >
       <ArrowRightIcon size="md" className="t-color-white" />
-    </Button>
+    </ButtonPrimary>
   );
 }

@@ -19,12 +19,12 @@ const Provider = props => (
 
 export function LiveCasinoCardFooter({ players, provider }) {
   return (
-    <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border--current-color t-color-chrome-light-2">
+    <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border--current-color t-color-grey-0">
       <div className="o-flex-align--center">
-        <PlayerIcon className="u-margin-y t-color-grey" />
+        <PlayerIcon className="u-margin-y t-color-grey-20" />
         <Text
           size="sm"
-          className="u-margin-left--sm u-margin-y u-font-weight-bold t-color-grey-dark-2"
+          className="u-margin-left--sm u-margin-y u-font-weight-bold t-color-grey-70"
         >
           {players}
         </Text>

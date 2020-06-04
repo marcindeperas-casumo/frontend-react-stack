@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 
 type Props = {
@@ -16,14 +16,9 @@ const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
     justify="center"
     className="u-padding--md t-background-grey-light-3"
   >
-    <Button
-      size="md"
-      variant="primary"
-      onClick={onClick}
-      className="u-width--full"
-    >
+    <ButtonPrimary size="md" onClick={onClick} className="u-width--full">
       {children}
-    </Button>
+    </ButtonPrimary>
   </Flex>
 );
 

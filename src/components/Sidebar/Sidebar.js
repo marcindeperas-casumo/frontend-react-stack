@@ -57,11 +57,11 @@ export const Sidebar = (props: Props) => {
     >
       <SidebarIconClose />
       <ul className="u-margin--none u-padding--none">
-        <li className="c-sidebar__logo t-background-plum">
+        <li className="c-sidebar__logo t-background-purple-60">
           <a href="#top" onClick={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}>
             <Flex align="center" justify="center" className="u-height--full">
               <CasumoLogo
-                className="t-color-turquoise"
+                className="t-color-teal-50"
                 data-test-id="sidebar-logo"
               />
             </Flex>

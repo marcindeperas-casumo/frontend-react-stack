@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
@@ -62,13 +62,9 @@ export function SessionDetailsForLimitsReached(props: Props) {
         moneyLeft={lastEndedSession.stats.remainingBalance}
         moneyWagered={lastEndedSession.stats.totalBets}
       />
-      <Button
-        variant="primary"
-        className="u-margin--md"
-        onClick={onClickButton}
-      >
+      <ButtonPrimary className="u-margin--md" onClick={onClickButton}>
         {t?.limits_reached_button_label || null}
-      </Button>
+      </ButtonPrimary>
     </Flex>
   );
 }

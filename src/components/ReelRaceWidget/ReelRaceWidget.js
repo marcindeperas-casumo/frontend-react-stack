@@ -56,7 +56,7 @@ export function ReelRaceWidget(props: Props) {
   return (
     <Flex
       direction="vertical"
-      className="t-background-white t-border-bottom t-border-current-color t-color-grey-dark-2"
+      className="t-background-white t-border-bottom t-border-current-color t-color-grey-70"
     >
       <ReelRaceWidgetHeader {...reelRace} t={t} />
       {hasStarted ? (

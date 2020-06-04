@@ -41,7 +41,7 @@ stories.add("Default", () => {
           <ValuableCard
             {...mockValuableCard(valuableType)}
             caveat={null}
-            className="t-box-shadow--lg"
+            className="t-elevation--30"
           />
         </div>
       </ValuableDetails>
@@ -64,7 +64,7 @@ stories.add("Default - With modal", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
-            className="t-box-shadow--lg"
+            className="t-elevation--30"
           />
         </div>
       </ValuableDetailsWithModal>
@@ -87,7 +87,7 @@ stories.add("Deposit - Locked", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
-            className="t-box-shadow--lg"
+            className="t-elevation--30"
           />
         </div>
       </ValuableDetails>

@@ -39,7 +39,7 @@ const JackpotsColumn = ({
       render={jackpot => (
         <GameRow
           game={jackpot}
-          className="t-background-white u-padding--md t-border-r--md t-box-shadow"
+          className="t-background-white u-padding--md t-border-r--md t-elevation--10"
           renderText={() => (
             <GameRowText
               locale={locale}

@@ -15,13 +15,13 @@ const DefaultStory = () => {
   });
   const fillerClassNames = select(
     "Background color",
-    ["t-background-grey", "t-background-grey-light-1"],
-    "t-background-grey"
+    ["t-background-grey-20", "t-background-grey-5"],
+    "t-background-grey-20"
   );
   const trackClassNames = select(
     "Foreground color",
-    ["t-background-yellow", "t-background-green"],
-    "t-background-yellow"
+    ["t-background-yellow-30", "t-background-green-30"],
+    "t-background-yellow-30"
   );
 
   return (

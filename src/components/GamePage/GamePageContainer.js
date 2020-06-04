@@ -67,7 +67,7 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
 
   if (error) {
     return (
-      <Flex className="t-background-chrome-light-2 u-height--full">
+      <Flex className="t-background-grey-0 u-height--full">
         <ErrorMessage
           errorMessage={errorMessages?.general_error_title || ""}
           retry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}

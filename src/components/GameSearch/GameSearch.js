@@ -47,7 +47,7 @@ const GameMaintenanceText = () => {
   });
 
   return (
-    <Text className="u-padding-top--sm t-color-grey-dark-2" size="sm">
+    <Text className="u-padding-top--sm t-color-grey-70" size="sm">
       {t.gameInMaintenanceText}
     </Text>
   );
@@ -71,7 +71,7 @@ const gameRowHighlightSearch = query => game => (
 const SectionTitle = props => (
   <Text
     size="md"
-    className="u-font-weight-black t-color-chrome-dark-1 u-padding-left u-padding-top--xlg u-padding-bottom--md"
+    className="u-font-weight-black t-color-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
   >
     {props.children}
   </Text>
@@ -152,7 +152,7 @@ export const GameSearch = (props: Props) => {
       <div
         className={classNames(
           "c-game-search-bar u-position-sticky--top u-padding--lg@desktop t-border-bottom",
-          isMobile() ? "t-background-chrome-light-2" : "t-background-white"
+          isMobile() ? "t-background-grey-0" : "t-background-white"
         )}
       >
         <GameSearchInput
@@ -161,7 +161,7 @@ export const GameSearch = (props: Props) => {
           noResults={noResults}
           placeholder={inputPromptPlaceholder}
           {...(!isMobile()
-            ? { colorBackgroundClass: "t-background-grey-light-2" }
+            ? { colorBackgroundClass: "t-background-grey-0" }
             : {})}
         />
       </div>

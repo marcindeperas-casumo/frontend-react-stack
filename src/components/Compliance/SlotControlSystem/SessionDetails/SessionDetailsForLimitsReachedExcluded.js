@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
 import { Duration } from "Components/Duration";
@@ -33,8 +33,8 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
 
   return (
     <Flex direction="vertical">
-      <div className="u-padding--sm t-background-grey-light-2" />
-      <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
+      <div className="u-padding--sm t-background-grey-0" />
+      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
         {interpolateWithJSX(
           {
             time: (
@@ -65,13 +65,9 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
         moneyLeft={lastEndedSession.stats.remainingBalance}
         moneyWagered={lastEndedSession.stats.totalBets}
       />
-      <Button
-        variant="primary"
-        className="u-margin--md"
-        onClick={onClickButton}
-      >
+      <ButtonPrimary className="u-margin--md" onClick={onClickButton}>
         {t?.limits_reached_button_label || null}
-      </Button>
+      </ButtonPrimary>
     </Flex>
   );
 }

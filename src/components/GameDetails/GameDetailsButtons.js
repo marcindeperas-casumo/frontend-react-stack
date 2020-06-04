@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { PlayIcon } from "@casumo/cmp-icons";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { launchGame } from "Services/LaunchGameService";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
@@ -29,14 +29,13 @@ export const GameDetailsButtons = ({
         [EVENT_PROPS.GAME_PLAY_TYPE]: "money",
       }}
     >
-      <Button
+      <ButtonPrimary
         className="u-width--full u-margin-bottom--md"
-        variant="primary"
         onClick={() => launchGame({ slug })}
       >
         <PlayIcon size="sm" className="u-margin-right--sm" />
         <span>{playButtonText}</span>
-      </Button>
+      </ButtonPrimary>
     </TrackClick>
     {hasPlayForFun && (
       <TrackClick
@@ -46,9 +45,8 @@ export const GameDetailsButtons = ({
           [EVENT_PROPS.GAME_PLAY_TYPE]: "free",
         }}
       >
-        <Button
+        <ButtonSecondary
           className="u-width--full"
-          variant="secondary"
           onClick={() =>
             launchGame({
               slug,
@@ -57,7 +55,7 @@ export const GameDetailsButtons = ({
           }
         >
           {practiceButtonText || ""}
-        </Button>
+        </ButtonSecondary>
       </TrackClick>
     )}
   </div>

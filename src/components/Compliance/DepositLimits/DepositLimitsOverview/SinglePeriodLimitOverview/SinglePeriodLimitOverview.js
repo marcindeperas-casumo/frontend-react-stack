@@ -66,11 +66,11 @@ export function SinglePeriodLimitOverview(props: Props) {
               <Text tag="span">
                 {currentLimitValue} {t[`${props.limitKind}_short`]}
               </Text>
-              <Text tag="span" size="sm" className="t-color-turquoise">
+              <Text tag="span" size="sm" className="t-color-teal-50">
                 {remainingLimitValue}
               </Text>
             </Flex>
-            <DirectionRightIcon className="t-color-grey-light-2" />
+            <DirectionRightIcon className="t-color-grey-0" />
           </Flex>
         </Flex>
       </MobileAndTablet>
@@ -90,14 +90,14 @@ export function SinglePeriodLimitOverview(props: Props) {
             >
               {t[`${props.limitKind}_short`]}
             </Text>
-            <Flex className="u-position-absolute u-padding--sm t-background-grey-light-2 t-border-r--circle c-single-limit__more-icon">
+            <Flex className="u-position-absolute u-padding--sm t-background-grey-0 t-border-r--circle c-single-limit__more-icon">
               <MoreIcon size="default" />
             </Flex>
           </Flex>
           <Text size="lg" className="u-font-weight-black">
             {currentLimitValue}
           </Text>
-          <Text size="sm" className="t-color-turquoise">
+          <Text size="sm" className="t-color-teal-50">
             {remainingLimitValue}
           </Text>
           <Flex
@@ -109,7 +109,7 @@ export function SinglePeriodLimitOverview(props: Props) {
               type="button"
               className="Button-c-button u-width--full u-padding--md"
             >
-              <span className="t-color-plum">{t.adjust_limit}</span>
+              <span className="t-color-purple-60">{t.adjust_limit}</span>
             </button>
           </Flex>
         </Flex>
