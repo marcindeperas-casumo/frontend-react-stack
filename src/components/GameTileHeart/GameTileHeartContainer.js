@@ -7,6 +7,7 @@ import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 import {
   useAddGameToMyList,
   useRemoveGameFromMyList,
+  numberOfGames,
 } from "./GameTileHeart.Mutations";
 
 type Props = {
@@ -18,9 +19,10 @@ export const GameTileHeartContainer = ({
   className = "u-padding u-width--2xlg",
   gameId,
 }: Props) => {
-  const { data, loading } = useQuery<A.GameTileHeartQuery, _>(
-    GameTileHeartQuery
-  );
+  const { data, loading } = useQuery<
+    A.GameTileHeartQuery,
+    A.GameTileHeartQueryVariables
+  >(GameTileHeartQuery, { variables: { numberOfGames } });
   const addGame = useAddGameToMyList(gameId);
   const removeGame = useRemoveGameFromMyList(gameId);
 

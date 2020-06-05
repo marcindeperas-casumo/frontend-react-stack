@@ -355,6 +355,9 @@ export type GameTileHeartQuery_gamesList = {
 export type GameTileHeartQuery = {
   gamesList: ?GameTileHeartQuery_gamesList,
 };
+export type GameTileHeartQueryVariables = {
+  numberOfGames: number,
+};
 
 // ====================================================
 // GraphQL mutation operation: AddGameToMyList

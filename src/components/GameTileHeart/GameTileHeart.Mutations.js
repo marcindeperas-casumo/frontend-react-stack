@@ -23,13 +23,12 @@ const REMOVE_GAME = gql`
   }
 `;
 
+export const numberOfGames = 1e5;
 export const useAddGameToMyList = (id: string) => {
   const [addGame] = useMutation<A.AddGameToMyList, A.AddGameToMyListVariables>(
     ADD_GAME,
     {
-      variables: {
-        id,
-      },
+      variables: { id },
       optimisticResponse: {
         __typename: "Mutation",
         addGameToMyList: {
@@ -39,24 +38,31 @@ export const useAddGameToMyList = (id: string) => {
         },
       },
       update: (cache, response) => {
-        // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
-        const cacheData = cache.readQuery<A.GameTileHeartQuery>({
-          query: GameTileHeartQuery,
-        });
-        if (cacheData && cacheData.gamesList) {
-          cache.writeQuery({
+        getAllNumberOfGamesVars(cache).forEach(x => {
+          // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
+          const cacheData = cache.readQuery<
+            A.GameTileHeartQuery,
+            A.GameTileHeartQueryVariables
+          >({
             query: GameTileHeartQuery,
-            data: {
-              gamesList: {
-                ...cacheData.gamesList,
-                games: [
-                  response.data?.addGameToMyList,
-                  ...cacheData.gamesList.games,
-                ],
-              },
-            },
+            variables: { numberOfGames: x },
           });
-        }
+          if (cacheData && cacheData.gamesList) {
+            cache.writeQuery({
+              query: GameTileHeartQuery,
+              variables: { numberOfGames: x },
+              data: {
+                gamesList: {
+                  ...cacheData.gamesList,
+                  games: [
+                    response.data?.addGameToMyList,
+                    ...cacheData.gamesList.games,
+                  ],
+                },
+              },
+            });
+          }
+        });
       },
     }
   );
@@ -69,9 +75,7 @@ export const useRemoveGameFromMyList = (id: string) => {
     A.RemoveGameFromMyList,
     A.RemoveGameFromMyListVariables
   >(REMOVE_GAME, {
-    variables: {
-      id,
-    },
+    variables: { id },
     optimisticResponse: {
       __typename: "Mutation",
       removeGameFromMyList: {
@@ -81,23 +85,45 @@ export const useRemoveGameFromMyList = (id: string) => {
       },
     },
     update: (cache, response) => {
-      // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
-      const cacheData = cache.readQuery<A.GameTileHeartQuery>({
-        query: GameTileHeartQuery,
-      });
-      if (cacheData && cacheData.gamesList) {
-        cache.writeQuery({
+      getAllNumberOfGamesVars(cache).forEach(x => {
+        // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
+        const cacheData = cache.readQuery<
+          A.GameTileHeartQuery,
+          A.GameTileHeartQueryVariables
+        >({
           query: GameTileHeartQuery,
-          data: {
-            gamesList: {
-              ...cacheData.gamesList,
-              games: reject(game => game.id === id, cacheData.gamesList.games),
-            },
-          },
+          variables: { numberOfGames: x },
         });
-      }
+
+        if (cacheData && cacheData.gamesList) {
+          cache.writeQuery({
+            query: GameTileHeartQuery,
+            variables: { numberOfGames: x },
+            data: {
+              gamesList: {
+                ...cacheData.gamesList,
+                games: reject(
+                  game => game.id === id,
+                  cacheData.gamesList.games
+                ),
+              },
+            },
+          });
+        }
+      });
     },
   });
 
   return removeGame;
 };
+
+function getAllNumberOfGamesVars(cache: any) {
+  if (!cache.data.data.ROOT_QUERY) {
+    return [];
+  }
+
+  return Object.keys(cache.data.data["GamesList:myList"])
+    .map(x => (x.match(/numberOfGames.*?(\d*?)\}/) || [])[1])
+    .filter(Boolean)
+    .map(x => parseInt(x));
+}
