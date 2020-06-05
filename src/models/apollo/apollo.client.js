@@ -7,7 +7,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
-import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
   marketSelector,
