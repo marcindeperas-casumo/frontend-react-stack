@@ -7,7 +7,7 @@ export const CURATED_TYPE = {
   GAME: "game",
   PROMOTION: "promotion",
   WELCOME_OFFER: "welcome offer",
-  JP_WELCOME_OFFER: "Japan welcome offer",
+  JP_WELCOME_OFFER: "japan welcome offer",
   SPORTS: "sports",
 };
 
