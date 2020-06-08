@@ -14,15 +14,15 @@ export const CURATED_TYPE = {
 export const CURATED_URL = {
   [CURATED_TYPE.PROMOTION]: "/promotions/#promotionSlug",
   [CURATED_TYPE.WELCOME_OFFER]: "/cash/deposit",
-  [CURATED_TYPE.JP_WELCOME_OFFER]: "/promotions/welcome-offer/",
+  [CURATED_TYPE.JP_WELCOME_OFFER]: "/promotions/welcome-offer",
 };
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
 export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;
 
-export const getLink = ({ type, promotionSlug, market = "" }) => {
+export const getLink = ({ type, promotionSlug, market }) => {
   const url = CURATED_URL[type] || null;
-  const jpMarket = market.toUpperCase() === MARKETS.jp_ja.toUpperCase();
+  const jpMarket = market === MARKETS.jp_ja;
 
   if (type === CURATED_TYPE.WELCOME_OFFER && jpMarket) {
     return CURATED_URL[CURATED_TYPE.JP_WELCOME_OFFER];
