@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
@@ -103,7 +104,7 @@ describe("ReelRaceCard", () => {
     test('should show "Play" button', () => {
       expect(
         rendered
-          .find("Button")
+          .find(ButtonPrimary)
           .children()
           .contains(props.translations.optedInCtaSingleGameShort)
       ).toBe(true);

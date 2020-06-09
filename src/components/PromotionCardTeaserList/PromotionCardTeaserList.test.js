@@ -43,7 +43,7 @@ describe("PromotionCardTeaserList", () => {
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
-        backgroundColor="blue"
+        backgroundColor="blue-50"
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
