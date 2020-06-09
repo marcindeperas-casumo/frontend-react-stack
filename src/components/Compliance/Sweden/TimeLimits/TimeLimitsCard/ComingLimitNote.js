@@ -23,7 +23,7 @@ export function ComingLimitNote({ t, limit }: Props) {
   const activationDate = DateTime.fromMillis(limit.comingLimit?.activationTime);
 
   return (
-    <Flex.Item className="u-margin-top--none">
+    <Flex.Item>
       <Text tag="span" size="sm" className="t-color-caution">
         {interpolateWithJSX(
           {
