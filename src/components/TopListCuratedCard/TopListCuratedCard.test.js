@@ -13,7 +13,7 @@ describe("TopListCuratedCard", () => {
     const rendered = shallow(
       <TopListCuratedCard
         market={""}
-        welcomeOfferId={"welcome-bonus-offer"}
+        welcomeOfferId={CURATED_COMPONENT_GENERAL_SLUG}
         card={slug}
         hasDeposited={true}
         enforceOriginalSlug={false}
@@ -29,7 +29,7 @@ describe("TopListCuratedCard", () => {
     const rendered = shallow(
       <TopListCuratedCard
         market={""}
-        welcomeOfferId={"welcome-bonus-offer"}
+        welcomeOfferId={CURATED_COMPONENT_GENERAL_SLUG}
         card={slug}
         hasDeposited={false}
         enforceOriginalSlug={false}
@@ -47,7 +47,7 @@ describe("TopListCuratedCard", () => {
     const rendered = shallow(
       <TopListCuratedCard
         market={""}
-        welcomeOfferId={"welcome-bonus-offer"}
+        welcomeOfferId={CURATED_COMPONENT_GENERAL_SLUG}
         card={slug}
         hasDeposited={true}
         enforceOriginalSlug={false}
@@ -63,7 +63,7 @@ describe("TopListCuratedCard", () => {
     const rendered = shallow(
       <TopListCuratedCard
         market={""}
-        welcomeOfferId={"welcome-bonus-offer"}
+        welcomeOfferId={CURATED_COMPONENT_GENERAL_SLUG}
         card={slug}
         hasDeposited={false}
         enforceOriginalSlug={true}
