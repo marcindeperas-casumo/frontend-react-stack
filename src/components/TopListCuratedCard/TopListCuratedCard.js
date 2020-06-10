@@ -2,14 +2,32 @@
 import * as React from "react";
 // __FIX__ Why can't it resolve "Components/CuratedCard"?
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
+import { MARKETS } from "Src/constants";
 
-export const WELCOME_OFFER_SLUG = "welcome-offer-test";
+export const CURATED_COMPONENT_GENERAL_SLUG = "welcome-offer-test";
+export const CURATED_COMPONENT_JP_CASHBACK_SLUG =
+  "vertical-specific-cashback-promo-slot_machine";
+
+export const CASHBACK_WELCOME_OFFER_ID = "wo-33cashbackupto333";
+
+export const getWelcomeOfferSlug = (welcomeOfferId: string, market: string) => {
+  const isJpMarket = market === MARKETS.jp_ja;
+  const isCashbackWelcomeOffer = welcomeOfferId === CASHBACK_WELCOME_OFFER_ID;
+
+  if (isJpMarket && isCashbackWelcomeOffer) {
+    return CURATED_COMPONENT_JP_CASHBACK_SLUG;
+  }
+
+  return CURATED_COMPONENT_GENERAL_SLUG;
+};
 
 type Props = {
   /** The slug of the curated card to render. */
   card: string | Array<string>,
   /** A boolean indicating if the player has deposited yet or not. */
   hasDeposited: boolean,
+  market: string,
+  welcomeOfferId: string,
   /** Will enforce showing the curated content specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
   enforceOriginalSlug?: boolean,
 };
@@ -19,12 +37,14 @@ type Props = {
 export const TopListCuratedCard = ({
   card,
   hasDeposited,
+  market,
+  welcomeOfferId,
   enforceOriginalSlug = false,
 }: Props) => {
   const normalizedSlug = Array.isArray(card) ? card[0] : card;
   const shouldShowWelcomeOffer = !hasDeposited && !enforceOriginalSlug;
   const computedSlug = shouldShowWelcomeOffer
-    ? WELCOME_OFFER_SLUG
+    ? getWelcomeOfferSlug(welcomeOfferId, market)
     : normalizedSlug;
 
   return (
