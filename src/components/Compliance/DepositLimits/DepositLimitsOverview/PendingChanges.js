@@ -36,7 +36,7 @@ export function PendingChanges(props: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding-x--md u-padding-y--lg t-border-top t-background-white"
+      className="u-padding-x--md u-padding-y--lg t-border-top t-border-grey-5 t-background-white"
     >
       <Flex align="center" justify="space-between" spacing="none">
         <ClockIcon size="sm" className="t-color-yellow-30" />
@@ -72,6 +72,7 @@ export function PendingChanges(props: Props) {
       </Flex>
       <ButtonSecondary
         className="o-flex--1 u-margin-top--lg"
+        size="md"
         data-test-id="cancel-pending-limit-change"
         onClick={props.limitCancel}
       >

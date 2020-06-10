@@ -28,7 +28,7 @@ export function LimitHeaderButton(props: {
 
 function NormalVariant(props: { onClick: () => void, children: React.Node }) {
   return (
-    <ButtonSecondary onClick={props.onClick}>
+    <ButtonSecondary size="sm" onClick={props.onClick}>
       <span className="t-color-black">{props.children}</span>
     </ButtonSecondary>
   );

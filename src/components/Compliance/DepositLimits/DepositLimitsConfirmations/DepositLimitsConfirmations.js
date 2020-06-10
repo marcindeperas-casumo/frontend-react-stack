@@ -103,6 +103,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
         )}
         <ButtonPrimary
           className="u-padding-y--md"
+          size="md"
           onClick={() => {
             if (isLastPage) {
               props.lastButtonAction();

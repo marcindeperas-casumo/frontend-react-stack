@@ -170,7 +170,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
       <ButtonPrimary
         size="md"
         variant="primary"
-        disabled={
+        isDisabled={
           !isPlayActive({
             balance,
             budget,
@@ -180,12 +180,10 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
             breakAfter,
           })
         }
-        loading={isCreatingSession}
+        isLoading={isCreatingSession}
         onClick={() => createSession(formData)}
       >
-        <span className="o-flex__block c-scs__form__play-btn__label">
-          {t.play}
-        </span>
+        <span className="u-margin-right--sm">{t.play}</span>
         <PlayIcon />
       </ButtonPrimary>
     </Flex>

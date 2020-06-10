@@ -47,27 +47,31 @@ export function ResponsibleGamblingTest({
       justify="space-between"
       className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
     >
-      <Flex direction="vertical" justify="space-between">
-        <ProgressBar progress={progress} />
-        <Text size="xlg" data-test-id="txt">
-          {t[page + 1]}
-        </Text>
-      </Flex>
-      <Flex align="stretch" justify="space-between">
-        <ButtonPrimary
-          className="o-flex--1 u-margin-right"
-          data-test-id="buttonYes"
-          onClick={() => next(1)}
-        >
-          {t.yes}
-        </ButtonPrimary>
-        <ButtonSecondary
-          className="o-flex--1 u-margin-left"
-          data-test-id="buttonNo"
-          onClick={() => next(0)}
-        >
-          {t.no}
-        </ButtonSecondary>
+      <ProgressBar progress={progress} />
+      <Text size="xlg" data-test-id="txt">
+        {t[page + 1]}
+      </Text>
+      <Flex>
+        <Flex.Block>
+          <ButtonPrimary
+            size="sm"
+            className="u-width--full u-margin-right"
+            data-test-id="buttonYes"
+            onClick={() => next(1)}
+          >
+            {t.yes}
+          </ButtonPrimary>
+        </Flex.Block>
+        <Flex.Block>
+          <ButtonSecondary
+            size="sm"
+            className="u-width--full u-margin-left"
+            data-test-id="buttonNo"
+            onClick={() => next(0)}
+          >
+            {t.no}
+          </ButtonSecondary>
+        </Flex.Block>
       </Flex>
     </Flex>
   );

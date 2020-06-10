@@ -59,8 +59,8 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
     <ButtonPrimary
       data-test-id="submit-button"
       className="u-padding-y--md u-width--full"
-      disabled={req}
-      loading={req}
+      isDisabled={req}
+      isLoading={req}
       onClick={() => {
         setReq(true);
         props.confirmLimitsAdjust();
@@ -95,7 +95,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
             align="center"
             justify="space-between"
             spacing="none"
-            className="o-flex--1 t-border-bottom u-padding-y--lg"
+            className="o-flex--1 t-border-bottom t-border-grey-5 u-padding-y--lg"
           >
             <Flex direction="vertical">
               {props.newLimits[x] && (

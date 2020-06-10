@@ -47,6 +47,7 @@ export function SessionDetailsForLimitsReached(props: Props) {
         <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow
+            className="u-padding--md"
             game={playAgainGame}
             renderText={() => <GameRowText name={playAgainGame.name} />}
           />
@@ -62,7 +63,7 @@ export function SessionDetailsForLimitsReached(props: Props) {
         moneyLeft={lastEndedSession.stats.remainingBalance}
         moneyWagered={lastEndedSession.stats.totalBets}
       />
-      <ButtonPrimary className="u-margin--md" onClick={onClickButton}>
+      <ButtonPrimary size="md" className="u-margin--md" onClick={onClickButton}>
         {t?.limits_reached_button_label || null}
       </ButtonPrimary>
     </Flex>

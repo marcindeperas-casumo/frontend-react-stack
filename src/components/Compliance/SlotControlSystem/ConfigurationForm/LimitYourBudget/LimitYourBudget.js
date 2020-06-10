@@ -65,9 +65,9 @@ export function LimitYourBudget(props: Props) {
           className="c-scs__limit-your-budget__field"
         />
         <ButtonPrimary
-          disabled={isBudgetInvalid(budgetBalance)}
-          size="sm"
-          className="u-width--1/4 u-margin-left--md u-padding--md t-elevation--10"
+          isDisabled={isBudgetInvalid(budgetBalance)}
+          size="md"
+          className="u-width--1/4 u-margin-left--md u-padding--md"
           onClick={() => onSubmit(parsedBudget)}
         >
           <ArrowRightIcon size="sm" />
@@ -79,6 +79,7 @@ export function LimitYourBudget(props: Props) {
         formattedBalance={formattedBalance}
       />
       <ButtonSecondary
+        size="sm"
         className="u-margin-top--xlg u-margin-top--3xlg@tablet"
         onClick={() => onSubmit(balance)}
       >

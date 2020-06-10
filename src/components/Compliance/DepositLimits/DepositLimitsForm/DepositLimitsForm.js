@@ -123,8 +123,9 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
 function MainButton(props: { disabled: boolean, onClick: () => void }) {
   return (
     <ButtonPrimary
+      size="md"
       className="u-padding-y u-padding-x@desktop u-margin-left--2xlg@desktop u-margin-top--4xlg u-margin-top--none@desktop"
-      disabled={props.disabled}
+      isDisabled={props.disabled}
       onClick={props.onClick}
     >
       <ArrowRightIcon size="md" className="t-color-white" />
