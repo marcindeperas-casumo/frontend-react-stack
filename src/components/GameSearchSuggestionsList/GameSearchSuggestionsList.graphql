@@ -1,5 +1,0 @@
-#import "./../GameRow/GameRow.graphql"
-
-fragment GameSearchSuggestionsList_Game on Game {
-  ...GameRow_Game
-}

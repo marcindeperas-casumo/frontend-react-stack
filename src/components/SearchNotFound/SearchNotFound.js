@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
+import { isMobile } from "Components/ResponsiveLayout";
 import DangerousHtml from "Components/DangerousHtml";
 
 import "./SearchNotFound.scss";
@@ -24,6 +25,7 @@ export class SearchNotFound extends PureComponent<Props> {
     return (
       <Media
         className={classNames(
+          { "t-background-chrome-light-2": isMobile() },
           "u-padding-y--lg",
           "u-padding-x--md",
           this.props.className
