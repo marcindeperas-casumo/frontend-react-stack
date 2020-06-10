@@ -18,10 +18,12 @@ type Props = {
   className?: string,
   /** a function that renders some text */
   renderText: () => React.Node,
+  /** use bigger version, ie. on search page */
+  big?: boolean,
 };
 
 export const GameRow = (props: Props) => {
-  const { game, renderText } = props;
+  const { game, renderText, big = false } = props;
   const onLaunchGame = () => {
     if (game.isInMaintenance) {
       return;
@@ -31,8 +33,15 @@ export const GameRow = (props: Props) => {
   };
 
   return (
-    <Flex align="center" className={props.className || ""}>
-      <Flex.Block onClick={onLaunchGame}>
+    <Flex
+      align="center"
+      className={classNames(
+        "u-padding-x--md u-padding-x--lg@desktop u-padding-y u-width--full u-height--full",
+        props.className
+      )}
+      onClick={onLaunchGame}
+    >
+      <Flex.Block>
         <TrackClick
           eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
           data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
@@ -48,6 +57,12 @@ export const GameRow = (props: Props) => {
                 src={game.backgroundImage}
                 alt={game.name}
                 mark={game.logo}
+                {...(big
+                  ? {
+                      width: 80,
+                      height: 80,
+                    }
+                  : {})}
               />
             </Flex.Item>
             {renderText()}
