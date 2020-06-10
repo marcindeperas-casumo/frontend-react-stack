@@ -2,9 +2,13 @@
 import * as React from "react";
 import { shallow } from "enzyme";
 import { CuratedCard } from "Components/CuratedCard";
+import { MARKETS } from "Src/constants";
 import {
   TopListCuratedCard,
+  getWelcomeOfferSlug,
   CURATED_COMPONENT_GENERAL_SLUG,
+  CASHBACK_WELCOME_OFFER_ID,
+  CURATED_COMPONENT_JP_CASHBACK_SLUG,
 } from "./TopListCuratedCard";
 
 describe("TopListCuratedCard", () => {
@@ -72,5 +76,20 @@ describe("TopListCuratedCard", () => {
 
     expect(rendered.find(CuratedCard)).toHaveLength(1);
     expect(rendered.find(CuratedCard).props().slug).toBe(slug);
+  });
+
+  test("getWelcomeOfferSlug should provide correct cms page slug for CuratedCard component", () => {
+    const woCode = "example-wo-code";
+    const slug = getWelcomeOfferSlug(woCode, MARKETS.gb_en);
+    expect(slug).toEqual(CURATED_COMPONENT_GENERAL_SLUG);
+
+    // for japan and cashback, it will show some specific content
+    const cashbackWoCode = CASHBACK_WELCOME_OFFER_ID;
+    const jpCashbackSlug = getWelcomeOfferSlug(cashbackWoCode, MARKETS.jp_ja);
+    expect(jpCashbackSlug).toEqual(CURATED_COMPONENT_JP_CASHBACK_SLUG);
+
+    // for every other welcome offer ids, japan gets the default curated card
+    const returnedSlug = getWelcomeOfferSlug(woCode, MARKETS.jp_ja);
+    expect(returnedSlug).toEqual(CURATED_COMPONENT_GENERAL_SLUG);
   });
 });
