@@ -8,8 +8,8 @@ describe("PdfButton", () => {
     const rendered = shallow(<PdfButton label="Label" fetchHref={() => {}} />);
     const button = rendered.find(ButtonPrimary);
 
-    expect(button.prop("disabled")).toEqual(true);
-    expect(button.prop("loading")).toEqual(true);
+    expect(button.prop("isDisabled")).toEqual(true);
+    expect(button.prop("isLoading")).toEqual(true);
   });
 
   test("should render a button in ready state when passed href", () => {
@@ -18,7 +18,7 @@ describe("PdfButton", () => {
     );
     const button = rendered.find(ButtonPrimary);
 
-    expect(button.prop("disabled")).toEqual(false);
-    expect(button.prop("loading")).toEqual(false);
+    expect(button.prop("isDisabled")).toEqual(false);
+    expect(button.prop("isLoading")).toEqual(false);
   });
 });

@@ -97,7 +97,7 @@ const monopolyResultsDisplay = {
 };
 
 const monopolyResultsColors = {
-  "1": COLORS.GREY_LIGHT_1,
+  "1": COLORS.GREY,
   "2": COLORS.GREEN,
   "5": COLORS.RED,
   "10": COLORS.BLUE,
@@ -107,7 +107,7 @@ const monopolyResultsColors = {
 };
 
 const monopolyResultsBorderColor = {
-  "2r": COLORS.GREY_LIGHT_1,
+  "2r": COLORS.GREY,
   "4r": COLORS.YELLOW,
 };
 

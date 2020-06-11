@@ -6,7 +6,7 @@ export const COLORS = {
   BLUE: "blue-50",
   PURPLE: "purple-5",
   ORANGE: "orange-30",
-  GREY_LIGHT_1: "grey-5",
+  GREY: "grey-5",
 };
 
 export const RESULT_BADGES_COUNT = 10;
