@@ -88,9 +88,9 @@ export const SetAmount = (props: Props) => {
         <div className="u-padding-top--2xlg">
           <ButtonPrimary
             className="u-width--full"
-            disabled={!limitInRange(amount) || loading}
+            isDisabled={!limitInRange(amount) || loading}
             size="md"
-            loading={loading}
+            isLoading={loading}
             onClick={confirmLimit}
           >
             {t.save_limit_button}
