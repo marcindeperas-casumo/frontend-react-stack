@@ -61,8 +61,8 @@ function getBackgroundColor(inBonusMode: boolean, level: number): string {
     return "yellow-30";
   }
   if (inBonusMode) {
-    return "violet";
+    return "purple-5";
   }
 
-  return "turquoise";
+  return "teal-50";
 }

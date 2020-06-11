@@ -25,7 +25,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
       bonus_mode_label,
     } = this.props.content;
 
-    const bonusModeIndicator = `<strong class="t-color-violet">${bonus_mode_label}</strong>`;
+    const bonusModeIndicator = `<strong class="t-color-purple-5">${bonus_mode_label}</strong>`;
     const maxLevelReached = isMaxLevel(level, inBonusMode);
     const label = maxLevelReached ? max_level_label : level_label;
     const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
