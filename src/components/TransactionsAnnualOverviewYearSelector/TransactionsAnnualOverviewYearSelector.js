@@ -112,8 +112,8 @@ export function TransactionsAnnualOverviewYearSelector({
       <ButtonPrimary
         className="u-width--full"
         data-test-id="annual-overview-year-selector-button"
-        disabled={loading}
-        loading={loading}
+        isDisabled={loading}
+        isLoading={loading}
         onClick={onClick}
       >
         {content.annual_overview_year_selector_button}
