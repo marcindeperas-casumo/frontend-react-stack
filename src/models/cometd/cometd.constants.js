@@ -32,4 +32,5 @@ export const MESSAGES = {
     "com.casumo.es.slotsessions.notifications.TimeRemainingNotification",
   STATS_UPDATED_NOTIFICATION:
     "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification",
+  REALITY_CHECK_PERIODIC_NOTIFICATION: "realityCheck",
 };

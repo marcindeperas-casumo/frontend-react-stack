@@ -20,11 +20,14 @@ const stories = storiesOf("Compliance/RealityCheck", module);
 const realityCheck = {
   totalWinAmount: {
     amount: 70,
+    iso4217CurrencyCode: "SEK",
   },
   totalBetAmount: {
     amount: 20,
+    iso4217CurrencyCode: "SEK",
   },
   sessionStartedTime: 1575624543323,
+  intervalSeconds: 60,
 };
 
 stories.add("Default", () => {

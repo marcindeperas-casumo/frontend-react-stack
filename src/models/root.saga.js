@@ -35,6 +35,7 @@ import {
   fetchAnnualOverviewSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/compliance/denmark";
+import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -97,6 +98,14 @@ export default function* rootSaga(dispatch: any): * {
       cometdMessages.STATS_UPDATED_NOTIFICATION
     ),
     statsUpdateNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.REALITY_CHECK_PERIODIC_NOTIFICATION
+    ),
+    realityCheckPeriodicNotificationSaga
   );
   yield fork(
     takeEvery,
