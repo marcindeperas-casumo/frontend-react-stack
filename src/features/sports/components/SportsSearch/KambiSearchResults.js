@@ -80,7 +80,9 @@ const ResultRow = ({
     )}
     onClick={onClick}
   >
-    <div className="u-padding-y--md t-border-bottom">{children}</div>
+    <div className="u-padding-y--md t-border-bottom t-border-grey-5">
+      {children}
+    </div>
   </div>
 );
 

@@ -43,7 +43,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
       >
         <TickIcon
           className={classNames(
-            !isFavourite && "u-hidden t-color-grey-0",
+            !isFavourite && "u-visibility--hidden t-color-grey-0",
             "t-color-white"
           )}
         />

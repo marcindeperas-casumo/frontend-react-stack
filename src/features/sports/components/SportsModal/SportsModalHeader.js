@@ -92,7 +92,7 @@ export const SportsModalHeader = ({
   children,
   onBack = noop,
   onClose = noop,
-  className = "t-background-white t-color-grey-90 t-border-bottom",
+  className = "t-background-white t-color-grey-90 t-border-bottom t-border-grey-5",
 }: HeaderProps) => (
   <Flex
     align="center"
