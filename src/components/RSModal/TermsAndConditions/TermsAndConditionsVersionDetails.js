@@ -47,21 +47,26 @@ export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {
       <Flex justify="space-between" className="u-padding--md">
         {props.shouldAllowHistoryView ? (
           <>
-            <ButtonPrimary
-              href={props.versionData.pdf.url}
-              className="o-flex--1"
-              download={props.versionData.pdf.title}
-            >
-              {t.button_download_pdf}
-            </ButtonPrimary>
-            <div className="u-padding" />
-            <ButtonSecondary
-              data-test-id="toggle-history-view-btn"
-              onClick={props.onShowHistory}
-              className="o-flex--1"
-            >
-              {t.button_version_history}
-            </ButtonSecondary>
+            <Flex.Block>
+              <ButtonPrimary
+                size="sm"
+                href={props.versionData.pdf.url}
+                className="u-width--full"
+                download={props.versionData.pdf.title}
+              >
+                {t.button_download_pdf}
+              </ButtonPrimary>
+            </Flex.Block>
+            <Flex.Block>
+              <ButtonSecondary
+                size="sm"
+                data-test-id="toggle-history-view-btn"
+                onClick={props.onShowHistory}
+                className="u-width--full"
+              >
+                {t.button_version_history}
+              </ButtonSecondary>
+            </Flex.Block>
           </>
         ) : (
           <ButtonSecondary

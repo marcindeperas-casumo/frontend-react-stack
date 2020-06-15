@@ -43,7 +43,11 @@ export function LimitAlmostConsumedNotification({
           })}
         </Text>
         <div className="o-flex--1" />
-        <ButtonPrimary className="u-margin--md" onClick={props.acceptModal}>
+        <ButtonPrimary
+          size="sm"
+          className="u-margin--md"
+          onClick={props.acceptModal}
+        >
           {t.continue_playing_button}
         </ButtonPrimary>
       </Flex>

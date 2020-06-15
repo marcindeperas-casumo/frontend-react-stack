@@ -30,7 +30,11 @@ export function TimeRemainingNotification({
         <Text tag="span" className="u-font-weight-bold">
           {t.modal_body}
         </Text>
-        <ButtonPrimary className="u-margin--md" onClick={props.acceptModal}>
+        <ButtonPrimary
+          size="sm"
+          className="u-margin--md"
+          onClick={props.acceptModal}
+        >
           {t.continue_playing_button}
         </ButtonPrimary>
       </Flex>

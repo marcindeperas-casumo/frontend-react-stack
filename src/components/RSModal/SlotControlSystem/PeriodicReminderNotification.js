@@ -83,7 +83,7 @@ export function PeriodicReminderNotification({
         />
         <div className="o-flex--1" />
         <ButtonPrimary
-          variant="primary"
+          size="sm"
           className="u-margin--md"
           onClick={props.acceptModal}
         >
