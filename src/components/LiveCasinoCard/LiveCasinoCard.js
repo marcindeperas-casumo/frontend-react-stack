@@ -100,7 +100,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <ButtonPrimary className="u-text-transform-capitalize">
+            <ButtonPrimary size="sm" className="u-text-transform-capitalize">
               <span>{playNowText}</span>
             </ButtonPrimary>
           </TrackClick>

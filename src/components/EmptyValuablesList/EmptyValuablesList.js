@@ -16,7 +16,10 @@ export const EmptyValuablesList = (props: Props) => (
     <div className="c-empty-valuables-list-image">
       <EmptyValuablesImage />
     </div>
-    <Text className="u-margin-top t-color-grey-5 u-font-weight-bold" tag="span">
+    <Text
+      className="u-margin-top t-color-grey-20 u-font-weight-bold"
+      tag="span"
+    >
       {props.message}
     </Text>
   </Flex>

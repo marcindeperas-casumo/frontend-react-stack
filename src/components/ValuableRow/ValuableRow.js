@@ -114,7 +114,7 @@ export class ValuableRow extends PureComponent<Props> {
 
     return (
       <Flex>
-        <Flex.Item className="c-valuable-row__selector">
+        <Flex.Item className="u-width">
           {isSelected && <ValuableSelector />}
         </Flex.Item>
         <Flex.Item className="u-padding-right--md o-flex--1">
@@ -134,7 +134,7 @@ export class ValuableRow extends PureComponent<Props> {
                 />
               </div>
             </Flex.Item>
-            <Flex.Block>
+            <Flex.Block className="t-color-grey-70">
               {stateBadgeVisible && (
                 <ValuableStateIndicator state={valuableState} />
               )}
@@ -154,7 +154,7 @@ export class ValuableRow extends PureComponent<Props> {
               )}
               {caveat && (
                 <Text
-                  className="t-color-grey-5 u-margin-top--md"
+                  className="t-color-grey-20 u-margin-top--md"
                   size="2xs"
                   tag="div"
                 >

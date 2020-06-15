@@ -30,6 +30,7 @@ export const GameDetailsButtons = ({
       }}
     >
       <ButtonPrimary
+        size="sm"
         className="u-width--full u-margin-bottom--md"
         onClick={() => launchGame({ slug })}
       >
@@ -46,6 +47,7 @@ export const GameDetailsButtons = ({
         }}
       >
         <ButtonSecondary
+          size="sm"
           className="u-width--full"
           onClick={() =>
             launchGame({

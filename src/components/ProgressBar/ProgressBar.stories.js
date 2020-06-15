@@ -6,7 +6,11 @@ import { ProgressBar } from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
 
-const DefaultStory = () => {
+stories.add("Default", () => {
+  return <ProgressBar progress={50} />;
+});
+
+stories.add("Playground", () => {
   const progress = number("Progress", 25, {
     range: true,
     min: 0,
@@ -31,6 +35,4 @@ const DefaultStory = () => {
       fillerClassNames={fillerClassNames}
     />
   );
-};
-
-stories.add("Default", DefaultStory);
+});

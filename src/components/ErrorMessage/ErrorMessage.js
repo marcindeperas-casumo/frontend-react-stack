@@ -30,6 +30,7 @@ const noop = () => () => {};
 const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
   <Flex.Item>
     <ButtonPrimary
+      size="sm"
       data-test="error-message-retry-button"
       // $FlowFixMe
       onClick={retry}

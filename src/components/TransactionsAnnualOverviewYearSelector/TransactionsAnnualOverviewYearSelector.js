@@ -110,6 +110,7 @@ export function TransactionsAnnualOverviewYearSelector({
         </Flex.Item>
       </Flex>
       <ButtonPrimary
+        size="sm"
         className="u-width--full"
         data-test-id="annual-overview-year-selector-button"
         isDisabled={loading}

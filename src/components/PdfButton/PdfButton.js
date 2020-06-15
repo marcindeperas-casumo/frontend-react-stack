@@ -24,6 +24,7 @@ export function PdfButton({
 
   return (
     <ButtonPrimary
+      size="sm"
       href={href}
       className="u-margin-top--lg u-margin-bottom--md"
       isDisabled={isDisabled}
