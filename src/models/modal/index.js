@@ -19,7 +19,7 @@ export type ModalId =
   | "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION"
   | "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION"
   | "DANISH_ENTRY_OVERLAY"
-  | "REALITY_CHECK_MODAL";
+  | "REALITY_CHECK";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

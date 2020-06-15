@@ -2,6 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import MockDate from "mockdate";
 import MockStore from "Components/MockStore";
 import { RealityCheck } from "./RealityCheck";
 
@@ -16,15 +17,21 @@ const t = {
   reality_check_exit_game_button_text: "Change game",
 };
 const stories = storiesOf("Compliance/RealityCheck", module);
+const sessionStartedTime = 1575624543323;
+
+MockDate.set(new Date(sessionStartedTime + 360000).toString());
 
 const realityCheck = {
   totalWinAmount: {
     amount: 70,
+    iso4217CurrencyCode: "SEK",
   },
   totalBetAmount: {
     amount: 20,
+    iso4217CurrencyCode: "SEK",
   },
-  sessionStartedTime: 1575624543323,
+  sessionStartedTime,
+  intervalSeconds: 60,
 };
 
 stories.add("Default", () => {
