@@ -14,7 +14,7 @@ const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
   <Flex
     align="stretch"
     justify="center"
-    className="u-padding--md t-background-grey-light-3"
+    className="u-padding--md t-background-grey-0"
   >
     <ButtonPrimary size="md" onClick={onClick} className="u-width--full">
       {children}

@@ -41,7 +41,7 @@ const addStory = ([name, props = {}]) => {
     {
       onClose,
       className:
-        "c-sports-modal-header--left-align t-background-white t-color-chrome-dark-3 t-border-bottom",
+        "c-sports-modal-header--left-align t-background-white t-color-grey-90 t-border-bottom",
     },
   ],
   ["Back and Close Buttons", { onBack, onClose }],

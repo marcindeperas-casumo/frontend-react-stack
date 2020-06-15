@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const defaultClasses =
-  "t-background-white t-color-chrome-dark-1 t-box-shadow";
+  "t-background-white t-color-grey-50 t-elevation--10";
 
 const EditPillsButton = ({
   onClick,
@@ -43,7 +43,7 @@ const EditPillsButton = ({
         <Text
           style={{ marginTop: 1 }}
           size="sm"
-          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-chrome-dark-1 u-margin-bottom--none"
+          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-grey-50 u-margin-bottom--none"
         >
           {label}
         </Text>
