@@ -72,7 +72,7 @@ class MyComponent extends PureComponent {
         key={key}
         index={index}
         style={style}
-        className="t-border-bottom"
+        className="t-border-bottom t-border-grey-5"
       >
         loading...
       </Flex>

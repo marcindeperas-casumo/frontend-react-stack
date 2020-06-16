@@ -30,10 +30,7 @@ const EditPillsButton = ({
     onClick={onClick}
   >
     <Flex.Item
-      className={classNames(
-        "t-border-r--circle o-flex u-padding--sm",
-        className
-      )}
+      className={classNames("t-border-r--circle o-flex u-padding", className)}
       data-test="edit-pills-button-container"
     >
       <CrossIcon size="sm" className="u-transform-rotate-z--45" />

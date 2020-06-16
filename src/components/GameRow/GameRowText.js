@@ -34,7 +34,7 @@ export const GameRowText = ({
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey-20">
+      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey-50">
         {bets}
       </Text>
     );
