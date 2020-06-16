@@ -68,7 +68,7 @@ const CloseButton = ({ onClick, className }: ButtonProps) => (
         onClick === noop && "u-visibility--hidden"
       )}
     >
-      <CrossIcon size="md" />
+      <CrossIcon />
     </Flex>
   </ButtonContainer>
 );
@@ -84,7 +84,7 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     )}
     onClick={onClick}
   >
-    <CrossIcon size="md" />
+    <CrossIcon />
   </Flex>
 );
 

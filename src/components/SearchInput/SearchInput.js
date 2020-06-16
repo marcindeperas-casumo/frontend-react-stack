@@ -114,7 +114,7 @@ class SearchInput extends React.Component<Props, State> {
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >
-            <div className="t-color-white t-border-r--circle u-overflow-hidden t-background-black">
+            <div className="t-color-white u-padding--sm t-border-r--circle u-overflow-hidden t-background-black">
               <CrossIcon size="sm" className="u-display--block" />
             </div>
           </div>

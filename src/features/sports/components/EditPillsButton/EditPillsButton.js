@@ -36,7 +36,7 @@ const EditPillsButton = ({
       )}
       data-test="edit-pills-button-container"
     >
-      <CrossIcon className="u-transform-rotate-z--45" />
+      <CrossIcon size="sm" className="u-transform-rotate-z--45" />
     </Flex.Item>
     {label && (
       <Flex.Item>
