@@ -72,7 +72,7 @@ export function PendingChanges(props: Props) {
       </Flex>
       <ButtonSecondary
         className="o-flex--1 u-margin-top--lg"
-        size="md"
+        size="sm"
         data-test-id="cancel-pending-limit-change"
         onClick={props.limitCancel}
       >

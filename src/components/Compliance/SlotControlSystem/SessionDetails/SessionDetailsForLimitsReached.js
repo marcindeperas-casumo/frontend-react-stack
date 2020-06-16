@@ -63,7 +63,7 @@ export function SessionDetailsForLimitsReached(props: Props) {
         moneyLeft={lastEndedSession.stats.remainingBalance}
         moneyWagered={lastEndedSession.stats.totalBets}
       />
-      <ButtonPrimary size="md" className="u-margin--md" onClick={onClickButton}>
+      <ButtonPrimary size="sm" className="u-margin--md" onClick={onClickButton}>
         {t?.limits_reached_button_label || null}
       </ButtonPrimary>
     </Flex>

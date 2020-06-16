@@ -57,6 +57,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
 
   const SubmitButton = (
     <ButtonPrimary
+      size="md"
       data-test-id="submit-button"
       className="u-padding-y--md u-width--full"
       isDisabled={req}
@@ -119,8 +120,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"
-          className={`t-border-r u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
-          style={{ backgroundColor: "#f2f2f2" }}
+          className={`t-border-r t-background-grey-0 u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
         >
           <AdditionalConditions {...props.preadjust} t={t} />
           {SubmitButton}

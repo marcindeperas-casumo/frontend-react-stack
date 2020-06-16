@@ -43,7 +43,7 @@ export function SessionDetailsForLogout(props: Props) {
         moneyWagered={activeSession.stats.totalBets}
       />
       <ButtonPrimary
-        size="md"
+        size="sm"
         variant="primary"
         className="u-margin--md"
         onClick={onClickButton}
