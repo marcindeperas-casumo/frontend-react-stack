@@ -39,7 +39,7 @@ export const SidebarRow = (props: Props) => {
     {
       "c-sidebar__nav-item--active t-background-teal-50 t-color-white": selected,
       "c-sidebar__nav-item--white t-background-white t-color-grey-50": secondary,
-      "c-sidebar__nav-item t-background-purple-60": !secondary,
+      "c-sidebar__nav-item t-background-purple-80": !secondary,
     }
   );
 
