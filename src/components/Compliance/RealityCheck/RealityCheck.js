@@ -1,12 +1,13 @@
 // @flow
 import * as React from "react";
 import { DateTime } from "luxon";
+import { pathOr } from "ramda";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
-import { interpolate, formatCurrency } from "Utils";
+import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 
 type Props = {
@@ -44,7 +45,8 @@ export function RealityCheck(props: Props) {
     locale,
     currency,
     value: Math.abs(
-      realityCheck.totalWinAmount.amount - realityCheck.totalBetAmount.amount
+      pathOr(0, ["totalWinAmount", "amount"], realityCheck) -
+        pathOr(0, ["totalBetAmount", "amount"], realityCheck)
     ),
   });
   const amountLostMessage = interpolate(t.reality_check_amount_lost_message, {
@@ -53,10 +55,14 @@ export function RealityCheck(props: Props) {
   const hiTitle = interpolate(t.reality_check_title, {
     name: casumoName,
   });
-  const timeDiff =
-    DateTime.local() - DateTime.fromMillis(realityCheck.sessionStartedTime);
+  const timeDiff = DateTime.fromMillis(realityCheck.sessionStartedTime)
+    .diffNow("minutes")
+    .negate();
+  const timeDiffInMins = timeDiff.toFormat("m");
   const messageMinutesPlayed = interpolate(t.reality_check_message, {
-    totalMinutesPlayed: DateTime.fromMillis(timeDiff).toFormat("m"),
+    totalMinutesPlayed: timeDiffInMins,
+    currentSessionDuration: timeDiffInMins,
+    netLosses: formattedLostAmount,
   });
 
   return (
@@ -65,7 +71,7 @@ export function RealityCheck(props: Props) {
         {hiTitle} {messageMinutesPlayed}
       </Text>
       <Text tag="div" className="u-text-align-center">
-        {amountLostMessage}
+        {!isCmsEntryEmpty(amountLostMessage) && amountLostMessage}
       </Text>
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
         <a href="/" onClick={onClickViewHistoryBets}>

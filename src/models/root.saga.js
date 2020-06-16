@@ -35,6 +35,7 @@ import {
   fetchAnnualOverviewSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/playOkay";
+import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
 // eslint-disable-next-line no-unused-vars
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 
@@ -99,6 +100,14 @@ export default function* rootSaga(dispatch: any): * {
       cometdMessages.STATS_UPDATED_NOTIFICATION
     ),
     statsUpdateNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.REALITY_CHECK_PERIODIC_NOTIFICATION
+    ),
+    realityCheckPeriodicNotificationSaga
   );
   yield fork(
     takeEvery,

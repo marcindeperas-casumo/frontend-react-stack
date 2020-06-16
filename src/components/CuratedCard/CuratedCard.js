@@ -21,6 +21,7 @@ import "./CuratedCard.scss";
 
 type Props = {
   className?: string,
+  market: string,
   curatedCard: ?A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
   navigateToSportsHash: (args: NavigateToSportsHashType) => void,
@@ -30,6 +31,7 @@ export const CuratedCard = ({
   className,
   curatedCard,
   onLaunchGame,
+  market,
   navigateToSportsHash,
 }: Props) => {
   const { client } = React.useContext(getApolloContext());
@@ -38,7 +40,7 @@ export const CuratedCard = ({
     return null;
   }
 
-  const link = getLink(curatedCard);
+  const link = getLink({ ...curatedCard, market });
   const isGame = getIsGame(curatedCard);
   const isSports = getIsSports(curatedCard);
   const trackData = getTrackData(curatedCard);

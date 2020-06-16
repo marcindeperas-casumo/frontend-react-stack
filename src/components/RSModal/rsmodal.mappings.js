@@ -43,7 +43,7 @@ export const mappings: Mapping = {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
   },
-  REALITY_CHECK_MODAL: {
+  [REACT_APP_MODAL.ID.REALITY_CHECK]: {
     slug: REALITY_CHECK_CMS_SLUG,
     Content: RealityCheck,
   },
