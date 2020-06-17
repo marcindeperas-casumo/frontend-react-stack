@@ -10,7 +10,7 @@ import { reducer as playing } from "Models/playing";
 import { reducer as sidebar } from "Models/sidebar";
 import { modalReducer as modal } from "Models/modal";
 import { slotControlSystemReducer as slotControlSystem } from "Models/slotControlSystem";
-import { playOkayReducer } from "./playOkay/playOkay.reducer";
+import { playOkayReducer } from "./playOkay/playOkay.rootReducer";
 
 const rootReducer = combineReducers({
   router,

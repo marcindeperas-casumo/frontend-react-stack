@@ -1,12 +1,13 @@
+// @flow
 import { put, select, take, call } from "redux-saga/effects";
 import { propEq, find } from "ramda";
 import { showModal } from "Models/modal";
 import { waitForSelector } from "Utils";
 import { REACT_APP_MODAL, MARKETS } from "Src/constants";
 import { marketSelector, playerIdSelector } from "Models/handshake";
-import { types, getAllLimits, limitTypes } from "Models/compliance/denmark";
+import { types, getAllLimits, limitTypes } from "Models/playOkay";
 
-export function* danishOverlaySaga(action) {
+export function* danishOverlaySaga(): * {
   yield call(waitForSelector, playerIdSelector);
   yield call(waitForSelector, marketSelector);
 

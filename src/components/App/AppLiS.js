@@ -13,5 +13,12 @@ export const AppLiS = () => (
       }
       namedExport="DepositLimitsViewContainer"
     />
+    <LazyPortal
+      hostElementId="react-host-sga-login-time-limits-card"
+      loader={() =>
+        import("Components/Compliance/Sweden/TimeLimits/TimeLimitsCard")
+      }
+      namedExport="TimeLimitsCardContainer"
+    />
   </>
 );

@@ -1,9 +1,10 @@
+// @flow
 import { connect } from "react-redux";
 import { playerIdSelector, currencySelector } from "Models/handshake";
 import {
   saveLimitAction,
   depositLimitHasBeenSetSelector,
-} from "Models/compliance/denmark";
+} from "Models/playOkay";
 import { DanishEntryOverlay } from "./DanishEntryOverlay";
 
 export const DanishEntryOverlayContainer = connect(

@@ -1,6 +1,7 @@
+// @flow
 import { createSelector } from "reselect";
-import { propEq, find, pathOr, propOr } from "ramda";
-import { limitTypes } from "Models/compliance/denmark/constants";
+import { propEq, find, pathOr, propOr, prop } from "ramda";
+import { limitTypes } from "./constants";
 
 export const playOkaySelector = pathOr({}, ["playOkay", "playOkay"]);
 
@@ -17,4 +18,9 @@ export const depositLimitHasBeenSetSelector = createSelector(
 export const depositLimitSelector = createSelector(
   moneyLimitsSelector,
   find(propEq("limitType", limitTypes.DEPOSIT_LIMIT))
+);
+
+export const loginTimeLimitsSelector = createSelector(
+  playOkaySelector,
+  prop("loginTimeLimits")
 );

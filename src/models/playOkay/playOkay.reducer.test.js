@@ -1,7 +1,7 @@
 import { types } from "./playOkay.actions";
 import { playOkayReducer } from "./playOkay.reducer";
 
-describe("Models/Compliance/Denmark/PlayOkayReducer", () => {
+describe("Models/playOkay/PlayOkayReducer", () => {
   test("PLAYOK_FETCH_ALL_LIMITS_COMPLETED", () => {
     const action = {
       type: types.PLAYOK_FETCH_ALL_LIMITS_COMPLETED,
