@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { Link, useMatch } from "@reach/router";
-import Button from "@casumo/cmp-button";
+import { ChipNavigation } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import * as Icons from "@casumo/cmp-icons";
 
@@ -20,20 +20,9 @@ const GameSetChip = ({
   return (
     <Flex.Item>
       <Link to={to}>
-        <Button
-          variant={active ? "primary" : "secondary"}
-          style={
-            active
-              ? {}
-              : {
-                  color: "#444e5d",
-                  backgroundColor: "#fff",
-                }
-          }
-        >
-          <Icon className="u-margin-right" />
+        <ChipNavigation isActive={active} Icon={Icon}>
           {text}
-        </Button>
+        </ChipNavigation>
       </Link>
     </Flex.Item>
   );
@@ -62,7 +51,7 @@ export const GameBrowserSets = (props: Props) => {
       spacing="default"
       className="o-wrapper u-padding-y--lg"
     >
-      <GameSetButton to="top" Icon={Icons.HeartIcon} text="Top Lists" />
+      <GameSetChip to="top" Icon={Icons.HeartIcon} text="Top Lists" />
       <>
         {props.sets.map(x => (
           <GameSetChip
