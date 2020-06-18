@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolateWithJSX } from "Utils";
-import { prepareDuration } from "./TimeLimitsCard.utils";
+import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
@@ -45,7 +45,9 @@ export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
       <Flex.Item>
         <div className="o-ratio t-border-r--circle t-background-white u-text-align-center u-padding--3xlg">
           <div className="o-ratio__content u-padding-y--lg">
-            <Text tag="strong">{prepareDuration(limitDuration)}</Text>
+            <Text tag="strong">
+              <TimeLimitsCardDuration duration={limitDuration} />
+            </Text>
             <Text>{periodLabel}</Text>
           </div>
         </div>
@@ -53,7 +55,7 @@ export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
       <Flex.Item>
         <Text size="sm">
           {interpolateWithJSX(
-            { time: prepareDuration(hrsLeftDuration) },
+            { time: <TimeLimitsCardDuration duration={hrsLeftDuration} /> },
             hrsLeftLabel
           )}
         </Text>
