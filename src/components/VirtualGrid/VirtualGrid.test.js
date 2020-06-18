@@ -14,6 +14,7 @@ describe("VirtualGrid", () => {
       <MockStore>
         <VirtualGrid
           dataList={[{}, {}, {}, {}]}
+          numberOfEntries={4}
           TileComponent={() => <div />}
           spacerSize="sm"
           tileWidth={100}
