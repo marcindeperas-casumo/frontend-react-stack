@@ -6,7 +6,7 @@ import { TextInput } from "Components/Compliance/TextInput";
 import { textInputOnChange } from "./TimeLimitsForm.utils";
 
 type Props = {
-  value: number | void,
+  value?: number,
   setter: number => void,
   min: number,
   max: number,

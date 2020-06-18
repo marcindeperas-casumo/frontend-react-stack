@@ -4,7 +4,7 @@ import { isEmpty } from "ramda";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal } from "Models/modal";
 import bridge from "Src/DurandalReactBridge";
-import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
+import { KO_APP_EVENT_MODAL_HIDDEN, REACT_APP_MODAL } from "Src/constants";
 import { realityCheckSelector } from "Models/playOkay/realityCheck";
 
 type Props = {
@@ -21,10 +21,10 @@ export function useRealityCheckModal({ pauseGame, resumeGame }: Props) {
     if (!isEmpty(realityCheck)) {
       if (pauseGame) {
         pauseGame().then(() => {
-          dispatch(showModal("REALITY_CHECK_MODAL", config));
+          dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
         });
       } else {
-        dispatch(showModal("REALITY_CHECK_MODAL", config));
+        dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

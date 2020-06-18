@@ -26,6 +26,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
   return (
     <CuratedCard
       className={className}
+      market={data?.session.market}
       curatedCard={data?.curatedCard}
       navigateToSportsHash={navigateToSportsHash}
       onLaunchGame={() =>
