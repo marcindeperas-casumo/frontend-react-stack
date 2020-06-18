@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import { WaitForHostElement } from "Components/WaitForHostElement";
 import Portal from "Components/Portal";
 import { TabletAndDesktop, Mobile } from "Components/ResponsiveLayout";
+import { GetGameSets } from "./GetGameSets.graphql";
 import { TopNavDesktop, TopNavMobile } from "./TopNav";
 import { GameBrowserSets } from "./GameBrowserSets";
 

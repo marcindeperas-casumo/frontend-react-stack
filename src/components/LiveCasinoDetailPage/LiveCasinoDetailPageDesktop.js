@@ -49,6 +49,7 @@ export const LiveCasinoDetailPageDesktop = () => {
       <VirtualGrid
         {...tileProps}
         dataList={games}
+        numberOfEntries={games.length}
         TileComponent={game => <LiveCasinoCard game={game} t={t} />}
       />
     </Wrapper>
