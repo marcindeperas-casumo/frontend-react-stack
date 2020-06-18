@@ -3,16 +3,9 @@ import * as React from "react";
 import { Link, useMatch } from "@reach/router";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import {
-  ChipCardsIcon,
-  DiamondIcon,
-  HeartIcon,
-  MoneyStackIcon,
-  MustDropJackpotIcon,
-  TablegamesIcon,
-} from "@casumo/cmp-icons";
+import * as Icons from "@casumo/cmp-icons";
 
-const GameSetButton = ({
+const GameSetChip = ({
   Icon,
   text,
   to,
@@ -46,23 +39,40 @@ const GameSetButton = ({
   );
 };
 
-export const GameBrowserSets = () => {
+type Props = {
+  sets: Array<{
+    key: string,
+    title: string,
+    icon: string,
+    url: string,
+  }>,
+  loading: boolean,
+};
+export const GameBrowserSets = (props: Props) => {
+  const match = useMatch("search");
+  const searchActive = Boolean(match);
+
+  if (searchActive || props.sets.length === 0) {
+    return null;
+  }
+
   return (
     <Flex
       direction="horizontal"
       spacing="default"
       className="o-wrapper u-padding-y--lg"
     >
-      <GameSetButton to="top" Icon={HeartIcon} text="Top Lists" />
-      <GameSetButton to="slots" Icon={DiamondIcon} text="Slots" />
-      <GameSetButton to="table" Icon={TablegamesIcon} text="Table games" />
-      <GameSetButton to="jackpots" Icon={MoneyStackIcon} text="Jackpots" />
-      <GameSetButton
-        to="must-drop-jackpots"
-        Icon={MustDropJackpotIcon}
-        text="Must Drop Jackpots"
-      />
-      <GameSetButton to="live-casino" Icon={ChipCardsIcon} text="Live Casino" />
+      <GameSetButton to="top" Icon={Icons.HeartIcon} text="Top Lists" />
+      <>
+        {props.sets.map(x => (
+          <GameSetChip
+            key={x.key}
+            to={x.url}
+            Icon={Icons[x.icon]}
+            text={x.title}
+          />
+        ))}
+      </>
     </Flex>
   );
 };
