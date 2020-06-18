@@ -899,6 +899,32 @@ export type CurrentReelRaceInfoQuery = {
   reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>,
 };
 
+// GraphQL query operation: GetGameSets
+// ====================================================
+
+export type GetGameSets_gameSetsList_additionalFilterGroups_values = {
+  key: string,
+  query: string,
+};
+export type GetGameSets_gameSetsList_additionalFilterGroups = {
+  key: string,
+  type: string,
+  values: Array<GetGameSets_gameSetsList_additionalFilterGroups_values>,
+};
+export type GetGameSets_gameSetsList = {
+  id: string,
+  key: string,
+  title: string,
+  icon: string,
+  defaultSort: GamesSortOrder,
+  supportedSorts: Array<GamesSortOrder>,
+  baseQuery: string,
+  additionalFilterGroups: Array<GetGameSets_gameSetsList_additionalFilterGroups>,
+};
+export type GetGameSets = {
+  gameSetsList: Array<GetGameSets_gameSetsList>,
+};
+
 // ====================================================
 // GraphQL query operation: PlayAgainGameBySlugQuery
 // ====================================================
@@ -2839,6 +2865,18 @@ export type Currency =
   | "SEK"
   | "USD";
 export type RequirementType = "deposit" | "wager";
+export type GamesSortOrder =
+  | "A_TO_Z_BY_TITLE"
+  | "CURATED_JACKPOTS"
+  | "CURATED_LIVE_CASINO"
+  | "CURATED_SLOT_MACHINES"
+  | "CURATED_TABLE_GAMES"
+  | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
+  | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE"
+  | "MOST_TO_LEAST_POPULAR"
+  | "NEWEST_TO_OLDEST_BY_RELEASE_DATE"
+  | "OLDEST_TO_NEWEST_BY_RELEASE_DATE"
+  | "Z_TO_A_BY_TITLE";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 export type Modal =
