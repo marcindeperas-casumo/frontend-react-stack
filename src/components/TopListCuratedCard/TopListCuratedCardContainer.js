@@ -5,6 +5,8 @@ import {
   hasMadeFirstDepositSelector,
   featureFlagSelector,
   verticalSelector,
+  marketSelector,
+  welcomeOfferIdSelector,
 } from "Models/handshake";
 import { TopListCuratedCard } from "./TopListCuratedCard";
 
@@ -19,6 +21,8 @@ const enforceOriginalSlugSelector = state =>
   shouldShowOriginalCuratedSelector(state) || isSportsPlayerSelector(state);
 
 export const TopListCuratedCardContainer = connect(state => ({
+  market: marketSelector(state),
+  welcomeOfferId: welcomeOfferIdSelector(state),
   hasDeposited: hasMadeFirstDepositSelector(state),
   enforceOriginalSlug: enforceOriginalSlugSelector(state),
 }))(TopListCuratedCard);
