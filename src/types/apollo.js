@@ -212,7 +212,7 @@ export type GameListLiveCasinoQueryVariables = {
 // GraphQL query operation: GameListPageQuery
 // ====================================================
 
-export type GameListPageQuery_getGamesForSet_games = {
+export type GameListPageQuery_getGamesPaginated_games = {
   isInMaintenance: boolean,
   backgroundImage: string,
   logo: string,
@@ -221,13 +221,13 @@ export type GameListPageQuery_getGamesForSet_games = {
   id: string,
   isInMyList: boolean,
 };
-export type GameListPageQuery_getGamesForSet = {
+export type GameListPageQuery_getGamesPaginated = {
   gamesCount: number,
   offset: number,
-  games: Array<GameListPageQuery_getGamesForSet_games>,
+  games: Array<GameListPageQuery_getGamesPaginated_games>,
 };
 export type GameListPageQuery = {
-  getGamesForSet: GameListPageQuery_getGamesForSet,
+  getGamesPaginated: GameListPageQuery_getGamesPaginated,
 };
 export type GameListPageQueryVariables = {
   query: string,
