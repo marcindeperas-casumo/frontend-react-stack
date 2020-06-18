@@ -25,6 +25,30 @@ export type GetGamesRTPVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: GetGamesRTPLight
+// ====================================================
+
+export type GetGamesRTPLight_getGamesPaginated_games = {
+  id: string,
+  slug: string,
+  title: string,
+  rtp: ?string,
+};
+export type GetGamesRTPLight_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GetGamesRTPLight_getGamesPaginated_games>,
+};
+export type GetGamesRTPLight = {
+  getGamesPaginated: GetGamesRTPLight_getGamesPaginated,
+};
+export type GetGamesRTPLightVariables = {
+  query: string,
+  offset: number,
+  limit: number,
+};
+
+// ====================================================
 // GraphQL query operation: componentBuilderQuery
 // ====================================================
 
@@ -212,23 +236,30 @@ export type GameListLiveCasinoQueryVariables = {
 // GraphQL query operation: GameListPageQuery
 // ====================================================
 
-export type GameListPageQuery_gamesList_games = {
+export type GameListPageQuery_getGamesPaginated_games = {
   isInMaintenance: boolean,
   backgroundImage: string,
   logo: string,
   name: string,
   slug: string,
   id: string,
+  liveCasinoId: ?string,
+  playBackground: string,
   isInMyList: boolean,
+  category: ?string,
 };
-export type GameListPageQuery_gamesList = {
-  games: Array<GameListPageQuery_gamesList_games>,
+export type GameListPageQuery_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GameListPageQuery_getGamesPaginated_games>,
 };
 export type GameListPageQuery = {
-  gamesList: ?GameListPageQuery_gamesList,
+  getGamesPaginated: GameListPageQuery_getGamesPaginated,
 };
 export type GameListPageQueryVariables = {
-  listId: string,
+  query: string,
+  offset: number,
+  limit: number,
 };
 
 // ====================================================
@@ -602,7 +633,8 @@ export type PlayerValuablesQuery_player_valuables =
       __typename:
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
-        | "PlayerValuableSport",
+        | "PlayerValuableSport"
+        | "PlayerValuableWageringLock",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -847,7 +879,6 @@ export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
   remainingSpins: number,
   boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
 };
-
 export type ReelRaceWidgetQuery_reelRaces = {
   id: string,
   game: ReelRaceWidgetQuery_reelRaces_game,
@@ -865,40 +896,6 @@ export type ReelRaceWidgetQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: CurrentReelRaceInfo
-// ====================================================
-
-export type CurrentReelRaceInfoQuery_reelRaces_game = {
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-
-export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
-  playerId: string,
-  position: number,
-  points: number,
-  remainingSpins: number,
-};
-
-export type CurrentReelRaceInfoQuery_reelRaces = {
-  id: string,
-  game: CurrentReelRaceInfoQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  optedIn: boolean,
-  promoted: boolean,
-  spinLimit: number,
-  cometdChannels: Array<string>,
-  leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
-};
-
-export type CurrentReelRaceInfoQuery = {
-  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>,
-};
-
 // GraphQL query operation: GetGameSets
 // ====================================================
 
@@ -2013,6 +2010,38 @@ export type TranslationsQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: CurrentReelRaceInfoQuery
+// ====================================================
+
+export type CurrentReelRaceInfoQuery_reelRaces_game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
+  playerId: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+};
+export type CurrentReelRaceInfoQuery_reelRaces = {
+  id: string,
+  game: CurrentReelRaceInfoQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  promoted: boolean,
+  spinLimit: number,
+  cometdChannels: Array<string>,
+  leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
+};
+export type CurrentReelRaceInfoQuery = {
+  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>,
+};
+
+// ====================================================
 // GraphQL fragment: CuratedCard_Game
 // ====================================================
 
@@ -2249,7 +2278,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+    | "PlayerValuableSport"
+    | "PlayerValuableWageringLock",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -2478,7 +2508,8 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
     | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+    | "PlayerValuableSport"
+    | "PlayerValuableWageringLock",
   id: string,
   title: string,
   content: string,
@@ -2513,7 +2544,8 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+    | "PlayerValuableSport"
+    | "PlayerValuableWageringLock",
   id: string,
   backgroundImage: string,
   content: string,
@@ -2848,7 +2880,8 @@ export type ValuableType =
   | "deposit"
   | "freeBet"
   | "spins"
-  | "sport";
+  | "sport"
+  | "wageringLock";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"

@@ -20,6 +20,8 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: (game: A.GameRow_Game) => React.Node,
+  /** Variable page size number */
+  pageSize: number,
   /** use bigger version, ie. on search page */
   big?: boolean,
 };
@@ -27,6 +29,7 @@ type Props = {
 export class GamesVirtualList extends React.PureComponent<Props> {
   static defaultProps = {
     big: false,
+    pageSize: PAGE_SIZE,
   };
 
   constructor(props: Props) {
@@ -85,7 +88,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
         loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}
-        pageSize={PAGE_SIZE}
+        pageSize={this.props.pageSize}
       />
     );
   }

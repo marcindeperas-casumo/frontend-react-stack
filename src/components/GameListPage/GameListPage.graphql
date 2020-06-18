@@ -1,7 +1,7 @@
 #import "../GameTile/GameTile.graphql"
 
 query GameListPageQuery($query: String!, $offset: Int!, $limit: Int!) {
-  getGamesForSet(query: $query, offset: $offset, limit: $limit) {
+  getGamesPaginated(query: $query, offset: $offset, limit: $limit) {
     gamesCount
     offset
     games {
