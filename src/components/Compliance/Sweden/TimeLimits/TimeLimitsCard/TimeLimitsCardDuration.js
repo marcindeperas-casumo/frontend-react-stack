@@ -3,7 +3,11 @@ import * as React from "react";
 import { Duration as LuxonDuration } from "luxon";
 import { Duration } from "Components/Duration";
 
-export function prepareDuration(duration: LuxonDuration) {
+type Props = {
+  duration: LuxonDuration,
+};
+
+export function TimeLimitsCardDuration({ duration }: Props) {
   const durationInHours = duration.shiftTo("hours");
 
   return (

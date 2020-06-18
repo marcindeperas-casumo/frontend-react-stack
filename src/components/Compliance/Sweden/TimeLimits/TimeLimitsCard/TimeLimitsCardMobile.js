@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { interpolateWithJSX } from "Utils";
 import { type LoginTimeLimit } from "Models/playOkay";
-import { prepareDuration } from "./TimeLimitsCard.utils";
+import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
@@ -63,7 +63,7 @@ export function TimeLimitsCardMobile({
       <Flex.Item className="u-margin-top--lg">
         <Text tag="em" className="t-color-grey-dark-1">
           {interpolateWithJSX(
-            { time: prepareDuration(hrsLeftToday) },
+            { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
             t.time_left_today
           )}
         </Text>
@@ -88,7 +88,7 @@ function LimitRow({ t, limit }: LimitRowProps) {
       <Flex.Item>
         <Text tag="span" size="md" className="t-color-grey-dark-1">
           {interpolateWithJSX(
-            { time: prepareDuration(limitDuration) },
+            { time: <TimeLimitsCardDuration duration={limitDuration} /> },
             t.label
           )}
         </Text>

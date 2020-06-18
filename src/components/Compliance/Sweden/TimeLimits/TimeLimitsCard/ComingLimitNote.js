@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolateWithJSX } from "Utils";
-import { prepareDuration } from "./TimeLimitsCard.utils";
+import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 
 type Props = {
   t: {
@@ -27,7 +27,7 @@ export function ComingLimitNote({ t, limit }: Props) {
       <Text tag="span" size="sm" className="t-color-caution">
         {interpolateWithJSX(
           {
-            time: prepareDuration(limitDuration),
+            time: <TimeLimitsCardDuration duration={limitDuration} />,
             date: activationDate.toFormat("DD"),
           },
           t.coming_limit_note
