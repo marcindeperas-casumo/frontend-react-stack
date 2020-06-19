@@ -24,12 +24,18 @@ type Props = {
   pageSize: number,
   /** use bigger version, ie. on search page */
   big?: boolean,
+  /**
+   * if this prop will change list will know to update its rows
+   * it's needed for lists that can change order
+   */
+  listHash?: string,
 };
 
 export class GamesVirtualList extends React.PureComponent<Props> {
   static defaultProps = {
     big: false,
     pageSize: PAGE_SIZE,
+    listHash: "",
   };
 
   constructor(props: Props) {
@@ -89,6 +95,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}
         pageSize={this.props.pageSize}
+        listHash={this.props.listHash}
       />
     );
   }
