@@ -37,7 +37,12 @@ export function TimeLimitsCardMobile({
   );
 
   return (
-    <Flex direction="vertical" align="center" onClick={onClick}>
+    <Flex
+      direction="vertical"
+      align="center"
+      onClick={onClick}
+      className="u-padding--md"
+    >
       <Flex.Item>
         <Text
           size="md"
