@@ -112,7 +112,7 @@ export default class KambiClient extends React.Component<Props> {
 
   trackAddToBetslip = (obj: any) => {
     const categories: any = obj.hit?.categories;
-    const isLiveEvent: boolean = categories?.is_live;
+    const isLiveEvent: boolean = Boolean(categories?.is_live);
 
     if (isLiveEvent) {
       const bet: any = (obj.ecommerce?.add?.products || [{}])[0];
