@@ -45,7 +45,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
       direction="vertical"
       align="stretch"
       spacing="md"
-      className="u-padding u-padding--lg@desktop"
+      className="u-padding u-padding--lg@desktop u-padding--lg@tablet"
     >
       <Flex.Item>
         <Text className="u-font-weight-bold u-text-align-center u-margin-top">

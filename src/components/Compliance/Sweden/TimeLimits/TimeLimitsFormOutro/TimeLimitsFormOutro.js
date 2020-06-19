@@ -38,7 +38,7 @@ export function TimeLimitsFormOutro({
       direction="vertical"
       spacing="md"
       align="stretch"
-      className="u-padding-top--md u-padding u-padding--lg@desktop"
+      className="u-padding-top--md u-padding u-padding--lg@desktop u-padding--lg@tablet"
     >
       <Flex.Item className="u-text-align-center">
         <TickIcon size="lg" className="t-color-green" />
