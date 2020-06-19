@@ -110,6 +110,7 @@ export function GameListPage({ set }: Props) {
                 fetchMore,
                 data.getGamesPaginated.gamesCount
               )}
+              listHash={sortOrder}
               rowCount={gamesCount}
               renderItem={game => (
                 <GameRow
