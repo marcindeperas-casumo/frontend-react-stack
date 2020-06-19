@@ -110,9 +110,40 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  trackAddToBetslip = (obj: any) => {
+    const categories: any = obj.hit?.categories;
+    const isLiveEvent: string = categories?.is_live;
+
+    if (isLiveEvent) {
+      const bet: any = (obj.ecommerce?.add?.products || [{}])[0];
+      const isLivePage: boolean = (obj.page?.path || "")
+        .split("/")
+        .includes("in-play");
+      const sportName: string = categories?.event_group_two || "unknown";
+      const eventName: string = bet?.name || "unknown";
+      const eventId: number = bet?.id || 0;
+      const trackingName: string = isLivePage
+        ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
+        : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
+
+      tracker.track(trackingName, {
+        [EVENT_PROPS.SPORTS_NAME]: sportName,
+        [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
+        [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
+      });
+    }
+  };
+
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
+      event.data.event === "kambi add to betslip"
+    ) {
+      event.data.kambi && this.trackAddToBetslip(event.data.kambi);
     }
 
     if (
