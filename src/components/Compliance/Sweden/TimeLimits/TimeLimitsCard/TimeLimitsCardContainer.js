@@ -19,35 +19,24 @@ type Props = {
   selectedPeriod?: Period,
 };
 
+const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
+
 export function TimeLimitsCardContainer({ selectedPeriod }: Props) {
   const dispatch = useDispatch();
   const { t } = useTranslationsGql({
-    desktop_title:
-      "root:shared.playokay.login-time-limits-v2:fields.desktop_title",
-    coming_limit_note:
-      "root:shared.playokay.login-time-limits-v2:fields.coming_limit_note",
-    mobile_title:
-      "root:shared.playokay.login-time-limits-v2:fields.mobile_title",
-    mobile_subtitle:
-      "root:shared.playokay.login-time-limits-v2:fields.mobile_subtitle",
-    period_daily:
-      "root:shared.playokay.login-time-limits-v2:fields.period_daily",
-    period_weekly:
-      "root:shared.playokay.login-time-limits-v2:fields.period_weekly",
-    period_monthly:
-      "root:shared.playokay.login-time-limits-v2:fields.period_monthly",
-    mobile_limit_daily:
-      "root:shared.playokay.login-time-limits-v2:fields.mobile_limit_daily",
-    mobile_limit_weekly:
-      "root:shared.playokay.login-time-limits-v2:fields.mobile_limit_weekly",
-    mobile_limit_monthly:
-      "root:shared.playokay.login-time-limits-v2:fields.mobile_limit_monthly",
-    time_left_daily:
-      "root:shared.playokay.login-time-limits-v2:fields.time_left_daily",
-    time_left_weekly:
-      "root:shared.playokay.login-time-limits-v2:fields.time_left_weekly",
-    time_left_monthly:
-      "root:shared.playokay.login-time-limits-v2:fields.time_left_monthly",
+    desktop_title: `${cmsKeyPrefix}desktop_title`,
+    coming_limit_note: `${cmsKeyPrefix}coming_limit_note`,
+    mobile_title: `${cmsKeyPrefix}mobile_title`,
+    mobile_subtitle: `${cmsKeyPrefix}mobile_subtitle`,
+    period_daily: `${cmsKeyPrefix}period_daily`,
+    period_weekly: `${cmsKeyPrefix}period_weekly`,
+    period_monthly: `${cmsKeyPrefix}period_monthly`,
+    mobile_limit_daily: `${cmsKeyPrefix}mobile_limit_daily`,
+    mobile_limit_weekly: `${cmsKeyPrefix}mobile_limit_weekly`,
+    mobile_limit_monthly: `${cmsKeyPrefix}mobile_limit_monthly`,
+    time_left_daily: `${cmsKeyPrefix}time_left_daily`,
+    time_left_weekly: `${cmsKeyPrefix}time_left_weekly`,
+    time_left_monthly: `${cmsKeyPrefix}time_left_monthly`,
   });
   const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
   const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
