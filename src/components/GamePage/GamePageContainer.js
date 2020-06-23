@@ -10,6 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
 } from "Utils/hooks";
+import { getUrlSearchParam } from "Utils";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -21,9 +22,13 @@ import "./GamePage.scss";
 type Props = {
   slug: string,
   playForFun: boolean,
+  location: {
+    search: string,
+  },
 };
 
-export const GamePageContainer = ({ slug, playForFun }: Props) => {
+export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
+  const bundleLocation = getUrlSearchParam(location.search, "bundleLocation");
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
@@ -34,6 +39,7 @@ export const GamePageContainer = ({ slug, playForFun }: Props) => {
     {
       playForFun,
       slug,
+      bundleLocation,
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
@@ -72,6 +78,7 @@ export const GamePageContainer = ({ slug, playForFun }: Props) => {
     <GamePage
       gameProviderModel={gameProviderModel}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+      bundleLocation={bundleLocation}
     />
   );
 };

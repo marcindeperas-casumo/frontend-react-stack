@@ -16,11 +16,16 @@ import { languageSelector } from "Models/handshake";
 type Props = {
   slug: string,
   playForFun: boolean,
+  bundleLocation: ?string,
 };
 
 const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
 
-export const useGameLaunchData = ({ slug, playForFun }: Props) => {
+export const useGameLaunchData = ({
+  slug,
+  playForFun,
+  bundleLocation,
+}: Props) => {
   const [gameProviderModel, setGameProviderModel] = useState(null);
   const [failed, setFailed] = useState(false);
   const gameRef = useRef(null);
@@ -36,8 +41,12 @@ export const useGameLaunchData = ({ slug, playForFun }: Props) => {
           playForFun,
           platform,
         });
+
         const gameModel = getGameModel(
-          responseData.providedSession.parameters,
+          {
+            ...responseData.providedSession.parameters,
+            ...(bundleLocation && { url: bundleLocation, isEmbedded: true }),
+          },
           gameRef,
           language,
           environment
@@ -53,7 +62,7 @@ export const useGameLaunchData = ({ slug, playForFun }: Props) => {
     return () => {
       setGameProviderModel(null);
     };
-  }, [environment, language, playForFun, slug]);
+  }, [bundleLocation, environment, language, playForFun, slug]);
 
   const pauseGame = (): Promise<void> => {
     if (gameProviderModel) {
