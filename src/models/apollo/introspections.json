@@ -9,6 +9,9 @@
             "name": "PlayerValuableCash"
           },
           {
+            "name": "PlayerValuableCashback"
+          },
+          {
             "name": "PlayerValuableDeposit"
           },
           {

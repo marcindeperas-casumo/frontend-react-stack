@@ -496,6 +496,7 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
 export type PlayerValuablesQuery_player_valuables =
   | {
       __typename:
+        | "PlayerValuableCashback"
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
         | "PlayerValuableSport",
@@ -2077,8 +2078,9 @@ export type MustDropJackpotsWidget_MustDropJackpot = {
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
   __typename:
+    | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
     | "PlayerValuableSport",
@@ -2134,7 +2136,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   requirementType: ?RequirementType,
 };
 export type PlayerValuableList_PlayerValuable =
-  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
+  | PlayerValuableList_PlayerValuable_PlayerValuableCashback
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: PromotionCard_Promotion
@@ -2289,6 +2291,7 @@ export type Contact_Settings_Player_realityCheck = {
 export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   __typename:
     | "PlayerValuableCash"
+    | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
     | "PlayerValuableSport",
@@ -2322,8 +2325,9 @@ export type ValuableCard_PlayerValuable =
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
-export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
+export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
   __typename:
+    | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
     | "PlayerValuableSport",
@@ -2374,7 +2378,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   requirementType: ?RequirementType,
 };
 export type ValuableDetails_PlayerValuable =
-  | ValuableDetails_PlayerValuable_PlayerValuableDeposit
+  | ValuableDetails_PlayerValuable_PlayerValuableCashback
   | ValuableDetails_PlayerValuable_PlayerValuableSpins
   | ValuableDetails_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
@@ -2628,7 +2632,13 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type ValuableType = "cash" | "deposit" | "freeBet" | "spins" | "sport";
+export type ValuableType =
+  | "cash"
+  | "cashback"
+  | "deposit"
+  | "freeBet"
+  | "spins"
+  | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
