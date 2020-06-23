@@ -336,7 +336,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
                       DOC_GEN_COLLECTION_NAME: "STORYBOOK_REACT_CLASSES",
                     },
                   ],
-                  [require.resolve("@babel/plugin-proposal-optional-chaining")],
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results for faster rebuilds.
