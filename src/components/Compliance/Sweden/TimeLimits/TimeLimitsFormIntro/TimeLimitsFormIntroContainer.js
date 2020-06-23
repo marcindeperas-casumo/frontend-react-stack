@@ -1,12 +1,20 @@
 // @flow
 import * as React from "react";
+import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsFormIntro } from "./TimeLimitsFormIntro";
-import cmsMock from "./__mocks__/cms";
 
 type Props = {
   onClickCta: () => void,
 };
 
+const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
+
 export function TimeLimitsFormIntroContainer({ onClickCta }: Props) {
-  return <TimeLimitsFormIntro t={cmsMock} onClickCta={onClickCta} />;
+  const { t } = useTranslationsGql({
+    form_intro_header: `${cmsKeyPrefix}form_top_header`,
+    form_intro_copy: `${cmsKeyPrefix}form_intro_copy`,
+    form_intro_cta: `${cmsKeyPrefix}form_intro_cta`,
+  });
+
+  return <TimeLimitsFormIntro t={t} onClickCta={onClickCta} />;
 }
