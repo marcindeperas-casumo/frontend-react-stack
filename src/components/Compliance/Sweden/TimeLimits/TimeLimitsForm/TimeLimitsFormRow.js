@@ -12,7 +12,7 @@ type Props = {
   max: number,
   errorMessage: string,
   t: {
-    placeholder_enter_amount: string,
+    form_placeholder_enter_amount: string,
     hrs_per_period: string,
   },
 };
@@ -32,7 +32,7 @@ export function TimeLimitsFormRow({
           <TextInput
             currencySign=""
             type="number"
-            placeholder={t.placeholder_enter_amount}
+            placeholder={t.form_placeholder_enter_amount}
             value={value}
             min={min}
             max={max}

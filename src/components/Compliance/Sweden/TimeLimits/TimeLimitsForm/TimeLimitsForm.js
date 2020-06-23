@@ -9,12 +9,12 @@ import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
 type Props = {
   t: {
-    top_header: string,
-    cta: string,
-    hrs_per_day: string,
-    hrs_per_week: string,
-    hrs_per_month: string,
-    placeholder_enter_amount: string,
+    form_top_header: string,
+    form_cta: string,
+    form_hrs_per_day: string,
+    form_hrs_per_week: string,
+    form_hrs_per_month: string,
+    form_placeholder_enter_amount: string,
   },
   onClickCta: (limits: LoginTimeLimitsFormData) => void,
   isFetching: boolean,
@@ -49,7 +49,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
     >
       <Flex.Item>
         <Text className="u-font-weight-bold u-text-align-center u-margin-top">
-          {t.top_header}
+          {t.form_top_header}
         </Text>
       </Flex.Item>
       <TimeLimitsFormRow
@@ -58,7 +58,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         max={maxHrsPerDay}
         setter={setHrsPerDay}
         errorMessage={dailyLimitErrorMessage}
-        t={{ ...t, hrs_per_period: t.hrs_per_day }}
+        t={{ ...t, hrs_per_period: t.form_hrs_per_day }}
       />
       <TimeLimitsFormRow
         value={hrsPerWeek}
@@ -66,7 +66,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         max={maxHrsPerWeek}
         setter={setHrsPerWeek}
         errorMessage={weeklyLimitErrorMessage}
-        t={{ ...t, hrs_per_period: t.hrs_per_week }}
+        t={{ ...t, hrs_per_period: t.form_hrs_per_week }}
       />
       <TimeLimitsFormRow
         value={hrsPerMonth}
@@ -74,7 +74,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         max={maxHrsPerMonth}
         setter={setHrsPerMonth}
         errorMessage={monthlyLimitErrorMessage}
-        t={{ ...t, hrs_per_period: t.hrs_per_month }}
+        t={{ ...t, hrs_per_period: t.form_hrs_per_month }}
       />
       <Flex.Item>
         <Button
@@ -90,7 +90,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
           size="md"
           onClick={() => onClickCta({ hrsPerDay, hrsPerWeek, hrsPerMonth })}
         >
-          {t.cta}
+          {t.form_cta}
         </Button>
       </Flex.Item>
     </Flex>
