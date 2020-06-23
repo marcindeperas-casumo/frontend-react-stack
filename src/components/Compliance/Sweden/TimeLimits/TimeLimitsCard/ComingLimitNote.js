@@ -9,7 +9,7 @@ import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 
 type Props = {
   t: {
-    coming_limit_note: string,
+    coming_limit_note: ?string,
   },
   limit: LoginTimeLimit,
 };

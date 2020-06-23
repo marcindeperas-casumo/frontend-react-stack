@@ -10,13 +10,13 @@ import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    mobile_title: string,
-    mobile_subtitle: string,
-    mobile_limit_daily: string,
-    mobile_limit_weekly: string,
-    mobile_limit_monthly: string,
-    time_left_daily: string,
-    coming_limit_note: string,
+    mobile_title: ?string,
+    mobile_subtitle: ?string,
+    mobile_limit_daily: ?string,
+    mobile_limit_weekly: ?string,
+    mobile_limit_monthly: ?string,
+    time_left_daily: ?string,
+    coming_limit_note: ?string,
   },
   dailyLimit: LoginTimeLimit,
   weeklyLimit: LoginTimeLimit,
@@ -79,8 +79,8 @@ export function TimeLimitsCardMobile({
 
 type LimitRowProps = {
   t: {
-    label: string,
-    coming_limit_note: string,
+    label: ?string,
+    coming_limit_note: ?string,
   },
   limit: LoginTimeLimit,
 };
