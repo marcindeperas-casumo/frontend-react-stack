@@ -12,15 +12,25 @@ import {
   types,
   limitPeriod,
 } from "Models/playOkay";
+import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsForm } from "./TimeLimitsForm";
 import { transformFormDataToRequestPayloads } from "./TimeLimitsForm.utils";
-import cmsMock from "./__mocks__/cms";
 
 type Props = {
   onLimitsSaved: () => void,
 };
 
+const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
+
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
+  const { t } = useTranslationsGql({
+    form_top_header: `${cmsKeyPrefix}form_top_header`,
+    form_cta: `${cmsKeyPrefix}form_cta`,
+    form_hrs_per_day: `${cmsKeyPrefix}form_hrs_per_day`,
+    form_hrs_per_week: `${cmsKeyPrefix}form_hrs_per_week`,
+    form_hrs_per_month: `${cmsKeyPrefix}form_hrs_per_month`,
+    form_placeholder_enter_amount: `${cmsKeyPrefix}form_placeholder_enter_amount`,
+  });
   const [ctaClicked, setCtaClicked] = React.useState(false);
   const [refetchingAllLimits, isRefetchingAllLimits] = React.useState(false);
   const dispatch = useDispatch();
@@ -62,10 +72,6 @@ export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
   }, [refetchingAllLimits, allLimitsRefetched, onLimitsSaved]);
 
   return (
-    <TimeLimitsForm
-      t={cmsMock}
-      isFetching={ctaClicked}
-      onClickCta={onClickCta}
-    />
+    <TimeLimitsForm t={t} isFetching={ctaClicked} onClickCta={onClickCta} />
   );
 }

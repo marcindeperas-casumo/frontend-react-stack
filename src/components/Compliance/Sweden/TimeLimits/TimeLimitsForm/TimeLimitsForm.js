@@ -9,12 +9,12 @@ import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
 type Props = {
   t: {
-    form_top_header: string,
-    form_cta: string,
-    form_hrs_per_day: string,
-    form_hrs_per_week: string,
-    form_hrs_per_month: string,
-    form_placeholder_enter_amount: string,
+    form_top_header: ?string,
+    form_cta: ?string,
+    form_hrs_per_day: ?string,
+    form_hrs_per_week: ?string,
+    form_hrs_per_month: ?string,
+    form_placeholder_enter_amount: ?string,
   },
   onClickCta: (limits: LoginTimeLimitsFormData) => void,
   isFetching: boolean,
@@ -90,7 +90,7 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
           size="md"
           onClick={() => onClickCta({ hrsPerDay, hrsPerWeek, hrsPerMonth })}
         >
-          {t.form_cta}
+          {t.form_cta || ""}
         </Button>
       </Flex.Item>
     </Flex>
