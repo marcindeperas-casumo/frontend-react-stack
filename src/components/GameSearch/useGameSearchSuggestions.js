@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { EVENT_LOCATIONS } from "Src/constants";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
-import { GameSearchSuggestionsListContainerQuery } from "./GameSearchSuggestionsListContainer.graphql";
+import { GameSearchSuggestionsListContainerQuery } from "./GameSearchSuggestionsList.graphql";
 
 export type Props = {
   searchResults: Array<any>,
