@@ -2,7 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import * as R from "ramda";
+import { pathOr, pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
@@ -43,7 +43,7 @@ export default class KambiClient extends React.Component<Props> {
 
     /* eslint-disable fp/no-mutation */
     window._kc = {
-      ...R.pick(["currency", "locale", "market", "playerId", "ticket"], {
+      ...pick(["currency", "locale", "market", "playerId", "ticket"], {
         ...this.props,
       }),
       oddsFormat: this.props.market.toLowerCase().includes("gb")
@@ -112,16 +112,16 @@ export default class KambiClient extends React.Component<Props> {
 
   trackAddToBetslipIfLife = (obj: any) => {
     const betPath = ["ecommerce", "add", "products", 0];
-    const isLivePage: boolean = R.pathOr("", ["page", "path"], obj)
+    const isLivePage: boolean = pathOr("", ["page", "path"], obj)
       .split("/")
       .includes("in-play");
-    const sportName: string = R.pathOr(
+    const sportName: string = pathOr(
       "unknown",
       ["hit", "categories", "event_group_two"],
       obj
     );
-    const eventName: string = R.pathOr("unknown", [...betPath, "name"], obj);
-    const eventId: number = R.pathOr(0, [...betPath, "id"], obj);
+    const eventName: string = pathOr("unknown", [...betPath, "name"], obj);
+    const eventId: number = pathOr(0, [...betPath, "id"], obj);
     const trackingName: string = isLivePage
       ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
       : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
