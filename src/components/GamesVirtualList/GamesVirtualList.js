@@ -7,7 +7,8 @@ import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
-const ROW_HEIGHT = 74;
+export const ROW_HEIGHT = 74;
+export const ROW_HEIGHT_BIG = 129;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
@@ -18,9 +19,15 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: (game: A.GameRow_Game) => React.Node,
+  /** use bigger version, ie. on search page */
+  big?: boolean,
 };
 
 export class GamesVirtualList extends React.PureComponent<Props> {
+  static defaultProps = {
+    big: false,
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -45,26 +52,26 @@ export class GamesVirtualList extends React.PureComponent<Props> {
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
-          className="u-padding-x--md"
-          align="center"
+          className="t-border-bottom t-color-chrome-light-2 t-border--current-color"
           key={key}
           index={index}
           style={style}
         >
-          <GameRowSkeleton />
+          <GameRowSkeleton big={this.props.big} />
         </Flex>
       );
     }
 
     return (
-      <div
-        className="u-padding-x--md u-padding-y t-border-bottom t-color-chrome-light-2 t-border--current-color"
+      <Flex
+        className="t-border-bottom t-color-chrome-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}
+        align="center"
       >
         {this.props.renderItem(this.props.games[index])}
-      </div>
+      </Flex>
     );
   };
 
@@ -73,7 +80,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
       <VirtualList
         scrollElement={this.scrollElement}
         totalNumberOfRows={this.props.rowCount}
-        rowHeight={ROW_HEIGHT}
+        rowHeight={this.props.big ? ROW_HEIGHT_BIG : ROW_HEIGHT}
         loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}

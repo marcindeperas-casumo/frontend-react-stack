@@ -3,7 +3,10 @@ import React, { PureComponent } from "react";
 import { times, identity } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
-
+import {
+  ROW_HEIGHT,
+  ROW_HEIGHT_BIG,
+} from "Components/GamesVirtualList/GamesVirtualList";
 type Props = {
   /* Additional css classes to add to the component **/
   className: string,
@@ -15,8 +18,8 @@ type Props = {
   titleXOffset: number,
   /* Y axis title offset **/
   titleYOffset: number,
-  /* The height of every <GameRowSkeleton /> **/
-  gameRowHeight: number,
+  /** use bigger version, ie. on search page */
+  big?: boolean,
 };
 
 export class GameListSkeleton extends PureComponent<Props> {
@@ -26,7 +29,7 @@ export class GameListSkeleton extends PureComponent<Props> {
     numberOfItems: 8,
     titleXOffset: 0,
     titleYOffset: 0,
-    gameRowHeight: 75,
+    big: false,
   };
 
   render() {
@@ -36,7 +39,7 @@ export class GameListSkeleton extends PureComponent<Props> {
       numberOfItems,
       titleXOffset,
       titleYOffset,
-      gameRowHeight,
+      big,
     } = this.props;
 
     return (
@@ -62,10 +65,10 @@ export class GameListSkeleton extends PureComponent<Props> {
         {times(identity, numberOfItems).map(i => (
           <div
             key={`gamelist-skeleton-${i}`}
-            className="u-margin-y"
-            style={{ height: gameRowHeight }}
+            className="t-border-bottom t-color-chrome-light-2 t-border--current-color"
+            style={{ height: big ? ROW_HEIGHT_BIG : ROW_HEIGHT }}
           >
-            <GameRowSkeleton />
+            <GameRowSkeleton big={big} />
           </div>
         ))}
       </div>
