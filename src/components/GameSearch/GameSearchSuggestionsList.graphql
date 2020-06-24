@@ -1,4 +1,4 @@
-#import "./GameSearchSuggestionsList.graphql"
+#import "../GameRow/GameRow.graphql"
 
 query GameSearchSuggestionsListContainerQuery(
   $listId: String!
@@ -6,7 +6,7 @@ query GameSearchSuggestionsListContainerQuery(
   gamesList(listId: $listId) {
     id
     games {
-      ...GameSearchSuggestionsList_Game
+      ...GameRow_Game
     }
   }
 }
