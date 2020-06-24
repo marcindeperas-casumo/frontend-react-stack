@@ -2,7 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import { pick } from "ramda";
+import * as R from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
@@ -43,7 +43,7 @@ export default class KambiClient extends React.Component<Props> {
 
     /* eslint-disable fp/no-mutation */
     window._kc = {
-      ...pick(["currency", "locale", "market", "playerId", "ticket"], {
+      ...R.pick(["currency", "locale", "market", "playerId", "ticket"], {
         ...this.props,
       }),
       oddsFormat: this.props.market.toLowerCase().includes("gb")
@@ -110,28 +110,27 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
-  trackAddToBetslip = (obj: any) => {
-    const categories: any = obj.hit?.categories;
-    const isLiveEvent: boolean = Boolean(categories?.is_live);
+  trackAddToBetslipIfLife = (obj: any) => {
+    const betPath = ["ecommerce", "add", "products", 0];
+    const isLivePage: boolean = R.pathOr("", ["page", "path"], obj)
+      .split("/")
+      .includes("in-play");
+    const sportName: string = R.pathOr(
+      "unknown",
+      ["hit", "categories", "event_group_two"],
+      obj
+    );
+    const eventName: string = R.pathOr("unknown", [...betPath, "name"], obj);
+    const eventId: number = R.pathOr(0, [...betPath, "id"], obj);
+    const trackingName: string = isLivePage
+      ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
+      : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
 
-    if (isLiveEvent) {
-      const bet: any = (obj.ecommerce?.add?.products || [{}])[0];
-      const isLivePage: boolean = (obj.page?.path || "")
-        .split("/")
-        .includes("in-play");
-      const sportName: string = categories?.event_group_two || "unknown";
-      const eventName: string = bet?.name || "unknown";
-      const eventId: number = bet?.id || 0;
-      const trackingName: string = isLivePage
-        ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
-        : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
-
-      tracker.track(trackingName, {
-        [EVENT_PROPS.SPORTS_NAME]: sportName,
-        [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
-        [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
-      });
-    }
+    tracker.track(trackingName, {
+      [EVENT_PROPS.SPORTS_NAME]: sportName,
+      [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
+      [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
+    });
   };
 
   onNotification = (event: { [string]: any }) => {
@@ -141,9 +140,10 @@ export default class KambiClient extends React.Component<Props> {
 
     if (
       event.name === "dataLayerPushed" &&
-      event.data.event === "kambi add to betslip"
+      event.data.event === "kambi add to betslip" &&
+      event.data.kambi?.hit?.categories?.is_live
     ) {
-      event.data.kambi && this.trackAddToBetslip(event.data.kambi);
+      event.data.kambi && this.trackAddToBetslipIfLife(event.data.kambi);
     }
 
     if (
