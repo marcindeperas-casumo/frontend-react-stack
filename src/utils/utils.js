@@ -15,7 +15,7 @@ export const isIosNative = (w: window = window) =>
 export const getAppVersion = (w: window = window) =>
   R.cond([
     [isIosNative, R.always(R.pathOr(undefined, ["native", "version"], w))],
-    [() => !isIosNative(), undefined],
+    [() => !isIosNative(), R.always(undefined)],
     [R.T, R.always(undefined)],
   ])();
 
