@@ -1,5 +1,6 @@
 // @flow
 import { stringify } from "qs";
+import { isIosNative, getAppVersion } from "../utils/utils";
 
 export type FetchType = (
   url: string,
@@ -11,6 +12,10 @@ export const DEFAULT_FETCH_OPTIONS = {
   credentials: "same-origin",
   headers: {
     "content-type": "application/json",
+
+    ...(isIosNative() && {
+      "X-Request-Client-Details": getAppVersion(),
+    }),
   },
 };
 
