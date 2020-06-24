@@ -39,7 +39,7 @@ export function* appStartedSaga(): Saga {
 
   const loginTimeLimits = yield select(loginTimeLimitsSelector);
 
-  if (R.isEmpty(loginTimeLimits)) {
+  if (R.length(loginTimeLimits) < 3) {
     // wait till any previous modal has been closed
     yield call(waitForSelector, isModalHiddenSelector);
 
