@@ -1,12 +1,7 @@
 // @flow
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as R from "ramda";
-import {
-  loginTimeLimitsSelector,
-  saveTimeLimitsAction,
-  type LoginTimeLimits,
-} from "Models/playOkay";
+import { useSelector } from "react-redux";
+import { allLoginTimeLimitsDefinedSelector } from "Models/playOkay";
 import { TimeLimitsFormView } from "./TimeLimitsFormView";
 
 type Props = {
@@ -14,16 +9,12 @@ type Props = {
 };
 
 export function TimeLimitsFormViewContainer({ onClickOutroCta }: Props) {
-  const dispatch = useDispatch();
-  const loginTimeLimits = useSelector<LoginTimeLimits>(loginTimeLimitsSelector);
+  const limitsDefined = useSelector(allLoginTimeLimitsDefinedSelector);
 
   return (
     <TimeLimitsFormView
-      initial={R.isEmpty(loginTimeLimits)}
+      initial={!limitsDefined}
       onClickOutroCta={onClickOutroCta}
-      onClickFormCta={(limits: LoginTimeLimits) =>
-        dispatch(saveTimeLimitsAction(limits))
-      }
     />
   );
 }
