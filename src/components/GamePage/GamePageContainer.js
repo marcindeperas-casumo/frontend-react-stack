@@ -28,18 +28,24 @@ type Props = {
 };
 
 export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
-  const bundleLocation = getUrlSearchParam(location.search, "bundleLocation");
+  const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
+
+  const remoteGameLaunchData = launchData
+    ? JSON.parse(decodeURIComponent(launchData))
+    : null;
+
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
   const { loading, gameCategory } = useGameCategory(slug);
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
+
   const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
     {
       playForFun,
       slug,
-      bundleLocation,
+      remoteGameLaunchData,
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
@@ -78,7 +84,6 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
     <GamePage
       gameProviderModel={gameProviderModel}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
-      bundleLocation={bundleLocation}
     />
   );
 };

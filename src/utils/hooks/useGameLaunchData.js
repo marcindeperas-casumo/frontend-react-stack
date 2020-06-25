@@ -1,5 +1,4 @@
 // @flow
-
 import { useRef, useState, useEffect } from "react";
 import { isMobile } from "@casumo/is-mobile";
 import { useSelector } from "react-redux";
@@ -16,15 +15,16 @@ import { languageSelector } from "Models/handshake";
 type Props = {
   slug: string,
   playForFun: boolean,
-  bundleLocation: ?string,
+  remoteGameLaunchData: ?Object,
 };
 
 const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
 
+/* eslint-disable sonarjs/cognitive-complexity */
 export const useGameLaunchData = ({
   slug,
   playForFun,
-  bundleLocation,
+  remoteGameLaunchData,
 }: Props) => {
   const [gameProviderModel, setGameProviderModel] = useState(null);
   const [failed, setFailed] = useState(false);
@@ -33,40 +33,49 @@ export const useGameLaunchData = ({
   const language = useSelector(languageSelector);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { providerGameName } = await getGameProviderName(slug, platform);
-        const { responseData } = await getGameLaunchParameters({
-          gameName: providerGameName,
-          playForFun,
-          platform,
-        });
+    if (!remoteGameLaunchData) {
+      (async () => {
+        try {
+          const { providerGameName } = await getGameProviderName(
+            slug,
+            platform
+          );
+          const { responseData } = await getGameLaunchParameters({
+            gameName: providerGameName,
+            playForFun,
+            platform,
+          });
 
-        const gameModel = getGameModel(
-          {
-            ...responseData.providedSession.parameters,
-            ...(bundleLocation && { url: bundleLocation, isEmbedded: true }),
-          },
-          gameRef,
-          language,
-          environment
-        );
-
-        setGameProviderModel(gameModel);
-      } catch (e) {
-        logger.error("Game launch failed", e);
-        setFailed(true);
-      }
-    })();
+          setGameProviderModel(
+            getGameModel(
+              responseData.providedSession.parameters,
+              gameRef,
+              language,
+              environment
+            )
+          );
+        } catch (e) {
+          logger.error("Game launch failed", e);
+          setFailed(true);
+        }
+      })();
+    }
 
     return () => {
       setGameProviderModel(null);
     };
-  }, [bundleLocation, environment, language, playForFun, slug]);
+  }, [environment, language, playForFun, remoteGameLaunchData, slug]);
+
+  const determineWhichGameProviderModel = () => {
+    return remoteGameLaunchData
+      ? getGameModel(remoteGameLaunchData, gameRef, language, environment)
+      : gameProviderModel;
+  };
 
   const pauseGame = (): Promise<void> => {
-    if (gameProviderModel) {
-      return gameProviderModel.pauseGame().then(() => {
+    const model = determineWhichGameProviderModel();
+    if (model) {
+      return model.pauseGame().then(() => {
         if (gameRef.current instanceof HTMLIFrameElement) {
           gameRef.current.contentWindow.focus();
         }
@@ -77,8 +86,9 @@ export const useGameLaunchData = ({
   };
 
   const resumeGame = () => {
-    if (gameProviderModel) {
-      gameProviderModel.resumeGame();
+    const model = determineWhichGameProviderModel();
+    if (model) {
+      model.resumeGame();
     }
 
     if (gameRef.current instanceof HTMLIFrameElement) {
@@ -87,9 +97,10 @@ export const useGameLaunchData = ({
   };
 
   return {
-    gameProviderModel,
+    gameProviderModel: determineWhichGameProviderModel(),
     pauseGame,
     resumeGame,
     error: failed,
   };
 };
+/* eslint-enable sonarjs/cognitive-complexity */

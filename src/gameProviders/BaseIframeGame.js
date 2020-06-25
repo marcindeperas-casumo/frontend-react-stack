@@ -135,11 +135,15 @@ export class BaseIframeGame extends BaseGame {
 
   onMount() {
     super.onMount();
-    window.addEventListener("message", this.messageGuard.bind(this));
+    if (this) {
+      window.addEventListener("message", this.messageGuard.bind(this));
+    }
   }
 
   onUnmount() {
     super.onUnmount();
-    window.removeEventListener("message", this.messageGuard.bind(this));
+    if (this) {
+      window.removeEventListener("message", this.messageGuard.bind(this));
+    }
   }
 }
