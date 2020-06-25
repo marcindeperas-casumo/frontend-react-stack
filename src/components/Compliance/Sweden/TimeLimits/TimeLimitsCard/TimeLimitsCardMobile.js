@@ -15,12 +15,13 @@ type Props = {
     time_per_day: string,
     time_per_week: string,
     time_per_month: string,
-    time_left_today: string,
+    time_left_daily: string,
     coming_limit_note: string,
   },
   dailyLimit: LoginTimeLimit,
   weeklyLimit: LoginTimeLimit,
   monthlyLimit: LoginTimeLimit,
+  onClick: () => void,
 };
 
 export function TimeLimitsCardMobile({
@@ -28,22 +29,20 @@ export function TimeLimitsCardMobile({
   dailyLimit,
   weeklyLimit,
   monthlyLimit,
+  onClick,
 }: Props) {
-  if (!dailyLimit || !weeklyLimit || !monthlyLimit) {
-    return (
-      <Text size="md" className="u-font-weight-bold t-color-grey-dark-1">
-        Some limits are not set, click to see.
-      </Text>
-    );
-  }
-
   const dailyLimitDuration = LuxonDuration.fromISO(dailyLimit.limit);
   const hrsLeftToday = dailyLimitDuration.minus(
     LuxonDuration.fromISO(dailyLimit.consumedTime)
   );
 
   return (
-    <Flex direction="vertical" align="center">
+    <Flex
+      direction="vertical"
+      align="center"
+      onClick={onClick}
+      className="u-padding--md"
+    >
       <Flex.Item>
         <Text
           size="md"
@@ -64,7 +63,7 @@ export function TimeLimitsCardMobile({
         <Text tag="em" className="t-color-grey-dark-1">
           {interpolateWithJSX(
             { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
-            t.time_left_today
+            t.time_left_daily
           )}
         </Text>
       </Flex.Item>
