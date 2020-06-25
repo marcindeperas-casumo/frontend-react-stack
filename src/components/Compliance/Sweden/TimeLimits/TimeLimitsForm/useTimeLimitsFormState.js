@@ -1,7 +1,13 @@
 // @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { type LoginTimeLimits, loginTimeLimitsSelector } from "Models/playOkay";
+import { Duration } from "luxon";
+import {
+  type LoginTimeLimit,
+  dailyLoginTimeLimitSelector,
+  weeklyLoginTimeLimitSelector,
+  monthlyLoginTimeLimitSelector,
+} from "Models/playOkay";
 
 const DEFAULT = {
   minHrsPerDay: 1,
@@ -28,19 +34,21 @@ export type UseTimeLimitsFormStateType = {
   dailyLimitErrorMessage: string,
   weeklyLimitErrorMessage: string,
   monthlyLimitErrorMessage: string,
+  anyLimitChanged: boolean,
 };
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
-  const savedTimeLimits = useSelector<LoginTimeLimits>(loginTimeLimitsSelector);
+  const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
+  const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
+  const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
+  const savedHrsPerDay = isoLimitAsHours(dailyLimit);
+  const savedHrsPerWeek = isoLimitAsHours(weeklyLimit);
+  const savedHrsPerMonth = isoLimitAsHours(monthlyLimit);
 
-  const [hrsPerDay, setHrsPerDay] = React.useState<number>(
-    savedTimeLimits?.daily || 0
-  );
-  const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(
-    savedTimeLimits?.weekly || 0
-  );
+  const [hrsPerDay, setHrsPerDay] = React.useState<number>(savedHrsPerDay);
+  const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(savedHrsPerWeek);
   const [hrsPerMonth, setHrsPerMonth] = React.useState<number>(
-    savedTimeLimits?.monthly || 0
+    savedHrsPerMonth
   );
 
   const [minHrsPerDay] = React.useState<number>(DEFAULT.minHrsPerDay);
@@ -73,6 +81,10 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     maxHrsPerMonth,
     hrsPerMonth
   );
+  const anyLimitChanged =
+    hrsPerDay !== savedHrsPerDay ||
+    hrsPerWeek !== savedHrsPerWeek ||
+    hrsPerMonth !== savedHrsPerMonth;
 
   React.useEffect(() => {
     if (hrsPerDay > 0) {
@@ -110,6 +122,7 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     dailyLimitErrorMessage,
     weeklyLimitErrorMessage,
     monthlyLimitErrorMessage,
+    anyLimitChanged,
   };
 }
 
@@ -126,4 +139,8 @@ export function limitErrorMessage(
   }
 
   return "";
+}
+
+function isoLimitAsHours(limit: ?LoginTimeLimit) {
+  return limit ? Duration.fromISO(limit.limit).as("hours") : 0;
 }
