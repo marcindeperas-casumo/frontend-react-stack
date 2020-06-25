@@ -13,8 +13,10 @@ export const isIosNative = (w: window = window) =>
   R.pathOr(false, ["native", "ios"], w);
 
 export const getAppVersion = (w: window = window) => {
-  if (isIosNative()) {
-    return R.pathOr(undefined, ["native", "version"], w);
+  const isVersionDefined = R.pathOr(undefined, ["native", "version"], w);
+
+  if (isIosNative() && isVersionDefined) {
+    return `ios/{${isVersionDefined}}`;
   }
 
   return undefined;

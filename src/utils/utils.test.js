@@ -120,10 +120,10 @@ describe("Native app related functions", () => {
   test("getAppVersion", () => {
     window.native = {
       ios: true,
-      version: "12345/ios",
+      version: "2.40.5",
     };
 
-    expect(getAppVersion()).toBe(window.native.version);
+    expect(getAppVersion()).toBe(`ios/{${window.native.version}}`);
 
     // eslint-disable-next-line fp/no-delete
     delete window.native;
