@@ -16,6 +16,7 @@ type InputProps = {
   onChange: () => void,
   onFocus: () => void,
   onBlur?: () => void,
+  colorBackgroundClass?: string,
 };
 
 type SearchInputProps = {
@@ -37,6 +38,7 @@ class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
     onBlur: noop,
     onFocus: noop,
+    colorBackgroundClass: "t-background-white",
   };
 
   state = { hasFocus: false };
@@ -82,8 +84,9 @@ class SearchInput extends React.Component<Props, State> {
     const hasSearchTerm = Boolean(value);
 
     const containerClassName = classNames(
-      "t-background-white t-border-r--pill u-overflow-hidden",
-      hasFocus && "t-box-shadow--lg"
+      "t-border-r--pill u-overflow-hidden",
+      hasFocus && "t-box-shadow--lg",
+      this.props.colorBackgroundClass
     );
 
     return (
@@ -93,7 +96,10 @@ class SearchInput extends React.Component<Props, State> {
             <SearchIcon className="t-color-chrome-dark-2" />
             <input
               ref={this.textInput}
-              className="c-search-input o-flex--1 u-padding-left t-color-grey-dark-3 u-font-weight-bold"
+              className={classNames(
+                "c-search-input o-flex--1 u-padding-left t-color-grey-dark-3 u-font-weight-bold",
+                this.props.colorBackgroundClass
+              )}
               type="text"
               onBlur={this.onBlur}
               onFocus={this.onFocus}
