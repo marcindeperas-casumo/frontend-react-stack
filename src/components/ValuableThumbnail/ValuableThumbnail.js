@@ -143,6 +143,7 @@ function getCoinClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
+    case VALUABLE_TYPES.CASHBACK:
       return "t-color-yellow";
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-blue-light-1";
@@ -160,6 +161,7 @@ function getCoinTextClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
+    case VALUABLE_TYPES.CASHBACK:
       return "t-color-yellow-dark-3";
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-blue-dark-3";

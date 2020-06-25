@@ -493,10 +493,15 @@ export type MustDropJackpotsQuery = {
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string,
 };
+export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games = {
+  title: string,
+};
+export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
+  title: string,
+};
 export type PlayerValuablesQuery_player_valuables =
   | {
       __typename:
-        | "PlayerValuableCashback"
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
         | "PlayerValuableSport",
@@ -547,6 +552,26 @@ export type PlayerValuablesQuery_player_valuables =
       wageringThreshold: ?number,
       leftToWager: ?number,
       requirementType: ?RequirementType,
+    }
+  | {
+      __typename: "PlayerValuableCashback",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+      description: string,
+      requirementType: ?RequirementType,
+      games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
+      excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
+      gameCategories: Array<?string>,
     };
 export type PlayerValuablesQuery_player = {
   valuables: Array<PlayerValuablesQuery_player_valuables>,
@@ -2078,9 +2103,8 @@ export type MustDropJackpotsWidget_MustDropJackpot = {
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
-    | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
     | "PlayerValuableSport",
@@ -2135,10 +2159,28 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
+export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
+  __typename: "PlayerValuableCashback",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  description: string,
+  requirementType: ?RequirementType,
+};
 export type PlayerValuableList_PlayerValuable =
-  | PlayerValuableList_PlayerValuable_PlayerValuableCashback
+  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
-  | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
+  | PlayerValuableList_PlayerValuable_PlayerValuableCash
+  | PlayerValuableList_PlayerValuable_PlayerValuableCashback; // ====================================================
 // GraphQL fragment: PromotionCard_Promotion
 // ====================================================
 
@@ -2325,9 +2367,8 @@ export type ValuableCard_PlayerValuable =
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
-export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
+export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
-    | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
     | "PlayerValuableSport",
@@ -2377,10 +2418,35 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
+export type ValuableDetails_PlayerValuable_PlayerValuableCashback_games = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
+  __typename: "PlayerValuableCashback",
+  id: string,
+  backgroundImage: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  requirementType: ?RequirementType,
+  games: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_games>,
+  excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames>,
+  gameCategories: Array<?string>,
+};
 export type ValuableDetails_PlayerValuable =
-  | ValuableDetails_PlayerValuable_PlayerValuableCashback
+  | ValuableDetails_PlayerValuable_PlayerValuableDeposit
   | ValuableDetails_PlayerValuable_PlayerValuableSpins
-  | ValuableDetails_PlayerValuable_PlayerValuableCash; // ====================================================
+  | ValuableDetails_PlayerValuable_PlayerValuableCash
+  | ValuableDetails_PlayerValuable_PlayerValuableCashback; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 

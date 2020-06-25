@@ -48,7 +48,7 @@ export function PlayerValuableListHorizontal() {
 
   const itemRenderer = (i: number) => (
     <div id={`valuable-card-${valuables[i].id}`}>
-      <div className="c-valuable-list__valuable-card">
+      <div className="c-valuable-list__valuable-card u-margin-bottom--sm">
         <ValuableCard
           {...valuables[i]}
           translations={translations}
