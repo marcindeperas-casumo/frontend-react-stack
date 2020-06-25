@@ -1,9 +1,11 @@
 export default ({
   "wageringStatus": "Wagering status should be here",
   "termsAndConditionLabel": "Terms & Conditions",
+  "activateCashbackActionLabel": "Activate",
   "cashUnlockedActionLabel": "Use bonus money",
   "spinsUnlockedActionLabel": "Use bonus spins",
   "playToUnlockLabel": "Play to unlock",
+  "playNowLabel": "Play now",
   "depositToUnlockLabel": "Deposit to unlock",
   "depositNowLabel": "Deposit now",
   "expirationTimeLabel": "Expires in",

@@ -20,4 +20,14 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   ... on PlayerValuableCash {
     requirementType
   }
+  ... on PlayerValuableCashback {
+    requirementType
+    games {
+      title
+    }
+    excludedGames {
+      title
+    }
+    gameCategories
+  }
 }
