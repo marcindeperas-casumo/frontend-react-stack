@@ -1,12 +1,9 @@
 // @flow
 import React from "react";
-import List from "@casumo/cmp-list";
-import { shallow } from "enzyme";
-import { GameSearch } from "Components/GameSearch/GameSearch";
+import { shallow, mount } from "enzyme";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
-import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
-import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
-import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+import { SearchNotFoundContainer } from "Components/SearchNotFound";
+import { GameSearch } from "./GameSearch";
 
 jest.mock("Utils/hooks/useTranslationsGql", () => ({
   useTranslationsGql: () => ({
@@ -14,6 +11,13 @@ jest.mock("Utils/hooks/useTranslationsGql", () => ({
     loading: false,
   }),
 }));
+
+const suggestions = {
+  games: ["game", "suggestions"],
+  location: "latestPlayedGames",
+  title: "Continue playing",
+  type: "latest",
+};
 
 describe("GameSearch", () => {
   const clearSearch = jest.fn();
@@ -30,6 +34,8 @@ describe("GameSearch", () => {
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
         queryChanged={() => {}}
+        suggestions={suggestions}
+        loadingSuggestions={true}
       />
     );
 
@@ -47,6 +53,8 @@ describe("GameSearch", () => {
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
         queryChanged={() => {}}
+        suggestions={suggestions}
+        loadingSuggestions={true}
       />
     );
 
@@ -64,33 +72,18 @@ describe("GameSearch", () => {
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
         queryChanged={() => {}}
+        suggestions={suggestions}
+        loadingSuggestions={true}
       />
     );
 
-    expect(rendered.find(SearchNotFoundWithGameSuggestions)).toHaveLength(1);
-  });
-
-  test("should render all games if query is empty", () => {
-    const rendered = shallow(
-      <GameSearch
-        clearSearch={clearSearch}
-        searchResults={[]}
-        searchResultsCount={0}
-        loading={false}
-        inputPromptPlaceholder={inputPromptPlaceholder}
-        query={""}
-        fetchMore={() => Promise.resolve([])}
-        queryChanged={() => {}}
-      />
-    );
-
-    expect(rendered.find(GamesVirtualList)).toHaveLength(1);
+    expect(rendered.find(SearchNotFoundContainer)).toHaveLength(1);
   });
 
   test("should render search results", () => {
     const searchResults = ["I", "am", "search", "results"];
 
-    const rendered = shallow(
+    const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
         searchResults={searchResults}
@@ -100,15 +93,19 @@ describe("GameSearch", () => {
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
         queryChanged={() => {}}
+        suggestions={suggestions}
+        loadingSuggestions={true}
       />
     );
 
-    expect(rendered.find(List)).toHaveLength(1);
-    expect(rendered.find(List).props().items).toEqual(searchResults);
+    expect(rendered.find("GamesVirtualList")).toHaveLength(1);
+    expect(rendered.find("GamesVirtualList").props().games).toEqual(
+      searchResults
+    );
   });
 
   test("should render 1 search result and suggested games list", () => {
-    const rendered = shallow(
+    const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
         searchResults={["game"]}
@@ -118,9 +115,23 @@ describe("GameSearch", () => {
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
         queryChanged={() => {}}
+        suggestions={suggestions}
+        loadingSuggestions={false}
       />
     );
 
-    expect(rendered.find(GameSearchSuggestionsList)).toHaveLength(1);
+    expect(rendered.find("GamesVirtualList")).toHaveLength(2);
+    expect(
+      rendered
+        .find("GamesVirtualList")
+        .at(0)
+        .props().rowCount
+    ).toEqual(1);
+    expect(
+      rendered
+        .find("GamesVirtualList")
+        .at(1)
+        .props().rowCount
+    ).toEqual(2);
   });
 });

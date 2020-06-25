@@ -301,6 +301,8 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
     "Sports Onboarding - expanded leagues of a Country",
   MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
+  MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE: "Sports - odds added live page",
+  MIXPANEL_SPORTS_BETSLIP_LIVE_NOW: "Sports - odds added live now",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -322,6 +324,8 @@ export const EVENT_PROPS = {
   SPORTS_NAME: "sport name",
   SPORTS_SELECTED: "sports selected",
   SPORTS_SELECTED_NUMBER: "number of sports selected",
+  SPORTS_EVENT_NAME: "event name",
+  SPORTS_EVENT_ID: "event id",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",

@@ -2,7 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import { pick } from "ramda";
+import { pathOr, pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
@@ -110,9 +110,40 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  trackAddToBetslipIfLife = (obj: any) => {
+    const betPath = ["ecommerce", "add", "products", 0];
+    const isLivePage: boolean = pathOr("", ["page", "path"], obj)
+      .split("/")
+      .includes("in-play");
+    const sportName: string = pathOr(
+      "unknown",
+      ["hit", "categories", "event_group_two"],
+      obj
+    );
+    const eventName: string = pathOr("unknown", [...betPath, "name"], obj);
+    const eventId: number = pathOr(0, [...betPath, "id"], obj);
+    const trackingName: string = isLivePage
+      ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
+      : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
+
+    tracker.track(trackingName, {
+      [EVENT_PROPS.SPORTS_NAME]: sportName,
+      [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
+      [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
+    });
+  };
+
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
+      event.data.event === "kambi add to betslip" &&
+      event.data.kambi?.hit?.categories?.is_live
+    ) {
+      event.data.kambi && this.trackAddToBetslipIfLife(event.data.kambi);
     }
 
     if (
