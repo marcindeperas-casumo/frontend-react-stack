@@ -7,6 +7,7 @@ import {
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
   monthlyLoginTimeLimitSelector,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
 } from "Models/playOkay";
 import { interpolate } from "Utils";
 import { useTranslationsGql } from "Utils/hooks";
@@ -38,8 +39,6 @@ export type UseTimeLimitsFormStateType = {
   monthlyLimitErrorMessage: string,
   anyLimitChanged: boolean,
 };
-
-const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
   const { t } = useTranslationsGql({

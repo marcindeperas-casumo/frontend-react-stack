@@ -11,6 +11,7 @@ import {
   getAllLimits,
   types,
   limitPeriod,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
 } from "Models/playOkay";
 import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsForm } from "./TimeLimitsForm";
@@ -19,8 +20,6 @@ import { transformFormDataToRequestPayloads } from "./TimeLimitsForm.utils";
 type Props = {
   onLimitsSaved: () => void,
 };
-
-const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
 
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
   const { t } = useTranslationsGql({

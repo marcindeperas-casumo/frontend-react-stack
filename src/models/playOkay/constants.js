@@ -13,3 +13,6 @@ export const limitPeriod = {
   WEEKLY: "Weekly",
   MONTHLY: "Monthly",
 };
+
+export const loginTimeLimitsCmsKeyPrefix =
+  "root:shared.playokay.login-time-limits-v2:fields.";

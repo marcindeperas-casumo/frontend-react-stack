@@ -5,6 +5,7 @@ import {
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
   monthlyLoginTimeLimitSelector,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
 } from "Models/playOkay";
 import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsFormOutro } from "./TimeLimitsFormOutro";
@@ -13,8 +14,6 @@ type Props = {
   initial: boolean,
   onClickCta: () => void,
 };
-
-const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
 
 export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
   const { t } = useTranslationsGql({

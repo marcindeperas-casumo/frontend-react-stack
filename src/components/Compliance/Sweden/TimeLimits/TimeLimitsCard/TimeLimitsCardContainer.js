@@ -9,6 +9,7 @@ import {
   weeklyLoginTimeLimitSelector,
   monthlyLoginTimeLimitSelector,
   type Period,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
 } from "Models/playOkay";
 import { REACT_APP_MODAL } from "Src/constants";
 import { useTranslationsGql } from "Utils/hooks";
@@ -18,8 +19,6 @@ import { TimeLimitsCardDesktop } from "./TimeLimitsCardDesktop";
 type Props = {
   selectedPeriod?: Period,
 };
-
-const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
 
 export function TimeLimitsCardContainer({ selectedPeriod }: Props) {
   const dispatch = useDispatch();

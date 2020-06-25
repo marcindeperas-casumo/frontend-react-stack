@@ -1,13 +1,12 @@
 // @flow
 import * as React from "react";
+import { loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix } from "Models/playOkay";
 import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsFormIntro } from "./TimeLimitsFormIntro";
 
 type Props = {
   onClickCta: () => void,
 };
-
-const cmsKeyPrefix = "root:shared.playokay.login-time-limits-v2:fields.";
 
 export function TimeLimitsFormIntroContainer({ onClickCta }: Props) {
   const { t } = useTranslationsGql({
