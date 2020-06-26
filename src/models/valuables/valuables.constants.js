@@ -7,6 +7,7 @@ export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   DEPOSIT: "deposit",
   SPORT: "sport",
   FREE_BET: "freeBet",
+  CASHBACK: "cashback",
 };
 
 export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {

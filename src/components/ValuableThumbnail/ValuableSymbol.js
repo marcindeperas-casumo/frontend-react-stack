@@ -1,5 +1,5 @@
 import React from "react";
-import { either, prop, cond, T, equals } from "ramda";
+import { either, prop, cond, T, equals, anyPass } from "ramda";
 import {
   CouponIcon,
   CurrencyCadIcon,
@@ -37,6 +37,17 @@ const VALUABLE_ICON = {
     [CURRENCIES.NZD]: CurrencyCadIcon,
     [CURRENCIES.USD]: CurrencyCadIcon,
   },
+  [VALUABLE_TYPES.CASHBACK]: {
+    [CURRENCIES.CAD]: CurrencyCadIcon,
+    [CURRENCIES.EUR]: CurrencyEurIcon,
+    [CURRENCIES.GBP]: CurrencyGbpIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.INR]: CurrencyRupIcon,
+    [CURRENCIES.SEK]: CurrencyKrnIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.NZD]: CurrencyCadIcon,
+    [CURRENCIES.USD]: CurrencyCadIcon,
+  },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
 };
@@ -58,7 +69,7 @@ export const ValuableSymbol = ({
         ),
     ],
     [
-      equals(VALUABLE_TYPES.CASH),
+      anyPass([equals(VALUABLE_TYPES.CASH), equals(VALUABLE_TYPES.CASHBACK)]),
       () => either(prop(currency), prop(CURRENCIES.EUR))(ValuableIcon),
     ],
     [T, () => ValuableIcon],
