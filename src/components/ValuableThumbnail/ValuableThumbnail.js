@@ -19,6 +19,7 @@ import {
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
+import Cashback from "./Icons/cashback.svg";
 
 type Props = {
   /** Valuable type of the valuable */
@@ -79,7 +80,11 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--full" />
+            {valuableType === VALUABLE_TYPES.CASHBACK ? (
+              <Cashback className="u-width--full" />
+            ) : (
+              <Coin className="u-width--full" />
+            )}
           </div>
           <Flex
             align="center"
