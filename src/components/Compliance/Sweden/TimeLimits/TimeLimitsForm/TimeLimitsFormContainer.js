@@ -23,7 +23,6 @@ type Props = {
 
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
   const { t } = useTranslationsGql({
-    form_top_header: `${cmsKeyPrefix}form_top_header`,
     form_cta: `${cmsKeyPrefix}form_cta`,
     form_hrs_per_day: `${cmsKeyPrefix}form_hrs_per_day`,
     form_hrs_per_week: `${cmsKeyPrefix}form_hrs_per_week`,

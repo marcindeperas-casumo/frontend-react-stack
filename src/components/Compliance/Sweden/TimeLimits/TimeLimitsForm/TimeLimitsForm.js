@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { type LoginTimeLimitsFormData } from "Models/playOkay";
 import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
@@ -9,7 +8,6 @@ import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
 type Props = {
   t: {
-    form_top_header: ?string,
     form_cta: ?string,
     form_hrs_per_day: ?string,
     form_hrs_per_week: ?string,
@@ -47,11 +45,6 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
       spacing="md"
       className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
     >
-      <Flex.Item>
-        <Text className="u-font-weight-bold u-text-align-center u-margin-top">
-          {t.form_top_header}
-        </Text>
-      </Flex.Item>
       <TimeLimitsFormRow
         value={hrsPerDay}
         min={minHrsPerDay}
