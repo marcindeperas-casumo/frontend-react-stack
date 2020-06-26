@@ -8,17 +8,17 @@ import weeklyLimitMock from "Models/playOkay/timeLimits/__mocks__/weeklyLimit";
 import monthlyLimitMock from "Models/playOkay/timeLimits/__mocks__/monthlyLimit";
 import stateMock from "Components/Duration/__mocks__/state";
 import cmsMock from "./__mocks__/cms";
-import { TimeLimitsCard } from "./TimeLimitsCard";
+import { TimeLimitsCardMobile } from "./TimeLimitsCardMobile";
 
 const stories = storiesOf(
-  "Compliance/Sweden/TimeLimits/TimeLimitsCard",
+  "Compliance/Sweden/TimeLimits/TimeLimitsCardMobile",
   module
 );
 
 stories.add("Default", () => {
   return (
     <MockStore state={stateMock}>
-      <TimeLimitsCard
+      <TimeLimitsCardMobile
         t={cmsMock}
         onClick={action("card clicked")}
         dailyLimit={dailyLimitMock}

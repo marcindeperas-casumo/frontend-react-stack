@@ -32,7 +32,12 @@ export function TimeLimitsFormView({
   }
 
   if (screen === SCREENS.OUTRO) {
-    return <TimeLimitsFormOutroContainer onClickCta={onClickOutroCta} />;
+    return (
+      <TimeLimitsFormOutroContainer
+        initial={initial}
+        onClickCta={onClickOutroCta}
+      />
+    );
   }
 
   return (

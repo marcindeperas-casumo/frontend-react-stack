@@ -52,6 +52,17 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
       ... on PlayerValuableCash {
         requirementType
       }
+      ... on PlayerValuableCashback {
+        description
+        requirementType
+        games {
+          title
+        }
+        excludedGames {
+          title
+        }
+        gameCategories
+      }
     }
   }
 }
@@ -79,6 +90,10 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
       }
     }
     ... on PlayerValuableCash {
+      requirementType
+    }
+    ... on PlayerValuableCashback {
+      description
       requirementType
     }
 }
