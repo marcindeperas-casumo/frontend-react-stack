@@ -33,13 +33,15 @@ export class RelaxGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    const { url = null } = this.props.gameData;
+    const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&homeurl=${encodedLobbyUrl}&fullscreen=false&rcenable=true`,
+        src: `${url}${
+          !isEmbedded ? `&homeurl=${encodedLobbyUrl}` : ""
+        } &fullscreen=false&rcenable=true`,
       };
     }
 
