@@ -38,6 +38,7 @@
     "invariant": "^2.2.4",
     "lodash.debounce": "^4.0.8",
     "luxon": "^1.22.0",
+    "markdown-to-jsx": "^6.11.4",
     "normalizr": "^3.6.0",
     "qs": "^6.9.1",
     "ramda": "^0.27.0",

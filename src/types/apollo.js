@@ -804,6 +804,32 @@ export type PlayAgainLatestPlayedQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: GetGamesRTP
+// ====================================================
+
+export type GetGamesRTP_getGamesPaginated_games = {
+  id: string,
+  slug: string,
+  title: string,
+  actualRtpPast6Months: ?string,
+  actualRtpPastYear: ?string,
+  rtp: ?string,
+};
+export type GetGamesRTP_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GetGamesRTP_getGamesPaginated_games>,
+};
+export type GetGamesRTP = {
+  getGamesPaginated: GetGamesRTP_getGamesPaginated,
+};
+export type GetGamesRTPVariables = {
+  query: string,
+  offset: number,
+  limit: number,
+};
+
+// ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_QUERY
 // ====================================================
 
@@ -1925,28 +1951,6 @@ export type GameSearch_Game = {
   name: string,
   slug: string,
   lobby: ?GameSearch_Game_lobby,
-  isInMaintenance: boolean,
-};
-
-// ====================================================
-// GraphQL fragment: GameSearchSuggestionsList_Game
-// ====================================================
-
-export type GameSearchSuggestionsList_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type GameSearchSuggestionsList_Game_lobby = {
-  bets: ?GameSearchSuggestionsList_Game_lobby_bets,
-};
-export type GameSearchSuggestionsList_Game = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  lobby: ?GameSearchSuggestionsList_Game_lobby,
   isInMaintenance: boolean,
 };
 
