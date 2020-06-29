@@ -33,15 +33,10 @@ const Content = props => (
     {(props.repeater || []).map((x, i) => (
       <Flex key={i} align="center" className="u-padding-y">
         {x.image && (
-          <img
-            src={x.image}
-            alt=""
-            className="u-margin-y--md"
-            style={{ width: "30%" }}
-          />
+          <img src={x.image} alt="" className="u-margin-y--md u-width--2/5" />
         )}
         {x.image_top && (
-          <img src={x.image_top} alt="" style={{ width: "30%" }} />
+          <img src={x.image_top} alt="" className="u-width--2/5" />
         )}
         {x.free_text && (
           <Flex.Item>

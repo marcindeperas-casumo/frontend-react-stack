@@ -86,40 +86,33 @@ const TableRow = ({
   textProps?: {},
 }) => (
   <>
-    <Flex
-      className="t-border-right o-flex__block"
-      align="center"
-      style={{ width: "40%" }}
-    >
+    <Flex className="t-border-right o-flex__block u-width--2/5" align="center">
       <Text size="sm" {...textProps}>
         {columns[0]}
       </Text>
     </Flex>
     <Flex
-      className="t-border-right"
+      className="t-border-right u-width--1/5"
       justify="center"
       align="center"
-      style={{ width: "20%" }}
     >
       <Text size="sm" {...textProps}>
         {columns[1]}
       </Text>
     </Flex>
     <Flex
-      className="t-border-right"
+      className="t-border-right u-width--1/5"
       justify="center"
       align="center"
-      style={{ width: "20%" }}
     >
       <Text size="sm" {...textProps}>
         {columns[2]}
       </Text>
     </Flex>
     <Flex
-      className="t-border-right"
+      className="t-border-right u-width--1/5"
       justify="center"
       align="center"
-      style={{ width: "20%" }}
     >
       <Text size="sm" {...textProps}>
         {columns[3]}
