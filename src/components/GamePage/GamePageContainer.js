@@ -28,7 +28,7 @@ type Props = {
   },
 };
 
-const decodeParams = json => {
+const decodedParams = json => {
   return mergeAll(
     Object.keys(json).map(key => {
       return { [key]: atob(json[key]) };
@@ -40,7 +40,7 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
 
   const remoteGameLaunchData = launchData
-    ? decodeParams(JSON.parse(decodeURIComponent(launchData)))
+    ? decodedParams(JSON.parse(decodeURIComponent(launchData)))
     : null;
 
   const { isDGOJ } = useJurisdiction();
