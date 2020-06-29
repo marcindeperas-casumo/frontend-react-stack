@@ -7,6 +7,7 @@ import {
   InfiniteLoader,
   AutoSizer,
 } from "react-virtualized";
+import debounce from "lodash.debounce";
 import "./VirtualList.scss";
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
   /** The height of a row. Can be a number or a function that returns the height of a row by index. */
   rowHeight: Function | number,
   /** Callback to load rows as user scrolls. */
-  loadMoreRows: () => Promise<any>,
+  loadMoreRows: ({ startIndex: number, stopIndex: number }) => Promise<any>,
   /** Function to check if a row is loaded */
   isRowLoaded: ({ index: number }) => boolean,
   /** Render Prop to render a row. */
@@ -31,9 +32,18 @@ type Props = {
   }) => Node,
   /** number of items per page */
   pageSize: number,
+  /**
+   * if this prop will change list will know to update its rows
+   * it's needed for lists that can change order
+   */
+  listHash?: string,
 };
 
 class VirtualList extends PureComponent<Props> {
+  static defaultProps = {
+    listHash: "",
+  };
+
   render() {
     const {
       rowHeight,
@@ -43,12 +53,17 @@ class VirtualList extends PureComponent<Props> {
       rowRenderer,
       pageSize,
       scrollElement,
+      listHash,
     } = this.props;
 
     return (
       <InfiniteLoader
         isRowLoaded={isRowLoaded}
-        loadMoreRows={loadMoreRows}
+        loadMoreRows={debounce(
+          ({ startIndex, stopIndex }) =>
+            loadMoreRows({ startIndex, stopIndex }),
+          300
+        )}
         rowCount={totalNumberOfRows}
         minimumBatchSize={pageSize}
         threshold={pageSize / 2}
@@ -71,6 +86,7 @@ class VirtualList extends PureComponent<Props> {
                     isScrolling={isScrolling}
                     onScroll={onChildScroll}
                     scrollTop={scrollTop}
+                    listHash={listHash}
                   />
                 )}
               </AutoSizer>
