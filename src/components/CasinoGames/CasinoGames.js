@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
+import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { useQuery } from "@apollo/react-hooks";
@@ -11,6 +12,7 @@ import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { isMobile } from "Components/ResponsiveLayout";
 import { useTranslations } from "Utils/hooks";
 import VirtualList from "Components/VirtualList";
+import { navigateById } from "Services/NavigationService";
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
 
 const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
@@ -58,16 +60,38 @@ const loadMoreConstructor = (fetchMore, gamesCount) => ({
   });
 };
 
-const rowHeight = 50;
+const formatRTPValue = (x: ?string) => {
+  if (!x) {
+    return "";
+  }
 
-const TableRow = ({ columns = [] }: { columns: Array<?string> }) => (
+  const n = parseFloat(x).toFixed(2);
+  if (n === "NaN") {
+    // happens when parseFloat returned NaN
+    return "";
+  }
+
+  return n;
+};
+
+const rowHeight = 50;
+const textClasses = isMobile()
+  ? {}
+  : { className: "u-text-overflow--ellipsis" };
+const TableRow = ({
+  columns = [],
+  textProps = {},
+}: {
+  columns: Array<?string>,
+  textProps?: {},
+}) => (
   <>
     <Flex
       className="t-border-right o-flex__block"
       align="center"
       style={{ width: "40%" }}
     >
-      <Text size="sm" className="u-text-overflow--ellipsis">
+      <Text size="sm" {...textProps}>
         {columns[0]}
       </Text>
     </Flex>
@@ -77,7 +101,7 @@ const TableRow = ({ columns = [] }: { columns: Array<?string> }) => (
       align="center"
       style={{ width: "20%" }}
     >
-      <Text size="sm" className="u-text-overflow--ellipsis">
+      <Text size="sm" {...textProps}>
         {columns[1]}
       </Text>
     </Flex>
@@ -87,7 +111,7 @@ const TableRow = ({ columns = [] }: { columns: Array<?string> }) => (
       align="center"
       style={{ width: "20%" }}
     >
-      <Text size="sm" className="u-text-overflow--ellipsis">
+      <Text size="sm" {...textProps}>
         {columns[2]}
       </Text>
     </Flex>
@@ -97,7 +121,7 @@ const TableRow = ({ columns = [] }: { columns: Array<?string> }) => (
       align="center"
       style={{ width: "20%" }}
     >
-      <Text size="sm" className="u-text-overflow--ellipsis">
+      <Text size="sm" {...textProps}>
         {columns[3]}
       </Text>
     </Flex>
@@ -105,7 +129,7 @@ const TableRow = ({ columns = [] }: { columns: Array<?string> }) => (
 );
 const rowContainerClasses =
   "t-border-bottom t-border-left u-padding-left t-background-white";
-export const RTPPage = () => {
+export const CasinoGames = () => {
   const t = useTranslations<{
     meta_description: string,
     meta_title: string,
@@ -117,6 +141,9 @@ export const RTPPage = () => {
     actual_rtp_past_6_months: string,
     actual_rtp_past_year: string,
   }>("game-categories");
+  const categoriesContent = useTranslations("game-categories", true);
+  // const slotsContent = useTranslations("game-categories.slots");
+  // console.log(a, b);
   const query = "categories=SLOT_MACHINE";
   const { data, loading, fetchMore } = useQuery<
     A.GetGamesRTP,
@@ -129,7 +156,7 @@ export const RTPPage = () => {
     },
   });
 
-  if (loading || !data || !data.getGamesPaginated || !t) {
+  if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
     return null;
   }
 
@@ -142,7 +169,7 @@ export const RTPPage = () => {
           "u-position-sticky--top u-top-0 u-zindex--content-overlay",
           rowContainerClasses
         )}
-        style={{ height: rowHeight }}
+        style={{ minHeight: rowHeight }}
       >
         <TableRow
           columns={[
@@ -183,10 +210,11 @@ export const RTPPage = () => {
             <TableRow
               columns={[
                 games[index]?.title,
-                games[index]?.rtp,
-                games[index]?.actualRtpPast6Months,
-                games[index]?.actualRtpPastYear,
+                formatRTPValue(games[index]?.rtp),
+                formatRTPValue(games[index]?.actualRtpPast6Months),
+                formatRTPValue(games[index]?.actualRtpPastYear),
               ]}
+              textProps={textClasses}
             />
           </Flex>
         )}
@@ -198,9 +226,40 @@ export const RTPPage = () => {
   if (isMobile()) {
     return (
       <>
-        <Text className="u-padding">
+        <div className="u-padding">
+          <DangerousHtml html={categoriesContent} />
+          <Flex className="u-padding-y--md">
+            <Button
+              variant="primary"
+              className="u-margin-left"
+              onClick={() =>
+                navigateById({
+                  routeId: "game-information",
+                  params: {
+                    gameType: "slots",
+                  },
+                })
+              }
+            >
+              Slots
+            </Button>
+            <Button
+              variant="primary"
+              className="u-margin-left"
+              onClick={() => navigateById({ routeId: "play-roulette" })}
+            >
+              Ruleta
+            </Button>
+            <Button
+              variant="primary"
+              className="u-margin-left"
+              onClick={() => navigateById({ routeId: "play-blackjack" })}
+            >
+              Blackjack
+            </Button>
+          </Flex>
           <DangerousHtml html={t.rtp_description} />
-        </Text>
+        </div>
         {rtpTable}
       </>
     );

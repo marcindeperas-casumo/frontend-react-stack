@@ -116,7 +116,7 @@ export const ROUTE_IDS = {
   PLAY_OKAY: "PLAY_OKAY",
   FAQ: "FAQ",
   ABOUT_CASUMO: "ABOUT_CASUMO",
-  RTP: "RTP",
+  CASINO_GAMES: "CASINO_GAMES",
 };
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
@@ -154,7 +154,7 @@ export const ROUTES = {
   [ROUTE_IDS.PLAY_OKAY]: "play-okay",
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
-  [ROUTE_IDS.RTP]: "{{rtp}}",
+  [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
 };
 
 export const TRANSLATED_ROUTES = {
@@ -172,12 +172,13 @@ export const TRANSLATED_ROUTES = {
     de: "spielen",
     DEFAULT: "play",
   },
-  RTP: {
+  CASINO_GAMES: {
     sv: "casinospel",
     fi: "kasinopelit",
     no: "casinospill",
     de: "casino-spiele",
     en: "casino-games",
+    es: "casino-juegos",
     DEFAULT: "games-information",
   },
 };
