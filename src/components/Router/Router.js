@@ -26,6 +26,7 @@ import {
   LazyRealMoneyGamePage,
   LazyPlayForFunGamePage,
   LazyCasinoGamesPage,
+  LazyCasinoGamesSlotsPage,
 } from "./routes";
 
 export const Router = () => {
@@ -37,6 +38,9 @@ export const Router = () => {
   return (
     <ReachRouter {...reachRouterProps}>
       <LazyCasinoGamesPage path={translateRoute(ROUTE_IDS.CASINO_GAMES)} />
+      <LazyCasinoGamesSlotsPage
+        path={translateRoute(ROUTE_IDS.CASINO_GAMES_SLOTS)}
+      />
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY_NATIVE)} />
       <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
