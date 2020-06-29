@@ -10,13 +10,13 @@ import { interpolate } from "Utils";
 
 type Props = {
   t: {
-    time_limits_form_outro_copy_initial: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
-    time_limits_form_outro_cta: string,
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
+    form_outro_copy_initial: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
+    form_outro_cta: ?string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
   },
   initial?: boolean,
   onClickCta: () => void,
@@ -59,7 +59,7 @@ export function TimeLimitsFormOutro({
           size="md"
           className="u-width--full u-margin-top--5xlg"
         >
-          {t.time_limits_form_outro_cta}
+          {t.form_outro_cta || ""}
         </Button>
       </Flex.Item>
     </Flex>
@@ -72,12 +72,12 @@ type CopyProps = {
   weeklyLimit: LoginTimeLimit,
   monthlyLimit: LoginTimeLimit,
   t: {
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
-    time_limits_form_outro_copy_initial: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
+    form_outro_copy_initial: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
   },
 };
 
@@ -90,9 +90,7 @@ function Copy({
 }: CopyProps) {
   if (initial) {
     return (
-      <Text className="u-text-align-center">
-        {t.time_limits_form_outro_copy_initial}
-      </Text>
+      <Text className="u-text-align-center">{t.form_outro_copy_initial}</Text>
     );
   }
 
@@ -108,11 +106,11 @@ function Copy({
 type LimitCopyProps = {
   limit: LoginTimeLimit,
   t: {
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
   },
 };
 
@@ -124,7 +122,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
   if (limit.comingLimit) {
     return (
       <Text className="u-text-align-center">
-        {interpolate(t.time_limits_form_outro_copy_increasing, {
+        {interpolate(t.form_outro_copy_increasing || "", {
           ...replacements,
           date: DateTime.fromMillis(limit.comingLimit.activationTime).toFormat(
             "DD"
@@ -136,7 +134,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
 
   return (
     <Text className="u-text-align-center">
-      {interpolate(t.time_limits_form_outro_copy_decreasing, replacements)}
+      {interpolate(t.form_outro_copy_decreasing || "", replacements)}
     </Text>
   );
 }

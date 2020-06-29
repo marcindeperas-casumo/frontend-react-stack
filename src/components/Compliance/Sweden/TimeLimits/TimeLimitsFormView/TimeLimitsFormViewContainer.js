@@ -6,15 +6,20 @@ import { TimeLimitsFormView } from "./TimeLimitsFormView";
 
 type Props = {
   onClickOutroCta: () => void,
+  formHeader?: React.Node,
 };
 
-export function TimeLimitsFormViewContainer({ onClickOutroCta }: Props) {
+export function TimeLimitsFormViewContainer({
+  onClickOutroCta,
+  formHeader,
+}: Props) {
   const limitsDefined = useSelector(allLoginTimeLimitsDefinedSelector);
 
   return (
     <TimeLimitsFormView
       initial={!limitsDefined}
       onClickOutroCta={onClickOutroCta}
+      formHeader={formHeader}
     />
   );
 }
