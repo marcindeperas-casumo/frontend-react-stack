@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { mergeAll } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
@@ -27,11 +28,19 @@ type Props = {
   },
 };
 
+const decodeParams = json => {
+  return mergeAll(
+    Object.keys(json).map(key => {
+      return { [key]: atob(json[key]) };
+    })
+  );
+};
+
 export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
 
   const remoteGameLaunchData = launchData
-    ? JSON.parse(decodeURIComponent(launchData))
+    ? decodeParams(JSON.parse(decodeURIComponent(launchData)))
     : null;
 
   const { isDGOJ } = useJurisdiction();
