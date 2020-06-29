@@ -7,6 +7,7 @@ import { TimeLimitsFormContainer } from "../TimeLimitsForm";
 type Props = {
   initial?: boolean,
   onClickOutroCta: () => void,
+  formHeader?: React.Node,
 };
 
 const SCREENS = {
@@ -18,6 +19,7 @@ const SCREENS = {
 export function TimeLimitsFormView({
   initial = false,
   onClickOutroCta,
+  formHeader,
 }: Props) {
   const [screen, setScreen] = React.useState(
     initial ? SCREENS.INTRO : SCREENS.FORM
@@ -41,6 +43,9 @@ export function TimeLimitsFormView({
   }
 
   return (
-    <TimeLimitsFormContainer onLimitsSaved={() => setScreen(SCREENS.OUTRO)} />
+    <>
+      {formHeader}
+      <TimeLimitsFormContainer onLimitsSaved={() => setScreen(SCREENS.OUTRO)} />
+    </>
   );
 }

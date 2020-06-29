@@ -8,9 +8,9 @@ import TimeLimitIcon from "./timeLimit.svg";
 
 type Props = {
   t: {
-    time_limits_form_intro_header: string,
-    time_limits_form_intro_copy: string,
-    time_limits_form_intro_cta: string,
+    form_intro_header: ?string,
+    form_intro_copy: ?string,
+    form_intro_cta: ?string,
   },
   onClickCta: () => void,
 };
@@ -27,7 +27,7 @@ export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
       </Flex.Item>
       <Flex.Item>
         <Text size="md" className="u-font-weight-black t-color-plum-dark-1">
-          {t.time_limits_form_intro_header}
+          {t.form_intro_header}
         </Text>
       </Flex.Item>
       <Flex.Item className="u-margin-bottom--5xlg">
@@ -36,7 +36,7 @@ export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
             <TimeLimitIcon className="o-flex__item--no-shrink" />
           </Flex.Item>
           <Flex.Item>
-            <Text>{t.time_limits_form_intro_copy}</Text>
+            <Text>{t.form_intro_copy}</Text>
           </Flex.Item>
         </Flex>
       </Flex.Item>
@@ -47,7 +47,7 @@ export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
           size="md"
           className="u-width--full u-margin-top--5xlg"
         >
-          {t.time_limits_form_intro_cta}
+          {t.form_intro_cta || ""}
         </Button>
       </Flex.Item>
     </Flex>

@@ -10,7 +10,10 @@ export const ValuableDetailsContainer = props => {
       "root:valuable-details-component:fields.use_bonus_money",
     spinsUnlockedActionLabel:
       "root:valuable-details-component:fields.use_bonus_spins",
+    activateCashbackActionLabel:
+      "root:valuable-details-component:fields.activate_cashback",
     playToUnlockLabel: "root:valuable-details-component:fields.play_to_unlock",
+    playNowLabel: "root:valuable-details-component:fields.play_now",
     depositToUnlockLabel:
       "root:valuable-details-component:fields.deposit_to_unlock",
     depositNowLabel: "root:valuable-details-component:fields.deposit_now",

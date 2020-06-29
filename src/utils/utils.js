@@ -9,6 +9,19 @@ export const noop = () => {};
 
 export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
+export const isIosNative = (w: window = window) =>
+  R.pathOr(false, ["native", "ios"], w);
+
+export const getAppVersion = (w: window = window) => {
+  const appVersion = R.pathOr(undefined, ["native", "version"], w);
+
+  if (isIosNative() && appVersion) {
+    return `ios/{${appVersion}}`;
+  }
+
+  return undefined;
+};
+
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 
 export const bridgeFactory = () => {

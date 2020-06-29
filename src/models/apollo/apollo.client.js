@@ -18,6 +18,7 @@ import {
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
+import { isIosNative, getAppVersion } from "Utils";
 import introspectionQueryResultData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
@@ -72,6 +73,9 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
+        ...(isIosNative() && {
+          "X-Request-Client-Details": getAppVersion(),
+        }),
       },
     };
   });
