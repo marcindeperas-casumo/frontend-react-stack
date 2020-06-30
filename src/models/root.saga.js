@@ -130,6 +130,5 @@ export default function* rootSaga(dispatch: any): * {
     takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
-  // Epic PCC-593: will be uncommented when the whole flow is implemented
   yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
 }
