@@ -1,12 +1,16 @@
 // @flow
 import { type Saga } from "redux-saga";
 import { put, select, call, take } from "redux-saga/effects";
+// eslint-disable-next-line no-unused-vars
 import * as R from "ramda";
 import { waitForSelector } from "Utils";
 import { jurisdictionSelector, playerIdSelector } from "Models/handshake";
+// eslint-disable-next-line no-unused-vars
 import { showModal, isModalHiddenSelector } from "Models/modal";
 import { isFetchingStarted, isFetched } from "Models/fetch";
+// eslint-disable-next-line no-unused-vars
 import { types, getAllLimits, loginTimeLimitsSelector } from "Models/playOkay";
+// eslint-disable-next-line no-unused-vars
 import { JURISDICTIONS, REACT_APP_MODAL } from "Src/constants";
 
 export function* appStartedSaga(): Saga {
@@ -37,14 +41,14 @@ export function* appStartedSaga(): Saga {
     yield take(types.PLAYOK_FETCH_ALL_LIMITS_COMPLETED);
   }
 
-  const loginTimeLimits = yield select(loginTimeLimitsSelector);
+  // const loginTimeLimits = yield select(loginTimeLimitsSelector);
 
-  if (R.length(loginTimeLimits) < 3) {
-    // wait till any previous modal has been closed
-    yield call(waitForSelector, isModalHiddenSelector);
+  // if (R.length(loginTimeLimits) < 3) {
+  //   // wait till any previous modal has been closed
+  //   yield call(waitForSelector, isModalHiddenSelector);
 
-    yield put(
-      showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true })
-    );
-  }
+  //   yield put(
+  //     showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true })
+  //   );
+  // }
 }
