@@ -6,6 +6,7 @@ import { BaseIframeGame } from "./BaseIframeGame";
 import { EdictGame } from "./EdictGame";
 import { EvolutionGame } from "./EvolutionGame";
 import { NetentGame } from "./NetentGame";
+import { EmbeddedNetentGame } from "./EmbeddedNetentGame";
 import { ThunderkickGame } from "./ThunderkickGame";
 import { YggdrasilGame } from "./YggdrasilGame";
 import { RedTigerGame } from "./RedTigerGame";
@@ -36,6 +37,7 @@ export const models = {
   [PROVIDERS.NETENT_FLASH]: NetentGame,
   [PROVIDERS.NETENT_LIVE]: NetentGame,
   [PROVIDERS.NETENT_GAME_INCLUSION]: NetentGame,
+  [PROVIDERS.NETENT_EMBEDDED]: EmbeddedNetentGame,
   [PROVIDERS.NYX_HTML5]: NyxGame,
   [PROVIDERS.NYX_FLASH]: BaseIframeGame,
   [PROVIDERS.PLAYNGO_DESKTOP]: PlayNGoDesktopGame,
