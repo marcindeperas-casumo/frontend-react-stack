@@ -1,4 +1,5 @@
 // @flow
+import { includes } from "ramda";
 import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
@@ -21,6 +22,7 @@ import { NyxGame } from "./NyxGame";
 
 export type GameProps = {
   providerType: GameProviderType,
+  url?: string,
 };
 
 export const models = {
@@ -55,13 +57,29 @@ export const models = {
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
 };
 
+const whichProviderType = gameData => {
+  if (
+    includes(gameData.providerType, [
+      PROVIDERS.NETENT_LIVE,
+      PROVIDERS.NETENT_GAME_INCLUSION,
+      PROVIDERS.NETENT_FLASH,
+      PROVIDERS.NETENT,
+    ]) &&
+    gameData.url
+  ) {
+    return PROVIDERS.NETENT_EMBEDDED;
+  }
+
+  return gameData.providerType;
+};
+
 export const getGameModel = (
   gameData: GameProps,
   gameRef: GameRef,
   language: string,
   environment: string
 ): GameProviderModel => {
-  const GameModel = models[gameData.providerType] || BaseGame;
+  const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
   return new GameModel({ gameData, gameRef, language, environment });
 };
