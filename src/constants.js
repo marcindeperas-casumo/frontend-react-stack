@@ -388,6 +388,8 @@ export const MODALS = {
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
+  EMBEDDED: "embedded",
+  WEB_INTERNAL: "webInternal",
 };
 
 export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
