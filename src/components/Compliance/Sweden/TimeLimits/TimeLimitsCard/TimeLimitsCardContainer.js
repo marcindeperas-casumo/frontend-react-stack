@@ -43,15 +43,10 @@ export function TimeLimitsCardContainer({ selectedPeriod }: Props) {
   const onClick = () =>
     dispatch(showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM));
 
-  if (!dailyLimit || !weeklyLimit || !monthlyLimit) {
-    return null;
-  }
-
-  const selectedLimit = R.find(R.propEq("period", selectedPeriod))([
-    dailyLimit,
-    weeklyLimit,
-    monthlyLimit,
-  ]);
+  const isNotNil = R.complement(R.isNil);
+  const selectedLimit = R.find(R.propEq("period", selectedPeriod))(
+    R.filter(isNotNil, [dailyLimit, weeklyLimit, monthlyLimit])
+  );
 
   return (
     <>

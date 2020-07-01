@@ -1,2 +1,2 @@
 // @flow
-export { TimeLimitsFormViewContainer } from "./TimeLimitsFormView";
+export { TimeLimitsFormView } from "./TimeLimitsFormView";
