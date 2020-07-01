@@ -10,13 +10,13 @@ import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    mobile_title: string,
-    mobile_subtitle: string,
-    time_per_day: string,
-    time_per_week: string,
-    time_per_month: string,
-    time_left_daily: string,
-    coming_limit_note: string,
+    mobile_title: ?string,
+    mobile_subtitle: ?string,
+    mobile_limit_daily: ?string,
+    mobile_limit_weekly: ?string,
+    mobile_limit_monthly: ?string,
+    time_left_daily: ?string,
+    coming_limit_note: ?string,
   },
   dailyLimit: LoginTimeLimit,
   weeklyLimit: LoginTimeLimit,
@@ -56,9 +56,15 @@ export function TimeLimitsCardMobile({
           {t.mobile_subtitle}
         </Text>
       </Flex.Item>
-      <LimitRow limit={dailyLimit} t={{ ...t, label: t.time_per_day }} />
-      <LimitRow limit={weeklyLimit} t={{ ...t, label: t.time_per_week }} />
-      <LimitRow limit={monthlyLimit} t={{ ...t, label: t.time_per_month }} />
+      <LimitRow limit={dailyLimit} t={{ ...t, label: t.mobile_limit_daily }} />
+      <LimitRow
+        limit={weeklyLimit}
+        t={{ ...t, label: t.mobile_limit_weekly }}
+      />
+      <LimitRow
+        limit={monthlyLimit}
+        t={{ ...t, label: t.mobile_limit_monthly }}
+      />
       <Flex.Item className="u-margin-top--lg">
         <Text tag="em" className="t-color-grey-dark-1">
           {interpolateWithJSX(
@@ -73,8 +79,8 @@ export function TimeLimitsCardMobile({
 
 type LimitRowProps = {
   t: {
-    label: string,
-    coming_limit_note: string,
+    label: ?string,
+    coming_limit_note: ?string,
   },
   limit: LoginTimeLimit,
 };

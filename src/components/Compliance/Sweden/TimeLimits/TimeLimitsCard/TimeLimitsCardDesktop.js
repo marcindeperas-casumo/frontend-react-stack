@@ -10,14 +10,14 @@ import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    desktop_title: string,
-    coming_limit_note: string,
-    time_left_daily: string,
-    time_left_weekly: string,
-    time_left_monthly: string,
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
+    desktop_title: ?string,
+    coming_limit_note: ?string,
+    time_left_daily: ?string,
+    time_left_weekly: ?string,
+    time_left_monthly: ?string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
   },
   limit: LoginTimeLimit,
   onClick: () => void,

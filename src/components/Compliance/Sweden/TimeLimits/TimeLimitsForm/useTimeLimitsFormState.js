@@ -7,7 +7,10 @@ import {
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
   monthlyLoginTimeLimitSelector,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
 } from "Models/playOkay";
+import { interpolate } from "Utils";
+import { useTranslationsGql } from "Utils/hooks";
 
 const DEFAULT = {
   minHrsPerDay: 1,
@@ -38,6 +41,10 @@ export type UseTimeLimitsFormStateType = {
 };
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
+  const { t } = useTranslationsGql({
+    form_value_too_low: `${cmsKeyPrefix}form_value_too_low`,
+    form_value_too_high: `${cmsKeyPrefix}form_value_too_high`,
+  });
   const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
   const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
   const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
@@ -69,17 +76,20 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
   const dailyLimitErrorMessage = limitErrorMessage(
     minHrsPerDay,
     maxHrsPerDay,
-    hrsPerDay
+    hrsPerDay,
+    t
   );
   const weeklyLimitErrorMessage = limitErrorMessage(
     minHrsPerWeek,
     maxHrsPerWeek,
-    hrsPerWeek
+    hrsPerWeek,
+    t
   );
   const monthlyLimitErrorMessage = limitErrorMessage(
     minHrsPerMonth,
     maxHrsPerMonth,
-    hrsPerMonth
+    hrsPerMonth,
+    t
   );
   const anyLimitChanged =
     hrsPerDay !== savedHrsPerDay ||
@@ -129,13 +139,17 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
 export function limitErrorMessage(
   minValue: number,
   maxValue: number,
-  newValue: number
+  newValue: number,
+  t: {
+    form_value_too_low: ?string,
+    form_value_too_high: ?string,
+  }
 ): string {
   if (newValue < minValue) {
-    return `This limit should be at least ${minValue}.`;
+    return interpolate(t.form_value_too_low || "", { minValue });
   }
   if (newValue > maxValue) {
-    return `This limit should be no more than ${maxValue}.`;
+    return interpolate(t.form_value_too_high || "", { maxValue });
   }
 
   return "";

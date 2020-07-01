@@ -18,3 +18,5 @@ export * from "./LazyTransactionHistory";
 export * from "./LazyAnnualTransactionsOverview";
 export * from "./LazyPlayForFunGamePage";
 export * from "./LazyRealMoneyGamePage";
+export * from "./LazyCasinoGamesPage";
+export * from "./LazyCasinoGamesSlotsPage";

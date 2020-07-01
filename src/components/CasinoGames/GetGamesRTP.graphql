@@ -1,0 +1,14 @@
+query GetGamesRTP($query: String!, $offset: Int!, $limit: Int!) {
+  getGamesPaginated(query: $query, offset: $offset, limit: $limit) {
+    gamesCount
+    offset
+    games {
+      id
+      slug
+      title
+      actualRtpPast6Months
+      actualRtpPastYear
+      rtp
+    }
+  }
+}
