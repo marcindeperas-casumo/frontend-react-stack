@@ -5,7 +5,11 @@ import { waitForSelector } from "Utils";
 import { jurisdictionSelector, playerIdSelector } from "Models/handshake";
 import { isFetchingStarted, isFetched } from "Models/fetch";
 import { showModal, isModalHiddenSelector } from "Models/modal";
-import { types, getAllLimits, loginTimeLimitsSelector } from "Models/playOkay";
+import {
+  types,
+  getAllLimits,
+  allLoginTimeLimitsDefinedSelector,
+} from "Models/playOkay";
 import { JURISDICTIONS, REACT_APP_MODAL } from "Src/constants";
 import { appStartedSaga } from "./timeLimits.appStarted.saga";
 
@@ -76,17 +80,19 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
     expect(generator.next(true).value.SELECT).toBeInstanceOf(Object);
   });
 
-  test.skip("it should select time limits Redux state if fetch has completed", () => {
-    expect(generator.next(true).value).toEqual(select(loginTimeLimitsSelector));
+  test("it should select time limits Redux state if fetch has completed", () => {
+    expect(generator.next(true).value).toEqual(
+      select(allLoginTimeLimitsDefinedSelector)
+    );
   });
 
-  test.skip("it should wait till any open modal is closed", () => {
-    expect(generator.next([]).value).toEqual(
+  test("it should wait till any open modal is closed", () => {
+    expect(generator.next(false).value).toEqual(
       call(waitForSelector, isModalHiddenSelector)
     );
   });
 
-  test.skip("it should open up non-closable modal if there are no defined time limits", () => {
+  test("it should open up non-closable modal if there are no defined time limits", () => {
     expect(generator.next(null).value).toEqual(
       put(showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true }))
     );
