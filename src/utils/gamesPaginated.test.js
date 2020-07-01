@@ -1,5 +1,5 @@
 // @flow
-import { insertIntoArray } from "./GameListPage";
+import { insertIntoArray } from "./gamesPaginated";
 
 describe("GameListPage/insertIntoArray", () => {
   test("should inject array starting from given index", () => {

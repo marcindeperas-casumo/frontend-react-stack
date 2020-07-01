@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import * as A from "Types/apollo";
+import { loadMoreConstructor } from "Utils";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
@@ -19,52 +19,6 @@ import { GameListPageSort } from "./GameListPageSort";
 
 type Props = {
   set: A.GetGameSets_gameSetsList,
-};
-
-const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
-export function insertIntoArray(newData: Array<any>, offset: number) {
-  return R.pipe(
-    R.remove(offset, newData.length),
-    R.insertAll(offset, newData)
-  );
-}
-
-const loadMoreConstructor = (fetchMore, gamesCount) => ({
-  startIndex,
-  stopIndex,
-}) => {
-  const tmpLimit = stopIndex - startIndex;
-  const limit = tmpLimit > 99 ? 100 : tmpLimit || 1; // it blows up above 100
-  const offset = limit === 100 ? stopIndex - startIndex : startIndex;
-
-  return fetchMore<A.GameListPageQueryVariables>({
-    variables: { offset, limit },
-    updateQuery: (prev, { fetchMoreResult }) => {
-      if (!fetchMoreResult) {
-        return prev;
-      }
-
-      const insertNewGames = insertIntoArray(
-        fetchMoreResult.getGamesPaginated.games,
-        fetchMoreResult.getGamesPaginated.offset
-      );
-
-      return R.over(
-        gamesLense,
-        prevGames => {
-          if (prevGames.length !== gamesCount) {
-            return R.pipe(
-              insertIntoArray(prevGames, 0),
-              insertNewGames
-            )(new Array(gamesCount));
-          }
-
-          return insertNewGames(prevGames);
-        },
-        prev
-      );
-    },
-  });
 };
 
 export function GameListPage({ set }: Props) {
