@@ -76,17 +76,17 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
     expect(generator.next(true).value.SELECT).toBeInstanceOf(Object);
   });
 
-  test.skip("it should select time limits Redux state if fetch has completed", () => {
+  test("it should select time limits Redux state if fetch has completed", () => {
     expect(generator.next(true).value).toEqual(select(loginTimeLimitsSelector));
   });
 
-  test.skip("it should wait till any open modal is closed", () => {
+  test("it should wait till any open modal is closed", () => {
     expect(generator.next([]).value).toEqual(
       call(waitForSelector, isModalHiddenSelector)
     );
   });
 
-  test.skip("it should open up non-closable modal if there are no defined time limits", () => {
+  test("it should open up non-closable modal if there are no defined time limits", () => {
     expect(generator.next(null).value).toEqual(
       put(showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true }))
     );
