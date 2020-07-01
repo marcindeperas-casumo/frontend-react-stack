@@ -31,8 +31,7 @@ export const apolloClient = getApolloClient();
 
 const { showDisabledGames } = getDeveloperOptions();
 const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
-const isEmbeddedEnabled = state =>
-  featureFlagSelector(FEATURE_FLAGS.EMBEDDED)(state);
+const isEmbeddedEnabled = featureFlagSelector(FEATURE_FLAGS.EMBEDDED);
 
 export function getApolloClient(): ApolloClientType {
   return new ApolloClient({
