@@ -1,5 +1,7 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
+import classNames from "classnames";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -8,6 +10,7 @@ import * as A from "Types/apollo";
 import { ModalBase, ModalHeader } from "Components/RSModal";
 import { Toggle } from "Components/Toggle/Toggle";
 import { CheckboxSquare } from "Components/Checkbox/CheckboxSquare";
+import { useTranslations } from "Utils/hooks";
 import "./gameListPageFilters.scss";
 
 type Props = {
@@ -19,6 +22,21 @@ type Props = {
   numberOfGames: number,
 };
 export function GameListPageFilters(props: Props) {
+  const gameStudioTranslations = R.pipe(
+    R.propOr([], "studios"),
+    R.map(x => [x.id, x.name]),
+    R.fromPairs
+  )(
+    useTranslations<{
+      studios: Array<{
+        background: string,
+        id: string,
+        logo: string,
+        name: string,
+      }>,
+    }>("grouped-lists.game-studios")
+  );
+
   return (
     <ModalBase
       isOpen={props.isOpen}
@@ -33,15 +51,22 @@ export function GameListPageFilters(props: Props) {
         {props.availableFilters.map(x => (
           <Flex
             key={x.key}
-            direction="vertical"
+            justify={x.type === "toggle" ? "space-between" : "start"}
+            direction={x.type === "toggle" ? "horizontal" : "vertical"}
             className="u-padding-y--xlg t-border-bottom"
           >
-            <Flex direction="vertical" className="u-padding-bottom--md">
+            <Flex
+              direction="vertical"
+              className={classNames({
+                "u-padding-bottom--md": x.type !== "toggle",
+              })}
+            >
               <Text className="u-font-weight-black">{x.key}</Text>
               <Text size="sm">Description will be here</Text>
             </Flex>
             <Flex className="o-flex--wrap">
               {x.values.map(y => {
+                const valueTranslation = gameStudioTranslations[y.key] || y.key;
                 const isActive = props.activeFilters[y.query];
                 const onChange = () => {
                   props.setFilters({
@@ -50,17 +75,17 @@ export function GameListPageFilters(props: Props) {
                   });
                 };
 
-                if (y.type === "chip") {
+                if (x.type === "chip") {
                   return (
                     <ChipFilterable
                       key={y.key}
                       onClick={onChange}
                       isActive={isActive}
                     >
-                      {y.key}
+                      {valueTranslation}
                     </ChipFilterable>
                   );
-                } else if (y.type === "toggle") {
+                } else if (x.type === "toggle") {
                   return (
                     <Toggle
                       key={y.key}
@@ -68,7 +93,7 @@ export function GameListPageFilters(props: Props) {
                       onChange={onChange}
                     />
                   );
-                } else if (y.type === "checkbox") {
+                } else if (x.type === "checkbox") {
                   return (
                     <Flex
                       key={y.key}
@@ -76,7 +101,7 @@ export function GameListPageFilters(props: Props) {
                       justify="space-between"
                       className="u-width--full u-padding-y--md t-border-bottom"
                     >
-                      {y.key}
+                      {valueTranslation}
                       <CheckboxSquare checked={isActive} onChange={onChange} />
                     </Flex>
                   );
