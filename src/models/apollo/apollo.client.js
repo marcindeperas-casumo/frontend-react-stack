@@ -8,18 +8,18 @@ import {
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
 import { isMobile } from "@casumo/is-mobile";
-import { DEVICES, FEATURE_FLAGS } from "Src/constants";
+import { DEVICES } from "Src/constants";
 import {
   marketSelector,
   currencySelector,
   sessionIdSelector,
   languageSelector,
-  featureFlagSelector,
+  emailSelector,
 } from "Models/handshake";
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
-import { getAppVersion } from "Utils";
+import { getAppVersion, isEmbeddedOn } from "Utils";
 import introspectionQueryResultData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
@@ -31,7 +31,6 @@ export const apolloClient = getApolloClient();
 
 const { showDisabledGames } = getDeveloperOptions();
 const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
-const isEmbeddedEnabled = featureFlagSelector(FEATURE_FLAGS.EMBEDDED);
 
 export function getApolloClient(): ApolloClientType {
   return new ApolloClient({
@@ -75,9 +74,11 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
-        ...(isEmbeddedEnabled(state) && {
-          "X-Request-Client-Details": getAppVersion(),
-        }),
+        ...(isEmbeddedOn(emailSelector(state))
+          ? {
+              "X-Request-Client-Details": getAppVersion(),
+            }
+          : {}),
       },
     };
   });

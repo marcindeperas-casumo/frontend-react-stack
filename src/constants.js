@@ -401,8 +401,6 @@ export const MODALS = {
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
-  EMBEDDED: "EMBEDDED",
-  WEB_INTERNAL: "WEB_INTERNAL",
 };
 
 export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
@@ -421,4 +419,16 @@ export const POLL_INTERVAL = {
   JACKPOTS: 30000,
   JACKPOTS_MUST_DROP: 30000,
   REEL_RACES: 8000,
+};
+
+export const EMBEDDED_GAMES = {
+  ACTIVE: true,
+  TESTERS: [
+    "mariusz.klinger+test@casumo.com",
+    "boguslaw.parol@casumo.com",
+    "lukasz.kowalski@casumo.com",
+    "chris.scicluna@casumo.com",
+    "peter.noer@casumo.com",
+    "stephen.marshall@casumo.com",
+  ],
 };
