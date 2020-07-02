@@ -5,7 +5,11 @@ import { waitForSelector } from "Utils";
 import { jurisdictionSelector, playerIdSelector } from "Models/handshake";
 import { isFetchingStarted, isFetched } from "Models/fetch";
 import { showModal, isModalHiddenSelector } from "Models/modal";
-import { types, getAllLimits, loginTimeLimitsSelector } from "Models/playOkay";
+import {
+  types,
+  getAllLimits,
+  allLoginTimeLimitsDefinedSelector,
+} from "Models/playOkay";
 import { JURISDICTIONS, REACT_APP_MODAL } from "Src/constants";
 import { appStartedSaga } from "./timeLimits.appStarted.saga";
 
@@ -77,11 +81,13 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
   });
 
   test("it should select time limits Redux state if fetch has completed", () => {
-    expect(generator.next(true).value).toEqual(select(loginTimeLimitsSelector));
+    expect(generator.next(true).value).toEqual(
+      select(allLoginTimeLimitsDefinedSelector)
+    );
   });
 
   test("it should wait till any open modal is closed", () => {
-    expect(generator.next([]).value).toEqual(
+    expect(generator.next(false).value).toEqual(
       call(waitForSelector, isModalHiddenSelector)
     );
   });
