@@ -5,6 +5,7 @@ import Text from "@casumo/cmp-text";
 import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
 import Evolution from "./providers/evolution.svg";
+import Netent from "./providers/netent.svg";
 
 const Provider = props => (
   <Matcher
@@ -12,6 +13,7 @@ const Provider = props => (
     matchers={{
       casumo: Casumo,
       evolution: Evolution,
+      "Net Entertainment": Netent,
       default: Evolution,
     }}
     {...props}
@@ -20,7 +22,7 @@ const Provider = props => (
 
 type Props = {
   players?: number,
-  provider: "casumo" | "evolution",
+  provider: string,
 };
 export function LiveCasinoCardFooter({ players, provider }: Props) {
   return (
