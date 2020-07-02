@@ -10,6 +10,8 @@ import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
   GamesVirtualGrid,
   GamesVirtualGridSkeleton,
+  LiveCasinoGamesVirtualGrid,
+  LiveCasinoGamesVirtualGridSkeleton,
 } from "Components/GamesVirtualGrid";
 import { GameListSkeleton } from "Components/GameListSkeleton";
 import { GameRow, GameRowText } from "Components/GameRow";
@@ -21,8 +23,10 @@ type Props = {
   set: A.GetGameSets_gameSetsList,
 };
 
+/* eslint-disable-next-line sonarjs/cognitive-complexity */
 export function GameListPage({ set }: Props) {
-  const [sort, setSort] = React.useState<?A.GamesSortOrder>(null);
+  const isLiveCasino = set.title === "Live Casino";
+  const [sort, setSort] = React.useState<A.GamesSortOrder | null>(null);
   const [filters, setFilters] = React.useState<{}>({});
   const [filtersVisible, setFiltersVisibility] = React.useState(false);
   const sortOrder = `sortOrder=${sort || set.defaultSort}`;
@@ -39,6 +43,7 @@ export function GameListPage({ set }: Props) {
       offset: 0,
       limit: 48,
     },
+    ...(isLiveCasino ? { pollInterval: 5000 } : {}),
   });
 
   const selectCmp = (
@@ -126,22 +131,30 @@ export function GameListPage({ set }: Props) {
           <div className="u-padding-bottom--lg">{selectCmp}</div>
           {(() => {
             if (loading) {
+              if (isLiveCasino) {
+                return <LiveCasinoGamesVirtualGridSkeleton />;
+              }
+
               return <GamesVirtualGridSkeleton />;
             } else if (!data || !data.getGamesPaginated.games) {
               return null;
             }
             const { games, gamesCount } = data.getGamesPaginated;
+            const props = {
+              games,
+              gamesCount,
+              loadMore: loadMoreConstructor(
+                fetchMore,
+                data.getGamesPaginated.gamesCount
+              ),
+            };
 
-            return (
-              <GamesVirtualGrid
-                games={games}
-                gamesCount={gamesCount}
-                loadMore={loadMoreConstructor(
-                  fetchMore,
-                  data.getGamesPaginated.gamesCount
-                )}
-              />
-            );
+            if (isLiveCasino) {
+              return <LiveCasinoGamesVirtualGrid {...props} />;
+            }
+
+            // $FlowIgnore: object has few extra fields
+            return <GamesVirtualGrid {...props} />;
           })()}
         </div>
       </div>
