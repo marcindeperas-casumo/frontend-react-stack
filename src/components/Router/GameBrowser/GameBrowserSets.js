@@ -49,7 +49,7 @@ export const GameBrowserSets = (props: Props) => {
     <Flex
       direction="horizontal"
       spacing="default"
-      className="o-wrapper u-padding--md@mobile u-padding-y--lg@desktop"
+      className="o-wrapper u-padding--md@mobile u-padding-y--lg@desktop u-overflow--scroll"
     >
       <GameSetChip to="top" Icon={Icons.HeartIcon} text="Top Lists" />
       <>
