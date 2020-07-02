@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import PlayOkayIcon from "./playokay.svg";
 import TimeLimitIcon from "./timeLimit.svg";
 
@@ -41,14 +41,13 @@ export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
         </Flex>
       </Flex.Item>
       <Flex.Item>
-        <Button
+        <ButtonPrimary
           onClick={onClickCta}
-          variant="primary"
           size="md"
           className="u-width--full u-margin-top--5xlg"
         >
           {t.form_intro_cta || ""}
-        </Button>
+        </ButtonPrimary>
       </Flex.Item>
     </Flex>
   );

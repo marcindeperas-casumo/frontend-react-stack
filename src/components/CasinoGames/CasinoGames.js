@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { useQuery } from "@apollo/react-hooks";
@@ -222,8 +222,7 @@ export const CasinoGames = () => {
         <div className="u-padding">
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
-            <Button
-              variant="primary"
+            <ButtonPrimary
               className="u-margin-left"
               onClick={() =>
                 navigateById({
@@ -235,21 +234,19 @@ export const CasinoGames = () => {
               }
             >
               Slots
-            </Button>
-            <Button
-              variant="primary"
+            </ButtonPrimary>
+            <ButtonPrimary
               className="u-margin-left"
               onClick={() => navigateById({ routeId: "play-roulette" })}
             >
               Ruleta
-            </Button>
-            <Button
-              variant="primary"
+            </ButtonPrimary>
+            <ButtonPrimary
               className="u-margin-left"
               onClick={() => navigateById({ routeId: "play-blackjack" })}
             >
               Blackjack
-            </Button>
+            </ButtonPrimary>
           </Flex>
           <DangerousHtml html={t.rtp_description} />
         </div>

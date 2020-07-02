@@ -3,7 +3,7 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { TickIcon } from "@casumo/cmp-icons";
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
@@ -53,14 +53,13 @@ export function TimeLimitsFormOutro({
         />
       </Flex.Item>
       <Flex.Item>
-        <Button
+        <ButtonPrimary
           onClick={onClickCta}
-          variant="primary"
           size="md"
           className="u-width--full u-margin-top--5xlg"
         >
           {t.form_outro_cta || ""}
-        </Button>
+        </ButtonPrimary>
       </Flex.Item>
     </Flex>
   );
