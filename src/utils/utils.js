@@ -23,7 +23,7 @@ export const getAppVersion = (w: window = window) => {
 };
 
 export const isEmbeddedOn = (userEmail: string) => {
-  if (!EMBEDDED_GAMES.ACTIVE) {
+  if (!EMBEDDED_GAMES.ACTIVE || !isIosNative()) {
     return false;
   }
 
