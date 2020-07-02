@@ -175,7 +175,9 @@ export class LiveCasinoCard extends PureComponent<Props> {
           className="u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
           spacing="md"
           header={this.renderHeaderNoLobby}
-          footer={() => <LiveCasinoCardFooter provider="casumo" />}
+          footer={() => (
+            <LiveCasinoCardFooter provider={this.props.game.gameStudio} />
+          )}
           content={this.renderContent}
         />
       );
