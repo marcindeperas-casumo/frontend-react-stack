@@ -11,8 +11,8 @@ type Props = {
   loadMore: ({ startIndex: number, stopIndex: number }) => Promise<any>,
 };
 
-export const tileWidth = 160;
-export const tileHeight = 192;
+export const gameTileWidth = 160;
+export const gameTileHeight = 192;
 
 const OptimizedGameTile = React.memo(
   props => <GameTile game={props} />,
@@ -25,8 +25,8 @@ export const GamesVirtualGrid = ({ games, gamesCount, loadMore }: Props) => (
     numberOfEntries={gamesCount}
     dataList={games}
     spacerSize="sm"
-    tileWidth={tileWidth}
-    tileHeight={tileHeight}
+    tileWidth={gameTileWidth}
+    tileHeight={gameTileHeight}
     TileComponent={OptimizedGameTile}
     tileLoadingElement={
       <div className="t-border-r--md t-background-grey-5 u-height--full u-width--full" />

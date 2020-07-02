@@ -218,6 +218,7 @@ export type GameListLiveCasinoQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
 };
 export type GameListLiveCasinoQuery_gamesList = {
   id: ?string,
@@ -236,6 +237,24 @@ export type GameListLiveCasinoQueryVariables = {
 // GraphQL query operation: GameListPageQuery
 // ====================================================
 
+export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets = {
+  symbol: ?string,
+  min: ?number,
+  max: ?number,
+};
+export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets,
+};
 export type GameListPageQuery_getGamesPaginated_games = {
   isInMaintenance: boolean,
   backgroundImage: string,
@@ -247,6 +266,8 @@ export type GameListPageQuery_getGamesPaginated_games = {
   playBackground: string,
   isInMyList: boolean,
   category: ?string,
+  liveCasinoLobby: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby,
+  gameStudio: string,
 };
 export type GameListPageQuery_getGamesPaginated = {
   gamesCount: number,
@@ -557,6 +578,7 @@ export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
 };
 export type LiveCasinoDetailPageDesktopQuery_gamesList = {
   games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>,
@@ -2240,6 +2262,7 @@ export type LiveCasinoCard = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
 };
 
 // ====================================================
