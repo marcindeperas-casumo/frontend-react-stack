@@ -31,7 +31,7 @@ export const models = {
   [PROVIDERS.EDICT_MOBILE]: EdictGame,
   [PROVIDERS.EVOLUTION_DESKTOP]: BaseIframeGame,
   [PROVIDERS.EVOLUTION_MOBILE]: EvolutionGame,
-  [PROVIDERS.EVOLUTION_MOBILE_EMBEDDED]: EmbeddedEvolutionGame,
+  [PROVIDERS.EVOLUTION_IOS_EMBEDDED]: EmbeddedEvolutionGame,
   [PROVIDERS.GREENTUBE_HTML5]: GreentubeGame,
   [PROVIDERS.MICROGAMING_FLASH]: MicrogamingGame,
   [PROVIDERS.MICROGAMING_HTML5]: MicrogamingGame,
