@@ -6,8 +6,7 @@ export class EmbeddedNetentGame extends BaseIframeGame {
     const urlData = new URL(url);
 
     window.addEventListener("message", message => {
-      // eslint-disable-next-line no-console
-      console.log(message);
+      //todo: add message handler
     });
 
     if (url) {

@@ -35,13 +35,8 @@ export const isEmbeddedOn = (userEmail: string) => {
   return EMBEDDED_GAMES.TESTERS.includes(userEmail);
 };
 
-export const decodedUrlParams = (json: Object) => {
-  return R.mergeAll(
-    Object.keys(json).map(key => {
-      return { [key]: atob(json[key]) };
-    })
-  );
-};
+export const decodedUrlParams = (json: Object) =>
+  R.mergeAll(Object.keys(json).map(key => ({ [key]: atob(json[key]) })));
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 

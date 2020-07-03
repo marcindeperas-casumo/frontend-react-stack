@@ -28,6 +28,7 @@ import {
   getAppVersion,
   convertLuxonDurationObjectToSeconds,
   addPointerEventStylesToLinkElements,
+  decodedUrlParams,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -64,6 +65,16 @@ describe("bridgeFactory()", () => {
     bridge.off(event, () => {});
     bridge.emit(event, payload);
     expect(mock).toBeCalledTimes(2);
+  });
+});
+
+describe("decodedUrlParams", () => {
+  test("it should return decoded params set", () => {
+    const data = {
+      param: "dGVzdA==",
+    };
+
+    expect(decodedUrlParams(data).param).toEqual("test");
   });
 });
 
