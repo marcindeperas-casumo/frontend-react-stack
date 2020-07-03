@@ -420,3 +420,15 @@ export const POLL_INTERVAL = {
   JACKPOTS_MUST_DROP: 30000,
   REEL_RACES: 8000,
 };
+
+export const EMBEDDED_GAMES = {
+  ACTIVE: true,
+  TESTERS: [
+    "mariusz.klinger+test@casumo.com",
+    "boguslaw.parol@casumo.com",
+    "lukasz.kowalski@casumo.com",
+    "chris.scicluna@casumo.com",
+    "peter.noer@casumo.com",
+    "stephen.marshall@casumo.com",
+  ],
+};

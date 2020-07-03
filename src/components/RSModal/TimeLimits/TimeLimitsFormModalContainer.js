@@ -1,25 +1,23 @@
 // @flow
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { useTranslationsGql } from "Utils/hooks";
-import {
-  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
-  allLoginTimeLimitsDefinedSelector,
-} from "Models/playOkay";
-import { TimeLimitsFormViewContainer } from "Components/Compliance/Sweden/TimeLimits";
+import { loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix } from "Models/playOkay";
+import { TimeLimitsFormView } from "Components/Compliance/Sweden/TimeLimits";
 import { ModalHeader } from "Components/RSModal";
 
 type Props = {
   acceptModal: () => void,
+  config: {
+    mustAccept?: boolean,
+  },
 };
 
-export function TimeLimitsFormModalContainer({ acceptModal }: Props) {
-  const allLimitsDefined = useSelector(allLoginTimeLimitsDefinedSelector);
+export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
   const { t } = useTranslationsGql({
     form_top_header_initial: `${cmsKeyPrefix}form_top_header_initial`,
     form_top_header_edit: `${cmsKeyPrefix}form_top_header_edit`,
   });
-  const headerProps = allLimitsDefined
+  const headerProps = !config.mustAccept
     ? {
         title: t?.form_top_header_edit || "",
         showCloseButton: true,
@@ -30,7 +28,8 @@ export function TimeLimitsFormModalContainer({ acceptModal }: Props) {
       };
 
   return (
-    <TimeLimitsFormViewContainer
+    <TimeLimitsFormView
+      initial={config.mustAccept}
       onClickOutroCta={acceptModal}
       formHeader={<ModalHeader {...headerProps} />}
     />

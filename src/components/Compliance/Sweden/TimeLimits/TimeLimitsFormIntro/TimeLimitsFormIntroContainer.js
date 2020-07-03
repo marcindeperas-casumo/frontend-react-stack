@@ -10,7 +10,7 @@ type Props = {
 
 export function TimeLimitsFormIntroContainer({ onClickCta }: Props) {
   const { t } = useTranslationsGql({
-    form_intro_header: `${cmsKeyPrefix}form_top_header`,
+    form_intro_header: `${cmsKeyPrefix}form_intro_header`,
     form_intro_copy: `${cmsKeyPrefix}form_intro_copy`,
     form_intro_cta: `${cmsKeyPrefix}form_intro_cta`,
   });
