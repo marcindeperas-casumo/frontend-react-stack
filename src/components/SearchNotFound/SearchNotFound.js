@@ -25,7 +25,7 @@ export class SearchNotFound extends PureComponent<Props> {
     return (
       <Media
         className={classNames(
-          { "t-background-chrome-light-2": isMobile() },
+          { "t-background-grey-0": isMobile() },
           "u-padding-y--lg",
           "u-padding-x--md",
           this.props.className

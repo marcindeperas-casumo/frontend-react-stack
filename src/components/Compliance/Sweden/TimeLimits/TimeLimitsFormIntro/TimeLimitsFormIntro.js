@@ -26,7 +26,7 @@ export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
         <PlayOkayIcon />
       </Flex.Item>
       <Flex.Item>
-        <Text size="md" className="u-font-weight-black t-color-plum-dark-1">
+        <Text size="md" className="u-font-weight-black t-color-purple-80">
           {t.form_intro_header}
         </Text>
       </Flex.Item>
