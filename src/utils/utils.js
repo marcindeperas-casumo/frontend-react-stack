@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
-import { CURRENCY_SYMBOLS } from "Src/constants";
+import { CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
 
 export const noop = () => {};
 
@@ -20,6 +20,19 @@ export const getAppVersion = (w: window = window) => {
   }
 
   return undefined;
+};
+
+export const isEmbeddedOn = (userEmail: string) => {
+  if (!EMBEDDED_GAMES.ACTIVE || !isIosNative()) {
+    return false;
+  }
+
+  // no testers => embedded turned on for eveybody
+  if (!EMBEDDED_GAMES.TESTERS.length) {
+    return true;
+  }
+
+  return EMBEDDED_GAMES.TESTERS.includes(userEmail);
 };
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);

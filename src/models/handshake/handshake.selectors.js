@@ -172,6 +172,11 @@ export const playerNameSelector: PlayerNameSelector = createSelector(
   path(["contactInfo", "name"])
 );
 
+export const emailSelector: string = createSelector(
+  playerSelector,
+  path(["contactInfo", "email"])
+);
+
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   path(["contactInfo", "socialSecurityNumber"])
