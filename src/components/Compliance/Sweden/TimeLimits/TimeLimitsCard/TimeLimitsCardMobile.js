@@ -18,9 +18,9 @@ type Props = {
     time_left_daily: ?string,
     coming_limit_note: ?string,
   },
-  dailyLimit: LoginTimeLimit,
-  weeklyLimit: LoginTimeLimit,
-  monthlyLimit: LoginTimeLimit,
+  dailyLimit: ?LoginTimeLimit,
+  weeklyLimit: ?LoginTimeLimit,
+  monthlyLimit: ?LoginTimeLimit,
   onClick: () => void,
 };
 
@@ -31,6 +31,10 @@ export function TimeLimitsCardMobile({
   monthlyLimit,
   onClick,
 }: Props) {
+  if (!dailyLimit) {
+    return null;
+  }
+
   const dailyLimitDuration = LuxonDuration.fromISO(dailyLimit.limit);
   const hrsLeftToday = dailyLimitDuration.minus(
     LuxonDuration.fromISO(dailyLimit.consumedTime)
@@ -82,10 +86,14 @@ type LimitRowProps = {
     label: ?string,
     coming_limit_note: ?string,
   },
-  limit: LoginTimeLimit,
+  limit: ?LoginTimeLimit,
 };
 
 function LimitRow({ t, limit }: LimitRowProps) {
+  if (!limit) {
+    return null;
+  }
+
   const limitDuration = LuxonDuration.fromISO(limit.limit);
 
   return (

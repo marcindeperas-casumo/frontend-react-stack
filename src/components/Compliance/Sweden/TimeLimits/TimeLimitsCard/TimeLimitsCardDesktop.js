@@ -19,11 +19,15 @@ type Props = {
     period_weekly: ?string,
     period_monthly: ?string,
   },
-  limit: LoginTimeLimit,
+  limit: ?LoginTimeLimit,
   onClick: () => void,
 };
 
 export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
+  if (!limit) {
+    return null;
+  }
+
   const hrsLeftLabel = t[`time_left_${limit.period.toLowerCase()}`];
   const periodLabel = t[`period_${limit.period.toLowerCase()}`];
   const limitDuration = LuxonDuration.fromISO(limit.limit);
