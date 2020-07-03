@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { mergeAll } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
@@ -11,7 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
 } from "Utils/hooks";
-import { getUrlSearchParam } from "Utils";
+import { getUrlSearchParam, decodedUrlParams } from "Utils";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -28,19 +27,11 @@ type Props = {
   },
 };
 
-const decodedParams = json => {
-  return mergeAll(
-    Object.keys(json).map(key => {
-      return { [key]: atob(json[key]) };
-    })
-  );
-};
-
 export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
 
   const remoteGameLaunchData = launchData
-    ? decodedParams(JSON.parse(decodeURIComponent(launchData)))
+    ? decodedUrlParams(JSON.parse(decodeURIComponent(launchData)))
     : null;
 
   const { isDGOJ } = useJurisdiction();
