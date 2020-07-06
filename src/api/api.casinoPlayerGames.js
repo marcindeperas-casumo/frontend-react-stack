@@ -13,8 +13,18 @@ export const gameSlugToId = (
   name: string,
 }> => clientHttp.get(`${URL.GAME_SLUG_TO_ID}/${slug}`);
 
-export const gameById = (gameId: string): Promise<{ category: ?string }> =>
-  clientHttp.get(`${URL.GAMES}/${gameId}`);
+export const gameById = (gameId: string): Promise<{ category: ?string }> => {
+  return clientHttp.get(
+    `${URL.GAMES}/${gameId}`,
+    {},
+    {
+      headers: {
+        "content-type": "application/json",
+        "X-Request-Features": "HIDDEN_GAMES",
+      },
+    }
+  );
+};
 
 export async function getGameCategory(slug: string): Promise<?string> {
   if (!slug) {

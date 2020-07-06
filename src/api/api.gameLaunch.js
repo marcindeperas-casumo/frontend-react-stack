@@ -46,6 +46,7 @@ export const getGameLaunchParameters = (
       headers: {
         "content-type": "application/json",
         "X-Request-Device": platform,
+        "X-Request-Features": "HIDDEN_GAMES",
       },
     }
   );

@@ -10,6 +10,7 @@ import { ThunderkickGame } from "./ThunderkickGame";
 import { YggdrasilGame } from "./YggdrasilGame";
 import { RedTigerGame } from "./RedTigerGame";
 import { OryxGame } from "./OryxGame";
+import { PushGame } from "./PushGame";
 import { MicrogamingGame } from "./MicrogamingGame";
 import { GreentubeGame } from "./GreentubeGame";
 import { RelaxGame } from "./RelaxGame";
@@ -51,6 +52,7 @@ export const models = {
   [PROVIDERS.CASUMO_HTML5]: CasumoGame,
   [PROVIDERS.RGS_HTML5]: BaseIframeGame,
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
+  [PROVIDERS.PUSHGAMING_MOBILE]: PushGame,
 };
 
 export const getGameModel = (
