@@ -23,6 +23,15 @@ export const routeTranslator = (language: string) => {
   };
 };
 
+export const getUrlSearchParam = (
+  searchString: string,
+  paramName: string
+): ?string => {
+  const params = new URLSearchParams(searchString);
+
+  return params.get(paramName);
+};
+
 export const navigateToRerender = () => {
   navigate(window.location.pathname);
 };
