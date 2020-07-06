@@ -3,32 +3,23 @@ import * as React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import MockStore from "Components/MockStore";
-import { type PlayOkayReduxStore } from "Models/playOkay";
+import { prepareStateMock } from "Models/playOkay";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
+import { useTranslationsGql } from "Utils/hooks";
 import {
   useTimeLimitsFormState,
   limitErrorMessage,
 } from "./useTimeLimitsFormState";
+import mockCms from "./__mocks__/cms";
 
 jest.useFakeTimers();
+jest.mock("Utils/hooks");
+// $FlowIgnore
+useTranslationsGql.mockReturnValue({
+  t: mockCms,
+});
 
 const findHookProp = (wrapper: any) => wrapper.find("div").prop("hook");
-
-const prepareState = (daily, weekly, monthly) => {
-  const playOkay: PlayOkayReduxStore = {
-    loginTimeLimits: {
-      daily,
-      weekly,
-      monthly,
-    },
-  };
-
-  return {
-    playOkay: {
-      playOkay,
-    },
-  };
-};
 
 const prepareWrapper = state =>
   mount(
@@ -42,7 +33,8 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     const daily = 5;
     const weekly = 10;
     const monthly = 15;
-    const wrapper = prepareWrapper(prepareState(daily, weekly, monthly));
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     expectHook(wrapper).toMatchObject({
       hrsPerDay: daily,
@@ -52,7 +44,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates minHrsPerWeek and minHrsPerMonth when hrsPerDay changes", () => {
-    const wrapper = prepareWrapper(prepareState(5, 10, 15));
+    const daily = 5;
+    const weekly = 10;
+    const monthly = 15;
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     act(() => {
       findHookProp(wrapper).setHrsPerDay(10);
@@ -67,7 +63,8 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates maxHrsPerDay and minHrsPerMonth when hrsPerWeek changes", () => {
-    const wrapper = prepareWrapper(prepareState(null, null, null));
+    const loginTimeLimits = {};
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     act(() => {
       findHookProp(wrapper).setHrsPerWeek(19);
@@ -82,7 +79,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates maxHrsPerWeek when hrsPerMonth changes", () => {
-    const wrapper = prepareWrapper(prepareState(1, 1, 1));
+    const daily = 1;
+    const weekly = 1;
+    const monthly = 1;
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     act(() => {
       findHookProp(wrapper).setHrsPerMonth(17);
@@ -96,7 +97,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates maxHrsPerWeek when hrsPerMonth changes but only to the max allowed value", () => {
-    const wrapper = prepareWrapper(prepareState(1, 1, 1));
+    const daily = 1;
+    const weekly = 1;
+    const monthly = 1;
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     act(() => {
       findHookProp(wrapper).setHrsPerMonth(201);
@@ -110,8 +115,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates dailyLimitErrorMessage when hrsPerDay changes to value outside of range", () => {
+    const daily = 3;
     const weekly = 10;
-    const wrapper = prepareWrapper(prepareState(3, weekly, 30));
+    const monthly = 30;
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
 
     act(() => {
       findHookProp(wrapper).setHrsPerDay(201);
@@ -120,7 +128,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      dailyLimitErrorMessage: limitErrorMessage(1, weekly, 201),
+      dailyLimitErrorMessage: limitErrorMessage(1, weekly, 201, mockCms),
     });
 
     // eslint-disable-next-line sonarjs/no-identical-functions
@@ -136,8 +144,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates weeklyLimitErrorMessage when hrsPerWeek changes to value outside of range", () => {
+    const daily = 3;
+    const weekly = 10;
     const monthly = 30;
-    const wrapper = prepareWrapper(prepareState(3, 10, monthly));
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
     const newValue = 170;
 
     act(() => {
@@ -147,7 +158,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue),
+      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue, mockCms),
     });
 
     act(() => {
@@ -157,7 +168,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue),
+      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue, mockCms),
     });
 
     act(() => {
@@ -172,9 +183,11 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
   });
 
   test("it updates monthlyLimitErrorMessage when hrsPerMonth changes to value outside of range", () => {
+    const daily = 3;
     const weekly = 10;
     const monthly = 30;
-    const wrapper = prepareWrapper(prepareState(3, weekly, monthly));
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
     const newValue = 7;
 
     act(() => {
@@ -184,7 +197,12 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      monthlyLimitErrorMessage: limitErrorMessage(weekly, monthly, newValue),
+      monthlyLimitErrorMessage: limitErrorMessage(
+        weekly,
+        monthly,
+        newValue,
+        mockCms
+      ),
     });
 
     act(() => {
@@ -195,6 +213,29 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
 
     expectHook(wrapper).toMatchObject({
       monthlyLimitErrorMessage: "",
+    });
+  });
+
+  test("it returns anyLimitChanged=true if any limit differs from initial value", () => {
+    const daily = 3;
+    const weekly = 10;
+    const monthly = 30;
+    const loginTimeLimits = { daily, weekly, monthly };
+    const wrapper = prepareWrapper(prepareStateMock({ loginTimeLimits }));
+    const newWeekly = 15;
+
+    expectHook(wrapper).toMatchObject({
+      anyLimitChanged: false,
+    });
+
+    act(() => {
+      findHookProp(wrapper).setHrsPerWeek(newWeekly);
+      jest.runAllTimers();
+      wrapper.update();
+    });
+
+    expectHook(wrapper).toMatchObject({
+      anyLimitChanged: true,
     });
   });
 });

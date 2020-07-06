@@ -140,6 +140,8 @@ export class BaseIframeGame extends BaseGame {
 
   onUnmount() {
     super.onUnmount();
-    window.removeEventListener("message", this.messageGuard.bind(this));
+    if (this) {
+      window.removeEventListener("message", this.messageGuard.bind(this));
+    }
   }
 }

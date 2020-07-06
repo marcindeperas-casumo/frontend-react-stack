@@ -1,7 +1,16 @@
 // @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { type LoginTimeLimits, loginTimeLimitsSelector } from "Models/playOkay";
+import { Duration } from "luxon";
+import {
+  type LoginTimeLimit,
+  dailyLoginTimeLimitSelector,
+  weeklyLoginTimeLimitSelector,
+  monthlyLoginTimeLimitSelector,
+  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
+} from "Models/playOkay";
+import { interpolate } from "Utils";
+import { useTranslationsGql } from "Utils/hooks";
 
 const DEFAULT = {
   minHrsPerDay: 1,
@@ -28,19 +37,25 @@ export type UseTimeLimitsFormStateType = {
   dailyLimitErrorMessage: string,
   weeklyLimitErrorMessage: string,
   monthlyLimitErrorMessage: string,
+  anyLimitChanged: boolean,
 };
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
-  const savedTimeLimits = useSelector<LoginTimeLimits>(loginTimeLimitsSelector);
+  const { t } = useTranslationsGql({
+    form_value_too_low: `${cmsKeyPrefix}form_value_too_low`,
+    form_value_too_high: `${cmsKeyPrefix}form_value_too_high`,
+  });
+  const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
+  const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
+  const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
+  const savedHrsPerDay = isoLimitAsHours(dailyLimit);
+  const savedHrsPerWeek = isoLimitAsHours(weeklyLimit);
+  const savedHrsPerMonth = isoLimitAsHours(monthlyLimit);
 
-  const [hrsPerDay, setHrsPerDay] = React.useState<number>(
-    savedTimeLimits?.daily || 0
-  );
-  const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(
-    savedTimeLimits?.weekly || 0
-  );
+  const [hrsPerDay, setHrsPerDay] = React.useState<number>(savedHrsPerDay);
+  const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(savedHrsPerWeek);
   const [hrsPerMonth, setHrsPerMonth] = React.useState<number>(
-    savedTimeLimits?.monthly || 0
+    savedHrsPerMonth
   );
 
   const [minHrsPerDay] = React.useState<number>(DEFAULT.minHrsPerDay);
@@ -61,18 +76,25 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
   const dailyLimitErrorMessage = limitErrorMessage(
     minHrsPerDay,
     maxHrsPerDay,
-    hrsPerDay
+    hrsPerDay,
+    t
   );
   const weeklyLimitErrorMessage = limitErrorMessage(
     minHrsPerWeek,
     maxHrsPerWeek,
-    hrsPerWeek
+    hrsPerWeek,
+    t
   );
   const monthlyLimitErrorMessage = limitErrorMessage(
     minHrsPerMonth,
     maxHrsPerMonth,
-    hrsPerMonth
+    hrsPerMonth,
+    t
   );
+  const anyLimitChanged =
+    hrsPerDay !== savedHrsPerDay ||
+    hrsPerWeek !== savedHrsPerWeek ||
+    hrsPerMonth !== savedHrsPerMonth;
 
   React.useEffect(() => {
     if (hrsPerDay > 0) {
@@ -110,20 +132,29 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     dailyLimitErrorMessage,
     weeklyLimitErrorMessage,
     monthlyLimitErrorMessage,
+    anyLimitChanged,
   };
 }
 
 export function limitErrorMessage(
   minValue: number,
   maxValue: number,
-  newValue: number
+  newValue: number,
+  t: {
+    form_value_too_low: ?string,
+    form_value_too_high: ?string,
+  }
 ): string {
   if (newValue < minValue) {
-    return `This limit should be at least ${minValue}.`;
+    return interpolate(t.form_value_too_low || "", { minValue });
   }
   if (newValue > maxValue) {
-    return `This limit should be no more than ${maxValue}.`;
+    return interpolate(t.form_value_too_high || "", { maxValue });
   }
 
   return "";
+}
+
+function isoLimitAsHours(limit: ?LoginTimeLimit) {
+  return limit ? Duration.fromISO(limit.limit).as("hours") : 0;
 }

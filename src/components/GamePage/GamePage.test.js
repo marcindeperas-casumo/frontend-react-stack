@@ -12,6 +12,9 @@ const mockedProps = {
   language: DEFAULT_LANGUAGE,
   platform: DEVICES.MOBILE,
   playForFun: true,
+  location: {
+    search: "",
+  },
   slug: "error-prone-game",
   errorMessage: "Error has occurred",
   fetchTranslations: () => {},

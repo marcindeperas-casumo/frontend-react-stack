@@ -3,7 +3,6 @@ import {
   moneyLimitsSelector,
   depositLimitHasBeenSetSelector,
   depositLimitSelector,
-  loginTimeLimitsSelector,
 } from "./playOkay.selectors";
 
 const playOkayMockWithDepositLimit = {
@@ -64,23 +63,6 @@ describe("Denmark compliance playOkay selectors", () => {
       const mockState = createMockWithData(playOkayMockWithoutDepositLimit);
 
       expect(depositLimitSelector(mockState)).toBeUndefined();
-    });
-  });
-});
-
-describe("playOkay/timeLimits selectors", () => {
-  describe("loginTimeLimitsSelector", () => {
-    test("it returns a list of set login time limits", () => {
-      const loginTimeLimits = [1, 2, 3];
-      const mockState = {
-        playOkay: {
-          playOkay: {
-            loginTimeLimits,
-          },
-        },
-      };
-
-      expect(loginTimeLimitsSelector(mockState)).toEqual(loginTimeLimits);
     });
   });
 });

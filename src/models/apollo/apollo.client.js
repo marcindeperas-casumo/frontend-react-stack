@@ -14,10 +14,12 @@ import {
   currencySelector,
   sessionIdSelector,
   languageSelector,
+  emailSelector,
 } from "Models/handshake";
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
+import { getAppVersion, isEmbeddedOn } from "Utils";
 import introspectionQueryResultData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
@@ -72,6 +74,11 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
+        ...(isEmbeddedOn(emailSelector(state))
+          ? {
+              "X-Request-Client-Details": getAppVersion(),
+            }
+          : {}),
       },
     };
   });

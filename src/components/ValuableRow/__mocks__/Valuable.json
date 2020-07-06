@@ -46,5 +46,24 @@
     "market": "en",
     "expiryDate": 1569794399000,
     "valuableState": "Fresh"
+  },
+  {
+    "id": "44CF701E-B6A0-4C8C-A86C-673DCC95B45B",
+    "content": "Få 50% cashback på dine tap opptil €100 når du spiller på Starburst.",
+    "currency": "EUR",
+    "description": "",
+    "excludedGames": [],
+    "expiryDate": 1593258256,
+    "gameCategories": [],
+    "games": [],
+    "caveat": "T&Cs apply",
+    "leftToWager": null,
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
+    "market": "en",
+    "requirementType": null,
+    "title": "50% cashback",
+    "valuableState": "Fresh",
+    "valuableType": "cashback",
+    "wageringThreshold": null
   }
 ]

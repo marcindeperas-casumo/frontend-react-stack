@@ -1,5 +1,6 @@
 // @flow
 export { useTranslations } from "./useTranslations";
+export { useTranslationsGql } from "./useTranslationsGql";
 export { useDelayedCleanup } from "./useDelayedCleanup";
 export { useLocale } from "./useLocale";
 export { useGameCategory } from "./useGameCategory";

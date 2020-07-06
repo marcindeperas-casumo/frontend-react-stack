@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
+import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -26,6 +27,10 @@ export const GameSearchContainer = () => {
   const inputPromptPlaceholder = t?.searchSuggestionText || "";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
+  const { list, loading: loadingSuggestions } = useGameSearchSuggestions({
+    searchResults,
+  });
+
   const [pageNumber, setPageNumber] = React.useState(1);
 
   React.useEffect(() => {
@@ -78,6 +83,8 @@ export const GameSearchContainer = () => {
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
       loading={loading}
+      loadingSuggestions={loadingSuggestions}
+      suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}
       fetchMoreRows={fetchMoreRows}
       queryChanged={setSearchQuery}

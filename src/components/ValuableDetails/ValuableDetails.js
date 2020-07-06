@@ -76,9 +76,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const expiresInLessThanAnHour = hours < 1;
 
     if (expiresWithin24Hours) {
+      if (expiresInLessThanAnHour) {
+        return { key: "minutes", value: minutes };
+      }
+
       return { key: "hours", value: hours };
-    } else if (expiresInLessThanAnHour) {
-      return { key: "minutes", value: minutes };
     }
 
     // more than 24h will be treated as 2 days
@@ -98,6 +100,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     if (
       valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableCashback" ||
       valuableDetails.__typename === "PlayerValuableSpins"
     ) {
       return valuableDetails.requirementType;
