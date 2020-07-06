@@ -113,7 +113,7 @@ export class NetentGame extends BaseGame {
   onUnmount() {
     super.onUnmount();
 
-    if (this.extend) {
+    if (this && this.extend) {
       this.teardownEvents(this.extend);
     }
   }
@@ -126,7 +126,7 @@ export class NetentGame extends BaseGame {
       const onError = () => {
         reject();
       };
-      if (this.extend) {
+      if (this && this.extend) {
         this.extend.call(NETENT_EVENTS.PAUSE_AUTOPLAY, [], onSuccess, onError);
       } else {
         reject();
@@ -138,7 +138,7 @@ export class NetentGame extends BaseGame {
     const onSuccess = () => {};
     const onError = () => {};
 
-    if (this.extend) {
+    if (this && this.extend) {
       this.extend.call(NETENT_EVENTS.RESUME_AUTOPLAY, [], onSuccess, onError);
     }
   }

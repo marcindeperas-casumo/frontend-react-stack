@@ -27,13 +27,13 @@ export class RedTigerGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    const { url = null } = this.props.gameData;
+    const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+        src: `${url}${!isEmbedded ? `&lobbyUrl=${encodedLobbyUrl}` : ""}`,
       };
     }
 
