@@ -1,11 +1,14 @@
 // @flow
 import clientHttp from "Lib/http";
+import { getDeveloperOptions } from "Utils/developerOptions";
 
 export const URL = {
   GAME_LAUNCH: "/api/common/command/launchGame",
   GAME_SLUG_TO_PROVIDER_GAME_NAME:
     "/casino-player/casino-games/api/v1/mapping/slug",
 };
+
+const { showDisabledGames } = getDeveloperOptions();
 
 type LaunchProps = {
   gameName: string,
@@ -46,7 +49,7 @@ export const getGameLaunchParameters = (
       headers: {
         "content-type": "application/json",
         "X-Request-Device": platform,
-        "X-Request-Features": "HIDDEN_GAMES",
+        "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
       },
     }
   );
