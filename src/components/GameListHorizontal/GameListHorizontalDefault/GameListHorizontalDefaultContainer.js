@@ -28,19 +28,19 @@ export const GameListHorizontalDefaultContainer = ({
     { pollInterval: POLL_INTERVAL.GAMES_LIST, variables: { id, numberOfGames } }
   );
 
-  if (loading) {
-    return (
-      <div className="o-wrapper">
-        <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
-      </div>
-    );
-  }
-
   if (data && data.gamesList && data.gamesList.games.length) {
     return (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
         <GameListHorizontalDefault list={data.gamesList} />
       </TrackProvider>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="o-wrapper">
+        <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+      </div>
     );
   }
 

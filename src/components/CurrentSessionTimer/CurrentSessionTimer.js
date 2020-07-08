@@ -4,7 +4,9 @@ import PLAYER_LOGIN_HISTORY_QUERY from "Components/Settings/SettingsSections/Pla
 import Timer from "Components/Timer";
 
 export const CurrentSessionTimer = () => {
-  const { data, loading } = useQuery(PLAYER_LOGIN_HISTORY_QUERY);
+  const { data, loading } = useQuery(PLAYER_LOGIN_HISTORY_QUERY, {
+    fetchPolicy: "network-only",
+  });
 
   if (loading || !data) {
     return null;

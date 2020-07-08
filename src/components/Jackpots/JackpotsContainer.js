@@ -25,7 +25,11 @@ export const JackpotsQueryInject = ({
     variables: { numberOfGames },
   });
 
-  return loading ? null : (
+  if (loading && !data) {
+    return null;
+  }
+
+  return (
     <Jackpots
       title={data?.gamesList?.name}
       locale={locale}

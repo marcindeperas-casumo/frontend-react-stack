@@ -19,7 +19,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
     variables,
   });
 
-  if (loading) {
+  if (loading && !data) {
     return <CuratedCardSkeleton />;
   }
 
