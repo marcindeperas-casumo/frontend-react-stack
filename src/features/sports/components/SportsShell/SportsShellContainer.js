@@ -36,14 +36,16 @@ export const SPORTS_SHELL_QUERY = gql`
 `;
 
 const showFavouritesSelector = client =>
-  client.query({ query: SPORTS_SHELL_QUERY }).then(({ data }) => {
-    if (!data.hasSelectedFavourites) {
-      client.mutate({
-        mutation: OPEN_MODAL_MUTATION,
-        variables: { modal: MODAL.CHOOSE_FAVOURITES },
-      });
-    }
-  });
+  client
+    .query({ query: SPORTS_SHELL_QUERY, fetchPolicy: "network-only" })
+    .then(({ data }) => {
+      if (!data.hasSelectedFavourites) {
+        client.mutate({
+          mutation: OPEN_MODAL_MUTATION,
+          variables: { modal: MODAL.CHOOSE_FAVOURITES },
+        });
+      }
+    });
 
 const bridgeEventHandlers = [
   [
