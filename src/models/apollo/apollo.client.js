@@ -7,6 +7,8 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
+import { persistCache } from "apollo-cache-persist";
+import * as localForage from "localforage";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -27,17 +29,25 @@ import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
-export const apolloClient = getApolloClient();
+export const apolloClientPromise = getApolloClient();
 
 const { showDisabledGames } = getDeveloperOptions();
 const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
 
-export function getApolloClient(): ApolloClientType {
+export async function getApolloClient(): Promise<ApolloClientType> {
   return new ApolloClient({
     link: getLinks(),
-    cache: getCache(),
+    cache: await getCache(),
     typeDefs,
     resolvers: clientResolvers,
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: "cache-and-network",
+      },
+      query: {
+        fetchPolicy: "cache-and-network",
+      },
+    },
   });
 }
 
@@ -45,11 +55,15 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 });
 
-export function getCache() {
+export async function getCache() {
   const cache = new InMemoryCache({ fragmentMatcher });
 
   cache.writeData({
     data: defaultState,
+  });
+  await persistCache({
+    cache,
+    storage: localForage,
   });
 
   return cache;
