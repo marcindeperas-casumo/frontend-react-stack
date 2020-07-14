@@ -27,11 +27,11 @@ export const GameProvidersListContainer = ({ title }: Props) => {
   const { data, loading } = useQuery(QUERY);
   const gameStudios = propOr([], "gameStudios", data);
 
-  if (loading) {
-    return <GameProvidersListSkeleton />;
-  }
+  if (isEmpty(gameStudios)) {
+    if (loading) {
+      return <GameProvidersListSkeleton />;
+    }
 
-  if (!loading && isEmpty(gameStudios)) {
     return null;
   }
 

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import ReactModal from "react-modal";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { App } from "Components/App";
-import { apolloClient } from "Models/apollo/apollo.client";
+import { apolloClientPromise } from "Models/apollo/apollo.client";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import * as storage from "Lib/storage";
@@ -27,8 +27,9 @@ BridgeToLogoutService(reduxStore);
 
 ReactModal.setAppElement("#root");
 
-const renderApp = AppComponent => {
+const renderApp = async AppComponent => {
   const root = document.getElementById("root");
+  const apolloClient = await apolloClientPromise;
 
   if (root) {
     ReactDOM.render(
