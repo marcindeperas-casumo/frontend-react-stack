@@ -35,7 +35,6 @@ type Props = {
     icon: string,
     url: string,
   }>,
-  loading: boolean,
 };
 export const GameBrowserSets = (props: Props) => {
   const match = useMatch("search");
