@@ -44,7 +44,7 @@ const keyToUrl = {
 const hostElementId = "react-host-games-lists";
 const mobileNav = "react-host-top-nav";
 export const GameBrowser = () => {
-  const { data, loading } = useQuery<A.GetGameSets, _>(GetGameSets);
+  const { data } = useQuery<A.GetGameSets, _>(GetGameSets);
   const sets = data?.gameSetsList || [];
   const gameBrowserSetsData = sets.map(({ key, ...rest }) => ({
     ...rest,
@@ -66,7 +66,7 @@ export const GameBrowser = () => {
           <TabletAndDesktop>
             <TopNavDesktop />
           </TabletAndDesktop>
-          <GameBrowserSets sets={gameBrowserSetsData} loading={loading} />
+          <GameBrowserSets sets={gameBrowserSetsData} />
           <React.Suspense fallback={null}>
             <Router className="u-padding-bottom--2xlg">
               <Redirect from="/" to="top" noThrow />

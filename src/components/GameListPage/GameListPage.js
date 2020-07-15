@@ -85,9 +85,11 @@ export function GameListPage({ set }: Props) {
         <div className="t-background-white">
           <div className="o-wrapper u-padding--md@mobile">{selectCmp}</div>
           {(() => {
-            if (loading) {
-              return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
-            } else if (!data || !data.getGamesPaginated.games) {
+            if (!data || !data.getGamesPaginated.games) {
+              if (loading) {
+                return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
+              }
+
               return null;
             }
 
@@ -130,15 +132,18 @@ export function GameListPage({ set }: Props) {
         <div className="o-wrapper u-padding-y--lg">
           <div className="u-padding-bottom--lg">{selectCmp}</div>
           {(() => {
-            if (loading) {
-              if (isLiveCasino) {
-                return <LiveCasinoGamesVirtualGridSkeleton />;
+            if (!data || !data.getGamesPaginated.games) {
+              if (loading) {
+                if (isLiveCasino) {
+                  return <LiveCasinoGamesVirtualGridSkeleton />;
+                }
+
+                return <GamesVirtualGridSkeleton />;
               }
 
-              return <GamesVirtualGridSkeleton />;
-            } else if (!data || !data.getGamesPaginated.games) {
               return null;
             }
+
             const { games, gamesCount } = data.getGamesPaginated;
             const props = {
               games,
