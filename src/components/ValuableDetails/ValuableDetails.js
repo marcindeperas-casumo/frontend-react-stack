@@ -28,7 +28,7 @@ import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
   expiresToday: "red",
-  default: "grey-dark-1",
+  default: "grey-50",
 };
 
 type Game = {

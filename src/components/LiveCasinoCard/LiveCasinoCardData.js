@@ -18,7 +18,7 @@ type Props = {|
 |};
 
 const getTextColor = (color: string) =>
-  contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
+  contains(color, ["yellow-30", "grey-5"]) ? "grey-90" : "white";
 
 const renderResults = ({ results, type }) => {
   if (!results || !type) {
@@ -38,8 +38,7 @@ const renderResults = ({ results, type }) => {
               className={classNames(
                 "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
                 `t-background-${color}`,
-                borderColor &&
-                  `t-border-width--md t-border--current-color t-color-${borderColor}`,
+                borderColor && `t-border--md t-border-${borderColor}`,
                 { "c-card-data__badge": i === 0 }
               )}
             >

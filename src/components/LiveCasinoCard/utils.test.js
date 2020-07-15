@@ -152,7 +152,7 @@ describe("getBadgeColor() for `Monopoly`", () => {
   test("should return `orange` for `ch`", () =>
     expect(getBadgeColor(type, "ch")).toBe(COLORS.ORANGE));
 
-  test("should return `black-dark-2` colour by default", () =>
+  test("should return `black` colour by default", () =>
     expect(getBadgeColor(type, "W")).toBe(COLORS.BLACK));
 });
 

@@ -86,7 +86,7 @@ export const SportsNavLiveTab = ({
         tag="span"
         size="sm"
         className={`u-font-weight-black u-text-align-center t-color-${
-          isActive ? "white" : "chrome-dark-1"
+          isActive ? "white" : "grey-50"
         } u-text-nowrap`}
       >
         {label}
