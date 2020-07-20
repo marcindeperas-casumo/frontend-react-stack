@@ -430,5 +430,7 @@ export const EMBEDDED_GAMES = {
     "chris.scicluna@casumo.com",
     "peter.noer@casumo.com",
     "stephen.marshall@casumo.com",
+    "ms@50script.com",
+    "sebastian.steek@casumo.com",
   ],
 };
