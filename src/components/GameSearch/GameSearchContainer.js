@@ -20,6 +20,7 @@ export const GameSearchContainer = () => {
       pageSize: 50,
       page: 0,
     },
+    fetchPolicy: "network-only",
   });
   const { t } = useTranslationsGql({
     searchSuggestionText: "root:mobile.games-search:fields.input_prompt",
