@@ -135,6 +135,7 @@ class StageFavouritesProvider extends React.Component<
           .query<A.FavouriteSportsSelectorContextCompetitionSuggestions>({
             query: COMPETITION_SUGGESTIONS_QUERY,
             variables: { id: g.id },
+            fetchPolicy: "network-only",
           })
           .then(({ data }) => ({
             id: g.id,
