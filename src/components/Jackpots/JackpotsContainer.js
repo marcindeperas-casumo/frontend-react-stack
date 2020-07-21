@@ -26,6 +26,7 @@ export const JackpotsQueryInject = ({
     {
       pollInterval: POLL_INTERVAL.JACKPOTS,
       variables: { numberOfGames },
+      fetchPolicy: "network-only", // showing old jackpots (from previous session) could be bad for compliance
     }
   );
 

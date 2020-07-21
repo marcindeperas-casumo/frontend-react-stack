@@ -12,6 +12,7 @@ const MustDropJackpotsWidgetContainer = () => {
     MustDropJackpotsQuery,
     {
       pollInterval: POLL_INTERVAL.JACKPOTS_MUST_DROP,
+      fetchPolicy: "network-only", // showing old jackpots (from previous session) could be bad for compliance
     }
   );
   if (data && data.mustDropJackpots) {
