@@ -20,21 +20,14 @@ import { usePrevious } from "./usePrevious";
  * in cache and saves reference to this value. After useQuery gets resolved we
  * are joining new data with previous cache.
  */
-export function useCachedQuery< /* eslint-disable-line */
+export function useCachedQuery<
   TData,
   TVariables: { offset: number, limit: number }
 >(
   query: any,
   options?: QueryHookOptions<TData, TVariables>,
-  paths: {
-    list: Array<string>,
-    count: Array<string>,
-    offset: Array<string>,
-  }
-): {
-  ...QueryResult<TData, TVariables>,
-  loadMore: *,
-} {
+  listPath: Array<string>
+): QueryResult<TData, TVariables> {
   const { cache } = useApolloClient();
   const previousCache = usePrevious(
     (() => {
@@ -52,61 +45,23 @@ export function useCachedQuery< /* eslint-disable-line */
   const queryResults = useQuery<TData, TVariables>(query, options);
 
   if (!queryResults.loading && previousCache) {
-    const getPagedPath = R.pathOr([], paths.list);
+    const getPagedPath = R.pathOr([], listPath);
     const cachedPagedData = getPagedPath(previousCache);
+    const newData = R.over(R.lensPath(listPath), data => {
+      if (data.length < cachedPagedData.length) {
+        return insertIntoArray(data, 0)(cachedPagedData);
+      }
 
-    queryResults.updateQuery(
-      R.over(R.lensPath(paths.list), data => {
-        if (data.length < cachedPagedData.length) {
-          return insertIntoArray(data, 0)(cachedPagedData);
-        }
+      return data;
+    })(queryResults.data);
 
-        return data;
-      })
-    );
+    queryResults.updateQuery(() => newData);
+
+    return {
+      ...queryResults,
+      data: newData,
+    };
   }
 
-  return {
-    ...queryResults,
-    loadMore: ({
-      startIndex,
-      stopIndex,
-    }: {
-      startIndex: number,
-      stopIndex: number,
-    }) => {
-      const limit = Math.min(100, stopIndex - startIndex);
-      const offset = limit === 100 ? stopIndex - startIndex : startIndex;
-      const totalCount = R.path(paths.count, queryResults.data);
-
-      return queryResults.fetchMore<TVariables>({
-        variables: { offset, limit },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult) {
-            return prev;
-          }
-
-          const insertNewData = insertIntoArray(
-            R.path(paths.list, fetchMoreResult),
-            R.path(paths.offset, fetchMoreResult)
-          );
-
-          return R.over(
-            R.lensPath(paths.list),
-            prevData => {
-              if (prevData.length !== totalCount) {
-                return R.pipe(
-                  insertIntoArray(prevData, 0),
-                  insertNewData
-                )(new Array(totalCount));
-              }
-
-              return insertNewData(prevData);
-            },
-            prev
-          );
-        },
-      });
-    },
-  };
+  return queryResults;
 }
