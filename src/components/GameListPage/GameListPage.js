@@ -53,7 +53,7 @@ export function GameListPage({ set }: Props) {
   }, [sort, filters, dispatch, page]);
   useSetScrollPosition();
 
-  const { data, loading, fetchMore } = useCachedQuery<
+  const { data, fetchMore } = useCachedQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
   >(
@@ -114,11 +114,7 @@ export function GameListPage({ set }: Props) {
           <div className="o-wrapper u-padding--md@mobile">{selectCmp}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
-              if (loading) {
-                return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
-              }
-
-              return null;
+              return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
             }
 
             const { games, gamesCount } = data.getGamesPaginated;
@@ -158,15 +154,11 @@ export function GameListPage({ set }: Props) {
           <div className="u-padding-bottom--lg">{selectCmp}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
-              if (loading) {
-                if (isLiveCasino) {
-                  return <LiveCasinoGamesVirtualGridSkeleton />;
-                }
-
-                return <GamesVirtualGridSkeleton />;
+              if (isLiveCasino) {
+                return <LiveCasinoGamesVirtualGridSkeleton />;
               }
 
-              return null;
+              return <GamesVirtualGridSkeleton />;
             }
 
             const { games, gamesCount } = data.getGamesPaginated;
