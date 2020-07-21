@@ -5,6 +5,7 @@ import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
 import { setData, getData } from "Models/gameBrowser";
 import * as A from "Types/apollo";
+import { loadMoreConstructor } from "Utils";
 import { useCachedQuery } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
@@ -52,7 +53,7 @@ export function GameListPage({ set }: Props) {
   }, [sort, filters, dispatch, page]);
   useSetScrollPosition();
 
-  const { data, loading, loadMore } = useCachedQuery<
+  const { data, loading, fetchMore } = useCachedQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
   >(
@@ -65,11 +66,12 @@ export function GameListPage({ set }: Props) {
       },
       ...(isLiveCasino ? { pollInterval: 5000 } : {}),
     },
-    {
-      list: ["getGamesPaginated", "games"],
-      count: ["getGamesPaginated", "gamesCount"],
-      offset: ["getGamesPaginated", "offset"],
-    }
+    ["getGamesPaginated", "games"]
+  );
+
+  const loadMore = loadMoreConstructor(
+    fetchMore,
+    data?.getGamesPaginated.gamesCount || 0
   );
 
   const selectCmp = (
