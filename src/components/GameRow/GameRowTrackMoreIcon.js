@@ -12,7 +12,10 @@ export const GameRowTrackMoreIcon = ({
   name: string,
   slug: string,
 }) => (
-  <Flex.Item className="o-flex__item--no-shrink">
+  <Flex.Item
+    onClick={e => e.stopPropagation()}
+    className="o-flex__item--no-shrink"
+  >
     <TrackClick
       eventName={EVENTS.MIXPANEL_GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
