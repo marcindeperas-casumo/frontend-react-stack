@@ -11,26 +11,20 @@ import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
 export const ReelRacesListContainer = () => {
-  const { data, loading } = useQuery<
-    A.ReelRaceListQuery,
-    A.ReelRaceListQueryVariables
-  >(ReelRaceListQuery, {
-    variables: {
-      limit: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
-    },
-    pollInterval: POLL_INTERVAL.REEL_RACES,
-    fetchPolicy: "network-only",
-  });
+  const { data } = useQuery<A.ReelRaceListQuery, A.ReelRaceListQueryVariables>(
+    ReelRaceListQuery,
+    {
+      variables: {
+        limit: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+      },
+      pollInterval: POLL_INTERVAL.REEL_RACES,
+    }
+  );
 
-  const { t, loading: cmsLoading } = useTranslationsGql({
+  const { t } = useTranslationsGql({
     title: "root:reel-races.reel-race-templates:fields.title",
     seeMore: "root:built-pages.top-lists-translations:fields.more_link",
   });
-
-  if (loading || cmsLoading) {
-    // We need a beaut skeleton!
-    return null;
-  }
 
   const reelRaces = data?.reelRaces || [];
 

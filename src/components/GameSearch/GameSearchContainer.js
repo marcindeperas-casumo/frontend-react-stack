@@ -10,13 +10,13 @@ import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const { data, loading, fetchMore, refetch } = useQuery<
+  const { data, loading, fetchMore } = useQuery<
     A.GameSearchQuery,
     A.GameSearchQueryVariables
   >(GameSearchQuery, {
     // if you search for an empty string or spaces or whitespace, the server should take care of it
     variables: {
-      query: "",
+      query: searchQuery,
       pageSize: 50,
       page: 0,
     },
@@ -32,24 +32,12 @@ export const GameSearchContainer = () => {
     searchResults,
   });
 
-  const [pageNumber, setPageNumber] = React.useState(1);
-
-  React.useEffect(() => {
-    setPageNumber(1);
-
-    refetch({
-      query: searchQuery,
-      pageSize: 50,
-      page: 0,
-    });
-  }, [searchQuery, refetch]);
+  const [pageNumber, setPageNumber] = React.useState(0);
 
   const fetchMoreRows = () => {
     setPageNumber(pageNumber + 1);
     return fetchMore<A.GameSearchQueryVariables>({
       variables: {
-        query: searchQuery,
-        pageSize: 50,
         page: pageNumber,
       },
       updateQuery: (prevData, { fetchMoreResult }) => {
@@ -83,7 +71,7 @@ export const GameSearchContainer = () => {
     <GameSearch
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
-      loading={loading}
+      loading={searchResults.length === 0 && loading}
       loadingSuggestions={loadingSuggestions}
       suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}
