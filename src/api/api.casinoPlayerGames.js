@@ -1,5 +1,14 @@
 // @flow
+import { isMobile } from "@casumo/is-mobile";
 import clientHttp from "Lib/http";
+import { DEVICES } from "Src/constants";
+
+const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
+const DEFAULT_HEADERS = {
+  headers: {
+    "X-Request-Device": platform,
+  },
+};
 
 export const URL = {
   GAMES: "/casino-player/casino-games/api/v1/games",
@@ -11,10 +20,10 @@ export const gameSlugToId = (
 ): Promise<{
   id: string,
   name: string,
-}> => clientHttp.get(`${URL.GAME_SLUG_TO_ID}/${slug}`);
+}> => clientHttp.get(`${URL.GAME_SLUG_TO_ID}/${slug}`, {}, DEFAULT_HEADERS);
 
 export const gameById = (gameId: string): Promise<{ category: ?string }> =>
-  clientHttp.get(`${URL.GAMES}/${gameId}`);
+  clientHttp.get(`${URL.GAMES}/${gameId}`, {}, DEFAULT_HEADERS);
 
 export async function getGameCategory(slug: string): Promise<?string> {
   if (!slug) {
