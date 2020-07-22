@@ -19,6 +19,7 @@ export const ReelRacesListContainer = () => {
       limit: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
     },
     pollInterval: POLL_INTERVAL.REEL_RACES,
+    fetchPolicy: "network-only",
   });
 
   const { t, loading: cmsLoading } = useTranslationsGql({
