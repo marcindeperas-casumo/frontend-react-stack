@@ -9,7 +9,7 @@ import MustDropJackpotsList from "./MustDropJackpotsList";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
 const MustDropJackpotsListContainer = () => {
-  const { data, loading } = useQuery<
+  const { data } = useQuery<
     A.MustDropJackpotsGamesListQuery,
     A.MustDropJackpotsGamesListQueryVariables
   >(MustDropJackpotsGamesListQuery, {
@@ -19,14 +19,9 @@ const MustDropJackpotsListContainer = () => {
     },
   });
 
-  const { t, loading: cmsLoading } = useTranslationsGql({
+  const { t } = useTranslationsGql({
     seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
   });
-
-  if (loading || cmsLoading) {
-    // __FIX__ - do we need a skeleton here?
-    return null;
-  }
 
   if (data && data.gamesList && data.gamesList.games) {
     return (
