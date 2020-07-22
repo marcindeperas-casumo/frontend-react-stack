@@ -138,6 +138,16 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  emitBetslipVisibleToKoStack(
+    isTabletDevice: boolean,
+    isBetslipVisible: boolean
+  ) {
+    bridge.emit(KO_APP_EVENT_BETSLIP_VISIBLE, {
+      isTablet: isTabletDevice,
+      isBetslipVisible,
+    });
+  }
+
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
@@ -163,10 +173,10 @@ export default class KambiClient extends React.Component<Props> {
       event.data.event === "kambi betslip status" &&
       !isDesktop()
     ) {
-      bridge.emit(KO_APP_EVENT_BETSLIP_VISIBLE, {
-        isTablet: isTablet(),
-        isBetslipVisible: Boolean(event.data.kambi?.betslip?.quantity),
-      });
+      this.emitBetslipVisibleToKoStack(
+        isTablet(),
+        Boolean(event.data.kambi?.betslip?.quantity)
+      );
     }
   };
 
