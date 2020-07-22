@@ -432,5 +432,6 @@ export const EMBEDDED_GAMES = {
     "stephen.marshall@casumo.com",
     "ms@50script.com",
     "sebastian.steek@casumo.com",
+    "boguslaw.parol+30@casumo.com",
   ],
 };
