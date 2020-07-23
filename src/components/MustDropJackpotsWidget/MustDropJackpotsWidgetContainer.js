@@ -8,15 +8,18 @@ import { MustDropJackpotsWidgetSkeleton } from "Components/MustDropJackpotsWidge
 import { MustDropJackpotsQuery } from "./MustDropJackpotsWidgetContainer.graphql";
 
 const MustDropJackpotsWidgetContainer = () => {
-  const { data, loading } = useQuery<A.MustDropJackpotsQuery, null>(
+  const { data, loading } = useQuery<A.MustDropJackpotsQuery, _>(
     MustDropJackpotsQuery,
-    { pollInterval: POLL_INTERVAL.JACKPOTS_MUST_DROP }
+    {
+      pollInterval: POLL_INTERVAL.JACKPOTS_MUST_DROP,
+      fetchPolicy: "network-only", // showing old jackpots (from previous session) could be bad for compliance
+    }
   );
-  if (loading) {
-    return <MustDropJackpotsWidgetSkeleton />;
-  }
   if (data && data.mustDropJackpots) {
     return <MustDropJackpotsWidget jackpots={data.mustDropJackpots} />;
+  }
+  if (loading) {
+    return <MustDropJackpotsWidgetSkeleton />;
   }
 
   return null;
