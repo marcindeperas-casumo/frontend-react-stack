@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { isMobile } from "@casumo/is-mobile";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
-import { CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
+import { DEVICES, CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
 
 export const noop = () => {};
 
@@ -39,6 +40,8 @@ export const decodedUrlParams = (json: Object) =>
   R.mergeAll(Object.keys(json).map(key => ({ [key]: atob(json[key]) })));
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
+
+export const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
 
 export const bridgeFactory = () => {
   const obj = {};

@@ -1,9 +1,7 @@
 // @flow
-import { isMobile } from "@casumo/is-mobile";
 import clientHttp from "Lib/http";
-import { DEVICES } from "Src/constants";
+import { platform } from "Utils";
 
-const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
 const DEFAULT_HEADERS = {
   headers: {
     "X-Request-Device": platform,
