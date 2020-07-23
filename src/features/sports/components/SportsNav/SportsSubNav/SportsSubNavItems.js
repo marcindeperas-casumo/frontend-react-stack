@@ -23,7 +23,7 @@ export const NavItem = (props: NavItemProps) => (
     className="u-margin-y--md u-margin-x--sm"
   >
     <Pill
-      inactiveClassNames="t-elevation--10 t-background-grey-0 t-color-grey-70"
+      inactiveClassNames="t-elevation--10 t-background-white t-color-grey-70"
       activeClassNames={`t-background-${
         props.isLiveActive ? "red-30" : "purple-50"
       } t-color-white`}

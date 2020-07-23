@@ -1,3 +1,13 @@
+// Until we are away from KO stack we cannot use CUDL reset.
+// The following is copied from cudl-reset to allow borders to be applied to elements.
+// stylelint-disable-next-line xi/selector-pattern
+*,
+*::before,
+*::after {
+  border-style: solid;
+  border-width: 0;
+}
+
 .t-border-bottom--none {
   border-width: 0;
 }
