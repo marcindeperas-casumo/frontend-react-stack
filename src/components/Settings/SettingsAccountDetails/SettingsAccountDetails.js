@@ -160,7 +160,7 @@ const UnverifiedMobileNumber = ({ labels, details }) => (
           <Flex.Item>
             <ExclamationMarkIcon
               size="sm"
-              className="t-color-red-30 t-border--current-color t-border t-border-r--circle t-border-width--md"
+              className="t-color-red-30 t-border--current-color t-border t-border-r--circle t-border--md"
             />
           </Flex.Item>
           <Flex.Item>

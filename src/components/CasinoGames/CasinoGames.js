@@ -86,13 +86,16 @@ const TableRow = ({
   textProps?: {},
 }) => (
   <>
-    <Flex className="t-border-right o-flex__block u-width--2/5" align="center">
+    <Flex
+      className="t-border-right t-border-grey-5 o-flex__block u-width--2/5"
+      align="center"
+    >
       <Text size="sm" {...textProps}>
         {columns[0]}
       </Text>
     </Flex>
     <Flex
-      className="t-border-right u-width--1/5"
+      className="t-border-right t-border-grey-5 u-width--1/5"
       justify="center"
       align="center"
     >
@@ -101,7 +104,7 @@ const TableRow = ({
       </Text>
     </Flex>
     <Flex
-      className="t-border-right u-width--1/5"
+      className="t-border-right t-border-grey-5 u-width--1/5"
       justify="center"
       align="center"
     >
@@ -110,7 +113,7 @@ const TableRow = ({
       </Text>
     </Flex>
     <Flex
-      className="t-border-right u-width--1/5"
+      className="t-border-right t-border-grey-5 u-width--1/5"
       justify="center"
       align="center"
     >
@@ -121,7 +124,7 @@ const TableRow = ({
   </>
 );
 const rowContainerClasses =
-  "t-border-bottom t-border-left u-padding-left t-background-white";
+  "t-border-bottom t-border-left t-border-grey-5 u-padding-left t-background-white";
 export const CasinoGames = () => {
   const t = useTranslations<{
     meta_description: string,
@@ -156,7 +159,10 @@ export const CasinoGames = () => {
   const { games, gamesCount } = data.getGamesPaginated;
 
   const rtpTable = (
-    <Flex direction="vertical" className="t-border-top u-margin-top">
+    <Flex
+      direction="vertical"
+      className="t-border-top t-border-grey-5 u-margin-top"
+    >
       <Flex
         className={classNames(
           "u-position-sticky--top u-top-0 u-zindex--content-overlay",

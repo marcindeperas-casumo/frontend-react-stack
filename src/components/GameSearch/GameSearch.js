@@ -151,7 +151,7 @@ export const GameSearch = (props: Props) => {
     <div className="c-game-search o-wrapper t-background-white u-margin-top--xlg@desktop">
       <div
         className={classNames(
-          "c-game-search-bar u-position-sticky--top u-padding--lg@desktop t-border-bottom",
+          "c-game-search-bar u-position-sticky--top u-padding--lg@desktop t-border-bottom t-border-grey-5",
           isMobile() ? "t-background-grey-0" : "t-background-white"
         )}
       >
