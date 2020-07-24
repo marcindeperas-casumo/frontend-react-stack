@@ -37,9 +37,9 @@ export const SidebarRow = (props: Props) => {
     "u-cursor-pointer",
     "t-color-white",
     {
-      "c-sidebar__nav-item--active t-background-turquoise t-color-white": selected,
-      "c-sidebar__nav-item--white t-background-white t-color-grey-dark-1": secondary,
-      "c-sidebar__nav-item t-background-plum": !secondary,
+      "c-sidebar__nav-item--active t-background-teal-50 t-color-white": selected,
+      "c-sidebar__nav-item--white t-background-white t-color-grey-50": secondary,
+      "c-sidebar__nav-item t-background-purple-80": !secondary,
     }
   );
 
@@ -47,7 +47,7 @@ export const SidebarRow = (props: Props) => {
     <li className={rowClasses}>
       <a
         data-test-id="sidebar-link"
-        className={secondary ? "t-color-grey-dark-1" : "t-color-white"}
+        className={secondary ? "t-color-grey-50" : "t-color-white"}
         onClick={action}
         href={link || "#"}
         target={openNewTab ? "_blank" : "_self"}
@@ -71,7 +71,7 @@ export const SidebarRow = (props: Props) => {
             <Text
               tag="span"
               size="sm"
-              className="t-color-turquoise"
+              className="t-color-teal-50"
               data-test-id="sidebar-text-small"
             >
               {label}

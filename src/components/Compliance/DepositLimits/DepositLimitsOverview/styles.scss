@@ -1,7 +1,7 @@
 .c-deposit-limits__container {
   @include cudl-breakpoint-with(
     (
-      mobile: cudl-palette(grey, light-2),
+      mobile: cudl-palette(grey, "0"),
       tablet: transparent,
     ),
     background-color

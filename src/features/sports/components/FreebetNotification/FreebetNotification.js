@@ -54,7 +54,7 @@ const renderValuableThumbnail = ({
   valuableState,
   valuableType,
 }) => (
-  <div className="u-width--4xlg t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
+  <div className="u-width--4xlg t-background-white u-padding--sm t-border-r u-overflow-hidden t-elevation--10">
     <ValuableThumbnail
       backgroundRenderer={
         <ImageLazy
@@ -101,7 +101,7 @@ const renderValuableText = ({
       )}
 
       {caveat && (
-        <Text className="t-color-grey-light-1" size="2xs" tag="span">
+        <Text className="t-color-grey-5" size="2xs" tag="span">
           <DangerousHtml html={caveat} />
         </Text>
       )}

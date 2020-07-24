@@ -19,7 +19,7 @@ export const GamePage = ({
 }: Props) => (
   <VerticalStretcher>
     <Flex
-      className="u-width--full u-height--full t-background-chrome-dark-3 t-color-white"
+      className="u-width--full u-height--full t-background-grey-90 t-color-white"
       direction="vertical"
       spacing="none"
     >

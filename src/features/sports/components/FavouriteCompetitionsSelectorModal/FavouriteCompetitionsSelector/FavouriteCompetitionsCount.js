@@ -9,7 +9,7 @@ const FavouriteCompetitionsCount = ({ count }: { count: number }): React.Node =>
       <Badge
         tag="h6"
         size="xs"
-        bgColor="plum"
+        bgColor="purple-50"
         txtColor="white"
         className="u-font-weight-bold"
         circle

@@ -52,7 +52,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
-          className="t-border-bottom t-color-chrome-light-2 t-border--current-color"
+          className="t-border-bottom t-color-grey-0 t-border--current-color"
           key={key}
           index={index}
           style={style}
@@ -64,7 +64,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
 
     return (
       <Flex
-        className="t-border-bottom t-color-chrome-light-2 t-border--current-color"
+        className="t-border-bottom t-color-grey-0 t-border--current-color"
         key={key}
         index={index}
         style={style}

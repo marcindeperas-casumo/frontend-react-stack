@@ -33,7 +33,7 @@ const ButtonContainer = ({
 }: ButtonContainerProps) => (
   <Flex.Item
     onClick={onClick}
-    className={classNames("t-color-chrome-dark-1", className)}
+    className={classNames("t-color-grey-50", className)}
   >
     {children}
   </Flex.Item>
@@ -68,7 +68,7 @@ const CloseButton = ({ onClick, className }: ButtonProps) => (
         onClick === noop && "u-visibility--hidden"
       )}
     >
-      <CrossIcon size="md" />
+      <CrossIcon />
     </Flex>
   </ButtonContainer>
 );
@@ -79,12 +79,12 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     justify="center"
     data-test-id="sports-modal-fixed-close-button"
     className={classNames(
-      "c-sports-modal-header__fixed-button u-cursor-pointer t-border-r--sm u-width--4xlg u-height--4xlg t-color-chrome-light-2 t-background-chrome-dark-3 u-display--none@mobile u-display--none@phablet",
+      "c-sports-modal-header__fixed-button u-cursor-pointer t-border-r--sm u-width--4xlg u-height--4xlg t-color-grey-0 t-background-grey-90 u-display--none@mobile u-display--none@phablet",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
   >
-    <CrossIcon size="md" />
+    <CrossIcon />
   </Flex>
 );
 
@@ -92,7 +92,7 @@ export const SportsModalHeader = ({
   children,
   onBack = noop,
   onClose = noop,
-  className = "t-background-white t-color-chrome-dark-3 t-border-bottom",
+  className = "t-background-white t-color-grey-90 t-border-bottom t-border-grey-5",
 }: HeaderProps) => (
   <Flex
     align="center"

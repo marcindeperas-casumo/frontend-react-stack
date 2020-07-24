@@ -17,7 +17,7 @@ export const EmptyValuablesList = (props: Props) => (
       <EmptyValuablesImage />
     </div>
     <Text
-      className="u-margin-top t-color-grey-light-1 u-font-weight-bold"
+      className="u-margin-top t-color-grey-20 u-font-weight-bold"
       tag="span"
     >
       {props.message}

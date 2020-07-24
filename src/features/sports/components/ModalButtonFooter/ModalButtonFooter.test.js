@@ -2,7 +2,7 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import ModalButtonFooter from "./ModalButtonFooter";
 
 describe("<ModalButtonFooter />", () => {
@@ -20,7 +20,7 @@ describe("<ModalButtonFooter />", () => {
       <ModalButtonFooter onClick={onClick}>TEST CONTENT</ModalButtonFooter>
     );
 
-    rendered.find(Button).simulate("click");
+    rendered.find(ButtonPrimary).simulate("click");
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

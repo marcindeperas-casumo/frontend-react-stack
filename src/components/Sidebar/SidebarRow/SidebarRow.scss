@@ -6,8 +6,8 @@
   }
 
   &::after {
-    background: cudl-palette(turquoise);
-    border-left: 4px solid cudl-palette(plum, light-1);
+    background: cudl-palette(teal, "50");
+    border-left: 4px solid cudl-palette(purple, "50");
     content: "";
     height: 100%;
     left: 0;
@@ -18,6 +18,6 @@
   }
 
   &--active::after {
-    border-color: cudl-palette(turquoise);
+    border-color: cudl-palette(teal, "50");
   }
 }

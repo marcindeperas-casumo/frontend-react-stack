@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
@@ -28,7 +28,7 @@ const SettingsSection = ({ title, description, href }) => (
     <SettingsRow
       text={<SettingsHeadline title={title} description={description} />}
     >
-      <DirectionRightIcon className="t-color-grey-light-1" />
+      <DirectionRightIcon className="t-color-grey-5" />
     </SettingsRow>
   </a>
 );
@@ -65,7 +65,7 @@ export class SettingsSections extends PureComponent<Props> {
         direction="vertical"
         className="u-height--screen-minus-navbar u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop"
       >
-        <Flex.Item className="u-margin-bottom--lg@tablet u-margin-bottom--lg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+        <Flex.Item className="u-margin-bottom--lg@tablet u-margin-bottom--lg@desktop t-elevation--30@tablet t-elevation--30@desktop">
           <SettingsSection
             title={accountDetailsTitle}
             description={accountDetailsDescription}
@@ -86,14 +86,13 @@ export class SettingsSections extends PureComponent<Props> {
               accountActivityLabel={accountActivity}
             />
           )}
-          <Button
+          <ButtonPrimary
             className="u-margin-bottom--md"
             size="md"
             onClick={logout}
-            variant="primary"
           >
             {logoutLabel || ""}
-          </Button>
+          </ButtonPrimary>
         </Flex.Item>
       </Flex>
     );

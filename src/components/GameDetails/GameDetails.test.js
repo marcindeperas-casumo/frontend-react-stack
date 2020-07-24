@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import ImageLazy from "Components/Image/ImageLazy";
 import { GameDetails } from "./GameDetails";
 import { GameDetailsButtons } from "./GameDetailsButtons";
@@ -57,17 +57,18 @@ describe("GameDetailsButtons", () => {
     const rendered = shallow(
       <GameDetailsButtons {...props} hasPlayForFun={true} />
     );
-    expect(rendered.find(Button).length).toBe(2);
+    expect(rendered.find(ButtonPrimary).length).toBe(1);
+    expect(rendered.find(ButtonSecondary).length).toBe(1);
   });
 
   test("should only display play button if not hasPlayForFun", () => {
     const rendered = shallow(
       <GameDetailsButtons {...props} hasPlayForFun={false} />
     );
-    expect(rendered.find(Button).length).toBe(1);
+    expect(rendered.find(ButtonPrimary).length).toBe(1);
     expect(
       rendered
-        .find(Button)
+        .find(ButtonPrimary)
         .dive()
         .find("span")
         .text()

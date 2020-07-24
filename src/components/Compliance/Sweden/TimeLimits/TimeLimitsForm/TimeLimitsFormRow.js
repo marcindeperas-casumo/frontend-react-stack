@@ -37,7 +37,7 @@ export function TimeLimitsFormRow({
             min={min}
             max={max}
             fontClassName="u-font"
-            colorClassName="t-color-green"
+            colorClassName="t-color-green-30"
             inputClassName="u-text-align-right u-padding-bottom--sm"
             onChange={textInputOnChange(setter)}
           />
@@ -49,7 +49,7 @@ export function TimeLimitsFormRow({
         </Flex.Item>
       </Flex>
       {errorMessage && (
-        <Text size="sm" className="t-color-red">
+        <Text size="sm" className="t-color-red-30">
           {errorMessage}
         </Text>
       )}

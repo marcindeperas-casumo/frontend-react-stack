@@ -28,7 +28,7 @@ const Badge = ({ className, children }: BadgeProps) => (
 );
 
 const CloseBadge = () => (
-  <Badge className="t-background-red-dark-1 t-color-white">
+  <Badge className="t-background-red-40 t-color-white">
     <CrossIcon size="sm" className="u-display--block" />
   </Badge>
 );
@@ -44,8 +44,8 @@ const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
-          isActive ? "negative" : "chrome-dark-1"
-        } t-box-shadow`}
+          isActive ? "red-30" : "grey-50"
+        } t-elevation--10`}
       />
     </Flex>
   </div>
@@ -77,7 +77,7 @@ export const SportsNavLiveTab = ({
       direction="vertical"
       className={classNames(
         "o-flex--1 u-margin-y u-padding-x c-sports-nav-live-tab__wrapper",
-        isActive && "t-background-negative t-border-r"
+        isActive && "t-background-red-30 t-border-r"
       )}
       spacing="none"
     >
@@ -86,7 +86,7 @@ export const SportsNavLiveTab = ({
         tag="span"
         size="sm"
         className={`u-font-weight-black u-text-align-center t-color-${
-          isActive ? "white" : "chrome-dark-1"
+          isActive ? "white" : "grey-50"
         } u-text-nowrap`}
       >
         {label}

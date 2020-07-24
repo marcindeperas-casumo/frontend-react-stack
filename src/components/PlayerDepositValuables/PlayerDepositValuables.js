@@ -53,7 +53,7 @@ export const PlayerDepositValuables = () => {
           data-test-id="bonus-terms-link"
           onClick={showBonusTerms}
           tag="h3"
-          className="t-color-text-link u-text-align-center"
+          className="t-color-blue-60 u-text-align-center"
         >
           Bonus Terms and Conditions
         </Text>

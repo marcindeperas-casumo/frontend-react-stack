@@ -28,7 +28,7 @@ export class SettingsRow extends PureComponent<Props> {
           "u-padding-x--md",
           "t-border-bottom",
           "t-border--current-color",
-          "t-color-chrome-light-1",
+          "t-color-grey-5",
           "t-background-white",
           className
         )}

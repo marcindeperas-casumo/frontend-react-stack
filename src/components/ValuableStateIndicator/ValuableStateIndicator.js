@@ -22,7 +22,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
     );
   } else if (state === VALUABLE_STATES.USED) {
     return (
-      <div className="u-display--inline-block t-color-green">
+      <div className="u-display--inline-block t-color-green-30">
         <ActiveIcon
           size="sm"
           className="u-margin-right--sm"
@@ -34,7 +34,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
   }
 
   return (
-    <div className="u-display--inline-block t-color-red">
+    <div className="u-display--inline-block t-color-red-30">
       <ClockIcon
         size="sm"
         className="u-margin-right--sm"

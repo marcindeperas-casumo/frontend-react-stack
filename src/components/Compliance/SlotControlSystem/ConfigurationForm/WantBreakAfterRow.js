@@ -31,7 +31,7 @@ export function WantBreakAfterRow(props: WantBreakAfterRowType) {
   return (
     <Flex
       direction="vertical"
-      className="t-border-bottom u-padding-y--md u-margin-bottom--md"
+      className="t-border-bottom t-border-grey-5 u-padding-y--md u-margin-bottom--md"
     >
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.want_break_after}

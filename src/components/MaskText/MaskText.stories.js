@@ -9,7 +9,7 @@ const stories = storiesOf("MaskText", module);
 stories.addDecorator(withKnobs);
 
 const TextColor = value => <span className="t-color-black">{value}</span>;
-const TextGrey = value => <span className="t-color-grey">{value}</span>;
+const TextGrey = value => <span className="t-color-grey-20">{value}</span>;
 
 const TextMaskColored = props => (
   <MaskText matchRender={TextColor} unmatchedRender={TextGrey} {...props} />

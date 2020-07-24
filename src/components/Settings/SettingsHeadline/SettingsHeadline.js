@@ -12,13 +12,13 @@ export class SettingsHeadline extends PureComponent<Props> {
     const { title, description } = this.props;
     return (
       <div>
-        <Text tag="h3" className="u-margin-bottom--sm t-color-chrome-dark-3">
+        <Text tag="h3" className="u-margin-bottom--sm t-color-grey-90">
           {title}
         </Text>
         <Text
           tag="p"
           size="sm"
-          className="u-margin-bottom--none t-color-chrome-dark-1"
+          className="u-margin-bottom--none t-color-grey-50"
         >
           {description}
         </Text>

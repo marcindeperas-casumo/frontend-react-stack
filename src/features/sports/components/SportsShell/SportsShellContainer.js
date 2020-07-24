@@ -106,7 +106,7 @@ export class SportsShellContainer extends React.Component<{}> {
             <>
               <SportsHashWatcher>
                 {({ currentHash }) => (
-                  <div className="t-background-chrome-light-2">
+                  <div className="t-background-grey-0">
                     <SportsTopBar
                       currentHash={currentHash}
                       isSearchVisible={data.isSearchVisible}

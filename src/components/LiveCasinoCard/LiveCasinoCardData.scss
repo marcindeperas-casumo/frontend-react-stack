@@ -7,7 +7,7 @@
 }
 
 .c-card-data__badge::after {
-  color: cudl-palette(white);
+  color: cudl-palette(white, "base");
   content: ".";
   font-size: 20px;
   margin-top: 11px;
@@ -15,7 +15,7 @@
 }
 
 .c-card-data__badges-background {
-  background-color: rgba(cudl-palette(black), 0.75);
+  background-color: rgba(cudl-palette(black, "base"), 0.75);
   height: 40px;
 }
 

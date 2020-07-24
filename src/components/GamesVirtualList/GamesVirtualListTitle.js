@@ -14,7 +14,7 @@ export class GamesVirtualListTitle extends PureComponent<Props> {
       <Flex align="center">
         <Text
           tag="span"
-          className="u-font-weight-bold t-color-chrome-dark-1 o-flex-1"
+          className="u-font-weight-bold t-color-grey-50 o-flex-1"
         >
           {this.props.title}
         </Text>

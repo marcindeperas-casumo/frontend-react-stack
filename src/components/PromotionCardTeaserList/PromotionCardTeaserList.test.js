@@ -43,12 +43,12 @@ describe("PromotionCardTeaserList", () => {
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
-        backgroundColor="blue"
+        backgroundColor="blue-50"
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
 
-    expect(rendered.first().hasClass("t-background-blue")).toBe(true);
+    expect(rendered.first().hasClass("t-background-blue-50")).toBe(true);
   });
 
   test("should not set a background color if backgroundColor is not coming down as a prop", () => {

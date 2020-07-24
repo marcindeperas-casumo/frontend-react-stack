@@ -9,7 +9,7 @@ const FavouriteSportsSelectorHeading = ({
 }) => (
   <Text
     tag="h2"
-    className="u-margin-top--3xlg u-margin-bottom--md t-color-grey-dark-1"
+    className="u-margin-top--3xlg u-margin-bottom--md t-color-grey-50"
   >
     {children}
   </Text>

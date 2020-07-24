@@ -2,7 +2,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
 import { TextInput } from "Components/Compliance/TextInput";
@@ -64,30 +64,29 @@ export function LimitYourBudget(props: Props) {
           value={budget}
           className="c-scs__limit-your-budget__field"
         />
-        <Button
-          disabled={isBudgetInvalid(budgetBalance)}
-          variant="primary"
-          size="sm"
-          className="u-width--1/4 u-margin-left--md u-padding--md t-box-shadow"
+        <ButtonPrimary
+          isDisabled={isBudgetInvalid(budgetBalance)}
+          size="md"
+          className="u-width--1/4 u-margin-left--md u-padding--md"
           onClick={() => onSubmit(parsedBudget)}
         >
           <ArrowRightIcon size="sm" />
-        </Button>
+        </ButtonPrimary>
       </Flex>
       <ErrorMessage
         {...props}
         budget={parsedBudget}
         formattedBalance={formattedBalance}
       />
-      <Button
-        variant="secondary"
+      <ButtonSecondary
+        size="sm"
         className="u-margin-top--xlg u-margin-top--3xlg@tablet"
         onClick={() => onSubmit(balance)}
       >
         <span className="t-color-black">
           {interpolate(t.use_all_balance, { balance: formattedBalance })}
         </span>
-      </Button>
+      </ButtonSecondary>
     </Flex>
   );
 }

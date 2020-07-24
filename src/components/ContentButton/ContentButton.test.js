@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { ContentButton, ACTION_MAP } from "./ContentButton";
 
 describe("ContentButton", () => {
@@ -10,7 +11,7 @@ describe("ContentButton", () => {
       const action = ACTION_MAP[actionKey];
       const rendered = shallow(<ContentButton type={actionKey} />);
 
-      expect(rendered.find("Button").prop("href")).toBe(action);
+      expect(rendered.find(ButtonPrimary).prop("href")).toBe(action);
     });
   });
 

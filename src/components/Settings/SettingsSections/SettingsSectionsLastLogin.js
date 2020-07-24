@@ -29,25 +29,25 @@ export const SettingsSectionsLastLogin = ({
 
   return (
     <div className="u-text-align-center u-line-height--15 u-margin-bottom--md">
-      <Text size="sm" className="t-color-chrome-dark-1">
+      <Text size="sm" className="t-color-grey-50">
         {currentSessionMessageLabel}&nbsp;
         <Timer
           startTime={time}
           render={({ hours, minutes, seconds }) => (
-            <strong className="t-color-chrome-dark-2">
+            <strong className="t-color-grey-70">
               {hours}:{minutes}:{seconds}
             </strong>
           )}
         />
       </Text>
-      <Text size="sm" className="t-color-chrome-dark-1 u-margin-bottom">
+      <Text size="sm" className="t-color-grey-50 u-margin-bottom">
         <ContentReplacer
           value={lastSessionMessageLabel || ""}
           replacements={{
-            lastLoginDate: `<span class="t-color-chrome-dark-2">${dateObject.toLocaleString(
+            lastLoginDate: `<span class="t-color-grey-70">${dateObject.toLocaleString(
               DateTime.DATE_FULL
             )}</span>`,
-            lastLoginTime: `<span class="t-color-chrome-dark-2">${dateObject.toLocaleString(
+            lastLoginTime: `<span class="t-color-grey-70">${dateObject.toLocaleString(
               DateTime.TIME_24_SIMPLE
             )}</span>`,
           }}
@@ -55,7 +55,7 @@ export const SettingsSectionsLastLogin = ({
       </Text>
       <Text
         tag="div"
-        className="u-cursor-pointer u-font-weight-bold t-color-text-link"
+        className="u-cursor-pointer u-font-weight-bold t-color-blue-60"
         onClick={openAccountActivity}
       >
         {accountActivityLabel}

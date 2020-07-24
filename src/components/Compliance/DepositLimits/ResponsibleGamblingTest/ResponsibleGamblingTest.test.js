@@ -64,7 +64,7 @@ describe("ResponsibleGamblingTest", () => {
     R.times(() => {
       rendered
         .find({ "data-test-id": "buttonNo" })
-        .find("Button")
+        .find("ButtonSecondary")
         .simulate("click");
     }, props.numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(true);
@@ -79,7 +79,7 @@ describe("ResponsibleGamblingTest", () => {
     R.times(i => {
       rendered
         .find({ "data-test-id": i === randomYes ? "buttonYes" : "buttonNo" })
-        .find("Button")
+        .find(i === randomYes ? "ButtonPrimary" : "ButtonSecondary")
         .simulate("click");
     }, props.numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(false);
