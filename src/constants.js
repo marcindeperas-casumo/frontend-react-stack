@@ -53,6 +53,7 @@ export const KO_EVENTS = {
   },
   VALUABLES: {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
+    ITEM_EXPIRED: "VALUABLES/ITEM_EXPIRED",
   },
 };
 export const DEVICES = {
