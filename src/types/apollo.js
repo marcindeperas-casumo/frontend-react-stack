@@ -1,7 +1,33 @@
 // @flow
 // ====================================================
+// GraphQL query operation: GetGamesRTP
+// ====================================================
+export type GetGamesRTP_getGamesPaginated_games = {
+  id: string,
+  slug: string,
+  title: string,
+  actualRtpPast6Months: ?string,
+  actualRtpPastYear: ?string,
+  rtp: ?string,
+};
+export type GetGamesRTP_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GetGamesRTP_getGamesPaginated_games>,
+};
+export type GetGamesRTP = {
+  getGamesPaginated: GetGamesRTP_getGamesPaginated,
+};
+export type GetGamesRTPVariables = {
+  query: string,
+  offset: number,
+  limit: number,
+};
+
+// ====================================================
 // GraphQL query operation: componentBuilderQuery
 // ====================================================
+
 export type componentBuilderQuery = {
   /**
    * "getCMSFieldAsJSON" is only needed for the component builder until we add type-definitions for all the
@@ -90,7 +116,10 @@ export type GameListQuery_gamesList_games = {
   name: string,
   slug: string,
   id: string,
+  liveCasinoId: ?string,
+  playBackground: string,
   isInMyList: boolean,
+  category: ?string,
 };
 export type GameListQuery_gamesList = {
   id: ?string,
@@ -116,7 +145,10 @@ export type GameListExclusiveQuery_gamesList_games = {
   name: string,
   slug: string,
   id: string,
+  liveCasinoId: ?string,
+  playBackground: string,
   isInMyList: boolean,
+  category: ?string,
 };
 export type GameListExclusiveQuery_gamesList = {
   id: ?string,
@@ -374,6 +406,41 @@ export type JackpotsQuery = {
 };
 export type JackpotsQueryVariables = {
   numberOfGames: number,
+};
+
+// ====================================================
+// GraphQL query operation: LiveCasinoCardMobileDataQuery
+// ====================================================
+
+export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById_bets = {
+  symbol: ?string,
+  min: ?number,
+  max: ?number,
+};
+export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById_operationHours = {
+  type: OperationHoursType,
+  startTime: ?string,
+  endTime: ?string,
+};
+export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?LiveCasinoCardMobileDataQuery_liveCasinoTablesById_bets,
+  operationHours: LiveCasinoCardMobileDataQuery_liveCasinoTablesById_operationHours,
+};
+export type LiveCasinoCardMobileDataQuery = {
+  liveCasinoTablesById: ?LiveCasinoCardMobileDataQuery_liveCasinoTablesById,
+};
+export type LiveCasinoCardMobileDataQueryVariables = {
+  id: string,
 };
 
 // ====================================================
@@ -801,32 +868,6 @@ export type PlayAgainLatestPlayedQuery_gamesList = {
 };
 export type PlayAgainLatestPlayedQuery = {
   gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
-};
-
-// ====================================================
-// GraphQL query operation: GetGamesRTP
-// ====================================================
-
-export type GetGamesRTP_getGamesPaginated_games = {
-  id: string,
-  slug: string,
-  title: string,
-  actualRtpPast6Months: ?string,
-  actualRtpPastYear: ?string,
-  rtp: ?string,
-};
-export type GetGamesRTP_getGamesPaginated = {
-  gamesCount: number,
-  offset: number,
-  games: Array<GetGamesRTP_getGamesPaginated_games>,
-};
-export type GetGamesRTP = {
-  getGamesPaginated: GetGamesRTP_getGamesPaginated,
-};
-export type GetGamesRTPVariables = {
-  query: string,
-  offset: number,
-  limit: number,
 };
 
 // ====================================================
@@ -1965,7 +2006,10 @@ export type GameTile_Game = {
   name: string,
   slug: string,
   id: string,
+  liveCasinoId: ?string,
+  playBackground: string,
   isInMyList: boolean,
+  category: ?string,
 };
 
 // ====================================================
@@ -2702,6 +2746,7 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+export type OperationHoursType = "BOUNDED" | "FULLTIME";
 export type ValuableType =
   | "cash"
   | "cashback"
