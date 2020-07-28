@@ -15,13 +15,19 @@ type SettingsSectionsLastLoginType = {
   previousTime: number,
 };
 
-const PreviousLoginTime = ({ time, label = "" }) => {
+const PreviousLoginTime = ({
+  time,
+  label,
+}: {
+  time: number,
+  label: ?string,
+}) => {
   const dateObject = DateTime.fromMillis(time);
 
   return (
     <Text size="sm" className="t-color-grey-50 u-margin-bottom">
       <ContentReplacer
-        value={label}
+        value={label || ""}
         replacements={{
           lastLoginDate: `<span class="t-color-grey-70">${dateObject.toLocaleString(
             DateTime.DATE_FULL
@@ -35,7 +41,13 @@ const PreviousLoginTime = ({ time, label = "" }) => {
   );
 };
 
-const CurrentLoginTime = ({ time, label = "" }) => (
+const CurrentLoginTime = ({
+  time,
+  label = "",
+}: {
+  time: number,
+  label: ?string,
+}) => (
   <Text size="sm" className="t-color-grey-50">
     {label}&nbsp;
     <Timer
