@@ -11,17 +11,63 @@ type SettingsSectionsLastLoginType = {
   currentSessionMessageLabel: ?string,
   lastSessionMessageLabel: ?string,
   accountActivityLabel: ?string,
-  time: number,
+  currentTime: number,
+  previousTime: number,
 };
+
+const PreviousLoginTime = ({
+  time,
+  label,
+}: {
+  time: number,
+  label: ?string,
+}) => {
+  const dateObject = DateTime.fromMillis(time);
+
+  return (
+    <Text size="sm" className="t-color-grey-50 u-margin-bottom">
+      <ContentReplacer
+        value={label || ""}
+        replacements={{
+          lastLoginDate: `<span class="t-color-grey-70">${dateObject.toLocaleString(
+            DateTime.DATE_FULL
+          )}</span>`,
+          lastLoginTime: `<span class="t-color-grey-70">${dateObject.toLocaleString(
+            DateTime.TIME_24_SIMPLE
+          )}</span>`,
+        }}
+      />
+    </Text>
+  );
+};
+
+const CurrentLoginTime = ({
+  time,
+  label = "",
+}: {
+  time: number,
+  label: ?string,
+}) => (
+  <Text size="sm" className="t-color-grey-50">
+    {label}&nbsp;
+    <Timer
+      startTime={time}
+      render={({ hours, minutes, seconds }) => (
+        <strong className="t-color-grey-70">
+          {hours}:{minutes}:{seconds}
+        </strong>
+      )}
+    />
+  </Text>
+);
 
 export const SettingsSectionsLastLogin = ({
   currentSessionMessageLabel,
   lastSessionMessageLabel,
   accountActivityLabel,
-  time,
+  currentTime,
+  previousTime,
 }: SettingsSectionsLastLoginType) => {
-  const dateObject = DateTime.fromMillis(time);
-
   const openAccountActivity = () =>
     launchModal({
       modal: MODALS.ACCOUNT_SETTINGS.SHOW_ACCOUNT_ACTIVITY,
@@ -29,30 +75,18 @@ export const SettingsSectionsLastLogin = ({
 
   return (
     <div className="u-text-align-center u-line-height--15 u-margin-bottom--md">
-      <Text size="sm" className="t-color-grey-50">
-        {currentSessionMessageLabel}&nbsp;
-        <Timer
-          startTime={time}
-          render={({ hours, minutes, seconds }) => (
-            <strong className="t-color-grey-70">
-              {hours}:{minutes}:{seconds}
-            </strong>
-          )}
+      {currentTime && (
+        <CurrentLoginTime
+          time={currentTime}
+          label={currentSessionMessageLabel}
         />
-      </Text>
-      <Text size="sm" className="t-color-grey-50 u-margin-bottom">
-        <ContentReplacer
-          value={lastSessionMessageLabel || ""}
-          replacements={{
-            lastLoginDate: `<span class="t-color-grey-70">${dateObject.toLocaleString(
-              DateTime.DATE_FULL
-            )}</span>`,
-            lastLoginTime: `<span class="t-color-grey-70">${dateObject.toLocaleString(
-              DateTime.TIME_24_SIMPLE
-            )}</span>`,
-          }}
+      )}
+      {previousTime && (
+        <PreviousLoginTime
+          time={previousTime}
+          label={lastSessionMessageLabel}
         />
-      </Text>
+      )}
       <Text
         tag="div"
         className="u-cursor-pointer u-font-weight-bold t-color-blue-60"
