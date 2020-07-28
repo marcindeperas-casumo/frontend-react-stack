@@ -3,6 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
 import isNotChromatic from "Storybook/isNotChromatic";
+import MockStore from "Components/MockStore";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
@@ -15,9 +16,11 @@ if (isNotChromatic) {
     "Many sports (desktop)",
     () => (
       <div className="c-sports-shell--site">
-        <MockedProvider mocks={mocks.manySports} addTypename={false}>
-          <SportsNav currentHash="#filter/tennis/wta" />
-        </MockedProvider>
+        <MockStore>
+          <MockedProvider mocks={mocks.manySports} addTypename={false}>
+            <SportsNav currentHash="#filter/tennis/wta" />
+          </MockedProvider>
+        </MockStore>
       </div>
     ),
     waitForScrollablePaginated
@@ -26,9 +29,11 @@ if (isNotChromatic) {
   stories.add(
     "Many sports",
     () => (
-      <MockedProvider mocks={mocks.manySports} addTypename={false}>
-        <SportsNav currentHash="#filter/tennis/wta" />
-      </MockedProvider>
+      <MockStore>
+        <MockedProvider mocks={mocks.manySports} addTypename={false}>
+          <SportsNav currentHash="#filter/tennis/wta" />
+        </MockedProvider>
+      </MockStore>
     ),
     waitForScrollablePaginated
   );
@@ -36,22 +41,28 @@ if (isNotChromatic) {
   stories.add(
     "Multiple sports",
     () => (
-      <MockedProvider mocks={mocks.multipleSports} addTypename={false}>
-        <SportsNav currentHash="#filter/football/england/premier_league" />
-      </MockedProvider>
+      <MockStore>
+        <MockedProvider mocks={mocks.multipleSports} addTypename={false}>
+          <SportsNav currentHash="#filter/football/england/premier_league" />
+        </MockedProvider>
+      </MockStore>
     ),
     waitForScrollablePaginated
   );
 
   stories.add("Single sport", () => (
-    <MockedProvider mocks={mocks.singleSport} addTypename={false}>
-      <SportsNav currentHash="#filter/football" />
-    </MockedProvider>
+    <MockStore>
+      <MockedProvider mocks={mocks.singleSport} addTypename={false}>
+        <SportsNav currentHash="#filter/football" />
+      </MockedProvider>
+    </MockStore>
   ));
 
   stories.add("Error", () => (
-    <MockedProvider mocks={mocks.error} addTypename={false}>
-      <SportsNav currentHash="#filter/tennis/wta" />
-    </MockedProvider>
+    <MockStore>
+      <MockedProvider mocks={mocks.error} addTypename={false}>
+        <SportsNav currentHash="#filter/tennis/wta" />
+      </MockedProvider>
+    </MockStore>
   ));
 }

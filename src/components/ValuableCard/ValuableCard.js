@@ -130,14 +130,15 @@ export class ValuableCard extends PureComponent<Props> {
               />
             </Flex.Item>
             <Flex.Item className="o-flex--1 u-text-align-center u-padding-x u-margin-top--md">
-              <Text
-                className="t-color-grey-dark-2 u-font-weight-bold"
-                tag="div"
-              >
+              <Text className="t-color-grey-70 u-font-weight-bold" tag="div">
                 <DangerousHtml data-test="valuable-card-title" html={title} />
               </Text>
               {description && (
-                <Text className="t-color-grey u-margin-top" size="xs" tag="div">
+                <Text
+                  className="t-color-grey-20 u-margin-top"
+                  size="xs"
+                  tag="div"
+                >
                   <DangerousHtml
                     data-test="valuable-card-description"
                     html={description}
@@ -150,7 +151,7 @@ export class ValuableCard extends PureComponent<Props> {
         {caveat && (
           <Text
             size="2xs"
-            className="t-color-grey-light-1 u-text-align-center u-margin-top u-padding-x"
+            className="t-color-grey-5 u-text-align-center u-margin-top u-padding-x"
             tag="div"
           >
             <DangerousHtml html={caveat} />

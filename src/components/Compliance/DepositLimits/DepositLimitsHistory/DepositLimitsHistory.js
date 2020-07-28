@@ -93,7 +93,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
             align="stretch"
             className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
           >
-            <Flex className="t-color-positive u-margin-y" align="center">
+            <Flex className="t-color-green-30 u-margin-y" align="center">
               <TickIcon
                 size="sm"
                 className="t-border t-border--current-color t-border-r--circle c-deposit-limits-history__tick-icon-border-width u-margin-right--md"
@@ -105,7 +105,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               >
                 {t.adjustment_status_success}
               </Text>
-              <Text tag="span" size="sm" className="t-color-grey-dark-1">
+              <Text tag="span" size="sm" className="t-color-grey-50">
                 {DateTime.fromISO(historyItem.timestamp).toLocaleString(
                   DateTime.DATETIME_SHORT
                 )}
@@ -117,7 +117,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               {/* ^-- dumb workaround for margin: 0 !important on horizontal flex} */}
               <Flex
                 className={classNames(
-                  "u-margin-left u-margin-right--lg t-background-grey-light-2 c-deposit-limits-history__left-bar",
+                  "u-margin-left u-margin-right--lg t-background-grey-0 c-deposit-limits-history__left-bar",
                   i === props.history.length - 1 &&
                     "c-deposit-limits-history__left-bar--small"
                 )}
@@ -125,9 +125,9 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               <Flex
                 direction="vertical"
                 spacing="none"
-                className="t-background-grey-light-2 u-padding--md c-deposit-limits-history__limit o-flex--1"
+                className="t-background-grey-0 u-padding--md c-deposit-limits-history__limit o-flex--1"
               >
-                <Text tag="span" className="t-color-grey-dark-1">
+                <Text tag="span" className="t-color-grey-50">
                   {t[getTranslationKeyForHistoryEntry(historyItem)]}
                 </Text>
                 {historyItem.type === ("removed": LimitChangeType) ? (
@@ -155,7 +155,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                             })}
                             <ArrowRightIcon
                               size="sm"
-                              className="t-color-grey-dark-1 c-deposit-limits-history__change-icon"
+                              className="t-color-grey-50 c-deposit-limits-history__change-icon"
                             />
                           </>
                         ) : null}

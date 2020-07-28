@@ -3,12 +3,17 @@ import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
 import { pathOr, pick } from "ramda";
+import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
 import tracker from "Services/tracker";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import {
+  EVENTS,
+  EVENT_PROPS,
+  KO_APP_EVENT_BETSLIP_VISIBLE,
+} from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 
@@ -133,6 +138,16 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  emitBetslipVisibleToKoStack(
+    isTabletDevice: boolean,
+    isBetslipVisible: boolean
+  ) {
+    bridge.emit(KO_APP_EVENT_BETSLIP_VISIBLE, {
+      isTablet: isTabletDevice,
+      isBetslipVisible,
+    });
+  }
+
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
@@ -151,6 +166,17 @@ export default class KambiClient extends React.Component<Props> {
       event.data.event === "kambi page view"
     ) {
       event.data.kambi && this.trackPageView(event.data.kambi.page);
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
+      event.data.event === "kambi betslip status" &&
+      !isDesktop()
+    ) {
+      this.emitBetslipVisibleToKoStack(
+        isTablet(),
+        Boolean(event.data.kambi?.betslip?.quantity)
+      );
     }
   };
 
@@ -204,7 +230,7 @@ export default class KambiClient extends React.Component<Props> {
     return (
       <div
         className={classNames(
-          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-chrome-light-2",
+          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-grey-0",
           {
             "c-kambi-client--hidden": this.props.isHidden,
           }

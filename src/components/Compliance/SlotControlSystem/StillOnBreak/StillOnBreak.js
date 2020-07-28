@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { navigateById } from "Services/NavigationService";
 import { interpolateWithJSX } from "Utils";
@@ -34,7 +34,7 @@ export function StillOnBreak(props: Props) {
       <Text
         size="2xlg"
         tag="h3"
-        className="t-color-plum-dark-1 u-padding u-margin-top--lg"
+        className="t-color-purple-80 u-padding u-margin-top--lg"
       >
         {t.still_on_break}
       </Text>
@@ -59,14 +59,14 @@ export function StillOnBreak(props: Props) {
           t.still_on_break_subtext
         )}
       </Text>
-      <Button
+      <ButtonPrimary
         size="md"
         variant="primary"
         onClick={onClick}
         className="u-width--full u-margin-top--3xlg"
       >
         {t.still_on_break_button_label}
-      </Button>
+      </ButtonPrimary>
     </Flex>
   );
 }

@@ -12,13 +12,16 @@ export const GameRowTrackMoreIcon = ({
   name: string,
   slug: string,
 }) => (
-  <Flex.Item className="o-flex__item--no-shrink">
+  <Flex.Item
+    onClick={e => e.stopPropagation()}
+    className="o-flex__item--no-shrink"
+  >
     <TrackClick
       eventName={EVENTS.MIXPANEL_GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/play/${slug}`}>
-        <MoreIcon className="t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding" />
+        <MoreIcon className="t-background-grey-5 t-color-grey-70 t-border-r--circle u-padding" />
       </a>
     </TrackClick>
   </Flex.Item>

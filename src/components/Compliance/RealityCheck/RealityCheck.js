@@ -3,7 +3,7 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import { pathOr } from "ramda";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
@@ -79,23 +79,21 @@ export function RealityCheck(props: Props) {
         </a>
       </Text>
       <Flex direction="horizontal" justify="center">
-        <Button
+        <ButtonPrimary
           size="md"
-          variant="primary"
           onClick={onClickContinue}
           className="o-flex--1"
         >
           {t.reality_check_continue_button_text}
-        </Button>
+        </ButtonPrimary>
         <Flex className="u-padding" />
-        <Button
+        <ButtonSecondary
           size="md"
-          variant="secondary"
           onClick={onClickCancel}
           className="o-flex--1"
         >
           {t.reality_check_exit_game_button_text}
-        </Button>
+        </ButtonSecondary>
       </Flex>
     </Flex>
   );

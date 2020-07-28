@@ -17,7 +17,7 @@ import {
   PeriodicReminderNotification,
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
-import { TimeLimitsFormModal } from "./TimeLimits/TimeLimitsFormModal";
+import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
@@ -77,7 +77,7 @@ export const mappings: Mapping = {
   },
   [REACT_APP_MODAL.ID.TIME_LIMITS_FORM]: {
     slug: "",
-    Content: TimeLimitsFormModal,
+    Content: TimeLimitsFormModalContainer,
   },
 };
 

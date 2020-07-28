@@ -15,8 +15,8 @@ type Props = {
 };
 
 export const WildDots = ({
-  activeDotClassNames = "t-background-plum-dark-1",
-  inactiveDotClassNames = "t-background-gainsboro",
+  activeDotClassNames = "t-background-purple-80",
+  inactiveDotClassNames = "t-background-grey-5",
   ...props
 }: Props) =>
   R.times(

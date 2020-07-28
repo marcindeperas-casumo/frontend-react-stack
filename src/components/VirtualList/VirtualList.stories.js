@@ -50,7 +50,12 @@ class MyComponent extends PureComponent {
   renderRow = ({ key, index, style }) => {
     if (this.isRowLoaded({ index })) {
       return (
-        <div key={key} index={index} style={style} className="t-border-bottom">
+        <div
+          key={key}
+          index={index}
+          style={style}
+          className="t-border-bottom t-border-grey-5"
+        >
           <GameRow
             game={this.state.list[index]}
             onLaunchGame={() => action(this.state.list[index].name)}
@@ -67,7 +72,7 @@ class MyComponent extends PureComponent {
         key={key}
         index={index}
         style={style}
-        className="t-border-bottom"
+        className="t-border-bottom t-border-grey-5"
       >
         loading...
       </Flex>

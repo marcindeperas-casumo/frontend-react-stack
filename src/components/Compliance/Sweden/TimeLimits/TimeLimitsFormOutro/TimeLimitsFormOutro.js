@@ -3,20 +3,20 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { TickIcon } from "@casumo/cmp-icons";
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
 
 type Props = {
   t: {
-    time_limits_form_outro_copy_initial: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
-    time_limits_form_outro_cta: string,
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
+    form_outro_copy_initial: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
+    form_outro_cta: ?string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
   },
   initial?: boolean,
   onClickCta: () => void,
@@ -41,7 +41,7 @@ export function TimeLimitsFormOutro({
       className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
     >
       <Flex.Item className="u-text-align-center">
-        <TickIcon size="lg" className="t-color-green" />
+        <TickIcon size="lg" className="t-color-green-30" />
       </Flex.Item>
       <Flex.Item className="u-margin-bottom--5xlg">
         <Copy
@@ -53,14 +53,13 @@ export function TimeLimitsFormOutro({
         />
       </Flex.Item>
       <Flex.Item>
-        <Button
+        <ButtonPrimary
           onClick={onClickCta}
-          variant="primary"
           size="md"
           className="u-width--full u-margin-top--5xlg"
         >
-          {t.time_limits_form_outro_cta}
-        </Button>
+          {t.form_outro_cta || ""}
+        </ButtonPrimary>
       </Flex.Item>
     </Flex>
   );
@@ -72,12 +71,12 @@ type CopyProps = {
   weeklyLimit: LoginTimeLimit,
   monthlyLimit: LoginTimeLimit,
   t: {
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
-    time_limits_form_outro_copy_initial: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
+    form_outro_copy_initial: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
   },
 };
 
@@ -90,9 +89,7 @@ function Copy({
 }: CopyProps) {
   if (initial) {
     return (
-      <Text className="u-text-align-center">
-        {t.time_limits_form_outro_copy_initial}
-      </Text>
+      <Text className="u-text-align-center">{t.form_outro_copy_initial}</Text>
     );
   }
 
@@ -108,11 +105,11 @@ function Copy({
 type LimitCopyProps = {
   limit: LoginTimeLimit,
   t: {
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
-    time_limits_form_outro_copy_decreasing: string,
-    time_limits_form_outro_copy_increasing: string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
+    form_outro_copy_decreasing: ?string,
+    form_outro_copy_increasing: ?string,
   },
 };
 
@@ -124,7 +121,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
   if (limit.comingLimit) {
     return (
       <Text className="u-text-align-center">
-        {interpolate(t.time_limits_form_outro_copy_increasing, {
+        {interpolate(t.form_outro_copy_increasing || "", {
           ...replacements,
           date: DateTime.fromMillis(limit.comingLimit.activationTime).toFormat(
             "DD"
@@ -136,7 +133,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
 
   return (
     <Text className="u-text-align-center">
-      {interpolate(t.time_limits_form_outro_copy_decreasing, replacements)}
+      {interpolate(t.form_outro_copy_decreasing || "", replacements)}
     </Text>
   );
 }

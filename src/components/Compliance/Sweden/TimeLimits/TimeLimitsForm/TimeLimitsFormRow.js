@@ -12,8 +12,8 @@ type Props = {
   max: number,
   errorMessage: string,
   t: {
-    placeholder_enter_amount: string,
-    hrs_per_period: string,
+    form_placeholder_enter_amount: ?string,
+    hrs_per_period: ?string,
   },
 };
 
@@ -32,12 +32,12 @@ export function TimeLimitsFormRow({
           <TextInput
             currencySign=""
             type="number"
-            placeholder={t.placeholder_enter_amount}
+            placeholder={t.form_placeholder_enter_amount || ""}
             value={value}
             min={min}
             max={max}
             fontClassName="u-font"
-            colorClassName="t-color-green"
+            colorClassName="t-color-green-30"
             inputClassName="u-text-align-right u-padding-bottom--sm"
             onChange={textInputOnChange(setter)}
           />
@@ -49,7 +49,7 @@ export function TimeLimitsFormRow({
         </Flex.Item>
       </Flex>
       {errorMessage && (
-        <Text size="sm" className="t-color-red">
+        <Text size="sm" className="t-color-red-30">
           {errorMessage}
         </Text>
       )}

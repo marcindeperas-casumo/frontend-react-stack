@@ -1,7 +1,6 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import classNames from "classnames";
-import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
 import type { CellRendererParams } from "react-virtualized";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
@@ -31,32 +30,27 @@ const JackpotsColumn = ({
 }: {
   column: Array<A.Jackpots_Game>,
   locale: ?string,
-}) => {
-  return (
-    <List
-      itemSpacing="sm"
-      items={column}
-      render={jackpot => (
-        <GameRow
-          game={jackpot}
-          className="t-background-white u-padding--md t-border-r--md t-box-shadow"
-          renderText={() => (
-            <GameRowText
-              locale={locale}
-              name={jackpot.name}
-              bets={jackpot.lobby?.bets}
-              jackpot={jackpot.jackpot}
-            />
-          )}
-        />
-      )}
-    />
-  );
-};
+}) =>
+  column.map<React.Node>(game => (
+    <div key={game.id} className="u-padding-y--sm">
+      <GameRow
+        game={game}
+        className="t-background-white u-padding--md t-border-r--md t-elevation--10"
+        renderText={() => (
+          <GameRowText
+            locale={locale}
+            name={game.name}
+            bets={game.lobby?.bets}
+            jackpot={game.jackpot}
+          />
+        )}
+      />
+    </div>
+  ));
 
 const SPACER_CLASSES = createModifierClasses("u-margin-left", "default");
 
-export default class Jackpots extends PureComponent<Props> {
+export default class Jackpots extends React.PureComponent<Props> {
   static defaultProps = {
     jackpots: [],
     title: "",

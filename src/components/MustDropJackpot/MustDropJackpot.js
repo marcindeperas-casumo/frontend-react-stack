@@ -13,7 +13,7 @@ const MustDropJackpot = ({ jackpot }: Props) => {
   const { formattedAmount } = amount;
   return (
     <Media
-      className="o-flex--1 u-padding-x--lg u-padding-y--md t-background-grey-dark-3"
+      className="o-flex--1 u-padding-x--lg u-padding-y--md t-background-grey-90"
       renderImage={() => (
         <img
           className="u-display--block"
@@ -25,10 +25,10 @@ const MustDropJackpot = ({ jackpot }: Props) => {
       )}
       renderText={() => (
         <>
-          <Text className="u-margin-bottom--sm u-font-weight-bold t-color-yellow">
+          <Text className="u-margin-bottom--sm u-font-weight-bold t-color-yellow-30">
             {formattedAmount}
           </Text>
-          <Text size="xs" className="u-margin-bottom--none t-color-grey">
+          <Text size="xs" className="u-margin-bottom--none t-color-grey-20">
             {label}
           </Text>
         </>

@@ -6,8 +6,8 @@ $button-size-mobile: $cudl-spacer-size-default * 4;
   width: $button-size-mobile;
 
   @include cudl-breakpoint(tablet) {
-    background: cudl-palette(grey, light-2);
-    color: cudl-palette(grey, dark-3);
+    background: cudl-palette(grey, "0");
+    color: cudl-palette(grey, "90");
     height: $button-size;
     width: $button-size;
   }

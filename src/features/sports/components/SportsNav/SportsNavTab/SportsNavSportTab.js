@@ -33,7 +33,7 @@ export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
       <Text
         tag="span"
         size="sm"
-        className="u-font-weight-black u-text-align-center t-color-grey-dark-3 u-text-nowrap"
+        className="u-font-weight-black u-text-align-center t-color-grey-90 u-text-nowrap"
       >
         {navItem.text}
       </Text>

@@ -44,6 +44,7 @@ export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
 export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
+export const KO_APP_EVENT_BETSLIP_VISIBLE = "KO_APP_EVENT/betslipVisible";
 
 export const ROOT_SCROLL_ELEMENT_ID = "main-content-wrapper";
 
@@ -117,6 +118,8 @@ export const ROUTE_IDS = {
   PLAY_OKAY: "PLAY_OKAY",
   FAQ: "FAQ",
   ABOUT_CASUMO: "ABOUT_CASUMO",
+  CASINO_GAMES: "CASINO_GAMES",
+  CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
 };
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
@@ -154,6 +157,8 @@ export const ROUTES = {
   [ROUTE_IDS.PLAY_OKAY]: "play-okay",
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
+  [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
+  [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
 };
 
 export const TRANSLATED_ROUTES = {
@@ -170,6 +175,15 @@ export const TRANSLATED_ROUTES = {
     no: "spill",
     de: "spielen",
     DEFAULT: "play",
+  },
+  CASINO_GAMES: {
+    sv: "casinospel",
+    fi: "kasinopelit",
+    no: "casinospill",
+    de: "casino-spiele",
+    en: "casino-games",
+    es: "casino-juegos",
+    DEFAULT: "games-information",
   },
 };
 
@@ -407,4 +421,19 @@ export const POLL_INTERVAL = {
   JACKPOTS: 30000,
   JACKPOTS_MUST_DROP: 30000,
   REEL_RACES: 8000,
+};
+
+export const EMBEDDED_GAMES = {
+  ACTIVE: true,
+  TESTERS: [
+    "mariusz.klinger+test@casumo.com",
+    "boguslaw.parol@casumo.com",
+    "lukasz.kowalski@casumo.com",
+    "chris.scicluna@casumo.com",
+    "peter.noer@casumo.com",
+    "stephen.marshall@casumo.com",
+    "ms@50script.com",
+    "sebastian.steek@casumo.com",
+    "boguslaw.parol+30@casumo.com",
+  ],
 };

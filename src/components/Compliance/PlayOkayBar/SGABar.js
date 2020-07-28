@@ -20,7 +20,7 @@ export const SGABar = () => (
   <Flex
     justify="end"
     align="center"
-    className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
+    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
       <FullscreenToggle elementOverride={document.body} />
@@ -45,7 +45,7 @@ export const SGABar = () => (
         <SjalvTestIcon className="c-playokay-bar__icon c-playokay-bar__icon--sjalvtest" />
       </a>
     </Flex.Item>
-    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-light-1 u-display--flex">
+    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
       <ClockIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>

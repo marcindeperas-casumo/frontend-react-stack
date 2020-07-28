@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 
 type Props = {
   t: {
@@ -11,8 +11,8 @@ type Props = {
     button_yes: string,
     button_no: string,
   },
-  handleButtonYes: void => void,
-  handleButtonNo: void => void,
+  handleButtonYes: (event: SyntheticEvent<HTMLElement>) => void,
+  handleButtonNo: (event: SyntheticEvent<HTMLElement>) => void,
 };
 
 export function DepositLimitsCancelAdjustment({ t, ...props }: Props) {
@@ -21,38 +21,43 @@ export function DepositLimitsCancelAdjustment({ t, ...props }: Props) {
       direction="vertical"
       align="stretch"
       justify="space-between"
-      spacing="none"
       className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
     >
-      <Text
-        size="xlg"
-        className="u-font-weight-black t-color-plum-dark-1 u-text-align-center u-margin-bottom--xlg"
-        data-test-id="txt"
-        tag="span"
-      >
-        {t.cancel_adjustment_title}
-      </Text>
-      <Text className="t-color-grey-dark-1 u-text-align-center" tag="span">
-        {t.cancel_adjustment_content}
-      </Text>
-      <Flex className="o-flex--1" />
-      <Flex>
-        <Button
-          variant="primary"
-          className="o-flex--1"
-          onClick={props.handleButtonYes}
+      <Flex.Block className="u-text-align-center">
+        <Text
+          size="xlg"
+          className="u-font-weight-black t-color-purple-80 u-margin-bottom--xlg"
+          data-test-id="txt"
+          tag="h3"
         >
-          {t.button_yes}
-        </Button>
-        <Flex className="u-padding" />
-        <Button
-          variant="secondary"
-          className="o-flex--1"
-          onClick={props.handleButtonNo}
-        >
-          {t.button_no}
-        </Button>
-      </Flex>
+          {t.cancel_adjustment_title}
+        </Text>
+        <Text className="t-color-grey-50 u-margin-bottom--none" tag="p">
+          {t.cancel_adjustment_content}
+        </Text>
+      </Flex.Block>
+      <Flex.Item>
+        <Flex>
+          <Flex.Block>
+            <ButtonPrimary
+              size="sm"
+              className="u-width--full"
+              onClick={props.handleButtonYes}
+            >
+              {t.button_yes}
+            </ButtonPrimary>
+          </Flex.Block>
+          <Flex.Block>
+            <ButtonSecondary
+              size="sm"
+              className="u-width--full"
+              onClick={props.handleButtonNo}
+            >
+              {t.button_no}
+            </ButtonSecondary>
+          </Flex.Block>
+        </Flex>
+      </Flex.Item>
     </Flex>
   );
 }

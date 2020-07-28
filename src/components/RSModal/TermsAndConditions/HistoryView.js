@@ -26,7 +26,7 @@ const versionsByNewestFirst = R.descend(R.prop(0));
 export function HistoryView({ versions, ...props }: PropsHistoryView) {
   return (
     <>
-      <Flex className="u-padding--sm t-background-chrome-light-2" />
+      <Flex className="u-padding--sm t-background-grey-0" />
       {R.pipe(
         R.toPairs,
         R.sort(versionsByNewestFirst),
@@ -61,7 +61,7 @@ function HistoryRow(props: PropsHistoryRow) {
     <Flex
       justify="space-between"
       align="center"
-      className="t-border-bottom u-padding--md"
+      className="t-border-bottom t-border-grey-5 u-padding--md"
       onClick={() => props.setVersion(props.version)}
     >
       <Flex direction="vertical">
@@ -86,7 +86,7 @@ function HistoryRow(props: PropsHistoryRow) {
       <Text
         tag="span"
         size="sm"
-        className="u-font-weight-bold t-color-turquoise u-cursor-pointer"
+        className="u-font-weight-bold t-color-teal-50 u-cursor-pointer"
       >
         {props.viewButtonText}
       </Text>

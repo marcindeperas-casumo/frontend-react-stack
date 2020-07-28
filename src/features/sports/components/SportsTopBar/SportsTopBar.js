@@ -55,7 +55,7 @@ export const SportsTopBarTab = ({
     align="center"
     className={classNames(
       "c-sports-top-bar-tab u-cursor-pointer",
-      !isActive && "t-color-grey-dark-1",
+      !isActive && "t-color-grey-50",
       className
     )}
     direction="vertical"
@@ -94,7 +94,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
   return (
     <Flex
       align="center"
-      className="c-sports-top-bar u-padding-x--lg t-color-grey-dark-3"
+      className="c-sports-top-bar u-padding-x--lg t-color-grey-90"
     >
       <Flex.Block>
         <Text

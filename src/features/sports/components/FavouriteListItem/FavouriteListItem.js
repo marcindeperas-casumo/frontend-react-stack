@@ -28,9 +28,9 @@ export default class FavouriteListItem extends PureComponent<Props> {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      "u-padding t-border-r--circle t-color-chrome",
-      isFavourite && "t-background-plum",
-      !isFavourite && "t-background-chrome-light-2"
+      "u-padding t-border-r--circle t-color-grey-20",
+      isFavourite && "t-background-purple-60",
+      !isFavourite && "t-background-grey-0"
     );
 
     return isFavouritable ? (
@@ -43,7 +43,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
       >
         <TickIcon
           className={classNames(
-            !isFavourite && "u-hidden t-color-chrome-light-2",
+            !isFavourite && "u-visibility--hidden t-color-grey-0",
             "t-color-white"
           )}
         />

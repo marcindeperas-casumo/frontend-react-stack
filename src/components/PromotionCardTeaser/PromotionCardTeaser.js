@@ -40,12 +40,12 @@ class PromotionCardTeaser extends PureComponent<Props> {
           <Flex.Block>
             <Text
               size="2xs"
-              className="t-color-chrome-dark-1 u-margin-bottom u-text-transform-uppercase u-font-weight-bold"
+              className="t-color-grey-50 u-margin-bottom u-text-transform-uppercase u-font-weight-bold"
             >
               {dates}
             </Text>
             <Text
-              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3"
+              className="u-font-weight-bold u-margin-bottom--none t-color-grey-90"
               size="xlg"
             >
               {title}

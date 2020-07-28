@@ -5,12 +5,19 @@ import { act } from "react-dom/test-utils";
 import MockStore from "Components/MockStore";
 import { prepareStateMock } from "Models/playOkay";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
+import { useTranslationsGql } from "Utils/hooks";
 import {
   useTimeLimitsFormState,
   limitErrorMessage,
 } from "./useTimeLimitsFormState";
+import mockCms from "./__mocks__/cms";
 
 jest.useFakeTimers();
+jest.mock("Utils/hooks");
+// $FlowIgnore
+useTranslationsGql.mockReturnValue({
+  t: mockCms,
+});
 
 const findHookProp = (wrapper: any) => wrapper.find("div").prop("hook");
 
@@ -121,7 +128,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      dailyLimitErrorMessage: limitErrorMessage(1, weekly, 201),
+      dailyLimitErrorMessage: limitErrorMessage(1, weekly, 201, mockCms),
     });
 
     // eslint-disable-next-line sonarjs/no-identical-functions
@@ -151,7 +158,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue),
+      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue, mockCms),
     });
 
     act(() => {
@@ -161,7 +168,7 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue),
+      weeklyLimitErrorMessage: limitErrorMessage(1, monthly, newValue, mockCms),
     });
 
     act(() => {
@@ -190,7 +197,12 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      monthlyLimitErrorMessage: limitErrorMessage(weekly, monthly, newValue),
+      monthlyLimitErrorMessage: limitErrorMessage(
+        weekly,
+        monthly,
+        newValue,
+        mockCms
+      ),
     });
 
     act(() => {

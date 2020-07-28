@@ -19,6 +19,7 @@ import {
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
+import Cashback from "./Icons/cashback.svg";
 
 type Props = {
   /** Valuable type of the valuable */
@@ -79,7 +80,11 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--full" />
+            {valuableType === VALUABLE_TYPES.CASHBACK ? (
+              <Cashback className="u-width--full" />
+            ) : (
+              <Coin className="u-width--full" />
+            )}
           </div>
           <Flex
             align="center"
@@ -94,7 +99,7 @@ export const ValuableThumbnail = ({
               spinType={spinType}
               valuableType={valuableType}
               size={size === "small" ? "sm" : "md"}
-              className="u-width--1/1"
+              className="u-width--full"
             />
           </Flex>
         </div>
@@ -144,14 +149,14 @@ function getCoinClassModifier(valuableType: A.ValuableType) {
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
-      return "t-color-yellow";
+      return "t-color-yellow-30";
     case VALUABLE_TYPES.DEPOSIT:
-      return "t-color-blue-light-1";
+      return "t-color-blue-50";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-      return "t-color-green-light-1";
+      return "t-color-green-30";
     case VALUABLE_TYPES.SPINS:
-      return "t-color-grey-dark-3";
+      return "t-color-grey-90";
     default:
       return "";
   }
@@ -162,15 +167,15 @@ function getCoinTextClassModifier(valuableType: A.ValuableType) {
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
-      return "t-color-yellow-dark-3";
+      return "t-color-grey-70";
     case VALUABLE_TYPES.DEPOSIT:
-      return "t-color-blue-dark-3";
+      return "t-color-grey-70";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-      return "t-color-green-dark-3";
+      return "t-color-grey-70";
     case VALUABLE_TYPES.SPINS:
-      return "t-color-yellow";
+      return "t-color-yellow-30";
     default:
-      return "";
+      return "t-color-grey-70";
   }
 }

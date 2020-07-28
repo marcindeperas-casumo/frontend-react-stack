@@ -24,8 +24,11 @@ import {
   formatTime,
   timeRemainingBeforeStart,
   isTestEnv,
+  isIosNative,
+  getAppVersion,
   convertLuxonDurationObjectToSeconds,
   addPointerEventStylesToLinkElements,
+  decodedUrlParams,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -65,6 +68,16 @@ describe("bridgeFactory()", () => {
   });
 });
 
+describe("decodedUrlParams", () => {
+  test("it should return decoded params set", () => {
+    const data = {
+      param: "dGVzdA==",
+    };
+
+    expect(decodedUrlParams(data).param).toEqual("test");
+  });
+});
+
 describe("isTestEnv", () => {
   test("returns false when site url is www.casumo.com", () => {
     const { location } = window;
@@ -92,6 +105,41 @@ describe("isTestEnv", () => {
     expect(isTestEnv()).toBe(true);
 
     window.location = location;
+  });
+});
+
+describe("Native app related functions", () => {
+  afterEach(() => {
+    // eslint-disable-next-line fp/no-delete
+    delete window.native;
+  });
+
+  test("isIosNative", () => {
+    window.native = {
+      ios: true,
+    };
+
+    expect(isIosNative()).toBe(true);
+
+    window.native = {
+      ios: false,
+    };
+
+    expect(isIosNative()).toBe(false);
+  });
+
+  test("getAppVersion", () => {
+    window.native = {
+      ios: true,
+      version: "2.40.5",
+    };
+
+    expect(getAppVersion()).toBe(`ios/{${window.native.version}}`);
+
+    // eslint-disable-next-line fp/no-delete
+    delete window.native;
+
+    expect(getAppVersion()).toBeUndefined();
   });
 });
 

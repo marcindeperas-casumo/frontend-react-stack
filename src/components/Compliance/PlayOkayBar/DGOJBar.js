@@ -18,7 +18,7 @@ export const DGOJBar = () => (
   <Flex
     justify="end"
     align="center"
-    className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
+    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
       <FullscreenToggle elementOverride={document.body} />

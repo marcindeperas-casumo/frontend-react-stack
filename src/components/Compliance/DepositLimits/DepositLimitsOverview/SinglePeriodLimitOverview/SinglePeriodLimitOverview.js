@@ -3,6 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { ButtonText } from "@casumo/cmp-button";
 import { DirectionRightIcon, MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
 import { formatCurrency, interpolate } from "Utils";
@@ -59,18 +60,18 @@ export function SinglePeriodLimitOverview(props: Props) {
             justify="space-between"
             className={classNames(
               "u-margin-left u-padding-y--md o-flex--1",
-              props.shouldRenderSeparator && "t-border-bottom"
+              props.shouldRenderSeparator && "t-border-bottom t-border-grey-5"
             )}
           >
             <Flex direction="vertical">
               <Text tag="span">
                 {currentLimitValue} {t[`${props.limitKind}_short`]}
               </Text>
-              <Text tag="span" size="sm" className="t-color-turquoise">
+              <Text tag="span" size="sm" className="t-color-teal-50">
                 {remainingLimitValue}
               </Text>
             </Flex>
-            <DirectionRightIcon className="t-color-grey-light-2" />
+            <DirectionRightIcon className="t-color-grey-0" />
           </Flex>
         </Flex>
       </MobileAndTablet>
@@ -90,14 +91,14 @@ export function SinglePeriodLimitOverview(props: Props) {
             >
               {t[`${props.limitKind}_short`]}
             </Text>
-            <Flex className="u-position-absolute u-padding--sm t-background-grey-light-2 t-border-r--circle c-single-limit__more-icon">
+            <Flex className="u-position-absolute u-padding--sm t-background-grey-0 t-border-r--circle c-single-limit__more-icon">
               <MoreIcon size="default" />
             </Flex>
           </Flex>
           <Text size="lg" className="u-font-weight-black">
             {currentLimitValue}
           </Text>
-          <Text size="sm" className="t-color-turquoise">
+          <Text size="sm" className="t-color-teal-50">
             {remainingLimitValue}
           </Text>
           <Flex
@@ -105,12 +106,9 @@ export function SinglePeriodLimitOverview(props: Props) {
             justify="center"
             className="c-single-limit__hovered u-height--full u-width--full t-border-r u-position-absolute u-padding--lg"
           >
-            <button
-              type="button"
-              className="Button-c-button u-width--full u-padding--md"
-            >
-              <span className="t-color-plum">{t.adjust_limit}</span>
-            </button>
+            <ButtonText size="md" className="u-width--full">
+              {t.adjust_limit}
+            </ButtonText>
           </Flex>
         </Flex>
       </Desktop>

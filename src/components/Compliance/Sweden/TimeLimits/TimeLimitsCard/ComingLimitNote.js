@@ -8,7 +8,7 @@ import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 
 type Props = {
   t: {
-    coming_limit_note: string,
+    coming_limit_note: ?string,
   },
   limit: LoginTimeLimit,
 };
@@ -22,7 +22,7 @@ export function ComingLimitNote({ t, limit }: Props) {
   const activationDate = DateTime.fromMillis(limit.comingLimit?.activationTime);
 
   return (
-    <Text tag="div" size="sm" className="t-color-caution">
+    <Text tag="div" size="sm" className="t-color-yellow-30">
       {interpolateWithJSX(
         {
           time: <TimeLimitsCardDuration duration={limitDuration} />,

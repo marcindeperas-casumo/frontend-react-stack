@@ -10,20 +10,24 @@ import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    desktop_title: string,
-    coming_limit_note: string,
-    time_left_daily: string,
-    time_left_weekly: string,
-    time_left_monthly: string,
-    period_daily: string,
-    period_weekly: string,
-    period_monthly: string,
+    desktop_title: ?string,
+    coming_limit_note: ?string,
+    time_left_daily: ?string,
+    time_left_weekly: ?string,
+    time_left_monthly: ?string,
+    period_daily: ?string,
+    period_weekly: ?string,
+    period_monthly: ?string,
   },
-  limit: LoginTimeLimit,
+  limit: ?LoginTimeLimit,
   onClick: () => void,
 };
 
 export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
+  if (!limit) {
+    return null;
+  }
+
   const hrsLeftLabel = t[`time_left_${limit.period.toLowerCase()}`];
   const periodLabel = t[`period_${limit.period.toLowerCase()}`];
   const limitDuration = LuxonDuration.fromISO(limit.limit);
@@ -37,7 +41,7 @@ export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
       align="center"
       spacing="md"
       onClick={onClick}
-      className="t-background-grey-light-2 u-padding--md u-cursor-pointer"
+      className="t-background-grey-0 u-padding--md u-cursor-pointer"
     >
       <Flex.Item>
         <Text tag="strong">{t.desktop_title}</Text>

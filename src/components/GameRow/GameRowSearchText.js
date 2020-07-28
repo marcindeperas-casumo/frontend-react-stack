@@ -31,7 +31,7 @@ export const GameRowSearchText = (props: Props) => {
   /* eslint-enable fp/no-let, fp/no-mutation */
 
   return (
-    <Flex.Block className="u-padding-left--sm t-color-grey-dark-2">
+    <Flex.Block className="u-padding-left--sm t-color-grey-70">
       <GameRowSearchTitle
         highlightSearchQuery={highlightSearchQuery}
         name={name}

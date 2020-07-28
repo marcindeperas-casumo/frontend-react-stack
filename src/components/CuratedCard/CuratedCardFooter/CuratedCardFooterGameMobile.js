@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonInverted, ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import { convertHTMLToString } from "Utils";
@@ -37,24 +37,24 @@ export const CuratedCardFooterGameMobile = ({
             eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
             data={trackClickGamePlayData}
           >
-            <Button
+            <ButtonPrimary
+              size="md"
               id="gtm-curated-play"
               onClick={onLaunchGame}
-              variant="primary"
               className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
             >
               <PlayIcon size="sm" />
               <span className="u-margin-left">{launchButtonText}</span>
-            </Button>
+            </ButtonPrimary>
           </TrackClick>
-          <Button
+          <ButtonInverted
+            size="md"
             id="gtm-curated-more"
             href={`/play/${game.slug}`}
-            variant="outline"
-            className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
+            className="u-pointer-events-initial u-display--none@mobile u-margin-left--lg u-width--3xlg"
           >
             <MoreIcon />
-          </Button>
+          </ButtonInverted>
         </Flex>
       </Flex.Item>
     </Flex>

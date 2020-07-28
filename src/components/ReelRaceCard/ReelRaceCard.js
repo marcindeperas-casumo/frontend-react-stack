@@ -3,7 +3,7 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
@@ -67,15 +67,14 @@ export class ReelRaceCard extends React.Component<Props> {
           eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
           data={{ state: BUTTON_STATE.PLAY }}
         >
-          <Button
+          <ButtonPrimary
             size="sm"
-            variant="primary"
             className="u-padding-y--md u-padding-x--lg"
             onClick={() => launchGame({ slug: game.slug })}
           >
             <PlayIcon size="sm" className="c-reel-race__button-icon" />
             <span className="u-margin-left">{t.optedInCtaSingleGameShort}</span>
-          </Button>
+          </ButtonPrimary>
         </TrackClick>
       );
     }
@@ -189,7 +188,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "u-overflow-hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
-            "t-color-caution",
+            "t-color-yellow-30",
             "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
@@ -280,7 +279,7 @@ export class ReelRaceCard extends React.Component<Props> {
         {t.caveatShort && t.caveatShort !== "false" && (
           <Text
             size="xs"
-            className="c-reel-race__terms t-color-grey"
+            className="c-reel-race__terms t-color-grey-20"
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
