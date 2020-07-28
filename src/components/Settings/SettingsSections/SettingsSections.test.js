@@ -87,7 +87,7 @@ describe("SettingsSections", () => {
         />
       );
       const Timer = rendered.find("Timer");
-      expect(Timer.prop("startTime")).toEqual(TWO_MINUTES_AGO);
+      expect(Timer.prop("startTime")).toEqual(ONE_MINUTE_AGO);
     });
 
     it("should interpolate and display last session message", () => {
