@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as A from "Types/apollo";
-import { LiveCasinoCard } from "Components/LiveCasinoCard";
+import { LiveCasinoCardContainer } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
 import { VirtualGrid } from "Components/VirtualGrid";
 
 type Props = {
@@ -19,7 +19,7 @@ class OptimizedLiveCasinoCard extends React.Component<A.LiveCasinoCard> {
   }
 
   render() {
-    return <LiveCasinoCard game={this.props} />;
+    return <LiveCasinoCardContainer game={this.props} />;
   }
 }
 
