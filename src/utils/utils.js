@@ -24,11 +24,15 @@ export const getAppVersion = (w: window = window) => {
 };
 
 export const isEmbeddedOn = (userEmail: string) => {
+  if (!isIosNative()) {
+    return false;
+  }
+
   if (EMBEDDED_GAMES.TESTERS.includes(userEmail)) {
     return true;
   }
 
-  return EMBEDDED_GAMES.ACTIVE && isIosNative();
+  return EMBEDDED_GAMES.ACTIVE;
 };
 
 export const decodedUrlParams = (json: Object) =>
