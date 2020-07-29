@@ -38,3 +38,8 @@ stories.add(
   () => <GameDetails data={gameDetails} t={t} />,
   viewports.tablet
 );
+stories.add(
+  "Default (desktop)",
+  () => <GameDetails data={gameDetails} t={t} />,
+  viewports.desktop
+);

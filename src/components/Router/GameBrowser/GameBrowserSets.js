@@ -37,10 +37,10 @@ type Props = {
   }>,
 };
 export const GameBrowserSets = (props: Props) => {
-  const match = useMatch("search");
-  const searchActive = Boolean(match);
+  const searchActive = Boolean(useMatch("search"));
+  const detailsActive = Boolean(useMatch("details/:slug"));
 
-  if (searchActive || props.sets.length === 0) {
+  if (searchActive || detailsActive || props.sets.length === 0) {
     return null;
   }
 
