@@ -14,13 +14,6 @@ jest.mock("Services/LaunchGameService", () => ({
 }));
 
 describe("LiveCasinoCard", () => {
-  test("returns null if no lobby", () => {
-    const game = {};
-    const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
-
-    expect(rendered.isEmptyRender()).toBe(true);
-  });
-
   test("launchGame is called when clicking in card header", () => {
     launchGame.mockClear();
     const game = { liveCasinoLobby: { tableId: "table" } };
