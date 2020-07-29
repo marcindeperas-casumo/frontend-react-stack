@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { Link } from "@reach/router";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
@@ -84,23 +85,28 @@ export const GameTile = ({
           align="end"
           className="u-width--full o-ratio__content"
         >
-          {isMobile() ? (
-            <Flex.Item onClick={e => e.stopPropagation()}>
-              <TrackClick
-                eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-                data={{ [EVENT_PROPS.GAME_NAME]: name }}
-              >
+          <Flex.Item onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+              data={{ [EVENT_PROPS.GAME_NAME]: name }}
+            >
+              {isMobile() ? (
                 <a
                   className="u-padding u-display--block"
                   href={`/play/${slug}`}
                 >
                   <MoreIcon className="t-color-white" />
                 </a>
-              </TrackClick>
-            </Flex.Item>
-          ) : (
-            <Flex.Item />
-          )}
+              ) : (
+                <Link
+                  to={`/games/details/${slug}`}
+                  className="u-padding u-display--block"
+                >
+                  <MoreIcon className="t-color-white" />
+                </Link>
+              )}
+            </TrackClick>
+          </Flex.Item>
           <Flex.Item onClick={e => e.stopPropagation()}>
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}

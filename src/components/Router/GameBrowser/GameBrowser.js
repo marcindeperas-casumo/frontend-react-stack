@@ -33,6 +33,7 @@ const GameListPage = React.lazy(() =>
     default: module.GameListPage,
   }))
 );
+const GameDetailsPage = React.lazy(() => import("Components/GameDetails"));
 
 const TopList = () => (
   <ComponentBuilder path="top" slug="built-pages.top-lists-{{market}}" />
@@ -90,6 +91,8 @@ export const GameBrowser = () => {
               <GameSearch path="search" />
               {/* $FlowIgnore:  missing 'provider' prop will come from ':provider' part in path */}
               <ProviderGamesList path="provider/:provider" />
+              {/* $FlowIgnore:  missing 'slug' prop will come from ':slug' part in path */}
+              <GameDetailsPage path="details/:slug" />
             </Router>
           </React.Suspense>
         </Portal>
