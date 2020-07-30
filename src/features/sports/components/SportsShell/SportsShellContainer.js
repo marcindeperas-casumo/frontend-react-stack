@@ -16,11 +16,10 @@ import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
-import Modals, { MODAL } from "Features/sports/components/Modals";
+import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
 import {
-  OPEN_MODAL_MUTATION,
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
@@ -34,18 +33,6 @@ export const SPORTS_SHELL_QUERY = gql`
     isSearchVisible @client
   }
 `;
-
-const showFavouritesSelector = client =>
-  client
-    .query({ query: SPORTS_SHELL_QUERY, fetchPolicy: "network-only" })
-    .then(({ data }) => {
-      if (!data.hasSelectedFavourites) {
-        client.mutate({
-          mutation: OPEN_MODAL_MUTATION,
-          variables: { modal: MODAL.CHOOSE_FAVOURITES },
-        });
-      }
-    });
 
 const bridgeEventHandlers = [
   [
@@ -69,9 +56,7 @@ const bridgeEventHandlers = [
     client => route => {
       const isSports = route === undefined;
 
-      if (isSports) {
-        showFavouritesSelector(client);
-      } else {
+      if (!isSports) {
         client.mutate({ mutation: CLOSE_ALL_MODALS_MUTATION });
       }
     },
@@ -90,9 +75,6 @@ export class SportsShellContainer extends React.Component<{}> {
     bridgeEventHandlers.map(([event, handler]) =>
       bridge.on(event, handler(this.context.client))
     );
-
-    // on mount open the choose favourites modal if the user is yet to choose favourites
-    showFavouritesSelector(this.context.client);
   }
 
   render() {
@@ -125,7 +107,7 @@ export class SportsShellContainer extends React.Component<{}> {
                   </div>
                 )}
               </SportsHashWatcher>
-              {data.hasSelectedFavourites ? <KambiClient /> : null}
+              <KambiClient />
               <Modals />
               <SportsFooter />
             </>
