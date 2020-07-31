@@ -85,7 +85,7 @@ class SearchInput extends React.Component<Props, State> {
 
     const containerClassName = classNames(
       "t-border-r--pill u-overflow-hidden",
-      hasFocus && "t-box-shadow--lg",
+      hasFocus && "t-elevation--30",
       this.props.colorBackgroundClass
     );
 
@@ -93,11 +93,11 @@ class SearchInput extends React.Component<Props, State> {
       <Flex align="center" className={containerClassName}>
         <Flex.Block>
           <label className="u-width--full o-flex o-flex-align--center u-padding--md">
-            <SearchIcon className="t-color-chrome-dark-2" />
+            <SearchIcon className="t-color-grey-70" />
             <input
               ref={this.textInput}
               className={classNames(
-                "c-search-input o-flex--1 u-padding-left t-color-grey-dark-3 u-font-weight-bold",
+                "c-search-input o-flex--1 u-padding-left t-color-grey-90 u-font-weight-bold",
                 this.props.colorBackgroundClass
               )}
               type="text"
@@ -114,7 +114,7 @@ class SearchInput extends React.Component<Props, State> {
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >
-            <div className="t-color-white t-border-r--circle u-overflow-hidden t-background-black">
+            <div className="t-color-white u-padding--sm t-border-r--circle u-overflow-hidden t-background-grey-90">
               <CrossIcon size="sm" className="u-display--block" />
             </div>
           </div>

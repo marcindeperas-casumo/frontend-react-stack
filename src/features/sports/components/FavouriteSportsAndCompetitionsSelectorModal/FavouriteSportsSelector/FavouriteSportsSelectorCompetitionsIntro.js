@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 const FavouriteSportsSelectorCompetitionsIntro = ({
@@ -23,9 +23,9 @@ const FavouriteSportsSelectorCompetitionsIntro = ({
     </Flex.Block>
 
     <Flex.Item>
-      <Button size="sm" variant="primary" onClick={onAdd}>
+      <ButtonPrimary size="xs" onClick={onAdd}>
         <DictionaryTerm termKey="favourite-sports-selector.suggestion.button" />
-      </Button>
+      </ButtonPrimary>
     </Flex.Item>
   </Flex>
 );

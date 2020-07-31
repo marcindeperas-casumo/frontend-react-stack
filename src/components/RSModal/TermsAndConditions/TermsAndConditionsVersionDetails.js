@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import type {
   VersionDateFormatter,
   VersionFormatter,
@@ -32,16 +32,12 @@ type Props = {
 export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {
   return (
     <>
-      <Flex className="u-padding--sm t-background-chrome-light-2" />
+      <Flex className="u-padding--sm t-background-grey-0" />
       <Flex direction="vertical" className="u-padding-y--lg u-padding-x--md">
         <Text tag="span" size="sm" className="u-font-weight-bold t-color-black">
           {props.formatVersion(props.currentVersion, props.versionData.version)}
         </Text>
-        <Text
-          tag="span"
-          size="xs"
-          className="t-color-chrome-dark-1 u-margin-top--sm"
-        >
+        <Text tag="span" size="xs" className="t-color-grey-50 u-margin-top--sm">
           {props.formatVersionDate(
             props.currentVersion,
             props.versionData.iso_8601_published_date
@@ -49,29 +45,40 @@ export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {
         </Text>
       </Flex>
       <Flex justify="space-between" className="u-padding--md">
-        <Button
-          variant={props.shouldAllowHistoryView ? "primary" : "secondary"}
-          href={props.versionData.pdf.url}
-          className="o-flex--1"
-          download={props.versionData.pdf.title}
-        >
-          {t.button_download_pdf}
-        </Button>
-        {props.shouldAllowHistoryView && (
+        {props.shouldAllowHistoryView ? (
           <>
-            <div className="u-padding" />
-            <Button
-              variant="secondary"
-              data-test-id="toggle-history-view-btn"
-              onClick={props.onShowHistory}
-              className="o-flex--1"
-            >
-              {t.button_version_history}
-            </Button>
+            <Flex.Block>
+              <ButtonPrimary
+                size="sm"
+                href={props.versionData.pdf.url}
+                className="u-width--full"
+                download={props.versionData.pdf.title}
+              >
+                {t.button_download_pdf}
+              </ButtonPrimary>
+            </Flex.Block>
+            <Flex.Block>
+              <ButtonSecondary
+                size="sm"
+                data-test-id="toggle-history-view-btn"
+                onClick={props.onShowHistory}
+                className="u-width--full"
+              >
+                {t.button_version_history}
+              </ButtonSecondary>
+            </Flex.Block>
           </>
+        ) : (
+          <ButtonSecondary
+            href={props.versionData.pdf.url}
+            className="o-flex--1"
+            download={props.versionData.pdf.title}
+          >
+            {t.button_download_pdf}
+          </ButtonSecondary>
         )}
       </Flex>
-      <Flex className="u-padding--sm t-background-chrome-light-2" />
+      <Flex className="u-padding--sm t-background-grey-0" />
     </>
   );
 }

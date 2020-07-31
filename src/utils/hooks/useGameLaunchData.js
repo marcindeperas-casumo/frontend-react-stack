@@ -1,6 +1,5 @@
 // @flow
 import { useRef, useState, useEffect } from "react";
-import { isMobile } from "@casumo/is-mobile";
 import { useSelector } from "react-redux";
 import logger from "Services/logger";
 import {
@@ -8,8 +7,8 @@ import {
   getGameProviderName,
 } from "Api/api.gameLaunch";
 import { getGameModel } from "GameProviders";
-import { ENVIRONMENTS, DEVICES } from "Src/constants";
-import { isTestEnv } from "Utils";
+import { ENVIRONMENTS } from "Src/constants";
+import { isTestEnv, platform } from "Utils";
 import { languageSelector } from "Models/handshake";
 
 type Props = {
@@ -17,8 +16,6 @@ type Props = {
   playForFun: boolean,
   remoteGameLaunchData: ?Object,
 };
-
-const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
 
 /* eslint-disable sonarjs/cognitive-complexity */
 export const useGameLaunchData = ({

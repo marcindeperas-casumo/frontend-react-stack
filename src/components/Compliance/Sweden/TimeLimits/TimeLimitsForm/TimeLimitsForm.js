@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { type LoginTimeLimitsFormData } from "Models/playOkay";
 import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
 import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
@@ -70,21 +70,20 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         t={{ ...t, hrs_per_period: t.form_hrs_per_month }}
       />
       <Flex.Item>
-        <Button
-          loading={isFetching}
-          disabled={Boolean(
+        <ButtonPrimary
+          isLoading={isFetching}
+          isDisabled={Boolean(
             !anyLimitChanged ||
               dailyLimitErrorMessage ||
               weeklyLimitErrorMessage ||
               monthlyLimitErrorMessage
           )}
-          variant="primary"
           className="u-width--full u-margin-top--md u-margin-top--3xlg@desktop"
           size="md"
           onClick={() => onClickCta({ hrsPerDay, hrsPerWeek, hrsPerMonth })}
         >
           {t.form_cta || ""}
-        </Button>
+        </ButtonPrimary>
       </Flex.Item>
     </Flex>
   );

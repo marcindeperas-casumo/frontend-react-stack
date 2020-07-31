@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { TickIcon } from "@casumo/cmp-icons";
 import TrackClick from "Components/TrackClick";
 import { noop } from "Utils";
@@ -48,29 +48,21 @@ class OptInButton extends PureComponent<Props> {
     if (this.props.isOptedIn) {
       return (
         <TrackClick eventName={disabled.eventName} data={disabled.data}>
-          <Button
-            variant="primary"
-            className="u-padding-y--md u-padding-x--xlg"
-            disabled
-          >
+          <ButtonPrimary size="md" isDisabled>
             <TickIcon size="sm" className={this.props.className} />
             <Text tag="span" className="u-margin-left">
               {disabled.label}
             </Text>
-          </Button>
+          </ButtonPrimary>
         </TrackClick>
       );
     }
 
     return (
       <TrackClick eventName={active.eventName} data={active.data}>
-        <Button
-          variant="primary"
-          className="u-padding-y--md u-padding-x--xlg"
-          onClick={active.onClick || noop}
-        >
+        <ButtonPrimary size="md" onClick={active.onClick || noop}>
           <Text tag="span">{active.label}</Text>
-        </Button>
+        </ButtonPrimary>
       </TrackClick>
     );
   }

@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
 import {
@@ -56,12 +56,12 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
   const flexChildWidth = "u-width--1/2@desktop";
 
   const SubmitButton = (
-    <Button
+    <ButtonPrimary
+      size="md"
       data-test-id="submit-button"
-      variant="primary"
       className="u-padding-y--md u-width--full"
-      disabled={req}
-      loading={req}
+      isDisabled={req}
+      isLoading={req}
       onClick={() => {
         setReq(true);
         props.confirmLimitsAdjust();
@@ -70,7 +70,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff)
         ? t.save_limits_button_conditions
         : t.save_limits_button}
-    </Button>
+    </ButtonPrimary>
   );
 
   return (
@@ -96,7 +96,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
             align="center"
             justify="space-between"
             spacing="none"
-            className="o-flex--1 t-border-bottom u-padding-y--lg"
+            className="o-flex--1 t-border-bottom t-border-grey-5 u-padding-y--lg"
           >
             <Flex direction="vertical">
               {props.newLimits[x] && (
@@ -112,7 +112,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
                 {props.newLimits[x] ? t[x] : t[`${x}_removed`]}
               </Text>
             </Flex>
-            <MoreIcon className="t-color-grey-light-1" />
+            <MoreIcon className="t-color-grey-5" />
           </Flex>
         </Flex>
       ))}
@@ -120,8 +120,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"
-          className={`t-border-r u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
-          style={{ backgroundColor: "#f2f2f2" }}
+          className={`t-border-r t-background-grey-0 u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
         >
           <AdditionalConditions {...props.preadjust} t={t} />
           {SubmitButton}

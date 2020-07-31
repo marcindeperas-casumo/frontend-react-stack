@@ -42,7 +42,7 @@ export class SettingsNotifications extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
-        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+        <div className="t-elevation--30@tablet t-elevation--30@desktop">
           <WithdrawalNotificationsContainer />
 
           {!isDGOJ && (
@@ -56,7 +56,7 @@ export class SettingsNotifications extends PureComponent<Props> {
             />
           )}
         </div>
-        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+        <div className="t-elevation--30@tablet t-elevation--30@desktop">
           <SettingsRow
             text={
               <SettingsHeadline

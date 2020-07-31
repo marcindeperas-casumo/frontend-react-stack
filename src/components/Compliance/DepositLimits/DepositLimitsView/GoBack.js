@@ -21,7 +21,7 @@ export function GoBack({ t, ...props }: Props) {
       <Flex
         align="center"
         justify="center"
-        className="t-border-r--circle t-background-grey-dark-3 u-padding--md u-margin-x--lg"
+        className="t-border-r--circle t-background-grey-90 u-padding--md u-margin-x--lg"
       >
         <ArrowLeftIcon size="sm" className="t-color-white" />
       </Flex>

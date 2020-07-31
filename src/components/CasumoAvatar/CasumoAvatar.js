@@ -58,11 +58,11 @@ export function getClassModifierByBelt(belt: BeltType): string {
 
 function getBackgroundColor(inBonusMode: boolean, level: number): string {
   if (isMaxLevel(level, inBonusMode)) {
-    return "yellow";
+    return "yellow-30";
   }
   if (inBonusMode) {
-    return "violet";
+    return "purple-5";
   }
 
-  return "turquoise";
+  return "teal-50";
 }

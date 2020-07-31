@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import OptInButton from "./OptInButton";
 
 const props = {
@@ -50,7 +51,7 @@ describe("OptInButton", () => {
     const rendered = shallow(<OptInButton {...customProps} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    rendered.find("Button").simulate("click");
+    rendered.find(ButtonPrimary).simulate("click");
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

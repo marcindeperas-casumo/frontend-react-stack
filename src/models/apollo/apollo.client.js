@@ -102,7 +102,7 @@ function getHttpLink() {
   return new HttpLink({
     uri: config.graphqlUrl,
     credentials: "same-origin",
-    useGETForQueries: true,
+    useGETForQueries: false,
     fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }

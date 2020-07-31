@@ -8,7 +8,7 @@ import { MODAL } from "Features/sports/components/Modals";
 
 export const SportsFooter = () => (
   <Flex
-    className="c-sports-footer t-color-chrome-dark-1 u-font-weight-bold u-padding--xlg"
+    className="c-sports-footer t-color-grey-50 u-font-weight-bold u-padding--xlg"
     align="center"
     justify="center"
     style={{ textDecoration: "underline" }}

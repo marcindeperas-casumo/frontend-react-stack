@@ -19,7 +19,7 @@ describe("ProgressBarFiller", () => {
 
   test("Correct colour applied if passed in through props", () => {
     const progress = 50;
-    const trackClassNames = "t-background-green";
+    const trackClassNames = "t-background-green-30";
     const rendered = shallow(
       <ProgressBarFiller
         progress={progress}

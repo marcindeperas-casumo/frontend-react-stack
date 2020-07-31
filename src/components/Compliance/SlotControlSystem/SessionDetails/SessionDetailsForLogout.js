@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { type ActiveSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -28,8 +28,8 @@ export function SessionDetailsForLogout(props: Props) {
 
   return (
     <Flex direction="vertical">
-      <div className="u-padding--sm t-background-grey-light-2" />
-      <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
+      <div className="u-padding--sm t-background-grey-0" />
+      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
         {t?.logout_text}
       </Text>
       <SessionDetailsBody
@@ -42,13 +42,14 @@ export function SessionDetailsForLogout(props: Props) {
         moneyLeft={activeSession.stats.remainingBalance}
         moneyWagered={activeSession.stats.totalBets}
       />
-      <Button
+      <ButtonPrimary
+        size="sm"
         variant="primary"
         className="u-margin--md"
         onClick={onClickButton}
       >
         {t?.logout_button_label || null}
-      </Button>
+      </ButtonPrimary>
     </Flex>
   );
 }

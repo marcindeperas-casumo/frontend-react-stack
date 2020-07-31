@@ -29,7 +29,7 @@ export function TableOfContents(props: Props) {
               <Text
                 tag="div"
                 size="sm"
-                className="u-width--full t-color-text-link"
+                className="u-width--full t-color-blue-60"
               >
                 {rest.join(" ")}
               </Text>

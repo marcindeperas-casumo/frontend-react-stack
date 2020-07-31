@@ -53,7 +53,7 @@ export function PlayerValuableListHorizontal() {
           {...valuables[i]}
           translations={translations}
           onCardClick={() => showModal(valuables[i])}
-          className="t-box-shadow"
+          className="t-elevation--10"
         />
       </div>
     </div>
@@ -92,7 +92,7 @@ export function PlayerValuableListHorizontal() {
                   {...selectedValuable}
                   translations={translations}
                   caveat={null}
-                  className="t-box-shadow--lg"
+                  className="t-elevation--30"
                 />
               </div>
             </ValuableDetailsWithModal>

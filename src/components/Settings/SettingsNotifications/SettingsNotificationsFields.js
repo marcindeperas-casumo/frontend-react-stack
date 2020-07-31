@@ -19,21 +19,21 @@ const RealityCheck = ({
   frequencyOffLabel: ?string,
   enabled: boolean,
 }) => (
-  <SettingsRow text={<Text className="t-color-chrome-dark-2">{title}</Text>}>
+  <SettingsRow text={<Text className="t-color-grey-70">{title}</Text>}>
     <Flex justify="center">
       {interval ? (
-        <Text tag="span" className="t-color-plum u-font-weight-bold">
+        <Text tag="span" className="t-color-purple-60 u-font-weight-bold">
           <ContentReplacer
             value={frequencyLabel || ""}
             replacements={{ amount: interval }}
           />
         </Text>
       ) : (
-        <Text tag="span" className="t-color-chrome u-font-weight-bold">
+        <Text tag="span" className="t-color-grey-20 u-font-weight-bold">
           {frequencyOffLabel}
         </Text>
       )}
-      {enabled && <DirectionRightIcon className="t-color-chrome-light-1" />}
+      {enabled && <DirectionRightIcon className="t-color-grey-5" />}
     </Flex>
   </SettingsRow>
 );

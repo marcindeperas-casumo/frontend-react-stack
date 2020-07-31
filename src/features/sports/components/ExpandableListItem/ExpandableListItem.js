@@ -57,7 +57,7 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
     return (
       <DirectionDownIcon
         className={classNames(
-          "t-color-plum",
+          "t-color-purple-60",
           this.state.isExpanded && "u-transform--flip-y"
         )}
       />

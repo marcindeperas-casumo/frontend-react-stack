@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { prop } from "ramda";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -89,7 +89,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         <Flex.Block>
           <Text
             tag="h3"
-            className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-dark-2"
+            className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-70"
           >
             {convertHTMLToString(game.name)}
           </Text>
@@ -100,12 +100,9 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <Button
-              variant="primary"
-              className="u-text-nowrap u-text-transform-capitalize"
-            >
+            <ButtonPrimary size="sm" className="u-text-transform-capitalize">
               <span>{playNowText}</span>
-            </Button>
+            </ButtonPrimary>
           </TrackClick>
         </Flex.Item>
       </Flex>
@@ -128,7 +125,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <Card
-        className="u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
+        className="u-width--full u-height--full t-background-white t-border-r--md t-elevation--10 u-overflow-hidden"
         spacing="md"
         header={this.renderHeader}
         content={this.renderContent}

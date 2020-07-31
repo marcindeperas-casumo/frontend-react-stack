@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import FavouriteSportsSelectorCompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 describe("<FavouriteSportsSelectorCompetitionsIntro />", () => {
@@ -9,7 +10,7 @@ describe("<FavouriteSportsSelectorCompetitionsIntro />", () => {
     const rendered = shallow(
       <FavouriteSportsSelectorCompetitionsIntro onAdd={onAdd} />
     );
-    rendered.find("Button").simulate("click");
+    rendered.find(ButtonPrimary).simulate("click");
     expect(onAdd).toHaveBeenCalledTimes(1);
   });
 });

@@ -19,7 +19,7 @@ stories.add("Default", () => {
         >
           <div
             style={{ height: "100%" }}
-            className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
+            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>
@@ -52,7 +52,7 @@ stories.add("Mixed width elements", () => {
         >
           <div
             style={{ height: "100%", width: width }}
-            className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
+            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>

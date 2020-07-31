@@ -3,6 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
 import isNotChromatic from "Storybook/isNotChromatic";
+import MockStore from "Components/MockStore";
 import { Modal } from "./RSModal";
 import { ModalContentLoading } from "./RSModalContent";
 import { ModalHeader } from "./RSModalHeader";
@@ -20,11 +21,13 @@ if (isNotChromatic) {
     const visible = boolean("Visible", true);
 
     return (
-      <Modal
-        hideModal={() => {}}
-        t={loading ? null : text}
-        modalType={visible && modalTypes[loading ? 1 : 0]}
-      />
+      <MockStore>
+        <Modal
+          hideModal={() => {}}
+          t={loading ? null : text}
+          modalType={visible && modalTypes[loading ? 1 : 0]}
+        />
+      </MockStore>
     );
   });
 } else {

@@ -14,10 +14,10 @@ export const LayoutPage = (props: Props) => {
   const isSidebarVisible = !isMobile(window);
 
   return (
-    <FullscreenView className="u-height--full u-width--screen t-background-chrome-dark-3">
+    <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
       <Flex direction="horizontal" className="u-height--full" spacing="none">
         {isSidebarVisible && <Sidebar />}
-        <div className="c-layout-content t-background-chrome-dark-3">
+        <div className="c-layout-content t-background-grey-90">
           {props.children}
         </div>
       </Flex>

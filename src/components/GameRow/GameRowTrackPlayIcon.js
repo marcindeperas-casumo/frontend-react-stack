@@ -17,7 +17,7 @@ export const GameRowTrackPlayIcon = ({
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item className="o-flex__item--no-shrink" onClick={onLaunchGame}>
-      <PlayIcon className="t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding" />
+      <PlayIcon className="t-background-grey-5 t-color-grey-70 t-border-r--circle u-padding" />
     </Flex.Item>
   </TrackClick>
 );

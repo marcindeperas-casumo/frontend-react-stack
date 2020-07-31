@@ -30,11 +30,7 @@ export function AdditionalConditions(props: Props) {
   )(props.rules);
 
   return (
-    <Text
-      size="sm"
-      tag="span"
-      className="u-padding-bottom--lg t-color-grey-dark-1"
-    >
+    <Text size="sm" tag="span" className="u-padding-bottom--lg t-color-grey-50">
       {rules}
     </Text>
   );

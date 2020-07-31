@@ -230,7 +230,7 @@ export default class KambiClient extends React.Component<Props> {
     return (
       <div
         className={classNames(
-          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-chrome-light-2",
+          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-grey-0",
           {
             "c-kambi-client--hidden": this.props.isHidden,
           }

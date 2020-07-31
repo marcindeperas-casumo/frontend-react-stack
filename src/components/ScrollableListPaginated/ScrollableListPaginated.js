@@ -61,7 +61,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
               onClick={previousClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--left`}
             >
-              <DirectionRightIcon className="t-color-grey-dark-3 Icons-c-icon--flip-horiz" />
+              <DirectionRightIcon className="t-color-grey-90 Icons-c-icon--flip-horiz" />
             </div>
           )}
         </Flex.Item>
@@ -71,7 +71,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
               onClick={nextClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--right`}
             >
-              <DirectionRightIcon className="t-color-grey-dark-3" />
+              <DirectionRightIcon className="t-color-grey-90" />
             </div>
           )}
         </Flex.Item>
