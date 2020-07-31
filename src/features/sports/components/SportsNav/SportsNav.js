@@ -83,6 +83,8 @@ const renderSportsNav = (
   };
 
   const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
+  const isNotHomeSports =
+    currentHash !== `#${navItemUtils.SPORTS_HOME_PAGE_PATH}`;
 
   return (
     <>
@@ -102,7 +104,8 @@ const renderSportsNav = (
         variables={{ modal: MODAL.CHOOSE_FAVOURITE_COMPETITIONS }}
       >
         {openChooseFavouriteLeaguesModal =>
-          isNotAllSports && (
+          isNotAllSports &&
+          isNotHomeSports && (
             <SportsSubNav
               {...commonProps}
               navItems={selectedNavItem.subNav || []}

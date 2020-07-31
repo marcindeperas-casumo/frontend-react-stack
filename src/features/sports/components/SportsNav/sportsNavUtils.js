@@ -119,6 +119,7 @@ export const toNavItem = (isLiveActive: boolean) => ({
 });
 
 export const IN_PLAY_URL_PART = "in-play";
+export const SPORTS_HOME_PAGE_PATH = "home";
 export const ALL_SPORTS_PATH = `filter/all/all/all/all/${IN_PLAY_URL_PART}`;
 export const isInPlayHash = (hash: string) => hash.includes(IN_PLAY_URL_PART);
 
@@ -132,6 +133,19 @@ export const makeAllSportsNavItem = (label: string) => ({
   iconProps: {
     activeIndicator,
     iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
+    alt: label,
+  },
+});
+
+export const makeHomeNavItem = (label: string) => ({
+  text: label,
+  path: SPORTS_HOME_PAGE_PATH,
+  key: "home",
+  canEdit: false,
+  iconProps: {
+    activeIndicator,
+    iconSrc:
+      "https://cms.casumo.com/wp-content/uploads/2017/02/casumo-symbol.png",
     alt: label,
   },
 });

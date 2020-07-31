@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { getApolloContext } from "@apollo/react-hooks";
-import { propOr } from "ramda";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
@@ -14,6 +13,7 @@ import {
 } from "Models/handshake";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
 import { MutateOnMount } from "Features/sports/components/GraphQL";
+import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -97,7 +97,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
                           bootstrapUrl={clientBootstrapUrl}
                           playerId={providerPlayerId}
                           ticket={ticket}
-                          homeRoute={propOr("", "userHomepage", data)}
+                          homeRoute={SPORTS_HOME_PAGE_PATH}
                           onNavigate={this.onNavigate}
                           isHidden={!this.isKambiClientVisible(data)}
                           sessionKeepAlive={sessionTouch}
