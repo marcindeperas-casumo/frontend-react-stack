@@ -16,12 +16,12 @@ type Props = {
 
 export const CuratedCardContainer = ({ className, slug }: Props) => {
   const variables = { slug };
-  const { data, loading, refetch } = useQuery<A.CuratedCardQuery, _>(
-    CuratedCardQuery,
-    {
-      variables,
-    }
-  );
+  const { data, loading, refetch } = useQuery<
+    A.CuratedCardQuery,
+    A.CuratedCardQueryVariables
+  >(CuratedCardQuery, {
+    variables,
+  });
 
   React.useEffect(() => {
     const handler = subscribeToItemExpiredEvent(({ success }) => {
