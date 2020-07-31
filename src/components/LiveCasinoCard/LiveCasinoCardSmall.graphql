@@ -1,4 +1,4 @@
-query LiveCasinoCardMobileDataQuery($id: String!) {
+query LiveCasinoCardSmallDataQuery($id: String!) {
   liveCasinoTablesById(id: $id) {
     id
     tableId

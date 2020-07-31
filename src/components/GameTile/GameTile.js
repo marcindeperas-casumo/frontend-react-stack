@@ -10,7 +10,7 @@ import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
-import { LiveCasinoCardMobileContainer } from "Components/LiveCasinoCard/LiveCasinoCardMobileContainer";
+import { LiveCasinoCardSmallContainer } from "Components/LiveCasinoCard/LiveCasinoCardSmallContainer";
 
 export type Props = {
   className?: string,
@@ -53,9 +53,9 @@ export const GameTile = ({
     );
   }
 
-  if (typeof liveCasinoId === "string") {
+  if (liveCasinoId) {
     // $FlowIgnore: game contains string liveCasinoId, checked above
-    return <LiveCasinoCardMobileContainer game={game} />;
+    return <LiveCasinoCardSmallContainer game={game} />;
   }
 
   return (

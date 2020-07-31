@@ -2,7 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
-import { LiveCasinoCardMobile } from "./LiveCasinoCardMobile";
+import { LiveCasinoCardSmall } from "./LiveCasinoCardSmall";
 import {
   MoneyWheel,
   Roulette,
@@ -13,7 +13,7 @@ import {
   Baccarat,
 } from "./__mocks__";
 
-const stories = storiesOf("LiveCasinoCardMobile", module);
+const stories = storiesOf("LiveCasinoCardSmall", module);
 const t = {
   playNowText: "Play now 👻",
   betBehindText: "Bet behind",
@@ -25,7 +25,7 @@ const t = {
 stories.add("Card MoneyWheel", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={MoneyWheel}
         t={t}
         liveCasinoTable={MoneyWheel.liveCasinoLobby}
@@ -37,7 +37,7 @@ stories.add("Card MoneyWheel", () => (
 stories.add("Card Roulette", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={Roulette}
         t={t}
         liveCasinoTable={Roulette.liveCasinoLobby}
@@ -49,7 +49,7 @@ stories.add("Card Roulette", () => (
 stories.add("Card Blackjack Open Seats", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={Blackjack}
         t={t}
         liveCasinoTable={Blackjack.liveCasinoLobby}
@@ -61,7 +61,7 @@ stories.add("Card Blackjack Open Seats", () => (
 stories.add("Card Blackjack Full", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={BlackjackFull}
         t={t}
         liveCasinoTable={BlackjackFull.liveCasinoLobby}
@@ -73,7 +73,7 @@ stories.add("Card Blackjack Full", () => (
 stories.add("Card TopCard (Football)", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={TopCard}
         t={t}
         liveCasinoTable={TopCard.liveCasinoLobby}
@@ -85,7 +85,7 @@ stories.add("Card TopCard (Football)", () => (
 stories.add("Card Monopoly", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={Monopoly}
         t={t}
         liveCasinoTable={Monopoly.liveCasinoLobby}
@@ -97,7 +97,7 @@ stories.add("Card Monopoly", () => (
 stories.add("Card Baccarat", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         game={Baccarat}
         t={t}
         liveCasinoTable={Baccarat.liveCasinoLobby}

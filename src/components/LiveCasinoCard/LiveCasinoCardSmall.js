@@ -13,7 +13,7 @@ import { LiveCasinoCardData } from "./LiveCasinoCardData";
 
 export type Props = {
   game: A.GameTile_Game,
-  liveCasinoTable?: A.LiveCasinoCardMobileDataQuery_liveCasinoTablesById,
+  liveCasinoTable?: A.LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
   t: {
     playNowText: string,
     betBehindText: string,
@@ -25,7 +25,7 @@ export type Props = {
 
 const cardVerticalCenter = "48.19%";
 
-export class LiveCasinoCardMobile extends React.PureComponent<Props> {
+export class LiveCasinoCardSmall extends React.PureComponent<Props> {
   renderHeader = () => {
     const { liveCasinoTable, game } = this.props;
 
@@ -57,7 +57,7 @@ export class LiveCasinoCardMobile extends React.PureComponent<Props> {
   renderContent = () => {
     const { liveCasinoTable, t } = this.props;
     // TODO: liveCasinoTable.isOpen?
-    if (liveCasinoTable) {
+    if (liveCasinoTable && liveCasinoTable.state === "OPEN") {
       return (
         <Flex
           direction="vertical"

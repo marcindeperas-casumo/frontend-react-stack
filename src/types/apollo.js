@@ -409,20 +409,20 @@ export type JackpotsQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: LiveCasinoCardMobileDataQuery
+// GraphQL query operation: LiveCasinoCardSmallDataQuery
 // ====================================================
 
-export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById_bets = {
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets = {
   symbol: ?string,
   min: ?number,
   max: ?number,
 };
-export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById_operationHours = {
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
   type: OperationHoursType,
   startTime: ?string,
   endTime: ?string,
 };
-export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById = {
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
   id: ?string,
   tableId: ?string,
   symbol: ?string,
@@ -433,13 +433,13 @@ export type LiveCasinoCardMobileDataQuery_liveCasinoTablesById = {
   image: ?string,
   type: ?string,
   betBehind: ?boolean,
-  bets: ?LiveCasinoCardMobileDataQuery_liveCasinoTablesById_bets,
-  operationHours: LiveCasinoCardMobileDataQuery_liveCasinoTablesById_operationHours,
+  bets: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets,
+  operationHours: LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours,
 };
-export type LiveCasinoCardMobileDataQuery = {
-  liveCasinoTablesById: ?LiveCasinoCardMobileDataQuery_liveCasinoTablesById,
+export type LiveCasinoCardSmallDataQuery = {
+  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
 };
-export type LiveCasinoCardMobileDataQueryVariables = {
+export type LiveCasinoCardSmallDataQueryVariables = {
   id: string,
 };
 

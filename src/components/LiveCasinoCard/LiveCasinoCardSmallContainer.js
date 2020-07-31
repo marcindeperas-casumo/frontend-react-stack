@@ -4,14 +4,14 @@ import { useIntersection } from "react-use";
 import { useQuery } from "@apollo/react-hooks";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import * as A from "Types/apollo";
-import { LiveCasinoCardMobileDataQuery } from "./LiveCasinoCardMobile.graphql";
-import { LiveCasinoCardMobile } from "./LiveCasinoCardMobile";
+import { LiveCasinoCardSmallDataQuery } from "./LiveCasinoCardSmall.graphql";
+import { LiveCasinoCardSmall } from "./LiveCasinoCardSmall";
 
 type Props = {
   game: A.GameTile_Game,
 };
 
-export const LiveCasinoCardMobileContainer = ({ game }: Props) => {
+export const LiveCasinoCardSmallContainer = ({ game }: Props) => {
   const { t } = useTranslationsGql({
     betBehindText: "root:mobile.live-casino-cards-content:fields.bet_behind",
     openSeatsText: "root:mobile.live-casino-cards-content:fields.open_seats",
@@ -24,9 +24,9 @@ export const LiveCasinoCardMobileContainer = ({ game }: Props) => {
     threshold: 0.1,
   });
   const { data } = useQuery<
-    A.LiveCasinoCardMobileDataQuery,
-    A.LiveCasinoCardMobileDataQueryVariables
-  >(LiveCasinoCardMobileDataQuery, {
+    A.LiveCasinoCardSmallDataQuery,
+    A.LiveCasinoCardSmallDataQueryVariables
+  >(LiveCasinoCardSmallDataQuery, {
     variables: {
       id: game?.liveCasinoId || "",
     },
@@ -35,7 +35,7 @@ export const LiveCasinoCardMobileContainer = ({ game }: Props) => {
 
   return (
     <div ref={intersectionRef}>
-      <LiveCasinoCardMobile
+      <LiveCasinoCardSmall
         t={t}
         game={game}
         liveCasinoTable={data?.liveCasinoTablesById}
