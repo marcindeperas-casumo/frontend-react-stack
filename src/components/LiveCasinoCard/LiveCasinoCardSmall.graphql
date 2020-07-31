@@ -2,6 +2,7 @@ query LiveCasinoCardSmallDataQuery($id: String!) {
   liveCasinoTablesById(id: $id) {
     id
     tableId
+    state
     symbol
     numberOfPlayers
     seats

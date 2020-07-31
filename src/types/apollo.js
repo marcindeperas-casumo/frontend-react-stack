@@ -425,6 +425,7 @@ export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
 export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
   id: ?string,
   tableId: ?string,
+  state: TableState,
   symbol: ?string,
   numberOfPlayers: ?number,
   seats: ?number,
@@ -2746,6 +2747,7 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+export type TableState = "CLOSED" | "OPEN" | "UNASSIGNED";
 export type OperationHoursType = "BOUNDED" | "FULLTIME";
 export type ValuableType =
   | "cash"

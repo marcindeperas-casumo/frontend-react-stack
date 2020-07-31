@@ -87,11 +87,11 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
         }}
       >
         <div />
-        {liveCasinoTable?.openingHours?.startTime && (
+        {liveCasinoTable?.operationHours.startTime && (
           <ButtonSecondary size="xs" className="u-margin">
             {interpolate(t.opensAtText, {
               // $FlowIgnore: Checked above
-              time: liveCasinoTable?.openingHours?.startTime,
+              time: liveCasinoTable?.operationHours.startTime,
             })}
           </ButtonSecondary>
         )}
@@ -151,14 +151,16 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
     const { slug } = this.props.game;
 
     return (
-      <Card
-        className="o-ratio t-border-r--md u-overflow-hidden t-background-grey-5"
-        spacing="md"
-        onClick={() => launchGame({ slug })}
-        header={this.renderHeader}
-        content={this.renderContent}
-        footer={this.renderFooter}
-      />
+      <div className="u-padding-bottom--sm">
+        <Card
+          className="o-ratio t-border-r--md u-overflow-hidden t-background-white t-elevation--10"
+          spacing="md"
+          onClick={() => launchGame({ slug })}
+          header={this.renderHeader}
+          content={this.renderContent}
+          footer={this.renderFooter}
+        />
+      </div>
     );
   }
 }
