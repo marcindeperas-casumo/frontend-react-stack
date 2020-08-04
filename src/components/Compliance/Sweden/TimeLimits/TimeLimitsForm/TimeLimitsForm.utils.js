@@ -1,12 +1,15 @@
 // @flow
+import * as R from "ramda";
 import type {
   SetLoginTimeLimitProps,
   LoginTimeLimitsFormData,
 } from "Models/playOkay";
 
+const ifNanZero: number => number = R.when(isNaN, R.always(0));
+
 export function textInputOnChange(setter: number => void) {
   return (e: SyntheticInputEvent<HTMLInputElement>) =>
-    setter(Number(e.currentTarget.value));
+    setter(ifNanZero(parseInt(e.currentTarget.value)));
 }
 
 export function transformFormDataToRequestPayloads(
