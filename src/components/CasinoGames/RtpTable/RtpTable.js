@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
 import classNames from "classnames";
 import * as A from "Types/apollo";
-import { useTranslations } from "Utils/hooks";
 import VirtualList from "Components/VirtualList";
 import { isMobile } from "Components/ResponsiveLayout";
 import { RtpTableRow } from "./RtpTableRow";
@@ -81,14 +80,18 @@ export const RtpTable = ({
   query,
   gamesCount,
   scrollElementId,
+  headerColumns,
+  valuesColumns,
+}: {
+  games: Array<A.GetGamesRTP_getGamesPaginated_games>,
+  data: any,
+  fetchMore: any,
+  query: string,
+  gamesCount: number,
+  scrollElementId: string,
+  headerColumns: Array<?string>,
+  valuesColumns: Array<string>,
 }) => {
-  const t = useTranslations<{
-    rtp_game_name: string,
-    rtp_game_provider: string,
-    rtp_loading: string,
-    rtp_value: string,
-  }>("game-categories");
-
   const rowContainerClasses =
     "t-border-bottom t-border-left t-border-grey-5 u-padding-left t-background-white";
 
@@ -104,14 +107,7 @@ export const RtpTable = ({
         )}
         style={{ minHeight: rowHeight }}
       >
-        <RtpTableRow
-          columns={[
-            t.rtp_game_name,
-            t.rtp_value,
-            t.actual_rtp_past_6_months,
-            t.actual_rtp_past_year,
-          ]}
-        />
+        <RtpTableRow columns={headerColumns} />
       </Flex>
 
       <VirtualList
@@ -143,9 +139,9 @@ export const RtpTable = ({
             <RtpTableRow
               columns={[
                 games[index]?.title,
-                formatRTPValue(games[index]?.rtp),
-                formatRTPValue(games[index]?.actualRtpPast6Months),
-                formatRTPValue(games[index]?.actualRtpPastYear),
+                ...valuesColumns.map(keyName =>
+                  games[index] ? formatRTPValue(games[index][keyName]) : null
+                ),
               ]}
               textProps={textClasses}
             />

@@ -2,6 +2,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
 
 export const RtpTableRow = ({
   columns = [],
@@ -11,40 +12,19 @@ export const RtpTableRow = ({
   textProps?: {},
 }) => (
   <>
-    <Flex
-      className="t-border-right t-border-grey-5 o-flex__block u-width--2/5"
-      align="center"
-    >
-      <Text size="sm" {...textProps}>
-        {columns[0]}
-      </Text>
-    </Flex>
-    <Flex
-      className="t-border-right t-border-grey-5 u-width--1/5"
-      justify="center"
-      align="center"
-    >
-      <Text size="sm" {...textProps}>
-        {columns[1]}
-      </Text>
-    </Flex>
-    <Flex
-      className="t-border-right t-border-grey-5 u-width--1/5"
-      justify="center"
-      align="center"
-    >
-      <Text size="sm" {...textProps}>
-        {columns[2]}
-      </Text>
-    </Flex>
-    <Flex
-      className="t-border-right t-border-grey-5 u-width--1/5"
-      justify="center"
-      align="center"
-    >
-      <Text size="sm" {...textProps}>
-        {columns[3]}
-      </Text>
-    </Flex>
+    {columns.map((column, idx) => (
+      <Flex
+        key={idx}
+        className={classNames(
+          "t-border-right t-border-grey-5 o-flex__block",
+          `u-width--${idx === 0 ? 5 - (columns.length - 1) : 1}/5`
+        )}
+        align="center"
+      >
+        <Text size="sm" {...textProps}>
+          {column}
+        </Text>
+      </Flex>
+    ))}
   </>
 );

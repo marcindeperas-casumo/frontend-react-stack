@@ -3,13 +3,14 @@ import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
-import { GetGamesRTP } from "./GetGamesRTP.graphql";
 import { RtpTable } from "./RtpTable/RtpTable";
+import { GetGamesRTP } from "./GetGamesRTP.graphql";
 
 export const CasinoGames = () => {
   const t = useTranslations<{
@@ -40,7 +41,7 @@ export const CasinoGames = () => {
     return null;
   }
 
-  const { games, gamesCount } = data.getGamesPaginated;
+  const { games = [], gamesCount } = data.getGamesPaginated;
 
   const renderRtpTable = () => {
     return (
@@ -51,6 +52,13 @@ export const CasinoGames = () => {
         query={query}
         gamesCount={gamesCount}
         scrollElementId={ROOT_SCROLL_ELEMENT_ID}
+        headerColumns={[
+          t.rtp_game_name,
+          t.rtp_value,
+          t.actual_rtp_past_6_months,
+          t.actual_rtp_past_year,
+        ]}
+        valuesColumns={["rtp", "actualRtpPast6Months", "actualRtpPastYear"]}
       />
     );
   };

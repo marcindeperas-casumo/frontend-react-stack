@@ -1,4 +1,4 @@
-query GetGamesRTP($query: String!, $offset: Int!, $limit: Int!) {
+query GetGamesRTPLight($query: String!, $offset: Int!, $limit: Int!) {
   getGamesPaginated(query: $query, offset: $offset, limit: $limit) {
     gamesCount
     offset
@@ -6,7 +6,6 @@ query GetGamesRTP($query: String!, $offset: Int!, $limit: Int!) {
       id
       slug
       title
-      actualRtpPastYear
       rtp
     }
   }
