@@ -13,7 +13,7 @@ import { GameDetailsButtons } from "./GameDetailsButtons";
 import "./GameDetails.scss";
 
 type Props = {
-  data: A.GameDetailsQuery,
+  game: A.GameDetailsQuery_game,
   t: {
     gameInMaintenanceText: ?string,
     playButtonText: ?string,
@@ -23,12 +23,7 @@ type Props = {
 
 const TileImage = isDesktop() ? GameDetailsImageDesktop : GameDetailsImage;
 
-export const GameDetails = ({ data, t }: Props) => {
-  if (!data.game) {
-    return null;
-  }
-  const game = data.game;
-
+export const GameDetails = ({ game, t }: Props) => {
   return (
     <Flex
       direction={isDesktop() ? "horizontal" : "vertical"}
