@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSearchTitle } from "Components/GameRow";
 
@@ -10,13 +10,15 @@ type SearchProps = {
   highlightSearchQuery?: boolean,
 };
 
-export const GameRowSearchText = ({
-  name,
-  search,
-}: {
+type Props = {
   name: string,
   search: SearchProps | boolean,
-}) => {
+  isInMaintenance: boolean,
+  renderSecondaryText?: () => React.Node,
+};
+
+export const GameRowSearchText = (props: Props) => {
+  const { name, search, renderSecondaryText, isInMaintenance } = props;
   /* eslint-disable fp/no-let, fp/no-mutation */
   let highlightSearchQuery, query;
 
@@ -29,12 +31,14 @@ export const GameRowSearchText = ({
   /* eslint-enable fp/no-let, fp/no-mutation */
 
   return (
-    <Flex.Block className="u-padding-left--sm t-color-grey-dark-2">
+    <Flex.Block className="u-padding-left--sm t-color-grey-70">
       <GameRowSearchTitle
         highlightSearchQuery={highlightSearchQuery}
         name={name}
+        isInMaintenance={isInMaintenance}
         query={query}
       />
+      {renderSecondaryText && renderSecondaryText()}
     </Flex.Block>
   );
 };

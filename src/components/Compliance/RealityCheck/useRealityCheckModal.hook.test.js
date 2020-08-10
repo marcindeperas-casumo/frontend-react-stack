@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper } from "Utils/HookWrapper";
 import bridge from "Src/DurandalReactBridge";
-import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
+import { KO_APP_EVENT_MODAL_HIDDEN, REACT_APP_MODAL } from "Src/constants";
 import { useRealityCheckModal } from "./useRealityCheckModal.hook";
 
 const state = {
@@ -46,7 +46,7 @@ describe("useRealityCheckModal", () => {
 
   describe("reality check modal is accepted and calls resumeGame", () => {
     const data = {
-      modalId: "REALITY_CHECK_MODAL",
+      modalId: REACT_APP_MODAL.ID.REALITY_CHECK,
       result: class {},
       returnCode: "ACCEPTED",
       ev: "KO_APP_EVENT/modalHidden",

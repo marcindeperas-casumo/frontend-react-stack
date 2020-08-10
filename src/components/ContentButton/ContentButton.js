@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 
 type Props = {
   /** text to render inside button */
@@ -25,9 +25,9 @@ export class ContentButton extends PureComponent<Props> {
 
     return url ? (
       <div className="u-margin-bottom--xlg u-margin-x--lg">
-        <Button variant="primary" className="u-width--full" href={url}>
+        <ButtonPrimary className="u-width--full" href={url}>
           {text}
-        </Button>
+        </ButtonPrimary>
       </div>
     ) : null;
   }

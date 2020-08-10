@@ -2,13 +2,18 @@
 import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import { pick } from "ramda";
+import { pathOr, pick } from "ramda";
+import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
 import tracker from "Services/tracker";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import {
+  EVENTS,
+  EVENT_PROPS,
+  KO_APP_EVENT_BETSLIP_VISIBLE,
+} from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 
@@ -110,6 +115,39 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  trackAddToBetslipIfLife = (obj: any) => {
+    const betPath = ["ecommerce", "add", "products", 0];
+    const isLivePage: boolean = pathOr("", ["page", "path"], obj)
+      .split("/")
+      .includes("in-play");
+    const sportName: string = pathOr(
+      "unknown",
+      ["hit", "categories", "event_group_two"],
+      obj
+    );
+    const eventName: string = pathOr("unknown", [...betPath, "name"], obj);
+    const eventId: number = pathOr(0, [...betPath, "id"], obj);
+    const trackingName: string = isLivePage
+      ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
+      : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
+
+    tracker.track(trackingName, {
+      [EVENT_PROPS.SPORTS_NAME]: sportName,
+      [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
+      [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
+    });
+  };
+
+  emitBetslipVisibleToKoStack(
+    isTabletDevice: boolean,
+    isBetslipVisible: boolean
+  ) {
+    bridge.emit(KO_APP_EVENT_BETSLIP_VISIBLE, {
+      isTablet: isTabletDevice,
+      isBetslipVisible,
+    });
+  }
+
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
@@ -117,9 +155,28 @@ export default class KambiClient extends React.Component<Props> {
 
     if (
       event.name === "dataLayerPushed" &&
+      event.data.event === "kambi add to betslip" &&
+      event.data.kambi?.hit?.categories?.is_live
+    ) {
+      event.data.kambi && this.trackAddToBetslipIfLife(event.data.kambi);
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
       event.data.event === "kambi page view"
     ) {
       event.data.kambi && this.trackPageView(event.data.kambi.page);
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
+      event.data.event === "kambi betslip status" &&
+      !isDesktop()
+    ) {
+      this.emitBetslipVisibleToKoStack(
+        isTablet(),
+        Boolean(event.data.kambi?.betslip?.quantity)
+      );
     }
   };
 
@@ -173,7 +230,7 @@ export default class KambiClient extends React.Component<Props> {
     return (
       <div
         className={classNames(
-          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-chrome-light-2",
+          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-grey-0",
           {
             "c-kambi-client--hidden": this.props.isHidden,
           }

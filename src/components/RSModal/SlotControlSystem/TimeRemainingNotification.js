@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import type { ModalContentComponent } from "Components/RSModal";
 import { ModalSkin } from "./ModalSkin";
@@ -30,13 +30,13 @@ export function TimeRemainingNotification({
         <Text tag="span" className="u-font-weight-bold">
           {t.modal_body}
         </Text>
-        <Button
-          variant="primary"
+        <ButtonPrimary
+          size="sm"
           className="u-margin--md"
           onClick={props.acceptModal}
         >
           {t.continue_playing_button}
-        </Button>
+        </ButtonPrimary>
       </Flex>
     </ModalSkin>
   );

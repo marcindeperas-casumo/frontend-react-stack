@@ -1,10 +1,12 @@
 // @flow
+type Amount = {
+  amount: number,
+  iso4217CurrencyCode: string,
+};
+
 export type RealityCheckType = {
-  totalWinAmount: {
-    amount: number,
-  },
-  totalBetAmount: {
-    amount: number,
-  },
+  totalBetAmount: ?Amount,
+  totalWinAmount: ?Amount,
+  intervalSeconds: number,
   sessionStartedTime: number,
 };

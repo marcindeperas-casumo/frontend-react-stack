@@ -12,7 +12,7 @@ type Props = {
 const Unchecked = () => (
   <Flex
     justify="start"
-    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-chrome-light-1 t-color-white"
+    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-grey-5 t-color-white"
   >
     <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--inactive">
       <circle cx="14" cy="14" r="14" fill="currentColor" />
@@ -23,7 +23,7 @@ const Unchecked = () => (
 const Checked = () => (
   <Flex
     justify="start"
-    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-plum t-color-white"
+    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-purple-60 t-color-white"
   >
     <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--active">
       <circle cx="14" cy="14" r="14" fill="currentColor" />

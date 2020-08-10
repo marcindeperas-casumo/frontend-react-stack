@@ -2,6 +2,7 @@
 import React from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
+import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerPlayOkaySettings";
 
 export const AppLiS = () => (
   <>
@@ -13,5 +14,6 @@ export const AppLiS = () => (
       }
       namedExport="DepositLimitsViewContainer"
     />
+    <LazyPlayerPlayOkaySettings />
   </>
 );

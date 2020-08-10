@@ -24,7 +24,7 @@ export const ComponentBuilderContainer = ({ slug }: Props) => {
   const { data, loading } = useQuery(QUERY, { variables });
   const componentDefinitionJSON = propOr(null, "componentDefinitionJSON", data);
 
-  if (loading) {
+  if (loading && !componentDefinitionJSON) {
     return null;
   }
 

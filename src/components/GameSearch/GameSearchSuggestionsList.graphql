@@ -1,0 +1,12 @@
+#import "../GameRow/GameRow.graphql"
+
+query GameSearchSuggestionsListContainerQuery(
+  $listId: String!
+) {
+  gamesList(listId: $listId) {
+    id
+    games {
+      ...GameRow_Game
+    }
+  }
+}

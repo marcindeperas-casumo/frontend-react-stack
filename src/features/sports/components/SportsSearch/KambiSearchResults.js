@@ -59,7 +59,7 @@ export const SEARCH_QUERY = gql`
 `;
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
-  <Text className="t-color-chrome-dark-1 u-padding--md u-font-weight-bold">
+  <Text className="t-color-grey-50 u-padding--md u-font-weight-bold">
     {children}
   </Text>
 );
@@ -80,7 +80,9 @@ const ResultRow = ({
     )}
     onClick={onClick}
   >
-    <div className="u-padding-y--md t-border-bottom">{children}</div>
+    <div className="u-padding-y--md t-border-bottom t-border-grey-5">
+      {children}
+    </div>
   </div>
 );
 
@@ -232,7 +234,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-chrome-dark-2 u-font-weight-bold"
+                  className="t-color-grey-70 u-font-weight-bold"
                 >
                   {eventGroup.name}
                 </Text>
@@ -257,7 +259,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         tag="span"
         className={classNames(
           "u-font-weight-bold",
-          isMatch ? "t-color-chrome-dark-3" : "t-color-chrome-dark-1"
+          isMatch ? "t-color-grey-90" : "t-color-grey-50"
         )}
       >
         {value}
@@ -307,7 +309,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-chrome u-text-nowrap"
+                  className="t-color-grey-20 u-text-nowrap"
                 >
                   {result.sport.name}
                 </Text>
@@ -316,7 +318,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-chrome u-text-nowrap"
+                  className="t-color-grey-20 u-text-nowrap"
                 >
                   {result.country}
                 </Text>
@@ -368,7 +370,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <div className="t-background-chrome-light-2 t-color-chrome-dark-1 u-padding-x--xlg u-padding-y--lg">
+        <div className="t-background-grey-0 t-color-grey-50 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
             <Flex.Item>
               <SadSumo width="32" height="36" />

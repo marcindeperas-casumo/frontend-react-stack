@@ -4,10 +4,10 @@
 
 // stylelint-disable-next-line xi/selector-pattern
 .c-sports-nav-paginated--live .c-sports-icon__active-indicator {
-  color: cudl-palette(negative);
+  color: cudl-palette(red, "30");
 }
 
 // stylelint-disable-next-line xi/selector-pattern
 .c-sports-icon__active-indicator {
-  color: cudl-palette(turquoise);
+  color: cudl-palette(teal, "50");
 }

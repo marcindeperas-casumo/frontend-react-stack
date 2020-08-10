@@ -10,6 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
 } from "Utils/hooks";
+import { getUrlSearchParam, decodedUrlParams } from "Utils";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -21,19 +22,30 @@ import "./GamePage.scss";
 type Props = {
   slug: string,
   playForFun: boolean,
+  location: {
+    search: string,
+  },
 };
 
-export const GamePageContainer = ({ slug, playForFun }: Props) => {
+export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
+  const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
+
+  const remoteGameLaunchData = launchData
+    ? decodedUrlParams(JSON.parse(decodeURIComponent(launchData)))
+    : null;
+
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
   const { loading, gameCategory } = useGameCategory(slug);
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
+
   const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
     {
       playForFun,
       slug,
+      remoteGameLaunchData,
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
@@ -55,7 +67,7 @@ export const GamePageContainer = ({ slug, playForFun }: Props) => {
 
   if (error) {
     return (
-      <Flex className="t-background-chrome-light-2 u-height--full">
+      <Flex className="t-background-grey-0 u-height--full">
         <ErrorMessage
           errorMessage={errorMessages?.general_error_title || ""}
           retry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}

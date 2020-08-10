@@ -8,6 +8,7 @@ export type IframeGameLaunchData = {|
   url: string,
   providerType: string,
   providerName: string,
+  isEmbedded?: boolean,
 |};
 
 export type NetentGameLaunchData = {|
@@ -16,6 +17,7 @@ export type NetentGameLaunchData = {|
   width: string,
   casinoId: string,
   sessionId: string,
+  isEmbedded?: boolean,
   staticServer: string,
   providerName: string,
   providerType: string,

@@ -20,7 +20,7 @@ export const JackpotsListTile = ({ games = [], isScrolling = false }: Props) =>
         className={classNames(
           "t-background-white u-padding--md t-border-r--md",
           {
-            "t-box-shadow": !isScrolling,
+            "t-elevation--10": !isScrolling,
           }
         )}
         renderText={() => <GameRowText name={game.name} />}

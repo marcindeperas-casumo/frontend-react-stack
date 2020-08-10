@@ -10,7 +10,7 @@ type Props = {
 const Image = src => <img src={src} alt="" />;
 
 const CashAmount = amount => (
-  <p className="u-margin-bottom--none t-color-blue u-font-weight-bold u-text-align-right">
+  <p className="u-margin-bottom--none t-color-blue-50 u-font-weight-bold u-text-align-right">
     {amount}
   </p>
 );

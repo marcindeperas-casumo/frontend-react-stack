@@ -14,7 +14,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    const { url = null } = this.props.gameData;
+    const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
     const encodedOrigin = encodeURIComponent(window.location.origin);
@@ -22,7 +22,9 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobby=${encodedLobbyUrl}&iframeoverlay=${encodedEventBubblerUrl}&origin=${encodedOrigin}`,
+        src: `${url}${
+          !isEmbedded ? `&lobby=${encodedLobbyUrl}` : ""
+        }&iframeoverlay=${encodedEventBubblerUrl}&origin=${encodedOrigin}`,
       };
     }
 

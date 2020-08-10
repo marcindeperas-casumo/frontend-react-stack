@@ -24,5 +24,8 @@ query CuratedCardQuery($slug: String!) {
       game {
         ...CuratedCard_Game
       }
-    }
+    },
+    session {
+      market
+    },
 }

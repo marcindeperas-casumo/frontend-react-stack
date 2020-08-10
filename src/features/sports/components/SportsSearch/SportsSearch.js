@@ -89,7 +89,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   render() {
     return (
       <>
-        <Flex.Block className="t-background-chrome-light-2 u-content-width--tablet c-sports-search__search-bar">
+        <Flex.Block className="t-background-grey-0 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
@@ -107,7 +107,7 @@ export default class SportsSearch extends React.Component<{}, State> {
             </Flex.Block>
           </Flex>
         </Flex.Block>
-        <div className="u-content-width--tablet t-background-chrome-light-2">
+        <div className="u-content-width--tablet t-background-grey-0">
           <KambiSearchResults
             query={this.state.query}
             hideSearchResults={this.state.hideSearchResults}

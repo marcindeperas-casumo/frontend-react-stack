@@ -1,0 +1,16 @@
+.c-game-row {
+  position: relative;
+
+  &__game-thumb--maintenance {
+    &::before {
+      background-color: rgba(cudl-palette(white, "base"), 0.75);
+      bottom: 0;
+      content: " ";
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

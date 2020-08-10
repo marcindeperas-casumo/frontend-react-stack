@@ -29,14 +29,16 @@ export class CasumoGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    const { url = null } = this.props.gameData;
+    const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
 
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobbyUrl=${encodedLobbyUrl}&iframeUrl=${encodedEventBubblerUrl}`,
+        src: `${url}${
+          !isEmbedded ? `&lobbyUrl=${encodedLobbyUrl}` : ""
+        }&iframeUrl=${encodedEventBubblerUrl}`,
       };
     }
 

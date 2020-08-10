@@ -19,7 +19,7 @@ const renderError = (props = {}) => () => {
 
   return (
     <Flex
-      className="t-background-chrome-light-2 u-padding--3xlg"
+      className="t-background-grey-0 u-padding--3xlg"
       style={{ minHeight: 420 }}
     >
       <ErrorMessage {...propsWithDefaults} />

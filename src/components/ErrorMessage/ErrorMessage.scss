@@ -1,4 +1,4 @@
 .c-error-message__icon {
-  --svg-icon-fill: #{cudl-palette(white)};
-  --svg-icon-stroke: #{cudl-palette(chrome, dark-1)};
+  --svg-icon-fill: #{cudl-palette(white, "base")};
+  --svg-icon-stroke: #{cudl-palette(grey, "50")};
 }

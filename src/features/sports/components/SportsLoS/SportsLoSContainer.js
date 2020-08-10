@@ -40,7 +40,7 @@ export const SportsLoSContainer = ({ urlPrefix }: { urlPrefix: string }) => {
   }
 
   return (
-    <div className="t-background-chrome-light-2">
+    <div className="t-background-grey-0">
       <SportsHashWatcher>
         {({ currentHash }) => <SportsNav currentHash={currentHash} />}
       </SportsHashWatcher>

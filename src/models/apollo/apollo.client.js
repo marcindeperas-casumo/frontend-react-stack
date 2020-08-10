@@ -7,17 +7,21 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
-import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { persistCache } from "apollo-cache-persist";
+import * as localForage from "localforage";
+import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
   marketSelector,
   currencySelector,
   sessionIdSelector,
   languageSelector,
+  emailSelector,
 } from "Models/handshake";
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
+import { getAppVersion, isEmbeddedOn } from "Utils";
 import introspectionQueryResultData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
@@ -25,17 +29,25 @@ import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
-export const apolloClient = getApolloClient();
+export const apolloClientPromise = getApolloClient();
 
 const { showDisabledGames } = getDeveloperOptions();
 const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
 
-export function getApolloClient(): ApolloClientType {
+export async function getApolloClient(): Promise<ApolloClientType> {
   return new ApolloClient({
     link: getLinks(),
-    cache: getCache(),
+    cache: await getCache(),
     typeDefs,
     resolvers: clientResolvers,
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: "cache-and-network",
+      },
+      query: {
+        fetchPolicy: "cache-and-network",
+      },
+    },
   });
 }
 
@@ -43,11 +55,15 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 });
 
-export function getCache() {
+export async function getCache() {
   const cache = new InMemoryCache({ fragmentMatcher });
 
   cache.writeData({
     data: defaultState,
+  });
+  await persistCache({
+    cache,
+    storage: localForage,
   });
 
   return cache;
@@ -72,6 +88,11 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
+        ...(isEmbeddedOn(emailSelector(state))
+          ? {
+              "X-Request-Client-Details": getAppVersion(),
+            }
+          : {}),
       },
     };
   });
@@ -81,7 +102,7 @@ function getHttpLink() {
   return new HttpLink({
     uri: config.graphqlUrl,
     credentials: "same-origin",
-    useGETForQueries: true,
+    useGETForQueries: false,
     fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }

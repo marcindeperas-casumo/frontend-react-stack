@@ -25,8 +25,8 @@ export const ProgressBarFiller = (props: Props) => {
 export class ProgressBar extends PureComponent<Props> {
   static defaultProps = {
     progress: 0,
-    fillerClassNames: "t-background-plum",
-    trackClassNames: "t-background-chrome-light-2",
+    fillerClassNames: "t-background-purple-60",
+    trackClassNames: "t-background-grey-0",
   };
 
   render() {

@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 
 type YearSelectorProps = {
@@ -109,16 +109,16 @@ export function TransactionsAnnualOverviewYearSelector({
           />
         </Flex.Item>
       </Flex>
-      <Button
-        variant="primary"
+      <ButtonPrimary
+        size="sm"
         className="u-width--full"
         data-test-id="annual-overview-year-selector-button"
-        disabled={loading}
-        loading={loading}
+        isDisabled={loading}
+        isLoading={loading}
         onClick={onClick}
       >
         {content.annual_overview_year_selector_button}
-      </Button>
+      </ButtonPrimary>
     </div>
   );
 }

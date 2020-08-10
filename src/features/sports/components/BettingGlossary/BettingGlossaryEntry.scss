@@ -9,7 +9,7 @@
 
 .c-betting-glossary-entry--highlight {
   animation: animate-highlight 0.5s ease 2s forwards;
-  background: cudl-palette(chrome, light-1);
+  background: cudl-palette(grey, "5");
   position: relative;
   top: -(map-get($cudl-spacer-sizes, xlg) / 2);
 
@@ -30,17 +30,17 @@
 }
 
 .c-betting-glossary-entry [data-glossary-link] {
-  color: cudl-palette(info);
+  color: cudl-palette(blue, "50");
   cursor: pointer;
   pointer-events: initial;
 }
 
 @keyframes animate-highlight {
   0% {
-    background: cudl-palette(chrome, light-1);
+    background: cudl-palette(grey, "5");
   }
   100% {
-    background: cudl-palette(white);
+    background: cudl-palette(white, "base");
   }
 }
 // stylelint-enable xi/selector-pattern

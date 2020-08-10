@@ -4,7 +4,7 @@ import { allPass, propIs } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
@@ -28,7 +28,7 @@ import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
   expiresToday: "red",
-  default: "grey-dark-1",
+  default: "grey-50",
 };
 
 type Game = {
@@ -76,9 +76,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const expiresInLessThanAnHour = hours < 1;
 
     if (expiresWithin24Hours) {
+      if (expiresInLessThanAnHour) {
+        return { key: "minutes", value: minutes };
+      }
+
       return { key: "hours", value: hours };
-    } else if (expiresInLessThanAnHour) {
-      return { key: "minutes", value: minutes };
     }
 
     // more than 24h will be treated as 2 days
@@ -98,6 +100,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     if (
       valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableCashback" ||
       valuableDetails.__typename === "PlayerValuableSpins"
     ) {
       return valuableDetails.requirementType;
@@ -249,7 +252,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               {caveat && (
-                <Text className="t-color-grey" size="sm">
+                <Text className="t-color-grey-20" size="sm">
                   <DangerousHtml html={caveat} />
                 </Text>
               )}
@@ -258,14 +261,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <hr className="c-valuable-details__separator t-border t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey-dark-2" size="xs">
+              <Text tag="strong" className="t-color-grey-70" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--full u-overflow-x--hidden">
               <Text
                 tag="div"
-                className="t-color-grey-dark-2 u-text-align-left"
+                className="t-color-grey-70 u-text-align-left"
                 size="sm"
               >
                 <DangerousHtml
@@ -277,18 +280,18 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
           {valuableState !== VALUABLE_STATES.USED && (
             <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
-              <Button
+              <ButtonPrimary
                 className="u-width--full"
+                // $FlowFixMe
                 onClick={() => this.handleAction(actionButtonProps)}
                 data-test="valuable-action-button"
-                variant="primary"
               >
                 <ActionButtonContent
                   text={actionButtonProps.text}
                   isLocked={valuableState === VALUABLE_STATES.LOCKED}
                   data-test="expiration-badge-content"
                 />
-              </Button>
+              </ButtonPrimary>
             </div>
           )}
         </div>

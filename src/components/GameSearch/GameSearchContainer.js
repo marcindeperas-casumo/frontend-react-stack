@@ -6,19 +6,21 @@ import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
+import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const { data, loading, fetchMore, refetch } = useQuery<
+  const { data, loading, fetchMore } = useQuery<
     A.GameSearchQuery,
     A.GameSearchQueryVariables
   >(GameSearchQuery, {
     // if you search for an empty string or spaces or whitespace, the server should take care of it
     variables: {
-      query: "",
+      query: searchQuery,
       pageSize: 50,
       page: 0,
     },
+    fetchPolicy: "network-only",
   });
   const { t } = useTranslationsGql({
     searchSuggestionText: "root:mobile.games-search:fields.input_prompt",
@@ -26,24 +28,16 @@ export const GameSearchContainer = () => {
   const inputPromptPlaceholder = t?.searchSuggestionText || "";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
-  const [pageNumber, setPageNumber] = React.useState(1);
+  const { list, loading: loadingSuggestions } = useGameSearchSuggestions({
+    searchResults,
+  });
 
-  React.useEffect(() => {
-    setPageNumber(1);
-
-    refetch({
-      query: searchQuery,
-      pageSize: 50,
-      page: 0,
-    });
-  }, [searchQuery, refetch]);
+  const [pageNumber, setPageNumber] = React.useState(0);
 
   const fetchMoreRows = () => {
     setPageNumber(pageNumber + 1);
     return fetchMore<A.GameSearchQueryVariables>({
       variables: {
-        query: searchQuery,
-        pageSize: 50,
         page: pageNumber,
       },
       updateQuery: (prevData, { fetchMoreResult }) => {
@@ -77,7 +71,9 @@ export const GameSearchContainer = () => {
     <GameSearch
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
-      loading={loading}
+      loading={searchResults.length === 0 && loading}
+      loadingSuggestions={loadingSuggestions}
+      suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}
       fetchMoreRows={fetchMoreRows}
       queryChanged={setSearchQuery}

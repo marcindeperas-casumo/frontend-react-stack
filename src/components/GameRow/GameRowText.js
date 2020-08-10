@@ -18,7 +18,7 @@ export const GameRowText = ({
   bets?: ?A.GameRow_Game_lobby_bets,
   jackpot?: ?A.Jackpots_Game_jackpot,
 }) => (
-  <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
+  <Flex.Block className="t-color-grey-90 u-padding-left--sm">
     <Text
       tag="div"
       size="sm"
@@ -34,7 +34,7 @@ export const GameRowText = ({
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey">
+      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey-50">
         {bets}
       </Text>
     );
@@ -54,7 +54,7 @@ function JackpotAmount({ value, locale }) {
     <Text
       tag="div"
       size="sm"
-      className="u-font-weight-bold t-color-red u-padding-bottom--sm"
+      className="u-font-weight-bold t-color-red-30 u-padding-bottom--sm"
     >
       {formatCurrency({ currency, locale, value: amount })}
     </Text>

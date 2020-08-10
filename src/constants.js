@@ -44,6 +44,7 @@ export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
 export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
+export const KO_APP_EVENT_BETSLIP_VISIBLE = "KO_APP_EVENT/betslipVisible";
 
 export const ROOT_SCROLL_ELEMENT_ID = "main-content-wrapper";
 
@@ -53,6 +54,7 @@ export const KO_EVENTS = {
   },
   VALUABLES: {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
+    ITEM_EXPIRED: "VALUABLES/ITEM_EXPIRED",
   },
 };
 export const DEVICES = {
@@ -116,6 +118,8 @@ export const ROUTE_IDS = {
   PLAY_OKAY: "PLAY_OKAY",
   FAQ: "FAQ",
   ABOUT_CASUMO: "ABOUT_CASUMO",
+  CASINO_GAMES: "CASINO_GAMES",
+  CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
 };
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
@@ -153,6 +157,8 @@ export const ROUTES = {
   [ROUTE_IDS.PLAY_OKAY]: "play-okay",
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
+  [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
+  [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
 };
 
 export const TRANSLATED_ROUTES = {
@@ -169,6 +175,15 @@ export const TRANSLATED_ROUTES = {
     no: "spill",
     de: "spielen",
     DEFAULT: "play",
+  },
+  CASINO_GAMES: {
+    sv: "casinospel",
+    fi: "kasinopelit",
+    no: "casinospill",
+    de: "casino-spiele",
+    en: "casino-games",
+    es: "casino-juegos",
+    DEFAULT: "games-information",
   },
 };
 
@@ -301,6 +316,8 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
     "Sports Onboarding - expanded leagues of a Country",
   MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
+  MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE: "Sports - odds added live page",
+  MIXPANEL_SPORTS_BETSLIP_LIVE_NOW: "Sports - odds added live now",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -322,6 +339,8 @@ export const EVENT_PROPS = {
   SPORTS_NAME: "sport name",
   SPORTS_SELECTED: "sports selected",
   SPORTS_SELECTED_NUMBER: "number of sports selected",
+  SPORTS_EVENT_NAME: "event name",
+  SPORTS_EVENT_ID: "event id",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
@@ -359,6 +378,8 @@ export const REACT_APP_MODAL = {
       "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
     SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED:
       "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED",
+    TIME_LIMITS_FORM: "TIME_LIMITS_FORM",
+    REALITY_CHECK: "REALITY_CHECK",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
@@ -400,4 +421,19 @@ export const POLL_INTERVAL = {
   JACKPOTS: 30000,
   JACKPOTS_MUST_DROP: 30000,
   REEL_RACES: 8000,
+};
+
+export const EMBEDDED_GAMES = {
+  ACTIVE: true,
+  TESTERS: [
+    "mariusz.klinger+test@casumo.com",
+    "boguslaw.parol@casumo.com",
+    "lukasz.kowalski@casumo.com",
+    "chris.scicluna@casumo.com",
+    "peter.noer@casumo.com",
+    "stephen.marshall@casumo.com",
+    "ms@50script.com",
+    "sebastian.steek@casumo.com",
+    "boguslaw.parol+30@casumo.com",
+  ],
 };

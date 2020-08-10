@@ -48,12 +48,12 @@ export function PlayerValuableListHorizontal() {
 
   const itemRenderer = (i: number) => (
     <div id={`valuable-card-${valuables[i].id}`}>
-      <div className="c-valuable-list__valuable-card">
+      <div className="c-valuable-list__valuable-card u-margin-bottom--sm">
         <ValuableCard
           {...valuables[i]}
           translations={translations}
           onCardClick={() => showModal(valuables[i])}
-          className="t-box-shadow"
+          className="t-elevation--10"
         />
       </div>
     </div>
@@ -92,7 +92,7 @@ export function PlayerValuableListHorizontal() {
                   {...selectedValuable}
                   translations={translations}
                   caveat={null}
-                  className="t-box-shadow--lg"
+                  className="t-elevation--30"
                 />
               </div>
             </ValuableDetailsWithModal>

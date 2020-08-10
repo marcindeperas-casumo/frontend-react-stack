@@ -55,7 +55,7 @@ export const SportsTopBarTab = ({
     align="center"
     className={classNames(
       "c-sports-top-bar-tab u-cursor-pointer",
-      !isActive && "t-color-grey-dark-1",
+      !isActive && "t-color-grey-50",
       className
     )}
     direction="vertical"
@@ -68,8 +68,10 @@ export const SportsTopBarTab = ({
       <Text
         size="sm"
         className={classNames(
-          "c-sports-top-bar-tab--label u-font-weight-bold u-margin--none",
-          isActive && "t-border--current-color t-border-bottom"
+          "u-font-weight-bold u-margin--none",
+          isActive
+            ? "c-sports-top-bar-tab--label t-border-bottom t-border--current-color"
+            : "t-border--none"
         )}
       >
         <DictionaryTerm termKey={termKey} />
@@ -92,7 +94,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
   return (
     <Flex
       align="center"
-      className="c-sports-top-bar u-padding-x--lg t-color-grey-dark-3"
+      className="c-sports-top-bar u-padding-x--lg t-color-grey-90"
     >
       <Flex.Block>
         <Text

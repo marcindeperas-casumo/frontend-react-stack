@@ -73,17 +73,28 @@ def runLint() {
     sh "yarn lint"
 }
 
-def runChromatic() {
-    sh "yarn chromatic"
+def runChromatic () {
+    withCredentials([string(credentialsId: 'REACT_POC_CHROMATIC_APP_CODE', variable: 'REACT_POC_CHROMATIC_APP_CODE')]) {
+        sh """
+            yarn chromatic
+        """
+    }
 }
 
 def rollbarDeployTracking() {
-    def data = """
-    {"access_token":"${ROLLBAR_REACT_STACK}","environment":"production","revision":"${GIT_COMMIT}", "local_username":"${env.gitAuthor}"}
-    """
+    withCredentials([string(credentialsId: 'ROLLBAR_REACT_STACK', variable: 'ROLLBAR_REACT_STACK')]) {
+        def data = """
+        {
+           "access_token" : "${ROLLBAR_REACT_STACK}",
+           "environment" : "production",
+           "revision":"${GIT_COMMIT}", 
+           "local_username" : "${env.gitAuthor}"
+        }
+        """.replace('\n',  '')
 
-    sh "curl --request POST \
-        --url https://api.rollbar.com/api/1/deploy/ \
-        --header 'content-type: application/json' \
-        --data '${data}'"
+        sh "curl --request POST \
+            --url https://api.rollbar.com/api/1/deploy/ \
+            --header 'content-type: application/json' \
+            --data '${data}'"
+        }
 }

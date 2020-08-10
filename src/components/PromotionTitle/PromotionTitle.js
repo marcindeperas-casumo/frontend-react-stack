@@ -20,7 +20,7 @@ const PromotionTitleText = ({ title, dates }: Props) => (
     </Text>
     <Text
       size="2xs"
-      className="t-color-chrome-dark-1 u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase"
+      className="t-color-grey-50 u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase"
     >
       {dates}
     </Text>

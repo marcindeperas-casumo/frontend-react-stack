@@ -34,7 +34,9 @@ import {
   types as transactionsBetsHistoryTypes,
   fetchAnnualOverviewSaga,
 } from "Models/transactionsBetsHistory";
-import { danishOverlaySaga } from "Models/compliance/denmark";
+import { danishOverlaySaga } from "Models/playOkay";
+import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
+import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -100,6 +102,14 @@ export default function* rootSaga(dispatch: any): * {
   );
   yield fork(
     takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.REALITY_CHECK_PERIODIC_NOTIFICATION
+    ),
+    realityCheckPeriodicNotificationSaga
+  );
+  yield fork(
+    takeEvery,
     adventureActionTypes.ADVENTURER_INIT,
     fetchAdventurerSaga
   );
@@ -120,4 +130,5 @@ export default function* rootSaga(dispatch: any): * {
     takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
+  yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
 }

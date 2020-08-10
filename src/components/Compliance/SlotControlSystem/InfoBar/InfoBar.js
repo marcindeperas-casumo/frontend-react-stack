@@ -39,7 +39,7 @@ export function InfoBar() {
           <Flex align="center" className="u-margin-right">
             <ClockIcon
               size="sm"
-              className="u-margin-right--sm t-color-chrome-dark-1"
+              className="u-margin-right--sm t-color-grey-50"
             />
             <Timer
               startTime={activeSession.startedTime}
@@ -51,28 +51,28 @@ export function InfoBar() {
           <Flex align="center" className="u-margin-right">
             <CreditCardIcon
               size="sm"
-              className="u-margin-right--sm t-color-chrome-dark-1"
+              className="u-margin-right--sm t-color-grey-50"
             />
             {currencyFormatter(activeSession.stats.remainingBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <CreditCardIcon
               size="sm"
-              className="u-margin-right--sm t-color-chrome-dark-1"
+              className="u-margin-right--sm t-color-grey-50"
             />
             {currencyFormatter(activeSession.stats.consumedBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <ArrowsSpinIcon
               size="sm"
-              className="u-margin-right--sm t-color-chrome-dark-1"
+              className="u-margin-right--sm t-color-grey-50"
             />
             {currencyFormatter(activeSession.stats.totalBets)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <PrizeIcon
               size="sm"
-              className="u-margin-right--sm t-color-chrome-dark-1"
+              className="u-margin-right--sm t-color-grey-50"
             />
             {currencyFormatter(activeSession.stats.totalWins)}
           </Flex>

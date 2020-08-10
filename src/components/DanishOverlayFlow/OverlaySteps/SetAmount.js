@@ -1,10 +1,10 @@
 //@flow
 import React, { useCallback } from "react";
-import Button from "@casumo/cmp-button";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { TextInput } from "Components/Compliance/TextInput";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
-import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
+import { limitPeriod, minFirstDepositLimit } from "Models/playOkay";
 import type { CmsContent } from "../DanishEntryOverlay";
 
 type Props = {
@@ -73,7 +73,7 @@ export const SetAmount = (props: Props) => {
           inputClassName="u-padding-left--md"
         />
         {limitInRange(amount) && isLimitMaxed(amount) && (
-          <div data-test-id="warning-message" className="t-color-red-light-1">
+          <div data-test-id="warning-message" className="t-color-red-30">
             {minFirstDepositLimit} -{" "}
             {formatCurrency({
               locale,
@@ -83,16 +83,15 @@ export const SetAmount = (props: Props) => {
           </div>
         )}
         <div className="u-padding-top--2xlg">
-          <Button
+          <ButtonPrimary
             className="u-width--full"
-            disabled={!limitInRange(amount) || loading}
-            variant="primary"
+            isDisabled={!limitInRange(amount) || loading}
             size="md"
-            loading={loading}
+            isLoading={loading}
             onClick={confirmLimit}
           >
             {t.save_limit_button}
-          </Button>
+          </ButtonPrimary>
         </div>
       </div>
     </div>

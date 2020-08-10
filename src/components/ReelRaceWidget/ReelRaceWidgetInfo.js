@@ -20,7 +20,11 @@ export function ReelRaceWidgetInfo({ t, ...props }: Props) {
         <Text tag="span" size="xs">
           {t.starting_in}
         </Text>
-        <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
+        <Text
+          tag="span"
+          size="lg"
+          className="u-font-weight-bold t-color-purple-60"
+        >
           <Timer
             endTime={props.startTime}
             render={o => `${o.minutes}:${o.seconds}`}
@@ -32,7 +36,11 @@ export function ReelRaceWidgetInfo({ t, ...props }: Props) {
         <Text tag="span" size="xs">
           {t.spins}
         </Text>
-        <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
+        <Text
+          tag="span"
+          size="lg"
+          className="u-font-weight-bold t-color-purple-60"
+        >
           {props.spinLimit}
         </Text>
       </Flex>

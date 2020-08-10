@@ -7,6 +7,7 @@ export { GreentubeGame } from "./GreentubeGame";
 export { MicrogamingGame } from "./MicrogamingGame";
 export { NetentGame } from "./NetentGame";
 export { OryxGame } from "./OryxGame";
+export { PushGame } from "./PushGame";
 export { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 export { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 export { RedTigerGame } from "./RedTigerGame";

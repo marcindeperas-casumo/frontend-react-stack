@@ -24,7 +24,11 @@ export function ReelRacePlayerInfo(props: Props) {
         <Text tag="span" size="xs">
           {props.t.ending_in}
         </Text>
-        <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
+        <Text
+          tag="span"
+          size="lg"
+          className="u-font-weight-bold t-color-purple-60"
+        >
           <Timer
             key={props.endTime}
             endTime={props.endTime}
@@ -37,7 +41,11 @@ export function ReelRacePlayerInfo(props: Props) {
         <Text tag="span" size="xs">
           {props.t.spins}
         </Text>
-        <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
+        <Text
+          tag="span"
+          size="lg"
+          className="u-font-weight-bold t-color-purple-60"
+        >
           {props.spins}
         </Text>
       </Flex>

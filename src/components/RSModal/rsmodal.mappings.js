@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { REACT_APP_MODAL } from "Src/constants";
 import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
-import { overlayContentCmsSlug } from "Models/compliance/denmark";
+import { overlayContentCmsSlug } from "Models/playOkay";
 import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
@@ -17,6 +17,7 @@ import {
   PeriodicReminderNotification,
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
+import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
@@ -42,7 +43,7 @@ export const mappings: Mapping = {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
   },
-  REALITY_CHECK_MODAL: {
+  [REACT_APP_MODAL.ID.REALITY_CHECK]: {
     slug: REALITY_CHECK_CMS_SLUG,
     Content: RealityCheck,
   },
@@ -73,6 +74,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED]: {
     slug: SCS_CMS_SLUGS.AFTER_PLAYING,
     Content: AfterLimitsReached,
+  },
+  [REACT_APP_MODAL.ID.TIME_LIMITS_FORM]: {
+    slug: "",
+    Content: TimeLimitsFormModalContainer,
   },
 };
 

@@ -6,4 +6,8 @@
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    color: cudl-palette(grey, "5");
+  }
 }
