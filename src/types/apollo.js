@@ -924,10 +924,13 @@ export type ReelRaceWidgetQuery = {
 export type GetGameSets_gameSetsList_additionalFilterGroups_values = {
   key: string,
   query: string,
+  title: ?string,
 };
 export type GetGameSets_gameSetsList_additionalFilterGroups = {
   key: string,
   type: string,
+  title: string,
+  description: string,
   values: Array<GetGameSets_gameSetsList_additionalFilterGroups_values>,
 };
 export type GetGameSets_gameSetsList = {

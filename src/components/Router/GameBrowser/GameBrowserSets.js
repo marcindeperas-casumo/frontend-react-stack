@@ -4,6 +4,7 @@ import { Link, useMatch } from "@reach/router";
 import { ChipNavigation } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import * as Icons from "@casumo/cmp-icons";
+import { useTranslations } from "Utils/hooks";
 
 const GameSetChip = ({
   Icon,
@@ -39,6 +40,9 @@ type Props = {
 export const GameBrowserSets = (props: Props) => {
   const searchActive = Boolean(useMatch("search"));
   const detailsActive = Boolean(useMatch("details/:slug"));
+  const t = useTranslations<{
+    top_lists: string,
+  }>("new-game-browser.top-nav");
 
   if (searchActive || detailsActive || props.sets.length === 0) {
     return null;
@@ -50,7 +54,11 @@ export const GameBrowserSets = (props: Props) => {
       spacing="default"
       className="o-wrapper u-padding--md@mobile u-padding-y--lg@desktop u-overflow--scroll"
     >
-      <GameSetChip to="top" Icon={Icons.HeartIcon} text="Top Lists" />
+      <GameSetChip
+        to="top"
+        Icon={Icons.TopListsIcon}
+        text={t?.top_lists || ""}
+      />
       <>
         {props.sets.map(x => (
           <GameSetChip
