@@ -1,12 +1,13 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
 import { setData, getData } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import { loadMoreConstructor } from "Utils";
-import { useCachedQuery } from "Utils/hooks";
+import { useCachedQuery, useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
@@ -29,8 +30,32 @@ type Props = {
   set: A.GetGameSets_gameSetsList,
 };
 
+/**
+ * Each entry in `allFilters` array has array `values` inside.
+ * Each entry in `values` has field `query`. Without bug/missing translation
+ * there will always be one query that is equal to given `currentQuery`.
+ *
+ * Number of all queries to match is relatively low (under 100) so we're not
+ * concerned about performance of this function.
+ */
+export function findQueryTranslation(
+  currentQuery: string,
+  allFilters: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>
+): string {
+  return R.pipe(
+    R.pluck("values"),
+    R.flatten,
+    R.find(R.propEq("query", currentQuery)),
+    R.propOr(currentQuery, "title")
+  )(allFilters);
+}
+
 /* eslint-disable-next-line sonarjs/cognitive-complexity */
 export function GameListPage({ set }: Props) {
+  const t = useTranslations<{
+    title: string,
+    modal_button: string,
+  }>("new-game-browser.filtering");
   const page = useCurrentGamePage();
   const { filters: defaultFilters, sort: defaultSort } = useSelector(getData);
   const dispatch = useDispatch();
@@ -87,13 +112,13 @@ export function GameListPage({ set }: Props) {
             isActive
             onRemove={() => setFilters({ ...filters, [x]: false })}
           >
-            {x.split("=")[1]}
+            {findQueryTranslation(x, set.additionalFilterGroups)}
           </ChipFilterable>
         </Flex>
       ))}
       <Flex className="u-margin-right u-margin-bottom">
         <ChipFilterable onClick={() => setFiltersVisibility(true)}>
-          Filters
+          {t?.title || ""}
         </ChipFilterable>
       </Flex>
     </Flex>

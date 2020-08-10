@@ -4,7 +4,8 @@ import classNames from "classnames";
 import { Link, useMatch } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { HeartIcon, PlayIcon, SearchIcon } from "@casumo/cmp-icons";
+import { TopListsIcon, PlayIcon, SearchIcon } from "@casumo/cmp-icons";
+import { useTranslations } from "Utils/hooks";
 
 const NavLinkDesktop = ({
   Icon,
@@ -114,9 +115,17 @@ const NavLinkMobile = ({
     </Flex.Item>
   );
 };
-export const TopNavMobile = () => (
-  <Flex spacing="sm">
-    <NavLinkMobile Icon={HeartIcon} text="Top lists" to="top" />
-    <NavLinkMobile Icon={SearchIcon} text="Search" to="search" />
-  </Flex>
-);
+
+export const TopNavMobile = () => {
+  const t = useTranslations<{
+    top_lists: string,
+    search: string,
+  }>("new-game-browser.top-nav");
+
+  return (
+    <Flex spacing="sm">
+      <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists || ""} to="top" />
+      <NavLinkMobile Icon={SearchIcon} text={t?.search || ""} to="search" />
+    </Flex>
+  );
+};

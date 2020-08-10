@@ -10,9 +10,12 @@ query GetGameSets {
     additionalFilterGroups {
       key
       type
+      title
+      description
       values {
         key
         query
+        title
       }
     }
   }
