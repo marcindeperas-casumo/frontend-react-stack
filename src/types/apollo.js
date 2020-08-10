@@ -1998,40 +1998,6 @@ export type SearchVisible = {
 };
 
 // ====================================================
-// GraphQL query operation: TranslationsTestQuery
-// ====================================================
-
-export type TranslationsTestQuery_one = {
-  id: string,
-  text: string,
-};
-export type TranslationsTestQuery_two = {
-  id: string,
-  text: string,
-};
-export type TranslationsTestQuery = {
-  one: ?TranslationsTestQuery_one,
-  two: ?TranslationsTestQuery_two,
-};
-
-// ====================================================
-// GraphQL query operation: TranslationsQuery
-// ====================================================
-
-export type TranslationsQuery_one = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery_two = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery = {
-  one: ?TranslationsQuery_one,
-  two: ?TranslationsQuery_two,
-};
-
-// ====================================================
 // GraphQL query operation: CurrentReelRaceInfoQuery
 // ====================================================
 
