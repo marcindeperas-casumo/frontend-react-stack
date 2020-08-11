@@ -30,22 +30,26 @@ export function SessionDetailsForLogout(props: Props) {
   return (
     <Flex direction="vertical">
       <div className="u-padding--sm t-background-grey-0" />
-      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
-        {t?.logout_text}
-      </Text>
       <LoginSessionDetailsSection />
       {activeSession && (
-        <SessionDetailsBody
-          t={t}
-          locale={locale}
-          currency={activeSession.stats.currency}
-          playStartedTime={activeSession.startedTime}
-          playEndedTime={playEndedTime}
-          moneyWon={activeSession.stats.totalWins}
-          moneyLeft={activeSession.stats.remainingBalance}
-          moneyWagered={activeSession.stats.totalBets}
-        />
+        <>
+          <div className="u-padding--sm u-margin-top--lg t-background-grey-0" />
+          <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+            {t?.logout_text}
+          </Text>
+          <SessionDetailsBody
+            t={t}
+            locale={locale}
+            currency={activeSession.stats.currency}
+            playStartedTime={activeSession.startedTime}
+            playEndedTime={playEndedTime}
+            moneyWon={activeSession.stats.totalWins}
+            moneyLeft={activeSession.stats.remainingBalance}
+            moneyWagered={activeSession.stats.totalBets}
+          />
+        </>
       )}
+
       <ButtonPrimary
         size="sm"
         variant="primary"
