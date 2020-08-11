@@ -19,6 +19,11 @@ export const Roulette = {
       min: 1,
       max: 10000
     },
+    operationHours: {
+      type: "FULLTIME",
+      startTime: null,
+      endTime: null,
+    },
   },
   logo:
     "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-roulette.png",

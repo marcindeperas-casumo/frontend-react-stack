@@ -15,18 +15,30 @@ import "./LiveCasinoCardData.scss";
 type Props = {|
   liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
   t: Object,
+  className?: string,
+  small?: boolean,
 |};
 
 const getTextColor = (color: string) =>
   contains(color, ["yellow-30", "grey-5"]) ? "grey-90" : "white";
 
-const renderResults = ({ results, type }) => {
+const renderResults = ({ results, type }, small = false) => {
   if (!results || !type) {
     return null;
   }
 
   return (
-    <Flex spacing="sm" className="u-margin-bottom u-padding-top u-margin-left">
+    <Flex
+      spacing={small ? "sm" : "default"}
+      align="center"
+      className={classNames(
+        "u-position-absolute u-width--full u-height--full u-padding-left--md",
+        {
+          "u-padding-bottom u-padding-top u-padding-vertical": !small,
+          "u-padding-bottom--sm u-padding-top--sm": small,
+        }
+      )}
+    >
       {results.slice(0, RESULT_BADGES_COUNT).map((result, i) => {
         const color = getBadgeColor(type, result);
         const borderColor = getBadgeBorderColor(type, result);
@@ -36,10 +48,15 @@ const renderResults = ({ results, type }) => {
               align="center"
               justify="center"
               className={classNames(
-                "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
+                "t-border-r--circle",
                 `t-background-${color}`,
                 borderColor && `t-border--md t-border-${borderColor}`,
-                { "c-card-data__badge": i === 0 }
+                {
+                  "u-width--lg u-height--lg": !small,
+                  "u-width--md u-height--md": small,
+                  "c-card-data__badge": i === 0,
+                  "c-card-data__badge--small": small,
+                }
               )}
             >
               <Text
@@ -57,12 +74,12 @@ const renderResults = ({ results, type }) => {
   );
 };
 
-const renderSeats = ({ liveCasinoLobby, t }) => {
+const renderSeats = ({ liveCasinoLobby, t }, small = false) => {
   return (
     <Text
       size="sm"
       tag="span"
-      className="t-color-white u-font-weight-bold u-text-transform-capitalize"
+      className="t-color-white u-font-weight-bold u-text-transform-capitalize u-line-height--1"
     >
       {liveCasinoLobby.seats || t.betBehindText}{" "}
       {liveCasinoLobby.seats ? t.openSeatsText : ""}
@@ -80,14 +97,19 @@ const liveCasinoTypes = [
   TYPES.BACCARAT,
 ];
 
-const LobbyType = ({ liveCasinoLobby, t }) =>
+const LobbyType = ({ liveCasinoLobby, t, small }) =>
   cond([
-    [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby)],
-    [equals(TYPES.BLACKJACK), () => renderSeats({ liveCasinoLobby, t })],
+    [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby, small)],
+    [equals(TYPES.BLACKJACK), () => renderSeats({ liveCasinoLobby, t }, small)],
     [T, () => null],
   ])(liveCasinoLobby.type);
 
-export const LiveCasinoCardData = ({ liveCasinoLobby, t }: Props) => {
+export const LiveCasinoCardData = ({
+  liveCasinoLobby,
+  t,
+  className,
+  small = false,
+}: Props) => {
   return (
     <Flex
       align="center"
@@ -95,15 +117,20 @@ export const LiveCasinoCardData = ({ liveCasinoLobby, t }: Props) => {
       className={classNames(
         (contains(liveCasinoLobby.type, liveCasinoTypes) ||
           liveCasinoLobby.betBehind) &&
-          "c-card-data__badges-background u-width--full"
+          "c-card-data__badges-background u-width--full",
+        {
+          "c-card-data__badges-background--small": small,
+        },
+        className
       )}
     >
       <Flex
         direction="vertical"
         align="center"
-        className="u-width--full u-position-relative"
+        justify="center"
+        className="u-width--full u-position-relative u-height--full"
       >
-        <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} />
+        <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} small={small} />
         <div className="c-card-data__badges-mask u-width--full u-height--full u-position-absolute" />
       </Flex>
     </Flex>

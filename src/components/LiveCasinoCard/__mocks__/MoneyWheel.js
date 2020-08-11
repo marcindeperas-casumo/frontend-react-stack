@@ -19,6 +19,11 @@ export const MoneyWheel = {
       min: 0.1,
       max: 2500
     },
+    operationHours: {
+      type: "FULLTIME",
+      startTime: null,
+      endTime: null,
+    },
   },
   logo:
     "https://cms.casumo.com/wp-content/uploads/2017/05/dream_catcher_logo.png",
