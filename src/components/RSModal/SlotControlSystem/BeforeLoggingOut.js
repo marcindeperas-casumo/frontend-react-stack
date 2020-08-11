@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { omit } from "ramda";
-import { useLocale } from "Utils/hooks";
+import { useLocale, useJurisdiction } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
 import { type ModalContentComponent } from "Components/RSModal";
 import { SessionDetailsForLogout } from "Components/Compliance/SlotControlSystem/SessionDetails";
@@ -23,18 +23,19 @@ type ContentType = {
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   const { activeSession, isSynced, isFetching } = useSessionsState();
+  const { isDGOJ } = useJurisdiction();
   const locale = useLocale();
   const tForModalSkin = {
     modal_title: props.t?.logout_modal_title || "",
   };
 
   React.useEffect(() => {
-    if (!activeSession && isSynced && !isFetching) {
+    if (!activeSession && isSynced && !isFetching && !isDGOJ) {
       props.acceptModal();
     }
-  }, [activeSession, isSynced, isFetching]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSession, isSynced, isFetching, isDGOJ]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!activeSession) {
+  if (!isDGOJ) {
     return null;
   }
 
