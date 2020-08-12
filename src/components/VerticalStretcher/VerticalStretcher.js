@@ -90,7 +90,7 @@ export const VerticalStretcher = ({
             className="c-game-page__swipeup-details u-width--full u-height--screen"
           >
             <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
-              <HandSymbol className="u-width--5xlg u-height--5xlg" />
+              <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
             </Flex.Item>
             <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
               <SwipeUpMessageText />
