@@ -5,6 +5,7 @@ import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { type ActiveSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
+import { LoginSessionDetailsSection } from "./LoginSessionDetailsSection";
 
 type Props = {
   t: ?{
@@ -18,7 +19,7 @@ type Props = {
     logout_text: string,
   },
   onClickButton: () => void,
-  activeSession: ActiveSessionType,
+  activeSession: ?ActiveSessionType,
   locale: string,
   playEndedTime: number,
 };
@@ -29,19 +30,26 @@ export function SessionDetailsForLogout(props: Props) {
   return (
     <Flex direction="vertical">
       <div className="u-padding--sm t-background-grey-0" />
-      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
-        {t?.logout_text}
-      </Text>
-      <SessionDetailsBody
-        t={t}
-        locale={locale}
-        currency={activeSession.stats.currency}
-        playStartedTime={activeSession.startedTime}
-        playEndedTime={playEndedTime}
-        moneyWon={activeSession.stats.totalWins}
-        moneyLeft={activeSession.stats.remainingBalance}
-        moneyWagered={activeSession.stats.totalBets}
-      />
+      <LoginSessionDetailsSection />
+      {activeSession && (
+        <>
+          <div className="u-padding--sm u-margin-top--lg t-background-grey-0" />
+          <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+            {t?.logout_text}
+          </Text>
+          <SessionDetailsBody
+            t={t}
+            locale={locale}
+            currency={activeSession.stats.currency}
+            playStartedTime={activeSession.startedTime}
+            playEndedTime={playEndedTime}
+            moneyWon={activeSession.stats.totalWins}
+            moneyLeft={activeSession.stats.remainingBalance}
+            moneyWagered={activeSession.stats.totalBets}
+          />
+        </>
+      )}
+
       <ButtonPrimary
         size="sm"
         variant="primary"
