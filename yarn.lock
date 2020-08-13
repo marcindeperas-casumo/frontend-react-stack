@@ -2361,7 +2361,7 @@
     "@casumo/cudl-utils" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@^9.0.2":
+"@casumo/cudl@9.0.2":
   version "9.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl/9.0.2/411f1267739241f376396b63d951be09b7e3f4d1ca60fa92e8daa4c82747b93f#62254f94806b51a5505696034b65ebae9f2e75f5"
   integrity sha512-JZEHnA1sCQZ4ffQRB6HuTy9rYH5jY+jCcCOUtA6hxbAR7DGQiT9aqtRLNmvNdEXDiK9DyFCUdKyx8gGERuaECw==
