@@ -1,5 +1,5 @@
 import React from "react";
-import { PlayerIcon } from "@casumo/cmp-icons";
+import { UserIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
@@ -21,7 +21,7 @@ export function LiveCasinoCardFooter({ players, provider }) {
   return (
     <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border--current-color t-color-grey-0">
       <div className="o-flex-align--center">
-        <PlayerIcon className="u-margin-y t-color-grey-20" />
+        <UserIcon className="u-margin-y t-color-grey-20" />
         <Text
           size="sm"
           className="u-margin-left--sm u-margin-y u-font-weight-bold t-color-grey-70"

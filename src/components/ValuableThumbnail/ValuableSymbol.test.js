@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 import {
-  CurrencyCadIcon,
-  CurrencyEurIcon,
-  CurrencyGbpIcon,
-  CurrencyKrnIcon,
-  CurrencyRupIcon,
+  WalletTabDollarUnselectedIcon,
+  WalletTabEuroUnselectedIcon,
+  WalletTabSterlingUnselectedIcon,
+  WalletTabKroneUnselectedIcon,
+  WalletTabRupeeUnselectedIcon,
 } from "@casumo/cmp-icons";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
@@ -20,7 +20,7 @@ describe("ValuableSymbol", () => {
       <ValuableSymbol currency={"foo"} valuableType={cashValuableType} />
     );
 
-    expect(rendered.find(CurrencyEurIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabEuroUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render eur icon if currency is EUR", () => {
@@ -31,7 +31,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyEurIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabEuroUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render cad icon if currency is CAD", () => {
@@ -42,7 +42,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyCadIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabDollarUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render cad icon if currency is GBP", () => {
@@ -53,7 +53,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyGbpIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabSterlingUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render krn icon if currency is SEK", () => {
@@ -64,7 +64,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyKrnIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabKroneUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render krn icon if currency is DKK", () => {
@@ -75,7 +75,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyKrnIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabKroneUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render cad icon if currency is RUP", () => {
@@ -86,7 +86,7 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyRupIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabRupeeUnselectedIcon).exists()).toBe(true);
   });
 
   test("should render cad icon if currency is USD", () => {
@@ -97,6 +97,6 @@ describe("ValuableSymbol", () => {
       />
     );
 
-    expect(rendered.find(CurrencyCadIcon).exists()).toBe(true);
+    expect(rendered.find(WalletTabDollarUnselectedIcon).exists()).toBe(true);
   });
 });
