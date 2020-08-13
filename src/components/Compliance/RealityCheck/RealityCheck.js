@@ -2,13 +2,15 @@
 import * as React from "react";
 import { DateTime } from "luxon";
 import { pathOr } from "ramda";
+import { useDispatch } from "react-redux";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
+import { appManualLogoutInit } from "Models/app";
 
 type Props = {
   t: {
@@ -18,6 +20,7 @@ type Props = {
     reality_check_game_round_history_button_text: string,
     reality_check_continue_button_text: string,
     reality_check_exit_game_button_text: string,
+    reality_check_logout_label: string,
   },
   onClickContinue: () => void,
   casumoName: string,
@@ -28,6 +31,8 @@ type Props = {
 
 export function RealityCheck(props: Props) {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const dispatch = useDispatch();
+  const { isMGA } = useJurisdiction();
   const {
     t,
     locale,
@@ -37,6 +42,7 @@ export function RealityCheck(props: Props) {
     onClickContinue,
   } = props;
 
+  const logout = () => dispatch(appManualLogoutInit());
   const onClickCancel = () => navigateToKO(ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () =>
     navigateToKO(ROUTE_IDS.TRANSACTION_HISTORY_BETS);
@@ -95,6 +101,15 @@ export function RealityCheck(props: Props) {
           {t.reality_check_exit_game_button_text}
         </ButtonSecondary>
       </Flex>
+      {isMGA && (
+        <Text
+          tag="div"
+          className="u-margin-top--xlg u-text-align-center"
+          onClick={logout}
+        >
+          {t.reality_check_logout_label}
+        </Text>
+      )}
     </Flex>
   );
 }
