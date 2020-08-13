@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from "react";
-import { LockIcon, ClockIcon, ActiveIcon } from "@casumo/cmp-icons";
+import { LockIcon, TimeLockedIcon, ActiveIcon } from "@casumo/cmp-icons";
 import { type ValuableState, VALUABLE_STATES } from "Models/valuables";
 
 type Props = {
@@ -35,7 +35,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
 
   return (
     <div className="u-display--inline-block t-color-red-30">
-      <ClockIcon
+      <TimeLockedIcon
         size="sm"
         className="u-margin-right--sm"
         style={{ width: "10px", height: "11px" }}

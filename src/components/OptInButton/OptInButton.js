@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import TrackClick from "Components/TrackClick";
 import { noop } from "Utils";
 
@@ -49,7 +49,7 @@ class OptInButton extends PureComponent<Props> {
       return (
         <TrackClick eventName={disabled.eventName} data={disabled.data}>
           <ButtonPrimary size="md" isDisabled>
-            <TickIcon size="sm" className={this.props.className} />
+            <CheckIcon size="sm" className={this.props.className} />
             <Text tag="span" className="u-margin-left">
               {disabled.label}
             </Text>

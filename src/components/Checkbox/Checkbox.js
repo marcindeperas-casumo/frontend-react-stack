@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent, type Node } from "react";
 import Flex from "@casumo/cmp-flex";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import "./Checkbox.scss";
 
 type Props = {
@@ -22,7 +22,7 @@ const CheckboxChecked = () => (
       justify="center"
       className="o-ratio__content u-padding--sm"
     >
-      <TickIcon className="t-color-white" />
+      <CheckIcon className="t-color-white" />
     </Flex>
   </div>
 );

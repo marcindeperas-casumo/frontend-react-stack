@@ -3,10 +3,10 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import {
-  ClockIcon,
-  KycTabIcon as CreditCardIcon,
-  ArrowsSpinIcon,
-  PrizeIcon,
+  TimeLockedIcon,
+  VerificationIcon as CreditCardIcon,
+  SpinIcon,
+  TrophyIcon,
 } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
 import { useSessionsState } from "Models/slotControlSystem";
@@ -37,7 +37,7 @@ export function InfoBar() {
       <Text className="u-font-weight-black t-color-white" size="xs" tag="div">
         <Flex>
           <Flex align="center" className="u-margin-right">
-            <ClockIcon
+            <TimeLockedIcon
               size="sm"
               className="u-margin-right--sm t-color-grey-50"
             />
@@ -63,14 +63,14 @@ export function InfoBar() {
             {currencyFormatter(activeSession.stats.consumedBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
-            <ArrowsSpinIcon
+            <SpinIcon
               size="sm"
               className="u-margin-right--sm t-color-grey-50"
             />
             {currencyFormatter(activeSession.stats.totalBets)}
           </Flex>
           <Flex align="center" className="u-margin-right">
-            <PrizeIcon
+            <TrophyIcon
               size="sm"
               className="u-margin-right--sm t-color-grey-50"
             />

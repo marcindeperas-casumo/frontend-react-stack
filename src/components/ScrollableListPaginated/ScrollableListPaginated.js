@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import { DirectionRightIcon } from "@casumo/cmp-icons";
+import { ArrowRightIcon } from "@casumo/cmp-icons";
 import type { CellRendererParams } from "react-virtualized";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -61,7 +61,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
               onClick={previousClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--left`}
             >
-              <DirectionRightIcon className="t-color-grey-90 Icons-c-icon--flip-horiz" />
+              <ArrowRightIcon className="t-color-grey-90 Icons-c-icon--flip-horiz" />
             </div>
           )}
         </Flex.Item>
@@ -71,7 +71,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
               onClick={nextClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--right`}
             >
-              <DirectionRightIcon className="t-color-grey-90" />
+              <ArrowRightIcon className="t-color-grey-90" />
             </div>
           )}
         </Flex.Item>

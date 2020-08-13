@@ -2,7 +2,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { CrossIcon } from "@casumo/cmp-icons";
+import { CloseIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import LiveIcon from "./live-icon.svg";
 import "./SportsNavTab.scss";
@@ -29,7 +29,7 @@ const Badge = ({ className, children }: BadgeProps) => (
 
 const CloseBadge = () => (
   <Badge className="t-background-red-40 t-color-white">
-    <CrossIcon size="sm" className="u-display--block" />
+    <CloseIcon size="sm" className="u-display--block" />
   </Badge>
 );
 
