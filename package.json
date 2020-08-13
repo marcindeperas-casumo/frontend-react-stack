@@ -11,7 +11,7 @@
     "@casumo/cmp-button": "^3.0.0",
     "@casumo/cmp-card": "^4.0.0",
     "@casumo/cmp-flex": "^3.0.6",
-    "@casumo/cmp-icons": "^3.0.0",
+    "@casumo/cmp-icons": "^4.0.0",
     "@casumo/cmp-list": "^2.0.0",
     "@casumo/cmp-loader-global": "^1.0.3",
     "@casumo/cmp-media": "^2.0.6",

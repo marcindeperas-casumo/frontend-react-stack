@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { DirectionRightIcon } from "@casumo/cmp-icons";
+import { ArrowRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
@@ -28,7 +28,7 @@ const SettingsSection = ({ title, description, href }) => (
     <SettingsRow
       text={<SettingsHeadline title={title} description={description} />}
     >
-      <DirectionRightIcon className="t-color-grey-5" />
+      <ArrowRightIcon className="t-color-grey-5" />
     </SettingsRow>
   </a>
 );

@@ -2,7 +2,7 @@
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-import { CrossIcon } from "@casumo/cmp-icons";
+import { CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import "./Pill.scss";
 
@@ -48,7 +48,7 @@ export const Pill = ({
       </div>
 
       {onRemove && (
-        <CrossIcon
+        <CloseIcon
           size="sm"
           onClick={event => {
             event.stopPropagation();

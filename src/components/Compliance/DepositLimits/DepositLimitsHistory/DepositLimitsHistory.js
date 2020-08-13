@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ArrowRightIcon, TickIcon } from "@casumo/cmp-icons";
+import { ArrowRightIcon, CheckIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
 import type {
   DepositLimitsHistoryType,
@@ -94,7 +94,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
             className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
           >
             <Flex className="t-color-green-30 u-margin-y" align="center">
-              <TickIcon
+              <CheckIcon
                 size="sm"
                 className="t-border t-border--current-color t-border-r--circle c-deposit-limits-history__tick-icon-border-width u-margin-right--md"
               />

@@ -2,7 +2,7 @@
 import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { DirectionRightIcon } from "@casumo/cmp-icons";
+import { ArrowRightIcon } from "@casumo/cmp-icons";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { ContentReplacer } from "Components/ContentReplacer";
 
@@ -33,7 +33,7 @@ const RealityCheck = ({
           {frequencyOffLabel}
         </Text>
       )}
-      {enabled && <DirectionRightIcon className="t-color-grey-5" />}
+      {enabled && <ArrowRightIcon className="t-color-grey-5" />}
     </Flex>
   </SettingsRow>
 );

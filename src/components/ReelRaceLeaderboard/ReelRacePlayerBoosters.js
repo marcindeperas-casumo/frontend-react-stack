@@ -2,7 +2,11 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { TripleWinIcon, TripleBigWinIcon, MegaIcon } from "@casumo/cmp-icons";
+import {
+  TripleWinIcon,
+  TripleBigWinIcon,
+  MegaWinIcon,
+} from "@casumo/cmp-icons";
 
 type Props = {
   boosters: {
@@ -51,7 +55,7 @@ export function ReelRacePlayerBoosters(props: Props) {
       </Flex>
       <Flex direction="vertical" align="center">
         <div className="t-color-teal-50 t-border t-border--current-color t-border-r--circle u-padding">
-          <MegaIcon size="md" className="t-color-purple-60" />
+          <MegaWinIcon size="md" className="t-color-purple-60" />
         </div>
         <Text
           tag="div"

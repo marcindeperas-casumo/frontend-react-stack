@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import type { Node } from "react";
-import { DirectionDownIcon } from "@casumo/cmp-icons";
+import { ArrowDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { EVENT_PROPS, EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
@@ -55,7 +55,7 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
 
   get icon() {
     return (
-      <DirectionDownIcon
+      <ArrowDownIcon
         className={classNames(
           "t-color-purple-60",
           this.state.isExpanded && "u-transform--flip-y"

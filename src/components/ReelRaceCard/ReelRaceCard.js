@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
+import { PlayIcon, TimeLockedIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
@@ -139,7 +139,7 @@ export class ReelRaceCard extends React.Component<Props> {
 
     return (
       <Flex spacing="none">
-        <ClockIcon className="u-margin-right" />
+        <TimeLockedIcon className="u-margin-right" />
         <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
           {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
             "t"

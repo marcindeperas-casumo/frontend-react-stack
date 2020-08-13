@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonText } from "@casumo/cmp-button";
-import { DirectionRightIcon, MoreIcon } from "@casumo/cmp-icons";
+import { ArrowRightIcon, MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
 import { formatCurrency, interpolate } from "Utils";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
@@ -71,7 +71,7 @@ export function SinglePeriodLimitOverview(props: Props) {
                 {remainingLimitValue}
               </Text>
             </Flex>
-            <DirectionRightIcon className="t-color-grey-0" />
+            <ArrowRightIcon className="t-color-grey-0" />
           </Flex>
         </Flex>
       </MobileAndTablet>
