@@ -16,7 +16,7 @@ export const RtpTableRow = ({
       <Flex
         key={idx}
         className={classNames(
-          "t-border-right t-border-grey-5 o-flex__block",
+          "u-padding-left t-border-right t-border-grey-5 o-flex__block",
           `u-width--${idx === 0 ? 5 - (columns.length - 1) : 1}/5`
         )}
         align="center"

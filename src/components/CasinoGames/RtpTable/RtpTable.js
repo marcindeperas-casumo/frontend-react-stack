@@ -93,7 +93,7 @@ export const RtpTable = ({
   valuesColumns: Array<string>,
 }) => {
   const rowContainerClasses =
-    "t-border-bottom t-border-left t-border-grey-5 u-padding-left t-background-white";
+    "t-border-bottom t-border-left t-border-grey-5 t-background-white";
 
   return (
     <Flex
