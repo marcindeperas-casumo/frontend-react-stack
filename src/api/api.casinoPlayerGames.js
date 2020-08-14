@@ -1,9 +1,13 @@
 // @flow
 import clientHttp from "Lib/http";
+import { getDeveloperOptions } from "Utils/developerOptions";
 import { platform } from "Utils";
+
+const { showDisabledGames } = getDeveloperOptions();
 
 const DEFAULT_HEADERS = {
   headers: {
+    "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
     "X-Request-Device": platform,
   },
 };

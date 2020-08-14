@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import { DirectionDownIcon } from "@casumo/cmp-icons";
+import { ChevronDownIcon } from "@casumo/cmp-icons";
 import ExpandableListItem from "./ExpandableListItem";
 
 describe("<ExpandableListItem />", () => {
@@ -34,12 +34,12 @@ describe("<ExpandableListItem />", () => {
       </ExpandableListItem>
     );
 
-    expect(
-      rendered.find(DirectionDownIcon).hasClass("u-transform--flip-y")
-    ).toBe(false);
+    expect(rendered.find(ChevronDownIcon).hasClass("u-transform--flip-y")).toBe(
+      false
+    );
 
     expect(
-      renderedExpanded.find(DirectionDownIcon).hasClass("u-transform--flip-y")
+      renderedExpanded.find(ChevronDownIcon).hasClass("u-transform--flip-y")
     ).toBe(true);
   });
 

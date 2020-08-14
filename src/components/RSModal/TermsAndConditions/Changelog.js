@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import DangerousHtml from "Components/DangerousHtml";
@@ -48,7 +48,7 @@ export function Changelog({ t, ...props }: Props) {
       ))}
       {props.ackTimestamp && (
         <Flex className="t-color-green-30 u-margin-top--md" align="center">
-          <TickIcon
+          <CheckIcon
             className="c-tac-changelog-approved u-margin-right"
             size="sm"
           />

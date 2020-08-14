@@ -8,7 +8,7 @@ describe("<EditPillsButton />", () => {
   test("renders correctly", () => {
     const rendered = shallow(<EditPillsButton onClick={() => {}} />);
 
-    expect(rendered.find("CrossIcon")).toHaveLength(1);
+    expect(rendered.find("CloseIcon")).toHaveLength(1);
   });
 
   test("when clicked triggers onClick", () => {

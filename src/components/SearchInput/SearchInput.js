@@ -3,7 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
+import { CloseIcon, SearchIcon } from "@casumo/cmp-icons";
 
 import "./SearchInput.scss";
 
@@ -115,7 +115,7 @@ class SearchInput extends React.Component<Props, State> {
             onClick={this.handleClear}
           >
             <div className="t-color-white u-padding--sm t-border-r--circle u-overflow-hidden t-background-grey-90">
-              <CrossIcon size="sm" className="u-display--block" />
+              <CloseIcon size="sm" className="u-display--block" />
             </div>
           </div>
         )}

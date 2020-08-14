@@ -2,12 +2,12 @@ import React from "react";
 import { either, prop, cond, T, equals, anyPass } from "ramda";
 import {
   CouponIcon,
-  CurrencyCadIcon,
-  CurrencyEurIcon,
-  CurrencyGbpIcon,
-  CurrencyKrnIcon,
-  CurrencyRupIcon,
-  DepositIcon,
+  WalletTabDollarUnselectedIcon,
+  WalletTabEuroUnselectedIcon,
+  WalletTabSterlingUnselectedIcon,
+  WalletTabKroneUnselectedIcon,
+  WalletTabRupeeUnselectedIcon,
+  DepositBonusIcon,
 } from "@casumo/cmp-icons";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
@@ -19,7 +19,7 @@ import {
 } from "./icons";
 
 const VALUABLE_ICON = {
-  [VALUABLE_TYPES.DEPOSIT]: DepositIcon,
+  [VALUABLE_TYPES.DEPOSIT]: DepositBonusIcon,
   [VALUABLE_TYPES.SPINS]: {
     [VALUABLE_SPIN_TYPES.BASIC_SPINS]: BasicSpinsIcon,
     [VALUABLE_SPIN_TYPES.BONUS]: BonusSpinsIcon,
@@ -27,26 +27,26 @@ const VALUABLE_ICON = {
     [VALUABLE_SPIN_TYPES.MEGA]: MegaSpinsIcon,
   },
   [VALUABLE_TYPES.CASH]: {
-    [CURRENCIES.CAD]: CurrencyCadIcon,
-    [CURRENCIES.EUR]: CurrencyEurIcon,
-    [CURRENCIES.GBP]: CurrencyGbpIcon,
-    [CURRENCIES.DKK]: CurrencyKrnIcon,
-    [CURRENCIES.INR]: CurrencyRupIcon,
-    [CURRENCIES.SEK]: CurrencyKrnIcon,
-    [CURRENCIES.DKK]: CurrencyKrnIcon,
-    [CURRENCIES.NZD]: CurrencyCadIcon,
-    [CURRENCIES.USD]: CurrencyCadIcon,
+    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
+    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
   },
   [VALUABLE_TYPES.CASHBACK]: {
-    [CURRENCIES.CAD]: CurrencyCadIcon,
-    [CURRENCIES.EUR]: CurrencyEurIcon,
-    [CURRENCIES.GBP]: CurrencyGbpIcon,
-    [CURRENCIES.DKK]: CurrencyKrnIcon,
-    [CURRENCIES.INR]: CurrencyRupIcon,
-    [CURRENCIES.SEK]: CurrencyKrnIcon,
-    [CURRENCIES.DKK]: CurrencyKrnIcon,
-    [CURRENCIES.NZD]: CurrencyCadIcon,
-    [CURRENCIES.USD]: CurrencyCadIcon,
+    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
+    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
