@@ -6,6 +6,7 @@ query GetGamesRTP($query: String!, $offset: Int!, $limit: Int!) {
       id
       slug
       title
+      actualRtpPast6Months
       actualRtpPastYear
       rtp
     }
