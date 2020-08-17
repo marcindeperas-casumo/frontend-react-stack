@@ -63,7 +63,49 @@
   margin: auto 0 !important;
 }
 
+//LANDING PAGE START
 .KambiBC-sports-menu__list {
   display: none !important;
 }
+
+#KambiBC-container
+  .KambiBC-promo-cards-wrapper[data-eq-state~="promoCardsWide"]
+  .KambiBC-promo-card {
+  height: 160px !important;
+  min-width: 280px !important;
+  width: 280px !important;
+}
+
+.KambiBC-editorial-coupon-promo-card,
+.KambiBC-featured-league-promo-card {
+  align-content: flex-start !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+}
+
+.KambiBC-editorial-coupon-promo-card__row1,
+.KambiBC-featured-league-promo-card__title {
+  flex: none !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  line-height: 10px !important;
+  margin: 0 !important;
+  padding: 24px 0 8px 16px !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+.KambiBC-editorial-coupon-promo-card__row2,
+.KambiBC-featured-league-promo-card__sport {
+  background: none !important;
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  line-height: 22px !important;
+  max-width: 120px !important;
+  padding: 0 0 0 16px !important;
+  text-align: left !important;
+}
+
+//LANDING PAGE END
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
