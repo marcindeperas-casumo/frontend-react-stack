@@ -3,7 +3,7 @@ import React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { CrossIcon, LockIcon } from "@casumo/cmp-icons";
+import { CloseIcon, LockIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
@@ -107,7 +107,7 @@ const renderValuableText = ({
       )}
     </div>
 
-    <CrossIcon
+    <CloseIcon
       className="u-cursor-pointer o-flex__item--no-shrink"
       onClick={onClose}
     />

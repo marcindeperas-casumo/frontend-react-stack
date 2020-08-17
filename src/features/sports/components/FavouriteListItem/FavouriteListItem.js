@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import type { Node } from "react";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 
@@ -41,7 +41,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
           boxShadow: isFavourite ? "" : "inset 0px 0px 0px 2px #C9D6D6",
         }} // TODO(CPO): replace with scss class
       >
-        <TickIcon
+        <CheckIcon
           className={classNames(
             !isFavourite && "u-visibility--hidden t-color-grey-0",
             "t-color-white"

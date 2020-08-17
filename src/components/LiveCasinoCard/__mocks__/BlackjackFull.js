@@ -20,6 +20,11 @@ export const BlackjackFull = {
       min: 5,
       max: 2000
     },
+    operationHours: {
+      type: "FULLTIME",
+      startTime: null,
+      endTime: null,
+    },
   },
   logo:
     "https://cms.casumo.com/wp-content/uploads/2020/01/Lightning_baccarat_Thumbnail_Logo.png",

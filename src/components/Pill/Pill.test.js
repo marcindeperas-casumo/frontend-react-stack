@@ -23,7 +23,7 @@ describe("<Pill />", () => {
     const rendered = shallow(<Pill onRemove={() => {}}>test</Pill>);
     const renderedNoOnRemove = shallow(<Pill>test</Pill>);
 
-    expect(rendered.find("CrossIcon")).toHaveLength(1);
+    expect(rendered.find("CloseIcon")).toHaveLength(1);
     expect(renderedNoOnRemove.exists("CrossIcon")).toBe(false);
   });
 
@@ -32,7 +32,7 @@ describe("<Pill />", () => {
     const stopPropagation = jest.fn();
     const rendered = shallow(<Pill onRemove={onRemove}>test</Pill>);
 
-    rendered.find("CrossIcon").simulate("click", { stopPropagation });
+    rendered.find("CloseIcon").simulate("click", { stopPropagation });
 
     expect(onRemove).toBeCalledTimes(1);
     expect(stopPropagation).toBeCalledTimes(1);

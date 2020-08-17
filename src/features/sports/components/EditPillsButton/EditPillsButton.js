@@ -2,7 +2,7 @@
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-import { CrossIcon } from "@casumo/cmp-icons";
+import { CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 
@@ -33,7 +33,7 @@ const EditPillsButton = ({
       className={classNames("t-border-r--circle o-flex u-padding", className)}
       data-test="edit-pills-button-container"
     >
-      <CrossIcon size="sm" className="u-transform-rotate-z--45" />
+      <CloseIcon size="sm" className="u-transform-rotate-z--45" />
     </Flex.Item>
     {label && (
       <Flex.Item>

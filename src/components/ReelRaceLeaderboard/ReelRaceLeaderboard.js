@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { PrizeIcon } from "@casumo/cmp-icons";
+import { TrophyIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { playerIdSelector } from "Models/handshake";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
@@ -61,7 +61,7 @@ export function ReelRaceLeaderboard(props: Props) {
             size="xs"
             className="u-text-align-center u-padding c-reel-race-leaderboard-widget__position"
           >
-            {p.position === 1 ? <PrizeIcon size="sm" /> : p.position}
+            {p.position === 1 ? <TrophyIcon size="sm" /> : p.position}
           </Text>
           <Text tag="div" size="xs" className="u-width--2/5 u-padding">
             {p.playerName}

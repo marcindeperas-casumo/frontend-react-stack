@@ -2,7 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Skeleton from "@casumo/cmp-skeleton";
-import { CrossIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
+import { CloseIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 
 type BackButton =
@@ -53,7 +53,7 @@ export function ModalHeader(props: Props) {
         {props.title || <ModalTitleSkeleton />}
       </Text>
       {props.showCloseButton ? (
-        <CrossIcon
+        <CloseIcon
           className="u-padding--lg t-color-black u-cursor-pointer"
           onClick={props.closeAction}
         />

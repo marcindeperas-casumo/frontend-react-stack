@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
 
@@ -41,7 +41,7 @@ export function TimeLimitsFormOutro({
       className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
     >
       <Flex.Item className="u-text-align-center">
-        <TickIcon size="lg" className="t-color-green-30" />
+        <CheckIcon size="lg" className="t-color-green-30" />
       </Flex.Item>
       <Flex.Item className="u-margin-bottom--5xlg">
         <Copy

@@ -1,0 +1,25 @@
+query LiveCasinoCardSmallDataQuery($id: String!) {
+  liveCasinoTablesById(id: $id) {
+    id
+    tableId
+    state
+    symbol
+    numberOfPlayers
+    seats
+    provider
+    results
+    image
+    type
+    betBehind
+    bets {
+      symbol
+      min
+      max
+    }
+    operationHours {
+      type
+      startTime
+      endTime
+    }
+  }
+}
