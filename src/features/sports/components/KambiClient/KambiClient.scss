@@ -64,7 +64,8 @@
 }
 
 //LANDING PAGE START
-.KambiBC-sports-menu__list {
+.KambiBC-sports-menu__list,
+.KambiBC-league-highlight-header {
   display: none !important;
 }
 
@@ -105,6 +106,90 @@
   max-width: 120px !important;
   padding: 0 0 0 16px !important;
   text-align: left !important;
+}
+
+.KambiBC-sandwich-filter-background {
+  background: none !important;
+}
+
+.KambiBC-filter-menu__option {
+  background: none !important;
+  border-radius: 0 !important;
+  color: #798291 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  line-height: 21px !important;
+  padding: 4px 8px !important;
+}
+
+.KambiBC-filter-menu__option--selected {
+  background: #fff !important;
+  border-radius: 8px !important;
+  color: #1a212c !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  line-height: 21px !important;
+}
+
+.KambiBC-sandwich-filter-background--level-2 {
+  background: #e5eaed !important;
+  border-radius: 12px 12px 0 0 !important;
+  box-shadow: inset 0px -1px 0px #e5eaed !important;
+  margin-top: 8px !important;
+}
+
+.KambiBC-sandwich-filter-foreground--level-2 {
+  margin-top: 8px !important;
+}
+
+.KambiBC-sandwich-filter__event-detail-container {
+  align-items: flex-start !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.KambiBC-sandwich-filter__event-detail {
+  margin-top: 4px !important;
+}
+
+.KambiBC-sandwich-filter__event-list-item {
+  height: 80px !important;
+  padding: 8px 0 !important;
+}
+
+.KambiBC-sandwich-filter__event-list-info {
+  height: 60px !important;
+  padding: 0 16px !important;
+  text-align: left !important;
+}
+
+.KambiBC-event-item__match-clock-container {
+  color: #798291 !important;
+  font-size: 10px !important;
+  line-height: 12px !important;
+  padding: 0px !important;
+  text-align: left !important;
+
+  .KambiBC-event-item__start-time--date {
+    display: inline-block !important;
+  }
+
+  .KambiBC-event-item__start-time--time {
+    display: inline-block !important;
+    margin-left: 4px !important;
+  }
+}
+
+.KambiBC-event-participants__name {
+  padding: 0 !important;
+}
+
+.KambiBC-event-participants {
+  border-radius: 8px !important;
+  color: #1a212c !important;
+  font-size: 14px !important;
+  line-height: 21px !important;
+  mix-blend-mode: normal !important;
 }
 
 //LANDING PAGE END
