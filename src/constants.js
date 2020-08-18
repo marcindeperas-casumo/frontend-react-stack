@@ -205,6 +205,7 @@ export const MARKETS = {
   es_es: "es_es",
   nz_en: "nz_en",
   jp_ja: "jp_ja",
+  at_de: "at_de",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -219,6 +220,7 @@ export const LANGUAGES = {
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
+  [MARKETS.at_de]: "at",
 };
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
@@ -237,6 +239,7 @@ export const INTL_LOCALES = {
   [MARKETS.es_es]: "es-ES",
   [MARKETS.nz_en]: "en-NZ",
   [MARKETS.jp_ja]: "ja-JP",
+  [MARKETS.at_de]: "de-AT",
 };
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
@@ -251,6 +254,7 @@ export const URL_PREFIXES = {
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
+  [MARKETS.at_de]: "de-at",
 };
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
