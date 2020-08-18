@@ -1,12 +1,7 @@
-$cudl-border-radii: (
-  xs: 2px,
-  sm: 4px,
-  default: 8px,
-  md: 16px,
-  lg: 24px,
-  circle: 50%,
-  pill: 100em,
+$cudl-border-sizes: (
   none: 0,
-);
-
-$cudl-border-radius-responsive: true;
+  default: 1px,
+  md: 2px,
+  lg: 3px,
+  xlg: 4px,
+) !default;

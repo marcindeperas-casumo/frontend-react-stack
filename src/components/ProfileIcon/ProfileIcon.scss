@@ -1,0 +1,12 @@
+.c-profile-icon {
+  background-clip: padding-box;
+  // Temporary measure till opacity package is there:
+  border-color: rgba(26, 33, 44, 0.25);
+  left: 8px;
+  top: 8px;
+
+  &__chevron-icon {
+    bottom: -4px;
+    right: -4px;
+  }
+}
