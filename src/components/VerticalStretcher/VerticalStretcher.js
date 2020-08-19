@@ -5,18 +5,21 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
+import type { GameProviderModel } from "GameProviders";
 import { SwipeUpMessageText } from "./SwipeUpMessageText";
 import HandSymbol from "./icons/hand.svg";
 import "./VerticalStretcher.scss";
 
 export type Props = {
   children?: Element<*>,
-  swipeToFillAvailable: boolean,
+  swipeUpPanelEnabled: boolean,
+  gameProviderModel: GameProviderModel,
 };
 
 export const VerticalStretcher = ({
   children,
-  swipeToFillAvailable = true,
+  swipeUpPanelEnabled = true,
+  gameProviderModel,
 }: Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
@@ -57,6 +60,7 @@ export const VerticalStretcher = ({
         } else {
           setShowSwipePanel(false);
           setControllScroll(true);
+          gameProviderModel.resumeGame();
         }
       }
     }, 100);
@@ -77,7 +81,10 @@ export const VerticalStretcher = ({
   });
 
   const shouldShowSwipePanel =
-    swipeToFillAvailable && !isNative && showSwipePanel;
+    gameProviderModel.swipeUpToPlayPanelPossible &&
+    swipeUpPanelEnabled &&
+    !isNative &&
+    showSwipePanel;
 
   return (
     <div ref={heightContainer} className="u-width--full">

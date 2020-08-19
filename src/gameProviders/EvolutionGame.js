@@ -15,6 +15,8 @@ export const EVOLUTION_SCRIPT_URL = {
 declare var EvolutionGaming: { init: Function };
 
 export class EvolutionGame extends BaseIframeGame {
+  swipeUpToPlayPanelPossible = true;
+
   get componentProps() {
     return {
       ...super.componentProps,
