@@ -2,28 +2,35 @@
 import React from "react";
 import { ChatIcon } from "@casumo/cmp-icons";
 
-import "./ChatIconPlaceHolder.scss";
-
 type Props = {
-  onClickCallBack: Function,
+  onClick: Function,
   className?: string,
   hidden?: boolean,
 };
 
 export const ChatIconPlaceHolder = ({
-  className,
+  className = "",
   hidden = false,
-  onClickCallBack,
-}: Props) =>
-  !hidden ? (
+  onClick,
+}: Props) => {
+  if (hidden) {
+    return null;
+  }
+
+  return (
     <div
-      onClick={() => {
-        onClickCallBack();
-      }}
-      className={`${
-        className ? className : ""
-      } u-cursor--pointer u-display--inline-block u-padding t-border-r--circle c-chat-icon t-background-grey-90`}
+      onClick={onClick}
+      className={`
+      c-chat-icon
+      u-cursor--pointer
+      u-display--inline-block
+      u-padding
+      t-opacity-background--50
+      t-border-r--circle
+      t-background-grey-90
+      ${className}`}
     >
       <ChatIcon className="t-color-white" />
     </div>
-  ) : null;
+  );
+};
