@@ -2,15 +2,17 @@
 import * as React from "react";
 import { DateTime } from "luxon";
 import { pathOr } from "ramda";
+import { useDispatch } from "react-redux";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
+import { appManualLogoutInit } from "Models/app";
 
-type Props = {
+type RealityCheckProps = {
   t: {
     reality_check_title: string,
     reality_check_message: string,
@@ -18,6 +20,7 @@ type Props = {
     reality_check_game_round_history_button_text: string,
     reality_check_continue_button_text: string,
     reality_check_exit_game_button_text: string,
+    reality_check_logout_label: string,
   },
   onClickContinue: () => void,
   casumoName: string,
@@ -26,8 +29,33 @@ type Props = {
   realityCheck: RealityCheckType,
 };
 
-export function RealityCheck(props: Props) {
+type CancelButtonProps = {
+  logoutLabel: string,
+  cancelLabel: string,
+  onClickCancel: () => void,
+  onClickLogout: () => void,
+};
+
+const CancelButton = ({
+  logoutLabel,
+  cancelLabel,
+  onClickCancel,
+  onClickLogout,
+}: CancelButtonProps) => {
+  const { isMGA } = useJurisdiction();
+  const onClick = isMGA ? onClickLogout : onClickCancel;
+  const label = isMGA ? logoutLabel : cancelLabel;
+
+  return (
+    <ButtonSecondary size="md" onClick={onClick} className="o-flex--1">
+      {label}
+    </ButtonSecondary>
+  );
+};
+
+export function RealityCheck(props: RealityCheckProps) {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const dispatch = useDispatch();
   const {
     t,
     locale,
@@ -37,6 +65,7 @@ export function RealityCheck(props: Props) {
     onClickContinue,
   } = props;
 
+  const logout = () => dispatch(appManualLogoutInit());
   const onClickCancel = () => navigateToKO(ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () =>
     navigateToKO(ROUTE_IDS.TRANSACTION_HISTORY_BETS);
@@ -87,13 +116,12 @@ export function RealityCheck(props: Props) {
           {t.reality_check_continue_button_text}
         </ButtonPrimary>
         <Flex className="u-padding" />
-        <ButtonSecondary
-          size="md"
-          onClick={onClickCancel}
-          className="o-flex--1"
-        >
-          {t.reality_check_exit_game_button_text}
-        </ButtonSecondary>
+        <CancelButton
+          onClickCancel={onClickCancel}
+          onClickLogout={logout}
+          logoutLabel={t.reality_check_logout_label}
+          cancelLabel={t.reality_check_exit_game_button_text}
+        />
       </Flex>
     </Flex>
   );
