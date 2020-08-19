@@ -60,7 +60,6 @@ export const VerticalStretcher = ({
         } else {
           setShowSwipePanel(false);
           setControllScroll(true);
-          gameProviderModel.resumeGame();
         }
       }
     }, 100);
