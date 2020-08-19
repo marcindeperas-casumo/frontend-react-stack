@@ -1,1 +1,2 @@
-export { default } from "./ProfileIcon";
+// @flow
+export { ProfileIcon } from "./ProfileIcon";

@@ -1,7 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import ProfileIcon from "./ProfileIcon";
+import { action } from "@storybook/addon-actions";
+import { ProfileIcon } from "./ProfileIcon";
 
 const stories = storiesOf("ProfileIcon", module);
 
@@ -14,7 +15,9 @@ stories.add("Default", () => {
         boxSizing: "content-box",
       }}
     >
-      <ProfileIcon />
+      <div>
+        <ProfileIcon onClick={action("clicked")} />
+      </div>
     </div>
   );
 });
