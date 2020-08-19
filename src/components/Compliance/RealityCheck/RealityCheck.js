@@ -12,7 +12,7 @@ import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
 import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
 import { appManualLogoutInit } from "Models/app";
 
-type Props = {
+type RealityCheckProps = {
   t: {
     reality_check_title: string,
     reality_check_message: string,
@@ -29,10 +29,33 @@ type Props = {
   realityCheck: RealityCheckType,
 };
 
-export function RealityCheck(props: Props) {
+type CancelButtonProps = {
+  logoutLabel: string,
+  cancelLabel: string,
+  onClickCancel: () => void,
+  onClickLogout: () => void,
+};
+
+const CancelButton = ({
+  logoutLabel,
+  cancelLabel,
+  onClickCancel,
+  onClickLogout,
+}: CancelButtonProps) => {
+  const { isMGA } = useJurisdiction();
+  const onClick = isMGA ? onClickLogout : onClickCancel;
+  const label = isMGA ? logoutLabel : cancelLabel;
+
+  return (
+    <ButtonSecondary size="md" onClick={onClick} className="o-flex--1">
+      {label}
+    </ButtonSecondary>
+  );
+};
+
+export function RealityCheck(props: RealityCheckProps) {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const dispatch = useDispatch();
-  const { isMGA } = useJurisdiction();
   const {
     t,
     locale,
@@ -93,23 +116,13 @@ export function RealityCheck(props: Props) {
           {t.reality_check_continue_button_text}
         </ButtonPrimary>
         <Flex className="u-padding" />
-        <ButtonSecondary
-          size="md"
-          onClick={onClickCancel}
-          className="o-flex--1"
-        >
-          {t.reality_check_exit_game_button_text}
-        </ButtonSecondary>
+        <CancelButton
+          onClickCancel={onClickCancel}
+          onClickLogout={logout}
+          logoutLabel={t.reality_check_logout_label}
+          cancelLabel={t.reality_check_exit_game_button_text}
+        />
       </Flex>
-      {isMGA && (
-        <Text
-          tag="div"
-          className="u-margin-top--xlg u-text-align-center"
-          onClick={logout}
-        >
-          {t.reality_check_logout_label}
-        </Text>
-      )}
     </Flex>
   );
 }
