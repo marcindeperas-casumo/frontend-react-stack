@@ -14,15 +14,14 @@ const ProfileIcon = () => {
   };
 
   return (
-    <span onClick={toggleDrawer}>
+    <Flex.Item className="u-margin-left--none" onClick={toggleDrawer}>
       {isOpen ? (
         <ChevronUpIcon className="t-color-white u-margin-left" />
       ) : (
         <Flex
           align="center"
           justify="center"
-          className="c-profile-icon t-background-grey-0 u-position-relative u-height--2xlg u-width--2xlg u-zindex--content-overlay t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25
-           t-border-orange-30"
+          className="c-profile-icon t-background-grey-0 u-position-relative u-height--2xlg u-width--2xlg u-zindex--content-overlay t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25"
         >
           <AvatarIcon />
           <ChevronDownIcon
@@ -31,7 +30,7 @@ const ProfileIcon = () => {
           />
         </Flex>
       )}
-    </span>
+    </Flex.Item>
   );
 };
 
