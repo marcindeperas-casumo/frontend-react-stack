@@ -27,7 +27,6 @@ export const VerticalStretcher = ({
 
   const isNative = isNativeByUserAgent();
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
       if (controllScroll) {
@@ -56,15 +55,9 @@ export const VerticalStretcher = ({
          * when toolbars are being shown and they are eating part of the screen
          */
         if (window.innerHeight < document.body?.clientHeight) {
-          if (!showSwipePanel) {
-            gameProviderModel.pauseGame();
-          }
           setShowSwipePanel(true);
           setControllScroll(false);
         } else {
-          if (showSwipePanel) {
-            gameProviderModel.resumeGame();
-          }
           setShowSwipePanel(false);
           setControllScroll(true);
         }
