@@ -38,13 +38,13 @@ const pills = [
         <Pill
           onClick={action("click")}
           isActive
-          activeClassNames="t-background-white t-border t-border--current-color"
+          activeClassNames="t-background-white t-border t-border-current"
         >
           La Liga
         </Pill>
         <Pill
           onClick={action("click")}
-          inactiveClassNames="t-background-red-30 t-border t-border--current-color t-color-white"
+          inactiveClassNames="t-background-red-30 t-border t-border-current t-color-white"
         >
           La Liga
         </Pill>
