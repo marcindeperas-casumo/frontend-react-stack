@@ -20,32 +20,28 @@ export const InGameDrawer = ({
 }: Props) => {
   return (
     <Flex
-      align="center"
+      align="stretch"
       justify="space-around"
       className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet"
     >
-      <Flex.Item
+      <Flex.Block
         onClick={onLiveChatClick}
-        className="o-flex--1 u-text-align-center t-color-white"
+        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center"
       >
         <ChatIcon className="u-margin-right" />
         <Text tag="span" size="sm">
           {t.in_game_drawer_live_chat}
         </Text>
-      </Flex.Item>
-      <Flex.Item
-        className="t-background-grey-70"
-        style={{ width: 1, height: "100%" }}
-      ></Flex.Item>
-      <Flex.Item
+      </Flex.Block>
+      <Flex.Block
         onClick={onExitGameClick}
-        className="o-flex--1 u-text-align-center t-color-white"
+        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none t-border-grey-70 t-border-left"
       >
         <ExitIcon className="u-margin-right" />
         <Text tag="span" size="sm">
           {t.in_game_drawer_exit_game}
         </Text>
-      </Flex.Item>
+      </Flex.Block>
     </Flex>
   );
 };
