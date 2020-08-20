@@ -4,10 +4,12 @@ import { useQuery } from "@apollo/react-hooks";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
+import { insertIntoArray } from "Components/CasinoGames/CasinoGames";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
 import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
 
+const pageSize = 50;
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, loading, fetchMore } = useQuery<
@@ -17,7 +19,7 @@ export const GameSearchContainer = () => {
     // if you search for an empty string or spaces or whitespace, the server should take care of it
     variables: {
       query: searchQuery,
-      pageSize: 50,
+      pageSize,
       page: 0,
     },
     fetchPolicy: "network-only",
@@ -45,10 +47,10 @@ export const GameSearchContainer = () => {
           return prevData;
         }
 
-        const mergedResults = [
-          ...prevData.gamesSearch.results,
-          ...fetchMoreResult.gamesSearch.results,
-        ];
+        const mergedResults = insertIntoArray(
+          fetchMoreResult.gamesSearch.results,
+          pageNumber * pageSize
+        )(prevData.gamesSearch.results);
 
         return R.mergeDeepRight(prevData, {
           gamesSearch: {
