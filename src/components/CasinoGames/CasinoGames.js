@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
-import { useTranslations } from "Utils/hooks";
+import { useTranslations, useJurisdiction } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
@@ -37,6 +37,8 @@ export const CasinoGames = () => {
     },
   });
 
+  const { isMGA } = useJurisdiction();
+
   if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
     return null;
   }
@@ -45,21 +47,23 @@ export const CasinoGames = () => {
 
   const renderRtpTable = () => {
     return (
-      <RtpTable
-        games={games}
-        data={data}
-        fetchMore={fetchMore}
-        query={query}
-        gamesCount={gamesCount}
-        scrollElementId={ROOT_SCROLL_ELEMENT_ID}
-        headerColumns={[
-          t.rtp_game_name,
-          t.rtp_value,
-          t.actual_rtp_past_6_months,
-          t.actual_rtp_past_year,
-        ]}
-        valuesColumns={["rtp", "actualRtpPast6Months", "actualRtpPastYear"]}
-      />
+      !isMGA && (
+        <RtpTable
+          games={games}
+          data={data}
+          fetchMore={fetchMore}
+          query={query}
+          gamesCount={gamesCount}
+          scrollElementId={ROOT_SCROLL_ELEMENT_ID}
+          headerColumns={[
+            t.rtp_game_name,
+            t.rtp_value,
+            t.actual_rtp_past_6_months,
+            t.actual_rtp_past_year,
+          ]}
+          valuesColumns={["rtp", "actualRtpPast6Months", "actualRtpPastYear"]}
+        />
+      )
     );
   };
 
@@ -95,7 +99,7 @@ export const CasinoGames = () => {
               Blackjack
             </ButtonPrimary>
           </Flex>
-          <DangerousHtml html={t.rtp_description} />
+          {!isMGA && <DangerousHtml html={t.rtp_description} />}
         </div>
         {renderRtpTable()}
       </>
