@@ -254,7 +254,7 @@ export const URL_PREFIXES = {
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
-  [MARKETS.at_de]: "de-at",
+  [MARKETS.at_de]: "at",
 };
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
