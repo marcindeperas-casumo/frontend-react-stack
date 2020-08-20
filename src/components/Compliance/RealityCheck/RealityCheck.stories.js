@@ -15,6 +15,7 @@ const t = {
   reality_check_game_round_history_button_text: "View history",
   reality_check_continue_button_text: "Continue playing",
   reality_check_exit_game_button_text: "Change game",
+  reality_check_logout_label: "Logout",
 };
 const stories = storiesOf("Compliance/RealityCheck", module);
 const sessionStartedTime = 1575624543323;
