@@ -24,7 +24,7 @@ export function TextInput(props: Props) {
     <Flex
       align="end"
       className={classNames(
-        "u-margin-y u-font-3xlg u-font-weight-black u-line-height t-color-grey-90 t-border-bottom t-border--current-color",
+        "u-margin-y u-font-3xlg u-font-weight-black u-line-height t-color-grey-90 t-border-bottom t-border-current",
         props.className
       )}
     >

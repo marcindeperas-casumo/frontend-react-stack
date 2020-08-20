@@ -96,7 +96,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
             <Flex className="t-color-green-30 u-margin-y" align="center">
               <CheckIcon
                 size="sm"
-                className="t-border t-border--current-color t-border-r--circle c-deposit-limits-history__tick-icon-border-width u-margin-right--md"
+                className="t-border--md t-border-current t-border-r--circle u-margin-right--md"
               />
               <Text
                 tag="span"
@@ -125,7 +125,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               <Flex
                 direction="vertical"
                 spacing="none"
-                className="t-background-grey-0 u-padding--md c-deposit-limits-history__limit o-flex--1"
+                className="t-background-grey-0 u-padding--md t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md o-flex--1"
               >
                 <Text tag="span" className="t-color-grey-50">
                   {t[getTranslationKeyForHistoryEntry(historyItem)]}
