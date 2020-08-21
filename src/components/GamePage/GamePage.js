@@ -17,7 +17,7 @@ export const GamePage = ({
   gameProviderModel,
   shouldShowSlotControlSystem,
 }: Props) => (
-  <VerticalStretcher>
+  <VerticalStretcher gameProviderModel={gameProviderModel}>
     <Flex
       className="u-width--full u-height--full t-background-grey-90 t-color-white"
       direction="vertical"
