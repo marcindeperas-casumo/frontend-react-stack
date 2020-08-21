@@ -6,6 +6,7 @@ import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
+import { useFullScreenOnSwipeUp } from "Utils/hooks";
 import { SwipeUpMessageText } from "./SwipeUpMessageText";
 import HandSymbol from "./icons/hand.svg";
 import "./VerticalStretcher.scss";
@@ -26,6 +27,8 @@ export const VerticalStretcher = ({
   const [controllScroll, setControllScroll] = useState(true);
 
   const isNative = isNativeByUserAgent();
+
+  useFullScreenOnSwipeUp();
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
