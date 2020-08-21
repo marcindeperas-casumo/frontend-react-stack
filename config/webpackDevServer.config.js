@@ -15,7 +15,12 @@ module.exports = {
   // because we are using that on differend host via proxy. If you have
   // custom proxy config and you don't reffer to react stack as
   // `host.docker.internal` then you need to change that
-  allowedHosts: ["mobile.dev", "host.docker.internal", "site.dev"],
+  allowedHosts: [
+    "mobile.dev",
+    "host.docker.internal",
+    "site.dev",
+    "mobile.local",
+  ],
   // Enable gzip compression of generated files.
   compress: true,
   // Silence WebpackDevServer's own logs since they're generally not useful.
