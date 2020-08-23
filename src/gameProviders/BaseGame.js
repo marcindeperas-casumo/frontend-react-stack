@@ -11,6 +11,7 @@ export class BaseGame {
   onGameActive: Event;
   onGameIdle: Event;
   isGameIdle: boolean = true;
+  swipeUpToPlayPanelPossible: boolean = true;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
