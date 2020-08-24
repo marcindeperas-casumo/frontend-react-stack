@@ -2,8 +2,7 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { isMobile } from "@casumo/is-mobile";
-import { FullscreenToggle } from "Components/FullscreenView";
+import { ExitGame } from "./ExitGame";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
 import PlayOkayIcon from "./icons/playokay.svg";
@@ -22,7 +21,7 @@ export const DGOJBar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      {!isMobile && <FullscreenToggle elementOverride={document.body} />}
+      <ExitGame />
     </Flex.Block>
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href={links.playokay}>

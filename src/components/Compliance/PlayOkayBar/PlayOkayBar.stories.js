@@ -2,7 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
-import { MockedProvider } from "@apollo/react-testing";
+import MockStore from "Components/MockStore";
 import { FullscreenView } from "Components/FullscreenView";
 import { playerSectionsQueryMock } from "Components/Settings/SettingsSections/__mocks__/Queries.mock";
 import { PlayOkayBar } from "./PlayOkayBar";
@@ -15,10 +15,10 @@ stories.add("Default", () => {
   const jurisdiction = select("Jurisdiction", jurisdictions, "MGA");
 
   return (
-    <MockedProvider mocks={[playerSectionsQueryMock]}>
+    <MockStore queryMocks={[playerSectionsQueryMock]}>
       <FullscreenView>
         <PlayOkayBar jurisdiction={jurisdiction} />
       </FullscreenView>
-    </MockedProvider>
+    </MockStore>
   );
 });
