@@ -3,7 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { CrossIcon, DirectionDownIcon, TickIcon } from "@casumo/cmp-icons";
+import { CloseIcon, ChevronDownIcon, CheckIcon } from "@casumo/cmp-icons";
 import { isMobile } from "Components/ResponsiveLayout";
 import "./select.scss";
 
@@ -112,7 +112,7 @@ export function Select<T>(props: Props<T>) {
                     {props.options[key]}
                   </Text>
                   {key === props.value && (
-                    <TickIcon size="md" className="t-color-purple-60" />
+                    <CheckIcon size="md" className="t-color-purple-60" />
                   )}
                 </Flex>
               ))}
@@ -130,13 +130,13 @@ export function Select<T>(props: Props<T>) {
           )}
         >
           {props.value ? (
-            <CrossIcon
+            <CloseIcon
               size="md"
               className="u-padding--sm t-color-white"
               onClick={() => props.onChange(null)}
             />
           ) : (
-            <DirectionDownIcon size="md" className="u-padding--sm" />
+            <ChevronDownIcon size="md" className="u-padding--sm" />
           )}
         </Flex>
       </div>
