@@ -1,0 +1,61 @@
+.c-game-page__swipe-panel {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: calc(100vh + 100px);
+  z-index: cudl-z("content-overlay");
+}
+
+.c-game-page__swipe-hand-symbol {
+  animation: swipe-up cubic-bezier(0.75, 0, 0.25, 1) 3s infinite;
+}
+
+.c-game-page__swipeup-text-container {
+  text-align: center;
+  width: 200px;
+}
+
+@media (orientation: landscape) {
+  .c-game-page__swipeup-details {
+    flex-direction: row;
+  }
+
+  .c-game-page__swipeup-icon-container {
+    margin-right: 50px;
+  }
+
+  .c-game-page__swipeup-text-container {
+    text-align: left;
+  }
+}
+
+@media (orientation: portrait) {
+  .c-game-page__swipeup-text-container {
+    margin-top: 80px !important;
+    text-align: center;
+  }
+}
+
+// stylelint-disable xi/selector-pattern
+@keyframes swipe-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  10% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(60px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-60px);
+  }
+  90% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
