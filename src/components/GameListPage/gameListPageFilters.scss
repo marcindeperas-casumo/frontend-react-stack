@@ -1,3 +1,6 @@
 .c-game-list-page-filters__main-button-bg {
-  background: rgba(cudl-palette(white, "base"), 0.7);
+  background: linear-gradient(
+    rgba(0, 0, 0, 0),
+    cudl-palette(white, "base") 30%
+  );
 }

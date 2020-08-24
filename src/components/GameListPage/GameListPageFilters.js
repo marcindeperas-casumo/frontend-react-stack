@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
-import { ChipFilterable } from "@casumo/cmp-chip";
+import { ChipChoice } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
@@ -43,18 +43,18 @@ export function GameListPageFilters(props: Props) {
             key={x.key}
             justify={x.type === "toggle" ? "space-between" : "start"}
             direction={x.type === "toggle" ? "horizontal" : "vertical"}
-            className="u-padding-y--xlg t-border-bottom"
+            className="u-padding-y--xlg t-border-bottom t-color-grey-5"
           >
             <Flex
               direction="vertical"
-              className={classNames({
+              className={classNames("t-color-grey-90", {
                 "u-padding-bottom--md": x.type !== "toggle",
               })}
             >
               <Text className="u-font-weight-black">{x.title}</Text>
               <Text size="sm">{x.description}</Text>
             </Flex>
-            <Flex className="o-flex--wrap">
+            <Flex spacing="none" className="o-flex--wrap">
               {x.values.map(y => {
                 const isActive = props.activeFilters[y.query];
                 const onChange = () => {
@@ -77,13 +77,14 @@ export function GameListPageFilters(props: Props) {
                   return null;
                 } else if (x.type === "chip") {
                   return (
-                    <ChipFilterable
+                    <Flex.Item
                       key={y.key}
-                      onClick={onChange}
-                      isActive={isActive}
+                      className="u-margin-right--sm u-margin-bottom--sm"
                     >
-                      {y.title}
-                    </ChipFilterable>
+                      <ChipChoice onClick={onChange} isActive={isActive}>
+                        {y.title}
+                      </ChipChoice>
+                    </Flex.Item>
                   );
                 } else if (x.type === "checkbox") {
                   return (
@@ -91,9 +92,9 @@ export function GameListPageFilters(props: Props) {
                       key={y.key}
                       align="center"
                       justify="space-between"
-                      className="u-width--full u-padding-y--md t-border-bottom"
+                      className="u-width--full u-padding-y--md t-border-bottom t-color-grey-5"
                     >
-                      {y.title}
+                      <Text className="t-color-grey-90">{y.title}</Text>
                       <CheckboxSquare checked={isActive} onChange={onChange} />
                     </Flex>
                   );
