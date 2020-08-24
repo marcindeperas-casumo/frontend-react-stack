@@ -6,6 +6,7 @@ import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
 import { overlayContentCmsSlug } from "Models/playOkay";
 import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
+import { CMS_SLUGS as MODAL_CMS_SLUGS } from "Models/playing/playing.constants";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { TermsAndConditions } from "./TermsAndConditions";
@@ -18,6 +19,7 @@ import {
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
+import { SlotsModal } from "./Slots/SlotsModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
@@ -30,15 +32,15 @@ export type ModalContentComponent<T> = {|
   closeModal: (result?: any) => void,
   dismissModal: (result?: any) => void,
 |};
-type Mapping = {
-  [ModalId]: {
-    // cms slug
-    slug: string,
-    Content: React.ComponentType<ModalContentComponent<Object>>,
-  },
-};
+// type Mapping = {
+//   [ModalId]: {
+//     // cms slug
+//     slug: string,
+//     Content: React.ComponentType<ModalContentComponent<Object>>,
+//   },
+// };
 
-export const mappings: Mapping = {
+export const mappings = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
@@ -78,6 +80,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.TIME_LIMITS_FORM]: {
     slug: "",
     Content: TimeLimitsFormModalContainer,
+  },
+  [REACT_APP_MODAL.ID.WAGERING_NOTIFICATION]: {
+    slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
+    Content: SlotsModal,
   },
 };
 
