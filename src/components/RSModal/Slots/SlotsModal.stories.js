@@ -10,6 +10,10 @@ const stories = storiesOf("RSModal/SlotControlSystem", module);
 const props = {
   config: { type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING },
   acceptModal: action("acceptModal"),
+  t: {
+    modal_text_real: "Wallet funds will be used when wagering",
+    cta_text: "Continue playing",
+  },
 };
 
 stories.add("SlotsModal", () => <SlotsModal {...props} />);
