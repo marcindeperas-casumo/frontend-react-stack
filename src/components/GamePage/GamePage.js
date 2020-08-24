@@ -1,13 +1,13 @@
 // @flow
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { showModal } from "Models/modal";
-import { REACT_APP_MODAL } from "Src/constants";
+import Flex from "@casumo/cmp-flex";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
+import { showModal } from "Models/modal";
+import { REACT_APP_MODAL } from "Src/constants";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { WAGERING_NOTIFICATION_TYPES } from "../../models/playing/playing.constants";
@@ -15,7 +15,7 @@ import { WAGERING_NOTIFICATION_TYPES } from "../../models/playing/playing.consta
 type Props = {
   gameProviderModel: GameProviderModel,
   shouldShowSlotControlSystem: boolean,
-  bonusAmount: number,
+  bonusAmount: numnber,
 };
 
 export const GamePage = ({
@@ -57,7 +57,7 @@ export const GamePage = ({
   }, [dispatch, bonusAmount, bonusBalance, realBalanceModalShown]);
 
   return (
-    <VerticalStretcher>
+    <VerticalStretcher gameProviderModel={gameProviderModel}>
       <Flex
         className="u-width--full u-height--full t-background-grey-90 t-color-white"
         direction="vertical"
