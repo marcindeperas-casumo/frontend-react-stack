@@ -38,7 +38,11 @@ export const SlotsModal = ({
 
   return (
     <>
-      <ModalHeader title={modalTitle} showCloseButton />
+      <ModalHeader
+        title={modalTitle}
+        showCloseButton
+        closeAction={acceptModal}
+      />
       <Flex
         direction="vertical"
         spacing="md"
