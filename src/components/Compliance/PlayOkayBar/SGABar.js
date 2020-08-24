@@ -3,6 +3,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
+import { isMobile } from "@casumo/is-mobile";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
 import { FullscreenToggle } from "Components/FullscreenView";
 import SpelPausIcon from "./icons/spelpaus.svg";
@@ -23,7 +24,7 @@ export const SGABar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle elementOverride={document.body} />
+      {!isMobile && <FullscreenToggle elementOverride={document.body} />}
     </Flex.Block>
     <Flex.Item>
       <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">

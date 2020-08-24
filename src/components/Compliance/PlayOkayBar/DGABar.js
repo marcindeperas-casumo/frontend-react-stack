@@ -1,6 +1,7 @@
 // @flow
 
 import React from "react";
+import { isMobile } from "@casumo/is-mobile";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
@@ -25,7 +26,7 @@ export const DGABar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle elementOverride={document.body} />
+      {!isMobile && <FullscreenToggle elementOverride={document.body} />}
     </Flex.Block>
     <Flex.Item>
       <Text tag="span" size="2xs">
