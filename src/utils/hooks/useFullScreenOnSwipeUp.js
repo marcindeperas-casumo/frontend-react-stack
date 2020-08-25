@@ -4,12 +4,17 @@ export const useFullScreenOnSwipeUp = () => {
   const [startY, setStartY] = useState(0);
 
   const onTouchStart = e => {
-    setStartY(e.touches[0].clientY);
+    const { clientY } = e.touches.length ? e.touches[0] : {};
+    setStartY(clientY);
   };
 
   const onTouchEnd = e => {
-    const yUp = e.changedTouches[0].clientY;
-    if (startY - yUp > 0 && document.body && document.body.requestFullscreen) {
+    const { clientY } = e.changedTouches.length ? e.changedTouches[0] : {};
+    if (
+      startY - clientY > 0 &&
+      document.body &&
+      document.body.requestFullscreen
+    ) {
       try {
         document.body.requestFullscreen();
       } catch (err) {
