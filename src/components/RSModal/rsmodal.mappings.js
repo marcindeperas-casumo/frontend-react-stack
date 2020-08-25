@@ -33,15 +33,16 @@ export type ModalContentComponent<T> = {|
   closeModal: (result?: any) => void,
   dismissModal: (result?: any) => void,
 |};
-// type Mapping = {
-//   [ModalId]: {
-//     // cms slug
-//     slug: string,
-//     Content: React.ComponentType<ModalContentComponent<Object>>,
-//   },
-// };
 
-export const mappings = {
+type Mapping = {
+  [ModalId]: {
+    // cms slug
+    slug: string,
+    Content: React.ComponentType<ModalContentComponent<Object>>,
+  },
+};
+
+export const mappings: Mapping = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,

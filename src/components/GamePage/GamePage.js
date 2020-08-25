@@ -15,7 +15,7 @@ import { WAGERING_NOTIFICATION_TYPES } from "../../models/playing/playing.consta
 type Props = {
   gameProviderModel: GameProviderModel,
   shouldShowSlotControlSystem: boolean,
-  bonusAmount: numnber,
+  bonusAmount: number,
 };
 
 export const GamePage = ({

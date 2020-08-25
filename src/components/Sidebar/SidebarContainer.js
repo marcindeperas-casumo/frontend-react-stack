@@ -38,7 +38,6 @@ const SidebarContainer = connect(
       playerBonusTextSelector(state),
       localeSelector(state)
     ),
-    bonusAmount: playerWalletBonusSelector(state),
   }),
   {
     logout,

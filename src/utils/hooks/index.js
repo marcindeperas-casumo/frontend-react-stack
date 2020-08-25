@@ -19,3 +19,6 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
+export {
+  useInGameBonusOrRealBalanceCheck,
+} from "./useInGameBonusOrRealBalanceCheck";
