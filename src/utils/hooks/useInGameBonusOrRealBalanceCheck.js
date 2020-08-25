@@ -6,19 +6,21 @@ import { REACT_APP_MODAL } from "Src/constants";
 import { WAGERING_NOTIFICATION_TYPES } from "../../models/playing/playing.constants";
 
 type Props = {
-  bonusAmount: number,
+  bonusAmountProp: number,
 };
 
-export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
+export const useInGameBonusOrRealBalanceCheck = ({
+  bonusAmountProp,
+}: Props) => {
   const dispatch = useDispatch();
 
   const [bonusBalanceModalShown, setBonusBalanceModalShown] = useState(false);
   const [realBalanceModalShown, setRealBalanceModalShown] = useState(false);
-  const [bonusBalance, setBonusBalance] = useState(0);
+  const [internalBonusBalance, setInternalBonusBalance] = useState(0);
 
   useEffect(() => {
-    if (bonusBalance !== bonusAmount) {
-      setBonusBalance(bonusAmount);
+    if (internalBonusBalance !== bonusAmountProp) {
+      setInternalBonusBalance(bonusAmountProp);
       if (!bonusBalanceModalShown) {
         dispatch(
           showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
@@ -29,10 +31,11 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
         setBonusBalanceModalShown(true);
       }
     }
-  }, [dispatch, bonusAmount, bonusBalance, bonusBalanceModalShown]);
+  }, [dispatch, bonusAmountProp, internalBonusBalance, bonusBalanceModalShown]);
 
   useEffect(() => {
-    if (!bonusAmount && bonusBalance && !realBalanceModalShown) {
+    // we're recording the bonusAmount prop in internal state to cater for use case when bonus balance gets to 0 and wagering switches to real balance
+    if (!bonusAmountProp && internalBonusBalance && !realBalanceModalShown) {
       dispatch(
         showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
           mustAccept: false,
@@ -41,5 +44,5 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
       );
       setRealBalanceModalShown(true);
     }
-  }, [dispatch, bonusAmount, bonusBalance, realBalanceModalShown]);
+  }, [dispatch, bonusAmountProp, internalBonusBalance, realBalanceModalShown]);
 };
