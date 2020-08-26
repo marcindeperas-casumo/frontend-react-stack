@@ -1914,13 +1914,13 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-icons@^3.0.0":
-  version "3.0.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/3.0.0/a7a4250024b5bb40979ead3d012e39fb78c6b5d3039b16854496bde28ab81b37#7dd45a9f47c8d70309cd76a61dba497df5c11bf4"
-  integrity sha512-4r9QziwADI3x4+AfCRTXl1G8e6uxXdaf3Hh2CcISHH9wMvTowG5LejhbkimXAIzZHu8ibvvqRcFVlGCIHyWWAw==
+"@casumo/cmp-icons@^4.0.0":
+  version "4.0.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.0.0/341307f5667bc68d306a4b31bff3d54c211624cac9e0af6be9fcdd1b1c7a11cf#4c8a6c2d10c687158d1d5071cdf267471efb385f"
+  integrity sha512-/dtZjTlOVVYqLC69Xbu0TJvtij6SADj3q758GOzpusSZQrndSNXN1jNhShvgvHIPrHFbLSb7gPMkAo1RSnM2YQ==
   dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.1"
-    "@casumo/cudl-react-utils" "^1.0.6"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
 "@casumo/cmp-list@^2.0.0":
   version "2.0.0"
@@ -1992,53 +1992,60 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cudl-appearance@^1.2.0":
+"@casumo/cudl-appearance@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-appearance/1.4.0/86bf6a31cccb2fa24041ad7a358a6f97bad4af89199a93e7aa101fe9461d5e67#7584b7d037740e81fad9d3dc97deb01f4ffb9120"
+  integrity sha512-0SHW6hNb3I5mGvXuZcSc7BLMpSN7H8ZrMiTjc52TalCzIsms1V1fMAh3wX2KONOULmyfZGJNe1A7yAjacijzTw==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-border-radius@^1.2.0":
   version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-appearance/1.2.0/840fc2b0c80cd2fcdd6bcf98edc6d024179ea59c4f72e53aced68f4e420d6d41#357e47a5bb2a8b25f3a62bf238aa9391390e71cb"
-  integrity sha512-7sX9QCm407Y1jc7h40t1V8orUZBh3qQbB4LrR8XJHRjBufOD/waGkUbqIRou2rJ/iJHneOf0vOT4NmR5tMPaVA==
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-border-radius/1.2.0/ec1fb2905b0f39325c58e63d57bcf5d426b2a78242b758518fa2bad44d40695e#3c4a881d97e409e0af94dc9c7627c2667ee83e02"
+  integrity sha512-ZOBLKwkoC15WctnlQeU+iUnt8HoiIAk68MHgNUVdRDvOSvhyRZtwD0GrRrGgSEONfd5WWNpwh4nkQIH6dB57bg==
   dependencies:
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-utils" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-border-radius@^1.0.4":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-border-radius/1.0.4/b0c14ca2eeef622d25bfc78909ba8992974ce80d588b11abd202c48b3c4f36a0#8b9c173076204d338aef025830f13f6c68cac84c"
-  integrity sha512-xA5Jv1yF64H+E2R+Sc5O8xS7xk3fRlAmeQou9r9kmNW20siGI3NOWkmvM6WkXqjro3xam9OIXrFgxzq6w6mV4g==
+"@casumo/cudl-borders@^6.2.1":
+  version "6.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-borders/6.2.1/92f20713c360120a3669a33adfefc7a8b1ff5460cc1156236fe3da0d1b32a5a8#12b99391b0f74ebc003c217ea18655cb11c811b6"
+  integrity sha512-nF3Z1BU2Tk97F4uQpfw400CEUTmpDY14yOe/go82PkCBYZ8hfvR8njl+4aS9IXee480f0J85lDkMGF3ueiHBdQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-colors" "^3.4.0"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-mock" "^1.0.7"
-    "@casumo/cudl-props" "^2.1.3"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-borders@^5.0.1":
-  version "5.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-borders/5.0.1/b33e77d6200c7c7eb9c28b8f7c29ea8b7e4ab95bec36e126d6d42856fec92b60#0153645c08edf545ff75243be947f8011c37a0e4"
-  integrity sha512-fPhzRLniU82WnaADgHa3sOyB1fz9IH0Em812S71cnW9uIckPAiTa4depilG1Qi18J5FcxUK0rOFtryOr+OFnOQ==
+"@casumo/cudl-box-shadow@^2.2.1":
+  version "2.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-box-shadow/2.2.1/b7a99a33fd6e67d62e5040784085c60933e521c7520d2db63a4775f7bc16ba9b#aef81dc37e8bd08facee88818622d250e66dd24f"
+  integrity sha512-G/ORZPB4XwrlvbPvt5ZtvA+2iFQdVEqcOiuEQwhcGffeU3hW1iIRG9BEDxat11Qs+emPy5qLS6+Wh+dixLnxfg==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-colors" "^3.0.1"
+    "@casumo/cudl-colors" "^3.4.0"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-mock" "^1.0.7"
-    sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-box-shadow@^2.0.1":
-  version "2.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-box-shadow/2.0.1/0a703dcb2e53fe55bf96d175447d0ccaefa406777082f6f0399c15eba19862ba#6421cc450f2546c2d3b3d16b36ec2cadeceec2c2"
-  integrity sha512-q/ZIiRhUSL2k7q/5eiXF15k++OBiZ+jS/W9vEMQlgwgZlmAD9gGq2yrd1we8Dn9YIiwE8NCGo/bkx1Zi8kg9ww==
-  dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-colors" "^3.0.1"
-    "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-props" "^2.1.3"
-    "@casumo/cudl-pseudo" "^1.0.5"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-breakpoints@^1.1.3", "@casumo/cudl-breakpoints@^1.1.7":
   version "1.1.7"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-breakpoints/1.1.7/e91a378887c90ddcd64386782ecd594b1462e7557e3fe9565ca34e5601abe030#6d520cbe8e98bf7e32145e319bf81a0da623591b"
   integrity sha512-yvO6jKghm/s3KDAl7nIxl6dQOxWrcVLmaQgeaqGB/EteTp0CBL8d1fbZkT6SBHL+UVl6sIQNkWVzc/dvBCWt4g==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-mock" "^1.0.7"
+    "@casumo/cudl-props" "^2.1.3"
+    "@casumo/cudl-types" "^1.0.8"
+    "@casumo/cudl-units" "^1.0.9"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-breakpoints@^1.2.0":
+  version "1.2.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-breakpoints/1.2.0/0a42ed7263d2d8af70466e6a33c0a2a4337bd161397d17e59644a1cefaa5c7fa#6eda90cbc18b10679768866ac5f6d829f201ce5f"
+  integrity sha512-AOCSzzTQns2a5OyhT2SUgB9osp+/UWWfiYC0OgJnp80WnQGZyqFj66hG6FibuRdGDH/XTUtierZ8Nadc5N8X6Q==
   dependencies:
     "@casumo/cudl-compile" "^1.0.8"
     "@casumo/cudl-mock" "^1.0.7"
@@ -2069,16 +2076,14 @@
     "@casumo/cudl-props" "^2.1.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-colors@^3.0.1":
-  version "3.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-colors/3.0.1/71e20a0d0353dba6223573491aca02afe7863bb263ebb2045647110a2c5d453d#aa490e38376fea56bf0339e68e0555653cea3db6"
-  integrity sha512-8tBCgG/htdCcYzS7gY308gYrtvhq6HM9/jZkigOrnm3Puh/MfPydYmz305zQr5uS4DBJV4CaYDssNma81lWFfA==
+"@casumo/cudl-colors@^3.4.0":
+  version "3.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-colors/3.4.0/26ad2f024986e767dae5ee37f93f43f075e3f9c3e0dacf1e1ffc28c91d7e23a3#d295866dc4f379dc3ec560e40a5d3c63ec95e906"
+  integrity sha512-K9bVpEQzc5Z3bWSRVgdJHAjtyCdjf5QAHBG7yMgbYjbNM/ZjRJvp6jG4xM/Zm58KExXasYDxP7loza6jF2togA==
   dependencies:
     "@casumo/cudl-compile" "^1.0.8"
     "@casumo/cudl-maps" "^1.0.3"
-    "@casumo/cudl-mock" "^1.0.7"
-    "@casumo/cudl-props" "^2.1.3"
-    "@casumo/cudl-pseudo" "^1.0.5"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-compile@^1.0.4", "@casumo/cudl-compile@^1.0.6", "@casumo/cudl-compile@^1.0.7", "@casumo/cudl-compile@^1.0.8":
@@ -2089,42 +2094,40 @@
     "@casumo/cudl-mock" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-cursor@^1.2.0":
+"@casumo/cudl-cursor@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-cursor/1.4.0/276f742d05980bd3fc8c2274934c18cedc9bd954c44b7f6ccf42cb4dc7ac3671#41467bd6e6d04cbb27990d3df3c0475801fb879f"
+  integrity sha512-PHSl6/kEvB+418zReK9v07+/j7uo3caiw428LIIVOtbx7MrW/6JbQeWkSX2jiq5w6NsoloQ+8RLzIKZy7Kijnw==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-display@^1.3.0":
+  version "1.3.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-display/1.3.0/6d9c7c6f539d564169a4b813b2423d70e84bd00129c0163a21b842438845ed9a#f3f6ff997025365dca7ad74262917b666da058a6"
+  integrity sha512-jNxfioEy/V17dErdbkBcZ4cFTH9CAESIkXKPMek0L7iFnF+uBzVt19z1PpFfQ+Fi3WAhvpg7sjkVJSprbI+wxA==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-flex@^5.0.8":
+  version "5.0.8"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-flex/5.0.8/bc0e04cc9d3186d5adc2af2213b079334bc0ed1e3ce2c9338b60d668e453518a#2f8a297f99d0f2798dc7e24e69abf51dbc87a097"
+  integrity sha512-cSd4NoQNkJl5vmSGc+eeG7gW2WScwrEbR5y3XzMZPgQ6hvrti3wPQV1OpcgJwVpByYLi4NzkBTxfViHtKiT67w==
+  dependencies:
+    "@casumo/cudl-breakpoints" "^1.2.0"
+    "@casumo/cudl-compile" "^1.0.8"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-heights@^1.2.0":
   version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-cursor/1.2.0/34748f0c12f124f0d9d046adf479705a8c77a6bf1c989e9c568d6152f539c9de#132f4754a958b4d7e60e3ff7bc532f8c65034938"
-  integrity sha512-QmsvwJVsk9yHY/deAkdx+M27/2HHFfeOb/ZYJYMUVMaTE7nEZVON/42jPWzrd0vn4T3k82j0fK6HK4XIz6yOtw==
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-heights/1.2.0/97c26bd1f4ac2ea95c3be1f441cdf1e0fe037de1be7ea6ae185d5b7e27ad1b13#c2fed88e0a7b6810003069778d6d40b8ed3467e4"
+  integrity sha512-IniAIpDMqpkVpedEQeofAyQwglABvuyrYDwReJ96v+zHGSfiL98Y843vSHK7oREMFtytj0VyfVL2f+jHlIDnwg==
   dependencies:
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-utils" "^1.0.7"
-    sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-display@^1.1.8":
-  version "1.1.8"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-display/1.1.8/ea51840d732823cc085c24a7c758a03d5d82a476584cfa3ac1097a6e9d0c7f22#f0a978c334dabf22daeef09f7d83edac55e9f74b"
-  integrity sha512-z/GCvKyaxMCVsbHrU8teSbovTRkEqbOIDBZwy028+4WU5khdOe6oVAixkLO832ZWMo8Rvw0jAP2muieiGHDJsA==
-  dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-utils" "^1.0.7"
-    sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-flex@^5.0.7":
-  version "5.0.7"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-flex/5.0.7/a687fb4ba2b71d02ae92cd5a661474283467499bdf43f1eefcef708f844cf618#3091950720b1602cc1249b5d32ea2b5b609e88be"
-  integrity sha512-3fBLGBr10LW/04DH0ddI2udzaWK+RCPd/uol7uZRzoovP1iN6IBZIqKQEKjeLF2iZ7im6vjDQIYGzRCtECr/9A==
-  dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-compile" "^1.0.8"
-    sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-heights@^1.0.4":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-heights/1.0.4/3394b077f14725a59796b02aac2c135767a8f06ccd2a908f5ab490ebdbb6f77d#3086dea9b48b194c29a303d282f70c97f4426820"
-  integrity sha512-gtzjJf6pWG3LohyC+DgpJHIrEtV7WUY8iM99HfsS/y5mqELBCU1AIRq/UNOl9v185OJAaiud44ufi5UIw7/ENA==
-  dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-utils" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-icons@^3.0.6":
@@ -2136,25 +2139,23 @@
     "@casumo/cudl-props" "^2.1.3"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-inset@^1.1.2":
-  version "1.1.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-inset/1.1.2/9840c47f268efb19a797350ccf681b917f8197f3ef18cf4fc47fcadc73ce33f1#a8fd4e7a286f31ea5e7d81af1eb2875d437d61a0"
-  integrity sha512-CagujcFO697R9gde3oRm8fL/QxglTOv4w/p86zKYAHK2rE21+OAWmcA3DagNPX5ZS0mrKR6q5VC0dcB+Ci2hJA==
+"@casumo/cudl-inset@^1.3.0":
+  version "1.3.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-inset/1.3.0/4411b3f1d925952f92e01d823a772b641d58ff0610156248159d9c5f296ec839#eb11d7b0ecb81d9c8f1a40e0f54f3bf733c0abd1"
+  integrity sha512-zSSCzJT7POyw8t0sDtkiNWWE5X2Piuu9jO5n7PkC0GX6sT8YbDUsoDusILAO1W+WdwVDt+1zM9F5/WjfDgZWHQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-compile" "^1.0.8"
     "@casumo/cudl-mock" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-layout@^4.0.7":
-  version "4.0.7"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-layout/4.0.7/37dbdae2576af55460d91ec11e418eb205170b3e2a0114954e4cbd5814d663ab#d97bb20d67eb6075cb6c3406e7243fe633d642cf"
-  integrity sha512-NVbA/UcQdfx8or0U+dTTad7PJNjXsfCVQKgcQeztPxLPlBnkxtJo+OOpXEqMBEiJAEaiJH3nhwJVwR/svlnhfg==
+"@casumo/cudl-layout@^4.1.0":
+  version "4.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-layout/4.1.0/18e45981dce90c72c5cea659cc510328f5a84d79650912ebe2d6c3980b79e384#90d459d40d0a38038f60d8b6e194bd014604a49a"
+  integrity sha512-IwTJLm4kPcTr/837vwUbOrwce10K+TGY4GZT6sSyDorQQdfnlSFGSBe6k/lnCBzUUsZ8YDasH3CDuLXgQDXFRw==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-mock" "^1.0.7"
-    "@casumo/cudl-props" "^2.1.3"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-maps@^1.0.2", "@casumo/cudl-maps@^1.0.3":
@@ -2172,41 +2173,50 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-outline@^1.2.0":
-  version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-outline/1.2.0/05f75c14707ebaea4a9e3679634fd9553ac95d2605f0f7851175638f451e9444#9e14ec63d5d62682f8b1ab50c994f9065682c61c"
-  integrity sha512-8CjO3Woq/ULA4Z3ubpN3pIzX92i/3rqJlpsQQRLnlXbOVZZQml06jdC8/lu5vjaJtdP3628FvL4IgKMslllF7w==
+"@casumo/cudl-opacity@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-opacity/1.1.0/b1d53bdfa24ecc2d68849d8d2cf69fe445c67a424afc4b1e6cb693b776166bc6#7f00ba83fe4948b7f6640bb90ddd721d48e439ac"
+  integrity sha512-ewRVlgn1jpdzx6tBiTQg2q7+mcQnELypHzJ74oevHIQJl1fzClKvg8ql9xAdgjyefOhBzMKzv5+woOH76CIIOA==
   dependencies:
+    "@casumo/cudl-colors" "^3.4.0"
     "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-overflow@^1.2.0":
-  version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-overflow/1.2.0/704e044abf8e973426514d03f6dfc8ebcb323721fdcd580d95cbef27bd7aaddf#a8db45c243e173deb13fc2bcba8ac25a30bb2941"
-  integrity sha512-2xK11BCVDU3Oyw4XT2MmJMmyayIPx8J9u1LzqrR3HHLZUCBX+kMYyOoQ9e+/hMyNPU8bKWXZUPfV1geLdHfuxA==
+"@casumo/cudl-outline@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-outline/1.4.0/c791362540311326cb3d441bb6401153ecfe56ab00f7f403e171ff71c4eb6835#27ecab1352479b8366a73ad29c23dd84eab95456"
+  integrity sha512-kA5uRQJJhxgVdaQ4pwv34YvNP70xCQko3ESZVUmI7Cga8qLhkChNV+EZ2tk1C13F8qKO5zx/05fpUcaEkwHI+A==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-props" "^2.1.3"
-    "@casumo/cudl-utils" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-pointer@^1.2.0":
-  version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-pointer/1.2.0/66486f15f97422da5e1c58692715ee04cd8130035f559731af62b39ac679359a#72a6062b752462d50202b95ba914822f0f3d5319"
-  integrity sha512-JMFbgRM/hESf3z4Qw5ep/vjSHgFHtIrEjVuZBezLPqdFOKUT+UV0YGa/FfcRSG3JHb/p48HY9wdfcMikaHjo0g==
+"@casumo/cudl-overflow@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-overflow/1.4.0/0b88ea1b346aa8e0d994fcc7fac69bf6cba09e3735bbe21a3f0ed75d68030262#a5436f010a512fb2f2aedfea1d385aa94be0685b"
+  integrity sha512-aCWPIK20B+hEzCxHgZ+44rzKHcUigTtvyJSLzJGpf5fl2NLGR3Ug01PnBbYuXBPtSrLyBAovH4hZJ9Y8ompcuA==
   dependencies:
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-utils" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-position@^1.1.1":
-  version "1.1.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-position/1.1.1/f5b3a4801db975c9a49995d20c9432fe09058c65b9c02ffe349b1e98f23040a4#f47f846a6872bbacf34aa59ba24c0006f7eebdae"
-  integrity sha512-RKsUP3Vf9LHiQleVBC20KwRnaAsZ0oNBdADc0kjKHnbtK65JrrSfwm2bWvQMEWPB7a7bSMeLTAIskddRBmuZjA==
+"@casumo/cudl-pointer@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-pointer/1.4.0/55b57bfd6bb12fa43c8e3b6a471d8066d64099c05976fee4be741109c30fe86d#00dce72d740adcb9f22aa231634a61c8257c00b6"
+  integrity sha512-CUZiIuEavZiDgTEU0/Sh2VH/GFqKwS2HuNkqA4jMkqQgq5FS4SsVbxzkO/xTC4f+pDvGsTyDZbLv7A9j/Rh56Q==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-position@^1.3.0":
+  version "1.3.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-position/1.3.0/a83f5da86347177d223d14ebf8a3c92eb889103744107ebb576992473853fc87#4ddb2d676927f3e134b724eb437e13c48e71d0f8"
+  integrity sha512-NWP9PL7eH0hu4U6Wo2/RCVIFY3aSX29lHqR+izBaLUgs8Gz7O2JHuz3vfu2GQvph4Ozc5EWlk1I2bATEsaLYGg==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-props@^2.0.0", "@casumo/cudl-props@^2.1.2", "@casumo/cudl-props@^2.1.3":
@@ -2217,10 +2227,10 @@
     "@casumo/cudl-mock" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-pseudo@^1.0.5":
-  version "1.0.5"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-pseudo/1.0.5/5307f53c418a4bbf87d32c90ffe4f5d08a78f58f04ebec3920fbc7a1c48ce02f#36b8807eae8e8be190c677c6516da09075137163"
-  integrity sha512-/2FJhoPeFjsDEZ20q2KyUmuOGBa3XEj5NWNXEQjv4NtZq/s8zM6+oSM5jWNggeexqYhmRYZ4f+Sz3QHyxCM79g==
+"@casumo/cudl-pseudo@^1.2.0":
+  version "1.2.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-pseudo/1.2.0/d2b50bf24d3d992776046b6e7aeafe6879531bdf117a2e193b040b2b431c9d9a#6366ddae113432d52e9974c629339a1767c17e49"
+  integrity sha512-zAvGeRjs60uI2kqFLN4DDluX3sl0IkFaiTfq0BjZnhCF9Bs77IFXAagi+TwEPIhD5a2FCRXTu7D+dPoONFFNdA==
   dependencies:
     "@casumo/cudl-mock" "^1.0.7"
     "@casumo/cudl-props" "^2.1.3"
@@ -2240,10 +2250,20 @@
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-react-prop-types/2.1.1/c9e0b0d4514872b1d1a060025defcba78b1ad707fe2d0ba4363e7a0f18198657#3e0ceccdbca3e986c5c1375871840488be2bd48d"
   integrity sha512-HnT9RlDabySb8c6uL8d/B64Seddlg02Yt48MjWFUR60BSsoRBM8QrtYcA2PtDPmXR+TyRdFSaPwWu0Wm2qc2Iw==
 
+"@casumo/cudl-react-prop-types@^2.1.3":
+  version "2.1.3"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-react-prop-types/2.1.3/a97e7aa424592e7a342974c4051a06211193774517c726411d09739a61bd53ff#002f93301c99ccdac696853a5058c3050c7411c2"
+  integrity sha512-oxplMbksOKqg5dCmhp9IO9TN3M3MDOttkijNoBtLmbC5PdPSmoRcxTmZiAkmKDmZ9um1iTxHst3ReHmuFcUNaQ==
+
 "@casumo/cudl-react-utils@^1.0.6":
   version "1.0.6"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-react-utils/1.0.6/905fef9860c248d81ad2f285c56580fc5103ecf29b04fed2371c67267309f5d3#cec5f6e2de87ee29a6a059528646732a87950ec1"
   integrity sha512-XHqHyj0ihp3oW2FvrQNtx6dPl2zl96eKWj/2HESmSsU3iu62QlV4euPxF5Z/dPWHYmPyJAQvrrZLyAT0PYJ7dA==
+
+"@casumo/cudl-react-utils@^1.0.7":
+  version "1.0.7"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-react-utils/1.0.7/ad53c2a2584608bcf52f788b5e7e41e0995179bd715c822530a77ee9279921e0#fc2fe5724af48854fc52ddca59fae9f63560d711"
+  integrity sha512-5wHZQi8EPpPMSS3GYfQ68bLLwHU8zzAgeww9Wgeyy4A3nWFZPpZeDCRup50VrgxiE0epQVvSeqBV7bDxoJunUw==
 
 "@casumo/cudl-reset@^1.0.9":
   version "1.0.9"
@@ -2263,17 +2283,17 @@
     "@casumo/cudl-spacers" "^4.0.3"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-scrollable@^4.0.8":
-  version "4.0.8"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-scrollable/4.0.8/87c0ed6b4224f15dbaf19d78b2360f0c147d595f8c6aa476c36ca1242631fbbc#a06d7457d31f8066df730ac3656f8a50678c6149"
-  integrity sha512-Koxsr5sCW+Zrq/F+N0wktQDG1kvgteeeNGxgS3J2IOs7qAMQjXz7YnPRcFOaYDKnGMXpOyznO2Fk1loBsCkdag==
+"@casumo/cudl-scrollable@^4.0.11":
+  version "4.0.11"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-scrollable/4.0.11/f3176a4ce8141aab53c978078aff44660c8cf09f12d16b258f5718c6b8399b21#16869f7ef290d82e49785e2215f6d0be77f9160c"
+  integrity sha512-3BmoWZ5Bi72LfewYlX6NYnQWfnuAYmdDUgyhCud0CnIUrYTT2ELEHh6hKRudyi4F9SeH5si9wEDXkih5/Ji3Kg==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-breakpoints" "^1.2.0"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-spacers" "^4.0.7"
+    "@casumo/cudl-spacers" "^4.2.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-spacers@^4.0.3", "@casumo/cudl-spacers@^4.0.7":
+"@casumo/cudl-spacers@^4.0.3":
   version "4.0.7"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-spacers/4.0.7/b8e6438797a34ddc1e88656121e93cfdff508b4d671e62e155f31b894104870d#6f52ba8cfe1fbe03bb351602a6a357f138e72903"
   integrity sha512-KwErYNjANgQYOx0HxBJ2t0mKdppvW7yuryRdkl+4O8ftifVfbIQWSGKaIDzqKJoeboTYF20qBnwfgyddbSq8iQ==
@@ -2284,6 +2304,15 @@
     "@casumo/cudl-utils" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
+"@casumo/cudl-spacers@^4.2.0":
+  version "4.2.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-spacers/4.2.0/9dc69b21403491e226e7b12cce56fcf7dac8c776a06f13340aae3f5bceab4718#6b1a02e3c182bb5c65105704f8a4a91b1e23e091"
+  integrity sha512-+fPVedQuptDesMl9ROihlUWjSGiCoHnfpsLOLRadXHj8jdqlYc7UZtrcaBar3/ZE2JGimiOLWtOxIp97xYP3Nw==
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
 "@casumo/cudl-types@^1.0.8":
   version "1.0.8"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-types/1.0.8/d5ce76c5ee4df3eb148a1c76fe669acb8b485fca995e44015265c7f43522f00f#dfaa49288f8f23a9c81b0c3200b1f611a0d0d543"
@@ -2292,12 +2321,12 @@
     "@casumo/cudl-mock" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-typography@^4.2.1":
-  version "4.2.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-typography/4.2.1/b449aca566751475b71a41df8efbe28abe9d1108df9221f115b4e1951222a5e4#7d56ca4ae24a9179e7fdad6e870c05f25ca8a5c0"
-  integrity sha512-ariQrp62zOLrcrRjpqVeVndYGDENP4V+gK3+Vf6GrCKiKCqSQUckD2Mg4LeeoBLM7hObiDVxqYAPSPcsPtVH5w==
+"@casumo/cudl-typography@^4.2.2":
+  version "4.2.2"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-typography/4.2.2/3933aa938513cc03ecc395d9a4eda9c4451650a6d85e55c46c441db9d752d144#76e5c9ffb3d0587e9ece30ec016b6bba03644e0b"
+  integrity sha512-xSuxLg8Gwj9tAHdL+nBMrfuvzg7jMVYmRm1Giju4YwankIEoXjev4JozzGvCfMcZW78StnclWWII4KBTzPjwEQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-breakpoints" "^1.2.0"
     "@casumo/cudl-compile" "^1.0.8"
     "@casumo/cudl-mock" "^1.0.7"
     "@casumo/cudl-props" "^2.1.3"
@@ -2320,26 +2349,35 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-visibility@^1.2.0":
+"@casumo/cudl-variants@^1.2.0":
   version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-visibility/1.2.0/a97f4a9b06326e4e2b3366f206ffec6389b11b3f11682133594b8bd77eae90d8#917f99e7228af24f988b58095bf9f598b83e1ba4"
-  integrity sha512-4Tys//DOUzdbfZ6GpcuEp6jkanj6aUGwdrYBkdRiOQ9l+G+nfSxIOKWYw6QzSTvtA2FOZ5RNx6zNbtNZq0XZ4Q==
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-variants/1.2.0/1a952a1dba91e0a5c8ab81e69b614b870feb5fe293c7961764f42bf6feac2507#2bf44305d29229d78e973a9a4103a4d3121cb7f9"
+  integrity sha512-vMRkuu/e6pBT6QEGcwX1dDYPZMfubJA4W8Xq68xFOWwgKHyCaWCZp6VkgN+5HJROX3S3jVydI8HpcyHVE0zLRQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-breakpoints" "^1.2.0"
+    "@casumo/cudl-mock" "^1.0.7"
     "@casumo/cudl-props" "^2.1.3"
+    "@casumo/cudl-pseudo" "^1.2.0"
     "@casumo/cudl-utils" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-widths@^2.1.1":
-  version "2.1.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl-widths/2.1.1/bf8198848917986b222d5c787a9c056d80f11d06cad81d58596243793a3f8e4f#a114f509ca3a92598c3e18cdb599e9a9da50a7be"
-  integrity sha512-Hh66PlNpyaahxh1At2UNr5PgbS9uAyK0UqLUouNnhhRVaLxo/yqEGinLf0juNQBSIBdbAqECw0QSbUMS4xJBXA==
+"@casumo/cudl-visibility@^1.4.0":
+  version "1.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-visibility/1.4.0/f11cb9e7f82f5d6c33fbbabd7d5b5546b87ec26fcc4bc8679777e97ef1507ad8#733c7a7090543274f7049aadb0463ad8bac3c154"
+  integrity sha512-xa4c7o0oogQZey03lTUE+MQzwlvCdCJ0XrHR6oiTQ8oz6d08AahsSqY1TeZX1w+TFcGxCMUG2KDlk3o1Vuj4Ig==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-widths@^2.3.0":
+  version "2.3.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-widths/2.3.0/b88bb3c47e0a5a3e62056372d75014ec3ce87a42956d7574a4f2a003dce28097#eb9d6e9d46e877a5cca8cb0511a48a2e1bf0e423"
+  integrity sha512-3MQvyZoabSJCiGkCO6EverFm0DYbDaQNfhMWsJavz7i36378PoOcqMuBYWL4lBewPzfp/Tfm6UPcp/TVi88Uog==
+  dependencies:
     "@casumo/cudl-compile" "^1.0.8"
     "@casumo/cudl-mock" "^1.0.7"
-    "@casumo/cudl-utils" "^1.0.7"
+    "@casumo/cudl-variants" "^1.2.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-zindex@^1.0.8":
@@ -2351,43 +2389,45 @@
     "@casumo/cudl-utils" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@^9.0.2":
-  version "9.0.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl/9.0.2/411f1267739241f376396b63d951be09b7e3f4d1ca60fa92e8daa4c82747b93f#62254f94806b51a5505696034b65ebae9f2e75f5"
-  integrity sha512-JZEHnA1sCQZ4ffQRB6HuTy9rYH5jY+jCcCOUtA6hxbAR7DGQiT9aqtRLNmvNdEXDiK9DyFCUdKyx8gGERuaECw==
+"@casumo/cudl@9.3.1":
+  version "9.3.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl/9.3.1/f06c8ec029a4aee3b72b10ced35a194bde1f7f098dba4625b21d4d5b4c415f2b#4ed306d0d2a575a0afb58a7e3757e17c867a8062"
+  integrity sha512-IlHbFP7BGfCWP97kIJSJReDbx8B1+4R3TN06Y0a3k9ybdkckVEzXBhz0TqK9w06MpMBVvidoW0p8z53/he1xKA==
   dependencies:
-    "@casumo/cudl-appearance" "^1.2.0"
-    "@casumo/cudl-border-radius" "^1.0.4"
-    "@casumo/cudl-borders" "^5.0.1"
-    "@casumo/cudl-box-shadow" "^2.0.1"
-    "@casumo/cudl-breakpoints" "^1.1.7"
-    "@casumo/cudl-colors" "^3.0.1"
+    "@casumo/cudl-appearance" "^1.4.0"
+    "@casumo/cudl-border-radius" "^1.2.0"
+    "@casumo/cudl-borders" "^6.2.1"
+    "@casumo/cudl-box-shadow" "^2.2.1"
+    "@casumo/cudl-breakpoints" "^1.2.0"
+    "@casumo/cudl-colors" "^3.4.0"
     "@casumo/cudl-compile" "^1.0.8"
-    "@casumo/cudl-cursor" "^1.2.0"
-    "@casumo/cudl-display" "^1.1.8"
-    "@casumo/cudl-flex" "^5.0.7"
-    "@casumo/cudl-heights" "^1.0.4"
+    "@casumo/cudl-cursor" "^1.4.0"
+    "@casumo/cudl-display" "^1.3.0"
+    "@casumo/cudl-flex" "^5.0.8"
+    "@casumo/cudl-heights" "^1.2.0"
     "@casumo/cudl-icons" "^3.0.6"
-    "@casumo/cudl-inset" "^1.1.2"
-    "@casumo/cudl-layout" "^4.0.7"
+    "@casumo/cudl-inset" "^1.3.0"
+    "@casumo/cudl-layout" "^4.1.0"
     "@casumo/cudl-maps" "^1.0.3"
     "@casumo/cudl-mock" "^1.0.7"
-    "@casumo/cudl-outline" "^1.2.0"
-    "@casumo/cudl-overflow" "^1.2.0"
-    "@casumo/cudl-pointer" "^1.2.0"
-    "@casumo/cudl-position" "^1.1.1"
+    "@casumo/cudl-opacity" "^1.1.0"
+    "@casumo/cudl-outline" "^1.4.0"
+    "@casumo/cudl-overflow" "^1.4.0"
+    "@casumo/cudl-pointer" "^1.4.0"
+    "@casumo/cudl-position" "^1.3.0"
     "@casumo/cudl-props" "^2.1.3"
-    "@casumo/cudl-pseudo" "^1.0.5"
+    "@casumo/cudl-pseudo" "^1.2.0"
     "@casumo/cudl-ratio" "^1.1.6"
     "@casumo/cudl-reset" "^1.0.9"
-    "@casumo/cudl-scrollable" "^4.0.8"
-    "@casumo/cudl-spacers" "^4.0.7"
+    "@casumo/cudl-scrollable" "^4.0.11"
+    "@casumo/cudl-spacers" "^4.2.0"
     "@casumo/cudl-types" "^1.0.8"
-    "@casumo/cudl-typography" "^4.2.1"
+    "@casumo/cudl-typography" "^4.2.2"
     "@casumo/cudl-units" "^1.0.9"
     "@casumo/cudl-utils" "^1.0.7"
-    "@casumo/cudl-visibility" "^1.2.0"
-    "@casumo/cudl-widths" "^2.1.1"
+    "@casumo/cudl-variants" "^1.2.0"
+    "@casumo/cudl-visibility" "^1.4.0"
+    "@casumo/cudl-widths" "^2.3.0"
     "@casumo/cudl-zindex" "^1.0.8"
     sass-pathfinder "^0.0.5"
 

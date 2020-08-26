@@ -15,6 +15,11 @@ export const Monopoly = {
     type: "Monopoly",
     betBehind: null,
     bets: null,
+    operationHours: {
+      type: "FULLTIME",
+      startTime: null,
+      endTime: null,
+    },
   },
   logo:
     "https://cms.casumo.com/wp-content/uploads/2019/03/monopoly-live_logo.png",

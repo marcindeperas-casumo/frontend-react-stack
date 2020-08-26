@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useEffect, useState, useContext } from "react";
-import { FullscreenIcon, CloseFullscreenIcon } from "@casumo/cmp-icons";
+import { MaximizeIcon, MinimizeIcon } from "@casumo/cmp-icons";
 import { isNativeByUserAgent } from "GameProviders";
 import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
 import { FullscreenViewContext } from "./FullscreenView";
@@ -50,8 +50,8 @@ export const FullscreenToggle = ({ elementOverride }: Props) => {
   }
 
   return isFullscreen ? (
-    <CloseFullscreenIcon onClick={removeFullscreen} />
+    <MinimizeIcon onClick={removeFullscreen} />
   ) : (
-    <FullscreenIcon onClick={triggerFullscreen} />
+    <MaximizeIcon onClick={triggerFullscreen} />
   );
 };

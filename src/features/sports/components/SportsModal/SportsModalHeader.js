@@ -2,7 +2,7 @@
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
+import { ArrowLeftIcon, CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 
 import "./SportsModalHeader.scss";
@@ -68,7 +68,7 @@ const CloseButton = ({ onClick, className }: ButtonProps) => (
         onClick === noop && "u-visibility--hidden"
       )}
     >
-      <CrossIcon />
+      <CloseIcon />
     </Flex>
   </ButtonContainer>
 );
@@ -84,7 +84,7 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     )}
     onClick={onClick}
   >
-    <CrossIcon />
+    <CloseIcon />
   </Flex>
 );
 

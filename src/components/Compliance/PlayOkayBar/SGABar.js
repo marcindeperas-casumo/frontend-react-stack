@@ -2,9 +2,9 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ClockIcon } from "@casumo/cmp-icons";
+import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { FullscreenToggle } from "Components/FullscreenView";
+import { ExitGame } from "./ExitGame";
 import SpelPausIcon from "./icons/spelpaus.svg";
 import SpelGranserIcon from "./icons/spelgranser.svg";
 import SjalvTestIcon from "./icons/sjalvtest.svg";
@@ -23,7 +23,7 @@ export const SGABar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle elementOverride={document.body} />
+      <ExitGame />
     </Flex.Block>
     <Flex.Item>
       <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">
@@ -46,7 +46,7 @@ export const SGABar = () => (
       </a>
     </Flex.Item>
     <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
-      <ClockIcon size="sm" className="u-margin-right" />
+      <TimeLockedIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>
   </Flex>

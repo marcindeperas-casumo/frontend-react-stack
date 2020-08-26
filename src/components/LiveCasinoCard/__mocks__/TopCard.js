@@ -56,6 +56,11 @@ export const TopCard = {
     type: "TopCard",
     betBehind: null,
     bets: null,
+    operationHours: {
+      type: "FULLTIME",
+      startTime: null,
+      endTime: null,
+    },
   },
   logo: "https://cms.casumo.com/wp-content/uploads/2018/06/FootballLogo.png",
   name: "Football Studio",

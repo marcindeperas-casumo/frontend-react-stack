@@ -1,7 +1,7 @@
 /* @flow */
 import React from "react";
 import { shallow } from "enzyme";
-import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
+import { LockIcon, TimeLockedIcon } from "@casumo/cmp-icons";
 import { VALUABLE_STATES } from "Models/valuables";
 import { ValuableStateIndicator } from "./ValuableStateIndicator";
 
@@ -19,7 +19,7 @@ describe("ValuableStateIndicator", () => {
       <ValuableStateIndicator state={VALUABLE_STATES.FRESH} />
     );
 
-    expect(rendered.find(ClockIcon)).toHaveLength(1);
+    expect(rendered.find(TimeLockedIcon)).toHaveLength(1);
   });
 
   test("Returns null if not locked or close to expiry", () => {

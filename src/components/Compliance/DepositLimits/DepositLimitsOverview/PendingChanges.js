@@ -4,7 +4,7 @@ import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary } from "@casumo/cmp-button";
-import { ClockIcon } from "@casumo/cmp-icons";
+import { TimeLockedIcon } from "@casumo/cmp-icons";
 import DangerousHtml from "Components/DangerousHtml";
 import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/depositLimits";
 import { formatCurrency } from "Utils";
@@ -39,7 +39,7 @@ export function PendingChanges(props: Props) {
       className="u-padding-x--md u-padding-y--lg t-border-top t-border-grey-5 t-background-white"
     >
       <Flex align="center" justify="space-between" spacing="none">
-        <ClockIcon size="sm" className="t-color-yellow-30" />
+        <TimeLockedIcon size="sm" className="t-color-yellow-30" />
         <Text
           tag="span"
           size="sm"

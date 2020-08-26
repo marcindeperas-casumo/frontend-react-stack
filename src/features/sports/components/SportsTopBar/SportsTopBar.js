@@ -69,9 +69,7 @@ export const SportsTopBarTab = ({
         size="sm"
         className={classNames(
           "u-font-weight-bold u-margin--none",
-          isActive
-            ? "c-sports-top-bar-tab--label t-border-bottom t-border--current-color"
-            : "t-border--none"
+          isActive ? "t-border-bottom--md t-border-current" : "t-border--none"
         )}
       >
         <DictionaryTerm termKey={termKey} />

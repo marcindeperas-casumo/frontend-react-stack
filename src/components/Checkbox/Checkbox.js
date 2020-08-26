@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent, type Node } from "react";
 import Flex from "@casumo/cmp-flex";
-import { TickIcon } from "@casumo/cmp-icons";
+import { CheckIcon } from "@casumo/cmp-icons";
 import "./Checkbox.scss";
 
 type Props = {
@@ -12,17 +12,17 @@ type Props = {
 };
 
 const CheckboxUnchecked = () => (
-  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-grey-20 t-background-grey-0" />
+  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current o-ratio t-color-grey-20 t-background-grey-0" />
 );
 
 const CheckboxChecked = () => (
-  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-purple-60 t-background-purple-60">
+  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current o-ratio t-color-purple-60 t-background-purple-60">
     <Flex
       align="center"
       justify="center"
       className="o-ratio__content u-padding--sm"
     >
-      <TickIcon className="t-color-white" />
+      <CheckIcon className="t-color-white" />
     </Flex>
   </div>
 );

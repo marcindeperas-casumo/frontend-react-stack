@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import classNames from "classnames";
-import { CrossIcon } from "@casumo/cmp-icons";
+import { CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import "./CloseButton.scss";
 
@@ -20,6 +20,6 @@ export const CloseButton = ({ className, onClick }: ButtonProps) => (
       className
     )}
   >
-    <CrossIcon />
+    <CloseIcon />
   </Flex>
 );

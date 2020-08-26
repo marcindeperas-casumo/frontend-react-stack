@@ -4,6 +4,11 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import activeSessionMock from "Models/slotControlSystem/__mocks__/activeSession.mock";
 import { useSessionsState } from "Models/slotControlSystem/useSessionsState";
+import {
+  useJurisdiction,
+  useTranslationsGql,
+  useLoginSessionSummary,
+} from "Utils/hooks";
 import { SessionDetailsForLogout } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { BeforeLoggingOut } from "./BeforeLoggingOut";
 
@@ -25,8 +30,18 @@ describe("RSModal/SlotControlSystem/BeforeLoggingOut", () => {
     isFetching: false,
   };
 
-  test("it calls acceptModal side effect immediately if there is no active session", () => {
+  beforeEach(() => {
+    mock(useJurisdiction).mockReturnValue({ isDGOJ: true });
+    mock(useTranslationsGql).mockReturnValue({
+      t: {},
+      loading: false,
+    });
+    mock(useLoginSessionSummary).mockReturnValue({});
+  });
+
+  test("it calls acceptModal side effect immediately if there is no active session and not in DGOJ", () => {
     mock(useSessionsState).mockReturnValue(noActiveSessionState);
+    mock(useJurisdiction).mockReturnValue({ isDGOJ: false });
 
     const acceptModal = jest.fn();
     const closeModal = jest.fn();
@@ -46,8 +61,9 @@ describe("RSModal/SlotControlSystem/BeforeLoggingOut", () => {
     expect(acceptModal).toHaveBeenCalledTimes(1);
   });
 
-  test("it renders nothing if there is no active session", () => {
+  test("it renders nothing if not in DGOJ", () => {
     mock(useSessionsState).mockReturnValue(noActiveSessionState);
+    mock(useJurisdiction).mockReturnValue({ isDGOJ: false });
 
     const acceptModal = jest.fn();
     const closeModal = jest.fn();

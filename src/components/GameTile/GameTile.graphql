@@ -7,6 +7,9 @@ fragment GameTile_Game on Game {
   name
   slug
   id
+  liveCasinoId
+  playBackground
   isInMyList
+  category
   ...GameTileInMaintenance_Game
 }

@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { EditIcon, ExclamationMarkIcon } from "@casumo/cmp-icons";
+import { EditIcon, WarningIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
@@ -158,9 +158,9 @@ const UnverifiedMobileNumber = ({ labels, details }) => (
       action={
         <Flex align="center" spacing="sm">
           <Flex.Item>
-            <ExclamationMarkIcon
+            <WarningIcon
               size="sm"
-              className="t-color-red-30 t-border--current-color t-border t-border-r--circle t-border--md"
+              className="t-color-red-30 t-border-current t-border t-border-r--circle t-border--md"
             />
           </Flex.Item>
           <Flex.Item>
