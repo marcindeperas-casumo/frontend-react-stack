@@ -1,5 +1,8 @@
 //@flow
-import { injectScript /*, isTestEnv*/ } from "Utils";
+import {
+  injectScript,
+  doesContainJapaneseCharacters /*, isTestEnv*/,
+} from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
 import http from "Lib/http";
 import {
@@ -20,6 +23,13 @@ const getVerificationHash: () => Promise<{ identityHash: string }> = () =>
 
 const gameControlApi = {};
 
+export type IntercomPlayerDetailsProps = {
+  playerId: string,
+  email: string,
+  casumoName: string,
+  playerName: { firstName: string, lastName: string },
+};
+
 export const registerPauseResumeGame: (
   pauseGame: () => Promise<void>,
   resumeGame: () => void
@@ -30,10 +40,19 @@ export const registerPauseResumeGame: (
   /* eslint-enable fp/no-mutation */
 };
 
-export const injectIntercomScript: () => void = () => {
+export const injectIntercomScript: IntercomPlayerDetailsProps => void = ({
+  playerId,
+  email,
+  casumoName,
+  playerName,
+}) => {
   if (isDisabled()) {
     return;
   }
+
+  const fullName = doesContainJapaneseCharacters(playerName.firstName)
+    ? `${playerName.lastName} ${playerName.firstName}`
+    : `${playerName.firstName} ${playerName.lastName}`;
 
   injectScript(INTERCOM_WIDGET_URL + intercomAppId).then(() => {
     getVerificationHash().then(({ identityHash }) => {
@@ -41,9 +60,9 @@ export const injectIntercomScript: () => void = () => {
         ...SETTINGS,
         app_id: intercomAppId,
         user_hash: identityHash,
-        user_id: "342e0750-ced0-11e6-b84b-005056a937aa", // TODO: get me from handshakeSelector
-        email: "marcin.strzeszkowski+uk@casumo.com", // TODO: get me from handshake selector
-        name: "mstrz [marcin strzezkowski]", // TODO: get me from handshakeSelector
+        user_id: playerId,
+        email,
+        name: `${casumoName} [${fullName}]`,
       };
 
       window.Intercom("boot", settings);

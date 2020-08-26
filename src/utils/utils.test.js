@@ -29,6 +29,7 @@ import {
   convertLuxonDurationObjectToSeconds,
   addPointerEventStylesToLinkElements,
   decodedUrlParams,
+  doesContainJapaneseCharacters,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -588,6 +589,22 @@ describe("convertHoursToDays()", () => {
       const foundAddedStyle = (processed.match(/pointer-events: all;/g) || [])
         .length;
       expect(foundAddedStyle).toBe(LINKS_AMOUNT);
+    });
+  });
+
+  describe("SettingsAccountDetails/Utils", () => {
+    describe("doesContainJapaneseCharacters", () => {
+      test("should return FALSE if the string contains general characters only", () => {
+        expect(doesContainJapaneseCharacters("abcdef")).toBe(false);
+      });
+
+      test("should return FALSE if the string contains both Japanese and general characters only", () => {
+        expect(doesContainJapaneseCharacters("abcdefひらがな")).toBe(false);
+      });
+
+      test("should return TRUE if the string contains Japanese characters only", () => {
+        expect(doesContainJapaneseCharacters("ひらがな")).toBe(true);
+      });
     });
   });
 });

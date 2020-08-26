@@ -4,7 +4,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ProfileDrawerContainer as ProfileIconWithDrawer } from "./ProfileDrawerContainer";
+import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
