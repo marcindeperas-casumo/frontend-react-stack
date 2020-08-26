@@ -11,6 +11,5 @@ export const IDENTITY_VERIFICATION_URL =
 export const INTERCOM_WIDGET_URL = "https://widget.intercom.io/widget/";
 
 export const SETTINGS = {
-  hide_default_launcher: false, //TODO: true
-  //custom_launcher_selector: ".intercom-chat-launcher",
+  hide_default_launcher: true,
 };
