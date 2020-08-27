@@ -1,8 +1,5 @@
 //@flow
-import {
-  injectScript,
-  doesContainJapaneseCharacters /*, isTestEnv*/,
-} from "Utils";
+import { injectScript, doesContainJapaneseCharacters, isTestEnv } from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
 import http from "Lib/http";
 import {
@@ -12,8 +9,8 @@ import {
   SETTINGS,
 } from "./constants";
 
-const intercomAppId = INTERCOM_APP_ID[ENVIRONMENTS.TEST];
-// TODO: use env properly INTERCOM_APP_ID[isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION];
+const intercomAppId =
+  INTERCOM_APP_ID[isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION];
 
 const isDisabled: () => boolean = () =>
   window.native && window.native.nativeIntercomEnabled === true;
@@ -40,21 +37,21 @@ export const registerPauseResumeGame: (
   /* eslint-enable fp/no-mutation */
 };
 
-export const injectIntercomScript: IntercomPlayerDetailsProps => void = ({
+export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> = ({
   playerId,
   email,
   casumoName,
   playerName,
 }) => {
   if (isDisabled()) {
-    return;
+    return Promise.resolve();
   }
 
   const fullName = doesContainJapaneseCharacters(playerName.firstName)
     ? `${playerName.lastName} ${playerName.firstName}`
     : `${playerName.firstName} ${playerName.lastName}`;
 
-  injectScript(INTERCOM_WIDGET_URL + intercomAppId).then(() => {
+  return injectScript(INTERCOM_WIDGET_URL + intercomAppId).then(() => {
     getVerificationHash().then(({ identityHash }) => {
       const settings = {
         ...SETTINGS,
