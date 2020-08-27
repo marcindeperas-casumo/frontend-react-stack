@@ -73,7 +73,7 @@ export const GameSearchContainer = () => {
     <GameSearch
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
-      loading={searchResults.length === 0 && loading}
+      loading={loading}
       loadingSuggestions={loadingSuggestions}
       suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}

@@ -59,7 +59,7 @@ export function GameListPage({ set }: Props) {
   const page = useCurrentGamePage();
   const { filters: defaultFilters, sort: defaultSort } = useSelector(getData);
   const dispatch = useDispatch();
-  const isLiveCasino = set.title === "Live Casino";
+  const isLiveCasino = set.key === "LIVE_CASINO";
   const [sort, setSort] = React.useState<A.GamesSortOrder | null>(defaultSort);
   const [filters, setFilters] = React.useState<{}>(defaultFilters);
   const [filtersVisible, setFiltersVisibility] = React.useState(false);
@@ -78,21 +78,28 @@ export function GameListPage({ set }: Props) {
   }, [sort, filters, dispatch, page]);
   useSetScrollPosition();
 
-  const { data, fetchMore } = useCachedQuery<
+  const query = [set.baseQuery, sortOrder, ...f].join("&");
+  const [listHash, setListHash] = React.useState("");
+  const { data, fetchMore, loading } = useCachedQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
   >(
     GameListPageQuery,
     {
       variables: {
-        query: [set.baseQuery, sortOrder, ...f].join("&"),
+        query,
         offset: 0,
         limit: 48,
       },
-      ...(isLiveCasino ? { pollInterval: 5000 } : {}),
+      ...(!isMobile() && isLiveCasino ? { pollInterval: 5000 } : {}),
     },
     ["getGamesPaginated", "games"]
   );
+  React.useEffect(() => {
+    if (!loading) {
+      setListHash(query);
+    }
+  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = loadMoreConstructor(
     fetchMore,
@@ -148,7 +155,7 @@ export function GameListPage({ set }: Props) {
               <GamesVirtualList
                 games={games}
                 fetchMoreRows={loadMore}
-                listHash={sortOrder}
+                listHash={listHash}
                 rowCount={gamesCount}
                 renderItem={game => (
                   <GameRow
