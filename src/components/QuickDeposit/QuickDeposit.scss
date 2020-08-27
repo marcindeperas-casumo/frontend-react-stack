@@ -1,0 +1,33 @@
+// stylelint-disable xi/selector-pattern
+.c-quick-deposit-icon-wrapper {
+  position: relative;
+}
+
+.c-quick-deposit-wallet-icon {
+  display: inherit;
+  margin: 0 auto;
+  position: relative;
+  top: 20%;
+
+  .Icons-c-icon__svg {
+    fill: #4c00c2;
+  }
+}
+
+.c-quick-deposit-add-icon {
+  height: 10px;
+  left: 60%;
+  position: absolute;
+  top: 20%;
+  width: 10px;
+
+  .Icons-c-icon {
+    display: inherit;
+    height: auto;
+    width: auto;
+
+    .Icons-c-icon__svg {
+      fill: #4c00c2;
+    }
+  }
+}
