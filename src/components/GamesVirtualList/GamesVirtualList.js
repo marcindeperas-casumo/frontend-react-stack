@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import * as A from "Types/apollo";
@@ -26,12 +27,14 @@ type Props = {
   big?: boolean,
   /**
    * if this prop will change list will know to update its rows
-   * it's needed for lists that can change order
+   * Only changes to this prop will trigger list updates!
+   * Changes to games prop will be ignored
    */
-  listHash?: string,
+  listHash: string,
 };
 
-export class GamesVirtualList extends React.PureComponent<Props> {
+const nEqProps = R.complement(R.eqProps);
+export class GamesVirtualList extends React.Component<Props> {
   static defaultProps = {
     big: false,
     pageSize: PAGE_SIZE,
@@ -42,6 +45,10 @@ export class GamesVirtualList extends React.PureComponent<Props> {
     super(props);
 
     this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+  }
+
+  shouldComponentUpdate(nextProps: Props) {
+    return nEqProps("listHash", this.props, nextProps);
   }
 
   scrollElement: HTMLElement | null;
@@ -72,15 +79,16 @@ export class GamesVirtualList extends React.PureComponent<Props> {
       );
     }
 
+    const game = this.props.games[index];
     return (
       <Flex
         className="t-border-bottom t-color-grey-0 t-background-grey-0:hover t-border-current c-game-virtual-list-row"
-        key={key}
+        key={game.id}
         index={index}
         style={style}
         align="center"
       >
-        {this.props.renderItem(this.props.games[index])}
+        {this.props.renderItem(game)}
       </Flex>
     );
   };

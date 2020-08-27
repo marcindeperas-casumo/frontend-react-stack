@@ -80,13 +80,13 @@ const RenderResults = ({ query, ...rest }) => (
   <GamesVirtualList
     renderItem={gameRowHighlightSearch(query)}
     renderTitle={title => <GamesVirtualListTitle title={title} />}
-    query={query}
     big={!isMobile()}
     {...rest}
   />
 );
 
 export const GameSearch = (props: Props) => {
+  const [listHash, setListHash] = React.useState("");
   const {
     loading,
     loadingSuggestions,
@@ -100,6 +100,11 @@ export const GameSearch = (props: Props) => {
     inputPromptPlaceholder,
   } = props;
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
+  React.useEffect(() => {
+    if (!loading) {
+      setListHash(query);
+    }
+  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const renderResults = () => (
     <>
@@ -116,6 +121,7 @@ export const GameSearch = (props: Props) => {
             games={searchResults}
             rowCount={searchResultsCount}
             query={query}
+            listHash={listHash}
           />
         </TrackProvider>
       )}
@@ -131,6 +137,7 @@ export const GameSearch = (props: Props) => {
               games={suggestions.games}
               rowCount={suggestions.games.length}
               query=""
+              listHash={listHash}
             />
           </TrackProvider>
         </>
@@ -167,7 +174,7 @@ export const GameSearch = (props: Props) => {
       </div>
       <div className="u-padding-x--xlg@desktop">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
-        {loading ? (
+        {searchResults.length === 0 && loading ? (
           <GameListSkeleton hasTitle={false} big={!isMobile()} />
         ) : (
           renderResults()
