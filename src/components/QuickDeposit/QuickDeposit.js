@@ -2,6 +2,8 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { AddIcon, WalletTabEuroSelectedIcon } from "@casumo/cmp-icons";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { ROUTE_IDS } from "Src/constants";
 import "./QuickDeposit.scss";
 
 type Props = {
@@ -21,28 +23,13 @@ export const QuickDeposit = ({
   bonusBalance,
   t,
 }: Props) => {
+  const { navigateToKO } = useCrossCodebaseNavigation();
   return (
     <Flex
       className="u-height--5xlg u-padding-top--md u-padding-left--xlg u-padding-right--xlg t-background-grey-90 t-border-r-top-left t-border-r-top-right t-color-white u-font"
       direction="horizontal"
       spacing="md"
     >
-      {/* <Flex.Item>
-        <Flex.Block>
-          <Text>{t.balance_title}</Text>
-        </Flex.Block>
-        <Flex.Block>
-          <Text className="u-font-weight-bold">{walletBalance}</Text>
-        </Flex.Block>
-      </Flex.Item>
-      <Flex.Item>
-        <Flex.Block>
-          <Text>{t.bonus_title}</Text>
-        </Flex.Block>
-        <Flex.Block>
-          <Text className="u-font-weight-bold">{bonusBalance}</Text>
-        </Flex.Block>
-      </Flex.Item> */}
       <Flex.Item>
         <Flex.Block>
           <span>{t.balance_title}</span>
@@ -68,9 +55,12 @@ export const QuickDeposit = ({
             </div>
           </div>
         ) : (
-          <a className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline">
+          <span
+            onClick={() => navigateToKO(ROUTE_IDS.CASH_DEPOSIT)}
+            className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
+          >
             {t.cashier_link_text}
-          </a>
+          </span>
         )}
       </Flex.Item>
     </Flex>
