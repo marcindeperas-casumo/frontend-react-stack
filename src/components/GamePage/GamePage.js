@@ -6,11 +6,18 @@ import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
+import QuickDeposit from "Components/QuickDeposit/QuickDepositContainer";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 
 type Props = {
   gameProviderModel: GameProviderModel,
   shouldShowSlotControlSystem: boolean,
+};
+
+const t = {
+  balance_title: "Balance",
+  bonus_title: "Bonus",
+  cashier_link_text: "Cashier",
 };
 
 export const GamePage = ({
@@ -23,6 +30,14 @@ export const GamePage = ({
       direction="vertical"
       spacing="none"
     >
+      <Flex.Item>
+        <QuickDeposit
+          walletBalance="£987.65"
+          bonusBalance="£55.03"
+          t={t}
+          savedPaymentMethods
+        />
+      </Flex.Item>
       <Flex.Item>
         <PlayOkayBar />
       </Flex.Item>

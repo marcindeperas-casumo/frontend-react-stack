@@ -20,3 +20,4 @@ export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
 export { useBonusBalanceDisplay } from "./useBonusBalanceDisplay";
+export { useCurrencySvgIcon } from "./useCurrencySvgIcon";

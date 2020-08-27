@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 import { localeSelector } from "Models/handshake";
-import { useTranslations, useBonusBalanceDisplay } from "Utils/hooks";
+import { useBonusBalanceDisplay } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import {
   playerBalanceAmountSelector,
@@ -9,7 +9,6 @@ import {
   playerCurrencySelector,
   playerBonusTextSelector,
 } from "Models/player";
-import { CMS_SLUG } from "./QuickDeposit.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 const QuickDepositContainer = connect(
@@ -25,7 +24,7 @@ const QuickDepositContainer = connect(
       playerBonusTextSelector(state),
       localeSelector(state)
     ),
-    t: useTranslations(CMS_SLUG),
+    currency: playerCurrencySelector(state),
   }),
   {
     savedPaymentMethods: true,

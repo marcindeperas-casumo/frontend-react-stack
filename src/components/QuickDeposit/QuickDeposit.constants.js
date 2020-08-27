@@ -1,1 +1,1 @@
-export const CMS_SLUG = "quick-deposit";
+export const CMS_SLUG = "iframe-solution";
