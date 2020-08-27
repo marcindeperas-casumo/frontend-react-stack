@@ -10,6 +10,8 @@ const props = {
   config: { type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING },
   acceptModal: action("acceptModal"),
   t: {
+    modal_title: "Wagering notification",
+    modal_text_bonus: "Bonus",
     modal_text_real: "Wallet funds will be used when wagering",
     cta_text: "Continue playing",
   },

@@ -12,7 +12,7 @@ import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 type Props = {
   gameProviderModel: GameProviderModel,
   shouldShowSlotControlSystem: boolean,
-  bonusAmount: number,
+  bonusAmount?: number,
 };
 
 export const GamePage = ({

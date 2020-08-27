@@ -7,20 +7,20 @@ import { WAGERING_NOTIFICATION_TYPES } from "Models/playing/playing.constants";
 import { ModalHeader } from "../RSModalHeader";
 
 export type CmsContent = {
-  modal_title: String,
+  modal_title: string,
   modal_text_bonus: string,
   modal_text_real: string,
-  cta_text: String,
+  cta_text: string,
 };
 
 type BonusBalanceInGameNotificationProps = {
   acceptModal?: () => void,
   config: any,
-  t: CmsContent,
+  t: ?CmsContent,
 };
 
 export const BonusBalanceInGameNotification = ({
-  acceptModal,
+  acceptModal = () => null,
   config: { type },
   t,
 }: BonusBalanceInGameNotificationProps) => {
