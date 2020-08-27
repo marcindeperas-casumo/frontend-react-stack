@@ -1,6 +1,9 @@
 import { injectScript, doesContainJapaneseCharacters, isTestEnv } from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
-import { injectIntercomScript } from "./IntercomChatService";
+import {
+  injectIntercomScript,
+  registerPauseResumeGame,
+} from "./IntercomChatService";
 import {
   INTERCOM_WIDGET_URL,
   INTERCOM_APP_ID,
@@ -22,6 +25,13 @@ const mockPlayerDetails = {
   playerName: { firstName: "First", lastName: "Last" },
 };
 
+const baseExpectedSettings = {
+  ...SETTINGS,
+  user_hash: "HMAC",
+  user_id: "playerId",
+  email: "email",
+};
+
 describe("injectIntercomScript", () => {
   beforeEach(() => {
     global.fetch = jest.fn().mockResolvedValue({
@@ -30,41 +40,60 @@ describe("injectIntercomScript", () => {
     });
     window.Intercom = jest.fn();
   });
-  afterAll(() => {
+  afterEach(() => {
     /* eslint-disable fp/no-delete */
     delete global.fetch;
     delete window.Intercom;
     /* eslint-enable fp/no-delete */
   });
 
-  test("should do nothing if disabled in native", async () => {
-    window.native = { nativeIntercomEnabled: true };
+  describe("if disabled in native", () => {
+    test("should do nothing", async () => {
+      window.native = { nativeIntercomEnabled: true };
 
-    await injectIntercomScript(mockPlayerDetails);
+      await injectIntercomScript(mockPlayerDetails);
 
-    expect(injectScript).not.toHaveBeenCalled();
-    expect(global.fetch).not.toHaveBeenCalled();
+      expect(injectScript).not.toHaveBeenCalled();
+      expect(global.fetch).not.toHaveBeenCalled();
+
+      // eslint-disable-next-line fp/no-delete
+      delete window.native;
+    });
   });
 
-  describe.skip("if not disabled in native", () => {
+  describe("if not disabled in native", () => {
     test("should call identity verification service", async () => {
       await injectIntercomScript(mockPlayerDetails);
 
-      expect(global.fetch).toHaveBeenCalledWith(IDENTITY_VERIFICATION_URL);
+      expect(global.fetch).toHaveBeenCalledWith(
+        IDENTITY_VERIFICATION_URL,
+        expect.any(Object)
+      );
     });
 
-    test("for Japan reverse first and last name", async () => {
+    test("should register 'onShow' and 'onHide' callbacks", async () => {
+      await injectIntercomScript(mockPlayerDetails);
+
+      expect(window.Intercom).toHaveBeenCalledWith(
+        "onShow",
+        expect.any(Function)
+      );
+      expect(window.Intercom).toHaveBeenCalledWith(
+        "onHide",
+        expect.any(Function)
+      );
+    });
+
+    test("should reverse first and last name for Japan", async () => {
       doesContainJapaneseCharacters.mockReturnValue(true);
       await injectIntercomScript(mockPlayerDetails);
 
       expect(window.Intercom).toHaveBeenCalledWith("boot", {
-        ...SETTINGS,
+        ...baseExpectedSettings,
         app_id: INTERCOM_APP_ID[ENVIRONMENTS.PRODUCTION],
-        user_hash: "HMAC",
-        user_id: "playerId",
-        email: "email",
         name: "casumoName [Last First]",
       });
+      doesContainJapaneseCharacters.mockReturnValue(false);
     });
 
     describe("for live environment", () => {
@@ -80,11 +109,8 @@ describe("injectIntercomScript", () => {
 
       test("should use live Intercom settings", () => {
         expect(window.Intercom).toHaveBeenCalledWith("boot", {
-          ...SETTINGS,
+          ...baseExpectedSettings,
           app_id: INTERCOM_APP_ID[ENVIRONMENTS.PRODUCTION],
-          user_hash: "HMAC",
-          user_id: "playerId",
-          email: "email",
           name: "casumoName [First Last]",
         });
       });
@@ -95,6 +121,9 @@ describe("injectIntercomScript", () => {
         isTestEnv.mockReturnValue(true);
         injectIntercomScript(mockPlayerDetails);
       });
+      afterEach(() => {
+        isTestEnv.mockReturnValue(false);
+      });
 
       test("should fetch live Intercom bundle", () => {
         expect(injectScript).toHaveBeenCalledWith(
@@ -104,13 +133,38 @@ describe("injectIntercomScript", () => {
 
       test("should use live Intercom settings", () => {
         expect(window.Intercom).toHaveBeenCalledWith("boot", {
-          ...SETTINGS,
+          ...baseExpectedSettings,
           app_id: INTERCOM_APP_ID[ENVIRONMENTS.TEST],
-          user_hash: "HMAC",
-          user_id: "playerId",
-          email: "email",
           name: "casumoName [First Last]",
         });
+      });
+    });
+
+    describe("if has callbacks registered", () => {
+      let pauseGameCallback;
+      let resumeGameCallback;
+
+      beforeEach(() => {
+        pauseGameCallback = jest.fn().mockResolvedValue();
+        resumeGameCallback = jest.fn();
+
+        registerPauseResumeGame(pauseGameCallback, resumeGameCallback);
+
+        window.Intercom = jest.fn().mockImplementation((evtHook, callback) => {
+          if (typeof callback === "function") {
+            callback();
+          }
+        });
+
+        injectIntercomScript(mockPlayerDetails);
+      });
+
+      test("should use the registered 'onShow' callback", () => {
+        expect(pauseGameCallback).toHaveBeenCalled();
+      });
+
+      test("should use the registered 'onHide' callback", () => {
+        expect(resumeGameCallback).toHaveBeenCalled();
       });
     });
   });

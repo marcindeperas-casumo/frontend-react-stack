@@ -1,4 +1,5 @@
 //@flow
+import logger from "Services/logger";
 import { injectScript, doesContainJapaneseCharacters, isTestEnv } from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
 import http from "Lib/http";
@@ -8,9 +9,6 @@ import {
   IDENTITY_VERIFICATION_URL,
   SETTINGS,
 } from "./constants";
-
-const intercomAppId =
-  INTERCOM_APP_ID[isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION];
 
 const isDisabled: () => boolean = () =>
   window.native && window.native.nativeIntercomEnabled === true;
@@ -47,28 +45,38 @@ export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> =
     return Promise.resolve();
   }
 
+  const intercomAppId =
+    INTERCOM_APP_ID[isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION];
   const fullName = doesContainJapaneseCharacters(playerName.firstName)
     ? `${playerName.lastName} ${playerName.firstName}`
     : `${playerName.firstName} ${playerName.lastName}`;
 
-  return injectScript(INTERCOM_WIDGET_URL + intercomAppId).then(() => {
-    getVerificationHash().then(({ identityHash }) => {
-      const settings = {
-        ...SETTINGS,
-        app_id: intercomAppId,
-        user_hash: identityHash,
-        user_id: playerId,
-        email,
-        name: `${casumoName} [${fullName}]`,
-      };
+  return injectScript(INTERCOM_WIDGET_URL + intercomAppId)
+    .then(() => {
+      getVerificationHash()
+        .then(({ identityHash }) => {
+          const settings = {
+            ...SETTINGS,
+            app_id: intercomAppId,
+            user_hash: identityHash,
+            user_id: playerId,
+            email,
+            name: `${casumoName} [${fullName}]`,
+          };
 
-      window.Intercom("boot", settings);
-      window.Intercom("onShow", () => {
-        gameControlApi.pauseGame && gameControlApi.pauseGame();
-      });
-      window.Intercom("onHide", () => {
-        gameControlApi.resumeGame && gameControlApi.resumeGame();
-      });
+          window.Intercom("boot", settings);
+          window.Intercom("onShow", () => {
+            gameControlApi.pauseGame && gameControlApi.pauseGame();
+          });
+          window.Intercom("onHide", () => {
+            gameControlApi.resumeGame && gameControlApi.resumeGame();
+          });
+        })
+        .catch(e => {
+          logger.error("[INTERCOM] Error getting identity verification", e);
+        });
+    })
+    .catch(e => {
+      logger.error("[INTERCOM] Error injecting script", e);
     });
-  });
 };
