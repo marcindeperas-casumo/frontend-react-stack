@@ -1892,9 +1892,9 @@
     "@casumo/cudl-react-utils" "^1.0.6"
 
 "@casumo/cmp-button@^3.0.0":
-  version "3.2.3"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-button/3.2.3/1ca8cba6ca1ee3cff31552e80305cf1e11ae42a59a115a2b7cd64a8bcff6d609#1aa7a043b8002648f938087dae93d178df4822c6"
-  integrity sha512-7hh8ai9FSOp4eev0qsbN4Z8YOLVo0Rj4Kvmw9rshf2RIuEQNm+FyOsyOYbVqOVormuY/L9L3MXkLiqIpsAitZQ==
+  version "3.2.4"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-button/3.2.4/c2ab9163524c372fde05c7ecae943dc775c9c582823a666d93c974fbfdccf7d5#91b30c29911cbdf08bd9b33324808d06a3e945d4"
+  integrity sha512-3FMg+2JVqiJUh+jSfDf9o5992L7JdCLWVCP6df0/KnifurPX38L4HQMp3ykvBQcYY+gBo0UD/fTJHuf7sTEa8g==
   dependencies:
     "@casumo/cudl-buttons" "2.0.4"
     "@casumo/cudl-react-utils" "^1.0.7"
