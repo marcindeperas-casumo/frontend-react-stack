@@ -13,17 +13,17 @@ export type CmsContent = {
   cta_text: String,
 };
 
-type SlotsModalProps = {
+type BonusBalanceInGameNotificationProps = {
   acceptModal?: () => void,
   config: any,
   t: CmsContent,
 };
 
-export const SlotsModal = ({
+export const BonusBalanceInGameNotification = ({
   acceptModal,
   config: { type },
   t,
-}: SlotsModalProps) => {
+}: BonusBalanceInGameNotificationProps) => {
   if (!t) {
     return null;
   }
@@ -51,11 +51,12 @@ export const SlotsModal = ({
       >
         <Flex.Item className="u-margin-bottom--5xlg">
           <div>
-            <p className="u-text-align-center u-font">
-              <Text tag="span" className="u-font-weight-bold">
-                {modalText}
-              </Text>
-            </p>
+            <Text
+              tag="p"
+              className="u-text-align-center u-font u-font-weight-bold"
+            >
+              {modalText}
+            </Text>
           </div>
         </Flex.Item>
         <Flex.Item>

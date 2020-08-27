@@ -32,8 +32,7 @@ export const playerCurrencySymbolSelector = createSelector(
   (currency, locale) => getSymbolForCurrency({ locale, currency })
 );
 
-// Todo: Wallet value from state -> realtime update on UI but buggered up math when playing with bonus $$
-// Todo: Handshake bonus amount from state -> accurate Math calculation whilst playing but updates on page refresh
+// Todo: Investigate https://jira.casumocave.com/browse/FC-91 Bonus balance deduction on staging when wagering
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
   bonusAmountSelector,

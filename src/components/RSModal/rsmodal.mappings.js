@@ -19,7 +19,7 @@ import {
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
-import { SlotsModal } from "./Slots/SlotsModal";
+import { BonusBalanceInGameNotification } from "./Slots/BonusBalanceInGameNotification";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
@@ -89,7 +89,7 @@ export const mappings: Mapping = {
   },
   [REACT_APP_MODAL.ID.WAGERING_NOTIFICATION]: {
     slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
-    Content: SlotsModal,
+    Content: BonusBalanceInGameNotification,
   },
 };
 

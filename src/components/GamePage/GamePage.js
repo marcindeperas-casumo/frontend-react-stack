@@ -20,7 +20,7 @@ export const GamePage = ({
   shouldShowSlotControlSystem,
   bonusAmount = 0,
 }: Props) => {
-  useInGameBonusOrRealBalanceCheck({ bonusAmountProp: bonusAmount });
+  useInGameBonusOrRealBalanceCheck({ bonusAmount: bonusAmount });
 
   return (
     <VerticalStretcher gameProviderModel={gameProviderModel}>
