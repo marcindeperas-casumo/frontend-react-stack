@@ -67,6 +67,8 @@ stories.add(
         <LayoutPage>
           <GamePage
             gameProviderModel={gameProviderModel}
+            pauseGame={() => Promise.resolve()}
+            resumeGame={() => {}}
             shouldShowSlotControlSystem={shouldShowSlotControlSystem}
           />
         </LayoutPage>
