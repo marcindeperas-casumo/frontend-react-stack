@@ -38,73 +38,78 @@ export function GameListPageFilters(props: Props) {
         direction="vertical"
         className="u-overflow-y--auto u-padding-x--xlg"
       >
-        {props.availableFilters.map(x => (
-          <Flex
-            key={x.key}
-            justify={x.type === "toggle" ? "space-between" : "start"}
-            direction={x.type === "toggle" ? "horizontal" : "vertical"}
-            className="u-padding-y--xlg t-border-bottom t-color-grey-5"
-          >
+        {props.availableFilters.map(
+          ({ key, type, title, description, values }) => (
             <Flex
-              direction="vertical"
-              className={classNames("t-color-grey-90", {
-                "u-padding-bottom--md": x.type !== "toggle",
-              })}
+              key={key}
+              justify={type === "toggle" ? "space-between" : "start"}
+              direction={type === "toggle" ? "horizontal" : "vertical"}
+              className="u-padding-y--xlg t-border-bottom t-color-grey-5"
             >
-              <Text className="u-font-weight-black">{x.title}</Text>
-              <Text size="sm">{x.description}</Text>
-            </Flex>
-            <Flex spacing="none" className="o-flex--wrap">
-              {x.values.map(y => {
-                const isActive = props.activeFilters[y.query];
-                const onChange = () => {
-                  props.setFilters({
-                    ...props.activeFilters,
-                    [y.query]: !isActive,
-                  });
-                };
+              <Flex
+                direction="vertical"
+                className={classNames("t-color-grey-90", {
+                  "u-padding-bottom--md": type !== "toggle",
+                })}
+              >
+                <Text className="u-font-weight-black">{title}</Text>
+                <Text size="sm">{description}</Text>
+              </Flex>
+              <Flex spacing="none" className="o-flex--wrap">
+                {values.map(y => {
+                  const isActive = props.activeFilters[y.query];
+                  const onChange = () => {
+                    props.setFilters({
+                      ...props.activeFilters,
+                      [y.query]: !isActive,
+                    });
+                  };
 
-                if (x.type === "toggle") {
-                  return (
-                    <Toggle
-                      key={y.key}
-                      checked={isActive}
-                      onChange={onChange}
-                    />
-                  );
-                } else if (!y.title) {
-                  // all filters except toggle need title, hide them if translations are missing
+                  if (type === "toggle") {
+                    return (
+                      <Toggle
+                        key={y.key}
+                        checked={isActive}
+                        onChange={onChange}
+                      />
+                    );
+                  } else if (!y.title) {
+                    // all filters except toggle need title, hide them if translations are missing
+                    return null;
+                  } else if (type === "chip") {
+                    return (
+                      <Flex.Item
+                        key={y.key}
+                        className="u-margin-right--sm u-margin-bottom--sm"
+                      >
+                        <ChipChoice onClick={onChange} isActive={isActive}>
+                          {y.title}
+                        </ChipChoice>
+                      </Flex.Item>
+                    );
+                  } else if (type === "checkbox") {
+                    return (
+                      <Flex
+                        key={y.key}
+                        align="center"
+                        justify="space-between"
+                        className="u-width--full u-padding-y--md t-border-bottom t-color-grey-5"
+                      >
+                        <Text className="t-color-grey-90">{y.title}</Text>
+                        <CheckboxSquare
+                          checked={isActive}
+                          onChange={onChange}
+                        />
+                      </Flex>
+                    );
+                  }
+
                   return null;
-                } else if (x.type === "chip") {
-                  return (
-                    <Flex.Item
-                      key={y.key}
-                      className="u-margin-right--sm u-margin-bottom--sm"
-                    >
-                      <ChipChoice onClick={onChange} isActive={isActive}>
-                        {y.title}
-                      </ChipChoice>
-                    </Flex.Item>
-                  );
-                } else if (x.type === "checkbox") {
-                  return (
-                    <Flex
-                      key={y.key}
-                      align="center"
-                      justify="space-between"
-                      className="u-width--full u-padding-y--md t-border-bottom t-color-grey-5"
-                    >
-                      <Text className="t-color-grey-90">{y.title}</Text>
-                      <CheckboxSquare checked={isActive} onChange={onChange} />
-                    </Flex>
-                  );
-                }
-
-                return null;
-              })}
+                })}
+              </Flex>
             </Flex>
-          </Flex>
-        ))}
+          )
+        )}
         <Flex className="u-padding--2xlg" />
       </Flex>
       <Flex className="u-padding-x--md u-padding-y--xlg u-position-absolute u-bottom-0 u-left-0 u-right-0 c-game-list-page-filters__main-button-bg">
