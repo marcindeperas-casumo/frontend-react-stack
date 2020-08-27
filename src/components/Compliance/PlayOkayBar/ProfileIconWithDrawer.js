@@ -15,6 +15,7 @@ import { InGameDrawer } from "Components/InGameDrawer";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
+  openChatWindow,
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
@@ -61,7 +62,7 @@ export const ProfileIconWithDrawer = ({
         <InGameDrawer
           t={t}
           onLiveChatClick={() => {
-            window.Intercom("show");
+            openChatWindow();
           }}
           onExitGameClick={() => {
             navigateToKO(ROUTE_IDS.TOP_LISTS);

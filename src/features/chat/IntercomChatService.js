@@ -80,3 +80,7 @@ export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> =
       logger.error("[INTERCOM] Error injecting script", e);
     });
 };
+
+export const openChatWindow: () => void = () => {
+  window.Intercom && window.Intercom("show");
+};

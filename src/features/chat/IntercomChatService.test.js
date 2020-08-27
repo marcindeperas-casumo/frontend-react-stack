@@ -3,6 +3,7 @@ import { ENVIRONMENTS } from "Src/constants";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
+  openChatWindow,
 } from "./IntercomChatService";
 import {
   INTERCOM_WIDGET_URL,
@@ -139,33 +140,62 @@ describe("injectIntercomScript", () => {
         });
       });
     });
+  });
+});
 
-    describe("if has callbacks registered", () => {
-      let pauseGameCallback;
-      let resumeGameCallback;
+describe("registerPauseResumeGame", () => {
+  let pauseGameCallback;
+  let resumeGameCallback;
 
-      beforeEach(() => {
-        pauseGameCallback = jest.fn().mockResolvedValue();
-        resumeGameCallback = jest.fn();
-
-        registerPauseResumeGame(pauseGameCallback, resumeGameCallback);
-
-        window.Intercom = jest.fn().mockImplementation((evtHook, callback) => {
-          if (typeof callback === "function") {
-            callback();
-          }
-        });
-
-        injectIntercomScript(mockPlayerDetails);
-      });
-
-      test("should use the registered 'onShow' callback", () => {
-        expect(pauseGameCallback).toHaveBeenCalled();
-      });
-
-      test("should use the registered 'onHide' callback", () => {
-        expect(resumeGameCallback).toHaveBeenCalled();
-      });
+  beforeEach(() => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: () => ({ identityHash: "HMAC" }),
     });
+
+    pauseGameCallback = jest.fn().mockResolvedValue();
+    resumeGameCallback = jest.fn();
+
+    registerPauseResumeGame(pauseGameCallback, resumeGameCallback);
+
+    window.Intercom = jest.fn().mockImplementation((evtHook, callback) => {
+      if (typeof callback === "function") {
+        callback();
+      }
+    });
+
+    injectIntercomScript(mockPlayerDetails);
+  });
+  afterEach(() => {
+    /* eslint-disable fp/no-delete */
+    delete global.fetch;
+    delete window.Intercom;
+    /* eslint-enable fp/no-delete */
+  });
+
+  test("should use the registered 'onShow' callback", () => {
+    expect(pauseGameCallback).toHaveBeenCalled();
+  });
+
+  test("should use the registered 'onHide' callback", () => {
+    expect(resumeGameCallback).toHaveBeenCalled();
+  });
+});
+
+describe("openChatWindow", () => {
+  beforeEach(() => {
+    window.Intercom = jest.fn();
+  });
+  afterEach(() => {
+    // eslint-disable-next-line fp/no-delete
+    delete window.Intercom;
+  });
+
+  test("should call Intercom API to open chat", () => {
+    window.Intercom = jest.fn();
+
+    openChatWindow();
+
+    expect(window.Intercom).toHaveBeenCalledWith("show");
   });
 });
