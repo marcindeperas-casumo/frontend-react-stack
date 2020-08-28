@@ -5,6 +5,8 @@ import { ChipNavigation } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import * as Icons from "@casumo/cmp-icons";
 import { useTranslations } from "Utils/hooks";
+import TrackClick from "Components/TrackClick";
+import { EVENTS } from "Src/constants";
 
 const GameSetChip = ({
   Icon,
@@ -61,12 +63,13 @@ export const GameBrowserSets = (props: Props) => {
       />
       <>
         {props.sets.map(x => (
-          <GameSetChip
+          <TrackClick
             key={x.key}
-            to={x.url}
-            Icon={Icons[x.icon]}
-            text={x.title}
-          />
+            eventName={EVENTS.MIXPANEL_GAME_SET_CLICKED}
+            data={{ gameSet: x.key }}
+          >
+            <GameSetChip to={x.url} Icon={Icons[x.icon]} text={x.title} />
+          </TrackClick>
         ))}
       </>
     </Flex>

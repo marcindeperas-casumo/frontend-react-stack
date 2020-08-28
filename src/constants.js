@@ -337,6 +337,11 @@ export const EVENTS = {
   MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
+  MIXPANEL_GAME_SET_CLICKED: "Game Set Clicked",
+  MIXPANEL_GAME_SET_SORTING_CLICKED: "Sorting Clicked",
+  MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
+  MIXPANEL_GAME_SET_FILTERING_CLICKED: "Filtering Clicked",
+  MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED: "Filtering Option Clicked",
 };
 
 export const EVENT_PROPS = {

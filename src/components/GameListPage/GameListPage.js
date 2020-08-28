@@ -6,6 +6,9 @@ import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
 import { setData, getData } from "Models/gameBrowser";
 import * as A from "Types/apollo";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
+import TrackClick from "Components/TrackClick";
 import { loadMoreConstructor } from "Utils";
 import { useCachedQuery, useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
@@ -50,6 +53,11 @@ export function findQueryTranslation(
   )(allFilters);
 }
 
+const getAppliedFilters = filters =>
+  Object.entries(filters)
+    .filter(([key, val]) => val)
+    .map(([key]) => key);
+
 /* eslint-disable-next-line sonarjs/cognitive-complexity */
 export function GameListPage({ set }: Props) {
   const t = useTranslations<{
@@ -60,13 +68,25 @@ export function GameListPage({ set }: Props) {
   const { filters: defaultFilters, sort: defaultSort } = useSelector(getData);
   const dispatch = useDispatch();
   const isLiveCasino = set.key === "LIVE_CASINO";
-  const [sort, setSort] = React.useState<A.GamesSortOrder | null>(defaultSort);
-  const [filters, setFilters] = React.useState<{}>(defaultFilters);
+  const [sort, setSortRaw] = React.useState<A.GamesSortOrder | null>(
+    defaultSort
+  );
+  const setSort = s => {
+    setSortRaw(s);
+    tracker.track(EVENTS.MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED, {
+      sortOrder: s,
+    });
+  };
+  const [filters, setFiltersRaw] = React.useState<{}>(defaultFilters);
+  const setFilters = f => {
+    setFiltersRaw(f);
+    tracker.track(EVENTS.MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED, {
+      filteringOption: getAppliedFilters(f).join("&"),
+    });
+  };
   const [filtersVisible, setFiltersVisibility] = React.useState(false);
   const sortOrder = `sortOrder=${sort || set.defaultSort}`;
-  const f = Object.entries(filters)
-    .filter(([key, val]) => val)
-    .map(([key]) => key);
+  const f = getAppliedFilters(filters);
   React.useEffect(() => {
     dispatch(
       setData({
@@ -80,6 +100,11 @@ export function GameListPage({ set }: Props) {
 
   const query = [set.baseQuery, sortOrder, ...f].join("&");
   const [listHash, setListHash] = React.useState("");
+  const openFilter = () => {
+    tracker.track(EVENTS.MIXPANEL_GAME_SET_FILTERING_CLICKED, {});
+    setFiltersVisibility(true);
+  };
+
   const { data, fetchMore, loading } = useCachedQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
@@ -108,11 +133,13 @@ export function GameListPage({ set }: Props) {
 
   const selectCmp = (
     <Flex className="o-flex--wrap">
-      <GameListPageSort
-        setSort={setSort}
-        supportedSorts={set.supportedSorts}
-        sort={sort}
-      />
+      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+        <GameListPageSort
+          setSort={setSort}
+          supportedSorts={set.supportedSorts}
+          sort={sort}
+        />
+      </TrackClick>
       {f.map(x => (
         <Flex key={x} className="u-margin-right u-margin-bottom">
           <ChipFilterable
@@ -124,9 +151,7 @@ export function GameListPage({ set }: Props) {
         </Flex>
       ))}
       <Flex className="u-margin-right u-margin-bottom">
-        <ChipFilterable onClick={() => setFiltersVisibility(true)}>
-          {t?.title || ""}
-        </ChipFilterable>
+        <ChipFilterable onClick={openFilter}>{t?.title || ""}</ChipFilterable>
       </Flex>
     </Flex>
   );
