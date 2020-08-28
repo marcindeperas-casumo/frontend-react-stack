@@ -4,10 +4,11 @@ import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
+import { isMobile } from "Components/ResponsiveLayout";
+import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
-import { useFullScreenOnSwipeUp } from "Utils/hooks";
-import { SwipeUpMessageText } from "./SwipeUpMessageText";
+import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
 import HandSymbol from "./icons/hand.svg";
 import "./VerticalStretcher.scss";
 
@@ -15,20 +16,26 @@ export type Props = {
   children?: Element<*>,
   swipeUpPanelEnabled: boolean,
   gameProviderModel: GameProviderModel,
+  fullScreenElement: ?HTMLElement,
+};
+
+const onSwipePanelClick = (element: HTMLElement) => {
+  if (supportsTogglingFullscreen(element) && isMobile) {
+    element.requestFullscreen();
+  }
 };
 
 export const VerticalStretcher = ({
   children,
   swipeUpPanelEnabled = true,
   gameProviderModel,
+  fullScreenElement = document.body,
 }: Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
   const [controllScroll, setControllScroll] = useState(true);
 
   const isNative = isNativeByUserAgent();
-
-  useFullScreenOnSwipeUp();
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
@@ -85,6 +92,7 @@ export const VerticalStretcher = ({
   const shouldShowSwipePanel =
     gameProviderModel.swipeUpToPlayPanelPossible &&
     swipeUpPanelEnabled &&
+    isMobile &&
     !isNative &&
     showSwipePanel;
 
@@ -97,13 +105,22 @@ export const VerticalStretcher = ({
             direction="vertical"
             align="center"
             className="c-game-page__swipeup-details u-width--full u-height--screen"
+            onClick={onSwipePanelClick}
           >
-            <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
-              <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
-            </Flex.Item>
-            <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
-              <SwipeUpMessageText />
-            </Flex.Item>
+            {supportsTogglingFullscreen(fullScreenElement) ? (
+              <Flex.Item className="t-color-white">
+                <TapToFullscreenText />
+              </Flex.Item>
+            ) : (
+              <React.Fragment>
+                <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
+                  <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
+                </Flex.Item>
+                <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
+                  <SwipeUpMessageText />
+                </Flex.Item>
+              </React.Fragment>
+            )}
           </Flex>
         </div>
       )}
