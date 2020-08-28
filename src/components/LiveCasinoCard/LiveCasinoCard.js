@@ -52,9 +52,6 @@ export class LiveCasinoCard extends PureComponent<Props> {
           align="end"
           justify="space-between"
           className="o-ratio__content u-font-weight-bold"
-          style={{
-            background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
-          }}
         >
           <div className="t-color-white" onClick={e => e.stopPropagation()}>
             <TrackClick
