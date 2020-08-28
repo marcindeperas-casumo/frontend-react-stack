@@ -5,11 +5,14 @@ export const useBonusBalanceDisplay = (
   value: number,
   currency: string,
   bonusText: string,
-  locale: string
+  locale: string,
+  trimmed?: boolean
 ) => {
   if (!value) {
     return null;
   } else {
-    return `+${formatCurrency({ locale, currency, value })} ${bonusText}`;
+    return `+${formatCurrency({ locale, currency, value })} ${
+      !trimmed ? bonusText : ""
+    }`;
   }
 };

@@ -31,12 +31,7 @@ export const GamePage = ({
       spacing="none"
     >
       <Flex.Item>
-        <QuickDeposit
-          walletBalance="£987.65"
-          bonusBalance="£55.03"
-          t={t}
-          savedPaymentMethods
-        />
+        <QuickDeposit walletBalance="£987.65" bonusBalance="£55.03" t={t} />
       </Flex.Item>
       <Flex.Item>
         <PlayOkayBar />

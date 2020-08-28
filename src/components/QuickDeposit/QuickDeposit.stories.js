@@ -12,27 +12,29 @@ const t = {
   cashier_link_text: "Cashier",
 };
 
-stories.add("DepositSlipLink", () => {
+stories.add("Sterling Deposit Slip Link", () => {
   return (
     <MockStore>
       <QuickDeposit
         walletBalance="£987.65"
         bonusBalance="£55.03"
         t={t}
-        savedPaymentMethods
+        savedPaymentMethods={["test"]}
+        currency="GBP"
       />
     </MockStore>
   );
 });
 
-stories.add("CashierLink", () => {
+stories.add("Euro Cashier Link", () => {
   return (
     <MockStore>
       <QuickDeposit
-        walletBalance="£987.65"
-        bonusBalance="£55.03"
+        walletBalance="€987.65"
+        bonusBalance="€55.03"
         t={t}
-        savedPaymentMethods={false}
+        currency="EUR"
+        savedPaymentMethods={[]}
       />
     </MockStore>
   );
