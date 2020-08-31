@@ -28,7 +28,6 @@ export const BonusBalanceInGameNotification = ({
     return null;
   }
 
-  const modalTitle = t.modal_title;
   const modalText =
     type === WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING
       ? t.modal_text_bonus
@@ -39,7 +38,7 @@ export const BonusBalanceInGameNotification = ({
   return (
     <>
       <ModalHeader
-        title={modalTitle}
+        title={t.modal_title}
         showCloseButton
         closeAction={acceptModal}
       />
