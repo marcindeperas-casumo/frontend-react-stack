@@ -5,13 +5,7 @@
 
 .c-quick-deposit-wallet-icon {
   display: inherit;
-  margin: 0 auto;
   position: relative;
-  top: 20%;
-
-  .Icons-c-icon__svg {
-    fill: #4c00c2;
-  }
 }
 
 .c-quick-deposit-add-icon {
@@ -25,9 +19,5 @@
     display: inherit;
     height: auto;
     width: auto;
-
-    .Icons-c-icon__svg {
-      fill: #4c00c2;
-    }
   }
 }

@@ -45,13 +45,9 @@ const currencyIconMapper = (
   return <IconTagName className={classList} />;
 };
 
-export function useCurrencySvgIcon({
-  currency,
-  selected,
-  classList = "",
-}: Props) {
+export const CurrencyIcon = ({ currency, selected, classList = "" }: Props) => {
   if (!currency) {
     return () => null;
   }
   return currencyIconMapper(currency, selected, classList);
-}
+};

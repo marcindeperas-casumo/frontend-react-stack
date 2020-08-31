@@ -2,8 +2,9 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { AddIcon } from "@casumo/cmp-icons";
-import { useCrossCodebaseNavigation, useCurrencySvgIcon } from "Utils/hooks";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
+import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
 type Props = {
@@ -26,12 +27,8 @@ export const QuickDeposit = ({
   t,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const SvgCurrencyIconToUse = useCurrencySvgIcon({
-    currency: currency,
-    selected: true,
-    classList:
-      "c-quick-deposit-wallet-icon o-position--absolute o-inset-x--none",
-  });
+  const svgCurrencyIconClassList =
+    "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
   const availableSavedPaymentMethods = savedPaymentMethods
     ? savedPaymentMethods.length
     : false;
@@ -42,7 +39,7 @@ export const QuickDeposit = ({
 
   return (
     <Flex
-      className="u-height--5xlg u-padding-top--md u-padding-left--xlg u-padding-right--xlg t-background-grey-90 t-border-r-top-left t-border-r-top-right t-color-white u-font"
+      className="u-height--5xlg u-padding-top--md u-padding-x--xlg t-background-grey-90 t-color-white u-font"
       direction="horizontal"
       spacing="md"
     >
@@ -64,12 +61,20 @@ export const QuickDeposit = ({
       </Flex.Item>
       <Flex.Item className="u-margin-left--auto u-cursor--pointer">
         {availableSavedPaymentMethods ? (
-          <div className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle o-position--relative u-width--2xlg u-height--2xlg">
-            {SvgCurrencyIconToUse}
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white o-position--absolute">
-              <AddIcon />
+          <Flex
+            align="center"
+            justify="center"
+            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position--relative u-width--2xlg u-height--2xlg"
+          >
+            <CurrencyIcon
+              currency={currency}
+              selected
+              classList={svgCurrencyIconClassList}
+            />
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position--absolute">
+              <AddIcon className="t-color-purple-60" />
             </div>
-          </div>
+          </Flex>
         ) : (
           <span
             onClick={() => navigateToKO(ROUTE_IDS.CASH_DEPOSIT)}

@@ -29,6 +29,7 @@ import {
   convertLuxonDurationObjectToSeconds,
   addPointerEventStylesToLinkElements,
   decodedUrlParams,
+  bonusBalanceDisplay,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -352,14 +353,14 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3.14,
       })
-    ).toBe("€3.14");
+    ).toBe("3,14 €");
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 3.1,
       })
-    ).toBe("€3.10");
+    ).toBe("3,10 €");
   });
 
   test("should render without fractions instead of 00", () => {
@@ -369,14 +370,14 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3,
       })
-    ).toBe("€3");
+    ).toBe("3 €");
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 66.0,
       })
-    ).toBe("€66");
+    ).toBe("66 €");
   });
 });
 
@@ -393,13 +394,13 @@ describe("getSymbolForCurrency()", () => {
         currency: "JPY",
         locale: "en-GB",
       })
-    ).toBe("¥");
+    ).toBe("JP¥");
     expect(
       getSymbolForCurrency({
         currency: "USD",
         locale: "en-GB",
       })
-    ).toBe("$");
+    ).toBe("US$");
   });
 });
 describe("canBeInterpolated()", () => {
@@ -589,5 +590,38 @@ describe("convertHoursToDays()", () => {
         .length;
       expect(foundAddedStyle).toBe(LINKS_AMOUNT);
     });
+  });
+});
+
+describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
+  test("should show EUR bonus balance amount followed with the word bonus", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      100,
+      "EUR",
+      "Bonus",
+      "en-en"
+    );
+    expect(bonusBalanceDisplayLongText).toMatch("Bonus");
+  });
+
+  test("should show GBP bonus balance without the word bonus", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      200.2,
+      "GBP",
+      "Bonus",
+      "en-GB",
+      true
+    );
+    expect(bonusBalanceDisplayLongText).toMatch("+£");
+  });
+
+  test("should receive null if no value is passed", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      "",
+      "EUR",
+      "",
+      "en-en"
+    );
+    expect(bonusBalanceDisplayLongText).toBeNull();
   });
 });
