@@ -5,19 +5,10 @@
 
 .c-quick-deposit-wallet-icon {
   display: inherit;
-  position: relative;
 }
 
 .c-quick-deposit-add-icon {
-  height: 10px;
-  left: 60%;
-  position: absolute;
-  top: 20%;
-  width: 10px;
-
-  .Icons-c-icon {
-    display: inherit;
-    height: auto;
-    width: auto;
-  }
+  left: 37%;
+  top: 5%;
+  transform: scale(0.25);
 }

@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
@@ -29,9 +30,7 @@ export const QuickDeposit = ({
   const { navigateToKO } = useCrossCodebaseNavigation();
   const svgCurrencyIconClassList =
     "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
-  const availableSavedPaymentMethods = savedPaymentMethods
-    ? savedPaymentMethods.length
-    : false;
+  const availableSavedPaymentMethods = Boolean(savedPaymentMethods.length);
 
   if (!t) {
     return null;
@@ -64,24 +63,25 @@ export const QuickDeposit = ({
           <Flex
             align="center"
             justify="center"
-            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position--relative u-width--2xlg u-height--2xlg"
+            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg"
           >
             <CurrencyIcon
               currency={currency}
               selected
               classList={svgCurrencyIconClassList}
             />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position--absolute">
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute u-scale-x--25 u-scale-y--25">
               <AddIcon className="t-color-purple-60" />
             </div>
           </Flex>
         ) : (
-          <span
-            onClick={() => navigateToKO(ROUTE_IDS.CASH_DEPOSIT)}
+          <Text
+            tag="span"
             className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
+            onClick={() => navigateToKO(ROUTE_IDS.CASH_DEPOSIT)}
           >
             {t.cashier_link_text}
-          </span>
+          </Text>
         )}
       </Flex.Item>
     </Flex>
