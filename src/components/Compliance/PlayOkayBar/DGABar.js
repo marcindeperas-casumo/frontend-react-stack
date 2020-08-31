@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { FullscreenToggle } from "Components/FullscreenView";
+import { ExitGame } from "./ExitGame";
 import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
 import "./PlayOkayBar.scss";
@@ -25,7 +25,7 @@ export const DGABar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle elementOverride={document.body} />
+      <ExitGame />
     </Flex.Block>
     <Flex.Item>
       <Text tag="span" size="2xs">

@@ -20,6 +20,7 @@ import {
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
+import { GameRoundDetails } from "./History";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -42,6 +43,10 @@ export const mappings: Mapping = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
+  },
+  GAME_ROUND_DETAILS: {
+    slug: "features.bets",
+    Content: GameRoundDetails,
   },
   [REACT_APP_MODAL.ID.REALITY_CHECK]: {
     slug: REALITY_CHECK_CMS_SLUG,
