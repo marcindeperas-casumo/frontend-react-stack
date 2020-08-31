@@ -2,6 +2,7 @@
 import * as React from "react";
 import { mount } from "enzyme";
 import { VirtualGridMeasurer } from "./VirtualGridMeasurer";
+jest.mock("./spacerSizesMap");
 
 const container = {
   width: 600,
@@ -25,7 +26,6 @@ describe("VirtualGridMeasurer", () => {
     const renderChild = jest.fn(x => (
       <div style={{ width: 100, height: 100 }}>{JSON.stringify(x)}</div>
     ));
-
     mount(
       <div style={container}>
         <VirtualGridMeasurer spacerSize="sm" tileWidth={100} tileHeight={100}>
