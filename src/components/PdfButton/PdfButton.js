@@ -29,9 +29,9 @@ export function PdfButton({
       className="u-margin-top--lg u-margin-bottom--md"
       isDisabled={isDisabled}
       isLoading={isDisabled}
+      icon={<DownloadIcon />}
       target="_blank"
     >
-      <DownloadIcon />
       {label}
     </ButtonPrimary>
   );
