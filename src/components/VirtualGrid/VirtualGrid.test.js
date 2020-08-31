@@ -3,6 +3,7 @@ import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { VirtualGrid } from "./VirtualGrid";
+jest.mock("./spacerSizesMap");
 
 describe("VirtualGrid", () => {
   test("Renders required components", () => {
