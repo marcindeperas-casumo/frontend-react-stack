@@ -8,7 +8,6 @@ export { useMarket } from "./useMarket";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
-export { useFullScreenOnSwipeUp } from "./useFullScreenOnSwipeUp";
 export {
   usePlayerSessionInvalidRedirect,
 } from "./usePlayerSessionInvalidRedirect";

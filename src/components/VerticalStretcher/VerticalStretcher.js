@@ -19,8 +19,8 @@ export type Props = {
   fullScreenElement: ?HTMLElement,
 };
 
-const onSwipePanelClick = (element: HTMLElement) => {
-  if (supportsTogglingFullscreen(element) && isMobile) {
+const onSwipePanelClick = (element: ?HTMLElement) => {
+  if (element && supportsTogglingFullscreen(element) && isMobile) {
     element.requestFullscreen();
   }
 };
@@ -105,7 +105,7 @@ export const VerticalStretcher = ({
             direction="vertical"
             align="center"
             className="c-game-page__swipeup-details u-width--full u-height--screen"
-            onClick={onSwipePanelClick}
+            onClick={() => onSwipePanelClick(fullScreenElement)}
           >
             {supportsTogglingFullscreen(fullScreenElement) ? (
               <Flex.Item className="t-color-white">
