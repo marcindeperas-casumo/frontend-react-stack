@@ -15,15 +15,18 @@ import {
   curatedGameMock,
   curatedPromotionMock,
   curatedSportsMock,
+  curatedSportsDepositMock,
 } from "../__mocks__";
 
 describe("CuratedCard", () => {
   let onLaunchGame;
   let navigateToSportsHash;
+  let navigateById;
 
   beforeEach(() => {
     onLaunchGame = jest.fn();
     navigateToSportsHash = jest.fn();
+    navigateById = jest.fn();
   });
 
   test("should render nothing if curated-card is not defined", () => {
@@ -133,5 +136,21 @@ describe("CuratedCard", () => {
     cardBackground.simulate("click");
 
     expect(navigateToSportsHash).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call navigateById if curated type is SPORTS and deposit link", () => {
+    const component = mount(
+      <CuratedCard
+        onLaunchGame={onLaunchGame}
+        navigateToSportsHash={navigateToSportsHash}
+        navigateById={navigateById}
+        curatedCard={curatedSportsDepositMock}
+      />
+    );
+    const cardBackground = component.find("CuratedCardBackground");
+
+    cardBackground.simulate("click");
+
+    expect(navigateById).toHaveBeenCalledTimes(1);
   });
 });
