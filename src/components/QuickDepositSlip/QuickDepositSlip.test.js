@@ -36,6 +36,7 @@ describe("<QuickDepositSlip />", () => {
 
     test("should show validation error messages for minimum amount", () => {
       act(() => {
+        // $FlowIgnore
         input.instance().value = 5;
         input.simulate("change");
         rendered.update();
@@ -50,6 +51,7 @@ describe("<QuickDepositSlip />", () => {
 
     test("should show error for maximum amount", () => {
       act(() => {
+        // $FlowIgnore
         input.instance().value = 101;
         input.simulate("change");
         rendered.update();
