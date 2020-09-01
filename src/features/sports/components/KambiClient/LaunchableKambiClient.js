@@ -23,7 +23,7 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   }
 `;
 
-export default function LaunchableKambiClient() {
+export function LaunchableKambiClient() {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
   const market = useMarket();
   const locale = useLocale();
