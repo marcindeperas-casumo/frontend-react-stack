@@ -1,0 +1,33 @@
+.c-select {
+  appearance: none;
+  // stylelint-disable-next-line declaration-property-value-blacklist
+  border: none;
+  text-indent: 1px;
+  text-overflow: "";
+
+  &:focus {
+    outline: none;
+  }
+}
+
+$arrow-size: 16px;
+.c-select__options-list-arrow {
+  border-bottom: $arrow-size solid cudl-palette(white, "base");
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  height: 0;
+  left: 64px;
+  top: -$arrow-size;
+  width: 0;
+}
+
+.c-select__options-list {
+  left: -32px;
+  top: 52px;
+  z-index: 100;
+}
+
+.c-select__overlay {
+  background-color: rgba(cudl-palette(grey, "90"), 0.8);
+  opacity: 1;
+}
