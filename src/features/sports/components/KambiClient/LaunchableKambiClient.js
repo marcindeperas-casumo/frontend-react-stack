@@ -7,8 +7,7 @@ import { propOr } from "ramda";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
-import { useUrlPrefix } from "Utils/hooks";
-import { useKambiMarketFromUrlPrefix } from "Features/sports/hooks/useKambiMarketFromUrlPrefix";
+import { useKambi } from "Features/sports/hooks/useKambi";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -25,15 +24,12 @@ export default function LaunchableKambiClient() {
   const [mutateLaunchKambi, { loading, error, data }] = useMutation(
     LAUNCH_KAMBI_MUTATION
   );
-  const urlPrefix = useUrlPrefix();
 
   useEffect(() => {
     mutateLaunchKambi();
   }, [mutateLaunchKambi]);
 
-  const { kambiMarket, locale, currency } = useKambiMarketFromUrlPrefix(
-    urlPrefix
-  );
+  const { kambiMarket, locale, currency } = useKambi();
 
   const onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
