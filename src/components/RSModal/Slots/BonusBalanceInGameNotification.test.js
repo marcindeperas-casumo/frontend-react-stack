@@ -14,7 +14,7 @@ const realBalanceNotificationConfig = {
 };
 
 const props = {
-  acceptModal: () => null,
+  acceptModal: () => undefined,
   t: {
     modal_title: "Wagering notification",
     modal_text_bonus:
