@@ -1,14 +1,9 @@
 // @flow
 import * as React from "react";
-import ReactModal from "react-modal";
-import {
-  useTranslations,
-  useDelayedCleanup,
-  useJurisdiction,
-} from "Utils/hooks";
+import { useTranslations, useDelayedCleanup } from "Utils/hooks";
 import { useSelectModal, useHideModal } from "Models/modal";
+import { ModalBase } from "./RSModalBase";
 import { getModalData } from "./rsmodal.mappings";
-import "./rsmodals.scss";
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
 
@@ -18,17 +13,13 @@ export function Modal() {
   const { slug, Content } = getModalData(modalId);
   const { closeModal, dismissModal, acceptModal } = useHideModal(modalId);
   const t = useTranslations(slug);
-  const { jurisdiction } = useJurisdiction();
 
   return (
-    <ReactModal
+    <ModalBase
       isOpen={Boolean(state.modalId)}
+      mustAccept={!state.config.mustAccept}
       onRequestClose={dismissModal}
-      className="t-background-white o-flex--vertical t-border-r c-rsmodal"
-      overlayClassName={`c-rsmodal__overlay c-rsmodal__overlay--${jurisdiction}`}
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
-      shouldCloseOnOverlayClick={!state.config.mustAccept}
-      shouldCloseOnEsc={!state.config.mustAccept}
     >
       <Content
         t={t}
@@ -37,6 +28,6 @@ export function Modal() {
         acceptModal={acceptModal}
         config={state.config}
       />
-    </ReactModal>
+    </ModalBase>
   );
 }

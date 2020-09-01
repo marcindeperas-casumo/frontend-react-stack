@@ -4,6 +4,7 @@ import { PlayIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { launchGame } from "Services/LaunchGameService";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { isDesktop } from "Components/ResponsiveLayout";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
   practiceButtonText: ?string,
 };
 
+const size = isDesktop() ? "lg" : "sm";
 export const GameDetailsButtons = ({
   slug,
   name,
@@ -21,7 +23,7 @@ export const GameDetailsButtons = ({
   hasPlayForFun,
   practiceButtonText,
 }: Props) => (
-  <div className="u-zindex--content-overlay u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
+  <div className="u-zindex--content-overlay u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md u-width--full@tablet u-width--2/3@desktop u-margin-x--auto">
     <TrackClick
       eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
       data={{
@@ -30,11 +32,11 @@ export const GameDetailsButtons = ({
       }}
     >
       <ButtonPrimary
-        size="sm"
+        size={size}
         className="u-width--full u-margin-bottom--md"
         onClick={() => launchGame({ slug })}
       >
-        <PlayIcon size="sm" className="u-margin-right--sm" />
+        {!isDesktop() && <PlayIcon size="sm" className="u-margin-right--sm" />}
         <span>{playButtonText}</span>
       </ButtonPrimary>
     </TrackClick>
@@ -47,7 +49,7 @@ export const GameDetailsButtons = ({
         }}
       >
         <ButtonSecondary
-          size="sm"
+          size={size}
           className="u-width--full"
           onClick={() =>
             launchGame({

@@ -27,7 +27,6 @@ describe("GameDetailsMedia", () => {
     );
     expect(rendered.equals(null)).toBe(true);
   });
-
   test("should return ImageLazy for each image", () => {
     const rendered = shallow(
       <GameDetailsMedia
@@ -77,20 +76,8 @@ describe("GameDetailsButtons", () => {
 });
 
 describe("GameDetails", () => {
-  test("should return null if game is empty", () => {
-    const rendered = shallow(
-      <GameDetails
-        data={{
-          game: null,
-        }}
-        t={t}
-      />
-    );
-    expect(rendered.equals(null)).toBe(true);
-  });
-
   test("should render game artwork, name and description", () => {
-    const rendered = shallow(<GameDetails data={gameDetails} t={t} />);
+    const rendered = shallow(<GameDetails game={gameDetails} t={t} />);
     expect(rendered.find(GameDetailsImage).length).toBe(1);
     expect(
       rendered
@@ -106,14 +93,14 @@ describe("GameDetails", () => {
   });
 
   test("should render GameDetailsButtons if game isn't in maintenance", () => {
-    const rendered = shallow(<GameDetails data={gameDetails} t={t} />);
+    const rendered = shallow(<GameDetails game={gameDetails} t={t} />);
 
     expect(rendered.find(GameDetailsButtons).length).toBe(1);
   });
 
   test("should not render GameDetailsButtons if game is in maintenance", () => {
     const rendered = shallow(
-      <GameDetails data={gameDetailsInMaintenance} t={t} />
+      <GameDetails game={gameDetailsInMaintenance} t={t} />
     );
 
     expect(rendered.find(GameDetailsButtons).length).toBe(0);
@@ -121,7 +108,7 @@ describe("GameDetails", () => {
 
   test("should render GameDetailsImage with maintenance message when in maintenace", () => {
     const rendered = shallow(
-      <GameDetails data={gameDetailsInMaintenance} t={t} />
+      <GameDetails game={gameDetailsInMaintenance} t={t} />
     );
     expect(rendered.find(GameDetailsImage).length).toBe(1);
     expect(
