@@ -2,6 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
+import MockStore from "Components/MockStore";
+import stateMock from "Models/__mocks__/state.mock";
 import { errorMocks, loadingMocks } from "./__mocks__/kambiClientMocks";
 import { LaunchableKambiClient } from "./LaunchableKambiClient";
 
@@ -14,13 +16,17 @@ const props = {
 };
 
 stories.add("Loading", () => (
-  <MockedProvider mocks={loadingMocks} addTypename={false}>
-    <LaunchableKambiClient {...props} />
-  </MockedProvider>
+  <MockStore state={stateMock}>
+    <MockedProvider mocks={loadingMocks} addTypename={false}>
+      <LaunchableKambiClient {...props} />
+    </MockedProvider>
+  </MockStore>
 ));
 
 stories.add("Error", () => (
-  <MockedProvider mocks={errorMocks} addTypename={false}>
-    <LaunchableKambiClient {...props} />
-  </MockedProvider>
+  <MockStore state={stateMock}>
+    <MockedProvider mocks={errorMocks} addTypename={false}>
+      <LaunchableKambiClient {...props} />
+    </MockedProvider>
+  </MockStore>
 ));
