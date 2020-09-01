@@ -1,0 +1,13 @@
+#import "../GameTile/GameTile.graphql"
+#import "../LiveCasinoCard/LiveCasinoCard.graphql"
+
+query GameListPageQuery($query: String!, $offset: Int!, $limit: Int!) {
+  getGamesPaginated(query: $query, offset: $offset, limit: $limit) {
+    gamesCount
+    offset
+    games {
+      ...GameTile_Game
+      ...LiveCasinoCard
+    }
+  }
+}

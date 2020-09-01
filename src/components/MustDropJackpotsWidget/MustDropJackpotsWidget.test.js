@@ -6,7 +6,7 @@ import jackpots from "./__mocks__/jackpots.json";
 describe("MustDropJackpotsWidget", () => {
   test("should render an a tag with a MustDropJackpot for each jackpot", () => {
     const rendered = shallow(<MustDropJackpotsWidget jackpots={jackpots} />);
-    expect(rendered.find("a").prop("href")).toBe("/games/must-drop-jackpots");
+    expect(rendered.find("Link").prop("to")).toBe("../must-drop-jackpots");
     expect(rendered.find("MustDropJackpot").length).toBe(jackpots.length);
   });
 });
