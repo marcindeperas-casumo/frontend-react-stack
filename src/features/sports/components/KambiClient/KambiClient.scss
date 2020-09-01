@@ -6,7 +6,7 @@
   !important is required as the kambi client pulls in dynamic classes with higher specificty
 */
 
-/* stylelint-disable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
+/* stylelint-disable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important, selector-max-compound-selectors */
 #KambiBC {
   // Kambi tries to set its own container height with js and on some breakpoints gets this all wrong and
   // forces there to be an inner scroll bar to the kambi client.  This overrides that to make sure it always
@@ -166,6 +166,7 @@
 .KambiBC-event-item__match-clock-container {
   color: #798291 !important;
   font-size: 10px !important;
+  justify-content: left !important;
   line-height: 12px !important;
   padding: 0px !important;
   text-align: left !important;
@@ -192,5 +193,84 @@
   mix-blend-mode: normal !important;
 }
 
+.KambiBC-sandwich-filter__event-list-item:first-child {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.KambiBC-sandwich-filter__header {
+  background-color: #e5eaed !important;
+  padding: 0 10px !important;
+}
+
+.KambiBC-sandwich-filter__group-header {
+  background-color: #fff !important;
+  border-top-left-radius: 8px !important;
+}
+
+.KambiBC-sandwich-filter__betoffer-header {
+  background-color: #fff !important;
+  border-top-right-radius: 8px !important;
+  height: 100% !important;
+}
+
+.KambiBC-sandwich-filter__group-header-title {
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+#KambiBC-container .KambiBC-filter-menu li {
+  height: 28px !important;
+  line-height: 18px !important;
+  padding: 6px 8px !important;
+}
+
+#KambiBC-container
+  .KambiBC-sandwich-filter-foreground--level-2
+  .KambiBC-filter-menu
+  li {
+  font-size: 12px !important;
+  font-weight: normal !important;
+}
+
+#KambiBC-container
+  [data-eq-state~="sandwichFilterSmall"]
+  .KambiBC-sandwich-filter__event-list-info
+  .KambiBC-event-match-clock__wrapper--live
+  .KambiBC-match-clock__inner {
+  flex-direction: row !important;
+}
+
+#KambiBC-container
+  [data-eq-state~="sandwichFilterSmall"]
+  .KambiBC-sandwich-filter__event-list-info
+  .KambiBC-match-clock__divider {
+  display: inline-block !important;
+  padding: 0 4px !important;
+}
+
+#KambiBC-container
+  [data-eq-state~="sandwichFilterLarge"]
+  .KambiBC-sandwich-filter__event-detail
+  .KambiBC-event-item__score-container {
+  left: 0 !important;
+  margin-right: 8px !important;
+}
+
+#KambiBC-container
+  [data-eq-state~="sandwichFilterSmall"]
+  .KambiBC-sandwich-filter__event-detail
+  .KambiBC-event-item__score-container {
+  left: 0 !important;
+  position: relative !important;
+}
+
+#KambiBC-container
+  .KambiBC-sandwich-filter__event-detail-container
+  .KambiBC-event-countdown__circles-wrp
+  svg {
+  display: inline-block !important;
+}
+
 //LANDING PAGE END
-/* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
+/* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important, selector-max-compound-selectors */

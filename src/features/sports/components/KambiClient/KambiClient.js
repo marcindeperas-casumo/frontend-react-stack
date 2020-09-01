@@ -83,16 +83,6 @@ export default class KambiClient extends React.Component<Props> {
             markets: ["DE"],
           },
         },
-        {
-          widgetId: "all-curated",
-          url:
-            "https://cms.casumo.com/wp-content/uploads/2013/10/Beginnerbelt.png",
-          imageSource:
-            "https://cms.casumo.com/wp-content/uploads/2013/10/Beginnerbelt.png",
-          height: 160,
-          widgetType: "image",
-          linkUrl: "/",
-        },
       ],
 
       targets: {

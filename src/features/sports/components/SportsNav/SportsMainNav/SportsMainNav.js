@@ -17,16 +17,13 @@ import {
   SportTab,
   LiveTab,
 } from "Features/sports/components/SportsNav/SportsNavTab";
-import {
-  makeAllSportsNavItem,
-  makeHomeNavItem,
-} from "Features/sports/components/SportsNav/sportsNavUtils";
+import { makeAllSportsNavItem } from "Features/sports/components/SportsNav/sportsNavUtils";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 import "./SportsMainNav.scss";
 
 const SPORTS_NAV_HEIGHT = 106;
-const buttonsBeforeNav = ["live", "all", "home"];
+const buttonsBeforeNav = ["live", "all"];
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -103,25 +100,6 @@ export const renderAllSportsTab = (
     </DictionaryTerm>
   );
 
-export const renderHomeTab = (
-  { isSelected, onSelected }: Props,
-  [isLiveActive]: LiveState
-) =>
-  !isLiveActive && (
-    <DictionaryTerm termKey="navigation.home">
-      {homeTitle => {
-        const navItem = makeHomeNavItem(homeTitle);
-        return (
-          <SportTab
-            isSelected={isSelected(navItem)}
-            onClick={() => onSelected(navItem)}
-            navItem={navItem}
-          />
-        );
-      }}
-    </DictionaryTerm>
-  );
-
 export const renderTabList = (
   navItems: Array<SportsNavItemType>,
   props: Props
@@ -132,13 +110,11 @@ export const renderTabList = (
 
   const isFirstItem = equals(-offset);
   const isSecondItem = equals(-offset + 1);
-  const isThirdItem = equals(-offset + 2);
   const isLastItem = equals(navItems.length);
 
   const renderedTab = cond([
     [isFirstItem, () => renderLiveButton(props, props.liveState, sportsCount)],
-    [isSecondItem, () => renderHomeTab(props, props.liveState)],
-    [isThirdItem, () => renderAllSportsTab(props, props.liveState)],
+    [isSecondItem, () => renderAllSportsTab(props, props.liveState)],
     [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);

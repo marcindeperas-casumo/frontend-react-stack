@@ -136,16 +136,3 @@ export const makeAllSportsNavItem = (label: string) => ({
     alt: label,
   },
 });
-
-export const makeHomeNavItem = (label: string) => ({
-  text: label,
-  path: SPORTS_HOME_PAGE_PATH,
-  key: "home",
-  canEdit: false,
-  iconProps: {
-    activeIndicator,
-    iconSrc:
-      "https://cms.casumo.com/wp-content/uploads/2017/02/casumo-symbol.png",
-    alt: label,
-  },
-});
