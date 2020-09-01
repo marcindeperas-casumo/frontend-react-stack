@@ -7,7 +7,10 @@ import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
-import type { NavigateToSportsHashType } from "Features/sports/utils";
+import type {
+  NavigateToSportsHashType,
+  NavigateByIdType,
+} from "Features/sports/utils";
 import {
   getIsGame,
   getIsSports,
@@ -25,6 +28,7 @@ type Props = {
   curatedCard: ?A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
   navigateToSportsHash: (args: NavigateToSportsHashType) => void,
+  navigateById: (args: NavigateByIdType) => void,
 };
 
 export const CuratedCard = ({
@@ -33,6 +37,7 @@ export const CuratedCard = ({
   onLaunchGame,
   market,
   navigateToSportsHash,
+  navigateById,
 }: Props) => {
   const { client } = React.useContext(getApolloContext());
 
@@ -49,6 +54,9 @@ export const CuratedCard = ({
       return onLaunchGame();
     }
     if (isSports) {
+      if (curatedCard.sportsRoute === "deposit") {
+        return navigateById({ routeId: curatedCard.sportsRoute });
+      }
       return navigateToSportsHash({
         client,
         path: curatedCard.sportsRoute,
