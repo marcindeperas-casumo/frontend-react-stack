@@ -1,13 +1,11 @@
 // @flow
+import { useSelector } from "react-redux";
 import { pickBy, keys, head } from "ramda";
-import {
-  URL_PREFIXES,
-  LANGUAGES,
-  DEFAULT_LANGUAGE,
-  DEFAULT_MARKET,
-} from "Src/constants";
+import { URL_PREFIXES, DEFAULT_MARKET } from "Src/constants";
 import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
+import { useLocale } from "Utils/hooks";
+import { currencySelector } from "Models/handshake";
 
 /**
  * `useKambiMarketFromUrlPrefix` not to be confused with hooks/useUrlPrefix.js
@@ -24,14 +22,17 @@ export function useKambiMarketFromUrlPrefix(
 } {
   const market =
     head(keys(pickBy(v => v === urlPrefix, URL_PREFIXES))) || DEFAULT_MARKET;
-  const language = LANGUAGES[market] || DEFAULT_LANGUAGE;
   const kambiMarket =
     head(market.split("_")).toUpperCase() || DEFAULT_KAMBI_MARKET;
-  const locale = getKambiSupportedLanguage(`${language}_${kambiMarket}`);
+  const supportedLang = getKambiSupportedLanguage(
+    useLocale().replace("-", "_")
+  );
+  const currency = useSelector(currencySelector);
 
   return {
     market,
     kambiMarket,
-    locale,
+    locale: supportedLang,
+    currency,
   };
 }

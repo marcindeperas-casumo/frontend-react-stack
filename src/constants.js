@@ -220,7 +220,7 @@ export const LANGUAGES = {
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
-  [MARKETS.at_de]: "de",
+  [MARKETS.at_de]: "at",
 };
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
