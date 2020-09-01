@@ -3,11 +3,15 @@ import React, { useState, useEffect } from "react";
 import gql from "graphql-tag";
 import { Query, Mutation } from "react-apollo";
 import { useMutation } from "@apollo/react-hooks";
-import { propOr } from "ramda";
+import { propOr, head } from "ramda";
+import { useSelector } from "react-redux";
+import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
+import { getKambiSupportedLanguage } from "Features/sports/kambi";
+import { useLocale, useMarket } from "Utils/hooks";
+import { currencySelector } from "Models/handshake";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
-import { useKambi } from "Features/sports/hooks/useKambi";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -21,6 +25,13 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
 
 export default function LaunchableKambiClient() {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
+  const market = useMarket();
+  const locale = useLocale();
+  const currency = useSelector(currencySelector);
+  const kambiMarket =
+    head(market.split("_")).toUpperCase() || DEFAULT_KAMBI_MARKET;
+  const kambiLocale = getKambiSupportedLanguage(locale.replace("-", "_"));
+
   const [mutateLaunchKambi, { loading, error, data }] = useMutation(
     LAUNCH_KAMBI_MUTATION
   );
@@ -28,8 +39,6 @@ export default function LaunchableKambiClient() {
   useEffect(() => {
     mutateLaunchKambi();
   }, [mutateLaunchKambi]);
-
-  const { kambiMarket, locale, currency } = useKambi();
 
   const onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
@@ -47,7 +56,7 @@ export default function LaunchableKambiClient() {
     return <ErrorMessage />;
   }
 
-  if (loading || !data || !data.launchKambi) {
+  if (loading || !data || !data.launchKambi || !currency || !kambiLocale) {
     return <KambiClientSkeleton />;
   }
 
@@ -68,7 +77,7 @@ export default function LaunchableKambiClient() {
                   isBetslipVisible={data.isBetslipVisible}
                   currency={currency}
                   market={kambiMarket}
-                  locale={locale}
+                  locale={kambiLocale}
                   bootstrapUrl={clientBootstrapUrl}
                   playerId={providerPlayerId}
                   ticket={ticket}
