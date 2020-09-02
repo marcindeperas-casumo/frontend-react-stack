@@ -16,7 +16,11 @@ type Props<T> = {
 export function HookWrapper(props: Props<*>) {
   const hook = props.hook(...props.args);
 
-  return <div hook={hook} />;
+  return <div id="hook" hook={hook} />;
+}
+
+export function getHookValue(wrapper: any) {
+  return wrapper.find("#hook").props().hook;
 }
 
 /**
@@ -26,5 +30,5 @@ export function HookWrapper(props: Props<*>) {
  * ----------------------------------------------------------------------------
  */
 export function expectHook(wrapper: any) {
-  return expect(wrapper.find("div").props().hook);
+  return expect(getHookValue(wrapper));
 }
