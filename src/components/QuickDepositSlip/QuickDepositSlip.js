@@ -16,8 +16,11 @@ type Props = {
     deposit_cta_text: string,
     deposit_helper_text: string,
     cvv_helper_text: string,
-    error_minimum_deposit: string,
-    error_maximum_deposit: string,
+    error_deposit_minimum: string,
+    error_deposit_maximum: string,
+    error_cvv_required: string,
+    error_cvv_too_short: string,
+    error_cvv_not_integer: string,
   },
   currencySymbol: string,
   minAmount: number,
@@ -36,13 +39,11 @@ export const QuickDepositSlip = ({
   onDeposit,
   paymentMethodDetails: PaymentMethodComponent,
 }: Props) => {
-  const { error_minimum_deposit, error_maximum_deposit } = t;
   const { depositValue, formErrors, onAmountChange } = useQuickDepositSlipForm({
     minAmount,
     maxAmount,
     presetAmount,
-    error_minimum_deposit,
-    error_maximum_deposit,
+    ...t,
   });
 
   return (

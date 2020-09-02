@@ -3,14 +3,17 @@ import * as React from "react";
 import * as R from "ramda";
 import logger from "Services/logger";
 import { interpolate } from "Utils";
-import { PIQ, type CvvValidationEvent } from "Models/payments";
+import { type CvvValidationEvent } from "Models/payments";
 
 type QuickDepositSlipFormProps = {
   minAmount: number,
   maxAmount: number,
   presetAmount?: number,
-  error_minimum_deposit: string,
-  error_maximum_deposit: string,
+  error_deposit_minimum: string,
+  error_deposit_maximum: string,
+  error_cvv_required: string,
+  error_cvv_too_short: string,
+  error_cvv_not_integer: string,
 };
 
 type QuickDepositSlipFormErrors = {
@@ -18,15 +21,32 @@ type QuickDepositSlipFormErrors = {
   cvv?: string,
 };
 
+const CVV_TRANSLATIONS_MAP = ({
+  error_cvv_required,
+  error_cvv_too_short,
+  error_cvv_not_integer,
+}) => ({
+  REQUIRED: error_cvv_required,
+  TOO_SHORT: error_cvv_too_short,
+  NOT_INTEGER: error_cvv_not_integer,
+});
+
 /* eslint-disable sonarjs/cognitive-complexity */
 export const useQuickDepositSlipForm = ({
   minAmount,
   maxAmount,
   presetAmount,
-  error_minimum_deposit,
-  error_maximum_deposit,
+  error_deposit_minimum,
+  error_deposit_maximum,
+  error_cvv_required,
+  error_cvv_too_short,
+  error_cvv_not_integer,
 }: QuickDepositSlipFormProps) => {
-  const piqErrorCodes = PIQ.encryptedIframe.errorCodeToVoca;
+  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP({
+    error_cvv_required,
+    error_cvv_too_short,
+    error_cvv_not_integer,
+  });
   const presetValue = presetAmount
     ? R.clamp(minAmount, maxAmount, presetAmount)
     : minAmount;
@@ -57,12 +77,13 @@ export const useQuickDepositSlipForm = ({
           return;
         }
 
-        const errorVoca = piqErrorCodes[e.errorType];
+        const validErrorKey = cvvErrorTranslationKeys[e.errorType];
 
-        if (!errorVoca) {
+        if (!validErrorKey) {
+          // $FlowFixMe
           logger.error(`Unknown error code from PIQ iframe: ${e.errorType}`);
         } else {
-          setCvvError(errorVoca);
+          setCvvError(e.errorType);
         }
 
         break;
@@ -81,7 +102,7 @@ export const useQuickDepositSlipForm = ({
       setFormErrors(
         (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
           R.merge(errors, {
-            amountInput: interpolate(error_minimum_deposit, {
+            amountInput: interpolate(error_deposit_minimum, {
               amount: `${minAmount}`,
             }),
           })
@@ -92,7 +113,7 @@ export const useQuickDepositSlipForm = ({
       setFormErrors(
         (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
           R.merge(errors, {
-            amountInput: interpolate(error_maximum_deposit, {
+            amountInput: interpolate(error_deposit_maximum, {
               amount: `${maxAmount}`,
             }),
           })
@@ -103,15 +124,22 @@ export const useQuickDepositSlipForm = ({
       setFormErrors(
         (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
           R.merge(errors, {
-            cvv: cvvError,
+            cvv: CVV_TRANSLATIONS_MAP({
+              error_cvv_required,
+              error_cvv_too_short,
+              error_cvv_not_integer,
+            })[cvvError],
           })
       );
     }
   }, [
     cvvError,
     depositValue,
-    error_maximum_deposit,
-    error_minimum_deposit,
+    error_cvv_not_integer,
+    error_cvv_required,
+    error_cvv_too_short,
+    error_deposit_maximum,
+    error_deposit_minimum,
     maxAmount,
     minAmount,
   ]);

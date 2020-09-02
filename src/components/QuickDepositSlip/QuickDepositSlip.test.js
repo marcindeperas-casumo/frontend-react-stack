@@ -20,9 +20,6 @@ describe("<QuickDepositSlip />", () => {
     let rendered;
     let depositAmountSelector;
     let input;
-    const setState = jest.fn();
-    const useStateSpy = jest.spyOn(React, "useState");
-    useStateSpy.mockImplementation(init => [init, setState]);
 
     beforeEach(() => {
       rendered = mount(<QuickDepositSlip {...props} />);
@@ -34,7 +31,7 @@ describe("<QuickDepositSlip />", () => {
       jest.clearAllMocks();
     });
 
-    test("should show validation error messages for minimum amount", () => {
+    test("should show error messages for minimum amount", () => {
       act(() => {
         // $FlowIgnore
         input.instance().value = 5;
@@ -49,7 +46,7 @@ describe("<QuickDepositSlip />", () => {
       );
     });
 
-    test("should show error for maximum amount", () => {
+    test("should show error message for maximum amount", () => {
       act(() => {
         // $FlowIgnore
         input.instance().value = 101;
