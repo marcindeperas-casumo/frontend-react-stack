@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
-import { insertIntoArray } from "Utils/gamesPaginated";
+import { insertIntoArray } from "Components/CasinoGames/RtpTable/RtpTable";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
 import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
@@ -73,7 +73,7 @@ export const GameSearchContainer = () => {
     <GameSearch
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
-      loading={loading}
+      loading={searchResults.length === 0 && loading}
       loadingSuggestions={loadingSuggestions}
       suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}

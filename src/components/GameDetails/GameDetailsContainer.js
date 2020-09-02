@@ -37,7 +37,7 @@ export const GameDetailsContainer = ({ slug }: { slug: string }) => {
       <TrackProvider
         data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.GAME_DETAILS }}
       >
-        <GameDetails game={data.game} t={t} />
+        <GameDetails data={data} t={t} />
       </TrackProvider>
     );
   }
