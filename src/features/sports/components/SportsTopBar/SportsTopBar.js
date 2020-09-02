@@ -108,7 +108,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
         <Flex justify="end" spacing="xlg">
           <Flex.Item>
             <SportsTopBarTab
-              termKey="desktop.tab.home"
+              termKey="desktop.tab.lobby"
               onClick={navigateTo.home}
               isActive={isHomeVisible}
             >

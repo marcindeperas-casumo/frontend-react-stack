@@ -25,7 +25,7 @@ describe("<SportsTopBar />", () => {
 
     expect(homeTab.props()).toMatchObject({
       isActive: true,
-      termKey: "desktop.tab.home",
+      termKey: "desktop.tab.lobby",
     });
   });
 
