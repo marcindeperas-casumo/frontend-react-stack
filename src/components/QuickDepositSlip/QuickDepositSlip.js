@@ -6,7 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { useQuickDepositSlipForm } from "../../utils/hooks/useQuickDepositSlipForm";
+import { useQuickDepositSlipForm } from "Utils/hooks";
 
 import "./QuickDepositSlip.scss";
 
@@ -84,7 +84,7 @@ export const QuickDepositSlip = ({
           <Flex.Item className="c-quick-deposit-slip__cvv">
             <Flex direction="vertical" spacing="sm" justify="space-between">
               <Flex.Item>
-                {/** todo: replace below TextInput with PIQ CVV iframe */}
+                {/** todo: FC-55 replace below TextInput with PIQ CVV iframe */}
                 <TextInput
                   onChange={() =>
                     console.warn("This is just a placeholder for PIQ iframe")
