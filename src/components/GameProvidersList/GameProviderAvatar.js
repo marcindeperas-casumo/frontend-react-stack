@@ -17,6 +17,7 @@ type Props = {
 };
 
 const GameProviderAvatar = ({
+  url,
   logo,
   background,
   imgixOpts = { w: 160, h: 160, markalign: "middle" },
@@ -27,13 +28,15 @@ const GameProviderAvatar = ({
   }
 
   return (
-    <ImageLazy
-      className="o-ratio__content t-border-r--circle"
-      mark={logo}
-      src={background}
-      imgixOpts={imgixOpts}
-      {...rest}
-    />
+    <a href={url} className="o-ratio">
+      <ImageLazy
+        className="o-ratio__content t-border-r--circle"
+        mark={logo}
+        src={background}
+        imgixOpts={imgixOpts}
+        {...rest}
+      />
+    </a>
   );
 };
 
