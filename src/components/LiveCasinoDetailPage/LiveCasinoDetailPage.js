@@ -21,7 +21,7 @@ export const LiveCasinoDetailPage = ({ groupedLiveCasinoGames }: Props) => {
   return (
     <div className="u-padding-x--md u-padding-bottom--md">
       <TrackProvider
-        data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.LIVE_CASINO_DETAILS }}
+        data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.LIVE_CASINO }}
       >
         {groupedLiveCasinoGames.map(({ title, games }) => (
           <React.Fragment key={title}>

@@ -194,6 +194,7 @@ export type GameListLiveCasinoQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
 };
 export type GameListLiveCasinoQuery_gamesList = {
   id: ?string,
@@ -206,6 +207,53 @@ export type GameListLiveCasinoQuery = {
 export type GameListLiveCasinoQueryVariables = {
   id: string,
   numberOfGames: number,
+};
+
+// ====================================================
+// GraphQL query operation: GameListPageQuery
+// ====================================================
+
+export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets = {
+  symbol: ?string,
+  min: ?number,
+  max: ?number,
+};
+export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets,
+};
+export type GameListPageQuery_getGamesPaginated_games = {
+  isInMaintenance: boolean,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
+  id: string,
+  isInMyList: boolean,
+  liveCasinoLobby: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby,
+  gameStudio: string,
+};
+export type GameListPageQuery_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GameListPageQuery_getGamesPaginated_games>,
+};
+export type GameListPageQuery = {
+  getGamesPaginated: GameListPageQuery_getGamesPaginated,
+};
+export type GameListPageQueryVariables = {
+  query: string,
+  offset: number,
+  limit: number,
 };
 
 // ====================================================
@@ -333,7 +381,6 @@ export type GameTileHeartQuery = {
   gamesList: ?GameTileHeartQuery_gamesList,
 };
 export type GameTileHeartQueryVariables = {
-  listId: string,
   numberOfGames: number,
 };
 
@@ -474,34 +521,43 @@ export type LiveCasinoDetailPageQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: MustDropJackpotGamesListQuery
+// GraphQL query operation: LiveCasinoDetailPageDesktopQuery
 // ====================================================
 
-export type MustDropJackpotGamesListQuery_gamesList_games_lobby_bets = {
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets = {
+  symbol: ?string,
   min: ?number,
   max: ?number,
+};
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
   symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets,
 };
-export type MustDropJackpotGamesListQuery_gamesList_games_lobby = {
-  bets: ?MustDropJackpotGamesListQuery_gamesList_games_lobby_bets,
-};
-export type MustDropJackpotGamesListQuery_gamesList_games = {
-  id: string,
+export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   backgroundImage: string,
+  id: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  liveCasinoLobby: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby,
   logo: string,
   name: string,
   slug: string,
-  lobby: ?MustDropJackpotGamesListQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
+  gameStudio: string,
 };
-export type MustDropJackpotGamesListQuery_gamesList = {
-  games: Array<MustDropJackpotGamesListQuery_gamesList_games>,
+export type LiveCasinoDetailPageDesktopQuery_gamesList = {
+  games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>,
 };
-export type MustDropJackpotGamesListQuery = {
-  gamesList: ?MustDropJackpotGamesListQuery_gamesList,
-};
-export type MustDropJackpotGamesListQueryVariables = {
-  id: string,
+export type LiveCasinoDetailPageDesktopQuery = {
+  gamesList: ?LiveCasinoDetailPageDesktopQuery_gamesList,
 };
 
 // ====================================================
@@ -719,6 +775,7 @@ export type GameStudioQuery_gameStudio_games = {
 };
 export type GameStudioQuery_gameStudio = {
   id: string,
+  name: string,
   gamesCount: number,
   games: Array<?GameStudioQuery_gameStudio_games>,
 };
@@ -830,6 +887,36 @@ export type ReelRaceWidgetQuery_reelRaces = {
 };
 export type ReelRaceWidgetQuery = {
   reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+};
+
+// ====================================================
+// GraphQL query operation: GetGameSets
+// ====================================================
+
+export type GetGameSets_gameSetsList_additionalFilterGroups_values = {
+  key: string,
+  query: string,
+  title: ?string,
+};
+export type GetGameSets_gameSetsList_additionalFilterGroups = {
+  key: string,
+  type: string,
+  title: string,
+  description: string,
+  values: Array<GetGameSets_gameSetsList_additionalFilterGroups_values>,
+};
+export type GetGameSets_gameSetsList = {
+  id: string,
+  key: string,
+  title: string,
+  icon: string,
+  defaultSort: GamesSortOrder,
+  supportedSorts: Array<GamesSortOrder>,
+  baseQuery: string,
+  additionalFilterGroups: Array<GetGameSets_gameSetsList_additionalFilterGroups>,
+};
+export type GetGameSets = {
+  gameSetsList: Array<GetGameSets_gameSetsList>,
 };
 
 // ====================================================
@@ -1886,40 +1973,6 @@ export type SearchVisible = {
 };
 
 // ====================================================
-// GraphQL query operation: TranslationsTestQuery
-// ====================================================
-
-export type TranslationsTestQuery_one = {
-  id: string,
-  text: string,
-};
-export type TranslationsTestQuery_two = {
-  id: string,
-  text: string,
-};
-export type TranslationsTestQuery = {
-  one: ?TranslationsTestQuery_one,
-  two: ?TranslationsTestQuery_two,
-};
-
-// ====================================================
-// GraphQL query operation: TranslationsQuery
-// ====================================================
-
-export type TranslationsQuery_one = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery_two = {
-  id: string,
-  text: string,
-};
-export type TranslationsQuery = {
-  one: ?TranslationsQuery_one,
-  two: ?TranslationsQuery_two,
-};
-
-// ====================================================
 // GraphQL fragment: CuratedCard_Game
 // ====================================================
 
@@ -2118,6 +2171,7 @@ export type LiveCasinoCard = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
 };
 
 // ====================================================
@@ -2772,6 +2826,18 @@ export type Currency =
   | "SEK"
   | "USD";
 export type RequirementType = "deposit" | "wager";
+export type GamesSortOrder =
+  | "A_TO_Z_BY_TITLE"
+  | "CURATED_JACKPOTS"
+  | "CURATED_LIVE_CASINO"
+  | "CURATED_SLOT_MACHINES"
+  | "CURATED_TABLE_GAMES"
+  | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
+  | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE"
+  | "MOST_TO_LEAST_POPULAR"
+  | "NEWEST_TO_OLDEST_BY_RELEASE_DATE"
+  | "OLDEST_TO_NEWEST_BY_RELEASE_DATE"
+  | "Z_TO_A_BY_TITLE";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 export type Modal =

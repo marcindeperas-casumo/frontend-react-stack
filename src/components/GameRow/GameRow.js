@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
+import { isMobile } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
@@ -31,6 +32,18 @@ export const GameRow = (props: Props) => {
 
     launchGame({ slug: game.slug });
   };
+
+  const rightSideComponent = (() => {
+    if (game.lobby) {
+      return (
+        <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
+      );
+    } else if (isMobile()) {
+      return <GameRowTrackMoreIcon name={game.name} slug={game.slug} />;
+    }
+
+    return null;
+  })();
 
   return (
     <Flex
@@ -69,11 +82,7 @@ export const GameRow = (props: Props) => {
           </Flex>
         </TrackClick>
       </Flex.Block>
-      {game.lobby ? (
-        <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
-      ) : (
-        <GameRowTrackMoreIcon name={game.name} slug={game.slug} />
-      )}
+      {rightSideComponent}
     </Flex>
   );
 };

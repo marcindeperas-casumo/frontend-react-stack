@@ -1,0 +1,22 @@
+query GetGameSets {
+  gameSetsList {
+    id
+    key
+    title
+    icon
+    defaultSort
+    supportedSorts
+    baseQuery
+    additionalFilterGroups {
+      key
+      type
+      title
+      description
+      values {
+        key
+        query
+        title
+      }
+    }
+  }
+}

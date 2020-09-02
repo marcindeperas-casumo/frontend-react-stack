@@ -21,8 +21,9 @@ export const GameListHorizontalLiveCasino = ({
   seeMoreText,
   playNowText,
 }: Props) => {
-  const { name, games } = list;
-  const seeMoreUrl = "/games/live-casino-details";
+  const { name } = list;
+  const games = list.games.filter(x => x.liveCasinoLobby);
+  const seeMoreUrl = "../live-casino";
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const isNotFirstElement = columnIndex > 0;
@@ -34,10 +35,7 @@ export const GameListHorizontalLiveCasino = ({
       <div style={style}>
         <div className={elementClassNames}>
           <div className="u-margin-bottom--sm">
-            <LiveCasinoCard
-              game={games[columnIndex]}
-              playNowText={playNowText}
-            />
+            <LiveCasinoCard game={games[columnIndex]} />
           </div>
         </div>
       </div>
