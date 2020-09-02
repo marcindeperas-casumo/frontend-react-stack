@@ -13,30 +13,28 @@ import {
 const stories = storiesOf("GameDetails", module);
 
 stories.add("Default", () => {
-  const game = {
+  const data = {
     ...gameDetails,
-    isInMaintenance: boolean("Is in maintenance", false),
+    game: {
+      ...gameDetails.game,
+      isInMaintenance: boolean("Is in maintenance", false),
+    },
   };
 
-  return <GameDetails game={game} t={t} />;
+  return <GameDetails data={data} t={t} />;
 });
 
 stories.add("In Maintenance", () => (
-  <GameDetails game={gameDetailsInMaintenance} t={t} />
+  <GameDetails data={gameDetailsInMaintenance} t={t} />
 ));
 
 stories.add(
   "Default (mobile)",
-  () => <GameDetails game={gameDetails} t={t} />,
+  () => <GameDetails data={gameDetails} t={t} />,
   viewports.mobile
 );
 stories.add(
   "Default (tablet)",
-  () => <GameDetails game={gameDetails} t={t} />,
+  () => <GameDetails data={gameDetails} t={t} />,
   viewports.tablet
-);
-stories.add(
-  "Default (desktop)",
-  () => <GameDetails game={gameDetails} t={t} />,
-  viewports.desktop
 );

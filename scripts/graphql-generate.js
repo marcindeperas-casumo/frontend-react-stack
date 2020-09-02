@@ -26,7 +26,7 @@ const commands = [
       TYPE_FILE_LOCATION,
       `--config=codegen.apollo.config.js`,
       "--target=flow",
-      `--includes=src/**/!(apollo|*.test|*.stories).{js,graphql}`,
+      `--includes=src/**/!(apollo).{js,graphql}`,
       "--outputFlat",
       "--no-addTypename",
       "--passthroughCustomScalars",

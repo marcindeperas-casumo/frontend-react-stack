@@ -1,6 +1,0 @@
-// stylelint-disable xi/selector-pattern
-:export {
-  @each $key, $prop in $cudl-spacer-sizes {
-    #{$key}: #{$prop};
-  }
-}

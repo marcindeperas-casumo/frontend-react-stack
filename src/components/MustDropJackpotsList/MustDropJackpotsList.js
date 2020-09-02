@@ -80,7 +80,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
 
   render() {
     const { name, seeMoreText } = this.props;
-    const seeMoreUrl = "../must-drop-jackpots";
+    const seeMoreUrl = "/games/must-drop-jackpots";
 
     return (
       <div className="u-margin-x--3xlg@desktop">
