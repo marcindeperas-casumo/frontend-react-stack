@@ -1946,6 +1946,14 @@
     "@casumo/cudl-react-utils" "^1.0.6"
     ramda "^0.26.1"
 
+"@casumo/cmp-modal@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-modal/1.1.0/ab9edf7f6b9af5f449d75217afdee44f8b9288d0ddb9e2a32e505ae6e8bf30d0#7317aff1e698b37bb27cdc0873b6574aa1c61331"
+  integrity sha512-yUQf0aS3HQ2n55KbCLdl4K1qgNtJUx2gDyo7QAls8LRvhfEs1K+YKzNOgApbp6YrjH5RTEOUGoGZTbXNjKmrFg==
+  dependencies:
+    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-react-utils" "^1.0.7"
+
 "@casumo/cmp-picture@^1.1.2":
   version "1.1.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-picture/1.1.2/5663288b3160e0d76aa9d7cc64daba5d7c85be86b3adf85a4df6444707417f2b#6fd4d0d7bc1553a0a833a7b2ec93be51576b35aa"
