@@ -3,6 +3,11 @@ import React from "react";
 import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
+import { isMobile } from "Components/ResponsiveLayout";
+import {
+  GamesVirtualGrid,
+  GamesVirtualGridSkeleton,
+} from "Components/GamesVirtualGrid";
 import { ProviderGamesListSkeleton } from "./ProviderGamesListSkeleton";
 import {
   ProviderGamesListRow,
@@ -37,7 +42,17 @@ export const ProviderGamesList = ({
   onLoadMore,
 }: Props) => {
   if (loading) {
-    return <ProviderGamesListSkeleton />;
+    if (isMobile()) {
+      return <ProviderGamesListSkeleton />;
+    }
+
+    return (
+      <div className="t-background-white">
+        <div className="o-wrapper u-padding-y--2xlg">
+          <GamesVirtualGridSkeleton />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -47,15 +62,28 @@ export const ProviderGamesList = ({
       }}
     >
       <div className="c-provider-games-list">
-        <VirtualList
-          scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
-          isRowLoaded={({ index }) => Boolean(games[index])}
-          pageSize={PAGE_SIZE}
-          rowHeight={ROW_HEIGHT}
-          totalNumberOfRows={gamesCount}
-          loadMoreRows={onLoadMore}
-          rowRenderer={props => renderRow({ games, ...props })}
-        />
+        {isMobile() ? (
+          <VirtualList
+            scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
+            isRowLoaded={({ index }) => Boolean(games[index])}
+            pageSize={PAGE_SIZE}
+            rowHeight={ROW_HEIGHT}
+            totalNumberOfRows={gamesCount}
+            loadMoreRows={onLoadMore}
+            rowRenderer={props => renderRow({ games, ...props })}
+          />
+        ) : (
+          <div className="t-background-white">
+            <div className="o-wrapper u-padding-y--2xlg">
+              <GamesVirtualGrid
+                games={games}
+                gamesCount={gamesCount}
+                loadMore={onLoadMore}
+                pageSize={PAGE_SIZE}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </TrackProvider>
   );

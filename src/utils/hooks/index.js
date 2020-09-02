@@ -8,9 +8,7 @@ export { useMarket } from "./useMarket";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
-export {
-  usePlayerSessionInvalidRedirect,
-} from "./usePlayerSessionInvalidRedirect";
+export { usePlayerSessionInvalidRedirect } from "./usePlayerSessionInvalidRedirect";
 export { useGameLaunchData } from "./useGameLaunchData";
 export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 export { useJurisdiction } from "./useJurisdiction";
@@ -19,3 +17,5 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
+export { useCachedQuery } from "./useCachedQuery";
+export { usePrevious } from "./usePrevious";

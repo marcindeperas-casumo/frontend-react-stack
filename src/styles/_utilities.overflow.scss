@@ -9,3 +9,8 @@
 .u-overflow-y--auto {
   overflow-y: auto;
 }
+
+.u-overflow--scroll {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
