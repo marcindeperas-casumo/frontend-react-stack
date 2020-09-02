@@ -10,6 +10,11 @@ export type NavigateToSportsHashType = {
   trackingLocation: string,
 };
 
+export type NavigateByIdType = {
+  routeId: string,
+  params?: Object,
+};
+
 export const navigateToSportsHash = ({
   client,
   path,
