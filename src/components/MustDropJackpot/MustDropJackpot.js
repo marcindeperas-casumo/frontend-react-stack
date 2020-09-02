@@ -8,10 +8,9 @@ type Props = {
   jackpot: A.MustDropJackpot_MustDropJackpot,
 };
 
-export const MustDropJackpot = ({ jackpot }: Props) => {
+const MustDropJackpot = ({ jackpot }: Props) => {
   const { image, label, amount = {} } = jackpot;
   const { formattedAmount } = amount;
-
   return (
     <Media
       className="o-flex--1 u-padding-x--lg u-padding-y--md t-background-grey-90"
@@ -37,3 +36,5 @@ export const MustDropJackpot = ({ jackpot }: Props) => {
     />
   );
 };
+
+export default MustDropJackpot;
