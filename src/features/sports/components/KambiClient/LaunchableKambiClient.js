@@ -33,19 +33,11 @@ export function LaunchableKambiClient() {
     LAUNCH_KAMBI_MUTATION
   );
   const { data: kambiData } = useQuery(LAUNCHABLE_KAMBI_CLIENT_QUERY);
-  const [mutateSessionTouch, { data: sessionTouchData }] = useMutation(
-    SESSION_TOUCH
-  );
+  const [mutateSessionTouch] = useMutation(SESSION_TOUCH);
 
   useEffect(() => {
     mutateLaunchKambi();
   }, [mutateLaunchKambi]);
-
-  useEffect(() => {
-    if (data) {
-      mutateSessionTouch();
-    }
-  }, [data, mutateSessionTouch]);
 
   const onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
@@ -66,8 +58,7 @@ export function LaunchableKambiClient() {
     !currency ||
     !kambiLocale ||
     !kambiMarket ||
-    !kambiData ||
-    !sessionTouchData
+    !kambiData
   ) {
     return <KambiClientSkeleton />;
   }
@@ -87,7 +78,7 @@ export function LaunchableKambiClient() {
         homeRoute={propOr("", "userHomepage", kambiData)}
         onNavigate={onNavigate}
         isHidden={!isKambiClientVisible(kambiData)}
-        sessionKeepAlive={sessionTouchData.sessionTouch}
+        sessionKeepAlive={mutateSessionTouch}
         onLoginCompleted={onLoginCompleted}
       />
       {!firstLoadCompleted && <KambiClientSkeleton />}
