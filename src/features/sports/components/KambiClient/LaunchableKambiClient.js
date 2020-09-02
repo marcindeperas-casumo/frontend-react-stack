@@ -1,8 +1,7 @@
 // @flow
 import React, { useState, useEffect } from "react";
 import gql from "graphql-tag";
-import { Query, Mutation } from "react-apollo";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { propOr } from "ramda";
 import { useSelector } from "react-redux";
 import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
@@ -33,22 +32,28 @@ export function LaunchableKambiClient() {
   const [mutateLaunchKambi, { loading, error, data }] = useMutation(
     LAUNCH_KAMBI_MUTATION
   );
+  const { data: kambiData } = useQuery(LAUNCHABLE_KAMBI_CLIENT_QUERY);
+  const [mutateSessionTouch, { data: sessionTouchData }] = useMutation(
+    SESSION_TOUCH
+  );
 
   useEffect(() => {
     mutateLaunchKambi();
   }, [mutateLaunchKambi]);
 
+  useEffect(() => {
+    if (data) {
+      mutateSessionTouch();
+    }
+  }, [data, mutateSessionTouch]);
+
   const onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
     document.querySelectorAll(".scroll-y").forEach(el => (el.scrollTop = 0));
-
   const onLoginCompleted = () => setFirstLoadCompleted(true);
-
   const isKambiClientVisible = (
     kambiLaunchData: A.LaunchableKambiClientQuery
-  ) => {
-    return kambiLaunchData.kambiClientVisible && firstLoadCompleted;
-  };
+  ) => kambiLaunchData.kambiClientVisible && firstLoadCompleted;
 
   if (error) {
     return <ErrorMessage />;
@@ -60,7 +65,9 @@ export function LaunchableKambiClient() {
     !data.launchKambi ||
     !currency ||
     !kambiLocale ||
-    !kambiMarket
+    !kambiMarket ||
+    !kambiData ||
+    !sessionTouchData
   ) {
     return <KambiClientSkeleton />;
   }
@@ -68,36 +75,22 @@ export function LaunchableKambiClient() {
   const { clientBootstrapUrl, providerPlayerId, ticket } = data.launchKambi;
 
   return (
-    <Query query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
-      {/* eslint-disable-next-line no-shadow */}
-      {({ data }: { data: ?A.LaunchableKambiClientQuery }) => {
-        if (!data) {
-          return null;
-        }
-        return (
-          <Mutation mutation={SESSION_TOUCH}>
-            {sessionTouch => (
-              <>
-                <KambiClient
-                  isBetslipVisible={data.isBetslipVisible}
-                  currency={currency}
-                  market={kambiMarket.toUpperCase()}
-                  locale={kambiLocale}
-                  bootstrapUrl={clientBootstrapUrl}
-                  playerId={providerPlayerId}
-                  ticket={ticket}
-                  homeRoute={propOr("", "userHomepage", data)}
-                  onNavigate={onNavigate}
-                  isHidden={!isKambiClientVisible(data)}
-                  sessionKeepAlive={sessionTouch}
-                  onLoginCompleted={onLoginCompleted}
-                />
-                {!firstLoadCompleted && <KambiClientSkeleton />}
-              </>
-            )}
-          </Mutation>
-        );
-      }}
-    </Query>
+    <>
+      <KambiClient
+        isBetslipVisible={kambiData.isBetslipVisible}
+        currency={currency}
+        market={kambiMarket.toUpperCase()}
+        locale={kambiLocale}
+        bootstrapUrl={clientBootstrapUrl}
+        playerId={providerPlayerId}
+        ticket={ticket}
+        homeRoute={propOr("", "userHomepage", kambiData)}
+        onNavigate={onNavigate}
+        isHidden={!isKambiClientVisible(kambiData)}
+        sessionKeepAlive={sessionTouchData.sessionTouch}
+        onLoginCompleted={onLoginCompleted}
+      />
+      {!firstLoadCompleted && <KambiClientSkeleton />}
+    </>
   );
 }
