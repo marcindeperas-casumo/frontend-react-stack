@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./LaunchableKambiClient";
+export { LaunchableKambiClient as default } from "./LaunchableKambiClient";
