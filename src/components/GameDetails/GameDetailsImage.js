@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 
@@ -35,25 +34,4 @@ export const GameDetailsImage = ({
     />
     {children}
   </div>
-);
-export const GameDetailsImageDesktop = ({
-  image,
-  mark,
-  className,
-  children,
-}: Props) => (
-  <Flex className="u-position-relative t-border-r--md u-overflow-hidden u-width--1/3">
-    <ImageLazy
-      className={className}
-      src={image}
-      mark={mark}
-      imgixOpts={{
-        fit: "crop",
-        markscale: 55,
-        markalign: "middle,center",
-        w: "481",
-      }}
-    />
-    {children}
-  </Flex>
 );

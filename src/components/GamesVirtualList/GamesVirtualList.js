@@ -1,13 +1,11 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
-import "./GamesVirtualList.scss";
 
 export const ROW_HEIGHT = 74;
 export const ROW_HEIGHT_BIG = 129;
@@ -21,34 +19,19 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: (game: A.GameRow_Game) => React.Node,
-  /** Variable page size number */
-  pageSize: number,
   /** use bigger version, ie. on search page */
   big?: boolean,
-  /**
-   * if this prop will change list will know to update its rows
-   * Only changes to this prop will trigger list updates!
-   * Changes to games prop will be ignored
-   */
-  listHash: string,
 };
 
-const nEqProps = R.complement(R.eqProps);
-export class GamesVirtualList extends React.Component<Props> {
+export class GamesVirtualList extends React.PureComponent<Props> {
   static defaultProps = {
     big: false,
-    pageSize: PAGE_SIZE,
-    listHash: "",
   };
 
   constructor(props: Props) {
     super(props);
 
     this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
-  }
-
-  shouldComponentUpdate(nextProps: Props) {
-    return nEqProps("listHash", this.props, nextProps);
   }
 
   scrollElement: HTMLElement | null;
@@ -79,16 +62,15 @@ export class GamesVirtualList extends React.Component<Props> {
       );
     }
 
-    const game = this.props.games[index];
     return (
       <Flex
-        className="t-border-bottom t-color-grey-0 t-background-grey-0:hover t-border-current c-game-virtual-list-row"
-        key={game.id}
+        className="t-border-bottom t-color-grey-0 t-border-current"
+        key={key}
         index={index}
         style={style}
         align="center"
       >
-        {this.props.renderItem(game)}
+        {this.props.renderItem(this.props.games[index])}
       </Flex>
     );
   };
@@ -102,8 +84,7 @@ export class GamesVirtualList extends React.Component<Props> {
         loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}
-        pageSize={this.props.pageSize}
-        listHash={this.props.listHash}
+        pageSize={PAGE_SIZE}
       />
     );
   }

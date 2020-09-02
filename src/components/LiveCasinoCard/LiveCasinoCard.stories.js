@@ -1,8 +1,9 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import MockStore from "Components/MockStore";
-import { LiveCasinoCard } from "./LiveCasinoCard";
+import LiveCasinoCard from "./LiveCasinoCard";
 import {
   MoneyWheel,
   Roulette,
@@ -14,8 +15,8 @@ import {
 } from "./__mocks__";
 
 const stories = storiesOf("LiveCasinoCard", module);
+const playNowText = "Play now 👻";
 const t = {
-  playNowText: "Play now 👻",
   betBehindText: "Bet behind",
   openSeatsText: "Seats left",
 };
@@ -23,7 +24,12 @@ const t = {
 stories.add("Card MoneyWheel", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={MoneyWheel} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={MoneyWheel}
+        launchGame={action(MoneyWheel.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -31,7 +37,12 @@ stories.add("Card MoneyWheel", () => (
 stories.add("Card Roulette", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={Roulette} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={Roulette}
+        launchGame={action(Roulette.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -39,7 +50,12 @@ stories.add("Card Roulette", () => (
 stories.add("Card Blackjack Open Seats", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={Blackjack} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={Blackjack}
+        launchGame={action(Blackjack.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -47,7 +63,12 @@ stories.add("Card Blackjack Open Seats", () => (
 stories.add("Card Blackjack Full", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={BlackjackFull} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={BlackjackFull}
+        launchGame={action(BlackjackFull.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -55,7 +76,12 @@ stories.add("Card Blackjack Full", () => (
 stories.add("Card TopCard (Football)", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={TopCard} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={TopCard}
+        launchGame={action(TopCard.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -63,7 +89,12 @@ stories.add("Card TopCard (Football)", () => (
 stories.add("Card Monopoly", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={Monopoly} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={Monopoly}
+        launchGame={action(Monopoly.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));
@@ -71,7 +102,12 @@ stories.add("Card Monopoly", () => (
 stories.add("Card Baccarat", () => (
   <div className="c-live-casino-card">
     <MockStore>
-      <LiveCasinoCard game={Baccarat} t={t} />
+      <LiveCasinoCard
+        playNowText={playNowText}
+        game={Baccarat}
+        launchGame={action(Baccarat.slug)}
+        t={t}
+      />
     </MockStore>
   </div>
 ));

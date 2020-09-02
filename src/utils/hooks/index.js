@@ -19,6 +19,4 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
-export { useCachedQuery } from "./useCachedQuery";
-export { usePrevious } from "./usePrevious";
 export { useQuickDepositSlipForm } from "./useQuickDepositSlipForm";
