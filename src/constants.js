@@ -167,6 +167,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelit",
     no: "spillvelger",
     de: "spiele",
+    at: "spiele",
     DEFAULT: "games",
   },
   PLAY: {
@@ -174,6 +175,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelaa",
     no: "spill",
     de: "spielen",
+    at: "spielen",
     DEFAULT: "play",
   },
   CASINO_GAMES: {
@@ -181,6 +183,7 @@ export const TRANSLATED_ROUTES = {
     fi: "kasinopelit",
     no: "casinospill",
     de: "casino-spiele",
+    at: "casino-spiele",
     en: "casino-games",
     es: "casino-juegos",
     DEFAULT: "games-information",
