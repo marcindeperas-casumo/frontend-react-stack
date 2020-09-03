@@ -353,14 +353,14 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3.14,
       })
-    ).toBe("3,14 €");
+    ).toBe("€3.14");
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 3.1,
       })
-    ).toBe("3,10 €");
+    ).toBe("€3.10");
   });
 
   test("should render without fractions instead of 00", () => {
@@ -370,14 +370,14 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3,
       })
-    ).toBe("3 €");
+    ).toBe("€3");
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 66.0,
       })
-    ).toBe("66 €");
+    ).toBe("€66");
   });
 });
 
@@ -394,13 +394,13 @@ describe("getSymbolForCurrency()", () => {
         currency: "JPY",
         locale: "en-GB",
       })
-    ).toBe("JP¥");
+    ).toBe("¥");
     expect(
       getSymbolForCurrency({
         currency: "USD",
         locale: "en-GB",
       })
-    ).toBe("US$");
+    ).toBe("$");
   });
 });
 describe("canBeInterpolated()", () => {
