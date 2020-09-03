@@ -16,3 +16,23 @@ export const MESSAGE_ACTION = {
   EXTRA_TEXT: "extra-text",
   EXTRA_RULE: "extra-rule",
 };
+
+export const composeIframeUrl = ({
+  urlBase,
+  env,
+  mode,
+  luhnCheck = true,
+  id,
+}) => {
+  return `${urlBase}?${env}#${mode}_${luhnCheck ? "" : "noLuhnCheck_"}${id}`;
+};
+
+export const IFRAME_MODE = {
+  CARD_NUMBER: "cardNumber",
+  CVV_CODE: "cvvCode",
+};
+
+export const ENV = {
+  LIVE: "live",
+  TEST: "test",
+};
