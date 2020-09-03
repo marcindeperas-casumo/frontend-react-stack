@@ -100,7 +100,7 @@ export const ROUTE_IDS = {
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
-  LIVE_CASINO: "LIVE_CASINO",
+  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
@@ -137,7 +137,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
+  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -167,6 +167,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelit",
     no: "spillvelger",
     de: "spiele",
+    at: "spiele",
     DEFAULT: "games",
   },
   PLAY: {
@@ -174,6 +175,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelaa",
     no: "spill",
     de: "spielen",
+    at: "spielen",
     DEFAULT: "play",
   },
   CASINO_GAMES: {
@@ -181,6 +183,7 @@ export const TRANSLATED_ROUTES = {
     fi: "kasinopelit",
     no: "casinospill",
     de: "casino-spiele",
+    at: "casino-spiele",
     en: "casino-games",
     es: "casino-juegos",
     DEFAULT: "games-information",
@@ -325,11 +328,6 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
-  MIXPANEL_GAME_SET_CLICKED: "Game Set Clicked",
-  MIXPANEL_GAME_SET_SORTING_CLICKED: "Sorting Clicked",
-  MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
-  MIXPANEL_GAME_SET_FILTERING_CLICKED: "Filtering Clicked",
-  MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED: "Filtering Option Clicked",
 };
 
 export const EVENT_PROPS = {
@@ -367,7 +365,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
-  LIVE_CASINO: "Live Casino - Details Page",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
   GAME_DETAILS: "Game details",
 };
 
@@ -445,5 +443,12 @@ export const EMBEDDED_GAMES = {
     "ms@50script.com",
     "sebastian.steek@casumo.com",
     "boguslaw.parol+30@casumo.com",
+    "andre.formosa@casumo.com",
+    "daniel.gauci@gmail.com",
+    "peter.noer+TEST00070@casumo.com",
+    "mark.busuttil@casumo.com",
+    "alessandro.pontes@casumo.com",
+    "Elisabeth.isaksson@casumo.com",
+    "integrations+7@casumo.com",
   ],
 };
