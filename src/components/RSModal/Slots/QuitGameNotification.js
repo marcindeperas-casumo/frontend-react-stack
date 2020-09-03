@@ -25,6 +25,7 @@ export const QuitGameNotification = ({
   config: { onCloseCallBack },
 }: QuitGameNotificationProps) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const redirectToCashierPage = () => navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   if (!t) {
     return null;
   }
@@ -32,7 +33,7 @@ export const QuitGameNotification = ({
     bigTitle: t.quit_game_modal_title,
     primaryButton: {
       text: t.quit_game_cta_text,
-      action: () => navigateToKO(ROUTE_IDS.CASH_DEPOSIT),
+      action: redirectToCashierPage,
     },
     closeIcon: {
       action: () => {
