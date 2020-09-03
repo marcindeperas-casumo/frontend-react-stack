@@ -4,6 +4,7 @@ import {
   piqIframeUrlBase as urlBase,
   composeIframeUrl,
   MESSAGE_ACTION,
+  TYPE_TO_CARD,
 } from "./constants";
 
 const iframeIdGenerator = uidGenerator();
@@ -14,8 +15,10 @@ export const PiqIframeComponent = ({
   mode,
   luhnCheck = true,
   onIframeMessage,
-  onError,
   onSuccess,
+  onValidation,
+  onCardType,
+  onCardIdentifier,
 }) => {
   const iframe = useRef(null);
   //eslint-disable-next-line no-unused-vars
@@ -29,6 +32,22 @@ export const PiqIframeComponent = ({
         window: source,
         origin: origin,
       });
+    }
+
+    if (action === MESSAGE_ACTION.SUCCESS) {
+      onSuccess(data.param);
+    }
+
+    if (action === MESSAGE_ACTION.VALIDATION) {
+      onValidation(data.param);
+    }
+
+    if (action === MESSAGE_ACTION.CARD_TYPE) {
+      onCardType(TYPE_TO_CARD[data.param]);
+    }
+
+    if (action === MESSAGE_ACTION.CARD_IDENTIFIER) {
+      onCardIdentifier(data.param);
     }
   };
 
