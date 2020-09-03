@@ -3,8 +3,6 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
-import { ROUTE_IDS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
@@ -26,11 +24,14 @@ export const QuickDeposit = ({
   bonusBalance,
   currency,
   t,
+  cashierLinkCallback,
 }: Props) => {
-  const { navigateToKO } = useCrossCodebaseNavigation();
   const svgCurrencyIconClassList =
     "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
   const availableSavedPaymentMethods = Boolean(savedPaymentMethods.length);
+  const cashierLinkClick = () => {
+    cashierLinkCallback();
+  };
 
   if (!t) {
     return null;
@@ -78,7 +79,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
-            onClick={() => navigateToKO(ROUTE_IDS.CASH_DEPOSIT)}
+            onClick={cashierLinkClick}
           >
             {t.cashier_link_text}
           </Text>

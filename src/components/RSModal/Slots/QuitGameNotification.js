@@ -2,6 +2,8 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Modal from "@casumo/cmp-modal";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { ROUTE_IDS } from "Src/constants";
 
 export type CmsContent = {
   quit_game_modal_title: string,
@@ -12,12 +14,17 @@ export type CmsContent = {
 type QuitGameNotificationProps = {
   acceptModal?: () => null,
   t: ?CmsContent,
+  config: {
+    onCloseCallBack: () => null,
+  },
 };
 
 export const QuitGameNotification = ({
   acceptModal = () => null,
   t,
+  config: { onCloseCallBack },
 }: QuitGameNotificationProps) => {
+  const { navigateToKO } = useCrossCodebaseNavigation();
   if (!t) {
     return null;
   }
@@ -25,10 +32,15 @@ export const QuitGameNotification = ({
     bigTitle: t.quit_game_modal_title,
     primaryButton: {
       text: t.quit_game_cta_text,
-      action: acceptModal,
+      action: () => navigateToKO(ROUTE_IDS.CASH_DEPOSIT),
     },
     closeIcon: {
-      action: acceptModal,
+      action: () => {
+        if (onCloseCallBack) {
+          onCloseCallBack();
+        }
+        acceptModal();
+      },
     },
   };
 
