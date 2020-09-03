@@ -406,7 +406,3 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   ]),
   R.not
 );
-
-export const concatOnKey = R.curry((key, object) =>
-  R.over(R.lensProp(key), R.join(","))(object)
-);
