@@ -72,7 +72,7 @@ export const QuickDeposit = ({
               classList={svgCurrencyIconClassList}
             />
             <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute u-scale-x--25 u-scale-y--25">
-              <AddIcon className="t-color-purple-60" />
+              <AddIcon className="t-color-purple-60" size="md" />
             </div>
           </Flex>
         ) : (
