@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { setMobileViewport } from "Utils/testUtils";
 import { GameThumb } from "Components/GameThumb";
 import { CURRENCIES } from "Src/constants";
 import { GameRow } from "./GameRow";
@@ -12,7 +11,6 @@ describe("<GameRow />", () => {
   let game;
 
   beforeEach(() => {
-    setMobileViewport();
     game = {
       slug: "foo-bar",
       name: "Foo Bar",

@@ -1,5 +1,4 @@
 #import "../GameRow/GameRow.graphql"
-#import "../LiveCasinoCard/LiveCasinoCard.graphql"
 
 query LiveCasinoDetailPageQuery {
     groupedLiveCasinoGames {
@@ -8,12 +7,4 @@ query LiveCasinoDetailPageQuery {
         ...GameRow_Game
       }
     }
-}
-
-query LiveCasinoDetailPageDesktopQuery {
-  gamesList(listId: "liveCasino") {
-    games {
-      ...LiveCasinoCard
-    }
-  }
 }

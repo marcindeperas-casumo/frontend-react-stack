@@ -11,7 +11,6 @@ import { reducer as sidebar } from "Models/sidebar";
 import { modalReducer as modal } from "Models/modal";
 import { slotControlSystemReducer as slotControlSystem } from "Models/slotControlSystem";
 import { playOkayReducer } from "./playOkay/playOkay.rootReducer";
-import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 
 const rootReducer = combineReducers({
   router,
@@ -25,7 +24,6 @@ const rootReducer = combineReducers({
   playing,
   slotControlSystem,
   sidebar,
-  gameBrowser,
 });
 
 export default rootReducer;
