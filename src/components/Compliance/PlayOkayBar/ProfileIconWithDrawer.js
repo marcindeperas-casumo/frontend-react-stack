@@ -9,7 +9,7 @@ import {
   playerIdSelector,
 } from "Models/handshake";
 import { useCrossCodebaseNavigation, useTranslationsGql } from "Utils/hooks";
-import { ROUTE_IDS } from "Src/constants";
+import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
 import {
@@ -18,6 +18,7 @@ import {
   openChatWindow,
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
+import tracker from "Services/tracker";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 const cmsPrefix = "root:iframe-solution:fields";
@@ -62,6 +63,7 @@ export const ProfileIconWithDrawer = ({
         <InGameDrawer
           t={t}
           onLiveChatClick={() => {
+            tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
             openChatWindow();
           }}
           onExitGameClick={() => {
@@ -71,7 +73,12 @@ export const ProfileIconWithDrawer = ({
       </div>
     </React.Fragment>
   ) : (
-    <ProfileIcon onClick={() => setDrawerOpen(true)} />
+    <ProfileIcon
+      onClick={() => {
+        tracker.track(EVENTS.MIXPANEL_SUMOT_ICON_CLICKED, {});
+        setDrawerOpen(true);
+      }}
+    />
   );
 };
 

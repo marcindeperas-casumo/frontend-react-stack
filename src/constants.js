@@ -328,6 +328,9 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
+  MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED: "In game live chat clicked",
+  MIXPANEL_SUMOT_ICON_CLICKED: "Sumot icon - in game drawer clicked",
+  MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
 };
 
 export const EVENT_PROPS = {
