@@ -407,7 +407,7 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   R.not
 );
 
-export function* uidGenerator() {
+export function* uidGenerator(): Generator<number, void, number> {
   //eslint-disable-next-line fp/no-let
   let id = 0;
   //eslint-disable-next-line fp/no-loops

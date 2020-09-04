@@ -1,3 +1,4 @@
+// @flow
 import React, { useEffect, useRef, useState } from "react";
 import { uidGenerator } from "Utils";
 import {
@@ -5,21 +6,32 @@ import {
   composeIframeUrl,
   MESSAGE_ACTION,
   TYPE_TO_CARD,
+  IFRAME_MODE,
 } from "./constants";
 
 const iframeIdGenerator = uidGenerator();
+
+type Props = {
+  id: ?number,
+  mode: $Values<typeof IFRAME_MODE>,
+  env: string,
+  luhnCheck: boolean,
+  onSuccess: (token: string) => {},
+  onValidation: (errorCode: string) => {},
+  onCardType: (param: string) => {},
+  onCardIdentifier: (param: string) => {},
+};
 
 export const PiqIframeComponent = ({
   id = iframeIdGenerator.next().value,
   env,
   mode,
   luhnCheck = true,
-  onIframeMessage,
   onSuccess,
   onValidation,
   onCardType,
   onCardIdentifier,
-}) => {
+}: Props) => {
   const iframe = useRef(null);
   //eslint-disable-next-line no-unused-vars
   const [childFrame, setChildFrame] = useState(null);
