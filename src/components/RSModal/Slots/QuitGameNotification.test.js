@@ -4,25 +4,13 @@ import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import MockStore from "Components/MockStore";
 import { QuitGameNotification } from "./QuitGameNotification";
+import { QuitGameNotificationProps } from "./__mocks__/QuitGameNotificationProps.mock";
 
 describe("Quit Game Notification / Modal", () => {
-  const props = {
-    acceptModal: () => null,
-    t: {
-      quit_game_modal_title: "Quit Game",
-      quit_game_modal_text:
-        "To make a deposit you'll need to exit the game. If you deposit using a debit or credit card, you won't have to exit the game everytime you want to make a deposit.",
-      quit_game_cta_text: "Make Deposit",
-    },
-    config: {
-      onCloseCallBack: () => null,
-    },
-  };
-
   test("should render modal with big title, main text, primary button and close icon", () => {
     const rendered = mount(
       <MockStore>
-        <QuitGameNotification {...props} />
+        <QuitGameNotification {...QuitGameNotificationProps} />
       </MockStore>
     );
     const buttonPrimary = rendered.find(ButtonPrimary);
