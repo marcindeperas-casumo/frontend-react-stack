@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from "react";
 import gql from "graphql-tag";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import { last } from "ramda";
 import { useSelector } from "react-redux";
-import { DEFAULT_KAMBI_MARKET } from "Features/sports/constants";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
 import { useLocale } from "Utils/hooks";
-import { currencySelector, countrySelector } from "Models/handshake";
+import { currencySelector } from "Models/handshake";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
@@ -24,10 +24,11 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
 
 export function LaunchableKambiClient() {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
+  const [kambiMarket, setKambiMarket] = useState("GB");
+  const [kambiLocale, setKambiLocale] = useState("en_GB");
+
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  const kambiMarket = useSelector(countrySelector) || DEFAULT_KAMBI_MARKET;
-  const kambiLocale = getKambiSupportedLanguage(locale.replace("-", "_"));
 
   const [mutateLaunchKambi, { loading, error, data }] = useMutation(
     LAUNCH_KAMBI_MUTATION
@@ -38,6 +39,13 @@ export function LaunchableKambiClient() {
   useEffect(() => {
     mutateLaunchKambi();
   }, [mutateLaunchKambi]);
+
+  useEffect(() => {
+    if (locale) {
+      setKambiMarket(last(locale.split("-")));
+      setKambiLocale(getKambiSupportedLanguage(locale.replace("-", "_")));
+    }
+  }, [locale]);
 
   const onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation

@@ -167,6 +167,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelit",
     no: "spillvelger",
     de: "spiele",
+    at: "spiele",
     DEFAULT: "games",
   },
   PLAY: {
@@ -174,6 +175,7 @@ export const TRANSLATED_ROUTES = {
     fi: "pelaa",
     no: "spill",
     de: "spielen",
+    at: "spielen",
     DEFAULT: "play",
   },
   CASINO_GAMES: {
@@ -181,6 +183,7 @@ export const TRANSLATED_ROUTES = {
     fi: "kasinopelit",
     no: "casinospill",
     de: "casino-spiele",
+    at: "casino-spiele",
     en: "casino-games",
     es: "casino-juegos",
     DEFAULT: "games-information",
@@ -439,5 +442,12 @@ export const EMBEDDED_GAMES = {
     "ms@50script.com",
     "sebastian.steek@casumo.com",
     "boguslaw.parol+30@casumo.com",
+    "andre.formosa@casumo.com",
+    "daniel.gauci@gmail.com",
+    "peter.noer+TEST00070@casumo.com",
+    "mark.busuttil@casumo.com",
+    "alessandro.pontes@casumo.com",
+    "Elisabeth.isaksson@casumo.com",
+    "integrations+7@casumo.com",
   ],
 };
