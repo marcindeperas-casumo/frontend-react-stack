@@ -2,7 +2,8 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Modal from "@casumo/cmp-modal";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { useCrossCodebaseNavigation, useTranslations } from "Utils/hooks";
+import { CMS_SLUGS } from "Models/playing/playing.constants";
 import { ROUTE_IDS } from "Src/constants";
 
 export type CmsContent = {
@@ -13,7 +14,6 @@ export type CmsContent = {
 
 type QuitGameNotificationProps = {
   acceptModal?: () => void,
-  t: ?CmsContent,
   config: {
     onCloseCallback?: () => void,
   },
@@ -21,11 +21,11 @@ type QuitGameNotificationProps = {
 
 export const QuitGameNotification = ({
   acceptModal = () => null,
-  t,
   config: { onCloseCallback },
 }: QuitGameNotificationProps) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const redirectToCashierPage = () => navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
+  const t = useTranslations(CMS_SLUGS.IFRAME_SOLUTION);
   if (!t) {
     return null;
   }
