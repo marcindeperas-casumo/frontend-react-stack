@@ -6,6 +6,7 @@ import { IFRAME_MODE } from "./constants";
 const stories = storiesOf("Payments");
 
 const iframeSettings = {
+  id: 1,
   env: "test",
   mode: IFRAME_MODE.CVV_CODE,
 };
