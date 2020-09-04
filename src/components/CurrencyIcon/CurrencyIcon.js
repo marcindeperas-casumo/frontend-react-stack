@@ -20,7 +20,7 @@ type Props = {
 };
 
 const currencyIconMapper = (
-  currency: string,
+  currency: string = "EUR",
   selected?: boolean,
   classList?: string
 ) => {
@@ -40,14 +40,11 @@ const currencyIconMapper = (
     USD: WalletTabDollarUnselectedIcon,
   };
   const IconTagName = selected
-    ? currencyComponentSelectedIcons[currency || "EUR"]
-    : currencyComponentIcons[currency || "EUR"];
+    ? currencyComponentSelectedIcons[currency]
+    : currencyComponentIcons[currency];
   return <IconTagName className={classList} />;
 };
 
 export const CurrencyIcon = ({ currency, selected, classList = "" }: Props) => {
-  if (!currency) {
-    return null;
-  }
   return currencyIconMapper(currency, selected, classList);
 };
