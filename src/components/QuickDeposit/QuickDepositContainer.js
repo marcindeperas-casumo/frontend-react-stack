@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { localeSelector, savedMethodsSelector } from "Models/handshake";
 import { useTranslations } from "Utils/hooks";
 import {
@@ -20,19 +20,27 @@ const QuickDepositContainerWrap = props => {
   return <QuickDeposit {...props} t={t} />;
 };
 
-export const QuickDepositContainer = connect(state => ({
-  walletBalance: formatCurrency({
-    locale: localeSelector(state),
-    currency: playerCurrencySelector(state),
-    value: playerBalanceAmountSelector(state),
-  }),
-  bonusBalance: bonusBalanceDisplay(
-    playerWalletBonusSelector(state),
-    playerCurrencySelector(state),
-    playerBonusTextSelector(state),
-    localeSelector(state),
-    trimmedBonusTextFromBalance
-  ),
-  currency: playerCurrencySelector(state),
-  savedPaymentMethods: savedMethodsSelector(state),
-}))(QuickDepositContainerWrap);
+export const QuickDepositContainer = connect(state => {
+  const locale = useSelector(localeSelector);
+  const currency = useSelector(playerCurrencySelector);
+  const playerBalance = useSelector(playerBalanceAmountSelector);
+  const walletBonus = useSelector(playerWalletBonusSelector);
+  const walletBonusText = playerBonusTextSelector(state);
+  const savedPaymentMethods = savedMethodsSelector(state);
+  return {
+    walletBalance: formatCurrency({
+      locale,
+      currency,
+      value: playerBalance,
+    }),
+    bonusBalance: bonusBalanceDisplay(
+      walletBonus,
+      currency,
+      walletBonusText,
+      locale,
+      trimmedBonusTextFromBalance
+    ),
+    currency: currency,
+    hasSavedPaymentMethods: savedPaymentMethods && savedPaymentMethods.length,
+  };
+})(QuickDepositContainerWrap);

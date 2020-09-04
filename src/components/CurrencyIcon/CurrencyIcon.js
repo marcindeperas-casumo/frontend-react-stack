@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {
   WalletTabEuroSelectedIcon,
   WalletTabEuroUnselectedIcon,
@@ -47,7 +47,7 @@ const currencyIconMapper = (
 
 export const CurrencyIcon = ({ currency, selected, classList = "" }: Props) => {
   if (!currency) {
-    return () => null;
+    return null;
   }
   return currencyIconMapper(currency, selected, classList);
 };

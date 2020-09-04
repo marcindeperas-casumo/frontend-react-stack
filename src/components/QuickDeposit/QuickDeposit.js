@@ -7,7 +7,7 @@ import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
 type Props = {
-  savedPaymentMethods: Array<T>,
+  hasSavedPaymentMethods: boolean,
   walletBalance: string,
   bonusBalance: string,
   currency: string,
@@ -19,19 +19,15 @@ type Props = {
 };
 
 export const QuickDeposit = ({
-  savedPaymentMethods,
+  hasSavedPaymentMethods,
   walletBalance,
   bonusBalance,
   currency,
   t,
-  cashierLinkCallback,
+  cashierLinkCallback = () => null,
 }: Props) => {
   const svgCurrencyIconClassList =
     "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
-  const availableSavedPaymentMethods = Boolean(savedPaymentMethods.length);
-  const cashierLinkClick = () => {
-    cashierLinkCallback();
-  };
 
   if (!t) {
     return null;
@@ -60,7 +56,7 @@ export const QuickDeposit = ({
         </Flex.Block>
       </Flex.Item>
       <Flex.Item className="u-margin-left--auto u-cursor--pointer">
-        {availableSavedPaymentMethods ? (
+        {hasSavedPaymentMethods ? (
           <Flex
             align="center"
             justify="center"
@@ -79,7 +75,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
-            onClick={cashierLinkClick}
+            onClick={cashierLinkCallback}
           >
             {t.cashier_link_text}
           </Text>
