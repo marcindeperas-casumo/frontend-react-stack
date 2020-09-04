@@ -617,7 +617,7 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
 
   test("should receive null if no value is passed", () => {
     const bonusBalanceDisplayLongText = bonusBalanceDisplay(
-      "",
+      0,
       "EUR",
       "",
       "en-en"

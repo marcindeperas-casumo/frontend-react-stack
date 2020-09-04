@@ -12,10 +12,10 @@ export type CmsContent = {
 };
 
 type QuitGameNotificationProps = {
-  acceptModal?: () => null,
+  acceptModal?: () => void,
   t: ?CmsContent,
   config: {
-    onCloseCallback: () => null,
+    onCloseCallback?: () => void,
   },
 };
 

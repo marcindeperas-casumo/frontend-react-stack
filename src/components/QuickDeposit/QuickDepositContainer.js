@@ -13,9 +13,13 @@ import { bonusBalanceDisplay, formatCurrency } from "Utils";
 import { CMS_SLUG } from "./QuickDeposit.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
-export const QuickDepositContainer = props => {
+type Props = {
+  cashierLinkCallback: () => null,
+};
+
+export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
   const trimmedBonusTextFromBalance = true;
-  const t = useTranslations(CMS_SLUG);
+  const t: any = useTranslations(CMS_SLUG);
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
@@ -39,7 +43,7 @@ export const QuickDepositContainer = props => {
       )}
       currency={currency}
       hasSavedPaymentMethods={savedPaymentMethods && savedPaymentMethods.length}
-      {...props}
+      cashierLinkCallback={cashierLinkCallback}
     />
   );
 };

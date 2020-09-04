@@ -212,7 +212,10 @@ export const injectScript = (url: string) =>
     }
   });
 
-export const commaSeparated = R.compose(R.join(","), R.filter(R.identity));
+export const commaSeparated = R.compose(
+  R.join(","),
+  R.filter(R.identity)
+);
 type Handlers<S> = {
   [type: string]: (state: S, action: Object) => S,
 };
@@ -406,14 +409,14 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
 
 // Displays bonus balance with matching currency symbol to passed locale and followed by bonus string passed as argument
 export const bonusBalanceDisplay = (
-  value: number,
+  value: ?number,
   currency: string,
   bonusText: string,
   locale: string,
   trimmed?: boolean
 ) => {
   if (!value) {
-    return null;
+    return "";
   }
   return `+${formatCurrency({ locale, currency, value })} ${
     !trimmed ? bonusText : ""

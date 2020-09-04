@@ -19,8 +19,9 @@ stories.add("Sterling Deposit Slip Link", () => {
         walletBalance="£987.65"
         bonusBalance="£55.03"
         t={t}
-        savedPaymentMethods={["test"]}
+        hasSavedPaymentMethods={true}
         currency="GBP"
+        cashierLinkCallback={() => null}
       />
     </MockStore>
   );
@@ -34,7 +35,8 @@ stories.add("Euro Cashier Link", () => {
         bonusBalance="€55.03"
         t={t}
         currency="EUR"
-        savedPaymentMethods={[]}
+        hasSavedPaymentMethods={false}
+        cashierLinkCallback={() => null}
       />
     </MockStore>
   );

@@ -11,11 +11,12 @@ type Props = {
   walletBalance: string,
   bonusBalance: string,
   currency: string,
-  t: {
+  t?: {
     bonus_title: string,
     balance_title: string,
     cashier_link_text: string,
   },
+  cashierLinkCallback: () => null,
 };
 
 export const QuickDeposit = ({
