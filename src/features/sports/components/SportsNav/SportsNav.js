@@ -139,7 +139,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
-  if (/#event|#bethistory/.test(currentHash)) {
+  if (/#bethistory/.test(currentHash)) {
     return null;
   }
 

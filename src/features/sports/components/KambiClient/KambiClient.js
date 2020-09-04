@@ -220,22 +220,8 @@ export default class KambiClient extends React.Component<Props> {
     }
   };
 
-  redirectFromEventToFilter = () => {
-    const route = window.location.hash.split("/");
-    if (route[0] === "#event" && route[1] === "live") {
-      // eslint-disable-next-line fp/no-mutation
-      window.location.hash = `filter/all/all/all/all/in-play/${route.slice(
-        -1
-      )}`;
-    } else if (route[0] === "#event") {
-      // eslint-disable-next-line fp/no-mutation
-      window.location.hash = `filter/${route.slice(-1)}`;
-    }
-  };
-
   handleHashChange = () => {
     this.redirectToUserHomeRoute();
-    this.redirectFromEventToFilter();
     this.props.onNavigate(window.location.hash);
   };
 
