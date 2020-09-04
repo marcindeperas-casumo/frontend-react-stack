@@ -1,6 +1,5 @@
 // @flow
 import React, { useEffect, useRef, useState } from "react";
-import { uidGenerator } from "Utils";
 import {
   piqIframeUrlBase as urlBase,
   composeIframeUrl,
@@ -9,10 +8,8 @@ import {
   IFRAME_MODE,
 } from "./constants";
 
-const iframeIdGenerator = uidGenerator();
-
 type Props = {
-  id: ?number,
+  id: number,
   mode: $Values<typeof IFRAME_MODE>,
   env: string,
   luhnCheck: boolean,
@@ -23,7 +20,7 @@ type Props = {
 };
 
 export const PiqIframeComponent = ({
-  id = iframeIdGenerator.next().value,
+  id,
   env,
   mode,
   luhnCheck = true,
