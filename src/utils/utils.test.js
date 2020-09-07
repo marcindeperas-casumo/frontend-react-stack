@@ -615,13 +615,13 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
     expect(bonusBalanceDisplayLongText).toMatch("+£");
   });
 
-  test("should receive null if no value is passed", () => {
+  test("should receive '' if no value is passed", () => {
     const bonusBalanceDisplayLongText = bonusBalanceDisplay(
       0,
       "EUR",
       "",
       "en-en"
     );
-    expect(bonusBalanceDisplayLongText).toBeNull();
+    expect(bonusBalanceDisplayLongText).toMatch("");
   });
 });

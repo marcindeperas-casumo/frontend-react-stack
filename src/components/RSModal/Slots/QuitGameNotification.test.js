@@ -15,7 +15,7 @@ describe("Quit Game Notification / Modal", () => {
     );
     const buttonPrimary = rendered.find(ButtonPrimary);
     const modalMainText = rendered.find(Text);
-    expect(buttonPrimary.length).toBe(1);
+    expect(rendered.find(ButtonPrimary).length).toBe(1);
     expect(buttonPrimary.text()).toMatch("Make Deposit");
     expect(rendered.find("svg").length).toBe(1);
     expect(modalMainText.text()).toMatch(/(exit the game)/i);
