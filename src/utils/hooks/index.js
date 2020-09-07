@@ -8,7 +8,9 @@ export { useMarket } from "./useMarket";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
-export { usePlayerSessionInvalidRedirect } from "./usePlayerSessionInvalidRedirect";
+export {
+  usePlayerSessionInvalidRedirect,
+} from "./usePlayerSessionInvalidRedirect";
 export { useGameLaunchData } from "./useGameLaunchData";
 export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 export { useJurisdiction } from "./useJurisdiction";
