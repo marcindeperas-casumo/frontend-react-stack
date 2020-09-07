@@ -1914,13 +1914,6 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-icons@^3.0.1":
-  version "3.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/3.0.1/152939738e4b02ee29df08973a33275208794e893782b691f2df26d725fc6bb0#6105ed6426fbe3513a9aa65da636759a9bb3252b"
-  integrity sha512-Dek7TDzPyE062/6VyYhVi2203PC7jsbBebVP9mpgHP6ank6Xp8TyholKUdffOjLicZSnPcmWCfRhbko5Em6DDw==
-  dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.2"
-    
 "@casumo/cmp-flex@^4.0.2":
   version "4.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.0.2/c9796276b2eff8cd47be0d9c2aab19b5428bb9000aadd7e39430c5204219938a#21e7186c6dd9f9571a0044e9c376415847788d15"
