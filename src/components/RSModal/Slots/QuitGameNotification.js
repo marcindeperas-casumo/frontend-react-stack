@@ -15,14 +15,13 @@ type QuitGameNotificationProps = {
   config: {
     onCloseCallback?: () => void,
   },
-  t: any | CmsContent,
+  t: ?CmsContent,
 };
 
 export const QuitGameNotification = ({
   acceptModal = () => null,
   config: { onCloseCallback },
   t,
-  t: { quit_game_modal_title, quit_game_modal_text, quit_game_cta_text },
 }: QuitGameNotificationProps) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const redirectToCashierPage = () => navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
@@ -30,9 +29,9 @@ export const QuitGameNotification = ({
     return null;
   }
   const modalProps = {
-    bigTitle: quit_game_modal_title,
+    bigTitle: t.quit_game_modal_title,
     primaryButton: {
-      text: quit_game_cta_text,
+      text: t.quit_game_cta_text,
       action: redirectToCashierPage,
     },
     closeIcon: {
@@ -47,7 +46,7 @@ export const QuitGameNotification = ({
 
   return (
     <Modal {...modalProps}>
-      <Text tag="span">{quit_game_modal_text}</Text>
+      <Text tag="span">{t.quit_game_modal_text}</Text>
     </Modal>
   );
 };
