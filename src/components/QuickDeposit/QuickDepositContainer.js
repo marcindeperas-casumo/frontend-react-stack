@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { localeSelector, savedMethodsSelector } from "Models/handshake";
-import { useTranslations } from "Utils/hooks";
+import { useTranslationsGql } from "Utils/hooks";
 import {
   playerBalanceAmountSelector,
   playerWalletBonusSelector,
@@ -19,7 +19,11 @@ type Props = {
 
 export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
   const trimmedBonusTextFromBalance = true;
-  const t: any = useTranslations(CMS_SLUG);
+  const { t } = useTranslationsGql({
+    bonus_title: `root:${CMS_SLUG}:fields.bonus_title`,
+    balance_title: `root:${CMS_SLUG}:fields.balance_title`,
+    cashier_link_text: `root:${CMS_SLUG}:fields.cashier_link_text`,
+  });
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);

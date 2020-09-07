@@ -12,9 +12,9 @@ type Props = {
   bonusBalance: string,
   currency: string,
   t?: {
-    bonus_title: string,
-    balance_title: string,
-    cashier_link_text: string,
+    bonus_title: ?string,
+    balance_title: ?string,
+    cashier_link_text: ?string,
   },
   cashierLinkCallback: () => null,
 };
