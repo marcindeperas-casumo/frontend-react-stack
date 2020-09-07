@@ -25,6 +25,30 @@ export type GetGamesRTPVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: GetGamesRTPLight
+// ====================================================
+
+export type GetGamesRTPLight_getGamesPaginated_games = {
+  id: string,
+  slug: string,
+  title: string,
+  rtp: ?string,
+};
+export type GetGamesRTPLight_getGamesPaginated = {
+  gamesCount: number,
+  offset: number,
+  games: Array<GetGamesRTPLight_getGamesPaginated_games>,
+};
+export type GetGamesRTPLight = {
+  getGamesPaginated: GetGamesRTPLight_getGamesPaginated,
+};
+export type GetGamesRTPLightVariables = {
+  query: string,
+  offset: number,
+  limit: number,
+};
+
+// ====================================================
 // GraphQL query operation: componentBuilderQuery
 // ====================================================
 
@@ -409,42 +433,6 @@ export type JackpotsQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: LiveCasinoCardSmallDataQuery
-// ====================================================
-
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
-  type: OperationHoursType,
-  startTime: ?string,
-  endTime: ?string,
-};
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
-  id: ?string,
-  tableId: ?string,
-  state: TableState,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets,
-  operationHours: LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours,
-};
-export type LiveCasinoCardSmallDataQuery = {
-  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
-};
-export type LiveCasinoCardSmallDataQueryVariables = {
-  id: string,
-};
-
-// ====================================================
 // GraphQL query operation: LiveCasinoDetailPageQuery
 // ====================================================
 
@@ -567,6 +555,12 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games =
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
   title: string,
 };
+export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games = {
+  title: string,
+};
+export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames = {
+  title: string,
+};
 export type PlayerValuablesQuery_player_valuables =
   | {
       __typename:
@@ -639,6 +633,26 @@ export type PlayerValuablesQuery_player_valuables =
       requirementType: ?RequirementType,
       games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
       excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
+      gameCategories: Array<?string>,
+    }
+  | {
+      __typename: "PlayerValuableWageringLock",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+      description: string,
+      requirementType: ?RequirementType,
+      games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
+      excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
       gameCategories: Array<?string>,
     };
 export type PlayerValuablesQuery_player = {
@@ -2225,11 +2239,29 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
   description: string,
   requirementType: ?RequirementType,
 };
+export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
+  __typename: "PlayerValuableWageringLock",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  description: string,
+  requirementType: ?RequirementType,
+};
 export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash
-  | PlayerValuableList_PlayerValuable_PlayerValuableCashback; // ====================================================
+  | PlayerValuableList_PlayerValuable_PlayerValuableCashback
+  | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock; // ====================================================
 // GraphQL fragment: PromotionCard_Promotion
 // ====================================================
 
@@ -2385,7 +2417,8 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
     | "PlayerValuableCashback"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+    | "PlayerValuableSport"
+    | "PlayerValuableWageringLock",
   id: string,
   title: string,
   content: string,
@@ -2491,11 +2524,36 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
   excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames>,
   gameCategories: Array<?string>,
 };
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
+  __typename: "PlayerValuableWageringLock",
+  id: string,
+  backgroundImage: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  requirementType: ?RequirementType,
+  games: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games>,
+  excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames>,
+  gameCategories: Array<?string>,
+};
 export type ValuableDetails_PlayerValuable =
   | ValuableDetails_PlayerValuable_PlayerValuableDeposit
   | ValuableDetails_PlayerValuable_PlayerValuableSpins
   | ValuableDetails_PlayerValuable_PlayerValuableCash
-  | ValuableDetails_PlayerValuable_PlayerValuableCashback; // ====================================================
+  | ValuableDetails_PlayerValuable_PlayerValuableCashback
+  | ValuableDetails_PlayerValuable_PlayerValuableWageringLock; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 
@@ -2747,15 +2805,14 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type TableState = "CLOSED" | "OPEN" | "UNASSIGNED";
-export type OperationHoursType = "BOUNDED" | "FULLTIME";
 export type ValuableType =
   | "cash"
   | "cashback"
   | "deposit"
   | "freeBet"
   | "spins"
-  | "sport";
+  | "sport"
+  | "wageringLock";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"

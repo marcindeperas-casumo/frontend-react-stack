@@ -48,6 +48,17 @@ const VALUABLE_ICON = {
     [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
     [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
   },
+  [VALUABLE_TYPES.WAGERING_LOCK]: {
+    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
+    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+  },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
 };
@@ -69,7 +80,11 @@ export const ValuableSymbol = ({
         ),
     ],
     [
-      anyPass([equals(VALUABLE_TYPES.CASH), equals(VALUABLE_TYPES.CASHBACK)]),
+      anyPass([
+        equals(VALUABLE_TYPES.CASH),
+        equals(VALUABLE_TYPES.CASHBACK),
+        equals(VALUABLE_TYPES.WAGERING_LOCK),
+      ]),
       () => either(prop(currency), prop(CURRENCIES.EUR))(ValuableIcon),
     ],
     [T, () => ValuableIcon],

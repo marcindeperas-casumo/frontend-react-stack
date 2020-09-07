@@ -80,7 +80,9 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            {valuableType === VALUABLE_TYPES.CASHBACK ? (
+            {[VALUABLE_TYPES.CASHBACK, VALUABLE_TYPES.WAGERING_LOCK].includes(
+              valuableType
+            ) ? (
               <Cashback className="u-width--full" />
             ) : (
               <Coin className="u-width--full" />
@@ -167,6 +169,7 @@ function getCoinTextClassModifier(valuableType: A.ValuableType) {
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
+    case VALUABLE_TYPES.WAGERING_LOCK:
       return "t-color-grey-70";
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-grey-70";

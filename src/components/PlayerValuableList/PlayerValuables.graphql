@@ -63,6 +63,17 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
         }
         gameCategories
       }
+      ... on PlayerValuableWageringLock {
+        description
+        requirementType
+        games {
+          title
+        }
+        excludedGames {
+          title
+        }
+        gameCategories
+      }
     }
   }
 }
@@ -93,6 +104,10 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
       requirementType
     }
     ... on PlayerValuableCashback {
+      description
+      requirementType
+    }
+    ... on PlayerValuableWageringLock {
       description
       requirementType
     }
