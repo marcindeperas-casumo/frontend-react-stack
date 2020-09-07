@@ -1,13 +1,6 @@
 //@flow
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { ChevronUpIcon } from "@casumo/cmp-icons";
-import {
-  playerCasumoNameSelector,
-  emailSelector,
-  playerNameSelector,
-  playerIdSelector,
-} from "Models/handshake";
 import { useCrossCodebaseNavigation, useTranslationsGql } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
@@ -19,6 +12,7 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
+import "./ProfileIconWithDrawer.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
 
@@ -55,10 +49,7 @@ export const ProfileIconWithDrawer = ({
         className="t-color-white u-margin-left"
         onClick={() => setDrawerOpen(false)}
       />
-      <div
-        style={{ top: "var(--play-okay-bar-height, 48px)" }}
-        className="u-position-fixed u-zindex--content-overlay u-inset-x"
-      >
+      <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x">
         <InGameDrawer
           t={t}
           onLiveChatClick={() => {
@@ -74,10 +65,3 @@ export const ProfileIconWithDrawer = ({
     <ProfileIcon onClick={() => setDrawerOpen(true)} />
   );
 };
-
-export const ProfileIconWithDrawerContainer = connect(state => ({
-  playerId: playerIdSelector(state),
-  casumoName: playerCasumoNameSelector(state),
-  email: emailSelector(state),
-  playerName: playerNameSelector(state),
-}))(ProfileIconWithDrawer);
