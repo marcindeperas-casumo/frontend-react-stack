@@ -69,45 +69,6 @@
   display: none !important;
 }
 
-#KambiBC-container
-  .KambiBC-promo-cards-wrapper[data-eq-state~="promoCardsWide"]
-  .KambiBC-promo-card {
-  height: 160px !important;
-  min-width: 280px !important;
-  width: 280px !important;
-}
-
-.KambiBC-editorial-coupon-promo-card,
-.KambiBC-featured-league-promo-card {
-  align-content: flex-start !important;
-  justify-content: flex-start !important;
-  padding: 0 !important;
-}
-
-.KambiBC-editorial-coupon-promo-card__row1,
-.KambiBC-featured-league-promo-card__title {
-  flex: none !important;
-  font-size: 10px !important;
-  font-weight: 400 !important;
-  line-height: 10px !important;
-  margin: 0 !important;
-  padding: 24px 0 8px 16px !important;
-  text-align: left !important;
-  text-transform: uppercase !important;
-}
-
-.KambiBC-editorial-coupon-promo-card__row2,
-.KambiBC-featured-league-promo-card__sport {
-  background: none !important;
-  border-radius: 0 !important;
-  font-size: 20px !important;
-  font-weight: bold !important;
-  line-height: 22px !important;
-  max-width: 120px !important;
-  padding: 0 0 0 16px !important;
-  text-align: left !important;
-}
-
 .KambiBC-sandwich-filter-background {
   background: none !important;
 }
@@ -275,6 +236,177 @@
 .KambiBC-container#KambiBC-container .KambiBC-modularized-event-path__back {
   display: none !important;
 }
+
+// 07.09.2020
+// START: PROMO AREA
+#KambiBC-container
+  .KambiBC-promo-cards-wrapper[data-eq-state~="promoCardsWide"]
+  .KambiBC-promo-card {
+  height: 160px !important;
+  min-width: 280px !important;
+  width: 280px !important;
+}
+
+.KambiBC-editorial-coupon-promo-card,
+.KambiBC-featured-league-promo-card {
+  align-content: flex-start !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+}
+
+.KambiBC-editorial-coupon-promo-card__row1,
+.KambiBC-featured-league-promo-card__title {
+  flex: none !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  line-height: 10px !important;
+  margin: 0 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+.KambiBC-editorial-coupon-promo-card__row2,
+.KambiBC-featured-league-promo-card__sport {
+  background: none !important;
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  line-height: 22px !important;
+  max-width: 100% !important;
+  text-align: left !important;
+}
+
+#KambiBC-container
+  .KambiBC-promo-cards-wrapper
+  .KambiBC-promo-card__center-content {
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  padding: 16px !important;
+
+  .KambiBC-promo-card-title {
+    @media (max-width: 768px) {
+      font-size: 20px !important;
+      line-height: 22px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+    text-align: left !important;
+  }
+
+  .KambiBC-promo-card-button {
+    background: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    @media (max-width: 768px) {
+      font-size: 48px !important;
+      line-height: 48px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 56px !important;
+      line-height: 56px !important;
+    }
+  }
+}
+
+#KambiBC-container
+  .KambiBC-promo-cards-wrapper
+  .KambiBC-editorial-coupon-promo-card {
+  justify-content: space-between !important;
+  padding: 16px !important;
+
+  .KambiBC-editorial-coupon-promo-card__row1 {
+    @media (max-width: 768px) {
+      font-size: 10px !important;
+      line-height: 10px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .KambiBC-editorial-coupon-promo-card__row2 {
+    @media (max-width: 768px) {
+      font-size: 20px !important;
+      line-height: 22px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+    display: block !important;
+    width: 100% !important;
+  }
+}
+
+#KambiBC-container .KambiBC-featured-league-promo-card {
+  justify-content: space-between !important;
+  padding: 16px !important;
+
+  .KambiBC-featured-league-promo-card__title {
+    @media (max-width: 768px) {
+      font-size: 10px !important;
+      line-height: 10px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .KambiBC-featured-league-promo-card__sport {
+    @media (max-width: 768px) {
+      font-size: 20px !important;
+      line-height: 22px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+    display: block !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+}
+
+#KambiBC-container .KambiBC-editorial-coupon-promo-card {
+  justify-content: space-between !important;
+  padding: 16px !important;
+
+  .KambiBC-editorial-coupon-promo-card_row1 {
+    @media (max-width: 768px) {
+      font-size: 10px !important;
+      line-height: 10px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+    display: block !important;
+    width: 100% !important;
+  }
+  .KambiBC-editorial-coupon-promo-card_row2 {
+    @media (max-width: 768px) {
+      font-size: 20px !important;
+      line-height: 22px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+    display: block !important;
+    width: 100% !important;
+  }
+}
+// END: PROMO AREA
 
 //LANDING PAGE END
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important, selector-max-compound-selectors */
