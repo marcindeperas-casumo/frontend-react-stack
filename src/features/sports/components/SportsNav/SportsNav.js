@@ -124,10 +124,11 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     navItemUtils.isInPlayHash(currentHash)
   );
   const variables = { live: isLiveActive };
-  const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
+  const { loading, error, data, refetch } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
+  const [refetchCount, setRefetchCount] = React.useState(0);
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
@@ -156,6 +157,21 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     !data.liveLabel
   ) {
     return null;
+  }
+
+  const refetchNavigation = () => {
+    if (refetchCount <= 3) {
+      setRefetchCount(refetchCount + 1);
+      refetch();
+    } else {
+      window.location.reload(true);
+    }
+  };
+
+  if (!data.sportsNavigation.length) {
+    return (
+      <ErrorMessage direction="horizontal" retry={() => refetchNavigation()} />
+    );
   }
 
   const setIsLiveActiveAndUpdateSelectedNavItem = (liveActive: boolean) => {
