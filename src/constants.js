@@ -449,7 +449,6 @@ export const EMBEDDED_GAMES = {
     "alessandro.pontes@casumo.com",
     "Elisabeth.isaksson@casumo.com",
     "integrations+7@casumo.com",
-    "peter.noer++THERKILD418@casumo.com",
     "peter.noer+THERKILD418@casumo.com",
   ],
 };
