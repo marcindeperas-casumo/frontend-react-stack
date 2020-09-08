@@ -135,6 +135,12 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     setIsLiveActive(navItemUtils.isInPlayHash(currentHash));
   }, [currentHash]);
 
+  React.useEffect(() => {
+    if (refetchCount > 3) {
+      window.location.reload(true);
+    }
+  }, [refetchCount]);
+
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
   if (/#event|#bethistory/.test(currentHash)) {
@@ -159,18 +165,17 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     return null;
   }
 
-  const refetchNavigation = () => {
-    if (refetchCount <= 3) {
-      setRefetchCount(refetchCount + 1);
-      refetch();
-    } else {
-      window.location.reload(true);
-    }
+  const clickRetryRefetchNavigation = () => {
+    setRefetchCount(refetchCount + 1);
+    refetch();
   };
 
   if (!data.sportsNavigation.length) {
     return (
-      <ErrorMessage direction="horizontal" retry={() => refetchNavigation()} />
+      <ErrorMessage
+        direction="horizontal"
+        retry={() => clickRetryRefetchNavigation()}
+      />
     );
   }
 
