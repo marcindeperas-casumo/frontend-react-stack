@@ -29,7 +29,7 @@ export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
       className="o-flex--1 u-margin-right"
       spacing="none"
     >
-      <SportsIcon {...navItem.iconProps} isActive={isSelected} />
+      <SportsIcon {...navItem.iconProps} isActive={isSelected} width={22} />
       <Text
         tag="span"
         size="sm"
