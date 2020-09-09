@@ -1,8 +1,12 @@
 //@flow
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon } from "@casumo/cmp-icons";
-import { useCrossCodebaseNavigation, useTranslationsGql } from "Utils/hooks";
-import { ROUTE_IDS } from "Src/constants";
+import {
+  useCrossCodebaseNavigation,
+  useTranslationsGql,
+  useMarket,
+} from "Utils/hooks";
+import { ROUTE_IDS, MARKETS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
 import {
@@ -27,6 +31,7 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const { market } = useMarket();
   const { t } = useTranslationsGql({
     in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
     in_game_drawer_exit_game: `${cmsPrefix}.in_game_drawer_exit_game`,
@@ -42,6 +47,10 @@ export const ProfileIconWithDrawer = ({
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
+
+  if (market === MARKETS.nz_en) {
+    return null;
+  }
 
   return isDrawerOpen ? (
     <React.Fragment>
