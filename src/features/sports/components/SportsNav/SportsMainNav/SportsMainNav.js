@@ -22,7 +22,7 @@ import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 import "./SportsMainNav.scss";
 
-const SPORTS_NAV_HEIGHT = 106;
+const SPORTS_NAV_HEIGHT = 42;
 const buttonsBeforeNav = ["live", "all"];
 
 export type Props = {
@@ -60,9 +60,9 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-padding-y u-margin-x c-sports-nav-edit-btn">
+  <div className="u-margin-x--sm c-sports-nav-edit-btn">
     {canEdit && !isLiveActive && (
-      <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
+      <div className="u-padding-left u-padding-top--sm c-sports-nav-edit-btn__wrapper">
         <EditPillsButton onClick={onEdit} label={labels.edit} />
       </div>
     )}

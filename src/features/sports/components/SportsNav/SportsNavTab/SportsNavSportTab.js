@@ -17,7 +17,7 @@ type Props = {
 export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
   <div
     className={classNames(
-      "c-sports-nav-sport-tab u-padding-x--md u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
+      "c-sports-nav-sport-tab u-cursor-pointer o-flex u-margin-right",
       isSelected && "c-sports-nav-sport-tab--selected"
     )}
     onClick={() => onClick(navItem)}
@@ -25,15 +25,15 @@ export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
     <Flex
       align="center"
       justify="center"
-      direction="vertical"
-      className="o-flex--1"
+      direction="horizontal"
+      className="o-flex--1 u-margin-right"
       spacing="none"
     >
       <SportsIcon {...navItem.iconProps} isActive={isSelected} />
       <Text
         tag="span"
         size="sm"
-        className="u-font-weight-black u-text-align-center t-color-grey-90 u-text-nowrap"
+        className="u-font-weight-black u-text-align-center u-text-nowrap"
       >
         {navItem.text}
       </Text>
