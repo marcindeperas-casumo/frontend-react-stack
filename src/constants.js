@@ -328,10 +328,8 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
-  MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED:
-    "In-game quick deposit quit notification closed - to resume playing",
-  MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT:
-    "In-game quit clicked redirect to cashier quick deposit",
+  MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED: "RETCAS - In-Game Exit Game Clicked",
+  MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT: "RETCAS - In-Game Exit Game Clicked",
 };
 
 export const EVENT_PROPS = {
