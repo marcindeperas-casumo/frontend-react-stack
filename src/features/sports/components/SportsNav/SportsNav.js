@@ -85,6 +85,9 @@ const renderSportsNav = (
   const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
   const isNotHomeSports =
     currentHash !== `#${navItemUtils.SPORTS_HOME_PAGE_PATH}`;
+  const isNotCouponPage =
+    currentHash.substr(0, navItemUtils.SPORTS_COUPON_PAGE_PATH.length + 1) !==
+    `#${navItemUtils.SPORTS_COUPON_PAGE_PATH}`;
 
   return (
     <>
@@ -105,7 +108,8 @@ const renderSportsNav = (
       >
         {openChooseFavouriteLeaguesModal =>
           isNotAllSports &&
-          isNotHomeSports && (
+          isNotHomeSports &&
+          isNotCouponPage && (
             <SportsSubNav
               {...commonProps}
               navItems={selectedNavItem.subNav || []}

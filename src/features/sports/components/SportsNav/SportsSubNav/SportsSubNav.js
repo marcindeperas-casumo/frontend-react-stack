@@ -66,12 +66,12 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   }
 
   return (
-    <div>
+    <div className="u-padding-x--lg@desktop u-padding-y@desktop u-padding-x--md@tablet u-padding-x@mobile">
       <ScrollablePaginated
         className="c-sports-nav-paginated"
         columnCount={navItemTypes.length}
         cellRenderer={renderItem({ props, navItemTypes, isLiveActive })}
-        height={64}
+        height={40}
         buttonRenderer={sportsPagerButtonRenderer}
         cacheBuster={props.cacheBuster}
       />

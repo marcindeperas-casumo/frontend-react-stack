@@ -69,8 +69,13 @@
   display: none !important;
 }
 
+.KambiBC-core-ux-landing-page .KambiBC-sandwich-filter {
+  padding: 0 20px !important;
+}
+
 .KambiBC-sandwich-filter-background {
   background: none !important;
+  height: 56px !important;
 }
 
 .KambiBC-filter-menu__option {
@@ -79,28 +84,28 @@
   color: #798291 !important;
   font-size: 14px !important;
   font-weight: bold !important;
-  line-height: 21px !important;
-  padding: 4px 8px !important;
+  height: 32px !important;
+  line-height: 19px !important;
+  padding: 6px 4px !important;
 }
 
 .KambiBC-filter-menu__option--selected {
   background: #fff !important;
-  border-radius: 8px !important;
+  border-radius: 16px !important;
   color: #1a212c !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  line-height: 21px !important;
+  padding: 6px 16px !important;
 }
 
 .KambiBC-sandwich-filter-background--level-2 {
   background: #e5eaed !important;
   border-radius: 12px 12px 0 0 !important;
   box-shadow: inset 0px -1px 0px #e5eaed !important;
-  margin-top: 8px !important;
+  top: 88px !important;
 }
 
 .KambiBC-sandwich-filter-foreground--level-2 {
   margin-top: 8px !important;
+  padding-top: 8px !important;
 }
 
 .KambiBC-sandwich-filter__event-detail-container {
@@ -115,7 +120,7 @@
 
 .KambiBC-sandwich-filter__event-list-item {
   height: 80px !important;
-  padding: 8px 0 !important;
+  padding: 8px 8px 8px 0 !important;
 }
 
 .KambiBC-sandwich-filter__event-list-info {
@@ -154,30 +159,31 @@
   mix-blend-mode: normal !important;
 }
 
-.KambiBC-sandwich-filter__event-list-item:first-child {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
 .KambiBC-sandwich-filter__header {
   background-color: #e5eaed !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  margin-top: 0 !important;
   padding: 0 10px !important;
 }
 
 .KambiBC-sandwich-filter__group-header {
   background-color: #fff !important;
   border-top-left-radius: 8px !important;
+  margin-top: 24px !important;
 }
 
 .KambiBC-sandwich-filter__betoffer-header {
   background-color: #fff !important;
   border-top-right-radius: 8px !important;
   height: 100% !important;
+  margin-top: 24px !important;
 }
 
 .KambiBC-sandwich-filter__group-header-title {
   font-size: 14px !important;
   font-weight: bold !important;
+  padding-left: 16px !important;
 }
 
 #KambiBC-container .KambiBC-filter-menu li {
@@ -226,15 +232,16 @@
   position: relative !important;
 }
 
-#KambiBC-container
-  .KambiBC-sandwich-filter__event-detail-container
-  .KambiBC-event-countdown__circles-wrp
-  svg {
-  display: inline-block !important;
-}
-
 .KambiBC-container#KambiBC-container .KambiBC-modularized-event-path__back {
   display: none !important;
+}
+
+#KambiBC-container .KambiBC-sandwich-filter__list {
+  border-radius: 0 !important;
+}
+
+KambiBC-event-countdown__circles-text {
+  padding: 0 !important;
 }
 
 // 07.09.2020
@@ -242,9 +249,9 @@
 #KambiBC-container
   .KambiBC-promo-cards-wrapper[data-eq-state~="promoCardsWide"]
   .KambiBC-promo-card {
-  height: 160px !important;
-  min-width: 280px !important;
-  width: 280px !important;
+  //height: 160px !important;
+  //min-width: 280px !important;
+  //width: 280px !important;
 }
 
 .KambiBC-editorial-coupon-promo-card,
@@ -302,14 +309,59 @@
     text-align: left !important;
     width: 100% !important;
     @media (max-width: 768px) {
-      font-size: 48px !important;
-      line-height: 48px !important;
+      font-size: 20px !important;
+      line-height: 22px !important;
     }
     @media (min-width: 768px) {
-      font-size: 56px !important;
-      line-height: 56px !important;
+      font-size: 25px !important;
+      line-height: 28px !important;
     }
   }
+}
+
+.KambiBC-promo-card .KambiBC-LRN-wrapper {
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  padding: 16px !important;
+
+  .KambiBC-LRN-wrapper__events-count {
+    @media (max-width: 768px) {
+      font-size: 20px !important;
+      line-height: 22px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+  }
+
+  .KambiBC-LRN-wrapper__label {
+    background: none !important;
+    height: 28px !important;
+    width: auto !important;
+    span {
+      background: none !important;
+      padding: 0 !important;
+      text-align: left;
+      @media (max-width: 768px) {
+        font-size: 20px !important;
+        line-height: 22px !important;
+      }
+      @media (min-width: 768px) {
+        font-size: 25px !important;
+        line-height: 28px !important;
+      }
+    }
+    .KambiBC-LRN-wrapper__label--highlighted {
+      height: 28px !important;
+      padding-right: 8px !important;
+      width: auto !important;
+    }
+  }
+}
+
+.KambiBC-event-countdown__circles-wrp svg {
+  display: none !important;
 }
 
 #KambiBC-container
@@ -405,6 +457,16 @@
     display: block !important;
     width: 100% !important;
   }
+}
+
+.KambiBC-scroller__arrow {
+  @media (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.KambiBC-promo-cards-wrapper {
+  padding: 0 8px !important;
 }
 // END: PROMO AREA
 
