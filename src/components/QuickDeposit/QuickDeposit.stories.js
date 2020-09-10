@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MockStore from "Components/MockStore";
 import { QuickDeposit } from "./QuickDeposit";
 
 const stories = storiesOf("QuickDeposit", module);
@@ -14,30 +13,26 @@ const t = {
 
 stories.add("Sterling Deposit Slip Link", () => {
   return (
-    <MockStore>
-      <QuickDeposit
-        walletBalance="£987.65"
-        bonusBalance="£55.03"
-        t={t}
-        hasSavedPaymentMethods={true}
-        currency="GBP"
-        cashierLinkCallback={() => null}
-      />
-    </MockStore>
+    <QuickDeposit
+      walletBalance="£987.65"
+      bonusBalance="£55.03"
+      t={t}
+      hasSavedPaymentMethods={true}
+      currency="GBP"
+      cashierLinkCallback={() => null}
+    />
   );
 });
 
 stories.add("Euro Cashier Link", () => {
   return (
-    <MockStore>
-      <QuickDeposit
-        walletBalance="€987.65"
-        bonusBalance="€55.03"
-        t={t}
-        currency="EUR"
-        hasSavedPaymentMethods={false}
-        cashierLinkCallback={() => null}
-      />
-    </MockStore>
+    <QuickDeposit
+      walletBalance="€987.65"
+      bonusBalance="€55.03"
+      t={t}
+      currency="EUR"
+      hasSavedPaymentMethods={false}
+      cashierLinkCallback={() => null}
+    />
   );
 });
