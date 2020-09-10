@@ -66,7 +66,10 @@ Props) => {
          * swipePanel allows to force player to go fullscreen to play the game
          * when toolbars are being shown and they are eating part of the screen
          */
-        if (window.innerHeight < document.body?.clientHeight) {
+        const deviceNotInFullScreenMode =
+          window.innerHeight < document.body?.clientHeight;
+
+        if (deviceNotInFullScreenMode) {
           if (!alreadyTriggeredOnce) {
             setShowSwipePanel(true);
             setControllScroll(false);
