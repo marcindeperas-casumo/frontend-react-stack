@@ -81,5 +81,6 @@ export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> =
     });
 };
 
-// $FlowIgnore[PseudoParseError]
-export const openChatWindow: () => void = () => window?.Intercom("show");
+export const openChatWindow: () => void = () => {
+  window.Intercom && window.Intercom("show");
+};
