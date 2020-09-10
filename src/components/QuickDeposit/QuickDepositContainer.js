@@ -10,7 +10,7 @@ import {
   playerBonusTextSelector,
 } from "Models/player";
 import { bonusBalanceDisplay, formatCurrency } from "Utils";
-import { CMS_SLUG } from "./QuickDeposit.constants";
+import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
