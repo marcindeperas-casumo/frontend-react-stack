@@ -6,6 +6,7 @@ import {
   useTranslationsGql,
   useMarket,
 } from "Utils/hooks";
+import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, MARKETS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -31,6 +32,7 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const isNative = isNativeByUserAgent();
   const { market } = useMarket();
   const { t } = useTranslationsGql({
     in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
@@ -48,7 +50,7 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
-  if (market === MARKETS.nz_en) {
+  if (market === MARKETS.nz_en || isNative) {
     return null;
   }
 
