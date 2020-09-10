@@ -42,7 +42,7 @@ export const QuickDepositSlip = ({
     depositValue,
     formErrors,
     onAmountChange,
-    onCvvValidate,
+    onCvvIframeCallback,
   } = useQuickDepositSlipForm({
     minAmount,
     maxAmount,
@@ -51,13 +51,13 @@ export const QuickDepositSlip = ({
   });
 
   const onCvvError = message =>
-    onCvvValidate({
+    onCvvIframeCallback({
       status: "error",
       errorType: message,
     });
 
   const onCvvSuccess = () =>
-    onCvvValidate({
+    onCvvIframeCallback({
       status: "success",
     });
 
