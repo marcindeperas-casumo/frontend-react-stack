@@ -5,7 +5,8 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ExitGame } from "./ExitGame";
+import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
+import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
 import "./PlayOkayBar.scss";
@@ -17,7 +18,7 @@ const links = {
   stopspillet: "https://www.stopspillet.dk/",
 };
 
-export const DGABar = () => (
+export const DGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
   <Flex
     justify="end"
     align="center"
@@ -25,7 +26,7 @@ export const DGABar = () => (
     className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <ExitGame />
+      <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>
     <Flex.Item>
       <Text tag="span" size="2xs">
