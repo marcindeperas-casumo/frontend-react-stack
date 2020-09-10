@@ -1,15 +1,13 @@
 //@flow
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { ChevronUpIcon } from "@casumo/cmp-icons";
 import {
-  playerCasumoNameSelector,
-  emailSelector,
-  playerNameSelector,
-  playerIdSelector,
-} from "Models/handshake";
-import { useCrossCodebaseNavigation, useTranslationsGql } from "Utils/hooks";
-import { ROUTE_IDS, EVENTS } from "Src/constants";
+  useCrossCodebaseNavigation,
+  useTranslationsGql,
+  useMarket,
+} from "Utils/hooks";
+import { isNativeByUserAgent } from "GameProviders";
+import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
 import {
@@ -20,6 +18,7 @@ import {
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
+import "./ProfileIconWithDrawer.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
 
@@ -34,6 +33,8 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const isNative = isNativeByUserAgent();
+  const { market } = useMarket();
   const { t } = useTranslationsGql({
     in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
     in_game_drawer_exit_game: `${cmsPrefix}.in_game_drawer_exit_game`,
@@ -50,16 +51,17 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
+  if (market === MARKETS.nz_en || isNative) {
+    return null;
+  }
+
   return isDrawerOpen ? (
     <React.Fragment>
       <ChevronUpIcon
         className="t-color-white u-margin-left"
         onClick={() => setDrawerOpen(false)}
       />
-      <div
-        style={{ top: "var(--play-okay-bar-height, 48px)" }}
-        className="u-position-fixed u-zindex--content-overlay u-inset-x"
-      >
+      <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x">
         <InGameDrawer
           t={t}
           onLiveChatClick={() => {
@@ -81,10 +83,3 @@ export const ProfileIconWithDrawer = ({
     />
   );
 };
-
-export const ProfileIconWithDrawerContainer = connect(state => ({
-  playerId: playerIdSelector(state),
-  casumoName: playerCasumoNameSelector(state),
-  email: emailSelector(state),
-  playerName: playerNameSelector(state),
-}))(ProfileIconWithDrawer);

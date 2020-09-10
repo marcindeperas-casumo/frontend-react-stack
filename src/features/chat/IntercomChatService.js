@@ -1,6 +1,6 @@
 //@flow
 import logger from "Services/logger";
-import { injectScript, doesContainJapaneseCharacters, isTestEnv } from "Utils";
+import { injectScript, hasAlphaCharactersOnly, isTestEnv } from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
 import http from "Lib/http";
 import {
@@ -47,12 +47,12 @@ export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> =
 
   const intercomAppId =
     INTERCOM_APP_ID[isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION];
-  const fullName = doesContainJapaneseCharacters(playerName.firstName)
+  const fullName = hasAlphaCharactersOnly(playerName.firstName)
     ? `${playerName.lastName} ${playerName.firstName}`
     : `${playerName.firstName} ${playerName.lastName}`;
 
   return injectScript(INTERCOM_WIDGET_URL + intercomAppId)
-    .then(() => {
+    .then(() =>
       getVerificationHash()
         .then(({ identityHash }) => {
           const settings = {
@@ -74,8 +74,8 @@ export const injectIntercomScript: IntercomPlayerDetailsProps => Promise<void> =
         })
         .catch(e => {
           logger.error("[INTERCOM] Error getting identity verification", e);
-        });
-    })
+        })
+    )
     .catch(e => {
       logger.error("[INTERCOM] Error injecting script", e);
     });

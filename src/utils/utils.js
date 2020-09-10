@@ -407,6 +407,6 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   R.not
 );
 
-export const doesContainJapaneseCharacters: string => boolean = str => {
+export const hasAlphaCharactersOnly: string => boolean = str => {
   return !/[a-z]+/i.test(str);
 };

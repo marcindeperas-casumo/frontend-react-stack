@@ -2,7 +2,7 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawer";
+import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";

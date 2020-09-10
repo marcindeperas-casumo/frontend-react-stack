@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawer";
+import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
