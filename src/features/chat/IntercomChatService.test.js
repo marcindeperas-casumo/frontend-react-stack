@@ -1,4 +1,4 @@
-import { injectScript, doesContainJapaneseCharacters, isTestEnv } from "Utils";
+import { injectScript, hasAlphaCharactersOnly, isTestEnv } from "Utils";
 import { ENVIRONMENTS } from "Src/constants";
 import {
   injectIntercomScript,
@@ -15,7 +15,7 @@ import {
 jest.mock("../../utils/utils.js", () => ({
   ...jest.requireActual("../../utils/utils.js"),
   injectScript: jest.fn().mockResolvedValue(),
-  doesContainJapaneseCharacters: jest.fn().mockReturnValue(false),
+  hasAlphaCharactersOnly: jest.fn().mockReturnValue(false),
   isTestEnv: jest.fn().mockReturnValue(false),
 }));
 
@@ -86,7 +86,7 @@ describe("injectIntercomScript", () => {
     });
 
     test("should reverse first and last name for Japan", async () => {
-      doesContainJapaneseCharacters.mockReturnValue(true);
+      hasAlphaCharactersOnly.mockReturnValue(true);
       await injectIntercomScript(mockPlayerDetails);
 
       expect(window.Intercom).toHaveBeenCalledWith("boot", {
@@ -94,7 +94,7 @@ describe("injectIntercomScript", () => {
         app_id: INTERCOM_APP_ID[ENVIRONMENTS.PRODUCTION],
         name: "casumoName [Last First]",
       });
-      doesContainJapaneseCharacters.mockReturnValue(false);
+      hasAlphaCharactersOnly.mockReturnValue(false);
     });
 
     describe("for live environment", () => {
@@ -126,13 +126,13 @@ describe("injectIntercomScript", () => {
         isTestEnv.mockReturnValue(false);
       });
 
-      test("should fetch live Intercom bundle", () => {
+      test("should fetch test Intercom bundle", () => {
         expect(injectScript).toHaveBeenCalledWith(
           INTERCOM_WIDGET_URL + INTERCOM_APP_ID[ENVIRONMENTS.TEST]
         );
       });
 
-      test("should use live Intercom settings", () => {
+      test("should use test Intercom settings", () => {
         expect(window.Intercom).toHaveBeenCalledWith("boot", {
           ...baseExpectedSettings,
           app_id: INTERCOM_APP_ID[ENVIRONMENTS.TEST],
