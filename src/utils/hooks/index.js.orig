@@ -19,7 +19,10 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
-export { useQuickDepositSlipForm } from "./useQuickDepositSlipForm";
+<<<<<<< HEAD
 export {
   useInGameBonusOrRealBalanceCheck,
 } from "./useInGameBonusOrRealBalanceCheck";
+=======
+export { useQuickDepositSlipForm } from "./useQuickDepositSlipForm";
+>>>>>>> 3aa4c869a465d5569c7da1f2bab08d44ab05b695
