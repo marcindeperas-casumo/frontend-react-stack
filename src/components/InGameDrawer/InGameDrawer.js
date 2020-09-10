@@ -6,8 +6,8 @@ import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
 
 type Props = {
   t: {
-    in_game_drawer_live_chat: string,
-    in_game_drawer_exit_game: string,
+    in_game_drawer_live_chat: ?string,
+    in_game_drawer_exit_game: ?string,
   },
   onLiveChatClick: Function,
   onExitGameClick: Function,

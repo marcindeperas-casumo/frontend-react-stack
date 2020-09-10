@@ -406,3 +406,7 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   ]),
   R.not
 );
+
+export const hasAlphaCharactersOnly: string => boolean = str => {
+  return !/[a-z]+/i.test(str);
+};
