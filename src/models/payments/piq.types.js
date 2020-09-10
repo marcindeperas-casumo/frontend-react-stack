@@ -1,7 +1,7 @@
 // @flow
-import { PIQ } from "./piq.constants";
+import { PIQ_PAYMENT_TYPES } from "./piq.constants";
 
-export type PaymentMethodType = $Keys<typeof PIQ.types>;
+export type PaymentMethodType = $Keys<typeof PIQ_PAYMENT_TYPES>;
 
 export type CvvValidationEvent = {
   status: string,
