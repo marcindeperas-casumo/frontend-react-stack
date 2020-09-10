@@ -1,12 +1,11 @@
 // @flow
 import React, { useEffect, useRef, useState } from "react";
 import {
-  piqIframeUrlBase as urlBase,
-  composeIframeUrl,
-  MESSAGE_ACTION,
-  TYPE_TO_CARD,
+  IFRAME_MESSAGE_ACTION,
+  IFRAME_TYPE_TO_CARD,
   IFRAME_MODE,
-} from "./constants";
+} from "Models/payments";
+import { piqIframeUrlBase as urlBase, composeIframeUrl } from "./constants";
 
 type Props = {
   id: number,
@@ -36,26 +35,26 @@ export const PiqIframeComponent = ({
   const piqIframeMessageHandler = ({ data, source, origin }) => {
     const { action } = data;
 
-    if (action === MESSAGE_ACTION.INITIALIZE) {
+    if (action === IFRAME_MESSAGE_ACTION.INITIALIZE) {
       setChildFrame({
         window: source,
         origin: origin,
       });
     }
 
-    if (action === MESSAGE_ACTION.SUCCESS) {
+    if (action === IFRAME_MESSAGE_ACTION.SUCCESS) {
       onSuccess(data.param);
     }
 
-    if (action === MESSAGE_ACTION.VALIDATION) {
+    if (action === IFRAME_MESSAGE_ACTION.VALIDATION) {
       onValidation(data.param);
     }
 
-    if (action === MESSAGE_ACTION.CARD_TYPE) {
-      onCardType(TYPE_TO_CARD[data.param]);
+    if (action === IFRAME_MESSAGE_ACTION.CARD_TYPE) {
+      onCardType(IFRAME_TYPE_TO_CARD[data.param]);
     }
 
-    if (action === MESSAGE_ACTION.CARD_IDENTIFIER) {
+    if (action === IFRAME_MESSAGE_ACTION.CARD_IDENTIFIER) {
       onCardIdentifier(data.param);
     }
   };
