@@ -2,6 +2,7 @@
 import * as React from "react";
 // __FIX__ Why can't it resolve "Components/CuratedCard"?
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
+import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { VERTICALS } from "Src/constants";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import "./WelcomeOfferCuratedCard.scss";
@@ -27,10 +28,15 @@ export const WelcomeOfferCuratedCard = ({
   }
 
   return (
-    <div className="u-overflow-hidden">
-      <div className="u-margin-y--md u-margin-x--md t-border-r--md u-overflow-hidden">
-        <CuratedCard slug={CMS_SLUG} className="c-sports-welcome-offer-card" />
+    <MobileAndTablet>
+      <div className="u-overflow-hidden">
+        <div className="u-margin-y--md u-margin-x--md t-border-r--md u-overflow-hidden">
+          <CuratedCard
+            slug={CMS_SLUG}
+            className="c-sports-welcome-offer-card"
+          />
+        </div>
       </div>
-    </div>
+    </MobileAndTablet>
   );
 };

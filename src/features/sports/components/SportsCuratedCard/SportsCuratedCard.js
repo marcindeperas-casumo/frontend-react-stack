@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
+import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import "./SportsCuratedCard.scss";
 
@@ -24,10 +25,12 @@ export const SportsCuratedCard = ({
   }
 
   return (
-    <div className="u-overflow-hidden">
-      <div className="u-margin-top--sm u-margin-x--md t-border-r--md u-overflow-hidden">
-        <CuratedCard slug={CMS_SLUG} className="c-sports-curated-card" />
+    <MobileAndTablet>
+      <div className="u-overflow-hidden">
+        <div className="u-margin-top--sm u-margin-x--md t-border-r--md u-overflow-hidden">
+          <CuratedCard slug={CMS_SLUG} className="c-sports-curated-card" />
+        </div>
       </div>
-    </div>
+    </MobileAndTablet>
   );
 };
