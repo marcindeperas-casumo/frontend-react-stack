@@ -71,9 +71,11 @@ export const ProfileIconWithDrawer = ({
           isChatDisabled={isChatDisabled}
           onLiveChatClick={() => {
             openChatWindow();
+            setDrawerOpen(false);
           }}
           onExitGameClick={() => {
             navigateToKO(ROUTE_IDS.TOP_LISTS);
+            setDrawerOpen(false);
           }}
         />
       </div>
