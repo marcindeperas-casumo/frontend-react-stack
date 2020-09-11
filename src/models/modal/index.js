@@ -21,7 +21,8 @@ export type ModalId =
   | "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION"
   | "DANISH_ENTRY_OVERLAY"
   | "TIME_LIMITS_FORM"
-  | "REALITY_CHECK";
+  | "REALITY_CHECK"
+  | "QUIT_GAME_NOTIFICATION";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
@@ -34,6 +35,7 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 */
 export type ModalConfig = {
   mustAccept?: boolean,
+  onCloseCallback?: () => void,
 };
 type ModalState = {
   modalId: ModalId | null,

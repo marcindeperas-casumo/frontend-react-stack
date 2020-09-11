@@ -7,22 +7,9 @@ import {
   playerCurrencySelector,
   playerBonusTextSelector,
 } from "Models/player";
-import { formatCurrency } from "Utils";
+import { formatCurrency, bonusBalanceDisplay } from "Utils";
 import { appManualLogoutInit as logout } from "Models/app";
 import { Sidebar } from "./Sidebar";
-
-const balanceBonusDisplay = (
-  value: number,
-  currency: string,
-  bonusText: string,
-  locale: string
-) => {
-  if (!value) {
-    return null;
-  } else {
-    return `+${formatCurrency({ locale, currency, value })} ${bonusText}`;
-  }
-};
 
 const SidebarContainer = connect(
   state => ({
@@ -32,7 +19,7 @@ const SidebarContainer = connect(
       currency: playerCurrencySelector(state),
       value: playerBalanceAmountSelector(state),
     }),
-    bonus: balanceBonusDisplay(
+    bonus: bonusBalanceDisplay(
       playerWalletBonusSelector(state),
       playerCurrencySelector(state),
       playerBonusTextSelector(state),
