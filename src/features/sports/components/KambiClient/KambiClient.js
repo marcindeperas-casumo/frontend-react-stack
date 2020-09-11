@@ -234,7 +234,7 @@ export default class KambiClient extends React.Component<Props> {
       >
         <div
           id="KambiBC"
-          className="u-padding-top--md@desktop u-padding-top--sm@tablet u-padding-top--md@mobile"
+          className="u-padding-top--md@desktop u-padding-top--sm@tablet u-padding-top--none@mobile"
         />
 
         {this.props.isBetslipVisible ? null : (

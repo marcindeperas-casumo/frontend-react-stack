@@ -116,7 +116,8 @@
 .KambiBC-sandwich-filter__event-detail-container {
   align-items: flex-start !important;
   flex-direction: column !important;
-  justify-content: flex-start !important;
+  height: 100% !important;
+  justify-content: center !important;
   width: 100% !important;
 }
 
@@ -135,6 +136,7 @@
 
 .KambiBC-sandwich-filter__event-list-info {
   height: 60px !important;
+  justify-content: center !important;
   padding: 0 16px !important;
   text-align: left !important;
 }
@@ -171,23 +173,27 @@
 
 .KambiBC-sandwich-filter__header {
   background-color: #e5eaed !important;
+  border-bottom: 1px solid #e5eaed;
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
+  height: auto !important;
   margin-top: 0 !important;
-  padding: 0 10px !important;
+  padding: 8px 8px 0 !important;
 }
 
 .KambiBC-sandwich-filter__group-header {
   background-color: #fff !important;
   border-top-left-radius: 8px !important;
-  margin-top: 24px !important;
 }
 
 .KambiBC-sandwich-filter__betoffer-header {
   background-color: #fff !important;
   border-top-right-radius: 8px !important;
-  height: 100% !important;
-  margin-top: 24px !important;
+  height: 40px !important;
+}
+.KambiBC-sandwich-filter__betoffer-header--3,
+.KambiBC-sandwich-filter__betoffer-header--2 {
+  height: 40px !important;
 }
 
 .KambiBC-sandwich-filter__group-header-title {
@@ -258,6 +264,12 @@
 #KambiBC-container .KambiBC-sandwich-filter__list,
 .KambiBC-sandwich-filter__event-list-item:first-child {
   border-radius: 0 !important;
+  //padding-top: 0 !important;
+}
+
+.KambiBC-sandwich-filter__event-list-item:last-child {
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 KambiBC-event-countdown__circles-text {
@@ -267,6 +279,15 @@ KambiBC-event-countdown__circles-text {
 .KambiBC-sandwich-filter__list .KambiBC-event-result__points {
   background: none !important;
   color: #fc484c !important;
+}
+
+.KambiBC-sandwich-filter__list {
+  padding: 0 8px 8px !important;
+}
+
+.KambiBC-sandwich-filter__event-list-extra-info
+  .KambiBC-sandwich-filter__show-more {
+  display: none !important;
 }
 
 // 07.09.2020
