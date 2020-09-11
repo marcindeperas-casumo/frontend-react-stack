@@ -30,6 +30,7 @@ import {
   addPointerEventStylesToLinkElements,
   decodedUrlParams,
   bonusBalanceDisplay,
+  hasAlphaCharactersOnly,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -589,6 +590,22 @@ describe("convertHoursToDays()", () => {
       const foundAddedStyle = (processed.match(/pointer-events: all;/g) || [])
         .length;
       expect(foundAddedStyle).toBe(LINKS_AMOUNT);
+    });
+  });
+
+  describe("SettingsAccountDetails/Utils", () => {
+    describe("hasAlphaCharactersOnly", () => {
+      test("should return FALSE if the string contains general characters only", () => {
+        expect(hasAlphaCharactersOnly("abcdef")).toBe(false);
+      });
+
+      test("should return FALSE if the string contains both Japanese and general characters only", () => {
+        expect(hasAlphaCharactersOnly("abcdefひらがな")).toBe(false);
+      });
+
+      test("should return TRUE if the string contains Japanese characters only", () => {
+        expect(hasAlphaCharactersOnly("ひらがな")).toBe(true);
+      });
     });
   });
 });
