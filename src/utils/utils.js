@@ -410,3 +410,19 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
 export const hasAlphaCharactersOnly: string => boolean = str => {
   return !/[a-z]+/i.test(str);
 };
+
+// Displays bonus balance with matching currency symbol to passed locale and followed by bonus string passed as argument
+export const bonusBalanceDisplay = (
+  value: ?number,
+  currency: string,
+  bonusText: string,
+  locale: string,
+  trimmed?: boolean
+) => {
+  if (!value) {
+    return "";
+  }
+  return `+${formatCurrency({ locale, currency, value })} ${
+    !trimmed ? bonusText : ""
+  }`;
+};
