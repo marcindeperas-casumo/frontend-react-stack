@@ -11,12 +11,15 @@ import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 
 type Props = {
   gameProviderModel: GameProviderModel,
+  pauseGame: () => Promise<void>,
+  resumeGame: () => void,
   shouldShowSlotControlSystem: boolean,
   bonusAmount?: number,
 };
-
 export const GamePage = ({
   gameProviderModel,
+  pauseGame,
+  resumeGame,
   shouldShowSlotControlSystem,
   bonusAmount = 0,
 }: Props) => {
@@ -30,7 +33,7 @@ export const GamePage = ({
         spacing="none"
       >
         <Flex.Item>
-          <PlayOkayBar />
+          <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
         </Flex.Item>
         <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
           <div
