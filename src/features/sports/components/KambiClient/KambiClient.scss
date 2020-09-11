@@ -249,13 +249,6 @@
     display: block !important;
   }
 }
-//#KambiBC-container
-//  [data-eq-state~="sandwichFilterSmall"]
-//  .KambiBC-sandwich-filter__event-detail
-//  .KambiBC-event-item__score-container {
-//  left: 0 !important;
-//  position: relative !important;
-//}
 
 .KambiBC-container#KambiBC-container .KambiBC-modularized-event-path__back {
   display: none !important;
@@ -290,16 +283,31 @@ KambiBC-event-countdown__circles-text {
   display: none !important;
 }
 
-// 07.09.2020
-// START: PROMO AREA
 #KambiBC-container
-  .KambiBC-promo-cards-wrapper[data-eq-state~="promoCardsWide"]
-  .KambiBC-promo-card {
-  //height: 160px !important;
-  //min-width: 280px !important;
-  //width: 280px !important;
+  .KambiBC-promo-cards-wrapper
+  .KambiBC-promo-card
+  .KambiBC-LRN-wrapper {
+  .KambiBC-LRN-wrapper__events-count {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-align: left !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .KambiBC-LRN-wrapper__label {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-align: left !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
 }
 
+// 07.09.2020
+// START: PROMO AREA
 .KambiBC-editorial-coupon-promo-card,
 .KambiBC-featured-league-promo-card {
   align-content: flex-start !important;
@@ -385,12 +393,11 @@ KambiBC-event-countdown__circles-text {
 
   .KambiBC-LRN-wrapper__label {
     background: none !important;
-    height: 28px !important;
+    height: auto !important;
     width: auto !important;
     span {
       background: none !important;
       padding: 0 !important;
-      text-align: left;
       @media (max-width: 768px) {
         font-size: 20px !important;
         line-height: 22px !important;
@@ -401,7 +408,6 @@ KambiBC-event-countdown__circles-text {
       }
     }
     .KambiBC-LRN-wrapper__label--highlighted {
-      height: 28px !important;
       padding-right: 8px !important;
       width: auto !important;
     }
