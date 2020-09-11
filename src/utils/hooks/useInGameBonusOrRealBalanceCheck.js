@@ -16,38 +16,36 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
   const [bonusBalanceModalShown, setBonusBalanceModalShown] = useState(false);
   const [realBalanceModalShown, setRealBalanceModalShown] = useState(false);
 
-  useEffect(() => {
-    if (!isUKGC) {
-      return undefined;
-    }
-    // Positive bonus balance - show modal once
-    if (bonusAmount && !bonusBalanceModalShown) {
-      dispatch(
-        showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
-          mustAccept: false,
-          type: WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING,
-        })
-      );
-      setBonusBalanceModalShown(true);
-      // Negative bonus balance and bonus modal already shown - time to show real balance notification once
-    } else if (
-      !bonusAmount &&
-      bonusBalanceModalShown &&
-      !realBalanceModalShown
-    ) {
-      dispatch(
-        showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
-          mustAccept: false,
-          type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING,
-        })
-      );
-      setRealBalanceModalShown(true);
-    }
-  }, [
-    dispatch,
-    bonusAmount,
-    bonusBalanceModalShown,
-    realBalanceModalShown,
-    isUKGC,
-  ]);
+  useEffect(
+    () => {
+      if (!isUKGC) {
+        return undefined;
+      }
+      // Positive bonus balance - show modal once
+      if (bonusAmount && !bonusBalanceModalShown) {
+        dispatch(
+          showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
+            mustAccept: false,
+            type: WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING,
+          })
+        );
+        setBonusBalanceModalShown(true);
+        // Negative bonus balance and bonus modal already shown - time to show real balance notification once
+      } else if (
+        !bonusAmount &&
+        bonusBalanceModalShown &&
+        !realBalanceModalShown
+      ) {
+        dispatch(
+          showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
+            mustAccept: false,
+            type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING,
+          })
+        );
+        setRealBalanceModalShown(true);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [bonusAmount, bonusBalanceModalShown, realBalanceModalShown, isUKGC]
+  );
 };
