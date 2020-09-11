@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { QuickDeposit } from "./QuickDeposit";
 
 const stories = storiesOf("QuickDeposit", module);
@@ -19,7 +20,8 @@ stories.add("Sterling Deposit Slip Link", () => {
       t={t}
       hasSavedPaymentMethods={true}
       currency="GBP"
-      cashierLinkCallback={() => null}
+      pauseGame={() => action("Pause Game")}
+      resumeGame={() => undefined}
     />
   );
 });
@@ -32,7 +34,8 @@ stories.add("Euro Cashier Link", () => {
       t={t}
       currency="EUR"
       hasSavedPaymentMethods={false}
-      cashierLinkCallback={() => null}
+      pauseGame={() => action("Pause Game")}
+      resumeGame={() => undefined}
     />
   );
 });
