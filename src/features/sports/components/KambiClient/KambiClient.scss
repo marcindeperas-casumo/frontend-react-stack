@@ -70,7 +70,12 @@
 }
 
 .KambiBC-core-ux-landing-page .KambiBC-sandwich-filter {
-  padding: 0 20px !important;
+  @media (max-width: 768px) {
+    padding: 0 8px !important;
+  }
+  @media (min-width: 768px) {
+    padding: 0 20px !important;
+  }
 }
 
 .KambiBC-sandwich-filter-background {
@@ -112,10 +117,15 @@
   align-items: flex-start !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
+  width: 100% !important;
 }
 
 .KambiBC-sandwich-filter__event-detail {
   margin-top: 4px !important;
+  width: 100% !important;
+  .KambiBC-event-item__score-container {
+    flex: 0 0 30px !important;
+  }
 }
 
 .KambiBC-sandwich-filter__event-list-item {
@@ -129,7 +139,7 @@
   text-align: left !important;
 }
 
-.KambiBC-event-item__match-clock-container {
+.KambiBC-sandwich-filter__list .KambiBC-event-item__match-clock-container {
   color: #798291 !important;
   font-size: 10px !important;
   justify-content: left !important;
@@ -147,11 +157,11 @@
   }
 }
 
-.KambiBC-event-participants__name {
+.KambiBC-sandwich-filter__list .KambiBC-event-participants__name {
   padding: 0 !important;
 }
 
-.KambiBC-event-participants {
+.KambiBC-sandwich-filter__list .KambiBC-event-participants {
   border-radius: 8px !important;
   color: #1a212c !important;
   font-size: 14px !important;
@@ -217,31 +227,46 @@
 }
 
 #KambiBC-container
-  [data-eq-state~="sandwichFilterLarge"]
   .KambiBC-sandwich-filter__event-detail
   .KambiBC-event-item__score-container {
   left: 0 !important;
   margin-right: 8px !important;
-}
-
-#KambiBC-container
-  [data-eq-state~="sandwichFilterSmall"]
-  .KambiBC-sandwich-filter__event-detail
-  .KambiBC-event-item__score-container {
-  left: 0 !important;
   position: relative !important;
 }
+
+.KambiBC-sandwich-filter__event-participant-container {
+  left: 0 !important;
+}
+
+.KambiBC-sandwich-filter__event-detail {
+  .KambiBC-event-result {
+    display: block !important;
+  }
+}
+//#KambiBC-container
+//  [data-eq-state~="sandwichFilterSmall"]
+//  .KambiBC-sandwich-filter__event-detail
+//  .KambiBC-event-item__score-container {
+//  left: 0 !important;
+//  position: relative !important;
+//}
 
 .KambiBC-container#KambiBC-container .KambiBC-modularized-event-path__back {
   display: none !important;
 }
 
-#KambiBC-container .KambiBC-sandwich-filter__list {
+#KambiBC-container .KambiBC-sandwich-filter__list,
+.KambiBC-sandwich-filter__event-list-item:first-child {
   border-radius: 0 !important;
 }
 
 KambiBC-event-countdown__circles-text {
   padding: 0 !important;
+}
+
+.KambiBC-sandwich-filter__list .KambiBC-event-result__points {
+  background: none !important;
+  color: #fc484c !important;
 }
 
 // 07.09.2020
@@ -261,8 +286,11 @@ KambiBC-event-countdown__circles-text {
   padding: 0 !important;
 }
 
-.KambiBC-editorial-coupon-promo-card__row1,
-.KambiBC-featured-league-promo-card__title {
+.KambiBC-featured-league-promo-card {
+  flex-direction: column-reverse !important;
+}
+
+.KambiBC-editorial-coupon-promo-card__row1 {
   flex: none !important;
   font-size: 10px !important;
   font-weight: 400 !important;
@@ -272,8 +300,7 @@ KambiBC-event-countdown__circles-text {
   text-transform: uppercase !important;
 }
 
-.KambiBC-editorial-coupon-promo-card__row2,
-.KambiBC-featured-league-promo-card__sport {
+.KambiBC-editorial-coupon-promo-card__row2 {
   background: none !important;
   border-radius: 0 !important;
   font-size: 20px !important;
@@ -403,19 +430,6 @@ KambiBC-event-countdown__circles-text {
 
   .KambiBC-featured-league-promo-card__title {
     @media (max-width: 768px) {
-      font-size: 10px !important;
-      line-height: 10px !important;
-    }
-    @media (min-width: 768px) {
-      font-size: 14px !important;
-      line-height: 14px !important;
-    }
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .KambiBC-featured-league-promo-card__sport {
-    @media (max-width: 768px) {
       font-size: 20px !important;
       line-height: 22px !important;
     }
@@ -424,7 +438,29 @@ KambiBC-event-countdown__circles-text {
       line-height: 28px !important;
     }
     display: block !important;
+    flex: none !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .KambiBC-featured-league-promo-card__sport {
+    @media (max-width: 768px) {
+      font-size: 10px !important;
+      line-height: 10px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+    background: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+    max-width: 100% !important;
     padding: 0 !important;
+    text-align: left !important;
+    text-transform: uppercase !important;
     width: 100% !important;
   }
 }

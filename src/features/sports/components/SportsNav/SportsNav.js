@@ -191,7 +191,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
 
     const path = liveActive
       ? navItemUtils.ALL_SPORTS_PATH
-      : data.sportsNavigation[0].sport.clientPath;
+      : navItemUtils.SPORTS_HOME_PAGE_PATH;
 
     navItemUtils.selectPath(client, path);
   };

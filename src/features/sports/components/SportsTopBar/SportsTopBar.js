@@ -101,14 +101,14 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
           className="u-padding-y--3xlg"
           data-test="sports-top-bar-title"
         >
-          <DictionaryTerm termKey="desktop.tab.home" />
+          <DictionaryTerm termKey="desktop.header.sports" />
         </Text>
       </Flex.Block>
       <Flex.Block>
         <Flex justify="end" spacing="xlg">
           <Flex.Item>
             <SportsTopBarTab
-              termKey="desktop.tab.lobby"
+              termKey="desktop.tab.home"
               onClick={navigateTo.home}
               isActive={isHomeVisible}
             >
