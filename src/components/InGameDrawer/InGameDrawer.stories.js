@@ -14,6 +14,17 @@ stories.add("Default", () => {
   return (
     <InGameDrawer
       t={cmsLabels}
+      isChatDisabled={false}
+      onLiveChatClick={action("clicked live chat button")}
+      onExitGameClick={action("clicked exit game button")}
+    />
+  );
+});
+stories.add("Chat disabled", () => {
+  return (
+    <InGameDrawer
+      t={cmsLabels}
+      isChatDisabled={true}
       onLiveChatClick={action("clicked live chat button")}
       onExitGameClick={action("clicked exit game button")}
     />

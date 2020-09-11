@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
+import { IFRAME_MODE } from "Models/payments";
 import { PiqIframeComponent } from "./PiqIframeComponent";
-import { IFRAME_MODE } from "./constants";
 
 const stories = storiesOf("Payments");
 

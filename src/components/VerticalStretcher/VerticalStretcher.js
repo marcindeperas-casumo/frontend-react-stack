@@ -30,10 +30,12 @@ export const VerticalStretcher = ({
   swipeUpPanelEnabled = true,
   gameProviderModel,
   fullScreenElement = document.body,
-}: Props) => {
+}: // eslint-disable-next-line sonarjs/cognitive-complexity
+Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
   const [controllScroll, setControllScroll] = useState(true);
+  const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
 
   const isNative = isNativeByUserAgent();
 
@@ -64,10 +66,18 @@ export const VerticalStretcher = ({
          * swipePanel allows to force player to go fullscreen to play the game
          * when toolbars are being shown and they are eating part of the screen
          */
-        if (window.innerHeight < document.body?.clientHeight) {
-          setShowSwipePanel(true);
-          setControllScroll(false);
+        const deviceNotInFullScreenMode =
+          window.innerHeight < document.body?.clientHeight;
+
+        if (deviceNotInFullScreenMode) {
+          if (!alreadyTriggeredOnce) {
+            setShowSwipePanel(true);
+            setControllScroll(false);
+          }
         } else {
+          if (showSwipePanel) {
+            setAlreadyTriggeredOnce(true);
+          }
           setShowSwipePanel(false);
           setControllScroll(true);
         }

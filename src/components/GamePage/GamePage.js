@@ -10,11 +10,14 @@ import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 
 type Props = {
   gameProviderModel: GameProviderModel,
+  pauseGame: () => Promise<void>,
+  resumeGame: () => void,
   shouldShowSlotControlSystem: boolean,
 };
-
 export const GamePage = ({
   gameProviderModel,
+  pauseGame,
+  resumeGame,
   shouldShowSlotControlSystem,
 }: Props) => (
   <VerticalStretcher gameProviderModel={gameProviderModel}>
@@ -24,7 +27,7 @@ export const GamePage = ({
       spacing="none"
     >
       <Flex.Item>
-        <PlayOkayBar />
+        <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
       </Flex.Item>
       <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
         <div
