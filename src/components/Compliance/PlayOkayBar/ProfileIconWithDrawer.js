@@ -33,7 +33,6 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const isNative = isNativeByUserAgent();
   const { market } = useMarket();
   const { t } = useTranslationsGql({
     in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
@@ -42,7 +41,17 @@ export const ProfileIconWithDrawer = ({
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
+  const isChatDisabled =
+    market === MARKETS.nz_en ||
+    (window.native
+      ? window.native.nativeIntercomEnabled
+      : isNativeByUserAgent());
+
   useEffect(() => {
+    if (isChatDisabled) {
+      return;
+    }
+
     injectIntercomScript({ playerId, email, casumoName, playerName });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,10 +59,6 @@ export const ProfileIconWithDrawer = ({
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
-
-  if (market === MARKETS.nz_en || isNative) {
-    return null;
-  }
 
   return isDrawerOpen ? (
     <React.Fragment>
@@ -64,6 +69,7 @@ export const ProfileIconWithDrawer = ({
       <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x">
         <InGameDrawer
           t={t}
+          isChatDisabled={isChatDisabled}
           onLiveChatClick={() => {
             tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
             openChatWindow();
