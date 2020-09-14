@@ -22,6 +22,7 @@ export type ModalId =
   | "DANISH_ENTRY_OVERLAY"
   | "TIME_LIMITS_FORM"
   | "REALITY_CHECK"
+  | "QUIT_GAME_NOTIFICATION"
   | "WAGERING_NOTIFICATION";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
@@ -35,6 +36,7 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 */
 export type ModalConfig = {
   mustAccept?: boolean,
+  onCloseCallback?: () => void,
 };
 type ModalState = {
   modalId: ModalId | null,

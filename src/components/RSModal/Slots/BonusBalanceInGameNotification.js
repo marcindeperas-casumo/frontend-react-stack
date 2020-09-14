@@ -14,13 +14,13 @@ export type CmsContent = {
 };
 
 type BonusBalanceInGameNotificationProps = {
-  acceptModal?: () => null,
+  acceptModal?: () => void,
   config: any,
   t: ?CmsContent,
 };
 
 export const BonusBalanceInGameNotification = ({
-  acceptModal = () => null,
+  acceptModal = () => {},
   config: { type },
   t,
 }: BonusBalanceInGameNotificationProps) => {
