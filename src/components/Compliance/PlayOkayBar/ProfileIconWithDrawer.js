@@ -7,7 +7,7 @@ import {
   useMarket,
 } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
-import { ROUTE_IDS, MARKETS } from "Src/constants";
+import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
 import {
@@ -16,6 +16,7 @@ import {
   openChatWindow,
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
+import tracker from "Services/tracker";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
@@ -70,6 +71,7 @@ export const ProfileIconWithDrawer = ({
           t={t}
           isChatDisabled={isChatDisabled}
           onLiveChatClick={() => {
+            tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
             openChatWindow();
             setDrawerOpen(false);
           }}
@@ -81,6 +83,11 @@ export const ProfileIconWithDrawer = ({
       </div>
     </React.Fragment>
   ) : (
-    <ProfileIcon onClick={() => setDrawerOpen(true)} />
+    <ProfileIcon
+      onClick={() => {
+        tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
+        setDrawerOpen(true);
+      }}
+    />
   );
 };

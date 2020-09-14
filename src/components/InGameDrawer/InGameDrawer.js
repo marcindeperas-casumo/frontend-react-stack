@@ -3,6 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
+import { EVENTS } from "Src/constants";
+import tracker from "Services/tracker";
 
 type Props = {
   t: {
@@ -20,6 +22,14 @@ export const InGameDrawer = ({
   onLiveChatClick,
   onExitGameClick,
 }: Props) => {
+  const liveChatClick = () => {
+    tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+    onLiveChatClick();
+  };
+  const exitGameClick = () => {
+    tracker.track(EVENTS.MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED, {});
+    onExitGameClick();
+  };
   return (
     <Flex
       align="stretch"
@@ -28,7 +38,7 @@ export const InGameDrawer = ({
     >
       {!isChatDisabled && (
         <Flex.Block
-          onClick={onLiveChatClick}
+          onClick={liveChatClick}
           className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-right"
         >
           <ChatIcon className="u-margin-right" />
@@ -38,7 +48,7 @@ export const InGameDrawer = ({
         </Flex.Block>
       )}
       <Flex.Block
-        onClick={onExitGameClick}
+        onClick={exitGameClick}
         className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none"
       >
         <ExitIcon className="u-margin-right" />
