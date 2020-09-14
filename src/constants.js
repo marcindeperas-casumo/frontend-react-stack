@@ -393,6 +393,7 @@ export const REACT_APP_MODAL = {
     TIME_LIMITS_FORM: "TIME_LIMITS_FORM",
     REALITY_CHECK: "REALITY_CHECK",
     QUIT_GAME_NOTIFICATION: "QUIT_GAME_NOTIFICATION",
+    WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

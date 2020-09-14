@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { connect } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
@@ -10,6 +11,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
 } from "Utils/hooks";
+import { playerWalletBonusSelector } from "Models/player";
 import { getUrlSearchParam, decodedUrlParams } from "Utils";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
@@ -25,9 +27,10 @@ type Props = {
   location: {
     search: string,
   },
+  bonusAmount: number,
 };
 
-export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
+const GameContainer = ({ slug, playForFun, location, bonusAmount }: Props) => {
   const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
 
   const remoteGameLaunchData = launchData
@@ -86,6 +89,11 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
       pauseGame={pauseGame}
       resumeGame={resumeGame}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+      bonusAmount={bonusAmount}
     />
   );
 };
+
+export const GamePageContainer = connect(state => ({
+  bonusAmount: playerWalletBonusSelector(state),
+}))(GameContainer);
