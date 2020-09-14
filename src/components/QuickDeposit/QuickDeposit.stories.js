@@ -23,6 +23,8 @@ stories.add("Sterling Deposit Slip Link", () => {
         hasSavedPaymentMethods={true}
         currency="GBP"
         cashierLinkCallback={() => null}
+        pauseGame={() => Promise.resolve()}
+        resumeGame={() => {}}
       />
     </MockStore>
   );
@@ -38,6 +40,8 @@ stories.add("Euro Cashier Link", () => {
         currency="EUR"
         hasSavedPaymentMethods={false}
         cashierLinkCallback={() => null}
+        pauseGame={() => Promise.resolve()}
+        resumeGame={() => {}}
       />
     </MockStore>
   );
