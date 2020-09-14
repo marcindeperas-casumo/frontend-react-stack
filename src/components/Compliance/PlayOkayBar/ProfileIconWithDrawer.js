@@ -17,6 +17,7 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
+import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
@@ -67,6 +68,7 @@ export const ProfileIconWithDrawer = ({
         onClick={() => setDrawerOpen(false)}
       />
       <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x">
+        <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} />
         <InGameDrawer
           t={t}
           isChatDisabled={isChatDisabled}
