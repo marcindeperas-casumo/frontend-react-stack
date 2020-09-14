@@ -73,9 +73,11 @@ export const ProfileIconWithDrawer = ({
           onLiveChatClick={() => {
             tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
             openChatWindow();
+            setDrawerOpen(false);
           }}
           onExitGameClick={() => {
             navigateToKO(ROUTE_IDS.TOP_LISTS);
+            setDrawerOpen(false);
           }}
         />
       </div>
