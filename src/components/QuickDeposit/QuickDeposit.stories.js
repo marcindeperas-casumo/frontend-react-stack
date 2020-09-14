@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
-import defaultState from "Models/__mocks__/state.mock";
 import { QuickDeposit } from "./QuickDeposit";
 
 const stories = storiesOf("QuickDeposit", module);
@@ -15,7 +14,7 @@ const t = {
 
 stories.add("Sterling Deposit Slip Link", () => {
   return (
-    <MockStore state={defaultState}>
+    <MockStore>
       <QuickDeposit
         walletBalance="£987.65"
         bonusBalance="£55.03"
@@ -32,7 +31,7 @@ stories.add("Sterling Deposit Slip Link", () => {
 
 stories.add("Euro Cashier Link", () => {
   return (
-    <MockStore state={defaultState}>
+    <MockStore>
       <QuickDeposit
         walletBalance="€987.65"
         bonusBalance="€55.03"
