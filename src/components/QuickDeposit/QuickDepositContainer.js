@@ -21,9 +21,9 @@ type Props = {
 export const QuickDepositContainer = ({ pauseGame, resumeGame }: Props) => {
   const trimmedBonusTextFromBalance = true;
   const { t } = useTranslationsGql({
-    bonus_title: `root:${CMS_SLUG}:fields.bonus_title`,
-    balance_title: `root:${CMS_SLUG}:fields.balance_title`,
-    cashier_link_text: `root:${CMS_SLUG}:fields.cashier_link_text`,
+    bonus_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.bonus_title`,
+    balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
+    cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
