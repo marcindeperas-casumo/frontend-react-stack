@@ -1,12 +1,9 @@
 // @flow
 import React from "react";
-import { useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
-import { REACT_APP_MODAL } from "Src/constants";
-import { showModal } from "Models/modal";
 import "./QuickDeposit.scss";
 
 type Props = {
@@ -19,8 +16,7 @@ type Props = {
     balance_title: ?string,
     cashier_link_text: ?string,
   },
-  pauseGame: () => Promise<void>,
-  resumeGame: () => void,
+  cashierLinkCallback: () => null,
 };
 
 export const QuickDeposit = ({
@@ -29,23 +25,15 @@ export const QuickDeposit = ({
   bonusBalance,
   currency,
   t,
-  pauseGame,
-  resumeGame,
+  cashierLinkCallback = () => null,
 }: Props) => {
   const svgCurrencyIconClassList =
     "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
 
-  const dispatch = useDispatch();
-  const modalConfig = { onCloseCallback: resumeGame };
-
-  const cashierLinkClick = () => {
-    pauseGame();
-    dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION, modalConfig));
-  };
-
   if (!t) {
     return null;
   }
+
   return (
     <Flex
       className="u-height--5xlg u-padding-top--md u-padding-x--xlg t-background-grey-90 t-color-white u-font"
@@ -88,7 +76,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
-            onClick={cashierLinkClick}
+            onClick={cashierLinkCallback}
           >
             {t.cashier_link_text}
           </Text>
