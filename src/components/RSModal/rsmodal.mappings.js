@@ -20,6 +20,7 @@ import {
 } from "./SlotControlSystem";
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { QuitGameNotification } from "./Slots/QuitGameNotification";
+import { BonusBalanceInGameNotification } from "./Slots/BonusBalanceInGameNotification";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
@@ -33,6 +34,7 @@ export type ModalContentComponent<T> = {|
   closeModal: (result?: any) => void,
   dismissModal: (result?: any) => void,
 |};
+
 type Mapping = {
   [ModalId]: {
     // cms slug
@@ -85,6 +87,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.TIME_LIMITS_FORM]: {
     slug: "",
     Content: TimeLimitsFormModalContainer,
+  },
+  [REACT_APP_MODAL.ID.WAGERING_NOTIFICATION]: {
+    slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
+    Content: BonusBalanceInGameNotification,
   },
   [REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION]: {
     slug: MODAL_CMS_SLUGS.IFRAME_SOLUTION,

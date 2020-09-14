@@ -22,7 +22,8 @@ export type ModalId =
   | "DANISH_ENTRY_OVERLAY"
   | "TIME_LIMITS_FORM"
   | "REALITY_CHECK"
-  | "QUIT_GAME_NOTIFICATION";
+  | "QUIT_GAME_NOTIFICATION"
+  | "WAGERING_NOTIFICATION";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
