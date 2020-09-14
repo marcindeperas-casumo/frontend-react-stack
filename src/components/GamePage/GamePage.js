@@ -8,6 +8,7 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { QuickDepositContainer as QuickDeposit } from "../QuickDeposit/QuickDepositContainer";
 
 type Props = {
   gameProviderModel: GameProviderModel,
@@ -32,6 +33,9 @@ export const GamePage = ({
         direction="vertical"
         spacing="none"
       >
+        <Flex.Item>
+          <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} />
+        </Flex.Item>
         <Flex.Item>
           <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
         </Flex.Item>

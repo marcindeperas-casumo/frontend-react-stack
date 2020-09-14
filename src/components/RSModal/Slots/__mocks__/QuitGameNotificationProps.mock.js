@@ -1,5 +1,14 @@
-export const QuitGameNotificationProps = {
+import { action } from "@storybook/addon-actions";
+export type QuitGameNotificationPropTypes = {
   acceptModal: () => null,
+  t?: T,
+  config: {
+    onCloseCallBack: () => null
+  },
+};
+
+export const QuitGameNotificationProps = {
+  acceptModal: action("acceptModal"),
   t: {
     quit_game_modal_title: "Quit Game",
     quit_game_modal_text:
@@ -7,6 +16,6 @@ export const QuitGameNotificationProps = {
     quit_game_cta_text: "Make Deposit",
   },
   config: {
-    onCloseCallBack: () => null,
+    onCloseCallBack: action("On Close Modal Callback trigger"),
   },
 };
