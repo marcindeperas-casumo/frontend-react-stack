@@ -83,7 +83,7 @@ export const ProfileIconWithDrawer = ({
   ) : (
     <ProfileIcon
       onClick={() => {
-        tracker.track(EVENTS.MIXPANEL_SUMOT_ICON_CLICKED, {});
+        tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
         setDrawerOpen(true);
       }}
     />
