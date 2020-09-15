@@ -2,7 +2,11 @@ query CurrentReelRaceInfoQuery {
   reelRaces(limit: 2) {
     id
     game {
+      #   id: slug
       slug
+      name
+      logo
+      backgroundImage
     }
     startTime
     endTime
@@ -11,6 +15,7 @@ query CurrentReelRaceInfoQuery {
     spinLimit
     cometdChannels
     leaderboard {
+      #   id: playerId
       playerId
       position
       points

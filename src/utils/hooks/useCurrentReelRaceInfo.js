@@ -9,63 +9,91 @@ import { playerIdSelector } from "Models/handshake";
 import { getCurrentReelRace } from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 
-export const calculateProgress = (
-  startTime: ?number = null,
-  endTime: ?number = null,
-  now: number = Date.now()
-) => {
-  if (!startTime || !endTime || now < startTime) {
-    return 0;
+export type CurrentReelRaceInfo = {
+  game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  position: number,
+  points: number,
+  remainingSpins: number,
+};
+
+const defaultReelRaceInfo: CurrentReelRaceInfo = {
+  game: null,
+  startTime: -1,
+  endTime: -1,
+  position: -1,
+  points: 0,
+  remainingSpins: -1,
+};
+
+export const createCurrentReelRaceData = (
+  playerId: ?string,
+  {
+    startTime,
+    endTime,
+    leaderboard,
+    game,
+  }: {
+    startTime?: number,
+    endTime?: number,
+    leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
+    game?: A.CurrentReelRaceInfoQuery_reelRaces_game,
   }
-  if (now >= endTime) {
-    return 1;
-  }
-  return (now - startTime) / (endTime - startTime);
+): CurrentReelRaceInfo => {
+  const currentPlayerEntry = R.find(
+    R.propEq("playerId", playerId),
+    leaderboard
+  );
+
+  return {
+    ...defaultReelRaceInfo,
+    startTime: startTime || defaultReelRaceInfo.startTime,
+    endTime: endTime || defaultReelRaceInfo.endTime,
+    game,
+    position: R.propOr(
+      defaultReelRaceInfo.position,
+      "position",
+      currentPlayerEntry
+    ),
+    points: R.propOr(defaultReelRaceInfo.points, "points", currentPlayerEntry),
+    remainingSpins: R.propOr(
+      defaultReelRaceInfo.remainingSpins,
+      "remainingSpins",
+      currentPlayerEntry
+    ),
+  };
 };
 
 // After is mounted we show initial leaderboard from reelRace.
 // It shows new leaderboard only when event happens.
-export function useCurrentReelRaceInfo(): ?A.ReelRaceWidgetQuery_reelRaces_current {
-  const { data: reelRaceQueryData, loading, refetch } = useQuery<
-    A.ReelRaceWidgetQuery,
+export function useCurrentReelRaceInfo(
+  gameSlug: ?string
+): ?CurrentReelRaceInfo {
+  const { data: reelRaceQueryData, loading, error, refetch } = useQuery<
+    A.CurrentReelRaceInfoQuery,
     _
   >(CurrentReelRaceInfoQuery);
   const playerId = useSelector(playerIdSelector, shallowEqual);
+  const [
+    currentReelRace,
+    setCurrentReelRace,
+  ] = React.useState<?A.CurrentReelRaceInfoQuery_reelRaces>(null);
+  const [
+    currentReelRaceData,
+    setCurrentReelRaceData,
+  ] = React.useState<?CurrentReelRaceInfo>(null);
 
-  const [currentReelRace, setCurrentReelRace] = React.useState({});
-
-  const [currentReelRaceData, setCurrentReelRaceData] = React.useState(null);
-
-  const createCurrentReelRaceData = React.useCallback(
-    ({ startTime, endTime, leaderboard }: A.ReelRaceWidgetQuery_reelRaces) => {
-      const currentPlayerEntry = R.find(
-        R.propEq("playerId", playerId),
-        leaderboard
-      );
-
-      return {
-        progress: calculateProgress(startTime, endTime),
-        position: -1,
-        points: -1,
-        remainingSpins: -1,
-        ...R.props(
-          ["position", "points", "remainingSpins"],
-          currentPlayerEntry
-        ),
-      };
-    },
-    [playerId]
-  );
   const subscriptionHandler = React.useCallback(
     ({ data }) => {
       setCurrentReelRaceData(
-        createCurrentReelRaceData({
-          ...currentReelRace,
+        createCurrentReelRaceData(playerId, {
+          ...(currentReelRace || {}),
           leaderboard: data.leaderboard,
         })
       );
     },
-    [createCurrentReelRaceData, currentReelRace]
+    [currentReelRace, playerId]
   );
 
   React.useEffect(() => {
@@ -90,13 +118,23 @@ export function useCurrentReelRaceInfo(): ?A.ReelRaceWidgetQuery_reelRaces_curre
 
   React.useEffect(() => {
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
-      const localCurrentReelRace = getCurrentReelRace(
+      const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
       );
 
-      if (localCurrentReelRace) {
+      if (
+        localCurrentReelRace &&
+        (!gameSlug || (gameSlug && localCurrentReelRace.game.slug === gameSlug))
+      ) {
         setCurrentReelRace(localCurrentReelRace);
-        setCurrentReelRaceData(createCurrentReelRaceData(localCurrentReelRace));
+        setCurrentReelRaceData(
+          createCurrentReelRaceData(playerId, {
+            startTime: localCurrentReelRace.startTime,
+            endTime: localCurrentReelRace.endTime,
+            leaderboard: localCurrentReelRace.leaderboard,
+            game: localCurrentReelRace.game,
+          })
+        );
 
         localCurrentReelRace.cometdChannels.forEach(channel =>
           cometd.subscribe(
@@ -107,7 +145,11 @@ export function useCurrentReelRaceInfo(): ?A.ReelRaceWidgetQuery_reelRaces_curre
       }
 
       return function cleanup() {
-        if (localCurrentReelRace) {
+        if (
+          localCurrentReelRace &&
+          (!gameSlug ||
+            (gameSlug && localCurrentReelRace.game.slug === gameSlug))
+        ) {
           localCurrentReelRace.cometdChannels.forEach(channel =>
             cometd.unsubscribe(
               `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`
@@ -117,7 +159,8 @@ export function useCurrentReelRaceInfo(): ?A.ReelRaceWidgetQuery_reelRaces_curre
       };
     }
   }, [
-    createCurrentReelRaceData,
+    error,
+    gameSlug,
     loading,
     playerId,
     reelRaceQueryData,

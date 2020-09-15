@@ -1,5 +1,5 @@
 // @flow
-import { getCurrentReelRace } from "./reelRaces.utils";
+import { getCurrentReelRace, calculateProgress } from "./reelRaces.utils";
 
 const getReelRaces = () => {
   const THIRTY_MINUTES = 30 * 60 * 1000;
@@ -88,6 +88,36 @@ describe("Models/reelRaces.utils", () => {
     test("return current reel race", () => {
       const rr = getReelRaces();
       expect(getCurrentReelRace(rr)).toBe(rr[1]);
+    });
+  });
+
+  describe("calculateProgress", () => {
+    test("no start time", () => {
+      expect(calculateProgress(null, 30, 5)).toEqual(0);
+    });
+    test("no end time", () => {
+      expect(calculateProgress(10, null, 5)).toEqual(0);
+    });
+    test("no start and end time", () => {
+      expect(calculateProgress(null, null, 5)).toEqual(0);
+    });
+    test("race not started yet", () => {
+      expect(calculateProgress(10, 30, 5)).toEqual(0);
+    });
+    test("race is finshed just now", () => {
+      expect(calculateProgress(10, 30, 30)).toEqual(1);
+    });
+    test("race is finshed some time ago", () => {
+      expect(calculateProgress(10, 30, 40)).toEqual(1);
+    });
+    test("race is at 25% progress", () => {
+      expect(calculateProgress(10, 30, 15)).toEqual(0.25);
+    });
+    test("race is at 50% progress", () => {
+      expect(calculateProgress(10, 30, 20)).toEqual(0.5);
+    });
+    test("race is at 75% progress", () => {
+      expect(calculateProgress(10, 30, 25)).toEqual(0.75);
     });
   });
 });
