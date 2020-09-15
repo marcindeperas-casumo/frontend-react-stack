@@ -2,6 +2,11 @@ export const types = {
   PLAYING: "PLAYING",
 };
 
+export const WAGERING_NOTIFICATION_TYPES = {
+  REAL_MONEY_WAGERING: "REAL_MONEY_WAGERING",
+  BONUS_MONEY_WAGERING: "BONUS_MONEY_WAGERING",
+};
+
 export const CMS_SLUGS = {
-  IFRAME_SOLUTION: "iframe-solution",
+  MODAL_WAGERING: "iframe-solution",
 };
