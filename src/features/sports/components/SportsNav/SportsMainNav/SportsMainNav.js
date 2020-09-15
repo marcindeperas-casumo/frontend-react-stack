@@ -141,7 +141,7 @@ export const SportsMainNav = (props: Props) => {
   const cacheBuster = `${props.cacheBuster}-${isLiveActive ? "live" : ""}`;
 
   return (
-    <div className="u-padding-x--lg@desktop u-padding-x--md@tablet u-padding-top--lg@tablet u-padding-x@mobile u-padding-top--md@mobile u-padding-bottom@tablet u-padding-bottom@mobile">
+    <div className="u-padding-x--lg@desktop u-padding-x--md@tablet u-padding-top--lg@tablet u-padding-x--md@mobile u-padding-top--md@mobile u-padding-bottom@tablet u-padding-bottom@mobile">
       <ScrollablePaginated
         className={classNames(
           isLiveActive && "c-sports-nav-paginated--live",
