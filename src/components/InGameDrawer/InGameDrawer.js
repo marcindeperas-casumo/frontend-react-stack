@@ -5,6 +5,7 @@ import Text from "@casumo/cmp-text";
 import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
 import { EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
+import { ReelRacesDrawer } from "../ReelRacesDrawer/ReelRacesDrawer";
 
 type Props = {
   t: {
@@ -34,8 +35,9 @@ export const InGameDrawer = ({
     <Flex
       align="stretch"
       justify="space-around"
-      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet"
+      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet o-flex--wrap"
     >
+      <ReelRacesDrawer />
       {!isChatDisabled && (
         <Flex.Block
           onClick={liveChatClick}
