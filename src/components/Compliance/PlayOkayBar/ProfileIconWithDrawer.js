@@ -17,7 +17,7 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
+// ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
@@ -67,8 +67,8 @@ export const ProfileIconWithDrawer = ({
         className="t-color-white u-margin-left"
         onClick={() => setDrawerOpen(false)}
       />
-      <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x">
-        <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} />
+      <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
+        {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
         <InGameDrawer
           t={t}
           isChatDisabled={isChatDisabled}
