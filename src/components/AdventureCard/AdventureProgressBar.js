@@ -4,7 +4,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
-import { ProgressBar } from "Components/ProgressBar";
+import { ProgressBar } from "Components/Progress";
 import {
   isMaxLevel,
   type Adventurer,
