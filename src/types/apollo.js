@@ -816,6 +816,16 @@ export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
   remainingSpins: number,
   boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
 };
+
+export type ReelRaceWidgetQuery_reelRaces_current = {
+  // playerId: string,
+  // playerName: string,
+  // position: number,
+  // points: number,
+  // remainingSpins: number,
+  // boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
+};
+
 export type ReelRaceWidgetQuery_reelRaces = {
   id: string,
   game: ReelRaceWidgetQuery_reelRaces_game,
