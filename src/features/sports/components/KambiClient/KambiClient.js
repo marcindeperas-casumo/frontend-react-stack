@@ -185,7 +185,7 @@ export default class KambiClient extends React.Component<Props> {
     if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
       return;
     }
-
+    // `dataLayerPushed` events
     if (event.data.event === "kambi add to betslip") {
       event.data.kambi?.hit?.categories?.is_live &&
         this.trackAddToBetslipIfLife(event.data.kambi);
