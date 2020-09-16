@@ -5,7 +5,7 @@ import { useSelector, shallowEqual } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
-import { playerIdSelector } from "Models/handshake";
+import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
 import { getCurrentReelRace } from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 
@@ -38,7 +38,12 @@ export const createCurrentReelRaceData = (
     startTime?: number,
     endTime?: number,
     leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
-    game?: A.CurrentReelRaceInfoQuery_reelRaces_game,
+    game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+  } = {
+    startTime: -1,
+    endTime: -1,
+    leaderboard: [],
+    game: null,
   }
 ): CurrentReelRaceInfo => {
   const currentPlayerEntry = R.find(
@@ -70,11 +75,15 @@ export const createCurrentReelRaceData = (
 export function useCurrentReelRaceInfo(
   gameSlug: ?string
 ): ?CurrentReelRaceInfo {
-  const { data: reelRaceQueryData, loading, error, refetch } = useQuery<
+  const { data: reelRaceQueryData, loading, refetch } = useQuery<
     A.CurrentReelRaceInfoQuery,
     _
   >(CurrentReelRaceInfoQuery);
+
   const playerId = useSelector(playerIdSelector, shallowEqual);
+  const tournamentChannles = useSelector(tournamentChannelsSelector);
+  const timeoutId = React.useRef(null);
+
   const [
     currentReelRace,
     setCurrentReelRace,
@@ -83,6 +92,12 @@ export function useCurrentReelRaceInfo(
     currentReelRaceData,
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
+
+  const localClearTimeout = () => {
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+    }
+  };
 
   const subscriptionHandler = React.useCallback(
     ({ data }) => {
@@ -96,25 +111,33 @@ export function useCurrentReelRaceInfo(
     [currentReelRace, playerId]
   );
 
+  const scheduleNextUpdate = React.useCallback(
+    nextUpdateTs => {
+      const nextUpdateIn = nextUpdateTs - Date.now();
+
+      return setTimeout(refetch, nextUpdateIn < 0 ? 0 : nextUpdateIn);
+    },
+    [refetch]
+  );
+
   React.useEffect(() => {
-    let timeoutId; // eslint-disable-line fp/no-let
-    const thirtyMinutes = 30 * 60 * 1000;
+    tournamentChannles.forEach(channel =>
+      cometd.subscribe(
+        `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`,
+        () => {
+          refetch();
+        }
+      )
+    );
 
-    function scheduleTimeout() {
-      const nextUpdate = thirtyMinutes - (Date.now() % thirtyMinutes);
-      // eslint-disable-next-line fp/no-mutation
-      timeoutId = setTimeout(() => {
-        refetch();
-        scheduleTimeout();
-      }, nextUpdate);
-    }
-
-    scheduleTimeout();
-
-    return () => {
-      clearTimeout(timeoutId);
+    return function cleanup() {
+      tournamentChannles.forEach(channel =>
+        cometd.unsubscribe(
+          `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`
+        )
+      );
     };
-  }, [refetch]);
+  }, [playerId, refetch, tournamentChannles]);
 
   React.useEffect(() => {
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
@@ -135,6 +158,12 @@ export function useCurrentReelRaceInfo(
             game: localCurrentReelRace.game,
           })
         );
+        localClearTimeout();
+
+        // eslint-disable-next-line fp/no-mutation
+        timeoutId.current = scheduleNextUpdate(
+          localCurrentReelRace.endTime + (10 + Math.random() * 60) * 1000 // distribute refetch within 60s
+        );
 
         localCurrentReelRace.cometdChannels.forEach(channel =>
           cometd.subscribe(
@@ -145,6 +174,7 @@ export function useCurrentReelRaceInfo(
       }
 
       return function cleanup() {
+        localClearTimeout();
         if (
           localCurrentReelRace &&
           (!gameSlug ||
@@ -159,11 +189,11 @@ export function useCurrentReelRaceInfo(
       };
     }
   }, [
-    error,
     gameSlug,
     loading,
     playerId,
     reelRaceQueryData,
+    scheduleNextUpdate,
     subscriptionHandler,
   ]);
 

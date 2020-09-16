@@ -1,8 +1,8 @@
 query CurrentReelRaceInfoQuery {
-  reelRaces(limit: 2) {
+  reelRaces(limit: 3) {
     id
     game {
-      #   id: slug
+      id
       slug
       name
       logo
@@ -15,7 +15,6 @@ query CurrentReelRaceInfoQuery {
     spinLimit
     cometdChannels
     leaderboard {
-      #   id: playerId
       playerId
       position
       points
