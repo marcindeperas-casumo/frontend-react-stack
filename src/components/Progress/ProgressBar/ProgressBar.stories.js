@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { number, select } from "@storybook/addon-knobs/react";
 import { ProgressBar } from "./ProgressBar";
 
-const stories = storiesOf("ProgressBar", module);
+const stories = storiesOf("Progress/ProgressBar", module);
 
 stories.add("Default", () => {
   return <ProgressBar progress={50} />;
