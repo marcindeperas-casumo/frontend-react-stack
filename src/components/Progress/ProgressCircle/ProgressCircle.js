@@ -1,10 +1,11 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import "./ProgressCircle.scss";
 
 type Props = {
   /** from 0 to 100, represents current progress */
-  value: number,
+  value?: number,
   /** color class name without 't-color-' prefix */
   fgColor?: string,
   /** color class name without 't-color-' prefix */
@@ -16,12 +17,12 @@ const CIRCLE_R = 45;
 const CIRCLE_C = 2 * Math.PI * CIRCLE_R;
 
 export function ProgressCircle({
-  value,
+  value = 0,
   className = "",
   fgColor = "teal-50",
   bgColor = "grey-90",
 }: Props) {
-  const dashOffset = CIRCLE_C - (CIRCLE_C / 100) * value;
+  const dashOffset = CIRCLE_C - (CIRCLE_C / 100) * R.clamp(0, 100, value);
 
   return (
     <svg
