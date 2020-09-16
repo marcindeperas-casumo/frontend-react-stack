@@ -4,7 +4,7 @@ import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import { ProgressBar } from "Components/ProgressBar";
+import { ProgressBar } from "Components/Progress";
 
 type Props = {
   t: {
