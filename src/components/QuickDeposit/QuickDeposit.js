@@ -36,9 +36,9 @@ export const QuickDeposit = ({
 
   return (
     <Flex
-      className="u-height--5xlg u-padding-top--md u-padding-x--xlg t-background-grey-90 t-color-white u-font"
-      direction="horizontal"
-      spacing="md"
+      align="stretch"
+      justify="space-around"
+      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-margin-x--auto@tablet u-margin-bottom--none u-padding--md"
     >
       <Flex.Item>
         <Flex.Block>
