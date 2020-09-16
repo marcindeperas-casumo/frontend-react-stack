@@ -14,6 +14,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     A.PlayerValuablesQueryVariables
   >(PlayerValuablesQuery, {
     returnPartialData: true,
+    partialRefetch: true,
     variables,
   });
 
