@@ -82,6 +82,10 @@
   }
 }
 
+.KambiBC-sandwich-filter__sport-icon {
+  display: none !important;
+}
+
 .KambiBC-sandwich-filter-background {
   background: none !important;
   height: 56px !important;
@@ -136,6 +140,11 @@
 .KambiBC-sandwich-filter__event-list-item {
   height: 80px !important;
   padding: 8px 8px 8px 0 !important;
+}
+
+.KambiBC-sandwich-filter__list
+  .KambiBC-sandwich-filter__event-list-item.KambiBC-sandwich-filter__event-list-stacked-layout-item {
+  height: 100px !important;
 }
 
 .KambiBC-sandwich-filter__event-list-info {
