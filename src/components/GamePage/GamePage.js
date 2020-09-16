@@ -8,6 +8,7 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 type Props = {
   gameProviderModel: GameProviderModel,
@@ -47,6 +48,15 @@ export const GamePage = ({
               className="c-game-page__game-launcher"
             />
           </div>
+          <Flex
+            direction="vertical"
+            align="center"
+            className="u-position-absolute u-inset-x u-margin"
+          >
+            <Flex.Item>
+              <ReelRaceStartingNotification />
+            </Flex.Item>
+          </Flex>
         </Flex.Block>
         {shouldShowSlotControlSystem && (
           <Flex.Item>
