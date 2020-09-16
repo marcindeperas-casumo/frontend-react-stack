@@ -93,7 +93,7 @@ export const mappings: Mapping = {
     Content: BonusBalanceInGameNotification,
   },
   [REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION]: {
-    slug: MODAL_CMS_SLUGS.IFRAME_SOLUTION,
+    slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
     Content: QuitGameNotification,
   },
 };
