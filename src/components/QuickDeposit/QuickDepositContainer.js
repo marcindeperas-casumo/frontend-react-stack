@@ -14,16 +14,15 @@ import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
-  pauseGame: () => Promise<void>,
-  resumeGame: () => void,
+  cashierLinkCallback: () => null,
 };
 
-export const QuickDepositContainer = ({ pauseGame, resumeGame }: Props) => {
+export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
   const trimmedBonusTextFromBalance = true;
   const { t } = useTranslationsGql({
-    bonus_title: `root:${CMS_SLUG}:fields.bonus_title`,
-    balance_title: `root:${CMS_SLUG}:fields.balance_title`,
-    cashier_link_text: `root:${CMS_SLUG}:fields.cashier_link_text`,
+    bonus_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.bonus_title`,
+    balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
+    cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
@@ -48,8 +47,7 @@ export const QuickDepositContainer = ({ pauseGame, resumeGame }: Props) => {
       )}
       currency={currency}
       hasSavedPaymentMethods={savedPaymentMethods && savedPaymentMethods.length}
-      pauseGame={pauseGame}
-      resumeGame={resumeGame}
+      cashierLinkCallback={cashierLinkCallback}
     />
   );
 };

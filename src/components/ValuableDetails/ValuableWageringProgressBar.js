@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate, formatCurrency } from "Utils";
 import { INTL_LOCALES } from "Src/constants";
-import { ProgressBar } from "Components/ProgressBar";
+import { ProgressBar } from "Components/Progress";
 
 type Props = {
   leftToWager: number,

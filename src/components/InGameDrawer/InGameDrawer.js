@@ -34,12 +34,12 @@ export const InGameDrawer = ({
     <Flex
       align="stretch"
       justify="space-around"
-      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet"
+      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet u-margin-top--none"
     >
       {!isChatDisabled && (
         <Flex.Block
           onClick={liveChatClick}
-          className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-right"
+          className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-right u-cursor--pointer"
         >
           <ChatIcon className="u-margin-right" />
           <Text tag="span" size="sm">
@@ -49,7 +49,7 @@ export const InGameDrawer = ({
       )}
       <Flex.Block
         onClick={exitGameClick}
-        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none"
+        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none u-cursor--pointer"
       >
         <ExitIcon className="u-margin-right" />
         <Text tag="span" size="sm">
