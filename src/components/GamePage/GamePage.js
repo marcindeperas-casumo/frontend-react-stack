@@ -10,6 +10,7 @@ import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 
 type Props = {
+  slug: string,
   gameProviderModel: GameProviderModel,
   pauseGame: () => Promise<void>,
   resumeGame: () => void,
@@ -17,6 +18,7 @@ type Props = {
   bonusAmount?: number,
 };
 export const GamePage = ({
+  slug,
   gameProviderModel,
   pauseGame,
   resumeGame,
@@ -33,7 +35,11 @@ export const GamePage = ({
         spacing="none"
       >
         <Flex.Item>
-          <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
+          <PlayOkayBar
+            pauseGame={pauseGame}
+            resumeGame={resumeGame}
+            slug={slug}
+          />
         </Flex.Item>
         <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
           <div

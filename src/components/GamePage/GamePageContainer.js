@@ -85,6 +85,7 @@ const GameContainer = ({ slug, playForFun, location, bonusAmount }: Props) => {
 
   return (
     <GamePage
+      slug={slug}
       gameProviderModel={gameProviderModel}
       pauseGame={pauseGame}
       resumeGame={resumeGame}

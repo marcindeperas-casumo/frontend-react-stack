@@ -18,14 +18,15 @@ import {
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
 // ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
+import { type PauseResumeProps, type GameProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
 
-type Props = PauseResumeProps & IntercomPlayerDetailsProps;
+type Props = PauseResumeProps & IntercomPlayerDetailsProps & GameProps;
 
 export const ProfileIconWithDrawer = ({
+  slug,
   pauseGame,
   resumeGame,
   playerId,

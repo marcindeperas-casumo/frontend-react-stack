@@ -66,6 +66,7 @@ stories.add(
       <MockStore>
         <LayoutPage>
           <GamePage
+            slug="book-of-dead"
             gameProviderModel={gameProviderModel}
             pauseGame={() => Promise.resolve()}
             resumeGame={() => {}}
