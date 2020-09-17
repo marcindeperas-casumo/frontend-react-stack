@@ -124,7 +124,6 @@ describe("useCurrentReelRaceInfo", () => {
   });
 
   describe("hook", () => {
-    // const RealDate = Date;
     const RealDateNow = Date.now;
 
     const mockDate = ts => {

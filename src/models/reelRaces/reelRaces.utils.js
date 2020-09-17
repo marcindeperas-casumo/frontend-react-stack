@@ -14,6 +14,13 @@ export function getCurrentReelRace<T>(reelRaces: Array<T>): ?T {
   )(reelRaces);
 }
 
+export function getClosestReelRace<T>(reelRaces: Array<T>): ?T {
+  return R.pipe(
+    R.sortBy(R.prop("startTime")),
+    R.prop(0)
+  )(reelRaces);
+}
+
 export const calculateProgress = (
   startTime: ?number = null,
   endTime: ?number = null,

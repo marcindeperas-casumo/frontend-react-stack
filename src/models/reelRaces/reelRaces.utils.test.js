@@ -1,5 +1,9 @@
 // @flow
-import { getCurrentReelRace, calculateProgress } from "./reelRaces.utils";
+import {
+  getCurrentReelRace,
+  calculateProgress,
+  getClosestReelRace,
+} from "./reelRaces.utils";
 
 const getReelRaces = () => {
   const THIRTY_MINUTES = 30 * 60 * 1000;
@@ -88,6 +92,30 @@ describe("Models/reelRaces.utils", () => {
     test("return current reel race", () => {
       const rr = getReelRaces();
       expect(getCurrentReelRace(rr)).toBe(rr[1]);
+    });
+  });
+
+  describe("getClosestReelRace", () => {
+    test("return the closest reel race", () => {
+      const rr = getReelRaces();
+      expect(getClosestReelRace(rr)).toBe(rr[1]);
+    });
+    test("closest reel race", () => {
+      const data = [
+        {
+          startTime: 10,
+        },
+        {
+          startTime: 7,
+        },
+        {
+          startTime: 1,
+        },
+        {
+          startTime: 20,
+        },
+      ];
+      expect(getClosestReelRace(data)).toBe(data[2]);
     });
   });
 

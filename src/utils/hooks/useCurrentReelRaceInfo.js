@@ -6,8 +6,9 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
-import { getCurrentReelRace } from "Models/reelRaces";
+import { getCurrentReelRace, getClosestReelRace } from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
+import { useTimeoutFn } from "./useTimeoutFn";
 
 export type CurrentReelRaceInfo = {
   game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
@@ -82,7 +83,7 @@ export function useCurrentReelRaceInfo(
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
-  const timeoutId = React.useRef(null);
+  const refetchTimeout = useTimeoutFn();
 
   const [
     currentReelRace,
@@ -92,12 +93,6 @@ export function useCurrentReelRaceInfo(
     currentReelRaceData,
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
-
-  const localClearTimeout = () => {
-    if (timeoutId.current) {
-      clearTimeout(timeoutId.current);
-    }
-  };
 
   const subscriptionHandler = React.useCallback(
     ({ data }) => {
@@ -109,15 +104,6 @@ export function useCurrentReelRaceInfo(
       );
     },
     [currentReelRace, playerId]
-  );
-
-  const scheduleNextUpdate = React.useCallback(
-    nextUpdateTs => {
-      const nextUpdateIn = nextUpdateTs - Date.now();
-
-      return setTimeout(refetch, nextUpdateIn < 0 ? 0 : nextUpdateIn);
-    },
-    [refetch]
   );
 
   React.useEffect(() => {
@@ -141,6 +127,14 @@ export function useCurrentReelRaceInfo(
 
   React.useEffect(() => {
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
+      const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
+
+      refetchTimeout.scheduleAt(
+        refetch,
+        (closestReelRace ? closestReelRace.endTime : 0) +
+          (10 + Math.random() * 60) * 1000
+      ); // distribute refetch within 60s
+
       const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
       );
@@ -158,12 +152,6 @@ export function useCurrentReelRaceInfo(
             game: localCurrentReelRace.game,
           })
         );
-        localClearTimeout();
-
-        // eslint-disable-next-line fp/no-mutation
-        timeoutId.current = scheduleNextUpdate(
-          localCurrentReelRace.endTime + (10 + Math.random() * 60) * 1000 // distribute refetch within 60s
-        );
 
         localCurrentReelRace.cometdChannels.forEach(channel =>
           cometd.subscribe(
@@ -174,7 +162,7 @@ export function useCurrentReelRaceInfo(
       }
 
       return function cleanup() {
-        localClearTimeout();
+        refetchTimeout.clear();
         if (
           localCurrentReelRace &&
           (!gameSlug ||
@@ -193,7 +181,8 @@ export function useCurrentReelRaceInfo(
     loading,
     playerId,
     reelRaceQueryData,
-    scheduleNextUpdate,
+    refetch,
+    refetchTimeout,
     subscriptionHandler,
   ]);
 
