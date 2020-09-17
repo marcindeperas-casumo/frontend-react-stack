@@ -81,7 +81,7 @@ export function useCurrentReelRaceInfo(
   >(CurrentReelRaceInfoQuery);
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
-  const tournamentChannles = useSelector(tournamentChannelsSelector);
+  const tournamentChannels = useSelector(tournamentChannelsSelector);
   const timeoutId = React.useRef(null);
 
   const [
@@ -121,7 +121,7 @@ export function useCurrentReelRaceInfo(
   );
 
   React.useEffect(() => {
-    tournamentChannles.forEach(channel =>
+    tournamentChannels.forEach(channel =>
       cometd.subscribe(
         `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`,
         () => {
@@ -131,13 +131,13 @@ export function useCurrentReelRaceInfo(
     );
 
     return function cleanup() {
-      tournamentChannles.forEach(channel =>
+      tournamentChannels.forEach(channel =>
         cometd.unsubscribe(
           `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`
         )
       );
     };
-  }, [playerId, refetch, tournamentChannles]);
+  }, [playerId, refetch, tournamentChannels]);
 
   React.useEffect(() => {
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
