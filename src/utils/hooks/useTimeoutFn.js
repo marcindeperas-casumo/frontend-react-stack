@@ -17,10 +17,10 @@ export const useTimeoutFn = () => {
     // eslint-disable-next-line fp/no-mutation
     timeoutId.current = setTimeout(func, timeout);
   };
-  const scheduleIn = (func: () => void, timeout: number) => {
+  const scheduleIn = (func: () => any, timeout: number) => {
     schedule(func, timeout);
   };
-  const scheduleAt = (func: () => void, ts: number) => {
+  const scheduleAt = (func: () => any, ts: number) => {
     const nextUpdateIn = ts - Date.now();
 
     schedule(func, nextUpdateIn < 0 ? 0 : nextUpdateIn);
