@@ -36,7 +36,7 @@ export const App = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticatedHandshake]);
 
-  // clear store and to be refetch all active queries
+  // clear store and refetch all active queries
   useEffect(() => {
     apolloClientPromise.then(client => client.resetStore());
   });
