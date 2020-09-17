@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import { apolloClientPromise } from "Models/apollo/apollo.client";
 import { AppLiS } from "./AppLiS";
 import { AppLoS } from "./AppLoS";
 type Props = {
@@ -34,6 +35,11 @@ export const App = (props: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticatedHandshake]);
+
+  // clear store and to be refetch all active queries
+  useEffect(() => {
+    apolloClientPromise.then(client => client.resetStore());
+  });
 
   useEffect(() => {
     if (playerId && sessionId) {
