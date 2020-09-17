@@ -102,8 +102,8 @@ export class SportsShellContainer extends React.Component<{}> {
                       <SportsNav currentHash={currentHash} />
                     )}
 
-                    <WelcomeOfferCuratedCard />
-                    <SportsCuratedCard />
+                    <WelcomeOfferCuratedCard currentHash={currentHash} />
+                    <SportsCuratedCard currentHash={currentHash} />
                   </div>
                 )}
               </SportsHashWatcher>

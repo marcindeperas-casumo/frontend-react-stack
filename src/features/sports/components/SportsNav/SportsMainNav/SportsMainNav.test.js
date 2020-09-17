@@ -46,7 +46,7 @@ describe("<SportsMainNav />", () => {
     expect(sp).toHaveLength(1);
     expect(sp.props()).toMatchObject({
       columnCount: 7,
-      height: 106,
+      height: 42,
     });
   });
 
