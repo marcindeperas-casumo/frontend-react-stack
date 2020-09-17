@@ -29,7 +29,7 @@ type CreateCurrentReelRaceDataType = {
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
-const UNSET_VALUE = -1;
+export const UNSET_VALUE = -1;
 
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
   game: null,
@@ -42,7 +42,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   tournamentId: null,
 };
 
-const convertLeaderboardToObject = (
+export const convertLeaderboardToObject = (
   leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
 ): { [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard } =>
   leaderboard

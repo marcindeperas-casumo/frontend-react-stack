@@ -9,6 +9,8 @@ import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import {
   createCurrentReelRaceData,
   useCurrentReelRaceInfo,
+  convertLeaderboardToObject,
+  UNSET_VALUE,
 } from "./useCurrentReelRaceInfo";
 
 jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests here 🐛
@@ -16,7 +18,9 @@ jest.useFakeTimers();
 
 describe("useCurrentReelRaceInfo", () => {
   const playerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
+
   describe("createCurrentReelRaceData", () => {
+    const tournamentId = "some-nice-tournament-id";
     const game = "some nice game";
     const startTime = 10;
     const endTime = 30;
@@ -32,15 +36,20 @@ describe("useCurrentReelRaceInfo", () => {
       points: 555,
       remainingSpins: 76,
     };
-    const leaderboard = [leaderboardEntryOther, leaderboardEntryMe];
+    const leaderboard = convertLeaderboardToObject([
+      leaderboardEntryOther,
+      leaderboardEntryMe,
+    ]);
 
     const emptyResult = {
       game: null,
-      startTime: -1,
-      endTime: -1,
-      position: -1,
+      startTime: UNSET_VALUE,
+      endTime: UNSET_VALUE,
+      position: UNSET_VALUE,
       points: 0,
-      remainingSpins: -1,
+      remainingSpins: UNSET_VALUE,
+      isStarted: false,
+      tournamentId: null,
     };
 
     test("no data", () => {
@@ -49,33 +58,39 @@ describe("useCurrentReelRaceInfo", () => {
     test("no player on the list", () => {
       expect(
         createCurrentReelRaceData(playerId, {
+          tournamentId,
           startTime,
           endTime,
           game,
-          leaderboard: [leaderboardEntryOther],
+          leaderboard: convertLeaderboardToObject([leaderboardEntryOther]),
         })
       ).toEqual({
         ...emptyResult,
+        isStarted: true,
         game,
         startTime,
         endTime,
+        tournamentId,
       });
     });
     test("first position", () => {
       expect(
         createCurrentReelRaceData(playerId, {
+          tournamentId,
           startTime,
           endTime,
           game,
           leaderboard,
         })
       ).toEqual({
+        isStarted: true,
         game,
         startTime,
         endTime,
         position: leaderboardEntryMe.position,
         points: leaderboardEntryMe.points,
         remainingSpins: leaderboardEntryMe.remainingSpins,
+        tournamentId,
       });
     });
   });
@@ -129,7 +144,7 @@ describe("useCurrentReelRaceInfo", () => {
     const mockDate = ts => {
       global.Date.now = () => ts;
     };
-    const mocks = (reelRaces, reelRaces2) =>
+    const mocks = reelRaces =>
       Array(4).fill({
         request: {
           query: CurrentReelRaceInfoQuery,
@@ -242,12 +257,14 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
+        isStarted: false,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
         points: nextRace.points,
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
+        tournamentId: nextRace.slug,
       });
     });
 
@@ -274,12 +291,14 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
+        isStarted: true,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
         points: nextRace.points,
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
+        tournamentId: nextRace.slug,
       });
     });
 
@@ -306,12 +325,14 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
+        isStarted: true,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
         points: nextRace.points,
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
+        tournamentId: nextRace.slug,
       });
     });
     test("dont find reel race that has finished just now", () => {
