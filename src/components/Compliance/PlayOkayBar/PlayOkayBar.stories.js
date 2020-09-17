@@ -10,6 +10,8 @@ import { PlayOkayBar } from "./PlayOkayBar";
 const stories = storiesOf("PlayOkayBar", module);
 
 const jurisdictions = ["MGA", "SGA", "DGA", "DGOJ"];
+const pauseGame = () => Promise.resolve();
+const resumeGame = () => {};
 
 stories.add("Default", () => {
   const jurisdiction = select("Jurisdiction", jurisdictions, "MGA");
@@ -17,7 +19,11 @@ stories.add("Default", () => {
   return (
     <MockStore queryMocks={[playerSectionsQueryMock]}>
       <FullscreenView>
-        <PlayOkayBar jurisdiction={jurisdiction} />
+        <PlayOkayBar
+          jurisdiction={jurisdiction}
+          pauseGame={pauseGame}
+          resumeGame={resumeGame}
+        />
       </FullscreenView>
     </MockStore>
   );

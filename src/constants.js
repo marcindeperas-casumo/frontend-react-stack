@@ -328,6 +328,11 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
+  MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED: "In game live chat clicked",
+  MIXPANEL_SUMOTICON_CLICKED: "Sumoticon - in game drawer clicked",
+  MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED: "RETCAS - In-Game Exit Game Clicked",
+  MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT: "RETCAS - In-Game Exit Game Clicked",
+  MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
 };
 
 export const EVENT_PROPS = {
@@ -387,6 +392,8 @@ export const REACT_APP_MODAL = {
       "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED",
     TIME_LIMITS_FORM: "TIME_LIMITS_FORM",
     REALITY_CHECK: "REALITY_CHECK",
+    QUIT_GAME_NOTIFICATION: "QUIT_GAME_NOTIFICATION",
+    WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
@@ -431,7 +438,7 @@ export const POLL_INTERVAL = {
 };
 
 export const EMBEDDED_GAMES = {
-  ACTIVE: true,
+  ACTIVE: false,
   TESTERS: [
     "mariusz.klinger+test@casumo.com",
     "boguslaw.parol@casumo.com",
@@ -449,5 +456,7 @@ export const EMBEDDED_GAMES = {
     "alessandro.pontes@casumo.com",
     "Elisabeth.isaksson@casumo.com",
     "integrations+7@casumo.com",
+    "peter.noer+THERKILD418@casumo.com",
+    "theis.warmdahl+dk5@casumo.com",
   ],
 };

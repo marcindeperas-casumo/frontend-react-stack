@@ -28,9 +28,10 @@ export const ChatIconPlaceHolder = ({
       t-opacity-background--50
       t-border-r--circle
       t-background-grey-90
+      t-background-purple-80:hover
       ${className}`}
     >
-      <ChatIcon className="t-color-white" />
+      <ChatIcon className="t-color-white t-background-purple-80:hover" />
     </div>
   );
 };

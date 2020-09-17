@@ -1914,13 +1914,6 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-icons@^3.0.1":
-  version "3.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/3.0.1/152939738e4b02ee29df08973a33275208794e893782b691f2df26d725fc6bb0#6105ed6426fbe3513a9aa65da636759a9bb3252b"
-  integrity sha512-Dek7TDzPyE062/6VyYhVi2203PC7jsbBebVP9mpgHP6ank6Xp8TyholKUdffOjLicZSnPcmWCfRhbko5Em6DDw==
-  dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.2"
-    
 "@casumo/cmp-flex@^4.0.2":
   version "4.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.0.2/c9796276b2eff8cd47be0d9c2aab19b5428bb9000aadd7e39430c5204219938a#21e7186c6dd9f9571a0044e9c376415847788d15"
@@ -1960,6 +1953,14 @@
     "@casumo/cmp-flex" "^3.0.6"
     "@casumo/cudl-react-utils" "^1.0.6"
     ramda "^0.26.1"
+
+"@casumo/cmp-modal@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-modal/1.1.0/ab9edf7f6b9af5f449d75217afdee44f8b9288d0ddb9e2a32e505ae6e8bf30d0#7317aff1e698b37bb27cdc0873b6574aa1c61331"
+  integrity sha512-yUQf0aS3HQ2n55KbCLdl4K1qgNtJUx2gDyo7QAls8LRvhfEs1K+YKzNOgApbp6YrjH5RTEOUGoGZTbXNjKmrFg==
+  dependencies:
+    "@casumo/cudl-breakpoints" "^1.1.7"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
 "@casumo/cmp-picture@^1.1.2":
   version "1.1.2"

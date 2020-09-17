@@ -11,7 +11,3 @@ export const onOldStackEvent = (evt, callback) => {
 };
 
 export const PASSWORD_PLACEHOLDER_VALUE = repeat(String.fromCharCode(8226), 8);
-
-export const doesContainJapaneseCharacters = str => {
-  return !/[a-zA-Z]+/i.test(str);
-};

@@ -32,6 +32,7 @@ export const playerCurrencySymbolSelector = createSelector(
   (currency, locale) => getSymbolForCurrency({ locale, currency })
 );
 
+// Todo: Investigate https://jira.casumocave.com/browse/FC-91 Bonus balance deduction on staging when wagering
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
   bonusAmountSelector,

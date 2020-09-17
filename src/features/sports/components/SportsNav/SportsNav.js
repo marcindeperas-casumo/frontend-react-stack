@@ -124,15 +124,22 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     navItemUtils.isInPlayHash(currentHash)
   );
   const variables = { live: isLiveActive };
-  const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
+  const { loading, error, data, refetch } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
+  const [refetchCount, setRefetchCount] = React.useState(0);
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
     setIsLiveActive(navItemUtils.isInPlayHash(currentHash));
   }, [currentHash]);
+
+  React.useEffect(() => {
+    if (refetchCount > 3) {
+      window.location.reload(true);
+    }
+  }, [refetchCount]);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -156,6 +163,20 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     !data.liveLabel
   ) {
     return null;
+  }
+
+  const clickRetryRefetchNavigation = () => {
+    setRefetchCount(refetchCount + 1);
+    refetch();
+  };
+
+  if (!data.sportsNavigation.length) {
+    return (
+      <ErrorMessage
+        direction="horizontal"
+        retry={() => clickRetryRefetchNavigation()}
+      />
+    );
   }
 
   const setIsLiveActiveAndUpdateSelectedNavItem = (liveActive: boolean) => {

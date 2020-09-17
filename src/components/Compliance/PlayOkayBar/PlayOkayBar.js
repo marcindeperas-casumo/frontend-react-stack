@@ -6,11 +6,12 @@ import { DGOJBar } from "./DGOJBar";
 import { MGABar } from "./MGABar";
 import { DGABar } from "./DGABar";
 import { SGABar } from "./SGABar";
+import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
 type Props = {
   jurisdiction: string,
-};
+} & PauseResumeProps;
 
 const jurisdictionBarMapping = {
   [JURISDICTIONS.DGOJ]: DGOJBar,
@@ -19,8 +20,8 @@ const jurisdictionBarMapping = {
   [JURISDICTIONS.SGA]: SGABar,
 };
 
-export const PlayOkayBar = ({ jurisdiction }: Props) => {
+export const PlayOkayBar = ({ jurisdiction, pauseGame, resumeGame }: Props) => {
   const PlayOkarBarComponent = jurisdictionBarMapping[jurisdiction] || MGABar;
 
-  return <PlayOkarBarComponent />;
+  return <PlayOkarBarComponent pauseGame={pauseGame} resumeGame={resumeGame} />;
 };

@@ -29,6 +29,8 @@ import {
   convertLuxonDurationObjectToSeconds,
   addPointerEventStylesToLinkElements,
   decodedUrlParams,
+  bonusBalanceDisplay,
+  hasAlphaCharactersOnly,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -589,5 +591,54 @@ describe("convertHoursToDays()", () => {
         .length;
       expect(foundAddedStyle).toBe(LINKS_AMOUNT);
     });
+  });
+
+  describe("SettingsAccountDetails/Utils", () => {
+    describe("hasAlphaCharactersOnly", () => {
+      test("should return FALSE if the string contains general characters only", () => {
+        expect(hasAlphaCharactersOnly("abcdef")).toBe(false);
+      });
+
+      test("should return FALSE if the string contains both Japanese and general characters only", () => {
+        expect(hasAlphaCharactersOnly("abcdefひらがな")).toBe(false);
+      });
+
+      test("should return TRUE if the string contains Japanese characters only", () => {
+        expect(hasAlphaCharactersOnly("ひらがな")).toBe(true);
+      });
+    });
+  });
+});
+
+describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
+  test("should show EUR bonus balance amount followed with the word bonus", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      100,
+      "EUR",
+      "Bonus",
+      "en-en"
+    );
+    expect(bonusBalanceDisplayLongText).toMatch("Bonus");
+  });
+
+  test("should show GBP bonus balance without the word bonus", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      200.2,
+      "GBP",
+      "Bonus",
+      "en-GB",
+      true
+    );
+    expect(bonusBalanceDisplayLongText).toMatch("+£");
+  });
+
+  test("should receive '' if no value is passed", () => {
+    const bonusBalanceDisplayLongText = bonusBalanceDisplay(
+      0,
+      "EUR",
+      "",
+      "en-en"
+    );
+    expect(bonusBalanceDisplayLongText).toMatch("");
   });
 });

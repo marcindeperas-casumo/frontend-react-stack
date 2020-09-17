@@ -107,6 +107,11 @@ export const walletAmountSelector = createSelector(
   path(["wallet", "balance", "amount"])
 );
 
+export const savedMethodsSelector = createSelector(
+  playerSelector,
+  path(["paymentMethods"])
+);
+
 export const bonusAmountSelector = createSelector(
   playerSelector,
   pathOr(0, ["bonus", "balance", "amount"])
