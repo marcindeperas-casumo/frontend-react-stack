@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import gql from "graphql-tag";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { last, propOr } from "ramda";
+import { last } from "ramda";
 import { useSelector } from "react-redux";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
 import { useLocale } from "Utils/hooks";
@@ -10,6 +10,7 @@ import { currencySelector } from "Models/handshake";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
+import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -82,7 +83,7 @@ export function LaunchableKambiClient() {
         bootstrapUrl={clientBootstrapUrl}
         playerId={providerPlayerId}
         ticket={ticket}
-        homeRoute={propOr("", "userHomepage", kambiData)}
+        homeRoute={SPORTS_HOME_PAGE_PATH}
         onNavigate={onNavigate}
         isHidden={!isKambiClientVisible(kambiData)}
         sessionKeepAlive={mutateSessionTouch}

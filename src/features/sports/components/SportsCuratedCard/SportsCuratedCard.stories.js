@@ -9,6 +9,6 @@ const stories = storiesOf("Sports/SportsCuratedCard", module);
 
 stories.add("Default", () => (
   <MockedProvider mocks={[curatedCardQueryMock]} addTypename={false}>
-    <SportsCuratedCard hasDeposited={true} />
+    <SportsCuratedCard hasDeposited={true} currentHash="#home" />
   </MockedProvider>
 ));

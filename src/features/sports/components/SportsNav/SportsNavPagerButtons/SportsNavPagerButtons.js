@@ -14,8 +14,8 @@ const PagerButton = ({ shouldRender, onClick }: PagerButtonProps) =>
   shouldRender && (
     <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
       <div className="u-pointer-events-initial" onClick={onClick}>
-        <div className="u-padding--md u-cursor-pointer">
-          <ArrowRightIcon className="t-color-grey-90" size="md" />
+        <div className="u-cursor-pointer">
+          <ArrowRightIcon className="t-color-grey-70" size="md" />
         </div>
       </div>
     </div>
