@@ -1,5 +1,5 @@
 query CurrentReelRaceInfoQuery {
-  reelRaces(limit: 3) {
+  reelRaces(limit: 2) {
     id
     game {
       id

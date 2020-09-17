@@ -21,20 +21,30 @@ export type CurrentReelRaceInfo = {
   tournamentId: ?string,
 };
 
+type CreateCurrentReelRaceDataType = {
+  tournamentId?: ?string,
+  startTime?: number,
+  endTime?: number,
+  leaderboard?: any,
+  game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+};
+
+const UNSET_VALUE = -1;
+
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
   game: null,
-  startTime: -1,
-  endTime: -1,
-  position: -1,
+  startTime: UNSET_VALUE,
+  endTime: UNSET_VALUE,
+  position: UNSET_VALUE,
   points: 0,
-  remainingSpins: -1,
+  remainingSpins: UNSET_VALUE,
   isStarted: false,
   tournamentId: null,
 };
 
 const convertLeaderboardToObject = (
   leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
-): any =>
+): { [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard } =>
   leaderboard
     ? leaderboard.reduce(
         (
@@ -56,15 +66,9 @@ export const createCurrentReelRaceData = (
     endTime,
     leaderboard,
     game,
-  }: {
-    tournamentId?: ?string,
-    startTime?: number,
-    endTime?: number,
-    leaderboard?: any,
-    game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
-  } = {
-    startTime: -1,
-    endTime: -1,
+  }: CreateCurrentReelRaceDataType = {
+    startTime: UNSET_VALUE,
+    endTime: UNSET_VALUE,
     leaderboard: {},
     game: null,
     tournamentId: null,
