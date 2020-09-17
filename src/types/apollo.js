@@ -433,6 +433,42 @@ export type JackpotsQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: LiveCasinoCardSmallDataQuery
+// ====================================================
+
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets = {
+  symbol: ?string,
+  min: ?number,
+  max: ?number,
+};
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
+  type: OperationHoursType,
+  startTime: ?string,
+  endTime: ?string,
+};
+export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
+  id: ?string,
+  tableId: ?string,
+  state: TableState,
+  symbol: ?string,
+  numberOfPlayers: ?number,
+  seats: ?number,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets,
+  operationHours: LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours,
+};
+export type LiveCasinoCardSmallDataQuery = {
+  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
+};
+export type LiveCasinoCardSmallDataQueryVariables = {
+  id: string,
+};
+
+// ====================================================
 // GraphQL query operation: LiveCasinoDetailPageQuery
 // ====================================================
 
@@ -2805,6 +2841,8 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+export type TableState = "CLOSED" | "OPEN" | "UNASSIGNED";
+export type OperationHoursType = "BOUNDED" | "FULLTIME";
 export type ValuableType =
   | "cash"
   | "cashback"
