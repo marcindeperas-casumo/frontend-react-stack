@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 
 export const useTimeoutFn = () => {
@@ -16,10 +17,10 @@ export const useTimeoutFn = () => {
     // eslint-disable-next-line fp/no-mutation
     timeoutId.current = setTimeout(func, timeout);
   };
-  const scheduleIn = (func, timeout) => {
+  const scheduleIn = (func: () => void, timeout: number) => {
     schedule(func, timeout);
   };
-  const scheduleAt = (func, ts) => {
+  const scheduleAt = (func: () => void, ts: number) => {
     const nextUpdateIn = ts - Date.now();
 
     schedule(func, nextUpdateIn < 0 ? 0 : nextUpdateIn);
