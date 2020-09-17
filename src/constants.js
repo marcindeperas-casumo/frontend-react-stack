@@ -443,7 +443,7 @@ export const POLL_INTERVAL = {
 };
 
 export const EMBEDDED_GAMES = {
-  ACTIVE: true,
+  ACTIVE: false,
   TESTERS: [
     "mariusz.klinger+test@casumo.com",
     "boguslaw.parol@casumo.com",
