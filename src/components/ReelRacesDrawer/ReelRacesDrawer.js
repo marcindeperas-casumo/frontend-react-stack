@@ -25,9 +25,17 @@ export const ReelRacesDrawer = () => {
         justify="space-between"
         className="u-width--full"
       >
-        <Flex.Item>col 1</Flex.Item>
-        <Flex.Item>col 2 Absolute Positioned</Flex.Item>
-        <Flex.Item>col 3</Flex.Item>
+        <Flex.Item>
+          <span></span>
+          {/* <span>{position}</span> */}
+        </Flex.Item>
+        <Flex.Item>
+          <span></span>
+        </Flex.Item>
+        <Flex.Item>
+          {/* <span>{points}</span> */}
+          <span>pts</span>
+        </Flex.Item>
       </Flex>
     </Flex>
   );
