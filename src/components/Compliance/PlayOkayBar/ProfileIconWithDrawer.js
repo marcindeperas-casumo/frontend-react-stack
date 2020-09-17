@@ -18,7 +18,10 @@ import {
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
 // ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
+import { calculateProgress } from "Models/reelRaces";
 import { type PauseResumeProps, type GameProps } from "./PlayOkayBarContainer";
+
 import "./ProfileIconWithDrawer.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
@@ -42,6 +45,7 @@ export const ProfileIconWithDrawer = ({
   });
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [progress, setProgess] = useState(0);
 
   const isChatDisabled =
     market === MARKETS.nz_en ||
@@ -61,6 +65,39 @@ export const ProfileIconWithDrawer = ({
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
+
+  const currentReelRace = useCurrentReelRaceInfo(slug);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgess(
+        parseInt(
+          100 *
+            calculateProgress(
+              currentReelRace?.startTime,
+              currentReelRace?.endTime
+            )
+        )
+      );
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentReelRace !== null]);
+
+  const iconToShow =
+    currentReelRace && Date.now() >= currentReelRace.startTime ? (
+      `${currentReelRace.position} / ${currentReelRace.remainingSpins} / ${progress}`
+    ) : (
+      <ProfileIcon
+        onClick={() => {
+          tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
+          setDrawerOpen(true);
+        }}
+      />
+    );
+  console.log("....pio...", { currentReelRace });
 
   return isDrawerOpen ? (
     <React.Fragment>
@@ -86,11 +123,6 @@ export const ProfileIconWithDrawer = ({
       </div>
     </React.Fragment>
   ) : (
-    <ProfileIcon
-      onClick={() => {
-        tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
-        setDrawerOpen(true);
-      }}
-    />
+    iconToShow
   );
 };
