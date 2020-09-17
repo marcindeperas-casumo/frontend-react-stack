@@ -17,6 +17,8 @@ export type CurrentReelRaceInfo = {
   position: number,
   points: number,
   remainingSpins: number,
+  isStarted: boolean,
+  tournamentId: ?string,
 };
 
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
@@ -26,31 +28,49 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   position: -1,
   points: 0,
   remainingSpins: -1,
+  isStarted: false,
+  tournamentId: null,
 };
+
+const convertLeaderboardToObject = (
+  leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
+): any =>
+  leaderboard
+    ? leaderboard.reduce(
+        (
+          acc: any,
+          entry: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard
+        ) => ({
+          ...acc,
+          [entry.playerId]: entry,
+        }),
+        {}
+      )
+    : {};
 
 export const createCurrentReelRaceData = (
   playerId: ?string,
   {
+    tournamentId,
     startTime,
     endTime,
     leaderboard,
     game,
   }: {
+    tournamentId?: ?string,
     startTime?: number,
     endTime?: number,
-    leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
+    leaderboard?: any,
     game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
   } = {
     startTime: -1,
     endTime: -1,
-    leaderboard: [],
+    leaderboard: {},
     game: null,
+    tournamentId: null,
   }
 ): CurrentReelRaceInfo => {
-  const currentPlayerEntry = R.find(
-    R.propEq("playerId", playerId),
-    leaderboard
-  );
+  const currentPlayerEntry = leaderboard ? leaderboard[playerId] : null;
 
   return {
     ...defaultReelRaceInfo,
@@ -68,6 +88,8 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
+    isStarted: startTime && startTime >= 0 ? Date.now() >= startTime : false,
+    tournamentId,
   };
 };
 
@@ -94,11 +116,36 @@ export function useCurrentReelRaceInfo(
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
 
+  const statusHandler = React.useCallback(
+    ({ data }) => {
+      if (
+        currentReelRace?.id === data.tournamentId &&
+        data.status === "Started"
+      ) {
+        setCurrentReelRaceData(
+          createCurrentReelRaceData(playerId, {
+            ...(currentReelRace
+              ? {
+                  ...currentReelRace,
+                  tournamentId: currentReelRace.id,
+                }
+              : {}),
+          })
+        );
+      }
+    },
+    [currentReelRace, playerId]
+  );
   const subscriptionHandler = React.useCallback(
     ({ data }) => {
       setCurrentReelRaceData(
         createCurrentReelRaceData(playerId, {
-          ...(currentReelRace || {}),
+          ...(currentReelRace
+            ? {
+                ...currentReelRace,
+                tournamentId: currentReelRace.id,
+              }
+            : {}),
           leaderboard: data.leaderboard,
         })
       );
@@ -148,17 +195,25 @@ export function useCurrentReelRaceInfo(
           createCurrentReelRaceData(playerId, {
             startTime: localCurrentReelRace.startTime,
             endTime: localCurrentReelRace.endTime,
-            leaderboard: localCurrentReelRace.leaderboard,
+            leaderboard: convertLeaderboardToObject(
+              localCurrentReelRace.leaderboard
+            ),
             game: localCurrentReelRace.game,
+            tournamentId: localCurrentReelRace.id,
           })
         );
 
-        localCurrentReelRace.cometdChannels.forEach(channel =>
+        localCurrentReelRace.cometdChannels.forEach(channel => {
           cometd.subscribe(
             `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`,
             subscriptionHandler
-          )
-        );
+          );
+
+          cometd.subscribe(
+            `${channel}/tournaments/tournamentProperties/status`,
+            statusHandler
+          );
+        });
       }
 
       return function cleanup() {
@@ -168,15 +223,20 @@ export function useCurrentReelRaceInfo(
           (!gameSlug ||
             (gameSlug && localCurrentReelRace.game.slug === gameSlug))
         ) {
-          localCurrentReelRace.cometdChannels.forEach(channel =>
+          localCurrentReelRace.cometdChannels.forEach(channel => {
             cometd.unsubscribe(
               `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`
-            )
-          );
+            );
+            cometd.subscribe(
+              `${channel}/tournaments/tournamentProperties/status`,
+              statusHandler
+            );
+          });
         }
       };
     }
   }, [
+    statusHandler,
     gameSlug,
     loading,
     playerId,
