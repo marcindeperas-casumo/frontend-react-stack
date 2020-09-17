@@ -1,0 +1,24 @@
+query CurrentReelRaceInfoQuery {
+  reelRaces(limit: 3) {
+    id
+    game {
+      id
+      slug
+      name
+      logo
+      backgroundImage
+    }
+    startTime
+    endTime
+    optedIn
+    promoted
+    spinLimit
+    cometdChannels
+    leaderboard {
+      playerId
+      position
+      points
+      remainingSpins
+    }
+  }
+}
