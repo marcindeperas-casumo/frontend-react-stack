@@ -21,11 +21,15 @@ export type CurrentReelRaceInfo = {
   tournamentId: ?string,
 };
 
+type LeaderboardObjectType = {
+  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+};
+
 type CreateCurrentReelRaceDataType = {
   tournamentId?: ?string,
   startTime?: number,
   endTime?: number,
-  leaderboard?: any,
+  leaderboard?: LeaderboardObjectType,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
@@ -44,11 +48,11 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
 
 export const convertLeaderboardToObject = (
   leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
-): { [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard } =>
+): LeaderboardObjectType =>
   leaderboard
     ? leaderboard.reduce(
         (
-          acc: any,
+          acc: LeaderboardObjectType,
           entry: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard
         ) => ({
           ...acc,
@@ -74,7 +78,9 @@ export const createCurrentReelRaceData = (
     tournamentId: null,
   }
 ): CurrentReelRaceInfo => {
-  const currentPlayerEntry = leaderboard ? leaderboard[playerId] : null;
+  const currentPlayerEntry = leaderboard
+    ? leaderboard[R.propOr("", playerId)]
+    : null;
 
   return {
     ...defaultReelRaceInfo,
@@ -141,13 +147,21 @@ export function useCurrentReelRaceInfo(
     [currentReelRace, playerId]
   );
   const subscriptionHandler = React.useCallback(
-    ({ data }) => {
+    ({ data }: { data: { leaderboard: LeaderboardObjectType } }) => {
+      const {
+        leaderboard: currentReelRaceLeaderboard,
+        ...currentReelRaceRest
+      } = currentReelRace || {};
+
       setCurrentReelRaceData(
         createCurrentReelRaceData(playerId, {
-          ...(currentReelRace
+          ...(currentReelRaceRest
             ? {
-                ...currentReelRace,
-                tournamentId: currentReelRace.id,
+                ...currentReelRaceRest,
+                leaderboard: convertLeaderboardToObject(
+                  currentReelRaceLeaderboard
+                ),
+                tournamentId: currentReelRaceRest.id,
               }
             : {}),
           leaderboard: data.leaderboard,
