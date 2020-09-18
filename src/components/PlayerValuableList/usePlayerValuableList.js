@@ -13,6 +13,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables
   >(PlayerValuablesQuery, {
+    fetchPolicy: "network-only",
     returnPartialData: true,
     partialRefetch: true,
     variables,
