@@ -39,7 +39,7 @@ export const App = (props: Props) => {
   // clear store and refetch all active queries
   useEffect(() => {
     apolloClientPromise.then(client => client.resetStore());
-  });
+  }, []);
 
   useEffect(() => {
     if (playerId && sessionId) {
