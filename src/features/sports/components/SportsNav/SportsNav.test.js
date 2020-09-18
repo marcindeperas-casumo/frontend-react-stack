@@ -22,15 +22,11 @@ describe("<SportsNav/>", () => {
     expect(rendered.find(SportsNavSkeleton)).toHaveLength(1);
   });
 
-  test("should not be rendered on #event, or #bethistory kambi routes", () => {
-    const renderedOnEventPage = renderMocked(
-      <SportsNav currentHash="#event" />
-    );
+  test("should not be rendered on or #bethistory kambi routes", () => {
     const renderedOnBethistoryPage = renderMocked(
       <SportsNav currentHash="#bethistory" />
     );
 
-    expect(renderedOnEventPage.isEmptyRender()).toBe(true);
     expect(renderedOnBethistoryPage.isEmptyRender()).toBe(true);
   });
 });
