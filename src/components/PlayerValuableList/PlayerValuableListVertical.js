@@ -15,9 +15,11 @@ export function PlayerValuableListVertical() {
   const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
     UseValuable
   );
-  if (!translations) {
+
+  if (loading || !translations) {
     return null;
   }
+
   const consumeValuable = (id: string) =>
     mutateValuable({
       variables: {
