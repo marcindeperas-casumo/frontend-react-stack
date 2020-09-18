@@ -83,6 +83,11 @@ const renderSportsNav = (
   };
 
   const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
+  const isNotHomeSports =
+    currentHash !== `#${navItemUtils.SPORTS_HOME_PAGE_PATH}`;
+  const isNotCouponPage =
+    currentHash.substr(0, navItemUtils.SPORTS_COUPON_PAGE_PATH.length + 1) !==
+    `#${navItemUtils.SPORTS_COUPON_PAGE_PATH}`;
 
   return (
     <>
@@ -102,7 +107,9 @@ const renderSportsNav = (
         variables={{ modal: MODAL.CHOOSE_FAVOURITE_COMPETITIONS }}
       >
         {openChooseFavouriteLeaguesModal =>
-          isNotAllSports && (
+          isNotAllSports &&
+          isNotHomeSports &&
+          isNotCouponPage && (
             <SportsSubNav
               {...commonProps}
               navItems={selectedNavItem.subNav || []}
@@ -143,7 +150,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
-  if (/#event|#bethistory/.test(currentHash)) {
+  if (/#bethistory/.test(currentHash)) {
     return null;
   }
 
@@ -184,7 +191,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
 
     const path = liveActive
       ? navItemUtils.ALL_SPORTS_PATH
-      : data.sportsNavigation[0].sport.clientPath;
+      : navItemUtils.SPORTS_HOME_PAGE_PATH;
 
     navItemUtils.selectPath(client, path);
   };

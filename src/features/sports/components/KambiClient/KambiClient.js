@@ -66,7 +66,7 @@ export default class KambiClient extends React.Component<Props> {
       enableFilterMenu: false,
       enableQuickBrowse: false,
       enableTermSearch: false,
-      reservedRoutes: ["home"],
+      reservedRoutes: [],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
@@ -211,11 +211,10 @@ export default class KambiClient extends React.Component<Props> {
       return;
     }
 
-    const onHome = window.location.hash === "#home";
     const onPrevHomeRoute =
       prevHomeRoute && window.location.hash === `#${prevHomeRoute}`;
 
-    if (this.props.homeRoute && (onHome || onPrevHomeRoute)) {
+    if (this.props.homeRoute && onPrevHomeRoute) {
       // eslint-disable-next-line fp/no-mutation
       window.location.hash = this.props.homeRoute;
     }
@@ -229,14 +228,14 @@ export default class KambiClient extends React.Component<Props> {
   render() {
     return (
       <div
-        className={classNames(
-          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-grey-0",
-          {
-            "c-kambi-client--hidden": this.props.isHidden,
-          }
-        )}
+        className={classNames("t-background-grey-0", {
+          "c-kambi-client--hidden": this.props.isHidden,
+        })}
       >
-        <div id="KambiBC" className="u-padding-top" />
+        <div
+          id="KambiBC"
+          className="u-padding-top--md@desktop u-padding-top--sm@tablet u-padding-top--none@mobile"
+        />
 
         {this.props.isBetslipVisible ? null : (
           <style
