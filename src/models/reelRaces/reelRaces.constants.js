@@ -6,3 +6,8 @@ export const BUTTON_STATE = {
   OPT_IN: "OPT_IN",
   OPTED_IN: "OPTED_IN",
 };
+
+export const RACE_STATE = {
+  STARTED: "Started",
+  SCHEDULED: "Scheduled",
+};
