@@ -6,7 +6,11 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
-import { getCurrentReelRace, getClosestReelRace } from "Models/reelRaces";
+import {
+  getCurrentReelRace,
+  getClosestReelRace,
+  RACE_STATE,
+} from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 
@@ -128,7 +132,7 @@ export function useCurrentReelRaceInfo(
     ({ data }) => {
       if (
         currentReelRace?.id === data.tournamentId &&
-        data.status === "Started"
+        data.status === RACE_STATE.STARTED
       ) {
         setCurrentReelRaceData(
           createCurrentReelRaceData(playerId, {
