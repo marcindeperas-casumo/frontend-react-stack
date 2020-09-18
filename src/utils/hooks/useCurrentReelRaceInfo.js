@@ -6,7 +6,11 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
-import { getCurrentReelRace, getClosestReelRace } from "Models/reelRaces";
+import {
+  getCurrentReelRace,
+  getClosestReelRace,
+  RACE_STATE,
+} from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 
@@ -21,24 +25,38 @@ export type CurrentReelRaceInfo = {
   tournamentId: ?string,
 };
 
+type LeaderboardObjectType = {
+  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+};
+
+type CreateCurrentReelRaceDataType = {
+  tournamentId?: ?string,
+  startTime?: number,
+  endTime?: number,
+  leaderboard?: LeaderboardObjectType,
+  game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+};
+
+export const UNSET_VALUE = -1;
+
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
   game: null,
-  startTime: -1,
-  endTime: -1,
-  position: -1,
+  startTime: UNSET_VALUE,
+  endTime: UNSET_VALUE,
+  position: UNSET_VALUE,
   points: 0,
-  remainingSpins: -1,
+  remainingSpins: UNSET_VALUE,
   isStarted: false,
   tournamentId: null,
 };
 
-const convertLeaderboardToObject = (
+export const convertLeaderboardToObject = (
   leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
-): any =>
+): LeaderboardObjectType =>
   leaderboard
     ? leaderboard.reduce(
         (
-          acc: any,
+          acc: LeaderboardObjectType,
           entry: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard
         ) => ({
           ...acc,
@@ -56,21 +74,15 @@ export const createCurrentReelRaceData = (
     endTime,
     leaderboard,
     game,
-  }: {
-    tournamentId?: ?string,
-    startTime?: number,
-    endTime?: number,
-    leaderboard?: any,
-    game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
-  } = {
-    startTime: -1,
-    endTime: -1,
+  }: CreateCurrentReelRaceDataType = {
+    startTime: UNSET_VALUE,
+    endTime: UNSET_VALUE,
     leaderboard: {},
     game: null,
     tournamentId: null,
   }
 ): CurrentReelRaceInfo => {
-  const currentPlayerEntry = leaderboard ? leaderboard[playerId] : null;
+  const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
 
   return {
     ...defaultReelRaceInfo,
@@ -120,7 +132,7 @@ export function useCurrentReelRaceInfo(
     ({ data }) => {
       if (
         currentReelRace?.id === data.tournamentId &&
-        data.status === "Started"
+        data.status === RACE_STATE.STARTED
       ) {
         setCurrentReelRaceData(
           createCurrentReelRaceData(playerId, {
@@ -137,13 +149,21 @@ export function useCurrentReelRaceInfo(
     [currentReelRace, playerId]
   );
   const subscriptionHandler = React.useCallback(
-    ({ data }) => {
+    ({ data }: { data: { leaderboard: LeaderboardObjectType } }) => {
+      const {
+        leaderboard: currentReelRaceLeaderboard,
+        ...currentReelRaceRest
+      } = currentReelRace || {};
+
       setCurrentReelRaceData(
         createCurrentReelRaceData(playerId, {
-          ...(currentReelRace
+          ...(currentReelRaceRest
             ? {
-                ...currentReelRace,
-                tournamentId: currentReelRace.id,
+                ...currentReelRaceRest,
+                leaderboard: convertLeaderboardToObject(
+                  currentReelRaceLeaderboard
+                ),
+                tournamentId: currentReelRaceRest.id,
               }
             : {}),
           leaderboard: data.leaderboard,
