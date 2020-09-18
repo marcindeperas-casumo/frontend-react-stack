@@ -9,7 +9,7 @@ import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
 import { launchGame } from "Services/LaunchGameService";
-import { BUTTON_STATE } from "Models/reelRaces";
+import { BUTTON_STATE, RACE_STATE } from "Models/reelRaces";
 import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
@@ -92,7 +92,7 @@ export class ReelRaceCard extends React.Component<Props> {
   get countdown() {
     const { translations: t, endTime, startTime, status } = this.props.reelRace;
 
-    if (status === "Started") {
+    if (status === RACE_STATE.STARTED) {
       return (
         <Flex direction="vertical" spacing="none">
           <Text
