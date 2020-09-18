@@ -134,16 +134,17 @@ export function useCurrentReelRaceInfo(
         currentReelRace?.id === data.tournamentId &&
         data.status === RACE_STATE.STARTED
       ) {
-        setCurrentReelRaceData(
-          createCurrentReelRaceData(playerId, {
+        setCurrentReelRaceData({
+          ...createCurrentReelRaceData(playerId, {
             ...(currentReelRace
               ? {
                   ...currentReelRace,
                   tournamentId: currentReelRace.id,
                 }
               : {}),
-          })
-        );
+            isStarted: true,
+          }),
+        });
       }
     },
     [currentReelRace, playerId]

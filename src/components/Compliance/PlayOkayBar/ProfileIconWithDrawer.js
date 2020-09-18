@@ -19,7 +19,7 @@ import {
 import tracker from "Services/tracker";
 // ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
-import { calculateProgress } from "Models/reelRaces";
+import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { type PauseResumeProps, type GameProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
@@ -45,7 +45,6 @@ export const ProfileIconWithDrawer = ({
   });
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [progress, setProgess] = useState(0);
 
   const isChatDisabled =
     market === MARKETS.nz_en ||
@@ -68,36 +67,17 @@ export const ProfileIconWithDrawer = ({
 
   const currentReelRace = useCurrentReelRaceInfo(slug);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setProgess(
-        parseInt(
-          100 *
-            calculateProgress(
-              currentReelRace?.startTime,
-              currentReelRace?.endTime
-            )
-        )
-      );
-    }, 1000);
-    return () => {
-      clearInterval(intervalId);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentReelRace !== null]);
+  const openDrawer = () => {
+    tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
+    setDrawerOpen(true);
+  };
 
   const iconToShow =
-    currentReelRace && Date.now() >= currentReelRace.startTime ? (
-      `${currentReelRace.position} / ${currentReelRace.remainingSpins} / ${progress}`
+    currentReelRace && currentReelRace.isStarted ? (
+      <ReelRaceIcon currentRace={currentReelRace} onClick={openDrawer} />
     ) : (
-      <ProfileIcon
-        onClick={() => {
-          tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
-          setDrawerOpen(true);
-        }}
-      />
+      <ProfileIcon onClick={openDrawer} />
     );
-  console.log("....pio...", { currentReelRace });
 
   return isDrawerOpen ? (
     <React.Fragment>
