@@ -17,8 +17,6 @@ type Props = {
 
 export function ReelRaceStartingNotification({ secondsToStart }: Props) {
   const [secondsLeft, setSecondsLeft] = React.useState(secondsToStart);
-  const relativeTimeToStart =
-    ((secondsToStart - secondsLeft) / secondsToStart) * 100;
   const [dismissed, setDismissed] = React.useState(false);
   const { t } = useTranslationsGql({
     header: `${cmsPrefix}.rr_starting_notification_header`,
@@ -26,12 +24,15 @@ export function ReelRaceStartingNotification({ secondsToStart }: Props) {
   });
 
   useInterval(() => {
-    setSecondsLeft(secondsLeft - 1);
+    setSecondsLeft(prevValue => prevValue - 1);
   }, 1000);
 
-  if (dismissed || secondsLeft < 0) {
+  if (dismissed || secondsLeft <= 0) {
     return null;
   }
+
+  const progressToStart =
+    ((secondsToStart - secondsLeft) / secondsToStart) * 100;
 
   return (
     <Flex
@@ -40,7 +41,7 @@ export function ReelRaceStartingNotification({ secondsToStart }: Props) {
       align="center"
     >
       <Flex.Item className="u-position-relative">
-        <ProgressCircle className="u-width--3xlg" value={relativeTimeToStart} />
+        <ProgressCircle className="u-width--3xlg" value={progressToStart} />
         <Text
           size="md"
           className="u-font-weight-bold u-position-absolute u-inset-x u-text-align-center t-color-black c-rr-starting-notification__counter"
