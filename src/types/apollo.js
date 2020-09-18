@@ -866,6 +866,7 @@ export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
   remainingSpins: number,
   boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
 };
+
 export type ReelRaceWidgetQuery_reelRaces = {
   id: string,
   game: ReelRaceWidgetQuery_reelRaces_game,
@@ -880,6 +881,41 @@ export type ReelRaceWidgetQuery_reelRaces = {
 };
 export type ReelRaceWidgetQuery = {
   reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+};
+
+// ====================================================
+// GraphQL query operation: CurrentReelRaceInfo
+// ====================================================
+
+export type CurrentReelRaceInfoQuery_reelRaces_game = {
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+
+
+export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
+  playerId: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+};
+
+export type CurrentReelRaceInfoQuery_reelRaces = {
+  id: string,
+  game: CurrentReelRaceInfoQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  promoted: boolean,
+  spinLimit: number,
+  cometdChannels: Array<string>,
+  leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
+};
+
+export type CurrentReelRaceInfoQuery = {
+  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>,
 };
 
 // ====================================================
