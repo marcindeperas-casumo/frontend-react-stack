@@ -7,6 +7,17 @@ import { useTimeoutFn } from "./useTimeoutFn";
 jest.useFakeTimers();
 
 describe("useTimeoutFn", () => {
+  const RealDateNow = Date.now;
+
+  const mockDate = ts => {
+    global.Date.now = () => ts;
+  };
+  beforeEach(() => {
+    mockDate(100);
+  });
+  afterEach(() => {
+    global.Date.now = RealDateNow;
+  });
   test("initial data from hook", () => {
     const wrapper = mount(<HookWrapper hook={useTimeoutFn} args={[]} />);
 
