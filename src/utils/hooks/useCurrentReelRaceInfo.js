@@ -78,9 +78,7 @@ export const createCurrentReelRaceData = (
     tournamentId: null,
   }
 ): CurrentReelRaceInfo => {
-  const currentPlayerEntry = leaderboard
-    ? leaderboard[R.propOr("", playerId)]
-    : null;
+  const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
 
   return {
     ...defaultReelRaceInfo,
