@@ -8,6 +8,7 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
   slug: string,
@@ -25,7 +26,7 @@ export const GamePage = ({
   shouldShowSlotControlSystem,
   bonusAmount = 0,
 }: Props) => {
-  useInGameBonusOrRealBalanceCheck({ bonusAmount: bonusAmount });
+  useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   return (
     <VerticalStretcher gameProviderModel={gameProviderModel}>
@@ -53,6 +54,7 @@ export const GamePage = ({
               className="c-game-page__game-launcher"
             />
           </div>
+          <GamePageNotifications />
         </Flex.Block>
         {shouldShowSlotControlSystem && (
           <Flex.Item>

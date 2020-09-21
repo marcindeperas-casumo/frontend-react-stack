@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
@@ -27,16 +27,16 @@ type Props = {
   location: {
     search: string,
   },
-  bonusAmount: number,
 };
 
-const GameContainer = ({ slug, playForFun, location, bonusAmount }: Props) => {
+export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
 
   const remoteGameLaunchData = launchData
     ? decodedUrlParams(JSON.parse(decodeURIComponent(launchData)))
     : null;
 
+  const bonusAmount = useSelector(playerWalletBonusSelector);
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
@@ -94,7 +94,3 @@ const GameContainer = ({ slug, playForFun, location, bonusAmount }: Props) => {
     />
   );
 };
-
-export const GamePageContainer = connect(state => ({
-  bonusAmount: playerWalletBonusSelector(state),
-}))(GameContainer);
