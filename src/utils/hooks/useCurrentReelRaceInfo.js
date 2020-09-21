@@ -112,6 +112,9 @@ export const createCurrentReelRaceData = (
   };
 };
 
+const rrQueryFetchPolicy =
+  process.env.NODE_ENV === "test" ? undefined : "no-cache";
+
 // After is mounted we show initial leaderboard from reelRace.
 // It shows new leaderboard only when event happens.
 export function useCurrentReelRaceInfo(
@@ -120,12 +123,13 @@ export function useCurrentReelRaceInfo(
   const { data: reelRaceQueryData, loading, refetch } = useQuery<
     A.CurrentReelRaceInfoQuery,
     _
-  >(CurrentReelRaceInfoQuery, { fetchPolicy: "network-only" });
+  >(CurrentReelRaceInfoQuery, {
+    fetchPolicy: rrQueryFetchPolicy,
+  });
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
   const refetchTimeout = useTimeoutFn();
-
   const [
     currentReelRaceData,
     setCurrentReelRaceData,
@@ -258,10 +262,14 @@ export function useCurrentReelRaceInfo(
           );
         });
       } else {
-        setCurrentReelRaceData(prevData => ({
-          ...prevData,
-          isInProgress: false,
-        }));
+        setCurrentReelRaceData(prevData =>
+          !prevData
+            ? null
+            : {
+                ...prevData,
+                isInProgress: false,
+              }
+        );
       }
 
       return function cleanup() {
