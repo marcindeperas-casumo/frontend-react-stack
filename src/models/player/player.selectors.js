@@ -37,7 +37,8 @@ export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
   bonusAmountSelector,
   (wallet, handshakeBonusAmount) => {
-    return prop("bonus")(wallet) || handshakeBonusAmount;
+    const validateBonusBalanceToReturn = propOr(handshakeBonusAmount, "bonus");
+    return validateBonusBalanceToReturn(wallet);
   }
 );
 
