@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import cx from "classnames";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
@@ -16,8 +16,8 @@ type Props = {
   currentRace: ?CurrentReelRaceInfo,
 };
 
-const INITIAL_VIEW_CHANGE_INTERVAL_MS = 3 * 1000;
-const VIEW_CHANGE_INTERVAL_MS = 7 * 1000;
+const INITIAL_VIEW_CHANGE_INTERVAL_MS = 2 * 1000;
+const VIEW_CHANGE_INTERVAL_MS = 5 * 1000;
 const VIEW_CHANGE_TRANSITION_MS = 1 * 1000;
 
 export const rrViews = [
@@ -36,10 +36,18 @@ export const getNextView = (
   return newView === 0 && numberOfViews > 1 ? 1 : newView;
 };
 
-export const IconBackground = ({ children }) => (
+export const IconBackground = ({
+  children,
+  className,
+}: {
+  children: ?React.Node,
+  className?: string,
+}) => (
   <div
-    className="c-reel-race-icon t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg u-overflow-hidden
-t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left"
+    className={cx(
+      "t-border-r--circle u-height--full u-overflow-hidden u-position-relative u-zindex--content-overlay",
+      className
+    )}
   >
     {children}
   </div>
@@ -87,7 +95,8 @@ export const ReelRaceIcon = ({ onClick, currentRace }: Props) => {
   return (
     <div
       onClick={onClick}
-      className="u-position-relative u-zindex--content-overlay"
+      className="c-reel-race-icon u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg
+t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left"
     >
       <IconBackground>
         <CurrentView

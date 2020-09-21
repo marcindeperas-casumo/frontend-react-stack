@@ -17,13 +17,22 @@ jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests
 jest.useFakeTimers();
 
 describe("useCurrentReelRaceInfo", () => {
+  const RealDateNow = Date.now;
+
+  const mockDate = ts => {
+    global.Date.now = () => ts;
+  };
+  afterEach(() => {
+    global.Date.now = RealDateNow;
+  });
   const playerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
 
   describe("createCurrentReelRaceData", () => {
-    const tournamentId = "some-nice-tournament-id";
+    const id = "some-nice-tournament-id";
     const game = "some nice game";
     const startTime = 10;
     const endTime = 30;
+    const nowInProgress = 20;
     const leaderboardEntryOther = {
       playerId: 333,
       position: 2,
@@ -48,7 +57,7 @@ describe("useCurrentReelRaceInfo", () => {
       position: UNSET_VALUE,
       points: 0,
       remainingSpins: UNSET_VALUE,
-      isStarted: false,
+      isInProgress: false,
       tournamentId: null,
     };
 
@@ -56,9 +65,10 @@ describe("useCurrentReelRaceInfo", () => {
       expect(createCurrentReelRaceData()).toEqual(emptyResult);
     });
     test("no player on the list", () => {
+      mockDate(nowInProgress);
       expect(
         createCurrentReelRaceData(playerId, {
-          tournamentId,
+          id,
           startTime,
           endTime,
           game,
@@ -66,31 +76,32 @@ describe("useCurrentReelRaceInfo", () => {
         })
       ).toEqual({
         ...emptyResult,
-        isStarted: true,
+        isInProgress: true,
         game,
         startTime,
         endTime,
-        tournamentId,
+        tournamentId: id,
       });
     });
     test("first position", () => {
+      mockDate(nowInProgress);
       expect(
         createCurrentReelRaceData(playerId, {
-          tournamentId,
+          id,
           startTime,
           endTime,
           game,
           leaderboard,
         })
       ).toEqual({
-        isStarted: true,
+        isInProgress: true,
         game,
         startTime,
         endTime,
         position: leaderboardEntryMe.position,
         points: leaderboardEntryMe.points,
         remainingSpins: leaderboardEntryMe.remainingSpins,
-        tournamentId,
+        tournamentId: id,
       });
     });
   });
@@ -139,11 +150,6 @@ describe("useCurrentReelRaceInfo", () => {
   });
 
   describe("hook", () => {
-    const RealDateNow = Date.now;
-
-    const mockDate = ts => {
-      global.Date.now = () => ts;
-    };
     const mocks = reelRaces =>
       Array(4).fill({
         request: {
@@ -155,9 +161,7 @@ describe("useCurrentReelRaceInfo", () => {
           },
         },
       });
-    afterEach(() => {
-      global.Date.now = RealDateNow;
-    });
+
     test("no reel races planned", () => {
       const wrapper = mount(
         <MockStore state={defaultState} queryMocks={mocks([])}>
@@ -257,7 +261,7 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
-        isStarted: false,
+        isInProgress: false,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
@@ -291,7 +295,7 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
-        isStarted: true,
+        isInProgress: true,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
@@ -325,7 +329,7 @@ describe("useCurrentReelRaceInfo", () => {
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toEqual({
-        isStarted: true,
+        isInProgress: true,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,

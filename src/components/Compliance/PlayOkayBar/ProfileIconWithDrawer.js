@@ -73,7 +73,7 @@ export const ProfileIconWithDrawer = ({
   };
 
   const iconToShow =
-    currentReelRace && currentReelRace.isStarted ? (
+    currentReelRace && currentReelRace.isInProgress ? (
       <ReelRaceIcon currentRace={currentReelRace} onClick={openDrawer} />
     ) : (
       <ProfileIcon onClick={openDrawer} />

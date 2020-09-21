@@ -21,7 +21,7 @@ export type CurrentReelRaceInfo = {
   position: number,
   points: number,
   remainingSpins: number,
-  isStarted: boolean,
+  isInProgress: boolean,
   tournamentId: ?string,
 };
 
@@ -30,7 +30,7 @@ type LeaderboardObjectType = {
 };
 
 type CreateCurrentReelRaceDataType = {
-  tournamentId?: ?string,
+  id?: ?string,
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
@@ -46,7 +46,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   position: UNSET_VALUE,
   points: 0,
   remainingSpins: UNSET_VALUE,
-  isStarted: false,
+  isInProgress: false,
   tournamentId: null,
 };
 
@@ -69,7 +69,7 @@ export const convertLeaderboardToObject = (
 export const createCurrentReelRaceData = (
   playerId: ?string,
   {
-    tournamentId,
+    id,
     startTime,
     endTime,
     leaderboard,
@@ -79,7 +79,7 @@ export const createCurrentReelRaceData = (
     endTime: UNSET_VALUE,
     leaderboard: {},
     game: null,
-    tournamentId: null,
+    id: null,
   }
 ): CurrentReelRaceInfo => {
   const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
@@ -100,8 +100,15 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
-    isStarted: startTime && startTime >= 0 ? Date.now() >= startTime : false,
-    tournamentId,
+    isInProgress: Boolean(
+      startTime &&
+        startTime >= 0 &&
+        Date.now() >= startTime &&
+        endTime &&
+        endTime >= 0 &&
+        Date.now() < endTime
+    ),
+    tournamentId: id,
   };
 };
 
@@ -113,48 +120,55 @@ export function useCurrentReelRaceInfo(
   const { data: reelRaceQueryData, loading, refetch } = useQuery<
     A.CurrentReelRaceInfoQuery,
     _
-  >(CurrentReelRaceInfoQuery);
+  >(CurrentReelRaceInfoQuery, { fetchPolicy: "network-only" });
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
   const refetchTimeout = useTimeoutFn();
 
   const [
-    currentReelRace,
-    setCurrentReelRace,
-  ] = React.useState<?A.CurrentReelRaceInfoQuery_reelRaces>(null);
-  const [
     currentReelRaceData,
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
 
   const statusHandler = React.useCallback(
-    ({ data }) => {
+    reelRace => ({ data }) => {
       if (
-        currentReelRace?.id === data.tournamentId &&
+        reelRace?.id === data.tournamentId &&
         data.status === RACE_STATE.STARTED
       ) {
+        const {
+          leaderboard: currentReelRaceLeaderboard,
+          ...currentReelRaceRest
+        } = reelRace || {};
+
         setCurrentReelRaceData({
           ...createCurrentReelRaceData(playerId, {
-            ...(currentReelRace
+            ...(currentReelRaceRest
               ? {
-                  ...currentReelRace,
-                  tournamentId: currentReelRace.id,
+                  ...currentReelRaceRest,
+                  leaderboard: convertLeaderboardToObject(
+                    currentReelRaceLeaderboard
+                  ),
                 }
               : {}),
-            isStarted: true,
+            isInProgress: true,
           }),
         });
       }
     },
-    [currentReelRace, playerId]
+    [playerId]
   );
   const subscriptionHandler = React.useCallback(
-    ({ data }: { data: { leaderboard: LeaderboardObjectType } }) => {
+    reelRace => ({
+      data,
+    }: {
+      data: { leaderboard: LeaderboardObjectType },
+    }) => {
       const {
         leaderboard: currentReelRaceLeaderboard,
         ...currentReelRaceRest
-      } = currentReelRace || {};
+      } = reelRace || {};
 
       setCurrentReelRaceData(
         createCurrentReelRaceData(playerId, {
@@ -164,14 +178,13 @@ export function useCurrentReelRaceInfo(
                 leaderboard: convertLeaderboardToObject(
                   currentReelRaceLeaderboard
                 ),
-                tournamentId: currentReelRaceRest.id,
               }
             : {}),
           leaderboard: data.leaderboard,
         })
       );
     },
-    [currentReelRace, playerId]
+    [playerId]
   );
 
   React.useEffect(() => {
@@ -194,14 +207,24 @@ export function useCurrentReelRaceInfo(
   }, [playerId, refetch, tournamentChannels]);
 
   React.useEffect(() => {
+    const reelRaceApplies = (
+      localCurrentReelRace: ?A.CurrentReelRaceInfoQuery_reelRaces,
+      localGameSlug: ?string
+    ): boolean =>
+      Boolean(
+        localCurrentReelRace &&
+          (!localGameSlug ||
+            (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
+      );
+
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
 
       refetchTimeout.scheduleAt(
         refetch,
         (closestReelRace ? closestReelRace.endTime : 0) +
-          (10 + Math.random() * 60) * 1000
-      ); // distribute refetch within 60s
+          (3 + Math.random() * 30) * 1000
+      ); // distribute refetch within 30s
 
       const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
@@ -209,9 +232,8 @@ export function useCurrentReelRaceInfo(
 
       if (
         localCurrentReelRace &&
-        (!gameSlug || (gameSlug && localCurrentReelRace.game.slug === gameSlug))
+        reelRaceApplies(localCurrentReelRace, gameSlug)
       ) {
-        setCurrentReelRace(localCurrentReelRace);
         setCurrentReelRaceData(
           createCurrentReelRaceData(playerId, {
             startTime: localCurrentReelRace.startTime,
@@ -220,44 +242,46 @@ export function useCurrentReelRaceInfo(
               localCurrentReelRace.leaderboard
             ),
             game: localCurrentReelRace.game,
-            tournamentId: localCurrentReelRace.id,
+            id: localCurrentReelRace.id,
           })
         );
 
         localCurrentReelRace.cometdChannels.forEach(channel => {
           cometd.subscribe(
             `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`,
-            subscriptionHandler
+            subscriptionHandler(localCurrentReelRace)
           );
 
           cometd.subscribe(
             `${channel}/tournaments/tournamentProperties/status`,
-            statusHandler
+            statusHandler(localCurrentReelRace)
           );
         });
+      } else {
+        setCurrentReelRaceData(prevData => ({
+          ...prevData,
+          isInProgress: false,
+        }));
       }
 
       return function cleanup() {
         refetchTimeout.clear();
         if (
           localCurrentReelRace &&
-          (!gameSlug ||
-            (gameSlug && localCurrentReelRace.game.slug === gameSlug))
+          reelRaceApplies(localCurrentReelRace, gameSlug)
         ) {
           localCurrentReelRace.cometdChannels.forEach(channel => {
             cometd.unsubscribe(
               `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`
             );
-            cometd.subscribe(
-              `${channel}/tournaments/tournamentProperties/status`,
-              statusHandler
+            cometd.unsubscribe(
+              `${channel}/tournaments/tournamentProperties/status`
             );
           });
         }
       };
     }
   }, [
-    statusHandler,
     gameSlug,
     loading,
     playerId,
@@ -265,6 +289,7 @@ export function useCurrentReelRaceInfo(
     refetch,
     refetchTimeout,
     subscriptionHandler,
+    statusHandler,
   ]);
 
   return currentReelRaceData;
