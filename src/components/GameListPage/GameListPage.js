@@ -53,7 +53,7 @@ export function findQueryTranslation(
   )(allFilters);
 }
 
-const getAppliedFilters = filters =>
+const getAppliedFilters = (filters = {}) =>
   Object.entries(filters)
     .filter(([key, val]) => val)
     .map(([key]) => key);
@@ -96,7 +96,6 @@ export function GameListPage({ set }: Props) {
       })
     );
   }, [sort, filters, dispatch, page]);
-  useSetScrollPosition();
 
   const query = [set.baseQuery, sortOrder, ...f].join("&");
   const [listHash, setListHash] = React.useState("");
@@ -130,6 +129,7 @@ export function GameListPage({ set }: Props) {
     fetchMore,
     data?.getGamesPaginated.gamesCount || 0
   );
+  useSetScrollPosition(loading);
 
   const selectCmp = (
     <Flex className="o-flex--wrap">

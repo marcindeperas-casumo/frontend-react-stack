@@ -1,35 +1,46 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { useLocation } from "@reach/router";
 import { useDispatch, useSelector } from "react-redux";
+import { isMobile } from "Components/ResponsiveLayout";
 import { isTLDMarketSpecific } from "Utils";
 import {
-  setScroll,
-  getGamePageScrollPosition,
   setData,
+  setScroll,
+  getGamePage,
+  getGamePageScrollPosition,
 } from "Models/gameBrowser";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
+function getPage() {
+  const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
+
+  return (
+    window.location.pathname.split("/")[isTLDMarketSpecific(tld) ? 2 : 3] ||
+    "top"
+  );
+}
+
 export function useCurrentGamePage() {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
-  const page =
-    location.pathname.split("/")[isTLDMarketSpecific(tld) ? 2 : 3] || "top";
-  dispatch(setData({ page }));
+  const page = getPage();
+  const savedPage = useSelector(getGamePage, R.equals);
+  if (page !== savedPage) {
+    dispatch(setData({ page }));
+    dispatch(setScroll(0));
+  }
 
   return page;
 }
 
 export function useScrollPositionPersistor() {
   const dispatch = useDispatch();
-  const scrollPos = useSelector(getGamePageScrollPosition);
+  const scrollPos = useSelector(getGamePageScrollPosition, R.equals);
 
   React.useEffect(() => {
     const scrollEl = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
 
-    if (!scrollEl) {
+    if (!scrollEl || isMobile()) {
       return;
     }
 
@@ -48,12 +59,12 @@ export function useScrollPositionPersistor() {
   }, [dispatch, scrollPos]);
 }
 
-export function useSetScrollPosition() {
-  const scrollPos = useSelector(getGamePageScrollPosition, R.T);
+export function useSetScrollPosition(loading: boolean) {
+  const scrollPos = useSelector(getGamePageScrollPosition, R.equals);
   const initialized = React.useRef(false);
 
   React.useEffect(() => {
-    if (initialized.current) {
+    if (isMobile() || initialized.current || loading) {
       return;
     }
 
