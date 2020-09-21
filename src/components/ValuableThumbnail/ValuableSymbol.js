@@ -18,6 +18,18 @@ import {
   MegaSpinsIcon,
 } from "./icons";
 
+const ALL_CURRENCIES_ICONS = {
+  [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
+  [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
+  [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
+  [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+  [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+  [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
+  [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+  [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
+  [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+};
+
 const VALUABLE_ICON = {
   [VALUABLE_TYPES.DEPOSIT]: DepositBonusIcon,
   [VALUABLE_TYPES.SPINS]: {
@@ -27,37 +39,13 @@ const VALUABLE_ICON = {
     [VALUABLE_SPIN_TYPES.MEGA]: MegaSpinsIcon,
   },
   [VALUABLE_TYPES.CASH]: {
-    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
-    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
-    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+    ...ALL_CURRENCIES_ICONS,
   },
   [VALUABLE_TYPES.CASHBACK]: {
-    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
-    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
-    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+    ...ALL_CURRENCIES_ICONS,
   },
   [VALUABLE_TYPES.WAGERING_LOCK]: {
-    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
-    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
-    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
-    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+    ...ALL_CURRENCIES_ICONS,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
