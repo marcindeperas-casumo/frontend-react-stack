@@ -226,6 +226,7 @@ export function GameListPage({ set }: Props) {
             };
 
             if (isLiveCasino) {
+              // $FlowIgnore
               return <LiveCasinoGamesVirtualGrid {...props} />;
             }
 
