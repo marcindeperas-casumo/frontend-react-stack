@@ -44,7 +44,7 @@ export function GameListPageFilters(props: Props) {
               key={key}
               justify={type === "toggle" ? "space-between" : "start"}
               direction={type === "toggle" ? "horizontal" : "vertical"}
-              className="u-padding-y--xlg t-border-bottom t-color-grey-5"
+              className="u-padding-y--xlg t-border-bottom t-color-grey-5 o-flex__item--no-shrink"
             >
               <Flex
                 direction="vertical"
@@ -110,7 +110,7 @@ export function GameListPageFilters(props: Props) {
             </Flex>
           )
         )}
-        <Flex className="u-padding--2xlg" />
+        <Flex className="u-padding--2xlg o-flex__item--no-shrink" />
       </Flex>
       <Flex className="u-padding-x--md u-padding-y--xlg u-position-absolute u-bottom-0 u-left-0 u-right-0 c-game-list-page-filters__main-button-bg">
         <ButtonPrimary className="u-width--full" onClick={props.close}>
