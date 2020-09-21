@@ -1,8 +1,8 @@
 import React from "react";
+import { IFRAME_MODE } from "Models/payments";
 import { PiqIframeComponent } from "./PiqIframeComponent";
-import { IFRAME_MODE } from "./constants";
 
-export const CVVCode = props => {
+export const CvvCodeIframe = props => {
   const localProps = {
     ...props,
     mode: IFRAME_MODE.CVV_CODE,

@@ -4,8 +4,10 @@ import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import TextInput from "@casumo/cmp-text-input";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { CVVCode } from "Components/Payments";
+import { useDispatch } from "react-redux";
+import { CvvCodeIframe } from "Components/Payments";
 import { useQuickDepositSlipForm } from "Utils/hooks";
+import { fetchPageBySlug } from "Models/cms";
 
 import "./QuickDepositSlip.scss";
 
@@ -49,6 +51,8 @@ export const QuickDepositSlip = ({
     presetAmount,
     ...t,
   });
+
+  useDispatch()(fetchPageBySlug("payment-method.creditcard.visa_card"));
 
   const onCvvError = message =>
     onCvvIframeCallback({
@@ -99,7 +103,10 @@ export const QuickDepositSlip = ({
           <Flex.Item className="c-quick-deposit-slip__cvv">
             <Flex direction="vertical" spacing="sm" justify="space-between">
               <Flex.Item>
-                <CVVCode onValidation={onCvvError} onSuccess={onCvvSuccess} />
+                <CvvCodeIframe
+                  onValidation={onCvvError}
+                  onSuccess={onCvvSuccess}
+                />
               </Flex.Item>
             </Flex>
           </Flex.Item>
