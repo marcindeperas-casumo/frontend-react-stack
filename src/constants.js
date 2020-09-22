@@ -100,7 +100,7 @@ export const ROUTE_IDS = {
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
-  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
+  LIVE_CASINO: "LIVE_CASINO",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
@@ -137,7 +137,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
+  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -325,6 +325,10 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
   MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE: "Sports - odds added live page",
   MIXPANEL_SPORTS_BETSLIP_LIVE_NOW: "Sports - odds added live now",
+  MIXPANEL_SPORTS_HOME_CARD_CLICKED: "Sports Home - card clicked",
+  MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
+  MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
+  MIXPANEL_SPORTS_HOME_ODDS_CLICKED: "Sports Home - odds clicked",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -333,6 +337,11 @@ export const EVENTS = {
   MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
+  MIXPANEL_GAME_SET_CLICKED: "Game Set Clicked",
+  MIXPANEL_GAME_SET_SORTING_CLICKED: "Sorting Clicked",
+  MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
+  MIXPANEL_GAME_SET_FILTERING_CLICKED: "Filtering Clicked",
+  MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED: "Filtering Option Clicked",
 };
 
 export const EVENT_PROPS = {
@@ -362,6 +371,7 @@ export const EVENT_PROPS = {
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
   GAME_PLAY_TYPE: "Game play type",
+  TYPE: "type",
 };
 
 export const EVENT_LOCATIONS = {
@@ -370,7 +380,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
-  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
+  LIVE_CASINO: "Live Casino - Details Page",
   GAME_DETAILS: "Game details",
 };
 

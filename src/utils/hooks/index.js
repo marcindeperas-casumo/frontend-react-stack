@@ -23,3 +23,5 @@ export { useQuickDepositSlipForm } from "./useQuickDepositSlipForm";
 export {
   useInGameBonusOrRealBalanceCheck,
 } from "./useInGameBonusOrRealBalanceCheck";
+export { useCachedQuery } from "./useCachedQuery";
+export { usePrevious } from "./usePrevious";
