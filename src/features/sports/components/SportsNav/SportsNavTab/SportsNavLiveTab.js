@@ -38,15 +38,11 @@ type LiveIconColoredProps = {
   isActive?: boolean,
 };
 
-const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
-  <div className="o-ratio c-sports-icon u-margin-x">
+const LiveIconColored = ({ isActive }: LiveIconColoredProps) => (
+  <div className="o-ratio c-sports-icon">
     {isActive && <CloseBadge />}
     <Flex justify="center" align="center" className="o-ratio__content">
-      <LiveIcon
-        className={`t-border-r--circle t-color-${
-          isActive ? "red-30" : "grey-50"
-        } t-elevation--10`}
-      />
+      <LiveIcon className="t-color-red-30" />
     </Flex>
   </div>
 );
@@ -64,33 +60,32 @@ export const SportsNavLiveTab = ({
   label,
   onClick,
 }: Props) => (
-  <div
-    className={classNames(
-      "c-sports-nav-live-tab u-margin-x u-cursor-pointer o-flex",
-      isActive && "c-sports-live-tab--selected t-color-white"
-    )}
-    onClick={onClick}
-  >
-    <Flex
-      align="center"
-      justify="center"
-      direction="vertical"
+  <Flex direction="horizontal" className="u-margin-right">
+    <div
       className={classNames(
-        "o-flex--1 u-margin-y u-padding-x c-sports-nav-live-tab__wrapper",
-        isActive && "t-background-red-30 t-border-r"
+        "c-sports-nav-live-tab u-margin-x u-cursor-pointer o-flex t-color-red-30",
+        isActive &&
+          "c-sports-live-tab--selected t-color-white t-background-red-30"
       )}
-      spacing="none"
+      onClick={onClick}
     >
-      <LiveIconColored count={count} isActive={isActive} />
-      <Text
-        tag="span"
-        size="sm"
-        className={`u-font-weight-black u-text-align-center t-color-${
-          isActive ? "white" : "grey-50"
-        } u-text-nowrap`}
+      <Flex
+        align="center"
+        justify="center"
+        direction="horizontal"
+        className="o-flex--1 u-margin-y c-sports-nav-live-tab__wrapper u-margin-right"
+        spacing="none"
       >
-        {label}
-      </Text>
-    </Flex>
-  </div>
+        <LiveIconColored count={count} isActive={isActive} />
+        <Text
+          tag="span"
+          size="sm"
+          className="u-font-weight-black u-text-align-center u-text-nowrap"
+        >
+          {label}
+        </Text>
+      </Flex>
+    </div>
+    <div className="t-background-grey-5 c-sports-nav-spacer" />
+  </Flex>
 );

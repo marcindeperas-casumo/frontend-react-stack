@@ -66,7 +66,7 @@ export default class KambiClient extends React.Component<Props> {
       enableFilterMenu: false,
       enableQuickBrowse: false,
       enableTermSearch: false,
-      reservedRoutes: ["home"],
+      reservedRoutes: [],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
@@ -138,6 +138,35 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  trackHomeCardClicked = (type: string) => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_CARD_CLICKED, {
+      [EVENT_PROPS.TYPE]: type,
+    });
+  };
+
+  trackHomeFilterClicked = (type: string) => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_FILTER_CLICKED, {
+      [EVENT_PROPS.TYPE]: type,
+    });
+  };
+
+  trackHomeMatchClicked = (page: { title: string, path: string }) => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_MATCH_CLICKED, {
+      [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
+      [EVENT_PROPS.SPORTS_PAGE_PATH]: page.path,
+    });
+  };
+
+  trackHomeOddsClicked = (categories: {
+    event_group_five: string,
+    event_group_two: string,
+  }) => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_ODDS_CLICKED, {
+      [EVENT_PROPS.SPORTS_NAME]: categories.event_group_two,
+      [EVENT_PROPS.SPORTS_EVENT_NAME]: categories.event_group_five,
+    });
+  };
+
   emitBetslipVisibleToKoStack(
     isTabletDevice: boolean,
     isBetslipVisible: boolean
@@ -153,30 +182,39 @@ export default class KambiClient extends React.Component<Props> {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
     }
 
-    if (
-      event.name === "dataLayerPushed" &&
-      event.data.event === "kambi add to betslip" &&
-      event.data.kambi?.hit?.categories?.is_live
-    ) {
-      event.data.kambi && this.trackAddToBetslipIfLife(event.data.kambi);
+    if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
+      return;
+    }
+    // `dataLayerPushed` events
+    if (event.data.event === "kambi add to betslip") {
+      event.data.kambi?.hit?.categories?.is_live &&
+        this.trackAddToBetslipIfLife(event.data.kambi);
+
+      event.data.kambi?.page?.type === "home" &&
+        this.trackHomeOddsClicked(event.data.kambi?.hit?.categories);
     }
 
-    if (
-      event.name === "dataLayerPushed" &&
-      event.data.event === "kambi page view"
-    ) {
-      event.data.kambi && this.trackPageView(event.data.kambi.page);
+    if (event.data.event === "kambi page view") {
+      this.trackPageView(event.data.kambi?.page);
     }
 
-    if (
-      event.name === "dataLayerPushed" &&
-      event.data.event === "kambi betslip status" &&
-      !isDesktop()
-    ) {
+    if (event.data.event === "kambi betslip status" && !isDesktop()) {
       this.emitBetslipVisibleToKoStack(
         isTablet(),
         Boolean(event.data.kambi?.betslip?.quantity)
       );
+    }
+
+    if (event.data.event === "kambi promo card click") {
+      this.trackHomeCardClicked(event.data.kambi?.interaction?.label);
+    }
+
+    if (event.data.event === "kambi sandwich filter click") {
+      this.trackHomeFilterClicked(event.data.kambi?.interaction?.label);
+    }
+
+    if (event.data.event === "kambi kambi more wagers click") {
+      this.trackHomeMatchClicked(event.data.kambi?.page);
     }
   };
 
@@ -211,11 +249,10 @@ export default class KambiClient extends React.Component<Props> {
       return;
     }
 
-    const onHome = window.location.hash === "#home";
     const onPrevHomeRoute =
       prevHomeRoute && window.location.hash === `#${prevHomeRoute}`;
 
-    if (this.props.homeRoute && (onHome || onPrevHomeRoute)) {
+    if (this.props.homeRoute && onPrevHomeRoute) {
       // eslint-disable-next-line fp/no-mutation
       window.location.hash = this.props.homeRoute;
     }
@@ -229,14 +266,14 @@ export default class KambiClient extends React.Component<Props> {
   render() {
     return (
       <div
-        className={classNames(
-          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-grey-0",
-          {
-            "c-kambi-client--hidden": this.props.isHidden,
-          }
-        )}
+        className={classNames("t-background-grey-0", {
+          "c-kambi-client--hidden": this.props.isHidden,
+        })}
       >
-        <div id="KambiBC" className="u-padding-top" />
+        <div
+          id="KambiBC"
+          className="u-padding-top--md@desktop u-padding-top--sm@tablet u-padding-top--none@mobile"
+        />
 
         {this.props.isBetslipVisible ? null : (
           <style

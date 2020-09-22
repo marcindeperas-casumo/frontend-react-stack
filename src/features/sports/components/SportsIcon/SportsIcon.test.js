@@ -28,12 +28,4 @@ describe("SportsIcon", () => {
     expect(icon.length).toEqual(1);
     expect(activeIndicator.length).toEqual(0);
   });
-
-  test("renders the icon and the active indicator when `isActive` is  is true", () => {
-    const rendered = shallow(<SportsIcon {...props} isActive />);
-    const { icon, activeIndicator } = findElements(rendered);
-
-    expect(icon.length).toEqual(1);
-    expect(activeIndicator.length).toEqual(1);
-  });
 });

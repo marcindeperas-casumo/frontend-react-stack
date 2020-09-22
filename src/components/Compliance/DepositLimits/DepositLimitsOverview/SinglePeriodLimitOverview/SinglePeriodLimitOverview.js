@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonText } from "@casumo/cmp-button";
 import { ArrowRightIcon, MoreIcon } from "@casumo/cmp-icons";
-import { ProgressArc } from "Components/Compliance/ProgressArc";
+import { ProgressArc } from "Components/Progress";
 import { formatCurrency, interpolate } from "Utils";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import type { DepositKinds } from "Models/playOkay/depositLimits";

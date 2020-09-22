@@ -20,7 +20,7 @@ type NavItemProps = FilterItemProps & {
 export const NavItem = (props: NavItemProps) => (
   <div
     onClick={() => props.onSelected(props.navItem)}
-    className="u-margin-y--md u-margin-x--sm"
+    className="u-margin-x--sm"
   >
     <Pill
       inactiveClassNames="t-elevation--10 t-background-white t-color-grey-70"
@@ -48,7 +48,7 @@ export const AllItem = (props: AllItemProps) => {
     canEdit: false,
   };
   return (
-    <div className="u-margin-left--md u-margin-y--md">
+    <div>
       <NavItem
         navItem={allNavItem}
         onSelected={() => props.onSelected(allNavItem)}
@@ -66,7 +66,7 @@ type EditItemProps = {
 };
 
 export const EditItem = ({ canEdit, onEdit, isLiveActive }: EditItemProps) => (
-  <div className="u-margin--md u-margin-left--sm">
+  <div className="u-margin-left--sm">
     {canEdit && !isLiveActive && <EditPillsButton onClick={onEdit} />}
   </div>
 );
