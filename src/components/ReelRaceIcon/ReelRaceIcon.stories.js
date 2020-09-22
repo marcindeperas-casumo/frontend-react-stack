@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { ReelRaceIcon, IconBackground } from "./ReelRaceIcon";
+import { ReelRaceIcon } from "./ReelRaceIcon";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
@@ -19,10 +19,17 @@ const getCurrentRace = (value = null) => ({
 const views = [PositionView, RemainingSpinsView, PointsView];
 const raceValues = [1, 2, 3, 4, 5, 6, 10, 11, 12, 20, 21, 50, 100, 101, 200];
 const centerClass = "c-reel-race-icon__content u-position-absolute";
-const iconClass =
-  "c-reel-race-icon u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left";
 
-const Wrapper = ({ children }) => <div className={iconClass}>{children}</div>;
+const Wrapper = ({ children }) => (
+  <div
+    className="c-reel-race-icon u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg
+t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left"
+  >
+    <div className="t-border-r--circle u-height--full u-overflow-hidden u-position-relative u-zindex--content-overlay">
+      {children}
+    </div>
+  </div>
+);
 
 stories.add("Default", () => {
   return (
@@ -37,20 +44,18 @@ stories.add("Default", () => {
           height: 48,
         }}
       >
-        <div>
+        <Wrapper>
           <ReelRaceIcon
             onClick={action("clicked")}
             currentRace={getCurrentRace()}
           />
-        </div>
+        </Wrapper>
       </div>
       <br />
       <div>
         <h2>RRIconView</h2>
         <Wrapper>
-          <IconBackground>
-            <RRIconView className={centerClass} />
-          </IconBackground>
+          <RRIconView className={centerClass} />
         </Wrapper>
       </div>
       {views.map((View, viewIndex) => (
@@ -61,12 +66,7 @@ stories.add("Default", () => {
           <div className="o-flex--horizontal">
             {raceValues.map((raceValue, i) => (
               <Wrapper key={i}>
-                <IconBackground>
-                  <View
-                    className={centerClass}
-                    {...getCurrentRace(raceValue)}
-                  />
-                </IconBackground>
+                <View className={centerClass} {...getCurrentRace(raceValue)} />
               </Wrapper>
             ))}
           </div>

@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import { ChevronDownIcon } from "@casumo/cmp-icons";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { RRIconView } from "./views/RRIconView";
@@ -14,9 +13,10 @@ import "./ReelRaceIcon.scss";
 type Props = {
   onClick: Function,
   currentRace: ?CurrentReelRaceInfo,
+  className?: string,
 };
 
-const INITIAL_VIEW_CHANGE_INTERVAL_MS = 2 * 1000;
+const INITIAL_VIEW_CHANGE_INTERVAL_MS = 3 * 1000;
 const VIEW_CHANGE_INTERVAL_MS = 5 * 1000;
 const VIEW_CHANGE_TRANSITION_MS = 1 * 1000;
 
@@ -36,24 +36,7 @@ export const getNextView = (
   return newView === 0 && numberOfViews > 1 ? 1 : newView;
 };
 
-export const IconBackground = ({
-  children,
-  className,
-}: {
-  children: ?React.Node,
-  className?: string,
-}) => (
-  <div
-    className={cx(
-      "t-border-r--circle u-height--full u-overflow-hidden u-position-relative u-zindex--content-overlay",
-      className
-    )}
-  >
-    {children}
-  </div>
-);
-
-export const ReelRaceIcon = ({ onClick, currentRace }: Props) => {
+export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
   const [currentViewIndex, setCurrentViewIndex] = React.useState(0);
   const [nextViewIndex, setNextViewIndex] = React.useState(
     getNextView(currentViewIndex)
@@ -94,30 +77,25 @@ export const ReelRaceIcon = ({ onClick, currentRace }: Props) => {
   const NextView = rrViews[nextViewIndex];
   return (
     <div
-      onClick={onClick}
-      className="c-reel-race-icon u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg
-t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left"
+      className={cx(
+        "c-reel-race-icon u-position-relative u-height--2xlg u-width--2xlg t-background-grey-90",
+        className
+      )}
     >
-      <IconBackground>
-        <CurrentView
+      <CurrentView
+        {...currentRace}
+        className={cx("c-reel-race-icon__content u-position-absolute", {
+          "c-reel-race-icon__content--old": isTransitionRunning,
+        })}
+      />
+      {isTransitionRunning && (
+        <NextView
           {...currentRace}
           className={cx("c-reel-race-icon__content u-position-absolute", {
-            "c-reel-race-icon__content--old": isTransitionRunning,
+            "c-reel-race-icon__content--next": isTransitionRunning,
           })}
         />
-        {isTransitionRunning && (
-          <NextView
-            {...currentRace}
-            className={cx("c-reel-race-icon__content u-position-absolute", {
-              "c-reel-race-icon__content--next": isTransitionRunning,
-            })}
-          />
-        )}
-      </IconBackground>
-      <ChevronDownIcon
-        size="sm"
-        className="c-reel-race-icon__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle"
-      />
+      )}
     </div>
   );
 };

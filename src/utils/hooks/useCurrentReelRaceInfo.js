@@ -191,6 +191,19 @@ export function useCurrentReelRaceInfo(
     [playerId]
   );
 
+  const reelRaceApplies = React.useCallback(
+    (
+      localCurrentReelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
+      localGameSlug: ?string
+    ): boolean =>
+      Boolean(
+        localCurrentReelRace &&
+          (!localGameSlug ||
+            (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
+      ),
+    []
+  );
+
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
@@ -211,18 +224,11 @@ export function useCurrentReelRaceInfo(
   }, [playerId, refetch, tournamentChannels]);
 
   React.useEffect(() => {
-    const reelRaceApplies = (
-      localCurrentReelRace: ?A.CurrentReelRaceInfoQuery_reelRaces,
-      localGameSlug: ?string
-    ): boolean =>
-      Boolean(
-        localCurrentReelRace &&
-          (!localGameSlug ||
-            (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
-      );
-
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
+      const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
+        reelRaceQueryData.reelRaces
+      );
 
       refetchTimeout.scheduleAt(
         refetch,
@@ -230,28 +236,28 @@ export function useCurrentReelRaceInfo(
           (3 + Math.random() * 30) * 1000
       ); // distribute refetch within 30s
 
-      const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
-        reelRaceQueryData.reelRaces
-      );
-
-      if (
-        localCurrentReelRace &&
-        reelRaceApplies(localCurrentReelRace, gameSlug)
-      ) {
+      if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
         setCurrentReelRaceData(
           createCurrentReelRaceData(playerId, {
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             startTime: localCurrentReelRace.startTime,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             endTime: localCurrentReelRace.endTime,
             leaderboard: convertLeaderboardToObject(
+              // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
               localCurrentReelRace.leaderboard
             ),
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             game: localCurrentReelRace.game,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             id: localCurrentReelRace.id,
           })
         );
 
+        // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
         localCurrentReelRace.cometdChannels.forEach(channel => {
           cometd.subscribe(
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`,
             subscriptionHandler(localCurrentReelRace)
           );
@@ -274,12 +280,11 @@ export function useCurrentReelRaceInfo(
 
       return function cleanup() {
         refetchTimeout.clear();
-        if (
-          localCurrentReelRace &&
-          reelRaceApplies(localCurrentReelRace, gameSlug)
-        ) {
+        if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
+          // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
           localCurrentReelRace.cometdChannels.forEach(channel => {
             cometd.unsubscribe(
+              // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
               `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`
             );
             cometd.unsubscribe(
@@ -298,6 +303,7 @@ export function useCurrentReelRaceInfo(
     refetchTimeout,
     subscriptionHandler,
     statusHandler,
+    reelRaceApplies,
   ]);
 
   return currentReelRaceData;

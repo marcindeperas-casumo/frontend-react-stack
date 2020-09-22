@@ -18,6 +18,9 @@
     bottom: -4px;
     right: -4px;
   }
+  &-color-brown {
+    color: #b96e00;
+  }
 }
 
 // stylelint-disable xi/selector-pattern
@@ -26,13 +29,13 @@
     margin-top: 0;
   }
   100% {
-    margin-top: -48px;
+    margin-top: -40px;
   }
 }
 
 @keyframes floatContentNext {
   0% {
-    margin-top: 48px;
+    margin-top: 40px;
   }
   100% {
     margin-top: 0;
