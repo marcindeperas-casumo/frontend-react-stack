@@ -1,7 +1,7 @@
 // @flow
 // import * as React from "react";
 // import { shallow } from "enzyme";
-import { findQueryTranslation } from "./GameListPage";
+import { findQueryTranslation } from "./GameListPage.utils";
 
 const allFilters = [
   {

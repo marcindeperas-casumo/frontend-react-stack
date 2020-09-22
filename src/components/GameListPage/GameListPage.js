@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,35 +27,11 @@ import { GameRow, GameRowText } from "Components/GameRow";
 import { GameListPageQuery } from "./GameListPage.graphql";
 import { GameListPageFilters } from "./GameListPageFilters";
 import { GameListPageSort } from "./GameListPageSort";
+import { findQueryTranslation, getAppliedFilters } from "./GameListPage.utils";
 
 type Props = {
   set: A.GetGameSets_gameSetsList,
 };
-
-/**
- * Each entry in `allFilters` array has array `values` inside.
- * Each entry in `values` has field `query`. Without bug/missing translation
- * there will always be one query that is equal to given `currentQuery`.
- *
- * Number of all queries to match is relatively low (under 100) so we're not
- * concerned about performance of this function.
- */
-export function findQueryTranslation(
-  currentQuery: string,
-  allFilters: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>
-): string {
-  return R.pipe(
-    R.pluck("values"),
-    R.flatten,
-    R.find(R.propEq("query", currentQuery)),
-    R.propOr(currentQuery, "title")
-  )(allFilters);
-}
-
-const getAppliedFilters = (filters = {}) =>
-  Object.entries(filters)
-    .filter(([key, val]) => val)
-    .map(([key]) => key);
 
 /* eslint-disable-next-line sonarjs/cognitive-complexity */
 export function GameListPage({ set }: Props) {
