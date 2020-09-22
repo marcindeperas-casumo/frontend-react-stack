@@ -1,6 +1,9 @@
+// @flow
 import { T, evolve } from "ramda";
+import * as A from "Types/apollo";
 
-export const gameDetails = {
+export const gameDetails: A.GameDetailsQuery_game = {
+  id: "1",
   name: "Book of Dead",
   logo:
     "https://cms.casumo.com/wp-content/uploads/2017/09/book_of_dead_logo.png",
