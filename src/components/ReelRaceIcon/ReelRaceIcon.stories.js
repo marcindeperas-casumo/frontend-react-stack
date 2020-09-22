@@ -15,6 +15,7 @@ const getCurrentRace = (value = null) => ({
   remainingSpins: value || 99,
   points: value || 42,
 });
+const commonProps = { pointsText: "pts" };
 
 const views = [PositionView, RemainingSpinsView, PointsView];
 const raceValues = [1, 2, 3, 4, 5, 6, 10, 11, 12, 20, 21, 50, 100, 101, 200];
@@ -66,7 +67,11 @@ stories.add("Default", () => {
           <div className="o-flex--horizontal">
             {raceValues.map((raceValue, i) => (
               <Wrapper key={i}>
-                <View className={centerClass} {...getCurrentRace(raceValue)} />
+                <View
+                  className={centerClass}
+                  {...getCurrentRace(raceValue)}
+                  {...commonProps}
+                />
               </Wrapper>
             ))}
           </div>

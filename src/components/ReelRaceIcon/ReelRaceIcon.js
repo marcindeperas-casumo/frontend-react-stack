@@ -50,7 +50,7 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
   });
 
   const viewProps = {
-    currentRace,
+    ...currentRace,
     pointsText: t.reel_races_drawer_pts,
   };
 
