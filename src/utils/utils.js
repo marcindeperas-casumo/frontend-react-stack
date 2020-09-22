@@ -435,3 +435,81 @@ export const ordinalSuffix: number => string = number => {
     ordinals[(valueModulus - 20) % 10] || ordinals[valueModulus] || ordinals[0]
   );
 };
+
+// [MARKETS.___en]: "en",
+//   [MARKETS.ca_en]: "en-CA",
+//   [MARKETS.de_de]: "de-DE",
+//   [MARKETS.dk_da]: "da-DK",
+//   [MARKETS.fi_fi]: "fi-FI",
+//   [MARKETS.gb_en]: "en-GB",
+//   [MARKETS.in_en]: "en-IN",
+//   [MARKETS.no_no]: "no-NO",
+//   [MARKETS.se_sv]: "sv-SE",
+//   [MARKETS.es_es]: "es-ES",
+//   [MARKETS.nz_en]: "en-NZ",
+//   [MARKETS.jp_ja]: "ja-JP",
+//   [MARKETS.at_de]: "de-AT",
+
+const ordinalTranslations = {
+  "en-GB": {
+    ordinal: new Map([
+      ["0", "th"],
+      ["1", "st"],
+      ["2", "nd"],
+      ["3", "rd"],
+      ["4", "th"],
+      ["5", "th"],
+      ["6", "th"],
+      ["7", "th"],
+      ["8", "th"],
+      ["9", "th"],
+    ]),
+  },
+  "ja-JP": {
+    ordinal: new Map([
+      ["0", "%E4%BD%8D"],
+      ["1", "%E4%BD%8D"],
+      ["2", "%E4%BD%8D"],
+      ["3", "%E4%BD%8D"],
+      ["4", "%E4%BD%8D"],
+      ["5", "%E4%BD%8D"],
+      ["6", "%E4%BD%8D"],
+      ["7", "%E4%BD%8D"],
+      ["8", "%E4%BD%8D"],
+      ["9", "%E4%BD%8D"],
+    ]),
+  },
+  "sv-SE": {
+    ordinal: new Map([
+      ["0", "e"],
+      ["1", "a"],
+      ["2", "a"],
+      ["3", "e"],
+      ["4", "e"],
+      ["5", "e"],
+      ["6", "e"],
+      ["7", "e"],
+      ["8", "e"],
+      ["9", "e"],
+    ]),
+  },
+};
+
+/**
+ * Returns ordinal suffix for received number eg for (en-gb) 1 it returns 'st', for 52 returns 'nd' ...
+ *
+ * @param {String} locale
+ * @param {Number} amount
+ * @returns {String}
+ */
+export const getOrdinalSuffix = (locale, amount) => {
+  if (!locale || !amount) {
+    return "";
+  }
+  // Set up the locale object
+  const rules = new Intl.PluralRules(locale);
+
+  // Get the rule that applies
+  const rule = rules.select(amount);
+  return ordinalTranslations[locale].get(rule);
+};

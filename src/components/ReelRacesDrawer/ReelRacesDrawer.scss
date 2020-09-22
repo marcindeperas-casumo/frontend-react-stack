@@ -1,5 +1,5 @@
 /* stylelint-disable xi/selector-pattern */
-.checkeredFlag {
+.checkered-flag {
   background-image: linear-gradient(45deg, #fff 25%, transparent 25%),
     linear-gradient(-45deg, #fff 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #fff 75%),
@@ -8,4 +8,19 @@
   background-size: 10px 10px;
   height: 15px;
   width: 9px;
+}
+
+/* Todo to remove WIDTH property after wire up so real progress would fill up bar */
+.highlighted-progress-bar {
+  height: 4px;
+  width: 5px;
+}
+
+/* Todo add 'evenly' value inside cudl */
+.rr-position-wrapper {
+  justify-content: space-evenly;
+}
+
+.rr-position {
+  border: 8px solid #1a212c;
 }
