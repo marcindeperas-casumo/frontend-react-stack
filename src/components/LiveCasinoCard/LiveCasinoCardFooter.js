@@ -1,9 +1,11 @@
+// @flow
 import React from "react";
 import { UserIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
 import Evolution from "./providers/evolution.svg";
+import Netent from "./providers/netent.svg";
 
 const Provider = props => (
   <Matcher
@@ -11,13 +13,18 @@ const Provider = props => (
     matchers={{
       casumo: Casumo,
       evolution: Evolution,
+      "Net Entertainment": Netent,
       default: Evolution,
     }}
     {...props}
   />
 );
 
-export function LiveCasinoCardFooter({ players, provider }) {
+type Props = {
+  players?: number,
+  provider: string,
+};
+export function LiveCasinoCardFooter({ players, provider }: Props) {
   return (
     <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border-current t-color-grey-0">
       <div className="o-flex-align--center">

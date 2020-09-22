@@ -100,7 +100,7 @@ export const ROUTE_IDS = {
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
-  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
+  LIVE_CASINO: "LIVE_CASINO",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
@@ -137,7 +137,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
+  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -337,6 +337,11 @@ export const EVENTS = {
   MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
+  MIXPANEL_GAME_SET_CLICKED: "Game Set Clicked",
+  MIXPANEL_GAME_SET_SORTING_CLICKED: "Sorting Clicked",
+  MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
+  MIXPANEL_GAME_SET_FILTERING_CLICKED: "Filtering Clicked",
+  MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED: "Filtering Option Clicked",
 };
 
 export const EVENT_PROPS = {
@@ -375,7 +380,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
-  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
+  LIVE_CASINO: "Live Casino - Details Page",
   GAME_DETAILS: "Game details",
 };
 

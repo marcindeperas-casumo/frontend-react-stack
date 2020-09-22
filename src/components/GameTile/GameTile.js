@@ -1,8 +1,10 @@
 // @flow
 import React from "react";
+import { Link } from "@reach/router";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
+import { isMobile } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -88,9 +90,21 @@ export const GameTile = ({
               eventName={EVENTS.MIXPANEL_GAME_DETAILS}
               data={{ [EVENT_PROPS.GAME_NAME]: name }}
             >
-              <a className="u-padding u-display--block" href={`/play/${slug}`}>
-                <MoreIcon className="t-color-white" />
-              </a>
+              {isMobile() ? (
+                <a
+                  className="u-padding u-display--block"
+                  href={`/play/${slug}`}
+                >
+                  <MoreIcon className="t-color-white" />
+                </a>
+              ) : (
+                <Link
+                  to={`/games/details/${slug}`}
+                  className="u-padding u-display--block"
+                >
+                  <MoreIcon className="t-color-white" />
+                </Link>
+              )}
             </TrackClick>
           </Flex.Item>
           <Flex.Item onClick={e => e.stopPropagation()}>
@@ -101,11 +115,7 @@ export const GameTile = ({
                 [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
               }}
             >
-              <GameTileHeart
-                gameId={id}
-                gameSlug={slug}
-                isInMyList={isInMyList}
-              />
+              <GameTileHeart gameId={id} gameSlug={slug} />
             </TrackClick>
           </Flex.Item>
         </Flex>
