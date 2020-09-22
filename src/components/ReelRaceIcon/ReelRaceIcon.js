@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
+import { useTranslationsGql } from "Utils/hooks";
+import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { RRIconView } from "./views/RRIconView";
@@ -43,6 +45,15 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
   );
   const [isTransitionRunning, setIsTransitionRunning] = React.useState(false);
 
+  const { t } = useTranslationsGql({
+    reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
+  });
+
+  const viewProps = {
+    currentRace,
+    pointsText: t.reel_races_drawer_pts,
+  };
+
   const transitionTimer = useTimeoutFn();
 
   React.useEffect(() => {
@@ -83,14 +94,14 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
       )}
     >
       <CurrentView
-        {...currentRace}
+        {...viewProps}
         className={cx("c-reel-race-icon__content u-position-absolute", {
           "c-reel-race-icon__content--old": isTransitionRunning,
         })}
       />
       {isTransitionRunning && (
         <NextView
-          {...currentRace}
+          {...viewProps}
           className={cx("c-reel-race-icon__content u-position-absolute", {
             "c-reel-race-icon__content--next": isTransitionRunning,
           })}
