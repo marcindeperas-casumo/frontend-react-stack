@@ -451,7 +451,7 @@ export const ordinalSuffix: number => string = number => {
 //   [MARKETS.at_de]: "de-AT",
 
 const ordinalTranslations = {
-  "en-GB": {
+  en: {
     ordinal: new Map([
       ["0", "th"],
       ["1", "st"],
@@ -507,9 +507,9 @@ export const getOrdinalSuffix = (locale, amount) => {
     return "";
   }
   // Set up the locale object
-  const rules = new Intl.PluralRules(locale);
+  // const rules = new Intl.PluralRules(locale);
 
-  // Get the rule that applies
-  const rule = rules.select(amount);
-  return ordinalTranslations[locale].get(rule);
+  // // Get the rule that applies
+  // const rule = rules.select(amount);
+  return ordinalTranslations[locale].ordinal.get(amount);
 };

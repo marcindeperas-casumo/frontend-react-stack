@@ -8,6 +8,7 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { ReelRacesDrawerContainer as ReelRacesDrawer } from "../ReelRacesDrawer/ReelRacesDrawerContainer";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
@@ -16,6 +17,7 @@ type Props = {
   resumeGame: () => void,
   shouldShowSlotControlSystem: boolean,
   bonusAmount?: number,
+  slug?: string,
 };
 export const GamePage = ({
   gameProviderModel,
@@ -23,6 +25,7 @@ export const GamePage = ({
   resumeGame,
   shouldShowSlotControlSystem,
   bonusAmount = 0,
+  slug,
 }: Props) => {
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
@@ -33,6 +36,9 @@ export const GamePage = ({
         direction="vertical"
         spacing="none"
       >
+        <Flex.Item>
+          <ReelRacesDrawer slug={slug} />
+        </Flex.Item>
         <Flex.Item>
           <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
         </Flex.Item>

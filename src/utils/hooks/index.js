@@ -25,3 +25,4 @@ export {
 } from "./useInGameBonusOrRealBalanceCheck";
 export { useCachedQuery } from "./useCachedQuery";
 export { usePrevious } from "./usePrevious";
+export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";

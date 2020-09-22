@@ -9,7 +9,7 @@ type Props = {
   ordinalSuffix: string,
   position: string,
   points: string,
-  t: {
+  t?: {
     reel_races_drawer_pts: string,
   },
 };
