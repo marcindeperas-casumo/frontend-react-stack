@@ -97,17 +97,25 @@ export const ProfileIconWithDrawer = ({
   const currentReelRace = useCurrentReelRaceInfo(playing?.gameId);
 
   useEffect(() => {
+    const switchIconTo = iconType => {
+      setSecondaryIconType(iconType);
+      setIsTransitionRunning(true);
+      transitionTimer.scheduleIn(() => {
+        setIsTransitionRunning(false);
+        setPrimaryIconType(iconType);
+        setSecondaryIconType(bubbleTypes.none);
+      }, 1000);
+    };
     if (
       currentReelRace?.isInProgress &&
       primaryIconType !== bubbleTypes.reelRace
     ) {
-      setSecondaryIconType(bubbleTypes.reelRace);
-      setIsTransitionRunning(true);
-      transitionTimer.scheduleIn(() => {
-        setIsTransitionRunning(false);
-        setPrimaryIconType(bubbleTypes.reelRace);
-        setSecondaryIconType(bubbleTypes.none);
-      }, 1000);
+      switchIconTo(bubbleTypes.reelRace);
+    } else if (
+      (!currentReelRace || currentReelRace?.endTime <= Date.now()) &&
+      primaryIconType !== bubbleTypes.profileIcon
+    ) {
+      switchIconTo(bubbleTypes.profileIcon);
     }
   }, [currentReelRace, primaryIconType, transitionTimer]);
 
@@ -123,7 +131,7 @@ export const ProfileIconWithDrawer = ({
       <div
         onClick={openDrawer}
         className={cx(
-          "c-profile-icon-with-drawer u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
+          "c-profile-icon-with-drawer u-position-relative u-zindex--content-overlay t-opacity-background--100 t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
           "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-90 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
           "u-cursor--pointer",
           {
