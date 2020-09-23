@@ -28,7 +28,7 @@ export const ReelRacesDrawer = ({
   const gameDurationFormatted = `${gameDuration}:00`;
   return (
     <Flex
-      className="u-position-fixed u-inset-x u-margin--auto t-background-grey-90 t-color-white u-padding t-background-grey-90 t-border-r u-width--2/3 o-flex--wrap"
+      className="reel-races-wrapper u-position-fixed u-inset-x u-margin--auto t-background-grey-90 t-color-white u-padding t-background-grey-90 t-border-r u-width--2/3 o-flex--wrap"
       direction="horizontal"
       spacing="md"
     >

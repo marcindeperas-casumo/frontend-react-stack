@@ -428,14 +428,6 @@ export const bonusBalanceDisplay = (
 };
 
 // Returns ordinal suffix for received number eg for 1 it returns 'st', for 52 returns 'nd' ..
-export const ordinalSuffix: number => string = number => {
-  const ordinals = ["th", "st", "nd", "rd"];
-  const valueModulus = number % 100;
-  return (
-    ordinals[(valueModulus - 20) % 10] || ordinals[valueModulus] || ordinals[0]
-  );
-};
-
 const ordinalTranslations = {
   en: {
     ordinal: new Map([

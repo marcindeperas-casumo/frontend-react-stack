@@ -1,4 +1,8 @@
 /* stylelint-disable xi/selector-pattern */
+.reel-races-wrapper {
+  z-index: 9;
+}
+
 .checkered-flag {
   background-image: linear-gradient(45deg, #fff 25%, transparent 25%),
     linear-gradient(-45deg, #fff 25%, transparent 25%),
