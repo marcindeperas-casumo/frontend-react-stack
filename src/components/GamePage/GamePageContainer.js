@@ -85,7 +85,6 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
 
   return (
     <GamePage
-      slug={slug}
       gameProviderModel={gameProviderModel}
       pauseGame={pauseGame}
       resumeGame={resumeGame}
