@@ -14,7 +14,7 @@ export const PointsView = ({
 }: CurrentReelRaceInfo & { className?: string }) => {
   return (
     <Flex
-      className={cx(className)}
+      className={cx("u-line-height--1", className)}
       direction="vertical"
       spacing="none"
       align="center"
@@ -25,7 +25,11 @@ export const PointsView = ({
         </Text>
       </Flex.Item>
       <Flex.Item>
-        <Text className="t-color-white u-font-weight-bold" tag="div" size="sm">
+        <Text
+          className="t-color-white u-font-weight-bold"
+          tag="div"
+          size={points < 100 ? "sm" : "xs"}
+        >
           {points}
         </Text>
       </Flex.Item>

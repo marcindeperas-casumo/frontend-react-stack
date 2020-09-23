@@ -13,7 +13,7 @@ export const PositionView = ({
   className,
 }: CurrentReelRaceInfo & { className?: string }) => (
   <Flex
-    className={cx("t-color-white", className)}
+    className={cx("t-color-white u-line-height--1", className)}
     direction="vertical"
     spacing="none"
     align="center"
@@ -30,7 +30,11 @@ export const PositionView = ({
       />
     </Flex.Item>
     <Flex.Item>
-      <Text className="t-color-white u-font-weight-bold" tag="div" size="sm">
+      <Text
+        className="t-color-white u-font-weight-bold"
+        tag="div"
+        size={position < 100 ? "sm" : "xs"}
+      >
         {position}
       </Text>
     </Flex.Item>

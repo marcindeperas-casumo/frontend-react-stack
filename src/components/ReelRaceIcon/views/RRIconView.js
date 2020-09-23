@@ -6,7 +6,7 @@ import ReelRaceIconSvg from "../icons/rrIcon.svg";
 import "../ReelRaceIcon.scss";
 
 export const RRIconView = ({ className }: { className?: string }) => (
-  <ReelRaceIconSvg className={cx(className)} />
+  <ReelRaceIconSvg className={cx("u-line-height--1", className)} />
 );
 
 // eslint-disable-next-line fp/no-mutation

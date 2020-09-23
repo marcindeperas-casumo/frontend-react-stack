@@ -13,7 +13,7 @@ export const RemainingSpinsView = ({
   className,
 }: CurrentReelRaceInfo & { className?: string }) => (
   <Flex
-    className={cx("t-color-white", className)}
+    className={cx("t-color-white ", className)}
     direction="vertical"
     spacing="none"
     align="center"
@@ -22,7 +22,11 @@ export const RemainingSpinsView = ({
       <SpinIcon size="sm" />
     </Flex.Item>
     <Flex.Item>
-      <Text className="t-color-white u-font-weight-bold" tag="div" size="sm">
+      <Text
+        className="t-color-white u-font-weight-bold"
+        tag="div"
+        size={remainingSpins < 100 ? "sm" : "xs"}
+      >
         {remainingSpins}
       </Text>
     </Flex.Item>
