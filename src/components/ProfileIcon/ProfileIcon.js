@@ -5,12 +5,12 @@ import AvatarIcon from "./icons/profileAvatar.svg";
 import "./ProfileIcon.scss";
 
 type Props = {
-  onClick: ?Function,
+  onClick: ?(event: SyntheticEvent<HTMLButtonElement>) => void,
   className?: string,
 };
 
 export const ProfileIcon = ({
-  onClick = () => {},
+  onClick = (event: SyntheticEvent<HTMLButtonElement>) => {},
   className = "",
 }: Props = {}) => {
   return (

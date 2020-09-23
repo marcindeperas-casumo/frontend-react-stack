@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
+import { useSelector } from "react-redux";
 import {
   useCrossCodebaseNavigation,
   useTranslationsGql,
@@ -22,13 +23,14 @@ import tracker from "Services/tracker";
 // ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
-import { type PauseResumeProps, type GameProps } from "./PlayOkayBarContainer";
+import { playingSelector } from "Models/playing";
+import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
 
-type Props = PauseResumeProps & IntercomPlayerDetailsProps & GameProps;
+type Props = PauseResumeProps & IntercomPlayerDetailsProps;
 
 const bubbleTypes = Object.freeze({
   none: "none",
@@ -43,7 +45,6 @@ const bubbleIcons = Object.freeze({
 });
 
 export const ProfileIconWithDrawer = ({
-  slug,
   pauseGame,
   resumeGame,
   playerId,
@@ -57,6 +58,7 @@ export const ProfileIconWithDrawer = ({
     in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
     in_game_drawer_exit_game: `${cmsPrefix}.in_game_drawer_exit_game`,
   });
+  const playing = useSelector(playingSelector);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = () => {
@@ -92,7 +94,7 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
-  const currentReelRace = useCurrentReelRaceInfo(slug);
+  const currentReelRace = useCurrentReelRaceInfo(playing?.gameId);
 
   useEffect(() => {
     if (
