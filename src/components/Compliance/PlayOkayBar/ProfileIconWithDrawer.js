@@ -121,8 +121,8 @@ export const ProfileIconWithDrawer = ({
       <div
         onClick={openDrawer}
         className={cx(
-          "c-reel-race-icon u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
-          "t-border-r--circle t-border--xlg t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
+          "c-profile-icon-with-drawer u-position-relative u-zindex--content-overlay t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
+          "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-90 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
           "u-cursor--pointer",
           {
             "u-display--none": isDrawerOpen,
@@ -155,7 +155,7 @@ export const ProfileIconWithDrawer = ({
         </div>
         <ChevronDownIcon
           size="sm"
-          className="c-reel-race-icon__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle u-cursor--pointer"
+          className="c-profile-icon-with-drawer__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle u-cursor--pointer"
         />
       </div>
       <ChevronUpIcon
@@ -165,7 +165,7 @@ export const ProfileIconWithDrawer = ({
         onClick={() => setDrawerOpen(false)}
       />
       {isDrawerOpen && (
-        <div className="c-profile-icon-with-drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
+        <div className="c-profile-icon-with-drawer__drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
           {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
           <InGameDrawer
             t={t}

@@ -1,5 +1,7 @@
 .c-profile-icon-with-drawer {
-  top: var(--play-okay-bar-height, 48px);
+  background-clip: padding-box;
+
+  box-sizing: content-box;
 
   &__content {
     left: 50%;
@@ -12,6 +14,15 @@
     &--next {
       animation: floatContentNext 0.9s normal forwards ease-out;
     }
+  }
+
+  &__chevron-icon {
+    bottom: -4px;
+    right: -4px;
+  }
+
+  &__drawer {
+    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
