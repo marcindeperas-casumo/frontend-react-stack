@@ -6,12 +6,14 @@ import { ReelRacesDrawer } from "./ReelRacesDrawer";
 const stories = storiesOf("ReelRaceDrawer", module);
 
 const props = {
-  spinsLeft: 329,
-  position: 10,
+  spinsLeft: "329",
+  position: "10",
   ordinalSuffix: "th",
-  points: 100,
+  points: "100",
+  gameProgress: 27,
+  gameDuration: 25,
   t: {
-    reelRacesPoints: "pts",
+    reel_races_drawer_pts: "pts",
   },
 };
 

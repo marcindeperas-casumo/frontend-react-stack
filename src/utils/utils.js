@@ -436,20 +436,6 @@ export const ordinalSuffix: number => string = number => {
   );
 };
 
-// [MARKETS.___en]: "en",
-//   [MARKETS.ca_en]: "en-CA",
-//   [MARKETS.de_de]: "de-DE",
-//   [MARKETS.dk_da]: "da-DK",
-//   [MARKETS.fi_fi]: "fi-FI",
-//   [MARKETS.gb_en]: "en-GB",
-//   [MARKETS.in_en]: "en-IN",
-//   [MARKETS.no_no]: "no-NO",
-//   [MARKETS.se_sv]: "sv-SE",
-//   [MARKETS.es_es]: "es-ES",
-//   [MARKETS.nz_en]: "en-NZ",
-//   [MARKETS.jp_ja]: "ja-JP",
-//   [MARKETS.at_de]: "de-AT",
-
 const ordinalTranslations = {
   en: {
     ordinal: new Map([
@@ -465,7 +451,7 @@ const ordinalTranslations = {
       ["9", "th"],
     ]),
   },
-  "ja-JP": {
+  jp: {
     ordinal: new Map([
       ["0", "%E4%BD%8D"],
       ["1", "%E4%BD%8D"],
@@ -479,7 +465,7 @@ const ordinalTranslations = {
       ["9", "%E4%BD%8D"],
     ]),
   },
-  "sv-SE": {
+  se: {
     ordinal: new Map([
       ["0", "e"],
       ["1", "a"],
@@ -502,7 +488,7 @@ const ordinalTranslations = {
  * @param {Number} amount
  * @returns {String}
  */
-export const getOrdinalSuffix = (locale, amount) => {
+export const getOrdinalSuffix = (locale: string, amount: number) => {
   if (!locale || !amount) {
     return "";
   }
@@ -511,5 +497,6 @@ export const getOrdinalSuffix = (locale, amount) => {
 
   // // Get the rule that applies
   // const rule = rules.select(amount);
-  return ordinalTranslations[locale].ordinal.get(amount);
+  const lastDigitInAmount = amount.toString().substr(-1);
+  return ordinalTranslations[locale].ordinal.get(lastDigitInAmount) || "";
 };

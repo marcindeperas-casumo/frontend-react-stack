@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
 import { EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
-import { ReelRacesDrawer } from "../ReelRacesDrawer/ReelRacesDrawer";
+import { ReelRacesDrawerContainer as ReelRacesDrawer } from "../ReelRacesDrawer/ReelRacesDrawerContainer";
 
 type Props = {
   t: {
