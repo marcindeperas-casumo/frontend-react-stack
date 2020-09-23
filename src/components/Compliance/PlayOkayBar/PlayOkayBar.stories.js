@@ -20,7 +20,6 @@ stories.add("Default", () => {
     <MockStore queryMocks={[playerSectionsQueryMock]}>
       <FullscreenView>
         <PlayOkayBar
-          slug="book-of-dead"
           jurisdiction={jurisdiction}
           pauseGame={pauseGame}
           resumeGame={resumeGame}
