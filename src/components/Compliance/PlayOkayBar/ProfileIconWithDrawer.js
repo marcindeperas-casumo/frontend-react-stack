@@ -132,7 +132,7 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           "c-profile-icon-with-drawer u-position-relative u-zindex--content-overlay t-opacity-background--100 t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
-          "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-20 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
+          "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-50 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
           "u-cursor--pointer",
           {
             "u-display--none": isDrawerOpen,
