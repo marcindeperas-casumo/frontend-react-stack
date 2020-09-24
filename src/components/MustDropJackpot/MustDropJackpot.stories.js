@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MustDropJackpot from "Components/MustDropJackpot";
+import { MustDropJackpot } from "Components/MustDropJackpot";
 const stories = storiesOf("MustDropJackpot", module);
 
 const jackpot = {
