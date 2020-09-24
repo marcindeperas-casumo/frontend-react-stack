@@ -1,9 +1,9 @@
 /* stylelint-disable xi/selector-pattern */
-.reel-races-wrapper {
+.c-reel-races-drawer {
   z-index: 9;
 }
 
-.checkered-flag {
+.c-checkered-flag {
   background-image: linear-gradient(45deg, #fff 25%, transparent 25%),
     linear-gradient(-45deg, #fff 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #fff 75%),
@@ -15,16 +15,16 @@
 }
 
 /* Todo to remove WIDTH property after wire up so real progress would fill up bar */
-.highlighted-progress-bar {
+.c-highlighted-progress-bar {
   height: 4px;
   width: 5px;
 }
 
 /* Todo add 'evenly' value inside cudl */
-.rr-position-wrapper {
+.c-rr-position-wrapper {
   justify-content: space-evenly;
 }
 
-.rr-position {
+.c-rr-position {
   border: 8px solid #1a212c;
 }

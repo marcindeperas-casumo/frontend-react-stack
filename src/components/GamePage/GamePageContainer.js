@@ -90,7 +90,6 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
       resumeGame={resumeGame}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       bonusAmount={bonusAmount}
-      slug={slug}
     />
   );
 };

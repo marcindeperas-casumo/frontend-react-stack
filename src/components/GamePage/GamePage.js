@@ -17,7 +17,6 @@ type Props = {
   resumeGame: () => void,
   shouldShowSlotControlSystem: boolean,
   bonusAmount?: number,
-  slug?: string,
 };
 export const GamePage = ({
   gameProviderModel,
@@ -25,7 +24,6 @@ export const GamePage = ({
   resumeGame,
   shouldShowSlotControlSystem,
   bonusAmount = 0,
-  slug,
 }: Props) => {
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
@@ -37,7 +35,7 @@ export const GamePage = ({
         spacing="none"
       >
         <Flex.Item>
-          <ReelRacesDrawer slug={slug} />
+          <ReelRacesDrawer />
         </Flex.Item>
         <Flex.Item>
           <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />

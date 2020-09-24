@@ -12,9 +12,7 @@ const props = {
   points: "100",
   gameProgress: 27,
   gameDuration: 25,
-  t: {
-    reel_races_drawer_pts: "pts",
-  },
+  pointsTranslation: "pts",
 };
 
 stories.add("Default", () => {

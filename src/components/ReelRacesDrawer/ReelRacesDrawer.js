@@ -12,7 +12,7 @@ type Props = {
   gameProgress: number,
   gameDuration: number,
   t?: {
-    reel_races_drawer_pts?: any,
+    reel_races_drawer_pts: ?string,
   },
 };
 
@@ -28,7 +28,7 @@ export const ReelRacesDrawer = ({
   const gameDurationFormatted = `${gameDuration}:00`;
   return (
     <Flex
-      className="reel-races-wrapper u-position-fixed u-inset-x u-margin--auto t-background-grey-90 t-color-white u-padding t-background-grey-90 t-border-r u-width--2/3 o-flex--wrap"
+      className="c-reel-races-drawer u-position-fixed u-inset-x u-margin--auto t-background-grey-90 t-color-white u-padding t-background-grey-90 t-border-r u-width--2/3 o-flex--wrap"
       direction="horizontal"
       spacing="md"
     >
@@ -37,14 +37,14 @@ export const ReelRacesDrawer = ({
         justify="space-between"
         className="u-width--full"
       >
-        <Flex.Item className="checkered-flag"></Flex.Item>
+        <Flex.Item className="c-checkered-flag"></Flex.Item>
         <Flex
           direction="vertical"
           className="o-flex--wrap u-width--full u-padding-left u-padding-right"
         >
-          <Flex.Item className="progressBar t-background-grey-70 t-border-r u-height--sm">
+          <Flex.Item className="c-progressBar t-background-grey-70 t-border-r u-height--sm">
             <div
-              className="highlighted-progress-bar t-background-teal-50"
+              className="c-highlighted-progress-bar t-background-teal-50"
               style={{ width: `${gameProgress}%` }}
             ></div>
           </Flex.Item>
@@ -58,18 +58,18 @@ export const ReelRacesDrawer = ({
             </Flex.Item>
           </Flex>
         </Flex>
-        <Flex.Item className="checkered-flag u-margin-left--none"></Flex.Item>
+        <Flex.Item className="c-checkered-flag u-margin-left--none"></Flex.Item>
       </Flex>
       <Flex
         direction="horizontal"
         justify="space-between"
-        className="u-width--full rr-position-wrapper u-height--4xlg"
+        className="u-width--full c-rr-position-wrapper u-height--4xlg"
       >
         <Flex.Item className="u-padding-top--lg">
           <SpinIcon className="t-color-white u-padding-bottom--sm u-padding-right--sm" />
           <span className="u-font-md">{spinsLeft}</span>
         </Flex.Item>
-        <Flex.Item className="rr-position u-position-relative o-inset--auto t-border-r--circle t-background-grey-70 u-width--4xlg u-height--4xlg o-flex-align--center o-flex-justify--center">
+        <Flex.Item className="c-rr-position u-position-relative o-inset--auto t-border-r--circle t-background-grey-70 u-width--4xlg u-height--4xlg o-flex-align--center o-flex-justify--center">
           <span className="u-font-lg u-text-align-center">{position}</span>
           <span className="u-font-2xs u-text-align-right">{ordinalSuffix}</span>
         </Flex.Item>
