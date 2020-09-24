@@ -31,4 +31,5 @@ fragment LiveCasinoCard on Game {
   logo
   name
   slug
+  gameStudio
 }

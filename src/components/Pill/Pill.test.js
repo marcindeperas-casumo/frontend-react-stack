@@ -24,7 +24,7 @@ describe("<Pill />", () => {
     const renderedNoOnRemove = shallow(<Pill>test</Pill>);
 
     expect(rendered.find("CloseIcon")).toHaveLength(1);
-    expect(renderedNoOnRemove.exists("CrossIcon")).toBe(false);
+    expect(renderedNoOnRemove.exists("CloseIcon")).toBe(false);
   });
 
   test("calls onRemove when the remove icon is clicked and stops event propagation", () => {

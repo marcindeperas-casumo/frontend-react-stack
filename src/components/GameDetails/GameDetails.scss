@@ -1,5 +1,5 @@
 .c-game-details {
-  @include cudl-breakpoint(tablet) {
+  @include cudl-breakpoint(max tablet) {
     max-width: 498px;
   }
 }
