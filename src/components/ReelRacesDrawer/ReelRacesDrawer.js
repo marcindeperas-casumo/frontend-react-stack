@@ -71,7 +71,12 @@ export const ReelRacesDrawer = ({
         </Flex.Item>
         <Flex.Item className="c-rr-position u-position-relative o-inset--auto t-border-r--circle t-background-grey-70 u-width--4xlg u-height--4xlg o-flex-align--center o-flex-justify--center">
           <span className="u-font-lg u-text-align-center">{position}</span>
-          <span className="u-font-2xs u-text-align-right">{ordinalSuffix}</span>
+          <span
+            data-test-id="rr-ordinal"
+            className="u-font-2xs u-text-align-right"
+          >
+            {ordinalSuffix}
+          </span>
         </Flex.Item>
         <Flex.Item className="u-padding-top--lg">
           <span className="u-font-md">{points}</span>
