@@ -7,9 +7,10 @@ import {
 
 export const usePaymentMethodConfig = methodType => {
   const dispatch = useDispatch();
+
   React.useEffect(() => {
     dispatch(preparePaymentMethodConfig(methodType));
-  });
+  }, [dispatch, methodType]);
 
   return useSelector(methodConfigSelector(methodType));
 };
