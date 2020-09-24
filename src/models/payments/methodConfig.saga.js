@@ -19,7 +19,8 @@ export function* methodConfigSaga(action: any, state: any): * {
     mergeDeepRight,
     {},
     map(
-      e => JSON.parse(removeScriptTag(path(["response", "content"])(e) || "")),
+      page =>
+        JSON.parse(removeScriptTag(path(["response", "content"])(page) || "")),
       pages
     )
   );
