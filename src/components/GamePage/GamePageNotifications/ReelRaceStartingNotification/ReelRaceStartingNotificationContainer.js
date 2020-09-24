@@ -25,7 +25,8 @@ export function ReelRaceStartingNotificationContainer() {
   React.useEffect(() => {
     setSecondsLeft(secondsLeftFromNow(startTime));
     setDismissed(!reelRaceInfo);
-  }, [reelRaceInfo, startTime]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reelRaceInfo?.tournamentId]);
 
   useInterval(
     () => {
