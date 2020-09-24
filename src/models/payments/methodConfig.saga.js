@@ -2,7 +2,7 @@
 import { put, all, take } from "redux-saga/effects";
 import { reduce, map, path, mergeDeepRight } from "ramda";
 import { fetchPageBySlug, getFetchCompleteTypeBySlug } from "Models/cms";
-import { removeScriptTag } from "./cmsConfig.utils";
+import { removeScriptTags } from "./cmsConfig.utils";
 import { METHOD_CONFIG_PATH } from "./methodConfig.constants";
 import { setPaymentMethodConfig } from "./methodConfig.actions";
 
@@ -20,7 +20,7 @@ export function* methodConfigSaga(action: any, state: any): * {
     {},
     map(
       page =>
-        JSON.parse(removeScriptTag(path(["response", "content"])(page) || "")),
+        JSON.parse(removeScriptTags(path(["response", "content"])(page) || "")),
       pages
     )
   );
