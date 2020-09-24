@@ -1,3 +1,4 @@
+//@flow
 import { createReducer } from "Utils";
 import { actionTypes } from "./methodConfig.constants";
 
@@ -10,4 +11,7 @@ const handlers = {
   }),
 };
 
-export const methodConfigReducer = createReducer(DEFAULT_STATE, handlers);
+export const methodConfigReducer = createReducer<Object>(
+  DEFAULT_STATE,
+  handlers
+);

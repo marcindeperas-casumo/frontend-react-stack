@@ -100,8 +100,6 @@ export const LOCAL_PAYMENT_TYPES = {
   STICPAY: "STICPAY",
 };
 
-export type localPaymentTypesValues = $Values<typeof LOCAL_PAYMENT_TYPES>;
-
 export const TRANSACTION_ACTION_TYPE = {
   DEPOSIT: "deposit",
   QUICK_DEPOSIT: "quick-deposit",

@@ -1,9 +1,10 @@
+//@flow
 import logger from "Services/logger";
 
-export const removeScriptTags = content =>
+export const removeScriptTags = (content: string) =>
   content.replace(/<\/?script.*?>/gi, "");
 
-export const tryParseJson = maybeJsonContent => {
+export const tryParseJson = (maybeJsonContent: string) => {
   try {
     return JSON.parse(maybeJsonContent);
   } catch (e) {
@@ -12,5 +13,5 @@ export const tryParseJson = maybeJsonContent => {
   }
 };
 
-export const parseCmsPaymentConfig = (content = "") =>
+export const parseCmsPaymentConfig = (content: string = "") =>
   tryParseJson(removeScriptTags(content));

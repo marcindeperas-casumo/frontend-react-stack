@@ -1,7 +1,7 @@
 // @flow
 import { LOCAL_PAYMENT_TYPES } from "./piq.constants";
 
-export type PaymentMethodType = $Keys<typeof LOCAL_PAYMENT_TYPES>;
+export type LocalPaymentMethodType = $Keys<typeof LOCAL_PAYMENT_TYPES>;
 
 export type CvvValidationEvent = {
   status: string,

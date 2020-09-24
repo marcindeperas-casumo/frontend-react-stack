@@ -1,17 +1,17 @@
 //@flow
 import { actionTypes } from "./methodConfig.constants";
-import type { localPaymentTypesValues } from "./piq.constants";
+import type { LocalPaymentMethodType } from "./piq.types";
 
 export const preparePaymentMethodConfig = (
-  methodType: localPaymentTypesValues
+  methodType: LocalPaymentMethodType
 ) => ({
   type: actionTypes.PREPARE_METHOD_CONFIG,
   methodType,
 });
 
 export const setPaymentMethodConfig = (
-  methodType: localPaymentTypesValues,
-  config: any
+  methodType: LocalPaymentMethodType,
+  config: Object
 ) => ({
   type: actionTypes.SET_METHOD_CONFIG,
   methodType,
