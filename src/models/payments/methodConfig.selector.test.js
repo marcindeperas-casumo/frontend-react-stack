@@ -7,9 +7,7 @@ describe("CMS Selectors", () => {
       const visa = "VISA_CARD";
       const visa_config = defaultState.paymentMethodConfigs[visa];
 
-      expect(methodConfigSelector("VISA_CARD")(defaultState)).toEqual(
-        visa_config
-      );
+      expect(methodConfigSelector(visa)(defaultState)).toEqual(visa_config);
     });
   });
 });
