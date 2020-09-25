@@ -107,29 +107,18 @@ export function GameListPage({ set }: Props) {
   );
   useSetScrollPosition(loading);
 
-  const selectCmp = (
-    <Flex className="o-flex--wrap">
-      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
-        <GameListPageSort
-          setSort={setSort}
-          supportedSorts={set.supportedSorts}
-          sort={sort}
-        />
-      </TrackClick>
-      {f.map(x => (
-        <Flex key={x} className="u-margin-right u-margin-bottom">
-          <ChipFilterable
-            isActive
-            onRemove={() => setFilters({ ...filters, [x]: false })}
-          >
-            {findQueryTranslation(x, set.additionalFilterGroups)}
-          </ChipFilterable>
-        </Flex>
-      ))}
-      <Flex className="u-margin-right u-margin-bottom">
-        <ChipFilterable onClick={openFilter}>{t?.title || ""}</ChipFilterable>
-      </Flex>
-    </Flex>
+  const topSection = (
+    <SortAndFilterSection
+      sort={sort}
+      setSort={setSort}
+      supportedSorts={set.supportedSorts}
+      additionalFilterGroups={set.additionalFilterGroups}
+      filters={filters}
+      setFilters={setFilters}
+      openFilter={openFilter}
+      openFilterText={t?.modal_button || ""}
+      appliedFilters={f}
+    />
   );
 
   if (isMobile()) {
@@ -150,7 +139,7 @@ export function GameListPage({ set }: Props) {
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
         <div className="t-background-white">
-          <div className="o-wrapper u-padding--md@mobile">{selectCmp}</div>
+          <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
               return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
@@ -190,7 +179,7 @@ export function GameListPage({ set }: Props) {
       />
       <div className="t-background-white">
         <div className="o-wrapper u-padding-y--lg">
-          <div className="u-padding-bottom--lg">{selectCmp}</div>
+          <div className="u-padding-bottom--lg">{topSection}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
               if (isLiveCasino) {
@@ -218,5 +207,45 @@ export function GameListPage({ set }: Props) {
         </div>
       </div>
     </>
+  );
+}
+
+type SProps = {
+  sort: ?A.GamesSortOrder,
+  setSort: A.GamesSortOrder => void,
+  supportedSorts: Array<A.GamesSortOrder>,
+  additionalFilterGroups: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>,
+  filters: { [A.GetGameSets_gameSetsList_additionalFilterGroups]: boolean },
+  setFilters: A.GetGameSets_gameSetsList_additionalFilterGroups => void,
+  openFilter: () => void,
+  openFilterText: string,
+  appliedFilters: Array<string>,
+};
+function SortAndFilterSection(props: SProps) {
+  return (
+    <Flex className="o-flex--wrap">
+      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+        <GameListPageSort
+          setSort={props.setSort}
+          supportedSorts={props.supportedSorts}
+          sort={props.sort}
+        />
+      </TrackClick>
+      {props.appliedFilters.map(x => (
+        <Flex key={x} className="u-margin-right u-margin-bottom">
+          <ChipFilterable
+            isActive
+            onRemove={() => props.setFilters({ ...props.filters, [x]: false })}
+          >
+            {findQueryTranslation(x, props.additionalFilterGroups)}
+          </ChipFilterable>
+        </Flex>
+      ))}
+      <Flex className="u-margin-right u-margin-bottom">
+        <ChipFilterable onClick={props.openFilter}>
+          {props.openFilterText}
+        </ChipFilterable>
+      </Flex>
+    </Flex>
   );
 }
