@@ -2,6 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { SpinIcon } from "@casumo/cmp-icons";
+import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import "./ReelRacesDrawer.scss";
 
 type Props = {
@@ -37,7 +38,7 @@ export const ReelRacesDrawer = ({
         justify="space-between"
         className="u-width--full"
       >
-        <Flex.Item className="c-checkered-flag"></Flex.Item>
+        <CheckeredFlagIcon />
         <Flex
           direction="vertical"
           className="o-flex--wrap u-width--full u-padding-left u-padding-right"
@@ -58,7 +59,7 @@ export const ReelRacesDrawer = ({
             </Flex.Item>
           </Flex>
         </Flex>
-        <Flex.Item className="c-checkered-flag u-margin-left--none"></Flex.Item>
+        <CheckeredFlagIcon />
       </Flex>
       <Flex
         direction="horizontal"
