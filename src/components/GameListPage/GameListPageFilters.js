@@ -38,68 +38,72 @@ export function GameListPageFilters(props: Props) {
         className="u-overflow-y--auto u-padding-x--xlg"
       >
         {props.availableFilters.map(
-          ({ key, type, title, description, values }) => (
-            <Flex
-              key={key}
-              justify={type === "toggle" ? "space-between" : "start"}
-              direction={type === "toggle" ? "horizontal" : "vertical"}
-              className="u-padding-y--xlg t-border-bottom t-color-grey-5 o-flex__item--no-shrink"
-            >
+          ({ key, type, title, description, values }) => {
+            const isHorizontal = type === "toggle";
+
+            return (
               <Flex
-                direction="vertical"
-                className={classNames("t-color-grey-90", {
-                  "u-padding-bottom--md": type !== "toggle",
-                })}
+                key={key}
+                justify={isHorizontal ? "space-between" : "start"}
+                direction={isHorizontal ? "horizontal" : "vertical"}
+                className="u-padding-y--xlg t-border-bottom t-color-grey-5 o-flex__item--no-shrink"
               >
-                <Text className="u-font-weight-black">{title}</Text>
-                <Text size="sm">{description}</Text>
-              </Flex>
-              <Flex spacing="none" className="o-flex--wrap">
-                {values.map(y => {
-                  const isActive = props.activeFilters[y.query];
-                  const onChange = () => {
-                    props.setFilters({
-                      ...props.activeFilters,
-                      [y.query]: !isActive,
-                    });
-                  };
+                <Flex
+                  direction="vertical"
+                  className={classNames("t-color-grey-90", {
+                    "u-padding-bottom--md": type !== "toggle",
+                  })}
+                >
+                  <Text className="u-font-weight-black">{title}</Text>
+                  <Text size="sm">{description}</Text>
+                </Flex>
+                <Flex spacing="none" className="o-flex--wrap">
+                  {values.map(x => {
+                    const isActive = props.activeFilters[x.query];
+                    const onChange = () => {
+                      props.setFilters({
+                        ...props.activeFilters,
+                        [x.query]: !isActive,
+                      });
+                    };
 
-                  if (type === "toggle") {
-                    return (
-                      <Toggle
-                        key={y.key}
-                        checked={isActive}
-                        onChange={onChange}
-                      />
-                    );
-                  } else if (!y.title) {
-                    // all filters except toggle need title, hide them if translations are missing
+                    if (type === "toggle") {
+                      return (
+                        <Toggle
+                          key={x.key}
+                          checked={isActive}
+                          onChange={onChange}
+                        />
+                      );
+                    } else if (!x.title) {
+                      // all filters except toggle need title, hide them if translations are missing
+                      return null;
+                    } else if (type === "chip") {
+                      return (
+                        <FilterChip
+                          key={x.key}
+                          onChange={onChange}
+                          isActive={isActive}
+                          title={x.title}
+                        />
+                      );
+                    } else if (type === "checkbox") {
+                      return (
+                        <FilterCheckbox
+                          key={x.key}
+                          onChange={onChange}
+                          isActive={isActive}
+                          title={x.title}
+                        />
+                      );
+                    }
+
                     return null;
-                  } else if (type === "chip") {
-                    return (
-                      <FilterChip
-                        key={y.key}
-                        onChange={onChange}
-                        isActive={isActive}
-                        title={y.title}
-                      />
-                    );
-                  } else if (type === "checkbox") {
-                    return (
-                      <FilterCheckbox
-                        key={y.key}
-                        onChange={onChange}
-                        isActive={isActive}
-                        title={y.title}
-                      />
-                    );
-                  }
-
-                  return null;
-                })}
+                  })}
+                </Flex>
               </Flex>
-            </Flex>
-          )
+            );
+          }
         )}
         <Flex className="u-padding--2xlg o-flex__item--no-shrink" />
       </Flex>
