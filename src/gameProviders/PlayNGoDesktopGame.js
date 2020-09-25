@@ -48,7 +48,7 @@ export class PlayNGoDesktopGame extends BaseGame {
 
   onUnmount() {
     super.onUnmount();
-    if (this.engage) {
+    if (this?.engage) {
       // clear out previous engage session
       this.engage.request(COMMANDS.END_GAME);
       this.engage.removeEventListener(

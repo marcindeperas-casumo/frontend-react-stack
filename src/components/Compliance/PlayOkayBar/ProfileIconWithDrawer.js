@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
+import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import {
@@ -176,9 +177,14 @@ export const ProfileIconWithDrawer = ({
         onClick={() => setDrawerOpen(false)}
       />
       {isDrawerOpen && (
-        <>
+        <Flex
+          className="u-position-fixed u-zindex--content-overlay u-width--2/3"
+          direction="vertical"
+          align="center"
+          justify="center"
+        >
           <ReelRacesDrawer {...commonRaceProps} />
-          <div className="c-profile-icon-with-drawer__drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
+          <div className="c-profile-icon-with-drawer__drawer u-inset-x t-background-grey-90 t-border-r u-width--full u-margin--auto">
             {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
             <InGameDrawer
               t={t}
@@ -194,7 +200,7 @@ export const ProfileIconWithDrawer = ({
               }}
             />
           </div>
-        </>
+        </Flex>
       )}
     </React.Fragment>
   );
