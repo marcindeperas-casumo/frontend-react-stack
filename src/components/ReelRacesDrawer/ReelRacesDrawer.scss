@@ -1,6 +1,18 @@
 /* stylelint-disable xi/selector-pattern */
 .c-reel-races-drawer {
   z-index: 9;
+
+  &__laurel {
+    height: 80px;
+    width: 100px;
+
+    &-position {
+      margin-left: 50%;
+      margin-top: 41%;
+      top: 0;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  }
 }
 
 /* Todo to remove WIDTH property after wire up so real progress would fill up bar */
@@ -12,8 +24,4 @@
 /* Todo add 'evenly' value inside cudl */
 .c-rr-position-wrapper {
   justify-content: space-evenly;
-}
-
-.c-rr-position {
-  border: 8px solid #1a212c;
 }

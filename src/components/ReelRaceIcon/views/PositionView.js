@@ -4,17 +4,10 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { LaurelIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
+import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 
 import "../ReelRaceIcon.scss";
-
-const getLaurelColor = position =>
-  cx({
-    "t-color-yellow-30": position === 1,
-    "t-color-grey-20": position === 2,
-    "c-reel-race-icon-color-brown": position === 3,
-    "t-color-grey-0": position > 3,
-  });
 
 export const PositionView = ({
   position,
@@ -27,7 +20,7 @@ export const PositionView = ({
     align="center"
   >
     <Flex.Item>
-      <LaurelIcon size="sm" className={getLaurelColor(position)} />
+      <LaurelIcon size="sm" className={`t-color-${getLaurelColor(position)}`} />
     </Flex.Item>
     <Flex.Item>
       <Text

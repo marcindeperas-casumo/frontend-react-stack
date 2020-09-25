@@ -1,8 +1,12 @@
 // @flow
 import * as React from "react";
+import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { SpinIcon } from "@casumo/cmp-icons";
+import Text from "@casumo/cmp-text";
+import { SpinIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
+import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
+
 import "./ReelRacesDrawer.scss";
 
 type Props = {
@@ -16,6 +20,25 @@ type Props = {
     reel_races_drawer_pts: ?string,
   },
 };
+
+const PositionView = ({ position }) => (
+  <div
+    className={`t-color-${getLaurelColor(
+      position
+    )} u-line-height--1 u-position-relative u-margin-top--lg`}
+  >
+    <LaurelIcon size="sm" className="c-reel-races-drawer__laurel" />
+    <Text
+      className={cx(
+        "u-font-weight-bold c-reel-races-drawer__laurel-position u-position-absolute"
+      )}
+      tag="div"
+      size={position > 99 ? "sm" : "md"}
+    >
+      {position}
+    </Text>
+  </div>
+);
 
 export const ReelRacesDrawer = ({
   spinsLeft,
@@ -70,14 +93,8 @@ export const ReelRacesDrawer = ({
           <SpinIcon className="t-color-white u-padding-bottom--sm u-padding-right--sm" />
           <span className="u-font-md">{spinsLeft}</span>
         </Flex.Item>
-        <Flex.Item className="c-rr-position u-position-relative o-inset--auto t-border-r--circle t-background-grey-70 u-width--4xlg u-height--4xlg o-flex-align--center o-flex-justify--center">
-          <span className="u-font-lg u-text-align-center">{position}</span>
-          <span
-            data-test-id="rr-ordinal"
-            className="u-font-2xs u-text-align-right"
-          >
-            {ordinalSuffix}
-          </span>
+        <Flex.Item className="u-position-relative o-inset--auto u-width--4xlg u-height--4xlg o-flex-align--center o-flex-justify--center">
+          <PositionView position={parseInt(position, 10)} />
         </Flex.Item>
         <Flex.Item className="u-padding-top--lg">
           <span className="u-font-md">{points}</span>
