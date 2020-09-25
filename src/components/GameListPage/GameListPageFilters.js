@@ -1,16 +1,15 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
-import { ChipChoice } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { ModalBase, ModalHeader } from "Components/RSModal";
 import { Toggle } from "Components/Toggle/Toggle";
-import { CheckboxSquare } from "Components/Checkbox/CheckboxSquare";
 import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
+import { FilterChip, FilterCheckbox } from "Components/FilterComponents";
 import "./gameListPageFilters.scss";
 
 type Props = {
@@ -78,29 +77,21 @@ export function GameListPageFilters(props: Props) {
                     return null;
                   } else if (type === "chip") {
                     return (
-                      <Flex.Item
+                      <FilterChip
                         key={y.key}
-                        className="u-margin-right--sm u-margin-bottom--sm"
-                      >
-                        <ChipChoice onClick={onChange} isActive={isActive}>
-                          {y.title}
-                        </ChipChoice>
-                      </Flex.Item>
+                        onChange={onChange}
+                        isActive={isActive}
+                        title={y.title}
+                      />
                     );
                   } else if (type === "checkbox") {
                     return (
-                      <Flex
+                      <FilterCheckbox
                         key={y.key}
-                        align="center"
-                        justify="space-between"
-                        className="u-width--full u-padding-y--md t-border-bottom t-color-grey-5"
-                      >
-                        <Text className="t-color-grey-90">{y.title}</Text>
-                        <CheckboxSquare
-                          checked={isActive}
-                          onChange={onChange}
-                        />
-                      </Flex>
+                        onChange={onChange}
+                        isActive={isActive}
+                        title={y.title}
+                      />
                     );
                   }
 
