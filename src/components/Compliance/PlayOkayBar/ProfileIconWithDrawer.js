@@ -123,7 +123,7 @@ export const ProfileIconWithDrawer = ({
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
 
-  const commonIconProps = {
+  const commonRaceProps = {
     currentRace: currentReelRace,
   };
 
@@ -151,7 +151,7 @@ export const ProfileIconWithDrawer = ({
                 "c-profile-icon-with-drawer__content--old": isTransitionRunning,
               })}
             >
-              <PrimaryIcon {...commonIconProps} />
+              <PrimaryIcon {...commonRaceProps} />
             </div>
           )}
           {SecondaryIcon && (
@@ -160,7 +160,7 @@ export const ProfileIconWithDrawer = ({
                 "c-profile-icon-with-drawer__content--next": isTransitionRunning,
               })}
             >
-              <SecondaryIcon {...commonIconProps} />
+              <SecondaryIcon {...commonRaceProps} />
             </div>
           )}
         </div>
@@ -177,7 +177,7 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <>
-          <ReelRacesDrawer />
+          <ReelRacesDrawer {...commonRaceProps} />
           <div className="c-profile-icon-with-drawer__drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
             {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
             <InGameDrawer

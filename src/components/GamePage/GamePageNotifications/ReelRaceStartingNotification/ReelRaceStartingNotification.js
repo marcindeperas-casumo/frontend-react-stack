@@ -3,7 +3,6 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon } from "@casumo/cmp-icons";
-import { useInterval } from "react-use";
 import { ProgressCircle } from "Components/Progress";
 import { useTranslationsGql } from "Utils/hooks";
 
@@ -12,27 +11,27 @@ import "./ReelRaceStartingNotification.scss";
 const cmsPrefix = "root:iframe-solution:fields";
 
 type Props = {
-  secondsToStart: number,
+  secondsLeft: number,
+  secondsLeftWhenShown: number,
+  onClickDismiss: () => void,
 };
 
-export function ReelRaceStartingNotification({ secondsToStart }: Props) {
-  const [secondsLeft, setSecondsLeft] = React.useState(secondsToStart);
-  const [dismissed, setDismissed] = React.useState(false);
+export function ReelRaceStartingNotification({
+  secondsLeft,
+  secondsLeftWhenShown,
+  onClickDismiss,
+}: Props) {
   const { t } = useTranslationsGql({
     header: `${cmsPrefix}.rr_starting_notification_header`,
     subheader: `${cmsPrefix}.rr_starting_notification_subheader`,
   });
 
-  useInterval(() => {
-    setSecondsLeft(prevValue => prevValue - 1);
-  }, 1000);
-
-  if (dismissed || secondsLeft <= 0) {
+  if (secondsLeft <= 0) {
     return null;
   }
 
   const progressToStart =
-    ((secondsToStart - secondsLeft) / secondsToStart) * 100;
+    ((secondsLeftWhenShown - secondsLeft) / secondsLeftWhenShown) * 100;
 
   return (
     <Flex
@@ -59,7 +58,7 @@ export function ReelRaceStartingNotification({ secondsToStart }: Props) {
       </Flex.Block>
       <Flex.Item>
         <div
-          onClick={() => setDismissed(true)}
+          onClick={onClickDismiss}
           className="t-border-r--circle t-background-grey-0 u-padding u-cursor--pointer"
         >
           <CloseIcon className="t-color-black" />
