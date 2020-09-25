@@ -130,6 +130,7 @@ export function useCurrentReelRaceInfo(
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
   const refetchTimeout = useTimeoutFn();
+  const updateTimeout = useTimeoutFn();
   const [
     currentReelRaceData,
     setCurrentReelRaceData,
@@ -233,8 +234,8 @@ export function useCurrentReelRaceInfo(
       refetchTimeout.scheduleAt(
         refetch,
         (closestReelRace ? closestReelRace.endTime : 0) +
-          (3 + Math.random() * 30) * 1000
-      ); // distribute refetch within 30s
+          (10 + Math.random() * 60) * 1000
+      ); // distribute refetch within 60s
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
         setCurrentReelRaceData(
@@ -254,6 +255,18 @@ export function useCurrentReelRaceInfo(
           })
         );
 
+        updateTimeout.scheduleAt(() => {
+          setCurrentReelRaceData(prevData =>
+            !prevData
+              ? null
+              : {
+                  ...prevData,
+                  isInProgress: false,
+                }
+          );
+          // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+        }, localCurrentReelRace.endTime); // distribute refetch within 30s
+
         // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
         localCurrentReelRace.cometdChannels.forEach(channel => {
           cometd.subscribe(
@@ -267,19 +280,11 @@ export function useCurrentReelRaceInfo(
             statusHandler(localCurrentReelRace)
           );
         });
-      } else {
-        setCurrentReelRaceData(prevData =>
-          !prevData
-            ? null
-            : {
-                ...prevData,
-                isInProgress: false,
-              }
-        );
       }
 
       return function cleanup() {
         refetchTimeout.clear();
+        updateTimeout.clear();
         if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
           // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
           localCurrentReelRace.cometdChannels.forEach(channel => {
@@ -304,6 +309,7 @@ export function useCurrentReelRaceInfo(
     subscriptionHandler,
     statusHandler,
     reelRaceApplies,
+    updateTimeout,
   ]);
 
   return currentReelRaceData;
