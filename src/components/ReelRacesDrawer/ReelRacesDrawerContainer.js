@@ -20,7 +20,7 @@ export const ReelRacesDrawerContainer = () => {
   const locale = useSelector(localeSelector);
   const { gameId: slug } = useSelector(playingSelector);
   const currentReelRace: CurrentReelRaceInfo = useCurrentReelRaceInfo(slug);
-  if (!currentReelRace) {
+  if (!currentReelRace || !currentReelRace?.isInProgress) {
     return null;
   }
 
