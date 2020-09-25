@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ReelRaceStartingNotificationContainer } from "./ReelRaceStartingNotification";
+import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 export function GamePageNotifications() {
   return (
@@ -11,7 +11,7 @@ export function GamePageNotifications() {
       className="u-position-absolute u-inset-x u-margin"
     >
       <Flex.Item>
-        <ReelRaceStartingNotificationContainer />
+        <ReelRaceStartingNotification />
       </Flex.Item>
     </Flex>
   );
