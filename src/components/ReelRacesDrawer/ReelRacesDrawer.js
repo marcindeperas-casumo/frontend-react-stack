@@ -54,12 +54,12 @@ export const ReelRacesDrawer = ({
             className="u-width--full t-color-grey-20"
           >
             <Flex.Item className="u-font-2xs o-flex__block">00:00</Flex.Item>
-            <Flex.Item className="u-font-2xs">
+            <Flex.Item className="u-font-2xs t-color-grey-50">
               {gameDurationFormatted}
             </Flex.Item>
           </Flex>
         </Flex>
-        <CheckeredFlagIcon />
+        <CheckeredFlagIcon inactive />
       </Flex>
       <Flex
         direction="horizontal"
