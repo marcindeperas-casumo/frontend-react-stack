@@ -1,4 +1,4 @@
 // @flow
 export {
-  ReelRaceStartingNotificationContainer,
+  ReelRaceStartingNotificationContainer as ReelRaceStartingNotification,
 } from "./ReelRaceStartingNotificationContainer";
