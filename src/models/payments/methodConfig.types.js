@@ -6,50 +6,50 @@ export type MethodConfigType = {
     default: {
       limits: {
         deposit: {
-          min: Number,
-          max: Number,
+          min: number,
+          max: number,
         },
         withdraw: {
-          min: Number,
-          max: Number,
-          fee: Number,
-          applicableFee: Number,
+          min: number,
+          max: number,
+          fee: number,
+          applicableFee: number,
         },
       },
       depositFees: {
-        percentage: Number,
-        fixed: Number,
+        percentage: number,
+        fixed: number,
       },
-      defaultDepositAmounts: Array<Number>,
+      defaultDepositAmounts: Array<number>,
       grouping: {
-        name: String,
+        name: string,
         order: 1,
       },
     },
   },
   mobile: {
     withdraw: {
-      disabled: Boolean,
-      disabledCountries: Array<String>,
+      disabled: boolean,
+      disabledCountries: Array<string>,
     },
     deposit: {
-      quick: Boolean,
-      nativeQuick: Boolean,
+      quick: boolean,
+      nativeQuick: boolean,
       disabled: boolean,
       defaultCreate: boolean,
-      disabledCountries: Array<String>,
+      disabledCountries: Array<string>,
     },
   },
   desktop: {
     withdraw: {
       disabled: boolean,
-      disabledCountries: Array<String>,
+      disabledCountries: Array<string>,
     },
     deposit: {
       quick: boolean,
       disabled: boolean,
       defaultCreate: boolean,
-      disabledCountries: Array<String>,
+      disabledCountries: Array<string>,
     },
   },
 };
