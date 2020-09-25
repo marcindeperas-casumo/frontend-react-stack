@@ -8,7 +8,6 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
-import { ReelRacesDrawerContainer as ReelRacesDrawer } from "../ReelRacesDrawer/ReelRacesDrawerContainer";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
@@ -34,9 +33,6 @@ export const GamePage = ({
         direction="vertical"
         spacing="none"
       >
-        <Flex.Item>
-          <ReelRacesDrawer />
-        </Flex.Item>
         <Flex.Item>
           <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
         </Flex.Item>

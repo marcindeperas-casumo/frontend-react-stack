@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
 import { useSelector } from "react-redux";
+import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import {
   useCrossCodebaseNavigation,
   useTranslationsGql,
@@ -175,22 +176,25 @@ export const ProfileIconWithDrawer = ({
         onClick={() => setDrawerOpen(false)}
       />
       {isDrawerOpen && (
-        <div className="c-profile-icon-with-drawer__drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
-          {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
-          <InGameDrawer
-            t={t}
-            isChatDisabled={isChatDisabled}
-            onLiveChatClick={() => {
-              tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-              openChatWindow();
-              setDrawerOpen(false);
-            }}
-            onExitGameClick={() => {
-              navigateToKO(ROUTE_IDS.TOP_LISTS);
-              setDrawerOpen(false);
-            }}
-          />
-        </div>
+        <>
+          <ReelRacesDrawer />
+          <div className="c-profile-icon-with-drawer__drawer u-position-fixed u-zindex--content-overlay u-inset-x t-background-grey-90 t-border-r u-width--2/3 u-margin--auto">
+            {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
+            <InGameDrawer
+              t={t}
+              isChatDisabled={isChatDisabled}
+              onLiveChatClick={() => {
+                tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                openChatWindow();
+                setDrawerOpen(false);
+              }}
+              onExitGameClick={() => {
+                navigateToKO(ROUTE_IDS.TOP_LISTS);
+                setDrawerOpen(false);
+              }}
+            />
+          </div>
+        </>
       )}
     </React.Fragment>
   );
