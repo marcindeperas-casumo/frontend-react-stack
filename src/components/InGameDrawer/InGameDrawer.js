@@ -6,6 +6,8 @@ import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
 import { EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
 
+import "./InGameDrawer.scss";
+
 type Props = {
   t: {
     in_game_drawer_live_chat: ?string,
@@ -34,7 +36,7 @@ export const InGameDrawer = ({
     <Flex
       align="stretch"
       justify="space-around"
-      className="t-opacity-background--100 t-background-grey-90 t-border-r u-height--xlg u-margin-x--auto@tablet u-padding-y--md"
+      className="c-in-game-drawer t-opacity-background--100 t-background-grey-90 t-border-r u-height--xlg u-margin-x--auto@tablet u-padding-y--md"
     >
       {!isChatDisabled && (
         <Flex.Block

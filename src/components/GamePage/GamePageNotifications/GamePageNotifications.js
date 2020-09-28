@@ -7,8 +7,8 @@ export function GamePageNotifications() {
   return (
     <Flex
       direction="vertical"
-      align="center"
-      className="u-position-absolute u-inset-x u-margin"
+      align="stretch"
+      className="u-position-absolute u-inset-x u-margin--md"
     >
       <Flex.Item>
         <ReelRaceStartingNotification />

@@ -182,13 +182,20 @@ export const ProfileIconWithDrawer = ({
         <div
           className={`${baseClassName}__bottom-wrapper u-position-absolute u-zindex--content-overlay u-width--2/3 u-width--full@mobile`}
         >
+          {currentReelRace?.isInProgress && (
+            <div
+              className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+            >
+              <ReelRacesDrawer {...commonRaceProps} />
+            </div>
+          )}
           <div
-            className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
-          >
-            <ReelRacesDrawer {...commonRaceProps} />
-          </div>
-          <div
-            className={`${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`}
+            className={cx(
+              `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
+              {
+                "u-margin-top": !currentReelRace?.isInProgress,
+              }
+            )}
           >
             {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
             <InGameDrawer
