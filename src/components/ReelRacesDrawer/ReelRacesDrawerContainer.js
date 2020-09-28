@@ -29,7 +29,8 @@ export const ReelRacesDrawerContainer = ({ currentRace }: Props) => {
   const ordinalSuffix = currentRace
     ? getOrdinalSuffix(locale, currentRace.position)
     : "";
-  const gameProgress = calculateProgress(startTime, endTime) * 100 || 0;
+  const gameProgress =
+    parseInt(calculateProgress(startTime, endTime) * 100, 10) || 0;
   const gameDuration = (endTime - startTime) / 1000 / 60 || 0;
   return (
     <ReelRacesDrawer

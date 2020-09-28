@@ -24,6 +24,10 @@
   &__drawer {
     box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.3);
   }
+
+  &__bottom-wrapper {
+    left: 0;
+  }
 }
 
 // stylelint-disable xi/selector-pattern
