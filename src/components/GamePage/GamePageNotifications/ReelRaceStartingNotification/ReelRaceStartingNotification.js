@@ -21,12 +21,12 @@ export function ReelRaceStartingNotification({
   secondsLeftWhenShown,
   onClickDismiss,
 }: Props) {
-  const { t } = useTranslationsGql({
+  const { t, loading: tLoading } = useTranslationsGql({
     header: `${cmsPrefix}.rr_starting_notification_header`,
     subheader: `${cmsPrefix}.rr_starting_notification_subheader`,
   });
 
-  if (secondsLeft <= 0) {
+  if (tLoading || secondsLeft <= 0) {
     return null;
   }
 
@@ -40,15 +40,19 @@ export function ReelRaceStartingNotification({
       align="center"
     >
       <Flex.Item className="u-position-relative">
-        <ProgressCircle className="u-width--3xlg" value={progressToStart} />
+        <ProgressCircle
+          className="u-width--3xlg c-rr-starting-notification__progress"
+          bgColor="grey-0"
+          value={progressToStart}
+        />
         <Text
           size="md"
-          className="u-font-weight-bold u-position-absolute u-inset-x u-text-align-center t-color-black c-rr-starting-notification__counter"
+          className="u-font-weight-bold u-position-absolute u-inset-x u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
         >
           {secondsLeft}
         </Text>
       </Flex.Item>
-      <Flex.Block className="u-margin-right--3xlg">
+      <Flex.Block>
         <Text tag="div" className="t-color-black u-font-weight-bold">
           {t.header}
         </Text>
