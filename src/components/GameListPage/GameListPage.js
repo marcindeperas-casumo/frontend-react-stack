@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setData, getData } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import tracker from "Services/tracker";
-import { EVENTS } from "Src/constants";
+import { EVENTS, EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
-import { loadMoreConstructor } from "Utils";
+import TrackProvider from "Components/TrackProvider";
+import { loadMoreConstructor, interpolate } from "Utils";
 import { useCachedQuery, useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
@@ -133,7 +134,13 @@ export function GameListPage({ set }: Props) {
 
   if (isMobile()) {
     return (
-      <>
+      <TrackProvider
+        data={{
+          [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
+            location: set.key,
+          }),
+        }}
+      >
         <GameListPageFilters
           isOpen={filtersVisible}
           setFilters={setFilters}
@@ -167,7 +174,7 @@ export function GameListPage({ set }: Props) {
             );
           })()}
         </div>
-      </>
+      </TrackProvider>
     );
   }
 
