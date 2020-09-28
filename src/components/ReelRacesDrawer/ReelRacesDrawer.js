@@ -65,8 +65,11 @@ export const ReelRacesDrawer = ({
         direction="horizontal"
         justify="space-between"
         className="u-width--full"
+        spacing="none"
       >
-        <CheckeredFlagIcon />
+        <Flex.Item>
+          <CheckeredFlagIcon />
+        </Flex.Item>
         <Flex
           direction="horizontal"
           className="o-flex--wrap u-width--full u-padding-left u-padding-right"
@@ -87,7 +90,9 @@ export const ReelRacesDrawer = ({
             </Flex.Item>
           </Flex>
         </Flex>
-        <CheckeredFlagIcon inactive />
+        <Flex.Item>
+          <CheckeredFlagIcon inactive />
+        </Flex.Item>
       </Flex>
       <Flex
         direction="horizontal"
@@ -96,8 +101,8 @@ export const ReelRacesDrawer = ({
         spacing="none"
       >
         <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">
-          <SpinIcon className="t-color-white u-padding-bottom--sm u-padding-right--sm" />
-          <Text tag="span" size="md">
+          <SpinIcon className="t-color-grey-20 u-padding-bottom--sm u-padding-right--sm" />
+          <Text tag="span" size="md" className="t-color-white">
             {spinsLeft}
           </Text>
         </Flex.Block>
@@ -108,7 +113,11 @@ export const ReelRacesDrawer = ({
           <Text tag="span" size="md">
             {points}
           </Text>
-          <Text tag="span" size="xs">
+          <Text
+            tag="span"
+            size="xs"
+            className="t-color-grey-20 u-margin-left--sm"
+          >
             {t?.reel_races_drawer_pts}
           </Text>
         </Flex.Block>
