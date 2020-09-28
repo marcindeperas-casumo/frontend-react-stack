@@ -2,7 +2,9 @@
 import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
+import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { useDispatch } from "react-redux";
 import { CvvCodeIframe } from "Components/Payments";
@@ -109,6 +111,17 @@ export const QuickDepositSlip = ({
                 />
               </Flex.Item>
             </Flex>
+          </Flex.Item>
+          <Flex.Item>
+            <Text
+              tag="span"
+              size="sm"
+              className={classNames(
+                formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
+              )}
+            >
+              {formErrors.cvv || t.cvv_helper_text}
+            </Text>
           </Flex.Item>
           <Flex.Item className="u-width--full">
             <ButtonPrimary
