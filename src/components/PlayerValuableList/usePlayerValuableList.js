@@ -13,8 +13,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables
   >(PlayerValuablesQuery, {
-    returnPartialData: true,
-    partialRefetch: true,
+    fetchPolicy: "no-cache",
     variables,
   });
 
