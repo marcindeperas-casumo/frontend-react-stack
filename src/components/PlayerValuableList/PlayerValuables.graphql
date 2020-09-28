@@ -64,8 +64,8 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
         gameCategories
       }
       ... on PlayerValuableWageringLock {
+        awardType
         description
-        requirementType
         games {
           title
         }
@@ -108,8 +108,8 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
       requirementType
     }
     ... on PlayerValuableWageringLock {
+      awardType
       description
-      requirementType
     }
 }
 

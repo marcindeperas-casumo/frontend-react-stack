@@ -661,8 +661,7 @@ export type PlayerValuablesQuery_player_valuables =
       __typename:
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
-        | "PlayerValuableSport"
-        | "PlayerValuableWageringLock",
+        | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -745,8 +744,8 @@ export type PlayerValuablesQuery_player_valuables =
       backgroundImage: string,
       wageringThreshold: ?number,
       leftToWager: ?number,
+      awardType: WageringLockAwardType,
       description: string,
-      requirementType: ?RequirementType,
       games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
       excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
       gameCategories: Array<?string>,
@@ -2296,8 +2295,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport"
-    | "PlayerValuableWageringLock",
+    | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -2380,8 +2378,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
   backgroundImage: string,
   wageringThreshold: ?number,
   leftToWager: ?number,
+  awardType: WageringLockAwardType,
   description: string,
-  requirementType: ?RequirementType,
 };
 export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
@@ -2580,8 +2578,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport"
-    | "PlayerValuableWageringLock",
+    | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -2671,7 +2668,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
   valuableState: PlayerValuableState,
   wageringThreshold: ?number,
   leftToWager: ?number,
-  requirementType: ?RequirementType,
+  awardType: WageringLockAwardType,
   games: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games>,
   excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames>,
   gameCategories: Array<?string>,
@@ -2959,6 +2956,7 @@ export type Currency =
   | "SEK"
   | "USD";
 export type RequirementType = "deposit" | "wager";
+export type WageringLockAwardType = "bonusMoney" | "freeMoney" | "spins";
 export type GamesSortOrder =
   | "A_TO_Z_BY_TITLE"
   | "CURATED_JACKPOTS"

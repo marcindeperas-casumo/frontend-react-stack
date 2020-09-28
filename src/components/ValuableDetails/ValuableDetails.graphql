@@ -31,7 +31,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
     gameCategories
   }
   ... on PlayerValuableWageringLock {
-    requirementType
+    awardType
     games {
       title
     }
