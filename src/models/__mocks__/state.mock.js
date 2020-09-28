@@ -3,6 +3,77 @@ import AdventurerMock from "Components/AdventureCard/__mocks__/Adventure.json";
 const now = Date.now();
 const THIRTY_MINUTES = 30 * 60 * 1000;
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
+  paymentMethodConfigs: {
+    "VISA_CARD": {
+      "profiles": {
+        "default": {
+          "limits": {
+            "deposit": {
+              "min": 10,
+              "max": 5000
+            },
+            "withdraw": {
+              "min": 10,
+              "max": 10000,
+              "fee": 0,
+              "applicableFee": 0
+            }
+          },
+          "depositFees": {
+            "percentage": 0,
+            "fixed": 0
+          },
+          "defaultDepositAmounts": [
+            25,
+            50,
+            100
+          ],
+          "grouping": {
+            "name": "preferred",
+            "order": 1
+          }
+        }
+      },
+      "mobile": {
+        "withdraw": {
+          "disabled": false,
+          "disabledCountries": [
+              "ca",
+              "ua",
+              "ru"
+          ]
+        },
+        "deposit": {
+          "quick": false,
+          "nativeQuick": true,
+          "disabled": false,
+          "defaultCreate": false,
+          "disabledCountries": [
+            "be",
+            "ae"
+          ]
+        }
+      },
+      "desktop": {
+        "withdraw": {
+          "disabled": false,
+          "disabledCountries": [
+            "ca",
+            "ua",
+            "ru"
+          ]
+        },
+        "deposit":{
+          "quick": true,
+          "disabled": false,
+          "defaultCreate": false,
+          "disabledCountries": [
+            "be",
+          ]
+        }
+      }
+    }
+  },
   router: {
     activeComponents: ["games-top"],
   },

@@ -37,6 +37,8 @@ import {
 import { danishOverlaySaga } from "Models/playOkay";
 import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
+import { methodConfigSaga as paymentMethodConfigSaga } from "Models/payments";
+import { actionTypes as paymentTypes } from "Models/payments/methodConfig.constants";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -131,4 +133,9 @@ export default function* rootSaga(dispatch: any): * {
     appAutomaticLogoutSaga
   );
   yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
+  yield fork(
+    takeEvery,
+    paymentTypes.PREPARE_METHOD_CONFIG,
+    paymentMethodConfigSaga
+  );
 }

@@ -26,3 +26,4 @@ export {
 export { useCachedQuery } from "./useCachedQuery";
 export { usePrevious } from "./usePrevious";
 export * from "./useCurrentReelRaceInfo";
+export { usePaymentMethodConfig } from "./usePaymentMethodConfig";

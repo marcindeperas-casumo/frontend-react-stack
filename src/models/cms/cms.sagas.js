@@ -25,13 +25,12 @@ export function* fetchPageBySlugSaga(action) {
   // Instantiate a fetch only if the page is not in the store yet.
   // If it is already in the generator finishes - it has nothing to do.
   if (shouldFetch) {
-    const completedActionType = getFetchCompleteTypeBySlug(slug);
     const hash = yield select(getCmsHash);
     const lang = yield select(languageSelector);
 
     yield put(initiateFetch({ slug, hash, lang }));
 
-    const { response } = yield take(completedActionType);
+    const { response } = yield take(getFetchCompleteTypeBySlug(slug));
 
     // We would like to extend the original slug with the "base path",
     // so we can avoid possible conflicts.
