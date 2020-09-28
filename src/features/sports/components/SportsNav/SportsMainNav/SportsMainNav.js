@@ -22,7 +22,7 @@ import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 import "./SportsMainNav.scss";
 
-const SPORTS_NAV_HEIGHT = 106;
+const SPORTS_NAV_HEIGHT = 42;
 const buttonsBeforeNav = ["live", "all"];
 
 export type Props = {
@@ -60,9 +60,9 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-padding-y u-margin-x c-sports-nav-edit-btn">
+  <div className="u-margin-x--sm c-sports-nav-edit-btn">
     {canEdit && !isLiveActive && (
-      <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
+      <div className="u-padding-left u-padding-top--sm c-sports-nav-edit-btn__wrapper">
         <EditPillsButton onClick={onEdit} label={labels.edit} />
       </div>
     )}
@@ -141,16 +141,18 @@ export const SportsMainNav = (props: Props) => {
   const cacheBuster = `${props.cacheBuster}-${isLiveActive ? "live" : ""}`;
 
   return (
-    <ScrollablePaginated
-      className={classNames(
-        isLiveActive && "c-sports-nav-paginated--live",
-        "c-sports-nav-paginated"
-      )}
-      columnCount={columnCount}
-      cellRenderer={renderTabList(props.navItems, props)}
-      height={SPORTS_NAV_HEIGHT}
-      buttonRenderer={sportsPagerButtonRenderer}
-      cacheBuster={cacheBuster}
-    />
+    <div className="u-padding-x--md u-padding-x--lg@desktop u-padding-top--md u-padding-top--lg@desktop u-padding-bottom">
+      <ScrollablePaginated
+        className={classNames(
+          isLiveActive && "c-sports-nav-paginated--live",
+          "c-sports-nav-paginated"
+        )}
+        columnCount={columnCount}
+        cellRenderer={renderTabList(props.navItems, props)}
+        height={SPORTS_NAV_HEIGHT}
+        buttonRenderer={sportsPagerButtonRenderer}
+        cacheBuster={cacheBuster}
+      />
+    </div>
   );
 };

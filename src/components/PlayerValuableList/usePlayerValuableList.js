@@ -13,7 +13,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables
   >(PlayerValuablesQuery, {
-    returnPartialData: true,
+    fetchPolicy: "no-cache",
     variables,
   });
 
@@ -31,7 +31,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
 
   return {
     loading,
-    translations: data,
+    translations: R.omit("player", data),
     valuables: (R.pathOr([], ["player", "valuables"], data): $ElementType<
       $ElementType<PlayerValuablesQuery, "player">,
       "valuables"

@@ -2,10 +2,10 @@
 import * as React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
-import { type PaymentMethodType } from "Models/payments";
+import { type LocalPaymentMethodType } from "Models/payments";
 
 type PaymentMethodDetailsProps = {
-  method: PaymentMethodType,
+  method: LocalPaymentMethodType,
   logoUrl: string,
   maskedCardNo: string,
 };
