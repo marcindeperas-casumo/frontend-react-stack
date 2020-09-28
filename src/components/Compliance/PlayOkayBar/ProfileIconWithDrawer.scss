@@ -21,10 +21,16 @@
     right: -4px;
   }
 
-  // Todo: these are needed until o-inset-left--none resolves as right now it's not matching with any cudl css rules
   &__bottom-wrapper {
     left: 0;
-    right: 0;
+    margin-left: 50%;
+    margin-top: 12px;
+    max-width: 442px;
+    transform: translateX(-50%);
+
+    &-item {
+      box-sizing: border-box;
+    }
   }
 }
 

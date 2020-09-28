@@ -21,7 +21,7 @@ export const SGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
   <Flex
     justify="end"
     align="center"
-    className="c-playokay-bar t-opacity-background--75 t-background-grey-90 t-color-white u-padding-x"
+    className="c-playokay-bar t-opacity-background--75 t-background-grey-90 t-color-white u-padding-x u-position-relative"
   >
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />

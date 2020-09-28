@@ -8,9 +8,10 @@ import { ReelRacesDrawer } from "./ReelRacesDrawer";
 
 type Props = {
   currentRace?: CurrentReelRaceInfo,
+  className?: string,
 };
 
-export const ReelRacesDrawerContainer = ({ currentRace }: Props) => {
+export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
   const { t } = useTranslationsGql({
     reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
   });
@@ -26,6 +27,7 @@ export const ReelRacesDrawerContainer = ({ currentRace }: Props) => {
   return (
     <ReelRacesDrawer
       t={t}
+      className={className}
       spinsLeft={remainingSpins}
       position={position}
       points={points}

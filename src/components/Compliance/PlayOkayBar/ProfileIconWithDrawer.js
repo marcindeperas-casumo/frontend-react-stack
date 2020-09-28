@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import {
@@ -33,6 +32,8 @@ import "./ProfileIconWithDrawer.scss";
 const cmsPrefix = "root:iframe-solution:fields";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
+
+const baseClassName = "c-profile-icon-with-drawer";
 
 const bubbleTypes = Object.freeze({
   none: "none",
@@ -133,7 +134,8 @@ export const ProfileIconWithDrawer = ({
       <div
         onClick={openDrawer}
         className={cx(
-          "c-profile-icon-with-drawer u-position-relative u-zindex--content-overlay t-opacity-background--100 t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
+          baseClassName,
+          "u-position-relative u-zindex--content-overlay t-opacity-background--100 t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
           "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-50 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
           "u-cursor--pointer",
           {
@@ -149,7 +151,7 @@ export const ProfileIconWithDrawer = ({
           {PrimaryIcon && (
             <div
               className={cx("u-height--2xlg u-width--2xlg", {
-                "c-profile-icon-with-drawer__content--old": isTransitionRunning,
+                [`${baseClassName}__content--old`]: isTransitionRunning,
               })}
             >
               <PrimaryIcon {...commonRaceProps} />
@@ -158,7 +160,7 @@ export const ProfileIconWithDrawer = ({
           {SecondaryIcon && (
             <div
               className={cx("u-height--2xlg u-width--2xlg", {
-                "c-profile-icon-with-drawer__content--next": isTransitionRunning,
+                [`${baseClassName}__content--next`]: isTransitionRunning,
               })}
             >
               <SecondaryIcon {...commonRaceProps} />
@@ -167,7 +169,7 @@ export const ProfileIconWithDrawer = ({
         </div>
         <ChevronDownIcon
           size="sm"
-          className="c-profile-icon-with-drawer__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle u-cursor--pointer"
+          className={`${baseClassName}__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
         />
       </div>
       <ChevronUpIcon
@@ -177,14 +179,17 @@ export const ProfileIconWithDrawer = ({
         onClick={() => setDrawerOpen(false)}
       />
       {isDrawerOpen && (
-        <Flex
-          className="c-profile-icon-with-drawer__bottom-wrapper u-position-fixed u-zindex--content-overlay u-width--2/3 u-width--full@mobile u-margin-right--auto u-margin-left--auto o-inset-left--none o-inset-right--none"
-          direction="vertical"
-          align="center"
-          justify="center"
+        <div
+          className={`${baseClassName}__bottom-wrapper u-position-absolute u-zindex--content-overlay u-width--2/3 u-width--full@mobile`}
         >
-          <ReelRacesDrawer {...commonRaceProps} />
-          <div className="c-profile-icon-with-drawer__drawer u-inset-x t-background-grey-90 t-opacity-background--100 t-border-r u-width--full u-margin--auto">
+          <div
+            className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+          >
+            <ReelRacesDrawer {...commonRaceProps} />
+          </div>
+          <div
+            className={`${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`}
+          >
             {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
             <InGameDrawer
               t={t}
@@ -200,7 +205,7 @@ export const ProfileIconWithDrawer = ({
               }}
             />
           </div>
-        </Flex>
+        </div>
       )}
     </React.Fragment>
   );
