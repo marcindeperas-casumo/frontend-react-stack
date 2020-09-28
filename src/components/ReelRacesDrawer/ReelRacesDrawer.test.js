@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { ReelRacesDrawer } from "./ReelRacesDrawer";
 
 const props = {
@@ -15,13 +15,9 @@ const props = {
 };
 
 describe("ReelRaceDrawer", () => {
-  const rendered = shallow(<ReelRacesDrawer {...props} />);
+  const rendered = mount(<ReelRacesDrawer {...props} />);
 
   test("should contain two checkered flags", () => {
     expect(rendered.find(".c-checkered-flag").length).toBe(2);
-  });
-
-  test("should contain correct ordinal to the user's current position", () => {
-    expect(rendered.find({ "data-test-id": "rr-ordinal" }).text()).toBe("th");
   });
 });
