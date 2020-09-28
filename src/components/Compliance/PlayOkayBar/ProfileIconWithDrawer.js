@@ -178,7 +178,7 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <Flex
-          className="c-profile-icon-with-drawer__bottom-wrapper u-position-fixed u-zindex--content-overlay u-width--2/3 u-width--full@mobile"
+          className="c-profile-icon-with-drawer__bottom-wrapper u-position-fixed u-zindex--content-overlay u-width--2/3 u-width--full@mobile u-margin-right--auto u-margin-left--auto o-inset-left--none o-inset-right--none"
           direction="vertical"
           align="center"
           justify="center"
