@@ -37,7 +37,7 @@ export const InGameDrawer = ({
       <Flex
         align="stretch"
         justify="space-around"
-        className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--2/3@tablet u-margin-x--auto@tablet"
+        className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-width--full u-margin-x--auto@tablet"
       >
         {!isChatDisabled && (
           <Flex.Block
