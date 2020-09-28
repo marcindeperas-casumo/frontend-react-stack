@@ -3,7 +3,7 @@
     linear-gradient(-45deg, #fff 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #fff 75%),
     linear-gradient(-45deg, transparent 75%, #fff 75%);
-  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+  background-position: 5px 0px, -5px 5px, 10px -5px, 0px 0px;
   background-size: 10px 10px;
   border-radius: 1px;
   height: 25px;
@@ -16,5 +16,4 @@
     linear-gradient(-45deg, #798291 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #798291 75%),
     linear-gradient(-45deg, transparent 75%, #798291 75%);
-  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
 }
