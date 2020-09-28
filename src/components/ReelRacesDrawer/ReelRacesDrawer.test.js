@@ -6,7 +6,6 @@ import { ReelRacesDrawer } from "./ReelRacesDrawer";
 const props = {
   spinsLeft: "329",
   position: "10",
-  ordinalSuffix: "th",
   points: "100",
   gameProgress: 27,
   gameDuration: 25,

@@ -51,7 +51,7 @@ export const ReelRacesDrawer = ({
   return (
     <div className="u-width--full">
       <Flex
-        className="c-reel-races-drawer u-margin-bottom--md t-background-grey-90 t-opacity-background-100 t-color-white u-padding t-background-grey-90 t-border-r o-flex--wrap"
+        className="c-reel-races-drawer u-margin-bottom--md t-background-grey-90 t-opacity-background--100 t-color-white u-padding t-background-grey-90 t-border-r o-flex--wrap"
         direction="horizontal"
         spacing="md"
       >
@@ -65,7 +65,7 @@ export const ReelRacesDrawer = ({
             direction="horizontal"
             className="o-flex--wrap u-width--full u-padding-left u-padding-right"
           >
-            <Flex.Item className="c-progressBar t-background-grey-70 t-opacity-background-100 t-border-r u-height--sm">
+            <Flex.Item className="c-progressBar t-background-grey-70 t-opacity-background--100 t-border-r u-height--sm">
               <div
                 className="c-highlighted-progress-bar t-background-teal-50"
                 style={{ width: `${gameProgress}%` }}

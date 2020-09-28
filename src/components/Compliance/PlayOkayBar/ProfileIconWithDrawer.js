@@ -184,7 +184,7 @@ export const ProfileIconWithDrawer = ({
           justify="center"
         >
           <ReelRacesDrawer {...commonRaceProps} />
-          <div className="c-profile-icon-with-drawer__drawer u-inset-x t-background-grey-90 t-border-r u-width--full u-margin--auto">
+          <div className="c-profile-icon-with-drawer__drawer u-inset-x t-background-grey-90 t-opacity-background--100 t-border-r u-width--full u-margin--auto">
             {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
             <InGameDrawer
               t={t}
