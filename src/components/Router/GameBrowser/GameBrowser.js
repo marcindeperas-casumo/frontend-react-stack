@@ -7,7 +7,7 @@ import { getGamePage } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import { WaitForHostElement } from "Components/WaitForHostElement";
 import Portal from "Components/Portal";
-import { TabletAndDesktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GetGameSets } from "./GetGameSets.graphql";
 import { TopNavDesktop, TopNavMobile } from "./TopNav";
 import { GameBrowserSets } from "./GameBrowserSets";
@@ -60,18 +60,18 @@ export const GameBrowser = () => {
 
   return (
     <>
-      <Mobile>
+      <MobileAndTablet>
         <WaitForHostElement hostElementId={mobileNav}>
           <Portal hostElementId={mobileNav}>
             <TopNavMobile />
           </Portal>
         </WaitForHostElement>
-      </Mobile>
+      </MobileAndTablet>
       <WaitForHostElement hostElementId={hostElementId}>
         <Portal hostElementId={hostElementId}>
-          <TabletAndDesktop>
+          <Desktop>
             <TopNavDesktop />
-          </TabletAndDesktop>
+          </Desktop>
           <GameBrowserSets sets={gameBrowserSetsData} />
           <React.Suspense fallback={null}>
             <Router className="u-padding-bottom--2xlg" primary={false}>

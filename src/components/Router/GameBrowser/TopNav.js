@@ -5,6 +5,7 @@ import { Link, useMatch } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TopListsIcon, PlayIcon, SearchIcon } from "@casumo/cmp-icons";
+import { isTablet } from "Components/ResponsiveLayout";
 import { useTranslations } from "Utils/hooks";
 
 const NavLinkDesktop = ({
@@ -80,6 +81,7 @@ const NavLinkMobile = ({
 }) => {
   const match = useMatch(to);
   const active = Boolean(match);
+  const tablet = isTablet();
 
   return (
     <Flex.Item>
@@ -89,24 +91,28 @@ const NavLinkMobile = ({
           /* kill styles from knockout side */
           borderBottom: "none",
           padding: 0,
+          margin: 0,
         }}
       >
         <Flex
           direction="vertical"
           align="center"
           justify="center"
-          className={classNames("u-padding", {
+          className={classNames(tablet ? "u-padding--md" : "u-padding", {
             "t-color-grey-90": active,
             "t-color-grey-70": !active,
           })}
         >
-          <Icon className="u-padding-y" />
-          <Text size="xs" className="u-font-weight-bold">
+          <Icon size={tablet ? "md" : "default"} className="u-padding-y" />
+          <Text size={tablet ? "sm" : "xs"} className="u-font-weight-bold">
             {text}
           </Text>
         </Flex>
         <Flex
-          style={{ height: 3 }}
+          style={{
+            height: 3,
+            margin: tablet ? -2 : 0, // this is for compatibility with current ko menu
+          }}
           className={classNames("t-border-r", {
             "t-background-purple-60": active,
           })}
@@ -121,9 +127,10 @@ export const TopNavMobile = () => {
     top_lists: string,
     search: string,
   }>("new-game-browser.top-nav");
+  const tablet = isTablet();
 
   return (
-    <Flex spacing="sm">
+    <Flex spacing={tablet ? "md" : "sm"}>
       <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists || ""} to="top" />
       <NavLinkMobile Icon={SearchIcon} text={t?.search || ""} to="search" />
     </Flex>
