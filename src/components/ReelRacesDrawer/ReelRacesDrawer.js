@@ -25,21 +25,21 @@ const PositionView = ({ position }) => (
   <div
     className={`t-color-${getLaurelColor(
       position
-    )} u-line-height--1 u-position-relative u-text-align-center`}
+    )} c-reel-races-drawer-position-view u-line-height--1 u-position-relative u-text-align-center t-background-grey-90 t-border-r--circle t-opacity-background--100`}
   >
+    <LaurelIcon
+      size="sm"
+      className="c-reel-races-drawer__laurel u-position-absolute"
+    />
     <Text
       className={cx(
-        "u-font-weight-bold c-reel-races-drawer__laurel-position u-width--4xlg"
+        "u-font-weight-bold c-reel-races-drawer__laurel-position u-width--4xlg u-position-relative"
       )}
       tag="div"
       size={position > 99 ? "sm" : "md"}
     >
       {position}
     </Text>
-    <LaurelIcon
-      size="sm"
-      className="c-reel-races-drawer__laurel u-position-absolute"
-    />
   </div>
 );
 
@@ -56,7 +56,7 @@ export const ReelRacesDrawer = ({
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer t-color-white u-padding t-border-r o-flex--wrap"
+        "c-reel-races-drawer t-color-white u-padding t-border-r o-flex--wrap u-margin-bottom--md"
       )}
       direction="horizontal"
       spacing="md"
@@ -106,7 +106,7 @@ export const ReelRacesDrawer = ({
             {spinsLeft}
           </Text>
         </Flex.Block>
-        <Flex.Item className="c-reel-races-drawer__elem u-position-relative ">
+        <Flex.Item className="c-reel-races-drawer__elem c-reel-races-drawer-position u-position-relative">
           <PositionView position={parseInt(position, 10)} />
         </Flex.Item>
         <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">

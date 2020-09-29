@@ -180,7 +180,7 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper u-position-absolute u-zindex--content-overlay u-width--2/3 u-width--full@mobile`}
+          className={`${baseClassName}__bottom-wrapper u-position-absolute u-zindex--content-overlay u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
         >
           {currentReelRace?.isInProgress && (
             <div
