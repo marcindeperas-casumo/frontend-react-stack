@@ -97,7 +97,10 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
-  const currentReelRace = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRace = isNativeByUserAgent()
+    ? null
+    : currentReelRaceFromHook;
 
   useEffect(() => {
     const switchIconTo = iconType => {
@@ -135,8 +138,8 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           baseClassName,
-          "u-position-relative u-zindex--content-overlay t-opacity-background--100 t-background-grey-90 u-position-relative u-height--2xlg u-width--2xlg",
-          "t-border-r--circle t-border--xlg t-opacity-border--25 t-border-grey-50 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
+          "u-position-relative u-zindex--content-overlay u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
           "u-cursor--pointer",
           {
             "u-display--none": isDrawerOpen,
@@ -169,7 +172,7 @@ export const ProfileIconWithDrawer = ({
         </div>
         <ChevronDownIcon
           size="sm"
-          className={`${baseClassName}__chevron-icon t-color-black t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
+          className={`${baseClassName}__chevron-icon t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
         />
       </div>
       <ChevronUpIcon

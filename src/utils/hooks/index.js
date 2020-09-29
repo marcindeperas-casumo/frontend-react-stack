@@ -25,3 +25,5 @@ export {
 } from "./useInGameBonusOrRealBalanceCheck";
 export { useCachedQuery } from "./useCachedQuery";
 export { usePaymentMethodConfig } from "./usePaymentMethodConfig";
+export { useFetch } from "./useFetch";
+export * from "./useCurrentReelRaceInfo";
