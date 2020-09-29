@@ -443,20 +443,6 @@ const ordinalTranslations = {
       ["9", "th"],
     ]),
   },
-  // jp: {
-  //   ordinal: new Map([
-  //     ["0", "%E4%BD%8D"],
-  //     ["1", "%E4%BD%8D"],
-  //     ["2", "%E4%BD%8D"],
-  //     ["3", "%E4%BD%8D"],
-  //     ["4", "%E4%BD%8D"],
-  //     ["5", "%E4%BD%8D"],
-  //     ["6", "%E4%BD%8D"],
-  //     ["7", "%E4%BD%8D"],
-  //     ["8", "%E4%BD%8D"],
-  //     ["9", "%E4%BD%8D"],
-  //   ]),
-  // },
   se: {
     ordinal: new Map([
       ["0", "e"],
@@ -470,20 +456,6 @@ const ordinalTranslations = {
       ["8", "e"],
       ["9", "e"],
     ]),
-    // es: {
-    //   ordinal: new Map([
-    //     ["0", "%C2%BA"],
-    //     ["1", "%C2%BA"],
-    //     ["2", "%C2%BA"],
-    //     ["3", "%C2%BA"],
-    //     ["4", "%C2%BA"],
-    //     ["5", "%C2%BA"],
-    //     ["6", "%C2%BA"],
-    //     ["7", "%C2%BA"],
-    //     ["8", "%C2%BA"],
-    //     ["9", "%C2%BA"],
-    //   ]),
-    // },
   },
 };
 
@@ -494,7 +466,13 @@ const ordinalTranslations = {
  * @param {Number} amount
  * @returns {String}
  */
-export const getOrdinalSuffix = (locale: string, amount: number) => {
+export const getOrdinalSuffix = ({
+  locale = "en",
+  amount,
+}: {
+  locale: string,
+  amount: number,
+}) => {
   if (!locale || !amount) {
     return "";
   }
