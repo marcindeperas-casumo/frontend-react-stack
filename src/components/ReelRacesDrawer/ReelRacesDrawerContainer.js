@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { useTranslationsGql } from "Utils/hooks";
-import { calculateProgress } from "../../models/reelRaces/reelRaces.utils";
+import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { type CurrentReelRaceInfo } from "../../utils/hooks/useCurrentReelRaceInfo";
 import { ReelRacesDrawer } from "./ReelRacesDrawer";
@@ -16,13 +16,14 @@ export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
     reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
   });
 
+  const gameProgress = useReelRaceProgress(currentRace);
+
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
   }
 
   const { remainingSpins, position, points, startTime, endTime } = currentRace;
 
-  const gameProgress = calculateProgress(startTime, endTime) * 100 || 0;
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
   return (
     <ReelRacesDrawer
