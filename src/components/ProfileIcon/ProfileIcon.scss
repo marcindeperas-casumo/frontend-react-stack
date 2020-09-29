@@ -1,5 +1,6 @@
 .c-profile-icon {
   background-clip: padding-box;
+  top: 0;
 
   &__avatar {
     left: 50%;
@@ -10,5 +11,17 @@
   &__chevron-icon {
     bottom: -4px;
     right: -4px;
+  }
+
+  &__progress {
+    left: 0;
+    margin-top: -50%;
+    top: 0;
+  }
+
+  &__info {
+    margin: 0 auto;
+    margin-top: 50%;
+    transform: translateY(-50%);
   }
 }
