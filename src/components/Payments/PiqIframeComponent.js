@@ -8,7 +8,7 @@ import {
 import { piqIframeUrlBase as urlBase, composeIframeUrl } from "./constants";
 import "./PiqIframe.scss";
 
-type Props = {
+export type Props = {
   id: number,
   mode: $Values<typeof IFRAME_MODE>,
   env: string,
