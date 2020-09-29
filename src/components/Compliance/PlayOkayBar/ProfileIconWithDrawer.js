@@ -97,7 +97,10 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
-  const currentReelRace = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRace = isNativeByUserAgent()
+    ? null
+    : currentReelRaceFromHook;
 
   useEffect(() => {
     const switchIconTo = iconType => {
