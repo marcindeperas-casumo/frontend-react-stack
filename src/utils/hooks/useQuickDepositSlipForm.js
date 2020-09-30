@@ -53,6 +53,7 @@ export const useQuickDepositSlipForm = ({
 
   const [depositValue, setDepositValue] = React.useState<number>(presetValue);
   const [cvvError, setCvvError] = React.useState();
+  const [cvvValue, setCvvValue] = React.useState();
   const [
     formErrors,
     setFormErrors,
@@ -69,7 +70,7 @@ export const useQuickDepositSlipForm = ({
     []
   );
 
-  const onCvvValidate = (e: CvvValidationEvent) => {
+  const onCvvIframeCallback = (e: CvvValidationEvent) => {
     // eslint-disable-next-line no-switch-statements/no-switch
     switch (e.status) {
       case "error":
@@ -86,9 +87,11 @@ export const useQuickDepositSlipForm = ({
           setCvvError(e.errorType);
         }
 
+        setCvvValue(null);
         break;
       case "success":
-        // todo: pass data to deposit callback
+        setCvvValue(e.data);
+        setCvvError(null);
         break;
       default:
         break;
@@ -146,9 +149,10 @@ export const useQuickDepositSlipForm = ({
 
   return {
     depositValue,
+    cvvValue,
     formErrors,
     onAmountChange,
-    onCvvValidate,
+    onCvvIframeCallback,
   };
 };
 /* eslint-enable sonarjs/cognitive-complexity */
