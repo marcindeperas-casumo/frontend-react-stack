@@ -24,5 +24,5 @@ export {
   useInGameBonusOrRealBalanceCheck,
 } from "./useInGameBonusOrRealBalanceCheck";
 export { useCachedQuery } from "./useCachedQuery";
-export { usePrevious } from "./usePrevious";
 export { usePaymentMethodConfig } from "./usePaymentMethodConfig";
+export { useFetch } from "./useFetch";

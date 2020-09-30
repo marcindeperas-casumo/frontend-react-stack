@@ -6,8 +6,8 @@ import {
   type QueryHookOptions,
   type QueryResult,
 } from "@apollo/react-hooks";
+import { usePrevious } from "react-use";
 import { insertIntoArray } from "Utils/gamesPaginated";
-import { usePrevious } from "./usePrevious";
 
 /**
  * When useQuery returns data it is removing old cache and replacing it.
