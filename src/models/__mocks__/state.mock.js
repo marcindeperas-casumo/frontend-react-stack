@@ -4,75 +4,58 @@ const now = Date.now();
 const THIRTY_MINUTES = 30 * 60 * 1000;
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
   paymentMethodConfigs: {
-    "VISA_CARD": {
-      "profiles": {
-        "default": {
-          "limits": {
-            "deposit": {
-              "min": 10,
-              "max": 5000
+    VISA_CARD: {
+      profiles: {
+        default: {
+          limits: {
+            deposit: {
+              min: 10,
+              max: 5000,
             },
-            "withdraw": {
-              "min": 10,
-              "max": 10000,
-              "fee": 0,
-              "applicableFee": 0
-            }
+            withdraw: {
+              min: 10,
+              max: 10000,
+              fee: 0,
+              applicableFee: 0,
+            },
           },
-          "depositFees": {
-            "percentage": 0,
-            "fixed": 0
+          depositFees: {
+            percentage: 0,
+            fixed: 0,
           },
-          "defaultDepositAmounts": [
-            25,
-            50,
-            100
-          ],
-          "grouping": {
-            "name": "preferred",
-            "order": 1
-          }
-        }
-      },
-      "mobile": {
-        "withdraw": {
-          "disabled": false,
-          "disabledCountries": [
-              "ca",
-              "ua",
-              "ru"
-          ]
+          defaultDepositAmounts: [25, 50, 100],
+          grouping: {
+            name: "preferred",
+            order: 1,
+          },
         },
-        "deposit": {
-          "quick": false,
-          "nativeQuick": true,
-          "disabled": false,
-          "defaultCreate": false,
-          "disabledCountries": [
-            "be",
-            "ae"
-          ]
-        }
       },
-      "desktop": {
-        "withdraw": {
-          "disabled": false,
-          "disabledCountries": [
-            "ca",
-            "ua",
-            "ru"
-          ]
+      mobile: {
+        withdraw: {
+          disabled: false,
+          disabledCountries: ["ca", "ua", "ru"],
         },
-        "deposit":{
-          "quick": true,
-          "disabled": false,
-          "defaultCreate": false,
-          "disabledCountries": [
-            "be",
-          ]
-        }
-      }
-    }
+        deposit: {
+          quick: true,
+          nativeQuick: true,
+          disabled: false,
+          defaultCreate: false,
+          disabledCountries: ["be", "ae"],
+        },
+      },
+      desktop: {
+        withdraw: {
+          disabled: false,
+          disabledCountries: ["ca", "ua", "ru"],
+        },
+        deposit: {
+          quick: true,
+          disabled: false,
+          defaultCreate: false,
+          disabledCountries: ["be"],
+        },
+      },
+    },
   },
   router: {
     activeComponents: ["games-top"],
@@ -478,7 +461,17 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
             activeDepositBonus: null,
             notifications: [],
             mandatoryMessages: [],
-            paymentMethods: [],
+            paymentMethods: [
+              {
+                deleted: false,
+                id: "404748d6-da6f-494a-a63f-5c0d48f886bb",
+                identifier: "401200******1112",
+                lastUsageTime: 1581412987000,
+                name: "Credit/Debit card",
+                token: "54195b0d-94d0-485f-91bc-ecd0f51d763a",
+                type: "VISA_CARD",
+              },
+            ],
             changePasswordTicketId: null,
             welcomeOfferId: "welcome-1200-ladder-offer",
             suspiciousAccount: false,
@@ -2419,7 +2412,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
   },
   schema: {
     adventurer: {
-        ...AdventurerMock,
+      ...AdventurerMock,
     },
     cms: {
       "mobile.menu-2": {
@@ -2434,25 +2427,25 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
           faq_link_text: "FAQ",
           about_us_link_text: "About Casumo",
           log_out_link_text: "Log out",
-        }
+        },
       },
       "reel-races.reel-race-templates": {
         slug: "reel-races.reel-race-templates",
         fields: {
-          "spins": "Spins",
-          "duration": "Duration",
-          "duration_template": "{{{duration}}} min",
-          "min_bet": "Min Bet",
-          "starting_in": "Starting in",
-          "ending_in": "Ending in",
-          "opt_in": "Opt In",
-          "opted_in": "Opted In",
-          "opted_in_cta_single_game_short": "Play",
-          "compete_for": "Compete for {{prize}}",
-          "title": "Reel Races",
-          "caveat_short": "false",
-          "prize": "20€",
-        }
+          spins: "Spins",
+          duration: "Duration",
+          duration_template: "{{{duration}}} min",
+          min_bet: "Min Bet",
+          starting_in: "Starting in",
+          ending_in: "Ending in",
+          opt_in: "Opt In",
+          opted_in: "Opted In",
+          opted_in_cta_single_game_short: "Play",
+          compete_for: "Compete for {{prize}}",
+          title: "Reel Races",
+          caveat_short: "false",
+          prize: "20€",
+        },
       },
       "curated.curated-gb_en": {
         id: "87759",
@@ -2889,22 +2882,24 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         childSlugs: [],
       },
       "adventure-vocas": {
-        "id": "101226",
-        "slug": "adventure-vocas",
-        "title": "Adventure vocas",
-        "content": "",
-        "attachments": [],
-        "custom_fields": {},
-        "fields": {
-          "critical_for_compliance": false,
-          "progression_label_standard": "<strong>{{progression}}% completed</strong> to next level",
-          "progression_label_bonus": "<strong>{{progression}}% completed</strong>",
-          "level_label": "Level {{level}}",
-          "bonus_mode_label": "Bonus mode",
-          "max_level_label": "Max level"
+        id: "101226",
+        slug: "adventure-vocas",
+        title: "Adventure vocas",
+        content: "",
+        attachments: [],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          progression_label_standard:
+            "<strong>{{progression}}% completed</strong> to next level",
+          progression_label_bonus:
+            "<strong>{{progression}}% completed</strong>",
+          level_label: "Level {{level}}",
+          bonus_mode_label: "Bonus mode",
+          max_level_label: "Max level",
         },
-        "children": [],
-        "childSlugs": []
+        children: [],
+        childSlugs: [],
       },
     },
     transactionsBetsHistoryAnnualOverview: {
@@ -2925,8 +2920,8 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         withdrawalsAmount: 9,
         awardedBonusesAmount: 100,
         convertedBonusesAmount: 100,
-      }
-    }
+      },
+    },
   },
 });
 
