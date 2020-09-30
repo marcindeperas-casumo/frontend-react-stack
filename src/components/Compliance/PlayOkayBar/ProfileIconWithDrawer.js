@@ -79,7 +79,7 @@ export const ProfileIconWithDrawer = ({
   const isChatDisabled =
     market === MARKETS.nz_en ||
     (window.native
-      ? !window.native.nativeIntercomEnabled
+      ? window.native.nativeIntercomEnabled
       : isNativeByUserAgent());
 
   const transitionTimer = useTimeoutFn();
