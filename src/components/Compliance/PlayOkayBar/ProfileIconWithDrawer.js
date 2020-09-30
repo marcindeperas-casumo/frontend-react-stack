@@ -179,37 +179,41 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper u-position-absolute u-zindex--content-overlay u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`}
         >
-          {currentReelRace?.isInProgress && (
-            <div
-              className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
-            >
-              <ReelRacesDrawer {...commonRaceProps} />
-            </div>
-          )}
           <div
-            className={cx(
-              `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
-              {
-                "u-margin-top": !currentReelRace?.isInProgress,
-              }
-            )}
+            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
           >
-            {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
-            <InGameDrawer
-              t={t}
-              isChatDisabled={isChatDisabled}
-              onLiveChatClick={() => {
-                tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                openChatWindow();
-                setDrawerOpen(false);
-              }}
-              onExitGameClick={() => {
-                navigateToKO(ROUTE_IDS.TOP_LISTS);
-                setDrawerOpen(false);
-              }}
-            />
+            {currentReelRace?.isInProgress && (
+              <div
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+              >
+                <ReelRacesDrawer {...commonRaceProps} />
+              </div>
+            )}
+            <div
+              className={cx(
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
+                {
+                  "u-margin-top": !currentReelRace?.isInProgress,
+                }
+              )}
+            >
+              {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
+              <InGameDrawer
+                t={t}
+                isChatDisabled={isChatDisabled}
+                onLiveChatClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                  openChatWindow();
+                  setDrawerOpen(false);
+                }}
+                onExitGameClick={() => {
+                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  setDrawerOpen(false);
+                }}
+              />
+            </div>
           </div>
         </div>
       )}

@@ -22,12 +22,16 @@
   }
 
   &__bottom-wrapper {
-    background: linear-gradient(white, transparent);
     left: 0;
     margin-left: 50%;
     margin-top: 12px;
     max-width: 442px;
     transform: translateX(-50%);
+
+    &-bg {
+      background: linear-gradient(white, transparent);
+      margin-top: 12px;
+    }
 
     &-item {
       box-sizing: border-box;
