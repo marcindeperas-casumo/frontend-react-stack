@@ -4,22 +4,10 @@ import * as R from "ramda";
 import logger from "Services/logger";
 import { interpolate } from "Utils";
 import { type CvvValidationEvent } from "Models/payments";
-
-type QuickDepositSlipFormProps = {
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
-  error_deposit_minimum: string,
-  error_deposit_maximum: string,
-  error_cvv_required: string,
-  error_cvv_too_short: string,
-  error_cvv_not_integer: string,
-};
-
-type QuickDepositSlipFormErrors = {
-  amountInput?: string,
-  cvv?: string,
-};
+import type {
+  QuickDepositSlipFormProps,
+  QuickDepositSlipFormErrors,
+} from "./QuickDepositSlip.types";
 
 const CVV_TRANSLATIONS_MAP = ({
   error_cvv_required,
@@ -36,17 +24,14 @@ export const useQuickDepositSlipForm = ({
   minAmount,
   maxAmount,
   presetAmount,
-  error_deposit_minimum,
-  error_deposit_maximum,
-  error_cvv_required,
-  error_cvv_too_short,
-  error_cvv_not_integer,
+  translations: t,
 }: QuickDepositSlipFormProps) => {
-  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP({
-    error_cvv_required,
-    error_cvv_too_short,
-    error_cvv_not_integer,
-  });
+  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(
+    R.pick(
+      ["error_cvv_required", "error_cvv_too_short", "error_cvv_not_integer"],
+      t
+    )
+  );
   const presetValue = presetAmount
     ? R.clamp(minAmount, maxAmount, presetAmount)
     : minAmount;
@@ -77,7 +62,6 @@ export const useQuickDepositSlipForm = ({
         if (!e.errorType) {
           return;
         }
-
         const validErrorKey = cvvErrorTranslationKeys[e.errorType];
 
         if (!validErrorKey) {
@@ -98,54 +82,52 @@ export const useQuickDepositSlipForm = ({
     }
   };
 
-  React.useEffect(() => {
-    setFormErrors({});
+  React.useEffect(
+    () => {
+      setFormErrors({});
+      if (!depositValue) {
+        setFormErrors(
+          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
+            R.merge(errors, {
+              amountInput: t.error_deposit_amount_required,
+            })
+        );
+      }
 
-    if (depositValue < minAmount) {
-      setFormErrors(
-        (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-          R.merge(errors, {
-            amountInput: interpolate(error_deposit_minimum, {
-              amount: `${minAmount}`,
-            }),
-          })
-      );
-    }
+      if (depositValue < minAmount) {
+        setFormErrors(
+          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
+            R.merge(errors, {
+              amountInput: interpolate(t.error_deposit_minimum, {
+                amount: `${minAmount}`,
+              }),
+            })
+        );
+      }
 
-    if (depositValue > maxAmount) {
-      setFormErrors(
-        (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-          R.merge(errors, {
-            amountInput: interpolate(error_deposit_maximum, {
-              amount: `${maxAmount}`,
-            }),
-          })
-      );
-    }
+      if (depositValue > maxAmount) {
+        setFormErrors(
+          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
+            R.merge(errors, {
+              amountInput: interpolate(t.error_deposit_maximum, {
+                amount: `${maxAmount}`,
+              }),
+            })
+        );
+      }
 
-    if (cvvError) {
-      setFormErrors(
-        (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-          R.merge(errors, {
-            cvv: CVV_TRANSLATIONS_MAP({
-              error_cvv_required,
-              error_cvv_too_short,
-              error_cvv_not_integer,
-            })[cvvError],
-          })
-      );
-    }
-  }, [
-    cvvError,
-    depositValue,
-    error_cvv_not_integer,
-    error_cvv_required,
-    error_cvv_too_short,
-    error_deposit_maximum,
-    error_deposit_minimum,
-    maxAmount,
-    minAmount,
-  ]);
+      if (cvvError) {
+        setFormErrors(
+          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
+            R.merge(errors, {
+              cvv: cvvErrorTranslationKeys[cvvError],
+            })
+        );
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [t, cvvError, depositValue, maxAmount, minAmount]
+  );
 
   return {
     depositValue,

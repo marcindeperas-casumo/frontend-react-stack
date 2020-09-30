@@ -7,39 +7,20 @@ import TextInput from "@casumo/cmp-text-input";
 import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CvvCodeIframe } from "Components/Payments";
-import { useQuickDepositSlipForm } from "Utils/hooks";
+import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
+import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
 import "./QuickDepositSlip.scss";
 
-type Props = {
-  t: {
-    deposit_amount: string,
-    deposit_cta_text: string,
-    deposit_helper_text: string,
-    cvv_helper_text: string,
-    error_deposit_minimum: string,
-    error_deposit_maximum: string,
-    error_cvv_required: string,
-    error_cvv_too_short: string,
-    error_cvv_not_integer: string,
-  },
-  currencySymbol: string,
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
-  onDeposit: () => void,
-  paymentMethodDetails?: () => React.Node,
-};
-
 export const QuickDepositSlip = ({
-  t,
   currencySymbol,
   minAmount,
   maxAmount,
   presetAmount,
   onDeposit,
-  paymentMethodDetails: PaymentMethodComponent,
-}: Props) => {
+  renderPaymentMethodDetails: PaymentMethodComponent,
+  translations: t,
+}: QuickDepositSlipProps) => {
   const {
     depositValue,
     formErrors,
@@ -49,7 +30,7 @@ export const QuickDepositSlip = ({
     minAmount,
     maxAmount,
     presetAmount,
-    ...t,
+    translations: t.validation_errors,
   });
 
   const onCvvError = message =>
@@ -106,18 +87,18 @@ export const QuickDepositSlip = ({
                   onSuccess={onCvvSuccess}
                 />
               </Flex.Item>
+              <Flex.Item>
+                <Text
+                  tag="span"
+                  size="sm"
+                  className={classNames(
+                    formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
+                  )}
+                >
+                  {formErrors.cvv || t.cvv_helper_text}
+                </Text>
+              </Flex.Item>
             </Flex>
-          </Flex.Item>
-          <Flex.Item>
-            <Text
-              tag="span"
-              size="sm"
-              className={classNames(
-                formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
-              )}
-            >
-              {formErrors.cvv || t.cvv_helper_text}
-            </Text>
           </Flex.Item>
           <Flex.Item className="u-width--full">
             <ButtonPrimary
