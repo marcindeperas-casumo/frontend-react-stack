@@ -116,7 +116,7 @@ export function GameListPage({ set }: Props) {
       filters={filters}
       setFilters={setFilters}
       openFilter={openFilter}
-      openFilterText={t?.modal_button || ""}
+      openFilterText={t?.title || ""}
       appliedFilters={f}
     />
   );
