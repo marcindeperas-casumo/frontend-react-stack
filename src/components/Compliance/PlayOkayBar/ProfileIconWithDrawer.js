@@ -76,11 +76,7 @@ export const ProfileIconWithDrawer = ({
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
 
-  const isChatDisabled =
-    market === MARKETS.nz_en ||
-    (window.native
-      ? window.native.nativeIntercomEnabled
-      : isNativeByUserAgent());
+  const isChatDisabled = market === MARKETS.nz_en || isNativeByUserAgent();
 
   const transitionTimer = useTimeoutFn();
 
