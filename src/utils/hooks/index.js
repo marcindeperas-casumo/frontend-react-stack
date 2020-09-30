@@ -28,5 +28,5 @@ export { usePaymentMethodConfig } from "./usePaymentMethodConfig";
 export { useFetch } from "./useFetch";
 export * from "./useCurrentReelRaceInfo";
 export {
-  useAvailableQuickDepositMethod,
-} from "./useAvailableQuickDepositMethod";
+  useAvailableQuickDepositMethods,
+} from "./useAvailableQuickDepositMethods";

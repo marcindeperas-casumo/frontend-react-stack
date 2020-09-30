@@ -10,7 +10,7 @@ import {
 } from "Models/payments";
 import { SUPPORTED_QUICKDEPOSIT_TYPES } from "Models/payments/methodConfig.constants";
 
-export const useAvailableQuickDepositMethod = () => {
+export const useAvailableQuickDepositMethods = () => {
   const [availableMethod, setAvailableMethod] = React.useState();
   const [methodTypes, setMethodTypes] = React.useState(null);
   const [loading, setLoading] = React.useState(false);

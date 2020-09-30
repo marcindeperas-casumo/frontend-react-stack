@@ -7,7 +7,7 @@ import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { getStateMock } from "Models/__mocks__/state.mock";
 import { methodTypes } from "./__mocks__/methodTypesMock";
-import { useAvailableQuickDepositMethod } from "./useAvailableQuickDepositMethod";
+import { useAvailableQuickDepositMethods } from "./useAvailableQuickDepositMethods";
 
 jest.mock("Api/api.payments", () => ({
   getPaymentMethodTypes: jest.fn(),
@@ -20,7 +20,7 @@ describe("useAvailableQuickDepositMethod hook", () => {
   test("hook should return payment method available for quick deposit", async () => {
     const wrapper = mount(
       <MockStore state={getStateMock()}>
-        <HookWrapper hook={useAvailableQuickDepositMethod} args={[]} />
+        <HookWrapper hook={useAvailableQuickDepositMethods} args={[]} />
       </MockStore>
     );
     await waitAndUpdateWrapper(wrapper);
