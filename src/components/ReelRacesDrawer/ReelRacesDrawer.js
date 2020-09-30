@@ -3,9 +3,9 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { SpinIcon, LaurelIcon } from "@casumo/cmp-icons";
+import { SpinIcon } from "@casumo/cmp-icons";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
-import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
+import { PositionView } from "./PositionView";
 
 import "./ReelRacesDrawer.scss";
 
@@ -20,28 +20,6 @@ type Props = {
     reel_races_drawer_pts: ?string,
   },
 };
-
-const PositionView = ({ position }) => (
-  <div
-    className={`t-color-${getLaurelColor(
-      position
-    )} c-reel-races-drawer-position-view u-line-height--1 u-position-relative u-text-align-center t-background-grey-90 t-border-r--circle t-opacity-background--100`}
-  >
-    <LaurelIcon
-      size="sm"
-      className="c-reel-races-drawer__laurel u-position-absolute"
-    />
-    <Text
-      className={cx(
-        "u-font-weight-bold c-reel-races-drawer__laurel-position u-width--4xlg u-position-relative"
-      )}
-      tag="div"
-      size={position > 99 ? "sm" : "md"}
-    >
-      {position}
-    </Text>
-  </div>
-);
 
 export const ReelRacesDrawer = ({
   className,
