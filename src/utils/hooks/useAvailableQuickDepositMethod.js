@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
