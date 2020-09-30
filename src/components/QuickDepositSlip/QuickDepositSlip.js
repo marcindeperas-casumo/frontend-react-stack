@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import classnames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
+import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { CvvCodeIframe } from "Components/Payments";
 import { useQuickDepositSlipForm } from "Utils/hooks";
 
 import "./QuickDepositSlip.scss";
@@ -39,12 +40,28 @@ export const QuickDepositSlip = ({
   onDeposit,
   paymentMethodDetails: PaymentMethodComponent,
 }: Props) => {
-  const { depositValue, formErrors, onAmountChange } = useQuickDepositSlipForm({
+  const {
+    depositValue,
+    formErrors,
+    onAmountChange,
+    onCvvIframeCallback,
+  } = useQuickDepositSlipForm({
     minAmount,
     maxAmount,
     presetAmount,
     ...t,
   });
+
+  const onCvvError = message =>
+    onCvvIframeCallback({
+      status: "error",
+      errorType: message,
+    });
+
+  const onCvvSuccess = () =>
+    onCvvIframeCallback({
+      status: "success",
+    });
 
   return (
     <Flex spacing="lg" justify="space-between">
@@ -84,29 +101,23 @@ export const QuickDepositSlip = ({
           <Flex.Item className="c-quick-deposit-slip__cvv">
             <Flex direction="vertical" spacing="sm" justify="space-between">
               <Flex.Item>
-                {/** todo: FC-55 replace below TextInput with PIQ CVV iframe */}
-                <TextInput
-                  onChange={() =>
-                    console.warn("This is just a placeholder for PIQ iframe")
-                  }
-                  value="111"
-                  className="u-font-lg u-font-weight-bold"
-                  inputClassName="u-font-lg u-font-weight-bold"
-                  placeholder="CVV"
+                <CvvCodeIframe
+                  onValidation={onCvvError}
+                  onSuccess={onCvvSuccess}
                 />
               </Flex.Item>
-              <Flex.Item>
-                <Text
-                  tag="span"
-                  size="sm"
-                  className={classnames(
-                    formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
-                  )}
-                >
-                  {formErrors.cvv || t.cvv_helper_text}
-                </Text>
-              </Flex.Item>
             </Flex>
+          </Flex.Item>
+          <Flex.Item>
+            <Text
+              tag="span"
+              size="sm"
+              className={classNames(
+                formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
+              )}
+            >
+              {formErrors.cvv || t.cvv_helper_text}
+            </Text>
           </Flex.Item>
           <Flex.Item className="u-width--full">
             <ButtonPrimary
