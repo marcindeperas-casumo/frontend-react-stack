@@ -6,10 +6,8 @@ import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { useDispatch } from "react-redux";
 import { CvvCodeIframe } from "Components/Payments";
 import { useQuickDepositSlipForm } from "Utils/hooks";
-import { fetchPageBySlug } from "Models/cms";
 
 import "./QuickDepositSlip.scss";
 
@@ -53,8 +51,6 @@ export const QuickDepositSlip = ({
     presetAmount,
     ...t,
   });
-
-  useDispatch()(fetchPageBySlug("payment-method.creditcard.visa_card"));
 
   const onCvvError = message =>
     onCvvIframeCallback({
