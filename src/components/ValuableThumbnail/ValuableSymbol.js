@@ -95,7 +95,7 @@ export const ValuableSymbol = ({
       return ValuableIcon[currency] || ValuableIcon[CURRENCIES.EUR];
     }
 
-    return ValuableIcon[CURRENCIES.EUR];
+    return ValuableIcon;
   })();
 
   return (
