@@ -7,7 +7,7 @@ import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
 
-const req = requireContext("../src", true, /.stories.js$/i);
+const req = requireContext("../src", true, /.stories.js$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
