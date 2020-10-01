@@ -7,11 +7,29 @@ import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { getStateMock } from "Models/__mocks__/state.mock";
 import { methodTypes } from "./__mocks__/methodTypesMock";
-import { useAvailableQuickDepositMethods } from "./useAvailableQuickDepositMethods";
+import {
+  prepareQuickDepositMethod,
+  useAvailableQuickDepositMethods,
+} from "./useAvailableQuickDepositMethods";
 
 jest.mock("Api/api.payments", () => ({
   getPaymentMethodTypes: jest.fn(),
 }));
+
+const mock = getStateMock();
+
+const playerMethod =
+  mock.handshake.app["common/composition/players"].players[
+    "2bb42ab0-7937-11e8-b6b5-0242ac11000b"
+  ].paymentMethods[0];
+
+const expectedQuickDepositMethods = [
+  prepareQuickDepositMethod(
+    playerMethod,
+    mock.paymentMethodConfigs.VISA_CARD,
+    methodTypes.find(method => method.type === playerMethod.type)
+  ),
+];
 
 // $FlowIgnore
 getPaymentMethodTypes.mockReturnValue(Promise.resolve(methodTypes));
@@ -19,12 +37,12 @@ getPaymentMethodTypes.mockReturnValue(Promise.resolve(methodTypes));
 describe("useAvailableQuickDepositMethod hook", () => {
   test("hook should return payment method available for quick deposit", async () => {
     const wrapper = mount(
-      <MockStore state={getStateMock()}>
+      <MockStore state={mock}>
         <HookWrapper hook={useAvailableQuickDepositMethods} args={[]} />
       </MockStore>
     );
     await waitAndUpdateWrapper(wrapper);
 
-    expectHook(wrapper).toEqual(getStateMock().paymentMethodConfigs.VISA_CARD);
+    expectHook(wrapper).toEqual(expectedQuickDepositMethods);
   });
 });
