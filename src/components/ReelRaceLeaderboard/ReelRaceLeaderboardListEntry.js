@@ -4,12 +4,12 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { LaurelPosition } from "./LaurelPosition";
-import { Price } from "./Price";
+import { Prize } from "./Prize";
 
 type Props = {
   position: number,
   text: string,
-  price?: ?string,
+  prize?: ?string,
   points: number,
   highlighted?: boolean,
   className?: string,
@@ -18,7 +18,7 @@ type Props = {
 export const ReelRaceLeaderboardListEntry = ({
   position,
   text,
-  price,
+  prize,
   points,
   highlighted,
   className,
@@ -37,14 +37,14 @@ export const ReelRaceLeaderboardListEntry = ({
       <LaurelPosition
         position={position}
         highlighted={highlighted}
-        showLaurel={Boolean(price)}
+        showLaurel={Boolean(prize)}
       />
     </Flex.Item>
     <Flex.Block>
       <Text tag="div">{text}</Text>
     </Flex.Block>
     <Flex.Item>
-      {price && <Price price={price} highlighted={highlighted} />}
+      {prize && <Prize prize={prize} highlighted={highlighted} />}
     </Flex.Item>
     <Flex.Item>
       <Text

@@ -11,19 +11,19 @@ type Props = {
   leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
   playerId: string,
   size?: number,
-  prices: Array<string>,
+  prizes: Array<string>,
 };
 
 const LEADERBOARD_SIZE = 25;
 
-export const getPrice = (position: number, prices: Array<string>) =>
-  prices[position - 1] || null;
+export const getPrize = (position: number, prizes: Array<string>) =>
+  prizes[position - 1] || null;
 
 export function ReelRaceLeaderboardResults({
   playerId,
   leaderboard,
   size = LEADERBOARD_SIZE,
-  prices = [],
+  prizes = [],
 }: Props) {
   const sorted = R.sortBy(R.prop("position"))(leaderboard);
   const leaderboardSortedSliced = sorted.slice(0, size);
@@ -43,7 +43,7 @@ export function ReelRaceLeaderboardResults({
             points={points}
             position={position}
             text={playerName}
-            price={getPrice(position, prices)}
+            prize={getPrize(position, prizes)}
             highlighted={playerIdFromLeaderboard === playerId}
           />
         )}

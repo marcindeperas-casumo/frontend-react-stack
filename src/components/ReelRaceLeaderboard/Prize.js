@@ -5,17 +5,17 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TrophyIcon } from "@casumo/cmp-icons";
 
-import "./Price.scss";
+import "./Prize.scss";
 
 type Props = {
-  price?: ?string,
+  prize?: ?string,
   className?: string,
   highlighted?: boolean,
 };
 
-const baseClassName = "c-price";
+const baseClassName = "c-prize";
 
-export const Price = ({ price, highlighted, className }: Props) => (
+export const Prize = ({ prize, highlighted, className }: Props) => (
   <div className={cx("u-display--inline-block", className)}>
     <Flex
       className={cx(`${baseClassName} t-border-r--md u-overflow-hidden`, {
@@ -40,7 +40,7 @@ export const Price = ({ price, highlighted, className }: Props) => (
             "t-color-white": highlighted,
           })}
         >
-          {price}
+          {prize}
         </Text>
       </Flex.Block>
     </Flex>

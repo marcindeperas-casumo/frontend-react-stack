@@ -14,32 +14,32 @@ stories.add("Default", () => {
       <ReelRaceLeaderboardListEntry
         position={1}
         text="testme"
-        price="$5"
+        prize="$5"
         points={1}
         highlighted
       />
       <ReelRaceLeaderboardListEntry
         position={1}
         text="testme"
-        price="$5"
+        prize="$5"
         points={5}
       />
       <ReelRaceLeaderboardListEntry
         position={2}
         text="testme"
-        price="$5"
+        prize="$5"
         points={44}
       />
       <ReelRaceLeaderboardListEntry
         position={3}
         text="testme"
-        price="$50"
+        prize="$50"
         points={273}
       />
       <ReelRaceLeaderboardListEntry
         position={4}
         text="testme"
-        price="$500"
+        prize="$500"
         points={2739}
       />
       <ReelRaceLeaderboardListEntry position={5} text="testme" points={273} />

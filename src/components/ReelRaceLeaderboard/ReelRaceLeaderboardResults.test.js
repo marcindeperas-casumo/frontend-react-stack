@@ -1,21 +1,21 @@
 // @flow
 
-import { getPrice } from "./ReelRaceLeaderboardResults";
+import { getPrize } from "./ReelRaceLeaderboardResults";
 
 describe("ReelRaceLeaderboardResults", () => {
-  describe("getPrice", () => {
-    const prices = ["1", "2", "3"];
-    test("no price", () => {
-      expect(getPrice(4, prices)).toBeNull();
+  describe("getPrize", () => {
+    const prizes = ["1", "2", "3"];
+    test("no prize", () => {
+      expect(getPrize(4, prizes)).toBeNull();
     });
-    test("first price", () => {
-      expect(getPrice(1, prices)).toEqual(prices[0]);
+    test("first prize", () => {
+      expect(getPrize(1, prizes)).toEqual(prizes[0]);
     });
-    test("second price", () => {
-      expect(getPrice(2, prices)).toEqual(prices[1]);
+    test("second prize", () => {
+      expect(getPrize(2, prizes)).toEqual(prizes[1]);
     });
-    test("third price", () => {
-      expect(getPrice(3, prices)).toEqual(prices[2]);
+    test("third prize", () => {
+      expect(getPrize(3, prizes)).toEqual(prizes[2]);
     });
   });
 });

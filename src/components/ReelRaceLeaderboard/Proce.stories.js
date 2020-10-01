@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Price } from "./Price";
+import { Prize } from "./Prize";
 
-const stories = storiesOf("ReelRaceLeaderboard/Price", module);
+const stories = storiesOf("ReelRaceLeaderboard/Prize", module);
 
 stories.add("Default", () => {
   return (
@@ -11,40 +11,40 @@ stories.add("Default", () => {
       <br />
       <br />
       <div className="u-text-align-right">
-        <Price price="$1" highlighted />
+        <Prize prize="$1" highlighted />
         <br />
         <br />
-        <Price price="$50" highlighted />
+        <Prize prize="$50" highlighted />
         <br />
         <br />
-        <Price price="$500" highlighted />
+        <Prize prize="$500" highlighted />
         <br />
         <br />
-        <Price price="$5" />
+        <Prize prize="$5" />
         <br />
         <br />
-        <Price price="$50" />
+        <Prize prize="$50" />
         <br />
         <br />
-        <Price price="$500" />
+        <Prize prize="$500" />
       </div>
       <div>
-        <Price price="$1" highlighted />
+        <Prize prize="$1" highlighted />
         <br />
         <br />
-        <Price price="$50" highlighted />
+        <Prize prize="$50" highlighted />
         <br />
         <br />
-        <Price price="$500" highlighted />
+        <Prize prize="$500" highlighted />
         <br />
         <br />
-        <Price price="$5" />
+        <Prize prize="$5" />
         <br />
         <br />
-        <Price price="$50" />
+        <Prize prize="$50" />
         <br />
         <br />
-        <Price price="$500" />
+        <Prize prize="$500" />
       </div>
     </div>
   );

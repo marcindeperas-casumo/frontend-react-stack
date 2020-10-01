@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { ReelRaceLeaderboardResults } from "./ReelRaceLeaderboardResults";
 import { leaderboard } from "./__mocks__/leaderboard.mock";
-import { prices } from "./__mocks__/prices.mock";
+import { prizes } from "./__mocks__/prizes.mock";
 
 const stories = storiesOf(
   "ReelRaceLeaderboard/ReelRaceLeaderboardResults",
@@ -16,7 +16,7 @@ stories.add("Default", () => {
       <ReelRaceLeaderboardResults
         leaderboard={leaderboard}
         playerId="777"
-        prices={prices}
+        prizes={prizes}
       />
     </div>
   );
