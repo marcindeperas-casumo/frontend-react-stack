@@ -16,7 +16,7 @@ export function useTranslationsGql<T: Object>(
 
   const { data, loading } = useQuery(query);
 
-  return loading || !data
+  return !data
     ? { loading, t: defaultTranslations }
     : { loading, t: R.map(x => x.text, data) };
 }
