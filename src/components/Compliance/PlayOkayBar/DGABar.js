@@ -23,7 +23,7 @@ export const DGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
     justify="end"
     align="center"
     spacing="md"
-    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
+    className="c-playokay-bar t-opacity-background--75 t-background-grey-90 t-color-white u-padding-x u-position-relative"
   >
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />

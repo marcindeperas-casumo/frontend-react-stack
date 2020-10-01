@@ -37,6 +37,20 @@ type CreateCurrentReelRaceDataType = {
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
+type CometdReelRaceEnteredType = {
+  status: string,
+  tournamentId: string,
+};
+
+type CometdReelRaceUpdateType = {
+  leaderboard: LeaderboardObjectType,
+};
+
+type CometdReelRaceFinishedType = {
+  tournamentId: string,
+  leaderboard: LeaderboardObjectType,
+};
+
 export const UNSET_VALUE = -1;
 
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
@@ -115,6 +129,90 @@ export const createCurrentReelRaceData = (
 const rrQueryFetchPolicy =
   process.env.NODE_ENV === "test" ? undefined : "no-cache";
 
+const statusHandler = (
+  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
+  setCurrentReelRaceData: CurrentReelRaceInfo => void,
+  playerId: string
+) => ({ data }: { data: CometdReelRaceEnteredType }) => {
+  if (
+    reelRace?.id === data.tournamentId &&
+    data.status === RACE_STATE.STARTED
+  ) {
+    const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
+      reelRace || {};
+
+    setCurrentReelRaceData({
+      ...createCurrentReelRaceData(playerId, {
+        ...(currentReelRaceRest
+          ? {
+              ...currentReelRaceRest,
+              leaderboard: convertLeaderboardToObject(
+                currentReelRaceLeaderboard
+              ),
+            }
+          : {}),
+        isInProgress: true,
+      }),
+    });
+  }
+};
+
+const finishedHandler = (
+  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
+  setCurrentReelRaceData: CurrentReelRaceInfo => void,
+  playerId: string
+) => ({ data }: { data: CometdReelRaceFinishedType }) => {
+  if (reelRace?.id === data.tournamentId) {
+    const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
+      reelRace || {};
+
+    setCurrentReelRaceData({
+      ...createCurrentReelRaceData(playerId, {
+        ...(currentReelRaceRest
+          ? {
+              ...currentReelRaceRest,
+              leaderboard: convertLeaderboardToObject(
+                currentReelRaceLeaderboard
+              ),
+            }
+          : {}),
+        isInProgress: false,
+      }),
+    });
+  }
+};
+
+const subscriptionHandler = (
+  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
+  setCurrentReelRaceData: CurrentReelRaceInfo => void,
+  playerId: string
+) => ({ data }: { data: CometdReelRaceUpdateType }) => {
+  const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
+    reelRace || {};
+
+  setCurrentReelRaceData(
+    createCurrentReelRaceData(playerId, {
+      ...(currentReelRaceRest
+        ? {
+            ...currentReelRaceRest,
+            leaderboard: convertLeaderboardToObject(currentReelRaceLeaderboard),
+          }
+        : {}),
+      leaderboard: data.leaderboard,
+    })
+  );
+};
+
+const reelRaceApplies = (
+  localCurrentReelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
+  localGameSlug: ?string
+): boolean =>
+  Boolean(
+    localCurrentReelRace &&
+      (!localGameSlug ||
+        (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
+  );
+
 // After is mounted we show initial leaderboard from reelRace.
 // It shows new leaderboard only when event happens.
 export function useCurrentReelRaceInfo(
@@ -130,79 +228,11 @@ export function useCurrentReelRaceInfo(
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
   const refetchTimeout = useTimeoutFn();
+  const updateTimeout = useTimeoutFn();
   const [
     currentReelRaceData,
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
-
-  const statusHandler = React.useCallback(
-    reelRace => ({ data }) => {
-      if (
-        reelRace?.id === data.tournamentId &&
-        data.status === RACE_STATE.STARTED
-      ) {
-        const {
-          leaderboard: currentReelRaceLeaderboard,
-          ...currentReelRaceRest
-        } = reelRace || {};
-
-        setCurrentReelRaceData({
-          ...createCurrentReelRaceData(playerId, {
-            ...(currentReelRaceRest
-              ? {
-                  ...currentReelRaceRest,
-                  leaderboard: convertLeaderboardToObject(
-                    currentReelRaceLeaderboard
-                  ),
-                }
-              : {}),
-            isInProgress: true,
-          }),
-        });
-      }
-    },
-    [playerId]
-  );
-  const subscriptionHandler = React.useCallback(
-    reelRace => ({
-      data,
-    }: {
-      data: { leaderboard: LeaderboardObjectType },
-    }) => {
-      const {
-        leaderboard: currentReelRaceLeaderboard,
-        ...currentReelRaceRest
-      } = reelRace || {};
-
-      setCurrentReelRaceData(
-        createCurrentReelRaceData(playerId, {
-          ...(currentReelRaceRest
-            ? {
-                ...currentReelRaceRest,
-                leaderboard: convertLeaderboardToObject(
-                  currentReelRaceLeaderboard
-                ),
-              }
-            : {}),
-          leaderboard: data.leaderboard,
-        })
-      );
-    },
-    [playerId]
-  );
-
-  const reelRaceApplies = React.useCallback(
-    (
-      localCurrentReelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
-      localGameSlug: ?string
-    ): boolean =>
-      Boolean(
-        localCurrentReelRace &&
-          (!localGameSlug ||
-            (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
-      ),
-    []
-  );
 
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
@@ -233,8 +263,8 @@ export function useCurrentReelRaceInfo(
       refetchTimeout.scheduleAt(
         refetch,
         (closestReelRace ? closestReelRace.endTime : 0) +
-          (3 + Math.random() * 30) * 1000
-      ); // distribute refetch within 30s
+          (30 + Math.random() * 60) * 1000
+      ); // distribute refetch within 60s
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
         setCurrentReelRaceData(
@@ -259,27 +289,36 @@ export function useCurrentReelRaceInfo(
           cometd.subscribe(
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`,
-            subscriptionHandler(localCurrentReelRace)
+            subscriptionHandler(
+              localCurrentReelRace,
+              setCurrentReelRaceData,
+              playerId
+            )
           );
 
           cometd.subscribe(
             `${channel}/tournaments/tournamentProperties/status`,
-            statusHandler(localCurrentReelRace)
+            statusHandler(
+              localCurrentReelRace,
+              setCurrentReelRaceData,
+              playerId
+            )
+          );
+
+          cometd.subscribe(
+            `${channel}/tournaments/tournamentEvents/finished`,
+            finishedHandler(
+              localCurrentReelRace,
+              setCurrentReelRaceData,
+              playerId
+            )
           );
         });
-      } else {
-        setCurrentReelRaceData(prevData =>
-          !prevData
-            ? null
-            : {
-                ...prevData,
-                isInProgress: false,
-              }
-        );
       }
 
       return function cleanup() {
         refetchTimeout.clear();
+        updateTimeout.clear();
         if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
           // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
           localCurrentReelRace.cometdChannels.forEach(channel => {
@@ -289,6 +328,9 @@ export function useCurrentReelRaceInfo(
             );
             cometd.unsubscribe(
               `${channel}/tournaments/tournamentProperties/status`
+            );
+            cometd.unsubscribe(
+              `${channel}/tournaments/tournamentEvents/finished`
             );
           });
         }
@@ -301,9 +343,7 @@ export function useCurrentReelRaceInfo(
     reelRaceQueryData,
     refetch,
     refetchTimeout,
-    subscriptionHandler,
-    statusHandler,
-    reelRaceApplies,
+    updateTimeout,
   ]);
 
   return currentReelRaceData;

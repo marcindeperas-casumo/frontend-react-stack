@@ -426,3 +426,65 @@ export const bonusBalanceDisplay = (
     !trimmed ? bonusText : ""
   }`;
 };
+
+// Returns ordinal suffix for received number eg for 1 it returns 'st', for 52 returns 'nd' ..
+const ordinalTranslations = {
+  en: {
+    ordinal: new Map([
+      ["0", "th"],
+      ["1", "st"],
+      ["2", "nd"],
+      ["3", "rd"],
+      ["4", "th"],
+      ["5", "th"],
+      ["6", "th"],
+      ["7", "th"],
+      ["8", "th"],
+      ["9", "th"],
+    ]),
+  },
+  se: {
+    ordinal: new Map([
+      ["0", "e"],
+      ["1", "a"],
+      ["2", "a"],
+      ["3", "e"],
+      ["4", "e"],
+      ["5", "e"],
+      ["6", "e"],
+      ["7", "e"],
+      ["8", "e"],
+      ["9", "e"],
+    ]),
+  },
+};
+
+/**
+ * Returns ordinal suffix for received number eg for (en-gb) 1 it returns 'st', for 52 returns 'nd' ...
+ *
+ * @param {String} locale
+ * @param {Number} amount
+ * @returns {String}
+ */
+export const getOrdinalSuffix = ({
+  locale = "en",
+  amount,
+}: {
+  locale: string,
+  amount: number,
+}) => {
+  if (!locale || !amount) {
+    return "";
+  }
+
+  // Get the ordinal by locale and amount that applies - certain locales use same ordinal for all values
+  const lastDigitInAmount = amount.toString().substr(-1);
+  if (locale === "dk" || locale === "no") {
+    return ".";
+  } else if (locale === "es") {
+    return "%C2%BA";
+  } else if (locale === "jp") {
+    return "%E4%BD%8D";
+  }
+  return ordinalTranslations[locale].ordinal.get(lastDigitInAmount) || "";
+};

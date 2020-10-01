@@ -1,7 +1,5 @@
-.c-profile-icon-with-drawer {
+.c-reel-race-icon {
   background-clip: padding-box;
-
-  box-sizing: content-box;
 
   &__content {
     left: 50%;
@@ -16,26 +14,20 @@
     }
   }
 
-  &__chevron-icon {
-    bottom: 0;
-    right: 0;
+  &__progress {
+    left: 0;
+    margin-top: -50%;
+    top: 0;
   }
 
-  &__bottom-wrapper {
-    left: 0;
-    margin-left: 50%;
-    margin-top: 12px;
-    max-width: 442px;
-    transform: translateX(-50%);
+  &__info {
+    margin: 0 auto;
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
 
-    &-bg {
-      background: linear-gradient(white, transparent);
-      margin-top: 12px;
-    }
-
-    &-item {
-      box-sizing: border-box;
-    }
+  &-color-brown {
+    color: #b96e00;
   }
 }
 

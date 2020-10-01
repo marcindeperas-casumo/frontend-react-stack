@@ -1,2 +1,4 @@
 // @flow
-export { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
+export {
+  ReelRaceStartingNotificationContainer as ReelRaceStartingNotification,
+} from "./ReelRaceStartingNotificationContainer";
