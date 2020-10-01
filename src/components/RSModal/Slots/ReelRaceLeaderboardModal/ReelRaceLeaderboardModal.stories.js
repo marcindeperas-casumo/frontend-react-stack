@@ -6,6 +6,18 @@ import { ReelRaceLeaderboardModal } from "./ReelRaceLeaderboardModal";
 
 const stories = storiesOf("RSModal/Slots/ReelRaceLeaderboardModal", module);
 
-stories.add("Default", () => (
-  <ReelRaceLeaderboardModal acceptModal={action("acceptModal")} />
-));
+stories.add("Someone won the race", () => {
+  return (
+    <ReelRaceLeaderboardModal
+      acceptModal={action("acceptModal")}
+      place={11}
+      winnerName="jeff"
+    />
+  );
+});
+
+stories.add("Player won the race", () => {
+  return (
+    <ReelRaceLeaderboardModal acceptModal={action("acceptModal")} place={1} />
+  );
+});
