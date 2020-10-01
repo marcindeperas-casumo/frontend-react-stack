@@ -21,10 +21,10 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-// ToDo to enable once quick deposit is finished import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
+import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
@@ -199,7 +199,11 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              {/* TODO to enable once quick deposit is finished <QuickDeposit pauseGame={pauseGame} resumeGame={resumeGame} /> */}
+              <QuickDeposit
+                cashierLinkCallback={() => null}
+                pauseGame={pauseGame}
+                resumeGame={resumeGame}
+              />
               <InGameDrawer
                 t={t}
                 isChatDisabled={isChatDisabled}
