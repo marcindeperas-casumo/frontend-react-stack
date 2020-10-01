@@ -12,6 +12,23 @@ const t = {
   cashier_link_text: "Cashier",
 };
 
+const methodMock = {
+  deleted: false,
+  id: "some_id",
+  identifier: "Visa",
+  lastUsageTime: 0,
+  name: "Visa card",
+  token: "token",
+  type: "VISA_CARD",
+  limits: {
+    deposit: {
+      min: 10,
+      max: 100,
+    },
+  },
+  displayName: "Visa/debit",
+};
+
 stories.add("Sterling Deposit Slip Link", () => {
   return (
     <MockStore>
@@ -19,7 +36,7 @@ stories.add("Sterling Deposit Slip Link", () => {
         walletBalance="£987.65"
         bonusBalance="£55.03"
         t={t}
-        hasSavedPaymentMethods={true}
+        quickDepositPaymentMethods={[methodMock]}
         currency="GBP"
         cashierLinkCallback={() => null}
       />
@@ -35,7 +52,7 @@ stories.add("Euro Cashier Link", () => {
         bonusBalance="€55.03"
         t={t}
         currency="EUR"
-        hasSavedPaymentMethods={false}
+        quickDepositPaymentMethods={[]}
         cashierLinkCallback={() => null}
       />
     </MockStore>
