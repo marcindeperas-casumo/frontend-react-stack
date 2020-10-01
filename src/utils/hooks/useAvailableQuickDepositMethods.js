@@ -13,6 +13,7 @@ import type {
   SavedMethodType,
   MethodConfigType,
   AvailableMethod,
+  QuickDepositMethod,
 } from "Models/payments/methodConfig.types";
 const isMethodAvailableForQuickDeposit = cmsConfig =>
   cmsConfig.mobile.deposit.quick;
@@ -34,7 +35,7 @@ export const prepareQuickDepositMethod = (
   playerMethod: SavedMethodType,
   cmsConfig: MethodConfigType,
   method?: AvailableMethod
-) => ({
+): QuickDepositMethod => ({
   ...playerMethod,
   limits: cmsConfig.profiles.default.limits,
   displayName: method?.displayName,

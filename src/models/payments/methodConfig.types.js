@@ -70,4 +70,9 @@ export type AvailableMethod = {
   inMaintenanceMode: boolean,
 };
 
+export type QuickDepositMethod = SavedMethodType & {
+  limits: any,
+  displayName: string,
+};
+
 export type ActionTypes = $Values<typeof actionTypes>;
