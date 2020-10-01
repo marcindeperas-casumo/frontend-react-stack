@@ -17,13 +17,18 @@ import type {
 const isMethodAvailableForQuickDeposit = cmsConfig =>
   cmsConfig.mobile.deposit.quick;
 
-const isAvailableInCountry = (cmsConfig, country) =>
+const isAvailableInCountry = (cmsConfig: MethodConfigType, country: string) =>
   !R.includes(country, cmsConfig.mobile.deposit.disabledCountries);
 
-const inMaintenance = (methodType, availableMethods) =>
-  availableMethods.find(method => method.type === methodType).inMaintenanceMode;
+export const inMaintenance = (
+  methodType: string,
+  availableMethods: Array<AvailableMethod>
+) =>
+  availableMethods.find(method => method.type === methodType)
+    ?.inMaintenanceMode;
 
-const isSavedMethodDeleted = method => method.deleted;
+export const isSavedMethodDeleted = (savedMethod: SavedMethodType) =>
+  savedMethod.deleted;
 
 export const prepareQuickDepositMethod = (
   playerMethod: SavedMethodType,
@@ -72,6 +77,7 @@ export const useAvailableQuickDepositMethods = () => {
           const config = methodsConfigs[playerMethod.type];
 
           if (
+            config &&
             !isSavedMethodDeleted(playerMethod) &&
             isMethodAvailableForQuickDeposit(config) &&
             isAvailableInCountry(config, playerCountry) &&
