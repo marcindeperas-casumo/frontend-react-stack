@@ -23,7 +23,8 @@ export type ModalId =
   | "TIME_LIMITS_FORM"
   | "REALITY_CHECK"
   | "QUIT_GAME_NOTIFICATION"
-  | "WAGERING_NOTIFICATION";
+  | "WAGERING_NOTIFICATION"
+  | "GAME_PAGE_RR_LEADERBOARD";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
