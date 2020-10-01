@@ -18,10 +18,13 @@ const baseClassName = "c-prize";
 export const Prize = ({ prize, highlighted, className }: Props) => (
   <div className={cx("u-display--inline-block", className)}>
     <Flex
-      className={cx(`${baseClassName} t-border-r--md u-overflow-hidden`, {
-        "t-background-brown-30": highlighted,
-        "t-background-grey-0 ": !highlighted,
-      })}
+      className={cx(
+        `${baseClassName} t-border-r--md u-overflow-hidden u-padding-x`,
+        {
+          "t-background-brown-30": highlighted,
+          "t-background-grey-0 ": !highlighted,
+        }
+      )}
       align="center"
     >
       <Flex.Item>
