@@ -29,7 +29,7 @@ export const Prize = ({ prize, highlighted, className }: Props) => (
     >
       <Flex.Item>
         <TournamentIcon
-          className={cx(`c${baseClassName}__icon`, {
+          className={cx(`${baseClassName}__icon`, {
             "t-color-grey-50": !highlighted,
             "t-color-white": highlighted,
           })}
