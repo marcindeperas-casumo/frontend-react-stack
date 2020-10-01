@@ -41,8 +41,8 @@ export const prepareQuickDepositMethod = (
   displayName: method?.displayName,
 });
 
-export const useAvailableQuickDepositMethods = () => {
-  const [availableMethod, setAvailableMethod] = React.useState();
+export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => {
+  const [availableMethods, setAvailableMethods] = React.useState([]);
   const [methodTypes, setMethodTypes] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const savedMethods = useSelector(savedMethodsSelector);
@@ -73,7 +73,7 @@ export const useAvailableQuickDepositMethods = () => {
 
   React.useEffect(() => {
     if (methodTypes && savedMethods.length && playerCountry) {
-      setAvailableMethod(
+      setAvailableMethods(
         savedMethods.reduce((quickDepositMethods, playerMethod) => {
           const config = methodsConfigs[playerMethod.type];
 
@@ -99,5 +99,5 @@ export const useAvailableQuickDepositMethods = () => {
     }
   }, [methodTypes, methodsConfigs, playerCountry, savedMethods]);
 
-  return availableMethod;
+  return availableMethods;
 };
