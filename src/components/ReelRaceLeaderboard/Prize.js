@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { TrophyIcon } from "@casumo/cmp-icons";
+import { TournamentIcon } from "@casumo/cmp-icons";
 
 import "./Prize.scss";
 
@@ -28,7 +28,7 @@ export const Prize = ({ prize, highlighted, className }: Props) => (
       align="center"
     >
       <Flex.Item>
-        <TrophyIcon
+        <TournamentIcon
           className={cx(`c${baseClassName}__icon`, {
             "t-color-grey-50": !highlighted,
             "t-color-white": highlighted,
