@@ -11,26 +11,34 @@ type Props = {
   position: number,
   className?: string,
   highlighted?: boolean,
+  showLaurel?: boolean,
 };
 
-export const LaurelPosition = ({ position, highlighted, className }: Props) => (
+export const LaurelPosition = ({
+  position,
+  highlighted,
+  showLaurel,
+  className,
+}: Props) => (
   <div className="c-laurel-position u-position-relative u-width--2xlg u-height--2xlg">
-    <LaurelIcon
-      className={cx(
-        `u-width--2xlg u-height--2xlg t-color-${getLaurelColor(
-          position,
-          highlighted
-        )}`,
-        {
-          "t-opacity-color--25": highlighted && position === 1,
-        },
-        className
-      )}
-    />
+    {showLaurel && (
+      <LaurelIcon
+        className={cx(
+          `u-width--2xlg u-height--2xlg t-color-${getLaurelColor(
+            position,
+            highlighted
+          )}`,
+          {
+            "t-opacity-color--25": highlighted && position === 1,
+          },
+          className
+        )}
+      />
+    )}
     <Text
       tag="div"
       className="c-laurel-position__text u-position-absolute t-color-grey-90 u-font-weight-bold"
-      size={position >= 100 ? "xs" : "sm"}
+      size={position >= 100 && showLaurel ? "xs" : "sm"}
     >
       {position}
     </Text>

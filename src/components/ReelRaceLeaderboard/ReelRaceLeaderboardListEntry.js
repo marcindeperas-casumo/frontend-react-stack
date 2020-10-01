@@ -12,6 +12,7 @@ type Props = {
   price?: ?string,
   points: number,
   highlighted?: boolean,
+  className?: string,
 };
 
 export const ReelRaceLeaderboardListEntry = ({
@@ -20,21 +21,30 @@ export const ReelRaceLeaderboardListEntry = ({
   price,
   points,
   highlighted,
+  className,
 }: Props) => (
   <Flex
     align="center"
-    className={cx("u-width--full u-padding-y--sm u-padding-right--lg", {
-      "t-background-yellow-30": highlighted,
-    })}
+    className={cx(
+      "u-width--full u-padding-y--sm u-padding-right--lg",
+      {
+        "t-background-yellow-30": highlighted,
+      },
+      className
+    )}
   >
     <Flex.Item>
-      <LaurelPosition position={position} highlighted={highlighted} />
+      <LaurelPosition
+        position={position}
+        highlighted={highlighted}
+        showLaurel={Boolean(price)}
+      />
     </Flex.Item>
     <Flex.Block>
       <Text tag="div">{text}</Text>
     </Flex.Block>
     <Flex.Item>
-      <Price price={price} highlighted={highlighted} />
+      {price && <Price price={price} highlighted={highlighted} />}
     </Flex.Item>
     <Flex.Item>
       <Text

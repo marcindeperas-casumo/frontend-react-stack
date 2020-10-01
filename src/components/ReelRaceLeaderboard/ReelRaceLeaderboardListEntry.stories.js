@@ -1,10 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-// import isNotChromatic from "Storybook/isNotChromatic";
-// import MockStore from "Components/MockStore";
 import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
-// import { leaderboard } from "./__mocks__/leaderboard.mock";
 
 const stories = storiesOf(
   "ReelRaceLeaderboard/ReelRaceLeaderboardListEntry",
@@ -43,6 +40,14 @@ stories.add("Default", () => {
         position={4}
         text="testme"
         price="$500"
+        points={2739}
+      />
+      <ReelRaceLeaderboardListEntry position={5} text="testme" points={273} />
+      <ReelRaceLeaderboardListEntry position={6} text="testme" points={2739} />
+      <ReelRaceLeaderboardListEntry position={25} text="testme" points={2739} />
+      <ReelRaceLeaderboardListEntry
+        position={100}
+        text="testme"
         points={2739}
       />
     </div>
