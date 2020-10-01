@@ -1,0 +1,48 @@
+/* stylelint-disable xi/selector-pattern */
+.c-reel-races-drawer {
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 90%,
+    rgba(26, 33, 44, 0.96) 50%,
+    rgba(26, 33, 44, 1) 50%
+  );
+  z-index: cudl-z(main-nav);
+
+  &__laurel {
+    height: 80px;
+    left: 0;
+    margin-left: 50%;
+    margin-top: 50%;
+    top: 15px;
+    transform: translateX(-50%) translateY(-68%);
+    width: 100px;
+  }
+
+  &__laurel-position {
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+    /* autoprefixer: ignore next */
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
+  }
+
+  &__elem {
+    flex-basis: 0;
+  }
+}
+
+.c-reel-races-drawer-position {
+  height: 29px;
+}
+
+.c-reel-races-drawer-position-view {
+  bottom: 20px;
+  height: 74px;
+  width: 74px;
+}
+
+.c-highlighted-progress-bar {
+  height: 4px;
+}

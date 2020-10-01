@@ -2,6 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 const stories = storiesOf(
@@ -12,7 +13,9 @@ const stories = storiesOf(
 stories.add("Default", () => {
   return (
     <ReelRaceStartingNotification
-      secondsToStart={number("Seconds to Start", 10)}
+      secondsLeft={number("Seconds Left", 5)}
+      secondsLeftWhenShown={10}
+      onClickDismiss={action("dismiss clicked")}
     />
   );
 });
