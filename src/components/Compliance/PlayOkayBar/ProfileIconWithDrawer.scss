@@ -4,9 +4,8 @@
   box-sizing: content-box;
 
   &__content {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
 
     &--old {
       animation: floatContentOld 0.9s normal forwards ease-out;
@@ -45,13 +44,13 @@
     margin-top: 0;
   }
   100% {
-    margin-top: -40px;
+    margin-top: -48px;
   }
 }
 
 @keyframes floatContentNext {
   0% {
-    margin-top: 40px;
+    margin-top: 48px;
   }
   100% {
     margin-top: 0;
