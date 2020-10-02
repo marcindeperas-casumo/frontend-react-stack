@@ -37,7 +37,7 @@ export const LaurelPosition = ({
     )}
     <Text
       tag="div"
-      className="c-laurel-position__text u-position-absolute t-color-grey-90 u-font-weight-bold"
+      className="c-laurel-position__text u-position-absolute t-color-grey-90 u-font-weight-bold u-inset-0 u-text-align-center"
       size={position >= 100 && showLaurel ? "xs" : "sm"}
     >
       {position}
