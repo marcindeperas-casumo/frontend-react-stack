@@ -14,12 +14,24 @@ import type {
   MethodConfigType,
   AvailableMethod,
   QuickDepositMethod,
-} from "Models/payments/methodConfig.types";
+  LocalPaymentMethodTypeKeys,
+} from "Models/payments";
+
 const isMethodAvailableForQuickDeposit = cmsConfig =>
   cmsConfig.mobile.deposit.quick;
 
 const isAvailableInCountry = (cmsConfig: MethodConfigType, country: string) =>
   !R.includes(country, cmsConfig.mobile.deposit.disabledCountries);
+
+export const convertMethodTypesToMap = (
+  methods: Array<AvailableMethod>
+): { [key: LocalPaymentMethodTypeKeys]: AvailableMethod } =>
+  methods.reduce((acc, cur) => {
+    return {
+      ...acc,
+      [cur.type]: cur,
+    };
+  }, {});
 
 export const inMaintenance = (
   methodType: string,
@@ -66,7 +78,7 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
     if (!methodTypes && !loading) {
       setLoading(true);
       getPaymentMethodTypes().then(result => {
-        setMethodTypes(result);
+        setMethodTypes(convertMethodTypesToMap(result));
       });
     }
   }, [loading, methodTypes]);
@@ -82,13 +94,13 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
             !isSavedMethodDeleted(playerMethod) &&
             isMethodAvailableForQuickDeposit(config) &&
             isAvailableInCountry(config, playerCountry) &&
-            !inMaintenance(playerMethod.type, methodTypes)
+            !methodTypes[playerMethod.type].inMaintenanceMode
           ) {
             return quickDepositMethods.concat([
               prepareQuickDepositMethod(
                 playerMethod,
                 config,
-                methodTypes.find(method => method.type === playerMethod.type)
+                methodTypes[playerMethod.type]
               ),
             ]);
           }

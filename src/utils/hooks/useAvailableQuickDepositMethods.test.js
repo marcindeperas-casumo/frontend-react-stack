@@ -10,6 +10,7 @@ import { methodTypes } from "./__mocks__/methodTypesMock";
 import {
   prepareQuickDepositMethod,
   useAvailableQuickDepositMethods,
+  convertMethodTypesToMap,
 } from "./useAvailableQuickDepositMethods";
 
 jest.mock("Api/api.payments", () => ({
@@ -23,11 +24,13 @@ const playerMethod =
     "2bb42ab0-7937-11e8-b6b5-0242ac11000b"
   ].paymentMethods[0];
 
+const methodTypesMap = convertMethodTypesToMap(methodTypes);
+
 const expectedQuickDepositMethods = [
   prepareQuickDepositMethod(
     playerMethod,
     mock.paymentMethodConfigs.VISA_CARD,
-    methodTypes.find(method => method.type === playerMethod.type)
+    methodTypesMap[playerMethod.type]
   ),
 ];
 
