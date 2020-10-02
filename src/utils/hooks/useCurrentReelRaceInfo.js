@@ -26,9 +26,10 @@ export type CurrentReelRaceInfo = {
   points: number,
   remainingSpins: number,
   isInProgress: boolean,
+  hasEnded: boolean,
   tournamentId: ?string,
   formattedPrizes: Array<string>,
-  leaderboard: LeaderboardObjectType,
+  leaderboard: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 
 type CreateCurrentReelRaceDataType = {
@@ -64,9 +65,10 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   points: 0,
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
+  hasEnded: false,
   tournamentId: null,
   formattedPrizes: [],
-  leaderboard: {},
+  leaderboard: [],
 };
 
 export const convertLeaderboardToObject = (
@@ -129,9 +131,13 @@ export const createCurrentReelRaceData = (
         endTime >= 0 &&
         Date.now() < endTime
     ),
+    hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
-    leaderboard,
-    formattedPrizes,
+    leaderboard: R.pipe(
+      R.values,
+      R.sortBy(R.prop("position"))
+    )(leaderboard),
+    formattedPrizes: formattedPrizes || [],
   };
 };
 
@@ -186,6 +192,7 @@ const finishedHandler = (
             }
           : {}),
         isInProgress: false,
+        hasEnded: true,
       }),
     });
   }
@@ -290,6 +297,8 @@ export function useCurrentReelRaceInfo(
             game: localCurrentReelRace.game,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             id: localCurrentReelRace.id,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            formattedPrizes: localCurrentReelRace.formattedPrizes,
           })
         );
 
