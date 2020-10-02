@@ -5,9 +5,10 @@ import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
+import type { QuickDepositMethod } from "Models/payments";
 
 type Props = {
-  hasSavedPaymentMethods: boolean,
+  quickDepositPaymentMethods: Array<QuickDepositMethod>,
   walletBalance: string,
   bonusBalance: string,
   currency: string,
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export const QuickDeposit = ({
-  hasSavedPaymentMethods,
+  quickDepositPaymentMethods,
   walletBalance,
   bonusBalance,
   currency,
@@ -57,7 +58,7 @@ export const QuickDeposit = ({
         </Flex.Block>
       </Flex.Item>
       <Flex.Item className="u-margin-left--auto u-cursor--pointer">
-        {hasSavedPaymentMethods ? (
+        {quickDepositPaymentMethods.length ? (
           <Flex
             align="center"
             justify="center"
