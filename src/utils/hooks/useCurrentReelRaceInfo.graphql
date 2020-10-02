@@ -14,8 +14,10 @@ query CurrentReelRaceInfoQuery {
     promoted
     spinLimit
     cometdChannels
+    formattedPrizes
     leaderboard {
       playerId
+      playerName
       position
       points
       remainingSpins

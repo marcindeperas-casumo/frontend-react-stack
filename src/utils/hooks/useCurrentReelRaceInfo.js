@@ -14,6 +14,10 @@ import {
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 
+type LeaderboardObjectType = {
+  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+};
+
 export type CurrentReelRaceInfo = {
   game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
   startTime: BigInt,
@@ -23,10 +27,8 @@ export type CurrentReelRaceInfo = {
   remainingSpins: number,
   isInProgress: boolean,
   tournamentId: ?string,
-};
-
-type LeaderboardObjectType = {
-  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+  formattedPrizes: Array<string>,
+  leaderboard: LeaderboardObjectType,
 };
 
 type CreateCurrentReelRaceDataType = {
@@ -34,6 +36,7 @@ type CreateCurrentReelRaceDataType = {
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
+  formattedPrizes?: Array<string>,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
@@ -62,6 +65,8 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
   tournamentId: null,
+  formattedPrizes: [],
+  leaderboard: {},
 };
 
 export const convertLeaderboardToObject = (
@@ -87,11 +92,13 @@ export const createCurrentReelRaceData = (
     startTime,
     endTime,
     leaderboard,
+    formattedPrizes,
     game,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
     leaderboard: {},
+    formattedPrizes: [],
     game: null,
     id: null,
   }
@@ -123,6 +130,8 @@ export const createCurrentReelRaceData = (
         Date.now() < endTime
     ),
     tournamentId: id,
+    leaderboard,
+    formattedPrizes,
   };
 };
 
