@@ -1,6 +1,6 @@
 // @flow
 import http from "Lib/http";
 
-export const paymentMethodTypesUrl = "/api/common/query/paymentMethodTypes";
+export const PAYMENT_METHOD_TYPES_URL = "/api/common/query/paymentMethodTypes";
 
-export const getPaymentMethodTypes = () => http.get(paymentMethodTypesUrl);
+export const getPaymentMethodTypes = () => http.get(PAYMENT_METHOD_TYPES_URL);
