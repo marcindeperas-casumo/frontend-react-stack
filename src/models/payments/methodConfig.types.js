@@ -57,10 +57,10 @@ export type MethodConfigType = {
 export type SavedMethodType = {
   deleted: boolean,
   id: string,
-  identifier: string,
+  identifier: ?string,
   lastUsageTime: number,
   name: string,
-  token: string,
+  token: ?string,
   type: string,
 };
 

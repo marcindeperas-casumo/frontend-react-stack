@@ -33,20 +33,10 @@ export const convertMethodTypesToMap = (
     };
   }, {});
 
-export const inMaintenance = (
-  methodType: string,
-  availableMethods: Array<AvailableMethod>
-) =>
-  availableMethods.find(method => method.type === methodType)
-    ?.inMaintenanceMode;
-
-export const isSavedMethodDeleted = (savedMethod: SavedMethodType) =>
-  savedMethod.deleted;
-
 export const prepareQuickDepositMethod = (
   playerMethod: SavedMethodType,
   cmsConfig: MethodConfigType,
-  method?: AvailableMethod
+  method: AvailableMethod
 ): QuickDepositMethod => ({
   ...playerMethod,
   limits: cmsConfig.profiles.default.limits,
@@ -91,7 +81,7 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
 
           if (
             config &&
-            !isSavedMethodDeleted(playerMethod) &&
+            !playerMethod.deleted &&
             isMethodAvailableForQuickDeposit(config) &&
             isAvailableInCountry(config, playerCountry) &&
             !methodTypes[playerMethod.type].inMaintenanceMode
