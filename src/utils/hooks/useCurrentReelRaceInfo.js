@@ -14,6 +14,10 @@ import {
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 
+type LeaderboardObjectType = {
+  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+};
+
 export type CurrentReelRaceInfo = {
   game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
   startTime: BigInt,
@@ -22,11 +26,10 @@ export type CurrentReelRaceInfo = {
   points: number,
   remainingSpins: number,
   isInProgress: boolean,
+  hasEnded: boolean,
   tournamentId: ?string,
-};
-
-type LeaderboardObjectType = {
-  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+  formattedPrizes: Array<string>,
+  leaderboard: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 
 type CreateCurrentReelRaceDataType = {
@@ -34,6 +37,7 @@ type CreateCurrentReelRaceDataType = {
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
+  formattedPrizes?: Array<string>,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
@@ -61,7 +65,10 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   points: 0,
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
+  hasEnded: false,
   tournamentId: null,
+  formattedPrizes: [],
+  leaderboard: [],
 };
 
 export const convertLeaderboardToObject = (
@@ -87,11 +94,13 @@ export const createCurrentReelRaceData = (
     startTime,
     endTime,
     leaderboard,
+    formattedPrizes,
     game,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
     leaderboard: {},
+    formattedPrizes: [],
     game: null,
     id: null,
   }
@@ -122,7 +131,13 @@ export const createCurrentReelRaceData = (
         endTime >= 0 &&
         Date.now() < endTime
     ),
+    hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
+    leaderboard: R.pipe(
+      R.values,
+      R.sortBy(R.prop("position"))
+    )(leaderboard),
+    formattedPrizes: formattedPrizes || [],
   };
 };
 
@@ -177,6 +192,7 @@ const finishedHandler = (
             }
           : {}),
         isInProgress: false,
+        hasEnded: true,
       }),
     });
   }
@@ -281,6 +297,8 @@ export function useCurrentReelRaceInfo(
             game: localCurrentReelRace.game,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             id: localCurrentReelRace.id,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            formattedPrizes: localCurrentReelRace.formattedPrizes,
           })
         );
 

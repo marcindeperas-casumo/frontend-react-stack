@@ -54,4 +54,25 @@ export type MethodConfigType = {
   },
 };
 
+export type SavedMethodType = {
+  deleted: boolean,
+  id: string,
+  identifier: ?string,
+  lastUsageTime: number,
+  name: string,
+  token: ?string,
+  type: string,
+};
+
+export type AvailableMethod = {
+  type: string,
+  displayName: string,
+  inMaintenanceMode: boolean,
+};
+
+export type QuickDepositMethod = SavedMethodType & {
+  limits: any,
+  displayName: string,
+};
+
 export type ActionTypes = $Values<typeof actionTypes>;

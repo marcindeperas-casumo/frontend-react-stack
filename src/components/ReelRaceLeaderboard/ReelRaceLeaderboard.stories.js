@@ -6,7 +6,7 @@ import MockStore from "Components/MockStore";
 import { ReelRaceLeaderboard } from "./ReelRaceLeaderboard";
 import { leaderboard } from "./__mocks__/leaderboard.mock";
 
-const stories = storiesOf("ReelRaceLeaderboard", module);
+const stories = storiesOf("ReelRaceLeaderboard/ReelRaceLeaderboard", module);
 
 const props = {
   cometdChannels: ["channel1", "channel2"],

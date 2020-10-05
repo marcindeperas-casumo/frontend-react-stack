@@ -8,13 +8,13 @@
   z-index: cudl-z(main-nav);
 
   &__laurel {
-    height: 80px;
+    height: 80px !important;
     left: 0;
     margin-left: 50%;
     margin-top: 50%;
     top: 15px;
     transform: translateX(-50%) translateY(-68%);
-    width: 100px;
+    width: 100px !important;
   }
 
   &__laurel-position {
