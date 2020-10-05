@@ -149,18 +149,26 @@ export const ProfileIconWithDrawer = ({
         >
           {PrimaryIcon && (
             <div
-              className={cx("u-height--2xlg u-width--2xlg", {
-                [`${baseClassName}__content--old`]: isTransitionRunning,
-              })}
+              className={cx(
+                `${baseClassName}__content`,
+                "u-height--3xlg u-width--3xlg u-position-absolute",
+                {
+                  [`${baseClassName}__content--old`]: isTransitionRunning,
+                }
+              )}
             >
               <PrimaryIcon {...commonRaceProps} />
             </div>
           )}
           {SecondaryIcon && (
             <div
-              className={cx("u-height--2xlg u-width--2xlg", {
-                [`${baseClassName}__content--next`]: isTransitionRunning,
-              })}
+              className={cx(
+                `${baseClassName}__content`,
+                "u-height--3xlg u-width--3xlg u-position-absolute",
+                {
+                  [`${baseClassName}__content--next`]: isTransitionRunning,
+                }
+              )}
             >
               <SecondaryIcon {...commonRaceProps} />
             </div>
