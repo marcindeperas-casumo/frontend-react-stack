@@ -10,7 +10,8 @@ export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",
 };
-export type ModalId =
+type ModalIdWithInput = "GAME_PAGE_RR_LEADERBOARD";
+type ModalIdWithoutInput =
   | "GAME_ROUND_DETAILS"
   | "TERMS_AND_CONDITIONS_SPAIN"
   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
@@ -25,6 +26,22 @@ export type ModalId =
   | "QUIT_GAME_NOTIFICATION"
   | "WAGERING_NOTIFICATION"
   | "GAME_PAGE_RR_LEADERBOARD";
+// export type ModalId =
+//   | "GAME_ROUND_DETAILS"
+//   | "TERMS_AND_CONDITIONS_SPAIN"
+//   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
+//   | "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT"
+//   | "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED"
+//   | "SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION"
+//   | "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION"
+//   | "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION"
+//   | "DANISH_ENTRY_OVERLAY"
+//   | "TIME_LIMITS_FORM"
+//   | "REALITY_CHECK"
+//   | "QUIT_GAME_NOTIFICATION"
+//   | "WAGERING_NOTIFICATION"
+//   | "GAME_PAGE_RR_LEADERBOARD";
+export type ModalId = ModalIdWithInput | ModalIdWithoutInput;
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
@@ -35,10 +52,17 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 (REACT_APP_MODAL.ID: { [ModalId]: ModalId });
 (REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
 */
+export type GamePageRrLeaderboardInput = {|
+  position: number,
+  winnerName: string,
+|};
+
 export type ModalConfig = {
   mustAccept?: boolean,
   onCloseCallback?: () => void,
+  input?: GamePageRrLeaderboardInput,
 };
+
 type ModalState = {
   modalId: ModalId | null,
   config: ModalConfig,
@@ -46,7 +70,7 @@ type ModalState = {
 
 type ActionType = "MODAL/HIDE" | "MODAL/SHOW";
 
-export function showModal(modalId: ModalId, config: any) {
+export function showModal(modalId: ModalId, config?: ModalConfig) {
   return {
     type: type.show,
     modalId,
@@ -79,14 +103,15 @@ export function useHideModal(modalId: ?ModalId) {
 }
 
 type Actions = typeof showModal | typeof hideModal;
+
 type Handler = {
-  [ActionType]: (state: Array<string>, action: Actions) => ModalState,
+  [ActionType]: (state: ModalState, action: Actions) => ModalState,
 };
 
 const handlers: Handler = {
-  [type.show]: (state, action) => ({
-    modalId: action.modalId,
-    config: action.config || {},
+  [type.show]: (state, { modalId, config }) => ({
+    modalId,
+    config,
   }),
   [type.hide]: state => ({
     modalId: null,

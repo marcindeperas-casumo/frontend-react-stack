@@ -25,6 +25,7 @@ import tracker from "Services/tracker";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
+import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
@@ -97,6 +98,8 @@ export const ProfileIconWithDrawer = ({
   const currentReelRace = isNativeByUserAgent()
     ? null
     : currentReelRaceFromHook;
+
+  useReelRaceLeaderboardModal(currentReelRace);
 
   useEffect(() => {
     const switchIconTo = iconType => {

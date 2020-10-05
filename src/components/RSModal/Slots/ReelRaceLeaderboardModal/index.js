@@ -1,4 +1,2 @@
 // @flow
-export {
-  ReelRaceLeaderboardModalContainer as ReelRaceLeaderboardModal,
-} from "./ReelRaceLeaderboardModalContainer";
+export { ReelRaceLeaderboardModal } from "./ReelRaceLeaderboardModal";

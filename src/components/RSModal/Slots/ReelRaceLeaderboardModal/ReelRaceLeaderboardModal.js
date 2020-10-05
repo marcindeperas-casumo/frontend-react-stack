@@ -6,31 +6,35 @@ import Text from "@casumo/cmp-text";
 import { TrophyIcon } from "@casumo/cmp-icons";
 import { getOrdinalSuffix, interpolateWithJSX } from "Utils";
 import { useLocale } from "Utils/hooks";
+import { type GamePageRrLeaderboardInput } from "Models/modal";
 import FeaturedImage from "./featuredImage.svg";
 
 type Props = {
   acceptModal: () => void,
-  place: number,
-  winnerName?: string,
+  config: {
+    input?: GamePageRrLeaderboardInput,
+  },
 };
 
-export function ReelRaceLeaderboardModal({
-  acceptModal,
-  place,
-  winnerName,
-}: Props) {
+export function ReelRaceLeaderboardModal({ acceptModal, config }: Props) {
   const locale = useLocale();
-  const placeSuffix = getOrdinalSuffix({ locale, amount: place });
+
+  if (!config.input) {
+    return null;
+  }
+
+  const { position, winnerName } = config.input;
+  const placeSuffix = getOrdinalSuffix({ locale, amount: position });
   const youPlacedHigh = "Congratulations, you placed {{place}}!";
   const someoneWon = "{{winnerName}} won the race!";
   const featuredSubtitle = (
-    <Text size="lg">
-      {place < 4
+    <Text tag="div" size="lg">
+      {position < 4
         ? interpolateWithJSX(
             {
               place: (
                 <span className="t-color-teal-50">
-                  {place}
+                  {position}
                   {placeSuffix}
                 </span>
               ),

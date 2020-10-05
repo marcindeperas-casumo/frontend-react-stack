@@ -4,20 +4,35 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { ReelRaceLeaderboardModal } from "./ReelRaceLeaderboardModal";
 
-const stories = storiesOf("RSModal/Slots/ReelRaceLeaderboardModal", module);
+const stories = storiesOf(
+  "RSModal/Slots/ReelRaceLeaderboardModal",
+  module
+).addParameters({ noGlobalDecorator: true });
 
 stories.add("Someone won the race", () => {
   return (
     <ReelRaceLeaderboardModal
       acceptModal={action("acceptModal")}
-      place={11}
-      winnerName="jeff"
+      config={{
+        input: {
+          position: 11,
+          winnerName: "jeff",
+        },
+      }}
     />
   );
 });
 
 stories.add("Player won the race", () => {
   return (
-    <ReelRaceLeaderboardModal acceptModal={action("acceptModal")} place={1} />
+    <ReelRaceLeaderboardModal
+      acceptModal={action("acceptModal")}
+      config={{
+        input: {
+          position: 1,
+          winnerName: "player",
+        },
+      }}
+    />
   );
 });
