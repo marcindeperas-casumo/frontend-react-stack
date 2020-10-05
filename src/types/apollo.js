@@ -2038,6 +2038,7 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
 };
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
+  playerName: string,
   position: number,
   points: number,
   remainingSpins: number,

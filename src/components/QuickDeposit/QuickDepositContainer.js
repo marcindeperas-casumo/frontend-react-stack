@@ -1,8 +1,11 @@
 // @flow
 import React from "react";
 import { useSelector } from "react-redux";
-import { localeSelector, savedMethodsSelector } from "Models/handshake";
-import { useTranslationsGql } from "Utils/hooks";
+import { localeSelector } from "Models/handshake";
+import {
+  useTranslationsGql,
+  useAvailableQuickDepositMethods,
+} from "Utils/hooks";
 import {
   playerBalanceAmountSelector,
   playerWalletBonusSelector,
@@ -29,7 +32,7 @@ export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
   const walletBonusText = useSelector(playerBonusTextSelector);
-  const savedPaymentMethods = useSelector(savedMethodsSelector);
+  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   return (
     <QuickDeposit
       t={t}
@@ -46,7 +49,7 @@ export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
         trimmedBonusTextFromBalance
       )}
       currency={currency}
-      hasSavedPaymentMethods={savedPaymentMethods && savedPaymentMethods.length}
+      quickDepositPaymentMethods={savedQuickDepositMethods}
       cashierLinkCallback={cashierLinkCallback}
     />
   );
