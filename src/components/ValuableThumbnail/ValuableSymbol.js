@@ -84,6 +84,7 @@ export const ValuableSymbol = ({
       SPINS_RELATED_REWARDS.includes(awardType);
 
     if (isSpinRelated) {
+      // $FlowFixMe
       return ValuableIcon[spinType || VALUABLE_SPIN_TYPES.BASIC_SPINS];
     }
 
@@ -92,6 +93,7 @@ export const ValuableSymbol = ({
       CASH_RELATED_REWARDS.includes(awardType);
 
     if (isCashRelated) {
+      // $FlowFixMe
       return ValuableIcon[currency] || ValuableIcon[CURRENCIES.EUR];
     }
 
@@ -99,6 +101,7 @@ export const ValuableSymbol = ({
   })();
 
   return (
+    // $FlowFixMe
     <ValuableSymbolComponent
       type={valuableType}
       size={size}

@@ -101,7 +101,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
     if (
       valuableDetails.__typename === "PlayerValuableCash" ||
       valuableDetails.__typename === "PlayerValuableCashback" ||
-      valuableDetails.__typename === "PlayerValuableWageringLock" ||
       valuableDetails.__typename === "PlayerValuableSpins"
     ) {
       return valuableDetails.requirementType;
