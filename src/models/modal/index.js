@@ -97,7 +97,7 @@ type Handler = {
 };
 
 const handlers: Handler = {
-  [type.show]: (state, { modalId, config }) => ({
+  [type.show]: (state, { modalId, config = {} }) => ({
     modalId,
     config,
   }),
