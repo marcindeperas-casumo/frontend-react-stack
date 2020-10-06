@@ -22,6 +22,7 @@ export const useValuableDetails = (
       [
         "__typename",
         "id",
+        "awardType",
         "backgroundImage",
         "content",
         "caveat",
