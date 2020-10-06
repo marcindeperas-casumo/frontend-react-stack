@@ -36,8 +36,8 @@ export const calculateProgress = (
 };
 
 export const getLaurelColor = (position: number, highlighted?: boolean) => {
-  const colors = ["grey-0", "yellow-30", "grey-20", "brown-30"];
-  const colorsHighlighted = ["grey-0", "yellow-90", "grey-20", "brown-30"];
+  const colors = ["grey-70", "yellow-30", "grey-20", "brown-30"];
+  const colorsHighlighted = ["grey-70", "yellow-90", "grey-20", "brown-30"];
 
   const pallete = highlighted ? colorsHighlighted : colors;
 

@@ -10,9 +10,9 @@ const stripPx = pipe(
   breakpoint => breakpoint || CHROMATIC_MIN_VIEWPORT_WIDTH
 );
 
-const breakpoints = map(stripPx, breakpointsWithPx);
+export const breakpoints = map(stripPx, breakpointsWithPx);
 
-const devices = {
+export const devices = {
   [breakpoints.mobile]: "iphone6",
   [breakpoints.phablet]: "pixelxl",
   [breakpoints.tablet]: "ipad",
