@@ -191,6 +191,7 @@ const finishedHandler = (
               ),
             }
           : {}),
+        leaderboard: data.leaderboard,
         isInProgress: false,
         hasEnded: true,
       }),
@@ -278,8 +279,11 @@ export function useCurrentReelRaceInfo(
 
       refetchTimeout.scheduleAt(
         refetch,
-        (closestReelRace ? closestReelRace.endTime : 0) +
-          (30 + Math.random() * 60) * 1000
+        parseInt(
+          (closestReelRace ? closestReelRace.endTime : 0) +
+            (61 + Math.random() * 60) * 1000,
+          10
+        )
       ); // distribute refetch within 60s
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
