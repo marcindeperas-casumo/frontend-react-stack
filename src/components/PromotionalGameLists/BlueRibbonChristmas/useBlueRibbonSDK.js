@@ -6,6 +6,7 @@ import { injectScript } from "Utils";
 import { currencySelector } from "Models/handshake";
 import { urls, operatorId } from "./blueRibbonConsts";
 
+declare var BlueRibbon: any;
 export function useBlueRibbonSDK() {
   const [sdk, setSdk] = React.useState();
   const currency = useSelector(currencySelector);
