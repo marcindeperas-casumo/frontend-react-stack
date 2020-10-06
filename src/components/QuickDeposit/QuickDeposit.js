@@ -5,38 +5,43 @@ import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
-import type { QuickDepositMethod } from "Models/payments";
 
-type Props = {
-  quickDepositPaymentMethods: Array<QuickDepositMethod>,
+export type QuickDepositTranslations = {
+  bonus_title: ?string,
+  balance_title: ?string,
+  cashier_link_text: ?string,
+};
+
+export type QuickDepositProps = {
+  hasSavedPaymentMethods: boolean,
   walletBalance: string,
   bonusBalance: string,
   currency: string,
-  t?: {
-    bonus_title: ?string,
-    balance_title: ?string,
-    cashier_link_text: ?string,
-  },
-  cashierLinkCallback: () => null,
+  classNames?: string,
+  onCashierLinkClick: Function,
+  onQuickDepositLinkClick: Function,
+};
+
+type Props = QuickDepositProps & {
+  t?: QuickDepositTranslations,
 };
 
 export const QuickDeposit = ({
-  quickDepositPaymentMethods,
+  hasSavedPaymentMethods,
   walletBalance,
   bonusBalance,
   currency,
   t,
-  cashierLinkCallback = () => null,
+  classNames = "",
+  onCashierLinkClick,
+  onQuickDepositLinkClick,
 }: Props) => {
   if (!t) {
     return null;
   }
 
   return (
-    <Flex
-      className="t-background-grey-90 t-border-r u-padding-left--xlg u-padding-right--md u-padding-y"
-      align="center"
-    >
+    <Flex className={classNames} align="center">
       <Flex.Item className="u-margin-right--xlg">
         <Text tag="div" className="t-color-grey-20" size="sm">
           {t.balance_title}
@@ -54,11 +59,12 @@ export const QuickDeposit = ({
         </Text>
       </Flex.Item>
       <Flex.Block className="o-flex-justify--end">
-        {quickDepositPaymentMethods.length ? (
+        {hasSavedPaymentMethods ? (
           <Flex
             align="center"
             justify="center"
             className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            onClick={onQuickDepositLinkClick}
           >
             <CurrencyIcon
               currency={currency}
@@ -73,7 +79,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer"
-            onClick={cashierLinkCallback}
+            onClick={onCashierLinkClick}
           >
             {t.cashier_link_text}
           </Text>

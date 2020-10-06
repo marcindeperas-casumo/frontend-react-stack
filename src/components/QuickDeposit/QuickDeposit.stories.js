@@ -1,6 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { select, boolean, text } from "@storybook/addon-knobs/react";
+import { CURRENCIES } from "Src/constants";
 import MockStore from "Components/MockStore";
 import { QuickDeposit } from "./QuickDeposit";
 
@@ -12,48 +15,28 @@ const t = {
   cashier_link_text: "Cashier",
 };
 
-const methodMock = {
-  deleted: false,
-  id: "some_id",
-  identifier: "Visa",
-  lastUsageTime: 0,
-  name: "Visa card",
-  token: "token",
-  type: "VISA_CARD",
-  limits: {
-    deposit: {
-      min: 10,
-      max: 100,
-    },
-  },
-  displayName: "Visa/debit",
-};
+stories.add("default", () => {
+  const actions = {
+    cashierLinkClicked: action("Cashier link clicked"),
+    quickDepositLinkClicked: action("Quick Deposit link clicked"),
+  };
 
-stories.add("Sterling Deposit Slip Link", () => {
+  const currency = select("Currency", CURRENCIES, CURRENCIES.EUR);
+  const hasSavedPaymentMethods = boolean("Has Saved Payment Methods", false);
+  const walletBalance = text("Wallet Balance", "£987.65");
+  const bonusBalance = text("Bonus Balance", "£987.65");
+
   return (
     <MockStore>
       <QuickDeposit
-        walletBalance="£987.65"
-        bonusBalance="£55.03"
+        walletBalance={walletBalance}
+        bonusBalance={bonusBalance}
         t={t}
-        quickDepositPaymentMethods={[methodMock]}
-        currency="GBP"
-        cashierLinkCallback={() => null}
-      />
-    </MockStore>
-  );
-});
-
-stories.add("Euro Cashier Link", () => {
-  return (
-    <MockStore>
-      <QuickDeposit
-        walletBalance="€987.65"
-        bonusBalance="€55.03"
-        t={t}
-        currency="EUR"
-        quickDepositPaymentMethods={[]}
-        cashierLinkCallback={() => null}
+        hasSavedPaymentMethods={hasSavedPaymentMethods}
+        currency={currency}
+        onCashierLinkClick={actions.cashierLinkClicked}
+        onQuickDepositLinkClick={actions.quickDepositLinkClicked}
+        classNames="t-background-grey-90 t-border-r u-padding-left--xlg u-padding-right--md u-padding-y"
       />
     </MockStore>
   );
