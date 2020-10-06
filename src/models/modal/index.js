@@ -1,6 +1,7 @@
 // @flow
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
+import * as A from "Types/apollo";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 
@@ -10,8 +11,7 @@ export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",
 };
-type ModalIdWithInput = "GAME_PAGE_RR_LEADERBOARD";
-type ModalIdWithoutInput =
+export type ModalId =
   | "GAME_ROUND_DETAILS"
   | "TERMS_AND_CONDITIONS_SPAIN"
   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
@@ -26,22 +26,6 @@ type ModalIdWithoutInput =
   | "QUIT_GAME_NOTIFICATION"
   | "WAGERING_NOTIFICATION"
   | "GAME_PAGE_RR_LEADERBOARD";
-// export type ModalId =
-//   | "GAME_ROUND_DETAILS"
-//   | "TERMS_AND_CONDITIONS_SPAIN"
-//   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
-//   | "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT"
-//   | "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED"
-//   | "SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION"
-//   | "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION"
-//   | "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION"
-//   | "DANISH_ENTRY_OVERLAY"
-//   | "TIME_LIMITS_FORM"
-//   | "REALITY_CHECK"
-//   | "QUIT_GAME_NOTIFICATION"
-//   | "WAGERING_NOTIFICATION"
-//   | "GAME_PAGE_RR_LEADERBOARD";
-export type ModalId = ModalIdWithInput | ModalIdWithoutInput;
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
@@ -53,8 +37,12 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 (REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
 */
 export type GamePageRrLeaderboardInput = {|
+  playerId: string,
+  playerName: string,
   position: number,
-  winnerName: string,
+  points: number,
+  leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
+  prizes: Array<string>,
 |};
 
 export type ModalConfig = {

@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
-import { DateTime } from "luxon";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { playerIdSelector, playerCasumoNameSelector } from "Models/handshake";
 import { showModal } from "Models/modal";
 import type { CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { REACT_APP_MODAL } from "Src/constants";
@@ -11,28 +10,27 @@ export function useReelRaceLeaderboardModal(
   reelRaceInfo: ?CurrentReelRaceInfo
 ) {
   const dispatch = useDispatch();
+  const playerId = useSelector(playerIdSelector);
+  const playerName = useSelector(playerCasumoNameSelector);
 
   React.useEffect(() => {
-    if (!reelRaceInfo) {
+    if (!reelRaceInfo || !reelRaceInfo.hasEnded) {
       return;
     }
 
-    const endTime = DateTime.fromMillis(reelRaceInfo.endTime);
-    const secsFromNow = endTime.diffNow().as("seconds");
-
-    if (secsFromNow < -1 || secsFromNow > 1) {
-      return;
-    }
-
-    const { position, leaderboard = [{ playerName: "BLABLA" }] } = reelRaceInfo;
+    const { position, leaderboard, formattedPrizes, points } = reelRaceInfo;
 
     dispatch(
       showModal(REACT_APP_MODAL.ID.GAME_PAGE_RR_LEADERBOARD, {
         input: {
+          playerId,
+          playerName,
+          points,
           position,
-          winnerName: R.prop("playerName", R.head(leaderboard)),
+          leaderboard,
+          prizes: formattedPrizes,
         },
       })
     );
-  }, [dispatch, reelRaceInfo]);
+  }, [dispatch, playerId, playerName, reelRaceInfo]);
 }

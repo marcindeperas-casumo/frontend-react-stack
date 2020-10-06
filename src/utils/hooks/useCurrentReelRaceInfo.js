@@ -191,6 +191,7 @@ const finishedHandler = (
               ),
             }
           : {}),
+        leaderboard: data.leaderboard,
         isInProgress: false,
         hasEnded: true,
       }),
