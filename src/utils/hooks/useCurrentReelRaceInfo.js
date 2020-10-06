@@ -279,10 +279,9 @@ export function useCurrentReelRaceInfo(
 
       refetchTimeout.scheduleAt(
         refetch,
-        parseInt(
+        Math.floor(
           (closestReelRace ? closestReelRace.endTime : 0) +
-            (61 + Math.random() * 60) * 1000,
-          10
+            (61 + Math.random() * 60) * 1000
         )
       ); // distribute refetch within 60s
 
