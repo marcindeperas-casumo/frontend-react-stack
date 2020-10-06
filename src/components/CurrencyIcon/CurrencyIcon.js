@@ -12,6 +12,7 @@ import {
   WalletTabDollarSelectedIcon,
   WalletTabDollarUnselectedIcon,
 } from "@casumo/cmp-icons";
+import { CURRENCIES } from "Src/constants";
 
 type Props = {
   currency: string,
@@ -20,24 +21,30 @@ type Props = {
 };
 
 const currencyIconMapper = (
-  currency: string = "EUR",
+  currency: string = CURRENCIES.EUR,
   selected?: boolean,
   classList?: string
 ) => {
   const currencyComponentSelectedIcons = {
-    EUR: WalletTabEuroSelectedIcon,
-    GBP: WalletTabSterlingSelectedIcon,
-    INR: WalletTabRupeeSelectedIcon,
-    NOK: WalletTabKroneSelectedIcon,
-    USD: WalletTabDollarSelectedIcon,
+    [CURRENCIES.EUR]: WalletTabEuroSelectedIcon,
+    [CURRENCIES.GBP]: WalletTabSterlingSelectedIcon,
+    [CURRENCIES.INR]: WalletTabRupeeSelectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneSelectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneSelectedIcon,
+    [CURRENCIES.USD]: WalletTabDollarSelectedIcon,
+    [CURRENCIES.NZD]: WalletTabDollarSelectedIcon,
+    [CURRENCIES.CAD]: WalletTabDollarSelectedIcon,
   };
 
   const currencyComponentIcons = {
-    EUR: WalletTabEuroUnselectedIcon,
-    GBP: WalletTabSterlingUnselectedIcon,
-    INR: WalletTabRupeeUnselectedIcon,
-    NOK: WalletTabKroneUnselectedIcon,
-    USD: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
+    [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
+    [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
+    [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
   };
   const IconTagName = selected
     ? currencyComponentSelectedIcons[currency]
