@@ -17,7 +17,7 @@ type Props = {
   onLiveChatClick: () => void,
   onExitGameClick: () => void,
   showLabels?: boolean,
-  classNames?: string,
+  className?: string,
   t: Translations,
 };
 
@@ -26,7 +26,7 @@ export const InGameDrawerLinks = ({
   isChatDisabled,
   onLiveChatClick,
   onExitGameClick,
-  classNames = "",
+  className = "",
   t,
 }: Props) => {
   const liveChatClick = () => {
@@ -42,7 +42,7 @@ export const InGameDrawerLinks = ({
     <Flex
       align="stretch"
       justify="space-around"
-      className={cx("c-in-game-drawer", classNames)}
+      className={cx("c-in-game-drawer", className)}
     >
       {!isChatDisabled && (
         <Flex.Block

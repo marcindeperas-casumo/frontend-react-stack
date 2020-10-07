@@ -42,7 +42,7 @@ export const InGameDrawerLinksContainer = ({
       isChatDisabled={isChatDisabled}
       onLiveChatClick={liveChatClick}
       onExitGameClick={exitGameClick}
-      classNames={className}
+      className={className}
       t={t}
     />
   );
