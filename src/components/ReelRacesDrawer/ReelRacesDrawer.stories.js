@@ -38,9 +38,14 @@ const story = () => (
 );
 
 const storyDesktop = () => (
-  <WrapperDesktop>
+  <Wrapper>
     <ReelRacesDrawer {...props} />
-  </WrapperDesktop>
+    <br />
+    <br />
+    <WrapperDesktop>
+      <ReelRacesDrawer {...props} />
+    </WrapperDesktop>
+  </Wrapper>
 );
 
 stories.add("Desktop", storyDesktop, viewports.desktop);
