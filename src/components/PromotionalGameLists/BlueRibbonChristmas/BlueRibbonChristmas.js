@@ -11,6 +11,7 @@ import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalD
 import { useFetch, useTranslations } from "Utils/hooks";
 import {
   urls,
+  blueRibbonGamesListId,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "./blueRibbonConsts";
@@ -23,18 +24,14 @@ const PADDING_PER_DEVICE = {
   desktop: "3xlg",
 };
 
-type Props = {
-  id: string,
-};
-
-export function BlueRibbonChristmas({ id }: Props) {
+export function BlueRibbonChristmas() {
   const { response } = useFetch(urls.handshake);
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const pots = usePotStateChangeEvent();
   const { data } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
     {
-      variables: { id, numberOfGames: 30 },
+      variables: { id: blueRibbonGamesListId, numberOfGames: 30 },
     }
   );
 

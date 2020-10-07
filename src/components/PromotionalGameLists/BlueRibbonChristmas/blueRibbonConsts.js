@@ -8,6 +8,7 @@ export const urls = {
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/player",
   handshake: "/casino-player/blueribbon-jackpot-integration/api/v1/handshake",
 };
+export const blueRibbonGamesListId = "blueRibbonChristmas";
 export const operatorId = "Vuodd1597935177986";
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
