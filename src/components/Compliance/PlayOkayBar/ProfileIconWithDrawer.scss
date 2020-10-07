@@ -38,6 +38,19 @@
   }
 }
 
+.c-bottom-wrapper-desktop-bg {
+  background: radial-gradient(
+    farthest-corner at top left,
+    rgba(255, 255, 255, 0.5),
+    transparent 70%
+  );
+}
+
+.c-bottom-wrapper-desktop-width {
+  transform: none;
+  width: 280px !important;
+}
+
 // stylelint-disable xi/selector-pattern
 @keyframes floatContentOld {
   0% {

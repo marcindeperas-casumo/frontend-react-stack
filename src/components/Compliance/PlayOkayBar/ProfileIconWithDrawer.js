@@ -14,6 +14,7 @@ import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
+import { isDesktop } from "Components/ResponsiveLayout";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -187,10 +188,20 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`}
+          className={cx(
+            `${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`,
+            {
+              "u-width--1/5@desktop c-bottom-wrapper-desktop-bg": isDesktop(),
+            }
+          )}
         >
           <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
+            className={cx(
+              `${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop`,
+              {
+                "u-margin-left--none c-bottom-wrapper-desktop-width": isDesktop(),
+              }
+            )}
           >
             {currentReelRace?.isInProgress && (
               <div
