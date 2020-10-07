@@ -18,8 +18,8 @@ export type QuickDepositProps = {
   bonusBalance: string,
   currency: string,
   classNames?: string,
-  onCashierLinkClick: Function,
-  onQuickDepositLinkClick: Function,
+  onCashierLinkClick: () => void,
+  onQuickDepositLinkClick: () => void,
 };
 
 type Props = QuickDepositProps & {
