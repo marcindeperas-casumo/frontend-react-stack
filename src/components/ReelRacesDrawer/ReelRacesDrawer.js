@@ -110,10 +110,12 @@ export const ReelRacesDrawer = ({
             {t?.reel_races_drawer_spins}
           </Text>
           <>
-            <SpinIcon
-              className="t-color-grey-20 u-padding-bottom--sm u-padding-right--sm"
-              size="sm"
-            />
+            <MobileAndTablet>
+              <SpinIcon
+                className="t-color-grey-20 u-padding-bottom--sm u-padding-right--sm"
+                size="sm"
+              />
+            </MobileAndTablet>
             <Text tag="span" size="md" className="t-color-white">
               {spinsLeft}
             </Text>
