@@ -23,7 +23,8 @@ export const SidebarElementWrapper = ({
   <div
     className={cx(
       className,
-      `${baseClassName} t-border-r u-position-relative u-overflow-hidden`
+      `${baseClassName} t-border-r u-position-relative u-overflow-hidden`,
+      { "t-background-black": !children }
     )}
   >
     {pinnable && (

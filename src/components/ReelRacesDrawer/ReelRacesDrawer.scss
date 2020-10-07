@@ -5,6 +5,9 @@
     rgba(26, 33, 44, 0.96) 50%,
     rgba(26, 33, 44, 1) 50%
   );
+
+  z-index: cudl-z(main-nav);
+
   @include cudl-breakpoint(desktop) {
     background: radial-gradient(
       ellipse 150% 50% at 50% 112%,
@@ -12,8 +15,6 @@
       #1a212c 50%
     );
   }
-
-  z-index: cudl-z(main-nav);
 
   &__laurel {
     height: 80px !important;
