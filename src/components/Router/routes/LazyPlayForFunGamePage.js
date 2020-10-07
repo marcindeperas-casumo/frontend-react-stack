@@ -1,5 +1,5 @@
-// @flow
-import * as React from "react";
+import React from "react";
+import { LayoutPage } from "Components/LayoutPage";
 
 const LazyComponent = React.lazy(() =>
   import("Components/GamePage").then(module => ({
@@ -7,15 +7,10 @@ const LazyComponent = React.lazy(() =>
   }))
 );
 
-type Props = {
-  slug: string,
-  location: {
-    search: string,
-  },
-};
-
-export const LazyPlayForFunGamePage = (props: Props) => (
-  <React.Suspense fallback={<div></div>}>
-    <LazyComponent {...props} playForFun={true} />
-  </React.Suspense>
+export const LazyPlayForFunGamePage = props => (
+  <LayoutPage>
+    <React.Suspense fallback={<div></div>}>
+      <LazyComponent {...props} playForFun={true} />
+    </React.Suspense>
+  </LayoutPage>
 );
