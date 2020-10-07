@@ -16,7 +16,7 @@ type Props = {
   isChatDisabled: boolean,
   onLiveChatClick: Function,
   onExitGameClick: Function,
-  showLabels?: Boolean,
+  showLabels?: boolean,
   classNames?: string,
   t: Translations,
 };
