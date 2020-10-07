@@ -1,5 +1,5 @@
-import React from "react";
-import { LayoutPage } from "Components/LayoutPage";
+// @flow
+import * as React from "react";
 
 const LazyComponent = React.lazy(() =>
   import("Components/GamePage").then(module => ({
@@ -7,12 +7,17 @@ const LazyComponent = React.lazy(() =>
   }))
 );
 
-export const LazyRealMoneyGamePage = props => {
+type Props = {
+  slug: string,
+  location: {
+    search: string,
+  },
+};
+
+export const LazyRealMoneyGamePage = (props: Props) => {
   return (
-    <LayoutPage>
-      <React.Suspense fallback={<div></div>}>
-        <LazyComponent {...props} playForFun={false} />
-      </React.Suspense>
-    </LayoutPage>
+    <React.Suspense fallback={<div></div>}>
+      <LazyComponent {...props} playForFun={false} />
+    </React.Suspense>
   );
 };
