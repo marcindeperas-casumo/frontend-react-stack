@@ -78,7 +78,7 @@ export const QuickDeposit = ({
         ) : (
           <Text
             tag="span"
-            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer"
+            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
             onClick={onCashierLinkClick}
           >
             {t.cashier_link_text}
