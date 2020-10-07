@@ -10,6 +10,7 @@ import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { GamePageNotifications } from "./GamePageNotifications";
+
 type Props = {
   gameProviderModel: GameProviderModel,
   pauseGame: () => Promise<void>,
@@ -18,6 +19,7 @@ type Props = {
   bonusAmount?: number,
   sidebar?: React.Node,
 };
+
 export const GamePage = ({
   gameProviderModel,
   pauseGame,
