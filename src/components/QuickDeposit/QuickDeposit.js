@@ -5,84 +5,86 @@ import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
-import type { QuickDepositMethod } from "Models/payments";
 
-type Props = {
-  quickDepositPaymentMethods: Array<QuickDepositMethod>,
+export type QuickDepositTranslations = {
+  bonus_title: ?string,
+  balance_title: ?string,
+  cashier_link_text: ?string,
+};
+
+export type QuickDepositProps = {
+  hasSavedPaymentMethods: boolean,
   walletBalance: string,
   bonusBalance: string,
   currency: string,
-  t?: {
-    bonus_title: ?string,
-    balance_title: ?string,
-    cashier_link_text: ?string,
-  },
-  cashierLinkCallback: () => null,
+  className?: string,
+  onCashierLinkClick: () => void,
+  onQuickDepositLinkClick: () => void,
+};
+
+type Props = QuickDepositProps & {
+  t?: QuickDepositTranslations,
 };
 
 export const QuickDeposit = ({
-  quickDepositPaymentMethods,
+  hasSavedPaymentMethods,
   walletBalance,
   bonusBalance,
   currency,
   t,
-  cashierLinkCallback = () => null,
+  className = "",
+  onCashierLinkClick,
+  onQuickDepositLinkClick,
 }: Props) => {
-  const svgCurrencyIconClassList =
-    "c-quick-deposit-wallet-icon u-position--absolute o-inset-x--none t-color-purple-60";
-
   if (!t) {
     return null;
   }
 
   return (
-    <Flex
-      align="stretch"
-      justify="space-around"
-      className="t-background-grey-90 t-border-r u-height--5xlg u-margin u-margin-x--auto@tablet u-margin-bottom--none u-padding--md"
-    >
-      <Flex.Item>
-        <Flex.Block>
-          <span>{t.balance_title}</span>
-        </Flex.Block>
-        <Flex.Block>
-          <span className="u-font-weight-bold">{walletBalance}</span>
-        </Flex.Block>
+    <Flex className={className} align="center">
+      <Flex.Item className="u-margin-right--xlg">
+        <Text tag="div" className="t-color-grey-20" size="sm">
+          {t.balance_title}
+        </Text>
+        <Text tag="div" className="t-color-white u-font-weight-bold">
+          {walletBalance}
+        </Text>
       </Flex.Item>
       <Flex.Item>
-        <Flex.Block>
-          <span>{t.bonus_title}</span>
-        </Flex.Block>
-        <Flex.Block>
-          <span className="u-font-weight-bold">{bonusBalance}</span>
-        </Flex.Block>
+        <Text tag="div" className="t-color-grey-20" size="sm">
+          {t.bonus_title}
+        </Text>
+        <Text tag="div" className="t-color-grey-20 u-font-weight-bold">
+          {bonusBalance}
+        </Text>
       </Flex.Item>
-      <Flex.Item className="u-margin-left--auto u-cursor--pointer">
-        {quickDepositPaymentMethods.length ? (
+      <Flex.Block className="o-flex-justify--end">
+        {hasSavedPaymentMethods ? (
           <Flex
             align="center"
             justify="center"
-            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg"
+            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            onClick={onQuickDepositLinkClick}
           >
             <CurrencyIcon
               currency={currency}
               selected
-              classList={svgCurrencyIconClassList}
+              classList="u-position--absolute o-inset-x--none t-color-purple-60"
             />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute u-scale-x--25 u-scale-y--25">
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
               <AddIcon className="t-color-purple-60" size="md" />
             </div>
           </Flex>
         ) : (
           <Text
             tag="span"
-            className="u-padding-top u-display--block u-font-weight-bold u-text-decoration-underline"
-            onClick={cashierLinkCallback}
+            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
+            onClick={onCashierLinkClick}
           >
             {t.cashier_link_text}
           </Text>
         )}
-      </Flex.Item>
+      </Flex.Block>
     </Flex>
   );
 };
