@@ -8,8 +8,8 @@ import { openChatWindow } from "Features/chat/IntercomChatService";
 import { InGameDrawerLinks } from "./InGameDrawerLinks";
 
 type Props = {
-  onLiveChatClick: Function,
-  onExitGameClick: Function,
+  onLiveChatClick: () => void,
+  onExitGameClick: () => void,
   classNames?: string,
 };
 
@@ -30,11 +30,11 @@ export const InGameDrawerLinksContainer = ({
   const liveChatClick = () => {
     tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
     openChatWindow();
-    onLiveChatClick(false);
+    onLiveChatClick();
   };
   const exitGameClick = () => {
     navigateToKO(ROUTE_IDS.TOP_LISTS);
-    onExitGameClick(false);
+    onExitGameClick();
   };
 
   return (
