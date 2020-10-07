@@ -14,8 +14,8 @@ type Translations = {
 
 type Props = {
   isChatDisabled: boolean,
-  onLiveChatClick: Function,
-  onExitGameClick: Function,
+  onLiveChatClick: () => void,
+  onExitGameClick: () => void,
   showLabels?: boolean,
   classNames?: string,
   t: Translations,

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { localeSelector } from "Models/handshake";
 import {
   useTranslationsGql,
+  // Setting only one user journey till quick deposit functionality is ready
   // useAvailableQuickDepositMethods,
   useCrossCodebaseNavigation,
 } from "Utils/hooks";
@@ -31,7 +32,7 @@ export const QuickDepositContainer = ({ classNames = "" }: Props) => {
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  // Setting only one user journey till quick deposit functionlaity is ready
+  // Setting only one user journey till quick deposit functionality is ready
   // const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const savedQuickDepositMethods = [];
   const { navigateToKO } = useCrossCodebaseNavigation();
