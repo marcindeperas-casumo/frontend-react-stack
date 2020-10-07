@@ -14,7 +14,7 @@ import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
-import { isDesktop } from "Components/ResponsiveLayout";
+import { isDesktop, isMobile, isTablet } from "Components/ResponsiveLayout";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -63,7 +63,6 @@ export const ProfileIconWithDrawer = ({
     in_game_drawer_exit_game: `${cmsPrefix}.in_game_drawer_exit_game`,
   });
   const playing = useSelector(playingSelector);
-
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = () => {
     tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
@@ -78,7 +77,6 @@ export const ProfileIconWithDrawer = ({
   >(bubbleTypes.none);
 
   const isChatDisabled = market === MARKETS.nz_en || isNativeByUserAgent();
-
   const transitionTimer = useTimeoutFn();
 
   useEffect(() => {
@@ -124,7 +122,6 @@ export const ProfileIconWithDrawer = ({
 
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
-
   const commonRaceProps = {
     currentRace: currentReelRace,
   };
@@ -205,16 +202,23 @@ export const ProfileIconWithDrawer = ({
           >
             {currentReelRace?.isInProgress && (
               <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+                className={cx(
+                  `${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`,
+                  {
+                    "u-padding-left--md u-margin-bottom--none": isDesktop(),
+                  }
+                )}
               >
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
             <div
               className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto`,
                 {
                   "u-margin-top": !currentReelRace?.isInProgress,
+                  "u-padding-left--md u-padding-right": isDesktop(),
+                  "u-padding-x": isMobile() || isTablet(),
                 }
               )}
             >
