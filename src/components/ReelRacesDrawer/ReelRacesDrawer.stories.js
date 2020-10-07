@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { viewports } from "Storybook/viewports";
+import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { ReelRacesDrawer } from "./ReelRacesDrawer";
 
 const stories = storiesOf("ReelRaceDrawer", module);
@@ -19,6 +20,15 @@ const props = {
   },
 };
 
+const WrapperDesktop = ({ children }) => (
+  <>
+    <SidebarElementWrapper pinnable>{children}</SidebarElementWrapper>
+    <br />
+    <br />
+    <SidebarElementWrapper>{children}</SidebarElementWrapper>
+  </>
+);
+
 const Wrapper = ({ children }) => <div>{children}</div>;
 
 const story = () => (
@@ -27,7 +37,13 @@ const story = () => (
   </Wrapper>
 );
 
-stories.add("Desktop", story, viewports.desktop);
+const storyDesktop = () => (
+  <WrapperDesktop>
+    <ReelRacesDrawer {...props} />
+  </WrapperDesktop>
+);
+
+stories.add("Desktop", storyDesktop, viewports.desktop);
 stories.add("Tablet", story, viewports.tablet);
 stories.add("Phablet", story, viewports.phablet);
 stories.add("Mobile", story, viewports.mobile);
