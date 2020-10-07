@@ -19,10 +19,10 @@ import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
-  classNames?: string,
+  className?: string,
 };
 
-export const QuickDepositContainer = ({ classNames = "" }: Props) => {
+export const QuickDepositContainer = ({ className = "" }: Props) => {
   const { t } = useTranslationsGql({
     bonus_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.bonus_title`,
     balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
@@ -58,7 +58,7 @@ export const QuickDepositContainer = ({ classNames = "" }: Props) => {
       hasSavedPaymentMethods={savedQuickDepositMethods.length > 0}
       onCashierLinkClick={navigateToCashier}
       onQuickDepositLinkClick={launchQuickDeposit}
-      classNames={classNames}
+      className={className}
     />
   );
 };

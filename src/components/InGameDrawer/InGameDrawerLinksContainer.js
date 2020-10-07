@@ -10,7 +10,7 @@ import { InGameDrawerLinks } from "./InGameDrawerLinks";
 type Props = {
   onLiveChatClick: () => void,
   onExitGameClick: () => void,
-  classNames?: string,
+  className?: string,
 };
 
 const cmsPrefix = "root:iframe-solution:fields";
@@ -18,7 +18,7 @@ const cmsPrefix = "root:iframe-solution:fields";
 export const InGameDrawerLinksContainer = ({
   onLiveChatClick,
   onExitGameClick,
-  classNames = "",
+  className = "",
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const { t } = useTranslationsGql({
@@ -42,7 +42,7 @@ export const InGameDrawerLinksContainer = ({
       isChatDisabled={isChatDisabled}
       onLiveChatClick={liveChatClick}
       onExitGameClick={exitGameClick}
-      classNames={classNames}
+      classNames={className}
       t={t}
     />
   );

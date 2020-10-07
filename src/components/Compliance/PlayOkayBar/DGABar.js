@@ -19,11 +19,11 @@ const links = {
 };
 
 type Props = PauseResumeProps & {
-  classNames?: string,
+  className?: string,
 };
 
-export const DGABar = ({ pauseGame, resumeGame, classNames = "" }: Props) => (
-  <Flex justify="end" align="center" spacing="md" className={classNames}>
+export const DGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" spacing="md" className={className}>
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>

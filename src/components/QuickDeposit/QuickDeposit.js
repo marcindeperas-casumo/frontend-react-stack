@@ -17,7 +17,7 @@ export type QuickDepositProps = {
   walletBalance: string,
   bonusBalance: string,
   currency: string,
-  classNames?: string,
+  className?: string,
   onCashierLinkClick: () => void,
   onQuickDepositLinkClick: () => void,
 };
@@ -32,7 +32,7 @@ export const QuickDeposit = ({
   bonusBalance,
   currency,
   t,
-  classNames = "",
+  className = "",
   onCashierLinkClick,
   onQuickDepositLinkClick,
 }: Props) => {
@@ -41,7 +41,7 @@ export const QuickDeposit = ({
   }
 
   return (
-    <Flex className={classNames} align="center">
+    <Flex className={className} align="center">
       <Flex.Item className="u-margin-right--xlg">
         <Text tag="div" className="t-color-grey-20" size="sm">
           {t.balance_title}

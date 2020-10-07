@@ -9,11 +9,11 @@ import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
 type Props = PauseResumeProps & {
-  classNames?: string,
+  className?: string,
 };
 
-export const MGABar = ({ pauseGame, resumeGame, classNames = "" }: Props) => (
-  <Flex justify="end" align="center" className={classNames}>
+export const MGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" className={className}>
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>
