@@ -39,7 +39,7 @@ export const GamePage = ({
           <Flex.Item>
             <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
           </Flex.Item>
-          <Flex.Block>
+          <Flex.Block className="u-height--full">
             <Flex
               direction="horizontal"
               spacing="none"
