@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setData, getData } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import tracker from "Services/tracker";
-import { EVENTS } from "Src/constants";
+import { EVENTS, EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
-import { loadMoreConstructor } from "Utils";
+import TrackProvider from "Components/TrackProvider";
+import { loadMoreConstructor, interpolate } from "Utils";
 import { useCachedQuery, useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
@@ -106,34 +107,29 @@ export function GameListPage({ set }: Props) {
   );
   useSetScrollPosition(loading);
 
-  const selectCmp = (
-    <Flex className="o-flex--wrap">
-      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
-        <GameListPageSort
-          setSort={setSort}
-          supportedSorts={set.supportedSorts}
-          sort={sort}
-        />
-      </TrackClick>
-      {f.map(x => (
-        <Flex key={x} className="u-margin-right u-margin-bottom">
-          <ChipFilterable
-            isActive
-            onRemove={() => setFilters({ ...filters, [x]: false })}
-          >
-            {findQueryTranslation(x, set.additionalFilterGroups)}
-          </ChipFilterable>
-        </Flex>
-      ))}
-      <Flex className="u-margin-right u-margin-bottom">
-        <ChipFilterable onClick={openFilter}>{t?.title || ""}</ChipFilterable>
-      </Flex>
-    </Flex>
+  const topSection = (
+    <SortAndFilterSection
+      sort={sort}
+      setSort={setSort}
+      supportedSorts={set.supportedSorts}
+      additionalFilterGroups={set.additionalFilterGroups}
+      filters={filters}
+      setFilters={setFilters}
+      openFilter={openFilter}
+      openFilterText={t?.title || ""}
+      appliedFilters={f}
+    />
   );
 
   if (isMobile()) {
     return (
-      <>
+      <TrackProvider
+        data={{
+          [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
+            location: set.key,
+          }),
+        }}
+      >
         <GameListPageFilters
           isOpen={filtersVisible}
           setFilters={setFilters}
@@ -143,7 +139,7 @@ export function GameListPage({ set }: Props) {
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
         <div className="t-background-white">
-          <div className="o-wrapper u-padding--md@mobile">{selectCmp}</div>
+          <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
               return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
@@ -167,7 +163,7 @@ export function GameListPage({ set }: Props) {
             );
           })()}
         </div>
-      </>
+      </TrackProvider>
     );
   }
 
@@ -183,7 +179,7 @@ export function GameListPage({ set }: Props) {
       />
       <div className="t-background-white">
         <div className="o-wrapper u-padding-y--lg">
-          <div className="u-padding-bottom--lg">{selectCmp}</div>
+          <div className="u-padding-bottom--lg">{topSection}</div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
               if (isLiveCasino) {
@@ -211,5 +207,45 @@ export function GameListPage({ set }: Props) {
         </div>
       </div>
     </>
+  );
+}
+
+type SProps = {
+  sort: ?A.GamesSortOrder,
+  setSort: A.GamesSortOrder => void,
+  supportedSorts: Array<A.GamesSortOrder>,
+  additionalFilterGroups: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>,
+  filters: { [A.GetGameSets_gameSetsList_additionalFilterGroups]: boolean },
+  setFilters: A.GetGameSets_gameSetsList_additionalFilterGroups => void,
+  openFilter: () => void,
+  openFilterText: string,
+  appliedFilters: Array<string>,
+};
+function SortAndFilterSection(props: SProps) {
+  return (
+    <Flex className="o-flex--wrap">
+      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+        <GameListPageSort
+          setSort={props.setSort}
+          supportedSorts={props.supportedSorts}
+          sort={props.sort}
+        />
+      </TrackClick>
+      {props.appliedFilters.map(x => (
+        <Flex key={x} className="u-margin-right u-margin-bottom">
+          <ChipFilterable
+            isActive
+            onRemove={() => props.setFilters({ ...props.filters, [x]: false })}
+          >
+            {findQueryTranslation(x, props.additionalFilterGroups)}
+          </ChipFilterable>
+        </Flex>
+      ))}
+      <Flex className="u-margin-right u-margin-bottom">
+        <ChipFilterable onClick={props.openFilter}>
+          {props.openFilterText}
+        </ChipFilterable>
+      </Flex>
+    </Flex>
   );
 }

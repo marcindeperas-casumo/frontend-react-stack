@@ -1,24 +1,28 @@
 // @flow
 import React from "react";
 import { useSelector } from "react-redux";
-import { localeSelector, savedMethodsSelector } from "Models/handshake";
-import { useTranslationsGql } from "Utils/hooks";
+import { localeSelector } from "Models/handshake";
+import {
+  useTranslationsGql,
+  // Setting only one user journey till quick deposit functionality is ready
+  // useAvailableQuickDepositMethods,
+  useCrossCodebaseNavigation,
+} from "Utils/hooks";
 import {
   playerBalanceAmountSelector,
   playerWalletBonusSelector,
   playerCurrencySelector,
-  playerBonusTextSelector,
 } from "Models/player";
-import { bonusBalanceDisplay, formatCurrency } from "Utils";
+import { formatCurrency } from "Utils";
+import { ROUTE_IDS } from "Src/constants";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
-  cashierLinkCallback: () => null,
+  className?: string,
 };
 
-export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
-  const trimmedBonusTextFromBalance = true;
+export const QuickDepositContainer = ({ className = "" }: Props) => {
   const { t } = useTranslationsGql({
     bonus_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.bonus_title`,
     balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
@@ -28,8 +32,15 @@ export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  const walletBonusText = useSelector(playerBonusTextSelector);
-  const savedPaymentMethods = useSelector(savedMethodsSelector);
+  // Setting only one user journey till quick deposit functionality is ready
+  // const savedQuickDepositMethods = useAvailableQuickDepositMethods();
+  const savedQuickDepositMethods = [];
+  const { navigateToKO } = useCrossCodebaseNavigation();
+  const navigateToCashier = () => {
+    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
+  };
+  const launchQuickDeposit = () => {};
+
   return (
     <QuickDeposit
       t={t}
@@ -38,16 +49,16 @@ export const QuickDepositContainer = ({ cashierLinkCallback }: Props) => {
         currency,
         value: playerBalance,
       })}
-      bonusBalance={bonusBalanceDisplay(
-        walletBonus,
-        currency,
-        walletBonusText,
+      bonusBalance={formatCurrency({
         locale,
-        trimmedBonusTextFromBalance
-      )}
+        currency,
+        value: walletBonus,
+      })}
       currency={currency}
-      hasSavedPaymentMethods={savedPaymentMethods && savedPaymentMethods.length}
-      cashierLinkCallback={cashierLinkCallback}
+      hasSavedPaymentMethods={savedQuickDepositMethods.length > 0}
+      onCashierLinkClick={navigateToCashier}
+      onQuickDepositLinkClick={launchQuickDeposit}
+      className={className}
     />
   );
 };

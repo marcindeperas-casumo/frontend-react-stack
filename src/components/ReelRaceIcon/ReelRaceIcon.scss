@@ -1,0 +1,52 @@
+.c-reel-race-icon {
+  background-clip: padding-box;
+
+  &__content {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &--old {
+      animation: floatContentOld 0.9s normal forwards ease-out;
+    }
+    &--next {
+      animation: floatContentNext 0.9s normal forwards ease-out;
+    }
+  }
+
+  &__progress {
+    left: 0;
+    margin-top: -50%;
+    top: 0;
+  }
+
+  &__info {
+    margin: 0 auto;
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-color-brown {
+    color: #b96e00;
+  }
+}
+
+// stylelint-disable xi/selector-pattern
+@keyframes floatContentOld {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -40px;
+  }
+}
+
+@keyframes floatContentNext {
+  0% {
+    margin-top: 40px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+// stylelint-enable xi/selector-pattern

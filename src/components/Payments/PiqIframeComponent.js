@@ -6,8 +6,9 @@ import {
   IFRAME_MODE,
 } from "Models/payments";
 import { piqIframeUrlBase as urlBase, composeIframeUrl } from "./constants";
+import "./PiqIframe.scss";
 
-type Props = {
+export type Props = {
   id: number,
   mode: $Values<typeof IFRAME_MODE>,
   env: string,
@@ -69,5 +70,12 @@ export const PiqIframeComponent = ({
 
   const url = composeIframeUrl({ urlBase, env, mode, luhnCheck, id });
 
-  return <iframe ref={iframe} title={`piqIframe_${id}`} src={url} />;
+  return (
+    <iframe
+      ref={iframe}
+      className="c-cvv-piq-iframe"
+      title={`piqIframe_${id}`}
+      src={url}
+    />
+  );
 };

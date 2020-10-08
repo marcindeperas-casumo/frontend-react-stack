@@ -34,3 +34,22 @@ export const calculateProgress = (
   }
   return (now - startTime) / (endTime - startTime);
 };
+
+export const getLaurelColor = (position: number, highlighted?: boolean) => {
+  const colors = ["grey-0", "yellow-30", "grey-20", "brown-30"];
+  const colorsHighlighted = ["grey-0", "yellow-90", "grey-20", "brown-30"];
+
+  const pallete = highlighted ? colorsHighlighted : colors;
+
+  return position < pallete.length ? pallete[position] : pallete[0];
+};
+
+export const getProgressColor = (progress: number) => {
+  if (progress >= 90) {
+    return "red-30";
+  }
+  if (progress >= 75) {
+    return "yellow-30";
+  }
+  return "teal-50";
+};

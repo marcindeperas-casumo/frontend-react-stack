@@ -8,12 +8,12 @@ import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./Profi
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
-export const MGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
-  <Flex
-    justify="end"
-    align="center"
-    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
-  >
+type Props = PauseResumeProps & {
+  className?: string,
+};
+
+export const MGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" className={className}>
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>
