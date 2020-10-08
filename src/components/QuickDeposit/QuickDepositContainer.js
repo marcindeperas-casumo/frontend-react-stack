@@ -5,7 +5,7 @@ import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { localeSelector } from "Models/handshake";
 import {
   useTranslationsGql,
-  //useAvailableQuickDepositMethods,
+  useAvailableQuickDepositMethods,
   useCrossCodebaseNavigation,
 } from "Utils/hooks";
 import {
@@ -28,12 +28,16 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
     cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
+
+  // @lukKowalski this will enable or disable using saved methods for quickDeposit (added temporarily)
+  const __quickDisabled = true;
+
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  const savedQuickDepositMethods = []; //useAvailableQuickDepositMethods();
+  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const navigateToCashier = () => {
     navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
@@ -57,7 +61,9 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
         value: walletBonus,
       })}
       currency={currency}
-      hasSavedPaymentMethods={savedQuickDepositMethods.length > 0}
+      hasSavedPaymentMethods={
+        !__quickDisabled && savedQuickDepositMethods.length > 0
+      }
       onCashierLinkClick={navigateToCashier}
       onQuickDepositLinkClick={launchQuickDeposit}
       className={className}

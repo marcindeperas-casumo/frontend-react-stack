@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
+import { CloseIcon } from "@casumo/cmp-icons";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { QuickDepositSlip } from "Components/QuickDepositSlip";
 import { playerCurrencySymbolSelector } from "Models/player";
@@ -46,7 +47,9 @@ export const QuickDepositSlipControler = () => {
           align="center"
         >
           <Flex.Item>Quick deposit</Flex.Item>
-          <Flex.Item onClick={closeQuickDeposit}>X</Flex.Item>
+          <Flex.Item onClick={closeQuickDeposit}>
+            <CloseIcon />
+          </Flex.Item>
         </Flex>
         <QuickDepositSlip
           minAmount={min}
