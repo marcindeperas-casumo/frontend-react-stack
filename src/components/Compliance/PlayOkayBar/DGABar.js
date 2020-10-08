@@ -18,13 +18,12 @@ const links = {
   stopspillet: "https://www.stopspillet.dk/",
 };
 
-export const DGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
-  <Flex
-    justify="end"
-    align="center"
-    spacing="md"
-    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
-  >
+type Props = PauseResumeProps & {
+  className?: string,
+};
+
+export const DGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" spacing="md" className={className}>
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>

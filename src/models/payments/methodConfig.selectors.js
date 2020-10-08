@@ -9,3 +9,7 @@ export const methodConfigSelector = (methodType: LocalPaymentMethodType) =>
     getMethodConfigsSelector,
     propOr({}, methodType)
   );
+
+export const methodsConfigsSelector = (
+  methodTypes: Array<LocalPaymentMethodType>
+) => getMethodConfigsSelector;

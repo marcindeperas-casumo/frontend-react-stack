@@ -17,12 +17,12 @@ const links = {
   stodlinjen: "https://www.stodlinjen.se/#!/spelberoende-test-pgsi",
 };
 
-export const SGABar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
-  <Flex
-    justify="end"
-    align="center"
-    className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x"
-  >
+type Props = PauseResumeProps & {
+  className?: string,
+};
+
+export const SGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" className={className}>
     <Flex.Block>
       <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
     </Flex.Block>

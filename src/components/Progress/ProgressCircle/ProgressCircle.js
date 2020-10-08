@@ -11,43 +11,47 @@ type Props = {
   /** color class name without 't-color-' prefix */
   bgColor?: string,
   className?: string,
+  radius?: number,
+  width?: number,
 };
-
-const CIRCLE_R = 45;
-const CIRCLE_C = 2 * Math.PI * CIRCLE_R;
 
 export function ProgressCircle({
   value = 0,
   className = "",
   fgColor = "teal-50",
   bgColor = "grey-90",
+  radius = 25,
+  width = 5,
 }: Props) {
-  const dashOffset = CIRCLE_C - (CIRCLE_C / 100) * R.clamp(0, 100, value);
+  const innerRadius = radius - width / 2;
+  const total = radius * 2;
+  const circleC = 2 * Math.PI * innerRadius;
+  const dashOffset = circleC - (circleC * R.clamp(0, 100, value)) / 100;
 
   return (
     <svg
       className={`c-progress-circle ${className}`}
-      viewBox="0 0 100 100"
+      viewBox={`0 0 ${total} ${total}`}
       fill="none"
     >
       <circle
-        cx="50"
-        cy="50"
+        cx={radius}
+        cy={radius}
         stroke="currentColor"
-        strokeWidth="10"
+        strokeWidth={width}
         strokeLinecap="round"
         className={`t-color-${bgColor}`}
-        r={CIRCLE_R}
+        r={innerRadius}
       />
       <circle
-        cx="50"
-        cy="50"
+        cx={radius}
+        cy={radius}
         stroke="currentColor"
-        strokeWidth="10"
+        strokeWidth={width}
         strokeLinecap="round"
-        className={`t-color-${fgColor}`}
-        r={CIRCLE_R}
-        strokeDasharray={CIRCLE_C}
+        className={`t-opacity-color--100 t-color-${fgColor}`}
+        r={innerRadius}
+        strokeDasharray={circleC}
         strokeDashoffset={dashOffset}
       />
     </svg>

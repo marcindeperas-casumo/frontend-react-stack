@@ -25,6 +25,8 @@ type Props = {
   description?: string,
   /** Expiry date of the valuable */
   expiryDate: number,
+  /** award type - applies when valuableType === Wagering Lock */
+  awardType?: A.WageringLockAwardType,
   /** Valuable type of the valuable */
   valuableType: A.ValuableType,
   /** currency of the player */
@@ -92,6 +94,7 @@ export class ValuableCard extends PureComponent<Props> {
 
   render() {
     const {
+      awardType,
       caveat,
       className,
       coinValue,
@@ -119,6 +122,7 @@ export class ValuableCard extends PureComponent<Props> {
           >
             <Flex.Item>
               <ValuableThumbnail
+                awardType={awardType}
                 backgroundRenderer={this.maskedImage}
                 coinValue={coinValue}
                 currency={currency}

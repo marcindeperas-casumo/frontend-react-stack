@@ -24,6 +24,8 @@ import Cashback from "./Icons/cashback.svg";
 type Props = {
   /** Valuable type of the valuable */
   valuableType: A.ValuableType,
+  /** award type - applies when valuableType === Wagering Lock */
+  awardType?: A.WageringLockAwardType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
@@ -42,6 +44,7 @@ type Props = {
 };
 
 export const ValuableThumbnail = ({
+  awardType,
   backgroundRenderer,
   coinValue,
   currency,
@@ -77,10 +80,10 @@ export const ValuableThumbnail = ({
           <div
             className={classNames(
               "o-ratio__content",
-              getCoinClassModifier(valuableType)
+              getCoinClassModifier(valuableType, awardType)
             )}
           >
-            {valuableType === VALUABLE_TYPES.CASHBACK ? (
+            {[VALUABLE_TYPES.CASHBACK].includes(valuableType) ? (
               <Cashback className="u-width--full" />
             ) : (
               <Coin className="u-width--full" />
@@ -91,10 +94,11 @@ export const ValuableThumbnail = ({
             justify="center"
             className={classNames(
               "o-ratio__content",
-              getCoinTextClassModifier(valuableType)
+              getCoinTextClassModifier(valuableType, awardType)
             )}
           >
             <ValuableSymbol
+              awardType={awardType}
               currency={currency}
               spinType={spinType}
               valuableType={valuableType}
@@ -144,11 +148,24 @@ function getStateBadgeText(
   return null;
 }
 
-function getCoinClassModifier(valuableType: A.ValuableType) {
+function getCoinClassModifier(
+  valuableType: A.ValuableType,
+  awardType?: A.WageringLockAwardType
+) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
+      return "t-color-yellow-30";
+    case VALUABLE_TYPES.WAGERING_LOCK:
+      if (awardType === "spins") {
+        return "t-color-grey-90";
+      }
+
+      if (["freeMoney", "bonusMoney"].includes(awardType)) {
+        return "t-color-yellow-30";
+      }
+
       return "t-color-yellow-30";
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-blue-50";
@@ -162,11 +179,24 @@ function getCoinClassModifier(valuableType: A.ValuableType) {
   }
 }
 
-function getCoinTextClassModifier(valuableType: A.ValuableType) {
+function getCoinTextClassModifier(
+  valuableType: A.ValuableType,
+  awardType?: A.WageringLockAwardType
+) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
+      return "t-color-grey-70";
+    case VALUABLE_TYPES.WAGERING_LOCK:
+      if (awardType === "spins") {
+        return "t-color-yellow-30";
+      }
+
+      if (["freeMoney", "bonusMoney"].includes(awardType)) {
+        return "t-color-grey-70";
+      }
+
       return "t-color-grey-70";
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-grey-70";

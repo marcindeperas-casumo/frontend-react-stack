@@ -26,6 +26,7 @@ describe("useCurrentReelRaceInfo", () => {
     global.Date.now = RealDateNow;
   });
   const playerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
+  const playerName = "the player";
 
   describe("createCurrentReelRaceData", () => {
     const id = "some-nice-tournament-id";
@@ -35,16 +36,19 @@ describe("useCurrentReelRaceInfo", () => {
     const nowInProgress = 20;
     const leaderboardEntryOther = {
       playerId: 333,
+      playerName: "player 1",
       position: 2,
       points: 999,
       remainingSpins: 7,
     };
     const leaderboardEntryMe = {
       playerId,
+      playerName,
       position: 1,
       points: 555,
       remainingSpins: 76,
     };
+    const formattedPrizes = ["$100"];
     const leaderboard = convertLeaderboardToObject([
       leaderboardEntryOther,
       leaderboardEntryMe,
@@ -58,7 +62,10 @@ describe("useCurrentReelRaceInfo", () => {
       points: 0,
       remainingSpins: UNSET_VALUE,
       isInProgress: false,
+      hasEnded: false,
       tournamentId: null,
+      formattedPrizes: [],
+      leaderboard: [],
     };
 
     test("no data", () => {
@@ -72,15 +79,19 @@ describe("useCurrentReelRaceInfo", () => {
           startTime,
           endTime,
           game,
+          formattedPrizes,
           leaderboard: convertLeaderboardToObject([leaderboardEntryOther]),
         })
       ).toEqual({
         ...emptyResult,
         isInProgress: true,
+        hasEnded: false,
         game,
         startTime,
         endTime,
         tournamentId: id,
+        formattedPrizes,
+        leaderboard: [leaderboardEntryOther],
       });
     });
     test("first position", () => {
@@ -91,10 +102,12 @@ describe("useCurrentReelRaceInfo", () => {
           startTime,
           endTime,
           game,
+          formattedPrizes,
           leaderboard,
         })
       ).toEqual({
         isInProgress: true,
+        hasEnded: false,
         game,
         startTime,
         endTime,
@@ -102,6 +115,8 @@ describe("useCurrentReelRaceInfo", () => {
         points: leaderboardEntryMe.points,
         remainingSpins: leaderboardEntryMe.remainingSpins,
         tournamentId: id,
+        formattedPrizes,
+        leaderboard: [leaderboardEntryMe, leaderboardEntryOther],
       });
     });
   });
@@ -122,6 +137,7 @@ describe("useCurrentReelRaceInfo", () => {
     promoted = false,
     spinLimit = 100,
     playerId: rrPlayerId = playerId,
+    playerName: rrPlayerName = playerName,
     position = 1,
     points = 0,
     remainingSpins = 100,
@@ -137,9 +153,11 @@ describe("useCurrentReelRaceInfo", () => {
     promoted,
     spinLimit,
     cometdChannels: [],
+    formattedPrizes: [],
     leaderboard: [
       {
         playerId: rrPlayerId,
+        playerName: rrPlayerName,
         position,
         points,
         remainingSpins,
@@ -262,6 +280,7 @@ describe("useCurrentReelRaceInfo", () => {
       wrapper.update();
       expectHook(wrapper).toEqual({
         isInProgress: false,
+        hasEnded: false,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
@@ -269,6 +288,16 @@ describe("useCurrentReelRaceInfo", () => {
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
         tournamentId: nextRace.slug,
+        formattedPrizes: [],
+        leaderboard: [
+          {
+            playerId,
+            playerName,
+            position: nextRace.position,
+            points: nextRace.points,
+            remainingSpins: nextRace.remainingSpins,
+          },
+        ],
       });
     });
 
@@ -296,6 +325,7 @@ describe("useCurrentReelRaceInfo", () => {
       wrapper.update();
       expectHook(wrapper).toEqual({
         isInProgress: true,
+        hasEnded: false,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
@@ -303,6 +333,16 @@ describe("useCurrentReelRaceInfo", () => {
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
         tournamentId: nextRace.slug,
+        formattedPrizes: [],
+        leaderboard: [
+          {
+            playerId,
+            playerName,
+            position: nextRace.position,
+            points: nextRace.points,
+            remainingSpins: nextRace.remainingSpins,
+          },
+        ],
       });
     });
 
@@ -330,6 +370,7 @@ describe("useCurrentReelRaceInfo", () => {
       wrapper.update();
       expectHook(wrapper).toEqual({
         isInProgress: true,
+        hasEnded: false,
         endTime: nextRace.endTime,
         startTime: nextRace.startTime,
         position: nextRace.position,
@@ -337,6 +378,16 @@ describe("useCurrentReelRaceInfo", () => {
         remainingSpins: nextRace.remainingSpins,
         game: genGame(nextRace.slug),
         tournamentId: nextRace.slug,
+        formattedPrizes: [],
+        leaderboard: [
+          {
+            playerId,
+            playerName,
+            position: nextRace.position,
+            points: nextRace.points,
+            remainingSpins: nextRace.remainingSpins,
+          },
+        ],
       });
     });
     test("dont find reel race that has finished just now", () => {

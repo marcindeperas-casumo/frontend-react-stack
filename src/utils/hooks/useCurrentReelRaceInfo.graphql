@@ -1,5 +1,5 @@
 query CurrentReelRaceInfoQuery {
-  reelRaces(limit: 2) {
+  reelRaces(limit: 1, prioritisePromoted: false) {
     id
     game {
       id
@@ -14,8 +14,10 @@ query CurrentReelRaceInfoQuery {
     promoted
     spinLimit
     cometdChannels
+    formattedPrizes
     leaderboard {
       playerId
+      playerName
       position
       points
       remainingSpins

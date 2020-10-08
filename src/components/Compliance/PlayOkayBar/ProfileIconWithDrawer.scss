@@ -1,3 +1,59 @@
 .c-profile-icon-with-drawer {
-  top: var(--play-okay-bar-height, 48px);
+  background-clip: padding-box;
+
+  box-sizing: content-box;
+
+  &__content {
+    left: 0;
+    top: 0;
+
+    &--old {
+      animation: floatContentOld 0.9s normal forwards ease-out;
+    }
+    &--next {
+      animation: floatContentNext 0.9s normal forwards ease-out;
+    }
+  }
+
+  &__chevron-icon {
+    bottom: 0;
+    right: 0;
+  }
+
+  &__bottom-wrapper {
+    left: 0;
+    margin-left: 50%;
+    margin-top: 12px;
+    max-width: 442px;
+    transform: translateX(-50%);
+
+    &-bg {
+      background: linear-gradient(white, transparent);
+      margin-top: 12px;
+    }
+
+    &-item {
+      box-sizing: border-box;
+    }
+  }
 }
+
+// stylelint-disable xi/selector-pattern
+@keyframes floatContentOld {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -48px;
+  }
+}
+
+@keyframes floatContentNext {
+  0% {
+    margin-top: 48px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+// stylelint-enable xi/selector-pattern
