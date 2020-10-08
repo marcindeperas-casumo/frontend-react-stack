@@ -21,6 +21,10 @@ export const QuickDepositSlip = ({
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
 }: QuickDepositSlipProps) => {
+  const errorTranslations = R.pickBy(
+    (v, k) => !R.isEmpty(R.match(/error_/, k))
+  );
+
   const {
     depositValue,
     formErrors,
@@ -30,7 +34,7 @@ export const QuickDepositSlip = ({
     minAmount,
     maxAmount,
     presetAmount,
-    translations: t.validation_errors,
+    translations: errorTranslations(t),
   });
 
   const onCvvError = message =>

@@ -15,8 +15,7 @@ export type QuickDepositSlipTranslations = {
   deposit_cta_text: string,
   deposit_helper_text: string,
   cvv_helper_text: string,
-  validation_errors: QuickDepositSlipFormErrorTranslations,
-};
+} & QuickDepositSlipFormErrorTranslations;
 
 export type QuickDepositSlipForm = {
   minAmount: number,
