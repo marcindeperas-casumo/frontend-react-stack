@@ -13,22 +13,28 @@ type Props = {
   points: number,
   highlighted?: boolean,
   className?: string,
+  showLaurel?: boolean,
+  inverted?: boolean,
 };
 
 export const ReelRaceLeaderboardListEntry = ({
   position,
   text,
   prize,
+  showLaurel,
   points,
   highlighted,
+  inverted,
   className,
 }: Props) => (
   <Flex
     align="center"
     className={cx(
-      "u-width--full u-padding-y--sm u-padding-right--lg",
+      "u-width--full u-padding-y--sm u-padding-right--lg u-padding-left",
       {
         "t-background-yellow-30": highlighted,
+        "t-color-black": !inverted,
+        "t-color-white": inverted && !highlighted,
       },
       className
     )}
@@ -37,7 +43,8 @@ export const ReelRaceLeaderboardListEntry = ({
       <LaurelPosition
         position={position}
         highlighted={highlighted}
-        showLaurel={Boolean(prize)}
+        showLaurel={showLaurel}
+        inverted={inverted}
       />
     </Flex.Item>
     <Flex.Block>
