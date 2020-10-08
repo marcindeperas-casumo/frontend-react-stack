@@ -26,12 +26,12 @@ export const useQuickDepositSlipForm = ({
   presetAmount,
   translations: t,
 }: QuickDepositSlipFormProps) => {
-  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(
-    R.pick(
-      ["error_cvv_required", "error_cvv_too_short", "error_cvv_not_integer"],
-      t
-    )
+  const cvvErrors = R.pick(
+    ["error_cvv_required", "error_cvv_too_short", "error_cvv_not_integer"],
+    t
   );
+
+  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors);
   const presetValue = presetAmount
     ? R.clamp(minAmount, maxAmount, presetAmount)
     : minAmount;

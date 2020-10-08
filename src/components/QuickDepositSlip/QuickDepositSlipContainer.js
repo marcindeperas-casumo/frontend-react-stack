@@ -2,14 +2,26 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { playerCurrencySymbolSelector } from "Models/player";
-import { PaymentMethodDetails } from "../PaymentMethodDetails/PaymentMethodDetails";
-import paymentMethodData from "../PaymentMethodDetails/__mocks__/cms";
-import { useTranslationsGql } from "../../utils/hooks/__mocks__/useTranslationsGql";
+import { useTranslationsGql } from "../../utils/hooks/useTranslationsGql";
 import { QuickDepositSlip } from "./QuickDepositSlip";
+
+type Props = {
+  minAmount: number,
+  maxAmount: number,
+  presetAmount?: number,
+  onDeposit: () => void,
+  paymentMethodDetails: () => React.Node,
+};
 
 const cmsPrefix = "root:quick-deposit-slip:fields";
 
-export function QuickDepositSlipContainer() {
+export function QuickDepositSlipContainer({
+  minAmount,
+  maxAmount,
+  presetAmount,
+  onDeposit,
+  paymentMethodDetails,
+}: Props) {
   const currencySymbol = useSelector(playerCurrencySymbolSelector);
 
   const { t } = useTranslationsGql({
@@ -29,12 +41,10 @@ export function QuickDepositSlipContainer() {
     <QuickDepositSlip
       translations={t}
       currencySymbol={currencySymbol}
-      minAmount={20}
-      maxAmount={100}
-      onDeposit={() => {}}
-      renderPaymentMethodDetails={() => (
-        <PaymentMethodDetails {...paymentMethodData} />
-      )}
+      minAmount={minAmount}
+      maxAmount={maxAmount}
+      onDeposit={onDeposit}
+      renderPaymentMethodDetails={paymentMethodDetails}
     />
   );
 }
