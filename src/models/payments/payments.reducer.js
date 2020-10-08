@@ -13,7 +13,4 @@ const handlers = {
   }),
 };
 
-export const methodConfigReducer = createReducer<Object>(
-  DEFAULT_STATE,
-  handlers
-);
+export const paymentsReducer = createReducer<Object>(DEFAULT_STATE, handlers);
