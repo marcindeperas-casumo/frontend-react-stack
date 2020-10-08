@@ -12,6 +12,8 @@ import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
 import "./QuickDepositSlip.scss";
 
+const errorTranslations = R.pickBy((v, k) => !R.isEmpty(R.match(/error_/, k)));
+
 export const QuickDepositSlip = ({
   currencySymbol,
   minAmount,
@@ -21,10 +23,6 @@ export const QuickDepositSlip = ({
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
 }: QuickDepositSlipProps) => {
-  const errorTranslations = R.pickBy(
-    (v, k) => !R.isEmpty(R.match(/error_/, k))
-  );
-
   const {
     depositValue,
     formErrors,

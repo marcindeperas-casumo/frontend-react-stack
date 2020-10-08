@@ -19,6 +19,8 @@ const CVV_TRANSLATIONS_MAP = ({
   NOT_INTEGER: error_cvv_not_integer,
 });
 
+const cvvErrors = R.pickBy((v, k) => !R.isEmpty(R.match(/error_cvv/, k)));
+
 /* eslint-disable sonarjs/cognitive-complexity */
 export const useQuickDepositSlipForm = ({
   minAmount,
@@ -26,12 +28,8 @@ export const useQuickDepositSlipForm = ({
   presetAmount,
   translations: t,
 }: QuickDepositSlipFormProps) => {
-  const cvvErrors = R.pick(
-    ["error_cvv_required", "error_cvv_too_short", "error_cvv_not_integer"],
-    t
-  );
+  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors(t));
 
-  const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors);
   const presetValue = presetAmount
     ? R.clamp(minAmount, maxAmount, presetAmount)
     : minAmount;
@@ -56,77 +54,71 @@ export const useQuickDepositSlipForm = ({
   );
 
   const onCvvIframeCallback = (e: CvvValidationEvent) => {
-    // eslint-disable-next-line no-switch-statements/no-switch
-    switch (e.status) {
-      case "error":
-        if (!e.errorType) {
-          return;
-        }
-        const validErrorKey = cvvErrorTranslationKeys[e.errorType];
+    if (e.status === "error" && !e.errorType) {
+      return;
+    }
 
-        if (!validErrorKey) {
-          // $FlowFixMe
-          logger.error(`Unknown error code from PIQ iframe: ${e.errorType}`);
-        } else {
-          setCvvError(e.errorType);
-        }
+    if (e.status === "error" && e.errorType) {
+      const validErrorKey = cvvErrorTranslationKeys[e.errorType];
 
-        setCvvValue(null);
-        break;
-      case "success":
-        setCvvValue(e.data);
-        setCvvError(null);
-        break;
-      default:
-        break;
+      if (!validErrorKey) {
+        // $FlowFixMe
+        logger.error(`Unknown error code from PIQ iframe: ${e.errorType}`);
+        return;
+      }
+
+      setCvvError(e.errorType);
+      setCvvValue(null);
+    }
+
+    if (e.status === "success") {
+      setCvvValue(e.data);
+      setCvvError(null);
     }
   };
 
   React.useEffect(
     () => {
       setFormErrors({});
+
       if (!depositValue) {
         setFormErrors(
-          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-            R.merge(errors, {
-              amountInput: t.error_deposit_amount_required,
-            })
+          R.mergeLeft({
+            amountInput: t.error_deposit_amount_required,
+          })
         );
       }
 
       if (depositValue < minAmount) {
         setFormErrors(
-          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-            R.merge(errors, {
-              amountInput: interpolate(t.error_deposit_minimum, {
-                amount: `${minAmount}`,
-              }),
-            })
+          R.mergeLeft({
+            amountInput: interpolate(t.error_deposit_minimum, {
+              amount: `${minAmount}`,
+            }),
+          })
         );
       }
 
       if (depositValue > maxAmount) {
         setFormErrors(
-          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-            R.merge(errors, {
-              amountInput: interpolate(t.error_deposit_maximum, {
-                amount: `${maxAmount}`,
-              }),
-            })
+          R.mergeLeft({
+            amountInput: interpolate(t.error_deposit_maximum, {
+              amount: `${maxAmount}`,
+            }),
+          })
         );
       }
 
       if (cvvError) {
         setFormErrors(
-          (errors: QuickDepositSlipFormErrors): QuickDepositSlipFormErrors =>
-            R.merge(errors, {
-              cvv: cvvErrorTranslationKeys[cvvError],
-            })
+          R.mergeLeft({
+            cvv: cvvErrorTranslationKeys[cvvError],
+          })
         );
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t, cvvError, depositValue, maxAmount, minAmount]
+    [cvvError, depositValue, maxAmount, minAmount]
   );
 
   return {
