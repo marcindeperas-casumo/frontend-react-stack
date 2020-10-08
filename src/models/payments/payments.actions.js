@@ -4,12 +4,12 @@ import type { QuickDepositMethod } from "./methodConfig.types";
 import type { ActionTypes } from "./payments.types";
 
 type SetQuickDepositMethodReturnType = {
-  method: QuickDepositMethod,
+  method: ?QuickDepositMethod,
   type: ActionTypes,
 };
 
 export const setQuickDepositMethod = (
-  method: QuickDepositMethod
+  method: ?QuickDepositMethod
 ): SetQuickDepositMethodReturnType => ({
   type: actionTypes.SET_QUICK_DEPOSIT_METHOD,
   method,
