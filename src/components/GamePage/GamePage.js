@@ -41,32 +41,30 @@ export const GamePage = ({
           <Flex.Item>
             <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
           </Flex.Item>
-          <Flex.Block className="u-height--full">
-            <Flex
-              direction="horizontal"
-              spacing="none"
-              className="u-height--full"
-            >
-              <Flex.Item>
-                {/* sidebar for pinned items */}
-                {sidebar}
-              </Flex.Item>
-              <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
-                <div
-                  className={classNames(
-                    "u-inset-0 u-position-absolute",
-                    gameProviderModel.gameWrapperClasses || []
-                  )}
-                >
-                  <GameLauncher
-                    gameProviderModel={gameProviderModel}
-                    className="c-game-page__game-launcher"
-                  />
-                </div>
-                <GamePageNotifications />
-              </Flex.Block>
-            </Flex>
-          </Flex.Block>
+          <Flex
+            direction="horizontal"
+            spacing="none"
+            className="u-height--full"
+          >
+            <Flex.Item>
+              {/* sidebar for pinned items */}
+              {sidebar}
+            </Flex.Item>
+            <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
+              <div
+                className={classNames(
+                  "u-inset-0 u-position-absolute",
+                  gameProviderModel.gameWrapperClasses || []
+                )}
+              >
+                <GameLauncher
+                  gameProviderModel={gameProviderModel}
+                  className="c-game-page__game-launcher"
+                />
+              </div>
+              <GamePageNotifications />
+            </Flex.Block>
+          </Flex>
           {shouldShowSlotControlSystem && (
             <Flex.Item>
               <InfoBar />
