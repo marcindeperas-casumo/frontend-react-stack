@@ -4,6 +4,8 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
+import { Desktop } from "Components/ResponsiveLayout";
+import { FullscreenToggle } from "Components/FullscreenView";
 import { EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
 
@@ -43,13 +45,18 @@ export const InGameDrawerLinks = ({
       align="stretch"
       justify="space-around"
       className={cx("c-in-game-drawer", className)}
+      spacing="none"
     >
       {!isChatDisabled && (
         <Flex.Block
           onClick={liveChatClick}
-          className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-right u-cursor--pointer"
+          className="t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-x--md u-cursor--pointer"
         >
-          <ChatIcon className="u-margin-right" />
+          <ChatIcon
+            className={cx({
+              "u-margin-right": showLabels,
+            })}
+          />
           {showLabels && (
             <Text tag="span" size="sm">
               {t.in_game_drawer_live_chat}
@@ -57,11 +64,20 @@ export const InGameDrawerLinks = ({
           )}
         </Flex.Block>
       )}
+      <Desktop>
+        <Flex.Block className="t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-x--md u-cursor--pointer">
+          <FullscreenToggle />
+        </Flex.Block>
+      </Desktop>
       <Flex.Block
         onClick={exitGameClick}
-        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none u-cursor--pointer"
+        className="t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none u-cursor--pointer u-padding-x--md"
       >
-        <ExitIcon className="u-margin-right" />
+        <ExitIcon
+          className={cx({
+            "u-margin-right": showLabels,
+          })}
+        />
         {showLabels && (
           <Text tag="span" size="sm">
             {t.in_game_drawer_exit_game}

@@ -63,7 +63,7 @@ export const QuickDeposit = ({
           <Flex
             align="center"
             justify="center"
-            className="c-quick-deposit-icon-wrapper t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            className="t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
             onClick={onQuickDepositLinkClick}
           >
             <CurrencyIcon
