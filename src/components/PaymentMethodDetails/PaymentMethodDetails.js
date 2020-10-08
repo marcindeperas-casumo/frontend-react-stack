@@ -2,32 +2,28 @@
 import * as React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
-import { type LocalPaymentMethodType } from "Models/payments";
+import { type QuickDepositMethod } from "Models/payments";
 
 type PaymentMethodDetailsProps = {
-  method: LocalPaymentMethodType,
-  logoUrl: string,
-  maskedCardNo: string,
+  method: QuickDepositMethod,
 };
 
-export const PaymentMethodDetails = ({
-  method,
-  logoUrl,
-  maskedCardNo,
-}: PaymentMethodDetailsProps) => {
+export const PaymentMethodDetails = ({ method }: PaymentMethodDetailsProps) => {
+  const identifier = (method?.identifier || "").substr(-8);
+
   return (
     <Media
       renderImage={() => (
         <img
           className="u-display--block"
           width={64}
-          alt={method}
-          src={logoUrl}
+          alt={method.displayName}
+          src={method.image}
         />
       )}
       renderText={() => (
         <Text size="sm" className="u-margin-bottom--sm u-font-weight-bold">
-          {maskedCardNo}
+          {identifier}
         </Text>
       )}
     />
