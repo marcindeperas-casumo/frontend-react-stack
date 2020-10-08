@@ -24,10 +24,10 @@ export function* methodConfigSaga(action: any, state: any): * {
     )
   );
 
-  const specificMethodPage = pages[pages.length - 1];
+  const specificMethodPage = pages[configSlugs.length - 1].response;
 
   const specificMethodConfig = {
-    image: specificMethodPage.fields.image,
+    image: specificMethodPage.fields?.image,
   };
 
   yield put(

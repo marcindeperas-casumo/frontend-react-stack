@@ -52,6 +52,7 @@ export type MethodConfigType = {
       disabledCountries: Array<string>,
     },
   },
+  image: string,
 };
 
 export type SavedMethodType = {
