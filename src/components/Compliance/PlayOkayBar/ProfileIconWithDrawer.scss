@@ -27,28 +27,28 @@
     max-width: 442px;
     transform: translateX(-50%);
 
+    @include cudl-breakpoint(desktop) {
+      transform: none;
+      width: 280px !important;
+    }
+
     &-bg {
       background: linear-gradient(white, transparent);
       margin-top: 12px;
+
+      @include cudl-breakpoint(desktop) {
+        background: radial-gradient(
+          farthest-corner at top left,
+          rgba(255, 255, 255, 0.5),
+          transparent 70%
+        );
+      }
     }
 
     &-item {
       box-sizing: border-box;
     }
   }
-}
-
-.c-bottom-wrapper-desktop-bg {
-  background: radial-gradient(
-    farthest-corner at top left,
-    rgba(255, 255, 255, 0.5),
-    transparent 70%
-  );
-}
-
-.c-bottom-wrapper-desktop-width {
-  transform: none;
-  width: 280px !important;
 }
 
 // stylelint-disable xi/selector-pattern

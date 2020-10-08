@@ -14,7 +14,6 @@ import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
-import { isDesktop, isMobile, isTablet } from "Components/ResponsiveLayout";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -185,40 +184,23 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={cx(
-            `${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`,
-            {
-              "u-width--1/5@desktop c-bottom-wrapper-desktop-bg": isDesktop(),
-            }
-          )}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
         >
           <div
-            className={cx(
-              `${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop`,
-              {
-                "u-margin-left--none c-bottom-wrapper-desktop-width": isDesktop(),
-              }
-            )}
+            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
             {currentReelRace?.isInProgress && (
               <div
-                className={cx(
-                  `${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`,
-                  {
-                    "u-padding-left--md u-margin-bottom--none": isDesktop(),
-                  }
-                )}
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
               >
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
             <div
               className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto`,
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right@desktop u-padding-left--md@desktop`,
                 {
                   "u-margin-top": !currentReelRace?.isInProgress,
-                  "u-padding-left--md u-padding-right": isDesktop(),
-                  "u-padding-x": isMobile() || isTablet(),
                 }
               )}
             >
