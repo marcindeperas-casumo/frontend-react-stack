@@ -2,9 +2,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { quickDepositMethod } from "Models/payments/__mocks__/quickDepositMethod.mock";
 import MockStore from "Components/MockStore";
 import { PaymentMethodDetails } from "../PaymentMethodDetails";
-import paymentMethodData from "../PaymentMethodDetails/__mocks__/cms";
 import { QuickDepositSlip } from "./QuickDepositSlip";
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 import { translations } from "./__mocks__/cms";
@@ -18,7 +18,7 @@ const props: QuickDepositSlipProps = {
   maxAmount: 100,
   onDeposit: () => action("Deposit attempt"),
   renderPaymentMethodDetails: () => (
-    <PaymentMethodDetails {...paymentMethodData} />
+    <PaymentMethodDetails {...quickDepositMethod} />
   ),
 };
 
