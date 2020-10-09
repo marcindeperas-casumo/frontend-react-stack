@@ -18,7 +18,7 @@ const props: QuickDepositSlipProps = {
   maxAmount: 100,
   onDeposit: () => action("Deposit attempt"),
   renderPaymentMethodDetails: () => (
-    <PaymentMethodDetails {...quickDepositMethod} />
+    <PaymentMethodDetails method={quickDepositMethod} />
   ),
 };
 
