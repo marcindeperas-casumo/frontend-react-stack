@@ -1,16 +1,29 @@
 // @flow
 import React from "react";
+import { useDispatch } from "react-redux";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import { QuickDepositSlip } from "./QuickDepositSlip";
-import { translations as t } from "./__mocks__/cms";
+import type { QuickDepositSlipProps } from "./QuickDepositSlip.types";
+import { translations } from "./__mocks__/cms";
 
-const props = {
-  t: t,
+jest.mock("react-redux", () => {
+  const { Provider, useSelector } = jest.requireActual("react-redux");
+
+  return {
+    useDispatch: jest.fn().mockReturnValue(),
+    useSelector,
+    Provider,
+  };
+});
+
+const props: QuickDepositSlipProps = {
+  translations,
   currencySymbol: "$",
   minAmount: 20,
   maxAmount: 100,
   onDeposit: () => {},
+  renderPaymentMethodDetails: () => <div>placeholder</div>,
 };
 
 const DATA_TEST_ID = "deposit-amount-selector";
@@ -20,8 +33,11 @@ describe("<QuickDepositSlip />", () => {
     let rendered;
     let depositAmountSelector;
     let input;
+    let dispatchMock;
 
     beforeEach(() => {
+      dispatchMock = jest.fn();
+      useDispatch.mockReturnValue(dispatchMock);
       rendered = mount(<QuickDepositSlip {...props} />);
       depositAmountSelector = rendered.find(`[data-test-id='${DATA_TEST_ID}']`);
       input = depositAmountSelector.find("input").at(0);

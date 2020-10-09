@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";

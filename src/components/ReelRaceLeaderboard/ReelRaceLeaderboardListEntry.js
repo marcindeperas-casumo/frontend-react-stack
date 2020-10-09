@@ -26,7 +26,7 @@ export const ReelRaceLeaderboardListEntry = ({
   <Flex
     align="center"
     className={cx(
-      "u-width--full u-padding-y--sm u-padding-right--lg",
+      "u-padding-y--sm u-padding-right--lg",
       {
         "t-background-yellow-30": highlighted,
       },
