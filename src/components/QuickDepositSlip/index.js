@@ -1,2 +1,4 @@
 // @flow
-export { QuickDepositSlip } from "./QuickDepositSlip";
+export {
+  QuickDepositSlipContainer as QuickDepositSlip,
+} from "./QuickDepositSlipContainer";

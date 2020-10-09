@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { storiesOf } from "@storybook/react";
 import { GamePage } from "Components/GamePage";
-import { LayoutPage } from "Components/LayoutPage";
 import { BaseGame } from "GameProviders";
 import MockStore from "Components/MockStore";
 
@@ -64,14 +63,17 @@ stories.add(
 
     return (
       <MockStore>
-        <LayoutPage>
-          <GamePage
-            gameProviderModel={gameProviderModel}
-            pauseGame={() => Promise.resolve()}
-            resumeGame={() => {}}
-            shouldShowSlotControlSystem={shouldShowSlotControlSystem}
-          />
-        </LayoutPage>
+        <GamePage
+          gameProviderModel={gameProviderModel}
+          pauseGame={() => Promise.resolve()}
+          resumeGame={() => {}}
+          shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+          sidebar={
+            <div className="u-display--none@mobile u-display--none@phablet">
+              sidebar
+            </div>
+          }
+        />
       </MockStore>
     );
   },
