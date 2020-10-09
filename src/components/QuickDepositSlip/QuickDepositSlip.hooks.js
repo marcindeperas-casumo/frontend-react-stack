@@ -28,8 +28,12 @@ export const useQuickDepositSlipForm = ({
   presetAmount,
   translations: t,
 }: QuickDepositSlipFormProps) => {
+  const {
+    error_deposit_minimum,
+    error_deposit_maximum,
+    error_deposit_amount_required,
+  } = t;
   const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors(t));
-
   const presetValue = presetAmount
     ? R.clamp(minAmount, maxAmount, presetAmount)
     : minAmount;
@@ -84,7 +88,7 @@ export const useQuickDepositSlipForm = ({
       if (!depositValue) {
         setFormErrors(
           R.mergeLeft({
-            amountInput: t.error_deposit_amount_required,
+            amountInput: error_deposit_amount_required,
           })
         );
       }
@@ -92,7 +96,7 @@ export const useQuickDepositSlipForm = ({
       if (depositValue < minAmount) {
         setFormErrors(
           R.mergeLeft({
-            amountInput: interpolate(t.error_deposit_minimum, {
+            amountInput: interpolate(error_deposit_minimum, {
               amount: `${minAmount}`,
             }),
           })
@@ -102,7 +106,7 @@ export const useQuickDepositSlipForm = ({
       if (depositValue > maxAmount) {
         setFormErrors(
           R.mergeLeft({
-            amountInput: interpolate(t.error_deposit_maximum, {
+            amountInput: interpolate(error_deposit_maximum, {
               amount: `${maxAmount}`,
             }),
           })

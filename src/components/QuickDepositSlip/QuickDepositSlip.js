@@ -23,6 +23,8 @@ export const QuickDepositSlip = ({
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
 }: QuickDepositSlipProps) => {
+  const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = t;
+
   const {
     depositValue,
     formErrors,
@@ -65,7 +67,7 @@ export const QuickDepositSlip = ({
               onChange={onAmountChange}
               className="u-font-lg u-font-weight-bold"
               inputClassName="u-font-lg u-font-weight-bold"
-              helperText={formErrors.amountInput || t.deposit_helper_text}
+              helperText={formErrors.amountInput || deposit_helper_text}
               variant={formErrors.amountInput ? "invalid" : "valid"}
             />
           </Flex.Block>
@@ -97,7 +99,7 @@ export const QuickDepositSlip = ({
                     formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
                   )}
                 >
-                  {formErrors.cvv || t.cvv_helper_text}
+                  {formErrors.cvv || cvv_helper_text}
                 </Text>
               </Flex.Item>
             </Flex>
@@ -108,7 +110,7 @@ export const QuickDepositSlip = ({
               onClick={onDeposit}
               isDisabled={!R.isEmpty(formErrors)}
             >
-              {t.deposit_cta_text}
+              {deposit_cta_text}
             </ButtonPrimary>
           </Flex.Item>
         </Flex>

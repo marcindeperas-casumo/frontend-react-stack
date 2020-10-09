@@ -2,19 +2,19 @@
 import * as React from "react";
 
 export type QuickDepositSlipFormErrorTranslations = {
-  error_deposit_minimum: ?string,
-  error_deposit_maximum: ?string,
-  error_deposit_amount_required: ?string,
-  error_cvv_required: ?string,
-  error_cvv_too_short: ?string,
-  error_cvv_not_integer: ?string,
+  error_deposit_minimum: string,
+  error_deposit_maximum: string,
+  error_deposit_amount_required: string,
+  error_cvv_required: string,
+  error_cvv_too_short: string,
+  error_cvv_not_integer: string,
 };
 
 export type QuickDepositSlipTranslations = {
-  deposit_amount: ?string,
-  deposit_cta_text: ?string,
-  deposit_helper_text: ?string,
-  cvv_helper_text: ?string,
+  deposit_amount: string,
+  deposit_cta_text: string,
+  deposit_helper_text: string,
+  cvv_helper_text: string,
 } & QuickDepositSlipFormErrorTranslations;
 
 export type QuickDepositSlipForm = {
