@@ -24,7 +24,7 @@ export function QuickDepositSlipContainer({
 }: Props) {
   const currencySymbol = useSelector(playerCurrencySymbolSelector);
 
-  const { t } = useTranslationsGql({
+  const { t, loading } = useTranslationsGql({
     deposit_amount: `${cmsPrefix}.deposit_amount`,
     deposit_cta_text: `${cmsPrefix}.deposit_cta_text`,
     deposit_helper_text: `${cmsPrefix}.deposit_helper_text`,
@@ -36,6 +36,10 @@ export function QuickDepositSlipContainer({
     error_cvv_too_short: `${cmsPrefix}.error_cvv_too_short`,
     error_cvv_not_integer: `${cmsPrefix}.error_cvv_not_integer`,
   });
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <QuickDepositSlip
