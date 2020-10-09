@@ -2,7 +2,6 @@
 import * as React from "react";
 import * as R from "ramda";
 import cx from "classnames";
-import List from "@casumo/cmp-list";
 import * as A from "Types/apollo";
 import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
 
@@ -18,6 +17,8 @@ type Props = {
   inverted?: boolean,
   fixedRows?: number,
   rowClassName?: string,
+  style?: Object,
+  currentPositionRef?: React.Ref<any>,
 };
 
 type ListProps = {
@@ -28,6 +29,7 @@ type ListProps = {
   inverted?: boolean,
   playerId: string,
   rowClassName?: string,
+  currentPositionRef?: React.Ref<any>,
 };
 
 const LEADERBOARD_SIZE = 25;
@@ -42,22 +44,17 @@ const InnerList = ({
   forceLaurelPositions = 0,
   playerId,
   inverted = false,
-  rowClassName,
+  rowClassName = "",
+  currentPositionRef = null,
 }: ListProps) => (
   <div className={className}>
-    <List
-      itemSpacing="none"
-      items={items}
-      render={({
-        points,
-        position,
-        playerName,
-        playerId: playerIdFromLeaderboard,
-      }) => {
+    {items.map(
+      ({ points, position, playerName, playerId: playerIdFromLeaderboard }) => {
         const prize = getPrize(position, prizes);
         const isHighlighted = playerIdFromLeaderboard === playerId;
         return (
           <ReelRaceLeaderboardListEntry
+            key={position}
             points={points}
             position={position}
             text={playerName}
@@ -65,11 +62,15 @@ const InnerList = ({
             showLaurel={position <= forceLaurelPositions || Boolean(prize)}
             highlighted={isHighlighted}
             inverted={inverted}
-            className={!isHighlighted ? rowClassName : ""}
+            ref={currentPositionRef}
+            className={cx({
+              [rowClassName]: !isHighlighted && rowClassName,
+              "t-border-bottom t-border-grey-5": !inverted,
+            })}
           />
         );
-      }}
-    />
+      }
+    )}
   </div>
 );
 
@@ -82,8 +83,11 @@ export function ReelRaceLeaderboardResults({
   inverted = false,
   fixedRows = 0,
   className,
-  rowClassName,
+  rowClassName = "",
+  style = {},
 }: Props) {
+  const listRef = React.useRef(null);
+  const currentPositionRef = React.useRef(null);
   const sorted = R.sortBy(R.prop("position"))(leaderboard);
   const leaderboardSortedSliced = sorted.slice(0, size);
 
@@ -93,15 +97,35 @@ export function ReelRaceLeaderboardResults({
     playerId,
     inverted,
     rowClassName,
+    currentPositionRef,
   };
+
+  const bgRowClass = rowClassName
+    .split(/[ ]+/g)
+    .filter(c => c.includes("background"))
+    .join(" ");
+
+  React.useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollTo(0, 0);
+    }
+    setTimeout(() => {
+      if (currentPositionRef.current) {
+        currentPositionRef.current.scrollIntoView(false);
+      }
+    }, 0);
+  }, [leaderboard]);
+
   return (
     <div
       className={cx(className, "u-position-relative u-overflow--scroll", {
         "t-opacity-border--0": inverted,
       })}
+      ref={listRef}
+      style={style}
     >
       <InnerList
-        className="c-reel-race-leaderboard-results__sticky-list u-position-sticky--top"
+        className={`c-reel-race-leaderboard-results__sticky-list u-position-sticky--top ${bgRowClass}`}
         items={leaderboardSortedSliced.slice(0, fixedRows)}
         {...commonProps}
       />

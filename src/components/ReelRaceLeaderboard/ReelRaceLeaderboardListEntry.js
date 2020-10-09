@@ -17,49 +17,59 @@ type Props = {
   inverted?: boolean,
 };
 
-export const ReelRaceLeaderboardListEntry = ({
-  position,
-  text,
-  prize,
-  showLaurel,
-  points,
-  highlighted,
-  inverted,
-  className,
-}: Props) => (
-  <Flex
-    align="center"
-    className={cx(
-      "u-width--full u-padding-y--sm u-padding-right--lg u-padding-left",
-      {
-        "t-background-yellow-30": highlighted,
-        "t-color-black": !inverted,
-        "t-color-white": inverted && !highlighted,
-      },
-      className
-    )}
-  >
-    <Flex.Item>
-      <LaurelPosition
-        position={position}
-        highlighted={highlighted}
-        showLaurel={showLaurel}
-        inverted={inverted}
-      />
-    </Flex.Item>
-    <Flex.Block>
-      <Text tag="div">{text}</Text>
-    </Flex.Block>
-    <Flex.Item>
-      {prize && <Prize prize={prize} highlighted={highlighted} />}
-    </Flex.Item>
-    <Flex.Item>
-      <Text
-        tag="div"
-        className="u-font-weight-bold u-margin-left u-width--2xlg u-text-align-right"
+export const ReelRaceLeaderboardListEntry = React.forwardRef<
+  Props,
+  HTMLDivElement
+>(
+  (
+    {
+      position,
+      text,
+      prize,
+      showLaurel,
+      points,
+      highlighted,
+      inverted,
+      className,
+    }: Props,
+    ref: React.Ref<any>
+  ) => (
+    <div ref={ref}>
+      <Flex
+        align="center"
+        className={cx(
+          "u-width--full u-padding-y--sm u-padding-right--lg u-padding-left",
+          {
+            "t-background-yellow-30": highlighted,
+            "t-color-black": !inverted,
+            "t-color-white": inverted && !highlighted,
+          },
+          className
+        )}
       >
-        {points}
-      </Text>
-    </Flex.Item>
-  </Flex>
+        <Flex.Item>
+          <LaurelPosition
+            position={position}
+            highlighted={highlighted}
+            showLaurel={showLaurel}
+            inverted={inverted}
+          />
+        </Flex.Item>
+        <Flex.Block>
+          <Text tag="div">{text}</Text>
+        </Flex.Block>
+        <Flex.Item>
+          {prize && <Prize prize={prize} highlighted={highlighted} />}
+        </Flex.Item>
+        <Flex.Item>
+          <Text
+            tag="div"
+            className="u-font-weight-bold u-margin-left u-width--2xlg u-text-align-right"
+          >
+            {points}
+          </Text>
+        </Flex.Item>
+      </Flex>
+    </div>
+  )
 );
