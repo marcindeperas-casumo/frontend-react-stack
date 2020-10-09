@@ -19,22 +19,13 @@ export const QuickDepositSlipControler = () => {
 
   const { min, max } = selectedMethod?.limits?.deposit;
 
-  const onDeposit = () => {};
+  const onDeposit = (amount, encodedCvv) => {
+    //@lukKowalski, dispatching temporarily, will be replaced with a proper action
+    dispatch({ type: "make_deposit", amount, encodedCvv });
+  };
 
   const closeQuickDeposit = () => {
     dispatch(setQuickDepositMethod(null));
-  };
-
-  const t = {
-    deposit_amount: "amount",
-    deposit_cta_text: "deposit",
-    deposit_helper_text: "please deposit",
-    cvv_helper_text: "here's cvv",
-    error_deposit_minimum: "oooh not enough, need to put more",
-    error_deposit_maximum: "u greedy, too much bro",
-    error_cvv_required: "cvv required",
-    error_cvv_too_short: "cvv too short",
-    error_cvv_not_integer: "cvv not an integer",
   };
 
   return (
@@ -54,8 +45,7 @@ export const QuickDepositSlipControler = () => {
         <QuickDepositSlip
           minAmount={min}
           maxAmount={max}
-          t={t}
-          onDesposit={onDeposit}
+          onDeposit={onDeposit}
           paymentMethodDetails={() => (
             <PaymentMethodDetails method={selectedMethod} />
           )}
