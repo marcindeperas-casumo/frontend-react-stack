@@ -50,7 +50,6 @@ export const ProfileIconWithDrawer = ({
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const playing = useSelector(playingSelector);
-
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = () => {
     tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
@@ -64,7 +63,12 @@ export const ProfileIconWithDrawer = ({
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
 
+<<<<<<< HEAD
+  const isChatDisabled = market === MARKETS.nz_en || isNativeByUserAgent();
+=======
   const isChatDisabled = isNativeByUserAgent();
+
+>>>>>>> d046b34bf453f7341d15c70cae845cbc578e0057
   const transitionTimer = useTimeoutFn();
 
   useEffect(() => {
@@ -110,7 +114,6 @@ export const ProfileIconWithDrawer = ({
 
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
-
   const commonRaceProps = {
     currentRace: currentReelRace,
   };
@@ -188,7 +191,7 @@ export const ProfileIconWithDrawer = ({
             )}
             <div
               className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right@desktop u-padding-left--md@desktop`,
                 {
                   "u-margin-top": !currentReelRace?.isInProgress,
                 }
