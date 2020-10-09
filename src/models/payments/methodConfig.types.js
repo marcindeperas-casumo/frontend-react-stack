@@ -73,7 +73,7 @@ export type AvailableMethod = {
 
 export type QuickDepositMethod = SavedMethodType & {
   limits: any,
-  image: String,
+  image: string,
   displayName: string,
 };
 
