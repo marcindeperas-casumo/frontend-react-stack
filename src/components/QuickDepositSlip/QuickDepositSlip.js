@@ -23,7 +23,9 @@ export const QuickDepositSlip = ({
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
 }: QuickDepositSlipProps) => {
-  const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = t;
+  const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = R.map(
+    v => v || ""
+  )(t);
 
   const {
     depositValue,
