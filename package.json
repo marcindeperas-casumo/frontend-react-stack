@@ -10,7 +10,7 @@
     "@casumo/cmp-badge": "^2.0.0",
     "@casumo/cmp-button": "^3.0.0",
     "@casumo/cmp-card": "^4.0.0",
-    "@casumo/cmp-chip": "^1.1.1",
+    "@casumo/cmp-chip": "^2.0.2",
     "@casumo/cmp-flex": "^3.0.6",
     "@casumo/cmp-icons": "^4.0.0",
     "@casumo/cmp-list": "^2.0.0",
