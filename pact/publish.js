@@ -4,7 +4,7 @@ const { commitSHA, branchName } = require("./utils");
 
 const opts = {
   pactFilesOrDirs: [path.join(__dirname, "pacts")],
-  pactBroker: "http://pact-broker.casumo.cloud",
+  pactBroker: "https://pact-broker.casumotools.cloud/",
   tags: [branchName],
   consumerVersion: commitSHA,
   pactfileWriteMode: "overwrite",
