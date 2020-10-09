@@ -8,8 +8,10 @@ type PaymentMethodDetailsProps = {
   method: QuickDepositMethod,
 };
 
+const TRIM_METHOD_START_POINT = -8;
+
 export const PaymentMethodDetails = ({ method }: PaymentMethodDetailsProps) => {
-  const identifier = (method?.identifier || "").substr(-8);
+  const identifier = (method?.identifier || "").substr(TRIM_METHOD_START_POINT);
 
   return (
     <Media

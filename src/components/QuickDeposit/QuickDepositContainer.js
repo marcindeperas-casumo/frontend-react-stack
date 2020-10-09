@@ -30,7 +30,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   });
 
   // @lukKowalski this will enable or disable using saved methods for quickDeposit (added temporarily)
-  const __quickDisabled = true;
+  const __isQuickDisabled = true;
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
@@ -62,7 +62,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       })}
       currency={currency}
       hasSavedPaymentMethods={
-        !__quickDisabled && savedQuickDepositMethods.length > 0
+        !__isQuickDisabled && savedQuickDepositMethods.length > 0
       }
       onCashierLinkClick={navigateToCashier}
       onQuickDepositLinkClick={launchQuickDeposit}

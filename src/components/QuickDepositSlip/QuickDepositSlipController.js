@@ -8,7 +8,7 @@ import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 
-export const QuickDepositSlipControler = () => {
+export const QuickDepositSlipController = () => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
   const dispatch = useDispatch();
