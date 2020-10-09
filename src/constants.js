@@ -405,6 +405,7 @@ export const REACT_APP_MODAL = {
     REALITY_CHECK: "REALITY_CHECK",
     QUIT_GAME_NOTIFICATION: "QUIT_GAME_NOTIFICATION",
     WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
+    GAME_PAGE_RR_LEADERBOARD: "GAME_PAGE_RR_LEADERBOARD",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
