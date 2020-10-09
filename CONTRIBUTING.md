@@ -104,7 +104,7 @@ Before adding a new contract, make sure you are aligned with the team providing 
 _NOTE_: Be very careful when publishing contracts, as they can break other teams' builds if you are have set up the wrong interactions! That's why talking and making sure providers and consumers are working in harmony is key here.
 
 For more information on best practices, please read the [Effective Pact Guide](https://docs.pact.io/best_practices/pact_nirvana#what-are-the-steps-for-reaching-pact-nirvana).
-If you want to take a look at our current published Pacts, check out our [Broker](http://pact-broker.casumo.cloud/).
+If you want to take a look at our current published Pacts, check out our [Broker](https://pact-broker.casumotools.cloud/).
 
 ### Mocks
 
