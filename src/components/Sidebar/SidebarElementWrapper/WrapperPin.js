@@ -7,7 +7,7 @@ import "./WrapperPin.scss";
 
 type Props = {
   className?: string,
-  onClick?: () => {},
+  onClick?: () => void,
 };
 
 const baseClassName = "c-wrapper-pin";
