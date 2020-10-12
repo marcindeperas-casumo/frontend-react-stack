@@ -4,7 +4,6 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import SpelPausIcon from "./icons/spelpaus.svg";
 import SpelGranserIcon from "./icons/spelgranser.svg";
@@ -23,9 +22,6 @@ type Props = PauseResumeProps & {
 
 export const SGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
   <Flex justify="end" align="center" className={className}>
-    <Flex.Block>
-      <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
-    </Flex.Block>
     <Flex.Item>
       <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">
         <SpelPausIcon className="c-playokay-bar__icon c-playokay-bar__icon--spelpaus" />
