@@ -21,6 +21,7 @@ import {
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { QuitGameNotification } from "./Slots/QuitGameNotification";
 import { BonusBalanceInGameNotification } from "./Slots/BonusBalanceInGameNotification";
+import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
@@ -95,6 +96,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION]: {
     slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
     Content: QuitGameNotification,
+  },
+  [REACT_APP_MODAL.ID.GAME_PAGE_RR_LEADERBOARD]: {
+    slug: "",
+    Content: ReelRaceLeaderboardModal,
   },
 };
 
