@@ -4,14 +4,10 @@ import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
 import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
-import {
-  useCrossCodebaseNavigation,
-  useTranslationsGql,
-  useMarket,
-} from "Utils/hooks";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { isNativeByUserAgent } from "GameProviders";
-import { ROUTE_IDS, MARKETS, EVENTS } from "Src/constants";
+import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
 import {
@@ -24,12 +20,11 @@ import tracker from "Services/tracker";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
+import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
-
-const cmsPrefix = "root:iframe-solution:fields";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
 
@@ -56,11 +51,6 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const { market } = useMarket();
-  const { t } = useTranslationsGql({
-    in_game_drawer_live_chat: `${cmsPrefix}.in_game_drawer_live_chat`,
-    in_game_drawer_exit_game: `${cmsPrefix}.in_game_drawer_exit_game`,
-  });
   const playing = useSelector(playingSelector);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -76,8 +66,7 @@ export const ProfileIconWithDrawer = ({
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
 
-  const isChatDisabled = market === MARKETS.nz_en || isNativeByUserAgent();
-
+  const isChatDisabled = isNativeByUserAgent();
   const transitionTimer = useTimeoutFn();
 
   useEffect(() => {
@@ -97,6 +86,8 @@ export const ProfileIconWithDrawer = ({
   const currentReelRace = isNativeByUserAgent()
     ? null
     : currentReelRaceFromHook;
+
+  useReelRaceLeaderboardModal(currentReelRace);
 
   useEffect(() => {
     const switchIconTo = iconType => {
@@ -187,35 +178,27 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
         >
           <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
+            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
             {currentReelRace?.isInProgress && (
               <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
               >
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
             <div
               className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
                 {
                   "u-margin-top": !currentReelRace?.isInProgress,
                 }
               )}
             >
-              {/** @lukKowalski: enable when payments are done
-                <QuickDeposit
-                cashierLinkCallback={() => null}
-                pauseGame={pauseGame}
-                resumeGame={resumeGame}
-              />*/}
               <InGameDrawer
-                t={t}
-                isChatDisabled={isChatDisabled}
                 onLiveChatClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
                   openChatWindow();

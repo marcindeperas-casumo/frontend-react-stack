@@ -24,5 +24,16 @@ export function* methodConfigSaga(action: any, state: any): * {
     )
   );
 
-  yield put(setPaymentMethodConfig(action.methodType, config));
+  const specificMethodPage = pages[configSlugs.length - 1].response;
+
+  const specificMethodConfig = {
+    image: specificMethodPage.fields?.image,
+  };
+
+  yield put(
+    setPaymentMethodConfig(action.methodType, {
+      ...config,
+      ...specificMethodConfig,
+    })
+  );
 }
