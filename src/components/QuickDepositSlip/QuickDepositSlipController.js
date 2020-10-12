@@ -1,9 +1,11 @@
+// @flow
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import { CloseIcon } from "@casumo/cmp-icons";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { QuickDepositSlip } from "Components/QuickDepositSlip";
+import { useTranslations } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -11,6 +13,9 @@ import { getSelectedQuickDepositMethod } from "Models/payments/payments.selector
 export const QuickDepositSlipController = () => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
+  const t = useTranslations<{
+    quick_deposit_slip_title: string,
+  }>("iframe-solution");
   const dispatch = useDispatch();
 
   if (!selectedMethod) {
@@ -37,7 +42,7 @@ export const QuickDepositSlipController = () => {
           direction="horizontal"
           align="center"
         >
-          <Flex.Item>Quick deposit</Flex.Item>
+          <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
           <Flex.Item onClick={closeQuickDeposit}>
             <CloseIcon />
           </Flex.Item>
