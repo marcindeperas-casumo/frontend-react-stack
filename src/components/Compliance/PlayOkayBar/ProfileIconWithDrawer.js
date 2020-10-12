@@ -67,7 +67,6 @@ export const ProfileIconWithDrawer = ({
   >(bubbleTypes.none);
 
   const isChatDisabled = isNativeByUserAgent();
-
   const transitionTimer = useTimeoutFn();
 
   useEffect(() => {
@@ -179,21 +178,21 @@ export const ProfileIconWithDrawer = ({
       />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
         >
           <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg`}
+            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
             {currentReelRace?.isInProgress && (
               <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm`}
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
               >
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
             <div
               className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding-x`,
+                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
                 {
                   "u-margin-top": !currentReelRace?.isInProgress,
                 }
