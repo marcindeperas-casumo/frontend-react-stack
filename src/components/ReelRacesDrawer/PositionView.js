@@ -10,6 +10,8 @@ type Props = {
   className?: string,
 };
 
+const MAX_BIG_SIZE_POSITION = 99;
+
 export const PositionView = ({ position, className }: Props) => {
   const laurelColor = getLaurelColor(position);
   const textColor = position > 3 ? "white" : laurelColor;
@@ -29,7 +31,7 @@ export const PositionView = ({ position, className }: Props) => {
           `t-color-${textColor}`
         )}
         tag="div"
-        size={position > 99 ? "sm" : "md"}
+        size={position > MAX_BIG_SIZE_POSITION ? "sm" : "md"}
       >
         {position}
       </Text>

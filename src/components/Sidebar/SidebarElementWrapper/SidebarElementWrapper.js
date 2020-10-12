@@ -8,7 +8,7 @@ import "./SidebarElementWrapper.scss";
 type Props = {
   className?: string,
   pinnable?: boolean,
-  onPinClick?: () => {},
+  onPinClick?: () => void,
   children?: React.Node,
 };
 
