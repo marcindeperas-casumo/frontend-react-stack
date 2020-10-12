@@ -11,6 +11,8 @@ const props = {
   gameDuration: 25,
   t: {
     reel_races_drawer_pts: "pts",
+    reel_races_drawer_points: "points",
+    reel_races_drawer_spins: "spins",
   },
 };
 

@@ -1,0 +1,9 @@
+.c-sidebar-element-wrapper {
+  min-height: 44px;
+  width: 240px;
+
+  &__pin {
+    right: 8px;
+    top: 8px;
+  }
+}

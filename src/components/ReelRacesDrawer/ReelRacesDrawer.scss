@@ -5,7 +5,16 @@
     rgba(26, 33, 44, 0.96) 50%,
     rgba(26, 33, 44, 1) 50%
   );
+
   z-index: cudl-z(main-nav);
+
+  @include cudl-breakpoint(desktop) {
+    background: radial-gradient(
+      ellipse 150% 50% at 50% 112%,
+      rgba(26, 33, 44, 0.96) 50%,
+      #1a212c 50%
+    );
+  }
 
   &__laurel {
     height: 80px !important;
@@ -35,12 +44,19 @@
 
 .c-reel-races-drawer-position {
   height: 29px;
+  @include cudl-breakpoint(desktop) {
+    height: auto;
+  }
 }
 
 .c-reel-races-drawer-position-view {
   bottom: 20px;
   height: 74px;
   width: 74px;
+  @include cudl-breakpoint(desktop) {
+    height: 60px;
+    width: 60px;
+  }
 }
 
 .c-highlighted-progress-bar {
