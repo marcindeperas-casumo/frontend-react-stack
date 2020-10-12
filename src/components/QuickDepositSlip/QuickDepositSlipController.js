@@ -3,7 +3,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import { CloseIcon } from "@casumo/cmp-icons";
-import { setQuickDepositMethod } from "Models/payments/payments.actions";
+import {
+  setQuickDepositMethod,
+  startQuickDeposit,
+} from "Models/payments/payments.actions";
 import { QuickDepositSlip } from "Components/QuickDepositSlip";
 import { useTranslationsGql } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
@@ -24,9 +27,10 @@ export const QuickDepositSlipController = () => {
 
   const { min, max } = selectedMethod?.limits?.deposit;
 
-  const onDeposit = (amount, encodedCvv) => {
-    //@lukKowalski, dispatching temporarily, will be replaced with a proper action
-    dispatch({ type: "make_deposit", amount, encodedCvv });
+  const onDeposit = (amount: number, cvvEncoded: string) => {
+    dispatch(
+      startQuickDeposit({ amount, cvvEncoded, paymentMethod: selectedMethod })
+    );
   };
 
   const closeQuickDeposit = () => {

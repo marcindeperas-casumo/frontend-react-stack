@@ -30,7 +30,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   });
 
   // @lukKowalski this will enable or disable using saved methods for quickDeposit (added temporarily)
-  const __isQuickDisabled = true;
+  const __isQuickDisabled = false;
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
