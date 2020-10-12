@@ -7,9 +7,9 @@ import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
-import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
+import { GamePageHeader } from "Components/GamePageHeader";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
@@ -40,7 +40,7 @@ export const GamePage = ({
           spacing="none"
         >
           <Flex.Item>
-            <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
+            <GamePageHeader pauseGame={pauseGame} resumeGame={resumeGame} />
           </Flex.Item>
           <Flex
             direction="horizontal"

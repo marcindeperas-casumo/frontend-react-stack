@@ -1,5 +1,7 @@
 .c-playokay-bar {
-  height: var(--play-okay-bar-height, 48px);
+  @include cudl-breakpoint(max tablet) {
+    height: var(--play-okay-bar-height, 48px);
+  }
 }
 .c-playokay-bar__icon {
   color: #fff;

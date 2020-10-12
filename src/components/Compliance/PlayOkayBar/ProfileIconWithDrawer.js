@@ -125,9 +125,8 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           baseClassName,
-          "u-position-relative u-zindex--content-overlay u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
-          "u-cursor--pointer",
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle u-margin-right--md u-cursor--pointer",
           {
             "u-display--none": isDrawerOpen,
           }
@@ -171,7 +170,7 @@ export const ProfileIconWithDrawer = ({
         />
       </div>
       <ChevronUpIcon
-        className={cx("t-color-white u-margin-left", {
+        className={cx("t-color-white u-margin-right--md u-width--3xlg", {
           "u-display--none": !isDrawerOpen,
         })}
         onClick={() => setDrawerOpen(false)}
