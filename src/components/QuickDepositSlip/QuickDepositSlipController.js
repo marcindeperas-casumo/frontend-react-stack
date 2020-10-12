@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { CloseIcon } from "@casumo/cmp-icons";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { QuickDepositSlip } from "Components/QuickDepositSlip";
-import { useTranslations } from "Utils/hooks";
+import { useTranslationsGql } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -13,9 +13,9 @@ import { getSelectedQuickDepositMethod } from "Models/payments/payments.selector
 export const QuickDepositSlipController = () => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
-  const t = useTranslations<{
-    quick_deposit_slip_title: string,
-  }>("iframe-solution");
+  const { t } = useTranslationsGql({
+    quick_deposit_slip_title: `iframe-solution.in_game_drawer_live_chat`,
+  });
   const dispatch = useDispatch();
 
   if (!selectedMethod) {
