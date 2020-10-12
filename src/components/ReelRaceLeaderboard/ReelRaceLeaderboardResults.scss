@@ -1,4 +1,20 @@
 .c-reel-race-leaderboard-results {
+  scrollbar-color: cudl-palette("grey", "70") cudl-palette("grey", "0");
+  scrollbar-width: thin;
+
+  &--scrollable {
+    /* Works on Chrome/Edge/Safari */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: cudl-palette("grey", "0");
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: cudl-palette("grey", "70");
+      border-radius: 6px;
+    }
+  }
   &__sticky-list {
     top: 0;
     z-index: cudl-z("content-overlay");

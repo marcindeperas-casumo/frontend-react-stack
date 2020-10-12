@@ -19,6 +19,7 @@ type Props = {
   rowClassName?: string,
   style?: Object,
   currentPositionRef?: React.Ref<any>,
+  scrollable?: boolean,
 };
 
 type ListProps = {
@@ -30,6 +31,7 @@ type ListProps = {
   playerId: string,
   rowClassName?: string,
   currentPositionRef?: React.Ref<any>,
+  listRef?: React.Ref<any>,
 };
 
 const LEADERBOARD_SIZE = 25;
@@ -46,6 +48,7 @@ const InnerList = ({
   inverted = false,
   rowClassName = "",
   currentPositionRef = null,
+  listRef = null,
 }: ListProps) => (
   <div className={className}>
     {items.map(
@@ -62,7 +65,7 @@ const InnerList = ({
             showLaurel={position <= forceLaurelPositions || Boolean(prize)}
             highlighted={isHighlighted}
             inverted={inverted}
-            ref={currentPositionRef}
+            ref={isHighlighted ? currentPositionRef : null}
             className={cx({
               [rowClassName]: !isHighlighted && rowClassName,
               "t-border-bottom t-border-grey-5": !inverted,
@@ -76,7 +79,7 @@ const InnerList = ({
 
 export function ReelRaceLeaderboardResults({
   playerId,
-  leaderboard,
+  leaderboard = [],
   size = LEADERBOARD_SIZE,
   prizes = [],
   forceLaurelPositions = 0,
@@ -84,6 +87,7 @@ export function ReelRaceLeaderboardResults({
   fixedRows = 0,
   className,
   rowClassName = "",
+  scrollable = false,
   style = {},
 }: Props) {
   const listRef = React.useRef(null);
@@ -97,6 +101,7 @@ export function ReelRaceLeaderboardResults({
     playerId,
     inverted,
     rowClassName,
+    listRef,
     currentPositionRef,
   };
 
@@ -118,9 +123,15 @@ export function ReelRaceLeaderboardResults({
 
   return (
     <div
-      className={cx(className, "u-position-relative u-overflow--scroll", {
-        "t-opacity-border--0": inverted,
-      })}
+      className={cx(
+        className,
+        "c-reel-race-leaderboard-results u-position-relative u-overflow-x--hidden",
+        {
+          "t-opacity-border--0": inverted,
+          "u-overflow-y--hidden": !scrollable,
+          "c-reel-race-leaderboard-results--scrollable u-overflow-y--scroll": scrollable,
+        }
+      )}
       ref={listRef}
       style={style}
     >

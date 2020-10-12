@@ -23,63 +23,50 @@ stories.add("Default", () => {
   );
 });
 
-const extraLeaderboard = [
-  {
-    playerId: "1000",
-    playerName: "p0",
-    position: 100,
-    points: 100,
-    remainingSpins: 250,
-    boosters,
-  },
-  {
-    playerId: "1001",
-    playerName: "p1",
-    position: 101,
-    points: 100,
-    remainingSpins: 250,
-    boosters,
-  },
-  {
-    playerId: "1002",
-    playerName: "p2",
-    position: 102,
-    points: 100,
-    remainingSpins: 250,
-    boosters,
-  },
-  {
-    playerId: "1003",
-    playerName: "p3",
-    position: 103,
-    points: 100,
-    remainingSpins: 250,
-    boosters,
-  },
-];
+const PLAYERS_COUNT = 100;
+const longLeaderboard = Array(100)
+  .fill(1)
+  .map((_, i) => {
+    if (i + 1 === 35) {
+      return null;
+    }
+    return {
+      playerId: `${i + 1}`,
+      playerName: `p${i + 1}`,
+      position: i + 1,
+      points: PLAYERS_COUNT - i,
+      remainingSpins: 250,
+      boosters,
+    };
+  })
+  .filter(x => x);
 
 const SimulateLeaderboard = () => {
-  const [lb, setLb] = React.useState([...leaderboard, ...extraLeaderboard]);
+  const [lb, setLb] = React.useState(longLeaderboard);
 
   React.useEffect(() => {
     setTimeout(() => {
       setLb(s =>
-        s.map(x => (x.playerId === "1002" ? { ...x, position: 36 } : x))
+        // $FlowIgnore
+        s.map(x => (x.playerId === "50" ? { ...x, position: 35 } : x))
       );
-    }, 4000);
+    }, 6000);
   }, []);
 
   return (
     <SidebarElementWrapper>
       <ReelRaceLeaderboardResults
+        size={lb.length}
+        // $FlowIgnore
         leaderboard={lb}
-        playerId="1002"
+        playerId="50"
         forceLaurelPositions={3}
         style={{ height: "250px" }}
         className="t-opacity-background-100 t-background-black"
         rowClassName="t-opacity-background-100 t-background-black"
         inverted
         fixedRows={2}
+        scrollable
       />
     </SidebarElementWrapper>
   );

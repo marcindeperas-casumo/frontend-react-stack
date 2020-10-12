@@ -6,6 +6,8 @@ import Text from "@casumo/cmp-text";
 import { LaurelPosition } from "./LaurelPosition";
 import { Prize } from "./Prize";
 
+import "./ReelRaceLeaderboardListEntry.scss";
+
 type Props = {
   position: number,
   text: string,
@@ -38,10 +40,11 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex
         align="center"
         className={cx(
+          "c-reel-race-leaderboard-list-entry",
           "u-width--full u-padding-y--sm u-padding-right--lg u-padding-left",
           {
             "t-background-yellow-30": highlighted,
-            "t-color-black": !inverted,
+            "t-color-black": !inverted || highlighted,
             "t-color-white": inverted && !highlighted,
           },
           className
@@ -56,7 +59,14 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
           />
         </Flex.Item>
         <Flex.Block>
-          <Text tag="div">{text}</Text>
+          <Text
+            tag="div"
+            className={cx({
+              "u-font-weight-bold": highlighted,
+            })}
+          >
+            {text}
+          </Text>
         </Flex.Block>
         <Flex.Item>
           {prize && <Prize prize={prize} highlighted={highlighted} />}
