@@ -1,11 +1,11 @@
 // @flow
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { localeSelector } from "Models/handshake";
 import {
   useTranslationsGql,
-  // Setting only one user journey till quick deposit functionality is ready
-  // useAvailableQuickDepositMethods,
+  useAvailableQuickDepositMethods,
   useCrossCodebaseNavigation,
 } from "Utils/hooks";
 import {
@@ -28,18 +28,24 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     balance_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.balance_title`,
     cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
+
+  // @lukKowalski this will enable or disable using saved methods for quickDeposit (added temporarily)
+  const __isQuickDisabled = true;
+
+  const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  // Setting only one user journey till quick deposit functionality is ready
-  // const savedQuickDepositMethods = useAvailableQuickDepositMethods();
-  const savedQuickDepositMethods = [];
+  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const navigateToCashier = () => {
     navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
-  const launchQuickDeposit = () => {};
+
+  const launchQuickDeposit = () => {
+    dispatch(setQuickDepositMethod(savedQuickDepositMethods[0]));
+  };
 
   return (
     <QuickDeposit
@@ -55,7 +61,9 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
         value: walletBonus,
       })}
       currency={currency}
-      hasSavedPaymentMethods={savedQuickDepositMethods.length > 0}
+      hasSavedPaymentMethods={
+        !__isQuickDisabled && savedQuickDepositMethods.length > 0
+      }
       onCashierLinkClick={navigateToCashier}
       onQuickDepositLinkClick={launchQuickDeposit}
       className={className}

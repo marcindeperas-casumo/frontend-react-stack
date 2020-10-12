@@ -40,6 +40,7 @@ export const prepareQuickDepositMethod = (
 ): QuickDepositMethod => ({
   ...playerMethod,
   limits: cmsConfig.profiles.default.limits,
+  image: cmsConfig.image,
   displayName: method?.displayName,
 });
 
