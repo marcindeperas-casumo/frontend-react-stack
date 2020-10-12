@@ -52,6 +52,7 @@ export type MethodConfigType = {
       disabledCountries: Array<string>,
     },
   },
+  image: string,
 };
 
 export type SavedMethodType = {
@@ -72,6 +73,7 @@ export type AvailableMethod = {
 
 export type QuickDepositMethod = SavedMethodType & {
   limits: any,
+  image: string,
   displayName: string,
 };
 

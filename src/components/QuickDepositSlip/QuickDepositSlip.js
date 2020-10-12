@@ -30,6 +30,7 @@ export const QuickDepositSlip = ({
   const {
     depositValue,
     formErrors,
+    cvvValue,
     onAmountChange,
     onCvvIframeCallback,
   } = useQuickDepositSlipForm({
@@ -39,14 +40,21 @@ export const QuickDepositSlip = ({
     translations: errorTranslations(t),
   });
 
+  const onDepositClick = () => {
+    if (depositValue && cvvValue) {
+      onDeposit(depositValue, cvvValue);
+    }
+  };
+
   const onCvvError = message =>
     onCvvIframeCallback({
       status: "error",
       errorType: message,
     });
 
-  const onCvvSuccess = () =>
+  const onCvvSuccess = message =>
     onCvvIframeCallback({
+      data: message,
       status: "success",
     });
 
@@ -109,7 +117,7 @@ export const QuickDepositSlip = ({
           <Flex.Item className="u-width--full">
             <ButtonPrimary
               size="md"
-              onClick={onDeposit}
+              onClick={onDepositClick}
               isDisabled={!R.isEmpty(formErrors)}
             >
               {deposit_cta_text}

@@ -9,6 +9,7 @@ import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
@@ -71,6 +72,7 @@ export const GamePage = ({
             </Flex.Item>
           )}
         </Flex>
+        <QuickDepositSlipController />
       </VerticalStretcher>
     </FullscreenView>
   );
