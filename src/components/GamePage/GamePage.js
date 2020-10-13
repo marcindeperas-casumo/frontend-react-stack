@@ -15,6 +15,7 @@ import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { playingSelector } from "Models/playing";
 import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { isDesktop } from "Components/ResponsiveLayout/index";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import {
   pinnedDrawersContext,
@@ -73,7 +74,7 @@ export const GamePage = ({
                 <Flex.Item>
                   {/* sidebar for pinned items */}
                   {sidebar}
-                  {pinnedDrawers.includes(DRAWERS.REEL_RACES) && (
+                  {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
                     <SidebarElementWrapper>
                       <ReelRacesDrawer {...commonRaceProps} />
                     </SidebarElementWrapper>

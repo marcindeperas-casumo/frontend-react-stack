@@ -21,6 +21,11 @@ import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
+import {
+  isMobile,
+  isDesktop,
+  isTablet,
+} from "Components/ResponsiveLayout/index";
 import { DRAWERS } from "../../Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { pinnedDrawersContext } from "../../../utils/hooks/usePinningContext";
@@ -192,7 +197,9 @@ export const ProfileIconWithDrawer = ({
             className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
             {currentReelRace?.isInProgress &&
-              !pinnedDrawers.includes(DRAWERS.REEL_RACES) && (
+              ((!pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop()) ||
+                isMobile() ||
+                isTablet()) && (
                 <div
                   className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
                 >

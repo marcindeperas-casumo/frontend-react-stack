@@ -170,10 +170,12 @@ export const ReelRacesDrawer = ({
       direction="horizontal"
       spacing="md"
     >
-      <WrapperPin
-        className={`PIN__pin u-position-absolute`}
-        onClick={() => togglePin(DRAWERS.REEL_RACES)}
-      />
+      <Desktop>
+        <WrapperPin
+          className={`PIN__pin u-position-absolute`}
+          onClick={() => togglePin(DRAWERS.REEL_RACES)}
+        />
+      </Desktop>
       {raceLogo}
       {raceProgress}
       {raceStatus}
