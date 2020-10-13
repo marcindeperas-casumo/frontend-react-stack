@@ -13,6 +13,7 @@ const props = {
     reel_races_drawer_pts: "pts",
     reel_races_drawer_points: "points",
     reel_races_drawer_spins: "spins",
+    reel_races_drawer_full_leaderboard: "full leaderbaord",
   },
 };
 
