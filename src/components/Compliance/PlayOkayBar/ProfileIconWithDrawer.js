@@ -1,5 +1,5 @@
 //@flow
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
 import { useSelector } from "react-redux";
@@ -21,7 +21,9 @@ import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
+import { DRAWERS } from "../../Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
+import { pinnedDrawersContext } from "../../../utils/hooks/usePinningContext";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
@@ -119,6 +121,12 @@ export const ProfileIconWithDrawer = ({
     currentRace: currentReelRace,
   };
 
+  const { pinnedDrawers } = useContext(pinnedDrawersContext);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pinnedDrawers]);
+
   return (
     <React.Fragment>
       <div
@@ -183,13 +191,14 @@ export const ProfileIconWithDrawer = ({
           <div
             className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
-            {currentReelRace?.isInProgress && (
-              <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
-              >
-                <ReelRacesDrawer {...commonRaceProps} />
-              </div>
-            )}
+            {currentReelRace?.isInProgress &&
+              !pinnedDrawers.includes(DRAWERS.REEL_RACES) && (
+                <div
+                  className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
+                >
+                  <ReelRacesDrawer {...commonRaceProps} />
+                </div>
+              )}
             <div
               className={cx(
                 `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
