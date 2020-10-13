@@ -653,9 +653,11 @@ describe("Handshake selectors", () => {
   test("piqConfig", () => {
     const state = {
       handshake: {
-        "common/composition/piqConfig": {
-          apiUrl: "some_url",
-          merchantId: "123123",
+        app: {
+          "common/composition/piqConfig": {
+            apiUrl: "some_url",
+            merchantId: "123123",
+          },
         },
       },
     };

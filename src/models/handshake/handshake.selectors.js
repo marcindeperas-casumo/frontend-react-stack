@@ -256,6 +256,6 @@ export const isProductionBackendSelector = createSelector(
 );
 
 export const piqConfigSelector = createSelector(
-  handshakeSelector,
+  applicationHandshakeSelector,
   prop("common/composition/piqConfig")
 );

@@ -44,3 +44,17 @@ export const startQuickDeposit = ({
     paymentMethod,
   },
 });
+
+export const setIsProcessingPaymentUsage = (state: boolean) => ({
+  type: actionTypes.SET_PROCESSING_PAYMENT_USAGE,
+  payload: {
+    state,
+  },
+});
+
+export const setPaymentPiqResult = (result: any) => ({
+  type: actionTypes.SET_PAYMENT_PIQ_RESULT,
+  payload: {
+    result,
+  },
+});
