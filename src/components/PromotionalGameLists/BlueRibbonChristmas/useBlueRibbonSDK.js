@@ -70,7 +70,7 @@ type PotState = {
   potId: string,
   progressive: number,
   currency: string,
-  potStatus: string,
+  potStatus: "HOT" | "WARM" | "CHILLY",
   updateTimestamp: number,
 };
 type PotStateChangeEvent = {

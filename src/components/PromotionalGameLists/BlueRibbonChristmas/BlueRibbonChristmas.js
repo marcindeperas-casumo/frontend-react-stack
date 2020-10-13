@@ -8,9 +8,8 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import * as A from "Types/apollo";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
-import { useFetch, useTranslations } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import {
-  urls,
   blueRibbonGamesListId,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
@@ -24,8 +23,18 @@ const PADDING_PER_DEVICE = {
   desktop: "3xlg",
 };
 
-export function BlueRibbonChristmas() {
-  const { response } = useFetch(urls.handshake);
+type Props = {
+  jackpot: {
+    pots: Array<{
+      communityWinRatio: number,
+      mainWinRatio: number,
+      potId: string,
+      potName: string,
+    }>,
+  },
+};
+
+export function BlueRibbonChristmas({ jackpot }: Props) {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const pots = usePotStateChangeEvent();
   const { data } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
@@ -34,11 +43,9 @@ export function BlueRibbonChristmas() {
       variables: { id: blueRibbonGamesListId, numberOfGames: 30 },
     }
   );
-
   const columns = R.splitEvery(3, R.pathOr([], ["gamesList", "games"], data));
-  const available = R.propOr(false, "available", response);
 
-  if (!available || !t || !response) {
+  if (!t) {
     return null;
   }
 
@@ -53,7 +60,7 @@ export function BlueRibbonChristmas() {
               <BlueRibbonJackpotsWidget
                 key="br-widget"
                 t={t}
-                jackpots={response.jackpots[0].pots
+                jackpots={jackpot.pots
                   .map(
                     ({ communityWinRatio, mainWinRatio, potId, potName }) => ({
                       value: pots[potId]?.progressive,
