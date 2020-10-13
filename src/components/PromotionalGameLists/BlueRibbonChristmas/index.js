@@ -1,2 +1,2 @@
 // @flow
-export { BlueRibbonChristmas } from "./BlueRibbonChristmas";
+export { BlueRibbonChristmasContainer } from "./BlueRibbonChristmasContainer";
