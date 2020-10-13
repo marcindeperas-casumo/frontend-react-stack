@@ -42,10 +42,14 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
         className={cx(
           "c-reel-race-leaderboard-list-entry",
           "u-width--full u-padding-y--sm u-padding-right--lg u-padding-left",
+          "t-opacity-background-100",
           {
-            "t-background-yellow-30": highlighted,
+            "t-background-yellow-30 t-border-yellow-30": highlighted,
+            "t-background-white": !inverted && !highlighted,
             "t-color-black": !inverted || highlighted,
-            "t-color-white": inverted && !highlighted,
+            "t-color-white t-background-black t-border-grey-90":
+              inverted && !highlighted,
+            "t-border-grey-5": !inverted,
           },
           className
         )}

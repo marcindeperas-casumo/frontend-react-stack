@@ -54,21 +54,35 @@ const SimulateLeaderboard = () => {
   }, []);
 
   return (
-    <SidebarElementWrapper>
-      <ReelRaceLeaderboardResults
-        size={lb.length}
-        // $FlowIgnore
-        leaderboard={lb}
-        playerId="50"
-        forceLaurelPositions={3}
-        style={{ height: "250px" }}
-        className="t-opacity-background-100 t-background-black"
-        rowClassName="t-opacity-background-100 t-background-black"
-        inverted
-        fixedRows={2}
-        scrollable
-      />
-    </SidebarElementWrapper>
+    <div>
+      <SidebarElementWrapper>
+        <ReelRaceLeaderboardResults
+          size={lb.length}
+          // $FlowIgnore
+          leaderboard={lb}
+          playerId="50"
+          forceLaurelPositions={3}
+          style={{ height: "400px" }}
+          inverted
+          fixedRows={3}
+          scrollable
+        />
+      </SidebarElementWrapper>
+      <br />
+      <SidebarElementWrapper>
+        <ReelRaceLeaderboardResults
+          size={lb.length}
+          // $FlowIgnore
+          leaderboard={lb}
+          playerId="50"
+          forceLaurelPositions={3}
+          style={{ height: "400px" }}
+          inverted={false}
+          fixedRows={2}
+          scrollable
+        />
+      </SidebarElementWrapper>
+    </div>
   );
 };
 

@@ -6,16 +6,24 @@
   overflow-x: hidden;
 }
 
-.u-overflow-y--hidden {
-  overflow-y: hidden;
-}
-
 .u-overflow-x--auto {
   overflow-x: auto;
 }
 
+.u-overflow-x--scroll {
+  overflow-x: scroll;
+}
+
+.u-overflow-y--hidden {
+  overflow-y: hidden;
+}
+
 .u-overflow-y--auto {
   overflow-y: auto;
+}
+
+.u-overflow-y--scroll {
+  overflow-y: scroll;
 }
 
 .u-overflow--scroll {

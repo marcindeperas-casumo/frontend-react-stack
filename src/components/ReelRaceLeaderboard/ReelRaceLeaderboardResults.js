@@ -32,6 +32,7 @@ type ListProps = {
   rowClassName?: string,
   currentPositionRef?: React.Ref<any>,
   listRef?: React.Ref<any>,
+  scrollable?: boolean,
 };
 
 const LEADERBOARD_SIZE = 25;
@@ -49,6 +50,7 @@ const InnerList = ({
   rowClassName = "",
   currentPositionRef = null,
   listRef = null,
+  scrollable = false,
 }: ListProps) => (
   <div className={className}>
     {items.map(
@@ -66,9 +68,8 @@ const InnerList = ({
             highlighted={isHighlighted}
             inverted={inverted}
             ref={isHighlighted ? currentPositionRef : null}
-            className={cx({
+            className={cx("t-border-bottom", {
               [rowClassName]: !isHighlighted && rowClassName,
-              "t-border-bottom t-border-grey-5": !inverted,
             })}
           />
         );
@@ -102,13 +103,9 @@ export function ReelRaceLeaderboardResults({
     inverted,
     rowClassName,
     listRef,
+    scrollable,
     currentPositionRef,
   };
-
-  const bgRowClass = rowClassName
-    .split(/[ ]+/g)
-    .filter(c => c.includes("background"))
-    .join(" ");
 
   React.useEffect(() => {
     if (listRef.current) {
@@ -123,27 +120,37 @@ export function ReelRaceLeaderboardResults({
 
   return (
     <div
-      className={cx(
-        className,
-        "c-reel-race-leaderboard-results u-position-relative u-overflow-x--hidden",
-        {
-          "t-opacity-border--0": inverted,
-          "u-overflow-y--hidden": !scrollable,
-          "c-reel-race-leaderboard-results--scrollable u-overflow-y--scroll": scrollable,
-        }
-      )}
-      ref={listRef}
+      className={cx(className, "u-overflow-x--hidden u-position-relative", {
+        "u-padding-right--sm": scrollable,
+        "t-opacity-background-100 t-background-black": inverted,
+      })}
       style={style}
     >
-      <InnerList
-        className={`c-reel-race-leaderboard-results__sticky-list u-position-sticky--top ${bgRowClass}`}
-        items={leaderboardSortedSliced.slice(0, fixedRows)}
-        {...commonProps}
-      />
-      <InnerList
-        items={leaderboardSortedSliced.slice(fixedRows)}
-        {...commonProps}
-      />
+      <div
+        className={cx(
+          "c-reel-race-leaderboard-results u-overflow-x--hidden u-height--full",
+          {
+            "t-opacity-border--0": inverted,
+            "u-overflow-y--hidden": !scrollable,
+            "u-overflow-y--scroll u-padding-right--sm": scrollable,
+            "c-reel-race-leaderboard-results--scrollable":
+              scrollable && !inverted,
+            "c-reel-race-leaderboard-results--scrollable-inverted":
+              scrollable && inverted,
+          }
+        )}
+        ref={listRef}
+      >
+        <InnerList
+          className="c-reel-race-leaderboard-results__sticky-list u-position-sticky--top"
+          items={leaderboardSortedSliced.slice(0, fixedRows)}
+          {...commonProps}
+        />
+        <InnerList
+          items={leaderboardSortedSliced.slice(fixedRows)}
+          {...commonProps}
+        />
+      </div>
     </div>
   );
 }
