@@ -9,7 +9,7 @@ type Props = {
   minAmount: number,
   maxAmount: number,
   presetAmount?: number,
-  onDeposit: () => void,
+  onDeposit: (amount: number, cvvEncoded: string) => void,
   paymentMethodDetails: () => React.Node,
 };
 
