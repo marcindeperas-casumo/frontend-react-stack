@@ -11,7 +11,7 @@ const props = {
   spinsLeft: "329",
   position: "10",
   points: "100",
-  gameProgress: 25,
+  gameProgress: 20,
   gameDuration: 25,
   t: {
     reel_races_drawer_pts: "pts",
