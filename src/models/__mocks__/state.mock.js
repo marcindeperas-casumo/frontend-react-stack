@@ -4,58 +4,60 @@ const now = Date.now();
 const THIRTY_MINUTES = 30 * 60 * 1000;
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
   paymentMethodConfigs: {
-    VISA_CARD: {
-      profiles: {
-        default: {
-          limits: {
-            deposit: {
-              min: 10,
-              max: 5000,
+    methods: {
+      VISA_CARD: {
+        profiles: {
+          default: {
+            limits: {
+              deposit: {
+                min: 10,
+                max: 5000,
+              },
+              withdraw: {
+                min: 10,
+                max: 10000,
+                fee: 0,
+                applicableFee: 0,
+              },
             },
-            withdraw: {
-              min: 10,
-              max: 10000,
-              fee: 0,
-              applicableFee: 0,
+            depositFees: {
+              percentage: 0,
+              fixed: 0,
+            },
+            defaultDepositAmounts: [25, 50, 100],
+            grouping: {
+              name: "preferred",
+              order: 1,
             },
           },
-          depositFees: {
-            percentage: 0,
-            fixed: 0,
+        },
+        mobile: {
+          withdraw: {
+            disabled: false,
+            disabledCountries: ["ca", "ua", "ru"],
           },
-          defaultDepositAmounts: [25, 50, 100],
-          grouping: {
-            name: "preferred",
-            order: 1,
+          deposit: {
+            quick: true,
+            nativeQuick: true,
+            disabled: false,
+            defaultCreate: false,
+            disabledCountries: ["be", "ae"],
+          },
+        },
+        desktop: {
+          withdraw: {
+            disabled: false,
+            disabledCountries: ["ca", "ua", "ru"],
+          },
+          deposit: {
+            quick: true,
+            disabled: false,
+            defaultCreate: false,
+            disabledCountries: ["be"],
           },
         },
       },
-      mobile: {
-        withdraw: {
-          disabled: false,
-          disabledCountries: ["ca", "ua", "ru"],
-        },
-        deposit: {
-          quick: true,
-          nativeQuick: true,
-          disabled: false,
-          defaultCreate: false,
-          disabledCountries: ["be", "ae"],
-        },
-      },
-      desktop: {
-        withdraw: {
-          disabled: false,
-          disabledCountries: ["ca", "ua", "ru"],
-        },
-        deposit: {
-          quick: true,
-          disabled: false,
-          defaultCreate: false,
-          disabledCountries: ["be"],
-        },
-      },
-    },
+    }
   },
   router: {
     activeComponents: ["games-top"],

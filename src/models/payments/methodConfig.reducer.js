@@ -2,12 +2,17 @@
 import { createReducer } from "Utils";
 import { actionTypes } from "./methodConfig.constants";
 
-const DEFAULT_STATE = {};
+const DEFAULT_STATE = {
+  methods: {},
+};
 
 const handlers = {
   [actionTypes.SET_METHOD_CONFIG]: (state, action) => ({
     ...state,
-    [action.methodType]: action.config,
+    methods: {
+      ...state.methods,
+      [action.methodType]: action.config,
+    },
   }),
 };
 

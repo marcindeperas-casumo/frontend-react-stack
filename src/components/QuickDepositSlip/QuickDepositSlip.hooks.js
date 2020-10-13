@@ -50,7 +50,6 @@ export const useQuickDepositSlipForm = ({
   const onAmountChange = React.useCallback(
     (e: SyntheticEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
-
       if (!isNaN(value)) {
         setDepositValue(parseInt(value));
       }
