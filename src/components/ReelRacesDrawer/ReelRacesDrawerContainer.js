@@ -16,6 +16,7 @@ export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
     reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
     reel_races_drawer_points: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_points`,
     reel_races_drawer_spins: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_spins`,
+    reel_races_drawer_full_leaderboard: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_full_leaderboard`,
   });
 
   const gameProgress = useReelRaceProgress(currentRace);
