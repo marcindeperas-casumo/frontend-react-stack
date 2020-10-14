@@ -12,12 +12,8 @@ import "./GamePageHeader.scss";
 
 export const GamePageHeader = ({ pauseGame, resumeGame }) => {
   return (
-    <Flex
-      align="center"
-      spacing="none"
-      className="c-game-page-header u-padding--md@desktop"
-    >
-      <Flex.Item>
+    <Flex align="center" spacing="none" className="u-padding--md@desktop">
+      <Flex.Item className="c-game-page-header__sumoticon-container">
         <ProfileIconWithDrawer />
       </Flex.Item>
       <Flex.Block>

@@ -1,6 +1,8 @@
 .c-playokay-bar {
-  @include cudl-breakpoint(max tablet) {
-    height: var(--play-okay-bar-height, 48px);
+  height: var(--play-okay-bar-height, 48px);
+
+  @include cudl-breakpoint(desktop) {
+    height: auto;
   }
 }
 .c-playokay-bar__icon {

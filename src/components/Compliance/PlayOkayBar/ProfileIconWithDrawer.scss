@@ -1,16 +1,23 @@
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
   box-sizing: content-box;
+  left: map-get($cudl-spacer-sizes, default);
+  top: map-get($cudl-spacer-sizes, default);
 
-  @include cudl-breakpoint(max tablet) {
-    left: map-get($cudl-spacer-sizes, default);
-    top: map-get($cudl-spacer-sizes, default);
+  @include cudl-breakpoint(desktop) {
+    left: auto;
+    top: auto;
   }
 
   &__close-drawer {
-    @include cudl-breakpoint(max tablet) {
-      left: map-get($cudl-spacer-sizes, default);
-      top: map-get($cudl-spacer-sizes, default);
+    background-color: cudl-palette(grey, "70");
+    left: map-get($cudl-spacer-sizes, default);
+    top: map-get($cudl-spacer-sizes, default);
+
+    @include cudl-breakpoint(desktop) {
+      background-color: cudl-palette(grey, "90");
+      left: auto;
+      top: auto;
     }
   }
 

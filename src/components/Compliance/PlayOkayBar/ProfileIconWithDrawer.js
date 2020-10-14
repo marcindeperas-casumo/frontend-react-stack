@@ -11,6 +11,7 @@ import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
+import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -176,17 +177,17 @@ export const ProfileIconWithDrawer = ({
           `${baseClassName}__close-drawer`,
           "u-position-relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "t-color-white t-background-grey-70 u-margin-right--md u-cursor--pointer",
-          "u-position-absolute@mobile u-zindex--header",
+          "t-color-white u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": !isDrawerOpen,
           }
         )}
         align="center"
         justify="center"
+        onClick={() => setDrawerOpen(false)}
       >
         <Flex.Item>
-          <ChevronUpIcon onClick={() => setDrawerOpen(false)} />
+          <ChevronUpIcon />
         </Flex.Item>
       </Flex>
       {isDrawerOpen && (
@@ -211,6 +212,7 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
+              <InGameAdventureWidget />
               <MobileAndTablet>
                 <InGameDrawer
                   onLiveChatClick={() => {
