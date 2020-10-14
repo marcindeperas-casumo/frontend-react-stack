@@ -55,6 +55,11 @@ export const ReelRacesDrawer = ({
   t,
 }: Props) => {
   const gameDurationFormatted = `${gameDuration}:00`;
+  const gameDurationInS = gameDuration * 60;
+  const elapsedTime = (gameDurationInS * gameProgress) / 100;
+  const elapsedMinutes = `${Math.floor(elapsedTime / 60)}`.padStart(2, "0");
+  const elapsedSeconds = `${Math.floor(elapsedTime % 60)}`.padStart(2, "0");
+  const timeElapsedFormatted = `${elapsedMinutes}:${elapsedSeconds}`;
 
   const raceLogo = (
     <Desktop>
@@ -85,8 +90,12 @@ export const ReelRacesDrawer = ({
             style={{ width: `${gameProgress}%` }}
           ></div>
         </Flex.Item>
-        <Flex direction="horizontal" className="u-width--full t-color-grey-20">
-          <Flex.Item className="u-font-2xs o-flex__block">00:00</Flex.Item>
+        <Flex
+          direction="horizontal"
+          className="u-width--full t-color-grey-20"
+          justify="space-between"
+        >
+          <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
           <Flex.Item className="u-font-2xs t-color-grey-50">
             {gameDurationFormatted}
           </Flex.Item>
