@@ -1,5 +1,5 @@
 // @flow
-const boosters = {
+export const boosters = {
   triples: 0,
   bigWins: 0,
   megaWins: 0,
