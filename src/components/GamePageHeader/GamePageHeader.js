@@ -6,7 +6,7 @@ import {
   ProfileIconWithDrawer,
 } from "Components/Compliance/PlayOkayBar";
 import { QuickDeposit } from "Components/QuickDeposit";
-import { InGameDrawerLinks } from "Components/InGameDrawer/InGameDrawerLinks";
+import { InGameDrawerLinks } from "Components/InGameDrawer";
 
 import "./GamePageHeader.scss";
 
