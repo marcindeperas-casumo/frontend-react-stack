@@ -1,6 +1,7 @@
 //@flow
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
 import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
@@ -22,8 +23,8 @@ import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
+import { MobileAndTablet } from "Components/ResponsiveLayout/index";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
-
 import "./ProfileIconWithDrawer.scss";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
@@ -127,6 +128,7 @@ export const ProfileIconWithDrawer = ({
           baseClassName,
           "u-position-relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
+          "u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
           }
@@ -169,15 +171,27 @@ export const ProfileIconWithDrawer = ({
           className={`${baseClassName}__chevron-icon t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
         />
       </div>
-      <ChevronUpIcon
-        className={cx("t-color-white u-margin-right--md u-width--3xlg", {
-          "u-display--none": !isDrawerOpen,
-        })}
-        onClick={() => setDrawerOpen(false)}
-      />
+      <Flex
+        className={cx(
+          `${baseClassName}__close-drawer`,
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle u-margin-right--md u-cursor--pointer",
+          "t-color-white t-background-grey-70 u-margin-right--md u-cursor--pointer",
+          "u-position-absolute@mobile u-zindex--header",
+          {
+            "u-display--none": !isDrawerOpen,
+          }
+        )}
+        align="center"
+        justify="center"
+      >
+        <Flex.Item>
+          <ChevronUpIcon onClick={() => setDrawerOpen(false)} />
+        </Flex.Item>
+      </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop u-margin-top--md@desktop  u-padding-x--md@desktop`}
         >
           <div
             className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
@@ -197,17 +211,22 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              <InGameDrawer
-                onLiveChatClick={() => {
-                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                  openChatWindow();
-                  setDrawerOpen(false);
-                }}
-                onExitGameClick={() => {
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
-                }}
-              />
+              <MobileAndTablet>
+                <InGameDrawer
+                  onLiveChatClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
+                      {}
+                    );
+                    openChatWindow();
+                    setDrawerOpen(false);
+                  }}
+                  onExitGameClick={() => {
+                    navigateToKO(ROUTE_IDS.TOP_LISTS);
+                    setDrawerOpen(false);
+                  }}
+                />
+              </MobileAndTablet>
             </div>
           </div>
         </div>

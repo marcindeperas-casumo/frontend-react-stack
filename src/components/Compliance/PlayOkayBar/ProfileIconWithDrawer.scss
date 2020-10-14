@@ -1,7 +1,18 @@
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
-
   box-sizing: content-box;
+
+  @include cudl-breakpoint(max tablet) {
+    left: map-get($cudl-spacer-sizes, default);
+    top: map-get($cudl-spacer-sizes, default);
+  }
+
+  &__close-drawer {
+    @include cudl-breakpoint(max tablet) {
+      left: map-get($cudl-spacer-sizes, default);
+      top: map-get($cudl-spacer-sizes, default);
+    }
+  }
 
   &__content {
     left: 0;
@@ -23,7 +34,6 @@
   &__bottom-wrapper {
     left: 0;
     margin-left: 50%;
-    margin-top: 12px;
     max-width: 442px;
     transform: translateX(-50%);
 
@@ -34,7 +44,6 @@
 
     &-bg {
       background: linear-gradient(white, transparent);
-      margin-top: 12px;
 
       @include cudl-breakpoint(desktop) {
         background: radial-gradient(

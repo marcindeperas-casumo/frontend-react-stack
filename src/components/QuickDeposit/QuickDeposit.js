@@ -43,7 +43,7 @@ export const QuickDeposit = ({
   return (
     <Flex className={className} align="center">
       <Flex.Item className="u-margin-right--xlg">
-        <Text tag="div" className="t-color-grey-20" size="sm">
+        <Text tag="div" className="t-color-grey-20" size="xs">
           {t.balance_title}
         </Text>
         <Text tag="div" className="t-color-white u-font-weight-bold">
@@ -51,14 +51,14 @@ export const QuickDeposit = ({
         </Text>
       </Flex.Item>
       <Flex.Item>
-        <Text tag="div" className="t-color-grey-20" size="sm">
+        <Text tag="div" className="t-color-grey-20" size="xs">
           {t.bonus_title}
         </Text>
         <Text tag="div" className="t-color-grey-20 u-font-weight-bold">
           {bonusBalance}
         </Text>
       </Flex.Item>
-      <Flex.Block className="o-flex-justify--end">
+      <Flex.Block className="o-flex-justify--end u-margin-left--xlg">
         {hasSavedPaymentMethods ? (
           <Flex
             align="center"
