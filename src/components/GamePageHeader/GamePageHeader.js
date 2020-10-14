@@ -1,16 +1,21 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
+import tracker from "Services/tracker";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 import {
   PlayOkayBar,
   ProfileIconWithDrawer,
 } from "Components/Compliance/PlayOkayBar";
 import { QuickDeposit } from "Components/QuickDeposit";
 import { InGameDrawerLinks } from "Components/InGameDrawer";
+import { openChatWindow } from "Features/chat/IntercomChatService";
 
 import "./GamePageHeader.scss";
 
 export const GamePageHeader = ({ pauseGame, resumeGame }) => {
+  const { navigateToKO } = useCrossCodebaseNavigation();
   return (
     <Flex align="center" spacing="none" className="u-padding--md@desktop">
       <Flex.Item className="c-game-page-header__sumoticon-container">
@@ -33,7 +38,16 @@ export const GamePageHeader = ({ pauseGame, resumeGame }) => {
               <QuickDeposit />
             </Flex.Item>
             <Flex.Item>
-              <InGameDrawerLinks showLabels={false} />
+              <InGameDrawerLinks
+                onLiveChatClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                  openChatWindow();
+                }}
+                onExitGameClick={() => {
+                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                }}
+                showLabels={false}
+              />
             </Flex.Item>
           </Desktop>
         </Flex>
