@@ -17,20 +17,36 @@ const props = {
     reel_races_drawer_pts: "pts",
     reel_races_drawer_points: "points",
     reel_races_drawer_spins: "spins",
+    reel_races_drawer_full_leaderboard: "full leaderboard",
   },
 };
 
-const WrapperDesktop = ({ children }) => (
-  <>
-    <SidebarElementWrapper pinnable>{children}</SidebarElementWrapper>
-    <br />
-    <br />
-    <SidebarElementWrapper>{children}</SidebarElementWrapper>
-  </>
+const WrapperDesktop = ({ children, ...rest }) => (
+  <SidebarElementWrapper {...rest}>{children}</SidebarElementWrapper>
 );
 
 const Wrapper = ({ children }) => <div>{children}</div>;
 
+const WithLeaderboard = () => {
+  const [lb, setLb] = React.useState(false);
+
+  return (
+    <div>
+      <WrapperDesktop>
+        <ReelRacesDrawer
+          {...props}
+          onShowLeaderboardClick={() => setLb(x => !x)}
+          showLeaderboardLink
+        />
+      </WrapperDesktop>
+      {lb && (
+        <WrapperDesktop>
+          <div>Leaderboard</div>
+        </WrapperDesktop>
+      )}
+    </div>
+  );
+};
 const story = () => (
   <Wrapper>
     <ReelRacesDrawer {...props} />
@@ -45,6 +61,14 @@ const storyDesktop = () => (
     <WrapperDesktop>
       <ReelRacesDrawer {...props} />
     </WrapperDesktop>
+    <br />
+    <br />
+    <WrapperDesktop pinnable>
+      <ReelRacesDrawer {...props} />
+    </WrapperDesktop>
+    <br />
+    <br />
+    <WithLeaderboard />
   </Wrapper>
 );
 
