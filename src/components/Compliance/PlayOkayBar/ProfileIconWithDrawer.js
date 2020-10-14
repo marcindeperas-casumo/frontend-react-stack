@@ -192,7 +192,7 @@ export const ProfileIconWithDrawer = ({
       </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop u-margin-top--md@desktop  u-padding-x--md@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
         >
           <div
             className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}

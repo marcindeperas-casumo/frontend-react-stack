@@ -18,19 +18,18 @@ export const GamePageHeader = ({ pauseGame, resumeGame }) => {
       </Flex.Item>
       <Flex.Block>
         <Flex
-          className="t-background-grey-90 t-border-r@desktop u-padding-y@desktop u-padding-left--lg"
+          className="u-position-relative u-zindex--content-overlay t-background-grey-90 t-border-r@desktop u-padding-y@desktop u-padding-left--lg"
           align="center"
-          justify="space-between"
           spacing="none"
         >
           <MobileAndTablet>
             <Flex.Item className="c-gamepage-header-sumoticon-spacer"></Flex.Item>
           </MobileAndTablet>
-          <Flex.Item>
+          <Flex.Block className="o-flex-justify--start@desktop">
             <PlayOkayBar />
-          </Flex.Item>
+          </Flex.Block>
           <Desktop>
-            <Flex.Item>
+            <Flex.Item className="u-margin-right--5xlg u-padding-right--5xlg">
               <QuickDeposit />
             </Flex.Item>
             <Flex.Item>
