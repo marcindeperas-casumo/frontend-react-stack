@@ -8,7 +8,7 @@ import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIco
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
 import { WrapperPin } from "Components/Sidebar/SidebarElementWrapper/WrapperPin";
-import { pinnedDrawersContext } from "../../utils/hooks/usePinningContext";
+import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";

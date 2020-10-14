@@ -11,16 +11,14 @@ import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import type { GameProviderModel } from "GameProviders";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
+import { usePin } from "Utils/hooks/usePinningContext";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { playingSelector } from "Models/playing";
 import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { isDesktop } from "Components/ResponsiveLayout/index";
+import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
-import {
-  pinnedDrawersContext,
-  usePin,
-} from "../../utils/hooks/usePinningContext";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {

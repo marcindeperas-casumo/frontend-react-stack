@@ -21,14 +21,10 @@ import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
-import {
-  isMobile,
-  isDesktop,
-  isTablet,
-} from "Components/ResponsiveLayout/index";
-import { DRAWERS } from "../../Sidebar/SidebarElementWrapper/constants";
+import { isMobile, isDesktop, isTablet } from "Components/ResponsiveLayout";
+import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { pinnedDrawersContext } from "../../../utils/hooks/usePinningContext";
+import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
