@@ -85,10 +85,12 @@ export const ReelRacesDrawer = ({
             style={{ width: `${gameProgress}%` }}
           ></div>
         </Flex.Item>
-        <Flex direction="horizontal" className="u-width--full t-color-grey-20">
-          <Flex.Item className="u-font-2xs o-flex__block">
-            {timeElapsedFormatted}
-          </Flex.Item>
+        <Flex
+          direction="horizontal"
+          className="u-width--full t-color-grey-20"
+          justify="space-between"
+        >
+          <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
           <Flex.Item className="u-font-2xs t-color-grey-50">
             {gameDurationFormatted}
           </Flex.Item>
