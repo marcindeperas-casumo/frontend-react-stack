@@ -2036,12 +2036,22 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
+
+export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
+  winsInARow: number,
+  triples: number,
+  wins: number,
+  bigWins: number,
+  megaWins: number,
+};
+
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
   playerName: string,
   position: number,
   points: number,
   remainingSpins: number,
+  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters
 };
 export type CurrentReelRaceInfoQuery_reelRaces = {
   id: string,
