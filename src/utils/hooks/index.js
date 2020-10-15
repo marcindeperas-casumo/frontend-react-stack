@@ -29,4 +29,4 @@ export * from "./useCurrentReelRaceInfo";
 export {
   useAvailableQuickDepositMethods,
 } from "./useAvailableQuickDepositMethods";
-export { usePin } from "./usePinningContext";
+export { usePin } from "./usePin";

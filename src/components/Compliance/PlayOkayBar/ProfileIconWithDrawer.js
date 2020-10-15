@@ -21,10 +21,11 @@ import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
-import { isMobile, isDesktop, isTablet } from "Components/ResponsiveLayout";
+import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
+import { isDesktop } from "Components/ResponsiveLayout";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
@@ -118,15 +119,25 @@ export const ProfileIconWithDrawer = ({
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
 
-  const commonRaceProps = {
+  const reelRaceProps = {
     currentRace: currentReelRace,
   };
 
-  const { pinnedDrawers } = useContext(pinnedDrawersContext);
-
+  const { pinnedDrawers, togglePin } = useContext(PinnedDrawersContext);
   useEffect(() => {
     setDrawerOpen(false);
   }, [pinnedDrawers]);
+
+  const isDesktopAndUnpinnedRRDrawerAndActiveRR =
+    isDesktop() &&
+    !pinnedDrawers.includes(DRAWERS.REEL_RACES) &&
+    currentReelRace?.isInProgress;
+
+  const isMobileTabletAndActiveRR =
+    !isDesktop() && currentReelRace?.isInProgress;
+
+  const shouldShowReelRace =
+    isDesktopAndUnpinnedRRDrawerAndActiveRR || isMobileTabletAndActiveRR;
 
   return (
     <React.Fragment>
@@ -157,7 +168,7 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              <PrimaryIcon {...commonRaceProps} />
+              <PrimaryIcon {...reelRaceProps} />
             </div>
           )}
           {SecondaryIcon && (
@@ -170,7 +181,7 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              <SecondaryIcon {...commonRaceProps} />
+              <SecondaryIcon {...reelRaceProps} />
             </div>
           )}
         </div>
@@ -192,16 +203,18 @@ export const ProfileIconWithDrawer = ({
           <div
             className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
           >
-            {currentReelRace?.isInProgress &&
-              ((!pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop()) ||
-                isMobile() ||
-                isTablet()) && (
+            {shouldShowReelRace && (
+              <SidebarElementWrapper
+                pinnable={isDesktop()}
+                onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+              >
                 <div
-                  className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
+                  className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none@desktop`}
                 >
-                  <ReelRacesDrawer {...commonRaceProps} />
+                  <ReelRacesDrawer {...reelRaceProps} />
                 </div>
-              )}
+              </SidebarElementWrapper>
+            )}
             <div
               className={cx(
                 `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,

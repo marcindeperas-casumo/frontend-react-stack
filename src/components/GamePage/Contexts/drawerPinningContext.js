@@ -3,10 +3,10 @@ import * as React from "react";
 
 type PinnedDrawersContextType = {
   pinnedDrawers: Array<string>,
-  togglePin: (x: string) => void,
+  togglePin: (drawer: string) => void,
 };
 
-export const pinnedDrawersContext = React.createContext<PinnedDrawersContextType>(
+export const PinnedDrawersContext = React.createContext<PinnedDrawersContextType>(
   {
     pinnedDrawers: [],
     togglePin: () => {},

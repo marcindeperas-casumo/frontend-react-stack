@@ -7,9 +7,6 @@ import { SpinIcon } from "@casumo/cmp-icons";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
-import { WrapperPin } from "Components/Sidebar/SidebarElementWrapper/WrapperPin";
-import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
-import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";
 
@@ -159,23 +156,15 @@ export const ReelRacesDrawer = ({
     </Flex>
   );
 
-  const { togglePin } = React.useContext(pinnedDrawersContext);
-
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer t-color-white u-padding t-border-r o-flex--wrap u-margin-bottom--md u-margin-bottom--none@desktop",
+        "c-reel-races-drawer u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-left@desktop u-margin-bottom--md u-margin-bottom--none@desktop",
         className
       )}
       direction="horizontal"
       spacing="md"
     >
-      <Desktop>
-        <WrapperPin
-          className={`PIN__pin u-position-absolute`}
-          onClick={() => togglePin(DRAWERS.REEL_RACES)}
-        />
-      </Desktop>
       {raceLogo}
       {raceProgress}
       {raceStatus}

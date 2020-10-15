@@ -19,20 +19,25 @@ export const SidebarElementWrapper = ({
   pinnable = false,
   onPinClick = () => {},
   children,
-}: Props) => (
-  <div
-    className={cx(
-      className,
-      `${baseClassName} t-border-r u-position-relative u-overflow-hidden`,
-      { "t-background-black": !children }
-    )}
-  >
-    {pinnable && (
-      <WrapperPin
-        className={`${baseClassName}__pin u-position-absolute`}
-        onClick={onPinClick}
-      />
-    )}
-    {children}
-  </div>
-);
+}: Props) => {
+  const onClickFunc = () => {
+    onPinClick();
+  };
+  return (
+    <div
+      className={cx(
+        className,
+        `${baseClassName} t-border-r u-position-relative u-overflow-hidden`,
+        { "t-background-black": !children }
+      )}
+    >
+      {pinnable && (
+        <WrapperPin
+          className={`${baseClassName}__pin u-position-absolute`}
+          onClick={onClickFunc}
+        />
+      )}
+      {children}
+    </div>
+  );
+};

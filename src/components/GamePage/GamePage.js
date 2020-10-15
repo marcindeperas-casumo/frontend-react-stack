@@ -11,13 +11,13 @@ import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import type { GameProviderModel } from "GameProviders";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
-import { usePin } from "Utils/hooks/usePinningContext";
+import { usePin } from "Utils/hooks/usePin";
 import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { playingSelector } from "Models/playing";
 import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { isDesktop } from "Components/ResponsiveLayout/index";
-import { pinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { GamePageNotifications } from "./GamePageNotifications";
 
@@ -45,14 +45,14 @@ export const GamePage = ({
     ? null
     : currentReelRaceFromHook;
 
-  const commonRaceProps = {
+  const reelRaceProps = {
     currentRace: currentReelRace,
   };
   const pinState = usePin();
-  const { pinnedDrawers } = pinState;
+  const { pinnedDrawers, togglePin } = pinState;
 
   return (
-    <pinnedDrawersContext.Provider value={pinState}>
+    <PinnedDrawersContext.Provider value={pinState}>
       <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
         <VerticalStretcher gameProviderModel={gameProviderModel}>
           <Flex
@@ -73,8 +73,11 @@ export const GamePage = ({
                   {/* sidebar for pinned items */}
                   {sidebar}
                   {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
-                    <SidebarElementWrapper>
-                      <ReelRacesDrawer {...commonRaceProps} />
+                    <SidebarElementWrapper
+                      pinnable
+                      onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+                    >
+                      <ReelRacesDrawer {...reelRaceProps} />
                     </SidebarElementWrapper>
                   )}
                 </Flex.Item>
@@ -102,6 +105,6 @@ export const GamePage = ({
           </Flex>
         </VerticalStretcher>
       </FullscreenView>
-    </pinnedDrawersContext.Provider>
+    </PinnedDrawersContext.Provider>
   );
 };
