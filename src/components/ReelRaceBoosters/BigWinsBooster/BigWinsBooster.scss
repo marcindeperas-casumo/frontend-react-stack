@@ -1,4 +1,6 @@
 .c-rr-booster--big-wins {
+  --circle-trans-delay: 1s;
+
   &__arc {
     transition: color 0.5s;
   }
@@ -8,17 +10,6 @@
 
     &--doubled {
       transition-delay: 0.5s;
-    }
-  }
-
-  &__circle {
-    transform: scale(0);
-    transform-origin: center;
-    transition: transform 0.5s;
-
-    &--doubled {
-      transform: scale(1);
-      transition-delay: 1s;
     }
   }
 }

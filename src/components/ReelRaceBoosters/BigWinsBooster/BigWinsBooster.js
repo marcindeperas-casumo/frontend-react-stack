@@ -2,6 +2,7 @@
 import * as React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
+import { FlashingCircle } from "../FlashingCircle";
 import { useLocalBigWins } from "./useLocalBigWins";
 import "./BigWinsBooster.scss";
 
@@ -10,11 +11,11 @@ type Props = {
   bigWins: number,
 };
 
-const classNamePrefix = "c-rr-booster--big-wins";
+const baseClassName = "c-rr-booster--big-wins";
 
 function getArcClassName(isDark: boolean): string {
   return cx(
-    `${classNamePrefix}__arc`,
+    `${baseClassName}__arc`,
     isDark ? "t-color-black t-opacity--25" : "t-color-teal-50"
   );
 }
@@ -23,19 +24,9 @@ export function BigWinsBooster({ className, bigWins }: Props) {
   const { isEven, isDouble } = useLocalBigWins({ bigWins });
 
   return (
-    <div className={className}>
+    <div className={cx(baseClassName, className)}>
       <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx={28}
-          cy={28}
-          fill="currentColor"
-          className={cx(
-            "t-color-teal-50",
-            `${classNamePrefix}__circle`,
-            isDouble && `${classNamePrefix}__circle--doubled`
-          )}
-          r={28}
-        />
+        <FlashingCircle isTransitioning={isDouble} />
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -57,9 +48,9 @@ export function BigWinsBooster({ className, bigWins }: Props) {
       </svg>
       <Text
         className={cx(
-          `${classNamePrefix}__points`,
+          `${baseClassName}__points`,
           isDouble
-            ? `t-color-white ${classNamePrefix}__points--doubled`
+            ? `t-color-white ${baseClassName}__points--doubled`
             : "t-color-grey-50",
           "u-text-align-center u-font-weight-bold"
         )}
