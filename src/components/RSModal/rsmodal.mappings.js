@@ -25,6 +25,7 @@ import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
+import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -100,6 +101,14 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.GAME_PAGE_RR_LEADERBOARD]: {
     slug: "",
     Content: ReelRaceLeaderboardModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_POST_PANIC_BUTTON]: {
+    slug: "",
+    Content: PostPanicButtonModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON]: {
+    slug: "",
+    Content: PrePanicButtonModal,
   },
 };
 
