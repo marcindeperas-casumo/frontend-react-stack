@@ -23,7 +23,7 @@ export function BigWinsBooster({ className, bigWins }: Props) {
   const { isEven, isDouble } = useLocalBigWins({ bigWins });
 
   return (
-    <div className={className} style={{ width: "300px" }}>
+    <div className={className}>
       <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle
           cx={28}

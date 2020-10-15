@@ -5,7 +5,7 @@ import { storiesOf } from "@storybook/react";
 import { BigWinsBooster } from "./BigWinsBooster";
 
 const stories = storiesOf("ReelRaceBoosters/BigWinsBooster", module);
-const className = "t-background-grey-90 ";
+const className = "t-background-grey-90 u-width--5xlg";
 const props = {
   className,
 };
