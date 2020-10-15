@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import Text from "@casumo/cmp-text";
 import { FlashingCircle } from "../FlashingCircle";
+import { Points } from "../Points";
 import "../ReelRaceBooster.scss";
 import "./WinsInARowBooster.scss";
 
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const baseClassName = "c-rr-booster";
-const baseModClassName = "c-rr-booster--wins-in-a-row";
+const baseModClassName = `${baseClassName}--wins-in-a-row`;
 let cmpId = 0; // eslint-disable-line fp/no-let
 
 function getCmpId() {
@@ -66,17 +66,7 @@ export function WinsInARowBooster({ className, winsInARow }: Props) {
           fill="white"
         />
       </svg>
-      <Text
-        className={cx(
-          `${baseClassName}__points`,
-          isTriple
-            ? `t-color-white ${baseClassName}__points--transitioning`
-            : "t-color-grey-50",
-          "u-text-align-center u-font-weight-bold"
-        )}
-      >
-        +5
-      </Text>
+      <Points points={5} isTransitioning={isTriple} />
     </div>
   );
 }

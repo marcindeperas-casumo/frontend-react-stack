@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import Text from "@casumo/cmp-text";
 import { FlashingCircle } from "../FlashingCircle";
+import { Points } from "../Points";
 import { useLocalBigWins } from "./useLocalBigWins";
 import "../ReelRaceBooster.scss";
 import "./BigWinsBooster.scss";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const baseClassName = "c-rr-booster";
-const baseModClassName = "c-rr-booster--big-wins";
+const baseModClassName = `${baseClassName}--big-wins`;
 
 function getArcClassName(isDark: boolean): string {
   return cx(
@@ -48,17 +48,7 @@ export function BigWinsBooster({ className, bigWins }: Props) {
           fill="white"
         />
       </svg>
-      <Text
-        className={cx(
-          `${baseClassName}__points`,
-          isDouble
-            ? `t-color-white ${baseClassName}__points--transitioning`
-            : "t-color-grey-50",
-          "u-text-align-center u-font-weight-bold"
-        )}
-      >
-        +35
-      </Text>
+      <Points points={35} isTransitioning={isDouble} />
     </div>
   );
 }
