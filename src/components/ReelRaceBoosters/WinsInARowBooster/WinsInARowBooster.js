@@ -4,7 +4,6 @@ import cx from "classnames";
 import { FlashingCircle } from "../FlashingCircle";
 import { Points } from "../Points";
 import "../ReelRaceBooster.scss";
-import "./WinsInARowBooster.scss";
 
 type Props = {
   className?: string,

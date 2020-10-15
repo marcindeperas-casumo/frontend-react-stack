@@ -5,7 +5,6 @@ import { FlashingCircle } from "../FlashingCircle";
 import { Points } from "../Points";
 import { useIsTransitioning } from "./useIsTransitioning";
 import "../ReelRaceBooster.scss";
-import "./MegaWinsBooster.scss";
 
 type Props = {
   className?: string,

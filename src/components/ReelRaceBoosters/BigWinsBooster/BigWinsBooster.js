@@ -5,7 +5,6 @@ import { FlashingCircle } from "../FlashingCircle";
 import { Points } from "../Points";
 import { useLocalBigWins } from "./useLocalBigWins";
 import "../ReelRaceBooster.scss";
-import "./BigWinsBooster.scss";
 
 type Props = {
   className?: string,
