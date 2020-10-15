@@ -4,6 +4,7 @@ import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { FlashingCircle } from "../FlashingCircle";
 import { useIsTransitioning } from "./useIsTransitioning";
+import "../ReelRaceBooster.scss";
 import "./MegaWinsBooster.scss";
 
 type Props = {
@@ -11,13 +12,14 @@ type Props = {
   megaWins: number,
 };
 
-const baseClassName = "c-rr-booster--mega-wins";
+const baseClassName = "c-rr-booster";
+const baseModClassName = "c-rr-booster--mega-wins";
 
 export function MegaWinsBooster({ className, megaWins }: Props) {
   const { isTransitioning } = useIsTransitioning({ megaWins });
 
   return (
-    <div className={cx(baseClassName, className)}>
+    <div className={cx(baseClassName, baseModClassName, className)}>
       <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <FlashingCircle isTransitioning={isTransitioning} />
         <path
