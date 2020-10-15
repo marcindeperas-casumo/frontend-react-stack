@@ -1,5 +1,9 @@
 // @flow
-import { actionTypes } from "./payments.constants";
+import {
+  actionTypes,
+  requestState,
+  requestStateMessageType,
+} from "./payments.constants";
 import type { QuickDepositMethod } from "./methodConfig.types";
 import type { ActionTypes } from "./payments.types";
 
@@ -45,16 +49,30 @@ export const startQuickDeposit = ({
   },
 });
 
-export const setIsProcessingPaymentUsage = (state: boolean) => ({
-  type: actionTypes.SET_PROCESSING_PAYMENT_USAGE,
+export const setPaymentRequestProcessing = {
+  type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
-    state,
+    state: requestState.PROCESSING,
   },
-});
+};
 
-export const setPaymentPiqResult = (result: any) => ({
-  type: actionTypes.SET_PAYMENT_PIQ_RESULT,
+export const setPaymentRequestSuccess = {
+  type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
-    result,
+    state: requestState.FINISHED,
+    message: {
+      type: requestStateMessageType.SUCCESS,
+    },
+  },
+};
+
+export const setPaymentRequestError = (errorCode: string) => ({
+  type: actionTypes.SET_PAYMENT_REQUEST_STATE,
+  payload: {
+    state: requestState.FINISHED,
+    message: {
+      type: requestStateMessageType.ERROR,
+      code: errorCode,
+    },
   },
 });

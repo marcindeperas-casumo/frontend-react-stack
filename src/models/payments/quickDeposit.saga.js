@@ -12,8 +12,9 @@ import {
   getPaymentSessionToken,
 } from "Api/api.payments";
 import {
-  setIsProcessingPaymentUsage,
-  setPaymentPiqResult,
+  setPaymentRequestProcessing,
+  setPaymentRequestSuccess,
+  setPaymentRequestError,
 } from "./payments.actions";
 import type { StartQuickDepositActionReturnType } from "./payments.actions";
 
@@ -29,7 +30,7 @@ export function* quickDepositSaga(
   const baseUrl = window.location.origin;
   const redirectUrl = `${baseUrl}/payment/v2`;
 
-  yield put(setIsProcessingPaymentUsage(true));
+  yield put(setPaymentRequestProcessing);
 
   //add affiliateId, add gaClientId
 
@@ -64,14 +65,15 @@ export function* quickDepositSaga(
   //remove sensitive data before that, look for removeSensitiveDataFromPiqErrors in KO code
 
   if (response.success) {
-    yield put(setPaymentPiqResult("success"));
+    if (response.redirectOutput) {
+      // do an iframe if required by PIQ (3ds)
+      // yield take window.onMessage response when piq redirects after processing payment request
+    } else {
+      yield put(setPaymentRequestSuccess);
+    }
     // track success
   } else {
     // track error
-    yield put(setPaymentPiqResult("error"));
+    yield put(setPaymentRequestError(response.statusCode));
   }
-
-  //yield take window.onMessage response when piq redirects after processing payment request
-
-  yield put(setIsProcessingPaymentUsage(false));
 }

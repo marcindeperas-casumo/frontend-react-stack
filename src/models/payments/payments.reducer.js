@@ -5,12 +5,12 @@ import type { SetQuickDepositMethodReturnType } from "./payments.actions";
 
 const DEFAULT_STATE = {
   selectedQuickDepositMethod: null,
-  newPaymentRequest: null,
+  paymentRequest: null,
 };
 
 const initialPaymentRequestState = {
-  isProcessing: false,
-  piqResult: null,
+  status: null,
+  message: null,
 };
 
 const handlers = {
@@ -23,21 +23,11 @@ const handlers = {
   }),
   [actionTypes.START_QUICK_DEPOSIT]: state => ({
     ...state,
-    newPaymentRequest: initialPaymentRequestState,
+    paymentRequest: initialPaymentRequestState,
   }),
-  [actionTypes.SET_PROCESSING_PAYMENT_USAGE]: (state, action) => ({
+  [actionTypes.SET_PAYMENT_REQUEST_STATE]: (state, action) => ({
     ...state,
-    newPaymentRequest: {
-      ...state.newPaymentRequest,
-      isProcessing: action.payload.state,
-    },
-  }),
-  [actionTypes.SET_PAYMENT_PIQ_RESULT]: (state, action) => ({
-    ...state,
-    newPaymentRequest: {
-      ...state.newPaymentRequest,
-      piqResult: action.payload.result,
-    },
+    paymentRequest: action.payload,
   }),
 };
 

@@ -11,14 +11,20 @@ import { QuickDepositSlip } from "Components/QuickDepositSlip";
 import { useTranslationsGql } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
-import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
+import {
+  getSelectedQuickDepositMethod,
+  getPaymentRequestSelector,
+} from "Models/payments/payments.selectors";
 
 export const QuickDepositSlipController = () => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
+  const paymentRequest = useSelector(getPaymentRequestSelector);
+
   const { t } = useTranslationsGql({
     quick_deposit_slip_title: `iframe-solution.in_game_drawer_live_chat`,
   });
+
   const dispatch = useDispatch();
 
   if (!selectedMethod) {
@@ -37,30 +43,31 @@ export const QuickDepositSlipController = () => {
     dispatch(setQuickDepositMethod(null));
   };
 
+  //console.log(paymentRequest);
+
   return (
-    selectedMethod && (
-      <div className="t-border-r-top-left--md t-border-r-top-right--md u-padding--md t-background-white o-inset-left--none o-inset-bottom--none o-position--fixed ">
-        <Flex
-          className="u-margin-bottom--md"
-          justify="space-between"
-          direction="horizontal"
-          align="center"
-        >
-          <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
-          <Flex.Item onClick={closeQuickDeposit}>
-            <CloseIcon />
-          </Flex.Item>
-        </Flex>
-        <QuickDepositSlip
-          minAmount={min}
-          maxAmount={max}
-          onDeposit={onDeposit}
-          paymentMethodDetails={() => (
-            <PaymentMethodDetails method={selectedMethod} />
-          )}
-          currencySymbol={currency}
-        />
-      </div>
-    )
+    <div className="t-border-r-top-left--md t-border-r-top-right--md u-padding--md t-background-white o-inset-left--none o-inset-bottom--none o-position--fixed ">
+      <Flex
+        className="u-margin-bottom--md"
+        justify="space-between"
+        direction="horizontal"
+        align="center"
+      >
+        <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
+        <Flex.Item onClick={closeQuickDeposit}>
+          <CloseIcon />
+        </Flex.Item>
+      </Flex>
+      <QuickDepositSlip
+        minAmount={min}
+        maxAmount={max}
+        onDeposit={onDeposit}
+        requestStatus={paymentRequest}
+        paymentMethodDetails={() => (
+          <PaymentMethodDetails method={selectedMethod} />
+        )}
+        currencySymbol={currency}
+      />
+    </div>
   );
 };
