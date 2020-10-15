@@ -29,3 +29,4 @@ export * from "./useCurrentReelRaceInfo";
 export {
   useAvailableQuickDepositMethods,
 } from "./useAvailableQuickDepositMethods";
+export { useTimeoutFn } from "./useTimeoutFn";
