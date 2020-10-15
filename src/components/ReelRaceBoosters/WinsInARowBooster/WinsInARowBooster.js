@@ -2,6 +2,8 @@
 import * as React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
+import { FlashingCircle } from "../FlashingCircle";
+import "../ReelRaceBooster.scss";
 import "./WinsInARowBooster.scss";
 
 type Props = {
@@ -9,7 +11,8 @@ type Props = {
   winsInARow: number,
 };
 
-const classNamePrefix = "c-rr-booster--wins-in-a-row";
+const baseClassName = "c-rr-booster";
+const baseModClassName = "c-rr-booster--wins-in-a-row";
 let cmpId = 0; // eslint-disable-line fp/no-let
 
 function getCmpId() {
@@ -18,7 +21,7 @@ function getCmpId() {
 
 function getArcClassName(winsInARow: number, ellipsisNo: number): string {
   return cx(
-    `${classNamePrefix}__arc`,
+    `${baseClassName}__arc`,
     winsInARow < ellipsisNo ? "t-color-black t-opacity--25" : "t-color-teal-50"
   );
 }
@@ -28,19 +31,9 @@ export function WinsInARowBooster({ className, winsInARow }: Props) {
   const instanceId = getCmpId();
 
   return (
-    <div className={className}>
+    <div className={cx(baseClassName, baseModClassName, className)}>
       <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx={28}
-          cy={28}
-          fill="currentColor"
-          className={cx(
-            "t-color-teal-50",
-            `${classNamePrefix}__circle`,
-            isTriple && `${classNamePrefix}__circle--tripled`
-          )}
-          r={28}
-        />
+        <FlashingCircle isTransitioning={isTriple} />
         <mask id={`mask-${instanceId}-0`} fill="white">
           <path d="M51.8304 29.0844C52.668 17.0147 44.1983 6.45501 32.5778 4.54161C31.4056 4.3486 30.5079 3.33062 30.5901 2.14563C30.6723 0.96063 31.7036 0.0590639 32.8784 0.234971C46.8523 2.32725 57.0913 14.944 56.0892 29.3845C55.8598 32.6897 55.0605 35.8177 53.7947 38.6779C53.2819 39.8366 51.8419 40.1797 50.7912 39.4696C49.8785 38.8527 49.5873 37.6512 50.0191 36.6387C51.015 34.3038 51.6445 31.7631 51.8304 29.0844Z" />
         </mask>
@@ -75,9 +68,9 @@ export function WinsInARowBooster({ className, winsInARow }: Props) {
       </svg>
       <Text
         className={cx(
-          `${classNamePrefix}__points`,
+          `${baseClassName}__points`,
           isTriple
-            ? `t-color-white ${classNamePrefix}__points--tripled`
+            ? `t-color-white ${baseClassName}__points--transitioning`
             : "t-color-grey-50",
           "u-text-align-center u-font-weight-bold"
         )}
