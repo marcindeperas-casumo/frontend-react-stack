@@ -22,7 +22,7 @@ export function PrePanicButtonModal({ acceptModal, config }: Props) {
         />
       }
       primaryButton={{
-        text: config.content?.continue_label || "",
+        text: config.content?.pregame_cta_label || "",
         action: () => {
           window.localStorage.setItem("preGamePanicButtonOverlayShown", true);
           acceptModal();

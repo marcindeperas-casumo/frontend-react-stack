@@ -19,7 +19,7 @@ export function PostPanicButtonModal({ acceptModal, config }: Props) {
   return (
     <CudlModal
       primaryButton={{
-        text: config.content?.continue_label || "",
+        text: config.content?.postgame_cta_label || "",
         action: () => {
           navigateToKO(ROUTE_IDS.TOP_LISTS);
           acceptModal();
