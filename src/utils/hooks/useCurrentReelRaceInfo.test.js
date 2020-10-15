@@ -27,7 +27,13 @@ describe("useCurrentReelRaceInfo", () => {
   });
   const playerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
   const playerName = "the player";
-
+  const boosters = {
+    winsInARow: 0,
+    triples: 0,
+    wins: 0,
+    bigWins: 0,
+    megaWins: 0,
+  };
   describe("createCurrentReelRaceData", () => {
     const id = "some-nice-tournament-id";
     const game = "some nice game";
@@ -66,6 +72,7 @@ describe("useCurrentReelRaceInfo", () => {
       tournamentId: null,
       formattedPrizes: [],
       leaderboard: [],
+      boosters,
     };
 
     test("no data", () => {
@@ -117,6 +124,7 @@ describe("useCurrentReelRaceInfo", () => {
         tournamentId: id,
         formattedPrizes,
         leaderboard: [leaderboardEntryMe, leaderboardEntryOther],
+        boosters,
       });
     });
   });
@@ -161,6 +169,14 @@ describe("useCurrentReelRaceInfo", () => {
         position,
         points,
         remainingSpins,
+        boosters: {
+          winsInARow: 0,
+          triples: 0,
+          wins: 0,
+          bigWins: 0,
+          megaWins: 0,
+          __typename: "ReelRaceBoosters",
+        },
         __typename: "ReelRaceLeaderboard",
       },
     ],
@@ -296,8 +312,10 @@ describe("useCurrentReelRaceInfo", () => {
             position: nextRace.position,
             points: nextRace.points,
             remainingSpins: nextRace.remainingSpins,
+            boosters,
           },
         ],
+        boosters,
       });
     });
 
@@ -341,8 +359,10 @@ describe("useCurrentReelRaceInfo", () => {
             position: nextRace.position,
             points: nextRace.points,
             remainingSpins: nextRace.remainingSpins,
+            boosters,
           },
         ],
+        boosters,
       });
     });
 
@@ -386,8 +406,10 @@ describe("useCurrentReelRaceInfo", () => {
             position: nextRace.position,
             points: nextRace.points,
             remainingSpins: nextRace.remainingSpins,
+            boosters,
           },
         ],
+        boosters,
       });
     });
     test("dont find reel race that has finished just now", () => {

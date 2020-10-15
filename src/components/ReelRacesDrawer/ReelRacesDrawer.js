@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { SpinIcon } from "@casumo/cmp-icons";
+import { SpinIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
@@ -23,7 +23,10 @@ type Props = {
     reel_races_drawer_pts: ?string,
     reel_races_drawer_points: ?string,
     reel_races_drawer_spins: ?string,
+    reel_races_drawer_full_leaderboard: ?string,
   },
+  onShowLeaderboardClick?: () => void,
+  showLeaderboardLink?: boolean,
 };
 
 const StatusElement = ({ children }) => (
@@ -47,9 +50,16 @@ export const ReelRacesDrawer = ({
   points,
   gameProgress,
   gameDuration,
+  onShowLeaderboardClick = () => {},
+  showLeaderboardLink = false,
   t,
 }: Props) => {
   const gameDurationFormatted = `${gameDuration}:00`;
+  const gameDurationInS = gameDuration * 60;
+  const elapsedTime = (gameDurationInS * gameProgress) / 100;
+  const elapsedMinutes = `${Math.floor(elapsedTime / 60)}`.padStart(2, "0");
+  const elapsedSeconds = `${Math.floor(elapsedTime % 60)}`.padStart(2, "0");
+  const timeElapsedFormatted = `${elapsedMinutes}:${elapsedSeconds}`;
 
   const raceLogo = (
     <Desktop>
@@ -80,8 +90,12 @@ export const ReelRacesDrawer = ({
             style={{ width: `${gameProgress}%` }}
           ></div>
         </Flex.Item>
-        <Flex direction="horizontal" className="u-width--full t-color-grey-20">
-          <Flex.Item className="u-font-2xs o-flex__block">00:00</Flex.Item>
+        <Flex
+          direction="horizontal"
+          className="u-width--full t-color-grey-20"
+          justify="space-between"
+        >
+          <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
           <Flex.Item className="u-font-2xs t-color-grey-50">
             {gameDurationFormatted}
           </Flex.Item>
@@ -156,6 +170,23 @@ export const ReelRacesDrawer = ({
     </Flex>
   );
 
+  const leaderboard = showLeaderboardLink ? (
+    <Desktop>
+      <div
+        className="u-width--full u-text-align-center u-cursor--pointer"
+        onClick={onShowLeaderboardClick}
+      >
+        <Text
+          tag="span"
+          size="xs"
+          className="t-color-white u-text-transform-uppercase"
+        >
+          {t?.reel_races_drawer_full_leaderboard}
+        </Text>
+        <ChevronDownIcon size="sm" />
+      </div>
+    </Desktop>
+  ) : null;
   return (
     <Flex
       className={cx(
@@ -168,6 +199,7 @@ export const ReelRacesDrawer = ({
       {raceLogo}
       {raceProgress}
       {raceStatus}
+      {leaderboard}
     </Flex>
   );
 };

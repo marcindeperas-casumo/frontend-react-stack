@@ -21,6 +21,13 @@ query CurrentReelRaceInfoQuery {
       position
       points
       remainingSpins
+      boosters {
+        winsInARow
+        triples
+        wins
+        bigWins
+        megaWins
+      }
     }
   }
 }

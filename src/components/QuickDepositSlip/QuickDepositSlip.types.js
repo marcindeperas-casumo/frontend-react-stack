@@ -37,7 +37,7 @@ export type QuickDepositSlipProps = {
   minAmount: number,
   maxAmount: number,
   presetAmount?: number,
-  onDeposit: () => void,
+  onDeposit: (depositValue: number, cvvValue: string) => void,
   renderPaymentMethodDetails: () => React.Node,
   translations: QuickDepositSlipTranslations,
 };

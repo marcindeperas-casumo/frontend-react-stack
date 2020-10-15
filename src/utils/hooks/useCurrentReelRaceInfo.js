@@ -29,6 +29,7 @@ export type CurrentReelRaceInfo = {
   hasEnded: boolean,
   tournamentId: ?string,
   formattedPrizes: Array<string>,
+  boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
   leaderboard: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 
@@ -69,6 +70,13 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   tournamentId: null,
   formattedPrizes: [],
   leaderboard: [],
+  boosters: {
+    winsInARow: 0,
+    triples: 0,
+    wins: 0,
+    bigWins: 0,
+    megaWins: 0,
+  },
 };
 
 export const convertLeaderboardToObject = (
@@ -123,6 +131,7 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
+
     isInProgress: Boolean(
       startTime &&
         startTime >= 0 &&
@@ -138,6 +147,11 @@ export const createCurrentReelRaceData = (
       R.sortBy(R.prop("position"))
     )(leaderboard),
     formattedPrizes: formattedPrizes || [],
+    boosters: R.propOr(
+      defaultReelRaceInfo.boosters,
+      "boosters",
+      currentPlayerEntry
+    ),
   };
 };
 

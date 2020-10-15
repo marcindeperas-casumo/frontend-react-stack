@@ -16,6 +16,7 @@ import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { playingSelector } from "Models/playing";
 import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
+import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { isDesktop } from "Components/ResponsiveLayout/index";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
@@ -103,6 +104,7 @@ export const GamePage = ({
               </Flex.Item>
             )}
           </Flex>
+          <QuickDepositSlipController />
         </VerticalStretcher>
       </FullscreenView>
     </PinnedDrawersContext.Provider>

@@ -29,7 +29,7 @@ const methodTypesMap = convertMethodTypesToMap(methodTypes);
 const expectedQuickDepositMethods = [
   prepareQuickDepositMethod(
     playerMethod,
-    mock.paymentMethodConfigs.VISA_CARD,
+    mock.paymentMethodConfigs.methods.VISA_CARD,
     methodTypesMap[playerMethod.type]
   ),
 ];

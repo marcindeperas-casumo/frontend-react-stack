@@ -4,5 +4,6 @@
   &__pin {
     right: 32px;
     top: 8px;
+    z-index: cudl-z("content-overlay");
   }
 }

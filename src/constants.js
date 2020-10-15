@@ -406,6 +406,8 @@ export const REACT_APP_MODAL = {
     QUIT_GAME_NOTIFICATION: "QUIT_GAME_NOTIFICATION",
     WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
     GAME_PAGE_RR_LEADERBOARD: "GAME_PAGE_RR_LEADERBOARD",
+    GGL_POST_PANIC_BUTTON: "GGL_POST_PANIC_BUTTON",
+    GGL_PRE_PANIC_BUTTON: "GGL_PRE_PANIC_BUTTON",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
@@ -440,6 +442,7 @@ export const JURISDICTIONS = {
   MGA: "MGA",
   SGA: "SGA",
   UKGC: "UKGC",
+  GGL: "GGL",
 };
 
 export const POLL_INTERVAL = {
