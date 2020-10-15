@@ -1,0 +1,15 @@
+.c-rr-booster--mega-wins {
+  --circle-trans-delay: 1s;
+
+  &__arc {
+    transition: color 0.5s;
+  }
+
+  &__points {
+    transition: color 0.5s;
+
+    &--transitioning {
+      transition-delay: 0.5s;
+    }
+  }
+}
