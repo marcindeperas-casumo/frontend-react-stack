@@ -25,12 +25,11 @@ export function* quickDepositSaga(
   const locale = yield select(localeSelector); //check if it's ok to pass full locale or just two letters
   const { merchantId, apiUrl } = yield select(piqConfigSelector);
   const { cvvEncoded, amount, paymentMethod } = action.payload;
-  //prepare attributes
 
   const baseUrl = window.location.origin;
   const redirectUrl = `${baseUrl}/payment/v2`;
 
-  yield put(setPaymentRequestProcessing);
+  yield put(setPaymentRequestProcessing());
 
   //add affiliateId, add gaClientId
 
@@ -64,15 +63,15 @@ export function* quickDepositSaga(
     locale
   );
 
-  //todo: @lukKowalski, add payment tracking
-  //remove sensitive data before that, look for removeSensitiveDataFromPiqErrors in KO code
+  //@todo: @lukKowalski, add payment tracking
+  //@todo: remove sensitive data before that, look for removeSensitiveDataFromPiqErrors in KO code
 
   if (response.success) {
     if (response.redirectOutput) {
       // do an iframe if required by PIQ (3ds)
       // yield take window.onMessage response when piq redirects after processing payment request
     } else {
-      yield put(setPaymentRequestSuccess);
+      yield put(setPaymentRequestSuccess());
     }
     // track success
   } else {

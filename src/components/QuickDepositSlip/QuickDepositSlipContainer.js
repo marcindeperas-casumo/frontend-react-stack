@@ -2,6 +2,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { playerCurrencySymbolSelector } from "Models/player";
+import type { DepositRequestStateType } from "Models/payments/payments.types";
 import { useTranslationsGql } from "../../utils/hooks/useTranslationsGql";
 import { QuickDepositSlip } from "./QuickDepositSlip";
 
@@ -9,6 +10,7 @@ type Props = {
   minAmount: number,
   maxAmount: number,
   presetAmount?: number,
+  requestStatus: DepositRequestStateType,
   onDeposit: (amount: number, cvvEncoded: string) => void,
   paymentMethodDetails: () => React.Node,
 };
@@ -19,6 +21,7 @@ export function QuickDepositSlipContainer({
   minAmount,
   maxAmount,
   presetAmount,
+  requestStatus,
   onDeposit,
   paymentMethodDetails,
 }: Props) {
@@ -47,6 +50,7 @@ export function QuickDepositSlipContainer({
       currencySymbol={currencySymbol}
       minAmount={minAmount}
       maxAmount={maxAmount}
+      requestStatus={requestStatus}
       onDeposit={onDeposit}
       renderPaymentMethodDetails={paymentMethodDetails}
     />

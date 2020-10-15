@@ -5,7 +5,7 @@ import {
   requestStateMessageType,
 } from "./payments.constants";
 import type { QuickDepositMethod } from "./methodConfig.types";
-import type { ActionTypes } from "./payments.types";
+import type { ActionTypes, DepositRequestStateType } from "./payments.types";
 
 export type SetQuickDepositMethodReturnType = {
   payload: {
@@ -20,6 +20,11 @@ export type StartQuickDepositActionReturnType = {
     amount: number,
     paymentMethod: QuickDepositMethod,
   },
+  type: ActionTypes,
+};
+
+export type SetPaymentRequestReturnType = {
+  payload: DepositRequestStateType,
   type: ActionTypes,
 };
 
@@ -49,14 +54,14 @@ export const startQuickDeposit = ({
   },
 });
 
-export const setPaymentRequestProcessing = {
+export const setPaymentRequestProcessing = (): SetPaymentRequestReturnType => ({
   type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
     state: requestState.PROCESSING,
   },
-};
+});
 
-export const setPaymentRequestSuccess = {
+export const setPaymentRequestSuccess = (): SetPaymentRequestReturnType => ({
   type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
     state: requestState.FINISHED,
@@ -64,9 +69,11 @@ export const setPaymentRequestSuccess = {
       type: requestStateMessageType.SUCCESS,
     },
   },
-};
+});
 
-export const setPaymentRequestError = (errorCode: string) => ({
+export const setPaymentRequestError = (
+  errorCode: string
+): SetPaymentRequestReturnType => ({
   type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
     state: requestState.FINISHED,
