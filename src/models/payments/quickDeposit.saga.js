@@ -36,15 +36,18 @@ export function* quickDepositSaga(
 
   const { id } = yield call(getPaymentSessionToken);
 
+  //eslint-disable-next-line no-template-curly-in-string
+  const ptxIdTemplate = "?txId=${ptx.id}";
+
   const payload = {
     accountId: paymentMethod.token,
     encCvv: cvvEncoded,
     amount: amount,
     attributes: {
-      successUrl: `${redirectUrl}/finished.html`,
-      failureUrl: `${redirectUrl}/failed.html`,
-      canceledUrl: `${redirectUrl}/canceled.html`,
-      pendingUrl: `${redirectUrl}/pending.html`,
+      successUrl: `${redirectUrl}/finished.html${ptxIdTemplate}`,
+      failureUrl: `${redirectUrl}/failed.html${ptxIdTemplate}`,
+      canceledUrl: `${redirectUrl}/canceled.html${ptxIdTemplate}`,
+      pendingUrl: `${redirectUrl}/pending.html${ptxIdTemplate}`,
       type: TRANSACTION_ACTION_TYPE.QUICK_DEPOSIT,
       channelId: isMobile ? CHANNEL.MOBILE : CHANNEL.DESKTOP,
     },
