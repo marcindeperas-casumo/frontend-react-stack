@@ -2,11 +2,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
-import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
-import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -17,9 +15,7 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
-import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { isDesktop } from "Components/ResponsiveLayout";
@@ -53,9 +49,10 @@ export const ProfileIconWithDrawer = ({
   email,
   casumoName,
   playerName,
+  currentReelRace,
+  disabledChat,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const playing = useSelector(playingSelector);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = () => {
@@ -70,7 +67,7 @@ export const ProfileIconWithDrawer = ({
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
 
-  const isChatDisabled = isNativeByUserAgent();
+  const isChatDisabled = disabledChat;
   const transitionTimer = useTimeoutFn();
 
   useEffect(() => {
@@ -85,11 +82,6 @@ export const ProfileIconWithDrawer = ({
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
-
-  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
-  const currentReelRace = isNativeByUserAgent()
-    ? null
-    : currentReelRaceFromHook;
 
   useReelRaceLeaderboardModal(currentReelRace);
 

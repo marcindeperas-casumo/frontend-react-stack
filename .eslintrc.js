@@ -102,7 +102,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "error",
     "flowtype/space-after-type-colon": "off",
     "flowtype/generic-spacing": "off",
-    "sonarjs/cognitive-complexity": ["error", 16],
   },
   overrides: [
     {
