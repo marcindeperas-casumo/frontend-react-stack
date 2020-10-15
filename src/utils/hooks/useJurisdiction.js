@@ -10,6 +10,7 @@ type UseJurisdictionType = {
   isMGA: boolean,
   isSGA: boolean,
   isUKGC: boolean,
+  isGGL: boolean,
 };
 
 export function useJurisdiction(): UseJurisdictionType {
@@ -21,6 +22,7 @@ export function useJurisdiction(): UseJurisdictionType {
     isMGA: equals("MGA")(jurisdiction),
     isSGA: equals("SGA")(jurisdiction),
     isUKGC: equals("UKGC")(jurisdiction),
+    isGGL: equals("GGL")(jurisdiction),
     jurisdiction,
   };
 }

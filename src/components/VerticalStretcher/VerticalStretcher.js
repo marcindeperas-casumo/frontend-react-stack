@@ -6,7 +6,6 @@ import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isMobile } from "Components/ResponsiveLayout";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
-import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
 import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
 import HandSymbol from "./icons/hand.svg";
@@ -36,8 +35,6 @@ Props) => {
   const [showSwipePanel, setShowSwipePanel] = useState(false);
   const [controllScroll, setControllScroll] = useState(true);
   const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
-
-  const isNative = isNativeByUserAgent();
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
@@ -99,12 +96,14 @@ Props) => {
     };
   });
 
-  const shouldShowSwipePanel =
-    gameProviderModel.swipeUpToPlayPanelPossible &&
-    swipeUpPanelEnabled &&
-    isMobile &&
-    !isNative &&
-    showSwipePanel;
+  // const shouldShowSwipePanel =
+  //   gameProviderModel.swipeUpToPlayPanelPossible &&
+  //   swipeUpPanelEnabled &&
+  //   isMobile &&
+  //   !isNative &&
+  //   showSwipePanel;
+
+  const shouldShowSwipePanel = false;
 
   return (
     <div ref={heightContainer} className="u-width--full">

@@ -1,0 +1,42 @@
+.c-reel-race-leaderboard-results {
+  &--scrollable-inverted {
+    scrollbar-color: cudl-palette("grey", "0") cudl-palette("grey", "70");
+    scrollbar-width: thin;
+    /* Works on Chrome/Edge/Safari */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: cudl-palette("grey", "70");
+      border-radius: 4px;
+      margin-bottom: 16px;
+      margin-top: 16px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: cudl-palette("grey", "0");
+      border-radius: 6px;
+    }
+  }
+  &--scrollable {
+    scrollbar-color: cudl-palette("grey", "70") cudl-palette("grey", "0");
+    scrollbar-width: thin;
+    /* Works on Chrome/Edge/Safari */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: cudl-palette("grey", "0");
+      border-radius: 4px;
+      margin-bottom: 16px;
+      margin-top: 16px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: cudl-palette("grey", "70");
+      border-radius: 6px;
+    }
+  }
+  &__sticky-list {
+    top: 0;
+    z-index: cudl-z("content-overlay");
+  }
+}

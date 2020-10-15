@@ -5,7 +5,7 @@ import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import { localeSelector } from "Models/handshake";
 import {
   useTranslationsGql,
-  useAvailableQuickDepositMethods,
+  //useAvailableQuickDepositMethods,
   useCrossCodebaseNavigation,
 } from "Utils/hooks";
 import {
@@ -37,7 +37,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
+  const savedQuickDepositMethods = []; //useAvailableQuickDepositMethods();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const navigateToCashier = () => {
     navigateToKO(ROUTE_IDS.CASH_DEPOSIT);

@@ -32,12 +32,13 @@ describe("useJurisdiction", () => {
     );
 
     expectHook(wrapper).toEqual({
-      jurisdiction,
       isDGA: false,
       isDGOJ: false,
       isMGA: true,
       isSGA: false,
       isUKGC: false,
+      isGGL: false,
+      jurisdiction,
     });
   });
 
@@ -51,12 +52,13 @@ describe("useJurisdiction", () => {
     );
 
     expectHook(wrapper).toEqual({
-      jurisdiction,
       isDGA: false,
       isDGOJ: true,
       isMGA: false,
       isSGA: false,
       isUKGC: false,
+      isGGL: false,
+      jurisdiction,
     });
   });
 });
