@@ -52,7 +52,7 @@ export const GGLBar = ({ pauseGame, resumeGame, className = "" }: Props) => {
 
   return (
     <Flex justify="end" align="center" className={className}>
-      <Flex.Block>
+      <Flex.Block className="u-text-align-center">
         <ButtonSecondary
           className="t-background-grey-70 t-color-white u-text-transform-uppercase c-playokay-bar__button"
           onClick={onClick}
