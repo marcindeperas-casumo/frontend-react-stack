@@ -18,7 +18,7 @@ export const InGameDrawer = ({ onLiveChatClick, onExitGameClick }: Props) => {
         <QuickDeposit className="u-padding-left--lg u-padding-right--md u-padding-y--md" />
       )}
       <InGameDrawerLinks
-        className="u-padding-left--xlg u-padding-right--md u-padding-y--lg"
+        className="u-padding--lg"
         onExitGameClick={onExitGameClick}
         onLiveChatClick={onLiveChatClick}
       />

@@ -1,0 +1,10 @@
+.c-gamepage-header-sumoticon-spacer {
+  width: 80px;
+}
+.c-game-page-header__sumoticon-container {
+  background-color: cudl-palette(grey, "90");
+
+  @include cudl-breakpoint(desktop) {
+    background-color: transparent;
+  }
+}
