@@ -1,6 +1,7 @@
 //@flow
 import React, { useState, useEffect } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
 import { useSelector } from "react-redux";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
@@ -10,6 +11,7 @@ import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
+import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -22,8 +24,8 @@ import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
+import { MobileAndTablet } from "Components/ResponsiveLayout/index";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
-
 import "./ProfileIconWithDrawer.scss";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
@@ -125,9 +127,9 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           baseClassName,
-          "u-position-relative u-zindex--content-overlay u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
-          "u-cursor--pointer",
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle u-margin-right--md u-cursor--pointer",
+          "u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
           }
@@ -170,46 +172,55 @@ export const ProfileIconWithDrawer = ({
           className={`${baseClassName}__chevron-icon t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
         />
       </div>
-      <ChevronUpIcon
-        className={cx("t-color-white u-margin-left", {
-          "u-display--none": !isDrawerOpen,
-        })}
+      <Flex
+        className={cx(
+          `${baseClassName}__close-drawer`,
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle u-margin-right--md u-cursor--pointer",
+          "t-color-white u-position-absolute@mobile u-zindex--header",
+          {
+            "u-display--none": !isDrawerOpen,
+          }
+        )}
+        align="center"
+        justify="center"
         onClick={() => setDrawerOpen(false)}
-      />
+      >
+        <Flex.Item>
+          <ChevronUpIcon />
+        </Flex.Item>
+      </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
         >
-          <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
-          >
+          <div className="u-padding-x u-padding-top--md u-padding-left--md@desktop">
             {currentReelRace?.isInProgress && (
-              <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
-              >
+              <div className="u-padding-bottom">
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
-            <div
-              className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
-                {
-                  "u-margin-top": !currentReelRace?.isInProgress,
-                }
-              )}
-            >
-              <InGameDrawer
-                onLiveChatClick={() => {
-                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                  openChatWindow();
-                  setDrawerOpen(false);
-                }}
-                onExitGameClick={() => {
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
-                }}
-              />
+            <div className="u-padding-bottom">
+              <InGameAdventureWidget />
             </div>
+            <MobileAndTablet>
+              <div className="u-padding-bottom">
+                <InGameDrawer
+                  onLiveChatClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
+                      {}
+                    );
+                    openChatWindow();
+                    setDrawerOpen(false);
+                  }}
+                  onExitGameClick={() => {
+                    navigateToKO(ROUTE_IDS.TOP_LISTS);
+                    setDrawerOpen(false);
+                  }}
+                />
+              </div>
+            </MobileAndTablet>
           </div>
         </div>
       )}
