@@ -1,4 +1,3 @@
-//@todo: change to corresponding piq iframe when ready, testing only
 export const piqIframeUrlBase =
   "https://hostedpages.paymentiq.io/casumo/react-piq-iframe-responsive.html";
 
