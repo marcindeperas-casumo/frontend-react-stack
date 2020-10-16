@@ -196,15 +196,15 @@ export const ProfileIconWithDrawer = ({
         >
           <div className="u-padding-x@mobile u-padding-top--md@mobile u-padding-left--md@desktop">
             {currentReelRace?.isInProgress && (
-              <div className="u-margin-bottom--lg@mobile">
+              <div className="u-padding-bottom">
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
-            <div className="u-margin-bottom">
+            <div className="u-padding-bottom">
               <InGameAdventureWidget />
             </div>
             <MobileAndTablet>
-              <div className="u-margin-bottom">
+              <div className="u-padding-bottom">
                 <InGameDrawer
                   onLiveChatClick={() => {
                     tracker.track(
