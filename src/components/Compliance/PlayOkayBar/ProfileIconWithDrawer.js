@@ -200,11 +200,11 @@ export const ProfileIconWithDrawer = ({
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
-            <div className="u-padding-bottom">
+            <div className={`${baseClassName}__item u-padding-bottom`}>
               <InGameAdventureWidget />
             </div>
             <MobileAndTablet>
-              <div className="u-padding-bottom">
+              <div className={`${baseClassName}__item u-padding-bottom`}>
                 <InGameDrawer
                   onLiveChatClick={() => {
                     tracker.track(
