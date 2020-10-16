@@ -7,12 +7,13 @@ import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
-import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
+import { GamePageHeader } from "Components/GamePageHeader";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
+  gameBackground?: string,
   gameProviderModel: GameProviderModel,
   pauseGame: () => Promise<void>,
   resumeGame: () => void,
@@ -22,6 +23,7 @@ type Props = {
 };
 
 export const GamePage = ({
+  gameBackground = "",
   gameProviderModel,
   pauseGame,
   resumeGame,
@@ -38,14 +40,15 @@ export const GamePage = ({
           className="u-width--full u-height--full t-background-grey-90 t-color-white"
           direction="vertical"
           spacing="none"
+          style={{ backgroundImage: `url('${gameBackground || ""}')` }}
         >
           <Flex.Item>
-            <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
+            <GamePageHeader pauseGame={pauseGame} resumeGame={resumeGame} />
           </Flex.Item>
           <Flex
             direction="horizontal"
             spacing="none"
-            className="u-height--full"
+            className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
           >
             <Flex.Item>
               {/* sidebar for pinned items */}
