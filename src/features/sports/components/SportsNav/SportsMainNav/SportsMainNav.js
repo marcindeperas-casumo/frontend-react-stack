@@ -2,13 +2,13 @@
 import * as React from "react";
 import classNames from "classnames";
 import { cond, equals, T } from "ramda";
-import { Chip, ChipNavigation } from "@casumo/cmp-chip";
 import {
   LiveBetIcon,
   CloseIcon,
   AllSportsIcon,
   AddIcon,
 } from "@casumo/cmp-icons";
+import { Pill } from "Components/Pill";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
@@ -61,16 +61,16 @@ export const renderLiveButton = (
 
   return (
     <div className="u-height--full u-display--flex">
-      <Chip
-        Icon={LiveBetIcon}
-        onClick={onClick}
-        activeClassNames="t-background-red-30 t-color-white"
+      <Pill
         inactiveClassNames="t-color-red-30 t-background-white t-elevation--10"
+        activeClassNames="t-background-red-30 t-color-white"
         isActive={isLiveActive}
+        onClick={onClick}
       >
+        <LiveBetIcon className="u-margin-right--sm" />
         {labels.live}
         {isLiveActive && <CloseIcon className="u-margin-left--sm" />}
-      </Chip>
+      </Pill>
       <VerticalSeparator className="u-margin-left" />
     </div>
   );
@@ -84,9 +84,15 @@ export const renderEditButton = (
     return (
       <div className="u-height--full u-display--flex">
         <VerticalSeparator className="u-margin-right" />
-        <ChipNavigation onClick={onEdit}>
-          <AddIcon />
-        </ChipNavigation>
+        <div>
+          <Pill
+            activeClassNames="t-background-purple-50 t-color-white"
+            inactiveClassNames="t-background-white t-color-grey-70 t-elevation--10"
+            onClick={onEdit}
+          >
+            <AddIcon />
+          </Pill>
+        </div>
       </div>
     );
   }
@@ -96,22 +102,22 @@ const renderTab = (
   navItem: SportsNavItemType,
   { isSelected, onSelected }: Props
 ) => (
-  <Chip
-    key={navItem.path}
-    Icon={() => (
+  <div onClick={() => onSelected(navItem)}>
+    <Pill
+      inactiveClassNames="t-background-white t-color-grey-70 t-elevation--10"
+      activeClassNames="t-background-purple-50 t-color-white c-sports-nav-sport-tab--selected"
+      isActive={isSelected(navItem)}
+    >
       <img
         width="24"
         height="24"
+        className="u-margin-right--sm"
+        alt=""
         src={navItem.iconProps && navItem.iconProps.iconSrc}
       />
-    )}
-    activeClassNames="t-background-purple-50 t-color-white c-sports-nav-sport-tab--selected"
-    inactiveClassNames="t-background-white t-color-grey-70 t-elevation--10"
-    onClick={() => onSelected(navItem)}
-    isActive={isSelected(navItem)}
-  >
-    {navItem.text}
-  </Chip>
+      {navItem.text}
+    </Pill>
+  </div>
 );
 
 export const renderAllSportsTab = (
@@ -123,13 +129,15 @@ export const renderAllSportsTab = (
       {allSportsGroupTitle => {
         const navItem = makeAllSportsNavItem(allSportsGroupTitle);
         return (
-          <ChipNavigation
-            Icon={AllSportsIcon}
+          <Pill
+            activeClassNames="t-background-purple-50 t-color-white"
+            inactiveClassNames="t-background-white t-color-grey-70 t-elevation--10"
             onClick={() => onSelected(navItem)}
             isActive={isSelected(navItem)}
           >
+            <AllSportsIcon className="u-margin-right--sm" />
             {navItem.text}
-          </ChipNavigation>
+          </Pill>
         );
       }}
     </DictionaryTerm>
