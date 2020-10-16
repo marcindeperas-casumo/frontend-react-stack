@@ -5,3 +5,8 @@
 .c-sports-nav-edit-btn__wrapper {
   border-left: 2px solid cudl-palette(grey, "5");
 }
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-nav-sport-tab--selected img {
+  filter: invert(1);
+}
