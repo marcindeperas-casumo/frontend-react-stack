@@ -38,37 +38,20 @@
     right: 0;
   }
 
-  &__bottom-wrapper {
-    left: 0;
-    margin-left: 50%;
-    max-width: 442px;
-    transform: translateX(-50%);
+  &__bottom-wrapper-bg {
+    background: linear-gradient(white, transparent);
+    padding-bottom: 150px;
 
     @include cudl-breakpoint(desktop) {
-      transform: none;
-      width: 280px !important;
-    }
-
-    &-bg {
-      background: linear-gradient(white, transparent);
-
-      @include cudl-breakpoint(desktop) {
-        background: radial-gradient(
-          farthest-corner at top left,
-          rgba(255, 255, 255, 0.9),
-          transparent 70%
-        );
-        left: -16px;
-        padding-bottom: 150px;
-        padding-left: 32px;
-        padding-right: 150px;
-        padding-top: 83px;
-        top: -16px;
-      }
-    }
-
-    &-item {
-      box-sizing: border-box;
+      background: radial-gradient(
+        farthest-corner at top left,
+        rgba(255, 255, 255, 0.9),
+        transparent 70%
+      );
+      left: 0;
+      padding-right: 150px;
+      padding-top: 98px;
+      top: -16px;
     }
   }
 }

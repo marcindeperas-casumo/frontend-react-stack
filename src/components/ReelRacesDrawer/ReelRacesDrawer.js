@@ -190,7 +190,7 @@ export const ReelRacesDrawer = ({
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer t-color-white u-padding t-border-r t-border-r--none@desktop o-flex--wrap u-margin-bottom--md u-margin-bottom--none@desktop",
+        "c-reel-races-drawer t-color-white u-padding t-border-r t-border-r--none@desktop o-flex--wrap",
         className
       )}
       direction="horizontal"

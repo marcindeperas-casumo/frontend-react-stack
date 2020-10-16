@@ -192,28 +192,19 @@ export const ProfileIconWithDrawer = ({
       </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--1/5@desktop u-width--full@mobile`}
         >
-          <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
-          >
+          <div className="u-padding-x@mobile u-padding-top--md@mobile u-padding-left--md@desktop">
             {currentReelRace?.isInProgress && (
-              <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding-left--md@desktop`}
-              >
+              <div className="u-margin-bottom--lg@mobile">
                 <ReelRacesDrawer {...commonRaceProps} />
               </div>
             )}
-            <div
-              className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
-                {
-                  "u-margin-top": !currentReelRace?.isInProgress,
-                }
-              )}
-            >
+            <div className="u-margin-bottom">
               <InGameAdventureWidget />
-              <MobileAndTablet>
+            </div>
+            <MobileAndTablet>
+              <div className="u-margin-bottom">
                 <InGameDrawer
                   onLiveChatClick={() => {
                     tracker.track(
@@ -228,8 +219,8 @@ export const ProfileIconWithDrawer = ({
                     setDrawerOpen(false);
                   }}
                 />
-              </MobileAndTablet>
-            </div>
+              </div>
+            </MobileAndTablet>
           </div>
         </div>
       )}
