@@ -59,15 +59,10 @@ export const QuickDepositSlip = ({
     });
 
   return (
-    <Flex spacing="lg" justify="space-between">
+    <Flex spacing="lg" justify="space-between" direction="vertical">
       <Flex.Block>
-        <Flex
-          spacing="md"
-          justify="space-between"
-          align="center"
-          direction="vertical"
-        >
-          <Flex.Block className="u-width--full">
+        <Flex spacing="md" justify="space-between">
+          <Flex.Block>
             <TextInput
               data-test-id="deposit-amount-selector"
               prefix={currencySymbol}
@@ -81,20 +76,8 @@ export const QuickDepositSlip = ({
               variant={formErrors.amountInput ? "invalid" : "valid"}
             />
           </Flex.Block>
-          <Flex.Block className="u-width--full">
-            {PaymentMethodComponent && PaymentMethodComponent()}
-          </Flex.Block>
-        </Flex>
-      </Flex.Block>
-      <Flex.Item>
-        <Flex
-          spacing="md"
-          justify="space-between"
-          align="center"
-          direction="vertical"
-        >
           <Flex.Item className="c-quick-deposit-slip__cvv">
-            <Flex direction="vertical" spacing="sm" justify="space-between">
+            <Flex direction="vertical" spacing="sm">
               <Flex.Item>
                 <CvvCodeIframe
                   onValidation={onCvvError}
@@ -114,7 +97,14 @@ export const QuickDepositSlip = ({
               </Flex.Item>
             </Flex>
           </Flex.Item>
-          <Flex.Item className="u-width--full">
+        </Flex>
+      </Flex.Block>
+      <Flex.Block className="u-width--full">
+        <Flex spacing="md" justify="space-between" align="center">
+          <Flex.Block>
+            {PaymentMethodComponent && PaymentMethodComponent()}
+          </Flex.Block>
+          <Flex.Item>
             <ButtonPrimary
               size="md"
               onClick={onDepositClick}
@@ -124,7 +114,7 @@ export const QuickDepositSlip = ({
             </ButtonPrimary>
           </Flex.Item>
         </Flex>
-      </Flex.Item>
+      </Flex.Block>
     </Flex>
   );
 };
