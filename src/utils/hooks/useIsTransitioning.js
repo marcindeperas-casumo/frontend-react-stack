@@ -32,7 +32,8 @@ export function useIsTransitioning({
     return function unsubscribe() {
       clear();
     };
-  }, [clear, tweenedValue, scheduleIn, enterPredicate, duration]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tweenedValue]);
 
   return {
     isTransitioning,
