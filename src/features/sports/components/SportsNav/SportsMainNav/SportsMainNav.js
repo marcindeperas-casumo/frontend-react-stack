@@ -37,7 +37,10 @@ export type Props = {
 const VerticalSeparator = ({ className }: { className?: string }) => {
   return (
     <div
-      className={`u-height--full t-border-left--lg t-border-grey-5 t-border-r--sm ${className}`}
+      className={classNames(
+        className,
+        "u-height--full t-border-left--lg t-border-grey-5 t-border-r--sm"
+      )}
     />
   );
 };
