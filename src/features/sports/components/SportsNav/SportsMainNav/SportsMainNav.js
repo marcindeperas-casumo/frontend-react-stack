@@ -2,17 +2,13 @@
 import * as React from "react";
 import classNames from "classnames";
 import { cond, equals, T } from "ramda";
-import {
-  LiveBetIcon,
-  CloseIcon,
-  AllSportsIcon,
-  AddIcon,
-} from "@casumo/cmp-icons";
+import { LiveBetIcon, CloseIcon, AllSportsIcon } from "@casumo/cmp-icons";
 import { Pill } from "Components/Pill";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
+import EditPillsButton from "Features/sports/components/EditPillsButton";
 import {
   sportsPagerButtonRenderer,
   type SportsNavItemType,
@@ -84,14 +80,8 @@ export const renderEditButton = (
     return (
       <div className="u-height--full u-display--flex">
         <VerticalSeparator className="u-margin-right" />
-        <div>
-          <Pill
-            activeClassNames="t-background-purple-50 t-color-white"
-            inactiveClassNames="t-background-white t-color-grey-70 t-elevation--10"
-            onClick={onEdit}
-          >
-            <AddIcon />
-          </Pill>
+        <div className="u-padding-top--sm">
+          <EditPillsButton onClick={onEdit} label={labels.edit} />
         </div>
       </div>
     );

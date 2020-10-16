@@ -4,6 +4,7 @@ import { shallow } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { Pill } from "Components/Pill";
+import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import {
   SportsMainNav,
@@ -140,7 +141,7 @@ describe("<SportsMainNav />", () => {
         renderTabList(navItems, props)({ columnIndex: navItems.length + 2 })
       );
 
-      expect(rendered.find(Pill)).toHaveLength(1);
+      expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
   });
 
@@ -155,7 +156,7 @@ describe("<SportsMainNav />", () => {
         renderEditButton(editButtonProps, liveState.inactive)
       );
 
-      expect(rendered.find(Pill)).toHaveLength(1);
+      expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
 
     test("returns null when isLiveActive is true", () => {
@@ -163,7 +164,7 @@ describe("<SportsMainNav />", () => {
         <div>{renderEditButton(editButtonProps, liveState.active)}</div>
       );
 
-      expect(rendered.find(Pill)).toHaveLength(0);
+      expect(rendered.find(EditPillsButton)).toHaveLength(0);
     });
 
     test("returns null when canEdit is false", () => {
@@ -173,7 +174,7 @@ describe("<SportsMainNav />", () => {
         </div>
       );
 
-      expect(rendered.find(Pill)).toHaveLength(0);
+      expect(rendered.find(EditPillsButton)).toHaveLength(0);
     });
   });
 });
