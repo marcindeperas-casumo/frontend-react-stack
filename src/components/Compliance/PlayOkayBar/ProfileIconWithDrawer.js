@@ -1,10 +1,16 @@
 //@flow
 import React, { useState, useEffect, useContext } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import { useSelector } from "react-redux";
 import cx from "classnames";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
+import {
+  type CurrentReelRaceInfo,
+  useCurrentReelRaceInfo,
+} from "Utils/hooks/useCurrentReelRaceInfo";
+import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -14,6 +20,7 @@ import {
   openChatWindow,
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
+import { playingSelector } from "Models/playing";
 import tracker from "Services/tracker";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
@@ -26,7 +33,11 @@ import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 import "./ProfileIconWithDrawer.scss";
 
-type Props = PauseResumeProps & IntercomPlayerDetailsProps;
+type ContainerProps = {
+  currentReelRace: CurrentReelRaceInfo,
+};
+
+type Props = PauseResumeProps & ContainerProps & IntercomPlayerDetailsProps;
 
 const baseClassName = "c-profile-icon-with-drawer";
 
@@ -49,10 +60,9 @@ export const ProfileIconWithDrawer = ({
   email,
   casumoName,
   playerName,
-  currentReelRace,
-  disabledChat,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const playing = useSelector(playingSelector);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = () => {
@@ -67,8 +77,12 @@ export const ProfileIconWithDrawer = ({
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
 
-  const isChatDisabled = disabledChat;
+  const isChatDisabled = isNativeByUserAgent();
   const transitionTimer = useTimeoutFn();
+
+  const isNative = isNativeByUserAgent();
+  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRace = isNative ? null : currentReelRaceFromHook;
 
   useEffect(() => {
     if (isChatDisabled) {
@@ -78,7 +92,6 @@ export const ProfileIconWithDrawer = ({
     injectIntercomScript({ playerId, email, casumoName, playerName });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
