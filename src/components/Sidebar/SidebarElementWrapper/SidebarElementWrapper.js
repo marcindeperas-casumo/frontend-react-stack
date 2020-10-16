@@ -20,9 +20,6 @@ export const SidebarElementWrapper = ({
   onPinClick = () => {},
   children,
 }: Props) => {
-  const onClickFunc = () => {
-    onPinClick();
-  };
   return (
     <div
       className={cx(
@@ -34,7 +31,7 @@ export const SidebarElementWrapper = ({
       {pinnable && (
         <WrapperPin
           className={`${baseClassName}__pin u-position-absolute`}
-          onClick={onClickFunc}
+          onClick={onPinClick}
         />
       )}
       {children}
