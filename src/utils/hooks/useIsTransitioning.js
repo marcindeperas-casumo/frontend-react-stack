@@ -3,30 +3,36 @@ import * as React from "react";
 import { useTimeoutFn } from "Utils/hooks";
 
 type Props = {
-  megaWins: number,
+  enterPredicate: (tweenedValue: number) => boolean,
+  tweenedValue: number,
+  duration: number,
 };
 
 type UseIsTransitioning = {
   isTransitioning: boolean,
 };
 
-export function useIsTransitioning({ megaWins }: Props): UseIsTransitioning {
+export function useIsTransitioning({
+  enterPredicate,
+  tweenedValue,
+  duration,
+}: Props): UseIsTransitioning {
   const [isTransitioning, setIsTransitioning] = React.useState(false);
   const { clear, scheduleIn } = useTimeoutFn();
 
   React.useEffect(() => {
-    if (megaWins > 0) {
+    if (enterPredicate(tweenedValue)) {
       setIsTransitioning(true);
 
       scheduleIn(() => {
         setIsTransitioning(false);
-      }, 1500);
+      }, duration);
     }
 
     return function unsubscribe() {
       clear();
     };
-  }, [clear, megaWins, scheduleIn]);
+  }, [clear, tweenedValue, scheduleIn, enterPredicate, duration]);
 
   return {
     isTransitioning,

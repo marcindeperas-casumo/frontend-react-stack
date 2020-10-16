@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
+import { useIsTransitioning } from "Utils/hooks/useIsTransitioning";
 import { FlashingCircle } from "../FlashingCircle";
 import { Points } from "../Points";
-import { useLocalBigWins } from "./useLocalBigWins";
+import { getArcClassName } from "../ReelRaceBoosters.utils";
 import "../ReelRaceBooster.scss";
 
 type Props = {
@@ -14,32 +15,31 @@ type Props = {
 const baseClassName = "c-rr-booster";
 const baseModClassName = `${baseClassName}--big-wins`;
 
-function getArcClassName(isDark: boolean): string {
-  return cx(
-    `${baseClassName}__arc`,
-    isDark ? "t-color-black t-opacity--25" : "t-color-teal-50"
-  );
-}
-
 export function BigWinsBooster({ className, bigWins }: Props) {
-  const { isEven, isDouble } = useLocalBigWins({ bigWins });
+  const bigWinsMod = bigWins % 2;
+  const enterPredicate = () => bigWins > 0 && bigWinsMod === 0;
+  const { isTransitioning } = useIsTransitioning({
+    enterPredicate,
+    tweenedValue: bigWins,
+    duration: 1500,
+  });
 
   return (
     <div className={cx(baseClassName, baseModClassName, className)}>
       <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <FlashingCircle isTransitioning={isDouble} />
+        <FlashingCircle isTransitioning={isTransitioning} />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="currentColor"
-          className={getArcClassName(isEven)}
+          className={getArcClassName(isTransitioning || bigWinsMod === 1)}
           d="M33.5677 5.04469C43.9297 7.55241 51.627 16.9055 51.627 28.0604C51.627 39.2153 43.9297 48.5684 33.5677 51.0761C33.1154 51.1856 32.658 51.282 32.196 51.3649C32.0799 51.3858 31.9666 51.4146 31.8569 51.4508C30.7514 51.8151 30.0046 52.922 30.2403 54.0877C30.4602 55.1751 31.4681 55.9307 32.5629 55.751C32.6992 55.7286 32.8353 55.7052 32.971 55.6809C33.5334 55.5799 34.0899 55.4622 34.6401 55.3281C46.8999 52.341 56.002 41.266 56.002 28.0604C56.002 14.8548 46.8999 3.7798 34.6401 0.792674C34.0899 0.658616 33.5334 0.540846 32.971 0.439906C32.8353 0.41555 32.6992 0.392175 32.5629 0.369786C31.4681 0.190053 30.4602 0.945707 30.2403 2.03309C30.0046 3.19879 30.7514 4.30569 31.8569 4.67001C31.9666 4.70617 32.0799 4.73501 32.196 4.75587C32.658 4.83882 33.1154 4.93524 33.5677 5.04469Z"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="currentColor"
-          className={getArcClassName(!isDouble)}
+          className={getArcClassName(isTransitioning)}
           d="M21.3618 55.207C9.10204 52.2199 -5.14984e-05 41.1449 -5.14984e-05 27.9393C-5.14984e-05 14.7337 9.10204 3.6587 21.3618 0.67158C21.912 0.537522 22.4686 0.419752 23.031 0.318812C23.1667 0.294457 23.3027 0.271081 23.4391 0.248693C24.5338 0.0689591 25.5417 0.824613 25.7616 1.912C25.9973 3.07769 25.2506 4.18459 24.1451 4.54891C24.0354 4.58507 23.9221 4.61392 23.8059 4.63478C23.3439 4.71773 22.8866 4.81414 22.4343 4.9236C12.0723 7.43132 4.37495 16.7844 4.37495 27.9393C4.37495 39.0942 12.0723 48.4473 22.4343 50.955C22.8866 51.0645 23.3439 51.1609 23.8059 51.2438C23.9221 51.2647 24.0354 51.2935 24.1451 51.3297C25.2506 51.694 25.9973 52.8009 25.7616 53.9666C25.5417 55.054 24.5338 55.8096 23.4391 55.6299C23.3027 55.6075 23.1667 55.5842 23.031 55.5598C22.4686 55.4589 21.912 55.3411 21.3618 55.207Z"
         />
         <path
@@ -47,7 +47,7 @@ export function BigWinsBooster({ className, bigWins }: Props) {
           fill="white"
         />
       </svg>
-      <Points points={35} isTransitioning={isDouble} />
+      <Points points={35} isTransitioning={isTransitioning} />
     </div>
   );
 }
