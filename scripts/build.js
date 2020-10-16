@@ -118,7 +118,6 @@ function build(previousFileSizes) {
   console.log("Creating an optimized production build...");
 
   let compiler = webpack(config);
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   return new Promise((resolve, reject) => {
     /* eslint-disable fp/no-mutation */
     compiler.run((err, stats) => {
