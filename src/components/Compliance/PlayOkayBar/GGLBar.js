@@ -11,7 +11,6 @@ import { playerIdSelector } from "Models/handshake";
 import { useTranslations } from "Utils/hooks";
 import { REACT_APP_MODAL } from "Src/constants";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
@@ -53,10 +52,7 @@ export const GGLBar = ({ pauseGame, resumeGame, className = "" }: Props) => {
 
   return (
     <Flex justify="end" align="center" className={className}>
-      <Flex.Block>
-        <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
-      </Flex.Block>
-      <Flex.Block>
+      <Flex.Block className="u-text-align-center">
         <ButtonSecondary
           className="t-background-grey-70 t-color-white u-text-transform-uppercase c-playokay-bar__button"
           onClick={onClick}
