@@ -18,7 +18,7 @@ export const InGameAdventureWidget = ({
   pointsRequiredForNextLevel,
   progressPercentage,
 }: Props) => (
-  <div className="t-background-grey-90 t-border-r u-padding-x--md u-padding-y--md u-margin-bottom">
+  <div className="t-background-grey-90 t-border-r u-padding-x--md u-padding-y--md">
     <Flex align="center">
       <Flex.Item>
         <AvatarIcon />

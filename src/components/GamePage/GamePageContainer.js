@@ -40,6 +40,7 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
+  const gameContent = useTranslations(`games.${slug}`);
   const { loading, gameCategory } = useGameCategory(slug);
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
@@ -90,6 +91,7 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
       resumeGame={resumeGame}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       bonusAmount={bonusAmount}
+      gameBackground={gameContent?.play_background}
     />
   );
 };
