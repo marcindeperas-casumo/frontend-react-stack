@@ -17,7 +17,9 @@ const baseModClassName = `${baseClassName}--big-wins`;
 
 export function BigWinsBooster({ className, bigWins }: Props) {
   const bigWinsMod = bigWins % 2;
-  const enterPredicate = () => bigWins > 0 && bigWinsMod === 0;
+  const isEven = bigWinsMod === 0;
+  const isOdd = bigWinsMod === 1;
+  const enterPredicate = () => bigWins > 0 && isEven;
   const { isTransitioning } = useIsTransitioning({
     enterPredicate,
     tweenedValue: bigWins,
@@ -32,7 +34,7 @@ export function BigWinsBooster({ className, bigWins }: Props) {
           fillRule="evenodd"
           clipRule="evenodd"
           fill="currentColor"
-          className={getArcClassName(isTransitioning || bigWinsMod === 1)}
+          className={getArcClassName(isTransitioning || isOdd)}
           d="M33.5677 5.04469C43.9297 7.55241 51.627 16.9055 51.627 28.0604C51.627 39.2153 43.9297 48.5684 33.5677 51.0761C33.1154 51.1856 32.658 51.282 32.196 51.3649C32.0799 51.3858 31.9666 51.4146 31.8569 51.4508C30.7514 51.8151 30.0046 52.922 30.2403 54.0877C30.4602 55.1751 31.4681 55.9307 32.5629 55.751C32.6992 55.7286 32.8353 55.7052 32.971 55.6809C33.5334 55.5799 34.0899 55.4622 34.6401 55.3281C46.8999 52.341 56.002 41.266 56.002 28.0604C56.002 14.8548 46.8999 3.7798 34.6401 0.792674C34.0899 0.658616 33.5334 0.540846 32.971 0.439906C32.8353 0.41555 32.6992 0.392175 32.5629 0.369786C31.4681 0.190053 30.4602 0.945707 30.2403 2.03309C30.0046 3.19879 30.7514 4.30569 31.8569 4.67001C31.9666 4.70617 32.0799 4.73501 32.196 4.75587C32.658 4.83882 33.1154 4.93524 33.5677 5.04469Z"
         />
         <path
