@@ -14,9 +14,7 @@
   }
 
   &__close-drawer {
-    background-color: cudl-palette(grey, "70");
     left: map-get($cudl-spacer-sizes, default);
-    top: map-get($cudl-spacer-sizes, default);
 
     @include cudl-breakpoint(desktop) {
       background-color: cudl-palette(grey, "90");
@@ -54,7 +52,7 @@
         transparent 70%
       );
       left: 0;
-      padding-right: 150px;
+      // padding-right: 150px;
       padding-top: 98px;
       top: -16px;
       width: 312px !important;

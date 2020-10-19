@@ -3,6 +3,7 @@
 }
 .c-game-page-header__sumoticon-container {
   background-color: cudl-palette(grey, "90");
+  max-height: 48px;
 
   @include cudl-breakpoint(desktop) {
     background-color: transparent;

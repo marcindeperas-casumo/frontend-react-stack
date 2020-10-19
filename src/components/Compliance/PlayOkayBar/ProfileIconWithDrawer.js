@@ -144,8 +144,8 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           baseClassName,
-          "u-position-relative u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-margin-right--md",
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle o-inset-top--none u-margin-top--md@mobile u-margin-top--md@tablet o-inset-left--none u-margin-left u-margin-right--md",
           "u-cursor--pointer u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
@@ -194,7 +194,7 @@ export const ProfileIconWithDrawer = ({
           `${baseClassName}__close-drawer`,
           "u-position-relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "t-color-white u-position-absolute@mobile u-zindex--header",
+          "t-color-white u-position-absolute@mobile u-zindex--header o-inset-top--none@mobile",
           {
             "u-display--none": !isDrawerOpen,
           }
@@ -209,7 +209,7 @@ export const ProfileIconWithDrawer = ({
       </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop u-padding@mobile u-padding@tablet u-padding-top--none@mobile u-padding-top--none@tablet`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop u-padding@mobile u-padding@tablet u-padding-top--md@mobile u-padding-top--md@tablet`}
         >
           {shouldShowReelRace && (
             <SidebarElementWrapper
@@ -217,7 +217,7 @@ export const ProfileIconWithDrawer = ({
               onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
             >
               <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top@mobile u-padding-top@tablet`}
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top--none@mobile u-padding-top--none@tablet`}
               >
                 <ReelRacesDrawer {...reelRaceProps} />
               </div>
