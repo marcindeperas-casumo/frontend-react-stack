@@ -10,7 +10,7 @@ import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";
 
-import "./ReelRacesDrawer.scss";
+import "./ReelRacesDrawerWidget.scss";
 
 type Props = {
   className?: string,
@@ -43,7 +43,7 @@ const StatusElement = ({ children }) => (
   </Flex>
 );
 
-export const ReelRacesDrawer = ({
+export const ReelRacesDrawerWidget = ({
   className,
   spinsLeft,
   position,
@@ -114,7 +114,7 @@ export const ReelRacesDrawer = ({
       className="u-width--full u-padding-top--md u-padding-top--lg@desktop"
       spacing="none"
     >
-      <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">
+      <Flex.Block className="c-reel-races-drawer-widget__elem u-text-align-center">
         <StatusElement>
           <Text
             size="xs"
@@ -136,13 +136,13 @@ export const ReelRacesDrawer = ({
           </>
         </StatusElement>
       </Flex.Block>
-      <Flex.Item className="c-reel-races-drawer__elem c-reel-races-drawer-position u-position-relative">
+      <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position u-position-relative">
         <PositionView
           position={parseInt(position, 10)}
           className="u-margin-top--lg@desktop"
         />
       </Flex.Item>
-      <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">
+      <Flex.Block className="c-reel-races-drawer-widget__elem u-text-align-center">
         <StatusElement>
           <Text
             size="xs"
@@ -190,7 +190,7 @@ export const ReelRacesDrawer = ({
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer t-color-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-bottom--md u-margin-bottom--none@desktop",
+        "c-reel-races-drawer-widget t-color-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-bottom--md u-margin-bottom--none@desktop",
         className
       )}
       direction="horizontal"

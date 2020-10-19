@@ -1,5 +1,6 @@
-.c-profile-icon-with-drawer {
+.c-sumo-icon {
   background-clip: padding-box;
+  box-sizing: content-box;
   left: map-get($cudl-spacer-sizes, default);
   top: map-get($cudl-spacer-sizes, default);
 
@@ -9,18 +10,15 @@
   }
 
   &__close-drawer {
+    background-color: cudl-palette(grey, "70");
     left: map-get($cudl-spacer-sizes, default);
+    top: map-get($cudl-spacer-sizes, default);
 
     @include cudl-breakpoint(desktop) {
       background-color: cudl-palette(grey, "90");
       left: auto;
       top: auto;
     }
-  }
-
-  &__item {
-    margin: 0 auto;
-    max-width: 442px;
   }
 
   &__content {
@@ -38,25 +36,6 @@
   &__chevron-icon {
     bottom: 0;
     right: 0;
-  }
-
-  &__bottom-wrapper-bg {
-    background: linear-gradient(white, transparent);
-    padding-bottom: 150px;
-    padding-top: 16px;
-
-    @include cudl-breakpoint(desktop) {
-      background: radial-gradient(
-        farthest-corner at top left,
-        rgba(255, 255, 255, 0.9),
-        transparent 70%
-      );
-      left: 0;
-      padding-bottom: 0px;
-      padding-right: 150px;
-      padding-top: 98px;
-      top: -16px;
-    }
   }
 }
 

@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { viewports } from "Storybook/viewports";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { ReelRacesDrawer } from "./ReelRacesDrawer";
+import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 const stories = storiesOf("ReelRaceDrawer", module);
 
@@ -33,7 +33,7 @@ const WithLeaderboard = () => {
   return (
     <div>
       <WrapperDesktop>
-        <ReelRacesDrawer
+        <ReelRacesDrawerWidget
           {...props}
           onShowLeaderboardClick={() => setLb(x => !x)}
           showLeaderboardLink
@@ -49,22 +49,22 @@ const WithLeaderboard = () => {
 };
 const story = () => (
   <Wrapper>
-    <ReelRacesDrawer {...props} />
+    <ReelRacesDrawerWidget {...props} />
   </Wrapper>
 );
 
 const storyDesktop = () => (
   <Wrapper>
-    <ReelRacesDrawer {...props} />
+    <ReelRacesDrawerWidget {...props} />
     <br />
     <br />
     <WrapperDesktop>
-      <ReelRacesDrawer {...props} />
+      <ReelRacesDrawerWidget {...props} />
     </WrapperDesktop>
     <br />
     <br />
     <WrapperDesktop pinnable>
-      <ReelRacesDrawer {...props} />
+      <ReelRacesDrawerWidget {...props} />
     </WrapperDesktop>
     <br />
     <br />
