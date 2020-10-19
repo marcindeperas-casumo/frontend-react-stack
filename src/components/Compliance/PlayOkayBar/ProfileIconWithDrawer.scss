@@ -23,6 +23,11 @@
     }
   }
 
+  &__item {
+    margin: 0 auto;
+    max-width: 442px;
+  }
+
   &__content {
     left: 0;
     top: 0;

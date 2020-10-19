@@ -32,9 +32,7 @@ import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
-
 const baseClassName = "c-profile-icon-with-drawer";
-
 const bubbleTypes = Object.freeze({
   none: "none",
   profileIcon: "profileIcon",
@@ -217,17 +215,17 @@ export const ProfileIconWithDrawer = ({
               onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
             >
               <div
-                className={`${baseClassName}__bottom-wrapper-item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top--none@mobile u-padding-top--none@tablet`}
+                className={`${baseClassName}__bottom-wrapper-item ${baseClassName}__item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top--none@mobile u-padding-top--none@tablet`}
               >
                 <ReelRacesDrawer {...reelRaceProps} />
               </div>
             </SidebarElementWrapper>
           )}
-          <div className="u-padding-bottom">
+          <div className={`${baseClassName}__item u-padding-bottom`}>
             <InGameAdventureWidget />
           </div>
           <MobileAndTablet>
-            <div className="u-padding-bottom">
+            <div className={`${baseClassName}__item u-padding-bottom`}>
               <InGameDrawer
                 onLiveChatClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
