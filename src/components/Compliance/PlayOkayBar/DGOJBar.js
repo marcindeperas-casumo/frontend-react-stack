@@ -2,7 +2,6 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
@@ -21,9 +20,6 @@ type Props = PauseResumeProps & {
 
 export const DGOJBar = ({ pauseGame, resumeGame, className = "" }: Props) => (
   <Flex justify="end" align="center" className={className}>
-    <Flex.Block>
-      <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
-    </Flex.Block>
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href={links.playokay}>
         <PlayOkayIcon className="c-playokay-bar__icon" />

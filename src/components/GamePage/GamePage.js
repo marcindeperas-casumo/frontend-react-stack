@@ -12,17 +12,18 @@ import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRace
 import type { GameProviderModel } from "GameProviders";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { usePin } from "Utils/hooks/usePin";
-import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { playingSelector } from "Models/playing";
 import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { isDesktop } from "Components/ResponsiveLayout/index";
+import { GamePageHeader } from "Components/GamePageHeader";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
+  gameBackground?: string,
   gameProviderModel: GameProviderModel,
   pauseGame: () => Promise<void>,
   resumeGame: () => void,
@@ -32,6 +33,7 @@ type Props = {
 };
 
 export const GamePage = ({
+  gameBackground = "",
   gameProviderModel,
   pauseGame,
   resumeGame,
@@ -60,14 +62,15 @@ export const GamePage = ({
             className="u-width--full u-height--full t-background-grey-90 t-color-white"
             direction="vertical"
             spacing="none"
+            style={{ backgroundImage: `url('${gameBackground || ""}')` }}
           >
             <Flex.Item>
-              <PlayOkayBar pauseGame={pauseGame} resumeGame={resumeGame} />
+              <GamePageHeader pauseGame={pauseGame} resumeGame={resumeGame} />
             </Flex.Item>
             <Flex
               direction="horizontal"
               spacing="none"
-              className="u-height--full"
+              className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
             >
               {pinnedDrawers.length > 0 && (
                 <Flex.Item>

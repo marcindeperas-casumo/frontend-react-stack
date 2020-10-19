@@ -1,19 +1,18 @@
 //@flow
 import React, { useState, useEffect, useContext } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
 import cx from "classnames";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
-import {
-  type CurrentReelRaceInfo,
-  useCurrentReelRaceInfo,
-} from "Utils/hooks/useCurrentReelRaceInfo";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
 import { InGameDrawer } from "Components/InGameDrawer";
+import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
   injectIntercomScript,
   registerPauseResumeGame,
@@ -25,19 +24,14 @@ import tracker from "Services/tracker";
 import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { isDesktop } from "Components/ResponsiveLayout";
+import { isDesktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
-
 import "./ProfileIconWithDrawer.scss";
 
-type ContainerProps = {
-  currentReelRace: CurrentReelRaceInfo,
-};
-
-type Props = PauseResumeProps & ContainerProps & IntercomPlayerDetailsProps;
+type Props = PauseResumeProps & IntercomPlayerDetailsProps;
 
 const baseClassName = "c-profile-icon-with-drawer";
 
@@ -150,9 +144,9 @@ export const ProfileIconWithDrawer = ({
         onClick={openDrawer}
         className={cx(
           baseClassName,
-          "u-position-relative u-zindex--content-overlay u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left",
-          "u-cursor--pointer",
+          "u-position-relative u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-margin-right--md",
+          "u-cursor--pointer u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
           }
@@ -195,39 +189,45 @@ export const ProfileIconWithDrawer = ({
           className={`${baseClassName}__chevron-icon t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
         />
       </div>
-      <ChevronUpIcon
-        className={cx("t-color-white u-margin-left", {
-          "u-display--none": !isDrawerOpen,
-        })}
+      <Flex
+        className={cx(
+          `${baseClassName}__close-drawer`,
+          "u-position-relative u-height--3xlg u-width--3xlg",
+          "t-border-r--circle u-margin-right--md u-cursor--pointer",
+          "t-color-white u-position-absolute@mobile u-zindex--header",
+          {
+            "u-display--none": !isDrawerOpen,
+          }
+        )}
+        align="center"
+        justify="center"
         onClick={() => setDrawerOpen(false)}
-      />
+      >
+        <Flex.Item>
+          <ChevronUpIcon />
+        </Flex.Item>
+      </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-inset-x u-width--1/5@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop u-padding@mobile u-padding@tablet u-padding-top--none@mobile u-padding-top--none@tablet`}
         >
-          <div
-            className={`${baseClassName}__bottom-wrapper u-width--2/3 u-width--full@mobile u-padding-bottom--2xlg o-inset-left--none@desktop u-margin-left--none@desktop`}
-          >
-            {shouldShowReelRace && (
-              <SidebarElementWrapper
-                pinnable={isDesktop()}
-                onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-              >
-                <div
-                  className={`${baseClassName}__bottom-wrapper-item u-width--full u-padding u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none@desktop`}
-                >
-                  <ReelRacesDrawer {...reelRaceProps} />
-                </div>
-              </SidebarElementWrapper>
-            )}
-            <div
-              className={cx(
-                `${baseClassName}__bottom-wrapper-item u-inset-x t-border-r u-width--full u-margin--auto u-padding u-padding-right--none@desktop u-padding-left--none@desktop`,
-                {
-                  "u-margin-top": !currentReelRace?.isInProgress,
-                }
-              )}
+          {shouldShowReelRace && (
+            <SidebarElementWrapper
+              pinnable={isDesktop()}
+              onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
             >
+              <div
+                className={`${baseClassName}__bottom-wrapper-item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top@mobile u-padding-top@tablet`}
+              >
+                <ReelRacesDrawer {...reelRaceProps} />
+              </div>
+            </SidebarElementWrapper>
+          )}
+          <div className="u-padding-bottom">
+            <InGameAdventureWidget />
+          </div>
+          <MobileAndTablet>
+            <div className="u-padding-bottom">
               <InGameDrawer
                 onLiveChatClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
@@ -240,7 +240,7 @@ export const ProfileIconWithDrawer = ({
                 }}
               />
             </div>
-          </div>
+          </MobileAndTablet>
         </div>
       )}
     </React.Fragment>
