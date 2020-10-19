@@ -3,6 +3,7 @@ import * as R from "ramda";
 import { shallow } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import ScrollablePaginated from "Components/ScrollablePaginated";
+import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import {
@@ -12,10 +13,6 @@ import {
   renderAllSportsTab,
   renderLiveButton,
 } from "Features/sports/components/SportsNav";
-import {
-  SportTab,
-  LiveTab,
-} from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
 const liveState = {
@@ -77,29 +74,22 @@ describe("<SportsMainNav />", () => {
   });
 
   describe("renderLiveButton", () => {
-    test("returns a <LiveTab> component and passes the necessary props", () => {
+    test("returns a <Pill> component and passes the necessary props", () => {
       const buttonProps = {
         navItems: "...",
         labels: { live: "..." },
         canEdit: "...",
         onEdit: "...",
       };
-      const sportCount = 1;
       const isLiveActive = false;
       const setIsLiveActive = () => {};
       const rendered = shallow(
         <div>
-          {renderLiveButton(
-            buttonProps,
-            [isLiveActive, setIsLiveActive],
-            sportCount
-          )}
+          {renderLiveButton(buttonProps, [isLiveActive, setIsLiveActive])}
         </div>
       );
-      const renderedProps = rendered.find("SportsNavLiveTab").props();
+      const renderedProps = rendered.find("Pill").props();
 
-      expect(renderedProps.count).toBe(sportCount);
-      expect(renderedProps.label).toBe(buttonProps.labels.live);
       expect(renderedProps.isActive).toBe(isLiveActive);
       expect(renderedProps.onClick).toBeDefined();
     });
@@ -110,7 +100,7 @@ describe("<SportsMainNav />", () => {
       const rendered = shallow(
         renderTabList(navItems, props)({ columnIndex: 0 })
       );
-      expect(rendered.find(LiveTab)).toHaveLength(1);
+      expect(rendered.find(Pill)).toHaveLength(1);
     });
 
     test("renders no sports tab for the 2nd position - when live mode is disabled", () => {
@@ -119,7 +109,7 @@ describe("<SportsMainNav />", () => {
       );
 
       expect(rendered.find(DictionaryTerm)).toHaveLength(0);
-      expect(rendered.find(SportTab)).toHaveLength(0);
+      expect(rendered.find(Pill)).toHaveLength(0);
     });
 
     test("renders an all sports tab for the 2nd position - when live mode is enabled", () => {
@@ -135,7 +125,7 @@ describe("<SportsMainNav />", () => {
       const rendered = shallow(
         renderTabList(navItems, props)({ columnIndex: 2 })
       );
-      expect(rendered.find(SportTab)).toHaveLength(1);
+      expect(rendered.find(Pill)).toHaveLength(1);
     });
 
     test("renders an sports tab for 2nd-to-last position", () => {
@@ -143,7 +133,7 @@ describe("<SportsMainNav />", () => {
         renderTabList(navItems, props)({ columnIndex: navItems.length })
       );
 
-      expect(rendered.find(SportTab)).toHaveLength(1);
+      expect(rendered.find(Pill)).toHaveLength(1);
     });
 
     test("returns an EditPillsButton when rendering the last item", () => {
@@ -171,7 +161,7 @@ describe("<SportsMainNav />", () => {
 
     test("returns null when isLiveActive is true", () => {
       const rendered = shallow(
-        renderEditButton(editButtonProps, liveState.active)
+        <div>{renderEditButton(editButtonProps, liveState.active)}</div>
       );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(0);
@@ -179,7 +169,9 @@ describe("<SportsMainNav />", () => {
 
     test("returns null when canEdit is false", () => {
       const rendered = shallow(
-        renderEditButton({ ...props, canEdit: false }, liveState.inactive)
+        <div>
+          {renderEditButton({ ...props, canEdit: false }, liveState.inactive)}
+        </div>
       );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(0);
