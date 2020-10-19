@@ -29,7 +29,7 @@ export const PlayOkayBar = ({ jurisdiction, pauseGame, resumeGame }: Props) => {
     <PlayOkarBarComponent
       pauseGame={pauseGame}
       resumeGame={resumeGame}
-      className="c-playokay-bar t-background-grey-90 t-color-white u-padding-x u-position-relative"
+      className="c-playokay-bar t-background-grey-90 t-color-white u-padding-right u-position-relative"
     />
   );
 };

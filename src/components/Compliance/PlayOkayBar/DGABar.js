@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
@@ -24,9 +23,6 @@ type Props = PauseResumeProps & {
 
 export const DGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
   <Flex justify="end" align="center" spacing="md" className={className}>
-    <Flex.Block>
-      <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
-    </Flex.Block>
     <Flex.Item>
       <Text tag="span" size="2xs">
         <a
