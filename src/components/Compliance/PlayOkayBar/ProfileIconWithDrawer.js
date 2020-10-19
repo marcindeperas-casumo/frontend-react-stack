@@ -87,9 +87,7 @@ export const ProfileIconWithDrawer = ({
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
-
   useReelRaceLeaderboardModal(currentReelRace);
-
   useEffect(() => {
     const switchIconTo = iconType => {
       setSecondaryIconType(iconType);
@@ -213,6 +211,7 @@ export const ProfileIconWithDrawer = ({
             <SidebarElementWrapper
               pinnable={isDesktop()}
               onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+              className={`${baseClassName}__item u-margin-left--none@desktop`}
             >
               <div
                 className={`${baseClassName}__bottom-wrapper-item ${baseClassName}__item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top--none@mobile u-padding-top--none@tablet`}
@@ -221,7 +220,9 @@ export const ProfileIconWithDrawer = ({
               </div>
             </SidebarElementWrapper>
           )}
-          <div className={`${baseClassName}__item u-padding-bottom`}>
+          <div
+            className={`${baseClassName}__item u-padding-bottom u-margin-left--none@desktop`}
+          >
             <InGameAdventureWidget />
           </div>
           <MobileAndTablet>

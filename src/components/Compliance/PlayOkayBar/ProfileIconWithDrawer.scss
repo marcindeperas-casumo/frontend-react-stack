@@ -9,10 +9,6 @@
     top: auto;
   }
 
-  &__bottom-wrapper-item {
-    box-sizing: border-box;
-  }
-
   &__close-drawer {
     left: map-get($cudl-spacer-sizes, default);
 
@@ -26,6 +22,11 @@
   &__item {
     margin: 0 auto;
     max-width: 442px;
+    @include cudl-breakpoint(desktop) {
+      // Figma drawer width
+      // https://www.figma.com/file/DJR5L5C4NIpKBtgYDaZUCC/In-game-Desktop
+      width: 280px;
+    }
   }
 
   &__content {
@@ -57,9 +58,9 @@
         transparent 70%
       );
       left: 0;
+      padding-right: 150px;
       padding-top: 98px;
       top: -16px;
-      width: 312px !important;
     }
   }
 }
