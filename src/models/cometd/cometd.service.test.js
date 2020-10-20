@@ -25,7 +25,7 @@ describe("Models/Cometd/Service", () => {
 
     await cometdService.subscribe(channel, callback);
 
-    expect(cometd.subscribe).toBeCalledWith(channel, callback);
+    expect(cometd.subscribe).toHaveBeenCalledTimes(1);
   });
 
   test("calls cometd.subscribe for a channel only once", async () => {

@@ -32,13 +32,19 @@ export const CometdFactory = ({ cometd, url }) => {
   async function subscribe(channel, callback, ...args) {
     incrementSubcriptionCounter(channel);
 
+    if (!subscriptionCallbacks[channel]) {
+      subscriptionCallbacks[channel] = [];
+    }
+
+    // eslint-disable-next-line fp/no-mutating-methods
+    subscriptionCallbacks[channel].push(callback);
+
     if (!subscriptions[channel]) {
       subscriptions[channel] = await cometd.subscribe(
         channel,
-        callback,
+        x => (subscriptionCallbacks[channel] || []).forEach(fn => fn(x)),
         ...args
       );
-      subscriptionCallbacks[channel] = callback;
     }
   }
 
@@ -56,7 +62,8 @@ export const CometdFactory = ({ cometd, url }) => {
 
   function emit(channel, data) {
     const callbacks = getCallbacksForChannel(channel) || [];
-    const callCallback = callback => callback({ data, channel });
+    const callCallback = callback =>
+      callback.forEach(fn => fn({ data, channel }));
 
     callbacks.forEach(callCallback);
   }
