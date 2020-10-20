@@ -76,7 +76,7 @@ export const PiqIframeComponent = ({
   return (
     <iframe
       ref={iframe}
-      className="c-cvv-piq-iframe u-line-height"
+      className="c-cvv-piq-iframe"
       title={`piqIframe_${id}`}
       src={url}
     />
