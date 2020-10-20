@@ -5,7 +5,10 @@ import {
   IFRAME_TYPE_TO_CARD,
   IFRAME_MODE,
 } from "Models/payments";
-import { piqIframeUrlBase as urlBase, composeIframeUrl } from "./constants";
+import {
+  piqIframeUrlBase as urlBase,
+  composeIframeUrl,
+} from "./PiqIframe.constants";
 import "./PiqIframe.scss";
 
 export type Props = {

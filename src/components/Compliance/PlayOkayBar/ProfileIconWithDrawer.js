@@ -1,12 +1,13 @@
 //@flow
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-import cx from "classnames";
 import { useSelector } from "react-redux";
+import cx from "classnames";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { ProfileIcon } from "Components/ProfileIcon";
@@ -18,20 +19,20 @@ import {
   openChatWindow,
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
-import tracker from "Services/tracker";
-import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
-import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { playingSelector } from "Models/playing";
+import tracker from "Services/tracker";
+import { ReelRaceIcon } from "Components/ReelRaceIcon";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
+import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
+import { isDesktop, MobileAndTablet } from "Components/ResponsiveLayout";
+import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { MobileAndTablet } from "Components/ResponsiveLayout/index";
+import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
-
 const baseClassName = "c-profile-icon-with-drawer";
-
 const bubbleTypes = Object.freeze({
   none: "none",
   profileIcon: "profileIcon",
@@ -67,9 +68,11 @@ export const ProfileIconWithDrawer = ({
   const [secondaryIconType, setSecondaryIconType] = React.useState<
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
-
   const isChatDisabled = isNativeByUserAgent();
   const transitionTimer = useTimeoutFn();
+  const isNative = isNativeByUserAgent();
+  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
+  const currentReelRace = isNative ? null : currentReelRaceFromHook;
 
   useEffect(() => {
     if (isChatDisabled) {
@@ -79,18 +82,10 @@ export const ProfileIconWithDrawer = ({
     injectIntercomScript({ playerId, email, casumoName, playerName });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
-
-  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
-  const currentReelRace = isNativeByUserAgent()
-    ? null
-    : currentReelRaceFromHook;
-
   useReelRaceLeaderboardModal(currentReelRace);
-
   useEffect(() => {
     const switchIconTo = iconType => {
       setSecondaryIconType(iconType);
@@ -116,10 +111,25 @@ export const ProfileIconWithDrawer = ({
 
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
-
-  const commonRaceProps = {
+  const reelRaceProps = {
     currentRace: currentReelRace,
   };
+
+  const { pinnedDrawers, togglePin } = useContext(PinnedDrawersContext);
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pinnedDrawers]);
+
+  const isDesktopAndUnpinnedRRDrawerAndActiveRR =
+    isDesktop() &&
+    !pinnedDrawers.includes(DRAWERS.REEL_RACES) &&
+    currentReelRace?.isInProgress;
+
+  const isMobileTabletAndActiveRR =
+    !isDesktop() && currentReelRace?.isInProgress;
+
+  const shouldShowReelRace =
+    isDesktopAndUnpinnedRRDrawerAndActiveRR || isMobileTabletAndActiveRR;
 
   return (
     <React.Fragment>
@@ -128,8 +138,8 @@ export const ProfileIconWithDrawer = ({
         className={cx(
           baseClassName,
           "u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "u-position-absolute@mobile u-zindex--header",
+          "t-border-r--circle u-margin-right--md",
+          "u-cursor--pointer u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
           }
@@ -150,7 +160,7 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              <PrimaryIcon {...commonRaceProps} />
+              <PrimaryIcon {...reelRaceProps} />
             </div>
           )}
           {SecondaryIcon && (
@@ -163,7 +173,7 @@ export const ProfileIconWithDrawer = ({
                 }
               )}
             >
-              <SecondaryIcon {...commonRaceProps} />
+              <SecondaryIcon {...reelRaceProps} />
             </div>
           )}
         </div>
@@ -194,10 +204,18 @@ export const ProfileIconWithDrawer = ({
         <div
           className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
         >
-          <div className="u-padding-x u-padding-top--md u-padding-left--md@desktop">
-            {currentReelRace?.isInProgress && (
-              <div className="u-padding-bottom">
-                <ReelRacesDrawer {...commonRaceProps} />
+          <div className="u-padding-left u-padding-left--md@desktop u-padding-right u-padding-right--none@desktop u-padding-top--md u-padding-top--none@desktop">
+            {shouldShowReelRace && (
+              <div className={`${baseClassName}__item u-padding-bottom`}>
+                <SidebarElementWrapper
+                  pinnable={isDesktop()}
+                  onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+                  className={`${baseClassName}__item u-margin-left--none@desktop`}
+                >
+                  <div className={`${baseClassName}__bottom-wrapper-item`}>
+                    <ReelRacesDrawer {...reelRaceProps} />
+                  </div>
+                </SidebarElementWrapper>
               </div>
             )}
             <div className={`${baseClassName}__item u-padding-bottom`}>
