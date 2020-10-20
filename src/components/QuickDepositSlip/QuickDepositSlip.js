@@ -84,7 +84,7 @@ export const QuickDepositSlip = ({
                   onSuccess={onCvvSuccess}
                 />
               </Flex.Item>
-              <Flex.Item>
+              <Flex.Item className="u-margin-top--none">
                 <Text
                   tag="span"
                   size="sm"
