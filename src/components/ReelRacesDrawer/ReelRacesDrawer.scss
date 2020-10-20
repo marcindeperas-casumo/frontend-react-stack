@@ -2,7 +2,7 @@
 .c-reel-races-drawer {
   background: radial-gradient(
     ellipse 190% 90% at 50% 90%,
-    rgba(26, 33, 44, 0.96) 50%,
+    rgba(26, 33, 44, 0.96) 55%,
     rgba(26, 33, 44, 1) 50%
   );
 
@@ -10,8 +10,8 @@
 
   @include cudl-breakpoint(desktop) {
     background: radial-gradient(
-      ellipse 150% 66% at 50% 112%,
-      rgba(26, 33, 44, 0.96) 50%,
+      ellipse 210% 66% at 50% 112%,
+      rgba(26, 33, 44, 0.96) 70%,
       #1a212c 50%
     );
   }

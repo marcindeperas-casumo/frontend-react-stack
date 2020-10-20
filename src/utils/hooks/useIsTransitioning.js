@@ -3,7 +3,7 @@ import * as React from "react";
 import { useTimeoutFn } from "Utils/hooks";
 
 type Props = {
-  enterPredicate: (tweenedValue: number) => boolean,
+  enterPredicate: () => boolean,
   tweenedValue: number,
   duration: number,
 };
@@ -21,7 +21,7 @@ export function useIsTransitioning({
   const { clear, scheduleIn } = useTimeoutFn();
 
   React.useEffect(() => {
-    if (enterPredicate(tweenedValue)) {
+    if (enterPredicate()) {
       setIsTransitioning(true);
 
       scheduleIn(() => {

@@ -24,6 +24,7 @@ export function ReelRaceBoosters({
       direction="horizontal"
       align="center"
       justify="center"
+      spacing="lg"
     >
       <Flex.Item>
         <WinsInARowBooster winsInARow={winsInARow} className="u-width--4xlg" />

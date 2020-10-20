@@ -5,6 +5,6 @@
 
   &--transitioning {
     transform: scale(1);
-    transition-delay: var(--circle-trans-delay);
+    transition-delay: 1s;
   }
 }
