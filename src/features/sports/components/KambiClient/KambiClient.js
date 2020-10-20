@@ -1,7 +1,9 @@
 /* @flow */
 import React from "react";
+import gql from "graphql-tag";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
+import { getApolloContext } from "@apollo/react-hooks";
 import { pathOr, pick } from "ramda";
 import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
@@ -18,6 +20,12 @@ import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 
 import "./KambiClient.scss";
+
+export const SPORTS_FIRST_BET_QUERY = gql`
+  query SportsFirstBetQuery {
+    sportsFirstBet
+  }
+`;
 
 type Props = {
   bootstrapUrl: string,
@@ -36,6 +44,8 @@ type Props = {
 };
 
 export default class KambiClient extends React.Component<Props> {
+  static contextType = getApolloContext();
+
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
@@ -167,6 +177,27 @@ export default class KambiClient extends React.Component<Props> {
     });
   };
 
+  trackBetPlaced = async (revenue: string, type: string) => {
+    const { data } = await this.context.client.query({
+      query: SPORTS_FIRST_BET_QUERY,
+      fetchPolicy: "network-only",
+    });
+
+    if (data.sportsFirstBet) {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_FIRST_BET_PLACED, {
+        [EVENT_PROPS.TYPE]: type,
+        [EVENT_PROPS.STAKE]: revenue,
+      });
+    }
+    // null: no bets at all, false: it has more than one bet
+    if (data.sportsFirstBet === false) {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_BET_PLACED, {
+        [EVENT_PROPS.TYPE]: type,
+        [EVENT_PROPS.STAKE]: revenue,
+      });
+    }
+  };
+
   emitBetslipVisibleToKoStack(
     isTabletDevice: boolean,
     isBetslipVisible: boolean
@@ -185,7 +216,15 @@ export default class KambiClient extends React.Component<Props> {
     if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
       return;
     }
+
     // `dataLayerPushed` events
+    if (event.data.event === "kambi place bet") {
+      this.trackBetPlaced(
+        event.data.kambi?.ecommerce?.purchase?.actionField?.revenue,
+        event.data.kambi?.hit?.bet?.type
+      );
+    }
+
     if (event.data.event === "kambi add to betslip") {
       event.data.kambi?.hit?.categories?.is_live &&
         this.trackAddToBetslipIfLife(event.data.kambi);
