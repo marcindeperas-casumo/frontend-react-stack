@@ -204,7 +204,7 @@ export const ProfileIconWithDrawer = ({
         <div
           className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
         >
-          <div className="u-padding-left--md@desktop u-padding-top--md u-padding-top--none@desktop">
+          <div className="u-padding-left u-padding-left--md@desktop u-padding-right u-padding-right--none@desktop u-padding-top--md u-padding-top--none@desktop">
             {shouldShowReelRace && (
               <div className={`${baseClassName}__item u-padding-bottom`}>
                 <SidebarElementWrapper
