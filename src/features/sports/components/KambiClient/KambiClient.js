@@ -2,7 +2,6 @@
 import React from "react";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import { getApolloContext } from "@apollo/react-hooks";
 import { pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
@@ -31,8 +30,6 @@ type Props = {
 };
 
 export default class KambiClient extends React.Component<Props> {
-  static contextType = getApolloContext();
-
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
