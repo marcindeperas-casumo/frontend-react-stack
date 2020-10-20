@@ -11,7 +11,17 @@ import {
   KO_APP_EVENT_BETSLIP_VISIBLE,
 } from "Src/constants";
 
-export const SPORTS_FIRST_BET_QUERY = gql`
+const KAMBI_EVENTS = {
+  BETSLIP_STATUS: "kambi betslip status",
+  PLACE_BET: "kambi place bet",
+  ADD_TO_BETSLIP: "kambi add to betslip",
+  PAGE_VIEW: "kambi page view",
+  PROMO_CARD_CLICK: "kambi promo card click",
+  SANDWICH_FILTER_CLICK: "kambi sandwich filter click",
+  MORE_WAGERS_CLICK: "kambi kambi more wagers click",
+};
+
+const SPORTS_FIRST_BET_QUERY = gql`
   query SportsFirstBetQuery {
     sportsFirstBet
   }
@@ -117,21 +127,21 @@ export function kambiClientEventHandler(event: any) {
     return;
   }
 
-  if (event.data.event === "kambi betslip status" && !isDesktop()) {
+  if (event.data.event === KAMBI_EVENTS.BETSLIP_STATUS && !isDesktop()) {
     emitBetslipVisibleToKoStack(
       isTablet(),
       Boolean(event.data.kambi?.betslip?.quantity)
     );
   }
 
-  if (event.data.event === "kambi place bet") {
+  if (event.data.event === KAMBI_EVENTS.PLACE_BET) {
     trackBetPlaced(
       event.data.kambi?.ecommerce?.purchase?.actionField?.revenue,
       event.data.kambi?.hit?.bet?.type
     );
   }
 
-  if (event.data.event === "kambi add to betslip") {
+  if (event.data.event === KAMBI_EVENTS.ADD_TO_BETSLIP) {
     event.data.kambi?.hit?.categories?.is_live &&
       trackAddToBetslipIfLife(event.data.kambi);
 
@@ -139,19 +149,19 @@ export function kambiClientEventHandler(event: any) {
       trackHomeOddsClicked(event.data.kambi?.hit?.categories);
   }
 
-  if (event.data.event === "kambi page view") {
+  if (event.data.event === KAMBI_EVENTS.PAGE_VIEW) {
     trackPageView(event.data.kambi?.page);
   }
 
-  if (event.data.event === "kambi promo card click") {
+  if (event.data.event === KAMBI_EVENTS.PROMO_CARD_CLICK) {
     trackHomeCardClicked(event.data.kambi?.interaction?.label);
   }
 
-  if (event.data.event === "kambi sandwich filter click") {
+  if (event.data.event === KAMBI_EVENTS.SANDWICH_FILTER_CLICK) {
     trackHomeFilterClicked(event.data.kambi?.interaction?.label);
   }
 
-  if (event.data.event === "kambi kambi more wagers click") {
+  if (event.data.event === KAMBI_EVENTS.MORE_WAGERS_CLICK) {
     trackHomeMatchClicked(event.data.kambi?.page);
   }
 }
