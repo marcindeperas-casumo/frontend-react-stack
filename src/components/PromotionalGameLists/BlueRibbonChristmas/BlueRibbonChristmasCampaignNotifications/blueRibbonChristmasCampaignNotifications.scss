@@ -1,0 +1,36 @@
+$jackpot-win-background: rgba(39, 12, 90, 0.8);
+$jackpot-win-amount-border: #955a04;
+
+.c-game-notification--reset-top-left {
+  left: -16px;
+  position: absolute;
+  top: -64px;
+}
+
+.c-game-notification--win-background {
+  background-color: $jackpot-win-background;
+}
+
+.c-game-notification--absolute-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.c-game-notification__win-info {
+  box-shadow: 0px 4px 4px 0px #000 51%;
+}
+
+.c-game-notification__win-info--size {
+  width: 343px;
+}
+
+.c-game-notification__win-amount--size {
+  height: 98px;
+}
+
+.c-game-notification__win-amount--effect {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 4px $jackpot-win-amount-border;
+}

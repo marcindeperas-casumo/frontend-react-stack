@@ -6,18 +6,11 @@ import { ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslations } from "Utils/hooks";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import {
-  colors,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "../blueRibbonConsts";
 import WinBackground from "./win.svg";
-
-const positionCenter = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-};
+import "./blueRibbonChristmasCampaignNotifications.scss";
 
 export function BlueRibbonChristmasCampaignNotifications() {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
@@ -31,28 +24,18 @@ export function BlueRibbonChristmasCampaignNotifications() {
   }
 
   return (
-    <div
-      className="u-position-absolute u-width--screen u-height--screen"
-      style={{
-        top: -64,
-        left: -16,
-        backgroundColor: colors.jackpotWinBackground,
-      }}
-    >
-      <WinBackground style={positionCenter} />
+    <div className="u-position-absolute u-width--screen u-height--screen c-game-notification--reset-top-left">
+      <WinBackground className="c-game-notification--absolute-center c-game-notification--win-background" />
       <Flex
         direction="vertical"
         align="center"
         justify="center"
-        style={{ ...positionCenter, width: 343 }}
+        className="c-game-notification--absolute-center c-game-notification__win-info--size"
       >
         <Text
           tag="span"
           size="md"
-          className="t-color-yellow-30 u-font-weight-black u-text-align-center u-width--full"
-          style={{
-            boxShadow: "0px 4px 4px 0px #000000 51%",
-          }}
+          className="t-color-yellow-30 u-font-weight-black u-text-align-center u-width--full c-game-notification__win-info"
         >
           {t[type]}
         </Text>
@@ -67,15 +50,11 @@ export function BlueRibbonChristmasCampaignNotifications() {
 
 function JackpotAmount({ value }: { value: string }) {
   return (
-    <Flex justify="center" style={{ height: 98 }}>
+    <Flex justify="center" className="c-game-notification__win-amount--size">
       <Text
         tag="span"
         size="3xlg"
-        className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute"
-        style={{
-          paintOrder: "stroke fill",
-          WebkitTextStroke: `4px ${colors.jackpotWinAmountBorder}`,
-        }}
+        className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute c-game-notification__win-amount--effect"
       >
         {value}
       </Text>
