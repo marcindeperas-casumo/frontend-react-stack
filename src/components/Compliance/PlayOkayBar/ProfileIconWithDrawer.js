@@ -202,7 +202,7 @@ export const ProfileIconWithDrawer = ({
       </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg  u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--header u-width--full u-width--1/5@desktop`}
         >
           <div className="u-padding-left--md@desktop u-padding-top--md u-padding-top--none@desktop">
             {shouldShowReelRace && (
