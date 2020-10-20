@@ -1,6 +1,5 @@
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
-  box-sizing: content-box;
   left: map-get($cudl-spacer-sizes, default);
   top: map-get($cudl-spacer-sizes, default);
 
@@ -10,9 +9,7 @@
   }
 
   &__close-drawer {
-    background-color: cudl-palette(grey, "70");
     left: map-get($cudl-spacer-sizes, default);
-    top: map-get($cudl-spacer-sizes, default);
 
     @include cudl-breakpoint(desktop) {
       background-color: cudl-palette(grey, "90");
