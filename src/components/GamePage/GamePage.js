@@ -80,7 +80,6 @@ export const GamePage = ({
                     <SidebarElementWrapper
                       pinnable
                       onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-                      className="u-zindex--content-overlay"
                     >
                       <ReelRacesDrawer {...reelRaceProps} />
                     </SidebarElementWrapper>
