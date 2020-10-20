@@ -43,7 +43,8 @@ export const QuickDepositSlipController = () => {
     dispatch(setQuickDepositMethod(null));
   };
 
-  //console.log(paymentRequest);
+  // const requestError = paymentRequest.message?.code;
+  // react on request error if it's in the state
 
   return (
     <div className="t-border-r-top-left--md t-border-r-top-right--md u-padding--md t-background-white o-inset-left--none o-inset-bottom--none o-position--fixed ">

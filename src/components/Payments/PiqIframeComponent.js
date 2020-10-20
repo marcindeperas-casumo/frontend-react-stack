@@ -4,6 +4,7 @@ import {
   IFRAME_MESSAGE_ACTION,
   IFRAME_TYPE_TO_CARD,
   IFRAME_MODE,
+  IFRAME_PIQ_ENV,
 } from "Models/payments";
 import {
   piqIframeUrlBase as urlBase,
@@ -12,9 +13,9 @@ import {
 import "./PiqIframe.scss";
 
 export type Props = {
-  id: number,
+  id: number | string,
   mode: $Values<typeof IFRAME_MODE>,
-  env: string,
+  env: $Values<typeof IFRAME_PIQ_ENV>,
   luhnCheck: boolean,
   onSuccess: (token: string) => {},
   onValidation: (errorCode: string) => {},

@@ -61,10 +61,10 @@ export const QuickDepositSlip = ({
     });
 
   const isProcessing = requestStatus.state === requestState.PROCESSING;
-  //const hasErrors = !R.isEmpty(formErrors);
+  const hasErrors = !R.isEmpty(formErrors);
 
-  const isDepositDisabled = Boolean(isProcessing);
-  //console.log(Boolean(isProcessing)); //always boolean, true or false
+  const isDepositButtonDisabled =
+    isProcessing || hasErrors || !Boolean(cvvValue);
 
   return (
     <Flex spacing="lg" justify="space-between" direction="vertical">
@@ -116,7 +116,7 @@ export const QuickDepositSlip = ({
             <ButtonPrimary
               size="md"
               onClick={onDepositClick}
-              isDisabled={Boolean(isDepositDisabled)}
+              isDisabled={isDepositButtonDisabled}
               isLoading={isProcessing}
             >
               {deposit_cta_text}

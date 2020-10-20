@@ -7,10 +7,7 @@ import {
   piqConfigSelector,
   localeSelector,
 } from "Models/handshake";
-import {
-  makePIQDepositRequest,
-  getPaymentSessionToken,
-} from "Api/api.payments";
+import { makePIQDepositRequest } from "Api/api.payments";
 import {
   setPaymentRequestProcessing,
   setPaymentRequestSuccess,
@@ -33,8 +30,6 @@ export function* quickDepositSaga(
 
   //add affiliateId, add gaClientId
 
-  const { id } = yield call(getPaymentSessionToken);
-
   //eslint-disable-next-line no-template-curly-in-string
   const ptxIdTemplate = "?txId=${ptx.id}";
 
@@ -52,7 +47,6 @@ export function* quickDepositSaga(
     },
     merchantId,
     userId,
-    sessionId: id,
   };
 
   const response = yield call(

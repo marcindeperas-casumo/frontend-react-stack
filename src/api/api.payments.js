@@ -14,4 +14,21 @@ export const makePIQDepositRequest = (
   payload: any,
   locale: string
 ) =>
-  http.post(`${api}${methodType}/deposit/process/?locale=${locale}`, payload);
+  getPaymentSessionToken().then(session =>
+    http.post(`${api}${methodType}/deposit/process/?locale=${locale}`, {
+      ...payload,
+      sessionId: session.id,
+    })
+  );
+
+export const getTransactionStatus = (
+  api: string,
+  playerId: string,
+  merchantId: string,
+  txId: string
+) =>
+  getPaymentSessionToken().then(session =>
+    http.get(
+      `${api}user/transaction/${merchantId}/${playerId}/${txId}/status?sessionId=${session.id}`
+    )
+  );
