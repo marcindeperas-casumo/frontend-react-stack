@@ -31,3 +31,4 @@ export {
 } from "./useAvailableQuickDepositMethods";
 export { useTimeoutFn } from "./useTimeoutFn";
 export { useIsTransitioning } from "./useIsTransitioning";
+export { usePin } from "./usePin";
