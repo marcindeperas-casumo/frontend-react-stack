@@ -44,11 +44,12 @@ export function ReelRaceLeaderboardModal({ acceptModal, config }: Props) {
     playerName,
   } = config.input;
   const winnerName = R.prop("playerName", R.head(leaderboard));
+  const playerInTop3 = position < 4;
   const playerOutsideLeaderboard = position > LEADERBOARD_SIZE;
   const placeSuffix = getOrdinalSuffix({ locale, amount: position });
   const featuredSubtitle = (
     <Text tag="div" size="lg">
-      {position < 4
+      {playerInTop3
         ? interpolateWithJSX(
             {
               place: (
@@ -93,11 +94,11 @@ export function ReelRaceLeaderboardModal({ acceptModal, config }: Props) {
       />
       {playerOutsideLeaderboard && (
         <ReelRaceLeaderboardListEntry
-          className="o-position--sticky o-inset-bottom--none"
           points={points}
           position={position}
           text={playerName}
           highlighted
+          stuckToBottom
         />
       )}
     </CudlModal>

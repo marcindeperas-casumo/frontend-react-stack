@@ -17,6 +17,7 @@ type Props = {
   className?: string,
   showLaurel?: boolean,
   inverted?: boolean,
+  stuckToBottom?: boolean,
 };
 
 export const ReelRaceLeaderboardListEntry = React.forwardRef<
@@ -33,10 +34,16 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       highlighted,
       inverted,
       className,
+      stuckToBottom,
     }: Props,
     ref: React.Ref<any>
   ) => (
-    <div ref={ref}>
+    <div
+      ref={ref}
+      className={cx({
+        "o-position--sticky o-inset-bottom--none": stuckToBottom,
+      })}
+    >
       <Flex
         align="center"
         className={cx(
