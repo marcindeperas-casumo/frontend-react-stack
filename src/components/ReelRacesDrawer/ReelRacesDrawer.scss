@@ -6,8 +6,6 @@
     rgba(26, 33, 44, 1) 50%
   );
 
-  box-sizing: border-box;
-
   z-index: cudl-z(main-nav);
 
   @include cudl-breakpoint(desktop) {
@@ -16,7 +14,6 @@
       rgba(26, 33, 44, 0.96) 50%,
       #1a212c 50%
     );
-    width: 280px !important;
   }
 
   &__laurel {

@@ -73,7 +73,7 @@ export const GamePage = ({
               className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
             >
               {pinnedDrawers.length > 0 && (
-                <Flex.Item>
+                <Flex.Item className="u-padding-right">
                   {/* sidebar for pinned items */}
                   {sidebar}
                   {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (

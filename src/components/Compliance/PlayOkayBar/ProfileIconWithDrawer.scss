@@ -1,6 +1,5 @@
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
-  box-sizing: content-box;
   left: map-get($cudl-spacer-sizes, default);
   top: map-get($cudl-spacer-sizes, default);
 
@@ -22,11 +21,6 @@
   &__item {
     margin: 0 auto;
     max-width: 442px;
-    @include cudl-breakpoint(desktop) {
-      // Figma drawer width
-      // https://www.figma.com/file/DJR5L5C4NIpKBtgYDaZUCC/In-game-Desktop
-      width: 280px;
-    }
   }
 
   &__content {
@@ -48,7 +42,6 @@
 
   &__bottom-wrapper-bg {
     background: linear-gradient(white, transparent);
-    box-sizing: border-box;
     padding-bottom: 150px;
 
     @include cudl-breakpoint(desktop) {

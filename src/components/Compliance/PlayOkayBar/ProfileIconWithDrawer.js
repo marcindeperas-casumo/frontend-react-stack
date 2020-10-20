@@ -68,10 +68,8 @@ export const ProfileIconWithDrawer = ({
   const [secondaryIconType, setSecondaryIconType] = React.useState<
     $Keys<typeof bubbleIcons>
   >(bubbleTypes.none);
-
   const isChatDisabled = isNativeByUserAgent();
   const transitionTimer = useTimeoutFn();
-
   const isNative = isNativeByUserAgent();
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentReelRace = isNative ? null : currentReelRaceFromHook;
@@ -113,7 +111,6 @@ export const ProfileIconWithDrawer = ({
 
   const PrimaryIcon = bubbleIcons[primaryIconType];
   const SecondaryIcon = bubbleIcons[secondaryIconType];
-
   const reelRaceProps = {
     currentRace: currentReelRace,
   };
@@ -141,7 +138,7 @@ export const ProfileIconWithDrawer = ({
         className={cx(
           baseClassName,
           "u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle o-inset-top--none u-margin-top--md@mobile u-margin-top--md@tablet o-inset-left--none u-margin-left u-margin-right--md",
+          "t-border-r--circle u-margin-right--md",
           "u-cursor--pointer u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": isDrawerOpen,
@@ -190,7 +187,7 @@ export const ProfileIconWithDrawer = ({
           `${baseClassName}__close-drawer`,
           "u-position-relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "t-color-white u-position-absolute@mobile u-zindex--header o-inset-top--none@mobile",
+          "t-color-white u-position-absolute@mobile u-zindex--header",
           {
             "u-display--none": !isDrawerOpen,
           }
@@ -205,41 +202,44 @@ export const ProfileIconWithDrawer = ({
       </Flex>
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop u-padding@mobile u-padding@tablet u-padding-top--md@mobile u-padding-top--md@tablet u-padding-left@desktop u-padding-right--lg@desktop`}
+          className={`${baseClassName}__bottom-wrapper-bg  u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
         >
-          {shouldShowReelRace && (
-            <SidebarElementWrapper
-              pinnable={isDesktop()}
-              onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-              className={`${baseClassName}__item u-margin-left--none@desktop`}
-            >
-              <div
-                className={`${baseClassName}__bottom-wrapper-item ${baseClassName}__item u-width--full u-margin-bottom--sm u-margin-bottom--none@desktop u-padding--none u-padding-top--none@mobile u-padding-top--none@tablet`}
-              >
-                <ReelRacesDrawer {...reelRaceProps} />
+          <div className="u-padding-left--md@desktop u-padding-top--md u-padding-top--none@desktop">
+            {shouldShowReelRace && (
+              <div className={`${baseClassName}__item u-padding-bottom`}>
+                <SidebarElementWrapper
+                  pinnable={isDesktop()}
+                  onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+                  className={`${baseClassName}__item u-margin-left--none@desktop`}
+                >
+                  <div className={`${baseClassName}__bottom-wrapper-item`}>
+                    <ReelRacesDrawer {...reelRaceProps} />
+                  </div>
+                </SidebarElementWrapper>
               </div>
-            </SidebarElementWrapper>
-          )}
-          <div
-            className={`${baseClassName}__item u-padding-bottom u-margin-left--none@desktop`}
-          >
-            <InGameAdventureWidget />
-          </div>
-          <MobileAndTablet>
+            )}
             <div className={`${baseClassName}__item u-padding-bottom`}>
-              <InGameDrawer
-                onLiveChatClick={() => {
-                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                  openChatWindow();
-                  setDrawerOpen(false);
-                }}
-                onExitGameClick={() => {
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
-                }}
-              />
+              <InGameAdventureWidget />
             </div>
-          </MobileAndTablet>
+            <MobileAndTablet>
+              <div className={`${baseClassName}__item u-padding-bottom`}>
+                <InGameDrawer
+                  onLiveChatClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
+                      {}
+                    );
+                    openChatWindow();
+                    setDrawerOpen(false);
+                  }}
+                  onExitGameClick={() => {
+                    navigateToKO(ROUTE_IDS.TOP_LISTS);
+                    setDrawerOpen(false);
+                  }}
+                />
+              </div>
+            </MobileAndTablet>
+          </div>
         </div>
       )}
     </React.Fragment>
