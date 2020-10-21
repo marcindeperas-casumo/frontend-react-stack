@@ -11,7 +11,10 @@ import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
-import { kambiClientEventHandler } from "./kambiClientEventHandler";
+import {
+  kambiClientEventHandler,
+  KAMBI_EVENTS,
+} from "./kambiClientEventHandler";
 
 import "./KambiClient.scss";
 
@@ -120,7 +123,15 @@ export default class KambiClient extends React.Component<Props, State> {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
     }
 
-    kambiClientEventHandler(event, this.state.sportsFirstBet);
+    const isFirstBet =
+      event.data.event === KAMBI_EVENTS.PLACE_BET && this.state.sportsFirstBet;
+
+    if (isFirstBet) {
+      kambiClientEventHandler(event, true);
+      this.setState({ sportsFirstBet: false });
+    } else {
+      kambiClientEventHandler(event, false);
+    }
   };
 
   onWidgetMessage = (message: MessageEvent) => {

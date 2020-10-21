@@ -9,7 +9,7 @@ import {
   KO_APP_EVENT_BETSLIP_VISIBLE,
 } from "Src/constants";
 
-const KAMBI_EVENTS = {
+export const KAMBI_EVENTS = {
   BETSLIP_STATUS: "kambi betslip status",
   PLACE_BET: "kambi place bet",
   ADD_TO_BETSLIP: "kambi add to betslip",
