@@ -75,6 +75,7 @@ export function useBlueRibbonSDKAnonymous() {
 }
 
 export function useBlueRibbonAutoOptIn() {
+  const [isJackpotGame, setIsJackpotGame] = React.useState(false);
   const currency = useSelector(currencySelector);
   const playerId = useSelector(playerIdSelector);
   const urlParams = useParams();
@@ -105,6 +106,7 @@ export function useBlueRibbonAutoOptIn() {
         if (!jackpotGameId) {
           return;
         }
+        setIsJackpotGame(true);
 
         return await sdk.startGamesFeed({
           games: [gameObj],
@@ -117,7 +119,10 @@ export function useBlueRibbonAutoOptIn() {
       });
   }, [currency, playerId, sdk, slug]);
 
-  return connectedSDK;
+  return {
+    sdk: connectedSDK,
+    isJackpotGame,
+  };
 }
 
 type PotState = {

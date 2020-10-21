@@ -14,6 +14,11 @@ export const t  = {
   jackpot_win_mini: "You won Mini Jackpot!",
   jackpot_win_major: "You won Major Jackpot!",
   jackpot_win_mega: "You won Mega Jackpot!",
-  community_jackpot_win: "Community pot paid out!",
   continue_playing: "Continue playing",
+  community_jackpot_win: "Community pot paid out",
+  community_jackpot_win_amount: "You won {{{amount}}} from the pot",
+  community_jackpot_win_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/notification.png",
+  community_jackpot_win_pot_restart: "The Mega and Community Jackpots have been won and will start over.",
+  blizzard_campaign_image: "https://cms.casumo.com/wp-content/uploads/2020/10/blizard.png",
+  blizzard_campaign_content: "You’re playing a <b>Jackpot Blizzard</b> game. Good luck!",
 }
