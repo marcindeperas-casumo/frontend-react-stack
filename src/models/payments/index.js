@@ -7,4 +7,4 @@ export * from "./methodConfig.selectors";
 export * from "./methodConfig.constants";
 export * from "./methodConfig.reducer";
 export * from "./methodConfig.types";
-export * from "./quickDeposit.saga";
+export * from "./usePaymentMethod.saga";

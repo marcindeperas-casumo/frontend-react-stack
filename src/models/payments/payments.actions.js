@@ -1,9 +1,5 @@
 // @flow
-import {
-  actionTypes,
-  requestState,
-  requestStateMessageType,
-} from "./payments.constants";
+import { actionTypes, requestState } from "./payments.constants";
 import type { QuickDepositMethod } from "./methodConfig.types";
 import type { ActionTypes, DepositRequestStateType } from "./payments.types";
 
@@ -61,25 +57,33 @@ export const setPaymentRequestProcessing = (): SetPaymentRequestReturnType => ({
   },
 });
 
-export const setPaymentRequestSuccess = (): SetPaymentRequestReturnType => ({
+export const setPaymentRequestFinished = (): SetPaymentRequestReturnType => ({
   type: actionTypes.SET_PAYMENT_REQUEST_STATE,
   payload: {
-    state: requestState.FINISHED,
-    message: {
-      type: requestStateMessageType.SUCCESS,
-    },
+    state: requestState.NONE,
   },
 });
 
-export const setPaymentRequestError = (
-  errorCode: string
-): SetPaymentRequestReturnType => ({
-  type: actionTypes.SET_PAYMENT_REQUEST_STATE,
+export const piqIframeResolve = (message: {
+  status: string,
+  txId: string,
+}) => ({
+  type: actionTypes.PIQ_IFRAME_RESOLVE,
   payload: {
-    state: requestState.FINISHED,
-    message: {
-      type: requestStateMessageType.ERROR,
-      code: errorCode,
-    },
+    ...message,
+  },
+});
+
+export const methodUseSuccess = (message: { amount: number }) => ({
+  type: actionTypes.PAYMENT_USE_SUCCESS,
+  payload: {
+    ...message,
+  },
+});
+
+export const methodUseError = (message: { amount: number }) => ({
+  type: actionTypes.PAYMENT_USE_ERROR,
+  payload: {
+    ...message,
   },
 });

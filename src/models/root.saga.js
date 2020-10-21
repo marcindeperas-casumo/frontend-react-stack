@@ -39,7 +39,7 @@ import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 import {
   methodConfigSaga as paymentMethodConfigSaga,
-  quickDepositSaga,
+  usePaymentMethodSaga,
 } from "Models/payments";
 import { actionTypes as methodConfigActionTypes } from "Models/payments/methodConfig.constants";
 import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
@@ -145,6 +145,6 @@ export default function* rootSaga(dispatch: any): * {
   yield fork(
     takeEvery,
     paymentActionTypes.START_QUICK_DEPOSIT,
-    quickDepositSaga
+    usePaymentMethodSaga
   );
 }

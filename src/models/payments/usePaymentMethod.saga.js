@@ -1,21 +1,29 @@
 // @flow
-import { put, select, call } from "redux-saga/effects";
-import { TRANSACTION_ACTION_TYPE, CHANNEL } from "Models/payments";
+import { put, select, call, take } from "redux-saga/effects";
+import {
+  TRANSACTION_ACTION_TYPE,
+  CHANNEL,
+  PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE,
+} from "Models/payments";
 import { isMobile } from "Components/ResponsiveLayout";
+import { showModal } from "Models/modal";
+import { REACT_APP_MODAL } from "Src/constants";
 import {
   playerIdSelector,
   piqConfigSelector,
   localeSelector,
 } from "Models/handshake";
 import { makePIQDepositRequest } from "Api/api.payments";
+import { actionTypes } from "./payments.constants";
 import {
   setPaymentRequestProcessing,
-  setPaymentRequestSuccess,
-  setPaymentRequestError,
+  setPaymentRequestFinished,
+  methodUseSuccess,
+  methodUseError,
 } from "./payments.actions";
 import type { StartQuickDepositActionReturnType } from "./payments.actions";
 
-export function* quickDepositSaga(
+export function* usePaymentMethodSaga(
   action: StartQuickDepositActionReturnType
 ): * {
   const userId = yield select(playerIdSelector);
@@ -60,16 +68,44 @@ export function* quickDepositSaga(
   //@todo: @lukKowalski, add payment tracking
   //@todo: remove sensitive data before that, look for removeSensitiveDataFromPiqErrors in KO code
 
-  if (response.success) {
-    if (response.redirectOutput) {
-      // do an iframe if required by PIQ (3ds)
-      // yield take window.onMessage response when piq redirects after processing payment request
-    } else {
-      yield put(setPaymentRequestSuccess());
+  const { redirectOutput, success } = response;
+
+  if (success) {
+    if (redirectOutput) {
+      if (redirectOutput.url) {
+        yield put(
+          showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
+            iframeUrl: redirectOutput.url,
+          })
+        );
+
+        // canceled (when modal closed), error, success etc.
+        const piqIframeResolution = yield take(actionTypes.PIQ_IFRAME_RESOLVE);
+        const status = piqIframeResolution.payload.status;
+
+        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
+          return yield put(setPaymentRequestFinished());
+        }
+
+        if (
+          piqIframeResolution.payload.status ===
+          PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED
+        ) {
+          yield put(setPaymentRequestFinished());
+          return yield put(methodUseSuccess({ amount }));
+          // track success
+        }
+      } else {
+        //handle other cases of redirection, FULL WINDOW etc (KO stack PiqRedirection.js)
+      }
     }
+
+    return yield put(methodUseSuccess({ amount }));
     // track success
-  } else {
-    // track error
-    yield put(setPaymentRequestError(response.statusCode));
   }
+
+  // dispatch error
+  // track error
+  yield put(setPaymentRequestFinished());
+  return yield put(methodUseError({}));
 }
