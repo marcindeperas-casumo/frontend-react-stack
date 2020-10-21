@@ -9,6 +9,7 @@ import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as MODAL_CMS_SLUGS } from "Models/playing/playing.constants";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
+import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -62,6 +63,10 @@ export const mappings: Mapping = {
   DANISH_ENTRY_OVERLAY: {
     slug: overlayContentCmsSlug,
     Content: DanishEntryOverlayContainer,
+  },
+  PIQ_REDIRECTION_IFRAME_MODAL: {
+    slug: "",
+    Content: PaymentUsePiqIframeModal,
   },
   SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION: {
     slug: SCS_CMS_SLUGS.PERIODIC_REMINDER_NOTIFICATION,
