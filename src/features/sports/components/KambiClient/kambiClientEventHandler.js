@@ -1,10 +1,8 @@
 // @flow
-import gql from "graphql-tag";
 import { pathOr } from "ramda";
 import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import bridge from "Src/DurandalReactBridge";
 import tracker from "Services/tracker";
-import { apolloClientPromise } from "Models/apollo/apollo.client";
 import {
   EVENTS,
   EVENT_PROPS,
@@ -20,12 +18,6 @@ const KAMBI_EVENTS = {
   SANDWICH_FILTER_CLICK: "kambi sandwich filter click",
   MORE_WAGERS_CLICK: "kambi kambi more wagers click",
 };
-
-const SPORTS_FIRST_BET_QUERY = gql`
-  query SportsFirstBetQuery {
-    sportsFirstBet
-  }
-`;
 
 const trackPageView = (page: { type: string, title: string, path: string }) => {
   // clean up bethistory date in path
@@ -90,26 +82,18 @@ const trackHomeOddsClicked = (categories: {
   });
 };
 
-const trackBetPlaced = async (revenue: string, type: string) => {
-  const apolloClient = await apolloClientPromise;
-  const { data } = await apolloClient.query({
-    query: SPORTS_FIRST_BET_QUERY,
-    fetchPolicy: "network-only",
+const trackBetPlaced = (
+  revenue: string,
+  type: string,
+  sportsFirstBet: boolean
+) => {
+  const name = sportsFirstBet
+    ? EVENTS.MIXPANEL_SPORTS_FIRST_BET_PLACED
+    : EVENTS.MIXPANEL_SPORTS_BET_PLACED;
+  tracker.track(name, {
+    [EVENT_PROPS.TYPE]: type,
+    [EVENT_PROPS.STAKE]: revenue,
   });
-
-  if (data.sportsFirstBet) {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_FIRST_BET_PLACED, {
-      [EVENT_PROPS.TYPE]: type,
-      [EVENT_PROPS.STAKE]: revenue,
-    });
-  }
-  // null: no bets at all, false: it has more than one bet
-  if (data.sportsFirstBet === false) {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_BET_PLACED, {
-      [EVENT_PROPS.TYPE]: type,
-      [EVENT_PROPS.STAKE]: revenue,
-    });
-  }
 };
 
 const emitBetslipVisibleToKoStack = (
@@ -122,7 +106,7 @@ const emitBetslipVisibleToKoStack = (
   });
 };
 
-export function kambiClientEventHandler(event: any) {
+export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
   if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
     return;
   }
@@ -137,7 +121,8 @@ export function kambiClientEventHandler(event: any) {
   if (event.data.event === KAMBI_EVENTS.PLACE_BET) {
     trackBetPlaced(
       event.data.kambi?.ecommerce?.purchase?.actionField?.revenue,
-      event.data.kambi?.hit?.bet?.type
+      event.data.kambi?.hit?.bet?.type,
+      sportsFirstBet
     );
   }
 

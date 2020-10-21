@@ -1,7 +1,9 @@
 /* @flow */
 import React from "react";
+import gql from "graphql-tag";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
+import { getApolloContext } from "@apollo/react-hooks";
 import { pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
@@ -12,6 +14,12 @@ import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 import { kambiClientEventHandler } from "./kambiClientEventHandler";
 
 import "./KambiClient.scss";
+
+const SPORTS_FIRST_BET_QUERY = gql`
+  query SportsFirstBetQuery {
+    sportsFirstBet
+  }
+`;
 
 type Props = {
   bootstrapUrl: string,
@@ -29,7 +37,15 @@ type Props = {
   onLoginCompleted?: () => void,
 };
 
-export default class KambiClient extends React.Component<Props> {
+type State = {
+  sportsFirstBet: boolean,
+};
+
+export default class KambiClient extends React.Component<Props, State> {
+  static contextType = getApolloContext();
+
+  state = { sportsFirstBet: false };
+
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
@@ -39,6 +55,7 @@ export default class KambiClient extends React.Component<Props> {
 
   componentDidMount() {
     this.redirectToUserHomeRoute();
+    this.initIsFirstBet();
 
     /* eslint-disable fp/no-mutation */
     window._kc = {
@@ -103,7 +120,7 @@ export default class KambiClient extends React.Component<Props> {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
     }
 
-    kambiClientEventHandler(event);
+    kambiClientEventHandler(event, this.state.sportsFirstBet);
   };
 
   onWidgetMessage = (message: MessageEvent) => {
@@ -149,6 +166,15 @@ export default class KambiClient extends React.Component<Props> {
   handleHashChange = () => {
     this.redirectToUserHomeRoute();
     this.props.onNavigate(window.location.hash);
+  };
+
+  initIsFirstBet = async () => {
+    const { data } = await this.context.client.query({
+      query: SPORTS_FIRST_BET_QUERY,
+      fetchPolicy: "network-only",
+    });
+
+    data.sportsFirstBet && this.setState({ sportsFirstBet: true });
   };
 
   render() {
