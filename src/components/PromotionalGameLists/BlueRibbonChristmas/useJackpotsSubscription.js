@@ -51,7 +51,9 @@ export function useJackpotsSubscription() {
       }
 
       const notificationData = event.data.notificationAdded;
-      if (R.any(R.equals(notificationData.type), jackpotWinNotificationTypes)) {
+      if (
+        R.none(R.equals(notificationData.type), jackpotWinNotificationTypes)
+      ) {
         return;
       }
 
