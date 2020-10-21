@@ -204,7 +204,7 @@ export const ReelRacesDrawer = ({
       {raceProgress}
       {raceStatus}
       <ReelRaceBoosters
-        className="u-width--full u-margin-top--2xlg@mobile"
+        className="u-width--full u-margin-top--2xlg u-margin-top--none@desktop"
         winsInARow={boosters.winsInARow}
         bigWins={boosters.bigWins}
         megaWins={boosters.megaWins}
