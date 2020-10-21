@@ -20,7 +20,7 @@ import tracker from "Services/tracker";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { SumoIcon } from "Components/SumoIcon/SumoIIcon";
+import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { playingSelector } from "Models/playing";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
