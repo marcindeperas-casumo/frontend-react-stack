@@ -42,7 +42,7 @@
 
   &__bottom-wrapper-bg {
     background: linear-gradient(white, transparent);
-    padding-bottom: 150px;
+    padding-bottom: 150px !important;
 
     @include cudl-breakpoint(desktop) {
       background: radial-gradient(
@@ -51,9 +51,10 @@
         transparent 70%
       );
       left: 0;
-      padding-right: 150px;
-      padding-top: 98px;
+      padding-right: 150px !important;
+      padding-top: 98px !important;
       top: -16px;
+      width: var(--game-page-sidebar-width-desktop) !important;
     }
   }
 }
