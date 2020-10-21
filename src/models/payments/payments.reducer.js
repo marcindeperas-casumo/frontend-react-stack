@@ -1,6 +1,6 @@
 //@flow
 import { createReducer } from "Utils";
-import { actionTypes } from "./payments.constants";
+import { actionTypes, requestState } from "./payments.constants";
 import type { SetQuickDepositMethodReturnType } from "./payments.actions";
 
 const initialPaymentRequestState = {
@@ -21,10 +21,16 @@ const handlers = {
     ...state,
     selectedQuickDepositMethod: action.payload.method,
   }),
-  [actionTypes.SET_PAYMENT_REQUEST_STATE]: (state, action) => ({
-    ...state,
-    paymentRequest: action.payload,
-  }),
+  [actionTypes.SET_PAYMENT_REQUEST_STATE]: (state, action) => {
+    const currentMethod = state.selectedQuickDepositMethod;
+
+    return {
+      ...state,
+      selectedQuickDepositMethod:
+        action.payload.state === requestState.NONE ? null : currentMethod,
+      paymentRequest: action.payload,
+    };
+  },
 };
 
 export const paymentsReducer = createReducer<Object>(DEFAULT_STATE, handlers);

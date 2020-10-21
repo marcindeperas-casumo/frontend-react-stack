@@ -84,6 +84,7 @@ export function* usePaymentMethodSaga(
         const status = piqIframeResolution.payload.status;
 
         if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
+          // track cancel
           return yield put(setPaymentRequestFinished());
         }
 
