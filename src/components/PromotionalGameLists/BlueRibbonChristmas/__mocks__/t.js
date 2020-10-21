@@ -11,4 +11,9 @@ export const t  = {
   mini: "Mini Jackpot",
   mini_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mini.png",
   section_title: "Casumo Jackpot Blizzard",
+  jackpot_win_mini: "You won Mini Jackpot!",
+  jackpot_win_major: "You won Major Jackpot!",
+  jackpot_win_mega: "You won Mega Jackpot!",
+  community_jackpot_win: "Community pot paid out!",
+  continue_playing: "Continue playing",
 }
