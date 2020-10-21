@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import { useSelector } from "react-redux";
+import cx from "classnames";
 import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
@@ -89,44 +90,44 @@ export const ProfileIconWithDrawer = ({
       <SumoIcon onClick={toggleDrawer} openedState={isDrawerOpen} />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--1/5@desktop`}
+          className={cx(
+            `u-position-absolute u-zindex--content-overlay`,
+            "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
+            "u-padding-left u-padding-left--md@desktop u-padding-right u-padding-top--md",
+            `${baseClassName}__bottom-wrapper-bg`
+          )}
         >
-          <div className="u-padding-left u-padding-left--md@desktop u-padding-right u-padding-right--none@desktop u-padding-top--md u-padding-top--none@desktop">
-            {shouldShowReelRace && (
-              <div className={`${baseClassName}__item u-padding-bottom`}>
-                <SidebarElementWrapper
-                  pinnable={isDesktop()}
-                  onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-                  className={`${baseClassName}__item u-margin-left--none@desktop`}
-                >
-                  <div className={`${baseClassName}__bottom-wrapper-item`}>
-                    <ReelRacesDrawer {...reelRaceProps} />
-                  </div>
-                </SidebarElementWrapper>
-              </div>
-            )}
+          {shouldShowReelRace && (
             <div className={`${baseClassName}__item u-padding-bottom`}>
-              <InGameAdventureWidget />
+              <SidebarElementWrapper
+                pinnable={isDesktop()}
+                onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+                className={`${baseClassName}__item u-margin-left--none@desktop`}
+              >
+                <div className={`${baseClassName}__bottom-wrapper-item`}>
+                  <ReelRacesDrawer {...reelRaceProps} />
+                </div>
+              </SidebarElementWrapper>
             </div>
-            <MobileAndTablet>
-              <div className={`${baseClassName}__item u-padding-bottom`}>
-                <InGameDrawer
-                  onLiveChatClick={() => {
-                    tracker.track(
-                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
-                      {}
-                    );
-                    openChatWindow();
-                    setDrawerOpen(false);
-                  }}
-                  onExitGameClick={() => {
-                    navigateToKO(ROUTE_IDS.TOP_LISTS);
-                    setDrawerOpen(false);
-                  }}
-                />
-              </div>
-            </MobileAndTablet>
+          )}
+          <div className={`${baseClassName}__item u-padding-bottom`}>
+            <InGameAdventureWidget />
           </div>
+          <MobileAndTablet>
+            <div className={`${baseClassName}__item u-padding-bottom`}>
+              <InGameDrawer
+                onLiveChatClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                  openChatWindow();
+                  setDrawerOpen(false);
+                }}
+                onExitGameClick={() => {
+                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  setDrawerOpen(false);
+                }}
+              />
+            </div>
+          </MobileAndTablet>
         </div>
       )}
     </React.Fragment>

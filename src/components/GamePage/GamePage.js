@@ -63,7 +63,7 @@ export const GamePage = ({
         <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
           <VerticalStretcher gameProviderModel={gameProviderModel}>
             <Flex
-              className="u-width--full u-height--full t-background-grey-90 t-color-white"
+              className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
               direction="vertical"
               spacing="none"
               style={{ backgroundImage: `url('${gameBackground || ""}')` }}
@@ -77,7 +77,7 @@ export const GamePage = ({
                 className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
               >
                 {pinnedDrawers.length > 0 && (
-                  <Flex.Item className="u-padding-right">
+                  <Flex.Item className="u-padding-right c-game-page__sidebar">
                     {/* sidebar for pinned items */}
                     {sidebar}
                     {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
