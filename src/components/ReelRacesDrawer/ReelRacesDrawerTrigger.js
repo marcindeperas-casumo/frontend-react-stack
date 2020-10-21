@@ -27,6 +27,7 @@ export const ReelRacesDrawerTrigger = () => {
     ) {
       removeIcon();
     }
-  }, [addIcon, currentRace, hasIcon, removeIcon]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentRace?.isInProgress]);
   return null;
 };
