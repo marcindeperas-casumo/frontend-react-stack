@@ -1,7 +1,7 @@
 // @flow
 export const urls = {
   sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.57.js",
-  baseService: "api.demo00.bluerbn.com",
+  baseService: "https://api.demo00.bluerbn.com",
   loginAnonymous:
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/anonymous",
   loginAuthenticated:

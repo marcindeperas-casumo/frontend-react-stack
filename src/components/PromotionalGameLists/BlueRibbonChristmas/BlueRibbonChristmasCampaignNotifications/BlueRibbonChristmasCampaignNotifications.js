@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslations } from "Utils/hooks";
+import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import {
   jackpotWidgetContentPage,
@@ -15,6 +16,8 @@ import "./blueRibbonChristmasCampaignNotifications.scss";
 export function BlueRibbonChristmasCampaignNotifications() {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const { jackpotAmount, acknowledge, type } = useJackpotsSubscription();
+  useBlueRibbonAutoOptIn();
+
   if (!t || !jackpotAmount || !type) {
     return null;
   }
