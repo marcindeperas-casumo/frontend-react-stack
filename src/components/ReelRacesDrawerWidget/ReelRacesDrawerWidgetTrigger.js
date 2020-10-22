@@ -19,12 +19,7 @@ export const ReelRacesDrawerWidgetTrigger = () => {
   React.useEffect(() => {
     if (currentRace && currentRace.isInProgress && !hasIcon()) {
       addIcon(ReelRaceIcon);
-    } else if (
-      currentRace &&
-      !currentRace.isInProgress &&
-      currentRace.hasEnded &&
-      hasIcon()
-    ) {
+    } else if (currentRace && currentRace.hasEnded && hasIcon()) {
       removeIcon();
     }
   }, [addIcon, currentRace, hasIcon, removeIcon]);

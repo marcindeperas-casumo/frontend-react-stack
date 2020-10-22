@@ -16,7 +16,7 @@ import {
 import tracker from "Services/tracker";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { SumoIcon } from "Components/SumoIcon/SumoIIcon";
+import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import "./ProfileIconWithDrawer.scss";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";

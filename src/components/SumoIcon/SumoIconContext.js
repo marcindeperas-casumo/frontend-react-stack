@@ -76,7 +76,7 @@ export const SumoIconContextProvider = ({
         setPrimaryIconType(iconId);
         setSecondaryIconType(bubbleTypes.none);
         done();
-      }, 110000);
+      }, 1000);
     },
     [transitionTimer]
   );
