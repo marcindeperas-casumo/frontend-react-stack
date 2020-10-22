@@ -264,7 +264,6 @@ export function useCurrentReelRaceInfo(
     currentReelRaceData,
     setCurrentReelRaceData,
   ] = React.useState<?CurrentReelRaceInfo>(null);
-  const xxx = useTimeoutFn();
 
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
@@ -291,21 +290,6 @@ export function useCurrentReelRaceInfo(
       const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
       );
-
-      // TODO: fake RR started
-      // if (localCurrentReelRace && localCurrentReelRace.startTime > Date.now()) {
-      //   localCurrentReelRace.startTime = Date.now() - 1000;
-      // }
-      // if (localCurrentReelRace && !localCurrentReelRace.hasEnded) {
-      //   xxx.scheduleIn(() => {
-      //     console.log("....pio.... race finished");
-      //     setCurrentReelRaceData(prev => ({
-      //       ...prev,
-      //       isInProgress: false,
-      //       hasEnded: true,
-      //     }));
-      //   }, 10000);
-      // }
 
       refetchTimeout.scheduleAt(
         refetch,
@@ -395,7 +379,6 @@ export function useCurrentReelRaceInfo(
     refetch,
     refetchTimeout,
     updateTimeout,
-    xxx,
   ]);
 
   return currentReelRaceData;
