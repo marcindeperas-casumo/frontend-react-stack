@@ -97,10 +97,12 @@ export function* usePaymentMethodSaga(
           // track success
         }
       } else {
-        //handle other cases of redirection, FULL WINDOW etc (KO stack PiqRedirection.js)
+        // @todo when doing FULL version:
+        // handle other cases of redirection, FULL WINDOW etc (KO stack PiqRedirection.js)
       }
     }
 
+    yield put(setPaymentRequestFinished());
     return yield put(methodUseSuccess({ amount }));
     // track success
   }
