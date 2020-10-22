@@ -124,7 +124,7 @@ export default class KambiClient extends React.Component<Props, State> {
     }
 
     const isFirstBet =
-      event.data.event === KAMBI_EVENTS.PLACE_BET && this.state.sportsFirstBet;
+      event.data?.event === KAMBI_EVENTS.PLACE_BET && this.state.sportsFirstBet;
 
     if (isFirstBet) {
       kambiClientEventHandler(event, true);
