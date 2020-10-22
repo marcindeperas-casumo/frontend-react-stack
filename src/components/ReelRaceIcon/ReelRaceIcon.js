@@ -16,7 +16,7 @@ import { PointsView } from "./views/PointsView";
 import "./ReelRaceIcon.scss";
 
 type Props = {
-  onClick: (event: SyntheticEvent<HTMLButtonElement>) => void,
+  onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void,
   currentRace: ?CurrentReelRaceInfo,
   className?: string,
 };

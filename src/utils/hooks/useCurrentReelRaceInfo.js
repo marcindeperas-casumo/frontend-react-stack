@@ -156,7 +156,7 @@ export const createCurrentReelRaceData = (
 };
 
 const rrQueryFetchPolicy =
-  process.env.NODE_ENV === "test" ? undefined : "no-cache";
+  process.env.NODE_ENV === "test" ? undefined : "cache-and-network";
 
 const statusHandler = (
   reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,

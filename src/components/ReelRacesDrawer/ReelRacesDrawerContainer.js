@@ -19,7 +19,7 @@ export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
     reel_races_drawer_full_leaderboard: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_full_leaderboard`,
   });
 
-  const gameProgress = useReelRaceProgress(currentRace);
+  const gameProgress = useReelRaceProgress(currentRace, 1000);
 
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
