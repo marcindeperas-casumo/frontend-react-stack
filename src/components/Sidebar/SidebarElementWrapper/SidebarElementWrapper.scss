@@ -1,8 +1,5 @@
 .c-sidebar-element-wrapper {
   min-height: 44px;
-  @include cudl-breakpoint(desktop) {
-    width: 260px;
-  }
 
   &__pin {
     right: 8px;

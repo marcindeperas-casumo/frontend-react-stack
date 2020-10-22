@@ -18,7 +18,7 @@ export const CuratedCardFooterGameDesktop = ({
 }: CuratedCardFooterGameProps) => {
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game.slug),
+    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game?.slug),
   };
 
   return (
@@ -29,13 +29,13 @@ export const CuratedCardFooterGameDesktop = ({
             <GameThumb
               width={64}
               height={64}
-              src={game.backgroundImage}
-              mark={game.logo}
+              src={game?.backgroundImage}
+              mark={game?.logo}
             />
           </Flex.Item>
           <Flex.Block>
             <Text tag="span" className="u-font-weight-bold t-color-white">
-              {convertHTMLToString(game.name)}
+              {convertHTMLToString(game?.name)}
             </Text>
           </Flex.Block>
           <Flex.Item>
@@ -57,7 +57,7 @@ export const CuratedCardFooterGameDesktop = ({
               <ButtonInverted
                 size="md"
                 id="gtm-curated-more"
-                href={`/play/${game.slug}`}
+                href={`/play/${game?.slug}`}
                 className="u-pointer-events-initial u-margin-left--lg u-width--3xlg"
               >
                 <MoreIcon />

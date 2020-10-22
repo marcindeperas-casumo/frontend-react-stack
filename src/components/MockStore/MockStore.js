@@ -3,6 +3,7 @@ import React, { type ElementProps } from "react";
 import { mergeDeepRight } from "ramda";
 import { Provider } from "react-redux";
 import { MockedProvider } from "@apollo/react-testing";
+import { LocationProvider } from "@reach/router";
 import { createReduxStore } from "Services/reduxStore";
 import defaultState from "Models/__mocks__/state.mock";
 
@@ -30,11 +31,13 @@ const MockStore = ({
   const store = createReduxStore(mergeDeepRight(defaultState, state));
 
   return (
-    <Provider store={store}>
-      <MockedProvider mocks={queryMocks} addTypename={queryAddTypename}>
-        {children}
-      </MockedProvider>
-    </Provider>
+    <LocationProvider>
+      <Provider store={store}>
+        <MockedProvider mocks={queryMocks} addTypename={queryAddTypename}>
+          {children}
+        </MockedProvider>
+      </Provider>
+    </LocationProvider>
   );
 };
 

@@ -5,30 +5,26 @@ import { SumoIconContext } from "./SumoIconContext";
 
 export const useSumoIcon = (currentProps: Object = {}) => {
   const iconId = React.useRef(uuidV4());
-  const [added, setAdded] = React.useState(false);
   const sumoIconContext = React.useContext(SumoIconContext);
   const { updateProps } = sumoIconContext;
 
   React.useEffect(() => {
-    if (added) {
+    if (sumoIconContext.hasIcon(iconId.current)) {
       updateProps(iconId.current, currentProps);
     }
-  }, [added, currentProps, updateProps]);
+  }, [currentProps, sumoIconContext, updateProps]);
 
   const addIcon = React.useCallback(
-    (icon: React.Node) => {
-      if (!added) {
-        setAdded(true);
+    (icon: React.Component<*, *> | React.StatelessFunctionalComponent<*>) => {
+      if (!sumoIconContext.hasIcon(iconId.current)) {
         sumoIconContext.addIcon(iconId.current, icon);
       }
     },
-    [added, sumoIconContext]
+    [sumoIconContext]
   );
 
   const removeIcon = React.useCallback(() => {
-    sumoIconContext.removeIcon(iconId.current, () => {
-      setAdded(false);
-    });
+    sumoIconContext.removeIcon(iconId.current);
   }, [sumoIconContext]);
 
   const hasIcon = React.useCallback(

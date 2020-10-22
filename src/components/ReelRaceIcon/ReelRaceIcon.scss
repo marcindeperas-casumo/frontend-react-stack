@@ -7,10 +7,10 @@
     transform: translate(-50%, -50%);
 
     &--old {
-      animation: floatContentOld 0.9s normal forwards ease-out;
+      animation: rrIconOld 0.9s normal forwards ease-out;
     }
     &--next {
-      animation: floatContentNext 0.9s normal forwards ease-out;
+      animation: rrIconNew 0.9s normal forwards ease-out;
     }
   }
 
@@ -32,7 +32,7 @@
 }
 
 // stylelint-disable xi/selector-pattern
-@keyframes floatContentOld {
+@keyframes rrIconOld {
   0% {
     margin-top: 0;
   }
@@ -41,7 +41,7 @@
   }
 }
 
-@keyframes floatContentNext {
+@keyframes rrIconNew {
   0% {
     margin-top: 40px;
   }

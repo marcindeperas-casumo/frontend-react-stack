@@ -1,5 +1,6 @@
 //@flow
 import * as React from "react";
+import cx from "classnames";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
@@ -13,7 +14,6 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIIcon";
@@ -36,11 +36,11 @@ export const ProfileIconWithDrawer = ({
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
-  const openDrawer = () => {
+  const toggleDrawer = () => {
     if (!isDrawerOpen) {
       tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
     }
-    setDrawerOpen(!isDrawerOpen);
+    setDrawerOpen(isOpen => !isOpen);
   };
 
   const isChatDisabled = isNativeByUserAgent();
@@ -69,41 +69,39 @@ export const ProfileIconWithDrawer = ({
 
   return (
     <React.Fragment>
-      <SumoIcon onClick={openDrawer} openedState={isDrawerOpen} />
+      <SumoIcon onClick={toggleDrawer} openedState={isDrawerOpen} />
       {isDrawerOpen && (
         <div
-          className={`${baseClassName}__bottom-wrapper-bg u-position-absolute u-zindex--content-overlay u-width--full u-width--auto@desktop`}
+          className={cx(
+            `u-position-absolute u-zindex--content-overlay`,
+            "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
+            "u-padding-left u-padding-left--md@desktop u-padding-right u-padding-top--md",
+            `${baseClassName}__bottom-wrapper-bg`
+          )}
         >
-          <div className="u-padding-x u-padding-left--md@desktop">
-            {shouldShowReelRace && (
-              <ReelRacesDrawerWidget
-                className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
-              />
-            )}
-            <SidebarElementWrapper
-              className={`${baseClassName}__item u-padding-bottom`}
-            >
-              <InGameAdventureWidget />
-            </SidebarElementWrapper>
-            <MobileAndTablet>
-              <div className={`${baseClassName}__item u-padding-bottom`}>
-                <InGameDrawer
-                  onLiveChatClick={() => {
-                    tracker.track(
-                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
-                      {}
-                    );
-                    openChatWindow();
-                    setDrawerOpen(false);
-                  }}
-                  onExitGameClick={() => {
-                    navigateToKO(ROUTE_IDS.TOP_LISTS);
-                    setDrawerOpen(false);
-                  }}
-                />
-              </div>
-            </MobileAndTablet>
+          {shouldShowReelRace && (
+            <ReelRacesDrawerWidget
+              className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
+            />
+          )}
+          <div className={`${baseClassName}__item u-padding-bottom`}>
+            <InGameAdventureWidget />
           </div>
+          <MobileAndTablet>
+            <div className={`${baseClassName}__item u-padding-bottom`}>
+              <InGameDrawer
+                onLiveChatClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                  openChatWindow();
+                  setDrawerOpen(false);
+                }}
+                onExitGameClick={() => {
+                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  setDrawerOpen(false);
+                }}
+              />
+            </div>
+          </MobileAndTablet>
         </div>
       )}
     </React.Fragment>

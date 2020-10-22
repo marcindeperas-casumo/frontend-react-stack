@@ -8,42 +8,14 @@
     top: auto;
   }
 
-  &__close-drawer {
-    left: map-get($cudl-spacer-sizes, default);
-
-    @include cudl-breakpoint(desktop) {
-      background-color: cudl-palette(grey, "90");
-      left: auto;
-      top: auto;
-    }
-  }
-
   &__item {
     margin: 0 auto;
     max-width: 442px;
   }
 
-  &__content {
-    left: 0;
-    top: 0;
-
-    &--old {
-      animation: floatContentOld 0.9s normal forwards ease-out;
-    }
-    &--next {
-      animation: floatContentNext 0.9s normal forwards ease-out;
-    }
-  }
-
-  &__chevron-icon {
-    bottom: 0;
-    right: 0;
-  }
-
   &__bottom-wrapper-bg {
     background: linear-gradient(white, transparent);
-    padding-bottom: 150px;
-    padding-top: 16px;
+    padding-bottom: 150px !important;
 
     @include cudl-breakpoint(desktop) {
       background: radial-gradient(
@@ -52,30 +24,10 @@
         transparent 70%
       );
       left: 0;
-      padding-bottom: 0px;
-      padding-right: 150px;
-      padding-top: 98px;
+      padding-right: 150px !important;
+      padding-top: 98px !important;
       top: -16px;
+      width: var(--game-page-sidebar-width-desktop) !important;
     }
   }
 }
-
-// stylelint-disable xi/selector-pattern
-@keyframes floatContentOld {
-  0% {
-    margin-top: 0;
-  }
-  100% {
-    margin-top: -48px;
-  }
-}
-
-@keyframes floatContentNext {
-  0% {
-    margin-top: 48px;
-  }
-  100% {
-    margin-top: 0;
-  }
-}
-// stylelint-enable xi/selector-pattern

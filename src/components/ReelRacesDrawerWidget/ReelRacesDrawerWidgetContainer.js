@@ -43,7 +43,14 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
     return null;
   }
 
-  const { remainingSpins, position, points, startTime, endTime } = currentRace;
+  const {
+    remainingSpins,
+    position,
+    points,
+    startTime,
+    endTime,
+    boosters,
+  } = currentRace;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
 
@@ -58,6 +65,7 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
           spinsLeft={remainingSpins}
           position={position}
           points={points}
+          boosters={boosters}
           gameProgress={gameProgress}
           gameDuration={gameDuration}
           showLeaderboardLink
