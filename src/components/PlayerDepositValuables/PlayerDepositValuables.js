@@ -32,7 +32,7 @@ export const PlayerDepositValuables = () => {
     <>
       <Flex
         direction="vertical"
-        className="u-padding-bottom--lg u-overflow-hidden u-height--screen"
+        className="u-padding-bottom--lg u-overflow--hidden u-height--screen"
         spacing="none"
       >
         <Flex.Item className="u-overflow-y--auto">
