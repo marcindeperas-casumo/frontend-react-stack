@@ -8,13 +8,16 @@ import { SumoIconContext } from "./SumoIconContext";
 import "./SumoIcon.scss";
 
 export type SumoIconProps = {
-  onClick: () => void,
-  openedState: boolean,
+  onClick?: () => void,
+  openedState?: boolean,
 };
 
 const baseClassName = "c-sumo-icon";
 
-export const SumoIcon = ({ onClick, openedState }: SumoIconProps) => {
+export const SumoIcon = ({
+  onClick = () => {},
+  openedState = false,
+}: SumoIconProps) => {
   const {
     primaryIcon: PrimaryIcon,
     primaryIconProps,

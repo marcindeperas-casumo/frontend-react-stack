@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
@@ -12,6 +12,11 @@ const ToggleWrapper = ({
   icon,
   color = "white",
   bgColor = "blue-50",
+}: {
+  children: React.Node,
+  icon: any,
+  color?: string,
+  bgColor?: string,
 }) => {
   const { addIcon, hasIcon, removeIcon } = useSumoIcon({
     color,
@@ -33,10 +38,15 @@ const ToggleWrapper = ({
   );
 };
 
-const Example = ({ onClick, color = "white", bgColor = "blue-50" }) => (
+const Example = ({
+  color = "white",
+  bgColor = "blue-50",
+}: {
+  color?: string,
+  bgColor?: string,
+}) => (
   <div
     className={`t-background-${bgColor} t-color-${color} t-border-r--circle u-width--3xlg u-height--3xlg o-flex-align--center o-flex-justify--center u-cursor--pointer`}
-    onClick={onClick}
   >
     {color[0]}
   </div>
