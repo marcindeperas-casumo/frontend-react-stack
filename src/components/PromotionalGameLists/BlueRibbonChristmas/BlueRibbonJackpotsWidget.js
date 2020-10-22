@@ -73,7 +73,7 @@ export function BlueRibbonJackpotsWidget({ jackpots, t }: Props) {
             formattedValue: formatCurrency({
               locale,
               currency,
-              value: jackpot.value * jackpot.mainWinRatio,
+              value: jackpot.value * (jackpot.mainWinRatio / 100),
             }),
             label: t.mega_single_winner,
             image: t.mega_single_winner_icon,
@@ -84,7 +84,7 @@ export function BlueRibbonJackpotsWidget({ jackpots, t }: Props) {
             formattedValue: formatCurrency({
               locale,
               currency,
-              value: jackpot.value * jackpot.communityWinRatio,
+              value: jackpot.value * (jackpot.communityWinRatio / 100),
             }),
             label: t.mega_community,
             image: t.mega_community_icon,

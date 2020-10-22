@@ -3,12 +3,13 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
+import { ReelRacesDrawerTrigger } from "Components/ReelRacesDrawer/ReelRacesDrawerTrigger";
+import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import { FullscreenView } from "Components/FullscreenView";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
 import type { GameProviderModel } from "GameProviders";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { usePin } from "Utils/hooks/usePin";
@@ -19,6 +20,7 @@ import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { isDesktop } from "Components/ResponsiveLayout/index";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { GamePageNotifications } from "./GamePageNotifications";
 
@@ -55,61 +57,64 @@ export const GamePage = ({
   const { pinnedDrawers, togglePin } = pinState;
 
   return (
-    <PinnedDrawersContext.Provider value={pinState}>
-      <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
-        <VerticalStretcher gameProviderModel={gameProviderModel}>
-          <Flex
-            className="u-width--full u-height--full t-background-grey-90 t-color-white"
-            direction="vertical"
-            spacing="none"
-            style={{ backgroundImage: `url('${gameBackground || ""}')` }}
-          >
-            <Flex.Item>
-              <GamePageHeader pauseGame={pauseGame} resumeGame={resumeGame} />
-            </Flex.Item>
+    <SumoIconContextProvider>
+      <ReelRacesDrawerTrigger />
+      <PinnedDrawersContext.Provider value={pinState}>
+        <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
+          <VerticalStretcher gameProviderModel={gameProviderModel}>
             <Flex
-              direction="horizontal"
+              className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
+              direction="vertical"
               spacing="none"
-              className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
+              style={{ backgroundImage: `url('${gameBackground || ""}')` }}
             >
-              {pinnedDrawers.length > 0 && (
-                <Flex.Item className="u-padding-right">
-                  {/* sidebar for pinned items */}
-                  {sidebar}
-                  {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
-                    <SidebarElementWrapper
-                      pinnable
-                      onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-                    >
-                      <ReelRacesDrawer {...reelRaceProps} />
-                    </SidebarElementWrapper>
-                  )}
+              <Flex.Item>
+                <GamePageHeader pauseGame={pauseGame} resumeGame={resumeGame} />
+              </Flex.Item>
+              <Flex
+                direction="horizontal"
+                spacing="none"
+                className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
+              >
+                {pinnedDrawers.length > 0 && (
+                  <Flex.Item className="u-padding-right c-game-page__sidebar">
+                    {/* sidebar for pinned items */}
+                    {sidebar}
+                    {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
+                      <SidebarElementWrapper
+                        pinnable
+                        onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
+                      >
+                        <ReelRacesDrawer {...reelRaceProps} />
+                      </SidebarElementWrapper>
+                    )}
+                  </Flex.Item>
+                )}
+                <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
+                  <div
+                    className={classNames(
+                      "u-inset-0 u-position-absolute",
+                      gameProviderModel.gameWrapperClasses || []
+                    )}
+                  >
+                    <GameLauncher
+                      gameProviderModel={gameProviderModel}
+                      className="c-game-page__game-launcher"
+                    />
+                  </div>
+                  <GamePageNotifications />
+                </Flex.Block>
+              </Flex>
+              {shouldShowSlotControlSystem && (
+                <Flex.Item>
+                  <InfoBar />
                 </Flex.Item>
               )}
-              <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
-                <div
-                  className={classNames(
-                    "u-inset-0 u-position-absolute",
-                    gameProviderModel.gameWrapperClasses || []
-                  )}
-                >
-                  <GameLauncher
-                    gameProviderModel={gameProviderModel}
-                    className="c-game-page__game-launcher"
-                  />
-                </div>
-                <GamePageNotifications />
-              </Flex.Block>
             </Flex>
-            {shouldShowSlotControlSystem && (
-              <Flex.Item>
-                <InfoBar />
-              </Flex.Item>
-            )}
-          </Flex>
-          <QuickDepositSlipController />
-        </VerticalStretcher>
-      </FullscreenView>
-    </PinnedDrawersContext.Provider>
+            <QuickDepositSlipController />
+          </VerticalStretcher>
+        </FullscreenView>
+      </PinnedDrawersContext.Provider>
+    </SumoIconContextProvider>
   );
 };

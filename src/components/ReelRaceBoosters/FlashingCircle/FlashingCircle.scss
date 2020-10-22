@@ -1,0 +1,10 @@
+.c-rr-booster__flashing-circle {
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.5s;
+
+  &--transitioning {
+    transform: scale(1);
+    transition-delay: 1s;
+  }
+}

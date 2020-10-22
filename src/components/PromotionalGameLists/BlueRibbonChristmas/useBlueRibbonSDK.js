@@ -1,16 +1,16 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
+import { useParams } from "@reach/router";
 import { useSelector } from "react-redux";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
-import { currencySelector } from "Models/handshake";
+import { currencySelector, playerIdSelector } from "Models/handshake";
 import { urls, operatorId } from "./blueRibbonConsts";
 
 declare var BlueRibbon: any;
 export function useBlueRibbonSDK() {
   const [sdk, setSdk] = React.useState();
-  const currency = useSelector(currencySelector);
-
   const blueRibbonConfig = {
     operatorId: operatorId,
     baseServiceUrl: urls.baseService,
@@ -40,6 +40,14 @@ export function useBlueRibbonSDK() {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  return sdk;
+}
+
+export function useBlueRibbonSDKAnonymous() {
+  const sdk = useBlueRibbonSDK();
+  const currency = useSelector(currencySelector);
+  const [connectedSDK, setConnectedSDK] = React.useState();
+
   React.useEffect(
     function connectBlueRibbonSDK() {
       if (!sdk) {
@@ -49,6 +57,8 @@ export function useBlueRibbonSDK() {
       sdk
         .connect({ currency })
         .then(() => {
+          setConnectedSDK(sdk);
+
           return sdk.startGamesFeed({
             games: null,
             gamesMode: BlueRibbon.constants.gamesMode.LOBBY,
@@ -61,7 +71,58 @@ export function useBlueRibbonSDK() {
     [currency, sdk]
   );
 
-  return sdk;
+  return connectedSDK;
+}
+
+export function useBlueRibbonAutoOptIn() {
+  const [isJackpotGame, setIsJackpotGame] = React.useState(false);
+  const currency = useSelector(currencySelector);
+  const playerId = useSelector(playerIdSelector);
+  const urlParams = useParams();
+  const slug = urlParams?.slug;
+  const sdk = useBlueRibbonSDK();
+  const [connectedSDK, setConnectedSDK] = React.useState();
+
+  React.useEffect(() => {
+    if (!sdk || !slug) {
+      return;
+    }
+
+    const gameObj = { gameId: slug };
+
+    fetch(urls.handshake)
+      .then(raw => raw.json())
+      .then(({ externalPlayerReference }) =>
+        sdk.connect({ currency, playerId: externalPlayerReference })
+      )
+      .then(async () => {
+        const res: {
+          gamesDetails: Array<{
+            gameId: string,
+            jackpotGameId: string,
+          }>,
+        } = await sdk.ticker.getGameDetailsByGameIds([gameObj]);
+        const jackpotGameId = R.path(["gamesDetails", 0, "jackpotGameId"], res);
+        if (!jackpotGameId) {
+          return;
+        }
+        setIsJackpotGame(true);
+
+        return await sdk.startGamesFeed({
+          games: [gameObj],
+          gamesMode: BlueRibbon.constants.gamesMode.IN_GAME,
+        });
+      })
+      .then(() => setConnectedSDK(sdk))
+      .catch(err => {
+        logger.error("Blue ribbon sdk could not opt in to jackpot", err);
+      });
+  }, [currency, playerId, sdk, slug]);
+
+  return {
+    sdk: connectedSDK,
+    isJackpotGame,
+  };
 }
 
 type PotState = {
@@ -78,7 +139,7 @@ type PotStateChangeEvent = {
 };
 
 export function usePotStateChangeEvent() {
-  const sdk = useBlueRibbonSDK();
+  const sdk = useBlueRibbonSDKAnonymous();
   const [pots, setPots] = React.useState<{ [string]: PotState }>({});
   React.useEffect(() => {
     if (!sdk) {
