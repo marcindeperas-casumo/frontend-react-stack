@@ -26,7 +26,7 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentRace = isNativeByUserAgent() ? null : currentReelRaceFromHook;
   const [showLeaderboard, setShowLeaderboard] = React.useState(false);
-  const { togglePin } = React.useContext(PinnedDrawersContext);
+  const { togglePin, isPinned } = React.useContext(PinnedDrawersContext);
 
   useReelRaceLeaderboardModal(currentRace);
 
@@ -38,6 +38,12 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
   });
 
   const gameProgress = useReelRaceProgress(currentRace, 1000);
+
+  React.useEffect(() => {
+    if (currentRace?.hasEnded && isPinned(DRAWERS.REEL_RACES)) {
+      togglePin(DRAWERS.REEL_RACES);
+    }
+  }, [currentRace, currentReelRaceFromHook, isPinned, togglePin]);
 
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
@@ -76,6 +82,7 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
         {showLeaderboard && (
           <SidebarElementWrapper className="u-margin-top">
             <ReelRaceLeaderboardResults
+              className="t-border-r--md"
               size={currentRace.leaderboard.length}
               leaderboard={currentRace.leaderboard}
               playerId={playerId}
