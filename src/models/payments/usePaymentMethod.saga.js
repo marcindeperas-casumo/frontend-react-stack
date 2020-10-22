@@ -110,5 +110,5 @@ export function* usePaymentMethodSaga(
   // dispatch error
   // track error
   yield put(setPaymentRequestFinished());
-  return yield put(methodUseError({}));
+  return yield put(methodUseError({ amount }));
 }
