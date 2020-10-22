@@ -65,6 +65,8 @@ export const SumoIconContextProvider = ({
     bubbleTypes.none
   );
 
+  React.useEffect(() => () => transitionTimer.clear(), [transitionTimer]);
+
   const switchIconTo = React.useCallback(
     (iconId: string, done: () => void = () => {}) => {
       setSecondaryIconType(iconId);
@@ -84,7 +86,6 @@ export const SumoIconContextProvider = ({
       iconId: string,
       icon: ?React.Component<*, *> | ?React.StatelessFunctionalComponent<*>
     ) => {
-      setIsTransitionRunning(false);
       transitionTimer.clear();
       setCustomIcons(prev => [
         ...prev,
@@ -107,8 +108,6 @@ export const SumoIconContextProvider = ({
 
   const removeIcon = React.useCallback(
     (iconId, done = () => {}) => {
-      setIsTransitionRunning(false);
-      transitionTimer.clear();
       if (primaryIconType === iconId || secondaryIconType === iconId) {
         const prevIconId = customIcons.findIndex(ci => ci.iconId === iconId);
 
@@ -128,13 +127,7 @@ export const SumoIconContextProvider = ({
         done();
       }
     },
-    [
-      customIcons,
-      primaryIconType,
-      secondaryIconType,
-      switchIconTo,
-      transitionTimer,
-    ]
+    [customIcons, primaryIconType, secondaryIconType, switchIconTo]
   );
 
   const hasIcon = React.useCallback(
