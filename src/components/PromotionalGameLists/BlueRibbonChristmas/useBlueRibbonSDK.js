@@ -44,7 +44,8 @@ export function useBlueRibbonSDK() {
 
   React.useEffect(function fetchBlueRibbonSDK() {
     if (window.BlueRibbon) {
-      return; // SDK already loaded
+      // SDK already loaded
+      return setSdk(new BlueRibbon.SdkCoreManager(blueRibbonConfig));
     }
 
     injectScript(urls.sdkBundle, "blue-ribbon-sdk")
@@ -83,6 +84,8 @@ export function useBlueRibbonSDKAnonymous() {
         .catch(err => {
           logger.error("Blue ribbon sdk could not connect", err);
         });
+
+      return sdk.reset;
     },
     [currency, sdk]
   );
@@ -133,6 +136,8 @@ export function useBlueRibbonAutoOptIn() {
       .catch(err => {
         logger.error("Blue ribbon sdk could not opt in to jackpot", err);
       });
+
+    return sdk.reset;
   }, [currency, playerId, sdk, slug]);
 
   return {
