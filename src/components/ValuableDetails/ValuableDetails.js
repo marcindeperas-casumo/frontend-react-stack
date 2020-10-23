@@ -14,6 +14,7 @@ import {
   type ValuableDetailsTranslations as Translations,
   type ValuableActionProps,
   VALUABLE_STATES,
+  VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
@@ -193,6 +194,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
       translations,
     });
 
+    const actionButtonVisible =
+      valuableState !== VALUABLE_STATES.USED ||
+      valuableType === VALUABLE_TYPES.CASHBACK;
+
     return (
       <div>
         <div className="o-ratio o-ratio--valuable-details">
@@ -278,7 +283,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
-          {valuableState !== VALUABLE_STATES.USED && (
+          {actionButtonVisible && (
             <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
               <ButtonPrimary
                 className="u-width--full"
