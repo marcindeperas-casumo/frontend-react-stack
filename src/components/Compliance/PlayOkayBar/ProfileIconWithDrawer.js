@@ -75,33 +75,43 @@ export const ProfileIconWithDrawer = ({
           className={cx(
             `u-position-absolute u-zindex--content-overlay`,
             "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
-            "u-padding-left u-padding-left--md@desktop u-padding-right u-padding-top--md",
+            "u-padding-left u-padding-left--md@desktop u-padding-right",
+            "u-overflow-hidden",
             `${baseClassName}__bottom-wrapper-bg`
           )}
         >
-          {shouldShowReelRace && (
-            <ReelRacesDrawerWidget
-              className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
-            />
-          )}
-          <div className={`${baseClassName}__item u-padding-bottom`}>
-            <InGameAdventureWidget />
-          </div>
-          <MobileAndTablet>
-            <div className={`${baseClassName}__item u-padding-bottom`}>
-              <InGameDrawer
-                onLiveChatClick={() => {
-                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                  openChatWindow();
-                  setDrawerOpen(false);
-                }}
-                onExitGameClick={() => {
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
-                }}
+          <div
+            className={cx(
+              `${baseClassName}__bottom-wrapper-bg-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
+            )}
+          >
+            {shouldShowReelRace && (
+              <ReelRacesDrawerWidget
+                className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
               />
+            )}
+            <div className={`${baseClassName}__item u-padding-bottom`}>
+              <InGameAdventureWidget />
             </div>
-          </MobileAndTablet>
+            <MobileAndTablet>
+              <div className={`${baseClassName}__item u-padding-bottom`}>
+                <InGameDrawer
+                  onLiveChatClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
+                      {}
+                    );
+                    openChatWindow();
+                    setDrawerOpen(false);
+                  }}
+                  onExitGameClick={() => {
+                    navigateToKO(ROUTE_IDS.TOP_LISTS);
+                    setDrawerOpen(false);
+                  }}
+                />
+              </div>
+            </MobileAndTablet>
+          </div>
         </div>
       )}
     </React.Fragment>

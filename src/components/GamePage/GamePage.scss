@@ -28,7 +28,18 @@ $directions: (top, left, bottom, right);
     width: 100%;
   }
 
+  &__central {
+    height: 100%;
+    @include cudl-breakpoint(desktop) {
+      height: calc(100% - 100px) !important;
+    }
+  }
+
   &__sidebar {
+    scrollbar-width: none;
     width: var(--game-page-sidebar-width-desktop);
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 }
