@@ -329,6 +329,8 @@ export const EVENTS = {
   MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
   MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
   MIXPANEL_SPORTS_HOME_ODDS_CLICKED: "Sports Home - odds clicked",
+  MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
+  MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -372,6 +374,7 @@ export const EVENT_PROPS = {
   IS_FAVOURITE: "Is Favourite",
   GAME_PLAY_TYPE: "Game play type",
   TYPE: "type",
+  STAKE: "stake",
 };
 
 export const EVENT_LOCATIONS = {
