@@ -1,23 +1,28 @@
 /* @flow */
 import React from "react";
+import gql from "graphql-tag";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
-import { pathOr, pick } from "ramda";
-import { isDesktop, isTablet } from "Components/ResponsiveLayout";
+import { getApolloContext } from "@apollo/react-hooks";
+import { pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
-import tracker from "Services/tracker";
-import {
-  EVENTS,
-  EVENT_PROPS,
-  KO_APP_EVENT_BETSLIP_VISIBLE,
-} from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
+import {
+  kambiClientEventHandler,
+  KAMBI_EVENTS,
+} from "./kambiClientEventHandler";
 
 import "./KambiClient.scss";
+
+const SPORTS_FIRST_BET_QUERY = gql`
+  query SportsFirstBetQuery {
+    sportsFirstBet
+  }
+`;
 
 type Props = {
   bootstrapUrl: string,
@@ -35,7 +40,15 @@ type Props = {
   onLoginCompleted?: () => void,
 };
 
-export default class KambiClient extends React.Component<Props> {
+type State = {
+  sportsFirstBet: boolean,
+};
+
+export default class KambiClient extends React.Component<Props, State> {
+  static contextType = getApolloContext();
+
+  state = { sportsFirstBet: false };
+
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
@@ -45,6 +58,7 @@ export default class KambiClient extends React.Component<Props> {
 
   componentDidMount() {
     this.redirectToUserHomeRoute();
+    this.initIsFirstBet();
 
     /* eslint-disable fp/no-mutation */
     window._kc = {
@@ -104,117 +118,19 @@ export default class KambiClient extends React.Component<Props> {
     window.addEventListener("message", this.onWidgetMessage, false);
   }
 
-  trackPageView = (page: { type: string, title: string, path: string }) => {
-    // clean up bethistory date in path
-    const cleanPath = page.type === "bethistory" ? "/bethistory" : page.path;
-
-    tracker.track(EVENTS.MIXPANEL_SPORTS_PAGEVIEW, {
-      [EVENT_PROPS.SPORTS_PAGE_TYPE]: page.type,
-      [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
-      [EVENT_PROPS.SPORTS_PAGE_PATH]: cleanPath,
-    });
-  };
-
-  trackAddToBetslipIfLife = (obj: any) => {
-    const betPath = ["ecommerce", "add", "products", 0];
-    const isLivePage: boolean = pathOr("", ["page", "path"], obj)
-      .split("/")
-      .includes("in-play");
-    const sportName: string = pathOr(
-      "unknown",
-      ["hit", "categories", "event_group_two"],
-      obj
-    );
-    const eventName: string = pathOr("unknown", [...betPath, "name"], obj);
-    const eventId: number = pathOr(0, [...betPath, "id"], obj);
-    const trackingName: string = isLivePage
-      ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
-      : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
-
-    tracker.track(trackingName, {
-      [EVENT_PROPS.SPORTS_NAME]: sportName,
-      [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
-      [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
-    });
-  };
-
-  trackHomeCardClicked = (type: string) => {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_CARD_CLICKED, {
-      [EVENT_PROPS.TYPE]: type,
-    });
-  };
-
-  trackHomeFilterClicked = (type: string) => {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_FILTER_CLICKED, {
-      [EVENT_PROPS.TYPE]: type,
-    });
-  };
-
-  trackHomeMatchClicked = (page: { title: string, path: string }) => {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_MATCH_CLICKED, {
-      [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
-      [EVENT_PROPS.SPORTS_PAGE_PATH]: page.path,
-    });
-  };
-
-  trackHomeOddsClicked = (categories: {
-    event_group_five: string,
-    event_group_two: string,
-  }) => {
-    tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_ODDS_CLICKED, {
-      [EVENT_PROPS.SPORTS_NAME]: categories.event_group_two,
-      [EVENT_PROPS.SPORTS_EVENT_NAME]: categories.event_group_five,
-    });
-  };
-
-  emitBetslipVisibleToKoStack(
-    isTabletDevice: boolean,
-    isBetslipVisible: boolean
-  ) {
-    bridge.emit(KO_APP_EVENT_BETSLIP_VISIBLE, {
-      isTablet: isTabletDevice,
-      isBetslipVisible,
-    });
-  }
-
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
     }
 
-    if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
-      return;
-    }
-    // `dataLayerPushed` events
-    if (event.data.event === "kambi add to betslip") {
-      event.data.kambi?.hit?.categories?.is_live &&
-        this.trackAddToBetslipIfLife(event.data.kambi);
+    const isFirstBet =
+      event.data?.event === KAMBI_EVENTS.PLACE_BET && this.state.sportsFirstBet;
 
-      event.data.kambi?.page?.type === "home" &&
-        this.trackHomeOddsClicked(event.data.kambi?.hit?.categories);
-    }
-
-    if (event.data.event === "kambi page view") {
-      this.trackPageView(event.data.kambi?.page);
-    }
-
-    if (event.data.event === "kambi betslip status" && !isDesktop()) {
-      this.emitBetslipVisibleToKoStack(
-        isTablet(),
-        Boolean(event.data.kambi?.betslip?.quantity)
-      );
-    }
-
-    if (event.data.event === "kambi promo card click") {
-      this.trackHomeCardClicked(event.data.kambi?.interaction?.label);
-    }
-
-    if (event.data.event === "kambi sandwich filter click") {
-      this.trackHomeFilterClicked(event.data.kambi?.interaction?.label);
-    }
-
-    if (event.data.event === "kambi kambi more wagers click") {
-      this.trackHomeMatchClicked(event.data.kambi?.page);
+    if (isFirstBet) {
+      kambiClientEventHandler(event, true);
+      this.setState({ sportsFirstBet: false });
+    } else {
+      kambiClientEventHandler(event, false);
     }
   };
 
@@ -261,6 +177,15 @@ export default class KambiClient extends React.Component<Props> {
   handleHashChange = () => {
     this.redirectToUserHomeRoute();
     this.props.onNavigate(window.location.hash);
+  };
+
+  initIsFirstBet = async () => {
+    const { data } = await this.context.client.query({
+      query: SPORTS_FIRST_BET_QUERY,
+      fetchPolicy: "network-only",
+    });
+
+    data.sportsFirstBet && this.setState({ sportsFirstBet: true });
   };
 
   render() {
