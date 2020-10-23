@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { CvvCodeIframe } from "Components/Payments";
+import { CvvCodeIframe } from "Components/Payments/CvvCodeIframe";
 import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
