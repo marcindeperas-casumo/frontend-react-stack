@@ -47,28 +47,40 @@ export const QuickDepositSlipController = () => {
   // react on request error if it's in the state
 
   return (
-    <div className="t-border-r-top-left--md t-border-r-top-right--md u-padding--md t-background-white o-inset-left--none o-inset-bottom--none o-position--fixed ">
-      <Flex
-        className="u-margin-bottom--md"
-        justify="space-between"
-        direction="horizontal"
-        align="center"
-      >
-        <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
-        <Flex.Item onClick={closeQuickDeposit}>
-          <CloseIcon />
-        </Flex.Item>
-      </Flex>
-      <QuickDepositSlip
-        minAmount={min}
-        maxAmount={max}
-        onDeposit={onDeposit}
-        requestStatus={paymentRequest}
-        paymentMethodDetails={() => (
-          <PaymentMethodDetails method={selectedMethod} />
-        )}
-        currencySymbol={currency}
-      />
+    <div
+      className="
+      u-width--screen
+      t-border-r-top-left--md
+      t-border-r-top-right--md
+      t-background-white
+      o-inset-left--none
+      o-inset-bottom--none
+      o-position--fixed
+      "
+    >
+      <div className="u-padding--md">
+        <Flex
+          className="u-margin-bottom--md"
+          justify="space-between"
+          direction="horizontal"
+          align="center"
+        >
+          <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
+          <Flex.Item onClick={closeQuickDeposit}>
+            <CloseIcon />
+          </Flex.Item>
+        </Flex>
+        <QuickDepositSlip
+          minAmount={min}
+          maxAmount={max}
+          onDeposit={onDeposit}
+          requestStatus={paymentRequest}
+          paymentMethodDetails={() => (
+            <PaymentMethodDetails method={selectedMethod} />
+          )}
+          currencySymbol={currency}
+        />
+      </div>
     </div>
   );
 };
