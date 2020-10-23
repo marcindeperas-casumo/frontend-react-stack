@@ -40,6 +40,7 @@ export function useJackpotsSubscription() {
   const resumeGame = () => Promise.resolve();
   const [jackpotAmount, setJackpotAmount] = React.useState(null);
   const [type, setType] = React.useState<?NotificationType>(null);
+  const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
 
@@ -50,13 +51,27 @@ export function useJackpotsSubscription() {
       }
 
       const notificationData = event.data.notificationAdded;
-      if (R.any(R.equals(notificationData.type), jackpotWinNotificationTypes)) {
+      if (
+        R.none(R.equals(notificationData.type), jackpotWinNotificationTypes)
+      ) {
         return;
       }
 
       const { amount, currency } = notificationData.parameters;
       await pauseGame();
 
+      setIsFullScreen(
+        R.any(
+          R.equals(
+            ([
+              "jackpot_win_mini",
+              "jackpot_win_major",
+              "jackpot_win_mega",
+            ]: Array<NotificationType>)
+          ),
+          jackpotWinNotificationTypes
+        )
+      );
       setJackpotAmount(
         formatCurrency({
           currency,
@@ -87,5 +102,6 @@ export function useJackpotsSubscription() {
     jackpotAmount,
     acknowledge,
     type,
+    isFullScreen,
   };
 }

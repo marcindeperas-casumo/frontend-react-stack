@@ -19,13 +19,20 @@ export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
     reel_races_drawer_full_leaderboard: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_full_leaderboard`,
   });
 
-  const gameProgress = useReelRaceProgress(currentRace);
+  const gameProgress = useReelRaceProgress(currentRace, 1000);
 
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
   }
 
-  const { remainingSpins, position, points, startTime, endTime } = currentRace;
+  const {
+    remainingSpins,
+    position,
+    points,
+    startTime,
+    endTime,
+    boosters,
+  } = currentRace;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
   return (
@@ -35,6 +42,7 @@ export const ReelRacesDrawerContainer = ({ currentRace, className }: Props) => {
       spinsLeft={remainingSpins}
       position={position}
       points={points}
+      boosters={boosters}
       gameProgress={gameProgress}
       gameDuration={gameDuration}
     />

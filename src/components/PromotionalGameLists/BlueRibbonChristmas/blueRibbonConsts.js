@@ -28,6 +28,11 @@ export type JackpotWidgetContentPage = {
   jackpot_win_major: string,
   jackpot_win_mega: string,
   community_jackpot_win: string,
+  community_jackpot_win_amount: string,
+  community_jackpot_win_icon: string,
+  community_jackpot_win_pot_restart: string,
+  blizzard_campaign_image: string,
+  blizzard_campaign_content: string,
 };
 export const jackpotWidgetWidth = 313;
 export const colors = {

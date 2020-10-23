@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import { BlueRibbonChristmasCampaignNotifications } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
+import { BlueRibbonChristmasCampaignNotificationsContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 export function GamePageNotifications() {
@@ -15,7 +15,7 @@ export function GamePageNotifications() {
         <ReelRaceStartingNotification />
       </Flex.Item>
       <Flex.Item>
-        <BlueRibbonChristmasCampaignNotifications />
+        <BlueRibbonChristmasCampaignNotificationsContainer />
       </Flex.Item>
     </Flex>
   );

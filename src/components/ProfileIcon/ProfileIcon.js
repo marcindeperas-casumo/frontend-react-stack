@@ -6,7 +6,7 @@ import AvatarIcon from "./icons/profileAvatar.svg";
 import "./ProfileIcon.scss";
 
 type Props = {
-  onClick: ?(event: SyntheticEvent<HTMLButtonElement>) => void,
+  onClick?: ?(event: SyntheticEvent<HTMLButtonElement>) => void,
   className?: string,
 };
 
