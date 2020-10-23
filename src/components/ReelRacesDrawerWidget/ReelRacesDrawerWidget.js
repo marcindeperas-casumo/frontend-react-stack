@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { SpinIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import { SpinIcon, ChevronDownIcon, ChevronUpIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
@@ -30,6 +30,7 @@ type Props = {
   },
   onShowLeaderboardClick?: () => void,
   showLeaderboardLink?: boolean,
+  isLeaderboardOpen?: boolean,
 };
 
 const StatusElement = ({ children }) => (
@@ -56,6 +57,7 @@ export const ReelRacesDrawerWidget = ({
   gameDuration,
   onShowLeaderboardClick = () => {},
   showLeaderboardLink = false,
+  isLeaderboardOpen = false,
   t,
 }: Props) => {
   const gameDurationFormatted = `${gameDuration}:00`;
@@ -182,12 +184,16 @@ export const ReelRacesDrawerWidget = ({
       >
         <Text
           tag="span"
-          size="xs"
-          className="t-color-white u-text-transform-uppercase"
+          size="2xs"
+          className="t-color-white u-text-transform-uppercase u-font-weight-black"
         >
           {t?.reel_races_drawer_full_leaderboard}
         </Text>
-        <ChevronDownIcon size="sm" />
+        {isLeaderboardOpen ? (
+          <ChevronUpIcon size="sm" />
+        ) : (
+          <ChevronDownIcon size="sm" />
+        )}
       </div>
     </Desktop>
   ) : null;

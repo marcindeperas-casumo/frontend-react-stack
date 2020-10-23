@@ -18,14 +18,20 @@ import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
   className?: string,
+  initialShowLeaderboard?: boolean,
 };
 
-export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
+export const ReelRacesDrawerWidgetContainer = ({
+  className,
+  initialShowLeaderboard = false,
+}: Props) => {
   const playing = useSelector(playingSelector);
   const playerId = useSelector(playerIdSelector);
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentRace = isNativeByUserAgent() ? null : currentReelRaceFromHook;
-  const [showLeaderboard, setShowLeaderboard] = React.useState(false);
+  const [showLeaderboard, setShowLeaderboard] = React.useState(
+    initialShowLeaderboard
+  );
   const { togglePin, isPinned } = React.useContext(PinnedDrawersContext);
 
   useReelRaceLeaderboardModal(currentRace);
@@ -76,13 +82,14 @@ export const ReelRacesDrawerWidgetContainer = ({ className }: Props) => {
           gameDuration={gameDuration}
           showLeaderboardLink
           onShowLeaderboardClick={() => setShowLeaderboard(prev => !prev)}
+          isLeaderboardOpen={showLeaderboard}
         />
       </SidebarElementWrapper>
       <Desktop>
         {showLeaderboard && (
           <SidebarElementWrapper className="u-margin-top">
             <ReelRaceLeaderboardResults
-              className="t-border-r--md"
+              className="t-border-r"
               size={currentRace.leaderboard.length}
               leaderboard={currentRace.leaderboard}
               playerId={playerId}
