@@ -16,11 +16,11 @@ export type Props = {
   id: number | string,
   mode: $Values<typeof IFRAME_MODE>,
   env: $Values<typeof IFRAME_PIQ_ENV>,
-  luhnCheck: boolean,
-  onSuccess: (token: string) => {},
-  onValidation: (errorCode: string) => {},
-  onCardType: (param: string) => {},
-  onCardIdentifier: (param: string) => {},
+  luhnCheck?: boolean,
+  onSuccess: (token: string) => void,
+  onValidation: (errorCode: string) => void,
+  onCardType?: (param: string) => {},
+  onCardIdentifier?: (param: string) => {},
 };
 
 export const PiqIframeComponent = ({
@@ -30,8 +30,8 @@ export const PiqIframeComponent = ({
   luhnCheck = true,
   onSuccess,
   onValidation,
-  onCardType,
-  onCardIdentifier,
+  onCardType = () => {},
+  onCardIdentifier = () => {},
 }: Props) => {
   const iframe = useRef(null);
   //eslint-disable-next-line no-unused-vars
