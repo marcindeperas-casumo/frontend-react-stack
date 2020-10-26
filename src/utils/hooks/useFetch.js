@@ -12,16 +12,25 @@ export function useFetch(url: string) {
       return;
     }
 
-    fetch(url)
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetch(url, { signal })
       .then(raw => raw.json())
       .then(data => {
         setResponse(data);
         setStatus("DONE");
       })
       .catch(err => {
-        setStatus("ERROR");
-        logger.log(`request error, url: ${url}`, err);
+        if (err.name !== "AbortError") {
+          setStatus("ERROR");
+          logger.log(`request error, url: ${url}`, err);
+        }
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [url]);
 
   return { status, response };
