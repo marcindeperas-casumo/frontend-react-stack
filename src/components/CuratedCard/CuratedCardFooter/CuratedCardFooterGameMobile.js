@@ -16,6 +16,10 @@ export const CuratedCardFooterGameMobile = ({
   launchButtonText,
   onLaunchGame,
 }: CuratedCardFooterGameProps) => {
+  if (!game) {
+    return null;
+  }
+
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
     [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game.slug),
