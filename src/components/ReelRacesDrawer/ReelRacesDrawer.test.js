@@ -7,6 +7,7 @@ const props = {
   spinsLeft: "329",
   position: "10",
   points: "100",
+  boosters: { winsInARow: 3, bigWins: 1, megaWins: 2, wins: 10, triples: 3 },
   gameProgress: 27,
   gameDuration: 25,
   t: {

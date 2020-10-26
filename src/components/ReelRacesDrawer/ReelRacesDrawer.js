@@ -4,9 +4,11 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SpinIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import * as A from "Types/apollo";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
+import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";
 
@@ -17,6 +19,7 @@ type Props = {
   spinsLeft: string,
   position: string,
   points: string,
+  boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
   gameProgress: number,
   gameDuration: number,
   t?: {
@@ -48,6 +51,7 @@ export const ReelRacesDrawer = ({
   spinsLeft,
   position,
   points,
+  boosters,
   gameProgress,
   gameDuration,
   onShowLeaderboardClick = () => {},
@@ -199,6 +203,12 @@ export const ReelRacesDrawer = ({
       {raceLogo}
       {raceProgress}
       {raceStatus}
+      <ReelRaceBoosters
+        className="u-width--full u-margin-top--2xlg u-margin-top--none@desktop"
+        winsInARow={boosters.winsInARow}
+        bigWins={boosters.bigWins}
+        megaWins={boosters.megaWins}
+      />
       {leaderboard}
     </Flex>
   );
