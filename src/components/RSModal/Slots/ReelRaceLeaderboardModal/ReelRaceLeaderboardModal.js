@@ -94,11 +94,11 @@ export function ReelRaceLeaderboardModal({ acceptModal, config }: Props) {
       />
       {playerOutsideLeaderboard && (
         <ReelRaceLeaderboardListEntry
+          className="o-position--sticky o-inset-bottom--none"
           points={points}
           position={position}
           text={playerName}
           highlighted
-          stuckToBottom
         />
       )}
     </CudlModal>
