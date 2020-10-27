@@ -3,7 +3,7 @@ import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export const COMMANDS = {
-  PAUSE: { type: "Tilt" },
+  PAUSE: '{ "type": "Tilt" }',
   RESUME: { type: "" },
 };
 
@@ -75,7 +75,7 @@ export class PragmaticGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = PUSH_GAME_EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = PUSH_GAME_EVENTS.GAME_ROUND_END;
     this.api.features.instantPause = false;
-    this.targetDomain = window.location.origin;
+    this.targetDomain = "*";
   }
 
   get componentProps() {
