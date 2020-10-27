@@ -30,7 +30,7 @@ t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-
       withBg ? "t-background-grey-90" : ""
     }`}
   >
-    <div className="t-border-r--circle u-height--full u-overflow-hidden u-position-relative u-zindex--content-overlay">
+    <div className="t-border-r--circle u-height--full u-overflow--hidden u-position-relative u-zindex--content-overlay">
       {children}
     </div>
   </div>

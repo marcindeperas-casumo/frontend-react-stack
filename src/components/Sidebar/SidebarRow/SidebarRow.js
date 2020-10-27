@@ -33,7 +33,7 @@ export const SidebarRow = (props: Props) => {
     "u-margin--none",
     "u-padding--none",
     "u-position-relative",
-    "u-overflow-hidden",
+    "u-overflow--hidden",
     "u-cursor-pointer",
     "t-color-white",
     {

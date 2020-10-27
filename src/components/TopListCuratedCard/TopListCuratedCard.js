@@ -49,7 +49,7 @@ export const TopListCuratedCard = ({
 
   return (
     <div className="u-margin-top--md@mobile u-margin-x--md@mobile u-margin-x--3xlg@desktop">
-      <div className="o-wrapper u-overflow-hidden t-border-r--md">
+      <div className="o-wrapper u-overflow--hidden t-border-r--md">
         <CuratedCard slug={computedSlug} />
       </div>
     </div>

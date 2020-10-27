@@ -87,7 +87,7 @@ export function Select<T>(props: Props<T>) {
             <div className="u-position-absolute c-select__options-list-arrow" />
             <Flex
               direction="vertical"
-              className="t-background-white t-border-r--md u-overflow-hidden"
+              className="t-background-white t-border-r--md u-overflow--hidden"
             >
               {Object.keys(props.options).map(key => (
                 <Flex
