@@ -5,8 +5,6 @@ import { SportsNavigation } from "@casumo/sports-navigation";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import { type SportsNavItemType } from "Features/sports/components/SportsNav";
-import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
 import { useIsAuthenticated } from "Utils/hooks";
@@ -29,14 +27,6 @@ const renderSportsNav = (
   isAuthenticated: boolean
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
-
-  const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
-    navItemUtils.toNavItem(isLiveActive)
-  );
-
-  if (navItems.length === 0) {
-    return <SportsNavSkeleton />;
-  }
 
   const trackOnClickLive = state => {
     tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
@@ -77,7 +67,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     navItemUtils.isInPlayHash(currentHash)
   );
   const variables = { live: isLiveActive };
-  const { loading, error, data, refetch } = useQuery(USER_NAVIGATION_QUERY, {
+  const { error, data, refetch } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
@@ -100,22 +90,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     return null;
   }
 
-  if (loading) {
-    return <SportsNavSkeleton />;
-  }
-
   if (error) {
     return <ErrorMessage direction="horizontal" />;
-  }
-
-  if (
-    !data ||
-    !data.sportsNavigation ||
-    !data.allLabel ||
-    !data.editLabel ||
-    !data.liveLabel
-  ) {
-    return null;
   }
 
   const clickRetryRefetchNavigation = () => {
@@ -123,7 +99,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     refetch();
   };
 
-  if (!data.sportsNavigation.length) {
+  if (data && !data.sportsNavigation.length) {
     return (
       <ErrorMessage
         direction="horizontal"
