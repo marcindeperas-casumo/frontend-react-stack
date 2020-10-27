@@ -5,15 +5,31 @@ import { useParams } from "@reach/router";
 import { useSelector } from "react-redux";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
-import { currencySelector, playerIdSelector } from "Models/handshake";
-import { urls, operatorId } from "./blueRibbonConsts";
+import {
+  currencySelector,
+  playerIdSelector,
+  isProductionBackendSelector,
+} from "Models/handshake";
+import { urls, baseConfig } from "./blueRibbonConsts";
 
 declare var BlueRibbon: any;
+
+function useBlueRibbonConfig() {
+  const isProductionBackend = useSelector(isProductionBackendSelector);
+
+  if (isProductionBackend) {
+    return baseConfig.production;
+  }
+
+  return baseConfig.development;
+}
+
 export function useBlueRibbonSDK() {
   const [sdk, setSdk] = React.useState();
+  const config = useBlueRibbonConfig();
+
   const blueRibbonConfig = {
-    operatorId: operatorId,
-    baseServiceUrl: urls.baseService,
+    ...config,
     loginAnonymousPlayer: () => {
       return fetch(urls.loginAnonymous, { method: "POST" }).then(raw =>
         raw.json()
