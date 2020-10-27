@@ -185,7 +185,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "o-flex__item",
             "o-flex__item-fixed-size",
             "t-border-r--md",
-            "u-overflow-hidden",
+            "u-overflow--hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
             "t-color-yellow-30",

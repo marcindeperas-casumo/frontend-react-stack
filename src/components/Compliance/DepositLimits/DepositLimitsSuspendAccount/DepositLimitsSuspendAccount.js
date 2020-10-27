@@ -26,7 +26,7 @@ export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
   return (
     <div
       className={classNames(
-        "t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--lg",
+        "t-border-r--none@mobile t-border-r u-overflow--hidden u-margin-bottom--lg",
         props.className
       )}
     >
