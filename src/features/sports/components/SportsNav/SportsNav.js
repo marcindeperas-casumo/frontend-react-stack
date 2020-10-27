@@ -132,19 +132,9 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     );
   }
 
-  const setIsLiveActiveAndUpdateSelectedNavItem = (liveActive: boolean) => {
-    setIsLiveActive(liveActive);
-
-    const path = liveActive
-      ? navItemUtils.ALL_SPORTS_PATH
-      : navItemUtils.SPORTS_HOME_PAGE_PATH;
-
-    navItemUtils.selectPath(client, path);
-  };
-
   return renderSportsNav(
     currentHash,
-    [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
+    [isLiveActive, setIsLiveActive],
     data,
     client,
     isAuthenticated
