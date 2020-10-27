@@ -1,18 +1,17 @@
 // @flow
 import * as React from "react";
 import { useQuery, getApolloContext } from "@apollo/react-hooks";
+import { SportsNavigation } from "@casumo/sports-navigation";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import {
-  SportsMainNav,
-  SportsSubNav,
-  type SportsNavItemType,
-} from "Features/sports/components/SportsNav";
+import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
 import { useIsAuthenticated } from "Utils/hooks";
+import tracker from "Services/tracker";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -29,13 +28,7 @@ const renderSportsNav = (
   client,
   isAuthenticated: boolean
 ) => {
-  const [isLiveActive] = liveState;
-  const isNavItemSelected = navItemUtils.isNavItemSelected(currentHash);
-  const onNavItemSelected = navItemUtils.onNavItemSelected(
-    currentHash,
-    client,
-    isLiveActive
-  );
+  const [isLiveActive, setIsLiveActive] = liveState;
 
   const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
     navItemUtils.toNavItem(isLiveActive)
@@ -45,80 +38,33 @@ const renderSportsNav = (
     return <SportsNavSkeleton />;
   }
 
-  const selectedNavItem =
-    navItems.find(navItem => isNavItemSelected(navItem)) || navItems[0];
-
-  const { subNav = [] } = selectedNavItem;
-
-  const selectedSubNavItem = subNav.find(subNavItem =>
-    isNavItemSelected(subNavItem)
-  );
-
-  const mainNavCacheBuster = [
-    selectedNavItem.path,
-    ...navItems.map(navItem => navItem.path),
-    currentHash,
-  ].join();
-
-  const subNavCacheBuster = subNav
-    .map(navItem => {
-      const isActive =
-        selectedSubNavItem && selectedSubNavItem.path === navItem.path;
-
-      return `${currentHash}/${navItem.path}/${isActive ? `:active` : ""}`;
-    })
-    .join();
-
-  const labels = {
-    edit: data.editLabel,
-    live: data.liveLabel,
-    all: data.allLabel,
+  const trackOnClickLive = state => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
+      [EVENT_PROPS.SPORTS_STATE]: state,
+    });
   };
 
-  const commonProps = {
-    labels,
-    liveState,
-    isSelected: isNavItemSelected,
-    onSelected: onNavItemSelected,
+  const trackOnSportsNavigationSelected = path => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_NAV_SELECTED, {
+      [EVENT_PROPS.SPORTS_SELECTED_NAV]: path,
+      [EVENT_PROPS.SPORTS_IS_LIVE_ACTIVE]: isLiveActive,
+    });
   };
-
-  const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
-  const isNotHomeSports =
-    currentHash !== `#${navItemUtils.SPORTS_HOME_PAGE_PATH}`;
-  const isNotCouponPage =
-    currentHash.substr(0, navItemUtils.SPORTS_COUPON_PAGE_PATH.length + 1) !==
-    `#${navItemUtils.SPORTS_COUPON_PAGE_PATH}`;
 
   return (
     <>
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {openChooseFavouritesModal => (
-          <SportsMainNav
-            {...commonProps}
-            navItems={navItems}
+          <SportsNavigation
+            data={data}
+            onSelected={trackOnSportsNavigationSelected}
+            onClickLive={trackOnClickLive}
+            isLiveActive={isLiveActive}
+            setIsLiveActive={setIsLiveActive}
             canEdit={isAuthenticated}
             onEdit={openChooseFavouritesModal}
-            cacheBuster={mainNavCacheBuster}
           />
         )}
-      </OpenModalMutation>
-
-      <OpenModalMutation
-        variables={{ modal: MODAL.CHOOSE_FAVOURITE_COMPETITIONS }}
-      >
-        {openChooseFavouriteLeaguesModal =>
-          isNotAllSports &&
-          isNotHomeSports &&
-          isNotCouponPage && (
-            <SportsSubNav
-              {...commonProps}
-              navItems={selectedNavItem.subNav || []}
-              canEdit={selectedNavItem.canEdit && isAuthenticated}
-              onEdit={openChooseFavouriteLeaguesModal}
-              cacheBuster={subNavCacheBuster}
-            />
-          )
-        }
       </OpenModalMutation>
     </>
   );
