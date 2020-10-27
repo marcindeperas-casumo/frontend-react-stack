@@ -4,7 +4,7 @@ import { BaseIframeGame } from "./BaseIframeGame";
 
 export const COMMANDS = {
   PAUSE: '{ "type": "Tilt" }',
-  RESUME: { type: "" },
+  RESUME: '{ type: "" }',
 };
 
 export const PRAGMATIC_GAME_EVENT_TYPE = Object.freeze({
@@ -56,7 +56,7 @@ export interface PragmaticGameEvent {
 
 export const PUSH_GAME_EVENTS = {
   GAME_ROUND_START: PRAGMATIC_GAME_EVENT_TYPE.GAME_ROUND_STARTED,
-  GAME_ROUND_END: PRAGMATIC_GAME_EVENT_TYPE.GAME_ROUND_ENDED,
+  GAME_ROUND_END: PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN,
 };
 
 type PragmaticGameMessage = {
@@ -71,11 +71,9 @@ export class PragmaticGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.commands.pause = COMMANDS.PAUSE;
-    this.api.commands.resume = "";
     this.api.events.onGameRoundStart = PUSH_GAME_EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = PUSH_GAME_EVENTS.GAME_ROUND_END;
     this.api.features.instantPause = false;
-    this.targetDomain = "*";
   }
 
   get componentProps() {
