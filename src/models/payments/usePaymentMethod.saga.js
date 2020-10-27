@@ -75,7 +75,7 @@ export function* usePaymentMethodSaga(
       if (redirectOutput.url) {
         yield put(
           showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
-            iframeUrl: redirectOutput.url,
+            redirectOutput,
           })
         );
 
