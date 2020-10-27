@@ -24,6 +24,6 @@ describe("PragmaticGame", () => {
   test("should set api commands", () => {
     expect(model.api.features.instantPause).toBe(false);
     expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
-    expect(model.api.commands.resume).toEqual("");
+    expect(model.api.commands.resume).toEqual(null);
   });
 });
