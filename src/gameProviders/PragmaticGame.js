@@ -50,10 +50,6 @@ export type PragmaticGameEventTypeLiteral = $Values<
   typeof PRAGMATIC_GAME_EVENT_TYPE
 >;
 
-export interface PragmaticGameEvent {
-  method: PragmaticGameEventTypeLiteral;
-}
-
 export const PUSH_GAME_EVENTS = {
   GAME_ROUND_START: PRAGMATIC_GAME_EVENT_TYPE.GAME_ROUND_STARTED,
   GAME_ROUND_END: PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN,
