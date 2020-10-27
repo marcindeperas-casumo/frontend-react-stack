@@ -33,6 +33,7 @@ import {
   jurisdictionSelector,
   registrationDateSelector,
   complianceStatePropertySelector,
+  isProductionBackendSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -612,6 +613,36 @@ describe("Handshake selectors", () => {
       expect(
         complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.AML)(state)
       ).toEqual("any value");
+    });
+  });
+
+  describe("isProductionBackendSelector()", () => {
+    test("should return true for casumo.com", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/context": {
+              siteUrl: "https://www.casumo.com/",
+            },
+          },
+        },
+      };
+
+      expect(isProductionBackendSelector(state)).toEqual(true);
+    });
+
+    test("should return false for casumotest.com", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/context": {
+              siteUrl: "https://www.casumotest.com/",
+            },
+          },
+        },
+      };
+
+      expect(isProductionBackendSelector(state)).toEqual(false);
     });
   });
 });
