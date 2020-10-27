@@ -6,15 +6,15 @@ import { localeSelector } from "Models/handshake";
 import {
   useTranslationsGql,
   //useAvailableQuickDepositMethods,
-  useCrossCodebaseNavigation,
 } from "Utils/hooks";
 import {
   playerBalanceAmountSelector,
   playerWalletBonusSelector,
   playerCurrencySelector,
 } from "Models/player";
+import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { ROUTE_IDS } from "Src/constants";
+import { REACT_APP_MODAL } from "Src/constants";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
@@ -38,9 +38,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
   const savedQuickDepositMethods = []; //useAvailableQuickDepositMethods();
-  const { navigateToKO } = useCrossCodebaseNavigation();
   const navigateToCashier = () => {
-    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
+    dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };
 
   const launchQuickDeposit = () => {
