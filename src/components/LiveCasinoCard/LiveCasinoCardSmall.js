@@ -153,7 +153,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
     return (
       <div className="u-padding-bottom--sm">
         <Card
-          className="o-ratio t-border-r--md u-overflow-hidden t-background-white t-elevation--10"
+          className="o-ratio t-border-r--md u-overflow--hidden t-background-white t-elevation--10"
           spacing="md"
           onClick={() => launchGame({ slug })}
           header={this.renderHeader}
