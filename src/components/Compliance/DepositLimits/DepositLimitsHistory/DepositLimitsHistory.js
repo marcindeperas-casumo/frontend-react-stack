@@ -71,7 +71,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
       direction="vertical"
       align="stretch"
       spacing="none"
-      className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow-hidden"
+      className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow--hidden"
     >
       <Flex
         align="center"

@@ -38,7 +38,7 @@ export function BlueRibbonJackpotsWidget({ jackpots, t }: Props) {
   return (
     <Flex
       direction="vertical"
-      className="o-flex__item--no-shrink u-padding t-border-r--md u-overflow-hidden"
+      className="o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden"
       style={{
         backgroundColor: colors.jackpotWidgetPurpleLight,
         width: jackpotWidgetWidth,
@@ -96,7 +96,7 @@ export function BlueRibbonJackpotsWidget({ jackpots, t }: Props) {
           <Flex
             key={jackpot.potId}
             direction="vertical"
-            className="t-border-r--md u-overflow-hidden"
+            className="t-border-r--md u-overflow--hidden"
             style={{ backgroundColor: colors.jackpotWidgetPurpleDark }}
           >
             {splittedPot.map(({ id, ...x }) => (

@@ -1,7 +1,6 @@
 // @flow
 export const urls = {
   sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.57.js",
-  baseService: "https://api.demo00.bluerbn.com",
   loginAnonymous:
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/anonymous",
   loginAuthenticated:
@@ -9,7 +8,16 @@ export const urls = {
   handshake: "/casino-player/blueribbon-jackpot-integration/api/v1/handshake",
 };
 export const blueRibbonGamesListId = "blueRibbonChristmas";
-export const operatorId = "Vuodd1597935177986";
+export const baseConfig = {
+  development: {
+    operatorId: "Vuodd1597935177986",
+    baseServiceUrl: "https://api.demo00.bluerbn.com",
+  },
+  production: {
+    operatorId: "dddJB1601558248862",
+    baseServiceUrl: "https://api.bluerbn.com",
+  },
+};
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
   mini: string,
