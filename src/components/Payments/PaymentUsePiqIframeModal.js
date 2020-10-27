@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import Flex from "@casumo/cmp-flex";
 import { ModalHeader } from "Components/RSModal";
 import { hideModal } from "Models/modal";
 import { piqIframeResolve } from "Models/payments/payments.actions";
@@ -61,14 +62,18 @@ export const PaymentUsePiqIframeModal = ({ config }) => {
   }, [dispatch]);
 
   return (
-    <>
-      <ModalHeader showCloseButton closeAction={onModalClose} title=" " />
-      <iframe
-        ref={iframe}
-        style={{ width: "100%", height: "100%" }}
-        title={IFRAME_TITLE}
-        name={IFRAME_NAME}
-      />
-    </>
+    <Flex direction="vertical" justify="space-between">
+      <Flex.Item>
+        <ModalHeader showCloseButton closeAction={onModalClose} title=" " />
+      </Flex.Item>
+      <Flex.Item className="c-piq-modal-content">
+        <iframe
+          className="c-fullspace-iframe"
+          ref={iframe}
+          title={IFRAME_TITLE}
+          name={IFRAME_NAME}
+        />
+      </Flex.Item>
+    </Flex>
   );
 };
