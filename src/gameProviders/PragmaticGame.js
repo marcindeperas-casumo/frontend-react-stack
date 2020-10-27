@@ -32,7 +32,7 @@ export const PRAGMATIC_GAME_EVENT_TYPE = Object.freeze({
   GAME_QUIT: {
     name: "gameQuit",
   },
-  RESUlT_SHOWN: {
+  RESULT_SHOWN: {
     name: "resultShown",
   },
   BONUS_GAME_ENDED: {
