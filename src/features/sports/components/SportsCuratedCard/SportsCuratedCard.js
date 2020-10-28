@@ -26,8 +26,8 @@ export const SportsCuratedCard = ({
 
   return (
     <MobileAndTablet>
-      <div className="u-overflow-hidden">
-        <div className="u-margin-top--sm u-margin-x--md t-border-r--md u-overflow-hidden">
+      <div className="u-overflow--hidden">
+        <div className="u-margin-top--sm u-margin-x--md t-border-r--md u-overflow--hidden">
           <CuratedCard slug={CMS_SLUG} className="c-sports-curated-card" />
         </div>
       </div>

@@ -22,7 +22,7 @@ export const ProfileIcon = ({
         className
       )}
     >
-      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow-hidden t-border-r--circle t-opacity-background--100 t-background-grey-0">
+      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle t-opacity-background--100 t-background-grey-0">
         <AvatarIcon className="c-profile-icon__avatar u-position-absolute" />
       </div>
       <ProgressCircle

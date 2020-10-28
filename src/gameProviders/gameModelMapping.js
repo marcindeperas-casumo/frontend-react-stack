@@ -21,6 +21,7 @@ import { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
 import { NyxGame } from "./NyxGame";
+import { PragmaticGame } from "./PragmaticGame";
 
 export type GameProps = {
   providerType: GameProviderType,
@@ -60,6 +61,8 @@ export const models = {
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
   [PROVIDERS.PUSHGAMING_MOBILE]: PushGame,
   [PROVIDERS.PLAYTECH_MOBILE]: BaseIframeGame,
+  [PROVIDERS.PRAGMATIC_DESKTOP]: PragmaticGame,
+  [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
 };
 
 const whichProviderType = gameData => {
