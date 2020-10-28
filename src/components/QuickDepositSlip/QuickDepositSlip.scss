@@ -9,9 +9,10 @@
   z-index: 1;
 }
 
-.c-slip-desktop-width {
+.c-quick-deposit-slip-posisioning {
+  max-width: 500px;
+
   @media (min-width: 1280px) {
     top: 70px;
-    width: 500px;
   }
 }

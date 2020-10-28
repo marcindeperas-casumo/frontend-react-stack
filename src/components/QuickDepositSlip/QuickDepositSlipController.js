@@ -17,7 +17,11 @@ import {
   getPaymentRequestSelector,
 } from "Models/payments/payments.selectors";
 
-export const QuickDepositSlipController = ({ position }) => {
+export const QuickDepositSlipController = ({
+  position,
+}: {
+  position: string,
+}) => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
   const paymentRequest = useSelector(getPaymentRequestSelector);
@@ -62,7 +66,7 @@ export const QuickDepositSlipController = ({ position }) => {
     >
       <Flex.Item
         className="
-          c-slip-desktop-width
+          quick-deposit-slip-posisioning
           u-width--screen@mobile
           u-width--4/5@phablet
           u-width--3/5@tablet
