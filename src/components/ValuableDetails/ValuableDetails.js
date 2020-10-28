@@ -10,6 +10,7 @@ import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
+import { launchGame } from "Services/LaunchGameService";
 import {
   type ValuableDetailsTranslations as Translations,
   type ValuableActionProps,
@@ -124,6 +125,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
       return valuableDetails.game;
     }
 
+    if (valuableDetails.__typename === "PlayerValuableCashback") {
+      return (valuableDetails: any).games[0];
+    }
+
     return null;
   }
 
@@ -137,6 +142,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     try {
       await onConsumeValuable(id);
+
+      if (this.props.valuableDetails.games) {
+        return launchGame({
+          slug: (this.props.valuableDetails: any).games[0].slug,
+          playForFun: false,
+        });
+      }
 
       if (isDepositBonusSelected) {
         depositBonusSelected({ badgeId: id });
