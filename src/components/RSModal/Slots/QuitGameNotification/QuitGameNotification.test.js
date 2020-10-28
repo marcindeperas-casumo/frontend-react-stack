@@ -1,16 +1,17 @@
+// @flow
 import React from "react";
 import { mount } from "enzyme";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import MockStore from "Components/MockStore";
 import { QuitGameNotification } from "./QuitGameNotification";
-import { QuitGameNotificationProps } from "./__mocks__/QuitGameNotificationProps.mock";
+import { cms } from "./__mocks__/cms";
 
 describe("Quit Game Notification / Modal", () => {
   test("should render modal with big title, main text, primary button and close icon", () => {
     const rendered = mount(
       <MockStore>
-        <QuitGameNotification {...QuitGameNotificationProps} />
+        <QuitGameNotification t={cms} />
       </MockStore>
     );
     const buttonPrimary = rendered.find(ButtonPrimary);
