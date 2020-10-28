@@ -33,11 +33,8 @@ import {
   jurisdictionSelector,
   registrationDateSelector,
   complianceStatePropertySelector,
-<<<<<<< HEAD
   isProductionBackendSelector,
-=======
   piqConfigSelector,
->>>>>>> added piqConfig handshake selector
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
