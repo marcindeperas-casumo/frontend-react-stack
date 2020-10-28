@@ -20,6 +20,8 @@ import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import "./ProfileIconWithDrawer.scss";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
+import { playingSelector } from "Models/playing";
+import { BlueRibbonJackpotsInGameWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
@@ -79,6 +81,9 @@ export const ProfileIconWithDrawer = ({
             `${baseClassName}__bottom-wrapper-bg`
           )}
         >
+          <div className={`${baseClassName}__item u-padding-bottom`}>
+            <BlueRibbonJackpotsInGameWidgetContainer />
+          </div>
           {shouldShowReelRace && (
             <ReelRacesDrawerWidget
               className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
