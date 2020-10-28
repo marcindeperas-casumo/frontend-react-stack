@@ -54,11 +54,11 @@ const renderValuableThumbnail = ({
   valuableState,
   valuableType,
 }) => (
-  <div className="u-width--4xlg t-background-white u-padding--sm t-border-r u-overflow-hidden t-elevation--10">
+  <div className="u-width--4xlg t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
     <ValuableThumbnail
       backgroundRenderer={
         <ImageLazy
-          className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow-hidden"
+          className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow--hidden"
           src={backgroundImage}
         />
       }

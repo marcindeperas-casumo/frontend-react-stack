@@ -54,7 +54,7 @@ export const GameBrowserSets = (props: Props) => {
     <Flex
       direction="horizontal"
       spacing="default"
-      className="o-wrapper u-padding--md@mobile u-padding--md@tablet u-padding-y--lg@desktop u-overflow--scroll"
+      className="o-wrapper u-padding--md@mobile u-padding--md@tablet u-padding-y--lg@desktop u-overflow--scroll u-overflow-scrolling--touch"
     >
       <GameSetChip
         to="top"

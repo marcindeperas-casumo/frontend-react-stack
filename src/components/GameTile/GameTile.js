@@ -22,7 +22,7 @@ export type Props = {
 };
 
 export const DEFAULT_CLASSES =
-  "o-ratio t-color-white t-border-r--md t-background-grey-5 u-overflow-hidden";
+  "o-ratio t-color-white t-border-r--md t-background-grey-5 u-overflow--hidden";
 
 export const GameTile = ({
   className,

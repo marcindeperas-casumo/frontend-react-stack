@@ -27,7 +27,7 @@ export const GameDetails = ({ game, t }: Props) => {
   return (
     <Flex
       direction={isDesktop() ? "horizontal" : "vertical"}
-      className="c-game-details u-margin-x--auto u-padding-bottom--lg@tablet u-padding--lg@desktop t-border-r--md@tablet u-margin-x--md@tablet u-overflow-hidden"
+      className="c-game-details u-margin-x--auto u-padding-bottom--lg@tablet u-padding--lg@desktop t-border-r--md@tablet u-margin-x--md@tablet u-overflow--hidden"
     >
       <TileImage
         image={game.backgroundImage}
@@ -45,7 +45,7 @@ export const GameDetails = ({ game, t }: Props) => {
         direction="vertical"
         justify="space-between"
         className={[
-          "t-background-white u-overflow-hidden u-margin-x--md@desktop",
+          "t-background-white u-overflow--hidden u-margin-x--md@desktop",
           "t-border-r--md@desktop o-flex--1",
           "u-padding-x--xlg@desktop u-padding-y--2xlg@desktop",
         ].join(" ")}

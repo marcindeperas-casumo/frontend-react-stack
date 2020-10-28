@@ -71,7 +71,7 @@ export function DepositLimitsOverview(props: Props) {
         align="stretch"
         justify="space-between"
         spacing="none"
-        className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg"
+        className="t-border-r--none@mobile t-border-r u-overflow--hidden u-margin-bottom--2xlg"
       >
         <LimitHeader
           variesForDesktop
