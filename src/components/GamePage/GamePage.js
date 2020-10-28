@@ -41,7 +41,7 @@ export const GamePage = ({
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   const pinState = usePin();
-  const { pinnedDrawers } = pinState;
+  const { pinnedDrawers, isPinned } = pinState;
 
   return (
     <SumoIconContextProvider>
@@ -67,10 +67,9 @@ export const GamePage = ({
                   <Flex.Item className="u-padding-right c-game-page__sidebar u-overflow-y--auto">
                     {/* sidebar for pinned items */}
                     {sidebar}
-                    {pinnedDrawers.includes(DRAWERS.REEL_RACES) &&
-                      isDesktop() && (
-                        <ReelRacesDrawerWidget initialShowLeaderboard />
-                      )}
+                    {isPinned(DRAWERS.REEL_RACES) && isDesktop() && (
+                      <ReelRacesDrawerWidget initialShowLeaderboard />
+                    )}
                   </Flex.Item>
                 )}
                 <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">

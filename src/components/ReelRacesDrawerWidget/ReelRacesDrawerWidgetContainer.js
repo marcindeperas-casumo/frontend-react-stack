@@ -21,6 +21,10 @@ type Props = {
   initialShowLeaderboard?: boolean,
 };
 
+const LEADERBOARD_SPAN = 20;
+const LEADERBOARD_FIXED = 3;
+const LEADERBOARD_LAURELS = 3;
+
 export const ReelRacesDrawerWidgetContainer = ({
   className,
   initialShowLeaderboard = false,
@@ -65,6 +69,15 @@ export const ReelRacesDrawerWidgetContainer = ({
   } = currentRace;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
+  const leaderboard = [
+    ...currentRace.leaderboard.slice(0, LEADERBOARD_FIXED - 1),
+    ...currentRace.leaderboard.slice(
+      position - 1 - LEADERBOARD_SPAN <= LEADERBOARD_FIXED - 1
+        ? LEADERBOARD_FIXED - 1
+        : position - 1 - LEADERBOARD_SPAN,
+      position + LEADERBOARD_SPAN
+    ),
+  ];
 
   return (
     <div className={className}>
@@ -90,13 +103,13 @@ export const ReelRacesDrawerWidgetContainer = ({
           <SidebarElementWrapper className="u-margin-top">
             <ReelRaceLeaderboardResults
               className="t-border-r"
-              size={currentRace.leaderboard.length}
-              leaderboard={currentRace.leaderboard}
+              size={leaderboard.length}
+              leaderboard={leaderboard}
               playerId={playerId}
-              forceLaurelPositions={3}
+              forceLaurelPositions={LEADERBOARD_LAURELS}
               style={{ height: "390px" }}
               inverted
-              fixedRows={3}
+              fixedRows={LEADERBOARD_FIXED}
               scrollable
             />
           </SidebarElementWrapper>

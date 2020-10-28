@@ -184,8 +184,8 @@ export const ReelRacesDrawerWidget = ({
       >
         <Text
           tag="span"
-          size="xs"
-          className="t-color-white u-text-transform-uppercase"
+          size="2xs"
+          className="t-color-white u-text-transform-uppercase u-font-weight-black"
         >
           {t?.reel_races_drawer_full_leaderboard}
         </Text>

@@ -5,6 +5,8 @@ import {
   prop,
   path,
   pathOr,
+  pipe,
+  includes,
   isNil,
   isEmpty,
   complement,
@@ -243,4 +245,12 @@ export const complianceStatePropertySelector = (complianceProperty: string) =>
 export const registrationDateSelector = createSelector(
   playerSelector,
   prop("registrationDate")
+);
+
+export const isProductionBackendSelector = createSelector(
+  applicationHandshakeSelector,
+  pipe(
+    path(["common/composition/context", "siteUrl"]),
+    includes("casumo.com")
+  )
 );
