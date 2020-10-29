@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector } from "Models/handshake";
+import { localeSelector, featureFlagSelector } from "Models/handshake";
 import {
   useTranslationsGql,
   useAvailableQuickDepositMethods,
@@ -31,11 +31,13 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
+  const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
-  const hasQuickDepositMethods = savedQuickDepositMethods.length > 0;
+  const hasQuickDepositMethods =
+    quickDepositEnabled && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };

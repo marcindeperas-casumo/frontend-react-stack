@@ -23,6 +23,7 @@ import {
 } from "./payments.actions";
 import type { StartQuickDepositActionReturnType } from "./payments.actions";
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function* usePaymentMethodSaga(
   action: StartQuickDepositActionReturnType
 ): * {
@@ -60,7 +61,7 @@ export function* usePaymentMethodSaga(
   const response = yield call(
     makePIQDepositRequest,
     apiUrl,
-    "creditcard",
+    "creditcard", //do proper mapping and use param instead of static value here
     payload,
     locale
   );
@@ -81,20 +82,23 @@ export function* usePaymentMethodSaga(
 
         // canceled (when modal closed), error, success etc.
         const piqIframeResolution = yield take(actionTypes.PIQ_IFRAME_RESOLVE);
-        const status = piqIframeResolution.payload.status;
+        const { status } = piqIframeResolution.payload;
 
         if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
           // track cancel
           return yield put(setPaymentRequestFinished());
         }
 
-        if (
-          piqIframeResolution.payload.status ===
-          PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED
-        ) {
+        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED) {
           yield put(setPaymentRequestFinished());
           return yield put(methodUseSuccess({ amount }));
           // track success
+        }
+
+        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
+          yield put(setPaymentRequestFinished());
+          // do a call to getTransactionStatus to get detailed error if possible
+          return yield put(methodUseError({ amount }));
         }
       } else {
         // @todo when doing FULL version:
