@@ -14,8 +14,7 @@ import {
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "./blueRibbonConsts";
-import { usePotStateChangeEvent } from "./useBlueRibbonSDK";
-import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
+import { BlueRibbonJackpotsWidgetContainer } from "./BlueRibbonJackpotsWidgetContainer";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -36,7 +35,6 @@ type Props = {
 
 export function BlueRibbonChristmas({ jackpot }: Props) {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  const pots = usePotStateChangeEvent();
   const { data } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
     {
@@ -57,21 +55,9 @@ export function BlueRibbonChristmas({ jackpot }: Props) {
         itemRenderer={i => {
           if (i === 0) {
             return (
-              <BlueRibbonJackpotsWidget
+              <BlueRibbonJackpotsWidgetContainer
                 key="br-widget"
-                t={t}
-                jackpots={jackpot.pots
-                  .map(
-                    ({ communityWinRatio, mainWinRatio, potId, potName }) => ({
-                      value: pots[potId]?.progressive,
-                      label: potName,
-                      status: pots[potId]?.potStatus,
-                      potId,
-                      communityWinRatio,
-                      mainWinRatio,
-                    })
-                  )
-                  .filter(x => x.value)}
+                className="u-margin-left--none"
               />
             );
           }
