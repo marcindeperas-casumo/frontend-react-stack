@@ -8,7 +8,10 @@ import {
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "./blueRibbonConsts";
-import { usePotStateChangeEvent } from "./useBlueRibbonSDK";
+import {
+  usePotStateChangeEvent,
+  useBlueRibbonSDKAnonymous,
+} from "./useBlueRibbonSDK";
 
 type BlueRibbonJackpotEntry = {
   value: number,
@@ -26,6 +29,7 @@ export function BlueRibbonJackpotsWidgetContainer({
 }) {
   const { response } = useFetch(urls.handshake);
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
+  useBlueRibbonSDKAnonymous();
   const pots = usePotStateChangeEvent();
 
   const available = R.propOr(false, "available", response);
