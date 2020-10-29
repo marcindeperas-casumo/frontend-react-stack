@@ -22,9 +22,7 @@ export const PaymentResult = ({
   const locale = useSelector(localeSelector);
   const currency = useSelector(playerCurrencySelector);
 
-  //@todo: get amount, status from `yet-unknown-place`, perhaps hook @chris.ciantar/@lukcasz
-  const status = config.status || PAYMENT_RESULT_STATUS.success;
-  const amount = config.amount || 100;
+  const { status, amount } = config;
 
   const isSuccess = status === PAYMENT_RESULT_STATUS.success;
 
