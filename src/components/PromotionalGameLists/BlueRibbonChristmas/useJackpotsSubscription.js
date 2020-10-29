@@ -62,14 +62,12 @@ export function useJackpotsSubscription() {
 
       setIsFullScreen(
         R.any(
-          R.equals(
-            ([
-              "jackpot_win_mini",
-              "jackpot_win_major",
-              "jackpot_win_mega",
-            ]: Array<NotificationType>)
-          ),
-          jackpotWinNotificationTypes
+          R.equals(notificationData.type),
+          ([
+            "jackpot_win_mini",
+            "jackpot_win_major",
+            "jackpot_win_mega",
+          ]: Array<NotificationType>)
         )
       );
       setJackpotAmount(

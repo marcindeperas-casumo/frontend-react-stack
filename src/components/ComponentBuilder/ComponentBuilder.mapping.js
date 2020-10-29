@@ -20,7 +20,10 @@ import { GameProvidersList } from "Components/GameProvidersList";
 import { ReelRacesList } from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";
-import { BlueRibbonChristmasContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import {
+  BlueRibbonChristmasContainer,
+  BlueRibbonJackpotsWidgetContainer,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -48,4 +51,5 @@ export const COMPONENT_MAPPING = {
   PRIZE_LIST: PromotionPrizeTable,
   REEL_RACES: ReelRacesList,
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,
+  CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetContainer,
 };
