@@ -6,7 +6,7 @@ import Modal from "@casumo/cmp-modal";
 import { formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
-import { PAYMENT_RESULT_STATUS } from "./PaymentResult.types";
+import { PAYMENT_RESULT_STATUS, type CmsContent } from "./PaymentResult.types";
 
 type Props = {
   t: CmsContent,

@@ -26,7 +26,7 @@ import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
 import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
-import { PaymentResult } from "./Payment";
+import { PaymentResult } from "./Payments";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
