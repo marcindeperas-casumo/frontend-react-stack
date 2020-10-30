@@ -7,6 +7,7 @@ import "./SidebarElementWrapper.scss";
 
 type Props = {
   className?: string,
+  style?: Object,
   pinnable?: boolean,
   onPinClick?: () => void,
   children?: React.Node,
@@ -16,6 +17,7 @@ const baseClassName = "c-sidebar-element-wrapper";
 
 export const SidebarElementWrapper = ({
   className,
+  style,
   pinnable = false,
   onPinClick = () => {},
   children,
@@ -29,6 +31,7 @@ export const SidebarElementWrapper = ({
           "t-background-black": !children,
         }
       )}
+      style={style}
     >
       {pinnable && (
         <WrapperPin

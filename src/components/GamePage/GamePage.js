@@ -61,14 +61,17 @@ export const GamePage = ({
               <Flex
                 direction="horizontal"
                 spacing="none"
-                className="u-padding-x--md@desktop u-padding-bottom--md@desktop c-game-page__central"
+                className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
               >
                 {pinnedDrawers.length > 0 && (
-                  <Flex.Item className="u-padding-right c-game-page__sidebar u-overflow-y--auto">
+                  <Flex.Item className="u-padding-right c-game-page__sidebar">
                     {/* sidebar for pinned items */}
                     {sidebar}
                     {isPinned(DRAWERS.REEL_RACES) && isDesktop() && (
-                      <ReelRacesDrawerWidget initialShowLeaderboard />
+                      <ReelRacesDrawerWidget
+                        initialShowLeaderboard
+                        className="u-height--full"
+                      />
                     )}
                   </Flex.Item>
                 )}
