@@ -7,6 +7,7 @@ import {
   urls,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
+  type JackpotStatus,
 } from "./blueRibbonConsts";
 import {
   usePotStateChangeEvent,
@@ -16,7 +17,7 @@ import {
 type BlueRibbonJackpotEntry = {
   value: number,
   label: string,
-  status: "HOT" | "WARM" | "CHILLY",
+  status: JackpotStatus,
   potId: string,
   communityWinRatio: number,
   mainWinRatio: number,

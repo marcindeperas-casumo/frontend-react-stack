@@ -18,6 +18,7 @@ export const baseConfig = {
     baseServiceUrl: "https://api.bluerbn.com",
   },
 };
+export type JackpotStatus = "HOT" | "WARM" | "CHILLY";
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
   mini: string,

@@ -7,12 +7,15 @@ import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
-import { type JackpotWidgetContentPage } from "./blueRibbonConsts";
+import type {
+  JackpotWidgetContentPage,
+  JackpotStatus,
+} from "./blueRibbonConsts";
 
 type BlueRibbonJackpotEntry = {
   value: number,
   label: string,
-  status: "HOT" | "WARM" | "CHILLY",
+  status: JackpotStatus,
   potId: string,
   communityWinRatio: number,
   mainWinRatio: number,

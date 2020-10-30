@@ -10,7 +10,7 @@ import {
   playerIdSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
-import { urls, baseConfig } from "./blueRibbonConsts";
+import { urls, baseConfig, type JackpotStatus } from "./blueRibbonConsts";
 
 declare var BlueRibbon: any;
 
@@ -156,7 +156,7 @@ type PotState = {
   potId: string,
   progressive: number,
   currency: string,
-  potStatus: "HOT" | "WARM" | "CHILLY",
+  potStatus: JackpotStatus,
   updateTimestamp: number,
 };
 type PotStateChangeEvent = {
