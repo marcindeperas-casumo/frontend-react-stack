@@ -11,12 +11,13 @@ import {
   colors,
   jackpotWidgetWidth,
   type JackpotWidgetContentPage,
+  type JackpotStatus,
 } from "./blueRibbonConsts";
 
 type BlueRibbonJackpotEntry = {
   value: number,
   label: string,
-  status: "HOT" | "WARM" | "CHILLY",
+  status: JackpotStatus,
   potId: string,
   communityWinRatio: number,
   mainWinRatio: number,
