@@ -323,12 +323,10 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
     "Sports Onboarding - expanded leagues of a Country",
   MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS: "Sports Onboarding - chose sports",
-  MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE: "Sports - odds added live page",
-  MIXPANEL_SPORTS_BETSLIP_LIVE_NOW: "Sports - odds added live now",
   MIXPANEL_SPORTS_HOME_CARD_CLICKED: "Sports Home - card clicked",
   MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
   MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
-  MIXPANEL_SPORTS_HOME_ODDS_CLICKED: "Sports Home - odds clicked",
+  MIXPANEL_SPORTS_ADD_TO_BETSLIP: "Sports - add to betslip",
   MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
@@ -375,6 +373,7 @@ export const EVENT_PROPS = {
   GAME_PLAY_TYPE: "Game play type",
   TYPE: "type",
   STAKE: "stake",
+  CATEGORY: "category",
 };
 
 export const EVENT_LOCATIONS = {
