@@ -1913,6 +1913,13 @@
   dependencies:
     "@casumo/cmp-icons" "^3.0.1"
 
+"@casumo/cmp-chip@^2.0.1":
+  version "2.0.2"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/2.0.2/d02c89a4289f8b188d37a4d2d8d5848a7ed51ff6b524e2550b99ba820eec1dea#fbd1c5288108881d85b26597ed4ec43de5d20399"
+  integrity sha512-exVc9wivUZO4qj86zhRlWIgNp7xtdlGBx9lghV0szNEsdmBPYKV9s7RdjPMExZTROB/HuuuZQ2DiOjq4y8Uoog==
+  dependencies:
+    "@casumo/cmp-icons" "^4.1.0"
+
 "@casumo/cmp-flex@^3.0.6":
   version "3.0.6"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/3.0.6/ae65210114da669f3f1cf479ece937e273290349b4c13f348688be7e8f71a365#4bf937a7a1b9f82996d3b581fe9a1b8043b19507"
@@ -1921,18 +1928,18 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-flex@^4.0.2":
-  version "4.0.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.0.2/c9796276b2eff8cd47be0d9c2aab19b5428bb9000aadd7e39430c5204219938a#21e7186c6dd9f9571a0044e9c376415847788d15"
-  integrity sha512-qT2zce4s9q9qHSMV7CsTgafH1UnU71X5nw5MbepRaf/S4Bn0CzJFVE5Mrg9yrX7+sHAhaHspjASYmiuu17uoiQ==
+"@casumo/cmp-flex@^4.0.0", "@casumo/cmp-flex@^4.1.0":
+  version "4.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.1.0/011027b41b2db4c1ff84b90ba9dad64eec63e4546f4d536dbca38f2cdbde18d1#6aae8124b95cf5f3ad1e1dec53196d007574ed61"
+  integrity sha512-3p6QuE/tjbXw9xCENNcg6kbRuPEP0ZMZf3mvRBCMggh3kXrQ/X5rk0iZBJY1bnmo+vhe8O0G2JjxlDUvjzcYmg==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-flex@^4.1.0":
-  version "4.1.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.1.0/011027b41b2db4c1ff84b90ba9dad64eec63e4546f4d536dbca38f2cdbde18d1#6aae8124b95cf5f3ad1e1dec53196d007574ed61"
-  integrity sha512-3p6QuE/tjbXw9xCENNcg6kbRuPEP0ZMZf3mvRBCMggh3kXrQ/X5rk0iZBJY1bnmo+vhe8O0G2JjxlDUvjzcYmg==
+"@casumo/cmp-flex@^4.0.2":
+  version "4.0.2"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.0.2/c9796276b2eff8cd47be0d9c2aab19b5428bb9000aadd7e39430c5204219938a#21e7186c6dd9f9571a0044e9c376415847788d15"
+  integrity sha512-qT2zce4s9q9qHSMV7CsTgafH1UnU71X5nw5MbepRaf/S4Bn0CzJFVE5Mrg9yrX7+sHAhaHspjASYmiuu17uoiQ==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
@@ -1945,7 +1952,7 @@
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-icons@^4.0.0":
+"@casumo/cmp-icons@^4.0.0", "@casumo/cmp-icons@^4.1.0":
   version "4.1.0"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.1.0/a18ddbf596e61153c0daa5552a06fc8a2bf47cffea8e1c874652f8a05240b74d#836490637c5dac18a4cd24bec9ae6296632bf354"
   integrity sha512-IG4CUr8DWG1BmAPpm1LRiH292P1wDxwNamo/JlwNJ578PtlfGlHMI8JRDuABLThYJwNUgSfqupD1nKXVUVYsyA==
@@ -2000,6 +2007,17 @@
   dependencies:
     "@casumo/cudl-react-utils" "^1.0.6"
 
+"@casumo/cmp-scrollable-paginated@^1.1.3":
+  version "1.1.4"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-scrollable-paginated/1.1.4/a251f1bbf66a1f6c0848062eaa3e597e5a2eee1dbda5961f6f11978b661c4415#9848a7f8b208e7efe315a09bf8a977451b535822"
+  integrity sha512-dPK2KFVoiODCr68uuiUWg+4ND+Uv0C7HAYTqhqGDeGvDhZ/WdWHCRz592M2TIC1YcgdRE5hn72J6REkS2eZIxA==
+  dependencies:
+    "@casumo/cmp-icons" "^4.1.0"
+    "@casumo/cmp-scrollable" "^5.0.4"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
+    "@researchgate/react-intersection-observer" "1.0.1"
+
 "@casumo/cmp-scrollable@^4.0.2":
   version "4.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-scrollable/4.0.2/e7a4ed0aff1000848bcfda6309174082590ad57c604ae3ccade8192a867fb388#16c5fe8391b59da6522b21f7c1e71a77b44a35d4"
@@ -2010,10 +2028,20 @@
     "@casumo/cudl-react-utils" "^1.0.6"
     "@casumo/cudl-scrollable" "4.0.4"
 
-"@casumo/cmp-skeleton@^1.2.6":
-  version "1.2.6"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-skeleton/1.2.6/9e73c0c71cc18fd62f8f179aa39e310d81ae3d970966dbf6dfc8792f62f72cb6#fdc737fdf3d37a477478bb2c596e884adede3bad"
-  integrity sha512-wgvki/qXslBVRT/QTAX46RxHrXc544fI17y6XNH4Txng/tXTWnK+1aH2SPv8nbh0HTDnZHcUyB4AbDyi8b13Pw==
+"@casumo/cmp-scrollable@^5.0.4":
+  version "5.0.4"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-scrollable/5.0.4/6d07f8174300b2aa1cb9dab43ad42fd6a63638ba2edfa597df7c73ea6ef1b429#8eec3ecc5ac019393d4700a9daf6d3f1bf0ee6a8"
+  integrity sha512-DOQuZeRzp3F+nR9YS8q2oQjKiuwZJnnOeerqUPIfx2NdP1y0T/Gvb14CaTvmqk/TBQotckmHFqxBorPIBPv0Qg==
+  dependencies:
+    "@casumo/cmp-flex" "^4.1.0"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
+    "@casumo/cudl-scrollable" "4.0.4"
+
+"@casumo/cmp-skeleton@^1.2.7":
+  version "1.2.7"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-skeleton/1.2.7/2053b60d22a3a5fe307d0a26e083f243f4b470aaabc40068e4d09c37c993476f#8a2bf8417ff6702091d7206defa0f8c5be9a0822"
+  integrity sha512-Dn92bCtB5RFW/9U79bazTIs87NB5bCE/cTeOKmx9bJ3iT1hFgMocMCXlAC97tPoY4bpIikRNAArkGRHhG5OZzQ==
 
 "@casumo/cmp-table@^3.0.0":
   version "3.0.0"
@@ -2476,6 +2504,17 @@
   version "1.1.0"
   resolved "https://npm.pkg.github.com/download/@casumo/is-mobile/1.1.0/19cdee8fcaece170b1bebf403ccf0f268203ffd8f6442de2fc3fc61daa94bcfc#bc43cd692b09cbf221360457d3b99dbab3f7b2e5"
   integrity sha512-iU+/DruVHXCQjVcCQWo8xEsyfXLhgl4OmQvuanNbZ0dGbXr2teJhDOvUH4O0mT2x8ItGUkovVkyZkXkv5OkYMQ==
+
+"@casumo/sports-navigation@^1.7.0":
+  version "1.7.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/1.7.0/4148e14fe448536945d4e707a8c0b505ad17bd3e7cbe3b6355e43e00198f5b3d#da772905e0a19436e9c53b8c79536ed1b53dea1d"
+  integrity sha512-m4A5pVuu3G6iBWLegsP9HjNdlbO6DZEBhexkuGT/KCdyozv2P8WEbnq1pxo6kR+fmsPNGULb5WaPlkD6GAbooQ==
+  dependencies:
+    "@casumo/cmp-chip" "^2.0.1"
+    "@casumo/cmp-flex" "^4.0.0"
+    "@casumo/cmp-icons" "^4.0.0"
+    "@casumo/cmp-scrollable-paginated" "^1.1.3"
+    "@casumo/cmp-skeleton" "^1.2.7"
 
 "@chromaui/localtunnel@2.0.1":
   version "2.0.1"
@@ -3169,6 +3208,14 @@
     invariant "^2.2.3"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
+
+"@researchgate/react-intersection-observer@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@researchgate/react-intersection-observer/-/react-intersection-observer-1.0.1.tgz#dfa43457a8712f7eaf8c5f7957385b5fdedf4800"
+  integrity sha512-Px8Y5jpnHC9UZLzVNmcJ4/vRYgMFfjwmCJn2N+qCBmbXRxIbPf9CrCy5WDF9Mr3DXDHZT4VtoaNRn65OO+nwoQ==
+  dependencies:
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
 
 "@researchgate/react-intersection-observer@^1.0.5":
   version "1.0.5"

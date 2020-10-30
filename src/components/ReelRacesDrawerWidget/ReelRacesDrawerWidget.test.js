@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import { ReelRacesDrawer } from "./ReelRacesDrawer";
+import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 const props = {
   spinsLeft: "329",
@@ -19,7 +19,7 @@ const props = {
 };
 
 describe("ReelRaceDrawer", () => {
-  const rendered = mount(<ReelRacesDrawer {...props} />);
+  const rendered = mount(<ReelRacesDrawerWidget {...props} />);
 
   test("should contain two checkered flags", () => {
     expect(rendered.find(".c-checkered-flag").length).toBe(2);

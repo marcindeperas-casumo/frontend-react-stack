@@ -16,6 +16,7 @@ import "./GamePageHeader.scss";
 
 export const GamePageHeader = ({ pauseGame, resumeGame }) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+
   return (
     <Flex align="center" spacing="none" className="u-padding--md@desktop">
       <Flex.Item className="c-game-page-header__sumoticon-container">

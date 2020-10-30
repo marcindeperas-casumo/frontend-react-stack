@@ -1,12 +1,10 @@
 // @flow
 import React from "react";
 import gql from "graphql-tag";
-import { T } from "ramda";
 import * as A from "Types/apollo";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import SportsIcon from "Features/sports/components/SportsIcon";
-import CompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 type Props = {
   /** Sport group to render the favourite selector for, type comes from FavouriteSportsSelectorListItem.fragments.group */
@@ -37,12 +35,8 @@ type Props = {
 const FavouriteSportsSelectorListItem = ({
   group,
   isFavouritable,
-  showCompetitionIntro,
   onToggleFavouriteSport,
-  onAddCompetition,
   isFavourite,
-  onRemoveFavouriteCompetition,
-  isOnboarding,
 }: Props) => (
   <div>
     <FavouriteListItem
@@ -59,29 +53,6 @@ const FavouriteSportsSelectorListItem = ({
       isFavourite={isFavourite}
       isFavouritable={isFavouritable}
     />
-    {group.canSelectSubgroups && isFavourite && (
-      <>
-        {showCompetitionIntro && (
-          <div className="u-margin-top--md">
-            <CompetitionsIntro
-              onAdd={() => onAddCompetition(group.id, group.name, isOnboarding)}
-            />
-          </div>
-        )}
-        <div className="u-margin-top--md">
-          <CompetitionPillsList
-            competitions={group.favouriteCompetitions}
-            onRemove={c => onRemoveFavouriteCompetition(group.id, c)}
-            isActive={T}
-            onAdd={
-              showCompetitionIntro
-                ? undefined
-                : () => onAddCompetition(group.id, group.name, isOnboarding)
-            }
-          />
-        </div>
-      </>
-    )}
   </div>
 );
 
