@@ -15,7 +15,10 @@ const successProps = {
 
 const failProps = {
   closeModal: action("closeModal"),
-  config: { status: PAYMENT_RESULT_STATUS.fail },
+  config: {
+    status: PAYMENT_RESULT_STATUS.fail,
+    errorCode: "creditcard.cardnumber.invalid",
+  },
 };
 
 stories.add("Success", () => (

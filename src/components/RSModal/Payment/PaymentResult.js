@@ -2,9 +2,9 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector } from "react-redux";
-import Modal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import Modal from "@casumo/cmp-modal";
 import { formatCurrency, interpolate } from "Utils";
 import { useTranslations, useTranslationsGql } from "Utils/hooks";
 import { localeSelector } from "Models/handshake";
@@ -28,7 +28,7 @@ export const PaymentResult = ({ closeModal, config }: PaymentResultProps) => {
 
   const errors = useTranslations("shared.paymentiq-error-messages");
 
-  const { t } = useTranslationsGql({
+  const { t, tLoading } = useTranslationsGql({
     payment_result_success_title: `${cmsKeyPrefix}success_title`,
     payment_result_success_message: `${cmsKeyPrefix}success_message`,
   });
@@ -38,8 +38,13 @@ export const PaymentResult = ({ closeModal, config }: PaymentResultProps) => {
   const isSuccess = status === PAYMENT_RESULT_STATUS.success;
   const cmsError = getCmsError(errorCode, errors.error_responses);
 
-  const errorTitle = cmsError ? cmsError.error_title : errors.error_title;
-  const errorMessage = cmsError ? cmsError.error_message : errors.error_message;
+  if (isSuccess && tLoading) {
+    return null;
+  }
+
+  const errorTitle = cmsError?.error_title || errors.error_title;
+  const errorMessage =
+    cmsError?.error_message || errors.unexpected_error_message;
 
   const paymentResultImage = (
     <Flex align="center" justify="center">
@@ -57,13 +62,13 @@ export const PaymentResult = ({ closeModal, config }: PaymentResultProps) => {
     <Modal closeIcon={{ action: closeModal }} spotImage={paymentResultImage}>
       <Text tag="h3" className="u-padding u-margin-top--lg u-text-align-center">
         {isSuccess
-          ? interpolate(t?.payment_result_success_title, {
+          ? interpolate(t.payment_result_success_title, {
               amount: formattedAmount,
             })
           : errorTitle}
       </Text>
       <Text className="u-padding u-text-align-center">
-        {isSuccess ? t?.payment_result_success_message : errorMessage}
+        {isSuccess ? t.payment_result_success_message : errorMessage}
       </Text>
     </Modal>
   );
