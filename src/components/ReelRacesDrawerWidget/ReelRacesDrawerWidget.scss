@@ -1,5 +1,5 @@
 /* stylelint-disable xi/selector-pattern */
-.c-reel-races-drawer {
+.c-reel-races-drawer-widget {
   background: radial-gradient(
     ellipse 190% 90% at 50% 90%,
     rgba(26, 33, 44, 0.96) 55%,
@@ -10,7 +10,7 @@
 
   @include cudl-breakpoint(desktop) {
     background: radial-gradient(
-      ellipse 210% 66% at 50% 112%,
+      ellipse 190% 76% at 50% 112%,
       rgba(26, 33, 44, 0.96) 70%,
       #1a212c 50%
     );
@@ -42,14 +42,14 @@
   }
 }
 
-.c-reel-races-drawer-position {
+.c-reel-races-drawer-widget-position {
   height: 29px;
   @include cudl-breakpoint(desktop) {
     height: auto;
   }
 }
 
-.c-reel-races-drawer-position-view {
+.c-reel-races-drawer-widget-position-view {
   bottom: 20px;
   height: 74px;
   width: 74px;

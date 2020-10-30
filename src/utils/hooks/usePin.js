@@ -7,8 +7,14 @@ export const usePin = () => {
     setPinnedDrawer(prevValue => (prevValue.includes(drawer) ? [] : [drawer]));
   }, []);
 
+  const isPinned = React.useCallback(
+    (drawer: string): boolean => pinnedDrawers.includes(drawer),
+    [pinnedDrawers]
+  );
+
   return {
     pinnedDrawers,
     togglePin,
+    isPinned,
   };
 };
