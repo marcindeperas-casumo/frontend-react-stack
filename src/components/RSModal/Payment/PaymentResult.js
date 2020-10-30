@@ -1,50 +1,35 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
-import { useSelector } from "react-redux";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Modal from "@casumo/cmp-modal";
 import { formatCurrency, interpolate } from "Utils";
-import { useTranslations, useTranslationsGql } from "Utils/hooks";
-import { localeSelector } from "Models/handshake";
-import { playerCurrencySelector } from "Models/player";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
-import {
-  type PaymentResultProps,
-  PAYMENT_RESULT_STATUS,
-} from "./PaymentResult.types";
+import { PAYMENT_RESULT_STATUS } from "./PaymentResult.types";
 
-const getCmsError = R.curry((errorCode, errors) =>
-  R.pipe(R.find(R.propEq("error_code", errorCode)))(errors)
-);
+type Props = {
+  t: CmsContent,
+  locale: string,
+  currency: string,
+  amount: number,
+  closeModal: () => void,
+  status: string,
+  errorTitle?: string,
+  errorMessage?: string,
+};
 
-const cmsKeyPrefix = "root:shared.payment-result:fields.";
-
-export const PaymentResult = ({ closeModal, config }: PaymentResultProps) => {
-  const locale = useSelector(localeSelector);
-  const currency = useSelector(playerCurrencySelector);
-
-  const errors = useTranslations("shared.paymentiq-error-messages");
-
-  const { t, tLoading } = useTranslationsGql({
-    payment_result_success_title: `${cmsKeyPrefix}success_title`,
-    payment_result_success_message: `${cmsKeyPrefix}success_message`,
-  });
-
-  const { status, amount, errorCode = null } = config;
-
+export const PaymentResult = ({
+  t,
+  locale,
+  currency,
+  amount,
+  closeModal,
+  status,
+  errorTitle,
+  errorMessage,
+}: Props) => {
   const isSuccess = status === PAYMENT_RESULT_STATUS.success;
-  const cmsError = getCmsError(errorCode, errors.error_responses);
-
-  if (isSuccess && tLoading) {
-    return null;
-  }
-
-  const errorTitle = cmsError?.error_title || errors.error_title;
-  const errorMessage =
-    cmsError?.error_message || errors.unexpected_error_message;
 
   const paymentResultImage = (
     <Flex align="center" justify="center">

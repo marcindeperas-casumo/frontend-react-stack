@@ -1,2 +1,4 @@
 // @flow
-export { PaymentResult } from "./PaymentResult";
+export {
+  PaymentResultContainer as PaymentResult,
+} from "./PaymentResultContainer";
