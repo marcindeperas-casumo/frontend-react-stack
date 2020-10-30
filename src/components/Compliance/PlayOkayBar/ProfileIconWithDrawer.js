@@ -76,7 +76,7 @@ export const ProfileIconWithDrawer = ({
             `u-position-absolute u-zindex--content-overlay`,
             "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
             "u-padding-left u-padding-left--md@desktop u-padding-right",
-            "u-overflow-hidden",
+            "u-overflow--hidden",
             `${baseClassName}__bottom-wrapper-bg`
           )}
         >
