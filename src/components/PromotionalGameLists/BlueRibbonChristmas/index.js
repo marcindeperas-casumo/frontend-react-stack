@@ -5,4 +5,5 @@ export {
 } from "./BlueRibbonJackpotsWidgetContainer";
 export {
   BlueRibbonJackpotsInGameWidgetContainer,
+  useDataForBlueRibbonJackpotsWidget,
 } from "./BlueRibbonJackpotsInGameWidgetContainer";

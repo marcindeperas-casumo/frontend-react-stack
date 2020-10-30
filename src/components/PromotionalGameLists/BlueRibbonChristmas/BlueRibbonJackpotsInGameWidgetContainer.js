@@ -19,7 +19,7 @@ type BlueRibbonJackpotEntry = {
   mainWinRatio: number,
 };
 
-export function BlueRibbonJackpotsInGameWidgetContainer() {
+export function useDataForBlueRibbonJackpotsWidget() {
   const { response } = useFetch(urls.handshake);
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const pots = usePotStateChangeEvent();
@@ -38,6 +38,22 @@ export function BlueRibbonJackpotsInGameWidgetContainer() {
     R.filter(R.prop("value"))
   )(response);
 
+  return {
+    jackpots,
+    t,
+    available,
+  };
+}
+
+export function BlueRibbonJackpotsInGameWidgetContainer({
+  jackpots,
+  t,
+  available,
+}: {
+  jackpots: Array<BlueRibbonJackpotEntry>,
+  t: ?JackpotWidgetContentPage,
+  available: boolean,
+}) {
   if (!t || !available || !jackpots || jackpots.length === 0) {
     return null;
   }

@@ -20,8 +20,10 @@ import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import "./ProfileIconWithDrawer.scss";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
-import { playingSelector } from "Models/playing";
-import { BlueRibbonJackpotsInGameWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import {
+  BlueRibbonJackpotsInGameWidgetContainer,
+  useDataForBlueRibbonJackpotsWidget,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
@@ -36,6 +38,7 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -82,7 +85,9 @@ export const ProfileIconWithDrawer = ({
           )}
         >
           <div className={`${baseClassName}__item u-padding-bottom`}>
-            <BlueRibbonJackpotsInGameWidgetContainer />
+            <BlueRibbonJackpotsInGameWidgetContainer
+              {...blueRibbonJackpotsWidgetData}
+            />
           </div>
           {shouldShowReelRace && (
             <ReelRacesDrawerWidget
