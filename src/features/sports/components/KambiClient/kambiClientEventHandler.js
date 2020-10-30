@@ -1,5 +1,5 @@
 // @flow
-import { head, pathOr } from "ramda";
+import { pathOr } from "ramda";
 import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import bridge from "Src/DurandalReactBridge";
 import tracker from "Services/tracker";
@@ -50,7 +50,7 @@ const trackHomeMatchClicked = (page: { title: string, path: string }) => {
 };
 
 const trackAddToBetslip = (kambi: any) => {
-  const bet = head(pathOr([], ["ecommerce", "add", "products"], kambi));
+  const bet = pathOr([], ["ecommerce", "add", "products", 0], kambi);
 
   bet &&
     tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP, {
