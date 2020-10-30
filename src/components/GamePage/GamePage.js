@@ -102,7 +102,10 @@ export const GamePage = ({
                       className="c-game-page__game-launcher"
                     />
                   </div>
-                  <GamePageNotifications />
+                  <GamePageNotifications
+                    pauseGame={pauseGame}
+                    resumeGame={resumeGame}
+                  />
                 </Flex.Block>
               </Flex>
               {shouldShowSlotControlSystem && (
