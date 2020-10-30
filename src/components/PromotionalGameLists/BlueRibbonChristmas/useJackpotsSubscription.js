@@ -2,6 +2,7 @@
 import * as R from "ramda";
 import * as React from "react";
 import { useSelector } from "react-redux";
+import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
@@ -33,11 +34,13 @@ type CometdEvent = {
     },
   },
 };
-export function useJackpotsSubscription() {
+
+export function useJackpotsSubscription({
+  pauseGame,
+  resumeGame,
+}: PauseResumeProps) {
   const locale = useLocale();
   // TODO: replace with actual functions after #1194 is merged
-  const pauseGame = () => Promise.resolve();
-  const resumeGame = () => Promise.resolve();
   const [jackpotAmount, setJackpotAmount] = React.useState(null);
   const [type, setType] = React.useState<?NotificationType>(null);
   const [isFullScreen, setIsFullScreen] = React.useState(false);
@@ -62,14 +65,12 @@ export function useJackpotsSubscription() {
 
       setIsFullScreen(
         R.any(
-          R.equals(
-            ([
-              "jackpot_win_mini",
-              "jackpot_win_major",
-              "jackpot_win_mega",
-            ]: Array<NotificationType>)
-          ),
-          jackpotWinNotificationTypes
+          R.equals(notificationData.type),
+          ([
+            "jackpot_win_mini",
+            "jackpot_win_major",
+            "jackpot_win_mega",
+          ]: Array<NotificationType>)
         )
       );
       setJackpotAmount(
@@ -81,7 +82,7 @@ export function useJackpotsSubscription() {
       );
       setType(notificationData.type);
     },
-    [locale]
+    [locale, pauseGame]
   );
 
   React.useEffect(() => {

@@ -7,6 +7,7 @@ import { CloseIcon } from "@casumo/cmp-icons";
 import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
+import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import {
@@ -16,14 +17,20 @@ import {
 import WinBackground from "./win.svg";
 import "./blueRibbonChristmasCampaignNotifications.scss";
 
-export function BlueRibbonChristmasCampaignNotifications() {
+export function BlueRibbonChristmasCampaignNotifications({
+  pauseGame,
+  resumeGame,
+}: PauseResumeProps) {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const {
     isFullScreen,
     jackpotAmount,
     acknowledge,
     type,
-  } = useJackpotsSubscription();
+  } = useJackpotsSubscription({
+    pauseGame,
+    resumeGame,
+  });
   const { isJackpotGame } = useBlueRibbonAutoOptIn();
   const [acknowledged, setAcknowledged] = React.useState(false);
 
