@@ -10,9 +10,11 @@ import {
   playerIdSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
-import { urls, baseConfig } from "./blueRibbonConsts";
+import { urls, baseConfig, type JackpotStatus } from "./blueRibbonConsts";
 
 declare var BlueRibbon: any;
+
+let sdkMutable; // eslint-disable-line fp/no-let
 
 function useBlueRibbonConfig() {
   const isProductionBackend = useSelector(isProductionBackendSelector);
@@ -45,12 +47,14 @@ export function useBlueRibbonSDK() {
   React.useEffect(function fetchBlueRibbonSDK() {
     if (window.BlueRibbon) {
       // SDK already loaded
-      return setSdk(new BlueRibbon.SdkCoreManager(blueRibbonConfig));
+      setSdk(sdkMutable);
+      return;
     }
 
     injectScript(urls.sdkBundle, "blue-ribbon-sdk")
       .then(() => {
-        setSdk(new BlueRibbon.SdkCoreManager(blueRibbonConfig));
+        sdkMutable = new BlueRibbon.SdkCoreManager(blueRibbonConfig); // eslint-disable-line fp/no-mutation
+        setSdk(sdkMutable);
       })
       .catch(err => {
         logger.error("Blue ribbon sdk could not be loaded", err);
@@ -152,7 +156,7 @@ type PotState = {
   potId: string,
   progressive: number,
   currency: string,
-  potStatus: "HOT" | "WARM" | "CHILLY",
+  potStatus: JackpotStatus,
   updateTimestamp: number,
 };
 type PotStateChangeEvent = {
@@ -160,8 +164,24 @@ type PotStateChangeEvent = {
 };
 
 export function usePotStateChangeEvent() {
-  const sdk = useBlueRibbonSDKAnonymous();
+  const [sdk, setSdk] = React.useState(sdkMutable);
   const [pots, setPots] = React.useState<{ [string]: PotState }>({});
+
+  React.useEffect(() => {
+    if (sdk) {
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      if (sdkMutable) {
+        setSdk(sdkMutable);
+        clearInterval(intervalId);
+      }
+    }, 200);
+
+    return () => clearInterval(intervalId);
+  }, [sdk]);
+
   React.useEffect(() => {
     if (!sdk) {
       return;
