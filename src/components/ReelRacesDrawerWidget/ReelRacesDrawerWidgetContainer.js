@@ -3,19 +3,20 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
-import { useTranslationsGql } from "Utils/hooks";
-import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
-import { playingSelector } from "Models/playing";
+import {
+  useTranslationsGql,
+  useCurrentReelRaceInfo,
+  useReelRaceProgress,
+} from "Utils/hooks";
+import { playingSelector, CMS_SLUGS } from "Models/playing";
+import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { playerIdSelector } from "Models/handshake/index";
-import { Desktop, isDesktop } from "Components/ResponsiveLayout/index";
+import { Desktop, isDesktop } from "Components/ResponsiveLayout";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
-import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
-import { useCurrentReelRaceInfo } from "../../utils/hooks/useCurrentReelRaceInfo";
-import { ReelRaceLeaderboardResults } from "../ReelRaceLeaderboard/ReelRaceLeaderboardResults";
+import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
@@ -43,10 +44,10 @@ export const ReelRacesDrawerWidgetContainer = ({
   useReelRaceLeaderboardModal(currentRace);
 
   const { t } = useTranslationsGql({
-    reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
-    reel_races_drawer_points: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_points`,
-    reel_races_drawer_spins: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_spins`,
-    reel_races_drawer_full_leaderboard: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_full_leaderboard`,
+    reel_races_drawer_pts: `root:${CMS_SLUGS.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
+    reel_races_drawer_points: `root:${CMS_SLUGS.MODAL_WAGERING}:fields.reel_races_drawer_points`,
+    reel_races_drawer_spins: `root:${CMS_SLUGS.MODAL_WAGERING}:fields.reel_races_drawer_spins`,
+    reel_races_drawer_full_leaderboard: `root:${CMS_SLUGS.MODAL_WAGERING}:fields.reel_races_drawer_full_leaderboard`,
   });
 
   const gameProgress = useReelRaceProgress(currentRace, 1000);
@@ -62,15 +63,20 @@ export const ReelRacesDrawerWidgetContainer = ({
       return [];
     }
 
-    return [
-      ...currentRace.leaderboard.slice(0, LEADERBOARD_FIXED - 1),
-      ...currentRace.leaderboard.slice(
-        currentRace.position - 1 - LEADERBOARD_SPAN <= LEADERBOARD_FIXED - 1
-          ? LEADERBOARD_FIXED - 1
-          : currentRace.position - 1 - LEADERBOARD_SPAN,
-        currentRace.position + LEADERBOARD_SPAN
-      ),
-    ];
+    const leaderboardTopFixedItems = currentRace.leaderboard.slice(
+      0,
+      LEADERBOARD_FIXED - 1
+    );
+    const playerInTopFixed =
+      currentRace.position - 1 - LEADERBOARD_SPAN <= LEADERBOARD_FIXED - 1;
+    const leaderboardScrollableItems = currentRace.leaderboard.slice(
+      playerInTopFixed
+        ? LEADERBOARD_FIXED - 1
+        : currentRace.position - 1 - LEADERBOARD_SPAN,
+      currentRace.position + LEADERBOARD_SPAN
+    );
+
+    return [...leaderboardTopFixedItems, ...leaderboardScrollableItems];
   }, [currentRace]);
 
   if (!currentRace || !currentRace?.isInProgress) {
