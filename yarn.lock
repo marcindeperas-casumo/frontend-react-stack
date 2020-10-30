@@ -2038,11 +2038,6 @@
     "@casumo/cudl-react-utils" "^1.0.7"
     "@casumo/cudl-scrollable" "4.0.4"
 
-"@casumo/cmp-skeleton@^1.2.6":
-  version "1.2.6"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-skeleton/1.2.6/9e73c0c71cc18fd62f8f179aa39e310d81ae3d970966dbf6dfc8792f62f72cb6#fdc737fdf3d37a477478bb2c596e884adede3bad"
-  integrity sha512-wgvki/qXslBVRT/QTAX46RxHrXc544fI17y6XNH4Txng/tXTWnK+1aH2SPv8nbh0HTDnZHcUyB4AbDyi8b13Pw==
-
 "@casumo/cmp-skeleton@^1.2.7":
   version "1.2.7"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-skeleton/1.2.7/2053b60d22a3a5fe307d0a26e083f243f4b470aaabc40068e4d09c37c993476f#8a2bf8417ff6702091d7206defa0f8c5be9a0822"
