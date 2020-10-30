@@ -28,10 +28,6 @@ export const useTranslations: __useTranslations = (
         R.prop("content"),
         R.pipe(
           R.propOr({}, "fields"),
-          R.map(x => {
-            console.warn(">>>>>>>>>>fields", x);
-            return x;
-          }),
           R.omit(["critical_for_compliance", ""]),
           R.when(R.isEmpty, R.always(null))
         )
