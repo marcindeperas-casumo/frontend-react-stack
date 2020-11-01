@@ -22,9 +22,13 @@ export const SidebarElementWrapper = ({
 }: Props) => {
   return (
     <div
-      className={cx(className, `${baseClassName} u-position-relative`, {
-        "t-background-black": !children,
-      })}
+      className={cx(
+        className,
+        `${baseClassName} u-position-relative u-width--full`,
+        {
+          "t-background-black": !children,
+        }
+      )}
     >
       {pinnable && (
         <WrapperPin

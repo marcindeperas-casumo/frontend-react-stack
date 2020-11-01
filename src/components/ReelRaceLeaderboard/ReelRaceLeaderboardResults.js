@@ -122,7 +122,7 @@ export function ReelRaceLeaderboardResults({
     <div
       className={cx(className, "u-overflow-x--hidden u-position-relative", {
         "u-padding-right--sm": scrollable,
-        "t-opacity-background-100 t-background-black": inverted,
+        "t-opacity-background-100 t-background-grey-90": inverted,
       })}
       style={style}
     >

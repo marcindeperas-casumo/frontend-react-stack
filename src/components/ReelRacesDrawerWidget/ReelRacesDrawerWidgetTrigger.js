@@ -8,7 +8,7 @@ import { useSumoIcon } from "Components/SumoIcon/useSumoIconHook";
 import { ReelRaceIcon } from "Components/ReelRaceIcon/ReelRaceIcon";
 import { useCurrentReelRaceInfo } from "../../utils/hooks/useCurrentReelRaceInfo";
 
-export const ReelRacesDrawerTrigger = () => {
+export const ReelRacesDrawerWidgetTrigger = () => {
   const playing = useSelector(playingSelector);
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentRace = isNativeByUserAgent() ? null : currentReelRaceFromHook;
@@ -22,8 +22,6 @@ export const ReelRacesDrawerTrigger = () => {
     } else if (currentRace && currentRace.hasEnded && hasIcon()) {
       removeIcon();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRace?.isInProgress]);
-
+  }, [addIcon, currentRace, hasIcon, removeIcon]);
   return null;
 };
