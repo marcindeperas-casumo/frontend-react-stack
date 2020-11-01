@@ -43,6 +43,10 @@ export const PaymentResult = ({
     value: amount,
   });
 
+  if (!t) {
+    return null;
+  }
+
   return (
     <Modal closeIcon={{ action: closeModal }} spotImage={paymentResultImage}>
       <Text tag="h3" className="u-padding u-margin-top--lg u-text-align-center">
