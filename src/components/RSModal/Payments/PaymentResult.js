@@ -51,7 +51,7 @@ export const PaymentResult = ({
     <Modal closeIcon={{ action: closeModal }} spotImage={paymentResultImage}>
       <Text tag="h3" className="u-padding u-margin-top--lg u-text-align-center">
         {isSuccess
-          ? interpolate(t.payment_result_success_title, {
+          ? interpolate(t.payment_result_success_title || "", {
               amount: formattedAmount,
             })
           : errorTitle}
