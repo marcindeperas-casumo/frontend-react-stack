@@ -1,10 +1,8 @@
 //@flow
 import * as React from "react";
-import { useSelector } from "react-redux";
 import cx from "classnames";
-import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
+import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
-import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -16,15 +14,17 @@ import {
   type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-//@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
-import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
-import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
+//@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
-import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
-import { playingSelector } from "Models/playing";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./ProfileIconWithDrawer.scss";
+import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
+import {
+  BlueRibbonJackpotsInGameWidgetContainer,
+  useDataForBlueRibbonJackpotsWidget,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
 type Props = PauseResumeProps & IntercomPlayerDetailsProps;
 const baseClassName = "c-profile-icon-with-drawer";
@@ -38,7 +38,7 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const playing = useSelector(playingSelector);
+  const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -49,9 +49,6 @@ export const ProfileIconWithDrawer = ({
   };
 
   const isChatDisabled = isNativeByUserAgent();
-  const isNative = isNativeByUserAgent();
-  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
-  const currentReelRace = isNative ? null : currentReelRaceFromHook;
 
   React.useEffect(() => {
     if (isChatDisabled) {
@@ -65,25 +62,15 @@ export const ProfileIconWithDrawer = ({
   React.useEffect(() => {
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
-  const reelRaceProps = {
-    currentRace: currentReelRace,
-  };
 
-  const { pinnedDrawers, togglePin } = React.useContext(PinnedDrawersContext);
+  const { pinnedDrawers } = React.useContext(PinnedDrawersContext);
   React.useEffect(() => {
     setDrawerOpen(false);
   }, [pinnedDrawers]);
 
-  const isDesktopAndUnpinnedRRDrawerAndActiveRR =
-    isDesktop() &&
-    !pinnedDrawers.includes(DRAWERS.REEL_RACES) &&
-    currentReelRace?.isInProgress;
-
-  const isMobileTabletAndActiveRR =
-    !isDesktop() && currentReelRace?.isInProgress;
-
   const shouldShowReelRace =
-    isDesktopAndUnpinnedRRDrawerAndActiveRR || isMobileTabletAndActiveRR;
+    (isDesktop() && !pinnedDrawers.includes(DRAWERS.REEL_RACES)) ||
+    !isDesktop();
 
   return (
     <React.Fragment>
@@ -93,41 +80,48 @@ export const ProfileIconWithDrawer = ({
           className={cx(
             `u-position-absolute u-zindex--content-overlay`,
             "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
-            "u-padding-left u-padding-left--md@desktop u-padding-right u-padding-top--md",
+            "u-padding-left u-padding-left--md@desktop u-padding-right",
+            "u-overflow--hidden",
             `${baseClassName}__bottom-wrapper-bg`
           )}
         >
-          {shouldShowReelRace && (
+          <div
+            className={cx(
+              `${baseClassName}__bottom-wrapper-bg-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
+            )}
+          >
             <div className={`${baseClassName}__item u-padding-bottom`}>
-              <SidebarElementWrapper
-                pinnable={isDesktop()}
-                onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-                className={`${baseClassName}__item u-margin-left--none@desktop`}
-              >
-                <div className={`${baseClassName}__bottom-wrapper-item`}>
-                  <ReelRacesDrawer {...reelRaceProps} />
-                </div>
-              </SidebarElementWrapper>
-            </div>
-          )}
-          <div className={`${baseClassName}__item u-padding-bottom`}>
-            <InGameAdventureWidget />
-          </div>
-          <MobileAndTablet>
-            <div className={`${baseClassName}__item u-padding-bottom`}>
-              <InGameDrawer
-                onLiveChatClick={() => {
-                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-                  openChatWindow();
-                  setDrawerOpen(false);
-                }}
-                onExitGameClick={() => {
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
-                }}
+              <BlueRibbonJackpotsInGameWidgetContainer
+                {...blueRibbonJackpotsWidgetData}
               />
             </div>
-          </MobileAndTablet>
+            {shouldShowReelRace && (
+              <ReelRacesDrawerWidget
+                className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
+              />
+            )}
+            <div className={`${baseClassName}__item u-padding-bottom`}>
+              <InGameAdventureWidget />
+            </div>
+            <MobileAndTablet>
+              <div className={`${baseClassName}__item u-padding-bottom`}>
+                <InGameDrawer
+                  onLiveChatClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
+                      {}
+                    );
+                    openChatWindow();
+                    setDrawerOpen(false);
+                  }}
+                  onExitGameClick={() => {
+                    navigateToKO(ROUTE_IDS.TOP_LISTS);
+                    setDrawerOpen(false);
+                  }}
+                />
+              </div>
+            </MobileAndTablet>
+          </div>
         </div>
       )}
     </React.Fragment>

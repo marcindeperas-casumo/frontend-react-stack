@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { SpinIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import { SpinIcon, ChevronDownIcon, ChevronUpIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
@@ -12,7 +12,7 @@ import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";
 
-import "./ReelRacesDrawer.scss";
+import "./ReelRacesDrawerWidget.scss";
 
 type Props = {
   className?: string,
@@ -30,6 +30,7 @@ type Props = {
   },
   onShowLeaderboardClick?: () => void,
   showLeaderboardLink?: boolean,
+  isLeaderboardOpen?: boolean,
 };
 
 const StatusElement = ({ children }) => (
@@ -46,7 +47,7 @@ const StatusElement = ({ children }) => (
   </Flex>
 );
 
-export const ReelRacesDrawer = ({
+export const ReelRacesDrawerWidget = ({
   className,
   spinsLeft,
   position,
@@ -56,6 +57,7 @@ export const ReelRacesDrawer = ({
   gameDuration,
   onShowLeaderboardClick = () => {},
   showLeaderboardLink = false,
+  isLeaderboardOpen = false,
   t,
 }: Props) => {
   const gameDurationFormatted = `${gameDuration}:00`;
@@ -118,7 +120,7 @@ export const ReelRacesDrawer = ({
       className="u-width--full u-padding-top--md u-padding-top--lg@desktop"
       spacing="none"
     >
-      <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">
+      <Flex.Block className="c-reel-races-drawer-widget__elem u-text-align-center">
         <StatusElement>
           <Text
             size="xs"
@@ -140,13 +142,13 @@ export const ReelRacesDrawer = ({
           </>
         </StatusElement>
       </Flex.Block>
-      <Flex.Item className="c-reel-races-drawer__elem c-reel-races-drawer-position u-position-relative">
+      <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position u-position-relative">
         <PositionView
           position={parseInt(position, 10)}
           className="u-margin-top--lg@desktop"
         />
       </Flex.Item>
-      <Flex.Block className="c-reel-races-drawer__elem u-text-align-center">
+      <Flex.Block className="c-reel-races-drawer-widget__elem u-text-align-center">
         <StatusElement>
           <Text
             size="xs"
@@ -177,24 +179,28 @@ export const ReelRacesDrawer = ({
   const leaderboard = showLeaderboardLink ? (
     <Desktop>
       <div
-        className="u-width--full u-text-align-center u-cursor--pointer"
+        className="u-width--full u-text-align-center u-cursor--pointer u-padding-top"
         onClick={onShowLeaderboardClick}
       >
         <Text
           tag="span"
-          size="xs"
-          className="t-color-white u-text-transform-uppercase"
+          size="2xs"
+          className="t-color-white u-text-transform-uppercase u-font-weight-black"
         >
           {t?.reel_races_drawer_full_leaderboard}
         </Text>
-        <ChevronDownIcon size="sm" />
+        {isLeaderboardOpen ? (
+          <ChevronUpIcon size="sm" />
+        ) : (
+          <ChevronDownIcon size="sm" />
+        )}
       </div>
     </Desktop>
   ) : null;
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer t-color-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-bottom--md u-margin-bottom--none@desktop",
+        "c-reel-races-drawer-widget t-color-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-bottom--none@desktop",
         className
       )}
       direction="horizontal"

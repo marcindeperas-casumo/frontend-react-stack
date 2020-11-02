@@ -1,25 +1,20 @@
 // @flow
 import * as React from "react";
-import { useSelector } from "react-redux";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { ReelRacesDrawerTrigger } from "Components/ReelRacesDrawer/ReelRacesDrawerTrigger";
-import { ReelRacesDrawerContainer as ReelRacesDrawer } from "Components/ReelRacesDrawer/ReelRacesDrawerContainer";
+import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { FullscreenView } from "Components/FullscreenView";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
-import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import type { GameProviderModel } from "GameProviders";
-import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { usePin } from "Utils/hooks/usePin";
-import { playingSelector } from "Models/playing";
-import { isNativeByUserAgent } from "GameProviders";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { isDesktop } from "Components/ResponsiveLayout/index";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { GamePageNotifications } from "./GamePageNotifications";
@@ -44,21 +39,13 @@ export const GamePage = ({
   sidebar,
 }: Props) => {
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
-  const playing = useSelector(playingSelector);
-  const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
-  const currentReelRace = isNativeByUserAgent()
-    ? null
-    : currentReelRaceFromHook;
 
-  const reelRaceProps = {
-    currentRace: currentReelRace,
-  };
   const pinState = usePin();
-  const { pinnedDrawers, togglePin } = pinState;
+  const { pinnedDrawers, isPinned } = pinState;
 
   return (
     <SumoIconContextProvider>
-      <ReelRacesDrawerTrigger />
+      <ReelRacesDrawerWidgetTrigger />
       <PinnedDrawersContext.Provider value={pinState}>
         <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
           <VerticalStretcher gameProviderModel={gameProviderModel}>
@@ -74,19 +61,17 @@ export const GamePage = ({
               <Flex
                 direction="horizontal"
                 spacing="none"
-                className="u-height--full u-padding-x--md@desktop u-padding-bottom--md@desktop"
+                className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
               >
                 {pinnedDrawers.length > 0 && (
                   <Flex.Item className="u-padding-right c-game-page__sidebar">
                     {/* sidebar for pinned items */}
                     {sidebar}
-                    {pinnedDrawers.includes(DRAWERS.REEL_RACES) && isDesktop() && (
-                      <SidebarElementWrapper
-                        pinnable
-                        onPinClick={() => togglePin(DRAWERS.REEL_RACES)}
-                      >
-                        <ReelRacesDrawer {...reelRaceProps} />
-                      </SidebarElementWrapper>
+                    {isPinned(DRAWERS.REEL_RACES) && isDesktop() && (
+                      <ReelRacesDrawerWidget
+                        initialShowLeaderboard
+                        className="u-height--full"
+                      />
                     )}
                   </Flex.Item>
                 )}
@@ -102,7 +87,10 @@ export const GamePage = ({
                       className="c-game-page__game-launcher"
                     />
                   </div>
-                  <GamePageNotifications />
+                  <GamePageNotifications
+                    pauseGame={pauseGame}
+                    resumeGame={resumeGame}
+                  />
                 </Flex.Block>
               </Flex>
               {shouldShowSlotControlSystem && (

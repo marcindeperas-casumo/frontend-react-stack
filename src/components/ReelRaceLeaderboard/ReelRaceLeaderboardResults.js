@@ -107,22 +107,29 @@ export function ReelRaceLeaderboardResults({
     currentPositionRef,
   };
 
-  React.useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTo(0, 0);
-    }
-    setTimeout(() => {
-      if (currentPositionRef.current) {
-        currentPositionRef.current.scrollIntoView(false);
+  React.useEffect(
+    function scrollIntoView() {
+      if (!scrollable) {
+        return;
       }
-    }, 0);
-  }, [leaderboard]);
+
+      if (listRef.current) {
+        listRef.current.scrollTo(0, 0);
+      }
+      setTimeout(() => {
+        if (currentPositionRef.current) {
+          currentPositionRef.current.scrollIntoView(false);
+        }
+      }, 0);
+    },
+    [leaderboard, scrollable]
+  );
 
   return (
     <div
       className={cx(className, "u-overflow-x--hidden u-position-relative", {
         "u-padding-right--sm": scrollable,
-        "t-opacity-background-100 t-background-black": inverted,
+        "t-opacity-background-100 t-background-grey-90": inverted,
       })}
       style={style}
     >

@@ -4,41 +4,41 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
 import { useSelector } from "react-redux";
-import { currencySelector } from "Models/handshake";
 import { useLocale } from "Utils/hooks";
+import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import {
   colors,
   jackpotWidgetWidth,
   type JackpotWidgetContentPage,
+  type JackpotStatus,
 } from "./blueRibbonConsts";
 
 type BlueRibbonJackpotEntry = {
   value: number,
   label: string,
-  status: "HOT" | "WARM" | "CHILLY",
+  status: JackpotStatus,
   potId: string,
   communityWinRatio: number,
   mainWinRatio: number,
 };
 
-type Props = {
+export function BlueRibbonJackpotsWidget({
+  className = "",
+  jackpots,
+  t,
+}: {
+  className?: string,
   jackpots: Array<BlueRibbonJackpotEntry>,
   t: JackpotWidgetContentPage,
-};
-
-export function BlueRibbonJackpotsWidget({ jackpots, t }: Props) {
+}) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-
-  if (jackpots.length === 0) {
-    return null;
-  }
 
   return (
     <Flex
       direction="vertical"
-      className="o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden"
+      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden u-margin-left--md ${className}`}
       style={{
         backgroundColor: colors.jackpotWidgetPurpleLight,
         width: jackpotWidgetWidth,

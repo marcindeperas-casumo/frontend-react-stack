@@ -49,7 +49,6 @@ export type GamePageRrLeaderboardInput = {|
 
 export type ModalConfig = {
   mustAccept?: boolean,
-  onCloseCallback?: () => void,
   input?: GamePageRrLeaderboardInput,
 };
 

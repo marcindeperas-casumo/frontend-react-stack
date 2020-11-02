@@ -490,5 +490,10 @@ export const getOrdinalSuffix = ({
   } else if (locale === "jp") {
     return "%E4%BD%8D";
   }
-  return ordinalTranslations[locale].ordinal.get(lastDigitInAmount) || "";
+  const marketOrdinalTranslations = ordinalTranslations[locale];
+  return (
+    (marketOrdinalTranslations || ordinalTranslations.en).ordinal.get(
+      lastDigitInAmount
+    ) || ""
+  );
 };

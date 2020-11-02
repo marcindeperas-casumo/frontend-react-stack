@@ -1,13 +1,13 @@
 /* @flow */
 import * as React from "react";
+import { SportsNavigationSkeleton } from "@casumo/sports-navigation";
 import SportsTopBarSkeleton from "Features/sports/components/SportsTopBar/SportsTopBarSkeleton";
 import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
-import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 
 const SportsShellSkeleton = () => (
   <>
     <SportsTopBarSkeleton />
-    <SportsNavSkeleton />
+    <SportsNavigationSkeleton />
     <KambiClientSkeleton />
   </>
 );

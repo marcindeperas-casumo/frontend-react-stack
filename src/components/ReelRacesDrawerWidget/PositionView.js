@@ -18,16 +18,16 @@ export const PositionView = ({ position, className }: Props) => {
   return (
     <div
       className={cx(
-        "c-reel-races-drawer-position-view u-line-height--1 u-position-relative u-text-align-center t-background-grey-90 t-border-r--circle t-opacity-background--100",
+        "c-reel-races-drawer-widget-position-view u-line-height--1 u-position-relative u-text-align-center t-background-grey-90 t-border-r--circle t-opacity-background--100",
         className
       )}
     >
       <LaurelIcon
-        className={`c-reel-races-drawer__laurel u-position-absolute t-color-${laurelColor}`}
+        className={`c-reel-races-drawer-widget__laurel u-position-absolute t-color-${laurelColor}`}
       />
       <Text
         className={cx(
-          "u-font-weight-bold c-reel-races-drawer__laurel-position u-width--4xlg u-position-relative",
+          "u-font-weight-bold c-reel-races-drawer-widget__laurel-position u-width--4xlg u-position-relative",
           `t-color-${textColor}`
         )}
         tag="div"

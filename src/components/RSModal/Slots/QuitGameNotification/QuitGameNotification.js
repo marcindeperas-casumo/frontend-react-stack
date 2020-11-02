@@ -4,25 +4,17 @@ import Text from "@casumo/cmp-text";
 import Modal from "@casumo/cmp-modal";
 import tracker from "Services/tracker";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { convertHTMLToString } from "Utils";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
-
-export type CmsContent = {
-  quit_game_modal_title: string,
-  quit_game_modal_text: string,
-  quit_game_cta_text: string,
-};
+import type { CmsContent } from "./QuitGameNotification.types";
 
 type QuitGameNotificationProps = {
   acceptModal?: () => void,
-  config: {
-    onCloseCallback?: () => void,
-  },
   t: ?CmsContent,
 };
 
 export const QuitGameNotification = ({
   acceptModal = () => null,
-  config: { onCloseCallback },
   t,
 }: QuitGameNotificationProps) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
@@ -30,9 +22,11 @@ export const QuitGameNotification = ({
     tracker.track(EVENTS.MIXPANEL_QUIT_GAME_FOR_QUICK_DEPOSIT, {});
     navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
+
   if (!t) {
     return null;
   }
+
   const modalProps = {
     bigTitle: t.quit_game_modal_title,
     primaryButton: {
@@ -42,9 +36,6 @@ export const QuitGameNotification = ({
     closeIcon: {
       action: () => {
         tracker.track(EVENTS.MIXPANEL_QUIT_GAME_NOTIFICATION_CLOSED, {});
-        if (onCloseCallback) {
-          onCloseCallback();
-        }
         acceptModal();
       },
     },
@@ -52,7 +43,9 @@ export const QuitGameNotification = ({
 
   return (
     <Modal {...modalProps}>
-      <Text tag="span">{t.quit_game_modal_text}</Text>
+      <Text tag="div" className="u-padding-top--md">
+        {convertHTMLToString(t.quit_game_modal_text)}
+      </Text>
     </Modal>
   );
 };
