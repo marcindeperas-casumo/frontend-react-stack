@@ -30,29 +30,6 @@ const trackPageView = (page: { type: string, title: string, path: string }) => {
   });
 };
 
-const trackAddToBetslipIfLife = (obj: any) => {
-  const betPath = ["ecommerce", "add", "products", 0];
-  const isLivePage: boolean = pathOr("", ["page", "path"], obj)
-    .split("/")
-    .includes("in-play");
-  const sportName: string = pathOr(
-    "unknown",
-    ["hit", "categories", "event_group_two"],
-    obj
-  );
-  const eventName: string = pathOr("unknown", [...betPath, "name"], obj);
-  const eventId: number = pathOr(0, [...betPath, "id"], obj);
-  const trackingName: string = isLivePage
-    ? EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_PAGE
-    : EVENTS.MIXPANEL_SPORTS_BETSLIP_LIVE_NOW;
-
-  tracker.track(trackingName, {
-    [EVENT_PROPS.SPORTS_NAME]: sportName,
-    [EVENT_PROPS.SPORTS_EVENT_NAME]: eventName,
-    [EVENT_PROPS.SPORTS_EVENT_ID]: eventId,
-  });
-};
-
 const trackHomeCardClicked = (type: string) => {
   tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_CARD_CLICKED, {
     [EVENT_PROPS.TYPE]: type,
@@ -72,14 +49,16 @@ const trackHomeMatchClicked = (page: { title: string, path: string }) => {
   });
 };
 
-const trackHomeOddsClicked = (categories: {
-  event_group_five: string,
-  event_group_two: string,
-}) => {
-  tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_ODDS_CLICKED, {
-    [EVENT_PROPS.SPORTS_NAME]: categories.event_group_two,
-    [EVENT_PROPS.SPORTS_EVENT_NAME]: categories.event_group_five,
-  });
+const trackAddToBetslip = (kambi: any) => {
+  const bet = pathOr([], ["ecommerce", "add", "products", 0], kambi);
+
+  bet &&
+    tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP, {
+      [EVENT_PROPS.SPORTS_EVENT_ID]: bet.id,
+      [EVENT_PROPS.SPORTS_EVENT_NAME]: bet.name,
+      [EVENT_PROPS.CATEGORY]: bet.category,
+      [EVENT_PROPS.SPORTS_PAGE_TYPE]: bet.betslipLocationSource,
+    });
 };
 
 const trackBetPlaced = (
@@ -127,11 +106,7 @@ export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
   }
 
   if (event.data.event === KAMBI_EVENTS.ADD_TO_BETSLIP) {
-    event.data.kambi?.hit?.categories?.is_live &&
-      trackAddToBetslipIfLife(event.data.kambi);
-
-    event.data.kambi?.page?.type === "home" &&
-      trackHomeOddsClicked(event.data.kambi?.hit?.categories);
+    trackAddToBetslip(event.data.kambi);
   }
 
   if (event.data.event === KAMBI_EVENTS.PAGE_VIEW) {
