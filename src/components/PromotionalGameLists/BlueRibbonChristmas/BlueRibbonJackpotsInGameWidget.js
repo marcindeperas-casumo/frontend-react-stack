@@ -50,7 +50,7 @@ export function BlueRibbonJackpotsInGameWidget({
 
             return (
               <JackpotRow
-                className="u-padding--md"
+                className="u-padding--md o-flex--1"
                 key={jackpot.potId}
                 formattedValue={formatCurrency({
                   locale,
@@ -108,7 +108,7 @@ export function BlueRibbonJackpotsInGameWidget({
                 {splittedPot.map(({ id, ...x }) => (
                   <JackpotRow
                     key={id}
-                    className="u-padding--md u-padding-bottom"
+                    className="u-padding--md u-padding-bottom o-flex--1"
                     {...x}
                   />
                 ))}
