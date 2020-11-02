@@ -1,6 +1,6 @@
 // @flow
 export const urls = {
-  sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.57.js",
+  sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.59.js",
   loginAnonymous:
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/anonymous",
   loginAuthenticated:
@@ -18,6 +18,7 @@ export const baseConfig = {
     baseServiceUrl: "https://api.bluerbn.com",
   },
 };
+export type JackpotStatus = "HOT" | "WARM" | "CHILLY";
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
   mini: string,
@@ -41,8 +42,12 @@ export type JackpotWidgetContentPage = {
   community_jackpot_win_pot_restart: string,
   blizzard_campaign_image: string,
   blizzard_campaign_content: string,
+  campaign_logo: string,
+  eligible_games_cta_label: string,
+  jackpot_split_explanation: string,
 };
 export const jackpotWidgetWidth = 313;
+export const jackpotWidgetInGameWidth = 359;
 export const colors = {
   jackpotWidgetPurpleDark: "#0A0449",
   jackpotWidgetPurpleLight: "#330887",
