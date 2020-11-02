@@ -107,16 +107,23 @@ export function ReelRaceLeaderboardResults({
     currentPositionRef,
   };
 
-  React.useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTo(0, 0);
-    }
-    setTimeout(() => {
-      if (currentPositionRef.current) {
-        currentPositionRef.current.scrollIntoView(false);
+  React.useEffect(
+    function scrollIntoView() {
+      if (!scrollable) {
+        return;
       }
-    }, 0);
-  }, [leaderboard]);
+
+      if (listRef.current) {
+        listRef.current.scrollTo(0, 0);
+      }
+      setTimeout(() => {
+        if (currentPositionRef.current) {
+          currentPositionRef.current.scrollIntoView(false);
+        }
+      }, 0);
+    },
+    [leaderboard, scrollable]
+  );
 
   return (
     <div
