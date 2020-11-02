@@ -27,7 +27,8 @@ export type ModalId =
   | "WAGERING_NOTIFICATION"
   | "GAME_PAGE_RR_LEADERBOARD"
   | "GGL_PRE_PANIC_BUTTON"
-  | "GGL_POST_PANIC_BUTTON";
+  | "GGL_POST_PANIC_BUTTON"
+  | "PAYMENT_RESULT";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
