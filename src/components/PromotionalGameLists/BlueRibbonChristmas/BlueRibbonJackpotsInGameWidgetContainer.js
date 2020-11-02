@@ -2,17 +2,14 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useFetch, useTranslations } from "Utils/hooks";
-import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
+import { BlueRibbonJackpotsInGameWidget } from "./BlueRibbonJackpotsInGameWidget";
 import {
   urls,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
   type JackpotStatus,
 } from "./blueRibbonConsts";
-import {
-  usePotStateChangeEvent,
-  useBlueRibbonSDKAnonymous,
-} from "./useBlueRibbonSDK";
+import { usePotStateChangeEvent } from "./useBlueRibbonSDK";
 
 type BlueRibbonJackpotEntry = {
   value: number,
@@ -23,14 +20,9 @@ type BlueRibbonJackpotEntry = {
   mainWinRatio: number,
 };
 
-export function BlueRibbonJackpotsWidgetContainer({
-  className = "",
-}: {
-  className?: string,
-}) {
+export function useDataForBlueRibbonJackpotsWidget() {
   const { response } = useFetch(urls.handshake);
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  useBlueRibbonSDKAnonymous();
   const pots = usePotStateChangeEvent();
 
   const available = R.propOr(false, "available", response);
@@ -47,11 +39,25 @@ export function BlueRibbonJackpotsWidgetContainer({
     R.filter(R.prop("value"))
   )(response);
 
+  return {
+    jackpots,
+    t,
+    available,
+  };
+}
+
+export function BlueRibbonJackpotsInGameWidgetContainer({
+  jackpots,
+  t,
+  available,
+}: {
+  jackpots: Array<BlueRibbonJackpotEntry>,
+  t: ?JackpotWidgetContentPage,
+  available: boolean,
+}) {
   if (!t || !available || !jackpots || jackpots.length === 0) {
     return null;
   }
 
-  return (
-    <BlueRibbonJackpotsWidget className={className} jackpots={jackpots} t={t} />
-  );
+  return <BlueRibbonJackpotsInGameWidget jackpots={jackpots} t={t} />;
 }
