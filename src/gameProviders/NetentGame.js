@@ -49,15 +49,34 @@ export class NetentGame extends BaseGame {
       staticServer = "",
       gameServer = "",
       lang = "",
+      url = "",
     } = this.props.gameData;
 
+    const gameURLParams = url ? new URLSearchParams(url) : "";
+    const gameServerFromURL = gameURLParams
+      ? gameURLParams.get("gameServer")
+      : "";
+    const staticServerFromURL = gameURLParams
+      ? gameURLParams.get("staticServer")
+      : "";
+    const configToReturn = {
+      gameId: gameURLParams ? gameURLParams.get("gameId") : gameId,
+      sessionId: gameURLParams ? gameURLParams.get("sessionId") : sessionId,
+      liveCasinoHost: gameURLParams
+        ? gameURLParams.get("liveCasinoHost")
+        : liveCasinoHost,
+      casinoId: gameURLParams ? gameURLParams.get("casinoId") : casinoId,
+      staticServer: staticServerFromURL
+        ? decodeURIComponent(staticServerFromURL)
+        : staticServer,
+      gameServer: gameServerFromURL
+        ? decodeURIComponent(gameServerFromURL)
+        : gameServer,
+      lang: gameURLParams ? gameURLParams.get("lang") : lang,
+    };
+
     return {
-      gameId,
-      sessionId,
-      liveCasinoHost,
-      casinoId,
-      staticServer: decodeURIComponent(staticServer),
-      gameServerURL: decodeURIComponent(gameServer),
+      ...configToReturn,
       lobbyURL: "#",
       language: lang,
       width: "100%",
