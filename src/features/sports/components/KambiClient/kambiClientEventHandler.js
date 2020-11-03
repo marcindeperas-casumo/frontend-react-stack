@@ -23,6 +23,10 @@ const trackPageView = (page: { type: string, title: string, path: string }) => {
   // clean up bethistory date in path
   const cleanPath = page.type === "bethistory" ? "/bethistory" : page.path;
 
+  if (page.type === "bethistory" && !page.title) {
+    return;
+  }
+
   tracker.track(EVENTS.MIXPANEL_SPORTS_PAGEVIEW, {
     [EVENT_PROPS.SPORTS_PAGE_TYPE]: page.type,
     [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
