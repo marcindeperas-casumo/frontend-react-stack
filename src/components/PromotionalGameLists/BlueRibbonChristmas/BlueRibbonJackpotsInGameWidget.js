@@ -68,7 +68,7 @@ export function BlueRibbonJackpotsInGameWidget({
            * At this moment, it's split evenly 50:50 but since this comes from
            * backend we can support any split.
            */
-          const splittedPot = [
+          const splitPot = [
             {
               id: "main",
               formattedValue: formatCurrency({
@@ -105,7 +105,7 @@ export function BlueRibbonJackpotsInGameWidget({
                 direction="horizontal"
                 justify="space-between"
               >
-                {splittedPot.map(({ id, ...x }) => (
+                {splitPot.map(({ id, ...x }) => (
                   <JackpotRow
                     key={id}
                     className="u-padding--md u-padding-bottom o-flex--1"
