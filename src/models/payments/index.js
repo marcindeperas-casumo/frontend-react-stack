@@ -8,3 +8,4 @@ export * from "./methodConfig.constants";
 export * from "./methodConfig.reducer";
 export * from "./methodConfig.types";
 export * from "./usePaymentMethod.saga";
+export * from "./paymentTransactionFinished.saga";

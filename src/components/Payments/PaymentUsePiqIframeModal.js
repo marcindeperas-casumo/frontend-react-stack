@@ -42,8 +42,7 @@ export const PaymentUsePiqIframeModal = ({ config }) => {
   }, [redirectOutput]);
 
   useEffect(() => {
-    const onIframeMessage = event => {
-      const data = event.data;
+    const onIframeMessage = ({ data }) => {
       if (data.type === PIQ_IFRAME_MESSAGE_TYPE) {
         dispatch(hideModal());
         dispatch(

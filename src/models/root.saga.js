@@ -40,6 +40,7 @@ import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/t
 import {
   methodConfigSaga as paymentMethodConfigSaga,
   usePaymentMethodSaga,
+  paymentTransactionFinishedSaga,
 } from "Models/payments";
 import { actionTypes as methodConfigActionTypes } from "Models/payments/methodConfig.constants";
 import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
@@ -146,5 +147,13 @@ export default function* rootSaga(dispatch: any): * {
     takeEvery,
     paymentActionTypes.START_QUICK_DEPOSIT,
     usePaymentMethodSaga
+  );
+  yield fork(
+    takeEvery,
+    [
+      paymentActionTypes.PAYMENT_USE_ERROR,
+      paymentActionTypes.PAYMENT_USE_SUCCESS,
+    ],
+    paymentTransactionFinishedSaga
   );
 }

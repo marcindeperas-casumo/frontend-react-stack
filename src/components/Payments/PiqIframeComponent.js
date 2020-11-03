@@ -1,11 +1,7 @@
 // @flow
 import React, { useEffect, useRef, useState } from "react";
-import {
-  IFRAME_MESSAGE_ACTION,
-  IFRAME_TYPE_TO_CARD,
-  IFRAME_MODE,
-  IFRAME_PIQ_ENV,
-} from "Models/payments";
+import { IFRAME_MESSAGE_ACTION, IFRAME_TYPE_TO_CARD } from "Models/payments";
+import type { IframeModeValues, IframePiqEnvValues } from "Models/payments";
 import {
   piqIframeUrlBase as urlBase,
   composeIframeUrl,
@@ -14,8 +10,8 @@ import "./PiqIframe.scss";
 
 export type Props = {
   id: number | string,
-  mode: $Values<typeof IFRAME_MODE>,
-  env: $Values<typeof IFRAME_PIQ_ENV>,
+  mode: IframeModeValues,
+  env: IframePiqEnvValues,
   luhnCheck?: boolean,
   onSuccess: (token: string) => void,
   onValidation: (errorCode: string) => void,
