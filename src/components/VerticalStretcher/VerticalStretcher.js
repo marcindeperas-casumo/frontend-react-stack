@@ -5,6 +5,7 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isMobile } from "Components/ResponsiveLayout";
+import { isNativeByUserAgent } from "GameProviders";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import type { GameProviderModel } from "GameProviders";
 import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
@@ -32,9 +33,11 @@ export const VerticalStretcher = ({
 }: // eslint-disable-next-line sonarjs/cognitive-complexity
 Props) => {
   const heightContainer = useRef(null);
-  const [showSwipePanel, setShowSwipePanel] = useState(false);
+  const [showSwipePanel, setShowSwipePanel] = useState(true);
   const [controllScroll, setControllScroll] = useState(true);
   const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
+
+  const isNative = isNativeByUserAgent();
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
@@ -52,6 +55,12 @@ Props) => {
         /* eslint-disable-next-line fp/no-mutation */
         heightContainer.current.style.height = `${window.innerHeight}px`;
 
+        /**
+         * Fix for evolution games, they set our body.height to calc(100px + 100vh)
+         * to emulate their own "swipe to play" feature which we don't want :)
+         */
+        /* eslint-disable-next-line fp/no-mutation */
+        document.body.style.height = "100vh";
         /**
          * This is just called here to trigger resize event which causes
          * game container to match size of it's parent after changing
@@ -96,14 +105,12 @@ Props) => {
     };
   });
 
-  // const shouldShowSwipePanel =
-  //   gameProviderModel.swipeUpToPlayPanelPossible &&
-  //   swipeUpPanelEnabled &&
-  //   isMobile &&
-  //   !isNative &&
-  //   showSwipePanel;
-
-  const shouldShowSwipePanel = false;
+  const shouldShowSwipePanel =
+    gameProviderModel.swipeUpToPlayPanelPossible &&
+    swipeUpPanelEnabled &&
+    isMobile &&
+    !isNative &&
+    showSwipePanel;
 
   return (
     <div ref={heightContainer} className="u-width--full">
@@ -133,7 +140,7 @@ Props) => {
           </Flex>
         </div>
       )}
-      {children}
+      {!shouldShowSwipePanel && children}
     </div>
   );
 };
