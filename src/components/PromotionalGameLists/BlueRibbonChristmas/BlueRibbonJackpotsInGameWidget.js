@@ -150,7 +150,7 @@ function JackpotRow({
           className="u-display--block t-border-r--circle"
           width={40}
           height={40}
-          alt=""
+          alt={`${label} icon`}
           src={image}
         />
       )}
