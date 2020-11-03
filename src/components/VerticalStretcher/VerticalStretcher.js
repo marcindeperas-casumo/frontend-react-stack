@@ -27,7 +27,7 @@ const onSwipePanelClick = (element: ?HTMLElement) => {
 
 export const VerticalStretcher = ({
   children,
-  swipeUpPanelEnabled = true,
+  swipeUpPanelEnabled = false,
   gameProviderModel,
   fullScreenElement = document.body,
 }: // eslint-disable-next-line sonarjs/cognitive-complexity
