@@ -7,7 +7,7 @@ type PinnedWidgetsContextType = {
 };
 
 type PinnedWidgetsContextProviderProps = {
-  children?: React.Node,
+  children: React.Node,
 };
 
 export const PinnedWidgetsContext = React.createContext<PinnedWidgetsContextType>(
