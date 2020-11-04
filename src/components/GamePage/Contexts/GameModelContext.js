@@ -12,7 +12,7 @@ type GameModelContextType = {
 };
 
 type GameModelContextProviderProps = {
-  children?: React.Node,
+  children: React.Node,
   slug: string,
   playForFun: boolean,
   remoteGameLaunchData: ?Object,
