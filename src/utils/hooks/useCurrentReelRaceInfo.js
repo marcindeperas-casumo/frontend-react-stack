@@ -14,6 +14,10 @@ import {
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 
+type LeaderboardObjectType = {
+  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+};
+
 export type CurrentReelRaceInfo = {
   game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
   startTime: BigInt,
@@ -22,11 +26,11 @@ export type CurrentReelRaceInfo = {
   points: number,
   remainingSpins: number,
   isInProgress: boolean,
+  hasEnded: boolean,
   tournamentId: ?string,
-};
-
-type LeaderboardObjectType = {
-  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+  formattedPrizes: Array<string>,
+  boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
+  leaderboard: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 
 type CreateCurrentReelRaceDataType = {
@@ -34,6 +38,7 @@ type CreateCurrentReelRaceDataType = {
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
+  formattedPrizes?: Array<string>,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
 };
 
@@ -61,7 +66,17 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   points: 0,
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
+  hasEnded: false,
   tournamentId: null,
+  formattedPrizes: [],
+  leaderboard: [],
+  boosters: {
+    winsInARow: 0,
+    triples: 0,
+    wins: 0,
+    bigWins: 0,
+    megaWins: 0,
+  },
 };
 
 export const convertLeaderboardToObject = (
@@ -87,11 +102,13 @@ export const createCurrentReelRaceData = (
     startTime,
     endTime,
     leaderboard,
+    formattedPrizes,
     game,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
     leaderboard: {},
+    formattedPrizes: [],
     game: null,
     id: null,
   }
@@ -114,6 +131,7 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
+
     isInProgress: Boolean(
       startTime &&
         startTime >= 0 &&
@@ -122,12 +140,23 @@ export const createCurrentReelRaceData = (
         endTime >= 0 &&
         Date.now() < endTime
     ),
+    hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
+    leaderboard: R.pipe(
+      R.values,
+      R.sortBy(R.prop("position"))
+    )(leaderboard),
+    formattedPrizes: formattedPrizes || [],
+    boosters: R.propOr(
+      defaultReelRaceInfo.boosters,
+      "boosters",
+      currentPlayerEntry
+    ),
   };
 };
 
 const rrQueryFetchPolicy =
-  process.env.NODE_ENV === "test" ? undefined : "no-cache";
+  process.env.NODE_ENV === "test" ? undefined : "cache-and-network";
 
 const statusHandler = (
   reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
@@ -176,7 +205,9 @@ const finishedHandler = (
               ),
             }
           : {}),
+        leaderboard: data.leaderboard,
         isInProgress: false,
+        hasEnded: true,
       }),
     });
   }
@@ -262,8 +293,10 @@ export function useCurrentReelRaceInfo(
 
       refetchTimeout.scheduleAt(
         refetch,
-        (closestReelRace ? closestReelRace.endTime : 0) +
-          (30 + Math.random() * 60) * 1000
+        Math.floor(
+          (closestReelRace ? closestReelRace.endTime : 0) +
+            (61 + Math.random() * 60) * 1000
+        )
       ); // distribute refetch within 60s
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
@@ -281,6 +314,8 @@ export function useCurrentReelRaceInfo(
             game: localCurrentReelRace.game,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             id: localCurrentReelRace.id,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            formattedPrizes: localCurrentReelRace.formattedPrizes,
           })
         );
 

@@ -14,7 +14,7 @@ export const ProgressBarFiller = (props: Props) => {
   return (
     <div
       className={classNames(
-        "c-progress-bar__filler t-border-r--pill u-padding-bottom u-overflow-hidden",
+        "c-progress-bar__filler t-border-r--pill u-padding-bottom u-overflow--hidden",
         props.trackClassNames
       )}
       style={{ width: `${props.progress}%` }}

@@ -7,50 +7,44 @@ import TextInput from "@casumo/cmp-text-input";
 import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CvvCodeIframe } from "Components/Payments";
-import { useQuickDepositSlipForm } from "Utils/hooks";
+import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
+import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
 import "./QuickDepositSlip.scss";
 
-type Props = {
-  t: {
-    deposit_amount: string,
-    deposit_cta_text: string,
-    deposit_helper_text: string,
-    cvv_helper_text: string,
-    error_deposit_minimum: string,
-    error_deposit_maximum: string,
-    error_cvv_required: string,
-    error_cvv_too_short: string,
-    error_cvv_not_integer: string,
-  },
-  currencySymbol: string,
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
-  onDeposit: () => void,
-  paymentMethodDetails?: () => React.Node,
-};
+const errorTranslations = R.pickBy((v, k) => !R.isEmpty(R.match(/error_/, k)));
 
 export const QuickDepositSlip = ({
-  t,
   currencySymbol,
   minAmount,
   maxAmount,
   presetAmount,
   onDeposit,
-  paymentMethodDetails: PaymentMethodComponent,
-}: Props) => {
+  renderPaymentMethodDetails: PaymentMethodComponent,
+  translations: t,
+}: QuickDepositSlipProps) => {
+  const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = R.map(
+    v => v || ""
+  )(t);
+
   const {
     depositValue,
     formErrors,
+    cvvValue,
     onAmountChange,
     onCvvIframeCallback,
   } = useQuickDepositSlipForm({
     minAmount,
     maxAmount,
     presetAmount,
-    ...t,
+    translations: errorTranslations(t),
   });
+
+  const onDepositClick = () => {
+    if (depositValue && cvvValue) {
+      onDeposit(depositValue, cvvValue);
+    }
+  };
 
   const onCvvError = message =>
     onCvvIframeCallback({
@@ -58,21 +52,17 @@ export const QuickDepositSlip = ({
       errorType: message,
     });
 
-  const onCvvSuccess = () =>
+  const onCvvSuccess = message =>
     onCvvIframeCallback({
+      data: message,
       status: "success",
     });
 
   return (
-    <Flex spacing="lg" justify="space-between">
+    <Flex spacing="lg" justify="space-between" direction="vertical">
       <Flex.Block>
-        <Flex
-          spacing="md"
-          justify="space-between"
-          align="center"
-          direction="vertical"
-        >
-          <Flex.Block className="u-width--full">
+        <Flex spacing="md" justify="space-between">
+          <Flex.Block>
             <TextInput
               data-test-id="deposit-amount-selector"
               prefix={currencySymbol}
@@ -82,54 +72,49 @@ export const QuickDepositSlip = ({
               onChange={onAmountChange}
               className="u-font-lg u-font-weight-bold"
               inputClassName="u-font-lg u-font-weight-bold"
-              helperText={formErrors.amountInput || t.deposit_helper_text}
+              helperText={formErrors.amountInput || deposit_helper_text}
               variant={formErrors.amountInput ? "invalid" : "valid"}
             />
           </Flex.Block>
-          <Flex.Block className="u-width--full">
-            {PaymentMethodComponent && PaymentMethodComponent()}
-          </Flex.Block>
-        </Flex>
-      </Flex.Block>
-      <Flex.Item>
-        <Flex
-          spacing="md"
-          justify="space-between"
-          align="center"
-          direction="vertical"
-        >
           <Flex.Item className="c-quick-deposit-slip__cvv">
-            <Flex direction="vertical" spacing="sm" justify="space-between">
+            <Flex direction="vertical" spacing="sm">
               <Flex.Item>
                 <CvvCodeIframe
                   onValidation={onCvvError}
                   onSuccess={onCvvSuccess}
                 />
               </Flex.Item>
+              <Flex.Item className="u-margin-top--none">
+                <Text
+                  tag="span"
+                  size="sm"
+                  className={classNames(
+                    formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
+                  )}
+                >
+                  {formErrors.cvv || cvv_helper_text}
+                </Text>
+              </Flex.Item>
             </Flex>
           </Flex.Item>
+        </Flex>
+      </Flex.Block>
+      <Flex.Block className="u-width--full">
+        <Flex spacing="md" justify="space-between" align="center">
+          <Flex.Block>
+            {PaymentMethodComponent && PaymentMethodComponent()}
+          </Flex.Block>
           <Flex.Item>
-            <Text
-              tag="span"
-              size="sm"
-              className={classNames(
-                formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
-              )}
-            >
-              {formErrors.cvv || t.cvv_helper_text}
-            </Text>
-          </Flex.Item>
-          <Flex.Item className="u-width--full">
             <ButtonPrimary
               size="md"
-              onClick={onDeposit}
+              onClick={onDepositClick}
               isDisabled={!R.isEmpty(formErrors)}
             >
-              {t.deposit_cta_text}
+              {deposit_cta_text}
             </ButtonPrimary>
           </Flex.Item>
         </Flex>
-      </Flex.Item>
+      </Flex.Block>
     </Flex>
   );
 };

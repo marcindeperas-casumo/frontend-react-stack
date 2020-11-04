@@ -1,3 +1,11 @@
 .t-color-brown-30 {
-  color: #b96e00;
+  color: rgba(185, 110, 0, var(--cudl-color-opacity));
+}
+
+.t-background-brown-30 {
+  background-color: rgba(185, 110, 0, var(--cudl-background-opacity));
+}
+
+.t-color-yellow-90 {
+  color: rgba(132, 98, 0, var(--cudl-color-opacity));
 }

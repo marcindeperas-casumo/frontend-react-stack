@@ -21,9 +21,12 @@ import {
 import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { QuitGameNotification } from "./Slots/QuitGameNotification";
 import { BonusBalanceInGameNotification } from "./Slots/BonusBalanceInGameNotification";
+import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
+import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
+import { PaymentResult } from "./Payments";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -95,6 +98,22 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION]: {
     slug: MODAL_CMS_SLUGS.MODAL_WAGERING,
     Content: QuitGameNotification,
+  },
+  [REACT_APP_MODAL.ID.GAME_PAGE_RR_LEADERBOARD]: {
+    slug: "",
+    Content: ReelRaceLeaderboardModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_POST_PANIC_BUTTON]: {
+    slug: "",
+    Content: PostPanicButtonModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON]: {
+    slug: "",
+    Content: PrePanicButtonModal,
+  },
+  [REACT_APP_MODAL.ID.PAYMENT_RESULT]: {
+    slug: "",
+    Content: PaymentResult,
   },
 };
 

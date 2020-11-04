@@ -30,4 +30,14 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
     }
     gameCategories
   }
+  ... on PlayerValuableWageringLock {
+    awardType
+    games {
+      title
+    }
+    excludedGames {
+      title
+    }
+    gameCategories
+  }
 }

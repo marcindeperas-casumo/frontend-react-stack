@@ -19,11 +19,18 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
-export { useQuickDepositSlipForm } from "./useQuickDepositSlipForm";
 export {
   useInGameBonusOrRealBalanceCheck,
 } from "./useInGameBonusOrRealBalanceCheck";
 export { useCachedQuery } from "./useCachedQuery";
 export { usePaymentMethodConfig } from "./usePaymentMethodConfig";
 export { useFetch } from "./useFetch";
-export * from "./useCurrentReelRaceInfo";
+export {
+  useAvailableQuickDepositMethods,
+} from "./useAvailableQuickDepositMethods";
+export { useTimeoutFn } from "./useTimeoutFn";
+export { useIsTransitioning } from "./useIsTransitioning";
+export { usePin } from "./usePin";
+export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
+export type { CurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
+export { useReelRaceProgress } from "./useReelRaceProgress";

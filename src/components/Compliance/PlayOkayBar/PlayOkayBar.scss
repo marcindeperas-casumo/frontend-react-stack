@@ -1,5 +1,9 @@
 .c-playokay-bar {
   height: var(--play-okay-bar-height, 48px);
+
+  @include cudl-breakpoint(desktop) {
+    height: auto;
+  }
 }
 .c-playokay-bar__icon {
   color: #fff;
@@ -18,4 +22,7 @@
 }
 .c-playokay-bar__clock {
   width: 6.5em;
+}
+.c-playokay-bar__button {
+  font-size: 0.6em !important;
 }

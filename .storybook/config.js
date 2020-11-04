@@ -3,6 +3,7 @@ import React from "react";
 import { configure, addDecorator, addParameters } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { withInfo } from "@storybook/addon-info";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
@@ -44,8 +45,10 @@ addDecorator((Component, story) => {
  *       noGlobalDecorator: true
  *     })
  */
-
 addParameters({
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
   backgrounds: [
     { name: "light", value: "#ffffff", default: true },
     { name: "colorful", value: "#0085c1" },

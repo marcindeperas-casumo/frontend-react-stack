@@ -5,8 +5,8 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isMobile } from "Components/ResponsiveLayout";
-import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import { isNativeByUserAgent } from "GameProviders";
+import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import type { GameProviderModel } from "GameProviders";
 import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
 import HandSymbol from "./icons/hand.svg";
@@ -27,13 +27,13 @@ const onSwipePanelClick = (element: ?HTMLElement) => {
 
 export const VerticalStretcher = ({
   children,
-  swipeUpPanelEnabled = true,
+  swipeUpPanelEnabled = false,
   gameProviderModel,
   fullScreenElement = document.body,
 }: // eslint-disable-next-line sonarjs/cognitive-complexity
 Props) => {
   const heightContainer = useRef(null);
-  const [showSwipePanel, setShowSwipePanel] = useState(false);
+  const [showSwipePanel, setShowSwipePanel] = useState(true);
   const [controllScroll, setControllScroll] = useState(true);
   const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
 
@@ -55,6 +55,12 @@ Props) => {
         /* eslint-disable-next-line fp/no-mutation */
         heightContainer.current.style.height = `${window.innerHeight}px`;
 
+        /**
+         * Fix for evolution games, they set our body.height to calc(100px + 100vh)
+         * to emulate their own "swipe to play" feature which we don't want :)
+         */
+        /* eslint-disable-next-line fp/no-mutation */
+        document.body.style.height = "100vh";
         /**
          * This is just called here to trigger resize event which causes
          * game container to match size of it's parent after changing
@@ -134,7 +140,7 @@ Props) => {
           </Flex>
         </div>
       )}
-      {children}
+      {!shouldShowSwipePanel && children}
     </div>
   );
 };

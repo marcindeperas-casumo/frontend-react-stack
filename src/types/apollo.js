@@ -650,13 +650,18 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games =
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
   title: string,
 };
+export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games = {
+  title: string,
+};
+export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames = {
+  title: string,
+};
 export type PlayerValuablesQuery_player_valuables =
   | {
       __typename:
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
-        | "PlayerValuableSport"
-        | "PlayerValuableWageringLock",
+        | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -723,6 +728,26 @@ export type PlayerValuablesQuery_player_valuables =
       requirementType: ?RequirementType,
       games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
       excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
+      gameCategories: Array<?string>,
+    }
+  | {
+      __typename: "PlayerValuableWageringLock",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+      awardType: WageringLockAwardType,
+      description: string,
+      games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
+      excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
       gameCategories: Array<?string>,
     };
 export type PlayerValuablesQuery_player = {
@@ -2011,11 +2036,22 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
+
+export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
+  winsInARow: number,
+  triples: number,
+  wins: number,
+  bigWins: number,
+  megaWins: number,
+};
+
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
+  playerName: string,
   position: number,
   points: number,
   remainingSpins: number,
+  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters
 };
 export type CurrentReelRaceInfoQuery_reelRaces = {
   id: string,
@@ -2270,8 +2306,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport"
-    | "PlayerValuableWageringLock",
+    | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -2340,11 +2375,29 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
   description: string,
   requirementType: ?RequirementType,
 };
+export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
+  __typename: "PlayerValuableWageringLock",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  awardType: WageringLockAwardType,
+  description: string,
+};
 export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash
-  | PlayerValuableList_PlayerValuable_PlayerValuableCashback; // ====================================================
+  | PlayerValuableList_PlayerValuable_PlayerValuableCashback
+  | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock; // ====================================================
 // GraphQL fragment: PromotionCard_Promotion
 // ====================================================
 
@@ -2536,8 +2589,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableSport"
-    | "PlayerValuableWageringLock",
+    | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -2608,11 +2660,36 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
   excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames>,
   gameCategories: Array<?string>,
 };
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames = {
+  title: string,
+};
+export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
+  __typename: "PlayerValuableWageringLock",
+  id: string,
+  backgroundImage: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  awardType: WageringLockAwardType,
+  games: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games>,
+  excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames>,
+  gameCategories: Array<?string>,
+};
 export type ValuableDetails_PlayerValuable =
   | ValuableDetails_PlayerValuable_PlayerValuableDeposit
   | ValuableDetails_PlayerValuable_PlayerValuableSpins
   | ValuableDetails_PlayerValuable_PlayerValuableCash
-  | ValuableDetails_PlayerValuable_PlayerValuableCashback; // ====================================================
+  | ValuableDetails_PlayerValuable_PlayerValuableCashback
+  | ValuableDetails_PlayerValuable_PlayerValuableWageringLock; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 
@@ -2890,6 +2967,7 @@ export type Currency =
   | "SEK"
   | "USD";
 export type RequirementType = "deposit" | "wager";
+export type WageringLockAwardType = "bonusMoney" | "freeMoney" | "spins";
 export type GamesSortOrder =
   | "A_TO_Z_BY_TITLE"
   | "CURATED_JACKPOTS"
