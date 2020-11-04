@@ -198,12 +198,16 @@ export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
     ],
   ])(bet);
 
-export const injectScript = (url: string) =>
+export const injectScript = (url: string, elId?: string) =>
   new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     /* eslint-disable fp/no-mutation */
     script.onload = () => resolve();
     script.onerror = () => reject(`Script url, failed to load`);
+
+    if (elId) {
+      script.id = elId;
+    }
 
     script.src = url;
     /* eslint-enable fp/no-mutation */
@@ -486,5 +490,10 @@ export const getOrdinalSuffix = ({
   } else if (locale === "jp") {
     return "%E4%BD%8D";
   }
-  return ordinalTranslations[locale].ordinal.get(lastDigitInAmount) || "";
+  const marketOrdinalTranslations = ordinalTranslations[locale];
+  return (
+    (marketOrdinalTranslations || ordinalTranslations.en).ordinal.get(
+      lastDigitInAmount
+    ) || ""
+  );
 };

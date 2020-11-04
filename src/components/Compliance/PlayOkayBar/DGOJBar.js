@@ -2,7 +2,6 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ProfileIconWithDrawerContainer as ProfileIconWithDrawer } from "./ProfileIconWithDrawerContainer";
 import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
@@ -15,15 +14,12 @@ const links = {
   rgiaj: "http://www.ordenacionjuego.es/es/rgiaj",
 };
 
-export const DGOJBar = ({ pauseGame, resumeGame }: PauseResumeProps) => (
-  <Flex
-    justify="end"
-    align="center"
-    className="c-playokay-bar t-opacity-background--75 t-background-grey-90 t-color-white u-padding-x u-position-relative"
-  >
-    <Flex.Block>
-      <ProfileIconWithDrawer pauseGame={pauseGame} resumeGame={resumeGame} />
-    </Flex.Block>
+type Props = PauseResumeProps & {
+  className?: string,
+};
+
+export const DGOJBar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+  <Flex justify="end" align="center" className={className}>
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href={links.playokay}>
         <PlayOkayIcon className="c-playokay-bar__icon" />

@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
+import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
@@ -29,6 +30,8 @@ type Props = {
   description?: string,
   /** Valuable type of the valuable */
   valuableType: ValuableType,
+  /** award type - applies when valuableType === Wagering Lock */
+  awardType?: A.WageringLockAwardType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
@@ -70,7 +73,7 @@ export class ValuableRow extends PureComponent<Props> {
     };
     return (
       <ImageLazy
-        className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow-hidden"
+        className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow--hidden"
         src={this.props.backgroundImage}
         imgixOpts={this.isValuableTypeSpins ? imgixOptsForSpins : {}}
       />
@@ -101,6 +104,7 @@ export class ValuableRow extends PureComponent<Props> {
 
   render() {
     const {
+      awardType,
       caveat,
       description,
       valuableState,
@@ -120,8 +124,9 @@ export class ValuableRow extends PureComponent<Props> {
         <Flex.Item className="u-padding-right--md o-flex--1">
           <Flex data-test="valuable-row" onClick={this.onClick}>
             <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
-              <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-elevation--10">
+              <div className="t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
                 <ValuableThumbnail
+                  awardType={awardType}
                   backgroundRenderer={this.image}
                   coinValue={this.props.coinValue}
                   currency={this.props.currency}

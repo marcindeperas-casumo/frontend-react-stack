@@ -1,5 +1,5 @@
 query CurrentReelRaceInfoQuery {
-  reelRaces(limit: 3) {
+  reelRaces(limit: 1, prioritisePromoted: false) {
     id
     game {
       id
@@ -14,11 +14,20 @@ query CurrentReelRaceInfoQuery {
     promoted
     spinLimit
     cometdChannels
+    formattedPrizes
     leaderboard {
       playerId
+      playerName
       position
       points
       remainingSpins
+      boosters {
+        winsInARow
+        triples
+        wins
+        bigWins
+        megaWins
+      }
     }
   }
 }

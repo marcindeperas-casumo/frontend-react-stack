@@ -1,6 +1,7 @@
 // @flow
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
+import * as A from "Types/apollo";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 
@@ -23,7 +24,11 @@ export type ModalId =
   | "TIME_LIMITS_FORM"
   | "REALITY_CHECK"
   | "QUIT_GAME_NOTIFICATION"
-  | "WAGERING_NOTIFICATION";
+  | "WAGERING_NOTIFICATION"
+  | "GAME_PAGE_RR_LEADERBOARD"
+  | "GGL_PRE_PANIC_BUTTON"
+  | "GGL_POST_PANIC_BUTTON"
+  | "PAYMENT_RESULT";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
@@ -34,10 +39,20 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 (REACT_APP_MODAL.ID: { [ModalId]: ModalId });
 (REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
 */
+export type GamePageRrLeaderboardInput = {|
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
+  prizes: Array<string>,
+|};
+
 export type ModalConfig = {
   mustAccept?: boolean,
-  onCloseCallback?: () => void,
+  input?: GamePageRrLeaderboardInput,
 };
+
 type ModalState = {
   modalId: ModalId | null,
   config: ModalConfig,
@@ -45,7 +60,7 @@ type ModalState = {
 
 type ActionType = "MODAL/HIDE" | "MODAL/SHOW";
 
-export function showModal(modalId: ModalId, config: any) {
+export function showModal(modalId: ModalId, config?: ModalConfig) {
   return {
     type: type.show,
     modalId,
@@ -78,14 +93,15 @@ export function useHideModal(modalId: ?ModalId) {
 }
 
 type Actions = typeof showModal | typeof hideModal;
+
 type Handler = {
-  [ActionType]: (state: Array<string>, action: Actions) => ModalState,
+  [ActionType]: (state: ModalState, action: Actions) => ModalState,
 };
 
 const handlers: Handler = {
-  [type.show]: (state, action) => ({
-    modalId: action.modalId,
-    config: action.config || {},
+  [type.show]: (state, { modalId, config = {} }) => ({
+    modalId,
+    config,
   }),
   [type.hide]: state => ({
     modalId: null,

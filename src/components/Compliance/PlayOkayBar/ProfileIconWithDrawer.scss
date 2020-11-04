@@ -1,60 +1,45 @@
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
+  left: map-get($cudl-spacer-sizes, default);
+  top: map-get($cudl-spacer-sizes, default);
 
-  box-sizing: content-box;
-
-  &__content {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    &--old {
-      animation: floatContentOld 0.9s normal forwards ease-out;
-    }
-    &--next {
-      animation: floatContentNext 0.9s normal forwards ease-out;
-    }
+  @include cudl-breakpoint(desktop) {
+    left: auto;
+    top: auto;
   }
 
-  &__chevron-icon {
-    bottom: 0;
-    right: 0;
-  }
-
-  &__bottom-wrapper {
-    left: 0;
-    margin-left: 50%;
-    margin-top: 12px;
+  &__item {
+    margin: 0 auto;
     max-width: 442px;
-    transform: translateX(-50%);
+  }
 
-    &-bg {
-      background: linear-gradient(white, transparent);
-      margin-top: 12px;
+  &__bottom-wrapper-bg {
+    background: linear-gradient(white, transparent);
+    bottom: 0;
+    min-height: 150px;
+    top: 48px;
+
+    @include cudl-breakpoint(desktop) {
+      background: radial-gradient(
+        farthest-corner at top left,
+        rgba(255, 255, 255, 0.9),
+        transparent 70%
+      );
+      left: 0;
+      padding-bottom: 0 !important;
+      padding-right: 150px !important;
+      padding-top: 98px !important;
+
+      top: -16px;
+      width: var(--game-page-sidebar-width-desktop) !important;
     }
 
-    &-item {
-      box-sizing: border-box;
+    &-inner {
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 }
-
-// stylelint-disable xi/selector-pattern
-@keyframes floatContentOld {
-  0% {
-    margin-top: 0;
-  }
-  100% {
-    margin-top: -40px;
-  }
-}
-
-@keyframes floatContentNext {
-  0% {
-    margin-top: 40px;
-  }
-  100% {
-    margin-top: 0;
-  }
-}
-// stylelint-enable xi/selector-pattern

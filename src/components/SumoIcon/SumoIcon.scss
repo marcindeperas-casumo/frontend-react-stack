@@ -1,0 +1,60 @@
+.c-sumo-icon {
+  background-clip: padding-box;
+  box-sizing: content-box;
+  left: map-get($cudl-spacer-sizes, default);
+  top: map-get($cudl-spacer-sizes, default);
+
+  @include cudl-breakpoint(desktop) {
+    left: auto;
+    top: auto;
+  }
+
+  &__close-drawer {
+    background-color: cudl-palette(grey, "70");
+    left: map-get($cudl-spacer-sizes, default);
+    top: map-get($cudl-spacer-sizes, default);
+
+    @include cudl-breakpoint(desktop) {
+      background-color: cudl-palette(grey, "90");
+      left: auto;
+      top: auto;
+    }
+  }
+
+  &__content {
+    left: 0;
+    top: 0;
+
+    &--old {
+      animation: sumoIconoOld 0.9s normal forwards ease-out;
+    }
+    &--next {
+      animation: sumoIconNew 0.9s normal forwards ease-out;
+    }
+  }
+
+  &__chevron-icon {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+// stylelint-disable xi/selector-pattern
+@keyframes sumoIconoOld {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -48px;
+  }
+}
+
+@keyframes sumoIconNew {
+  0% {
+    margin-top: 48px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+// stylelint-enable xi/selector-pattern

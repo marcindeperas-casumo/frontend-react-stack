@@ -1,63 +1,27 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
-import { EVENTS } from "Src/constants";
-import tracker from "Services/tracker";
-
-import "./InGameDrawer.scss";
+import { isNativeByUserAgent } from "GameProviders";
+import { QuickDeposit } from "Components/QuickDeposit";
+import { InGameDrawerLinksContainer as InGameDrawerLinks } from "./InGameDrawerLinksContainer";
 
 type Props = {
-  t: {
-    in_game_drawer_live_chat: ?string,
-    in_game_drawer_exit_game: ?string,
-  },
-  isChatDisabled: boolean,
   onLiveChatClick: Function,
   onExitGameClick: Function,
 };
 
-export const InGameDrawer = ({
-  t,
-  isChatDisabled,
-  onLiveChatClick,
-  onExitGameClick,
-}: Props) => {
-  const liveChatClick = () => {
-    tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
-    onLiveChatClick();
-  };
-  const exitGameClick = () => {
-    tracker.track(EVENTS.MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED, {});
-    onExitGameClick();
-  };
+export const InGameDrawer = ({ onLiveChatClick, onExitGameClick }: Props) => {
+  const isQuickDepositDisabled = isNativeByUserAgent();
+
   return (
-    <Flex
-      align="stretch"
-      justify="space-around"
-      className="c-in-game-drawer t-opacity-background--100 t-background-grey-90 t-border-r u-height--xlg u-margin-x--auto@tablet u-padding-y--md"
-    >
-      {!isChatDisabled && (
-        <Flex.Block
-          onClick={liveChatClick}
-          className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-right u-cursor--pointer"
-        >
-          <ChatIcon className="u-margin-right" />
-          <Text tag="span" size="sm">
-            {t.in_game_drawer_live_chat}
-          </Text>
-        </Flex.Block>
+    <div className="t-background-grey-90 t-border-r">
+      {!isQuickDepositDisabled && (
+        <QuickDeposit className="u-padding-left--lg u-padding-right--md u-padding-y--md" />
       )}
-      <Flex.Block
-        onClick={exitGameClick}
-        className="o-layout__item t-color-white o-flex-justify--center o-flex-align--center u-margin-left--none u-cursor--pointer"
-      >
-        <ExitIcon className="u-margin-right" />
-        <Text tag="span" size="sm">
-          {t.in_game_drawer_exit_game}
-        </Text>
-      </Flex.Block>
-    </Flex>
+      <InGameDrawerLinks
+        className="u-padding--lg"
+        onExitGameClick={onExitGameClick}
+        onLiveChatClick={onLiveChatClick}
+      />
+    </div>
   );
 };

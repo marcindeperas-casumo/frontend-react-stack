@@ -11,10 +11,15 @@ export const TYPE_TO_CMS_SLUG = {
   //other payment method slugs when they'll be needed
 };
 
+export const SUPPORTED_QUICKDEPOSIT_TYPES = [
+  LOCAL_PAYMENT_TYPES.VISA_CARD,
+  LOCAL_PAYMENT_TYPES.MASTER_CARD,
+  LOCAL_PAYMENT_TYPES.JCB_CARD,
+];
+
 /**
  * order of slugs in array determine the order of merging config objects
  */
-
 export const METHOD_CONFIG_PATH = {
   [LOCAL_PAYMENT_TYPES.VISA_CARD]: [
     GENERAL_SLUG,
@@ -35,6 +40,6 @@ export const METHOD_CONFIG_PATH = {
 
 //action types
 export const actionTypes = {
-  PREPARE_METHOD_CONFIG: "PAYMENTS/PREPARE_METHOD_CONFIG",
-  SET_METHOD_CONFIG: "PAYMENTS/SET_PAYMENT_METHOD_CONFIG",
+  PREPARE_METHOD_CONFIG: "METHOD_CONFIG/PREPARE_METHOD_CONFIG",
+  SET_METHOD_CONFIG: "METHOD_CONFIG/SET_PAYMENT_METHOD_CONFIG",
 };

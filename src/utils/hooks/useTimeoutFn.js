@@ -5,7 +5,7 @@ export const useTimeoutFn = () => {
   const timeoutId = React.useRef(null);
 
   const clear = () => {
-    if (timeoutId.current) {
+    if (timeoutId.current !== null) {
       clearTimeout(timeoutId.current);
       // eslint-disable-next-line fp/no-mutation
       timeoutId.current = null;
