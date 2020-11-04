@@ -107,7 +107,6 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     ... on PlayerValuableCashback {
       description
       requirementType
-      slug
     }
     ... on PlayerValuableWageringLock {
       awardType
