@@ -67,7 +67,6 @@ function handleOutput(data) {
 
 function handleError(data) {
   const str = data.toString();
-  console.log("0000000", str);
   if (/warning/i.test(str)) {
     console.warn(str);
     return;

@@ -38,7 +38,7 @@ export function BlueRibbonJackpotsWidget({
   return (
     <Flex
       direction="vertical"
-      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden u-margin-left--md ${className}`}
+      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
       style={{
         backgroundColor: colors.jackpotWidgetPurpleLight,
         width: jackpotWidgetWidth,
@@ -129,7 +129,7 @@ function JackpotRow({
           className="u-display--block t-border-r--circle"
           width={56}
           height={56}
-          alt=""
+          alt={`${label} icon`}
           src={image}
         />
       )}
