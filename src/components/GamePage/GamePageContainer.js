@@ -82,17 +82,19 @@ export const GamePageContainer = () => {
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
       gameWindow={
-        <div
-          className={classNames(
-            "u-inset-0 u-position-absolute",
-            gameProviderModel.gameWrapperClasses || []
-          )}
-        >
-          <GameLauncher
-            gameProviderModel={gameProviderModel}
-            className="c-game-page__game-launcher"
-          />
-        </div>
+        gameProviderModel && (
+          <div
+            className={classNames(
+              "u-inset-0 u-position-absolute",
+              gameProviderModel.gameWrapperClasses || []
+            )}
+          >
+            <GameLauncher
+              gameProviderModel={gameProviderModel}
+              className="c-game-page__game-launcher"
+            />
+          </div>
+        )
       }
       header={<GamePageHeader />}
       loading={(!gameProviderModel || loading) && <LoaderGlobal />}
