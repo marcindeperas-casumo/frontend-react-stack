@@ -1,30 +1,43 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { FullscreenView } from "Components/FullscreenView";
-import { GameLauncher } from "Components/GameLauncher";
-import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
-import { QuickDepositSlipController } from "Components/QuickDepositSlip";
-import { GamePageHeader } from "Components/GamePageHeader";
-import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
-import { GamePageNotifications } from "./GamePageNotifications";
 
 type Props = {
+  error: ?React.Node,
+  footer: ?React.Node,
   gameBackground?: string,
   gameProviderModel: GameProviderModel,
-  shouldShowSlotControlSystem: boolean,
+  gameWindow: ?React.Node,
+  header: ?React.Node,
+  loading: ?React.Node,
+  offscreenElements: ?React.Node,
+  overScreenNotifications: ?React.Node,
   sidebar?: React.Node,
 };
 
 export const GamePage = ({
+  error,
+  footer,
   gameBackground = "",
   gameProviderModel,
-  shouldShowSlotControlSystem,
+  gameWindow,
+  header,
+  loading = false,
+  offscreenElements,
+  overScreenNotifications,
   sidebar,
 }: Props) => {
+  if (error) {
+    return error;
+  }
+
+  if (loading) {
+    return loading;
+  }
+
   return (
     <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
       <VerticalStretcher gameProviderModel={gameProviderModel}>
@@ -34,42 +47,24 @@ export const GamePage = ({
           spacing="none"
           style={{ backgroundImage: `url('${gameBackground || ""}')` }}
         >
-          <Flex.Item>
-            <GamePageHeader />
-          </Flex.Item>
+          <Flex.Item>{header}</Flex.Item>
           <Flex
             direction="horizontal"
             spacing="none"
             className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
           >
             <Flex.Item className="u-padding-right c-game-page__sidebar">
-              {/* sidebar for pinned items */}
               {sidebar}
             </Flex.Item>
             )}
             <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
-              <div
-                className={classNames(
-                  "u-inset-0 u-position-absolute",
-                  gameProviderModel.gameWrapperClasses || []
-                )}
-              >
-                <GameLauncher
-                  gameProviderModel={gameProviderModel}
-                  className="c-game-page__game-launcher"
-                />
-              </div>
-              <GamePageNotifications />
+              {gameWindow}
+              {overScreenNotifications}
             </Flex.Block>
           </Flex>
-          {shouldShowSlotControlSystem && (
-            <Flex.Item>
-              <InfoBar />
-            </Flex.Item>
-          )}
+          <Flex.Item>{footer}</Flex.Item>
         </Flex>
-        <QuickDepositSlipController />
-        <ReelRacesDrawerWidgetTrigger />
+        {offscreenElements}
       </VerticalStretcher>
     </FullscreenView>
   );
