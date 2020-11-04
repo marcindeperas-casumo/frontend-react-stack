@@ -56,9 +56,11 @@ export class NetentGame extends BaseGame {
     const gameServerFromURL = gameURLParams
       ? gameURLParams.get("gameServer")
       : "";
+
     const staticServerFromURL = gameURLParams
       ? gameURLParams.get("staticServer")
       : "";
+
     const configToReturn = {
       gameId: gameURLParams ? gameURLParams.get("gameId") : gameId,
       sessionId: gameURLParams ? gameURLParams.get("sessionId") : sessionId,
