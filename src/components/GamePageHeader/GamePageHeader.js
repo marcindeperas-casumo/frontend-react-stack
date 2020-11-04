@@ -1,3 +1,5 @@
+// @flex
+
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
@@ -14,7 +16,7 @@ import { openChatWindow } from "Features/chat/IntercomChatService";
 
 import "./GamePageHeader.scss";
 
-export const GamePageHeader = ({ pauseGame, resumeGame }) => {
+export const GamePageHeader = () => {
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   return (
