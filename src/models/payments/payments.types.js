@@ -1,4 +1,5 @@
 // @flow
+import { type QuickDepositMethod } from "Models/payments";
 import {
   actionTypes,
   requestState,
@@ -13,4 +14,25 @@ export type DepositRequestStateType = {
     type: $Values<typeof requestStateMessageType>,
     code?: string,
   },
+};
+
+export type SetQuickDepositMethodReturnType = {
+  payload: {
+    method: ?QuickDepositMethod,
+  },
+  type: ActionTypes,
+};
+
+export type StartQuickDepositActionReturnType = {
+  payload: {
+    cvvEncoded: string,
+    amount: number,
+    paymentMethod: QuickDepositMethod,
+  },
+  type: ActionTypes,
+};
+
+export type SetPaymentRequestReturnType = {
+  payload: DepositRequestStateType,
+  type: ActionTypes,
 };

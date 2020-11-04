@@ -21,7 +21,7 @@ import {
   methodUseSuccess,
   methodUseError,
 } from "./payments.actions";
-import type { StartQuickDepositActionReturnType } from "./payments.actions";
+import type { StartQuickDepositActionReturnType } from "./payments.types";
 
 export function* usePaymentMethodSaga(
   action: StartQuickDepositActionReturnType

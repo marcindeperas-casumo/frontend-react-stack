@@ -40,8 +40,8 @@ import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/t
 import {
   methodConfigSaga as paymentMethodConfigSaga,
   usePaymentMethodSaga,
-  paymentTransactionFinishedSaga,
 } from "Models/payments";
+import { paymentTransactionFinishedSaga } from "Models/payments/paymentTransactionFinished.saga";
 import { actionTypes as methodConfigActionTypes } from "Models/payments/methodConfig.constants";
 import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
 

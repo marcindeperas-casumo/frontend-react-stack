@@ -1,28 +1,11 @@
 // @flow
 import { actionTypes, requestState } from "./payments.constants";
+import type {
+  SetQuickDepositMethodReturnType,
+  StartQuickDepositActionReturnType,
+  SetPaymentRequestReturnType,
+} from "./payments.types";
 import type { QuickDepositMethod } from "./methodConfig.types";
-import type { ActionTypes, DepositRequestStateType } from "./payments.types";
-
-export type SetQuickDepositMethodReturnType = {
-  payload: {
-    method: ?QuickDepositMethod,
-  },
-  type: ActionTypes,
-};
-
-export type StartQuickDepositActionReturnType = {
-  payload: {
-    cvvEncoded: string,
-    amount: number,
-    paymentMethod: QuickDepositMethod,
-  },
-  type: ActionTypes,
-};
-
-export type SetPaymentRequestReturnType = {
-  payload: DepositRequestStateType,
-  type: ActionTypes,
-};
 
 export const setQuickDepositMethod = (
   method: ?QuickDepositMethod

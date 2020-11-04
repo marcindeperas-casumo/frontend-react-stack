@@ -1,7 +1,7 @@
 //@flow
 import { createReducer } from "Utils";
 import { actionTypes, requestState } from "./payments.constants";
-import type { SetQuickDepositMethodReturnType } from "./payments.actions";
+import type { SetQuickDepositMethodReturnType } from "./payments.types";
 
 const initialPaymentRequestState = {
   status: null,

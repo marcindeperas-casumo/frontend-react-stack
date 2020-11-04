@@ -12,9 +12,7 @@ const IFRAME_TITLE = "payment-use-piq-iframe";
 const PIQ_IFRAME_MESSAGE_TYPE = "piqRedirectResponse";
 
 type Props = {
-  config: {
-    redirectOutput: any,
-  },
+  config: any,
 };
 
 export const PaymentUsePiqIframeModal = ({ config }: Props) => {
