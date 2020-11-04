@@ -23,7 +23,7 @@ import {
 } from "./payments.actions";
 import type { StartQuickDepositActionReturnType } from "./payments.types";
 
-export function* usePaymentMethodSaga(
+export function* makePaymentTransactionSaga(
   action: StartQuickDepositActionReturnType
 ): * {
   const userId = yield select(playerIdSelector);
