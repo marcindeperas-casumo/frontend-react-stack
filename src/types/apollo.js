@@ -1,7 +1,12 @@
-// @flow
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 // ====================================================
 // GraphQL query operation: GetGamesRTP
 // ====================================================
+
 export type GetGamesRTP_getGamesPaginated_games = {
   id: string,
   slug: string,
@@ -10,19 +15,26 @@ export type GetGamesRTP_getGamesPaginated_games = {
   actualRtpPastYear: ?string,
   rtp: ?string,
 };
+
 export type GetGamesRTP_getGamesPaginated = {
   gamesCount: number,
   offset: number,
   games: Array<GetGamesRTP_getGamesPaginated_games>,
 };
+
 export type GetGamesRTP = {
-  getGamesPaginated: GetGamesRTP_getGamesPaginated,
+  getGamesPaginated: GetGamesRTP_getGamesPaginated
 };
+
 export type GetGamesRTPVariables = {
   query: string,
   offset: number,
   limit: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GetGamesRTPLight
@@ -34,19 +46,26 @@ export type GetGamesRTPLight_getGamesPaginated_games = {
   title: string,
   rtp: ?string,
 };
+
 export type GetGamesRTPLight_getGamesPaginated = {
   gamesCount: number,
   offset: number,
   games: Array<GetGamesRTPLight_getGamesPaginated_games>,
 };
+
 export type GetGamesRTPLight = {
-  getGamesPaginated: GetGamesRTPLight_getGamesPaginated,
+  getGamesPaginated: GetGamesRTPLight_getGamesPaginated
 };
+
 export type GetGamesRTPLightVariables = {
   query: string,
   offset: number,
   limit: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: componentBuilderQuery
@@ -58,11 +77,16 @@ export type componentBuilderQuery = {
    * component properties that are available to be used for the component builder.
    * Task: https://jira.casumocave.com/browse/PRCA-308
    */
-  componentDefinitionJSON: string,
+  componentDefinitionJSON: string
 };
+
 export type componentBuilderQueryVariables = {
-  id: string,
+  id: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: CuratedCardQuery
@@ -75,6 +99,7 @@ export type CuratedCardQuery_curatedCard_game = {
   name: string,
   slug: string,
 };
+
 export type CuratedCardQuery_curatedCard = {
   id: string,
   slug: string,
@@ -91,16 +116,23 @@ export type CuratedCardQuery_curatedCard = {
   sportsRoute: ?string,
   game: ?CuratedCardQuery_curatedCard_game,
 };
+
 export type CuratedCardQuery_session = {
-  market: string,
+  market: string
 };
+
 export type CuratedCardQuery = {
   curatedCard: ?CuratedCardQuery_curatedCard,
   session: CuratedCardQuery_session,
 };
+
 export type CuratedCardQueryVariables = {
-  slug: string,
+  slug: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameDetailsQuery
@@ -111,6 +143,7 @@ export type GameDetailsQuery_game_media = {
   path: string,
   order: number,
 };
+
 export type GameDetailsQuery_game = {
   id: string,
   name: string,
@@ -122,12 +155,18 @@ export type GameDetailsQuery_game = {
   hasPlayForFun: boolean,
   isInMaintenance: boolean,
 };
+
 export type GameDetailsQuery = {
-  game: ?GameDetailsQuery_game,
+  game: ?GameDetailsQuery_game
 };
+
 export type GameDetailsQueryVariables = {
-  slug: string,
+  slug: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameListQuery
@@ -145,18 +184,25 @@ export type GameListQuery_gamesList_games = {
   isInMyList: boolean,
   category: ?string,
 };
+
 export type GameListQuery_gamesList = {
   id: ?string,
   name: ?string,
   games: Array<GameListQuery_gamesList_games>,
 };
+
 export type GameListQuery = {
-  gamesList: ?GameListQuery_gamesList,
+  gamesList: ?GameListQuery_gamesList
 };
+
 export type GameListQueryVariables = {
   id: string,
   numberOfGames: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameListExclusiveQuery
@@ -174,18 +220,25 @@ export type GameListExclusiveQuery_gamesList_games = {
   isInMyList: boolean,
   category: ?string,
 };
+
 export type GameListExclusiveQuery_gamesList = {
   id: ?string,
   name: ?string,
   games: Array<GameListExclusiveQuery_gamesList_games>,
 };
+
 export type GameListExclusiveQuery = {
-  gamesList: ?GameListExclusiveQuery_gamesList,
+  gamesList: ?GameListExclusiveQuery_gamesList
 };
+
 export type GameListExclusiveQueryVariables = {
   id: string,
   numberOfGames: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameListLiveCasinoQuery
@@ -196,6 +249,7 @@ export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets = {
   min: ?number,
   max: ?number,
 };
+
 export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby = {
   id: ?string,
   tableId: ?string,
@@ -209,6 +263,7 @@ export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby = {
   betBehind: ?boolean,
   bets: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets,
 };
+
 export type GameListLiveCasinoQuery_gamesList_games = {
   backgroundImage: string,
   id: string,
@@ -220,18 +275,25 @@ export type GameListLiveCasinoQuery_gamesList_games = {
   slug: string,
   gameStudio: string,
 };
+
 export type GameListLiveCasinoQuery_gamesList = {
   id: ?string,
   name: ?string,
   games: Array<GameListLiveCasinoQuery_gamesList_games>,
 };
+
 export type GameListLiveCasinoQuery = {
-  gamesList: ?GameListLiveCasinoQuery_gamesList,
+  gamesList: ?GameListLiveCasinoQuery_gamesList
 };
+
 export type GameListLiveCasinoQueryVariables = {
   id: string,
   numberOfGames: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameListPageQuery
@@ -242,6 +304,7 @@ export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets = {
   min: ?number,
   max: ?number,
 };
+
 export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby = {
   id: ?string,
   tableId: ?string,
@@ -255,6 +318,7 @@ export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby = {
   betBehind: ?boolean,
   bets: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets,
 };
+
 export type GameListPageQuery_getGamesPaginated_games = {
   isInMaintenance: boolean,
   backgroundImage: string,
@@ -269,19 +333,26 @@ export type GameListPageQuery_getGamesPaginated_games = {
   liveCasinoLobby: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby,
   gameStudio: string,
 };
+
 export type GameListPageQuery_getGamesPaginated = {
   gamesCount: number,
   offset: number,
   games: Array<GameListPageQuery_getGamesPaginated_games>,
 };
+
 export type GameListPageQuery = {
-  getGamesPaginated: GameListPageQuery_getGamesPaginated,
+  getGamesPaginated: GameListPageQuery_getGamesPaginated
 };
+
 export type GameListPageQueryVariables = {
   query: string,
   offset: number,
   limit: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameListVerticalQuery
@@ -292,9 +363,11 @@ export type GameListVerticalQuery_gamesBySlugs_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type GameListVerticalQuery_gamesBySlugs_lobby = {
-  bets: ?GameListVerticalQuery_gamesBySlugs_lobby_bets,
+  bets: ?GameListVerticalQuery_gamesBySlugs_lobby_bets
 };
+
 export type GameListVerticalQuery_gamesBySlugs = {
   id: string,
   backgroundImage: string,
@@ -304,12 +377,18 @@ export type GameListVerticalQuery_gamesBySlugs = {
   lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
   isInMaintenance: boolean,
 };
+
 export type GameListVerticalQuery = {
-  gamesBySlugs: Array<GameListVerticalQuery_gamesBySlugs>,
+  gamesBySlugs: Array<GameListVerticalQuery_gamesBySlugs>
 };
+
 export type GameListVerticalQueryVariables = {
-  slugs: Array<string>,
+  slugs: Array<string>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameStudiosQuery
@@ -323,9 +402,14 @@ export type GameStudiosQuery_gameStudios = {
   slug: string,
   name: string,
 };
+
 export type GameStudiosQuery = {
-  gameStudios: Array<?GameStudiosQuery_gameStudios>,
+  gameStudios: Array<?GameStudiosQuery_gameStudios>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameSearchQuery
@@ -336,9 +420,11 @@ export type GameSearchQuery_gamesSearch_results_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type GameSearchQuery_gamesSearch_results_lobby = {
-  bets: ?GameSearchQuery_gamesSearch_results_lobby_bets,
+  bets: ?GameSearchQuery_gamesSearch_results_lobby_bets
 };
+
 export type GameSearchQuery_gamesSearch_results = {
   id: string,
   backgroundImage: string,
@@ -348,18 +434,25 @@ export type GameSearchQuery_gamesSearch_results = {
   lobby: ?GameSearchQuery_gamesSearch_results_lobby,
   isInMaintenance: boolean,
 };
+
 export type GameSearchQuery_gamesSearch = {
   resultsCount: number,
   results: Array<?GameSearchQuery_gamesSearch_results>,
 };
+
 export type GameSearchQuery = {
-  gamesSearch: GameSearchQuery_gamesSearch,
+  gamesSearch: GameSearchQuery_gamesSearch
 };
+
 export type GameSearchQueryVariables = {
   query: string,
   page: number,
   pageSize: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameSearchSuggestionsListContainerQuery
@@ -370,9 +463,11 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets =
   max: ?number,
   symbol: ?string,
 };
+
 export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby = {
-  bets: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets,
+  bets: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets
 };
+
 export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   id: string,
   backgroundImage: string,
@@ -382,34 +477,48 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
+
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
   id: ?string,
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
+
 export type GameSearchSuggestionsListContainerQuery = {
-  gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList,
+  gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList
 };
+
 export type GameSearchSuggestionsListContainerQueryVariables = {
-  listId: string,
+  listId: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameTileHeartQuery
 // ====================================================
 
 export type GameTileHeartQuery_gamesList_games = {
-  id: string,
+  id: string
 };
+
 export type GameTileHeartQuery_gamesList = {
   id: ?string,
   games: Array<GameTileHeartQuery_gamesList_games>,
 };
+
 export type GameTileHeartQuery = {
-  gamesList: ?GameTileHeartQuery_gamesList,
+  gamesList: ?GameTileHeartQuery_gamesList
 };
+
 export type GameTileHeartQueryVariables = {
-  numberOfGames: number,
+  numberOfGames: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: AddGameToMyList
@@ -419,12 +528,18 @@ export type AddGameToMyList_addGameToMyList = {
   id: string,
   isInMyList: boolean,
 };
+
 export type AddGameToMyList = {
-  addGameToMyList: ?AddGameToMyList_addGameToMyList,
+  addGameToMyList: ?AddGameToMyList_addGameToMyList
 };
+
 export type AddGameToMyListVariables = {
-  id: string,
+  id: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: RemoveGameFromMyList
@@ -434,12 +549,18 @@ export type RemoveGameFromMyList_removeGameFromMyList = {
   id: string,
   isInMyList: boolean,
 };
+
 export type RemoveGameFromMyList = {
-  removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList,
+  removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList
 };
+
 export type RemoveGameFromMyListVariables = {
-  id: string,
+  id: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: JackpotsQuery
@@ -450,17 +571,21 @@ export type JackpotsQuery_gamesList_games_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type JackpotsQuery_gamesList_games_lobby = {
-  bets: ?JackpotsQuery_gamesList_games_lobby_bets,
+  bets: ?JackpotsQuery_gamesList_games_lobby_bets
 };
+
 export type JackpotsQuery_gamesList_games_jackpot_value = {
   amount: number,
   currency: Currency,
 };
+
 export type JackpotsQuery_gamesList_games_jackpot = {
   id: string,
   value: JackpotsQuery_gamesList_games_jackpot_value,
 };
+
 export type JackpotsQuery_gamesList_games = {
   id: string,
   backgroundImage: string,
@@ -471,16 +596,23 @@ export type JackpotsQuery_gamesList_games = {
   isInMaintenance: boolean,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
+
 export type JackpotsQuery_gamesList = {
   name: ?string,
   games: Array<JackpotsQuery_gamesList_games>,
 };
+
 export type JackpotsQuery = {
-  gamesList: ?JackpotsQuery_gamesList,
+  gamesList: ?JackpotsQuery_gamesList
 };
+
 export type JackpotsQueryVariables = {
-  numberOfGames: number,
+  numberOfGames: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: LiveCasinoCardSmallDataQuery
@@ -491,11 +623,13 @@ export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets = {
   min: ?number,
   max: ?number,
 };
+
 export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
   type: OperationHoursType,
   startTime: ?string,
   endTime: ?string,
 };
+
 export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
   id: ?string,
   tableId: ?string,
@@ -511,12 +645,18 @@ export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
   bets: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets,
   operationHours: LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours,
 };
+
 export type LiveCasinoCardSmallDataQuery = {
-  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
+  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById
 };
+
 export type LiveCasinoCardSmallDataQueryVariables = {
-  id: string,
+  id: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: LiveCasinoDetailPageQuery
@@ -527,9 +667,11 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby_bets = 
   max: ?number,
   symbol: ?string,
 };
+
 export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby = {
-  bets: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby_bets,
+  bets: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby_bets
 };
+
 export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   id: string,
   backgroundImage: string,
@@ -539,13 +681,19 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
   isInMaintenance: boolean,
 };
+
 export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames = {
   title: string,
   games: Array<LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games>,
 };
+
 export type LiveCasinoDetailPageQuery = {
-  groupedLiveCasinoGames: Array<LiveCasinoDetailPageQuery_groupedLiveCasinoGames>,
+  groupedLiveCasinoGames: Array<LiveCasinoDetailPageQuery_groupedLiveCasinoGames>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: LiveCasinoDetailPageDesktopQuery
@@ -556,6 +704,7 @@ export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bet
   min: ?number,
   max: ?number,
 };
+
 export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby = {
   id: ?string,
   tableId: ?string,
@@ -569,6 +718,7 @@ export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby = {
   betBehind: ?boolean,
   bets: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets,
 };
+
 export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   backgroundImage: string,
   id: string,
@@ -580,12 +730,18 @@ export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   slug: string,
   gameStudio: string,
 };
+
 export type LiveCasinoDetailPageDesktopQuery_gamesList = {
-  games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>,
+  games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>
 };
+
 export type LiveCasinoDetailPageDesktopQuery = {
-  gamesList: ?LiveCasinoDetailPageDesktopQuery_gamesList,
+  gamesList: ?LiveCasinoDetailPageDesktopQuery_gamesList
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: MustDropJackpotsGamesListQuery
@@ -596,9 +752,11 @@ export type MustDropJackpotsGamesListQuery_gamesList_games_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type MustDropJackpotsGamesListQuery_gamesList_games_lobby = {
-  bets: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby_bets,
+  bets: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby_bets
 };
+
 export type MustDropJackpotsGamesListQuery_gamesList_games = {
   id: string,
   backgroundImage: string,
@@ -608,151 +766,163 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
+
 export type MustDropJackpotsGamesListQuery_gamesList = {
   name: ?string,
   games: Array<MustDropJackpotsGamesListQuery_gamesList_games>,
 };
+
 export type MustDropJackpotsGamesListQuery = {
-  gamesList: ?MustDropJackpotsGamesListQuery_gamesList,
+  gamesList: ?MustDropJackpotsGamesListQuery_gamesList
 };
+
 export type MustDropJackpotsGamesListQueryVariables = {
   id: string,
   numberOfGames: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: MustDropJackpotsQuery
 // ====================================================
 
 export type MustDropJackpotsQuery_mustDropJackpots_amount = {
-  formattedAmount: string,
+  formattedAmount: string
 };
+
 export type MustDropJackpotsQuery_mustDropJackpots = {
   label: string,
   image: string,
   id: string,
   amount: MustDropJackpotsQuery_mustDropJackpots_amount,
 };
+
 export type MustDropJackpotsQuery = {
-  mustDropJackpots: Array<MustDropJackpotsQuery_mustDropJackpots>,
+  mustDropJackpots: Array<MustDropJackpotsQuery_mustDropJackpots>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  slug: string,
+  slug: string
 };
+
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games = {
-  title: string,
+  title: string
 };
+
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
-  title: string,
+  title: string
 };
+
 export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games = {
-  title: string,
+  title: string
 };
+
 export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames = {
+  title: string
+};
+
+export type PlayerValuablesQuery_player_valuables = {
+  __typename: "PlayerValuableDeposit" | "PlayerValuableFreeBet" | "PlayerValuableSport",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
   title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+} | {
+  __typename: "PlayerValuableSpins",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  description: string,
+  coinValue: number,
+  requirementType: ?RequirementType,
+  game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
+} | {
+  __typename: "PlayerValuableCash",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  requirementType: ?RequirementType,
+} | {
+  __typename: "PlayerValuableCashback",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  description: string,
+  requirementType: ?RequirementType,
+  games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
+  excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
+  gameCategories: Array<?string>,
+} | {
+  __typename: "PlayerValuableWageringLock",
+  id: string,
+  valuableState: PlayerValuableState,
+  expiryDate: BigInt,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+  awardType: WageringLockAwardType,
+  description: string,
+  games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
+  excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
+  gameCategories: Array<?string>,
 };
-export type PlayerValuablesQuery_player_valuables =
-  | {
-      __typename:
-        | "PlayerValuableDeposit"
-        | "PlayerValuableFreeBet"
-        | "PlayerValuableSport",
-      id: string,
-      valuableState: PlayerValuableState,
-      expiryDate: BigInt,
-      valuableType: ValuableType,
-      title: string,
-      content: string,
-      caveat: ?string,
-      currency: Currency,
-      market: string,
-      backgroundImage: string,
-      wageringThreshold: ?number,
-      leftToWager: ?number,
-    }
-  | {
-      __typename: "PlayerValuableSpins",
-      id: string,
-      valuableState: PlayerValuableState,
-      expiryDate: BigInt,
-      valuableType: ValuableType,
-      title: string,
-      content: string,
-      caveat: ?string,
-      currency: Currency,
-      market: string,
-      backgroundImage: string,
-      wageringThreshold: ?number,
-      leftToWager: ?number,
-      description: string,
-      coinValue: number,
-      requirementType: ?RequirementType,
-      game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
-    }
-  | {
-      __typename: "PlayerValuableCash",
-      id: string,
-      valuableState: PlayerValuableState,
-      expiryDate: BigInt,
-      valuableType: ValuableType,
-      title: string,
-      content: string,
-      caveat: ?string,
-      currency: Currency,
-      market: string,
-      backgroundImage: string,
-      wageringThreshold: ?number,
-      leftToWager: ?number,
-      requirementType: ?RequirementType,
-    }
-  | {
-      __typename: "PlayerValuableCashback",
-      id: string,
-      valuableState: PlayerValuableState,
-      expiryDate: BigInt,
-      valuableType: ValuableType,
-      title: string,
-      content: string,
-      caveat: ?string,
-      currency: Currency,
-      market: string,
-      backgroundImage: string,
-      wageringThreshold: ?number,
-      leftToWager: ?number,
-      description: string,
-      requirementType: ?RequirementType,
-      games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
-      excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
-      gameCategories: Array<?string>,
-    }
-  | {
-      __typename: "PlayerValuableWageringLock",
-      id: string,
-      valuableState: PlayerValuableState,
-      expiryDate: BigInt,
-      valuableType: ValuableType,
-      title: string,
-      content: string,
-      caveat: ?string,
-      currency: Currency,
-      market: string,
-      backgroundImage: string,
-      wageringThreshold: ?number,
-      leftToWager: ?number,
-      awardType: WageringLockAwardType,
-      description: string,
-      games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
-      excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
-      gameCategories: Array<?string>,
-    };
+
 export type PlayerValuablesQuery_player = {
-  valuables: Array<PlayerValuablesQuery_player_valuables>,
+  valuables: Array<PlayerValuablesQuery_player_valuables>
 };
+
 export type PlayerValuablesQuery = {
   listTitleLabel: string,
   availableListTitleLabel: string,
@@ -765,21 +935,31 @@ export type PlayerValuablesQuery = {
   dontUseValuableLabel: string,
   player: PlayerValuablesQuery_player,
 };
+
 export type PlayerValuablesQueryVariables = {
-  valuableType?: ?ValuableType,
+  valuableType?: ?ValuableType
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UseValuable
 // ====================================================
 
 export type UseValuable = {
-  useValuable: ?boolean,
+  useValuable: ?boolean
 };
+
 export type UseValuableVariables = {
   id: string,
   source?: ?string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PromotionsListQuery
@@ -793,17 +973,24 @@ export type PromotionsListQuery_promotionsList_promotions = {
   image: string,
   badge: ?string,
 };
+
 export type PromotionsListQuery_promotionsList = {
   id: string,
   name: string,
   promotions: Array<PromotionsListQuery_promotionsList_promotions>,
 };
+
 export type PromotionsListQuery = {
-  promotionsList: ?PromotionsListQuery_promotionsList,
+  promotionsList: ?PromotionsListQuery_promotionsList
 };
+
 export type PromotionsListQueryVariables = {
-  slug: string,
+  slug: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GameStudioQuery
@@ -814,9 +1001,11 @@ export type GameStudioQuery_gameStudio_games_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type GameStudioQuery_gameStudio_games_lobby = {
-  bets: ?GameStudioQuery_gameStudio_games_lobby_bets,
+  bets: ?GameStudioQuery_gameStudio_games_lobby_bets
 };
+
 export type GameStudioQuery_gameStudio_games = {
   id: string,
   backgroundImage: string,
@@ -826,20 +1015,27 @@ export type GameStudioQuery_gameStudio_games = {
   lobby: ?GameStudioQuery_gameStudio_games_lobby,
   isInMaintenance: boolean,
 };
+
 export type GameStudioQuery_gameStudio = {
   id: string,
   name: string,
   gamesCount: number,
   games: Array<?GameStudioQuery_gameStudio_games>,
 };
+
 export type GameStudioQuery = {
-  gameStudio: ?GameStudioQuery_gameStudio,
+  gameStudio: ?GameStudioQuery_gameStudio
 };
+
 export type GameStudioQueryVariables = {
   slug: string,
   page: number,
   pageSize: number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: OptInForReelRace
@@ -849,12 +1045,18 @@ export type OptInForReelRace_optInForReelRace = {
   id: string,
   optedIn: boolean,
 };
+
 export type OptInForReelRace = {
-  optInForReelRace: ?OptInForReelRace_optInForReelRace,
+  optInForReelRace: ?OptInForReelRace_optInForReelRace
 };
+
 export type OptInForReelRaceVariables = {
-  id: string,
+  id: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ReelRaceListQuery
@@ -867,6 +1069,7 @@ export type ReelRaceListQuery_reelRaces_game = {
   backgroundImage: string,
   slug: string,
 };
+
 export type ReelRaceListQuery_reelRaces_translations = {
   optedInCtaSingleGameShort: string,
   optIn: string,
@@ -881,6 +1084,7 @@ export type ReelRaceListQuery_reelRaces_translations = {
   today: string,
   tomorrow: string,
 };
+
 export type ReelRaceListQuery_reelRaces = {
   id: string,
   game: ReelRaceListQuery_reelRaces_game,
@@ -894,12 +1098,18 @@ export type ReelRaceListQuery_reelRaces = {
   remainingSpins: number,
   translations: ReelRaceListQuery_reelRaces_translations,
 };
+
 export type ReelRaceListQuery = {
-  reelRaces: Array<ReelRaceListQuery_reelRaces>,
+  reelRaces: Array<ReelRaceListQuery_reelRaces>
 };
+
 export type ReelRaceListQueryVariables = {
-  limit: number,
+  limit: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ReelRacesPageQuery
@@ -912,6 +1122,7 @@ export type ReelRacesPageQuery_reelRaces_game = {
   backgroundImage: string,
   slug: string,
 };
+
 export type ReelRacesPageQuery_reelRaces_translations = {
   optedInCtaSingleGameShort: string,
   optIn: string,
@@ -926,6 +1137,7 @@ export type ReelRacesPageQuery_reelRaces_translations = {
   today: string,
   tomorrow: string,
 };
+
 export type ReelRacesPageQuery_reelRaces = {
   id: string,
   game: ReelRacesPageQuery_reelRaces_game,
@@ -939,12 +1151,18 @@ export type ReelRacesPageQuery_reelRaces = {
   remainingSpins: number,
   translations: ReelRacesPageQuery_reelRaces_translations,
 };
+
 export type ReelRacesPageQuery = {
-  reelRaces: Array<ReelRacesPageQuery_reelRaces>,
+  reelRaces: Array<ReelRacesPageQuery_reelRaces>
 };
+
 export type ReelRacesPageQueryVariables = {
-  limit: number,
+  limit: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ReelRaceWidgetQuery
@@ -956,6 +1174,7 @@ export type ReelRaceWidgetQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
+
 export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
   winsInARow: number,
   triples: number,
@@ -963,6 +1182,7 @@ export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
   bigWins: number,
   megaWins: number,
 };
+
 export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
   playerId: string,
   playerName: string,
@@ -971,6 +1191,7 @@ export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
   remainingSpins: number,
   boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
 };
+
 export type ReelRaceWidgetQuery_reelRaces = {
   id: string,
   game: ReelRaceWidgetQuery_reelRaces_game,
@@ -983,9 +1204,14 @@ export type ReelRaceWidgetQuery_reelRaces = {
   cometdChannels: Array<string>,
   leaderboard: Array<ReelRaceWidgetQuery_reelRaces_leaderboard>,
 };
+
 export type ReelRaceWidgetQuery = {
-  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>,
+  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GetGameSets
@@ -996,6 +1222,7 @@ export type GetGameSets_gameSetsList_additionalFilterGroups_values = {
   query: string,
   title: ?string,
 };
+
 export type GetGameSets_gameSetsList_additionalFilterGroups = {
   key: string,
   type: string,
@@ -1003,6 +1230,7 @@ export type GetGameSets_gameSetsList_additionalFilterGroups = {
   description: string,
   values: Array<GetGameSets_gameSetsList_additionalFilterGroups_values>,
 };
+
 export type GetGameSets_gameSetsList = {
   id: string,
   key: string,
@@ -1013,9 +1241,14 @@ export type GetGameSets_gameSetsList = {
   baseQuery: string,
   additionalFilterGroups: Array<GetGameSets_gameSetsList_additionalFilterGroups>,
 };
+
 export type GetGameSets = {
-  gameSetsList: Array<GetGameSets_gameSetsList>,
+  gameSetsList: Array<GetGameSets_gameSetsList>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayAgainGameBySlugQuery
@@ -1029,12 +1262,18 @@ export type PlayAgainGameBySlugQuery_gamesBySlugs = {
   logo: string,
   name: string,
 };
+
 export type PlayAgainGameBySlugQuery = {
-  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>,
+  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>
 };
+
 export type PlayAgainGameBySlugQueryVariables = {
-  slug: string,
+  slug: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayAgainLatestPlayedQuery
@@ -1048,13 +1287,19 @@ export type PlayAgainLatestPlayedQuery_gamesList_games = {
   logo: string,
   name: string,
 };
+
 export type PlayAgainLatestPlayedQuery_gamesList = {
   id: ?string,
   games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
 };
+
 export type PlayAgainLatestPlayedQuery = {
-  gamesList: ?PlayAgainLatestPlayedQuery_gamesList,
+  gamesList: ?PlayAgainLatestPlayedQuery_gamesList
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_QUERY
@@ -1065,22 +1310,26 @@ export type PLAYER_SETTINGS_QUERY_player_details_name = {
   first: string,
   last: string,
 };
+
 export type PLAYER_SETTINGS_QUERY_player_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
+
 export type PLAYER_SETTINGS_QUERY_player_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
+
 export type PLAYER_SETTINGS_QUERY_player_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
+
 export type PLAYER_SETTINGS_QUERY_player_details_address = {
   __typename: "PlayerAddress",
   city: string,
@@ -1088,6 +1337,7 @@ export type PLAYER_SETTINGS_QUERY_player_details_address = {
   postCode: string,
   country: PLAYER_SETTINGS_QUERY_player_details_address_country,
 };
+
 export type PLAYER_SETTINGS_QUERY_player_details = {
   __typename: "PlayerDetails",
   name: PLAYER_SETTINGS_QUERY_player_details_name,
@@ -1097,211 +1347,296 @@ export type PLAYER_SETTINGS_QUERY_player_details = {
   address: PLAYER_SETTINGS_QUERY_player_details_address,
   email: string,
 };
+
 export type PLAYER_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
   details: PLAYER_SETTINGS_QUERY_player_details,
 };
+
 export type PLAYER_SETTINGS_QUERY = {
-  player: PLAYER_SETTINGS_QUERY_player,
+  player: PLAYER_SETTINGS_QUERY_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SettingsNotificationsContactByPhoneQuery
 // ====================================================
 
 export type SettingsNotificationsContactByPhoneQuery_player_details_contactSettings = {
-  contactByPhone: boolean,
+  contactByPhone: boolean
 };
+
 export type SettingsNotificationsContactByPhoneQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPhoneQuery_player_details_contactSettings,
+  contactSettings: SettingsNotificationsContactByPhoneQuery_player_details_contactSettings
 };
+
 export type SettingsNotificationsContactByPhoneQuery_player = {
   id: string,
   details: SettingsNotificationsContactByPhoneQuery_player_details,
 };
+
 export type SettingsNotificationsContactByPhoneQuery = {
-  player: SettingsNotificationsContactByPhoneQuery_player,
+  player: SettingsNotificationsContactByPhoneQuery_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SettingsNotificationsContactByPostQuery
 // ====================================================
 
 export type SettingsNotificationsContactByPostQuery_player_details_contactSettings = {
-  contactByPost: boolean,
+  contactByPost: boolean
 };
+
 export type SettingsNotificationsContactByPostQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPostQuery_player_details_contactSettings,
+  contactSettings: SettingsNotificationsContactByPostQuery_player_details_contactSettings
 };
+
 export type SettingsNotificationsContactByPostQuery_player = {
   id: string,
   details: SettingsNotificationsContactByPostQuery_player_details,
 };
+
 export type SettingsNotificationsContactByPostQuery = {
-  player: SettingsNotificationsContactByPostQuery_player,
+  player: SettingsNotificationsContactByPostQuery_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetAdventurerPublicity
 // ====================================================
 
 export type SetAdventurerPublicity = {
-  setAdventurerPublicity: ?boolean,
+  setAdventurerPublicity: ?boolean
 };
+
 export type SetAdventurerPublicityVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetWithdrawalNotifications
 // ====================================================
 
 export type SetWithdrawalNotifications = {
-  setWithdrawalNotifications: ?boolean,
+  setWithdrawalNotifications: ?boolean
 };
+
 export type SetWithdrawalNotificationsVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetNewsletterSubscription
 // ====================================================
 
 export type SetNewsletterSubscription = {
-  setNewsletterSubscription: ?boolean,
+  setNewsletterSubscription: ?boolean
 };
+
 export type SetNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetSMSNewsletterSubscription
 // ====================================================
 
 export type SetSMSNewsletterSubscription = {
-  setSMSNewsletterSubscription: ?boolean,
+  setSMSNewsletterSubscription: ?boolean
 };
+
 export type SetSMSNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPhone
 // ====================================================
 
 export type SetContactByPhone = {
-  setContactByPhone: ?boolean,
+  setContactByPhone: ?boolean
 };
+
 export type SetContactByPhoneVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPost
 // ====================================================
 
 export type SetContactByPost = {
-  setContactByPost: ?boolean,
+  setContactByPost: ?boolean
 };
+
 export type SetContactByPostVariables = {
-  input?: ?ContactSettingsInput,
+  input?: ?ContactSettingsInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SettingsNotificationsSubscribedToNewslettersQuery
 // ====================================================
 
 export type SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings = {
-  subscribedToNewsletters: boolean,
+  subscribedToNewsletters: boolean
 };
+
 export type SettingsNotificationsSubscribedToNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings,
+  contactSettings: SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings
 };
+
 export type SettingsNotificationsSubscribedToNewslettersQuery_player = {
   id: string,
   details: SettingsNotificationsSubscribedToNewslettersQuery_player_details,
 };
+
 export type SettingsNotificationsSubscribedToNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToNewslettersQuery_player,
+  player: SettingsNotificationsSubscribedToNewslettersQuery_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
 // ====================================================
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
-  adventurerPublic: boolean,
+  adventurerPublic: boolean
 };
+
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
-  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
+  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings
 };
+
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
   __typename: "PlayerRealityCheckSettings",
   canChangeInterval: boolean,
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
+
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck,
 };
+
 export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
   details: PLAYER_CONTACT_SETTINGS_QUERY_player_details,
   playOk: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk,
 };
+
 export type PLAYER_CONTACT_SETTINGS_QUERY = {
-  player: PLAYER_CONTACT_SETTINGS_QUERY_player,
+  player: PLAYER_CONTACT_SETTINGS_QUERY_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SettingsNotificationsSubscribedToSmsNewslettersQuery
 // ====================================================
 
 export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings = {
-  subscribedToSMSNewsletters: boolean,
+  subscribedToSMSNewsletters: boolean
 };
+
 export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings,
+  contactSettings: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings
 };
+
 export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player = {
   id: string,
   details: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details,
 };
+
 export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToSmsNewslettersQuery_player,
+  player: SettingsNotificationsSubscribedToSmsNewslettersQuery_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SettingsNotificationsWithdrawalNotificationsQuery
 // ====================================================
 
 export type SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings = {
-  withdrawalNotifications: boolean,
+  withdrawalNotifications: boolean
 };
+
 export type SettingsNotificationsWithdrawalNotificationsQuery_player_details = {
-  contactSettings: SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings,
+  contactSettings: SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings
 };
+
 export type SettingsNotificationsWithdrawalNotificationsQuery_player = {
   id: string,
   details: SettingsNotificationsWithdrawalNotificationsQuery_player_details,
 };
+
 export type SettingsNotificationsWithdrawalNotificationsQuery = {
-  player: SettingsNotificationsWithdrawalNotificationsQuery_player,
+  player: SettingsNotificationsWithdrawalNotificationsQuery_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateRealityCheckInterval
 // ====================================================
 
 export type UpdateRealityCheckInterval = {
-  updateRealityCheckInterval: ?number,
+  updateRealityCheckInterval: ?number
 };
+
 export type UpdateRealityCheckIntervalVariables = {
-  input?: ?UpdateRealityCheckIntervalInput,
+  input?: ?UpdateRealityCheckIntervalInput
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: REALITY_CHECK_LABELS_QUERY
@@ -1313,6 +1648,10 @@ export type REALITY_CHECK_LABELS_QUERY = {
   save: string,
   cancel: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_REALITY_CHECK_QUERY
@@ -1324,33 +1663,46 @@ export type PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
+
 export type PLAYER_REALITY_CHECK_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
 };
+
 export type PLAYER_REALITY_CHECK_QUERY_player = {
   id: string,
   __typename: "Player",
   playOk: PLAYER_REALITY_CHECK_QUERY_player_playOk,
 };
+
 export type PLAYER_REALITY_CHECK_QUERY = {
-  player: PLAYER_REALITY_CHECK_QUERY_player,
+  player: PLAYER_REALITY_CHECK_QUERY_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
 // ====================================================
 
 export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
-  loginTime: Long,
+  loginTime: Long
 };
+
 export type PLAYER_LOGIN_HISTORY_QUERY_player = {
   id: string,
   loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
 };
+
 export type PLAYER_LOGIN_HISTORY_QUERY = {
-  player: PLAYER_LOGIN_HISTORY_QUERY_player,
+  player: PLAYER_LOGIN_HISTORY_QUERY_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GlossaryQuery
@@ -1362,31 +1714,46 @@ export type GlossaryQuery_glossary = {
   aka: ?string,
   definition: string,
 };
+
 export type GlossaryQuery = {
-  glossary: Array<GlossaryQuery_glossary>,
+  glossary: Array<GlossaryQuery_glossary>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: CmsImageQuery
 // ====================================================
 
 export type CmsImageQuery = {
-  sportsCmsImage: ?string,
+  sportsCmsImage: ?string
 };
+
 export type CmsImageQueryVariables = {
-  key: string,
+  key: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: DictionaryTermQuery
 // ====================================================
 
 export type DictionaryTermQuery = {
-  dictionaryTerm: string,
+  dictionaryTerm: string
 };
+
 export type DictionaryTermQueryVariables = {
-  key: string,
+  key: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PluralisableDictionaryTermQuery
@@ -1396,10 +1763,15 @@ export type PluralisableDictionaryTermQuery = {
   singularTerm: string,
   pluralTerm: string,
 };
+
 export type PluralisableDictionaryTermQueryVariables = {
   singularKey: string,
   pluralKey: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: EditFavouriteCompetitions
@@ -1409,14 +1781,20 @@ export type EditFavouriteCompetitions_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
-  id: number,
+  id: number
 };
+
 export type EditFavouriteCompetitions = {
-  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>,
+  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>
 };
+
 export type EditFavouriteCompetitionsVariables = {
-  groupId: number,
+  groupId: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteCompetitionsSelectorQuery
@@ -1427,64 +1805,58 @@ export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
 };
+
 export type FavouriteCompetitionsSelectorQuery_group_groups = {
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,
 };
+
 export type FavouriteCompetitionsSelectorQuery_group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups>,
 };
+
 export type FavouriteCompetitionsSelectorQuery = {
   /**
    * Get list of sub-groups from a given group"
@@ -1492,9 +1864,14 @@ export type FavouriteCompetitionsSelectorQuery = {
   group: FavouriteCompetitionsSelectorQuery_group,
   internationalGroupName: string,
 };
+
 export type FavouriteCompetitionsSelectorQueryVariables = {
-  groupId: number,
+  groupId: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteSportsSelectorContextCompetitionSuggestions
@@ -1505,26 +1882,30 @@ export type FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
+
 export type FavouriteSportsSelectorContextCompetitionSuggestions = {
   /**
    * TopCompetitions returns the most popular subgroups of a group, currently based on number of events
    */
-  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>,
+  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>
 };
+
 export type FavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
-  id: number,
+  id: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteSportsSelectorContext
@@ -1535,81 +1916,82 @@ export type FavouriteSportsSelectorContext_groups_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+
 export type FavouriteSportsSelectorContext_groups = {
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
-
   /**
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
-
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelectorContext_groups_favouriteCompetitions>,
 };
+
 export type FavouriteSportsSelectorContext = {
   /**
    * Get list of available event groups from the root level
    */
-  groups: Array<FavouriteSportsSelectorContext_groups>,
+  groups: Array<FavouriteSportsSelectorContext_groups>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayerVertical
 // ====================================================
 
 export type PlayerVertical_player = {
-  vertical: Vertical,
+  vertical: Vertical
 };
+
 export type PlayerVertical = {
-  player: PlayerVertical_player,
+  player: PlayerVertical_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FREEBET_QUERY
@@ -1628,20 +2010,30 @@ export type FREEBET_QUERY_player_valuables = {
   content: string,
   caveat: ?string,
 };
+
 export type FREEBET_QUERY_player = {
-  valuables: Array<FREEBET_QUERY_player_valuables>,
+  valuables: Array<FREEBET_QUERY_player_valuables>
 };
+
 export type FREEBET_QUERY = {
-  player: FREEBET_QUERY_player,
+  player: FREEBET_QUERY_player
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SportsFirstBetQuery
 // ====================================================
 
 export type SportsFirstBetQuery = {
-  sportsFirstBet: boolean,
+  sportsFirstBet: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
@@ -1652,6 +2044,10 @@ export type LaunchableKambiClientQuery = {
   kambiClientVisible: boolean,
   isBetslipVisible: boolean,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: UserNavigation
@@ -1662,90 +2058,87 @@ export type UserNavigation_sportsNavigation_sport = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
-
   /**
    * The full path in the kambi client to navigate to the in-play bets for this group
    */
   clientPathLive: string,
-
   /**
    * Normalized name of the group
    */
   termKey: string,
-
   /**
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
-
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
 };
+
 export type UserNavigation_sportsNavigation_subNav_competition = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
-
   /**
    * The full path in the kambi client to navigate to the in-play bets for this group
    */
   clientPathLive: string,
-
   /**
    * Normalized name of the group
    */
   termKey: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+
 export type UserNavigation_sportsNavigation_subNav = {
-  competition: UserNavigation_sportsNavigation_subNav_competition,
+  competition: UserNavigation_sportsNavigation_subNav_competition
 };
+
 export type UserNavigation_sportsNavigation = {
   sport: UserNavigation_sportsNavigation_sport,
   subNav: Array<UserNavigation_sportsNavigation_subNav>,
 };
+
 export type UserNavigation = {
   allLabel: string,
   editLabel: string,
   liveLabel: string,
   sportsNavigation: Array<UserNavigation_sportsNavigation>,
 };
+
 export type UserNavigationVariables = {
-  live: boolean,
+  live: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: TopSearches
@@ -1756,47 +2149,49 @@ export type TopSearches_topSearches_parentGroups = {
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
+
 export type TopSearches_topSearches = {
   /**
    * Normalized name of the group
    */
   termKey: string,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
-
   /**
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * Array of parents of this group in order, be careful with nesting!
    */
   parentGroups: Array<TopSearches_topSearches_parentGroups>,
 };
+
 export type TopSearches = {
   /**
    * Top searches returns the event groups for the groupIds marked as popular
    */
-  topSearches: Array<TopSearches_topSearches>,
+  topSearches: Array<TopSearches_topSearches>
 };
+
 export type TopSearchesVariables = {
-  count: number,
+  count: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SearchQuery
@@ -1807,48 +2202,50 @@ export type SearchQuery_search_sport = {
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
+
 export type SearchQuery_search = {
   /**
    * The type of search result, N.B Not overly reliable"
    */
   type: SearchResultType,
-
   /**
    * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)"
    */
   id: string,
-
   /**
    * Translated name of the search result
    */
   localizedName: string,
-
   /**
    * The country this search result is associated
    */
   country: ?string,
-
   /**
    * The sport that this search result is associated to is nullable as relies on
    * finding by Kambi controlled data.
    */
   sport: ?SearchQuery_search_sport,
 };
+
 export type SearchQuery = {
   /**
    * Search for events matching a given query, non english lang will search english results too"
    */
-  search: Array<SearchQuery_search>,
+  search: Array<SearchQuery_search>
 };
+
 export type SearchQueryVariables = {
-  query: string,
+  query: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SportsShellQuery
@@ -1858,86 +2255,127 @@ export type SportsShellQuery = {
   hasSelectedFavourites: boolean,
   isSearchVisible: boolean,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: NavigateClient
 // ====================================================
 
 export type NavigateClient = {
-  navigateClient: ?boolean,
+  navigateClient: ?boolean
 };
+
 export type NavigateClientVariables = {
   path: string,
   trackingLocation: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: OpenModal
 // ====================================================
 
 export type OpenModal = {
-  openModal: ?boolean,
+  openModal: ?boolean
 };
+
 export type OpenModalVariables = {
-  modal: Modal,
+  modal: Modal
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: CloseModal
 // ====================================================
 
 export type CloseModal = {
-  closeModal: ?boolean,
+  closeModal: ?boolean
 };
+
 export type CloseModalVariables = {
-  modal: Modal,
+  modal: Modal
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: CloseAllModals
 // ====================================================
 
 export type CloseAllModals = {
-  closeAllModals: ?boolean,
+  closeAllModals: ?boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateKambiClientState
 // ====================================================
 
 export type UpdateKambiClientState = {
-  updateKambiClientState: ?boolean,
+  updateKambiClientState: ?boolean
 };
+
 export type UpdateKambiClientStateVariables = {
-  isVisible: boolean,
+  isVisible: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateBetslipState
 // ====================================================
 
 export type UpdateBetslipState = {
-  updateBetslipState: ?boolean,
+  updateBetslipState: ?boolean
 };
+
 export type UpdateBetslipStateVariables = {
-  isVisible: boolean,
+  isVisible: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: ShowSearch
 // ====================================================
 
 export type ShowSearch = {
-  showSearch: ?boolean,
+  showSearch: ?boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: HideSearch
 // ====================================================
 
 export type HideSearch = {
-  hideSearch: ?boolean,
+  hideSearch: ?boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: ToggleFavouriteGroup
@@ -1948,18 +2386,23 @@ export type ToggleFavouriteGroup_toggleFavouriteGroup = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
+
 export type ToggleFavouriteGroup = {
-  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup,
+  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup
 };
+
 export type ToggleFavouriteGroupVariables = {
-  id: number,
+  id: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetFavourites
@@ -1970,18 +2413,23 @@ export type SetFavourites_setFavouriteGroups = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
+
 export type SetFavourites = {
-  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>,
+  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>
 };
+
 export type SetFavouritesVariables = {
-  ids: Array<number>,
+  ids: Array<number>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetFavouriteCompetitions
@@ -1992,19 +2440,24 @@ export type SetFavouriteCompetitions_setFavouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
+
 export type SetFavouriteCompetitions = {
-  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>,
+  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>
 };
+
 export type SetFavouriteCompetitionsVariables = {
   groupId: number,
   ids: Array<number>,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SessionTouch
@@ -2014,8 +2467,12 @@ export type SessionTouch = {
   /**
    * Pings the current session to keep it alive, requires the session cookie to be present in the headers
    */
-  sessionTouch: ?boolean,
+  sessionTouch: ?boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: LaunchKambi
@@ -2026,41 +2483,62 @@ export type LaunchKambi_launchKambi = {
   providerPlayerId: ?string,
   ticket: ?string,
 };
+
 export type LaunchKambi = {
-  launchKambi: ?LaunchKambi_launchKambi,
+  launchKambi: ?LaunchKambi_launchKambi
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ActiveModals
 // ====================================================
 
 export type ActiveModals = {
-  activeModals: Array<Modal>,
+  activeModals: Array<Modal>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: BetslipVisible
 // ====================================================
 
 export type BetslipVisible = {
-  isBetslipVisible: boolean,
+  isBetslipVisible: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: KambiClientVisible
 // ====================================================
 
 export type KambiClientVisible = {
-  kambiClientVisible: boolean,
+  kambiClientVisible: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SearchVisible
 // ====================================================
 
 export type SearchVisible = {
-  isSearchVisible: boolean,
+  isSearchVisible: boolean
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: CurrentReelRaceInfoQuery
@@ -2073,6 +2551,7 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
+
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   winsInARow: number,
   triples: number,
@@ -2080,6 +2559,7 @@ export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   bigWins: number,
   megaWins: number,
 };
+
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
   playerName: string,
@@ -2088,6 +2568,7 @@ export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   remainingSpins: number,
   boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
 };
+
 export type CurrentReelRaceInfoQuery_reelRaces = {
   id: string,
   game: CurrentReelRaceInfoQuery_reelRaces_game,
@@ -2100,9 +2581,14 @@ export type CurrentReelRaceInfoQuery_reelRaces = {
   formattedPrizes: Array<string>,
   leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
+
 export type CurrentReelRaceInfoQuery = {
-  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>,
+  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: CuratedCard_Game
@@ -2115,6 +2601,10 @@ export type CuratedCard_Game = {
   name: string,
   slug: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameDetails_Game
@@ -2125,6 +2615,7 @@ export type GameDetails_Game_media = {
   path: string,
   order: number,
 };
+
 export type GameDetails_Game = {
   id: string,
   name: string,
@@ -2136,6 +2627,10 @@ export type GameDetails_Game = {
   hasPlayForFun: boolean,
   isInMaintenance: boolean,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameRow_Game
@@ -2146,9 +2641,11 @@ export type GameRow_Game_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type GameRow_Game_lobby = {
-  bets: ?GameRow_Game_lobby_bets,
+  bets: ?GameRow_Game_lobby_bets
 };
+
 export type GameRow_Game = {
   id: string,
   backgroundImage: string,
@@ -2158,6 +2655,10 @@ export type GameRow_Game = {
   lobby: ?GameRow_Game_lobby,
   isInMaintenance: boolean,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameSearch_Game
@@ -2168,9 +2669,11 @@ export type GameSearch_Game_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type GameSearch_Game_lobby = {
-  bets: ?GameSearch_Game_lobby_bets,
+  bets: ?GameSearch_Game_lobby_bets
 };
+
 export type GameSearch_Game = {
   id: string,
   backgroundImage: string,
@@ -2180,6 +2683,10 @@ export type GameSearch_Game = {
   lobby: ?GameSearch_Game_lobby,
   isInMaintenance: boolean,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameTile_Game
@@ -2197,6 +2704,10 @@ export type GameTile_Game = {
   isInMyList: boolean,
   category: ?string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameTileInMaintenance_Game
@@ -2207,6 +2718,10 @@ export type GameTileInMaintenance_Game = {
   logo: string,
   name: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Jackpots_Game
@@ -2217,17 +2732,21 @@ export type Jackpots_Game_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
+
 export type Jackpots_Game_lobby = {
-  bets: ?Jackpots_Game_lobby_bets,
+  bets: ?Jackpots_Game_lobby_bets
 };
+
 export type Jackpots_Game_jackpot_value = {
   amount: number,
   currency: Currency,
 };
+
 export type Jackpots_Game_jackpot = {
   id: string,
   value: Jackpots_Game_jackpot_value,
 };
+
 export type Jackpots_Game = {
   id: string,
   backgroundImage: string,
@@ -2238,6 +2757,10 @@ export type Jackpots_Game = {
   isInMaintenance: boolean,
   jackpot: ?Jackpots_Game_jackpot,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: LiveCasinoCard_Lobby_Bets
@@ -2248,6 +2771,10 @@ export type LiveCasinoCard_Lobby_Bets = {
   min: ?number,
   max: ?number,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: LiveCasinoCard_Lobby
@@ -2258,6 +2785,7 @@ export type LiveCasinoCard_Lobby_bets = {
   min: ?number,
   max: ?number,
 };
+
 export type LiveCasinoCard_Lobby = {
   id: ?string,
   tableId: ?string,
@@ -2271,6 +2799,10 @@ export type LiveCasinoCard_Lobby = {
   betBehind: ?boolean,
   bets: ?LiveCasinoCard_Lobby_bets,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: LiveCasinoCard
@@ -2281,6 +2813,7 @@ export type LiveCasinoCard_liveCasinoLobby_bets = {
   min: ?number,
   max: ?number,
 };
+
 export type LiveCasinoCard_liveCasinoLobby = {
   id: ?string,
   tableId: ?string,
@@ -2294,6 +2827,7 @@ export type LiveCasinoCard_liveCasinoLobby = {
   betBehind: ?boolean,
   bets: ?LiveCasinoCard_liveCasinoLobby_bets,
 };
+
 export type LiveCasinoCard = {
   backgroundImage: string,
   id: string,
@@ -2305,44 +2839,55 @@ export type LiveCasinoCard = {
   slug: string,
   gameStudio: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: MustDropJackpot_MustDropJackpot
 // ====================================================
 
 export type MustDropJackpot_MustDropJackpot_amount = {
-  formattedAmount: string,
+  formattedAmount: string
 };
+
 export type MustDropJackpot_MustDropJackpot = {
   label: string,
   image: string,
   id: string,
   amount: MustDropJackpot_MustDropJackpot_amount,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: MustDropJackpotsWidget_MustDropJackpot
 // ====================================================
 
 export type MustDropJackpotsWidget_MustDropJackpot_amount = {
-  formattedAmount: string,
+  formattedAmount: string
 };
+
 export type MustDropJackpotsWidget_MustDropJackpot = {
   label: string,
   image: string,
   id: string,
   amount: MustDropJackpotsWidget_MustDropJackpot_amount,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename:
-    | "PlayerValuableDeposit"
-    | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+  __typename: "PlayerValuableDeposit" | "PlayerValuableFreeBet" | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -2356,9 +2901,11 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
+
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string,
+  slug: string
 };
+
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -2378,6 +2925,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   requirementType: ?RequirementType,
   game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
 };
+
 export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
@@ -2394,6 +2942,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
+
 export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
   __typename: "PlayerValuableCashback",
   id: string,
@@ -2411,6 +2960,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
   description: string,
   requirementType: ?RequirementType,
 };
+
 export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
   __typename: "PlayerValuableWageringLock",
   id: string,
@@ -2428,12 +2978,14 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
   awardType: WageringLockAwardType,
   description: string,
 };
-export type PlayerValuableList_PlayerValuable =
-  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
-  | PlayerValuableList_PlayerValuable_PlayerValuableSpins
-  | PlayerValuableList_PlayerValuable_PlayerValuableCash
-  | PlayerValuableList_PlayerValuable_PlayerValuableCashback
-  | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock; // ====================================================
+
+export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash | PlayerValuableList_PlayerValuable_PlayerValuableCashback | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock;
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: PromotionCard_Promotion
 // ====================================================
 
@@ -2445,6 +2997,10 @@ export type PromotionCard_Promotion = {
   image: string,
   badge: ?string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ReelRaceCard_ReelRace
@@ -2457,6 +3013,7 @@ export type ReelRaceCard_ReelRace_game = {
   backgroundImage: string,
   slug: string,
 };
+
 export type ReelRaceCard_ReelRace_translations = {
   optedInCtaSingleGameShort: string,
   optIn: string,
@@ -2471,6 +3028,7 @@ export type ReelRaceCard_ReelRace_translations = {
   today: string,
   tomorrow: string,
 };
+
 export type ReelRaceCard_ReelRace = {
   id: string,
   game: ReelRaceCard_ReelRace_game,
@@ -2484,6 +3042,10 @@ export type ReelRaceCard_ReelRace = {
   remainingSpins: number,
   translations: ReelRaceCard_ReelRace_translations,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ReelRaceScheduleCard_ReelRace
@@ -2496,6 +3058,7 @@ export type ReelRaceScheduleCard_ReelRace_game = {
   backgroundImage: string,
   slug: string,
 };
+
 export type ReelRaceScheduleCard_ReelRace_translations = {
   optedInCtaSingleGameShort: string,
   optIn: string,
@@ -2510,6 +3073,7 @@ export type ReelRaceScheduleCard_ReelRace_translations = {
   today: string,
   tomorrow: string,
 };
+
 export type ReelRaceScheduleCard_ReelRace = {
   id: string,
   game: ReelRaceScheduleCard_ReelRace_game,
@@ -2523,6 +3087,10 @@ export type ReelRaceScheduleCard_ReelRace = {
   remainingSpins: number,
   translations: ReelRaceScheduleCard_ReelRace_translations,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: AfterLimitsReached_Game
@@ -2536,6 +3104,10 @@ export type AfterLimitsReached_Game = {
   logo: string,
   name: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: SETTINGS_PLAYER
@@ -2546,22 +3118,26 @@ export type SETTINGS_PLAYER_details_name = {
   first: string,
   last: string,
 };
+
 export type SETTINGS_PLAYER_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
+
 export type SETTINGS_PLAYER_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
+
 export type SETTINGS_PLAYER_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
+
 export type SETTINGS_PLAYER_details_address = {
   __typename: "PlayerAddress",
   city: string,
@@ -2569,6 +3145,7 @@ export type SETTINGS_PLAYER_details_address = {
   postCode: string,
   country: SETTINGS_PLAYER_details_address_country,
 };
+
 export type SETTINGS_PLAYER_details = {
   __typename: "PlayerDetails",
   name: SETTINGS_PLAYER_details_name,
@@ -2578,26 +3155,37 @@ export type SETTINGS_PLAYER_details = {
   address: SETTINGS_PLAYER_details_address,
   email: string,
 };
+
 export type SETTINGS_PLAYER = {
   id: string,
   __typename: "Player",
   details: SETTINGS_PLAYER_details,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_adventurerPublic
 // ====================================================
 
 export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
-  adventurerPublic: boolean,
+  adventurerPublic: boolean
 };
+
 export type Contact_Settings_Player_adventurerPublic_details = {
-  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings,
+  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings
 };
+
 export type Contact_Settings_Player_adventurerPublic = {
   __typename: "Player",
   details: Contact_Settings_Player_adventurerPublic_details,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_realityCheck
@@ -2609,27 +3197,27 @@ export type Contact_Settings_Player_realityCheck_playOk_realityCheck = {
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
+
 export type Contact_Settings_Player_realityCheck_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: Contact_Settings_Player_realityCheck_playOk_realityCheck,
 };
+
 export type Contact_Settings_Player_realityCheck = {
   __typename: "Player",
   playOk: Contact_Settings_Player_realityCheck_playOk,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ValuableCard_PlayerValuable
 // ====================================================
 
 export type ValuableCard_PlayerValuable_PlayerValuableCash = {
-  __typename:
-    | "PlayerValuableCash"
-    | "PlayerValuableCashback"
-    | "PlayerValuableDeposit"
-    | "PlayerValuableFreeBet"
-    | "PlayerValuableSport"
-    | "PlayerValuableWageringLock",
+  __typename: "PlayerValuableCash" | "PlayerValuableCashback" | "PlayerValuableDeposit" | "PlayerValuableFreeBet" | "PlayerValuableSport" | "PlayerValuableWageringLock",
   id: string,
   title: string,
   content: string,
@@ -2640,6 +3228,7 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   caveat: ?string,
   backgroundImage: string,
 };
+
 export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -2654,17 +3243,19 @@ export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   coinValue: number,
   description: string,
 };
-export type ValuableCard_PlayerValuable =
-  | ValuableCard_PlayerValuable_PlayerValuableCash
-  | ValuableCard_PlayerValuable_PlayerValuableSpins; // ====================================================
+
+export type ValuableCard_PlayerValuable = ValuableCard_PlayerValuable_PlayerValuableCash | ValuableCard_PlayerValuable_PlayerValuableSpins;
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
 export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename:
-    | "PlayerValuableDeposit"
-    | "PlayerValuableFreeBet"
-    | "PlayerValuableSport",
+  __typename: "PlayerValuableDeposit" | "PlayerValuableFreeBet" | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -2677,9 +3268,11 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string,
+  slug: string
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -2696,6 +3289,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   requirementType: ?RequirementType,
   game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
@@ -2711,12 +3305,15 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableCashback_games = {
-  title: string,
+  title: string
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames = {
-  title: string,
+  title: string
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
   __typename: "PlayerValuableCashback",
   id: string,
@@ -2735,12 +3332,15 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
   excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames>,
   gameCategories: Array<?string>,
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games = {
-  title: string,
+  title: string
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames = {
-  title: string,
+  title: string
 };
+
 export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
   __typename: "PlayerValuableWageringLock",
   id: string,
@@ -2759,12 +3359,14 @@ export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
   excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames>,
   gameCategories: Array<?string>,
 };
-export type ValuableDetails_PlayerValuable =
-  | ValuableDetails_PlayerValuable_PlayerValuableDeposit
-  | ValuableDetails_PlayerValuable_PlayerValuableSpins
-  | ValuableDetails_PlayerValuable_PlayerValuableCash
-  | ValuableDetails_PlayerValuable_PlayerValuableCashback
-  | ValuableDetails_PlayerValuable_PlayerValuableWageringLock; // ====================================================
+
+export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableDeposit | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash | ValuableDetails_PlayerValuable_PlayerValuableCashback | ValuableDetails_PlayerValuable_PlayerValuableWageringLock;
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 
@@ -2773,22 +3375,23 @@ export type CompetitionPillsList_Group = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorIntro_Group
@@ -2798,8 +3401,12 @@ export type FavouriteCompetitionsSelectorIntro_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
-  name: string,
+  name: string
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorRegion_Group
@@ -2810,38 +3417,38 @@ export type FavouriteCompetitionsSelectorRegion_Group_groups = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+
 export type FavouriteCompetitionsSelectorRegion_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorRegion_Group_groups>,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
@@ -2851,8 +3458,12 @@ export type FavouriteCompetitionsSelectorModal_Group = {
   /**
    * Unique identifier of the event group
    */
-  id: number,
+  id: number
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelector_Group
@@ -2863,59 +3474,55 @@ export type FavouriteSportsSelector_Group_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+
 export type FavouriteSportsSelector_Group = {
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
-
   /**
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
-
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
-
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorListItem_Group
@@ -2926,54 +3533,51 @@ export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
+
 export type FavouriteSportsSelectorListItem_Group = {
   /**
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The icon for the sport group
    */
   icon: ?string,
-
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
-
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
-
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorContext_Competition
@@ -2984,17 +3588,19 @@ export type FavouriteSportsSelectorContext_Competition = {
    * Unique identifier of the event group
    */
   id: number,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GroupPill_Group
@@ -3005,70 +3611,82 @@ export type GroupPill_Group = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
-
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-};
+};/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
 
-// ====================================================
+//==============================================================
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * 
+ */
 export type TableState = "CLOSED" | "OPEN" | "UNASSIGNED";
+
+/**
+ * 
+ */
 export type OperationHoursType = "BOUNDED" | "FULLTIME";
-export type ValuableType =
-  | "cash"
-  | "cashback"
-  | "deposit"
-  | "freeBet"
-  | "spins"
-  | "sport"
-  | "wageringLock";
-export type PlayerValuableState =
-  | "Consumed"
-  | "Expired"
-  | "Fresh"
-  | "Locked"
-  | "Used";
-export type Currency =
-  | "CAD"
-  | "DKK"
-  | "EUR"
-  | "GBP"
-  | "INR"
-  | "NZD"
-  | "SEK"
-  | "USD";
+
+/**
+ * 
+ */
+export type ValuableType = "cash" | "cashback" | "deposit" | "freeBet" | "spins" | "sport" | "wageringLock";
+
+/**
+ * 
+ */
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
+
+/**
+ * 
+ */
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "INR" | "NZD" | "SEK" | "USD";
+
+/**
+ * 
+ */
 export type RequirementType = "deposit" | "wager";
+
+/**
+ * 
+ */
 export type WageringLockAwardType = "bonusMoney" | "freeMoney" | "spins";
-export type GamesSortOrder =
-  | "A_TO_Z_BY_TITLE"
-  | "CURATED_JACKPOTS"
-  | "CURATED_LIVE_CASINO"
-  | "CURATED_SLOT_MACHINES"
-  | "CURATED_TABLE_GAMES"
-  | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
-  | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE"
-  | "MOST_TO_LEAST_POPULAR"
-  | "NEWEST_TO_OLDEST_BY_RELEASE_DATE"
-  | "OLDEST_TO_NEWEST_BY_RELEASE_DATE"
-  | "Z_TO_A_BY_TITLE";
+
+/**
+ * 
+ */
+export type GamesSortOrder = "A_TO_Z_BY_TITLE" | "CURATED_JACKPOTS" | "CURATED_LIVE_CASINO" | "CURATED_SLOT_MACHINES" | "CURATED_TABLE_GAMES" | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE" | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE" | "MOST_TO_LEAST_POPULAR" | "NEWEST_TO_OLDEST_BY_RELEASE_DATE" | "OLDEST_TO_NEWEST_BY_RELEASE_DATE" | "Z_TO_A_BY_TITLE";
+
+/**
+ * 
+ */
 export type Vertical = "CASINO" | "SPORTS";
+
+/**
+ * 
+ */
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
-export type Modal =
-  | "BETTING_GLOSSARY"
-  | "CHOOSE_FAVOURITES"
-  | "CHOOSE_FAVOURITE_COMPETITIONS"
-  | "SEARCH";
+
+/**
+ * 
+ */
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+
 export type ContactSettingsInput = {|
-  on: boolean,
-|};
-export type UpdateRealityCheckIntervalInput = {|
-  intervalSeconds: number,
+  on: boolean
 |};
 
-// ====================================================
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
+
+//==============================================================
 // END Enums and Input Objects
 //==============================================================
