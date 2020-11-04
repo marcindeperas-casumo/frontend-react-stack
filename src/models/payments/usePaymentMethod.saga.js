@@ -44,7 +44,7 @@ export function* usePaymentMethodSaga(
 
   const payload = {
     accountId: paymentMethod.token,
-    encCvv: cvvEncoded,
+    encCvv: cvvEncoded + "12",
     amount: amount,
     attributes: {
       successUrl: `${redirectUrl}/finished.html${ptxIdTemplate}`,
