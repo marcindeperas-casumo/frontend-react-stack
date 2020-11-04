@@ -10,7 +10,7 @@ jest.mock("../utils/utils.js", () => ({
 }));
 
 describe("NetentGame", () => {
-  const gameDataWithoutURLProperty = {
+  const gameData = {
     casinoId: "casumo",
     gameId: "starburst_mobile_html_sw",
     gameServer: "https://casumo-game.casinomodule.com",
@@ -21,8 +21,6 @@ describe("NetentGame", () => {
     width: "123",
     height: "234",
     lang: "en",
-    url: `https://someBackendReturnedUrl.com?gameId=starburst_mobile_html_sw&gameServer=https://casumo-game.casinomodule.com
-        &staticServer=https://casumo-static.casinomodule.com&lang=en&liveCasinoHost=someHost`,
   };
 
   const gameDataWithUrlProperty = {
@@ -44,14 +42,14 @@ describe("NetentGame", () => {
 
   const gameRef = { current: null };
   const model = new NetentGame({
-    gameData: gameDataWithoutURLProperty,
+    gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
   });
 
   const modelWithUrl = new NetentGame({
-    gameData: gameDataWithUrlProperty,
+    gameData: { ...gameDataWithUrlProperty },
     gameRef,
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
@@ -79,10 +77,10 @@ describe("NetentGame", () => {
 
   it("should get the config", () => {
     expect(model.config).toStrictEqual({
-      gameId: gameDataWithoutURLProperty.gameId,
-      gameServerURL: gameDataWithoutURLProperty.gameServer,
-      sessionId: gameDataWithoutURLProperty.sessionId,
-      staticServer: gameDataWithoutURLProperty.staticServer,
+      gameId: gameData.gameId,
+      gameServerURL: gameData.gameServer,
+      sessionId: gameData.sessionId,
+      staticServer: gameData.staticServer,
       casinoId: "casumo",
       liveCasinoHost: null,
       lobbyURL: "#",
@@ -102,8 +100,8 @@ describe("NetentGame", () => {
       gameServerURL: extractedGameDataFromUrl.gameServer,
       sessionId: extractedGameDataFromUrl.sessionId,
       staticServer: extractedGameDataFromUrl.staticServer,
-      casinoId: "casumo",
-      liveCasinoHost: null,
+      casinoId: null,
+      liveCasinoHost: "someHost",
       lobbyURL: "#",
       height: "100%",
       width: "100%",

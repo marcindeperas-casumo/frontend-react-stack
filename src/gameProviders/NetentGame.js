@@ -68,17 +68,16 @@ export class NetentGame extends BaseGame {
       casinoId: gameURLParams ? gameURLParams.get("casinoId") : casinoId,
       staticServer: staticServerFromURL
         ? decodeURIComponent(staticServerFromURL)
-        : staticServer,
-      gameServer: gameServerFromURL
+        : decodeURIComponent(staticServer),
+      gameServerURL: gameServerFromURL
         ? decodeURIComponent(gameServerFromURL)
-        : gameServer,
-      lang: gameURLParams ? gameURLParams.get("lang") : lang,
+        : decodeURIComponent(gameServer),
     };
 
     return {
       ...configToReturn,
       lobbyURL: "#",
-      language: lang,
+      language: gameURLParams ? gameURLParams.get("lang") : lang,
       width: "100%",
       height: "100%",
       enforceRatio: false,
