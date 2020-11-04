@@ -1,4 +1,2 @@
 // @flow
-export {
-  ReelRaceScheduleCardContainer as ReelRaceScheduleCardCard,
-} from "./ReelRaceScheduleCardContainer";
+export { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";

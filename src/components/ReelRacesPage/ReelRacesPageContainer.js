@@ -7,21 +7,27 @@ import { useTranslations } from "Utils/hooks";
 import { ReelRacesPage } from "./ReelRacesPage";
 import { ReelRacesPageQuery } from "./ReelRacesPageContainer.graphql";
 
-export const ReelRacesPageContainer = () => {
-  const { data } = useQuery<A.ReelRaceListQuery, A.ReelRaceListQueryVariables>(
-    ReelRacesPageQuery,
-    {
-      variables: {
-        limit: 10,
-      },
-      pollInterval: POLL_INTERVAL.REEL_RACES,
-    }
-  );
+export type ReelRacesContentPage = {
+  schedule_tab_title: string,
+  previous_winners_tab_title: string,
+  mobile_promoted_race_title_single: string,
+  mobile_race_title_single: string,
+};
 
-  const t = useTranslations<{
-    schedule_tab_title: string,
-    previous_winners_tab_title: string,
-  }>("mobile.tournament-campaigns");
+export const ReelRacesPageContainer = () => {
+  const { data } = useQuery<
+    A.ReelRacesPageQuery,
+    A.ReelRacesPageQueryVariables
+  >(ReelRacesPageQuery, {
+    variables: {
+      limit: 10,
+    },
+    pollInterval: POLL_INTERVAL.REEL_RACES,
+  });
+
+  const t = useTranslations<ReelRacesContentPage>(
+    "mobile.tournament-campaigns"
+  );
 
   const reelRaces = data?.reelRaces || [];
 

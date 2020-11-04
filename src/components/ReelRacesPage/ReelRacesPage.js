@@ -5,15 +5,12 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { isMobile } from "@casumo/is-mobile";
 import * as A from "Types/apollo";
+import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
+import type { ReelRacesContentPage } from "./ReelRacesPageContainer";
 
-type Props = {
-  t: ?{
-    schedule_tab_title: string,
-    previous_winners_tab_title: string,
-  },
+type ReelRacesPageProps = A.ReelRacesPageQuery & {
+  t: ReelRacesContentPage,
 };
-
-type ReelRacesPageProps = Props & A.ReelRaceListQuery;
 
 export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
   const isNotMobile = !isMobile(window);
@@ -47,6 +44,10 @@ export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
             </Text>
           </Flex.Block>
         </Flex>
+
+        {reelRaces.map(reelRace => (
+          <ReelRaceScheduleCard key={reelRace.id} reelRace={reelRace} t={t} />
+        ))}
       </div>
     </div>
   );
