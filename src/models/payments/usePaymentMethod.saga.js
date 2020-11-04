@@ -23,7 +23,6 @@ import {
 } from "./payments.actions";
 import type { StartQuickDepositActionReturnType } from "./payments.actions";
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 export function* usePaymentMethodSaga(
   action: StartQuickDepositActionReturnType
 ): * {
@@ -44,7 +43,7 @@ export function* usePaymentMethodSaga(
 
   const payload = {
     accountId: paymentMethod.token,
-    encCvv: cvvEncoded + "12",
+    encCvv: cvvEncoded,
     amount: amount,
     attributes: {
       successUrl: `${redirectUrl}/finished.html${ptxIdTemplate}`,
@@ -71,48 +70,47 @@ export function* usePaymentMethodSaga(
 
   const { redirectOutput, success } = response;
 
-  if (success) {
-    if (redirectOutput) {
-      if (redirectOutput.url) {
-        yield put(
-          showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
-            redirectOutput,
-          })
-        );
-
-        // canceled (when modal closed), error, success etc.
-        const piqIframeResolution = yield take(actionTypes.PIQ_IFRAME_RESOLVE);
-        const { status } = piqIframeResolution.payload;
-
-        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
-          // track cancel
-          return yield put(setPaymentRequestFinished());
-        }
-
-        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED) {
-          yield put(setPaymentRequestFinished());
-          return yield put(methodUseSuccess({ amount }));
-          // track success
-        }
-
-        if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
-          yield put(setPaymentRequestFinished());
-          // do a call to getTransactionStatus to get detailed error if possible
-          return yield put(methodUseError({ amount }));
-        }
-      } else {
-        // @todo when doing FULL version:
-        // handle other cases of redirection, FULL WINDOW etc (KO stack PiqRedirection.js)
-      }
-    }
-
+  if (!success) {
+    // dispatch error
+    // track error
     yield put(setPaymentRequestFinished());
-    return yield put(methodUseSuccess({ amount }));
-    // track success
+    return yield put(methodUseError({ amount }));
   }
 
-  // dispatch error
-  // track error
+  if (redirectOutput) {
+    if (redirectOutput.url) {
+      yield put(
+        showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
+          redirectOutput,
+        })
+      );
+
+      // canceled (when modal closed), error, success etc.
+      const piqIframeResolution = yield take(actionTypes.PIQ_IFRAME_RESOLVE);
+      const { status } = piqIframeResolution.payload;
+
+      if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
+        // track cancel
+        return yield put(setPaymentRequestFinished());
+      }
+
+      if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED) {
+        yield put(setPaymentRequestFinished());
+        return yield put(methodUseSuccess({ amount }));
+        // track success
+      }
+
+      if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
+        yield put(setPaymentRequestFinished());
+        // do a call to getTransactionStatus to get detailed error if possible
+        return yield put(methodUseError({ amount }));
+      }
+    } else {
+      // @todo when doing FULL version:
+      // handle other cases of redirection, FULL WINDOW etc (KO stack PiqRedirection.js)
+    }
+  }
+
   yield put(setPaymentRequestFinished());
-  return yield put(methodUseError({ amount }));
+  return yield put(methodUseSuccess({ amount }));
 }
