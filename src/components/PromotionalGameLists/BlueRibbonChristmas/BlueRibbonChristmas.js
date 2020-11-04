@@ -54,12 +54,7 @@ export function BlueRibbonChristmas({ jackpot }: Props) {
         numberOfItems={columns.length + 1}
         itemRenderer={i => {
           if (i === 0) {
-            return (
-              <BlueRibbonJackpotsWidgetContainer
-                key="br-widget"
-                className="u-margin-left--none"
-              />
-            );
+            return <BlueRibbonJackpotsWidgetContainer key="br-widget" />;
           }
 
           return columns[i - 1].map(game => (

@@ -38,7 +38,7 @@ export function BlueRibbonJackpotsWidget({
   return (
     <Flex
       direction="vertical"
-      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden u-margin-left--md ${className}`}
+      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
       style={{
         backgroundColor: colors.jackpotWidgetPurpleLight,
         width: jackpotWidgetWidth,
