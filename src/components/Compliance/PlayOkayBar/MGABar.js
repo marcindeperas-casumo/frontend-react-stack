@@ -4,14 +4,13 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
-type Props = PauseResumeProps & {
+type Props = {
   className?: string,
 };
 
-export const MGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+export const MGABar = ({ className = "" }: Props) => (
   <Flex justify="end" align="center" className={className}>
     <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
       <TimeLockedIcon size="sm" className="u-margin-right" />
