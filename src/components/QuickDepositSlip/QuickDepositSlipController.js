@@ -17,6 +17,8 @@ import {
   getPaymentRequestSelector,
 } from "Models/payments/payments.selectors";
 
+const cmsPrefix = "root:iframe-solution:fields";
+
 export const QuickDepositSlipController = ({
   position,
 }: {
@@ -26,8 +28,8 @@ export const QuickDepositSlipController = ({
   const currency = useSelector(playerCurrencySymbolSelector);
   const paymentRequest = useSelector(getPaymentRequestSelector);
 
-  const { t } = useTranslationsGql({
-    quick_deposit_slip_title: `iframe-solution.in_game_drawer_live_chat`,
+  const { t, loading: tLoading } = useTranslationsGql({
+    quick_deposit_title: `${cmsPrefix}.quick_deposit_title`,
   });
 
   const dispatch = useDispatch();
@@ -93,7 +95,7 @@ export const QuickDepositSlipController = ({
               direction="horizontal"
               align="center"
             >
-              <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
+              <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
               <Flex.Item onClick={closeQuickDeposit} className="t-color-black">
                 <CloseIcon />
               </Flex.Item>
