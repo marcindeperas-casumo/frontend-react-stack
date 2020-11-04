@@ -22,7 +22,9 @@ export const GameRowText = ({
     <Text
       tag="div"
       size="sm"
-      className={classNames({ "u-font-weight-bold": bets })}
+      className={classNames("u-text-overflow--ellipsis", {
+        "u-font-weight-bold": bets,
+      })}
     >
       <DangerousHtml html={name} />
     </Text>

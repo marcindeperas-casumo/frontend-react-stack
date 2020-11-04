@@ -11,6 +11,7 @@ import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalD
 import { useTranslations } from "Utils/hooks";
 import {
   blueRibbonGamesListId,
+  jackpotWidgetWidth,
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "./blueRibbonConsts";
@@ -58,12 +59,20 @@ export function BlueRibbonChristmas({ jackpot }: Props) {
           }
 
           return columns[i - 1].map(game => (
-            <div key={game.id} className="u-padding-bottom">
+            <div
+              key={game.id}
+              className="u-padding-bottom"
+              style={{ width: jackpotWidgetWidth }}
+            >
               <GameRow
                 big
                 game={game}
                 className="t-background-white u-padding--md t-border-r--md t-elevation--10"
-                renderText={() => <GameRowText name={game.name} />}
+                renderText={() => (
+                  <div style={{ width: 156 }}>
+                    <GameRowText name={game.name} />
+                  </div>
+                )}
               />
             </div>
           ));
