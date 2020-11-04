@@ -27,7 +27,7 @@ export const LazyPlayForFunGamePage = ({ slug, location }: Props) => {
     <React.Suspense fallback={<div></div>}>
       <GamePageContextProvider
         slug={slug}
-        playForFun={true}
+        playForFun
         remoteGameLaunchData={remoteGameLaunchData}
       >
         <LazyComponent />
