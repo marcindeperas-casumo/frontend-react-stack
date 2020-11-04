@@ -92,12 +92,3 @@ export const LAUNCH_KAMBI_MUTATION = gql`
     }
   }
 `;
-
-export const LAUNCH_KAMBI_LOS_MUTATION = gql`
-  mutation LaunchKambiLoS($playForFun: Boolean!, $market: String!) {
-    launchKambi(playForFun: $playForFun, market: $market) {
-      clientBootstrapUrl
-      currency
-    }
-  }
-`;

@@ -902,6 +902,51 @@ export type ReelRaceListQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: ReelRacesPageQuery
+// ====================================================
+
+export type ReelRacesPageQuery_reelRaces_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  slug: string,
+};
+export type ReelRacesPageQuery_reelRaces_translations = {
+  optedInCtaSingleGameShort: string,
+  optIn: string,
+  optedIn: string,
+  endingIn: string,
+  startingIn: string,
+  competeFor: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  caveatShort: string,
+  today: string,
+  tomorrow: string,
+};
+export type ReelRacesPageQuery_reelRaces = {
+  id: string,
+  game: ReelRacesPageQuery_reelRaces_game,
+  startTime: BigInt,
+  optedIn: boolean,
+  endTime: BigInt,
+  status: ?string,
+  spinLimit: number,
+  promoted: boolean,
+  formattedPrize: string,
+  remainingSpins: number,
+  translations: ReelRacesPageQuery_reelRaces_translations,
+};
+export type ReelRacesPageQuery = {
+  reelRaces: Array<ReelRacesPageQuery_reelRaces>,
+};
+export type ReelRacesPageQueryVariables = {
+  limit: number,
+};
+
+// ====================================================
 // GraphQL query operation: ReelRaceWidgetQuery
 // ====================================================
 
@@ -1591,6 +1636,14 @@ export type FREEBET_QUERY = {
 };
 
 // ====================================================
+// GraphQL query operation: SportsFirstBetQuery
+// ====================================================
+
+export type SportsFirstBetQuery = {
+  sportsFirstBet: boolean,
+};
+
+// ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
 // ====================================================
 
@@ -1978,22 +2031,6 @@ export type LaunchKambi = {
 };
 
 // ====================================================
-// GraphQL mutation operation: LaunchKambiLoS
-// ====================================================
-
-export type LaunchKambiLoS_launchKambi = {
-  clientBootstrapUrl: string,
-  currency: ?string,
-};
-export type LaunchKambiLoS = {
-  launchKambi: ?LaunchKambiLoS_launchKambi,
-};
-export type LaunchKambiLoSVariables = {
-  playForFun: boolean,
-  market: string,
-};
-
-// ====================================================
 // GraphQL query operation: ActiveModals
 // ====================================================
 
@@ -2036,7 +2073,6 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
-
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   winsInARow: number,
   triples: number,
@@ -2044,14 +2080,13 @@ export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   bigWins: number,
   megaWins: number,
 };
-
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
   playerName: string,
   position: number,
   points: number,
   remainingSpins: number,
-  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters
+  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
 };
 export type CurrentReelRaceInfoQuery_reelRaces = {
   id: string,
@@ -2062,6 +2097,7 @@ export type CurrentReelRaceInfoQuery_reelRaces = {
   promoted: boolean,
   spinLimit: number,
   cometdChannels: Array<string>,
+  formattedPrizes: Array<string>,
   leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 export type CurrentReelRaceInfoQuery = {
@@ -2447,6 +2483,45 @@ export type ReelRaceCard_ReelRace = {
   formattedPrize: string,
   remainingSpins: number,
   translations: ReelRaceCard_ReelRace_translations,
+};
+
+// ====================================================
+// GraphQL fragment: ReelRaceScheduleCard_ReelRace
+// ====================================================
+
+export type ReelRaceScheduleCard_ReelRace_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  slug: string,
+};
+export type ReelRaceScheduleCard_ReelRace_translations = {
+  optedInCtaSingleGameShort: string,
+  optIn: string,
+  optedIn: string,
+  endingIn: string,
+  startingIn: string,
+  competeFor: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  caveatShort: string,
+  today: string,
+  tomorrow: string,
+};
+export type ReelRaceScheduleCard_ReelRace = {
+  id: string,
+  game: ReelRaceScheduleCard_ReelRace_game,
+  startTime: BigInt,
+  optedIn: boolean,
+  endTime: BigInt,
+  status: ?string,
+  spinLimit: number,
+  promoted: boolean,
+  formattedPrize: string,
+  remainingSpins: number,
+  translations: ReelRaceScheduleCard_ReelRace_translations,
 };
 
 // ====================================================
