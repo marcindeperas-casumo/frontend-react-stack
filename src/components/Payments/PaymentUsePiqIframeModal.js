@@ -1,3 +1,4 @@
+//@flow
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
@@ -11,7 +12,13 @@ const IFRAME_NAME = "payment-use-piq-iframe";
 const IFRAME_TITLE = "payment-use-piq-iframe";
 const PIQ_IFRAME_MESSAGE_TYPE = "piqRedirectResponse";
 
-export const PaymentUsePiqIframeModal = ({ config }) => {
+type Props = {
+  config: {
+    redirectOutput: any,
+  },
+};
+
+export const PaymentUsePiqIframeModal = ({ config }: Props) => {
   const redirectOutput = config.redirectOutput;
 
   const dispatch = useDispatch();
@@ -35,7 +42,7 @@ export const PaymentUsePiqIframeModal = ({ config }) => {
         form.submit();
       }
 
-      if (method.toUpperCase() === "GET") {
+      if (method.toUpperCase() === "GET" && iframe.current) {
         iframe.current.setAttribute("src", url);
       }
     }

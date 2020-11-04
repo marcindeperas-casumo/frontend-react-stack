@@ -66,7 +66,7 @@ export const setPaymentRequestFinished = (): SetPaymentRequestReturnType => ({
 
 export const piqIframeResolve = (message: {
   status: string,
-  txId: string,
+  txId?: string,
 }) => ({
   type: actionTypes.PIQ_IFRAME_RESOLVE,
   payload: {
