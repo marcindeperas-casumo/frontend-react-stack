@@ -7,11 +7,11 @@ import { FullscreenView } from "Components/FullscreenView";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { VerticalStretcher } from "Components/VerticalStretcher";
+import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 import type { GameProviderModel } from "GameProviders";
 import { usePin } from "Utils/hooks/usePin";
 import { useInGameBonusOrRealBalanceCheck } from "Utils/hooks";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
-import { isDesktop } from "Components/ResponsiveLayout/index";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
@@ -99,7 +99,9 @@ export const GamePage = ({
                 </Flex.Item>
               )}
             </Flex>
-            <QuickDepositSlipController />
+            <MobileAndTablet>
+              <QuickDepositSlipController position="bottom" />
+            </MobileAndTablet>
           </VerticalStretcher>
         </FullscreenView>
       </PinnedDrawersContext.Provider>
