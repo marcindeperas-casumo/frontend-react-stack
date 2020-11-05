@@ -39,7 +39,8 @@ export const PaymentResultContainer = ({ closeModal, config }: Props) => {
     return null;
   }
 
-  const error = getErrorByCode(errorCode, piqErrors?.error_responses);
+  const error =
+    errorCode && getErrorByCode(errorCode, piqErrors?.error_responses);
 
   const errorTitle = error ? error.error_title : piqErrors?.error_title;
   const errorMessage = error

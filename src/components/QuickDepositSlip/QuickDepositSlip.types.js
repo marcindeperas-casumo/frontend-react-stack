@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-
+import type { DepositRequestStateType } from "Models/payments/payments.types";
 export type QuickDepositSlipFormErrorTranslations = {
   error_deposit_minimum: ?string,
   error_deposit_maximum: ?string,
@@ -37,6 +37,7 @@ export type QuickDepositSlipProps = {
   minAmount: number,
   maxAmount: number,
   presetAmount?: number,
+  requestStatus: DepositRequestStateType,
   onDeposit: (depositValue: number, cvvValue: string) => void,
   renderPaymentMethodDetails: () => React.Node,
   translations: QuickDepositSlipTranslations,
