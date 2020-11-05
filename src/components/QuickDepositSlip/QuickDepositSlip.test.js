@@ -21,6 +21,9 @@ const props: QuickDepositSlipProps = {
   translations,
   currencySymbol: "$",
   minAmount: 20,
+  requestStatus: {
+    state: "NONE",
+  },
   maxAmount: 100,
   onDeposit: () => {},
   renderPaymentMethodDetails: () => <div>placeholder</div>,

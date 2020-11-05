@@ -4,3 +4,16 @@
 .c-quick-deposit-slip__cvv {
   width: 150px;
 }
+
+.c-deposit-slip-container {
+  z-index: 1;
+}
+
+.c-quick-deposit-slip-positioning {
+  max-width: 500px;
+
+  @include cudl-breakpoint(desktop) {
+    top: 70px;
+    width: 500px;
+  }
+}
