@@ -90,7 +90,7 @@ const NavLinkMobile = ({
   to,
 }: {
   Icon: React.StatelessFunctionalComponent<any>,
-  text: string,
+  text: ?string,
   to: string,
 }) => {
   const match = useMatch(to);
@@ -140,21 +140,22 @@ export const TopNavMobile = () => {
   const t = useTranslations<{
     top_lists: string,
     search: string,
+    reel_races: string,
   }>("new-game-browser.top-nav");
   const tablet = isTablet();
   const reelRacesHidden = useMarketConfig("reelRacesHidden");
 
   return (
     <Flex spacing={tablet ? "md" : "sm"}>
-      <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists || ""} to="top" />
+      <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists} to="top" />
       {!reelRacesHidden && (
         <NavLinkMobile
           Icon={TournamentIcon}
-          text={"Reel Races"}
+          text={t?.reel_races}
           to={`/reel-races`}
         />
       )}
-      <NavLinkMobile Icon={SearchIcon} text={t?.search || ""} to="search" />
+      <NavLinkMobile Icon={SearchIcon} text={t?.search} to="search" />
     </Flex>
   );
 };
