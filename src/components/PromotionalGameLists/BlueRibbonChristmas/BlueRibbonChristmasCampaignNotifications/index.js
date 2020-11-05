@@ -1,3 +1,5 @@
 // @flow
 
-export { BlueRibbonChristmasCampaignNotificationsContainer } from "./BlueRibbonChristmasCampaignNotificationsContainer";
+export {
+  BlueRibbonChristmasCampaignNotificationsContainer,
+} from "./BlueRibbonChristmasCampaignNotificationsContainer";
