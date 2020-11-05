@@ -8,3 +8,8 @@ export const getSelectedQuickDepositMethod = createSelector(
   getPaymentsSelector,
   prop("selectedQuickDepositMethod")
 );
+
+export const getPaymentRequestSelector = createSelector(
+  getPaymentsSelector,
+  prop("paymentRequest")
+);

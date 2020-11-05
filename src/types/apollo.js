@@ -1591,6 +1591,14 @@ export type FREEBET_QUERY = {
 };
 
 // ====================================================
+// GraphQL query operation: SportsFirstBetQuery
+// ====================================================
+
+export type SportsFirstBetQuery = {
+  sportsFirstBet: boolean,
+};
+
+// ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
 // ====================================================
 
@@ -1978,22 +1986,6 @@ export type LaunchKambi = {
 };
 
 // ====================================================
-// GraphQL mutation operation: LaunchKambiLoS
-// ====================================================
-
-export type LaunchKambiLoS_launchKambi = {
-  clientBootstrapUrl: string,
-  currency: ?string,
-};
-export type LaunchKambiLoS = {
-  launchKambi: ?LaunchKambiLoS_launchKambi,
-};
-export type LaunchKambiLoSVariables = {
-  playForFun: boolean,
-  market: string,
-};
-
-// ====================================================
 // GraphQL query operation: ActiveModals
 // ====================================================
 
@@ -2036,7 +2028,6 @@ export type CurrentReelRaceInfoQuery_reelRaces_game = {
   logo: string,
   backgroundImage: string,
 };
-
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   winsInARow: number,
   triples: number,
@@ -2044,14 +2035,13 @@ export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
   bigWins: number,
   megaWins: number,
 };
-
 export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
   playerId: string,
   playerName: string,
   position: number,
   points: number,
   remainingSpins: number,
-  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters
+  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
 };
 export type CurrentReelRaceInfoQuery_reelRaces = {
   id: string,
@@ -2062,6 +2052,7 @@ export type CurrentReelRaceInfoQuery_reelRaces = {
   promoted: boolean,
   spinLimit: number,
   cometdChannels: Array<string>,
+  formattedPrizes: Array<string>,
   leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
 };
 export type CurrentReelRaceInfoQuery = {

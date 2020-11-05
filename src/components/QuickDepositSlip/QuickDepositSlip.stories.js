@@ -16,6 +16,9 @@ const props: QuickDepositSlipProps = {
   currencySymbol: "$",
   minAmount: 20,
   maxAmount: 100,
+  requestStatus: {
+    state: "NONE",
+  },
   onDeposit: () => action("Deposit attempt"),
   renderPaymentMethodDetails: () => (
     <PaymentMethodDetails method={quickDepositMethod} />

@@ -2,8 +2,11 @@
 export { BlueRibbonChristmasContainer } from "./BlueRibbonChristmasContainer";
 export {
   BlueRibbonJackpotsWidgetContainer,
+  BlueRibbonJackpotsWidgetPromotionPage,
 } from "./BlueRibbonJackpotsWidgetContainer";
 export {
   BlueRibbonJackpotsInGameWidgetContainer,
-  useDataForBlueRibbonJackpotsWidget,
 } from "./BlueRibbonJackpotsInGameWidgetContainer";
+export {
+  useDataForBlueRibbonJackpotsWidget,
+} from "./useDataForBlueRibbonJackpotsWidget";
