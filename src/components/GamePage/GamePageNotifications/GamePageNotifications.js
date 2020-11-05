@@ -2,11 +2,9 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { BlueRibbonChristmasCampaignNotificationsContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
-import { useGameModelContext } from "Components/GamePage/Contexts";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 export function GamePageNotifications() {
-  const { pauseGame, resumeGame } = useGameModelContext();
   return (
     <Flex
       direction="vertical"
@@ -17,10 +15,7 @@ export function GamePageNotifications() {
         <ReelRaceStartingNotification />
       </Flex.Item>
       <Flex.Item>
-        <BlueRibbonChristmasCampaignNotificationsContainer
-          pauseGame={pauseGame}
-          resumeGame={resumeGame}
-        />
+        <BlueRibbonChristmasCampaignNotificationsContainer />
       </Flex.Item>
     </Flex>
   );
