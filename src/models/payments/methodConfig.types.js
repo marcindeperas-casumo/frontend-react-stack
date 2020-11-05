@@ -1,4 +1,5 @@
 //@flow
+import { IFRAME_MODE, IFRAME_PIQ_ENV } from "Models/payments";
 import { actionTypes } from "./methodConfig.constants";
 
 export type MethodConfigType = {
@@ -78,3 +79,5 @@ export type QuickDepositMethod = SavedMethodType & {
 };
 
 export type ActionTypes = $Values<typeof actionTypes>;
+export type IframeModeValues = $Values<typeof IFRAME_MODE>;
+export type IframePiqEnvValues = $Values<typeof IFRAME_PIQ_ENV>;
