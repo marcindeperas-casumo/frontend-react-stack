@@ -37,8 +37,13 @@ import {
 import { danishOverlaySaga } from "Models/playOkay";
 import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
-import { methodConfigSaga as paymentMethodConfigSaga } from "Models/payments";
-import { actionTypes as paymentTypes } from "Models/payments/methodConfig.constants";
+import {
+  methodConfigSaga as paymentMethodConfigSaga,
+  makePaymentTransactionSaga,
+} from "Models/payments";
+import { paymentTransactionFinishedSaga } from "Models/payments/paymentTransactionFinished.saga";
+import { actionTypes as methodConfigActionTypes } from "Models/payments/methodConfig.constants";
+import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -135,7 +140,20 @@ export default function* rootSaga(dispatch: any): * {
   yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
   yield fork(
     takeEvery,
-    paymentTypes.PREPARE_METHOD_CONFIG,
+    methodConfigActionTypes.PREPARE_METHOD_CONFIG,
     paymentMethodConfigSaga
+  );
+  yield fork(
+    takeEvery,
+    paymentActionTypes.START_QUICK_DEPOSIT,
+    makePaymentTransactionSaga
+  );
+  yield fork(
+    takeEvery,
+    [
+      paymentActionTypes.PAYMENT_USE_ERROR,
+      paymentActionTypes.PAYMENT_USE_SUCCESS,
+    ],
+    paymentTransactionFinishedSaga
   );
 }

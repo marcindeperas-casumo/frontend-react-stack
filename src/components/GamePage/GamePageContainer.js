@@ -16,7 +16,7 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop } from "Components/ResponsiveLayout/index";
+import { isDesktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
@@ -100,7 +100,9 @@ export const GamePageContainer = () => {
       loading={(!gameProviderModel || loading) && <LoaderGlobal />}
       offscreenElements={
         <React.Fragment>
-          <QuickDepositSlipController />
+          <MobileAndTablet>
+            <QuickDepositSlipController position="bottom" />
+          </MobileAndTablet>
           <ReelRacesDrawerWidgetTrigger />
         </React.Fragment>
       }

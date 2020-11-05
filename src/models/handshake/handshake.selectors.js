@@ -254,3 +254,8 @@ export const isProductionBackendSelector = createSelector(
     includes("casumo.com")
   )
 );
+
+export const piqConfigSelector = createSelector(
+  applicationHandshakeSelector,
+  prop("common/composition/piqConfig")
+);
