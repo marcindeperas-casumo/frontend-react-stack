@@ -1,6 +1,8 @@
 // @flow
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLongPress } from "react-use";
+import classNames from "classnames";
 import { ButtonSecondary } from "@casumo/cmp-button";
 import { showModal } from "Models/modal";
 import http from "Lib/http";
@@ -14,6 +16,7 @@ export const PanicButton = () => {
   const content = useTranslations("ggl-panic-button");
   const playerId = useSelector(playerIdSelector);
   const dispatch = useDispatch();
+  const [isInteractive, setInteractive] = useState(false);
 
   useEffect(() => {
     if (content && !window.localStorage.preGamePanicButtonOverlayShown) {
@@ -25,13 +28,7 @@ export const PanicButton = () => {
     }
   }, [content]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const onTransitionEnd = ({ elapsedTime }) => {
-    // Not really required but not harmful either. Extra sanity check if someone
-    // was to change the default transition-duration to non-zero value 🙂
-    if (elapsedTime !== INTERACTION_TIME_SECONDS) {
-      return;
-    }
-
+  const selfExclude24h = e => {
     http
       .post("/api/common/command/player/selfExclude", {
         playerId: playerId,
@@ -48,13 +45,50 @@ export const PanicButton = () => {
       });
   };
 
+  const {
+    onMouseDown,
+    onTouchStart,
+    onMouseUp,
+    onMouseLeave,
+    onTouchEnd,
+  } = useLongPress(selfExclude24h, { delay: INTERACTION_TIME_SECONDS * 1000 });
+  const longPressProps = {
+    onMouseDown: e => {
+      setInteractive(true);
+      onMouseDown(e);
+    },
+    onTouchStart: e => {
+      setInteractive(true);
+      onTouchStart(e);
+    },
+    onMouseUp: () => {
+      setInteractive(false);
+      onMouseUp();
+    },
+    onMouseLeave: () => {
+      setInteractive(false);
+      onMouseLeave();
+    },
+    onTouchEnd: () => {
+      setInteractive(false);
+      onTouchEnd();
+    },
+  };
+
   return (
     <ButtonSecondary
-      className="t-background-grey-70 t-color-white u-text-transform-uppercase
-        o-position--relative u-overflow--hidden c-playokay-bar__panic-button"
+      className={classNames(
+        "t-background-grey-70",
+        "t-color-white",
+        "u-text-transform-uppercase",
+        "o-position--relative",
+        "u-overflow--hidden",
+        "c-playokay-bar__panic-button",
+        { "c-playokay-bar__panic-button--interactive": isInteractive }
+      )}
       size="xs"
       style={{ "--panic-btn-duration": `${INTERACTION_TIME_SECONDS}s` }}
-      onTransitionEnd={onTransitionEnd}
+      {...longPressProps}
     >
       {content?.button_label}
     </ButtonSecondary>

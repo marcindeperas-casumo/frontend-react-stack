@@ -32,6 +32,7 @@
     > span {
       z-index: 0;
     }
+    // stylelint-enable xi/selector-pattern
 
     &::before {
       border-radius: 100em;
@@ -45,11 +46,10 @@
       width: 100%;
     }
 
-    &:active::before {
+    &--interactive::before {
       background-color: cudl-palette(red, "30");
       left: 0;
       transition-duration: var(--panic-btn-duration, 3s);
     }
-    // stylelint-enable xi/selector-pattern
   }
 }
