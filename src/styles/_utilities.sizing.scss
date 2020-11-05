@@ -10,6 +10,11 @@
   }
 }
 
+.u-content-width--tablet-landscape {
+  margin: 0 auto;
+  max-width: 846px; // legacy page width
+}
+
 .u-height--screen-minus-navbar {
   height: calc(
     100vh - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)

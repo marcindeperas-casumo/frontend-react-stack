@@ -12,6 +12,8 @@ export type ReelRacesContentPage = {
   previous_winners_tab_title: string,
   mobile_promoted_race_title_single: string,
   mobile_race_title_single: string,
+  today: string,
+  tomorrow: string,
 };
 
 export const ReelRacesPageContainer = () => {
@@ -20,7 +22,8 @@ export const ReelRacesPageContainer = () => {
     A.ReelRacesPageQueryVariables
   >(ReelRacesPageQuery, {
     variables: {
-      limit: 10,
+      limit: 20,
+      prioritisePromoted: true,
     },
     pollInterval: POLL_INTERVAL.REEL_RACES,
   });
