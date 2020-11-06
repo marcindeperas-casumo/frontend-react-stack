@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
 import "./PlayOkayBar.scss";
@@ -17,11 +16,11 @@ const links = {
   stopspillet: "https://www.stopspillet.dk/",
 };
 
-type Props = PauseResumeProps & {
+type Props = {
   className?: string,
 };
 
-export const DGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+export const DGABar = ({ className = "" }: Props) => (
   <Flex justify="end" align="center" spacing="md" className={className}>
     <Flex.Item>
       <Text tag="span" size="2xs">

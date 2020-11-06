@@ -2,10 +2,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector } from "Models/handshake";
+import { localeSelector, featureFlagSelector } from "Models/handshake";
 import {
   useTranslationsGql,
-  //useAvailableQuickDepositMethods,
+  useAvailableQuickDepositMethods,
 } from "Utils/hooks";
 import {
   playerBalanceAmountSelector,
@@ -29,15 +29,15 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
 
-  // @lukKowalski this will enable or disable using saved methods for quickDeposit (added temporarily)
-  const __isQuickDisabled = true;
-
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
+  const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const walletBonus = useSelector(playerWalletBonusSelector);
-  const savedQuickDepositMethods = []; //useAvailableQuickDepositMethods();
+  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
+  const hasQuickDepositMethods =
+    quickDepositEnabled && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };
@@ -60,9 +60,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
         value: walletBonus,
       })}
       currency={currency}
-      hasSavedPaymentMethods={
-        !__isQuickDisabled && savedQuickDepositMethods.length > 0
-      }
+      hasSavedPaymentMethods={hasQuickDepositMethods}
       onCashierLinkClick={navigateToCashier}
       onQuickDepositLinkClick={launchQuickDeposit}
       className={className}

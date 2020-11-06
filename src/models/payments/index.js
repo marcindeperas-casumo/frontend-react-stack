@@ -7,3 +7,5 @@ export * from "./methodConfig.selectors";
 export * from "./methodConfig.constants";
 export * from "./methodConfig.reducer";
 export * from "./methodConfig.types";
+export * from "./makePaymentTransaction.saga";
+export * from "./paymentTransactionFinished.saga";
