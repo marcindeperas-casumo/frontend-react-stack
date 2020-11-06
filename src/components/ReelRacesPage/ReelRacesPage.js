@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { isMobile } from "@casumo/is-mobile";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 import * as A from "Types/apollo";
 import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
 import type { ReelRacesContentPage } from "./ReelRacesPageContainer";
@@ -13,7 +13,7 @@ type ReelRacesPageProps = A.ReelRacesPageQuery & {
 };
 
 export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
-  const isNotMobile = !isMobile(window);
+  const isNotMobile = useIsScreenMinimumTablet();
 
   return (
     <div className="t-background-grey-0">
@@ -24,7 +24,8 @@ export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
           spacing="none"
           className={cx(
             "t-background-white u-font-weight-bold",
-            isNotMobile && "t-border-r-top-left--md t-border-r-top-right--md"
+            isNotMobile &&
+              "t-border-r-top-left--md t-border-r-top-right--md u-margin-x--md"
           )}
         >
           <Flex.Block
@@ -71,7 +72,12 @@ export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
                 </Text>
               </Flex>
             )}
-            <ReelRaceScheduleCard key={reelRace.id} reelRace={reelRace} t={t} />
+            <ReelRaceScheduleCard
+              key={reelRace.id}
+              reelRace={reelRace}
+              t={t}
+              isOpen={i === 0 || i === 1}
+            />
           </>
         ))}
       </div>

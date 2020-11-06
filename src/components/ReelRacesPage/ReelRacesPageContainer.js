@@ -2,9 +2,9 @@
 import React from "react";
 import { filter, propEq } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
-import { POLL_INTERVAL } from "Src/constants";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
+import { RACE_STATE } from "Models/reelRaces";
 import { ReelRacesPage } from "./ReelRacesPage";
 import { ReelRacesPageQuery } from "./ReelRacesPageContainer.graphql";
 
@@ -15,6 +15,7 @@ export type ReelRacesContentPage = {
   mobile_race_title_single: string,
   today: string,
   tomorrow: string,
+  show_prizes_button: string,
 };
 
 export const ReelRacesPageContainer = () => {
@@ -25,7 +26,7 @@ export const ReelRacesPageContainer = () => {
     variables: {
       limit: 20,
     },
-    pollInterval: POLL_INTERVAL.REEL_RACES,
+    pollInterval: 30000,
   });
 
   const t = useTranslations<ReelRacesContentPage>(
@@ -34,11 +35,10 @@ export const ReelRacesPageContainer = () => {
 
   const reelRaces = data?.reelRaces || [];
 
-  console.log(t);
-
   if (data && reelRaces && reelRaces.length) {
-    const scheduledreelRaces = filter(propEq("status", "Scheduled"))(reelRaces);
-    console.log(scheduledreelRaces);
+    const scheduledreelRaces = filter(propEq("status", RACE_STATE.SCHEDULED))(
+      reelRaces
+    );
 
     return <ReelRacesPage reelRaces={scheduledreelRaces} t={t} />;
   }

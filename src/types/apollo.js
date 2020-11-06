@@ -910,7 +910,6 @@ export type ReelRacesPageQuery_reelRaces_game = {
   name: string,
   logo: string,
   backgroundImage: string,
-  slug: string,
 };
 export type ReelRacesPageQuery_reelRaces_translations = {
   optedInCtaSingleGameShort: string,
@@ -936,7 +935,7 @@ export type ReelRacesPageQuery_reelRaces = {
   spinLimit: number,
   promoted: boolean,
   formattedPrize: string,
-  remainingSpins: number,
+  formattedPrizes: Array<string>,
   translations: ReelRacesPageQuery_reelRaces_translations,
 };
 export type ReelRacesPageQuery = {
@@ -2494,7 +2493,6 @@ export type ReelRaceScheduleCard_ReelRace_game = {
   name: string,
   logo: string,
   backgroundImage: string,
-  slug: string,
 };
 export type ReelRaceScheduleCard_ReelRace_translations = {
   optedInCtaSingleGameShort: string,
@@ -2520,7 +2518,7 @@ export type ReelRaceScheduleCard_ReelRace = {
   spinLimit: number,
   promoted: boolean,
   formattedPrize: string,
-  remainingSpins: number,
+  formattedPrizes: Array<string>,
   translations: ReelRaceScheduleCard_ReelRace_translations,
 };
 

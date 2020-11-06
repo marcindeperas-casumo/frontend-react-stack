@@ -9,14 +9,18 @@ import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
+import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
   t: ReelRacesContentPage,
+  isOpen: boolean,
 };
 
-export function ReelRaceScheduleCard({ reelRace, t }: Props) {
-  const [open, setOpen] = React.useState(false);
+export function ReelRaceScheduleCard({ reelRace, t, isOpen = false }: Props) {
+  const [open, setOpen] = React.useState(isOpen);
+  const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
   const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
@@ -24,11 +28,10 @@ export function ReelRaceScheduleCard({ reelRace, t }: Props) {
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
-    <div
-      onClick={toggle}
-      className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10"
-    >
+    <div className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
+        align={open && isNotMobile ? "center" : "normal"}
+        onClick={toggle}
         className={cx(
           "u-padding--md",
           reelRace.promoted && "t-background-purple-80 t-color-white",
@@ -60,22 +63,27 @@ export function ReelRaceScheduleCard({ reelRace, t }: Props) {
               }
             )}
           </Text>
-          <Flex spacing="none">
-            <TimeLockedIcon
-              size="sm"
-              className={cx(
-                "u-margin-right",
-                reelRace.promoted && "t-color-yellow-30"
-              )}
-            />
-            <Text tag="span" size="sm" className="u-font-weight-bold">
-              {`${
-                isTomorrow ? translations.tomorrow : translations.today
-              } ${startTimeDate.toFormat("t")}`}
-            </Text>
-          </Flex>
+          {!open && (
+            <Flex spacing="none">
+              <TimeLockedIcon
+                size="sm"
+                className={cx(
+                  "u-margin-right",
+                  reelRace.promoted && "t-color-yellow-30"
+                )}
+              />
+              <Text tag="span" size="sm" className="u-font-weight-bold">
+                {`${
+                  isTomorrow ? translations.tomorrow : translations.today
+                } ${startTimeDate.toFormat("t")}`}
+              </Text>
+            </Flex>
+          )}
         </Flex.Block>
-        <Flex className="u-margin-left">
+        <Flex
+          className={cx("u-margin-left", isNotMobile && "u-margin-right--lg")}
+          align={isNotMobile ? "center" : "normal"}
+        >
           <TournamentIcon
             className={cx(
               reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
@@ -86,7 +94,14 @@ export function ReelRaceScheduleCard({ reelRace, t }: Props) {
           </Text>
         </Flex>
       </Flex>
-      {open && <Flex>hi</Flex>}
+      {open && (
+        <ReelRaceScheduleCardContent
+          reelRace={reelRace}
+          t={t}
+          optIn={() => {}}
+          showPrizes={isOpen}
+        />
+      )}
     </div>
   );
 }
