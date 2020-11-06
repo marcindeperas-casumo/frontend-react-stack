@@ -2,13 +2,9 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { BlueRibbonChristmasCampaignNotificationsContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
-import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
-export function GamePageNotifications({
-  pauseGame,
-  resumeGame,
-}: PauseResumeProps) {
+export function GamePageNotifications() {
   return (
     <Flex
       direction="vertical"
@@ -19,10 +15,7 @@ export function GamePageNotifications({
         <ReelRaceStartingNotification />
       </Flex.Item>
       <Flex.Item>
-        <BlueRibbonChristmasCampaignNotificationsContainer
-          pauseGame={pauseGame}
-          resumeGame={resumeGame}
-        />
+        <BlueRibbonChristmasCampaignNotificationsContainer />
       </Flex.Item>
     </Flex>
   );
