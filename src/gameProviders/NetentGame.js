@@ -1,5 +1,6 @@
 // @flow
 import logger from "Services/logger";
+import { queryParamsToJSObject } from "Utils";
 import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
 
@@ -52,34 +53,28 @@ export class NetentGame extends BaseGame {
       url = "",
     } = this.props.gameData;
 
-    const gameURLParams = url ? new URLSearchParams(url) : "";
-    const gameServerFromURL = gameURLParams
-      ? gameURLParams.get("gameServer")
-      : "";
-
-    const staticServerFromURL = gameURLParams
-      ? gameURLParams.get("staticServer")
-      : "";
-
-    const configToReturn = {
-      gameId: gameURLParams ? gameURLParams.get("gameId") : gameId,
-      sessionId: gameURLParams ? gameURLParams.get("sessionId") : sessionId,
-      liveCasinoHost: gameURLParams
-        ? gameURLParams.get("liveCasinoHost")
-        : liveCasinoHost,
-      casinoId: gameURLParams ? gameURLParams.get("casinoId") : casinoId,
-      staticServer: staticServerFromURL
-        ? decodeURIComponent(staticServerFromURL)
-        : decodeURIComponent(staticServer),
-      gameServerURL: gameServerFromURL
-        ? decodeURIComponent(gameServerFromURL)
-        : decodeURIComponent(gameServer),
+    const customFnForKeys = key => {
+      // eslint-disable-next-line no-nested-ternary
+      return key === "gameServer"
+        ? "gameServerURL"
+        : key === "lang"
+        ? "language"
+        : key;
     };
 
-    return {
-      ...configToReturn,
+    const gameURLParams = url
+      ? queryParamsToJSObject({ queryStringUrl: url, customFnForKeys })
+      : {};
+
+    const defaultParams = {
+      gameId: gameId,
+      sessionId: sessionId,
+      liveCasinoHost: liveCasinoHost,
+      casinoId: casinoId,
+      staticServer: decodeURIComponent(staticServer),
+      gameServerURL: decodeURIComponent(gameServer),
       lobbyURL: "#",
-      language: gameURLParams ? gameURLParams.get("lang") : lang,
+      language: lang,
       width: "100%",
       height: "100%",
       enforceRatio: false,
@@ -87,6 +82,8 @@ export class NetentGame extends BaseGame {
       launchType: "iframe",
       applicationType: "browser",
     };
+
+    return Object.assign({}, defaultParams, gameURLParams);
   }
 
   setupEvents(extend: Extend) {

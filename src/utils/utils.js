@@ -497,3 +497,65 @@ export const getOrdinalSuffix = ({
     ) || ""
   );
 };
+
+type QueryStringToJSObjectProps = {
+  queryStringUrl: string,
+  customFnForKeys?: (string: string) => string,
+  customFnForValues?: (string: string) => string,
+};
+interface QsObjectData {
+  key?: string;
+  value?: any;
+}
+
+interface QsDataObj {
+  [key: string]: QsObjectData;
+}
+/**
+ * Returns JS object containing key - values for a query string encoded url string
+ *
+ * @param {string} queryStringUrl
+ * @param {(string) => string} customFnForKeys // optional custom function for keys
+ * @param {(string) => string} customFnForValues // optional custom function for values
+ * @returns {QsDataObj}
+ */
+export const queryParamsToJSObject = ({
+  queryStringUrl,
+  customFnForKeys,
+  customFnForValues,
+}: // eslint-disable-next-line sonarjs/cognitive-complexity
+QueryStringToJSObjectProps): QsDataObj | {} => {
+  if (!queryStringUrl) {
+    return {};
+  } else {
+    const paramsObject = new URLSearchParams(queryStringUrl);
+    // eslint-disable-next-line fp/no-let
+    let objToReturn = {};
+    // eslint-disable-next-line fp/no-let
+    let iterationIndex = 0;
+    paramsObject.forEach(function(value, key) {
+      // First param contains url host incl "?"
+      // get only content after first "?"
+      const splitKey =
+        iterationIndex === 0 && key.includes("?") ? key.split("?")[1] : key;
+
+      const cleanedKey =
+        splitKey && customFnForKeys ? customFnForKeys(splitKey) : splitKey;
+
+      // eslint-disable-next-line fp/no-mutation
+      iterationIndex += 1;
+      const decodedValueUrls =
+        value && value.includes("http:") ? decodeURIComponent(value) : value;
+
+      const cleanedValue = decodedValueUrls
+        ? decodedValueUrls.trim()
+        : decodedValueUrls;
+
+      // eslint-disable-next-line fp/no-mutation
+      objToReturn[cleanedKey] = customFnForValues
+        ? customFnForValues(cleanedValue)
+        : cleanedValue;
+    });
+    return objToReturn;
+  }
+};
