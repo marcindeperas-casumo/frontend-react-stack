@@ -11,14 +11,13 @@ import { playerIdSelector } from "Models/handshake";
 import { useTranslations } from "Utils/hooks";
 import { REACT_APP_MODAL } from "Src/constants";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
-type Props = PauseResumeProps & {
+type Props = {
   className?: string,
 };
 
-export const GGLBar = ({ pauseGame, resumeGame, className = "" }: Props) => {
+export const GGLBar = ({ className = "" }: Props) => {
   const content = useTranslations("ggl-panic-button");
   const playerId = useSelector(playerIdSelector);
   const dispatch = useDispatch();

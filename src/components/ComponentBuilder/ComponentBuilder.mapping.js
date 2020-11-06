@@ -22,7 +22,7 @@ import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";
 import {
   BlueRibbonChristmasContainer,
-  BlueRibbonJackpotsWidgetContainer,
+  BlueRibbonJackpotsWidgetPromotionPage,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 
 export const COMPONENT_MAPPING = {
@@ -51,5 +51,5 @@ export const COMPONENT_MAPPING = {
   PRIZE_LIST: PromotionPrizeTable,
   REEL_RACES: ReelRacesList,
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,
-  CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetContainer,
+  CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetPromotionPage,
 };

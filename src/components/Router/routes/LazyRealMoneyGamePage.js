@@ -1,5 +1,7 @@
 // @flow
 import * as React from "react";
+import { getUrlSearchParam, decodedUrlParams } from "Utils";
+import { GamePageContextProvider } from "Components/GamePage/Contexts";
 
 const LazyComponent = React.lazy(() =>
   import("Components/GamePage").then(module => ({
@@ -14,10 +16,22 @@ type Props = {
   },
 };
 
-export const LazyRealMoneyGamePage = (props: Props) => {
+export const LazyRealMoneyGamePage = ({ slug, location }: Props) => {
+  const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
+
+  const remoteGameLaunchData = launchData
+    ? decodedUrlParams(JSON.parse(decodeURIComponent(launchData)))
+    : null;
+
   return (
     <React.Suspense fallback={<div></div>}>
-      <LazyComponent {...props} playForFun={false} />
+      <GamePageContextProvider
+        slug={slug}
+        playForFun={false}
+        remoteGameLaunchData={remoteGameLaunchData}
+      >
+        <LazyComponent />
+      </GamePageContextProvider>
     </React.Suspense>
   );
 };

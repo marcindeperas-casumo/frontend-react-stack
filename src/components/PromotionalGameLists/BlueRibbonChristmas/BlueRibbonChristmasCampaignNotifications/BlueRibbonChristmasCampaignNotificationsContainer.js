@@ -2,14 +2,12 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useFetch } from "Utils/hooks";
-import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
+import { useGameModelContext } from "Components/GamePage/Contexts";
 import { urls } from "../blueRibbonConsts";
 import { BlueRibbonChristmasCampaignNotifications } from "./BlueRibbonChristmasCampaignNotifications";
 
-export function BlueRibbonChristmasCampaignNotificationsContainer({
-  pauseGame,
-  resumeGame,
-}: PauseResumeProps) {
+export function BlueRibbonChristmasCampaignNotificationsContainer() {
+  const { pauseGame, resumeGame } = useGameModelContext();
   const { response } = useFetch(urls.handshake);
   const available = R.propOr(false, "available", response);
 

@@ -34,6 +34,7 @@ import {
   registrationDateSelector,
   complianceStatePropertySelector,
   isProductionBackendSelector,
+  piqConfigSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -644,5 +645,20 @@ describe("Handshake selectors", () => {
 
       expect(isProductionBackendSelector(state)).toEqual(false);
     });
+  });
+
+  test("piqConfig", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/piqConfig": {
+            apiUrl: "some_url",
+            merchantId: "123123",
+          },
+        },
+      },
+    };
+
+    expect(piqConfigSelector(state).apiUrl).toEqual("some_url");
   });
 });
