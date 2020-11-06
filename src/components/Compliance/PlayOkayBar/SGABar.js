@@ -4,7 +4,6 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import SpelPausIcon from "./icons/spelpaus.svg";
 import SpelGranserIcon from "./icons/spelgranser.svg";
 import SjalvTestIcon from "./icons/sjalvtest.svg";
@@ -16,11 +15,11 @@ const links = {
   stodlinjen: "https://www.stodlinjen.se/#!/spelberoende-test-pgsi",
 };
 
-type Props = PauseResumeProps & {
+type Props = {
   className?: string,
 };
 
-export const SGABar = ({ pauseGame, resumeGame, className = "" }: Props) => (
+export const SGABar = ({ className = "" }: Props) => (
   <Flex justify="end" align="center" className={className}>
     <Flex.Item>
       <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">
