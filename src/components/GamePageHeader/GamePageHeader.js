@@ -1,9 +1,12 @@
+// @flex
+
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { Desktop } from "Components/ResponsiveLayout";
 import tracker from "Services/tracker";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import {
   PlayOkayBar,
   ProfileIconWithDrawer,
@@ -14,7 +17,7 @@ import { openChatWindow } from "Features/chat/IntercomChatService";
 
 import "./GamePageHeader.scss";
 
-export const GamePageHeader = ({ pauseGame, resumeGame }) => {
+export const GamePageHeader = () => {
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   return (
@@ -50,6 +53,9 @@ export const GamePageHeader = ({ pauseGame, resumeGame }) => {
           </Desktop>
         </Flex>
       </Flex.Block>
+      <Desktop>
+        <QuickDepositSlipController position="top" />
+      </Desktop>
     </Flex>
   );
 };

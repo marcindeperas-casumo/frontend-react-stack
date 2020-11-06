@@ -3,7 +3,7 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Modal from "@casumo/cmp-modal";
-import { formatCurrency, interpolate } from "Utils";
+import { stringToHTML, formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
 import { PAYMENT_RESULT_STATUS, type CmsContent } from "./PaymentResult.types";
@@ -47,18 +47,24 @@ export const PaymentResult = ({
     return null;
   }
 
+  const title = isSuccess
+    ? interpolate(t.payment_result_success_title || "", {
+        amount: formattedAmount,
+      })
+    : errorTitle;
+
+  const message =
+    (isSuccess ? t.payment_result_success_message : errorMessage) || "";
+
   return (
     <Modal closeIcon={{ action: closeModal }} spotImage={paymentResultImage}>
       <Text tag="h3" className="u-padding u-margin-top--lg u-text-align-center">
-        {isSuccess
-          ? interpolate(t.payment_result_success_title || "", {
-              amount: formattedAmount,
-            })
-          : errorTitle}
+        {title}
       </Text>
-      <Text className="u-padding u-text-align-center">
-        {isSuccess ? t.payment_result_success_message : errorMessage}
-      </Text>
+      <Text
+        className="u-padding u-text-align-center"
+        dangerouslySetInnerHTML={stringToHTML(message)}
+      ></Text>
     </Modal>
   );
 };

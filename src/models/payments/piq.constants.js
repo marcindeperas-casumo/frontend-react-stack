@@ -229,3 +229,11 @@ export const IFRAME_MODE = {
   CARD_NUMBER: "cardNumber",
   CVV_CODE: "cvvCode",
 };
+
+export const PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE = {
+  FINISHED: "finished",
+  CANCELED: "canceled",
+  PENGIND: "pending",
+  FAILED: "failed",
+  MODAL_CLOSED: "modalClosed",
+};

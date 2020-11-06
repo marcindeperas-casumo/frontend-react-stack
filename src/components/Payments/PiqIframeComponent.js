@@ -1,10 +1,7 @@
 // @flow
 import React, { useEffect, useRef, useState } from "react";
-import {
-  IFRAME_MESSAGE_ACTION,
-  IFRAME_TYPE_TO_CARD,
-  IFRAME_MODE,
-} from "Models/payments";
+import { IFRAME_MESSAGE_ACTION, IFRAME_TYPE_TO_CARD } from "Models/payments";
+import type { IframeModeValues, IframePiqEnvValues } from "Models/payments";
 import {
   piqIframeUrlBase as urlBase,
   composeIframeUrl,
@@ -12,14 +9,14 @@ import {
 import "./PiqIframe.scss";
 
 export type Props = {
-  id: number,
-  mode: $Values<typeof IFRAME_MODE>,
-  env: string,
-  luhnCheck: boolean,
-  onSuccess: (token: string) => {},
-  onValidation: (errorCode: string) => {},
-  onCardType: (param: string) => {},
-  onCardIdentifier: (param: string) => {},
+  id: number | string,
+  mode: IframeModeValues,
+  env: IframePiqEnvValues,
+  luhnCheck?: boolean,
+  onSuccess: (token: string) => void,
+  onValidation: (errorCode: string) => void,
+  onCardType?: (param: string) => {},
+  onCardIdentifier?: (param: string) => {},
 };
 
 export const PiqIframeComponent = ({
@@ -29,8 +26,8 @@ export const PiqIframeComponent = ({
   luhnCheck = true,
   onSuccess,
   onValidation,
-  onCardType,
-  onCardIdentifier,
+  onCardType = () => {},
+  onCardIdentifier = () => {},
 }: Props) => {
   const iframe = useRef(null);
   //eslint-disable-next-line no-unused-vars

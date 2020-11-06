@@ -6,7 +6,8 @@ import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { CvvCodeIframe } from "Components/Payments";
+import { CvvCodeIframe } from "Components/Payments/CvvCodeIframe";
+import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
@@ -19,6 +20,7 @@ export const QuickDepositSlip = ({
   minAmount,
   maxAmount,
   presetAmount,
+  requestStatus,
   onDeposit,
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
@@ -57,6 +59,12 @@ export const QuickDepositSlip = ({
       data: message,
       status: "success",
     });
+
+  const isProcessing = requestStatus.state === requestState.PROCESSING;
+  const hasErrors = !R.isEmpty(formErrors);
+
+  const isDepositButtonDisabled =
+    isProcessing || hasErrors || !Boolean(cvvValue);
 
   return (
     <Flex spacing="lg" justify="space-between" direction="vertical">
@@ -108,7 +116,8 @@ export const QuickDepositSlip = ({
             <ButtonPrimary
               size="md"
               onClick={onDepositClick}
-              isDisabled={!R.isEmpty(formErrors)}
+              isDisabled={isDepositButtonDisabled}
+              isLoading={isProcessing}
             >
               {deposit_cta_text}
             </ButtonPrimary>

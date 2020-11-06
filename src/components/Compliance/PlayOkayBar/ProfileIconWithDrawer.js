@@ -8,6 +8,10 @@ import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
 import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
+  useGameModelContext,
+  usePinnedWidgetsContext,
+} from "Components/GamePage/Contexts";
+import {
   injectIntercomScript,
   registerPauseResumeGame,
   openChatWindow,
@@ -18,20 +22,16 @@ import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import "./ProfileIconWithDrawer.scss";
-import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 
-type Props = PauseResumeProps & IntercomPlayerDetailsProps;
+type Props = IntercomPlayerDetailsProps;
 const baseClassName = "c-profile-icon-with-drawer";
 
 export const ProfileIconWithDrawer = ({
-  pauseGame,
-  resumeGame,
   playerId,
   email,
   casumoName,
@@ -39,6 +39,8 @@ export const ProfileIconWithDrawer = ({
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
+  const { pauseGame, resumeGame } = useGameModelContext();
+  const { pinnedWidgets } = usePinnedWidgetsContext();
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -63,13 +65,12 @@ export const ProfileIconWithDrawer = ({
     registerPauseResumeGame(pauseGame, resumeGame);
   }, [pauseGame, resumeGame]);
 
-  const { pinnedDrawers } = React.useContext(PinnedDrawersContext);
   React.useEffect(() => {
     setDrawerOpen(false);
-  }, [pinnedDrawers]);
+  }, [pinnedWidgets]);
 
   const shouldShowReelRace =
-    (isDesktop() && !pinnedDrawers.includes(DRAWERS.REEL_RACES)) ||
+    (isDesktop() && !pinnedWidgets.includes(DRAWERS.REEL_RACES)) ||
     !isDesktop();
 
   return (

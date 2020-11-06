@@ -4,6 +4,7 @@ import { reduce, map, path, mergeDeepRight } from "ramda";
 import { fetchPageBySlug, getFetchCompleteTypeBySlug } from "Models/cms";
 import { parseCmsPaymentConfig } from "./cmsConfig.utils";
 import { METHOD_CONFIG_PATH } from "./methodConfig.constants";
+import { FALLBACK_CONFIGURATION } from "./cmsConfigFallback";
 import { setPaymentMethodConfig } from "./methodConfig.actions";
 
 export function* methodConfigSaga(action: any, state: any): * {
@@ -15,12 +16,15 @@ export function* methodConfigSaga(action: any, state: any): * {
     configSlugs.map(slug => take(getFetchCompleteTypeBySlug(slug)))
   );
 
-  const config = reduce(
-    mergeDeepRight,
-    {},
-    map(
-      page => parseCmsPaymentConfig(path(["response", "content"])(page)),
-      pages
+  const config = mergeDeepRight(
+    FALLBACK_CONFIGURATION,
+    reduce(
+      mergeDeepRight,
+      {},
+      map(
+        page => parseCmsPaymentConfig(path(["response", "content"])(page)),
+        pages
+      )
     )
   );
 
