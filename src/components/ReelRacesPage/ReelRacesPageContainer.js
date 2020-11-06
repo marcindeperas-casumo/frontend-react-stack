@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { filter, propEq } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import { POLL_INTERVAL } from "Src/constants";
 import * as A from "Types/apollo";
@@ -23,7 +24,6 @@ export const ReelRacesPageContainer = () => {
   >(ReelRacesPageQuery, {
     variables: {
       limit: 20,
-      prioritisePromoted: true,
     },
     pollInterval: POLL_INTERVAL.REEL_RACES,
   });
@@ -34,8 +34,13 @@ export const ReelRacesPageContainer = () => {
 
   const reelRaces = data?.reelRaces || [];
 
+  console.log(t);
+
   if (data && reelRaces && reelRaces.length) {
-    return <ReelRacesPage reelRaces={reelRaces} t={t} />;
+    const scheduledreelRaces = filter(propEq("status", "Scheduled"))(reelRaces);
+    console.log(scheduledreelRaces);
+
+    return <ReelRacesPage reelRaces={scheduledreelRaces} t={t} />;
   }
 
   return null;

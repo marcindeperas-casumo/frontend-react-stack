@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { TournamentIcon, TimeLockedIcon } from "@casumo/cmp-icons";
+import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
@@ -26,13 +26,9 @@ export function ReelRaceScheduleCard({ reelRace, t }: Props) {
   return (
     <div
       onClick={toggle}
-      className={cx(
-        "t-background-white",
-        "t-border-r--md u-margin--md t-elevation--10"
-      )}
+      className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10"
     >
       <Flex
-        align="center"
         className={cx(
           "u-padding--md",
           reelRace.promoted && "t-background-purple-80 t-color-white",
@@ -42,6 +38,9 @@ export function ReelRaceScheduleCard({ reelRace, t }: Props) {
         )}
       >
         <Flex.Item className="o-flex__item--no-shrink">
+          {reelRace.promoted && (
+            <LaurelIcon className="u-position-absolute t-color-yellow-30 t-background-black t-border t-border-r-top-left--md t-border-r-bottom-right--md t-border-yellow-30 o-inset-top--none o-inset-left--none u-width--lg u-height--lg u-padding--sm" />
+          )}
           <GameThumb
             src={reelRace.game.backgroundImage}
             alt={reelRace.game.name}

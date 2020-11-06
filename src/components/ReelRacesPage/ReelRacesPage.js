@@ -45,8 +45,34 @@ export function ReelRacesPage({ reelRaces, t }: ReelRacesPageProps) {
           </Flex.Block>
         </Flex>
 
-        {reelRaces.map(reelRace => (
-          <ReelRaceScheduleCard key={reelRace.id} reelRace={reelRace} t={t} />
+        {reelRaces.map((reelRace, i) => (
+          <>
+            {i === 1 && (
+              <Flex
+                key="right-now-title"
+                align="center"
+                className="u-padding-x--md u-padding-top"
+              >
+                <div className="u-width u-height t-border-r--circle t-background-green-30"></div>
+                <Text className="u-padding-left u-font-weight-bold" tag="div">
+                  Right Now
+                </Text>
+              </Flex>
+            )}
+            {i === 2 && (
+              <Flex
+                key="up-next-title"
+                align="center"
+                className="u-padding-x--md u-padding-top"
+              >
+                <div className="u-width u-height t-border-r--circle t-background-yellow-30"></div>
+                <Text className="u-padding-left u-font-weight-bold" tag="div">
+                  Up Next
+                </Text>
+              </Flex>
+            )}
+            <ReelRaceScheduleCard key={reelRace.id} reelRace={reelRace} t={t} />
+          </>
         ))}
       </div>
     </div>
