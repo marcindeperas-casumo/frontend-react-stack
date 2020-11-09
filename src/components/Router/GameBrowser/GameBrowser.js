@@ -47,6 +47,7 @@ const keyToUrl = {
 };
 const hostElementId = "react-host-games-lists";
 const mobileNav = "react-host-top-nav";
+
 export const GameBrowser = () => {
   useScrollPositionPersistor();
   const { data } = useQuery<A.GetGameSets, _>(GetGameSets);
@@ -60,18 +61,19 @@ export const GameBrowser = () => {
 
   return (
     <>
-      <MobileAndTablet>
-        <WaitForHostElement hostElementId={mobileNav}>
-          <Portal hostElementId={mobileNav}>
+      <WaitForHostElement hostElementId={mobileNav}>
+        <Portal hostElementId={mobileNav}>
+          <MobileAndTablet>
             <TopNavMobile />
-          </Portal>
-        </WaitForHostElement>
-      </MobileAndTablet>
-      <WaitForHostElement hostElementId={hostElementId}>
-        <Portal hostElementId={hostElementId}>
+          </MobileAndTablet>
           <Desktop>
             <TopNavDesktop />
           </Desktop>
+        </Portal>
+      </WaitForHostElement>
+
+      <WaitForHostElement hostElementId={hostElementId}>
+        <Portal hostElementId={hostElementId}>
           <GameBrowserSets sets={gameBrowserSetsData} />
           <React.Suspense fallback={null}>
             <Router className="u-padding-bottom--2xlg" primary={false}>
