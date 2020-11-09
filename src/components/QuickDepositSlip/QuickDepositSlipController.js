@@ -1,21 +1,37 @@
 // @flow
 import React from "react";
+import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import { CloseIcon } from "@casumo/cmp-icons";
-import { setQuickDepositMethod } from "Models/payments/payments.actions";
+import {
+  setQuickDepositMethod,
+  startQuickDeposit,
+} from "Models/payments/payments.actions";
 import { QuickDepositSlip } from "Components/QuickDepositSlip";
 import { useTranslationsGql } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
-import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
+import {
+  getSelectedQuickDepositMethod,
+  getPaymentRequestSelector,
+} from "Models/payments/payments.selectors";
 
-export const QuickDepositSlipController = () => {
+const cmsPrefix = "root:iframe-solution:fields";
+
+export const QuickDepositSlipController = ({
+  position,
+}: {
+  position: string,
+}) => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
-  const { t } = useTranslationsGql({
-    quick_deposit_slip_title: `iframe-solution.in_game_drawer_live_chat`,
+  const paymentRequest = useSelector(getPaymentRequestSelector);
+
+  const { t, loading: tLoading } = useTranslationsGql({
+    quick_deposit_title: `${cmsPrefix}.quick_deposit_title`,
   });
+
   const dispatch = useDispatch();
 
   if (!selectedMethod) {
@@ -24,39 +40,79 @@ export const QuickDepositSlipController = () => {
 
   const { min, max } = selectedMethod?.limits?.deposit;
 
-  const onDeposit = (amount, encodedCvv) => {
-    //@lukKowalski, dispatching temporarily, will be replaced with a proper action
-    dispatch({ type: "make_deposit", amount, encodedCvv });
+  const onDeposit = (amount: number, cvvEncoded: string) => {
+    dispatch(
+      startQuickDeposit({ amount, cvvEncoded, paymentMethod: selectedMethod })
+    );
   };
 
   const closeQuickDeposit = () => {
     dispatch(setQuickDepositMethod(null));
   };
 
+  const borderClasses = () =>
+    position === "top"
+      ? [
+          "t-border-r-top-left--md",
+          "t-border-r-top-right--md",
+          "t-border-r-bottom-left--md",
+          "t-border-r-bottom-right--md",
+        ]
+      : ["t-border-r-top-left--md", "t-border-r-top-right--md"];
+
   return (
-    selectedMethod && (
-      <div className="t-border-r-top-left--md t-border-r-top-right--md u-padding--md t-background-white o-inset-left--none o-inset-bottom--none o-position--fixed ">
-        <Flex
-          className="u-margin-bottom--md"
-          justify="space-between"
-          direction="horizontal"
-          align="center"
+    <Flex
+      align="center"
+      justify="center"
+      className="u-width--screen o-position--fixed c-deposit-slip-container"
+    >
+      <Flex.Item
+        className="
+          c-quick-deposit-slip-positioning
+          u-width--screen@mobile
+          u-width--4/5@phablet
+          u-width--3/5@tablet
+          o-position--relative"
+      >
+        <div
+          className={classNames(borderClasses(), [
+            "u-width--full",
+            "t-background-white",
+            "o-inset-left--none@mobile",
+            "o-inset-left--none@phablet",
+            "o-inset-left--none@tablet",
+            "o-inset-bottom--none@mobile",
+            "o-inset-bottom--none@phablet",
+            "o-inset-bottom--none@tablet",
+            "o-inset-top--none@desktop",
+            "o-position--absolute",
+          ])}
         >
-          <Flex.Item>{t && t.quick_deposit_slip_title}</Flex.Item>
-          <Flex.Item onClick={closeQuickDeposit}>
-            <CloseIcon />
-          </Flex.Item>
-        </Flex>
-        <QuickDepositSlip
-          minAmount={min}
-          maxAmount={max}
-          onDeposit={onDeposit}
-          paymentMethodDetails={() => (
-            <PaymentMethodDetails method={selectedMethod} />
-          )}
-          currencySymbol={currency}
-        />
-      </div>
-    )
+          <div className="u-padding--md">
+            <Flex
+              className="u-margin-bottom--md"
+              justify="space-between"
+              direction="horizontal"
+              align="center"
+            >
+              <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
+              <Flex.Item onClick={closeQuickDeposit} className="t-color-black">
+                <CloseIcon />
+              </Flex.Item>
+            </Flex>
+            <QuickDepositSlip
+              minAmount={min}
+              maxAmount={max}
+              onDeposit={onDeposit}
+              requestStatus={paymentRequest}
+              paymentMethodDetails={() => (
+                <PaymentMethodDetails method={selectedMethod} />
+              )}
+              currencySymbol={currency}
+            />
+          </div>
+        </div>
+      </Flex.Item>
+    </Flex>
   );
 };

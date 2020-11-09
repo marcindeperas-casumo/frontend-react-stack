@@ -9,6 +9,8 @@ $directions: (top, left, bottom, right);
 
 .c-game-page {
   --game-page-sidebar-width-desktop: 290px;
+  background-position: center;
+  background-size: cover;
 
   &__flexible-game-container {
     // This tells it's children to have only space it gives them, not more
@@ -29,6 +31,10 @@ $directions: (top, left, bottom, right);
   }
 
   &__sidebar {
+    scrollbar-width: none;
     width: var(--game-page-sidebar-width-desktop);
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 }

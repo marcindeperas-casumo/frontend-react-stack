@@ -23,6 +23,12 @@ type BlueRibbonJackpotEntry = {
   mainWinRatio: number,
 };
 
+export const BlueRibbonJackpotsWidgetPromotionPage = () => (
+  <div className="u-margin-x--md u-margin-bottom--lg">
+    <BlueRibbonJackpotsWidgetContainer className="u-width--full" />
+  </div>
+);
+
 export function BlueRibbonJackpotsWidgetContainer({
   className = "",
 }: {

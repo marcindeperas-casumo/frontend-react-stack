@@ -15,7 +15,9 @@
 
   &__bottom-wrapper-bg {
     background: linear-gradient(white, transparent);
-    padding-bottom: 150px !important;
+    bottom: 0;
+    min-height: 150px;
+    top: 48px;
 
     @include cudl-breakpoint(desktop) {
       background: radial-gradient(
@@ -24,10 +26,20 @@
         transparent 70%
       );
       left: 0;
+      padding-bottom: 0 !important;
       padding-right: 150px !important;
       padding-top: 98px !important;
+
       top: -16px;
       width: var(--game-page-sidebar-width-desktop) !important;
+    }
+
+    &-inner {
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 }
