@@ -33,7 +33,7 @@ export function ReelRaceScheduleCard({ reelRace, t, isOpen = false }: Props) {
         align={open && isNotMobile ? "center" : "normal"}
         onClick={toggle}
         className={cx(
-          "u-padding--md",
+          "u-padding--md u-cursor-pointer",
           reelRace.promoted && "t-background-purple-80 t-color-white",
           open
             ? "t-border-r-top-left--md t-border-r-top-right--md"
