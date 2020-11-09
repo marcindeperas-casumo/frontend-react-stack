@@ -27,7 +27,7 @@ describe("NetentGame", () => {
     providerName: "NETENT",
     providerType: "NETENT",
     url: `https://someBackendReturnedUrl.com?gameId=starburst_mobile_html_sw&gameServer=https://casumo-game.casinomodule.com
-        &staticServer=https://casumo-static.casinomodule.com&lang=en&liveCasinoHost=someHost&sessionId=DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP`,
+        &staticServer=https://casumo-static.casinomodule.com&casinoId=casumo&lang=en&liveCasinoHost=someHost&sessionId=DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP`,
   };
 
   const customFnForKeys = key => {
@@ -57,6 +57,7 @@ describe("NetentGame", () => {
   );
 
   const gameRef = { current: null };
+
   const model = new NetentGame({
     gameData,
     gameRef,
@@ -113,10 +114,10 @@ describe("NetentGame", () => {
   it("should get the config from URL parameter received in launchGame response", () => {
     expect(modelWithUrl.config).toStrictEqual({
       gameId: extractedGameDataFromUrl.gameId,
-      gameServerURL: extractedGameDataFromUrl.gameServer,
+      gameServerURL: extractedGameDataFromUrl.gameServerURL,
       sessionId: extractedGameDataFromUrl.sessionId,
       staticServer: extractedGameDataFromUrl.staticServer,
-      casinoId: null,
+      casinoId: "casumo",
       liveCasinoHost: "someHost",
       lobbyURL: "#",
       height: "100%",

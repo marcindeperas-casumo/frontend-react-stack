@@ -533,6 +533,7 @@ QueryStringToJSObjectProps): QsDataObj | {} => {
     let objToReturn = {};
     // eslint-disable-next-line fp/no-let
     let iterationIndex = 0;
+    // construct object from query string params, applying any passed argument fns for keys and values
     paramsObject.forEach(function(value, key) {
       // First param contains url host incl "?"
       // get only content after first "?"
@@ -542,6 +543,7 @@ QueryStringToJSObjectProps): QsDataObj | {} => {
       const cleanedKey =
         splitKey && customFnForKeys ? customFnForKeys(splitKey) : splitKey;
 
+      // decode any urls found as query string values
       // eslint-disable-next-line fp/no-mutation
       iterationIndex += 1;
       const decodedValueUrls =
