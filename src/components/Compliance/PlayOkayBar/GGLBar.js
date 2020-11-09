@@ -4,14 +4,13 @@ import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
 import { PanicButton } from "./PanicButton";
-import { type PauseResumeProps } from "./PlayOkayBarContainer";
 import "./PlayOkayBar.scss";
 
-type Props = PauseResumeProps & {
+type Props = {
   className?: string,
 };
 
-export const GGLBar = ({ pauseGame, resumeGame, className = "" }: Props) => {
+export const GGLBar = ({ className = "" }: Props) => {
   return (
     <Flex justify="end" align="center" className={className}>
       <Flex.Block className="u-text-align-center">

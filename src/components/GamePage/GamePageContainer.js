@@ -1,41 +1,45 @@
 // @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
-import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
-  useGameLaunchData,
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
   useGameCategory,
   useDispatchPlaying,
+  useInGameBonusOrRealBalanceCheck,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
-import { getUrlSearchParam, decodedUrlParams } from "Utils";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { ErrorMessage } from "Components/ErrorMessage";
+import { isDesktop, MobileAndTablet } from "Components/ResponsiveLayout";
+import { GameLauncher } from "Components/GameLauncher";
+import { GamePageHeader } from "Components/GamePageHeader";
+import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
+import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
+import { QuickDepositSlipController } from "Components/QuickDepositSlip";
+import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
+import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
+import { GamePageNotifications } from "./GamePageNotifications";
 import { GamePage } from "./GamePage";
+import { GamePageError } from "./GamePageError";
+import { useGameModelContext, usePinnedWidgetsContext } from "./Contexts";
 import "./GamePage.scss";
 
-type Props = {
-  slug: string,
-  playForFun: boolean,
-  location: {
-    search: string,
-  },
-};
-
-export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
-  const launchData = getUrlSearchParam(location.search, "remoteGameLaunchData");
-
-  const remoteGameLaunchData = launchData
-    ? decodedUrlParams(JSON.parse(decodeURIComponent(launchData)))
-    : null;
-
+export const GamePageContainer = () => {
+  const {
+    slug,
+    gameProviderModel,
+    pauseGame,
+    resumeGame,
+    playForFun,
+    error,
+  } = useGameModelContext();
+  const { pinnedWidgets } = usePinnedWidgetsContext();
   const bonusAmount = useSelector(playerWalletBonusSelector);
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
@@ -45,14 +49,9 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
 
-  const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
-    {
-      playForFun,
-      slug,
-      remoteGameLaunchData,
-    }
-  );
   useRealityCheckModal({ pauseGame, resumeGame });
+
+  useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   useDispatchPlaying({
     isPlaying: true,
@@ -69,29 +68,55 @@ export const GamePageContainer = ({ slug, playForFun, location }: Props) => {
     ),
   });
 
-  if (error) {
-    return (
-      <Flex className="t-background-grey-0 u-height--full">
-        <ErrorMessage
-          errorMessage={errorMessages?.general_error_title || ""}
-          retry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
-        />
-      </Flex>
-    );
-  }
-
-  if (!gameProviderModel || loading) {
-    return <LoaderGlobal />;
-  }
-
   return (
     <GamePage
-      gameProviderModel={gameProviderModel}
-      pauseGame={pauseGame}
-      resumeGame={resumeGame}
-      shouldShowSlotControlSystem={shouldShowSlotControlSystem}
-      bonusAmount={bonusAmount}
+      error={
+        error ? (
+          <GamePageError
+            errorMessage={errorMessages?.general_error_title || ""}
+            onRetry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
+          />
+        ) : null
+      }
+      footer={shouldShowSlotControlSystem && <InfoBar />}
       gameBackground={gameContent?.play_background}
+      gameProviderModel={gameProviderModel}
+      gameWindow={
+        gameProviderModel && (
+          <div
+            className={classNames(
+              "u-inset-0 u-position-absolute",
+              gameProviderModel.gameWrapperClasses || []
+            )}
+          >
+            <GameLauncher
+              gameProviderModel={gameProviderModel}
+              className="c-game-page__game-launcher"
+            />
+          </div>
+        )
+      }
+      header={<GamePageHeader />}
+      loading={(!gameProviderModel || loading) && <LoaderGlobal />}
+      offscreenElements={
+        <React.Fragment>
+          <MobileAndTablet>
+            <QuickDepositSlipController position="bottom" />
+          </MobileAndTablet>
+          <ReelRacesDrawerWidgetTrigger />
+        </React.Fragment>
+      }
+      overScreenNotifications={<GamePageNotifications />}
+      shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+      sidebar={
+        pinnedWidgets.includes(DRAWERS.REEL_RACES) &&
+        isDesktop() && (
+          <ReelRacesDrawerWidget
+            initialShowLeaderboard
+            className="u-height--full"
+          />
+        )
+      }
     />
   );
 };
