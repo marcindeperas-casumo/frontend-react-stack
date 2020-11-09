@@ -26,29 +26,23 @@
   }
 
   &__panic-button {
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
     font-size: 0.6em !important;
+    transition-duration: 0s;
+    transition-property: background-position;
+    transition-timing-function: linear;
+    user-select: none;
 
-    // stylelint-disable xi/selector-pattern
-    > span {
-      z-index: 0;
-    }
-    // stylelint-enable xi/selector-pattern
-
-    &::before {
-      border-radius: 100em;
-      content: "";
-      height: 100%;
-      left: calc(32px - 100%);
-      position: absolute;
-      transition-duration: 0;
-      transition-property: left;
-      transition-timing-function: linear;
-      width: 100%;
-    }
-
-    &--interactive::before {
-      background-color: cudl-palette(red, "30");
-      left: 0;
+    &:active {
+      background-image: radial-gradient(
+          circle closest-side,
+          cudl-palette(red, "30") 100%,
+          transparent 0
+        ),
+        linear-gradient(90deg, cudl-palette(red, "30") 50%, transparent 0);
+      background-position: 0 0;
       transition-duration: var(--panic-btn-duration, 3s);
     }
   }
