@@ -96,6 +96,7 @@ export const ROUTE_IDS = {
   PRACTICE: "PRACTICE",
   PRACTICE_NATIVE: "PRACTICE_NATIVE",
   TOP_LISTS: "TOP_LISTS",
+  REEL_RACES: "REEL_RACES",
   GAMES_SEARCH: "GAMES_SEARCH",
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
@@ -134,6 +135,7 @@ export const ROUTES = {
   [ROUTE_IDS.PRACTICE_NATIVE]: "gamelaunchers-practise/:slug/launch",
   [ROUTE_IDS.GAME_DETAILS]: "{{play}}/:slug",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
+  [ROUTE_IDS.REEL_RACES]: "reel-races",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
@@ -210,6 +212,16 @@ export const MARKETS = {
   jp_ja: "jp_ja",
   at_de: "at_de",
 };
+
+export const MARKETS_CONFIG = Object.freeze({
+  default: {
+    reelRacesHidden: false,
+  },
+  [MARKETS.se_sv]: {
+    reelRacesHidden: true,
+  },
+});
+
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "ca",
