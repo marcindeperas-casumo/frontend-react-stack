@@ -1,7 +1,7 @@
 #import "../ReelRaceScheduleCard/ReelRaceScheduleCard.graphql"
 
-query ReelRacesPageQuery($limit: Int!) {
-    reelRaces(limit: $limit) {
+query ReelRacesPageQuery($limit: Int!, $previous: Boolean) {
+    reelRaces(limit: $limit, previous: $previous) {
         id
         ...ReelRaceScheduleCard_ReelRace
     }

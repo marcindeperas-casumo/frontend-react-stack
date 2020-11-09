@@ -1,2 +1,2 @@
 // @flow
-export { ReelRacesPageContainer as default } from "./ReelRacesPageContainer";
+export { ReelRacesPage as default } from "./ReelRacesPage";

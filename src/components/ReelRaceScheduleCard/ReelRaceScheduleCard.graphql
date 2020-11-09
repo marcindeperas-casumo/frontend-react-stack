@@ -28,4 +28,11 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
         today
         tomorrow
     }
+    leaderboard {
+      playerId
+      playerName
+      position
+      points
+      remainingSpins
+    }
 }
