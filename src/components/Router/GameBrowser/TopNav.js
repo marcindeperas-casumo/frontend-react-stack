@@ -4,9 +4,14 @@ import classNames from "classnames";
 import { Link, useMatch } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { TopListsIcon, PlayIcon, SearchIcon } from "@casumo/cmp-icons";
+import {
+  TopListsIcon,
+  PlayIcon,
+  SearchIcon,
+  TournamentIcon,
+} from "@casumo/cmp-icons";
 import { isTablet } from "Components/ResponsiveLayout";
-import { useTranslations } from "Utils/hooks";
+import { useTranslations, useMarketConfig } from "Utils/hooks";
 
 const NavLinkDesktop = ({
   Icon,
@@ -15,7 +20,7 @@ const NavLinkDesktop = ({
   active,
 }: {
   Icon: React.StatelessFunctionalComponent<any>,
-  text: string,
+  text: ?string,
   to: string,
   active?: boolean,
 }) => (
@@ -43,25 +48,34 @@ const NavLinkDesktop = ({
   </Flex.Item>
 );
 export const TopNavDesktop = () => {
+  const t = useTranslations<{
+    search: string,
+    games: string,
+    reel_races: string,
+  }>("new-game-browser.top-nav");
+  const reelRacesHidden = useMarketConfig("reelRacesHidden");
   const match = useMatch("search");
   const searchActive = Boolean(match);
 
   return (
-    <Flex
-      className="o-wrapper u-padding-top--xlg"
-      align="center"
-      justify="center"
-    >
-      <Flex spacing="lg" className="u-padding-y">
+    <Flex className="o-wrapper " align="center" justify="center">
+      <Flex spacing="lg">
         <NavLinkDesktop
           Icon={PlayIcon}
-          text="Casino"
+          text={t?.games}
           to="."
           active={!searchActive}
         />
+        {!reelRacesHidden && (
+          <NavLinkDesktop
+            Icon={TournamentIcon}
+            text={t?.reel_races}
+            to={`/reel-races`}
+          />
+        )}
         <NavLinkDesktop
           Icon={SearchIcon}
-          text="Search"
+          text={t?.search}
           to="search"
           active={searchActive}
         />
@@ -76,7 +90,7 @@ const NavLinkMobile = ({
   to,
 }: {
   Icon: React.StatelessFunctionalComponent<any>,
-  text: string,
+  text: ?string,
   to: string,
 }) => {
   const match = useMatch(to);
@@ -126,13 +140,22 @@ export const TopNavMobile = () => {
   const t = useTranslations<{
     top_lists: string,
     search: string,
+    reel_races: string,
   }>("new-game-browser.top-nav");
   const tablet = isTablet();
+  const reelRacesHidden = useMarketConfig("reelRacesHidden");
 
   return (
     <Flex spacing={tablet ? "md" : "sm"}>
-      <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists || ""} to="top" />
-      <NavLinkMobile Icon={SearchIcon} text={t?.search || ""} to="search" />
+      <NavLinkMobile Icon={TopListsIcon} text={t?.top_lists} to="top" />
+      {!reelRacesHidden && (
+        <NavLinkMobile
+          Icon={TournamentIcon}
+          text={t?.reel_races}
+          to={`/reel-races`}
+        />
+      )}
+      <NavLinkMobile Icon={SearchIcon} text={t?.search} to="search" />
     </Flex>
   );
 };
