@@ -30,15 +30,31 @@ describe("NetentGame", () => {
         &staticServer=https://casumo-static.casinomodule.com&lang=en&liveCasinoHost=someHost&sessionId=DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP`,
   };
 
-  const gameURLParams = new URLSearchParams(gameDataWithUrlProperty.url);
-
-  const extractedGameDataFromUrl = {
-    gameId: gameURLParams.get("gameId"),
-    gameServer: gameURLParams.get("gameServer"),
-    staticServer: gameURLParams.get("staticServer"),
-    liveCasinoHost: gameURLParams.get("liveCasinoHost"),
-    sessionId: gameURLParams.get("sessionId"),
+  const customFnForKeys = key => {
+    // eslint-disable-next-line no-nested-ternary
+    return key === "gameServer"
+      ? "gameServerURL"
+      : key === "lang"
+      ? "language"
+      : key;
   };
+  const gameURLParams = utils.queryParamsToJSObject({
+    queryStringUrl: gameDataWithUrlProperty.url,
+    customFnForKeys,
+  });
+  const defaultParams = {
+    gameId: gameData.gameId,
+    sessionId: gameData.sessionId,
+    casinoId: gameData.casinoId,
+    staticServer: decodeURIComponent(gameData.staticServer),
+    gameServerURL: decodeURIComponent(gameData.gameServer),
+  };
+
+  const extractedGameDataFromUrl = Object.assign(
+    {},
+    defaultParams,
+    gameURLParams
+  );
 
   const gameRef = { current: null };
   const model = new NetentGame({
