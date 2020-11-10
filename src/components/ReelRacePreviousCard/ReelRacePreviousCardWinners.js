@@ -7,6 +7,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 
 type Props = {
@@ -20,6 +21,7 @@ export function ReelRacePreviousCardWinners({
   t,
   expanded = false,
 }: Props) {
+  const isNotMobile = useIsScreenMinimumTablet();
   const [full, setFull] = React.useState(expanded);
   const toggleFull = React.useCallback(() => setFull(state => !state), [
     setFull,
@@ -70,7 +72,10 @@ export function ReelRacePreviousCardWinners({
           </Text>
         </Flex>
         {showPrizes && reelRace.formattedPrizes[i] && (
-          <Flex align="center" className="u-margin-right--lg">
+          <Flex
+            align="center"
+            className={cx(isNotMobile && "u-margin-right--lg")}
+          >
             <TournamentIcon className="t-color-grey-50 u-margin-right" />
             <Text size="md" className="u-font-weight-bold">
               {reelRace.formattedPrizes[i]}

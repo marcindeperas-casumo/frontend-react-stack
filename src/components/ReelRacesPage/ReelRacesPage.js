@@ -18,6 +18,8 @@ export type ReelRacesContentPage = {
   hide_prizes_button: string,
   hide_leaderboard_button: string,
   show_leaderboard_button: string,
+  show_more_reel_races: string,
+  leaderboard_rank: string,
 };
 
 type Tabs = "schedule" | "previous";

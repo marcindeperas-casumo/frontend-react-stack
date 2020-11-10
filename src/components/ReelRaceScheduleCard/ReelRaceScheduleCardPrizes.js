@@ -6,6 +6,7 @@ import { LaurelIcon, TournamentIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 
 type Props = {
   formattedPrizes: Array<string>,
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
+  const isNotMobile = useIsScreenMinimumTablet();
   const prizes = reduce(
     // eslint-disable-next-line ramda/if-else-simplification
     (acc, v) => ifElse(contains(v), identity, append(v))(acc),
@@ -23,6 +25,11 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
     <Flex direction="vertical" className="u-padding-x--md">
       {prizes.map((prize, i) => {
         const count = i + 1;
+        const position =
+          count === prizes.length && count !== formattedPrizes.length
+            ? `${count} - ${formattedPrizes.length}`
+            : count;
+
         return (
           <Flex
             key={`${prize}_${count}`}
@@ -31,7 +38,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
               "t-border-grey-0 u-padding-y"
             )}
           >
-            <Flex.Block>
+            <Flex className="o-flex--1">
               <div className="u-position-relative u-width--3xlg">
                 <LaurelIcon
                   size="lg"
@@ -46,13 +53,17 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                   size="sm"
                   className="u-position-absolute u-padding-y--md u-text-align-center u-width--3xlg o-inset-top--none u-font-weight-bold"
                 >
-                  {count === prizes.length && count !== formattedPrizes.length
-                    ? `${count} - ${formattedPrizes.length}`
-                    : count}
+                  {position}
                 </Text>
               </div>
-            </Flex.Block>
-            <Flex align="center" className="u-margin-right">
+              <Flex align="center" className="u-margin-left">
+                {t?.leaderboard_rank} #{position}
+              </Flex>
+            </Flex>
+            <Flex
+              align="center"
+              className={cx(isNotMobile && "u-margin-right")}
+            >
               <TournamentIcon className="t-color-grey-50 u-margin-right" />
               <Text size="md" className="u-font-weight-bold">
                 {prize}
