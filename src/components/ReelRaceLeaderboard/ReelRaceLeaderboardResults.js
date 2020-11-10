@@ -107,24 +107,6 @@ export function ReelRaceLeaderboardResults({
     currentPositionRef,
   };
 
-  React.useEffect(
-    function scrollIntoView() {
-      if (!scrollable) {
-        return;
-      }
-
-      if (listRef.current) {
-        listRef.current.scrollTo(0, 0);
-      }
-      setTimeout(() => {
-        if (currentPositionRef.current) {
-          currentPositionRef.current.scrollIntoView(false);
-        }
-      }, 0);
-    },
-    [leaderboard, scrollable]
-  );
-
   return (
     <div
       className={cx(className, "u-overflow-x--hidden u-position-relative", {
