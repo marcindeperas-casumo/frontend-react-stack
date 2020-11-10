@@ -1,20 +1,7 @@
 /* stylelint-disable xi/selector-pattern */
 .c-reel-races-drawer-widget {
-  background: radial-gradient(
-    ellipse 190% 90% at 50% 90%,
-    rgba(26, 33, 44, 0.96) 55%,
-    rgba(26, 33, 44, 1) 50%
-  );
-
+  background-color: cudl-palette(grey, "90");
   z-index: cudl-z(main-nav);
-
-  @include cudl-breakpoint(desktop) {
-    background: radial-gradient(
-      ellipse 190% 76% at 50% 112%,
-      rgba(26, 33, 44, 0.96) 70%,
-      #1a212c 50%
-    );
-  }
 
   &__laurel {
     height: 80px !important;
