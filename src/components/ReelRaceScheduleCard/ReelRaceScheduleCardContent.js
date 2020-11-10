@@ -11,8 +11,9 @@ import { useIsScreenMinimumTablet } from "Utils/hooks";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 import DangerousHtml from "Components/DangerousHtml";
 import * as A from "Types/apollo";
+import { launchModal } from "Services/LaunchModalService";
 import OptInButton from "Components/OptInButton/OptInButton";
-import { EVENTS } from "Src/constants";
+import { EVENTS, MODALS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import { ReelRaceScheduleCardPrizes } from "./ReelRaceScheduleCardPrizes";
 
@@ -52,6 +53,10 @@ export function ReelRaceScheduleCardContent({
     label: reelRace.translations.optedIn || "",
     eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
     data: { state: BUTTON_STATE.OPTED_IN },
+  };
+
+  const showCaveatsModal = () => {
+    launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
   return (
@@ -123,7 +128,7 @@ export function ReelRaceScheduleCardContent({
             <Text
               tag="div"
               className="t-color-grey-50 u-padding--md"
-              // onClick={showCaveatsModal}
+              onClick={showCaveatsModal}
             >
               <DangerousHtml
                 html={interpolate(reelRace.translations.caveatShort, {
