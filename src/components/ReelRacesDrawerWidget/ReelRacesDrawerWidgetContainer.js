@@ -29,11 +29,11 @@ const LEADERBOARD_FIXED = 3;
 const LEADERBOARD_LAURELS = 3;
 const TOTAL_LEADERBOARD_RESULTS = 10;
 
+/* eslint-disable sonarjs/cognitive-complexity */
 export const ReelRacesDrawerWidgetContainer = ({
   className,
   initialShowLeaderboard = false,
-}: // eslint-disable-next-line sonarjs/cognitive-complexity
-Props) => {
+}: Props) => {
   const playing = useSelector(playingSelector);
   const playerId = useSelector(playerIdSelector);
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
@@ -148,3 +148,4 @@ Props) => {
     </Flex>
   );
 };
+/* eslint-enable sonarjs/cognitive-complexity */
