@@ -69,8 +69,8 @@ export const ReelRacesDrawerWidget = ({
 
   const raceLogo = (
     <Desktop>
-      <div className="u-width--full u-padding-bottom--xlg u-padding-top--lg">
-        <RRLogo className="u-margin-x--auto u-display--block" />
+      <div className="u-padding-bottom--xlg u-padding-top--lg">
+        <RRLogo className="u-width--1/3 u-margin-x--auto u-display--block" />
       </div>
     </Desktop>
   );
