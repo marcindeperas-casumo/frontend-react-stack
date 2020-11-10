@@ -57,6 +57,7 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
         requirementType
         games {
           title
+          slug
         }
         excludedGames {
           title
