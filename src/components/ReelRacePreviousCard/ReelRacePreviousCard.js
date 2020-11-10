@@ -15,10 +15,11 @@ import { ReelRacePreviousCardWinners } from "./ReelRacePreviousCardWinners";
 type Props = {
   reelRace: A.ReelRacePreviousCard_ReelRace,
   t: ReelRacesContentPage,
+  expanded: boolean,
 };
 
-export function ReelRacePreviousCard({ reelRace, t }: Props) {
-  const [open, setOpen] = React.useState(true);
+export function ReelRacePreviousCard({ reelRace, t, expanded = false }: Props) {
+  const [open, setOpen] = React.useState(expanded);
   const isNotMobile = useIsScreenMinimumTablet();
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
 
@@ -29,12 +30,7 @@ export function ReelRacePreviousCard({ reelRace, t }: Props) {
       <Flex
         align="center"
         onClick={toggle}
-        className={cx(
-          "u-padding--md u-cursor-pointer",
-          open
-            ? "t-border-r-top-left--md t-border-r-top-right--md"
-            : "t-border-r--md"
-        )}
+        className="u-padding--md u-cursor-pointer t-border-r--md"
       >
         <Flex.Item className="o-flex__item--no-shrink">
           <GameThumb
@@ -62,7 +58,7 @@ export function ReelRacePreviousCard({ reelRace, t }: Props) {
           </Text>
         </Flex>
       </Flex>
-      {open && <ReelRacePreviousCardWinners reelRace={reelRace} t={t} />}
+      <ReelRacePreviousCardWinners reelRace={reelRace} t={t} expanded={open} />
     </div>
   );
 }

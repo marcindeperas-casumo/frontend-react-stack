@@ -12,10 +12,15 @@ import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPag
 type Props = {
   reelRace: A.ReelRacePreviousCard_ReelRace,
   t: ReelRacesContentPage,
+  expanded: boolean,
 };
 
-export function ReelRacePreviousCardWinners({ reelRace, t }: Props) {
-  const [full, setFull] = React.useState(false);
+export function ReelRacePreviousCardWinners({
+  reelRace,
+  t,
+  expanded = false,
+}: Props) {
+  const [full, setFull] = React.useState(expanded);
   const toggleFull = React.useCallback(() => setFull(state => !state), [
     setFull,
   ]);

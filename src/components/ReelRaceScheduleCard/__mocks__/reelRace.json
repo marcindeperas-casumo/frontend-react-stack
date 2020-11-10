@@ -1,0 +1,44 @@
+{
+  "id": "8ba89740-21ae-11eb-9b70-0242ac110004",
+  "game": {
+    "id": "13ca6210-0f8c-11ea-bdb1-0242ac110003",
+    "name": "Finn’s Golden Tavern",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2019/11/finn_s_golden_tavern_Thumbnail_Logo.png",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/11/finn_s_golden_tavern_Thumbnail_BG.png",
+    "__typename": "Game"
+  },
+  "startTime": 1605054600000,
+  "optedIn": false,
+  "endTime": 1605056100000,
+  "status": "Scheduled",
+  "spinLimit": 190,
+  "promoted": false,
+  "formattedPrize": "£20",
+  "formattedPrizes": ["£20", "£10", "£5"],
+  "translations": {
+    "optedInCtaSingleGameShort": "Play",
+    "optIn": "Opt in",
+    "optedIn": "Opted in",
+    "endingIn": "Ending in",
+    "startingIn": "Starting in:",
+    "competeFor": "Compete for {{prize}}",
+    "spins": "Spins",
+    "duration": "Duration",
+    "durationTemplate": "{{{duration}}} min",
+    "caveatShort": "Opt in. Spins/Games restrictions. <a href=\"#\" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "__typename": "ReelRaceTranslations"
+  },
+  "leaderboard": [
+    {
+      "playerId": "a9fdbf42-6406-4dc7-a4d1-a19739b3641e",
+      "playerName": "ezcash",
+      "position": 1,
+      "points": 0,
+      "remainingSpins": 190,
+      "__typename": "ReelRaceLeaderboard"
+    }
+  ],
+  "__typename": "ReelRace"
+}

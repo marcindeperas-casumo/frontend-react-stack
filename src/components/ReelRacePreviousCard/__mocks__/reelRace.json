@@ -1,0 +1,106 @@
+{
+  "id": "622d2ee0-20e5-11eb-9b70-0242ac110004",
+  "game": {
+    "id": "063fefca-9dd0-11e5-8960-0050568c183b",
+    "name": "Big Bad Wolf",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolf_logo.png",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolfbgthumb.jpg",
+    "__typename": "Game"
+  },
+  "startTime": 1605004200000,
+  "endTime": 1605005700000,
+  "formattedPrizes": ["£20", "£10", "£5"],
+  "leaderboard": [
+    {
+      "playerName": "irish123",
+      "position": 1,
+      "points": 328,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Kikka18",
+      "position": 2,
+      "points": 314,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "loke1977",
+      "position": 3,
+      "points": 314,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Christina0909",
+      "position": 4,
+      "points": 246,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "HarveyColin",
+      "position": 5,
+      "points": 238,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Jennygirl",
+      "position": 6,
+      "points": 222,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "reinikka7",
+      "position": 7,
+      "points": 212,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Xunreal",
+      "position": 8,
+      "points": 209,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "jenn101105",
+      "position": 9,
+      "points": 186,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "miker112",
+      "position": 10,
+      "points": 171,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "jsnakes",
+      "position": 11,
+      "points": 168,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Dangsta",
+      "position": 12,
+      "points": 153,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "Topedia",
+      "position": 13,
+      "points": 132,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "kopspil",
+      "position": 14,
+      "points": 115,
+      "__typename": "ReelRaceLeaderboard"
+    },
+    {
+      "playerName": "tanpei",
+      "position": 15,
+      "points": 113,
+      "__typename": "ReelRaceLeaderboard"
+    }
+  ],
+  "__typename": "ReelRace"
+}

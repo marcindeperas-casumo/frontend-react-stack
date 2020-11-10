@@ -15,11 +15,11 @@ import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
   t: ReelRacesContentPage,
-  isOpen: boolean,
+  expanded: boolean,
 };
 
-export function ReelRaceScheduleCard({ reelRace, t, isOpen = false }: Props) {
-  const [open, setOpen] = React.useState(isOpen);
+export function ReelRaceScheduleCard({ reelRace, t, expanded = false }: Props) {
+  const [open, setOpen] = React.useState(expanded);
   const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
@@ -99,7 +99,7 @@ export function ReelRaceScheduleCard({ reelRace, t, isOpen = false }: Props) {
           reelRace={reelRace}
           t={t}
           optIn={() => {}}
-          showPrizes={isOpen}
+          showPrizes={open}
         />
       )}
     </div>
