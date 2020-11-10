@@ -22,7 +22,6 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
     variables: {
       limit: 20,
     },
-    pollInterval: 30000,
   });
 
   const reelRaces = data?.reelRaces || [];

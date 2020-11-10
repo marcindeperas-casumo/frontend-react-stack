@@ -121,7 +121,6 @@ export const ROUTE_IDS = {
   ABOUT_CASUMO: "ABOUT_CASUMO",
   CASINO_GAMES: "CASINO_GAMES",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
-  REEL_RACES: "REEL_RACES",
 };
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
