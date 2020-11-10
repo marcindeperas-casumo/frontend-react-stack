@@ -902,16 +902,47 @@ export type ReelRaceListQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: ReelRacesPageQuery
+// GraphQL query operation: ReelRacesPageTabPreviousQuery
 // ====================================================
 
-export type ReelRacesPageQuery_reelRaces_game = {
+export type ReelRacesPageTabPreviousQuery_reelRaces_game = {
   id: string,
   name: string,
   logo: string,
   backgroundImage: string,
 };
-export type ReelRacesPageQuery_reelRaces_translations = {
+export type ReelRacesPageTabPreviousQuery_reelRaces_leaderboard = {
+  playerName: string,
+  position: number,
+  points: number,
+};
+export type ReelRacesPageTabPreviousQuery_reelRaces = {
+  id: string,
+  game: ReelRacesPageTabPreviousQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  formattedPrizes: Array<string>,
+  leaderboard: Array<ReelRacesPageTabPreviousQuery_reelRaces_leaderboard>,
+};
+export type ReelRacesPageTabPreviousQuery = {
+  reelRaces: Array<ReelRacesPageTabPreviousQuery_reelRaces>,
+};
+export type ReelRacesPageTabPreviousQueryVariables = {
+  limit: number,
+  previous?: ?boolean,
+};
+
+// ====================================================
+// GraphQL query operation: ReelRacesPageTabScheduleQuery
+// ====================================================
+
+export type ReelRacesPageTabScheduleQuery_reelRaces_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRacesPageTabScheduleQuery_reelRaces_translations = {
   optedInCtaSingleGameShort: string,
   optIn: string,
   optedIn: string,
@@ -925,9 +956,16 @@ export type ReelRacesPageQuery_reelRaces_translations = {
   today: string,
   tomorrow: string,
 };
-export type ReelRacesPageQuery_reelRaces = {
+export type ReelRacesPageTabScheduleQuery_reelRaces_leaderboard = {
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+};
+export type ReelRacesPageTabScheduleQuery_reelRaces = {
   id: string,
-  game: ReelRacesPageQuery_reelRaces_game,
+  game: ReelRacesPageTabScheduleQuery_reelRaces_game,
   startTime: BigInt,
   optedIn: boolean,
   endTime: BigInt,
@@ -936,12 +974,13 @@ export type ReelRacesPageQuery_reelRaces = {
   promoted: boolean,
   formattedPrize: string,
   formattedPrizes: Array<string>,
-  translations: ReelRacesPageQuery_reelRaces_translations,
+  translations: ReelRacesPageTabScheduleQuery_reelRaces_translations,
+  leaderboard: Array<ReelRacesPageTabScheduleQuery_reelRaces_leaderboard>,
 };
-export type ReelRacesPageQuery = {
-  reelRaces: Array<ReelRacesPageQuery_reelRaces>,
+export type ReelRacesPageTabScheduleQuery = {
+  reelRaces: Array<ReelRacesPageTabScheduleQuery_reelRaces>,
 };
-export type ReelRacesPageQueryVariables = {
+export type ReelRacesPageTabScheduleQueryVariables = {
   limit: number,
 };
 
@@ -2485,6 +2524,30 @@ export type ReelRaceCard_ReelRace = {
 };
 
 // ====================================================
+// GraphQL fragment: ReelRacePreviousCard_ReelRace
+// ====================================================
+
+export type ReelRacePreviousCard_ReelRace_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRacePreviousCard_ReelRace_leaderboard = {
+  playerName: string,
+  position: number,
+  points: number,
+};
+export type ReelRacePreviousCard_ReelRace = {
+  id: string,
+  game: ReelRacePreviousCard_ReelRace_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  formattedPrizes: Array<string>,
+  leaderboard: Array<ReelRacePreviousCard_ReelRace_leaderboard>,
+};
+
+// ====================================================
 // GraphQL fragment: ReelRaceScheduleCard_ReelRace
 // ====================================================
 
@@ -2508,6 +2571,13 @@ export type ReelRaceScheduleCard_ReelRace_translations = {
   today: string,
   tomorrow: string,
 };
+export type ReelRaceScheduleCard_ReelRace_leaderboard = {
+  playerId: string,
+  playerName: string,
+  position: number,
+  points: number,
+  remainingSpins: number,
+};
 export type ReelRaceScheduleCard_ReelRace = {
   id: string,
   game: ReelRaceScheduleCard_ReelRace_game,
@@ -2520,6 +2590,7 @@ export type ReelRaceScheduleCard_ReelRace = {
   formattedPrize: string,
   formattedPrizes: Array<string>,
   translations: ReelRaceScheduleCard_ReelRace_translations,
+  leaderboard: Array<ReelRaceScheduleCard_ReelRace_leaderboard>,
 };
 
 // ====================================================

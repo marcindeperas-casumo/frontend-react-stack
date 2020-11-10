@@ -1,0 +1,8 @@
+#import "../ReelRacePreviousCard/ReelRacePreviousCard.graphql"
+
+query ReelRacesPageTabPreviousQuery($limit: Int!, $previous: Boolean) {
+    reelRaces(limit: $limit, previous: $previous) {
+        id
+        ...ReelRacePreviousCard_ReelRace
+    }
+}

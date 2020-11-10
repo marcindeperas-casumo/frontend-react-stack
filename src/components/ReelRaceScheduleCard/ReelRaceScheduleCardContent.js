@@ -8,7 +8,7 @@ import cx from "classnames";
 import { TimeLockedIcon, SpinIcon, AthleticsIcon } from "@casumo/cmp-icons";
 import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 import DangerousHtml from "Components/DangerousHtml";
 import * as A from "Types/apollo";
 import OptInButton from "Components/OptInButton/OptInButton";
@@ -118,19 +118,20 @@ export function ReelRaceScheduleCardContent({
         className={cx(isNotMobile && "u-margin-left--5xlg")}
         align="center"
       >
-        {reelRace.translations.caveatShort && (
-          <Text
-            tag="div"
-            className="c-reel-race__terms t-color-grey-50 u-padding--md"
-            // onClick={showCaveatsModal}
-          >
-            <DangerousHtml
-              html={interpolate(reelRace.translations.caveatShort, {
-                ctaTermsAndConditions: 'class="t-color-grey-50"',
-              })}
-            />
-          </Text>
-        )}
+        {reelRace.translations.caveatShort &&
+          reelRace.translations.caveatShort !== "false" && (
+            <Text
+              tag="div"
+              className="t-color-grey-50 u-padding--md"
+              // onClick={showCaveatsModal}
+            >
+              <DangerousHtml
+                html={interpolate(reelRace.translations.caveatShort, {
+                  ctaTermsAndConditions: 'class="t-color-grey-50"',
+                })}
+              />
+            </Text>
+          )}
         <Flex justify="end" className="o-flex--1 u-margin--lg">
           <Button size="md" onClick={toggleExpandPrizes}>
             {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}

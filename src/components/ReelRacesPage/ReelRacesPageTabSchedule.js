@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { RACE_STATE } from "Models/reelRaces";
 import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
-import { ReelRacesPageQuery } from "./ReelRacesPageContainer.graphql";
+import { ReelRacesPageTabScheduleQuery } from "./ReelRacesPageTabSchedule.graphql";
 import type { ReelRacesContentPage } from "./ReelRacesPage";
 
 type Props = {
@@ -16,9 +16,9 @@ type Props = {
 
 export function ReelRacesPageTabSchedule({ t }: Props) {
   const { data } = useQuery<
-    A.ReelRacesPageQuery,
-    A.ReelRacesPageQueryVariables
-  >(ReelRacesPageQuery, {
+    A.ReelRacesPageTabScheduleQuery,
+    A.ReelRacesPageTabScheduleQueryVariables
+  >(ReelRacesPageTabScheduleQuery, {
     variables: {
       limit: 20,
     },
@@ -33,7 +33,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
     );
 
     return (
-      <div>
+      <>
         {scheduledreelRaces.map((reelRace, i) => (
           <div key={reelRace.id}>
             {i === 1 && (
@@ -53,14 +53,13 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
               </Flex>
             )}
             <ReelRaceScheduleCard
-              key={reelRace.id}
               reelRace={reelRace}
               t={t}
               isOpen={i === 0 || i === 1}
             />
           </div>
         ))}
-      </div>
+      </>
     );
   }
 

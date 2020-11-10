@@ -15,6 +15,9 @@ export type ReelRacesContentPage = {
   today: string,
   tomorrow: string,
   show_prizes_button: string,
+  hide_prizes_button: string,
+  hide_leaderboard_button: string,
+  show_leaderboard_button: string,
 };
 
 type Tabs = "schedule" | "previous";

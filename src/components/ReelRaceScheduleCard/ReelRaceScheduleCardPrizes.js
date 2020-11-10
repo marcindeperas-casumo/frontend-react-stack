@@ -5,7 +5,7 @@ import { append, contains, reduce, ifElse, identity } from "ramda";
 import { LaurelIcon, TournamentIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 
 type Props = {
   formattedPrizes: Array<string>,
@@ -28,7 +28,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
             key={`${prize}_${count}`}
             className={cx(
               count !== prizes.length && "t-border-bottom",
-              "t-border-grey-5 u-padding-y"
+              "t-border-grey-0 u-padding-y"
             )}
           >
             <Flex.Block>
@@ -52,9 +52,9 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                 </Text>
               </div>
             </Flex.Block>
-            <Flex align="center">
+            <Flex align="center" className="u-margin-right">
               <TournamentIcon className="t-color-grey-50 u-margin-right" />
-              <Text size="lg" className="u-font-weight-bold">
+              <Text size="md" className="u-font-weight-bold">
                 {prize}
               </Text>
             </Flex>

@@ -1,0 +1,17 @@
+fragment ReelRacePreviousCard_ReelRace on ReelRace {
+    id
+    game {
+        id
+        name
+        logo
+        backgroundImage
+    }
+    startTime
+    endTime
+    formattedPrizes
+    leaderboard {
+      playerName
+      position
+      points
+    }
+}

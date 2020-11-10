@@ -7,7 +7,7 @@ import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
