@@ -1,9 +1,9 @@
-owner: "Frontend"
-description: "Casumo Mobile - React Stack Proof of Concept"
-
+owner: common
+description: Casumo Mobile - React Stack Proof of Concept
 change-management:
-   risk-ratings:
-      confidentiality: 1
-      integrity: 1
-      availability: 1
-      accountability: 1
+  risk-ratings:
+    confidentiality: 1
+    integrity: 1
+    availability: 1
+    accountability: 1
+notification_group: frontend
