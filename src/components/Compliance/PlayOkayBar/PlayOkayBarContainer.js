@@ -9,17 +9,8 @@ export type PauseResumeProps = {
   resumeGame: () => void,
 };
 
-export const PlayOkayBarContainer = ({
-  pauseGame,
-  resumeGame,
-}: PauseResumeProps) => {
+export const PlayOkayBarContainer = () => {
   const { jurisdiction } = useJurisdiction();
 
-  return (
-    <PlayOkayBar
-      jurisdiction={jurisdiction}
-      pauseGame={pauseGame}
-      resumeGame={resumeGame}
-    />
-  );
+  return <PlayOkayBar jurisdiction={jurisdiction} />;
 };

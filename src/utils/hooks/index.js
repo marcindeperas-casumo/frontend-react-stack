@@ -34,3 +34,4 @@ export { usePin } from "./usePin";
 export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export type { CurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export { useReelRaceProgress } from "./useReelRaceProgress";
+export { useMarketConfig } from "./useMarketConfig";

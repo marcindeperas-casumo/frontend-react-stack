@@ -14,7 +14,7 @@ import { isNativeByUserAgent } from "Src/gameProviders/utils";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { Desktop, isDesktop } from "Components/ResponsiveLayout";
-import { PinnedDrawersContext } from "Components/GamePage/Contexts/drawerPinningContext";
+import { usePinnedWidgetsContext } from "Components/GamePage/Contexts";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
@@ -39,7 +39,7 @@ export const ReelRacesDrawerWidgetContainer = ({
   const [showLeaderboard, setShowLeaderboard] = React.useState(
     initialShowLeaderboard
   );
-  const { togglePin, isPinned } = React.useContext(PinnedDrawersContext);
+  const { togglePin, pinnedWidgets } = usePinnedWidgetsContext();
 
   useReelRaceLeaderboardModal(currentRace);
 
@@ -53,10 +53,10 @@ export const ReelRacesDrawerWidgetContainer = ({
   const gameProgress = useReelRaceProgress(currentRace, 1000);
 
   React.useEffect(() => {
-    if (currentRace?.hasEnded && isPinned(DRAWERS.REEL_RACES)) {
+    if (currentRace?.hasEnded && pinnedWidgets.includes(DRAWERS.REEL_RACES)) {
       togglePin(DRAWERS.REEL_RACES);
     }
-  }, [currentRace, currentReelRaceFromHook, isPinned, togglePin]);
+  }, [currentRace, currentReelRaceFromHook, pinnedWidgets, togglePin]);
 
   const leaderboard = React.useMemo(() => {
     if (!currentRace) {
