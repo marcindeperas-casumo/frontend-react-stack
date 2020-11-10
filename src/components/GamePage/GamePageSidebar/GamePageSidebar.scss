@@ -1,0 +1,7 @@
+.c-game-page-sidebar {
+  scrollbar-width: none;
+  width: var(--game-page-sidebar-width-desktop);
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

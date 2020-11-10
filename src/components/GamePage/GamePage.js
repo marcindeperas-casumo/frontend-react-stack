@@ -53,11 +53,7 @@ export const GamePage = ({
             spacing="none"
             className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
           >
-            {sidebar && (
-              <Flex.Item className="c-game-page__sidebar u-padding-right">
-                {sidebar}
-              </Flex.Item>
-            )}
+            <Flex.Item>{sidebar}</Flex.Item>
             <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
               {gameWindow}
               {overScreenNotifications}
