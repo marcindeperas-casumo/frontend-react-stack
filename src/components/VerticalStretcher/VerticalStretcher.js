@@ -27,72 +27,60 @@ const onSwipePanelClick = (element: ?HTMLElement) => {
 
 export const VerticalStretcher = ({
   children,
-  swipeUpPanelEnabled = false,
+  swipeUpPanelEnabled = true,
   gameProviderModel,
   fullScreenElement = document.body,
-}: // eslint-disable-next-line sonarjs/cognitive-complexity
-Props) => {
+}: Props) => {
   const heightContainer = useRef(null);
   const [showSwipePanel, setShowSwipePanel] = useState(true);
-  const [controllScroll, setControllScroll] = useState(true);
-  const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
-
+  const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
+
+  const expandBody = () => {
+    if (document.body) {
+      /* eslint-disable-next-line fp/no-mutation */
+      document.body.style.height = "calc(100vh + 100px)";
+    }
+  };
+
+  const shrinkBody = () => {
+    if (document.body) {
+      /* eslint-disable-next-line fp/no-mutation */
+      document.body.style.height = "100vh";
+    }
+  };
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
-      if (controllScroll) {
-        window.scrollTo(0, 0);
-      }
-    }, 50);
-
-    const debouncedScrollToTopTemp = debounce(() => {
       window.scrollTo(0, 0);
     }, 100);
 
-    const interval = setInterval(() => {
-      if (heightContainer.current && document.body) {
+    const matchContainerHeight = () => {
+      if (heightContainer.current) {
         /**
          * So far this is the only way i've found which solves the problem
          * of browser toolbars overlaying game content when they appear.
          */
+
         /* eslint-disable-next-line fp/no-mutation */
         heightContainer.current.style.height = `${window.innerHeight}px`;
-
-        /**
-         * Fix for evolution games, they set our body.height to calc(100px + 100vh)
-         * to emulate their own "swipe to play" feature which we don't want :)
-         */
-        /* eslint-disable-next-line fp/no-mutation */
-        document.body.style.height = "100vh";
-        /**
-         * This is just called here to trigger resize event which causes
-         * game container to match size of it's parent after changing
-         * top-lvl parent dimensions
-         */
-        window.dispatchEvent(new Event("resize"));
-
-        /**
-         * swipePanel allows to force player to go fullscreen to play the game
-         * when toolbars are being shown and they are eating part of the screen
-         */
-        const deviceNotInFullScreenMode =
-          window.innerHeight < document.body?.clientHeight;
-
-        if (deviceNotInFullScreenMode) {
-          if (!alreadyTriggeredOnce) {
-            setShowSwipePanel(true);
-            setControllScroll(false);
-          }
-        } else {
-          if (showSwipePanel) {
-            setAlreadyTriggeredOnce(true);
-          }
-          setShowSwipePanel(false);
-          setControllScroll(true);
-        }
       }
-    }, 100);
+    };
+
+    matchContainerHeight();
+
+    const interval = setInterval(() => {
+      const deviceNotInFullScreenMode =
+        window.innerHeight < measure?.clientHeight;
+
+      if (deviceNotInFullScreenMode) {
+        setShowSwipePanel(true);
+        expandBody();
+      } else {
+        setShowSwipePanel(false);
+        shrinkBody();
+      }
+    }, 1);
 
     /**
      * This prevents the situation when game content (resized to window.innerHeight)
@@ -102,14 +90,12 @@ Props) => {
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    window.addEventListener("resize", debouncedScrollToTopTemp);
+    window.addEventListener("resize", matchContainerHeight);
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("resize", debouncedScrollToTopTemp);
-      if (interval) {
-        clearInterval(interval);
-      }
+      window.removeEventListener("resize", matchContainerHeight);
+      clearInterval(interval);
     };
   });
 
@@ -148,7 +134,7 @@ Props) => {
           </Flex>
         </div>
       )}
-      {!shouldShowSwipePanel && children}
+      {children}
     </div>
   );
 };

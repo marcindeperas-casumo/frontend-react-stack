@@ -39,7 +39,7 @@ export const GamePage = ({
   }
 
   return (
-    <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
+    <FullscreenView className="u-height--screen u-width--screen t-background-grey-90">
       <VerticalStretcher gameProviderModel={gameProviderModel}>
         <Flex
           className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
