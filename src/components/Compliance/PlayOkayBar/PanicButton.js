@@ -25,6 +25,7 @@ export const PanicButton = () => {
     }
   }, [content]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const thanksAppleIosSafariTeam = e => e.preventDefault();
   const selfExclude24h = ({ elapsedTime }) => {
     // Not really required but not harmful either. Extra sanity check if someone
     // was to change the default transition-duration to non-zero value 🙂
@@ -50,14 +51,13 @@ export const PanicButton = () => {
 
   return (
     <ButtonSecondary
-      className="t-background-grey-70 t-background-grey-70:hover
-        t-color-white u-text-transform-uppercase
-        o-position--relative u-overflow--hidden
+      className="t-background-grey-70 t-background-grey-70:hover t-background-grey-70:active
+        t-color-white u-text-transform-uppercase o-position--relative u-overflow--hidden
         c-playokay-bar__panic-button"
       size="xs"
       style={{ "--panic-btn-duration": `${INTERACTION_TIME_SECONDS}s` }}
       onTransitionEnd={selfExclude24h}
-      onTouchStart="" // Good job Apple iOS Safari team 😒
+      onTouchStart={thanksAppleIosSafariTeam}
     >
       {content?.button_label}
     </ButtonSecondary>

@@ -26,6 +26,15 @@
   }
 
   &__panic-button {
+    /* iOS Safari can't handle 100% radial gradient AND it needs to have them defined
+     * in non-active state for the transition to even render. Sigh. Why can't you
+     * just do what Microsoft did and embrace another already working browser 😉 */
+    background-image: radial-gradient(
+        circle closest-side,
+        transparent 99.99%,
+        transparent 99.99%
+      ),
+      linear-gradient(90deg, transparent 50%, transparent 50%);
     background-position: 100% 0;
     background-repeat: no-repeat;
     background-size: 200% 100%;
@@ -35,14 +44,13 @@
     transition-timing-function: linear;
     user-select: none;
 
-    /* iOS Safari can't handle 100% radial gradient. It's just too much 🙅‍♂️ */
     &:active {
       background-image: radial-gradient(
           circle closest-side,
-          cudl-palette(red, "30") 99.9999%,
-          transparent 0
+          cudl-palette(red, "30") 99.9%,
+          transparent 99.9%
         ),
-        linear-gradient(90deg, cudl-palette(red, "30") 50%, transparent 0);
+        linear-gradient(90deg, cudl-palette(red, "30") 50%, transparent 50%);
       background-position: 0 0;
       transition-duration: var(--panic-btn-duration, 3s);
     }
