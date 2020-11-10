@@ -24,6 +24,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
     requirementType
     games {
       title
+      slug
     }
     excludedGames {
       title
