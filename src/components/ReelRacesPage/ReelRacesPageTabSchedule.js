@@ -54,7 +54,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
             <ReelRaceScheduleCard
               reelRace={reelRace}
               t={t}
-              isOpen={i === 0 || i === 1}
+              expanded={i === 0 || i === 1}
             />
           </div>
         ))}
