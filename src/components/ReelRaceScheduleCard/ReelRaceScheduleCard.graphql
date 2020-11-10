@@ -26,3 +26,10 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
         tomorrow
     }
 }
+
+mutation ReelRaceOptInMutation($id: String!) {
+    optInForReelRace(id: $id) {
+        id
+        optedIn
+    }
+}
