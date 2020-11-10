@@ -1,15 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MockDate from "mockdate";
-import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import reelRaceMock from "./__mocks__/reelRace.json";
 import tMock from "./__mocks__/t.json";
-
-if (isChromatic) {
-  MockDate.set(new Date().toString());
-}
 
 const stories = storiesOf("ReelRaceScheduleCard", module);
 
