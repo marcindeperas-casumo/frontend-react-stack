@@ -22,10 +22,14 @@ export type ReelRacesContentPage = {
   leaderboard_rank: string,
 };
 
-type Tabs = "schedule" | "previous";
+type Tabs = "SCHEDULE" | "PREVIOUS";
+const TABS = {
+  SCHEDULE: "SCHEDULE",
+  PREVIOUS: "PREVIOUS",
+};
 
 export function ReelRacesPage() {
-  const [activeTab, setActiveTab] = React.useState<Tabs>("schedule");
+  const [activeTab, setActiveTab] = React.useState<Tabs>(TABS.SCHEDULE);
   const isNotMobile = useIsScreenMinimumTablet();
 
   const t = useTranslations<ReelRacesContentPage>(
@@ -50,7 +54,7 @@ export function ReelRacesPage() {
           )}
         >
           <Flex.Block
-            onClick={() => setTab("schedule")}
+            onClick={() => setTab(TABS.SCHEDULE)}
             align="center"
             className={cx(
               "t-border-bottom--lg",
@@ -64,7 +68,7 @@ export function ReelRacesPage() {
             </Text>
           </Flex.Block>
           <Flex.Block
-            onClick={() => setTab("previous")}
+            onClick={() => setTab(TABS.PREVIOUS)}
             align="center"
             className={cx(
               "t-border-bottom--lg",
@@ -80,8 +84,8 @@ export function ReelRacesPage() {
         </Flex>
         {/* Tabs */}
 
-        {activeTab === "schedule" && <ReelRacesPageTabSchedule t={t} />}
-        {activeTab === "previous" && <ReelRacesPageTabPrevious t={t} />}
+        {activeTab === TABS.SCHEDULE && <ReelRacesPageTabSchedule t={t} />}
+        {activeTab === TABS.PREVIOUS && <ReelRacesPageTabPrevious t={t} />}
       </div>
     </div>
   );

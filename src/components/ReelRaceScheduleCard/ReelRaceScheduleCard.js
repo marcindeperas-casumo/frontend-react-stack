@@ -115,7 +115,7 @@ export function ReelRaceScheduleCard({ reelRace, t, expanded = false }: Props) {
           t={t}
           // $FlowFixMe
           optIn={optInForReelRace}
-          showPrizes={open}
+          showPrizes={expanded}
         />
       )}
     </div>
