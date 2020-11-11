@@ -95,7 +95,7 @@ export function ReelRacePreviousCardWinners({
     <Flex direction="vertical" className="u-padding-x--md">
       {winners.map((p, i) => renderRow(p, i, winners.length, true))}
       {full && rest.map((p, i) => renderRow(p, i, rest.length))}
-      {winners.length && rest.length && (
+      {Boolean(rest.length) && (
         <Flex.Block className="u-text-align-center u-margin-bottom--lg">
           <ButtonPrimary size="md" onClick={toggleFull}>
             {full ? t?.hide_leaderboard_button : t?.show_leaderboard_button}
