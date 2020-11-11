@@ -3,18 +3,24 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { Button } from "@casumo/cmp-button";
+import { Button, ButtonPrimary } from "@casumo/cmp-button";
 import cx from "classnames";
-import { TimeLockedIcon, SpinIcon, AthleticsIcon } from "@casumo/cmp-icons";
-import { interpolate } from "Utils";
+import {
+  TimeLockedIcon,
+  SpinIcon,
+  AthleticsIcon,
+  PlayIcon,
+} from "@casumo/cmp-icons";
+import { interpolate, noop } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
+import { launchGame } from "Services/LaunchGameService";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 import DangerousHtml from "Components/DangerousHtml";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
-import OptInButton from "Components/OptInButton/OptInButton";
 import { EVENTS, MODALS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
+import TrackClick from "Components/TrackClick";
 import { ReelRaceScheduleCardPrizes } from "./ReelRaceScheduleCardPrizes";
 
 type Props = {
@@ -45,14 +51,15 @@ export function ReelRaceScheduleCardContent({
 
   const active = {
     label: reelRace.translations.optIn || "",
-    eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
+    eventName: EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED,
     data: { state: BUTTON_STATE.OPT_IN },
     onClick: optIn,
   };
   const disabled = {
-    label: reelRace.translations.optedIn || "",
-    eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
-    data: { state: BUTTON_STATE.OPTED_IN },
+    label: "Play",
+    eventName: EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED,
+    data: { state: BUTTON_STATE.PLAY },
+    onClick: (slug: string) => launchGame({ slug }),
   };
 
   const showCaveatsModal = () => {
@@ -142,11 +149,29 @@ export function ReelRaceScheduleCardContent({
             {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
           </Button>
           <div className="u-margin-left--md">
-            <OptInButton
-              active={active}
-              disabled={disabled}
-              isOptedIn={reelRace.optedIn}
-            />
+            {reelRace.optedIn ? (
+              <TrackClick eventName={disabled.eventName} data={disabled.data}>
+                <ButtonPrimary
+                  size="md"
+                  onClick={() =>
+                    disabled.onClick
+                      ? disabled.onClick(reelRace.game.slug)
+                      : noop()
+                  }
+                >
+                  <PlayIcon size="sm" />
+                  <Text tag="span" className="u-margin-left">
+                    {disabled.label}
+                  </Text>
+                </ButtonPrimary>
+              </TrackClick>
+            ) : (
+              <TrackClick eventName={active.eventName} data={active.data}>
+                <ButtonPrimary size="md" onClick={active.onClick || noop}>
+                  <Text tag="span">{active.label}</Text>
+                </ButtonPrimary>
+              </TrackClick>
+            )}
           </div>
         </Flex>
       </Flex>

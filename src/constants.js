@@ -307,6 +307,8 @@ export const EVENTS = {
   MIXPANEL_CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
   MIXPANEL_CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
   MIXPANEL_REEL_RACE_CLICKED: "Reel Race Card Clicked",
+  MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED:
+    "Reel Race Schedule Card Opt In Clicked",
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",

@@ -2,6 +2,7 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
     id
     game {
         id
+        slug
         name
         logo
         backgroundImage
