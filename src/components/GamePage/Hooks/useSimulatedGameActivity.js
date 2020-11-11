@@ -6,7 +6,9 @@ import { playerBalanceAmountSelector } from "Models/player";
 
 const WIN_DELAY = 120000;
 
-export const useSimulatedGameActivity = onGameActivityChange => {
+export const useSimulatedGameActivity = (
+  onGameActivityChange: (isActive: boolean) => void
+) => {
   const [gameActive, setGameActive] = useState(false);
   const [
     simulatedGameActivityEnabled,
