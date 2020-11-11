@@ -22,7 +22,7 @@ export function ReelRacePreviousCardWinners({
   expanded = false,
 }: Props) {
   const isNotMobile = useIsScreenMinimumTablet();
-  const [full, setFull] = React.useState(expanded);
+  const [full, setFull] = React.useState<boolean>(expanded);
   const toggleFull = React.useCallback(() => setFull(state => !state), [
     setFull,
   ]);
@@ -37,7 +37,12 @@ export function ReelRacePreviousCardWinners({
     reelRace.leaderboard
   );
 
-  const renderRow = (p, i, length, showPrizes = false) => {
+  const renderRow = (
+    p: A.ReelRaceScheduleCard_ReelRace_leaderboard,
+    i: number,
+    length: number,
+    showPrizes: boolean = false
+  ) => {
     return (
       <Flex
         key={`${p.playerName}`}
