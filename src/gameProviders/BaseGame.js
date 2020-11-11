@@ -84,7 +84,7 @@ export class BaseGame {
 
     if (gameElement) {
       gameElement.setAttribute(
-        GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE.GAME,
+        GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
         this.gameActivityStatusSource
       );
     }
