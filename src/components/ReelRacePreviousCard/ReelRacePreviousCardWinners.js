@@ -38,7 +38,7 @@ export function ReelRacePreviousCardWinners({
   );
 
   const renderRow = (
-    p: A.ReelRaceScheduleCard_ReelRace_leaderboard,
+    p: A.ReelRacePreviousCard_ReelRace_leaderboard,
     i: number,
     length: number,
     showPrizes: boolean = false
