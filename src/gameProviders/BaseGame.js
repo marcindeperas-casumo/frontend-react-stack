@@ -6,7 +6,7 @@ import { expandElementHeightToMatchItsParent } from "./utils";
 import {
   GAME_ACTIVE_EVENT_NAME,
   GAME_IDLE_EVENT_NAME,
-  GAME_ACTIVITY,
+  GAME_ACTIVITY_STATUS_INDICATOR,
 } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
@@ -16,7 +16,8 @@ export class BaseGame {
   onGameIdle: Event;
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
-  gameActivity: string = GAME_ACTIVITY.SIMULATED;
+  gameActivityStatusIndicator: string =
+    GAME_ACTIVITY_STATUS_INDICATOR.SIMULATED;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;

@@ -2,7 +2,7 @@
 import { injectScript } from "Utils";
 import type { GameProviderModelProps } from "./types";
 import { BaseGame } from "./BaseGame";
-import { GAME_ACTIVITY } from "./constants";
+import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 
 // TODO:
@@ -19,7 +19,7 @@ export class PlayNGoDesktopGame extends BaseGame {
   constructor(props: GameProviderModelProps) {
     super(props);
 
-    this.gameActivity = GAME_ACTIVITY.MANAGED;
+    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
   }
   get componentProps() {
     return {

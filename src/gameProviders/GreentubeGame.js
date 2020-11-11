@@ -1,7 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { GAME_ACTIVITY } from "./constants";
+import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
 
 export const COMMANDS = {
   PAUSE: "AUTOPLAYOFF:",
@@ -21,7 +21,7 @@ export class GreentubeGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
 
-    this.gameActivity = GAME_ACTIVITY.MANAGED;
+    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
   }
 
   get componentProps() {

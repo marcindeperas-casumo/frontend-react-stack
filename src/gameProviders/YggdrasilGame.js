@@ -1,7 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { GAME_ACTIVITY } from "./constants";
+import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
 
 // ISSUES:
 // back to lobby and other urls are coming from backend
@@ -15,7 +15,7 @@ export class YggdrasilGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = "gameRound/end";
     this.api.features.instantPause = true;
 
-    this.gameActivity = GAME_ACTIVITY.MANAGED;
+    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
   }
 
   get componentProps() {

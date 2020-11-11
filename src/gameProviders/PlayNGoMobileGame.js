@@ -2,7 +2,7 @@
 import type { GameProviderModelProps, IframeMessageEvent } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
-import { GAME_ACTIVITY } from "./constants";
+import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
 
 export class PlayNGoMobileGame extends BaseIframeGame {
   swipeUpToPlayPanelPossible = false;
@@ -15,7 +15,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = EVENTS.ON_GAME_ROUND_END;
     this.targetDomain = window.location.origin;
 
-    this.gameActivity = GAME_ACTIVITY.MANAGED;
+    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
   }
 
   get componentProps() {
