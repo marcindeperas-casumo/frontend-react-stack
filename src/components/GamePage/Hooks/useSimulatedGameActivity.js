@@ -6,24 +6,25 @@ import { playerBalanceAmountSelector } from "Models/player";
 
 const WIN_DELAY = 120000;
 
-export const usePseudoGameActivity = onGameActivityChange => {
+export const useSimulatedGameActivity = onGameActivityChange => {
   const [gameActive, setGameActive] = useState(false);
-  const [pseudoGameActivityEnabled, setPseudoGameActivityEnabled] = useState(
-    false
-  );
+  const [
+    simulatedGameActivityEnabled,
+    setSimulatedGameActivityEnabled,
+  ] = useState(false);
   const timeoutRef = useRef();
   const currentWalletAmount = useSelector(playerBalanceAmountSelector);
-  const previousRef = useRef(currentWalletAmount);
+  const previousWalletAmount = useRef(currentWalletAmount);
   const flushGameRound = () => {
     clearTimeout(timeoutRef.current);
     // eslint-disable-next-line fp/no-mutation
     timeoutRef.current = null;
   };
-  const enablePseudoGameActivity = () => {
-    setPseudoGameActivityEnabled(true);
+  const enableSimulatedGameActivity = () => {
+    setSimulatedGameActivityEnabled(true);
   };
-  const disablePseudoGameActivity = () => {
-    setPseudoGameActivityEnabled(false);
+  const disableSimulatedGameActivity = () => {
+    setSimulatedGameActivityEnabled(false);
     flushGameRound();
   };
   const onChange = useCallback(
@@ -35,8 +36,8 @@ export const usePseudoGameActivity = onGameActivityChange => {
   );
 
   useEffect(() => {
-    if (pseudoGameActivityEnabled) {
-      if (previousRef.current > currentWalletAmount) {
+    if (simulatedGameActivityEnabled) {
+      if (previousWalletAmount.current > currentWalletAmount) {
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
 
@@ -51,9 +52,9 @@ export const usePseudoGameActivity = onGameActivityChange => {
       }
 
       // eslint-disable-next-line fp/no-mutation
-      previousRef.current = currentWalletAmount;
+      previousWalletAmount.current = currentWalletAmount;
     }
-  }, [pseudoGameActivityEnabled, currentWalletAmount, onChange]);
+  }, [simulatedGameActivityEnabled, currentWalletAmount, onChange]);
 
   useEffect(() => {
     if (gameActive) {
@@ -66,7 +67,7 @@ export const usePseudoGameActivity = onGameActivityChange => {
   }, [gameActive, onChange]);
 
   return {
-    disablePseudoGameActivity,
-    enablePseudoGameActivity,
+    disableSimulatedGameActivity,
+    enableSimulatedGameActivity,
   };
 };

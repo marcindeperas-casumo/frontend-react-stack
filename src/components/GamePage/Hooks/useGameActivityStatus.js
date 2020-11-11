@@ -6,7 +6,7 @@ import {
   GAME_ACTIVITY_STATUS_SOURCE,
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
 } from "../../../gameProviders";
-import { usePseudoGameActivity } from "../Hooks/usePseudoGameActivity";
+import { useSimulatedGameActivity } from "../Hooks/useSimulatedGameActivity";
 import { useGameModelContext } from "../Contexts/GameModelContext";
 
 const addGameActivityListeners = (
@@ -31,9 +31,9 @@ export const useGameActivityStatus = () => {
   const { gameProviderModel } = useGameModelContext();
   const [active, setActive] = useState(false);
   const {
-    enablePseudoGameActivity,
-    disablePseudoGameActivity,
-  } = usePseudoGameActivity(setActive);
+    enableSimulatedGameActivity,
+    disableSimulatedGameActivity,
+  } = useSimulatedGameActivity(setActive);
 
   useEffect(() => {
     if (gameProviderModel && gameProviderModel.props.gameRef.current) {
@@ -64,12 +64,16 @@ export const useGameActivityStatus = () => {
           );
         };
       } else {
-        enablePseudoGameActivity();
+        enableSimulatedGameActivity();
 
-        return disablePseudoGameActivity;
+        return disableSimulatedGameActivity;
       }
     }
-  }, [disablePseudoGameActivity, enablePseudoGameActivity, gameProviderModel]);
+  }, [
+    disableSimulatedGameActivity,
+    enableSimulatedGameActivity,
+    gameProviderModel,
+  ]);
 
   return active;
 };
