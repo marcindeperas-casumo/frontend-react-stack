@@ -1,6 +1,8 @@
 // @flow
 import { injectScript } from "Utils";
+import type { GameProviderModelProps } from "./types";
 import { BaseGame } from "./BaseGame";
+import { GAME_ACTIVITY } from "./constants";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 
 // TODO:
@@ -14,6 +16,11 @@ type Engage = {
 };
 
 export class PlayNGoDesktopGame extends BaseGame {
+  constructor(props: GameProviderModelProps) {
+    super(props);
+
+    this.gameActivity = GAME_ACTIVITY.MANAGED;
+  }
   get componentProps() {
     return {
       ...super.componentProps,

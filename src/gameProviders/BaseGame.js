@@ -3,7 +3,11 @@ import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { expandElementHeightToMatchItsParent } from "./utils";
-import { GAME_ACTIVE_EVENT_NAME, GAME_IDLE_EVENT_NAME } from "./constants";
+import {
+  GAME_ACTIVE_EVENT_NAME,
+  GAME_IDLE_EVENT_NAME,
+  GAME_ACTIVITY,
+} from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
 export class BaseGame {
@@ -12,6 +16,7 @@ export class BaseGame {
   onGameIdle: Event;
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
+  gameActivity: string = GAME_ACTIVITY.SIMULATED;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
@@ -72,7 +77,13 @@ export class BaseGame {
   };
 
   onMount() {
+    const { current: gameElement } = this.props.gameRef;
+
     window.addEventListener("resize", this.onResize);
+
+    if (gameElement) {
+      gameElement.setAttribute("data-game-activity", this.gameActivity);
+    }
   }
 
   onUnmount() {

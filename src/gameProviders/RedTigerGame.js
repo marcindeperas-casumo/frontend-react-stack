@@ -1,6 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY } from "./constants";
 
 export const COMMANDS = {
   PAUSE: { type: "popupDisplayed" },
@@ -24,6 +25,8 @@ export class RedTigerGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.api.features.instantPause = true;
+
+    this.gameActivity = GAME_ACTIVITY.MANAGED;
   }
 
   get componentProps() {
