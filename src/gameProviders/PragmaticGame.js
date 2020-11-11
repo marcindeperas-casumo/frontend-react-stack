@@ -1,7 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const COMMANDS = {
   PAUSE: '{ "type": "Tilt" }',
@@ -68,7 +68,7 @@ export class PragmaticGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN;
     this.api.features.instantPause = false;
 
-    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

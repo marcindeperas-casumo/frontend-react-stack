@@ -3,7 +3,7 @@ import logger from "Services/logger";
 import type { GameProviderModelProps } from "./types";
 import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
-import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 declare var netent: { launch: Function };
 
@@ -38,7 +38,7 @@ export class NetentGame extends BaseGame {
   constructor(props: GameProviderModelProps) {
     super(props);
 
-    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {
