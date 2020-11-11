@@ -30,7 +30,7 @@ export function ReelRacePreviousCard({ reelRace, t, expanded = false }: Props) {
       <Flex
         align="center"
         onClick={toggle}
-        className="u-padding--md u-cursor-pointer t-border-r--md"
+        className="u-padding--md t-border-r--md"
       >
         <Flex.Item className="o-flex__item--no-shrink">
           <GameThumb
