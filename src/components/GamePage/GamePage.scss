@@ -7,6 +7,10 @@ $directions: (top, left, bottom, right);
   }
 }
 
+.u-height-full-vh {
+  height: 100vh;
+}
+
 .c-game-page {
   --game-page-sidebar-width-desktop: 290px;
   background-position: center;

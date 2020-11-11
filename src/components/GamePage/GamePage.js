@@ -51,7 +51,7 @@ export const GamePage = ({
           <Flex
             direction="horizontal"
             spacing="none"
-            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height-full-vh"
           >
             {sidebar && (
               <Flex.Item className="c-game-page__sidebar u-padding-right">
