@@ -36,10 +36,6 @@ export function ReelRacesPage() {
     "mobile.tournament-campaigns"
   );
 
-  const setTab = (tab: Tabs) => {
-    setActiveTab(tab);
-  };
-
   return (
     <div className="t-background-grey-0">
       <div className="u-content-width--tablet-landscape u-padding-y--md">
@@ -54,11 +50,11 @@ export function ReelRacesPage() {
           )}
         >
           <Flex.Block
-            onClick={() => setTab(TABS.SCHEDULE)}
+            onClick={() => setActiveTab(TABS.SCHEDULE)}
             align="center"
             className={cx(
               "t-border-bottom--lg",
-              activeTab === "schedule"
+              activeTab === TABS.SCHEDULE
                 ? "t-border-purple-60 t-color-purple-60"
                 : "t-border-grey-20 t-color-grey-20 u-cursor-pointer"
             )}
@@ -68,11 +64,11 @@ export function ReelRacesPage() {
             </Text>
           </Flex.Block>
           <Flex.Block
-            onClick={() => setTab(TABS.PREVIOUS)}
+            onClick={() => setActiveTab(TABS.PREVIOUS)}
             align="center"
             className={cx(
               "t-border-bottom--lg",
-              activeTab === "previous"
+              activeTab === TABS.PREVIOUS
                 ? "t-border-purple-60 t-color-purple-60"
                 : "t-border-grey-20 t-color-grey-20 u-cursor-pointer"
             )}
