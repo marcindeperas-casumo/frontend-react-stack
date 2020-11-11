@@ -33,7 +33,7 @@ export class OryxGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.targetDomain = "https://cdn.oryxgaming.com";
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   onMessageHandler(message: OryxMessage) {

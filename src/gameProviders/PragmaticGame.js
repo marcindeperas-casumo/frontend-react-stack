@@ -68,7 +68,7 @@ export class PragmaticGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN;
     this.api.features.instantPause = false;
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

@@ -28,7 +28,7 @@ export class CasumoGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

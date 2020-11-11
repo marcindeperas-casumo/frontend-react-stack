@@ -15,7 +15,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = EVENTS.ON_GAME_ROUND_END;
     this.targetDomain = window.location.origin;
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

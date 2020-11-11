@@ -15,7 +15,7 @@ export class YggdrasilGame extends BaseIframeGame {
     this.api.events.onGameRoundEnd = "gameRound/end";
     this.api.features.instantPause = true;
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

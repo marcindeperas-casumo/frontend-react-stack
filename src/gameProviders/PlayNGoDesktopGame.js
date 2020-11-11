@@ -19,7 +19,7 @@ export class PlayNGoDesktopGame extends BaseGame {
   constructor(props: GameProviderModelProps) {
     super(props);
 
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
   get componentProps() {
     return {
