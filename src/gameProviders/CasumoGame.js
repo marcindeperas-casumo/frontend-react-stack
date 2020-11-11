@@ -1,7 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { GAME_ACTIVITY_STATUS_INDICATOR } from "./constants";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const COMMANDS = {
   PAUSE: {
@@ -28,7 +28,7 @@ export class CasumoGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
 
-    this.gameActivityStatusIndicator = GAME_ACTIVITY_STATUS_INDICATOR.MANAGED;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.MANAGED;
   }
 
   get componentProps() {

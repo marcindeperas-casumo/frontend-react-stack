@@ -6,7 +6,8 @@ import { expandElementHeightToMatchItsParent } from "./utils";
 import {
   GAME_ACTIVE_EVENT_NAME,
   GAME_IDLE_EVENT_NAME,
-  GAME_ACTIVITY_STATUS_INDICATOR,
+  GAME_ACTIVITY_STATUS_SOURCE,
+  GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
 } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
@@ -16,8 +17,7 @@ export class BaseGame {
   onGameIdle: Event;
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
-  gameActivityStatusIndicator: string =
-    GAME_ACTIVITY_STATUS_INDICATOR.SIMULATED;
+  gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
@@ -84,8 +84,8 @@ export class BaseGame {
 
     if (gameElement) {
       gameElement.setAttribute(
-        "data-game-activity",
-        this.gameActivityStatusIndicator
+        GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
+        this.gameActivityStatusSource
       );
     }
   }
