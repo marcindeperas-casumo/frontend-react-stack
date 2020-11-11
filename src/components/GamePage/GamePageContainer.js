@@ -16,19 +16,24 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop, MobileAndTablet } from "Components/ResponsiveLayout";
+import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
-import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
-import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import { GamePageNotifications } from "./GamePageNotifications";
+import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
-import { useGameModelContext, usePinnedWidgetsContext } from "./Contexts";
+import { useGameModelContext, GamePageContextProvider } from "./Contexts";
 import "./GamePage.scss";
+
+type Props = {
+  slug: string,
+  playForFun: boolean,
+  remoteGameLaunchData: ?Object,
+};
 
 export const GamePageContainer = () => {
   const {
@@ -39,7 +44,6 @@ export const GamePageContainer = () => {
     playForFun,
     error,
   } = useGameModelContext();
-  const { pinnedWidgets } = usePinnedWidgetsContext();
   const bonusAmount = useSelector(playerWalletBonusSelector);
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
@@ -108,15 +112,23 @@ export const GamePageContainer = () => {
       }
       overScreenNotifications={<GamePageNotifications />}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
-      sidebar={
-        pinnedWidgets.includes(DRAWERS.REEL_RACES) &&
-        isDesktop() && (
-          <ReelRacesDrawerWidget
-            initialShowLeaderboard
-            className="u-height--full"
-          />
-        )
-      }
+      sidebar={<GamePageSidebar />}
     />
+  );
+};
+
+export const GamePageWithContext = ({
+  slug,
+  playForFun,
+  remoteGameLaunchData,
+}: Props) => {
+  return (
+    <GamePageContextProvider
+      slug={slug}
+      playForFun={playForFun}
+      remoteGameLaunchData={remoteGameLaunchData}
+    >
+      <GamePageContainer />
+    </GamePageContextProvider>
   );
 };
