@@ -83,7 +83,10 @@ export class BaseGame {
     window.addEventListener("resize", this.onResize);
 
     if (gameElement) {
-      gameElement.setAttribute("data-game-activity", this.gameActivity);
+      gameElement.setAttribute(
+        "data-game-activity",
+        this.gameActivityStatusIndicator
+      );
     }
   }
 
