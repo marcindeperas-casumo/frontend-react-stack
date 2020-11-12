@@ -55,7 +55,7 @@ export const GamePage = ({
             className={cx(
               "u-padding-x--md@desktop u-padding-bottom--md@desktop ",
               {
-                "u-height-full-vh": !gameProviderModel.shouldUseVerticalStretcherHeight,
+                "u-height--full-vh": !gameProviderModel.shouldUseVerticalStretcherHeight,
                 "u-height--full":
                   gameProviderModel.shouldUseVerticalStretcherHeight,
               }
