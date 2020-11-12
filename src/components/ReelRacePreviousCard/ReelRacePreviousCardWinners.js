@@ -9,6 +9,7 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import { interpolate } from "Utils/utils";
 
 type Props = {
   reelRace: A.ReelRacePreviousCard_ReelRace,
@@ -73,7 +74,9 @@ export function ReelRacePreviousCardWinners({
             size="sm"
             className="u-padding-y--md u-margin-left u-font-weight-bold t-color-purple-50"
           >
-            {p.points} pts.
+            {interpolate(t.points_template || "", {
+              points: p.points,
+            })}
           </Text>
         </Flex>
         {showPrizes && reelRace.formattedPrizes[i] && (
