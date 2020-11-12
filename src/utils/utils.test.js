@@ -31,6 +31,7 @@ import {
   decodedUrlParams,
   bonusBalanceDisplay,
   hasAlphaCharactersOnly,
+  queryParamsToJSObject,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -640,5 +641,52 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
       "en-en"
     );
     expect(bonusBalanceDisplayLongText).toMatch("");
+  });
+});
+
+describe("URLSearchParams to JS Object", () => {
+  const queryStringUrl = `https://someBackendReturnedUrl.com?gameId=starburst_mobile_html_sw&gameServer=https://casumo-game.casinomodule.com
+    &staticServer=https://casumo-static.casinomodule.com&casinoId=casumo&lang=en&liveCasinoHost=someHost&sessionId=DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP`;
+
+  const customFnForKeys = key => {
+    // eslint-disable-next-line no-nested-ternary
+    return key === "gameServer"
+      ? "gameServerURL"
+      : key === "lang"
+      ? "language"
+      : key;
+  };
+
+  test("should return JS object containing key value pairs with gameServer key renamed to gameServerURL", () => {
+    const returnedJsObj = queryParamsToJSObject({
+      queryStringUrl,
+      customFnForKeys,
+    });
+
+    const objToMatch = {
+      gameId: "starburst_mobile_html_sw",
+      gameServerURL: "https://casumo-game.casinomodule.com",
+      liveCasinoHost: "someHost",
+      casinoId: "casumo",
+      staticServer: "https://casumo-static.casinomodule.com",
+      sessionId: "DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP",
+      language: "en",
+    };
+
+    expect(returnedJsObj).toMatchObject(objToMatch);
+  });
+
+  test("should return JS object containing key value pairs without renaming any key - values", () => {
+    const returnedJsObj = queryParamsToJSObject({ queryStringUrl });
+    const objToMatch = {
+      gameId: "starburst_mobile_html_sw",
+      gameServer: "https://casumo-game.casinomodule.com",
+      liveCasinoHost: "someHost",
+      casinoId: "casumo",
+      staticServer: "https://casumo-static.casinomodule.com",
+      sessionId: "DEMO-a2a88a48-4ddf-410b-a5e6-80be9b1d96a6-GBP",
+      lang: "en",
+    };
+    expect(returnedJsObj).toMatchObject(objToMatch);
   });
 });

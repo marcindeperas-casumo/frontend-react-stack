@@ -529,35 +529,40 @@ QueryStringToJSObjectProps): QsDataObj | {} => {
     return {};
   } else {
     const paramsObject = new URLSearchParams(queryStringUrl);
-    // eslint-disable-next-line fp/no-let
-    let objToReturn = {};
-    // eslint-disable-next-line fp/no-let
-    let iterationIndex = 0;
     // construct object from query string params, applying any passed argument fns for keys and values
-    paramsObject.forEach(function(value, key) {
+    const paramsArray = Array.from(paramsObject);
+
+    return paramsArray.reduce(function(acc, valueSet, iterationIndex) {
+      const queryKey = valueSet[0];
+      const queryValue = valueSet[1];
       // First param contains url host incl "?"
       // get only content after first "?"
       const splitKey =
-        iterationIndex === 0 && key.includes("?") ? key.split("?")[1] : key;
+        iterationIndex === 0 && queryKey.includes("?")
+          ? queryKey.split("?")[1]
+          : queryKey;
 
+      // apply any passed custom functions for query keys
       const cleanedKey =
         splitKey && customFnForKeys ? customFnForKeys(splitKey) : splitKey;
 
-      // decode any urls found as query string values
-      // eslint-disable-next-line fp/no-mutation
-      iterationIndex += 1;
-      const decodedValueUrls =
-        value && value.includes("http:") ? decodeURIComponent(value) : value;
+      // decode any urls found in each query string value
+      const decodedValueUrl =
+        queryValue && queryValue.includes("http:")
+          ? decodeURIComponent(queryValue)
+          : queryValue;
 
-      const cleanedValue = decodedValueUrls
-        ? decodedValueUrls.trim()
-        : decodedValueUrls;
+      const cleanedValue = decodedValueUrl
+        ? decodedValueUrl.trim()
+        : decodedValueUrl;
 
+      // apply any passed custom functions for query values
       // eslint-disable-next-line fp/no-mutation
-      objToReturn[cleanedKey] = customFnForValues
+      acc[cleanedKey] = customFnForValues
         ? customFnForValues(cleanedValue)
         : cleanedValue;
-    });
-    return objToReturn;
+
+      return acc;
+    }, {});
   }
 };
