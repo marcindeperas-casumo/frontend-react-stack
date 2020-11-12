@@ -1,11 +1,10 @@
 // @flow
 import * as React from "react";
 import { getUrlSearchParam, decodedUrlParams } from "Utils";
-import { GamePageContextProvider } from "Components/GamePage/Contexts";
 
 const LazyComponent = React.lazy(() =>
   import("Components/GamePage").then(module => ({
-    default: module.GamePageContainer,
+    default: module.GamePageWithContext,
   }))
 );
 
@@ -25,13 +24,11 @@ export const LazyPlayForFunGamePage = ({ slug, location }: Props) => {
 
   return (
     <React.Suspense fallback={<div></div>}>
-      <GamePageContextProvider
+      <LazyComponent
         slug={slug}
         playForFun
         remoteGameLaunchData={remoteGameLaunchData}
-      >
-        <LazyComponent />
-      </GamePageContextProvider>
+      />
     </React.Suspense>
   );
 };

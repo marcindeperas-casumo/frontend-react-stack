@@ -4,7 +4,7 @@ import { IFRAME_MODE, IFRAME_PIQ_ENV } from "Models/payments";
 import { isTestEnv } from "Utils";
 import { PiqIframeComponent } from "./PiqIframeComponent";
 
-const ENV = isTestEnv ? IFRAME_PIQ_ENV.TEST : IFRAME_PIQ_ENV.LIVE;
+const ENV = isTestEnv() ? IFRAME_PIQ_ENV.TEST : IFRAME_PIQ_ENV.LIVE;
 const ID = "cvvCodeIframeId";
 
 type Props = {
