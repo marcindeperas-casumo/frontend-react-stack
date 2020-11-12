@@ -1,25 +1,24 @@
 // @flow
-// @flow
 import { useMemoCompare } from "Utils/hooks";
 import { useGameActivityStatusContext } from "../Contexts";
 
-type CompareFunctionType = (
-  previousValue: any,
-  currentValue: any,
+type CompareFunctionType = <T>(
+  previousValue: T,
+  currentValue: T,
   isGameActive: boolean
 ) => boolean;
 
-export const useGameActivityAwareValue = (
-  value: any,
+export function useGameActivityAwareValue<T>(
+  value: T,
   compareFunction?: CompareFunctionType
-) => {
+): T {
   const isGameActive = useGameActivityStatusContext();
 
-  return useMemoCompare(value, (previousValue, currentValue) => {
+  return useMemoCompare<T>(value, (previousValue, currentValue) => {
     if (compareFunction) {
       return compareFunction(previousValue, currentValue, isGameActive);
     }
 
     return isGameActive;
   });
-};
+}

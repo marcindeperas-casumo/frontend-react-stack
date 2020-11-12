@@ -1,12 +1,12 @@
 // @flow
 import { useEffect, useRef } from "react";
 
-type CompareFunctionType = (previousValue: any, currentValue: any) => boolean;
+type CompareFunctionType = <T>(previousValue: T, currentValue: T) => boolean;
 
-export const useMemoCompare = (next: any, compare: CompareFunctionType) => {
-  const previousRef = useRef();
+export function useMemoCompare<T>(next: T, compare: CompareFunctionType): T {
+  const previousRef = useRef<T>(next);
   const previous = previousRef.current;
-  const isEqual = compare(previous, next);
+  const isEqual = compare<T>(previous, next);
 
   useEffect(() => {
     if (!isEqual) {
@@ -16,4 +16,4 @@ export const useMemoCompare = (next: any, compare: CompareFunctionType) => {
   });
 
   return isEqual ? previous : next;
-};
+}
