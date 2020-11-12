@@ -17,6 +17,7 @@ import { Desktop, isDesktop } from "Components/ResponsiveLayout";
 import { usePinnedWidgetsContext } from "Components/GamePage/Contexts";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
@@ -85,6 +86,8 @@ export const ReelRacesDrawerWidgetContainer = ({
     return [...leaderboardTopFixedItems, ...leaderboardScrollableItems];
   }, [currentRace]);
 
+  const gameAwareRaceData = useGameActivityAwareValue(currentRace);
+
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
   }
@@ -96,7 +99,7 @@ export const ReelRacesDrawerWidgetContainer = ({
     startTime,
     endTime,
     boosters,
-  } = currentRace;
+  } = gameAwareRaceData;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
 

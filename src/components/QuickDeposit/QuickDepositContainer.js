@@ -15,6 +15,7 @@ import {
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
 import { REACT_APP_MODAL } from "Src/constants";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
@@ -34,7 +35,26 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
-  const walletBonus = useSelector(playerWalletBonusSelector);
+  const gameAwareBalanceCompareFunction = (prev, next, isGameActive) => {
+    if (prev > next) {
+      // Return fresh value
+      return false;
+    } else if (prev === next) {
+      // Return cached value
+      return true;
+    }
+
+    return isGameActive;
+  };
+  const gameAwarePlayerBalance = useGameActivityAwareValue(
+    playerBalance,
+    gameAwareBalanceCompareFunction
+  );
+  const bonusBalance = useSelector(playerWalletBonusSelector);
+  const gameAwareBonusBalance = useGameActivityAwareValue(
+    bonusBalance,
+    gameAwareBalanceCompareFunction
+  );
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const hasQuickDepositMethods =
     quickDepositEnabled && savedQuickDepositMethods.length > 0;
@@ -52,12 +72,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       walletBalance={formatCurrency({
         locale,
         currency,
-        value: playerBalance,
+        value: gameAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
         currency,
-        value: walletBonus,
+        value: gameAwareBonusBalance,
       })}
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}
