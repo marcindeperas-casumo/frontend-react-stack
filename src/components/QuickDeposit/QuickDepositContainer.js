@@ -36,7 +36,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameAwareBalanceCompareFunction = (prev, next, isGameActive) => {
-    if (prev > next) {
+    // Flow sucks at generics so neeed to specify that numbers are being used
+    if (Number(prev) > Number(next)) {
       // Return fresh value
       return false;
     } else if (prev === next) {
@@ -46,12 +47,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
     return isGameActive;
   };
-  const gameAwarePlayerBalance = useGameActivityAwareValue(
+  const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
     playerBalance,
     gameAwareBalanceCompareFunction
   );
   const bonusBalance = useSelector(playerWalletBonusSelector);
-  const gameAwareBonusBalance = useGameActivityAwareValue(
+  const gameActivityAwareBonusBalance = useGameActivityAwareValue<number>(
     bonusBalance,
     gameAwareBalanceCompareFunction
   );
@@ -72,12 +73,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       walletBalance={formatCurrency({
         locale,
         currency,
-        value: gameAwarePlayerBalance,
+        value: gameActivityAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
         currency,
-        value: gameAwareBonusBalance,
+        value: gameActivityAwareBonusBalance,
       })}
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}

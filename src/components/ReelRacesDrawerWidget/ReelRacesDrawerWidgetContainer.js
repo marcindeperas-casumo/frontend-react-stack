@@ -8,6 +8,7 @@ import {
   useCurrentReelRaceInfo,
   useReelRaceProgress,
 } from "Utils/hooks";
+import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { playingSelector, CMS_SLUGS } from "Models/playing";
 import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
@@ -86,7 +87,9 @@ export const ReelRacesDrawerWidgetContainer = ({
     return [...leaderboardTopFixedItems, ...leaderboardScrollableItems];
   }, [currentRace]);
 
-  const gameAwareRaceData = useGameActivityAwareValue(currentRace);
+  const gameActivityAwareRaceData = useGameActivityAwareValue<CurrentReelRaceInfo>(
+    currentRace
+  );
 
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
@@ -99,7 +102,7 @@ export const ReelRacesDrawerWidgetContainer = ({
     startTime,
     endTime,
     boosters,
-  } = gameAwareRaceData;
+  } = gameActivityAwareRaceData;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
 
