@@ -5,7 +5,7 @@ import type { Element } from "react";
 import debounce from "lodash.debounce";
 import Flex from "@casumo/cmp-flex";
 import { isMobile } from "Components/ResponsiveLayout";
-import { isNativeByUserAgent, PROVIDERS } from "GameProviders";
+import { isNativeByUserAgent } from "GameProviders";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import type { GameProviderModel } from "GameProviders";
 import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
@@ -46,13 +46,12 @@ Props) => {
       }
     }, 50);
 
-    const isPlaytechMobile =
-      gameProviderModel?.props?.gameData?.providerType ===
-      PROVIDERS.PLAYTECH_MOBILE;
+    const shouldUseDynamicHeight =
+      gameProviderModel?.shouldUseVerticalStretcherHeight;
     // eslint-disable-next-line fp/no-let
     let interval = null;
 
-    if (!isPlaytechMobile) {
+    if (shouldUseDynamicHeight) {
       // eslint-disable-next-line fp/no-mutation
       interval = setInterval(() => {
         if (heightContainer.current && document.body) {
