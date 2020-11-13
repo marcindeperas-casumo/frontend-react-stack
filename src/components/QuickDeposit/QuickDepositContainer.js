@@ -35,9 +35,9 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
-  const gameAwareBalanceCompareFunction = (prev, next, isGameActive) => {
+  function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
     // Flow sucks at generics so neeed to specify that numbers are being used
-    if (Number(prev) > Number(next)) {
+    if (prev > next) {
       // Return fresh value
       return false;
     } else if (prev === next) {
@@ -46,7 +46,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     }
 
     return isGameActive;
-  };
+  }
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
     playerBalance,
     gameAwareBalanceCompareFunction

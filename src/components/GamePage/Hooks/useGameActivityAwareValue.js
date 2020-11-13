@@ -2,7 +2,7 @@
 import { useMemoCompare } from "Utils/hooks";
 import { useGameActivityStatusContext } from "../Contexts";
 
-type CompareFunctionType = <T>(
+type CompareFunctionType<T> = (
   previousValue: T,
   currentValue: T,
   isGameActive: boolean
@@ -10,7 +10,7 @@ type CompareFunctionType = <T>(
 
 export function useGameActivityAwareValue<T>(
   value: T,
-  compareFunction?: CompareFunctionType
+  compareFunction?: CompareFunctionType<T>
 ): T {
   const isGameActive = useGameActivityStatusContext();
 
