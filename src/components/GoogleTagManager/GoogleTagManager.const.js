@@ -8,7 +8,7 @@ export const getProdConfig = (
   dataLayer = {},
   dataLayerName = "dataLayer"
 ): GTMScriptParams => ({
-  containerId: CONTAINER_ID,
-  dataLayerName,
   dataLayer,
+  dataLayerName,
+  containerId: CONTAINER_ID,
 });

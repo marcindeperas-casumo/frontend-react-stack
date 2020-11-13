@@ -11,12 +11,12 @@ export const initialize = ({
   // Setup dataLayer object and wrap in script element
   const dataLayerScript = document.createElement("script");
   // eslint-disable-next-line fp/no-mutation
-  dataLayerScript.innerHTML = getDataLayerSnippet(dataLayer, dataLayerName);
+  dataLayerScript.innerHTML = getDataLayerSnippet({ dataLayer, dataLayerName });
 
   // Get main GTM script
   const script = document.createElement("script");
   // eslint-disable-next-line fp/no-mutation
-  script.innerHTML = getGTMScript(dataLayerName, containerId);
+  script.innerHTML = getGTMScript({ dataLayerName, containerId });
 
   // Add gtm script and datalayer loader script
   document.head.insertBefore(script, document.head.childNodes[0]);
@@ -24,13 +24,11 @@ export const initialize = ({
 };
 
 export const pushToGTM = ({
-  dataLayerName,
   event,
+  dataLayerName,
   payload,
-}: GTMEventParams<T>) => {
+}: GTMEventParams) => {
+  const data = Object.assign({ event: event }, payload);
   // eslint-disable-next-line fp/no-mutating-methods
-  window[dataLayerName].push({
-    event,
-    ...payload,
-  });
+  window[dataLayerName].push(data);
 };

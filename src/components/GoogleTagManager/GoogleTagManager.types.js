@@ -9,7 +9,7 @@ export type GTMScriptParams = ?GTMDataLayer & {
 };
 
 export type GTMEventParams<T> = {
-  dataLayerName: string,
   event: string,
-  payload: T,
+  dataLayerName?: string,
+  payload?: T,
 };
