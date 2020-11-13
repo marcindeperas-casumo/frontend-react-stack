@@ -30,7 +30,7 @@ const useGTMHookContext = createContext<GTMScriptParams | undefined>(
   initialState
 );
 
-export default function useGoogleTagManager(): GTMHook {
+export const useGoogleTagManager = (): GTMHook => {
   const [dataLayerState, setDataLayerState] = useState<GTMScriptParams>(
     initialState
   );
@@ -80,4 +80,4 @@ export default function useGoogleTagManager(): GTMHook {
     UseGTMHookProvider,
     useGTMHookContext,
   };
-}
+};
