@@ -1,3 +1,3 @@
 // @flow
 export { useGoogleTagManager } from "./useGoogleTagManager";
-export { getProdConfig } from "./GoogleTagManager.const";
+export { getProdConfig } from "./GoogleTagManager.constants";
