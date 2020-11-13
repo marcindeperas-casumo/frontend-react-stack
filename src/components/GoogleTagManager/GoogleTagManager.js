@@ -1,5 +1,4 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable fp/no-mutation */
+/* eslint-disable eslint-comments/disable-enable-pair */
 // @flow
 import { getDataLayerSnippet, getGTMScript } from "./GoogleTagManager.utils";
 import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
@@ -11,10 +10,12 @@ export const initialize = ({
 }: GTMScriptParams) => {
   // Setup dataLayer object and wrap in script element
   const dataLayerScript = document.createElement("script");
+  // eslint-disable-next-line fp/no-mutation
   dataLayerScript.innerHTML = getDataLayerSnippet(dataLayer, dataLayerName);
 
   // Get main GTM script
   const script = document.createElement("script");
+  // eslint-disable-next-line fp/no-mutation
   script.innerHTML = getGTMScript(dataLayerName, containerId);
 
   // Add gtm script and datalayer loader script
@@ -24,12 +25,12 @@ export const initialize = ({
 
 export const pushToGTM = ({
   dataLayerName,
-  name,
+  event,
   payload,
 }: GTMEventParams<T>) => {
   // eslint-disable-next-line fp/no-mutating-methods
   window[dataLayerName].push({
-    event: name,
+    event,
     ...payload,
   });
 };

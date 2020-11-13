@@ -4,11 +4,6 @@ export type GTMDataLayer = {
   dataLayerName: string,
 };
 
-export type GTMSnippet = {
-  gtmDataLayer: string,
-  gtmScript: string,
-};
-
 export type GTMScriptParams = ?GTMDataLayer & {
   containerId: string,
 };
