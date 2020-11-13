@@ -36,7 +36,6 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
-    // Flow sucks at generics so neeed to specify that numbers are being used
     if (prev > next) {
       // Return fresh value
       return false;
