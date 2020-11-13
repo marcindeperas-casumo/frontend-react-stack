@@ -1,19 +1,19 @@
 // @flow
-export type TDataLayer = {
+export type GTMDataLayer = {
   dataLayer: Object,
   dataLayerName: string,
 };
 
-export type TSnippet = {
+export type GTMSnippet = {
   gtmDataLayer: string,
   gtmScript: string,
 };
 
-export type TSnippetParams = ?TDataLayer & {
+export type GTMScriptParams = ?GTMDataLayer & {
   containerId: string,
 };
 
-export type EventParams<T> = {
+export type GTMEventParams<T> = {
   dataLayerName: string,
   event: string,
   payload: T,

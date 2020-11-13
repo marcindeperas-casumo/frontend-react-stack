@@ -2,12 +2,13 @@
 /* eslint-disable fp/no-mutation */
 // @flow
 import { getDataLayerSnippet, getGTMScript } from "./GoogleTagManager.utils";
+import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
 
 export const initialize = ({
   dataLayer,
   dataLayerName,
   containerId,
-}: TSnippetParams) => {
+}: GTMScriptParams) => {
   // Setup dataLayer object and wrap in script element
   const dataLayerScript = document.createElement("script");
   dataLayerScript.innerHTML = getDataLayerSnippet(dataLayer, dataLayerName);
@@ -21,7 +22,11 @@ export const initialize = ({
   document.head.insertBefore(dataLayerScript, document.head.childNodes[0]);
 };
 
-export const pushToGTM = ({ dataLayerName, name, payload }: EventParams) => {
+export const pushToGTM = ({
+  dataLayerName,
+  name,
+  payload,
+}: GTMEventParams<T>) => {
   // eslint-disable-next-line fp/no-mutating-methods
   window[dataLayerName].push({
     event: name,

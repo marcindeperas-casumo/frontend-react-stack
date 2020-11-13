@@ -9,35 +9,35 @@ import React, {
   useState,
 } from "react";
 import { initialize, pushToGTM } from "./GoogleTagManager";
-import { TSnippetParams } from "./GoogleTagManager.types";
+import type { GTMScriptParams } from "./GoogleTagManager.types";
 
 type GTMHookProviderProps = { state?: any, children: ReactNode };
 
 export type GTMHook = {
-  init(params: TSnippetParams): void,
+  init(params: GTMScriptParams): void,
   trackEvent(name: string, payload: Object): void,
   UseGTMHookProvider: (props: GTMHookProviderProps) => JSX.Element,
-  useGTMHookContext: Context<TSnippetParams | undefined>,
+  useGTMHookContext: Context<GTMScriptParams | undefined>,
 };
 
-export const initialState: TSnippetParams = {
+export const initialState: GTMScriptParams = {
   dataLayer: undefined,
   dataLayerName: "dataLayer",
   containerId: "",
 };
 
-const useGTMHookContext = createContext<TSnippetParams | undefined>(
+const useGTMHookContext = createContext<GTMScriptParams | undefined>(
   initialState
 );
 
 export default function useGoogleTagManager(): GTMHook {
-  const [dataLayerState, setDataLayerState] = useState<TSnippetParams>(
+  const [dataLayerState, setDataLayerState] = useState<GTMScriptParams>(
     initialState
   );
   const gtmContextState = useContext(useGTMHookContext);
 
   const init = useCallback(
-    (snippetParams: TSnippetParams) =>
+    (snippetParams: GTMScriptParams) =>
       setDataLayerState(state => ({
         ...state,
         ...snippetParams,
