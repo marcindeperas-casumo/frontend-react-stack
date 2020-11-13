@@ -1,6 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const COMMANDS = {
   PAUSE: { eventid: "pausegame" },
@@ -20,6 +21,8 @@ export class ThunderkickGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.api.features.instantPause = true;
+
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {
