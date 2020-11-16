@@ -27,7 +27,9 @@ type Props = {
 const LEADERBOARD_SPAN = 20;
 const LEADERBOARD_FIXED = 3;
 const LEADERBOARD_LAURELS = 3;
+const TOTAL_LEADERBOARD_RESULTS = 10;
 
+/* eslint-disable sonarjs/cognitive-complexity */
 export const ReelRacesDrawerWidgetContainer = ({
   className,
   initialShowLeaderboard = false,
@@ -61,6 +63,10 @@ export const ReelRacesDrawerWidgetContainer = ({
   const leaderboard = React.useMemo(() => {
     if (!currentRace) {
       return [];
+    }
+
+    if (currentRace.leaderboard.length <= TOTAL_LEADERBOARD_RESULTS) {
+      return currentRace.leaderboard;
     }
 
     const leaderboardTopFixedItems = currentRace.leaderboard.slice(
@@ -109,7 +115,7 @@ export const ReelRacesDrawerWidgetContainer = ({
           boosters={boosters}
           gameProgress={gameProgress}
           gameDuration={gameDuration}
-          showLeaderboardLink
+          showLeaderboardLink={!pinnedWidgets.includes(DRAWERS.REEL_RACES)}
           onShowLeaderboardClick={() => setShowLeaderboard(prev => !prev)}
           isLeaderboardOpen={showLeaderboard}
         />
@@ -142,3 +148,4 @@ export const ReelRacesDrawerWidgetContainer = ({
     </Flex>
   );
 };
+/* eslint-enable sonarjs/cognitive-complexity */

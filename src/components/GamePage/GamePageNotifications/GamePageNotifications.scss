@@ -1,0 +1,6 @@
+.c-game-page-notifications {
+  @include cudl-breakpoint(desktop) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
