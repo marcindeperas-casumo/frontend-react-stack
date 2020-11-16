@@ -1,7 +1,7 @@
 // @flow
 export type GTMDataLayer = {
   dataLayer: Object,
-  dataLayerName: string,
+  dataLayerName?: string,
 };
 
 export type GTMScriptParams = {

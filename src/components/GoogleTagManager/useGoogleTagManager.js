@@ -1,12 +1,12 @@
 // @flow
 import React, {
-  Context,
-  ReactNode,
   createContext,
   useCallback,
   useContext,
   useEffect,
   useState,
+  type Context,
+  type ReactNode,
 } from "react";
 import { initialize, pushToGTM } from "./GoogleTagManager";
 import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
@@ -16,8 +16,8 @@ type GTMHookProviderProps = { state?: any, children: ReactNode };
 export type GTMHook = {
   init(params: GTMScriptParams): void,
   trackEvent(params: GTMEventParams): void,
-  UseGTMHookProvider: (props: GTMHookProviderProps) => JSX.Element,
-  useGTMHookContext: Context<GTMScriptParams | undefined>,
+  UseGTMHookProvider: (props: GTMHookProviderProps) => React.Elementt<*>,
+  useGTMHookContext: Context<GTMScriptParams>,
 };
 
 export const initialState: GTMScriptParams = {
@@ -26,9 +26,7 @@ export const initialState: GTMScriptParams = {
   containerId: "",
 };
 
-const useGTMHookContext = createContext<GTMScriptParams | undefined>(
-  initialState
-);
+const useGTMHookContext = createContext<GTMScriptParams>(initialState);
 
 export const GTMHookProvider = ({ state, children }: GTMHookProviderProps) => (
   <useGTMHookContext.Provider value={state}>

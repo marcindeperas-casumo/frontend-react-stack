@@ -18,9 +18,11 @@ export const initialize = ({
   // eslint-disable-next-line fp/no-mutation
   script.innerHTML = getGTMScript({ dataLayerName, containerId });
 
-  // Add gtm script and datalayer loader script
-  document.head.insertBefore(script, document.head.childNodes[0]);
-  document.head.insertBefore(dataLayerScript, document.head.childNodes[0]);
+  if (document.head) {
+    // Add gtm script and datalayer loader script
+    document.head.insertBefore(script, document.head.childNodes[0]);
+    document.head.insertBefore(dataLayerScript, document.head.childNodes[0]);
+  }
 };
 
 export const pushToGTM = ({
