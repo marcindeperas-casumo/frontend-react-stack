@@ -44,5 +44,5 @@ export const GAME_ACTIVE_EVENT_NAME = "gameActive";
 export const GAME_IDLE_EVENT_NAME = "gameIdle";
 export const IFRAME_ID = "casumo-game";
 export const EXCLUDED_PROVIDERS_FROM_VERTICAL_STRETCHER_DYNAMIC_HEIGHT = [
-  PROVIDERS.PLAYTECH_MOBILE,
+  "test",
 ];

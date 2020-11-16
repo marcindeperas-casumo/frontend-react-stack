@@ -46,6 +46,10 @@ Props) => {
       }
     }, 50);
 
+    const debouncedScrollToTopTemp = debounce(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
     const shouldUseDynamicHeight =
       gameProviderModel?.shouldUseVerticalStretcherHeight;
     // eslint-disable-next-line fp/no-let
@@ -106,9 +110,11 @@ Props) => {
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
+    window.addEventListener("resize", debouncedScrollToTopTemp);
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
+      window.removeEventListener("resize", debouncedScrollToTopTemp);
       if (interval) {
         clearInterval(interval);
       }
