@@ -32,7 +32,6 @@ export const pushToGTM = ({
   dataLayerName,
   payload,
 }: GTMEventParams) => {
-  const data = Object.assign({ event: event }, payload);
   // eslint-disable-next-line fp/no-mutating-methods
-  window[dataLayerName].push(data);
+  window[dataLayerName].push({ event, ...payload });
 };
