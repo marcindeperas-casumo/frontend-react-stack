@@ -3,7 +3,7 @@ import type { GTMDataLayer, GTMScriptParams } from "./GoogleTagManager.types";
 
 export const getDataLayerSnippet = (
   dataLayer: $PropertyType<GTMDataLayer, "dataLayer">,
-  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName"> = "dataLayer"
+  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName">
 ) => {
   return `window.${dataLayerName} = window.${dataLayerName} || []; window.${dataLayerName}.push(${JSON.stringify(
     dataLayer

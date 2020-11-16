@@ -5,7 +5,7 @@ import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
 
 export const initialize = ({
   dataLayer,
-  dataLayerName,
+  dataLayerName = "dataLayer", // default dataLayer name
   containerId,
 }: GTMScriptParams) => {
   // Setup dataLayer object and wrap in script element
@@ -18,9 +18,11 @@ export const initialize = ({
   // eslint-disable-next-line fp/no-mutation
   script.innerHTML = getGTMScript(dataLayerName, containerId);
 
+  // Add gtm script and datalayer loader script
+  //$FlowFixMe
   if (document.head) {
-    // Add gtm script and datalayer loader script
     document.head.insertBefore(script, document.head?.childNodes[0]);
+    // $FlowFixMe
     document.head.insertBefore(dataLayerScript, document.head?.childNodes[0]);
   }
 };
