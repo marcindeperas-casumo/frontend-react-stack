@@ -1,6 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const COMMANDS = {
   PAUSE: '{ "type": "Tilt" }',
@@ -50,11 +51,6 @@ export type PragmaticGameEventTypeLiteral = $Values<
   typeof PRAGMATIC_GAME_EVENT_TYPE
 >;
 
-export const PUSH_GAME_EVENTS = {
-  GAME_ROUND_START: PRAGMATIC_GAME_EVENT_TYPE.GAME_ROUND_STARTED,
-  GAME_ROUND_END: PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN,
-};
-
 type PragmaticGameMessage = {
   data: {
     name?: PragmaticGameEventTypeLiteral,
@@ -67,9 +63,12 @@ export class PragmaticGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.commands.pause = COMMANDS.PAUSE;
-    this.api.events.onGameRoundStart = PUSH_GAME_EVENTS.GAME_ROUND_START;
-    this.api.events.onGameRoundEnd = PUSH_GAME_EVENTS.GAME_ROUND_END;
+    this.api.events.onGameRoundStart =
+      PRAGMATIC_GAME_EVENT_TYPE.GAME_ROUND_STARTED;
+    this.api.events.onGameRoundEnd = PRAGMATIC_GAME_EVENT_TYPE.RESULT_SHOWN;
     this.api.features.instantPause = false;
+
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {
