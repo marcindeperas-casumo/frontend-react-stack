@@ -6,6 +6,8 @@ import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
 import Evolution from "./providers/evolution.svg";
 import Netent from "./providers/netent.svg";
+import Pragmatic from "./providers/pragmatic.svg";
+import Ezugi from "./providers/ezugi.svg";
 
 const Provider = props => (
   <Matcher
@@ -13,8 +15,11 @@ const Provider = props => (
     matchers={{
       casumo: Casumo,
       evolution: Evolution,
+      Evolution: Evolution,
+      Ezugi: Ezugi,
       "Net Entertainment": Netent,
-      default: Evolution,
+      "Pragmatic Play": Pragmatic,
+      default: () => <Text>{props.condition}</Text>,
     }}
     {...props}
   />
