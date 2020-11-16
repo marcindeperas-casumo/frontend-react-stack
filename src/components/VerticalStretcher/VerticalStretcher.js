@@ -2,14 +2,13 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
+import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import Flex from "@casumo/cmp-flex";
+import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isNativeByUserAgent } from "GameProviders";
-import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import type { GameProviderModel } from "GameProviders";
-import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
-import HandSymbol from "./icons/hand.svg";
+import { SwipeUpPanel } from "./SwipeUpPanel";
 import "./VerticalStretcher.scss";
 
 export type Props = {
@@ -19,12 +18,6 @@ export type Props = {
   fullScreenElement: ?HTMLElement,
 };
 
-const onSwipePanelClick = (element: ?HTMLElement) => {
-  if (element && supportsTogglingFullscreen(element) && isMobile) {
-    element.requestFullscreen();
-  }
-};
-
 export const VerticalStretcher = ({
   children,
   swipeUpPanelEnabled = true,
@@ -32,7 +25,9 @@ export const VerticalStretcher = ({
   fullScreenElement = document.body,
 }: Props) => {
   const heightContainer = useRef(null);
+  const [isDismissed, setIsDismissed] = useState(false);
   const [showSwipePanel, setShowSwipePanel] = useState(true);
+  const selectedPaymentMethod = useSelector(getSelectedQuickDepositMethod);
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
 
@@ -50,12 +45,18 @@ export const VerticalStretcher = ({
     }
   };
 
+  const onDismiss = () => {
+    setIsDismissed(true);
+  };
+
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
       window.scrollTo(0, 0);
     }, 100);
 
     const matchContainerHeight = () => {
+      debouncedScrollToTop();
+
       if (heightContainer.current) {
         /**
          * So far this is the only way i've found which solves the problem
@@ -103,36 +104,15 @@ export const VerticalStretcher = ({
     gameProviderModel.swipeUpToPlayPanelPossible &&
     swipeUpPanelEnabled &&
     isMobile &&
+    showSwipePanel &&
+    !selectedPaymentMethod && //prevent showing panel when typing in CVV code
     !isNative &&
-    showSwipePanel;
+    !isDismissed;
 
   return (
     <div ref={heightContainer} className="u-width--full">
       {shouldShowSwipePanel && (
-        <div className="c-game-page__swipe-panel u-width--screen u-position-absolute">
-          <Flex
-            justify="center"
-            direction="vertical"
-            align="center"
-            className="c-game-page__swipeup-details u-width--full u-height--screen"
-            onClick={() => onSwipePanelClick(fullScreenElement)}
-          >
-            {supportsTogglingFullscreen(fullScreenElement) ? (
-              <Flex.Item className="t-color-white">
-                <TapToFullscreenText />
-              </Flex.Item>
-            ) : (
-              <React.Fragment>
-                <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
-                  <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
-                </Flex.Item>
-                <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
-                  <SwipeUpMessageText />
-                </Flex.Item>
-              </React.Fragment>
-            )}
-          </Flex>
-        </div>
+        <SwipeUpPanel {...{ fullScreenElement, onDismiss }} />
       )}
       {children}
     </div>
