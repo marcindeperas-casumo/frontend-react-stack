@@ -15,7 +15,7 @@ type GTMHookProviderProps = { state?: any, children: ReactNode };
 
 export type GTMHook = {
   init(params: GTMScriptParams): void,
-  trackEvent(name: string, payload: Object): void,
+  trackEvent(params: GTMEventParams): void,
   UseGTMHookProvider: (props: GTMHookProviderProps) => JSX.Element,
   useGTMHookContext: Context<GTMScriptParams | undefined>,
 };
@@ -52,7 +52,7 @@ export const useGoogleTagManager = (): GTMHook => {
   );
 
   const trackEvent = useCallback(
-    ({ event, payload }: GTMEventParams<T>) => {
+    ({ event, payload }: GTMEventParams) => {
       const params = {
         dataLayerName: gtmContextState?.dataLayerName,
         event,

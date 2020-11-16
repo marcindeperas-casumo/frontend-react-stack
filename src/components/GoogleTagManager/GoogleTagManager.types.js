@@ -10,8 +10,8 @@ export type GTMScriptParams = {
   containerId: string,
 };
 
-export type GTMEventParams<T> = {
+export type GTMEventParams = {
   event: string,
   dataLayerName?: string,
-  payload?: T,
+  payload?: Object,
 };
