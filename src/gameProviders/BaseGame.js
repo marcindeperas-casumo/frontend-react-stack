@@ -3,11 +3,7 @@ import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { expandElementHeightToMatchItsParent } from "./utils";
-import {
-  GAME_ACTIVE_EVENT_NAME,
-  GAME_IDLE_EVENT_NAME,
-  EXCLUDED_PROVIDERS_FROM_VERTICAL_STRETCHER_DYNAMIC_HEIGHT,
-} from "./constants";
+import { GAME_ACTIVE_EVENT_NAME, GAME_IDLE_EVENT_NAME } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
 export class BaseGame {
@@ -16,15 +12,11 @@ export class BaseGame {
   onGameIdle: Event;
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
-  shouldUseVerticalStretcherHeight: boolean = true;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
-    this.shouldUseVerticalStretcherHeight = !EXCLUDED_PROVIDERS_FROM_VERTICAL_STRETCHER_DYNAMIC_HEIGHT.includes(
-      props?.gameData?.providerType
-    );
   }
 
   get lobbyUrl() {

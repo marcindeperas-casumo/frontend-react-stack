@@ -50,57 +50,49 @@ Props) => {
       window.scrollTo(0, 0);
     }, 100);
 
-    const shouldUseDynamicHeight =
-      gameProviderModel?.shouldUseVerticalStretcherHeight;
-    // eslint-disable-next-line fp/no-let
-    let interval = null;
+    const interval = setInterval(() => {
+      if (heightContainer.current && document.body) {
+        /**
+         * So far this is the only way i've found which solves the problem
+         * of browser toolbars overlaying game content when they appear.
+         */
+        /* eslint-disable-next-line fp/no-mutation */
+        heightContainer.current.style.height = `${window.innerHeight}px`;
 
-    if (shouldUseDynamicHeight) {
-      // eslint-disable-next-line fp/no-mutation
-      interval = setInterval(() => {
-        if (heightContainer.current && document.body) {
-          /**
-           * So far this is the only way i've found which solves the problem
-           * of browser toolbars overlaying game content when they appear.
-           */
-          /* eslint-disable-next-line fp/no-mutation */
-          heightContainer.current.style.height = `${window.innerHeight}px`;
+        /**
+         * Fix for evolution games, they set our body.height to calc(100px + 100vh)
+         * to emulate their own "swipe to play" feature which we don't want :)
+         */
+        /* eslint-disable-next-line fp/no-mutation */
+        document.body.style.height = "100vh";
+        /**
+         * This is just called here to trigger resize event which causes
+         * game container to match size of it's parent after changing
+         * top-lvl parent dimensions
+         */
+        window.dispatchEvent(new Event("resize"));
 
-          /**
-           * Fix for evolution games, they set our body.height to calc(100px + 100vh)
-           * to emulate their own "swipe to play" feature which we don't want :)
-           */
-          /* eslint-disable-next-line fp/no-mutation */
-          document.body.style.height = "100vh";
-          /**
-           * This is just called here to trigger resize event which causes
-           * game container to match size of it's parent after changing
-           * top-lvl parent dimensions
-           */
-          window.dispatchEvent(new Event("resize"));
+        /**
+         * swipePanel allows to force player to go fullscreen to play the game
+         * when toolbars are being shown and they are eating part of the screen
+         */
+        const deviceNotInFullScreenMode =
+          window.innerHeight < document.body?.clientHeight;
 
-          /**
-           * swipePanel allows to force player to go fullscreen to play the game
-           * when toolbars are being shown and they are eating part of the screen
-           */
-          const deviceNotInFullScreenMode =
-            window.innerHeight < document.body?.clientHeight;
-
-          if (deviceNotInFullScreenMode) {
-            if (!alreadyTriggeredOnce) {
-              setShowSwipePanel(true);
-              setControllScroll(false);
-            }
-          } else {
-            if (showSwipePanel) {
-              setAlreadyTriggeredOnce(true);
-            }
-            setShowSwipePanel(false);
-            setControllScroll(true);
+        if (deviceNotInFullScreenMode) {
+          if (!alreadyTriggeredOnce) {
+            setShowSwipePanel(true);
+            setControllScroll(false);
           }
+        } else {
+          if (showSwipePanel) {
+            setAlreadyTriggeredOnce(true);
+          }
+          setShowSwipePanel(false);
+          setControllScroll(true);
         }
-      }, 100);
-    }
+      }
+    }, 100);
 
     /**
      * This prevents the situation when game content (resized to window.innerHeight)

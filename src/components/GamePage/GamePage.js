@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import cx from "classnames";
 import { FullscreenView } from "Components/FullscreenView";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
@@ -52,14 +51,7 @@ export const GamePage = ({
           <Flex
             direction="horizontal"
             spacing="none"
-            className={cx(
-              "u-padding-x--md@desktop u-padding-bottom--md@desktop ",
-              {
-                "u-height--full-vh": !gameProviderModel.shouldUseVerticalStretcherHeight,
-                "u-height--full":
-                  gameProviderModel.shouldUseVerticalStretcherHeight,
-              }
-            )}
+            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
           >
             <Flex.Item>{sidebar}</Flex.Item>
             <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
