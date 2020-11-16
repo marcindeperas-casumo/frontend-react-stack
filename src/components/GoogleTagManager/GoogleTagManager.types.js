@@ -4,7 +4,9 @@ export type GTMDataLayer = {
   dataLayerName: string,
 };
 
-export type GTMScriptParams = ?GTMDataLayer & {
+export type GTMScriptParams = {
+  dataLayer?: $PropertyType<GTMDataLayer, "dataLayer">,
+  dataLayerName?: $PropertyType<GTMDataLayer, "dataLayerName">,
   containerId: string,
 };
 
