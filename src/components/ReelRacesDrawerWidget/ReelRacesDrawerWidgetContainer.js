@@ -8,6 +8,7 @@ import {
   useCurrentReelRaceInfo,
   useReelRaceProgress,
 } from "Utils/hooks";
+import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { playingSelector, CMS_SLUGS } from "Models/playing";
 import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
@@ -17,6 +18,7 @@ import { Desktop, isDesktop } from "Components/ResponsiveLayout";
 import { usePinnedWidgetsContext } from "Components/GamePage/Contexts";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
@@ -85,6 +87,10 @@ export const ReelRacesDrawerWidgetContainer = ({
     return [...leaderboardTopFixedItems, ...leaderboardScrollableItems];
   }, [currentRace]);
 
+  const gameActivityAwareRaceData = useGameActivityAwareValue<CurrentReelRaceInfo>(
+    currentRace
+  );
+
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
   }
@@ -96,7 +102,7 @@ export const ReelRacesDrawerWidgetContainer = ({
     startTime,
     endTime,
     boosters,
-  } = currentRace;
+  } = gameActivityAwareRaceData;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
 
