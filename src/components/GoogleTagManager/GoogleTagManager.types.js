@@ -1,7 +1,7 @@
 // @flow
 export type GTMDataLayer = {
   dataLayer: Object,
-  dataLayerName?: string,
+  dataLayerName: string,
 };
 
 export type GTMScriptParams = {
@@ -12,6 +12,6 @@ export type GTMScriptParams = {
 
 export type GTMEventParams = {
   event: string,
-  dataLayerName?: string,
+  dataLayerName?: $PropertyType<GTMDataLayer, "dataLayerName">,
   payload?: Object,
 };

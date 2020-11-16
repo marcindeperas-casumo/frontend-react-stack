@@ -1,19 +1,19 @@
 // @flow
 import type { GTMDataLayer, GTMScriptParams } from "./GoogleTagManager.types";
 
-export const getDataLayerSnippet = ({
-  dataLayer,
-  dataLayerName = "dataLayer",
-}: GTMDataLayer) => {
+export const getDataLayerSnippet = (
+  dataLayer: $PropertyType<GTMDataLayer, "dataLayer">,
+  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName"> = "dataLayer"
+) => {
   return `window.${dataLayerName} = window.${dataLayerName} || []; window.${dataLayerName}.push(${JSON.stringify(
     dataLayer
   )})`;
 };
 
-export const getGTMScript = ({
-  dataLayerName,
-  containerId,
-}: GTMScriptParams) => {
+export const getGTMScript = (
+  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName">,
+  containerId: $PropertyType<GTMScriptParams, "containerId">
+) => {
   return `
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

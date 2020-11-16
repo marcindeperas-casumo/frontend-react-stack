@@ -1,23 +1,15 @@
 // @flow
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  type Context,
-  type ReactNode,
-} from "react";
+import * as React from "react";
 import { initialize, pushToGTM } from "./GoogleTagManager";
 import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
 
-type GTMHookProviderProps = { state?: any, children: ReactNode };
+type GTMHookProviderProps = { state?: GTMScriptParams, children: React.Node };
 
 export type GTMHook = {
   init(params: GTMScriptParams): void,
   trackEvent(params: GTMEventParams): void,
-  UseGTMHookProvider: (props: GTMHookProviderProps) => React.Elementt<*>,
-  useGTMHookContext: Context<GTMScriptParams>,
+  GTMHookContextProvider: (props: GTMHookProviderProps) => React.Element<*>,
+  GTMHookContext: React.Context<?GTMScriptParams>,
 };
 
 export const initialState: GTMScriptParams = {
@@ -26,21 +18,19 @@ export const initialState: GTMScriptParams = {
   containerId: "",
 };
 
-const useGTMHookContext = createContext<GTMScriptParams>(initialState);
+const GTMHookContext = React.createContext<?GTMScriptParams>(initialState);
 
 export const GTMHookProvider = ({ state, children }: GTMHookProviderProps) => (
-  <useGTMHookContext.Provider value={state}>
-    {children}
-  </useGTMHookContext.Provider>
+  <GTMHookContext.Provider value={state}>{children}</GTMHookContext.Provider>
 );
 
 export const useGoogleTagManager = (): GTMHook => {
-  const [dataLayerState, setDataLayerState] = useState<GTMScriptParams>(
+  const [dataLayerState, setDataLayerState] = React.useState<GTMScriptParams>(
     initialState
   );
-  const gtmContextState = useContext(useGTMHookContext);
+  const gtmContextState = React.useContext(GTMHookContext);
 
-  const init = useCallback(
+  const init = React.useCallback(
     (params: GTMScriptParams) =>
       setDataLayerState(state => ({
         ...state,
@@ -49,7 +39,7 @@ export const useGoogleTagManager = (): GTMHook => {
     [setDataLayerState]
   );
 
-  const trackEvent = useCallback(
+  const trackEvent = React.useCallback(
     ({ event, payload }: GTMEventParams) => {
       const params = {
         dataLayerName: gtmContextState?.dataLayerName,
@@ -62,7 +52,7 @@ export const useGoogleTagManager = (): GTMHook => {
     [gtmContextState]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Only initialize if we have container id
     if (dataLayerState.containerId !== "") {
       initialize({
@@ -73,16 +63,16 @@ export const useGoogleTagManager = (): GTMHook => {
     }
   }, [dataLayerState]);
 
-  const UseGTMHookProvider = ({ children }: GTMHookProviderProps) => (
-    <useGTMHookContext.Provider value={dataLayerState}>
+  const GTMHookContextProvider = ({ children }: GTMHookProviderProps) => (
+    <GTMHookContext.Provider value={dataLayerState}>
       {children}
-    </useGTMHookContext.Provider>
+    </GTMHookContext.Provider>
   );
 
   return {
     init,
     trackEvent,
-    UseGTMHookProvider,
-    useGTMHookContext,
+    GTMHookContextProvider,
+    GTMHookContext,
   };
 };
