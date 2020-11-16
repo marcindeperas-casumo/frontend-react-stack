@@ -23,6 +23,18 @@ type Props = {
   className?: string,
 };
 
+function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
+  if (prev > next) {
+    // Return fresh value
+    return false;
+  } else if (prev === next) {
+    // Return cached value
+    return true;
+  }
+
+  return isGameActive;
+}
+
 export const QuickDepositContainer = ({ className = "" }: Props) => {
   const { t } = useTranslationsGql({
     bonus_title: `root:${CMS_SLUG.MODAL_WAGERING}:fields.bonus_title`,
@@ -35,17 +47,6 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
-  function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
-    if (prev > next) {
-      // Return fresh value
-      return false;
-    } else if (prev === next) {
-      // Return cached value
-      return true;
-    }
-
-    return isGameActive;
-  }
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
     playerBalance,
     gameAwareBalanceCompareFunction
