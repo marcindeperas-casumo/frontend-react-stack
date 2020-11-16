@@ -13,7 +13,7 @@ export function useMemoCompare<T>(next: T, compare: CompareFunctionType<T>): T {
       // eslint-disable-next-line fp/no-mutation
       previousRef.current = next;
     }
-  });
+  }, [isEqual, next]);
 
   return isEqual ? previous : next;
 }
