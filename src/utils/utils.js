@@ -523,46 +523,43 @@ export const queryParamsToJSObject = ({
   queryStringUrl,
   customFnForKeys,
   customFnForValues,
-}: // eslint-disable-next-line sonarjs/cognitive-complexity
-QueryStringToJSObjectProps): QsDataObj | {} => {
+}: QueryStringToJSObjectProps): QsDataObj | {} => {
   if (!queryStringUrl) {
     return {};
-  } else {
-    const paramsObject = new URLSearchParams(queryStringUrl);
-    // construct object from query string params, applying any passed argument fns for keys and values
-    const paramsArray = Array.from(paramsObject);
-
-    return paramsArray.reduce(function(acc, valueSet, iterationIndex) {
-      const queryKey = valueSet[0];
-      const queryValue = valueSet[1];
-      // First param contains url host incl "?"
-      // get only content after first "?"
-      const splitKey =
-        iterationIndex === 0 && queryKey.includes("?")
-          ? queryKey.split("?")[1]
-          : queryKey;
-
-      // apply any passed custom functions for query keys
-      const cleanedKey =
-        splitKey && customFnForKeys ? customFnForKeys(splitKey) : splitKey;
-
-      // decode any urls found in each query string value
-      const decodedValueUrl =
-        queryValue && queryValue.includes("http:")
-          ? decodeURIComponent(queryValue)
-          : queryValue;
-
-      const cleanedValue = decodedValueUrl
-        ? decodedValueUrl.trim()
-        : decodedValueUrl;
-
-      // apply any passed custom functions for query values
-      // eslint-disable-next-line fp/no-mutation
-      acc[cleanedKey] = customFnForValues
-        ? customFnForValues(cleanedValue)
-        : cleanedValue;
-
-      return acc;
-    }, {});
   }
+  const paramsObject = new URLSearchParams(queryStringUrl);
+  // construct object from query string params, applying any passed argument fns for keys and values
+  const paramsArray = Array.from(paramsObject);
+
+  return paramsArray.reduce(function(acc, valueSet, iterationIndex) {
+    const [queryKey, queryValue] = valueSet;
+    // First param contains url host incl "?"
+    // get only content after first "?"
+    const splitKey =
+      iterationIndex === 0 && queryKey.includes("?")
+        ? queryKey.split("?")[1]
+        : queryKey;
+
+    // apply any passed custom functions for query keys
+    const cleanedKey =
+      splitKey && customFnForKeys ? customFnForKeys(splitKey) : splitKey;
+
+    // decode any urls found in each query string value
+    const decodedValueUrl =
+      queryValue && queryValue.includes("http:")
+        ? decodeURIComponent(queryValue)
+        : queryValue;
+
+    const cleanedValue = decodedValueUrl
+      ? decodedValueUrl.trim()
+      : decodedValueUrl;
+
+    // apply any passed custom functions for query values
+    // eslint-disable-next-line fp/no-mutation
+    acc[cleanedKey] = customFnForValues
+      ? customFnForValues(cleanedValue)
+      : cleanedValue;
+
+    return acc;
+  }, {});
 };

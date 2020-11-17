@@ -54,12 +54,13 @@ export class NetentGame extends BaseGame {
     } = this.props.gameData;
 
     const customFnForKeys = key => {
-      // eslint-disable-next-line no-nested-ternary
-      return key === "gameServer"
-        ? "gameServerURL"
-        : key === "lang"
-        ? "language"
-        : key;
+      if (key === "gameServer") {
+        return "gameServerURL";
+      } else if (key === "lang") {
+        return "language";
+      } else {
+        return key;
+      }
     };
 
     const gameURLParams = url
@@ -83,7 +84,10 @@ export class NetentGame extends BaseGame {
       applicationType: "browser",
     };
 
-    return Object.assign({}, defaultParams, gameURLParams);
+    return {
+      ...defaultParams,
+      ...gameURLParams,
+    };
   }
 
   setupEvents(extend: Extend) {

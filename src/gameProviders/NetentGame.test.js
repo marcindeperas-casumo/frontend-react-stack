@@ -31,12 +31,13 @@ describe("NetentGame", () => {
   };
 
   const customFnForKeys = key => {
-    // eslint-disable-next-line no-nested-ternary
-    return key === "gameServer"
-      ? "gameServerURL"
-      : key === "lang"
-      ? "language"
-      : key;
+    if (key === "gameServer") {
+      return "gameServerURL";
+    } else if (key === "lang") {
+      return "language";
+    } else {
+      return key;
+    }
   };
   const gameURLParams = utils.queryParamsToJSObject({
     queryStringUrl: gameDataWithUrlProperty.url,
@@ -66,7 +67,7 @@ describe("NetentGame", () => {
   });
 
   const modelWithUrl = new NetentGame({
-    gameData: { ...gameDataWithUrlProperty },
+    gameData: gameDataWithUrlProperty,
     gameRef,
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
