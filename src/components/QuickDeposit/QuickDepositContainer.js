@@ -15,12 +15,25 @@ import {
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
 import { REACT_APP_MODAL } from "Src/constants";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
   className?: string,
 };
+
+function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
+  if (prev > next) {
+    // Return fresh value
+    return false;
+  } else if (prev === next) {
+    // Return cached value
+    return true;
+  }
+
+  return isGameActive;
+}
 
 export const QuickDepositContainer = ({ className = "" }: Props) => {
   const { t } = useTranslationsGql({
@@ -34,7 +47,15 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
-  const walletBonus = useSelector(playerWalletBonusSelector);
+  const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
+    playerBalance,
+    gameAwareBalanceCompareFunction
+  );
+  const bonusBalance = useSelector(playerWalletBonusSelector);
+  const gameActivityAwareBonusBalance = useGameActivityAwareValue<number>(
+    bonusBalance,
+    gameAwareBalanceCompareFunction
+  );
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const hasQuickDepositMethods =
     quickDepositEnabled && savedQuickDepositMethods.length > 0;
@@ -52,12 +73,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       walletBalance={formatCurrency({
         locale,
         currency,
-        value: playerBalance,
+        value: gameActivityAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
         currency,
-        value: walletBonus,
+        value: gameActivityAwareBonusBalance,
       })}
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}

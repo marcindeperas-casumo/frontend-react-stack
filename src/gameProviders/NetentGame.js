@@ -1,8 +1,10 @@
 // @flow
 import logger from "Services/logger";
 import { queryParamsToJSObject } from "Utils";
+import type { GameProviderModelProps } from "./types";
 import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 declare var netent: { launch: Function };
 
@@ -33,6 +35,12 @@ const ELEMENT_ID = "netent-game";
 
 export class NetentGame extends BaseGame {
   extend: ?Extend = null;
+
+  constructor(props: GameProviderModelProps) {
+    super(props);
+
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
+  }
 
   get componentProps() {
     return {
