@@ -26,7 +26,7 @@ export const VerticalStretcher = ({
 }: Props) => {
   const heightContainer = useRef(null);
   const [isDismissed, setIsDismissed] = useState(false);
-  const [showSwipePanel, setShowSwipePanel] = useState(true);
+  const [showSwipePanel, setShowSwipePanel] = useState(false);
   const selectedPaymentMethod = useSelector(getSelectedQuickDepositMethod);
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
@@ -51,10 +51,16 @@ export const VerticalStretcher = ({
 
   useEffect(() => {
     const debouncedScrollToTop = debounce(() => {
-      window.scrollTo(0, 0);
+      if (!selectedPaymentMethod) {
+        window.scrollTo(0, 0);
+      }
     }, 100);
 
     const matchContainerHeight = () => {
+      if (selectedPaymentMethod) {
+        return;
+      }
+
       debouncedScrollToTop();
 
       if (heightContainer.current) {
@@ -74,6 +80,12 @@ export const VerticalStretcher = ({
       const deviceNotInFullScreenMode =
         window.innerHeight < measure?.clientHeight;
 
+      window.dispatchEvent(new Event("resize"));
+
+      if (selectedPaymentMethod) {
+        return;
+      }
+
       if (deviceNotInFullScreenMode) {
         setShowSwipePanel(true);
         expandBody();
@@ -81,7 +93,7 @@ export const VerticalStretcher = ({
         setShowSwipePanel(false);
         shrinkBody();
       }
-    }, 1);
+    }, 300);
 
     /**
      * This prevents the situation when game content (resized to window.innerHeight)
