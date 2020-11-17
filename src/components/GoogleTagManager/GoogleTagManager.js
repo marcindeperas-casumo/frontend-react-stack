@@ -1,37 +1,38 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 // @flow
+import logger from "Services/logger";
+import { injectScript } from "Utils";
 import { getDataLayerSnippet, getGTMScript } from "./GoogleTagManager.utils";
 import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
 
-export const initialize = ({
-  dataLayer,
-  dataLayerName = "dataLayer", // default dataLayer name
-  containerId,
-}: GTMScriptParams) => {
+export const initialize = ({ dataLayer, containerId }: GTMScriptParams) => {
   // Setup dataLayer object and wrap in script element
-  const dataLayerScript = document.createElement("script");
-  // eslint-disable-next-line fp/no-mutation
-  dataLayerScript.innerHTML = getDataLayerSnippet(dataLayer, dataLayerName);
-
+  const dataLayerScript = getDataLayerSnippet(dataLayer);
   // Get main GTM script
-  const script = document.createElement("script");
-  // eslint-disable-next-line fp/no-mutation
-  script.innerHTML = getGTMScript(dataLayerName, containerId);
+  const gtmScript = getGTMScript(containerId);
 
-  // Add gtm script and datalayer loader script
-  //$FlowFixMe
-  if (document.head) {
-    document.head.insertBefore(script, document.head?.childNodes[0]);
-    // $FlowFixMe
-    document.head.insertBefore(dataLayerScript, document.head?.childNodes[0]);
-  }
+  const initDataLayer = async () => {
+    try {
+      return await injectScript(dataLayerScript, "gtm-init-datalayer", true);
+    } catch (e) {
+      logger.error("[GTM] Error initializing DataLayer", e);
+    }
+  };
+
+  const injectGTM = async () => {
+    try {
+      return await injectScript(gtmScript, "google-tag-manger", true);
+    } catch (e) {
+      logger.error("[GTM] Error injecting script", e);
+    }
+  };
+
+  // Add Datalayer and GTM scripts
+  initDataLayer();
+  injectGTM();
 };
 
-export const pushToGTM = ({
-  event,
-  dataLayerName,
-  payload,
-}: GTMEventParams) => {
+export const pushToGTM = ({ event, payload }: GTMEventParams) => {
   // eslint-disable-next-line fp/no-mutating-methods
-  window[dataLayerName].push({ event, ...payload });
+  window.dataLayer.push({ event, ...payload });
 };

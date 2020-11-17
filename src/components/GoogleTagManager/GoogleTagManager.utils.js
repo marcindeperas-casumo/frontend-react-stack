@@ -2,16 +2,14 @@
 import type { GTMDataLayer, GTMScriptParams } from "./GoogleTagManager.types";
 
 export const getDataLayerSnippet = (
-  dataLayer: $PropertyType<GTMDataLayer, "dataLayer">,
-  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName">
+  dataLayer: $PropertyType<GTMDataLayer, "dataLayer">
 ) => {
-  return `window.${dataLayerName} = window.${dataLayerName} || []; window.${dataLayerName}.push(${JSON.stringify(
+  return `window.dataLayer = window.dataLayer || []; window.dataLayer.push(${JSON.stringify(
     dataLayer
   )})`;
 };
 
 export const getGTMScript = (
-  dataLayerName: $PropertyType<GTMDataLayer, "dataLayerName">,
   containerId: $PropertyType<GTMScriptParams, "containerId">
 ) => {
   return `
@@ -19,6 +17,6 @@ export const getGTMScript = (
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','${dataLayerName}','${containerId}');
+    })(window,document,'script','dataLayer','${containerId}');
   `;
 };

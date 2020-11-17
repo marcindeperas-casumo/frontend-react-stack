@@ -8,7 +8,9 @@ jest.useFakeTimers();
 
 const mockedParams: GTMScriptParams = {
   containerId: "GTM-1234",
-  dataLayerName: "paymentsLayer",
+  dataLayer: {
+    someDataLayerVariable: "passedFromContext",
+  },
 };
 
 const wrapper = ({ children }) => (
@@ -27,23 +29,21 @@ describe("useGoogleTagManager Hook", () => {
     expect(window["dataLayer"]).not.toBeUndefined();
   });
 
-  test("should initialize GTM with custom dataLayer name and initial values", () => {
+  test("should initialize GTM with initial values", () => {
     const params: GTMScriptParams = {
       dataLayer: {
         myFlagProp: true,
       },
-      dataLayerName: "someCustomDataLayer",
       containerId: "GTM-1234",
     };
-
     const { result } = renderHook(() => useGoogleTagManager());
 
     act(() => result.current.init({ ...params }));
 
     act(() => jest.runAllTimers());
 
-    expect(window["someCustomDataLayer"]).not.toBeUndefined();
-    expect(window["someCustomDataLayer"]).toContainEqual({
+    expect(window["dataLayer"]).not.toBeUndefined();
+    expect(window["dataLayer"]).toContainEqual({
       myFlagProp: true,
     });
   });
@@ -60,7 +60,7 @@ describe("useGoogleTagManager Hook", () => {
     expect(window["dataLayer"]).toContainEqual({ event: "userDeposit" });
   });
 
-  test("should track event on GTM with a custom dataLayer name", () => {
+  test("should track event on GTM with a datalayer variable from context", () => {
     const { result } = renderHook(() => useGoogleTagManager(), { wrapper });
 
     act(() => result.current.init(mockedParams));
@@ -68,6 +68,9 @@ describe("useGoogleTagManager Hook", () => {
 
     act(() => jest.runAllTimers());
 
-    expect(window["paymentsLayer"]).toContainEqual({ event: "userDeposit" });
+    expect(window["dataLayer"]).toContainEqual({ event: "userDeposit" });
+    expect(window["dataLayer"]).toContainEqual({
+      someDataLayerVariable: "passedFromContext",
+    });
   });
 });

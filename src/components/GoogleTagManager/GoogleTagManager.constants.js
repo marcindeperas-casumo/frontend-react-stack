@@ -1,5 +1,5 @@
 // @flow
-import type { GTMDataLayer } from "./GoogleTagManager.types";
+import type { GTMScriptParams } from "./GoogleTagManager.types";
 
 const CONTAINER_ID = "GTM-23P4";
 
@@ -7,7 +7,7 @@ const CONTAINER_ID = "GTM-23P4";
 export const getProdConfig = (
   dataLayer: Object = {},
   dataLayerName: string = "dataLayer"
-): GTMDataLayer => ({
+): GTMScriptParams => ({
   dataLayer,
   dataLayerName,
   containerId: CONTAINER_ID,

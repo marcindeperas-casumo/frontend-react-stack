@@ -198,7 +198,7 @@ export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
     ],
   ])(bet);
 
-export const injectScript = (url: string, elId?: string) =>
+export const injectScript = (src: string, elId?: string, inline?: boolean) =>
   new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     /* eslint-disable fp/no-mutation */
@@ -208,8 +208,12 @@ export const injectScript = (url: string, elId?: string) =>
     if (elId) {
       script.id = elId;
     }
-
-    script.src = url;
+    if (inline) {
+      script.innerHTML = src;
+      script.onload();
+    } else {
+      script.src = src;
+    }
     /* eslint-enable fp/no-mutation */
     if (document.head) {
       document.head.appendChild(script);
