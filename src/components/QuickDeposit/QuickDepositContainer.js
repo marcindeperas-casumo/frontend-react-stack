@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector, featureFlagSelector } from "Models/handshake";
+import { localeSelector, countrySelector } from "Models/handshake";
 import {
   useTranslationsGql,
   useAvailableQuickDepositMethods,
@@ -44,7 +44,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
-  const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
+  const playerCountry = useSelector(countrySelector);
+  const quickDepositEnabled = playerCountry === "nz";
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
