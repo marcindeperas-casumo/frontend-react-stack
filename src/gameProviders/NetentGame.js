@@ -62,13 +62,11 @@ export class NetentGame extends BaseGame {
     } = this.props.gameData;
 
     const customFnForKeys = key => {
-      if (key === "gameServer") {
-        return "gameServerURL";
-      } else if (key === "lang") {
-        return "language";
-      } else {
-        return key;
-      }
+      const lookUpKeys = {
+        gameServer: "gameServerURL",
+        lang: "language",
+      };
+      return lookUpKeys[key] || key;
     };
 
     const gameURLParams = url

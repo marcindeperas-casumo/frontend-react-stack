@@ -503,13 +503,13 @@ type QueryStringToJSObjectProps = {
   customFnForKeys?: (string: string) => string,
   customFnForValues?: (string: string) => string,
 };
-interface QsObjectData {
+interface QsDataType {
   key?: string;
   value?: any;
 }
 
-interface QsDataObj {
-  [key: string]: QsObjectData;
+interface QsObjType {
+  [key: string]: QsDataType;
 }
 /**
  * Returns JS object containing key - values for a query string encoded url string
@@ -523,15 +523,18 @@ export const queryParamsToJSObject = ({
   queryStringUrl,
   customFnForKeys,
   customFnForValues,
-}: QueryStringToJSObjectProps): QsDataObj | {} => {
+}: QueryStringToJSObjectProps): QsObjType | {} => {
   if (!queryStringUrl) {
     return {};
   }
   const paramsObject = new URLSearchParams(queryStringUrl);
-  // construct object from query string params, applying any passed argument fns for keys and values
-  const paramsArray = Array.from(paramsObject);
 
-  return paramsArray.reduce(function(acc, valueSet, iterationIndex) {
+  // construct object from query string params, applying any passed argument fns for keys and values
+  return Array.from(paramsObject).reduce(function(
+    acc,
+    valueSet,
+    iterationIndex
+  ) {
     const [queryKey, queryValue] = valueSet;
     // First param contains url host incl "?"
     // get only content after first "?"
@@ -561,5 +564,6 @@ export const queryParamsToJSObject = ({
       : cleanedValue;
 
     return acc;
-  }, {});
+  },
+  {});
 };
