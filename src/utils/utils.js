@@ -200,6 +200,9 @@ export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
 
 export const injectScript = (src: string, elId?: string, inline?: boolean) =>
   new Promise<void>((resolve, reject) => {
+    // eslint-disable-next-line fp/no-let
+    let injectedScript;
+
     const script = document.createElement("script");
     /* eslint-disable fp/no-mutation */
     script.onload = () => resolve();
@@ -208,15 +211,20 @@ export const injectScript = (src: string, elId?: string, inline?: boolean) =>
     if (elId) {
       script.id = elId;
     }
+
     if (inline) {
       script.innerHTML = src;
-      script.onload();
     } else {
       script.src = src;
     }
-    /* eslint-enable fp/no-mutation */
+
     if (document.head) {
-      document.head.appendChild(script);
+      injectedScript = document.head.appendChild(script);
+    }
+    /* eslint-enable fp/no-mutation */
+
+    if (inline && injectedScript) {
+      script.onload();
     }
   });
 
