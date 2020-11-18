@@ -27,17 +27,28 @@ export const LiveCasinoGamesVirtualGrid = ({
   games,
   gamesCount,
   loadMore,
-}: Props) => (
-  <VirtualGrid
-    loadMore={loadMore}
-    numberOfEntries={gamesCount}
-    dataList={games}
-    spacerSize="sm"
-    tileWidth={liveCasinoTileWidth}
-    tileHeight={liveCasinoTileHeight}
-    TileComponent={OptimizedLiveCasinoCard}
-    tileLoadingElement={
-      <div className="t-border-r--md t-background-grey-5 u-height--full u-width--full" />
+}: Props) => {
+  const newGames = games.filter(x => {
+    if (x.gameStudio === "Evolution" && !x.liveCasinoLobby) {
+      return false;
     }
-  />
-);
+
+    return true;
+  });
+  const filteredOut = games.length - newGames.length;
+
+  return (
+    <VirtualGrid
+      loadMore={loadMore}
+      numberOfEntries={gamesCount - filteredOut}
+      dataList={newGames}
+      spacerSize="sm"
+      tileWidth={liveCasinoTileWidth}
+      tileHeight={liveCasinoTileHeight}
+      TileComponent={OptimizedLiveCasinoCard}
+      tileLoadingElement={
+        <div className="t-border-r--md t-background-grey-5 u-height--full u-width--full" />
+      }
+    />
+  );
+};
