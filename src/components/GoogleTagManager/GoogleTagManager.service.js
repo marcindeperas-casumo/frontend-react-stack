@@ -16,7 +16,7 @@ export const init = () => {
 };
 
 export const trackEvent = ({ event, payload = {} }: GTMEventParams) => {
-  // todo: add extra payload params
+  // @todo: add extra payload params
   // affTrackId, btag, userId, userStatus, isTestSubjectIdReady
 
   const params = {

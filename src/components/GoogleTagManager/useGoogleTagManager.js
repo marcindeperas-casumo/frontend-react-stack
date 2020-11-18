@@ -38,6 +38,8 @@ export const useGoogleTagManager = (): GTMHook => {
   );
 
   const trackEvent = React.useCallback(({ event, payload }: GTMEventParams) => {
+    // todo: add extra payload params
+    // affTrackId, btag, userId, userStatus, isTestSubjectIdReady
     const params = {
       event,
       payload,
