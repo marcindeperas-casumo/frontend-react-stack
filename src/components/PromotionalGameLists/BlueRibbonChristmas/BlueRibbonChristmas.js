@@ -20,7 +20,7 @@ import { BlueRibbonJackpotsWidgetContainer } from "./BlueRibbonJackpotsWidgetCon
 const PADDING_PER_DEVICE = {
   default: "md",
   tablet: "3xlg",
-  desktop: "3xlg",
+  desktop: "none",
 };
 
 type Props = {
@@ -50,7 +50,9 @@ export function BlueRibbonChristmas({ jackpot }: Props) {
 
   return (
     <Flex direction="vertical" className="o-wrapper u-padding-top--xlg">
-      <ScrollableListTitleRow paddingLeft title={t.section_title} />
+      <div className="u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--none@desktop">
+        <ScrollableListTitleRow title={t.section_title} />
+      </div>
       <Scrollable
         numberOfItems={columns.length + 1}
         itemRenderer={i => {
