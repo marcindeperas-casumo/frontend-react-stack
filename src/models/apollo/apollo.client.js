@@ -3,6 +3,7 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
+import { createPersistedQueryLink } from "apollo-link-persisted-queries";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
@@ -102,7 +103,7 @@ function getHttpLink() {
   return new HttpLink({
     uri: config.graphqlUrl,
     credentials: "same-origin",
-    useGETForQueries: false,
+    useGETForQueries: true,
     fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }
@@ -110,7 +111,7 @@ function getHttpLink() {
 function getLinks() {
   const LINKS = [getContextLink(), getHttpLink()];
 
-  return ApolloLink.from(LINKS);
+  return createPersistedQueryLink().concat(ApolloLink.from(LINKS));
 }
 
 // Adding these variables to the URL and using GET requests can help with edge caching
