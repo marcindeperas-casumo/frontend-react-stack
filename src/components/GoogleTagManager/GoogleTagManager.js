@@ -28,8 +28,7 @@ export const initialize = ({ dataLayer, containerId }: GTMScriptParams) => {
   };
 
   // Add Datalayer and GTM scripts
-  initDataLayer();
-  injectGTM();
+  initDataLayer().then(() => injectGTM());
 };
 
 export const pushToGTM = ({ event, payload }: GTMEventParams) => {
