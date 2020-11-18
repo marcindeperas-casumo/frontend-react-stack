@@ -28,7 +28,6 @@ export const useGoogleTagManager = (): GTMHook => {
   const [dataLayerState, setDataLayerState] = React.useState<GTMScriptParams>(
     initialState
   );
-  const gtmContextState = React.useContext(GTMHookContext);
 
   const init = React.useCallback(
     (params: GTMScriptParams) =>
@@ -39,25 +38,20 @@ export const useGoogleTagManager = (): GTMHook => {
     [setDataLayerState]
   );
 
-  const trackEvent = React.useCallback(
-    ({ event, payload }: GTMEventParams) => {
-      const params = {
-        dataLayerName: gtmContextState?.dataLayerName,
-        event,
-        payload,
-      };
+  const trackEvent = React.useCallback(({ event, payload }: GTMEventParams) => {
+    const params = {
+      event,
+      payload,
+    };
 
-      pushToGTM(params);
-    },
-    [gtmContextState]
-  );
+    pushToGTM(params);
+  }, []);
 
   React.useEffect(() => {
     // Only initialize if we have container id
     if (dataLayerState.containerId !== "") {
       initialize({
         dataLayer: dataLayerState.dataLayer,
-        dataLayerName: dataLayerState.dataLayerName,
         containerId: dataLayerState.containerId,
       });
     }
