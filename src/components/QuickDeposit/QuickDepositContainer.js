@@ -68,11 +68,6 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     dispatch(setQuickDepositMethod(savedQuickDepositMethods[0]));
   };
 
-  React.useEffect(() => {
-    // eslint-disable-next-line fp/no-throw
-    throw new Error("some Error");
-  }, []);
-
   return (
     <QuickDeposit
       t={t}
