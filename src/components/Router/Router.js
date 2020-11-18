@@ -22,6 +22,7 @@ import {
   LazyPlayForFunGamePage,
   LazyCasinoGamesPage,
   LazyCasinoGamesSlotsPage,
+  LazyReelRacesPage,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -70,6 +71,7 @@ export const Router = () => {
       <LazyAnnualTransactionsOverview
         path={translateRoute(ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW)}
       />
+      <LazyReelRacesPage path={translateRoute(ROUTE_IDS.REEL_RACES)} />
     </ReachRouter>
   );
 };
