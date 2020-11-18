@@ -2505,10 +2505,10 @@
   resolved "https://npm.pkg.github.com/download/@casumo/is-mobile/1.1.0/19cdee8fcaece170b1bebf403ccf0f268203ffd8f6442de2fc3fc61daa94bcfc#bc43cd692b09cbf221360457d3b99dbab3f7b2e5"
   integrity sha512-iU+/DruVHXCQjVcCQWo8xEsyfXLhgl4OmQvuanNbZ0dGbXr2teJhDOvUH4O0mT2x8ItGUkovVkyZkXkv5OkYMQ==
 
-"@casumo/sports-navigation@^1.7.0":
-  version "1.7.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/1.7.0/4148e14fe448536945d4e707a8c0b505ad17bd3e7cbe3b6355e43e00198f5b3d#da772905e0a19436e9c53b8c79536ed1b53dea1d"
-  integrity sha512-m4A5pVuu3G6iBWLegsP9HjNdlbO6DZEBhexkuGT/KCdyozv2P8WEbnq1pxo6kR+fmsPNGULb5WaPlkD6GAbooQ==
+"@casumo/sports-navigation@^1.7.1":
+  version "1.7.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/1.7.1/2c448d7bd3892bbe0619a52dc6c0bd1db2e9b378c0ff6c40496fdec547a01aa9#c60a54f3a6ae55b3761fc08d242a2e5b0506a0f2"
+  integrity sha512-JUzXYP1DcZqPUYoVqlGetHjA7dY6YwfGSC3QsKoSG6T4WIdl3QlUqQsTwaSCi3aSinf8/Y/a6WGHrz01Jp4huQ==
   dependencies:
     "@casumo/cmp-chip" "^2.0.1"
     "@casumo/cmp-flex" "^4.0.0"

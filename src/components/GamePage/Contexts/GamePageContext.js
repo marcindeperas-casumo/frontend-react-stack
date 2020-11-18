@@ -3,6 +3,7 @@ import * as React from "react";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { GameModelContextProvider } from "./GameModelContext";
 import { PinnedWidgetsContextProvider } from "./PinnedWidgetsContext";
+import { GameActivityStatusContextProvider } from "./GameActivityStatusContext";
 
 type GamePageContextProps = {
   children: React.Node,
@@ -23,9 +24,11 @@ export const GamePageContextProvider = ({
       playForFun={playForFun}
       remoteGameLaunchData={remoteGameLaunchData}
     >
-      <PinnedWidgetsContextProvider>
-        <SumoIconContextProvider>{children}</SumoIconContextProvider>
-      </PinnedWidgetsContextProvider>
+      <GameActivityStatusContextProvider>
+        <PinnedWidgetsContextProvider>
+          <SumoIconContextProvider>{children}</SumoIconContextProvider>
+        </PinnedWidgetsContextProvider>
+      </GameActivityStatusContextProvider>
     </GameModelContextProvider>
   );
 };
