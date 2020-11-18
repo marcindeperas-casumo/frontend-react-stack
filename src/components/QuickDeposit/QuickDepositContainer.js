@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector, countrySelector } from "Models/handshake";
+import { localeSelector, marketSelector } from "Models/handshake";
 import {
   useTranslationsGql,
   useAvailableQuickDepositMethods,
@@ -14,7 +14,7 @@ import {
 } from "Models/player";
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { REACT_APP_MODAL } from "Src/constants";
+import { REACT_APP_MODAL, MARKETS } from "Src/constants";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
@@ -44,8 +44,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
-  const playerCountry = useSelector(countrySelector);
-  const quickDepositEnabled = playerCountry === "nz";
+  const market = useSelector(marketSelector);
+  const quickDepositEnabled = market === MARKETS.nz_en;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
@@ -67,6 +67,11 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const launchQuickDeposit = () => {
     dispatch(setQuickDepositMethod(savedQuickDepositMethods[0]));
   };
+
+  React.useEffect(() => {
+    // eslint-disable-next-line fp/no-throw
+    throw new Error("some Error");
+  }, []);
 
   return (
     <QuickDeposit
