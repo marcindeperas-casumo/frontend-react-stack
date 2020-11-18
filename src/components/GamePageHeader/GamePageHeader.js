@@ -37,7 +37,7 @@ export const GamePageHeader = () => {
           </Flex.Block>
           <Desktop>
             <Flex.Item className="u-margin-right--5xlg u-padding-right--5xlg">
-              <ErrorBoundary>
+              <ErrorBoundary withoutUserFeedback>
                 <QuickDeposit />
               </ErrorBoundary>
             </Flex.Item>
