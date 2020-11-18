@@ -1,0 +1,8 @@
+#import "../ReelRaceScheduleCard/ReelRaceScheduleCard.graphql"
+
+query ReelRacesPageTabScheduleQuery($limit: Int!) {
+    reelRaces(limit: $limit) {
+        id
+        ...ReelRaceScheduleCard_ReelRace
+    }
+}
