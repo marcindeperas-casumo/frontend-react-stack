@@ -14,7 +14,6 @@ export type GTMHook = {
 
 export const initialState: GTMScriptParams = {
   dataLayer: {},
-  dataLayerName: "dataLayer",
   containerId: "",
 };
 
