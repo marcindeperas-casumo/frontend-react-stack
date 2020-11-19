@@ -4,6 +4,7 @@ import * as R from "ramda";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
 import { DEVICES, CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
+import type { AppDevice } from "Src/types";
 
 export const noop = () => {};
 
@@ -39,7 +40,7 @@ export const decodedUrlParams = (json: Object) =>
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 
-export const platform = () => {
+export const getPlatform = (): AppDevice => {
   const userAgent =
     typeof window.navigator === "undefined" ? "" : navigator.userAgent;
 
