@@ -43,6 +43,7 @@ export const VerticalStretcher = ({
   const [isDismissed, setIsDismissed] = useState(false);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
   const [staticHeight, setStaticHeight] = useState(false);
+
   const quickDepositInProgress = Boolean(
     useSelector(getSelectedQuickDepositMethod)
   );
@@ -86,10 +87,16 @@ export const VerticalStretcher = ({
 
   useEffect(() => {
     gameProviderModel.fitToParentSize();
+    debouncedScrollToTop();
 
     const interval = setInterval(() => {
       const deviceNotInFullScreenMode =
         window.innerHeight < measure?.clientHeight;
+
+      if (!isMobile) {
+        matchContainerHeight();
+        gameProviderModel.fitToParentSize();
+      }
 
       // don't resize body when quick-deposit is displayed
       if (quickDepositInProgress) {
@@ -117,12 +124,16 @@ export const VerticalStretcher = ({
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    window.addEventListener("resize", debounceResizeGame);
+    if (!isMobile) {
+      window.addEventListener("resize", debounceResizeGame);
+    }
     window.addEventListener("orientationchange", debounceResizeGame);
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("resize", debounceResizeGame);
+      if (!isMobile) {
+        window.removeEventListener("resize", debounceResizeGame);
+      }
       window.removeEventListener("orientationchange", debounceResizeGame);
       clearInterval(interval);
     };
