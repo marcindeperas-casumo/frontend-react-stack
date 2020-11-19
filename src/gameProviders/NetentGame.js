@@ -69,9 +69,10 @@ export class NetentGame extends BaseGame {
       return lookUpKeys[key] || key;
     };
 
-    const gameURLParams = url
-      ? queryParamsToJSObject({ queryStringUrl: url, customFnForKeys })
-      : {};
+    const gameURLParams = queryParamsToJSObject({
+      queryStringUrl: url,
+      customFnForKeys,
+    });
 
     const defaultParams = {
       gameId: gameId,
