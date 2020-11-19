@@ -5,7 +5,7 @@ export const beltToColorMap = {
   red: "red-30",
   blue: "blue-50",
   purple: "purple-60",
-  black: "black",
+  black: "grey-50",
   sensei: "black",
 };
 
