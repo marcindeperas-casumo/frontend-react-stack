@@ -13,6 +13,7 @@ const mockedProps = {
   gameBackground: "",
   gameProviderModel: {
     onMount: mockedOnMount,
+    fitToParentSize: () => {},
     componentTag: "div",
     componentProps: {
       id: "game-wrapper",
