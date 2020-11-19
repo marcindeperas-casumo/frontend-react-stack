@@ -6,7 +6,7 @@ export const beltToColorMap = {
   blue: "blue-50",
   purple: "purple-60",
   black: "grey-50",
-  sensei: "black",
+  sensei: "grey-50",
 };
 
 export const belts = Object.keys(beltToColorMap);
