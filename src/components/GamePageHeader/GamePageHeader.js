@@ -3,6 +3,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 import { Desktop } from "Components/ResponsiveLayout";
 import tracker from "Services/tracker";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -36,7 +37,9 @@ export const GamePageHeader = () => {
           </Flex.Block>
           <Desktop>
             <Flex.Item className="u-margin-right--5xlg u-padding-right--5xlg">
-              <QuickDeposit />
+              <ErrorBoundary withoutUserFeedback>
+                <QuickDeposit />
+              </ErrorBoundary>
             </Flex.Item>
             <Flex.Item>
               <InGameDrawerLinks
