@@ -2,7 +2,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector, featureFlagSelector } from "Models/handshake";
+import {
+  localeSelector,
+  featureFlagSelector,
+  marketSelector,
+} from "Models/handshake";
 import {
   useTranslationsGql,
   useAvailableQuickDepositMethods,
@@ -14,7 +18,7 @@ import {
 } from "Models/player";
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { REACT_APP_MODAL } from "Src/constants";
+import { REACT_APP_MODAL, MARKETS } from "Src/constants";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
@@ -44,7 +48,9 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
+  const market = useSelector(marketSelector);
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
+  const showQuickDeposit = market === MARKETS.nz_en || quickDepositEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
@@ -58,7 +64,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   );
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const hasQuickDepositMethods =
-    quickDepositEnabled && savedQuickDepositMethods.length > 0;
+    showQuickDeposit && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };

@@ -46,6 +46,10 @@ Props) => {
       }
     }, 50);
 
+    const debouncedScrollToTopTemp = debounce(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
     const interval = setInterval(() => {
       if (heightContainer.current && document.body) {
         /**
@@ -98,10 +102,14 @@ Props) => {
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
+    window.addEventListener("resize", debouncedScrollToTopTemp);
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      clearInterval(interval);
+      window.removeEventListener("resize", debouncedScrollToTopTemp);
+      if (interval) {
+        clearInterval(interval);
+      }
     };
   });
 
