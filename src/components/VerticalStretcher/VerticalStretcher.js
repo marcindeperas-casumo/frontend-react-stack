@@ -60,6 +60,11 @@ export const VerticalStretcher = ({
     gameProviderModel.fitToParentSize();
   }, 500);
 
+  const desktopResizeGame = () => {
+    matchContainerHeight();
+    gameProviderModel.fitToParentSize();
+  };
+
   const matchContainerHeight = () => {
     if (quickDepositInProgress) {
       return;
@@ -86,17 +91,17 @@ export const VerticalStretcher = ({
   };
 
   useEffect(() => {
-    gameProviderModel.fitToParentSize();
-    debouncedScrollToTop();
+    if (isMobile) {
+      gameProviderModel.fitToParentSize();
+      debouncedScrollToTop();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameProviderModel]);
 
+  useEffect(() => {
     const interval = setInterval(() => {
       const deviceNotInFullScreenMode =
         window.innerHeight < measure?.clientHeight;
-
-      if (!isMobile) {
-        matchContainerHeight();
-        gameProviderModel.fitToParentSize();
-      }
 
       // don't resize body when quick-deposit is displayed
       if (quickDepositInProgress) {
@@ -124,17 +129,17 @@ export const VerticalStretcher = ({
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    if (!isMobile) {
-      window.addEventListener("resize", debounceResizeGame);
-    }
     window.addEventListener("orientationchange", debounceResizeGame);
+    if (!isMobile) {
+      window.addEventListener("resize", desktopResizeGame);
+    }
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
+      window.removeEventListener("orientationchange", desktopResizeGame);
       if (!isMobile) {
         window.removeEventListener("resize", debounceResizeGame);
       }
-      window.removeEventListener("orientationchange", debounceResizeGame);
       clearInterval(interval);
     };
   });
