@@ -11,7 +11,7 @@ import BonusValuableIcon from "./bonusValuable.svg";
 type Props = {
   level: number,
   points: number,
-  inBonusMode: boolean,
+  inBonusMode?: boolean,
   belt: BeltType,
   pointsRequiredForNextLevel: number,
   progressPercentage: number,
@@ -21,7 +21,7 @@ export const InGameAdventureWidget = ({
   level,
   points,
   belt,
-  inBonusMode,
+  inBonusMode = false,
   pointsRequiredForNextLevel,
   progressPercentage,
 }: Props) => {
