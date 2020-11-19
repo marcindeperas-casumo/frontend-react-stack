@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { isMobile } from "@casumo/is-mobile";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
 import { DEVICES, CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
@@ -40,7 +39,16 @@ export const decodedUrlParams = (json: Object) =>
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 
-export const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
+export const platform = () => {
+  const userAgent =
+    typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+
+  const isMobile =
+    /\b(?:BlackBerry|webOS|iPhone|IEMobile)\b/iu.test(userAgent) ||
+    /\b(?:Android|Windows Phone|iPad|iPod)\b/iu.test(userAgent);
+
+  return isMobile ? DEVICES.MOBILE : DEVICES.DESKTOP;
+};
 
 export const bridgeFactory = () => {
   const obj = {};
