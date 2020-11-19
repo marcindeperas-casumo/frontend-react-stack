@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
+import classNames from "classnames";
 import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -18,6 +19,20 @@ export type Props = {
   fullScreenElement: ?HTMLElement,
 };
 
+const expandBody = () => {
+  if (document.body) {
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.height = "calc(100vh + 100px)";
+  }
+};
+
+const shrinkBody = () => {
+  if (document.body) {
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.height = "100vh";
+  }
+};
+
 export const VerticalStretcher = ({
   children,
   swipeUpPanelEnabled = true,
@@ -27,71 +42,70 @@ export const VerticalStretcher = ({
   const heightContainer = useRef(null);
   const [isDismissed, setIsDismissed] = useState(false);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
-  const selectedPaymentMethod = useSelector(getSelectedQuickDepositMethod);
+  const [staticHeight, setStaticHeight] = useState(false);
+  const quickDepositInProgress = Boolean(
+    useSelector(getSelectedQuickDepositMethod)
+  );
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
 
-  const expandBody = () => {
-    if (document.body) {
-      /* eslint-disable-next-line fp/no-mutation */
-      document.body.style.height = "calc(100vh + 100px)";
+  const debouncedScrollToTop = debounce(() => {
+    if (!quickDepositInProgress) {
+      window.scrollTo(0, 0);
     }
-  };
+  }, 100);
 
-  const shrinkBody = () => {
-    if (document.body) {
+  const debounceResizeGame = debounce(() => {
+    gameProviderModel.fitToParentSize();
+  }, 500);
+
+  const matchContainerHeight = () => {
+    if (quickDepositInProgress) {
+      return;
+    }
+
+    debouncedScrollToTop();
+
+    if (heightContainer.current) {
+      /**
+       * So far this is the only way i've found which solves the problem
+       * of browser toolbars overlaying game content when they appear.
+       */
+
       /* eslint-disable-next-line fp/no-mutation */
-      document.body.style.height = "100vh";
+      heightContainer.current.style.height = `${window.innerHeight}px`;
+      setStaticHeight(true);
     }
   };
 
   const onDismiss = () => {
     setIsDismissed(true);
+    matchContainerHeight();
+    debounceResizeGame();
   };
 
   useEffect(() => {
-    const debouncedScrollToTop = debounce(() => {
-      if (!selectedPaymentMethod) {
-        window.scrollTo(0, 0);
-      }
-    }, 100);
-
-    const matchContainerHeight = () => {
-      if (selectedPaymentMethod) {
-        return;
-      }
-
-      debouncedScrollToTop();
-
-      if (heightContainer.current) {
-        /**
-         * So far this is the only way i've found which solves the problem
-         * of browser toolbars overlaying game content when they appear.
-         */
-
-        /* eslint-disable-next-line fp/no-mutation */
-        heightContainer.current.style.height = `${window.innerHeight}px`;
-      }
-    };
-
-    matchContainerHeight();
+    gameProviderModel.fitToParentSize();
 
     const interval = setInterval(() => {
       const deviceNotInFullScreenMode =
         window.innerHeight < measure?.clientHeight;
 
-      window.dispatchEvent(new Event("resize"));
-
-      if (selectedPaymentMethod) {
+      // don't resize body when quick-deposit is displayed
+      if (quickDepositInProgress) {
         return;
       }
 
       if (deviceNotInFullScreenMode) {
-        setShowSwipePanel(true);
-        expandBody();
+        if (!showSwipePanel) {
+          setShowSwipePanel(true);
+          expandBody();
+        }
       } else {
-        setShowSwipePanel(false);
-        shrinkBody();
+        if (showSwipePanel) {
+          setShowSwipePanel(false);
+          shrinkBody();
+        }
       }
     }, 300);
 
@@ -103,11 +117,13 @@ export const VerticalStretcher = ({
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    window.addEventListener("resize", matchContainerHeight);
+    window.addEventListener("resize", debounceResizeGame);
+    window.addEventListener("orientationchange", debounceResizeGame);
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("resize", matchContainerHeight);
+      window.removeEventListener("resize", debounceResizeGame);
+      window.removeEventListener("orientationchange", debounceResizeGame);
       clearInterval(interval);
     };
   });
@@ -117,12 +133,15 @@ export const VerticalStretcher = ({
     swipeUpPanelEnabled &&
     isMobile &&
     showSwipePanel &&
-    !selectedPaymentMethod && //prevent showing panel when typing in CVV code
+    !quickDepositInProgress &&
     !isNative &&
     !isDismissed;
 
   return (
-    <div ref={heightContainer} className="u-width--full">
+    <div
+      ref={heightContainer}
+      className={classNames("u-width--full", !staticHeight && "u-height--full")}
+    >
       {shouldShowSwipePanel && (
         <SwipeUpPanel {...{ fullScreenElement, onDismiss }} />
       )}
