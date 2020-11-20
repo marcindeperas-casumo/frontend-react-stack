@@ -122,10 +122,8 @@ export function ReelRaceLeaderboardResults({
             "t-opacity-border--0": inverted,
             "u-overflow-y--hidden": !scrollable,
             "u-overflow-y--scroll u-padding-right--sm": scrollable,
-            "c-reel-race-leaderboard-results--scrollable":
-              scrollable && !inverted,
-            "c-reel-race-leaderboard-results--scrollable-inverted":
-              scrollable && inverted,
+            "u-scrollbar-regular": scrollable && !inverted,
+            "u-scrollbar-inverted": scrollable && inverted,
           }
         )}
         ref={listRef}

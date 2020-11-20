@@ -18,6 +18,7 @@
 @import "~@casumo/cudl-position/styles/cudl-position";
 @import "~@casumo/cudl-inset/styles/cudl-inset";
 @import "~@casumo/cudl-overflow/styles/cudl-overflow";
+@import "~@casumo/cudl-scrollbar/styles/cudl-scrollbar";
 
 @include cudl-prevent-compile(cudl-sass-colors);
 @import "~@casumo/cudl-colors/styles/cudl-colors";

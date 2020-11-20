@@ -42,7 +42,7 @@ export class AbstractModal extends PureComponent<Props> {
           overlayClassName="c-abstract-modal__overlay"
           {...rest}
         >
-          <div className="c-abstract-modal__content u-height--full">
+          <div className="c-abstract-modal__content u-height--full u-scrollbar-regular">
             {children}
           </div>
           <div className="c-abstract-modal__close u-padding u-position-absolute">

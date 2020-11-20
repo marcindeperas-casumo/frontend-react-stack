@@ -208,7 +208,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     return (
       <div>
-        <div className="o-ratio o-ratio--valuable-details">
+        <div className="o-ratio c-valuable-details u-round-corners-bigger c-reel-race-leaderboard-results--scrollable">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
@@ -220,7 +220,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </MaskImage>
           </div>
           <Flex
-            className="o-ratio__content u-margin-bottom--md"
+            className="o-ratio__content u-margin-bottom--md c-valuable-details__valuable-card-wrapper"
             justify="end"
             align="center"
             direction="vertical"
@@ -228,7 +228,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <div data-test-id="valuable-renderer-wrapper">{children}</div>
           </Flex>
         </div>
-        <div className="u-margin-top--2xlg u-padding-x--md">
+        <div className="u-padding-x--md">
           <Flex
             direction="vertical"
             align="center"

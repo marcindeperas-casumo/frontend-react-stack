@@ -1,18 +1,43 @@
-.c-valuable-details__footer {
-  background-color: rgba(cudl-palette(white, "base"), 0.9);
-}
+@import "cudl-border-radius";
 
-.c-valuable-details-modal {
+.c-valuable-details {
+  margin-top: auto;
+
   @include cudl-breakpoint(phablet) {
-    max-height: 670px;
-    max-width: 420px;
+    margin-top: -240px;
   }
-}
 
-.c-valuable-details__separator {
-  border-color: cudl-palette(grey, "0");
-}
+  &__header {
+    // margin-top: -240px;
+  }
 
-.c-valuable-details__valuable-card {
-  width: 160px;
+  &__footer {
+    background-color: rgba(cudl-palette(white, "base"), 0.9);
+  }
+
+  &-modal {
+    // border-radius: $border-;
+    width: 666px;
+
+    @include cudl-breakpoint(phablet) {
+      max-height: 670px;
+      max-width: 666px;
+    }
+  }
+
+  &__separator {
+    border-color: cudl-palette(grey, "0");
+  }
+
+  &__valuable-card-wrapper {
+    margin-bottom: 20px !important;
+
+    @include cudl-breakpoint(phablet) {
+      // height: 590px;
+    }
+
+    @include cudl-breakpoint(tablet) {
+      height: 590px;
+    }
+  }
 }
