@@ -9,7 +9,7 @@ import { getSelectedQuickDepositMethod } from "Models/payments/payments.selector
 import { isMobile } from "Components/ResponsiveLayout";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
-import { SwipeUpPanel } from "./SwipeUpPanel";
+import { SwipeUpPanelContainer } from "./SwipeUpPanelContainer";
 import "./VerticalStretcher.scss";
 
 export type Props = {
@@ -158,9 +158,9 @@ export const VerticalStretcher = ({
       ref={heightContainer}
       className={classNames("u-width--full", !staticHeight && "u-height--full")}
     >
-      {shouldShowSwipePanel && (
-        <SwipeUpPanel {...{ fullScreenElement, onDismiss }} />
-      )}
+      <SwipeUpPanelContainer
+        {...{ shouldShowSwipePanel, fullScreenElement, onDismiss }}
+      />
       {children}
     </div>
   );

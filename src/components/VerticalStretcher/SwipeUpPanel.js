@@ -4,8 +4,8 @@ import Flex from "@casumo/cmp-flex";
 import { ButtonInverted } from "@casumo/cmp-button";
 import { isMobile } from "Components/ResponsiveLayout";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import HandSymbol from "./icons/hand.svg";
+import type { SwipeUpTranslationsType } from "./SwipeUpPanelContainer";
 
 const onSwipePanelClick = (element: ?HTMLElement) => {
   if (element && supportsTogglingFullscreen(element) && isMobile) {
@@ -16,17 +16,15 @@ const onSwipePanelClick = (element: ?HTMLElement) => {
 export const SwipeUpPanel = ({
   fullScreenElement,
   onDismiss,
+  t,
+  loading,
 }: {
   fullScreenElement: ?HTMLElement,
   onDismiss: () => void,
+  t: SwipeUpTranslationsType,
+  loading: boolean,
 }) => {
   const supportFullScreen = false; //supportsTogglingFullscreen(fullScreenElement);
-  const { t, loading } = useTranslationsGql({
-    swipeUpText: "root:mobile.game-launch:fields.swipe_up_text",
-    tapToFullscreenText:
-      "root:mobile.game-launch:fields.tap_to_fullscreen_text",
-    dismissText: "root:mobile.game-launch:fields.dismiss_text",
-  });
 
   return (
     <div className="c-game-page__swipe-panel u-width--screen u-position-absolute">
