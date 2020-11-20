@@ -13,9 +13,13 @@ export const InGameAdventureWidgetContainer = () => {
   const dispatch = useDispatch();
   const playerId = useSelector(playerIdSelector);
   const sessionId = useSelector(sessionIdSelector);
-  const { level, points, pointsRequiredForNextLevel } = useSelector(
-    adventurerSelector
-  );
+  const {
+    level,
+    points,
+    pointsRequiredForNextLevel,
+    inBonusMode,
+    belt,
+  } = useSelector(adventurerSelector);
 
   const progressPercentage = Math.floor(
     (points / pointsRequiredForNextLevel) * 100
@@ -32,8 +36,10 @@ export const InGameAdventureWidgetContainer = () => {
 
   return (
     <InGameAdventureWidget
+      belt={belt}
       level={level}
       points={points}
+      inBonusMode={inBonusMode}
       pointsRequiredForNextLevel={pointsRequiredForNextLevel}
       progressPercentage={progressPercentage}
     />
