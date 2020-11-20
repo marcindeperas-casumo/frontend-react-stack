@@ -2,7 +2,7 @@
 import React from "react";
 import cx from "classnames";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
-import AvatarIcon from "./icons/profileAvatar.svg";
+import { CasumoAvatar } from "Components/CasumoAvatar";
 import "./ProfileIcon.scss";
 
 type Props = {
@@ -23,7 +23,10 @@ export const ProfileIcon = ({
       )}
     >
       <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle t-opacity-background--100 t-background-grey-0">
-        <AvatarIcon className="c-profile-icon__avatar u-position-absolute" />
+        <CasumoAvatar
+          variant="sm"
+          className="c-profile-icon__avatar u-position-absolute u-width--xlg"
+        />
       </div>
       <ProgressCircle
         value={0}
