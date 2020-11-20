@@ -95,10 +95,7 @@ export const VerticalStretcher = ({
       gameProviderModel.fitToParentSize();
       debouncedScrollToTop();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameProviderModel]);
 
-  useEffect(() => {
     const interval = setInterval(() => {
       const deviceNotInFullScreenMode =
         window.innerHeight < measure?.clientHeight;
