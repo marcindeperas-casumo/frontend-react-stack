@@ -3,7 +3,6 @@ export const MoneyWheel = {
     "https://cms.casumo.com/wp-content/uploads/2017/09/dream_catcher_bg-copy.jpg",
   id: "932c1650-32de-11ea-8112-0242ac110003",
   isInMaintenance: false,
-  isInMyList: false,
   liveCasinoLobby: {
     id: "MOWDream00000001",
     tableId: "MOWDream00000001",

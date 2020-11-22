@@ -11,7 +11,6 @@ export const gamesListMock = {
       name: "Wild Cauldron",
       slug: "wild-cauldron",
       id: "37cf2833-cfeb-4e18-90fd-6a43002f1d68",
-      isInMyList: false,
     },
     {
       isInMaintenance: false,
@@ -22,7 +21,6 @@ export const gamesListMock = {
       name: "Beat the Beast: Kraken’s Lair",
       slug: "beat-the-beast-krakens-lair",
       id: "badd838d-4c9b-405b-93ce-d9d9a202d7a2",
-      isInMyList: false,
     },
     {
       isInMaintenance: false,
@@ -33,7 +31,6 @@ export const gamesListMock = {
       name: "Diamond Mine Megaways: Extra Gold",
       slug: "diamond-mine-extra-gold",
       id: "b9802f00-0c3f-11ea-8451-0242ac110002",
-      isInMyList: false,
     },
   ],
 };

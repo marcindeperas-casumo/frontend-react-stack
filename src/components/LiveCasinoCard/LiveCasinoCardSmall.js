@@ -133,16 +133,12 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
             <Text tag="span">{renderBets(liveCasinoTable.bets)}</Text>
           )}
         </Flex>
-        <Flex
-          className="t-color-grey-70 u-position-absolute u-right-0 u-bottom-0"
-          onClick={e => e.stopPropagation()}
-        >
-          <GameTileHeart
-            className="u-width--2xlg u-height--2xlg u-padding t-color-red-30"
-            gameId={game.id}
-            isInMyList={game.isInMyList}
-          />
-        </Flex>
+        <GameTileHeart
+          containerClassName="t-color-grey-70 u-position-absolute u-right-0 u-bottom-0"
+          heartClassName="u-width--2xlg u-height--2xlg u-padding t-color-red-30"
+          gameId={game.id}
+          gameName={game.name}
+        />
       </Flex>
     );
   };
