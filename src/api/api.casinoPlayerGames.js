@@ -1,9 +1,10 @@
 // @flow
 import clientHttp from "Lib/http";
 import { getDeveloperOptions } from "Utils/developerOptions";
-import { platform } from "Utils";
+import { getPlatform } from "Utils";
 
 const { showDisabledGames } = getDeveloperOptions();
+const platform = getPlatform();
 
 const DEFAULT_HEADERS = {
   headers: {
