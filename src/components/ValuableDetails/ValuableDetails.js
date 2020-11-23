@@ -10,10 +10,12 @@ import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
+import { launchGame } from "Services/LaunchGameService";
 import {
   type ValuableDetailsTranslations as Translations,
   type ValuableActionProps,
   VALUABLE_STATES,
+  VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
@@ -137,6 +139,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
     try {
       await onConsumeValuable(id);
 
+      if ((this.props.valuableDetails.games || []).length) {
+        return launchGame({
+          slug: (this.props.valuableDetails: any).games[0].slug,
+          playForFun: false,
+        });
+      }
+
       if (isDepositBonusSelected) {
         depositBonusSelected({ badgeId: id });
       }
@@ -192,6 +201,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
       requirementType,
       translations,
     });
+
+    const actionButtonVisible =
+      valuableState !== VALUABLE_STATES.USED ||
+      valuableType === VALUABLE_TYPES.CASHBACK;
 
     return (
       <div>
@@ -278,7 +291,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
-          {valuableState !== VALUABLE_STATES.USED && (
+          {actionButtonVisible && (
             <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
               <ButtonPrimary
                 className="u-width--full"

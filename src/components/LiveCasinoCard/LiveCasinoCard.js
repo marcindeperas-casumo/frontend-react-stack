@@ -131,10 +131,13 @@ export class LiveCasinoCard extends PureComponent<Props> {
           width={330}
           height={186}
           imgixOpts={{
+            w: 328,
             h: 186,
             q: 70,
             crop: "faces",
             fit: "crop",
+            markalign: "middle,center",
+            markfit: "max",
           }}
         />
         <Flex

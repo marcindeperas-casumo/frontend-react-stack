@@ -2,7 +2,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { localeSelector, featureFlagSelector } from "Models/handshake";
+import {
+  localeSelector,
+  featureFlagSelector,
+  marketSelector,
+} from "Models/handshake";
 import {
   useTranslationsGql,
   useAvailableQuickDepositMethods,
@@ -14,13 +18,26 @@ import {
 } from "Models/player";
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { REACT_APP_MODAL } from "Src/constants";
+import { REACT_APP_MODAL, MARKETS } from "Src/constants";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
   className?: string,
 };
+
+function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
+  if (prev > next) {
+    // Return fresh value
+    return false;
+  } else if (prev === next) {
+    // Return cached value
+    return true;
+  }
+
+  return isGameActive;
+}
 
 export const QuickDepositContainer = ({ className = "" }: Props) => {
   const { t } = useTranslationsGql({
@@ -31,13 +48,23 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
+  const market = useSelector(marketSelector);
   const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
+  const showQuickDeposit = market === MARKETS.nz_en || quickDepositEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
-  const walletBonus = useSelector(playerWalletBonusSelector);
+  const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
+    playerBalance,
+    gameAwareBalanceCompareFunction
+  );
+  const bonusBalance = useSelector(playerWalletBonusSelector);
+  const gameActivityAwareBonusBalance = useGameActivityAwareValue<number>(
+    bonusBalance,
+    gameAwareBalanceCompareFunction
+  );
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
   const hasQuickDepositMethods =
-    quickDepositEnabled && savedQuickDepositMethods.length > 0;
+    showQuickDeposit && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };
@@ -52,12 +79,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       walletBalance={formatCurrency({
         locale,
         currency,
-        value: playerBalance,
+        value: gameActivityAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
         currency,
-        value: walletBonus,
+        value: gameActivityAwareBonusBalance,
       })}
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}

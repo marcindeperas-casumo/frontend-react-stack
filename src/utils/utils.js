@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { isMobile } from "@casumo/is-mobile";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
 import { DEVICES, CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
+import type { AppDevice } from "Src/types";
 
 export const noop = () => {};
 
@@ -40,7 +40,16 @@ export const decodedUrlParams = (json: Object) =>
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 
-export const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
+export const getPlatform = (): AppDevice => {
+  const userAgent =
+    typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+
+  const isMobile =
+    /\b(?:BlackBerry|webOS|iPhone|IEMobile)\b/iu.test(userAgent) ||
+    /\b(?:Android|Windows Phone|iPad|iPod)\b/iu.test(userAgent);
+
+  return isMobile ? DEVICES.MOBILE : DEVICES.DESKTOP;
+};
 
 export const bridgeFactory = () => {
   const obj = {};
@@ -198,8 +207,11 @@ export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
     ],
   ])(bet);
 
-export const injectScript = (url: string, elId?: string) =>
+export const injectScript = (src: string, elId?: string, inline?: boolean) =>
   new Promise<void>((resolve, reject) => {
+    // eslint-disable-next-line fp/no-let
+    let injectedScript;
+
     const script = document.createElement("script");
     /* eslint-disable fp/no-mutation */
     script.onload = () => resolve();
@@ -209,10 +221,19 @@ export const injectScript = (url: string, elId?: string) =>
       script.id = elId;
     }
 
-    script.src = url;
-    /* eslint-enable fp/no-mutation */
+    if (inline) {
+      script.innerHTML = src;
+    } else {
+      script.src = src;
+    }
+
     if (document.head) {
-      document.head.appendChild(script);
+      injectedScript = document.head.appendChild(script);
+    }
+    /* eslint-enable fp/no-mutation */
+
+    if (inline && injectedScript) {
+      script.onload();
     }
   });
 

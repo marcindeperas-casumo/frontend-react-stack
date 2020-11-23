@@ -24,7 +24,10 @@ export const PaymentMethodDetails = ({ method }: PaymentMethodDetailsProps) => {
         />
       )}
       renderText={() => (
-        <Text size="sm" className="u-margin-bottom--sm u-font-weight-bold">
+        <Text
+          size="sm"
+          className="u-margin-bottom--sm u-font-weight-bold t-color-black"
+        >
           {identifier}
         </Text>
       )}

@@ -2,6 +2,7 @@
 import { ENVIRONMENTS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const TARGET_DOMAINS = {
   [ENVIRONMENTS.TEST]: "https://mobile32.gameassists.co.uk",
@@ -24,6 +25,8 @@ export class MicrogamingGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.targetDomain = TARGET_DOMAINS[this.props.environment];
+
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {

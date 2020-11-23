@@ -8,6 +8,7 @@ import {
   useCurrentReelRaceInfo,
   useReelRaceProgress,
 } from "Utils/hooks";
+import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { playingSelector, CMS_SLUGS } from "Models/playing";
 import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
@@ -17,6 +18,7 @@ import { Desktop, isDesktop } from "Components/ResponsiveLayout";
 import { usePinnedWidgetsContext } from "Components/GamePage/Contexts";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
@@ -27,7 +29,9 @@ type Props = {
 const LEADERBOARD_SPAN = 20;
 const LEADERBOARD_FIXED = 3;
 const LEADERBOARD_LAURELS = 3;
+const TOTAL_LEADERBOARD_RESULTS = 10;
 
+/* eslint-disable sonarjs/cognitive-complexity */
 export const ReelRacesDrawerWidgetContainer = ({
   className,
   initialShowLeaderboard = false,
@@ -63,6 +67,10 @@ export const ReelRacesDrawerWidgetContainer = ({
       return [];
     }
 
+    if (currentRace.leaderboard.length <= TOTAL_LEADERBOARD_RESULTS) {
+      return currentRace.leaderboard;
+    }
+
     const leaderboardTopFixedItems = currentRace.leaderboard.slice(
       0,
       LEADERBOARD_FIXED - 1
@@ -79,6 +87,10 @@ export const ReelRacesDrawerWidgetContainer = ({
     return [...leaderboardTopFixedItems, ...leaderboardScrollableItems];
   }, [currentRace]);
 
+  const gameActivityAwareRaceData = useGameActivityAwareValue<CurrentReelRaceInfo>(
+    currentRace
+  );
+
   if (!currentRace || !currentRace?.isInProgress) {
     return null;
   }
@@ -90,7 +102,7 @@ export const ReelRacesDrawerWidgetContainer = ({
     startTime,
     endTime,
     boosters,
-  } = currentRace;
+  } = gameActivityAwareRaceData;
 
   const gameDuration = parseInt((endTime - startTime) / 1000 / 60, 10) || 0;
 
@@ -109,7 +121,7 @@ export const ReelRacesDrawerWidgetContainer = ({
           boosters={boosters}
           gameProgress={gameProgress}
           gameDuration={gameDuration}
-          showLeaderboardLink
+          showLeaderboardLink={!pinnedWidgets.includes(DRAWERS.REEL_RACES)}
           onShowLeaderboardClick={() => setShowLeaderboard(prev => !prev)}
           isLeaderboardOpen={showLeaderboard}
         />
@@ -142,3 +154,4 @@ export const ReelRacesDrawerWidgetContainer = ({
     </Flex>
   );
 };
+/* eslint-enable sonarjs/cognitive-complexity */

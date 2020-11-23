@@ -1,7 +1,7 @@
 .c-game-page__swipe-panel {
   background-color: rgba(0, 0, 0, 0.8);
-  height: calc(100vh + 100px);
-  z-index: cudl-z("content-overlay");
+  height: 100%;
+  z-index: cudl-z("modal");
 }
 
 .c-game-page__swipe-hand-symbol {

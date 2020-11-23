@@ -55,13 +55,18 @@ const trackHomeMatchClicked = (page: { title: string, path: string }) => {
 
 const trackAddToBetslip = (kambi: any) => {
   const bet = pathOr([], ["ecommerce", "add", "products", 0], kambi);
+  const isLivePage: boolean = pathOr("", ["page", "path"], kambi)
+    .split("/")
+    .includes("in-play");
 
   bet &&
     tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP, {
       [EVENT_PROPS.SPORTS_EVENT_ID]: bet.id,
       [EVENT_PROPS.SPORTS_EVENT_NAME]: bet.name,
       [EVENT_PROPS.CATEGORY]: bet.category,
-      [EVENT_PROPS.SPORTS_PAGE_TYPE]: bet.betslipLocationSource,
+      [EVENT_PROPS.SPORTS_PAGE_TYPE]: `${isLivePage ? "Live " : ""}${
+        bet.betslipLocationSource
+      }`,
     });
 };
 

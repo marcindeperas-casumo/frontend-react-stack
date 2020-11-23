@@ -646,6 +646,7 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
 };
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games = {
   title: string,
+  slug: string,
 };
 export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
   title: string,
@@ -857,6 +858,21 @@ export type OptInForReelRaceVariables = {
 };
 
 // ====================================================
+// GraphQL mutation operation: ReelRaceOptInMutation
+// ====================================================
+
+export type ReelRaceOptInMutation_optInForReelRace = {
+  id: string,
+  optedIn: boolean,
+};
+export type ReelRaceOptInMutation = {
+  optInForReelRace: ?ReelRaceOptInMutation_optInForReelRace,
+};
+export type ReelRaceOptInMutationVariables = {
+  id: string,
+};
+
+// ====================================================
 // GraphQL query operation: ReelRaceListQuery
 // ====================================================
 
@@ -898,6 +914,78 @@ export type ReelRaceListQuery = {
   reelRaces: Array<ReelRaceListQuery_reelRaces>,
 };
 export type ReelRaceListQueryVariables = {
+  limit: number,
+};
+
+// ====================================================
+// GraphQL query operation: ReelRacesPageTabPreviousQuery
+// ====================================================
+
+export type ReelRacesPageTabPreviousQuery_reelRaces_game = {
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRacesPageTabPreviousQuery_reelRaces_leaderboard = {
+  playerName: string,
+  position: number,
+  points: number,
+};
+export type ReelRacesPageTabPreviousQuery_reelRaces = {
+  id: string,
+  game: ReelRacesPageTabPreviousQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  formattedPrizes: Array<string>,
+  leaderboard: Array<ReelRacesPageTabPreviousQuery_reelRaces_leaderboard>,
+};
+export type ReelRacesPageTabPreviousQuery = {
+  reelRaces: Array<ReelRacesPageTabPreviousQuery_reelRaces>,
+};
+export type ReelRacesPageTabPreviousQueryVariables = {
+  limit: number,
+  previous?: ?boolean,
+};
+
+// ====================================================
+// GraphQL query operation: ReelRacesPageTabScheduleQuery
+// ====================================================
+
+export type ReelRacesPageTabScheduleQuery_reelRaces_game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRacesPageTabScheduleQuery_reelRaces_translations = {
+  optIn: string,
+  optedIn: string,
+  startingIn: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  caveatShort: string,
+  today: string,
+  tomorrow: string,
+};
+export type ReelRacesPageTabScheduleQuery_reelRaces = {
+  id: string,
+  game: ReelRacesPageTabScheduleQuery_reelRaces_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  status: ?string,
+  spinLimit: number,
+  promoted: boolean,
+  formattedPrize: string,
+  formattedPrizes: Array<string>,
+  translations: ReelRacesPageTabScheduleQuery_reelRaces_translations,
+};
+export type ReelRacesPageTabScheduleQuery = {
+  reelRaces: Array<ReelRacesPageTabScheduleQuery_reelRaces>,
+};
+export type ReelRacesPageTabScheduleQueryVariables = {
   limit: number,
 };
 
@@ -2441,6 +2529,65 @@ export type ReelRaceCard_ReelRace = {
 };
 
 // ====================================================
+// GraphQL fragment: ReelRacePreviousCard_ReelRace
+// ====================================================
+
+export type ReelRacePreviousCard_ReelRace_game = {
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRacePreviousCard_ReelRace_leaderboard = {
+  playerName: string,
+  position: number,
+  points: number,
+};
+export type ReelRacePreviousCard_ReelRace = {
+  id: string,
+  game: ReelRacePreviousCard_ReelRace_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  formattedPrizes: Array<string>,
+  leaderboard: Array<ReelRacePreviousCard_ReelRace_leaderboard>,
+};
+
+// ====================================================
+// GraphQL fragment: ReelRaceScheduleCard_ReelRace
+// ====================================================
+
+export type ReelRaceScheduleCard_ReelRace_game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type ReelRaceScheduleCard_ReelRace_translations = {
+  optIn: string,
+  optedIn: string,
+  startingIn: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  caveatShort: string,
+  today: string,
+  tomorrow: string,
+};
+export type ReelRaceScheduleCard_ReelRace = {
+  id: string,
+  game: ReelRaceScheduleCard_ReelRace_game,
+  startTime: BigInt,
+  endTime: BigInt,
+  optedIn: boolean,
+  status: ?string,
+  spinLimit: number,
+  promoted: boolean,
+  formattedPrize: string,
+  formattedPrizes: Array<string>,
+  translations: ReelRaceScheduleCard_ReelRace_translations,
+};
+
+// ====================================================
 // GraphQL fragment: AfterLimitsReached_Game
 // ====================================================
 
@@ -2629,6 +2776,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
 };
 export type ValuableDetails_PlayerValuable_PlayerValuableCashback_games = {
   title: string,
+  slug: string,
 };
 export type ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames = {
   title: string,
