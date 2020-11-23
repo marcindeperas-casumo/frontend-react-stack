@@ -13,6 +13,7 @@ type Props = {
   gameWindow: ?React.Node,
   header: ?React.Node,
   loading: ?React.Node,
+  quickDepositInProgress: boolean,
   offscreenElements: ?React.Node,
   overScreenNotifications: ?React.Node,
   sidebar?: React.Node,
@@ -25,6 +26,7 @@ export const GamePage = ({
   gameProviderModel,
   gameWindow,
   header,
+  quickDepositInProgress = false,
   loading = false,
   offscreenElements,
   overScreenNotifications,
@@ -39,8 +41,11 @@ export const GamePage = ({
   }
 
   return (
-    <FullscreenView className="u-height--full u-width--screen t-background-grey-90">
-      <VerticalStretcher gameProviderModel={gameProviderModel}>
+    <FullscreenView className="u-height--screen u-width--screen t-background-grey-90">
+      <VerticalStretcher
+        quickDepositInProgress={quickDepositInProgress}
+        gameProviderModel={gameProviderModel}
+      >
         <Flex
           className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
           direction="vertical"

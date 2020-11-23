@@ -6,7 +6,8 @@
 }
 
 .c-deposit-slip-container {
-  z-index: 1;
+  position: absolute;
+  z-index: cudl-z("modal");
 }
 
 .c-quick-deposit-slip-positioning {
