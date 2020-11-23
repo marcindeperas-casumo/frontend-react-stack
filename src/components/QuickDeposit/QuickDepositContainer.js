@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import {
@@ -56,7 +55,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     featureFlagSelector("quick-deposit")
   );
   const showQuickDeposit =
-    R.includes(market, quickDepositEnabledMarkets) ||
+    quickDepositEnabledMarkets.includes(market) ||
     quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
