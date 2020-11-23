@@ -9,7 +9,7 @@ type Props = {
   fullScreenElement: ?HTMLElement,
 };
 
-export type SwipeUpTranslationsType = {
+export type TSwipeUpTranslations = {
   swipeUpText: ?string,
   tapToFullscreenText: ?string,
   dismissText: ?string,

@@ -5,7 +5,7 @@ import { ButtonInverted } from "@casumo/cmp-button";
 import { isMobile } from "Components/ResponsiveLayout";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import HandSymbol from "./icons/hand.svg";
-import type { SwipeUpTranslationsType } from "./SwipeUpPanelContainer";
+import type { TSwipeUpTranslations } from "./SwipeUpPanelContainer";
 
 const onSwipePanelClick = (element: ?HTMLElement) => {
   if (element && supportsTogglingFullscreen(element) && isMobile) {
@@ -21,10 +21,10 @@ export const SwipeUpPanel = ({
 }: {
   fullScreenElement: ?HTMLElement,
   onDismiss: () => void,
-  t: SwipeUpTranslationsType,
+  t: TSwipeUpTranslations,
   loading: boolean,
 }) => {
-  const supportFullScreen = false; //supportsTogglingFullscreen(fullScreenElement);
+  const supportFullScreen = supportsTogglingFullscreen(fullScreenElement);
 
   return (
     <div className="c-game-page__swipe-panel u-width--screen u-position-absolute">

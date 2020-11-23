@@ -3,9 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
 import classNames from "classnames";
-import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
@@ -16,20 +14,24 @@ export type Props = {
   children?: Element<*>,
   swipeUpPanelEnabled: boolean,
   gameProviderModel: GameProviderModel,
+  quickDepositInProgress: boolean,
   fullScreenElement: ?HTMLElement,
 };
+
+const heightWithForcedScrol = "calc(100vh + 100px)";
+const screenHeight = "100vh";
 
 const expandBody = () => {
   if (document.body) {
     /* eslint-disable-next-line fp/no-mutation */
-    document.body.style.height = "calc(100vh + 100px)";
+    document.body.style.height = heightWithForcedScrol;
   }
 };
 
 const shrinkBody = () => {
   if (document.body) {
     /* eslint-disable-next-line fp/no-mutation */
-    document.body.style.height = "100vh";
+    document.body.style.height = screenHeight;
   }
 };
 
@@ -37,6 +39,7 @@ export const VerticalStretcher = ({
   children,
   swipeUpPanelEnabled = true,
   gameProviderModel,
+  quickDepositInProgress,
   fullScreenElement = document.body,
 }: Props) => {
   const heightContainer = useRef(null);
@@ -44,9 +47,6 @@ export const VerticalStretcher = ({
   const [showSwipePanel, setShowSwipePanel] = useState(false);
   const [staticHeight, setStaticHeight] = useState(false);
 
-  const quickDepositInProgress = Boolean(
-    useSelector(getSelectedQuickDepositMethod)
-  );
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
 
