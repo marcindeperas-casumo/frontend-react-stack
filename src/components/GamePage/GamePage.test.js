@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import MockStore from "Components/MockStore";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
 
@@ -12,6 +13,7 @@ const mockedProps = {
   gameBackground: "",
   gameProviderModel: {
     onMount: mockedOnMount,
+    fitToParentSize: () => {},
     componentTag: "div",
     componentProps: {
       id: "game-wrapper",
@@ -26,7 +28,11 @@ describe("GamePage", () => {
     jest.clearAllMocks();
   });
   test("should not render if error occurs", () => {
-    const rendered = mount(<GamePage {...mockedProps} />);
+    const rendered = mount(
+      <MockStore>
+        <GamePage {...mockedProps} />
+      </MockStore>
+    );
 
     expect(rendered.find(GamePageError)).toHaveLength(1);
   });
@@ -36,7 +42,11 @@ describe("GamePage", () => {
       error: null,
       slug: SUCCESSFUL_SLUG,
     };
-    const rendered = mount(<GamePage {...props} />);
+    const rendered = mount(
+      <MockStore>
+        <GamePage {...props} />
+      </MockStore>
+    );
 
     expect(rendered.find(LoadingComponent)).toHaveLength(1);
   });
@@ -48,7 +58,11 @@ describe("GamePage", () => {
       loading: null,
       slug: SUCCESSFUL_SLUG,
     };
-    const rendered = mount(<GamePage {...props} />);
+    const rendered = mount(
+      <MockStore>
+        <GamePage {...props} />
+      </MockStore>
+    );
 
     expect(rendered.find(GameComponent)).toHaveLength(1);
   });

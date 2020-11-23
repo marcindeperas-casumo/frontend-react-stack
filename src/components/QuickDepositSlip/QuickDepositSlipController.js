@@ -64,7 +64,7 @@ export const QuickDepositSlipController = ({
     <Flex
       align="center"
       justify="center"
-      className="u-width--screen o-position--fixed c-deposit-slip-container"
+      className="u-width--screen o-position--absolute c-deposit-slip-container"
     >
       <Flex.Item
         className="
