@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import {
@@ -27,6 +28,8 @@ type Props = {
   className?: string,
 };
 
+const quickDepositEnabledMarkets = [MARKETS.gb_en, MARKETS.nz_en];
+
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
   if (prev > next) {
     // Return fresh value
@@ -49,8 +52,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
   const market = useSelector(marketSelector);
-  const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
-  const showQuickDeposit = market === MARKETS.nz_en || quickDepositEnabled;
+  const quickDepositFeatureFlagEnabled = useSelector(
+    featureFlagSelector("quick-deposit")
+  );
+  const showQuickDeposit =
+    R.includes(market, quickDepositEnabledMarkets) ||
+    quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
