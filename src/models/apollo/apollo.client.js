@@ -104,11 +104,13 @@ function getHttpLink() {
 }
 
 function getLinks() {
-  const LINKS = [getContextLink(), getHttpLink()];
+  const LINKS = [
+    createPersistedQueryLink({ useGETForHashedQueries: true }),
+    getContextLink(),
+    getHttpLink(),
+  ];
 
-  return createPersistedQueryLink({ useGETForHashedQueries: true }).concat(
-    ApolloLink.from(LINKS)
-  );
+  return ApolloLink.from(LINKS);
 }
 
 // Adding these variables to the URL and using GET requests can help with edge caching
