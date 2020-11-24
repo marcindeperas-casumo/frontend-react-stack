@@ -23,7 +23,6 @@ export const ReelRacesListContainer = () => {
   const tournamentChannels = useSelector(tournamentChannelsSelector);
 
   React.useEffect(() => {
-    console.warn("Subscribing to Tournament Channels", tournamentChannels);
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
         `${channel}/tournaments/tournamentEvents/finished`,
@@ -34,7 +33,6 @@ export const ReelRacesListContainer = () => {
     );
 
     return function cleanup() {
-      console.warn("Unsubscribing to Tournament Channels", tournamentChannels);
       tournamentChannels.forEach(channel =>
         cometd.unsubscribe(`${channel}/tournaments/tournamentEvents/finished`)
       );
