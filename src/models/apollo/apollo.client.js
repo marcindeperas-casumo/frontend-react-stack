@@ -78,7 +78,7 @@ function getContextLink() {
     const sessionId = sessionIdSelector(state);
     const supportForPersistedQueries = {
       includeExtensions: true,
-      includeQuery: true,
+      includeQuery: false,
     };
 
     return {
@@ -103,7 +103,7 @@ function getHttpLink() {
   return new HttpLink({
     uri: config.graphqlUrl,
     credentials: "same-origin",
-    useGETForQueries: true,
+    useGETForQueries: false,
     fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }
@@ -111,7 +111,9 @@ function getHttpLink() {
 function getLinks() {
   const LINKS = [getContextLink(), getHttpLink()];
 
-  return createPersistedQueryLink().concat(ApolloLink.from(LINKS));
+  return createPersistedQueryLink({ useGETForHashedQueries: true }).concat(
+    ApolloLink.from(LINKS)
+  );
 }
 
 // Adding these variables to the URL and using GET requests can help with edge caching
