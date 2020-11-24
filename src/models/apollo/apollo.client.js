@@ -16,7 +16,7 @@ import {
   marketSelector,
   currencySelector,
   sessionIdSelector,
-  // languageSelector,
+  languageSelector,
   emailSelector,
 } from "Models/handshake";
 import config from "Src/config";
@@ -76,13 +76,8 @@ function getContextLink() {
     const market = marketSelector(state);
     const currency = currencySelector(state);
     const sessionId = sessionIdSelector(state);
-    const supportForPersistedQueries = {
-      includeExtensions: true,
-      includeQuery: false,
-    };
 
     return {
-      http: supportForPersistedQueries,
       headers: {
         "X-Token": sessionId,
         "X-Market": market,
@@ -104,7 +99,7 @@ function getHttpLink() {
     uri: config.graphqlUrl,
     credentials: "same-origin",
     useGETForQueries: false,
-    // fetch: getFetchExtendedWithMarketAndLocale(),
+    fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }
 
@@ -118,16 +113,16 @@ function getLinks() {
 
 // Adding these variables to the URL and using GET requests can help with edge caching
 // in CDN, for example in CloudFlare.
-// function getFetchExtendedWithMarketAndLocale() {
-//   return (uri, options) => {
-//     const state = reduxStore.getState();
-//     const market = marketSelector(state);
-//     const locale = languageSelector(state);
-//     const url = new URL(uri, window.location.origin);
+function getFetchExtendedWithMarketAndLocale() {
+  return (uri, options) => {
+    const state = reduxStore.getState();
+    const market = marketSelector(state);
+    const locale = languageSelector(state);
+    const url = new URL(uri, window.location.origin);
 
-//     url.searchParams.append("market", market);
-//     url.searchParams.append("locale", locale);
+    url.searchParams.append("market", market);
+    url.searchParams.append("locale", locale);
 
-//     return fetch(url, options);
-//   };
-// }
+    return fetch(url, options);
+  };
+}
