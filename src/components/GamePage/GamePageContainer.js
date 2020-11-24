@@ -12,6 +12,7 @@ import {
   useInGameBonusOrRealBalanceCheck,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
+import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -52,6 +53,9 @@ export const GamePageContainer = () => {
   const { loading, gameCategory } = useGameCategory(slug);
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
+  const quickDepositInProgress = Boolean(
+    useSelector(getSelectedQuickDepositMethod)
+  );
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
@@ -112,6 +116,7 @@ export const GamePageContainer = () => {
       }
       overScreenNotifications={<GamePageNotifications />}
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
+      quickDepositInProgress={quickDepositInProgress}
       sidebar={<GamePageSidebar />}
     />
   );

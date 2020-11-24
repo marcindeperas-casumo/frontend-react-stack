@@ -8,7 +8,7 @@ import {
 } from "Api/api.gameLaunch";
 import { getGameModel } from "GameProviders";
 import { ENVIRONMENTS } from "Src/constants";
-import { isTestEnv, platform } from "Utils";
+import { isTestEnv, getPlatform } from "Utils";
 import { languageSelector } from "Models/handshake";
 
 type Props = {
@@ -28,6 +28,7 @@ export const useGameLaunchData = ({
   const gameRef = useRef(null);
   const environment = isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION;
   const language = useSelector(languageSelector);
+  const platform = getPlatform();
 
   useEffect(() => {
     if (!remoteGameLaunchData) {
@@ -61,7 +62,7 @@ export const useGameLaunchData = ({
     return () => {
       setGameProviderModel(null);
     };
-  }, [environment, language, playForFun, remoteGameLaunchData, slug]);
+  }, [environment, language, playForFun, remoteGameLaunchData, slug, platform]);
 
   const determineWhichGameProviderModel = () => {
     return remoteGameLaunchData
