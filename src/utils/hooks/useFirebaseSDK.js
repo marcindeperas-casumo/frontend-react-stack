@@ -65,7 +65,10 @@ function useFirebaseMessagingSDK() {
           setSdk(firebaseMessaging);
         })
         .catch(err => {
-          logger.error("Firebase messaging sdk could not be loaded", err);
+          logger.error(
+            "[FCM] - Firebase messaging sdk could not be loaded",
+            err
+          );
         });
     },
     [firebase, sdk]
@@ -83,20 +86,23 @@ export function useMessaging() {
   const registerDeviceTokenUrl =
     "/casino-player/fasttrack-device-token-integration/api/v1/device-token";
 
-  React.useEffect(() => {
-    if (messaging && !window.sessionStorage.getItem("fcmtoken")) {
-      messaging.getToken({ vapidKey }).then(token => {
-        if (token) {
-          console.warn("registering Token", token);
-          http.post(registerDeviceTokenUrl, {
-            token,
-            channel: "web",
-          });
-          window.sessionStorage.setItem("fcmtoken", token);
-        }
-      });
-    }
-  }, [messaging]);
+  React.useEffect(
+    function registerFCMToken() {
+      if (messaging && !window.sessionStorage.getItem("fcmtoken")) {
+        messaging.getToken({ vapidKey }).then(token => {
+          if (token) {
+            logger.info("[FCM] - registering Token", token);
+            http.post(registerDeviceTokenUrl, {
+              token,
+              channel: "web",
+            });
+            window.sessionStorage.setItem("fcmtoken", token);
+          }
+        });
+      }
+    },
+    [messaging]
+  );
 
   return messaging;
 }
