@@ -27,7 +27,7 @@ export function* makePaymentTransactionSaga(
   action: StartQuickDepositActionReturnType
 ): * {
   const userId = yield select(playerIdSelector);
-  const locale = yield select(localeSelector); //check if it's ok to pass full locale or just two letters
+  const locale = yield select(localeSelector);
   const { merchantId, apiUrl } = yield select(piqConfigSelector);
   const { cvvEncoded, amount, paymentMethod } = action.payload;
 
