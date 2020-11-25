@@ -25,6 +25,23 @@ export const ReelRacesListContainer = () => {
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
+        `${channel}/tournaments/tournamentProperties/status`,
+        () => {
+          refetch();
+        }
+      )
+    );
+
+    return function cleanup() {
+      tournamentChannels.forEach(channel =>
+        cometd.unsubscribe(`${channel}/tournaments/tournamentProperties/status`)
+      );
+    };
+  }, [refetch, tournamentChannels]);
+
+  React.useEffect(() => {
+    tournamentChannels.forEach(channel =>
+      cometd.subscribe(
         `${channel}/tournaments/tournamentEvents/finished`,
         () => {
           refetch();
