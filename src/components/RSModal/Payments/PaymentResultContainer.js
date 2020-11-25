@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { useSelector } from "react-redux";
 import { useTranslations, useTranslationsGql } from "Utils/hooks";
 import { localeSelector } from "Models/handshake";
@@ -10,9 +9,23 @@ import { PaymentResult } from "./PaymentResult";
 
 const cmsKeyPrefix = "root:shared.payment-result:fields.";
 
-const getErrorByCode = R.curry((errorCode, errors) =>
-  R.pipe(R.find(R.propEq("error_code", errorCode)))(errors)
-);
+type TCmsError = {
+  error_code: string,
+  error_message: string,
+  error_custom_title: string,
+};
+
+const getErrorByCode = (
+  errorKeys: Array<string>,
+  cmsErrors: ?Array<TCmsError>
+) => {
+  const matchingErrors = (cmsErrors || []).filter(
+    cmsError =>
+      errorKeys.includes(cmsError.error_code) && cmsError.error_message
+  );
+
+  return matchingErrors[0];
+};
 
 type Props = {
   closeModal: () => void,
@@ -30,7 +43,7 @@ export const PaymentResultContainer = ({ closeModal, config }: Props) => {
     payment_result_success_message: `${cmsKeyPrefix}success_message`,
   });
 
-  const { status, amount, errorCode = null } = config;
+  const { status, amount, errorKeys } = config;
 
   const isSuccess = status === PAYMENT_RESULT_STATUS.success;
   const isFailure = status === PAYMENT_RESULT_STATUS.fail;
@@ -39,12 +52,14 @@ export const PaymentResultContainer = ({ closeModal, config }: Props) => {
     return null;
   }
 
-  const error =
-    errorCode && getErrorByCode(errorCode, piqErrors?.error_responses);
+  const specificError =
+    errorKeys && getErrorByCode(errorKeys, piqErrors?.error_responses);
 
-  const errorTitle = error ? error.error_title : piqErrors?.error_title;
-  const errorMessage = error
-    ? error.error_message
+  const errorTitle = specificError
+    ? specificError.error_custom_title
+    : piqErrors?.error_title;
+  const errorMessage = specificError
+    ? specificError.error_message
     : piqErrors?.unexpected_error_message;
 
   return (
