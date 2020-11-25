@@ -22,6 +22,7 @@ export const ReelRacesListContainer = () => {
 
   const tournamentChannels = useSelector(tournamentChannelsSelector);
 
+  // todo: FC-239 consolidate these subscriptions that are repeated in different areas, ex. in useCurrentReelRaceInfo hook
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
