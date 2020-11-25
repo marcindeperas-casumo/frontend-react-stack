@@ -14,6 +14,7 @@ import {
   localeSelector,
 } from "Models/handshake";
 import { makePIQDepositRequest } from "Api/api.payments";
+import { extractErrorKeys } from "./utils";
 import { actionTypes } from "./payments.constants";
 import {
   setPaymentRequestProcessing,
@@ -71,10 +72,15 @@ export function* makePaymentTransactionSaga(
   const { redirectOutput, success } = response;
 
   if (!success) {
-    // dispatch error
     // track error
+
     yield put(setPaymentRequestFinished());
-    return yield put(methodUseError({ amount }));
+    return yield put(
+      methodUseError({
+        amount,
+        errorKeys: extractErrorKeys(response),
+      })
+    );
   }
 
   if (redirectOutput) {
@@ -102,8 +108,9 @@ export function* makePaymentTransactionSaga(
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
         yield put(setPaymentRequestFinished());
+
         // do a call to getTransactionStatus to get detailed error if possible
-        return yield put(methodUseError({ amount }));
+        return yield put(methodUseError({ amount, errorKeys: [] }));
       }
     } else {
       // @todo when doing FULL version:

@@ -64,7 +64,10 @@ export const methodUseSuccess = (message: { amount: number }) => ({
   },
 });
 
-export const methodUseError = (message: { amount: number }) => ({
+export const methodUseError = (message: {
+  amount: number,
+  errorKeys: Array<string>,
+}) => ({
   type: actionTypes.PAYMENT_USE_ERROR,
   payload: {
     ...message,
