@@ -36,3 +36,4 @@ export type { CurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export { useReelRaceProgress } from "./useReelRaceProgress";
 export { useMarketConfig } from "./useMarketConfig";
 export { useMemoCompare } from "./useMemoCompare";
+export { useMessaging } from "./useFirebaseSDK";
