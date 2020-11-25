@@ -1,9 +1,10 @@
 // @flow
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
+import { WALLET_BALANCE_DELAY_DURATION } from "../../models/playing/playing.constants";
 import "./QuickDeposit.scss";
 
 export type QuickDepositTranslations = {
@@ -36,6 +37,16 @@ export const QuickDeposit = ({
   onCashierLinkClick,
   onQuickDepositLinkClick,
 }: Props) => {
+  const [delayedWalletBalanceDelayed, setDelayedWalletBalance] = useState(
+    walletBalance
+  );
+  // Intentional delay to allow for winning/jackpot animations to complete
+  useEffect(() => {
+    setTimeout(() => {
+      setDelayedWalletBalance(walletBalance);
+    }, WALLET_BALANCE_DELAY_DURATION);
+  }, [walletBalance]);
+
   if (!t) {
     return null;
   }
@@ -47,7 +58,7 @@ export const QuickDeposit = ({
           {t.balance_title}
         </Text>
         <Text tag="div" className="t-color-white u-font-weight-bold">
-          {walletBalance}
+          {delayedWalletBalanceDelayed}
         </Text>
       </Flex.Item>
       <Flex.Item>

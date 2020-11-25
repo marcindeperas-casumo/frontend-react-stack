@@ -10,3 +10,5 @@ export const WAGERING_NOTIFICATION_TYPES = {
 export const CMS_SLUGS = {
   MODAL_WAGERING: "iframe-solution",
 };
+
+export const WALLET_BALANCE_DELAY_DURATION = 1000;
