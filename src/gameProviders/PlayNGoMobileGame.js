@@ -5,8 +5,6 @@ import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export class PlayNGoMobileGame extends BaseIframeGame {
-  swipeUpToPlayPanelPossible = false;
-
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.commands.pause = COMMANDS.PAUSE;

@@ -71,7 +71,7 @@ export class BaseGame {
     }
   }
 
-  onResize = () => {
+  fitToParentSize = () => {
     if (this.props.gameRef) {
       expandElementHeightToMatchItsParent(this.props.gameRef);
     }
@@ -79,8 +79,6 @@ export class BaseGame {
 
   onMount() {
     const { current: gameElement } = this.props.gameRef;
-
-    window.addEventListener("resize", this.onResize);
 
     if (gameElement) {
       gameElement.setAttribute(
@@ -90,9 +88,5 @@ export class BaseGame {
     }
   }
 
-  onUnmount() {
-    if (this) {
-      window.removeEventListener("resize", this.onResize);
-    }
-  }
+  onUnmount() {}
 }
