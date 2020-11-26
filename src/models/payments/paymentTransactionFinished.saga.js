@@ -5,12 +5,13 @@ import { PAYMENT_RESULT_STATUS } from "Components/RSModal/Payments/PaymentResult
 import { actionTypes } from "./payments.constants";
 
 export function* paymentTransactionFinishedSaga(action) {
-  const { amount } = action.payload;
+  const { amount, errorKeys = [] } = action.payload;
 
   if (action.type === actionTypes.PAYMENT_USE_ERROR) {
     yield put(
       showModal(REACT_APP_MODAL.ID.PAYMENT_RESULT, {
         amount,
+        errorKeys,
         status: PAYMENT_RESULT_STATUS.fail,
       })
     );
