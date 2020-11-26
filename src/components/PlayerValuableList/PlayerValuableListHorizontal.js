@@ -87,7 +87,7 @@ export function PlayerValuableListHorizontal() {
               onConsumeValuable={consumeValuable}
               valuableDetails={selectedValuable}
             >
-              <div className="c-valuable-list__valuable-card">
+              <div className="c-valuable-details__valuable-card">
                 <ValuableCard
                   {...selectedValuable}
                   translations={translations}

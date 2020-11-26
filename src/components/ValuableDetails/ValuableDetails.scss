@@ -1,5 +1,8 @@
 @import "cudl-border-radius";
 
+$card-details-width: 160px;
+$shadow-width: 130px;
+
 .c-valuable-details {
   margin-top: auto;
 
@@ -27,6 +30,26 @@
 
   &__separator {
     border-color: cudl-palette(grey, "0");
+  }
+
+  &__valuable-card {
+    position: relative;
+    width: $card-details-width;
+    z-index: 1;
+
+    &::after {
+      background: #303838;
+      border-radius: 16px;
+      content: " ";
+      filter: blur(10px);
+      height: 200px;
+      left: calc((#{$card-details-width} - #{$shadow-width}) / 2);
+      opacity: 0.15;
+      position: absolute;
+      top: 14px;
+      width: $shadow-width;
+      z-index: -1;
+    }
   }
 
   &__valuable-card-wrapper {
