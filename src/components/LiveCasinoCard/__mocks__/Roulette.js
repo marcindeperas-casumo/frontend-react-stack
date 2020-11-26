@@ -3,7 +3,6 @@ export const Roulette = {
     "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-roulette.png",
   id: "474df1b0-8b5d-11e8-85b2-0242ac110002",
   isInMaintenance: false,
-  isInMyList: false,
   liveCasinoLobby: {
     id: "LightningTable01",
     tableId: "LightningTable01",

@@ -59,7 +59,9 @@ export const GameDetails = ({ game, t }: Props) => {
             >
               {game.name}
             </Text>
-            {isDesktop() && <GameTileHeart gameId={game.id} />}
+            {isDesktop() && (
+              <GameTileHeart gameId={game.id} gameName={game.name} />
+            )}
           </Flex>
           {game.description && (
             <Text
