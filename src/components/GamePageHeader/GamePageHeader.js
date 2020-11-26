@@ -48,6 +48,7 @@ export const GamePageHeader = () => {
                   openChatWindow();
                 }}
                 onExitGameClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
                   navigateToKO(ROUTE_IDS.TOP_LISTS);
                 }}
                 showLabels={false}

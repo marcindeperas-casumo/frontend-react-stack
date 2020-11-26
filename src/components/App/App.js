@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import logger from "Services/logger";
 import { AppLiS } from "./AppLiS";
 import { AppLoS } from "./AppLoS";
 type Props = {
@@ -19,6 +20,20 @@ export const App = (props: Props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     isAuthenticatedHandshake
   );
+
+  // IM-274: ephemeral fix rm localforage indexeddb
+  useEffect(() => {
+    try {
+      window.indexedDB.databases().then(dbs => {
+        const lfdb = dbs.find(db => db.name === "localforage");
+        if (lfdb) {
+          window.indexedDB.deleteDatabase("localforage");
+        }
+      });
+    } catch (e) {
+      logger.error(e);
+    }
+  }, []);
 
   useEffect(() => {
     setIsAuthenticated(isAuthenticatedHandshake);
