@@ -24,7 +24,6 @@ fragment LiveCasinoCard on Game {
   backgroundImage
   id
   isInMaintenance
-  isInMyList
   liveCasinoLobby {
     ...LiveCasinoCard_Lobby
   }

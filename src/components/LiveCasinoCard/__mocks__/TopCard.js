@@ -3,7 +3,6 @@ export const TopCard = {
     "https://cms.casumo.com/wp-content/uploads/2018/06/FootballStudio.jpg",
   id: "277054e0-8b5e-11e8-85b2-0242ac110002",
   isInMaintenance: false,
-  isInMyList: false,
   liveCasinoLobby: {
     id: "TopCard000000001",
     tableId: "TopCard000000001",
