@@ -208,7 +208,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     return (
       <div>
-        <div className="o-ratio c-valuable-details u-round-corners-bigger c-reel-race-leaderboard-results--scrollable">
+        <div className="o-ratio c-valuable-details u-round-corners-bigger">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
@@ -232,7 +232,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <Flex
             direction="vertical"
             align="center"
-            className="u-margin-bottom--lg"
+            className="u-margin-bottom--lg u-margin-top--xlg"
           >
             <Flex.Item>
               <Text className="center">
