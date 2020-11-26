@@ -21,6 +21,15 @@ export const App = (props: Props) => {
   );
 
   useEffect(() => {
+    window.indexedDB.databases().then(dbs => {
+      const lfdb = dbs.find(db => db.name === "localforage");
+      if (lfdb) {
+        window.indexedDB.deleteDatabase("localforage");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     setIsAuthenticated(isAuthenticatedHandshake);
 
     if (!isAuthenticatedHandshake) {
