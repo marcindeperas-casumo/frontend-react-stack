@@ -1,2 +1,2 @@
 // @flow
-export { ProfileIcon } from "./ProfileIcon";
+export { ProfileIconContainer as ProfileIcon } from "./ProfileIconContainer";
