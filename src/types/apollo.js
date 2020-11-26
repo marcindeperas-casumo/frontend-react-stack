@@ -142,7 +142,6 @@ export type GameListQuery_gamesList_games = {
   id: string,
   liveCasinoId: ?string,
   playBackground: string,
-  isInMyList: boolean,
   category: ?string,
 };
 export type GameListQuery_gamesList = {
@@ -171,7 +170,6 @@ export type GameListExclusiveQuery_gamesList_games = {
   id: string,
   liveCasinoId: ?string,
   playBackground: string,
-  isInMyList: boolean,
   category: ?string,
 };
 export type GameListExclusiveQuery_gamesList = {
@@ -213,7 +211,6 @@ export type GameListLiveCasinoQuery_gamesList_games = {
   backgroundImage: string,
   id: string,
   isInMaintenance: boolean,
-  isInMyList: boolean,
   liveCasinoLobby: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
   logo: string,
   name: string,
@@ -264,7 +261,6 @@ export type GameListPageQuery_getGamesPaginated_games = {
   id: string,
   liveCasinoId: ?string,
   playBackground: string,
-  isInMyList: boolean,
   category: ?string,
   liveCasinoLobby: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby,
   gameStudio: string,
@@ -417,7 +413,6 @@ export type GameTileHeartQueryVariables = {
 
 export type AddGameToMyList_addGameToMyList = {
   id: string,
-  isInMyList: boolean,
 };
 export type AddGameToMyList = {
   addGameToMyList: ?AddGameToMyList_addGameToMyList,
@@ -432,7 +427,6 @@ export type AddGameToMyListVariables = {
 
 export type RemoveGameFromMyList_removeGameFromMyList = {
   id: string,
-  isInMyList: boolean,
 };
 export type RemoveGameFromMyList = {
   removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList,
@@ -573,7 +567,6 @@ export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
   backgroundImage: string,
   id: string,
   isInMaintenance: boolean,
-  isInMyList: boolean,
   liveCasinoLobby: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby,
   logo: string,
   name: string,
@@ -2237,7 +2230,6 @@ export type GameTile_Game = {
   id: string,
   liveCasinoId: ?string,
   playBackground: string,
-  isInMyList: boolean,
   category: ?string,
 };
 
@@ -2341,7 +2333,6 @@ export type LiveCasinoCard = {
   backgroundImage: string,
   id: string,
   isInMaintenance: boolean,
-  isInMyList: boolean,
   liveCasinoLobby: ?LiveCasinoCard_liveCasinoLobby,
   logo: string,
   name: string,

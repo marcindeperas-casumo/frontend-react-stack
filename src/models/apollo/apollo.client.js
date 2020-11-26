@@ -8,8 +8,6 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
-import { persistCache } from "apollo-cache-persist";
-import * as localForage from "localforage";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -59,12 +57,8 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 export async function getCache() {
   const cache = new InMemoryCache({ fragmentMatcher });
 
-  cache.writeData({
+  await cache.writeData({
     data: defaultState,
-  });
-  await persistCache({
-    cache,
-    storage: localForage,
   });
 
   return cache;
