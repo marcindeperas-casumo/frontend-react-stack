@@ -15,6 +15,7 @@ type Props = {
   inBonusMode?: boolean,
   level?: number,
   variant?: "sm" | "default",
+  className?: string,
 };
 
 const AVATAR_CLASS_NAMES = "u-height--full u-width--full";
@@ -24,6 +25,7 @@ export function CasumoAvatar({
   inBonusMode = false,
   level = 1,
   variant = "default",
+  className,
 }: Props) {
   const backgroundColor = getBackgroundColor(inBonusMode, level);
   const isSmall = variant === "sm";
@@ -39,6 +41,7 @@ export function CasumoAvatar({
       className={cx(
         "c-casumo-avatar t-border-r--md o-ratio",
         getClassModifierByBelt(belt),
+        className,
         {
           [`t-background-${backgroundColor}`]: !isSmall,
         }
