@@ -3,6 +3,7 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
+import { createPersistedQueryLink } from "apollo-link-persisted-queries";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
@@ -69,13 +70,8 @@ function getContextLink() {
     const market = marketSelector(state);
     const currency = currencySelector(state);
     const sessionId = sessionIdSelector(state);
-    const supportForPersistedQueries = {
-      includeExtensions: true,
-      includeQuery: true,
-    };
 
     return {
-      http: supportForPersistedQueries,
       headers: {
         "X-Token": sessionId,
         "X-Market": market,
@@ -102,7 +98,11 @@ function getHttpLink() {
 }
 
 function getLinks() {
-  const LINKS = [getContextLink(), getHttpLink()];
+  const LINKS = [
+    createPersistedQueryLink({ useGETForHashedQueries: true }),
+    getContextLink(),
+    getHttpLink(),
+  ];
 
   return ApolloLink.from(LINKS);
 }
