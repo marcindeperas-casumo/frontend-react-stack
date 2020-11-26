@@ -20,6 +20,7 @@ export const App = (props: Props) => {
     isAuthenticatedHandshake
   );
 
+  // IM-274: ephemeral fix rm localforage indexeddb
   useEffect(() => {
     window.indexedDB.databases().then(dbs => {
       const lfdb = dbs.find(db => db.name === "localforage");
