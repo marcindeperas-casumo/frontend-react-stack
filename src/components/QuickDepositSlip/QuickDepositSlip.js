@@ -1,12 +1,14 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
-import classNames from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CvvCodeIframe } from "Components/Payments/CvvCodeIframe";
+import TrackClick from "Components/TrackClick";
+import { EVENTS } from "Src/constants";
 import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
@@ -71,18 +73,24 @@ export const QuickDepositSlip = ({
       <Flex.Block>
         <Flex spacing="md" justify="space-between">
           <Flex.Block>
-            <TextInput
-              data-test-id="deposit-amount-selector"
-              prefix={currencySymbol}
-              type="number"
-              inputMode="numeric"
-              value={depositValue.toString()}
-              onChange={onAmountChange}
-              className="u-font-lg u-font-weight-bold"
-              inputClassName="u-font-lg u-font-weight-bold"
-              helperText={formErrors.amountInput || deposit_helper_text}
-              variant={formErrors.amountInput ? "invalid" : "valid"}
-            />
+            <TrackClick
+              eventName={
+                EVENTS.MIXPANEL_QUICK_DEPOSIT_PRE_DEFINED_AMOUNT_ADJUSTED
+              }
+            >
+              <TextInput
+                data-test-id="deposit-amount-selector"
+                prefix={currencySymbol}
+                type="number"
+                inputMode="numeric"
+                value={depositValue.toString()}
+                onChange={onAmountChange}
+                className="u-font-lg u-font-weight-bold"
+                inputClassName="u-font-lg u-font-weight-bold"
+                helperText={formErrors.amountInput || deposit_helper_text}
+                variant={formErrors.amountInput ? "invalid" : "valid"}
+              />
+            </TrackClick>
           </Flex.Block>
           <Flex.Item className="c-quick-deposit-slip__cvv">
             <Flex direction="vertical" spacing="sm">
@@ -113,14 +121,18 @@ export const QuickDepositSlip = ({
             {PaymentMethodComponent && PaymentMethodComponent()}
           </Flex.Block>
           <Flex.Item>
-            <ButtonPrimary
-              size="md"
-              onClick={onDepositClick}
-              isDisabled={isDepositButtonDisabled}
-              isLoading={isProcessing}
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_BUTTON_CLICKED}
             >
-              {deposit_cta_text}
-            </ButtonPrimary>
+              <ButtonPrimary
+                size="md"
+                onClick={onDepositClick}
+                isDisabled={isDepositButtonDisabled}
+                isLoading={isProcessing}
+              >
+                {deposit_cta_text}
+              </ButtonPrimary>
+            </TrackClick>
           </Flex.Item>
         </Flex>
       </Flex.Block>
