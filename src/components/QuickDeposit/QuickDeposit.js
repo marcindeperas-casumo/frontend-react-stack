@@ -3,6 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
+import TrackClick from "Components/TrackClick";
+import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
@@ -66,23 +68,29 @@ export const QuickDeposit = ({
             className="t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
             onClick={onQuickDepositLinkClick}
           >
-            <CurrencyIcon
-              currency={currency}
-              selected
-              classList="u-position--absolute o-inset-x--none t-color-purple-60"
-            />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
-              <AddIcon className="t-color-purple-60" size="md" />
-            </div>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED}
+            >
+              <CurrencyIcon
+                currency={currency}
+                selected
+                classList="u-position--absolute o-inset-x--none t-color-purple-60"
+              />
+              <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
+                <AddIcon className="t-color-purple-60" size="md" />
+              </div>
+            </TrackClick>
           </Flex>
         ) : (
-          <Text
-            tag="span"
-            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
-            onClick={onCashierLinkClick}
-          >
-            {t.cashier_link_text}
-          </Text>
+          <TrackClick eventName={EVENTS.MIXPANEL_CASHIER_LINK_CLICKED}>
+            <Text
+              tag="span"
+              className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
+              onClick={onCashierLinkClick}
+            >
+              {t.cashier_link_text}
+            </Text>
+          </TrackClick>
         )}
       </Flex.Block>
     </Flex>
