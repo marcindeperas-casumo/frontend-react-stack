@@ -7,7 +7,6 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2018/04/lightning-bg.png",
       id: "474df1b0-8b5d-11e8-85b2-0242ac110002",
       isInMaintenance: false,
-      isInMyList: false,
       liveCasinoLobby: {
         id: "LightningTable01",
         tableId: "LightningTable01",
@@ -30,7 +29,6 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2020/01/Lightning_baccarat_Thumbnail_BG.png",
       id: "932c1650-32de-11ea-8112-0242ac110003",
       isInMaintenance: false,
-      isInMyList: false,
       liveCasinoLobby: {
         id: "LightningBac0001",
         tableId: "LightningBac0001",
@@ -53,7 +51,6 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2019/03/monopoly-live_bg.jpg",
       id: "70b81d90-39e1-11e9-a1d2-0242ac110002",
       isInMaintenance: false,
-      isInMyList: false,
       liveCasinoLobby: {
         id: "Monopoly00000001",
         tableId: "Monopoly00000001",
@@ -76,7 +73,6 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2019/04/deal-or-no-deal-gameplate.png",
       id: "c666e380-39e0-11e9-a1d2-0242ac110002",
       isInMaintenance: false,
-      isInMyList: false,
       liveCasinoLobby: {
         id: "dealnodeal000001",
         tableId: "dealnodeal000001",
@@ -99,7 +95,6 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2017/09/three_card_poker_Thumbnail_BG.png",
       id: "26e917c0-40fa-11e5-a453-005056a03af2",
       isInMaintenance: false,
-      isInMyList: false,
       liveCasinoLobby: {
         id: "n5emwq5c5dwepwam",
         tableId: "n5emwq5c5dwepwam",

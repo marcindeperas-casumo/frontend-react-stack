@@ -9,7 +9,6 @@ fragment GameTile_Game on Game {
   id
   liveCasinoId
   playBackground
-  isInMyList
   category
   ...GameTileInMaintenance_Game
 }

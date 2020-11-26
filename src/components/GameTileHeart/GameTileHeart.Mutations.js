@@ -9,7 +9,6 @@ const ADD_GAME = gql`
   mutation AddGameToMyList($id: String!) {
     addGameToMyList(id: $id) {
       id
-      isInMyList
     }
   }
 `;
@@ -18,7 +17,6 @@ const REMOVE_GAME = gql`
   mutation RemoveGameFromMyList($id: String!) {
     removeGameFromMyList(id: $id) {
       id
-      isInMyList
     }
   }
 `;
@@ -34,7 +32,6 @@ export const useAddGameToMyList = (id: string) => {
         addGameToMyList: {
           __typename: "Game",
           id,
-          isInMyList: true,
         },
       },
       update: (cache, response) => {
@@ -81,7 +78,6 @@ export const useRemoveGameFromMyList = (id: string) => {
       removeGameFromMyList: {
         __typename: "Game",
         id,
-        isInMyList: false,
       },
     },
     update: (cache, response) => {
