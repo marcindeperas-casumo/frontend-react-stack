@@ -43,3 +43,9 @@ export const PROVIDERS = Object.freeze({
 export const GAME_ACTIVE_EVENT_NAME = "gameActive";
 export const GAME_IDLE_EVENT_NAME = "gameIdle";
 export const IFRAME_ID = "casumo-game";
+export const GAME_ACTIVITY_STATUS_SOURCE = {
+  GAME: "game",
+  SIMULATED: "simulated",
+};
+export const GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE =
+  "data-game-activity-status-source";

@@ -67,7 +67,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <div className="u-width u-height t-border-r--circle t-background-green-30"></div>
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
-                    Right Now
+                    {t?.right_now}
                   </Text>
                 </Flex>
               )}
@@ -75,14 +75,14 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <div className="u-width u-height t-border-r--circle t-background-yellow-30"></div>
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
-                    Up Next
+                    {t?.up_next}
                   </Text>
                 </Flex>
               )}
               {i === 3 && (
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
-                    Later Today
+                    {t?.later_today}
                   </Text>
                 </Flex>
               )}

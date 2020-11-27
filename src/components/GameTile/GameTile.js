@@ -40,7 +40,6 @@ export const GameTile = ({
     name,
     slug,
     id,
-    isInMyList,
     liveCasinoId,
   } = game;
 
@@ -107,17 +106,7 @@ export const GameTile = ({
               )}
             </TrackClick>
           </Flex.Item>
-          <Flex.Item onClick={e => e.stopPropagation()}>
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
-              data={{
-                [EVENT_PROPS.GAME_NAME]: name,
-                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
-              }}
-            >
-              <GameTileHeart gameId={id} gameSlug={slug} />
-            </TrackClick>
-          </Flex.Item>
+          <GameTileHeart gameId={id} gameName={name} />
         </Flex>
       </Flex>
     </TrackClick>

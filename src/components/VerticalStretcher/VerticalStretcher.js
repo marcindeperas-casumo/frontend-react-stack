@@ -2,93 +2,124 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
+import classNames from "classnames";
 import debounce from "lodash.debounce";
-import Flex from "@casumo/cmp-flex";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isNativeByUserAgent } from "GameProviders";
-import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import type { GameProviderModel } from "GameProviders";
-import { SwipeUpMessageText, TapToFullscreenText } from "./messageText";
-import HandSymbol from "./icons/hand.svg";
+import { SwipeUpPanelContainer } from "./SwipeUpPanelContainer";
 import "./VerticalStretcher.scss";
 
 export type Props = {
   children?: Element<*>,
   swipeUpPanelEnabled: boolean,
   gameProviderModel: GameProviderModel,
+  quickDepositInProgress: boolean,
   fullScreenElement: ?HTMLElement,
 };
 
-const onSwipePanelClick = (element: ?HTMLElement) => {
-  if (element && supportsTogglingFullscreen(element) && isMobile) {
-    element.requestFullscreen();
+const heightWithForcedScrol = "calc(100vh + 100px)";
+const screenHeight = "100vh";
+
+const expandBody = () => {
+  if (document.body) {
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.height = heightWithForcedScrol;
+  }
+};
+
+const shrinkBody = () => {
+  if (document.body) {
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.height = screenHeight;
   }
 };
 
 export const VerticalStretcher = ({
   children,
-  swipeUpPanelEnabled = false,
+  swipeUpPanelEnabled = true,
   gameProviderModel,
+  quickDepositInProgress,
   fullScreenElement = document.body,
-}: // eslint-disable-next-line sonarjs/cognitive-complexity
-Props) => {
+}: Props) => {
   const heightContainer = useRef(null);
-  const [showSwipePanel, setShowSwipePanel] = useState(true);
-  const [controllScroll, setControllScroll] = useState(true);
-  const [alreadyTriggeredOnce, setAlreadyTriggeredOnce] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
+  const [showSwipePanel, setShowSwipePanel] = useState(false);
+  const [staticHeight, setStaticHeight] = useState(false);
 
+  const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
 
+  const debouncedScrollToTop = debounce(() => {
+    if (!quickDepositInProgress) {
+      window.scrollTo(0, 0);
+    }
+  }, 100);
+
+  const debounceResizeGame = debounce(() => {
+    gameProviderModel.fitToParentSize();
+  }, 500);
+
+  const desktopResizeGame = () => {
+    matchContainerHeight();
+    gameProviderModel.fitToParentSize();
+  };
+
+  const matchContainerHeight = () => {
+    if (quickDepositInProgress) {
+      return;
+    }
+
+    debouncedScrollToTop();
+
+    if (heightContainer.current) {
+      /**
+       * So far this is the only way i've found which solves the problem
+       * of browser toolbars overlaying game content when they appear.
+       */
+
+      /* eslint-disable-next-line fp/no-mutation */
+      heightContainer.current.style.height = `${window.innerHeight}px`;
+      setStaticHeight(true);
+    }
+  };
+
+  const onDismiss = () => {
+    setIsDismissed(true);
+    matchContainerHeight();
+    debounceResizeGame();
+    tracker.track(EVENTS.MIXPANEL_IN_GAME_SWIPEUP_DISMISSED);
+  };
+
   useEffect(() => {
-    const debouncedScrollToTop = debounce(() => {
-      if (controllScroll) {
-        window.scrollTo(0, 0);
-      }
-    }, 50);
+    if (isMobile) {
+      gameProviderModel.fitToParentSize();
+      debouncedScrollToTop();
+    }
 
     const interval = setInterval(() => {
-      if (heightContainer.current && document.body) {
-        /**
-         * So far this is the only way i've found which solves the problem
-         * of browser toolbars overlaying game content when they appear.
-         */
-        /* eslint-disable-next-line fp/no-mutation */
-        heightContainer.current.style.height = `${window.innerHeight}px`;
+      const deviceNotInFullScreenMode =
+        window.innerHeight < measure?.clientHeight;
 
-        /**
-         * Fix for evolution games, they set our body.height to calc(100px + 100vh)
-         * to emulate their own "swipe to play" feature which we don't want :)
-         */
-        /* eslint-disable-next-line fp/no-mutation */
-        document.body.style.height = "100vh";
-        /**
-         * This is just called here to trigger resize event which causes
-         * game container to match size of it's parent after changing
-         * top-lvl parent dimensions
-         */
-        window.dispatchEvent(new Event("resize"));
+      // don't resize body when quick-deposit is displayed
+      if (quickDepositInProgress) {
+        return;
+      }
 
-        /**
-         * swipePanel allows to force player to go fullscreen to play the game
-         * when toolbars are being shown and they are eating part of the screen
-         */
-        const deviceNotInFullScreenMode =
-          window.innerHeight < document.body?.clientHeight;
-
-        if (deviceNotInFullScreenMode) {
-          if (!alreadyTriggeredOnce) {
-            setShowSwipePanel(true);
-            setControllScroll(false);
-          }
-        } else {
-          if (showSwipePanel) {
-            setAlreadyTriggeredOnce(true);
-          }
+      if (deviceNotInFullScreenMode) {
+        if (!showSwipePanel) {
+          setShowSwipePanel(true);
+          expandBody();
+        }
+      } else {
+        if (showSwipePanel) {
           setShowSwipePanel(false);
-          setControllScroll(true);
+          shrinkBody();
         }
       }
-    }, 100);
+    }, 300);
 
     /**
      * This prevents the situation when game content (resized to window.innerHeight)
@@ -98,9 +129,17 @@ Props) => {
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
+    window.addEventListener("orientationchange", debounceResizeGame);
+    if (!isMobile) {
+      window.addEventListener("resize", desktopResizeGame);
+    }
 
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
+      window.removeEventListener("orientationchange", desktopResizeGame);
+      if (!isMobile) {
+        window.removeEventListener("resize", debounceResizeGame);
+      }
       clearInterval(interval);
     };
   });
@@ -109,38 +148,20 @@ Props) => {
     gameProviderModel.swipeUpToPlayPanelPossible &&
     swipeUpPanelEnabled &&
     isMobile &&
+    showSwipePanel &&
+    !quickDepositInProgress &&
     !isNative &&
-    showSwipePanel;
+    !isDismissed;
 
   return (
-    <div ref={heightContainer} className="u-width--full">
-      {shouldShowSwipePanel && (
-        <div className="c-game-page__swipe-panel u-width--screen u-position-absolute">
-          <Flex
-            justify="center"
-            direction="vertical"
-            align="center"
-            className="c-game-page__swipeup-details u-width--full u-height--screen"
-            onClick={() => onSwipePanelClick(fullScreenElement)}
-          >
-            {supportsTogglingFullscreen(fullScreenElement) ? (
-              <Flex.Item className="t-color-white">
-                <TapToFullscreenText />
-              </Flex.Item>
-            ) : (
-              <React.Fragment>
-                <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
-                  <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
-                </Flex.Item>
-                <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
-                  <SwipeUpMessageText />
-                </Flex.Item>
-              </React.Fragment>
-            )}
-          </Flex>
-        </div>
-      )}
-      {!shouldShowSwipePanel && children}
+    <div
+      ref={heightContainer}
+      className={classNames("u-width--full", !staticHeight && "u-height--full")}
+    >
+      <SwipeUpPanelContainer
+        {...{ shouldShowSwipePanel, fullScreenElement, onDismiss }}
+      />
+      {children}
     </div>
   );
 };

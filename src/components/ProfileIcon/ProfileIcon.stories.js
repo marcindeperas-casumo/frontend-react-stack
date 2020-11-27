@@ -27,7 +27,12 @@ stories.add("Default", () => {
       }}
     >
       <Wrapper>
-        <ProfileIcon onClick={action("clicked")} />
+        <ProfileIcon
+          onClick={action("clicked")}
+          belt="red"
+          level={11}
+          progressPercentage={25}
+        />
       </Wrapper>
     </div>
   );

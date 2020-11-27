@@ -1,6 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export const COMMANDS = {
   PAUSE: { wpgaction: "doGamePause" },
@@ -31,6 +32,8 @@ export class OryxGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.targetDomain = "https://cdn.oryxgaming.com";
+
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   onMessageHandler(message: OryxMessage) {

@@ -11,3 +11,4 @@ export {
 } from "./GameModelContext";
 
 export { GamePageContextProvider } from "./GamePageContext";
+export { useGameActivityStatusContext } from "./GameActivityStatusContext";

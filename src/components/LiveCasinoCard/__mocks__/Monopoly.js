@@ -3,7 +3,6 @@ export const Monopoly = {
     "https://cms.casumo.com/wp-content/uploads/2019/03/monopoly-live_bg.jpg",
   id: "70b81d90-39e1-11e9-a1d2-0242ac110002",
   isInMaintenance: false,
-  isInMyList: false,
   liveCasinoLobby: {
     id: "Monopoly00000001",
     tableId: "Monopoly00000001",

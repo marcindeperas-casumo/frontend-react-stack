@@ -1,7 +1,10 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
+import TrackClick from "Components/TrackClick";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameTileHeart } from "Components/GameTileHeart/GameTileHeart";
 import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 import {
@@ -11,13 +14,17 @@ import {
 } from "./GameTileHeart.Mutations";
 
 type Props = {
-  className?: string,
+  heartClassName?: string,
+  containerClassName?: string,
   gameId: string,
+  gameName: string,
 };
 
 export const GameTileHeartContainer = ({
-  className = "u-padding u-width--2xlg",
+  heartClassName = "u-padding u-width--2xlg",
+  containerClassName = "",
   gameId,
+  gameName,
 }: Props) => {
   const { data, loading } = useQuery<
     A.GameTileHeartQuery,
@@ -34,10 +41,23 @@ export const GameTileHeartContainer = ({
   const onFavouriteGame = isInMyList ? removeGame : addGame;
 
   return (
-    <GameTileHeart
-      className={className}
-      onClick={onFavouriteGame}
-      isActive={isInMyList}
-    />
+    <Flex.Item
+      className={containerClassName}
+      onClick={e => e.stopPropagation()}
+    >
+      <TrackClick
+        eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+        data={{
+          [EVENT_PROPS.GAME_NAME]: gameName,
+          [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
+        }}
+      >
+        <GameTileHeart
+          className={heartClassName}
+          onClick={onFavouriteGame}
+          isActive={isInMyList}
+        />
+      </TrackClick>
+    </Flex.Item>
   );
 };

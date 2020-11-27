@@ -33,6 +33,7 @@
       src: url("/fonts/lineto-circular-pro-black.woff2") format("woff2")
     }
 
+    
     html,
     body {
       width: 100%;
@@ -43,13 +44,16 @@
       font-family: "Circular Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
-    #root {
-      height: 100%;
+    #height-measure {
+      height:100vh;
+      position:absolute;
+      width:0px;
     }
   </style>
 </head>
 
 <body>
+  <div id="height-measure"></div>
   <div id="root">
     <style>
       /* TODO: fix in Cudl React - for react cudl loader loading before css is injected

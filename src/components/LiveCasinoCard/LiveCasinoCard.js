@@ -25,10 +25,6 @@ export type Props = {
 };
 
 export class LiveCasinoCard extends PureComponent<Props> {
-  static defaultProps = {
-    isInMyList: false,
-  };
-
   get liveCasinoTableId() {
     return prop("tableId", this.liveCasinoLobby);
   }
@@ -53,20 +49,12 @@ export class LiveCasinoCard extends PureComponent<Props> {
           justify="space-between"
           className="o-ratio__content u-font-weight-bold"
         >
-          <div className="t-color-white" onClick={e => e.stopPropagation()}>
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
-              data={{
-                [EVENT_PROPS.GAME_NAME]: this.props.game.name,
-                [EVENT_PROPS.IS_FAVOURITE]: !this.props.game.isInMyList,
-              }}
-            >
-              <GameTileHeart
-                className="u-width--4xlg u-height--4xlg u-padding--md"
-                gameId={this.props.game.id}
-              />
-            </TrackClick>
-          </div>
+          <GameTileHeart
+            containerClassName="t-color-white"
+            heartClassName="u-width--4xlg u-height--4xlg u-padding--md"
+            gameId={this.props.game.id}
+            gameName={this.props.game.name}
+          />
           <LiveCasinoCardData
             liveCasinoLobby={this.liveCasinoLobby}
             t={this.props.t}
@@ -131,10 +119,13 @@ export class LiveCasinoCard extends PureComponent<Props> {
           width={330}
           height={186}
           imgixOpts={{
+            w: 328,
             h: 186,
             q: 70,
             crop: "faces",
             fit: "crop",
+            markalign: "middle,center",
+            markfit: "max",
           }}
         />
         <Flex
@@ -146,20 +137,12 @@ export class LiveCasinoCard extends PureComponent<Props> {
             background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
           }}
         >
-          <div className="t-color-white" onClick={e => e.stopPropagation()}>
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
-              data={{
-                [EVENT_PROPS.GAME_NAME]: this.props.game.name,
-                [EVENT_PROPS.IS_FAVOURITE]: !this.props.game.isInMyList,
-              }}
-            >
-              <GameTileHeart
-                className="u-width--4xlg u-height--4xlg u-padding--md"
-                gameId={this.props.game.id}
-              />
-            </TrackClick>
-          </div>
+          <GameTileHeart
+            containerClassName="t-color-white"
+            heartClassName="u-width--4xlg u-height--4xlg u-padding--md"
+            gameId={this.props.game.id}
+            gameName={this.props.game.name}
+          />
         </Flex>
       </div>
     );
