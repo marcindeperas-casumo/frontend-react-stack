@@ -11,6 +11,8 @@ import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceSc
 import { ReelRacesPageTabScheduleQuery } from "./ReelRacesPageTabSchedule.graphql";
 import type { ReelRacesContentPage } from "./ReelRacesPage";
 
+const PAGE_LIMIT = 10;
+
 type Props = {
   t: ?ReelRacesContentPage,
 };
@@ -31,22 +33,29 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
     reelRaces
   );
 
-  const PAGE_ITEMS = scheduledreelRaces.length;
-  const DATA = [...Array(PAGE_ITEMS).keys()];
-  const LIMIT = 10;
-
   const [showMore, setShowMore] = React.useState(true);
-  const [list, setList] = React.useState(slice(0, LIMIT, DATA));
-  const [index, setIndex] = React.useState(LIMIT);
+  const [list, setList] = React.useState([]);
+  const [index, setIndex] = React.useState(PAGE_LIMIT);
+  const [totalArrayData, setTotalArrayData] = React.useState();
 
-  const loadMore = () => {
-    const newIndex = index + LIMIT;
-    const newShowMore = newIndex < PAGE_ITEMS - 1;
-    const newList = concat(list, slice(index, newIndex, DATA));
-    setIndex(newIndex);
-    setList(newList);
-    setShowMore(newShowMore);
-  };
+  React.useEffect(() => {
+    if (scheduledreelRaces.length && !totalArrayData) {
+      setTotalArrayData([...Array(scheduledreelRaces.length).keys()]);
+    }
+  }, [scheduledreelRaces.length, totalArrayData]);
+
+  React.useEffect(() => {
+    if (totalArrayData) {
+      setList(slice(0, PAGE_LIMIT, totalArrayData));
+    }
+  }, [totalArrayData]);
+
+  const loadMore = React.useCallback(() => {
+    const newIndex = index + PAGE_LIMIT;
+    setIndex(index + PAGE_LIMIT);
+    setList(concat(list, slice(index, newIndex, totalArrayData)));
+    setShowMore(newIndex < scheduledreelRaces.length - 1);
+  }, [index, list, scheduledreelRaces.length, totalArrayData]);
 
   if (scheduledreelRaces.length) {
     return (
