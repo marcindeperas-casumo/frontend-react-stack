@@ -220,7 +220,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </MaskImage>
           </div>
           <Flex
-            className="o-ratio__content u-margin-bottom--md c-valuable-details__valuable-card-wrapper"
+            className="o-ratio__content u-margin-bottom--md c-valuable-details__valuable-card-wrapper u-margin-bottom--lg"
             justify="end"
             align="center"
             direction="vertical"
@@ -273,7 +273,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Flex.Item>
             )}
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
-              <hr className="c-valuable-details__separator t-border t-border-r--pill" />
+              <hr className="c-valuable-details__separator t-border t-border-r--pill t-border-grey-0" />
             </Flex.Item>
             <Flex.Item>
               <Text tag="strong" className="t-color-grey-70" size="xs">

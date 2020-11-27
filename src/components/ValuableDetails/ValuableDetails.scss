@@ -11,10 +11,6 @@ $shadow-width: 130px;
     margin-top: -240px;
   }
 
-  &__header {
-    // margin-top: -240px;
-  }
-
   &__footer {
     background-color: rgba(cudl-palette(white, "base"), 0.9);
   }
@@ -28,12 +24,7 @@ $shadow-width: 130px;
     }
   }
 
-  &__separator {
-    border-color: cudl-palette(grey, "0");
-  }
-
   &__valuable-card {
-    position: relative;
     width: $card-details-width;
     z-index: 1;
 
@@ -53,18 +44,12 @@ $shadow-width: 130px;
   }
 
   &__valuable-card-wrapper {
-    margin-bottom: 20px !important;
-
     @include cudl-breakpoint(phablet) {
       height: 590px;
     }
 
     @include cudl-breakpoint(tablet) {
       height: 590px;
-    }
-
-    @include cudl-breakpoint(desktop) {
-      // height: 590px;
     }
   }
 }

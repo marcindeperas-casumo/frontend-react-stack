@@ -58,7 +58,7 @@ export const useValuableDetails = (
         onConsumeValuable={onConsumeValuable}
         valuableDetails={selectedValuable}
       >
-        <div className="c-valuable-details__valuable-card">
+        <div className="c-valuable-details__valuable-card o-position--relative">
           <ValuableCard
             translations={translations}
             {...selectedValuable}
