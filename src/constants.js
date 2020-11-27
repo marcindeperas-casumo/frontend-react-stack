@@ -351,6 +351,7 @@ export const EVENTS = {
   MIXPANEL_IN_GAME_SUMOTICON_CLICKED: "Sumoticon - in game drawer clicked",
   MIXPANEL_IN_GAME_EXIT_GAME_CLICKED: "RETCAS - In-Game Exit Game Clicked",
   MIXPANEL_IN_GAME_CLOSE_DRAWER_CLICKED: "In game drawer close icon clicked",
+  MIXPANEL_IN_GAME_SWIPEUP_DISMISSED: "RETCAS - Dismiss button clicked",
   MIXPANEL_GAME_SET_CLICKED: "Game Set Clicked",
   MIXPANEL_GAME_SET_SORTING_CLICKED: "Sorting Clicked",
   MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
