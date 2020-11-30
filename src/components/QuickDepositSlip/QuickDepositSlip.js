@@ -117,9 +117,9 @@ export const QuickDepositSlip = ({
       </Flex.Block>
       <Flex.Block className="u-width--full">
         <Flex spacing="md" justify="space-between" align="center">
-          <Flex.Block>
+          <Flex.Item>
             {PaymentMethodComponent && PaymentMethodComponent()}
-          </Flex.Block>
+          </Flex.Item>
           <Flex.Item>
             <TrackClick
               eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_BUTTON_CLICKED}
