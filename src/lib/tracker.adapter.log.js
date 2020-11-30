@@ -7,7 +7,7 @@ type Logger = {
 };
 
 const trackerAdapterLog = (logger: Logger) => ({
-  track: (eventName: string, data: Object = {}) =>
+  track: (eventName: string, data?: Object = {}) =>
     logger.info(`[TRACKING] - ${eventName}`, data),
   setState: noop,
 });

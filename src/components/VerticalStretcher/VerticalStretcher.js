@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import type { Element } from "react";
 import classNames from "classnames";
 import debounce from "lodash.debounce";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
@@ -88,6 +90,7 @@ export const VerticalStretcher = ({
     setIsDismissed(true);
     matchContainerHeight();
     debounceResizeGame();
+    tracker.track(EVENTS.MIXPANEL_IN_GAME_SWIPEUP_DISMISSED);
   };
 
   useEffect(() => {
