@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import TrackClick from "Components/TrackClick";
+import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
@@ -41,6 +42,11 @@ export const QuickDeposit = ({
   if (!t) {
     return null;
   }
+  const cashierLinkClickHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED);
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED); // todo: can we just omit this?
+    onCashierLinkClick();
+  };
 
   return (
     <Flex className={className} align="center">
@@ -82,15 +88,13 @@ export const QuickDeposit = ({
             </TrackClick>
           </Flex>
         ) : (
-          <TrackClick eventName={EVENTS.MIXPANEL_CASHIER_LINK_CLICKED}>
-            <Text
-              tag="span"
-              className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
-              onClick={onCashierLinkClick}
-            >
-              {t.cashier_link_text}
-            </Text>
-          </TrackClick>
+          <Text
+            tag="span"
+            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
+            onClick={cashierLinkClickHandler}
+          >
+            {t.cashier_link_text}
+          </Text>
         )}
       </Flex.Block>
     </Flex>

@@ -7,8 +7,8 @@ import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CvvCodeIframe } from "Components/Payments/CvvCodeIframe";
-import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+import TrackClick from "Components/TrackClick";
 import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
@@ -122,7 +122,11 @@ export const QuickDepositSlip = ({
           </Flex.Item>
           <Flex.Item>
             <TrackClick
-              eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_BUTTON_CLICKED}
+              eventName={
+                isDepositButtonDisabled
+                  ? EVENTS.MIXPANEL_QUICK_DEPOSIT_DISABLED_BUTTON_CLICKED
+                  : EVENTS.MIXPANEL_QUICK_DEPOSIT_ENABLED_BUTTON_CLICKED
+              }
             >
               <ButtonPrimary
                 size="md"
