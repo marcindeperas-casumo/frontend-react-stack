@@ -29,7 +29,7 @@ import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
-  expiresToday: "red",
+  expiresToday: "red-30",
   default: "grey-50",
 };
 
