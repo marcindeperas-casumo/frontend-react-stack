@@ -38,8 +38,10 @@
   display: none !important;
 }
 
-#mod-KambiBC-betslip-container .mod-KambiBC-betslip {
-  max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
+#mod-KambiBC-betslip-container.mod-KambiBC-betslip-container--maximized
+  .mod-KambiBC-betslip {
+  bottom: 48px !important;
+  max-height: calc(100% - var(--play-okay-bar-height, 0) - 48px) !important;
 }
 
 .mod-KambiBC-betslip__header-pin-btn {

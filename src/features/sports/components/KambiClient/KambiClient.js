@@ -5,10 +5,12 @@ import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/react-hooks";
 import { getApolloContext } from "@apollo/react-hooks";
 import { pick } from "ramda";
+import { BalanceBetSlip } from "Features/sports/components/BalanceBetSlip";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
+import { KO_APP_EVENT_BETSLIP_VISIBLE } from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 import {
@@ -42,12 +44,16 @@ type Props = {
 
 type State = {
   sportsFirstBet: boolean,
+  isBetslipOpen: boolean,
 };
 
 export default class KambiClient extends React.Component<Props, State> {
   static contextType = getApolloContext();
 
-  state = { sportsFirstBet: false };
+  state = {
+    sportsFirstBet: false,
+    isBetslipOpen: false,
+  };
 
   static defaultProps = {
     onNavigate: () => {},
@@ -113,10 +119,15 @@ export default class KambiClient extends React.Component<Props, State> {
 
     window.addEventListener("hashchange", this.handleHashChange);
     bridge.on("sports-path-updated", this.handleHashChange);
+    bridge.on(KO_APP_EVENT_BETSLIP_VISIBLE, this.setIsBetSlipOpen);
 
     // listen to events from widget iframes
     window.addEventListener("message", this.onWidgetMessage, false);
   }
+
+  setIsBetSlipOpen = ({ isBetslipVisible }: { isBetslipVisible: boolean }) => {
+    this.setState({ isBetslipOpen: isBetslipVisible });
+  };
 
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
@@ -209,6 +220,7 @@ export default class KambiClient extends React.Component<Props, State> {
             }}
           />
         )}
+        {this.state.isBetslipOpen && <BalanceBetSlip />}
       </div>
     );
   }
