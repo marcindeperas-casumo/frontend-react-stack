@@ -10,7 +10,6 @@ import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
-import { KO_APP_EVENT_BETSLIP_VISIBLE } from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 import {
@@ -44,7 +43,7 @@ type Props = {
 
 type State = {
   sportsFirstBet: boolean,
-  isBetslipOpen: boolean,
+  isBetSlipMaximized: boolean,
 };
 
 export default class KambiClient extends React.Component<Props, State> {
@@ -52,7 +51,7 @@ export default class KambiClient extends React.Component<Props, State> {
 
   state = {
     sportsFirstBet: false,
-    isBetslipOpen: false,
+    isBetSlipMaximized: false,
   };
 
   static defaultProps = {
@@ -119,15 +118,10 @@ export default class KambiClient extends React.Component<Props, State> {
 
     window.addEventListener("hashchange", this.handleHashChange);
     bridge.on("sports-path-updated", this.handleHashChange);
-    bridge.on(KO_APP_EVENT_BETSLIP_VISIBLE, this.setIsBetSlipOpen);
 
     // listen to events from widget iframes
     window.addEventListener("message", this.onWidgetMessage, false);
   }
-
-  setIsBetSlipOpen = ({ isBetslipVisible }: { isBetslipVisible: boolean }) => {
-    this.setState({ isBetslipOpen: isBetslipVisible });
-  };
 
   onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
@@ -142,6 +136,15 @@ export default class KambiClient extends React.Component<Props, State> {
       this.setState({ sportsFirstBet: false });
     } else {
       kambiClientEventHandler(event, false);
+    }
+
+    if (event?.data?.event === "kambi betslip status") {
+      const isBetSlipMaximized =
+        event.data.kambi.betslip.position === "maximized";
+      setTimeout(
+        () => this.setState({ isBetSlipMaximized }),
+        isBetSlipMaximized ? 0 : 300
+      );
     }
   };
 
@@ -220,7 +223,7 @@ export default class KambiClient extends React.Component<Props, State> {
             }}
           />
         )}
-        {this.state.isBetslipOpen && <BalanceBetSlip />}
+        {this.state.isBetSlipMaximized && <BalanceBetSlip />}
       </div>
     );
   }

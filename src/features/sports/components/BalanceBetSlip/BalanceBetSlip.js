@@ -1,17 +1,70 @@
 // @flow
 import React from "react";
+import { useSelector } from "react-redux";
 import { AddIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-// import Text from "@casumo/cmp-text";
+import Text from "@casumo/cmp-text";
+import {
+  playerBalanceAmountSelector,
+  playerCurrencySelector,
+  playerWalletBonusSelector,
+} from "Models/player";
+import { formatCurrency } from "Utils";
+import { useLocale, useTranslationsGql } from "Utils/hooks";
+import { navigateById } from "Services/NavigationService";
 
-export const BalanceBetSlip = () => (
-  <Flex
-    direction="vertical"
-    align="center"
-    className="o-position--fixed o-inset-bottom--none u-zindex--content-overlay"
-  >
-    <Flex.Item className="o-flex u-padding">
-      <AddIcon size="sm" />
-    </Flex.Item>
-  </Flex>
-);
+import "./BalanceBetSlip.scss";
+
+const cmsPrefix = "root:iframe-solution:fields";
+
+export const BalanceBetSlip = () => {
+  const locale = useLocale();
+  const currency = useSelector(playerCurrencySelector);
+  const playerBalance = useSelector(playerBalanceAmountSelector);
+  const bonusBalance = useSelector(playerWalletBonusSelector);
+
+  const { t } = useTranslationsGql({
+    balance: `${cmsPrefix}.balance_title`,
+    bonus: `${cmsPrefix}.bonus_title`,
+  });
+
+  return (
+    <Flex
+      align="center"
+      className="c-sports-balance-bet-slip o-position--fixed o-inset-bottom--none u-zindex--content-overlay u-height--3xlg u-width--full t-color-white u-padding"
+    >
+      <Flex.Item
+        onClick={() => navigateById({ routeId: "deposit" })}
+        className="o-flex u-padding t-border-r--circle t-background-purple-80"
+      >
+        <AddIcon size="sm" />
+      </Flex.Item>
+      <Flex direction="vertical" className="u-padding-x--md">
+        <Text tag="div" size="xs">
+          {t?.balance}
+        </Text>
+        <Text tag="div" className="u-font-weight-bold">
+          {formatCurrency({
+            locale,
+            currency,
+            value: playerBalance,
+          })}
+        </Text>
+      </Flex>
+      {bonusBalance !== 0 && (
+        <Flex direction="vertical">
+          <Text tag="div" size="xs">
+            {t?.bonus}
+          </Text>
+          <Text tag="div" className="u-font-weight-bold">
+            {formatCurrency({
+              locale,
+              currency,
+              value: bonusBalance,
+            })}
+          </Text>
+        </Flex>
+      )}
+    </Flex>
+  );
+};

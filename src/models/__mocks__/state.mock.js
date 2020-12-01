@@ -407,7 +407,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
             wallet: {
               id: "2d9dd240-7937-11e8-b6b5-0242ac11000b",
               balance: {
-                amount: 0,
+                amount: 30.19,
                 iso4217CurrencyCode: "EUR",
               },
               depositsBlocked: false,
