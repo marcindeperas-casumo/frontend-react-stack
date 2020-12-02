@@ -13,6 +13,9 @@ export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 export const isIosNative = (w: window = window) =>
   R.pathOr(false, ["native", "ios"], w);
 
+export const isAndroidNative = (w: window = window) =>
+  R.pathOr(false, ["native", "android"], w);
+
 export const getAppVersion = (w: window = window) => {
   const appVersion = R.pathOr(undefined, ["native", "version"], w);
 

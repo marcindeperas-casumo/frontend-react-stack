@@ -14,5 +14,6 @@ export default {
   sanitizedStateKeys: ["handshake.app.common/composition/players.players"],
   mixpanelToken: "ec4c2a09353dbe7faf59a46a4ddab0cb",
   mixpanelProjectName: "react-stack",
+  gtmContainerID: "GTM-23P4",
   graphqlUrl: "/graphql/casumo/",
 };

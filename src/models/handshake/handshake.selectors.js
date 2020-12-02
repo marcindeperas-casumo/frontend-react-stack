@@ -255,6 +255,11 @@ export const isProductionBackendSelector = createSelector(
   )
 );
 
+export const commonContextSelector = createSelector(
+  applicationHandshakeSelector,
+  prop("common/composition/context")
+);
+
 export const piqConfigSelector = createSelector(
   applicationHandshakeSelector,
   prop("common/composition/piqConfig")
