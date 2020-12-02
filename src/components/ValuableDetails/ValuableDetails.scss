@@ -15,6 +15,12 @@ $shadow-width: 130px;
     background-color: rgba(cudl-palette(white, "base"), 0.9);
   }
 
+  &__separator {
+    border-color: cudl-palette(grey, "0");
+    border-style: solid;
+    width: 100px;
+  }
+
   &-modal {
     width: 666px;
 

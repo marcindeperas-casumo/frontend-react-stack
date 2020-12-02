@@ -272,7 +272,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 </Text>
               </Flex.Item>
             )}
-            <Flex.Item className="u-width--1/3 u-margin-y--xlg">
+            <Flex.Item className="u-width--1/3 u-margin-y--md">
               <hr className="c-valuable-details__separator t-border t-border-r--pill t-border-grey-0" />
             </Flex.Item>
             <Flex.Item>
