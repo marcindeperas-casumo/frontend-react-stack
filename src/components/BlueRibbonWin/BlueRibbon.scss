@@ -1,0 +1,22 @@
+/*
+  NOTE:
+  this uses css vars set on the document root of the ko stack in order to
+  calculate the offset of the play okay bar, the height of the top-bar, and the width of the menu
+
+  https://github.com/Casumo/casumo-frontend/blob/master/web/mobile/src/stylesheets/sass/core/base.scss
+*/
+
+.blue-ribbon {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1024px;
+  height: 1024px;
+}
+
+.c-modal__dismiss-button {
+  height: 48px;
+  width: 48px;
+}
