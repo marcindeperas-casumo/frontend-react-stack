@@ -61,6 +61,14 @@ export const DEVICES = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
 };
+
+export const APP_SUB_TYPES = {
+  IOS_HYBRID: "ios hybrid",
+  ANDROID_HYBRID: "android hybrid",
+  ANDROID: "android-standalone",
+  WEB: "web",
+};
+
 export const ENVIRONMENTS = {
   TEST: "test",
   PRODUCTION: "production",
