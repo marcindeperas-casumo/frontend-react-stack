@@ -11,12 +11,10 @@ import {
   playerWalletBonusSelector,
 } from "Models/player";
 import { formatCurrency } from "Utils";
-import { useLocale, useTranslationsGql } from "Utils/hooks";
+import { useLocale, useTranslations } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 
 import "./BalanceBetSlip.scss";
-
-const cmsPrefix = "root:iframe-solution:fields";
 
 type Props = {
   maximized: boolean,
@@ -28,10 +26,7 @@ export const BalanceBetSlip = ({ maximized = false }: Props) => {
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const bonusBalance = useSelector(playerWalletBonusSelector);
 
-  const { t } = useTranslationsGql({
-    balance: `${cmsPrefix}.balance_title`,
-    bonus: `${cmsPrefix}.bonus_title`,
-  });
+  const t = useTranslations("iframe-solution");
 
   return (
     <Flex
@@ -49,7 +44,7 @@ export const BalanceBetSlip = ({ maximized = false }: Props) => {
       </Flex.Item>
       <Flex direction="vertical" className="u-padding-x--md">
         <Text tag="div" size="xs">
-          {t?.balance}
+          {t?.balance_title}
         </Text>
         <Text tag="div" className="u-font-weight-bold">
           {formatCurrency({
@@ -62,7 +57,7 @@ export const BalanceBetSlip = ({ maximized = false }: Props) => {
       {bonusBalance !== 0 && (
         <Flex direction="vertical">
           <Text tag="div" size="xs">
-            {t?.bonus}
+            {t?.bonus_title}
           </Text>
           <Text tag="div" className="u-font-weight-bold">
             {formatCurrency({
