@@ -8,7 +8,7 @@ import Text from "@casumo/cmp-text";
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  t?: {
+  t: {
     balance_title: string,
     bonus_title: string,
   },
@@ -20,7 +20,7 @@ type Props = {
 
 export const BalanceBetSlip = ({
   t,
-  maximized = false,
+  maximized,
   balance,
   bonus,
   goToDeposit = () => {},
@@ -34,7 +34,7 @@ export const BalanceBetSlip = ({
       )}
     >
       <Flex.Item
-        onClick={goToDeposit}
+        onClick={() => goToDeposit()}
         className="o-flex u-padding t-border-r--circle t-background-purple-80"
       >
         <AddIcon size="sm" />

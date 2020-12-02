@@ -9,7 +9,7 @@ import {
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
-import { BalanceBetSlip } from "Features/sports/components/BalanceBetSlip";
+import { BalanceBetSlip } from "./BalanceBetSlip";
 
 import "./BalanceBetSlip.scss";
 
@@ -18,34 +18,37 @@ type Props = {
 };
 
 export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
+  const t = useTranslations("iframe-solution");
   const locale = useLocale();
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const bonusBalance = useSelector(playerWalletBonusSelector);
 
-  const t = useTranslations("iframe-solution");
-
   const goToDeposit = () => navigateById({ routeId: "deposit" });
+
+  const balance = formatCurrency({
+    locale,
+    currency,
+    value: playerBalance,
+  });
+
+  const bonus = formatCurrency({
+    locale,
+    currency,
+    value: bonusBalance,
+  });
+
+  if (!t || !balance) {
+    return null;
+  }
 
   return (
     <BalanceBetSlip
       t={t}
       maximized={maximized}
       goToDeposit={goToDeposit}
-      balance={formatCurrency({
-        locale,
-        currency,
-        value: playerBalance,
-      })}
-      bonus={
-        bonusBalance !== 0
-          ? formatCurrency({
-              locale,
-              currency,
-              value: bonusBalance,
-            })
-          : null
-      }
+      balance={balance}
+      bonus={bonusBalance !== 0 ? bonus : undefined}
     />
   );
 };
