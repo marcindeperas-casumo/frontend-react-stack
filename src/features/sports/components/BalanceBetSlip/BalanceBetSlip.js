@@ -1,33 +1,30 @@
 // @flow
 import React from "react";
-import { useSelector } from "react-redux";
 import cx from "classnames";
 import { AddIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import {
-  playerBalanceAmountSelector,
-  playerCurrencySelector,
-  playerWalletBonusSelector,
-} from "Models/player";
-import { formatCurrency } from "Utils";
-import { useLocale, useTranslations } from "Utils/hooks";
-import { navigateById } from "Services/NavigationService";
 
 import "./BalanceBetSlip.scss";
 
 type Props = {
+  t?: {
+    balance_title: string,
+    bonus_title: string,
+  },
   maximized: boolean,
+  balance: string,
+  bonus?: string,
+  goToDeposit?: () => void,
 };
 
-export const BalanceBetSlip = ({ maximized = false }: Props) => {
-  const locale = useLocale();
-  const currency = useSelector(playerCurrencySelector);
-  const playerBalance = useSelector(playerBalanceAmountSelector);
-  const bonusBalance = useSelector(playerWalletBonusSelector);
-
-  const t = useTranslations("iframe-solution");
-
+export const BalanceBetSlip = ({
+  t,
+  maximized = false,
+  balance,
+  bonus,
+  goToDeposit = () => {},
+}: Props) => {
   return (
     <Flex
       align="center"
@@ -37,7 +34,7 @@ export const BalanceBetSlip = ({ maximized = false }: Props) => {
       )}
     >
       <Flex.Item
-        onClick={() => navigateById({ routeId: "deposit" })}
+        onClick={goToDeposit}
         className="o-flex u-padding t-border-r--circle t-background-purple-80"
       >
         <AddIcon size="sm" />
@@ -47,24 +44,16 @@ export const BalanceBetSlip = ({ maximized = false }: Props) => {
           {t?.balance_title}
         </Text>
         <Text tag="div" className="u-font-weight-bold">
-          {formatCurrency({
-            locale,
-            currency,
-            value: playerBalance,
-          })}
+          {balance}
         </Text>
       </Flex>
-      {bonusBalance !== 0 && (
+      {bonus && (
         <Flex direction="vertical">
           <Text tag="div" size="xs">
             {t?.bonus_title}
           </Text>
           <Text tag="div" className="u-font-weight-bold">
-            {formatCurrency({
-              locale,
-              currency,
-              value: bonusBalance,
-            })}
+            {bonus}
           </Text>
         </Flex>
       )}
