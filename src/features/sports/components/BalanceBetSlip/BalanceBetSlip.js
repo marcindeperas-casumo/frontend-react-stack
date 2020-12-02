@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { useSelector } from "react-redux";
+import cx from "classnames";
 import { AddIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -17,7 +18,11 @@ import "./BalanceBetSlip.scss";
 
 const cmsPrefix = "root:iframe-solution:fields";
 
-export const BalanceBetSlip = () => {
+type Props = {
+  maximized: boolean,
+};
+
+export const BalanceBetSlip = ({ maximized = false }: Props) => {
   const locale = useLocale();
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
@@ -31,7 +36,10 @@ export const BalanceBetSlip = () => {
   return (
     <Flex
       align="center"
-      className="c-sports-balance-bet-slip o-position--fixed o-inset-bottom--none u-zindex--content-overlay u-height--3xlg u-width--full t-color-white u-padding"
+      className={cx(
+        "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full t-color-white u-padding u-overflow--hidden u-height--3xlg",
+        maximized && "c-sports-balance-bet-slip--maximized o-inset-bottom--none"
+      )}
     >
       <Flex.Item
         onClick={() => navigateById({ routeId: "deposit" })}

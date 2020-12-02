@@ -141,10 +141,7 @@ export default class KambiClient extends React.Component<Props, State> {
     if (event?.data?.event === "kambi betslip status") {
       const isBetSlipMaximized =
         event.data.kambi.betslip.position === "maximized";
-      setTimeout(
-        () => this.setState({ isBetSlipMaximized }),
-        isBetSlipMaximized ? 0 : 300
-      );
+      this.setState({ isBetSlipMaximized });
     }
   };
 
@@ -223,7 +220,7 @@ export default class KambiClient extends React.Component<Props, State> {
             }}
           />
         )}
-        {this.state.isBetSlipMaximized && <BalanceBetSlip />}
+        <BalanceBetSlip maximized={this.state.isBetSlipMaximized} />
       </div>
     );
   }

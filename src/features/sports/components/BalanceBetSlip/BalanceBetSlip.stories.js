@@ -8,6 +8,6 @@ const stories = storiesOf("Sports/BalanceBetSlip", module);
 
 stories.add("Default", () => (
   <MockStore>
-    <BalanceBetSlip />
+    <BalanceBetSlip maximized={true} />
   </MockStore>
 ));
