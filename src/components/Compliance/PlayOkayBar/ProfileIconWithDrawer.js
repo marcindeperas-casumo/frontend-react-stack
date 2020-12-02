@@ -79,7 +79,7 @@ export const ProfileIconWithDrawer = ({
       {isDrawerOpen && (
         <div
           className={cx(
-            `u-position-absolute u-zindex--content-overlay`,
+            `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,
             "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
             "u-padding-left u-padding-left--md@desktop u-padding-right",
             "u-overflow--hidden",
