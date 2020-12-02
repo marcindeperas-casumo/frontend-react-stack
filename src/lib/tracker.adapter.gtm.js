@@ -14,7 +14,7 @@ const trackerAdapterGTM = () => {
 
   return {
     track,
-    setState: noop,
+    setState: noop, // this can perhaps be a fn wrapping dataLayer.push()
   };
 };
 
