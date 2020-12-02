@@ -9,6 +9,8 @@ import {
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
+import tracker from "Services/tracker";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { BalanceBetSlip } from "./BalanceBetSlip";
 
 import "./BalanceBetSlip.scss";
@@ -24,8 +26,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const bonusBalance = useSelector(playerWalletBonusSelector);
 
-  const goToDeposit = () => navigateById({ routeId: "deposit" });
-
   const balance = formatCurrency({
     locale,
     currency,
@@ -37,6 +37,13 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
     currency,
     value: bonusBalance,
   });
+
+  const goToDeposit = () => {
+    navigateById({ routeId: "deposit" });
+    tracker.track(EVENTS.MIXPANEL_SPORTS_BETSLIP_DEPOSIT_CLICKED, {
+      [EVENT_PROPS.BALANCE]: balance,
+    });
+  };
 
   if (!t || !balance) {
     return null;
