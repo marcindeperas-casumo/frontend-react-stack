@@ -45,7 +45,7 @@ export const ProfileIconWithDrawer = ({
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
     if (!isDrawerOpen) {
-      tracker.track(EVENTS.MIXPANEL_SUMOTICON_CLICKED, {});
+      tracker.track(EVENTS.MIXPANEL_IN_GAME_SUMOTICON_CLICKED, {});
     }
     setDrawerOpen(isOpen => !isOpen);
   };
@@ -79,7 +79,7 @@ export const ProfileIconWithDrawer = ({
       {isDrawerOpen && (
         <div
           className={cx(
-            `u-position-absolute u-zindex--content-overlay`,
+            `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,
             "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
             "u-padding-left u-padding-left--md@desktop u-padding-right",
             "u-overflow--hidden",
@@ -116,6 +116,10 @@ export const ProfileIconWithDrawer = ({
                     setDrawerOpen(false);
                   }}
                   onExitGameClick={() => {
+                    tracker.track(
+                      EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED,
+                      {}
+                    );
                     navigateToKO(ROUTE_IDS.TOP_LISTS);
                     setDrawerOpen(false);
                   }}

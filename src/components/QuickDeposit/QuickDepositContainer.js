@@ -27,6 +27,18 @@ type Props = {
   className?: string,
 };
 
+const quickDepositEnabledMarkets = [
+  MARKETS.gb_en,
+  MARKETS.nz_en,
+  MARKETS.at_de,
+  MARKETS.de_de,
+  MARKETS.dk_da,
+  MARKETS.es_es,
+  MARKETS.fi_fi,
+  MARKETS.se_sv,
+  MARKETS.___en,
+];
+
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
   if (prev > next) {
     // Return fresh value
@@ -49,8 +61,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
   const market = useSelector(marketSelector);
-  const quickDepositEnabled = useSelector(featureFlagSelector("quick-deposit"));
-  const showQuickDeposit = market === MARKETS.nz_en || quickDepositEnabled;
+  const quickDepositFeatureFlagEnabled = useSelector(
+    featureFlagSelector("quick-deposit")
+  );
+  const showQuickDeposit =
+    quickDepositEnabledMarkets.includes(market) ||
+    quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(

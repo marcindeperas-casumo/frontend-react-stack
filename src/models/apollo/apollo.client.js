@@ -3,12 +3,11 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
+import { createPersistedQueryLink } from "apollo-link-persisted-queries";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
-import { persistCache } from "apollo-cache-persist";
-import * as localForage from "localforage";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -58,12 +57,8 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 export async function getCache() {
   const cache = new InMemoryCache({ fragmentMatcher });
 
-  cache.writeData({
+  await cache.writeData({
     data: defaultState,
-  });
-  await persistCache({
-    cache,
-    storage: localForage,
   });
 
   return cache;
@@ -75,13 +70,8 @@ function getContextLink() {
     const market = marketSelector(state);
     const currency = currencySelector(state);
     const sessionId = sessionIdSelector(state);
-    const supportForPersistedQueries = {
-      includeExtensions: true,
-      includeQuery: true,
-    };
 
     return {
-      http: supportForPersistedQueries,
       headers: {
         "X-Token": sessionId,
         "X-Market": market,
@@ -108,7 +98,11 @@ function getHttpLink() {
 }
 
 function getLinks() {
-  const LINKS = [getContextLink(), getHttpLink()];
+  const LINKS = [
+    createPersistedQueryLink({ useGETForHashedQueries: true }),
+    getContextLink(),
+    getHttpLink(),
+  ];
 
   return ApolloLink.from(LINKS);
 }
