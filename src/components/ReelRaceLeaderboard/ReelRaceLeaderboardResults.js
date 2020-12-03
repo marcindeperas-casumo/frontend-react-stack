@@ -129,7 +129,7 @@ export function ReelRaceLeaderboardResults({
         ref={listRef}
       >
         <InnerList
-          className="c-reel-race-leaderboard-results__sticky-list u-position-sticky--top"
+          className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
           items={leaderboardSortedSliced.slice(0, fixedRows)}
           {...commonProps}
         />

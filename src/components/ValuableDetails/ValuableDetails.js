@@ -208,7 +208,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     return (
       <div>
-        <div className="o-ratio c-valuable-details u-round-corners-bigger">
+        <div className="o-ratio c-valuable-details t-border-r--md">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
