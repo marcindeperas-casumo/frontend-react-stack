@@ -1,0 +1,314 @@
+
+
+/* JACKPOT */
+
+position: absolute;
+visibility: hidden;
+left: 8.09%;
+right: 9.44%;
+top: 80%;
+bottom: 6.67%;
+
+/* Overline */
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 10px;
+line-height: 10px;
+/* or 100% */
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
+
+color: #FFFFFF;
+
+
+
+/* MEGA */
+
+position: absolute;
+visibility: hidden;
+left: 8.89%;
+right: 8.89%;
+top: 6.67%;
+bottom: 26.67%;
+
+
+
+/* Rectangle 2376 */
+
+position: absolute;
+left: 8.89%;
+right: 8.89%;
+top: 6.67%;
+bottom: 26.67%;
+
+/* Button/Purple 80 */
+background: #3C0098;
+border-radius: 8px;
+
+
+/* Rectangle 2377 */
+
+position: absolute;
+left: 11.11%;
+right: 11.11%;
+top: 51.67%;
+bottom: 28.33%;
+
+background: #4C00C2;
+border-radius: 6px;
+
+
+/* MEGA */
+
+position: absolute;
+left: 18.89%;
+right: 15.56%;
+top: 55%;
+bottom: 31.67%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+color: #FFC930;
+
+text-shadow: 0px 0.773224px 0px #B06E0A;
+
+
+/* MINI */
+
+position: absolute;
+left: 24.44%;
+right: 24.44%;
+top: 11.67%;
+bottom: 75%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.7;
+
+
+/* MAJOR */
+
+position: absolute;
+left: 11.11%;
+right: 11.11%;
+top: 33.33%;
+bottom: 53.33%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.7;
+
+
+/* MAJOR */
+
+position: absolute;
+visibility: hidden;
+left: 8.89%;
+right: 8.89%;
+top: 6.67%;
+bottom: 26.67%;
+
+
+
+/* MAJOR */
+
+position: absolute;
+left: 8px;
+right: 8px;
+top: 6.67%;
+bottom: 26.67%;
+
+/* Button/Purple 80 */
+background: #3C0098;
+border-radius: 8px;
+
+
+/* Rectangle 2379 */
+
+position: absolute;
+visibility: hidden;
+left: 11.11%;
+right: 11.11%;
+top: 30%;
+bottom: 50%;
+
+background: #4C00C2;
+border-radius: 6px;
+
+
+/* MEGA */
+
+position: absolute;
+left: 18.89%;
+right: 15.56%;
+top: 55%;
+bottom: 31.67%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.4;
+
+
+/* MINI */
+
+position: absolute;
+left: 24.44%;
+right: 24.44%;
+top: 11.67%;
+bottom: 75%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.4;
+
+
+/* MAJOR */
+
+position: absolute;
+visibility: hidden;
+left: 11.11%;
+right: 11.11%;
+top: 33.33%;
+bottom: 53.33%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+color: #FFC930;
+
+text-shadow: 0px 0.773224px 0px #B06E0A;
+
+
+/* MINI */
+
+position: absolute;
+visibility: hidden;
+left: 8.89%;
+right: 8.89%;
+top: 6.67%;
+bottom: 26.67%;
+
+
+
+/* Rectangle 2380 */
+
+position: absolute;
+visibility: hidden;
+left: 8.89%;
+right: 8.89%;
+top: 6.67%;
+bottom: 26.67%;
+
+/* Button/Purple 80 */
+background: #3C0098;
+border-radius: 8px;
+
+
+/* MEGA */
+
+position: absolute;
+width: 59px;
+left: calc(50% - 59px/2 + 1.5px);
+top: 55%;
+bottom: 31.67%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.7;
+
+
+/* MINI */
+
+position: absolute;
+visibility: hidden;
+width: 46px;
+left: calc(50% - 46px/2);
+top: 11.67%;
+bottom: 75%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+color: #FFC930;
+
+text-shadow: 0px 0.773224px 0px #B06E0A;
+
+
+/* MAJOR */
+
+position: absolute;
+width: 70px;
+left: calc(50% - 70px/2);
+top: 33.33%;
+bottom: 53.33%;
+
+font-family: Circular Pro;
+font-style: normal;
+font-weight: 900;
+font-size: 15.4645px;
+line-height: 17px;
+/* or 110% */
+text-align: center;
+
+/* Extended/Purple 5 */
+color: #C3B5FC;
+opacity: 0.7;

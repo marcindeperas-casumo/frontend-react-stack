@@ -3,6 +3,7 @@ import './Coins.scss';
 import CoinMega from './assets/coin-mega.js';
 import CoinMajor from './assets/coin-major.js';
 import CoinMini from './assets/coin-mini.js';
+import {Jackpots, setJackpot} from './Jackpots.js'
 
 const coins = []
 let then = 0;
@@ -103,6 +104,11 @@ const startCoinSelection = () => {
 
 export const Coins = () => {
     const [count, setCount] = React.useState(0)
+    const [jackpotType, setJackpotType] = React.useState('MINI')
+
+    const handleSetJackpotType = (newJackpotType) => {
+        setJackpotType(newJackpotType);
+    }
 
     const onAnimEnd = (event) => {
         if(event.animationName === 'timer-anim') {
@@ -113,6 +119,13 @@ export const Coins = () => {
             // }, coins, animate)
             startCoinSelection();
             setTimeout(() => {requestAnimationFrame(animate);}, 1000);
+
+            const jackpotEnums = ['MINI', 'MAJOR', 'MEGA']
+            let jackpotEnumsCounter = 0;
+            setInterval(() => {
+                handleSetJackpotType(jackpotEnums[jackpotEnumsCounter%3])
+                jackpotEnumsCounter++;
+            }, 500)
         }
 
     }
@@ -122,6 +135,8 @@ export const Coins = () => {
         <div id='coinsContainer'>
             {coins}
         </div>
-        <div>{Math.round(count)}</div>
+        <div></div>
+        <Jackpots jackpotType={jackpotType}></Jackpots>
+
     </div>
 }
