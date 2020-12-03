@@ -19,7 +19,7 @@ export const initialize = ({
       return await injectScript(dataLayerScript, "gtm-init-datalayer", true);
     } catch (e) {
       logger.error("[GTM] Error initializing DataLayer", e);
-      return Promise.reject(e);
+      return e;
     }
   };
 
@@ -28,7 +28,7 @@ export const initialize = ({
       return await injectScript(gtmScript, "google-tag-manger", true);
     } catch (e) {
       logger.error("[GTM] Error injecting script", e);
-      return Promise.reject(e);
+      return e;
     }
   };
 
