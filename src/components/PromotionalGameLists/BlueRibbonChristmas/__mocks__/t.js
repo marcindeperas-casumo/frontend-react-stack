@@ -1,14 +1,18 @@
 // @flow
 export const t  = {
   major: "Major Jackpot",
+  major_short: "Major",
   major_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/major.svg",
   mega_community: "Community Pot",
+  mega_community_short: "Community",
   mega_community_explanation: "Shared pot",
   mega_community_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/community.svg",
   mega_single_winner: "Mega Jackpot",
+  mega_single_winner_short: "Mega",
   mega_single_winner_explanation: "Goes to 1 winner",
   mega_single_winner_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mega.svg",
   mini: "Mini Jackpot",
+  mini_short: "Mini",
   mini_icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mini.svg",
   section_title: "Casumo Jackpot Blizzard",
   jackpot_win_mini: "You won the Mini Jackpot!",
