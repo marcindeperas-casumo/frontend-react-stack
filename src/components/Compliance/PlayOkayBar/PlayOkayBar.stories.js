@@ -19,11 +19,13 @@ stories.add("Default", () => {
   return (
     <MockStore queryMocks={[playerSectionsQueryMock]}>
       <FullscreenView>
-        <PlayOkayBar
-          jurisdiction={jurisdiction}
-          pauseGame={pauseGame}
-          resumeGame={resumeGame}
-        />
+        <div className="t-background-grey-90">
+          <PlayOkayBar
+            jurisdiction={jurisdiction}
+            pauseGame={pauseGame}
+            resumeGame={resumeGame}
+          />
+        </div>
       </FullscreenView>
     </MockStore>
   );

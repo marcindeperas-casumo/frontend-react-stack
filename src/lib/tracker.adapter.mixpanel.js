@@ -42,9 +42,11 @@ const initMixpanel = (config: MixpanelConfig) => {
   getMixpanel(mixpanelProjectName).init(mixpanelToken, {}, mixpanelProjectName);
 };
 
-const track = curry((config: MixpanelConfig, event: string, data: Object) => {
-  getProjectMixpanel(config).track(event, data);
-});
+const track = curry(
+  (config: MixpanelConfig, event: string, data?: Object = {}) => {
+    getProjectMixpanel(config).track(event, data);
+  }
+);
 
 const setState = curry((config: MixpanelConfig, data: Object) => {
   getProjectMixpanel(config).register(data);

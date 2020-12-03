@@ -25,6 +25,6 @@ export const PlayOkayBar = ({ jurisdiction }: Props) => {
   const PlayOkarBarComponent = jurisdictionBarMapping[jurisdiction] || MGABar;
 
   return (
-    <PlayOkarBarComponent className="c-playokay-bar t-background-grey-90 t-color-white u-padding-right u-position-relative" />
+    <PlayOkarBarComponent className="c-playokay-bar t-color-white u-padding-right u-position-relative" />
   );
 };
