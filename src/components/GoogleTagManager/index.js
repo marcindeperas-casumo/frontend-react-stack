@@ -1,4 +1,5 @@
 // @flow
-export { useGoogleTagManager } from "./useGoogleTagManager";
+export type { TSharedEventConfig } from "./GoogleTagManager.types";
 export { getProdConfig } from "./GoogleTagManager.constants";
-export { GoogleTagManagerService } from "./GoogleTagManager.service";
+export { useGoogleTagManager } from "./useGoogleTagManager";
+export * from "./GoogleTagManager.service";

@@ -69,8 +69,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     gameAwareBalanceCompareFunction
   );
   const savedQuickDepositMethods = useAvailableQuickDepositMethods();
-  const hasQuickDepositMethods =
-    showQuickDeposit && savedQuickDepositMethods.length > 0;
+  const hasQuickDepositMethods = showQuickDeposit;
   const navigateToCashier = () => {
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };

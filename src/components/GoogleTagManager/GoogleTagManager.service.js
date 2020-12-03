@@ -1,34 +1,39 @@
 // @flow
 import { initialize, pushToGTM } from "./GoogleTagManager";
-import type { GTMEventParams } from "./GoogleTagManager.types";
 import { getProdConfig } from "./GoogleTagManager.constants";
+import type {
+  GTMEventParams,
+  TSharedEventConfig,
+} from "./GoogleTagManager.types";
 
-export const GoogleTagManagerService = function() {
-  const init = (dataLayer?: Object) => {
-    // Already Initialized
-    if (window.dataLayer) {
-      return;
-    }
+// eslint-disable-next-line fp/no-let
+let sharedEventConfig: TSharedEventConfig;
 
-    const gtmConfig = dataLayer ? getProdConfig(dataLayer) : getProdConfig();
+export const init = (
+  eventConfig: TSharedEventConfig,
+  dataLayer?: Object
+): Promise<*> => {
+  // Already Initialized
+  if (window.dataLayer) {
+    return Promise.resolve();
+  }
 
-    initialize(gtmConfig);
+  // eslint-disable-next-line fp/no-mutation
+  sharedEventConfig = eventConfig;
+
+  const gtmConfig = dataLayer ? getProdConfig(dataLayer) : getProdConfig();
+
+  return initialize(gtmConfig);
+};
+
+export const trackEvent = ({ event, payload = {} }: GTMEventParams) => {
+  const params = {
+    event,
+    payload: {
+      ...sharedEventConfig,
+      ...payload,
+    },
   };
 
-  const trackEvent = ({ event, payload = {} }: GTMEventParams) => {
-    // @todo: add extra payload params
-    // affTrackId, btag, userId, userStatus, isTestSubjectIdReady
-
-    const params = {
-      event,
-      payload,
-    };
-
-    pushToGTM(params);
-  };
-
-  return Object.freeze({
-    init,
-    trackEvent,
-  });
+  pushToGTM(params);
 };

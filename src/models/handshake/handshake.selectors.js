@@ -68,6 +68,11 @@ export const playerCasumoNameSelector = createSelector(
   prop("casumoName")
 );
 
+export const playerReferrerInfoSelector = createSelector(
+  playerSelector,
+  prop("referrerInfo")
+);
+
 export const sessionIdSelector = createSelector(
   session,
   prop("sessionId")
