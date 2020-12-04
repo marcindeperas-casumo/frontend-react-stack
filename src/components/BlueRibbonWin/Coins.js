@@ -3,45 +3,25 @@ import './Coins.scss';
 import CoinMega from './assets/coin-mega.js';
 import CoinMajor from './assets/coin-major.js';
 import CoinMini from './assets/coin-mini.js';
-import {Jackpots, setJackpot} from './Jackpots.js'
+import {Jackpots} from './Jackpots.js'
 
 const coins = []
-let then = 0;
 const fpsInterval = 9;
 let fpsElapsed = 0;
 let previousTime = 0;
+let selected = 0;
 
 const animate = time => {
-    const deltaTime = time - previousTime;
-
     if (fpsElapsed >= fpsInterval) {
         fpsElapsed = 0;
         // Put your drawing code here
         animateCoinSelection(coins);
     }
     fpsElapsed++;
-    //callback(deltaTime)
 
     previousTime = time;
     requestAnimationFrame(animate);
   }
-
-
-const useAnimationFrame = (callback, coins, shouldAnimate) => {
-    // Use useRef for mutable variables that we want to persist
-    // without triggering a re-render on their change
-    const requestRef = React.useRef();
-    const previousTimeRef = React.useRef();
-
-
-
-    // React.useEffect(() => {
-    //   requestRef.current = requestAnimationFrame(animate);
-    //   return () => cancelAnimationFrame(requestRef.current);
-    // }, []); // Make sure the effect runs only once
-  }
-
-let selected = 0;
 
 const animateCoinSelection = (coins) => {
 
@@ -67,7 +47,6 @@ const createCoins = (coins) => {
         let coinType;
         let className;
         let coinRef = React.createRef();
-        let animEndCb;
 
         if(index === 1) {
             className = 'mega-scale-in-center';
@@ -87,10 +66,7 @@ const createCoins = (coins) => {
       }
 }
 
-createCoins(coins);
-
 const startCoinSelection = () => {
-    let totalCoins = 29;
     for (let index = 0; index < coins.length; index++) {
         let coin = coins[index].ref.current
         if(index === 0) {
@@ -102,6 +78,8 @@ const startCoinSelection = () => {
     }
 }
 
+createCoins(coins);
+
 export const Coins = () => {
     const [count, setCount] = React.useState(0)
     const [jackpotType, setJackpotType] = React.useState('MINI')
@@ -112,11 +90,6 @@ export const Coins = () => {
 
     const onAnimEnd = (event) => {
         if(event.animationName === 'timer-anim') {
-            // useAnimationFrame(deltaTime => {
-            //     // Pass on a function to the setter of the state
-            //     // to make sure we always have the latest state
-            //     setCount(prevCount => (prevCount + deltaTime * 0.01) % 100)
-            // }, coins, animate)
             startCoinSelection();
             setTimeout(() => {requestAnimationFrame(animate);}, 1000);
 
@@ -127,7 +100,6 @@ export const Coins = () => {
                 jackpotEnumsCounter++;
             }, 500)
         }
-
     }
 
     return <div className='timer-anim' onAnimationEnd={onAnimEnd}>

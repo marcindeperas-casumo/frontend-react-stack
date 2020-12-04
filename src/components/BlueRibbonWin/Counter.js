@@ -1,4 +1,8 @@
 import React from "react";
+import './Counter.scss';
+
+// for more easing functions see: https://gist.github.com/gre/1650294 or similar resource
+const easeInOutQuad = t => t<.5 ? 2*t*t : -1+(4-2*t)*t;
 
 const useAnimationFrame = callback => {
     // Use useRef for mutable variables that we want to persist
@@ -9,7 +13,7 @@ const useAnimationFrame = callback => {
     const animate = time => {
       if (previousTimeRef.current != undefined) {
         const deltaTime = time - previousTimeRef.current;
-        callback(deltaTime)
+        callback(deltaTime * easeInOutQuad(1));
       }
       previousTimeRef.current = time;
       requestRef.current = requestAnimationFrame(animate);
@@ -25,10 +29,9 @@ const useAnimationFrame = callback => {
     const [count, setCount] = React.useState(0)
 
     useAnimationFrame(deltaTime => {
-      // Pass on a function to the setter of the state
-      // to make sure we always have the latest state
-      setCount(prevCount => (prevCount + deltaTime * 0.01) % 100)
+      // fake currency value which just counts up to 10000
+      setCount(prevCount => (prevCount + deltaTime * 0.01) % 10000);
     })
 
-    return <div>{Math.round(count)}</div>
+    return <div className='jackpot-value'>{new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(count)}</div>
   }

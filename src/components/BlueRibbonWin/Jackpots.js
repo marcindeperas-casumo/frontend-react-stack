@@ -16,7 +16,7 @@ export const Jackpots = ({jackpotType}) => {
 
     return <div id='BG'>
         <div id='Rectangle2376'></div>
-        <div id='Rectangle2377-highlighted' className ={highlightClass()}></div>
+        <div id='Rectangle2377' className ={highlightClass()}></div>
         <div id='MINI' className={ jackpotType === 'MINI' ? "highlighted" : "non-highlighted" }>MINI</div>
         <div id='MAJOR' className={ jackpotType === 'MAJOR' ? "highlighted" : "non-highlighted" }>MAJOR</div>
         <div id='MEGA' className={ jackpotType === 'MEGA' ? "highlighted" : "non-highlighted" }>MEGA</div>
