@@ -22,13 +22,17 @@ export type JackpotStatus = "HOT" | "WARM" | "CHILLY";
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
   mini: string,
+  mini_short: string,
   mini_icon: string,
   major: string,
+  major_short: string,
   major_icon: string,
   mega_community: string,
+  mega_community_short: string,
   mega_community_explanation: string,
   mega_community_icon: string,
   mega_single_winner: string,
+  mega_single_winner_short: string,
   mega_single_winner_explanation: string,
   mega_single_winner_icon: string,
   section_title: string,

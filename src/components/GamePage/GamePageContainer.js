@@ -17,12 +17,13 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop } from "Components/ResponsiveLayout";
+import { isDesktop, isMobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
+import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { GamePageNotifications } from "./GamePageNotifications";
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
@@ -86,7 +87,12 @@ export const GamePageContainer = () => {
           />
         ) : null
       }
-      footer={shouldShowSlotControlSystem && <InfoBar />}
+      footer={
+        <>
+          {shouldShowSlotControlSystem && <InfoBar />}
+          {isMobile() && <BlueRibbonJackpotsFooterWidgetContainer />}
+        </>
+      }
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
       gameWindow={
