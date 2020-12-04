@@ -82,12 +82,7 @@ export const QuickDepositSlipController = ({
           "u-pointer--initial",
         ])}
       >
-        <div
-          className={cx(borderClasses(), [
-            "t-background-white",
-            "o-position--absolute",
-          ])}
-        >
+        <div className={cx(borderClasses(), ["t-background-white"])}>
           <div className="u-padding--md">
             <Flex
               className="u-margin-bottom--md"
