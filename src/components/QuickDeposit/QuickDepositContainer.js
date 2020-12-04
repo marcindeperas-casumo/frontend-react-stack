@@ -27,7 +27,17 @@ type Props = {
   className?: string,
 };
 
-const quickDepositEnabledMarkets = [MARKETS.gb_en, MARKETS.nz_en];
+const quickDepositEnabledMarkets = [
+  MARKETS.gb_en,
+  MARKETS.nz_en,
+  MARKETS.at_de,
+  MARKETS.de_de,
+  MARKETS.dk_da,
+  MARKETS.es_es,
+  MARKETS.fi_fi,
+  MARKETS.se_sv,
+  MARKETS.___en,
+];
 
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
   if (prev > next) {

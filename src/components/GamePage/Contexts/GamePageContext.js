@@ -4,6 +4,7 @@ import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { GameModelContextProvider } from "./GameModelContext";
 import { PinnedWidgetsContextProvider } from "./PinnedWidgetsContext";
 import { GameActivityStatusContextProvider } from "./GameActivityStatusContext";
+import { AdventurerContextProvider } from "./AdventurerContext";
 
 type GamePageContextProps = {
   children: React.Node,
@@ -26,7 +27,9 @@ export const GamePageContextProvider = ({
     >
       <GameActivityStatusContextProvider>
         <PinnedWidgetsContextProvider>
-          <SumoIconContextProvider>{children}</SumoIconContextProvider>
+          <SumoIconContextProvider>
+            <AdventurerContextProvider>{children}</AdventurerContextProvider>
+          </SumoIconContextProvider>
         </PinnedWidgetsContextProvider>
       </GameActivityStatusContextProvider>
     </GameModelContextProvider>
