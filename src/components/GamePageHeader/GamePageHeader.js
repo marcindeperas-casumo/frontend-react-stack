@@ -7,7 +7,6 @@ import { ErrorBoundary } from "Components/ErrorBoundary";
 import { Desktop } from "Components/ResponsiveLayout";
 import tracker from "Services/tracker";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
-import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import {
   PlayOkayBar,
   ProfileIconWithDrawer,
@@ -57,9 +56,6 @@ export const GamePageHeader = () => {
           </Desktop>
         </Flex>
       </Flex.Block>
-      <Desktop>
-        <QuickDepositSlipController position="top" />
-      </Desktop>
     </Flex>
   );
 };

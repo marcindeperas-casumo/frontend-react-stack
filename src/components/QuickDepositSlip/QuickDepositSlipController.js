@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import classNames from "classnames";
+import cx from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import { CloseIcon } from "@casumo/cmp-icons";
@@ -22,7 +22,7 @@ const cmsPrefix = "root:iframe-solution:fields";
 export const QuickDepositSlipController = ({
   position,
 }: {
-  position: string,
+  position: "top" | "bottom",
 }) => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
@@ -64,27 +64,27 @@ export const QuickDepositSlipController = ({
     <Flex
       align="center"
       justify="center"
-      className="u-width--screen o-position--absolute c-deposit-slip-container"
+      className={cx(
+        "u-width--screen o-position--absolute u-pointer--none c-deposit-slip-container",
+        {
+          "o-inset-top--none": position === "top",
+          "o-inset-bottom--none": position === "bottom",
+        }
+      )}
     >
       <Flex.Item
-        className="
-          c-quick-deposit-slip-positioning
-          u-width--screen@mobile
-          u-width--4/5@phablet
-          u-width--3/5@tablet
-          o-position--relative"
+        className={cx([
+          "c-quick-deposit-slip-positioning",
+          "u-width--screen@mobile",
+          "u-width--4/5@phablet",
+          "u-width--3/5@tablet",
+          "o-position--relative",
+          "u-pointer--initial",
+        ])}
       >
         <div
-          className={classNames(borderClasses(), [
-            "u-width--full",
+          className={cx(borderClasses(), [
             "t-background-white",
-            "o-inset-left--none@mobile",
-            "o-inset-left--none@phablet",
-            "o-inset-left--none@tablet",
-            "o-inset-bottom--none@mobile",
-            "o-inset-bottom--none@phablet",
-            "o-inset-bottom--none@tablet",
-            "o-inset-top--none@desktop",
             "o-position--absolute",
           ])}
         >
@@ -96,7 +96,10 @@ export const QuickDepositSlipController = ({
               align="center"
             >
               <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
-              <Flex.Item onClick={closeQuickDeposit} className="t-color-black">
+              <Flex.Item
+                onClick={closeQuickDeposit}
+                className="t-color-black u-cursor--pointer"
+              >
                 <CloseIcon />
               </Flex.Item>
             </Flex>
