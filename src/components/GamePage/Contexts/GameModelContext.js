@@ -9,6 +9,8 @@ type GameModelContextType = {
   slug: string,
   playForFun: boolean,
   error: boolean,
+  setHaltBalanceUpdates: (arg: boolean) => void,
+  haltBalanceUpdates: boolean,
 };
 
 type GameModelContextProviderProps = {
@@ -25,6 +27,8 @@ export const GameModelContext = React.createContext<GameModelContextType>({
   slug: "",
   playForFun: false,
   error: false,
+  setHaltBalanceUpdates: () => {},
+  haltBalanceUpdates: false,
 });
 
 export const GameModelContextProvider = ({
@@ -40,18 +44,31 @@ export const GameModelContextProvider = ({
       remoteGameLaunchData,
     }
   );
+  const [haltBalanceUpdates, setHaltBalanceUpdates] = React.useState(false);
+  const memoizedValues = React.useMemo(
+    () => ({
+      gameProviderModel,
+      error,
+      pauseGame,
+      resumeGame,
+      slug,
+      playForFun,
+      haltBalanceUpdates,
+      setHaltBalanceUpdates,
+    }),
+    [
+      gameProviderModel,
+      error,
+      pauseGame,
+      resumeGame,
+      slug,
+      playForFun,
+      haltBalanceUpdates,
+    ]
+  );
 
   return (
-    <GameModelContext.Provider
-      value={{
-        pauseGame,
-        resumeGame,
-        gameProviderModel,
-        error,
-        slug,
-        playForFun,
-      }}
-    >
+    <GameModelContext.Provider value={memoizedValues}>
       {children}
     </GameModelContext.Provider>
   );

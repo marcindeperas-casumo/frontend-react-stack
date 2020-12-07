@@ -8,6 +8,7 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
+import { useGameModelContext } from "Components/GamePage/Contexts";
 
 export type NotificationType =
   | "jackpot_win_mini"
@@ -46,6 +47,7 @@ export function useJackpotsSubscription({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
+  const { setHaltBalanceUpdates } = useGameModelContext();
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
@@ -59,7 +61,9 @@ export function useJackpotsSubscription({
       ) {
         return;
       }
-
+      // Set haltBalanceUpdates to true until user clicks CTA on br full screen notification
+      // this avoids balance from updating before notification shows
+      setHaltBalanceUpdates(true);
       const { amount, currency } = notificationData.parameters;
       await pauseGame();
 
@@ -82,7 +86,7 @@ export function useJackpotsSubscription({
       );
       setType(notificationData.type);
     },
-    [locale, pauseGame]
+    [locale, pauseGame, setHaltBalanceUpdates]
   );
 
   React.useEffect(() => {
