@@ -1,9 +1,6 @@
 // @flow
 import { useMemoCompare } from "Utils/hooks";
-import {
-  useGameModelContext,
-  useGameActivityStatusContext,
-} from "Components/GamePage/Contexts";
+import { useGameActivityStatusContext } from "Components/GamePage/Contexts";
 
 type CompareFunctionType<T> = (
   previousValue: T,
@@ -16,8 +13,10 @@ export function useGameActivityAwareValue<T>(
   value: T,
   compareFunction?: CompareFunctionType<T>
 ): T {
-  const isGameActive = useGameActivityStatusContext();
-  const { haltBalanceUpdates } = useGameModelContext();
+  const {
+    active: isGameActive,
+    haltBalanceUpdates,
+  } = useGameActivityStatusContext();
 
   return useMemoCompare<T>(value, (previousValue, currentValue) => {
     // since balance should not update due to ongoing game activity

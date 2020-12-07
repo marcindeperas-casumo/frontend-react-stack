@@ -8,7 +8,7 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
-import { useGameModelContext } from "Components/GamePage/Contexts";
+import { useGameActivityStatusContext } from "Components/GamePage/Contexts";
 
 export type NotificationType =
   | "jackpot_win_mini"
@@ -47,7 +47,7 @@ export function useJackpotsSubscription({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
-  const { setHaltBalanceUpdates } = useGameModelContext();
+  const { setHaltBalanceUpdates } = useGameActivityStatusContext();
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
