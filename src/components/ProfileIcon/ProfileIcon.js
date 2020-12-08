@@ -35,7 +35,7 @@ export const ProfileIcon = ({
 
       setTimeout(() => {
         setAnimating(true);
-      }, 0);
+      }, 100);
     } else {
       setAnimating(true);
     }
