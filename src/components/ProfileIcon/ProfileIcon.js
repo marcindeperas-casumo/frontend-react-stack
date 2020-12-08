@@ -30,16 +30,11 @@ export const ProfileIcon = ({
   );
 
   useEffect(() => {
-    if (animating) {
-      setAnimating(false);
+    setAnimating(false);
 
-      setTimeout(() => {
-        setAnimating(true);
-      }, 100);
-    } else {
+    setTimeout(() => {
       setAnimating(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, 0);
   }, [gameActivityAwareProgress]);
 
   return (
