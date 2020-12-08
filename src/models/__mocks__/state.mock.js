@@ -2903,6 +2903,13 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         children: [],
         childSlugs: [],
       },
+      "iframe-solution": {
+        slug: "iframe-solution",
+        fields: {
+          balance_title: "Balance",
+          bonus_title: "Bonus",
+        },
+      }
     },
     transactionsBetsHistoryAnnualOverview: {
       2018: {
