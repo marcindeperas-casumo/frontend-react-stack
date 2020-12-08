@@ -21,6 +21,7 @@ type TAdventurerContext = {
   points: number,
   pointsRequiredForNextLevel: number,
   progressPercentage: number,
+  rawProgressPercentage: number,
   inBonusMode: boolean,
   belt: BeltType,
 };
@@ -30,6 +31,7 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   points: 0,
   pointsRequiredForNextLevel: 100,
   progressPercentage: 0,
+  rawProgressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
 });
@@ -47,6 +49,8 @@ export const AdventurerContextProvider = ({
     inBonusMode,
     belt,
   } = useSelector(adventurerSelector);
+
+  const rawProgressPercentage = (points / pointsRequiredForNextLevel) * 100;
 
   const progressPercentage = Math.floor(
     (points / pointsRequiredForNextLevel) * 100
@@ -70,6 +74,7 @@ export const AdventurerContextProvider = ({
         inBonusMode,
         belt,
         progressPercentage,
+        rawProgressPercentage,
       }}
     >
       {children}
