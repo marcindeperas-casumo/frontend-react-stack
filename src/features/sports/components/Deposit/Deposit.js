@@ -7,6 +7,7 @@ import { navigateById } from "Services/NavigationService";
 import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
+import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 
 export const CMS_SLUG = "welcome-offer-sports";
@@ -52,29 +53,31 @@ export const Deposit = ({
   };
 
   return (
-    <div className="u-padding-top u-padding-x--md c-sport-deposit">
-      <div className="t-background-white t-border-r--md t-elevation--10 u-padding-x--lg u-padding-y u-margin-bottom u-display--flex">
-        <div className="o-flex--vertical u-margin-right--lg">
-          <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
-          <div className="t-color-grey-90 u-font-md u-font-weight-bold">
-            {balanceFormatted}
+    <MobileAndTablet>
+      <div className="u-padding-top u-padding-x--md c-sport-deposit">
+        <div className="t-background-white t-border-r--md t-elevation--10 u-padding-x--lg u-padding-y u-margin-bottom u-display--flex">
+          <div className="o-flex--vertical u-margin-right--lg">
+            <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
+            <div className="t-color-grey-90 u-font-md u-font-weight-bold">
+              {balanceFormatted}
+            </div>
           </div>
-        </div>
-        {bonus > 0 && (
-          <div className="o-flex--vertical t-color-grey-50 c-sport-deposit-bonus">
-            <div className="u-font-sm">{t?.bonus_title}</div>
-            <div className="u-font-md">{bonusFormatted}</div>
+          {bonus > 0 && (
+            <div className="o-flex--vertical t-color-grey-50 c-sport-deposit-bonus">
+              <div className="u-font-sm">{t?.bonus_title}</div>
+              <div className="u-font-md">{bonusFormatted}</div>
+            </div>
+          )}
+          <div className="u-display--flex c-sport-deposit-grow-2" />
+          <div className="o-flex-align--end">
+            <ButtonPrimary
+              size="sm"
+              icon={<AddIcon />}
+              onClick={() => goToDeposit()}
+            />
           </div>
-        )}
-        <div className="u-display--flex c-sport-deposit-grow-2" />
-        <div className="o-flex-align--end">
-          <ButtonPrimary
-            size="sm"
-            icon={<AddIcon />}
-            onClick={() => goToDeposit()}
-          />
         </div>
       </div>
-    </div>
+    </MobileAndTablet>
   );
 };
