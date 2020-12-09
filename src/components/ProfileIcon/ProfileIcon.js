@@ -4,7 +4,6 @@ import cx from "classnames";
 import { type BeltType } from "Models/adventure";
 import { ProgressCircle } from "Components/Progress";
 import { CasumoAvatar } from "Components/CasumoAvatar";
-import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import "./ProfileIcon.scss";
 
 type Props = {
@@ -25,9 +24,6 @@ export const ProfileIcon = ({
   progressPercentage,
 }: Props = {}) => {
   const [animating, setAnimating] = useState(false);
-  const gameActivityAwareProgress = useGameActivityAwareValue<number>(
-    progressPercentage
-  );
 
   useEffect(() => {
     setAnimating(false);
@@ -35,7 +31,7 @@ export const ProfileIcon = ({
     setTimeout(() => {
       setAnimating(true);
     }, 0);
-  }, [gameActivityAwareProgress]);
+  }, [progressPercentage]);
 
   return (
     <div
@@ -54,7 +50,7 @@ export const ProfileIcon = ({
         />
       </div>
       <ProgressCircle
-        value={gameActivityAwareProgress}
+        value={progressPercentage}
         fgColor="grey-20"
         bgColor="grey-50"
         fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
