@@ -1,0 +1,93 @@
+/* stylelint-disable */
+
+.sumo-icon-confetti__anim {
+  position: relative;
+  z-index: 2;
+}
+
+.sumoIcon {
+  /* ---------------------------------- */
+  /* ------ important part below ------ */
+  /* ---------------------------------- */
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: blurUp;
+  background-color: #3f3752;
+  border-radius: 50%;
+  box-shadow: none;
+  height: 48px;
+  left: 16px;
+  position: absolute;
+  top: 4px;
+  width: 100%;
+  width: 48px;
+  z-index: 2;
+}
+
+.victory-confetti-1,
+.victory-confetti-2,
+.victory-confetti-3 {
+  animation-iteration-count: infinite;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(0, 0);
+}
+
+.victory-confetti-1 {
+  animation-delay: 0ms;
+  animation-duration: 3s;
+  animation-name: levelup;
+}
+
+.victory-confetti-2 {
+  animation-delay: 60ms;
+  animation-duration: 3s;
+  animation-name: levelup;
+}
+
+.victory-confetti-3 {
+  animation-delay: 150ms;
+  animation-duration: 3s;
+  animation-name: levelup;
+}
+
+@keyframes blurUp {
+  /* 300ms passed */
+  10% {
+    box-shadow: 0px 0px 6px 6px rgba(52, 229, 235, 0.7);
+  }
+
+  /* 300ms left */
+  90% {
+    box-shadow: 0px 0px 6px 6px rgba(52, 229, 235, 0.7);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+@keyframes levelup {
+  5% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+
+  /* 300ms passed */
+  10% {
+    transform: scale(1, 1);
+  }
+
+  /* 300ms left */
+  90% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+}

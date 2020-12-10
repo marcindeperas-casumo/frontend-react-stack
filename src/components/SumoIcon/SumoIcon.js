@@ -4,6 +4,7 @@ import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
 import { SumoIconContext } from "./SumoIconContext";
+import SumoIconConfetti from "./SumoIconConfettiContainer";
 
 import "./SumoIcon.scss";
 
@@ -28,6 +29,7 @@ export const SumoIcon = ({
 
   return (
     <>
+      <SumoIconConfetti />
       <div
         onClick={onClick}
         className={cx(
