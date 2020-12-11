@@ -285,7 +285,11 @@ export function useCurrentReelRaceInfo(
   }, [playerId, refetch, tournamentChannels]);
 
   React.useEffect(() => {
-    if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
+    if (
+      !loading &&
+      reelRaceQueryData &&
+      !R.isEmpty(reelRaceQueryData.reelRaces)
+    ) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
       const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
@@ -294,7 +298,7 @@ export function useCurrentReelRaceInfo(
       refetchTimeout.scheduleAt(
         refetch,
         Math.floor(
-          (closestReelRace ? closestReelRace.endTime : 0) +
+          (closestReelRace ? closestReelRace.endTime : Date.now()) +
             (61 + Math.random() * 60) * 1000
         )
       ); // distribute refetch within 60s
