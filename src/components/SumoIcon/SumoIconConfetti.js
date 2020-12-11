@@ -3,7 +3,7 @@ import "./SumoIconConfetti.scss";
 
 const v1 = (
   <svg
-    className="sumo-icon-confetti__victory-1"
+    className="c-sumo-icon-confetti__victory c-sumo-icon-confetti__victory-1"
     width="79"
     height="76"
     viewBox="0 0 79 76"
@@ -43,7 +43,7 @@ const v1 = (
 
 const v2 = (
   <svg
-    className="sumo-icon-confetti__victory-2"
+    className="c-sumo-icon-confetti__victory c-sumo-icon-confetti__victory-2"
     width="86"
     height="82"
     viewBox="0 0 86 82"
@@ -79,7 +79,7 @@ const v2 = (
 
 const v3 = (
   <svg
-    className="sumo-icon-confetti__victory-3"
+    className="c-sumo-icon-confetti__victory c-sumo-icon-confetti__victory-3"
     width="83"
     height="73"
     viewBox="0 0 83 73"
@@ -123,11 +123,11 @@ const v3 = (
 
 export default function SumoIconConfetti() {
   return (
-    <div className="sumo-icon-confetti__anim ">
+    <div className="c-sumo-icon-confetti__anim ">
       {v1}
       {v2}
       {v3}
-      <div className="sumo-icon-confetti__blur u-height--3xlg u-width--3xlg"></div>
+      <div className="c-sumo-icon-confetti__blur u-height--3xlg u-width--3xlg"></div>
     </div>
   );
 }
