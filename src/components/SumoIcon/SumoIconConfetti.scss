@@ -1,59 +1,60 @@
 /* stylelint-disable */
+$animation_duration: 3000ms;
 
-.sumo-icon-confetti__anim {
-  position: relative;
-  z-index: 2;
+:export {
+  animation_duration: $animation_duration;
 }
 
-.sumoIcon {
-  /* ---------------------------------- */
-  /* ------ important part below ------ */
-  /* ---------------------------------- */
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-name: blurUp;
-  background-color: #3f3752;
-  border-radius: 50%;
-  box-shadow: none;
-  height: 48px;
-  left: 16px;
-  position: absolute;
-  top: 4px;
-  width: 100%;
-  width: 48px;
-  z-index: 2;
+.c-sumo-icon-confetti {
+  &__anim {
+    position: relative;
+    z-index: cudl-z(main-nav);
+  }
+
+  &__blur {
+    animation-duration: $animation_duration;
+    animation-iteration-count: infinite;
+    animation-name: blur-up;
+    background-color: #3f3752;
+    border-radius: 50%;
+    box-shadow: none;
+    left: 16px;
+    position: absolute;
+    top: 4px;
+    z-index: cudl-z(main-nav);
+  }
+
+  &__victory-1,
+  &__victory-2,
+  &__victory-3 {
+    animation-iteration-count: infinite;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(0, 0);
+  }
+
+  &__victory-1 {
+    animation-delay: 0ms;
+    animation-duration: $animation_duration;
+    animation-name: level-up;
+  }
+
+  &__victory-2 {
+    animation-delay: 60ms;
+    animation-duration: $animation_duration;
+    animation-name: level-up;
+  }
+
+  &__victory-3 {
+    animation-delay: 150ms;
+    animation-duration: $animation_duration;
+    animation-name: level-up;
+  }
 }
 
-.victory-confetti-1,
-.victory-confetti-2,
-.victory-confetti-3 {
-  animation-iteration-count: infinite;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  transform: scale(0, 0);
-}
-
-.victory-confetti-1 {
-  animation-delay: 0ms;
-  animation-duration: 3s;
-  animation-name: levelup;
-}
-
-.victory-confetti-2 {
-  animation-delay: 60ms;
-  animation-duration: 3s;
-  animation-name: levelup;
-}
-
-.victory-confetti-3 {
-  animation-delay: 150ms;
-  animation-duration: 3s;
-  animation-name: levelup;
-}
-
-@keyframes blurUp {
+@keyframes blur-up {
   /* 300ms passed */
   10% {
     box-shadow: 0px 0px 6px 6px rgba(52, 229, 235, 0.7);
@@ -69,7 +70,7 @@
   }
 }
 
-@keyframes levelup {
+@keyframes level-up {
   5% {
     opacity: 1;
     transform: scale(1.2, 1.2);

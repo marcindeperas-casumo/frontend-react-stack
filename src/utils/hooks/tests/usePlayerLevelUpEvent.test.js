@@ -21,54 +21,16 @@ describe("useLoginSessionSummary", () => {
     jest.clearAllMocks();
   });
 
-  test("it should allow subscribe for LEVEL_UP event", async () => {
-    cometd.subscribe = jest.fn();
-
-    const wrapper = mount(
-      <HookWrapper hook={usePlayerLevelUpEvent} args={[]} />
-    );
-
-    const { hook } = wrapper.find("div").props();
-    expect(hook.setLevelUpCallback).toBeTruthy();
-
-    await act(async () => {
-      await jest.runAllTimers();
-      wrapper.update();
-    });
-
-    expect(hook.setLevelUpCallback).toBeTruthy();
-
-    const callbackOnEvent = ev => jest.fn();
-
-    await act(async () => {
-      await jest.runAllTimers();
-      hook.setLevelUpCallback(callbackOnEvent);
-      wrapper.update();
-    });
-
-    expect(cometd.subscribe).toBeCalled();
-  });
-
-  test("it should invoke subscribe callback on emit LEVEL_UP event", async () => {
+  test("it should invoke subscribe callback on emit LEVEL_UP event", () => {
     cometd.emit = emit;
     cometd.subscribe = subscribe;
 
+    const callbackOnEvent = jest.fn();
     const wrapper = mount(
-      <HookWrapper hook={usePlayerLevelUpEvent} args={[]} />
+      <HookWrapper hook={usePlayerLevelUpEvent} args={[callbackOnEvent]} />
     );
 
-    const { hook } = wrapper.find("div").props();
-
-    await act(async () => {
-      await jest.runAllTimers();
-      wrapper.update();
-    });
-
-    const callbackOnEvent = jest.fn();
-
-    await act(async () => {
-      await jest.runAllTimers();
-      hook.setLevelUpCallback(callbackOnEvent);
+    act(() => {
       cometd.emit(`${CHANNELS.ADVENTURE}/user-session-id`, { leveledUp: 666 });
       wrapper.update();
     });

@@ -1,14 +1,11 @@
 //@flow
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { usePlayerLevelUpEvent } from "Utils/hooks/usePlayerLevelUpEvent";
+import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";
 import SumoIconConfetti from "./SumoIconConfetti";
-
-// need to match value in CSS
-const ANIM_DURATION = 3000;
+import { animation_duration } from "./SumoIconConfetti.scss";
 
 export default function SumoIconConfettiContainer() {
-  const { setLevelUpCallback } = usePlayerLevelUpEvent();
-
+  const { onLevelUp } = useAdventurerContext();
   const [isConfettiVisible, showConfetti] = useState<boolean>(false);
   const timeoutIdRef = useRef();
   const hideConfetti = () => showConfetti(false);
@@ -18,11 +15,14 @@ export default function SumoIconConfettiContainer() {
   const runAnimation = useCallback(() => {
     showConfetti(true);
 
-    const timeoutId: TimeoutID = setTimeout(hideConfetti, ANIM_DURATION);
+    const timeoutId: TimeoutID = setTimeout(
+      hideConfetti,
+      Number(animation_duration)
+    );
     timeoutIdRef.current = timeoutId; // eslint-disable-line fp/no-mutation
   }, []);
 
-  setLevelUpCallback(runAnimation);
+  onLevelUp(runAnimation);
 
   useEffect(() => {
     // in case game is closed before timeout execution

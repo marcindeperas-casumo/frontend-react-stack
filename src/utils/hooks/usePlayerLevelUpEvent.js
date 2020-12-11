@@ -1,5 +1,5 @@
 // @flow
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
@@ -13,23 +13,22 @@ type AdventurerEvent = {
   },
 };
 
-type LevelUpCallback = any => any;
-const noop = () => undefined;
+export type LevelUpCallback = any => any;
 
-export function usePlayerLevelUpEvent() {
+export function usePlayerLevelUpEvent(callback: LevelUpCallback) {
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.ADVENTURE}/${playerId}`;
-  const callback = useRef<LevelUpCallback>(noop);
 
-  const setCallback = (cb: LevelUpCallback) => (callback.current = cb); // eslint-disable-line fp/no-mutation
+  const subscriptionHandler = useCallback(
+    (event: AdventurerEvent) => {
+      if (!event.data.leveledUp) {
+        return;
+      }
 
-  const subscriptionHandler = useCallback((event: AdventurerEvent) => {
-    if (!event.data.leveledUp) {
-      return;
-    }
-
-    callback.current();
-  }, []);
+      callback();
+    },
+    [callback]
+  );
 
   useEffect(() => {
     cometd.subscribe(channel, subscriptionHandler);
@@ -38,8 +37,4 @@ export function usePlayerLevelUpEvent() {
       cometd.unsubscribe(channel, subscriptionHandler);
     };
   }, [channel, subscriptionHandler]);
-
-  return {
-    setLevelUpCallback: setCallback,
-  };
 }
