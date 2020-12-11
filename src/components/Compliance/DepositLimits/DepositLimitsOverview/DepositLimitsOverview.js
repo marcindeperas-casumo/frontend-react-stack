@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -16,6 +15,7 @@ import {
 import { PendingChanges } from "./PendingChanges";
 import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
+import { SectionHeader } from "./SectionHeader";
 import "./styles.scss";
 
 type Props = PendingDepositLimitsChangesSelected & {
@@ -133,9 +133,3 @@ export function DepositLimitsOverview(props: Props) {
     </Flex>
   );
 }
-
-const SectionHeader = (props: { children: string }) => (
-  <Text className="u-font-weight-black u-padding--md u-padding-top--lg u-padding-top--2xlg@desktop t-color-grey-50">
-    {props.children}
-  </Text>
-);
