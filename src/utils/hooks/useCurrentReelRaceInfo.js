@@ -288,6 +288,7 @@ export function useCurrentReelRaceInfo(
     if (
       !loading &&
       reelRaceQueryData &&
+      reelRaceQueryData.reelRaces &&
       !R.isEmpty(reelRaceQueryData.reelRaces)
     ) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
