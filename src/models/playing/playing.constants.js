@@ -11,4 +11,6 @@ export const CMS_SLUGS = {
   MODAL_WAGERING: "iframe-solution",
 };
 
-export const WALLET_BALANCE_DELAY_DURATION = 300;
+export const WALLET_BALANCE_DELAY_DURATION = 500;
+
+export const WALLET_BONUS_UNBLOCK_AFTER = 5000;

@@ -4,8 +4,8 @@ import { useGameActivityStatus } from "../Hooks/useGameActivityStatus";
 
 type GameActivityStatusContextType = {
   active: boolean,
-  setHaltBalanceUpdates: (arg: boolean) => void,
-  haltBalanceUpdates: boolean,
+  setBlueRibbonBusy: (arg: boolean) => void,
+  blueRibbonBusy: boolean,
 };
 type GameActivityStatusContextProviderProps = {
   children: React.Node,
@@ -14,20 +14,21 @@ type GameActivityStatusContextProviderProps = {
 export const GameActivityStatusContext = React.createContext<GameActivityStatusContextType>(
   {
     active: false,
-    setHaltBalanceUpdates: () => {},
-    haltBalanceUpdates: false,
+    setBlueRibbonBusy: () => {},
+    blueRibbonBusy: false,
   }
 );
 
 export const GameActivityStatusContextProvider = ({
   children,
 }: GameActivityStatusContextProviderProps) => {
-  const [haltBalanceUpdates, setHaltBalanceUpdates] = React.useState(false);
+  const [blueRibbonBusy, setBlueRibbonBusy] = React.useState(false);
   const active = useGameActivityStatus();
+
   const providerValues = {
     active,
-    haltBalanceUpdates,
-    setHaltBalanceUpdates,
+    blueRibbonBusy,
+    setBlueRibbonBusy,
   };
 
   return (

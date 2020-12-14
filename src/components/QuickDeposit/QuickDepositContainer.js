@@ -16,11 +16,11 @@ import {
   playerWalletBonusSelector,
   playerCurrencySelector,
 } from "Models/player";
+import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
 import { REACT_APP_MODAL, MARKETS } from "Src/constants";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
-import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
@@ -40,14 +40,18 @@ const quickDepositEnabledMarkets = [
 ];
 
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
-  if (prev > next) {
+  // Game is active/busy aka balance shouldn't be updated yet
+  // - return true meaning new balance is equal to previous (no change) until game is no longer busy
+  if (isGameActive) {
+    return isGameActive;
+  }
+  if (prev !== next) {
     // Return fresh value
     return false;
   } else if (prev === next) {
     // Return cached value
     return true;
   }
-
   return isGameActive;
 }
 
