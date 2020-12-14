@@ -2,6 +2,8 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
+import { usePlayerLevelUpEvent } from "Utils/hooks/usePlayerLevelUpEvent";
+import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
 import {
   type BeltType,
   adventurerSelector,
@@ -23,6 +25,7 @@ type TAdventurerContext = {
   progressPercentage: number,
   inBonusMode: boolean,
   belt: BeltType,
+  onLevelUp: LevelUpCallback,
 };
 
 export const AdventurerContext = React.createContext<TAdventurerContext>({
@@ -32,6 +35,7 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   progressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
+  onLevelUp: usePlayerLevelUpEvent,
 });
 
 export const AdventurerContextProvider = ({
@@ -70,6 +74,7 @@ export const AdventurerContextProvider = ({
         inBonusMode,
         belt,
         progressPercentage,
+        onLevelUp: usePlayerLevelUpEvent,
       }}
     >
       {children}
