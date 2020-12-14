@@ -54,9 +54,6 @@ export function BlueRibbonJackpotsWidgetContainer({
   )(response);
 
   if (!t || !available || !jackpots || jackpots.length === 0) {
-    console.warn("available", available);
-    console.warn("jackpots", jackpots.length);
-    console.warn("t", t);
     return null;
   }
 
