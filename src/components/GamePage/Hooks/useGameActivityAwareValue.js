@@ -14,14 +14,14 @@ export function useGameActivityAwareValue<T>(
 ): T {
   const {
     active: isGameActive,
-    blueRibbonBusy,
+    gameServicesBusy,
   } = useGameActivityStatusContext();
 
   return useMemoCompare<T>(value, (previousValue, currentValue) => {
     // since balance should not update due to ongoing game activity
     // if blueribbon notification added cometD event is received (which waits for user to click cta)
     // - return true aka balance is equal to previous to keep balance unchanged momentarily
-    if (blueRibbonBusy || isGameActive) {
+    if (gameServicesBusy || isGameActive) {
       return true;
     }
     if (compareFunction) {

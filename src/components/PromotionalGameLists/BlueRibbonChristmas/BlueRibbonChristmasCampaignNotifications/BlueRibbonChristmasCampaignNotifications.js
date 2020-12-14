@@ -34,9 +34,9 @@ export function BlueRibbonChristmasCampaignNotifications({
   });
   const { isJackpotGame } = useBlueRibbonAutoOptIn();
   const [acknowledged, setAcknowledged] = React.useState(false);
-  const { setBlueRibbonBusy } = useGameActivityStatusContext();
+  const { setGameServicesBusy } = useGameActivityStatusContext();
   const brNotificationAcknowledged = () => {
-    setBlueRibbonBusy(false);
+    setGameServicesBusy(false);
     acknowledge();
   };
 
