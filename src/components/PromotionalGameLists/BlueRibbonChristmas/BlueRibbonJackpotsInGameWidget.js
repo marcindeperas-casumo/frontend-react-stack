@@ -42,7 +42,7 @@ export function BlueRibbonJackpotsInGameWidget({
         direction="horizontal"
         align="stretch"
         justify="space-between"
-        className="o-flex__item--no-shrink o-flex--wrap"
+        className="o-flex__item--no-shrink o-flex--wrap u-width--full"
       >
         {jackpots.map(jackpot => {
           if (jackpot.communityWinRatio === 0 || jackpot.mainWinRatio === 0) {
@@ -50,7 +50,7 @@ export function BlueRibbonJackpotsInGameWidget({
 
             return (
               <JackpotRow
-                className="u-padding--md o-flex--1"
+                className="u-padding--md o-flex--1 u-padding-x"
                 key={jackpot.potId}
                 formattedValue={formatCurrency({
                   locale,
@@ -98,7 +98,7 @@ export function BlueRibbonJackpotsInGameWidget({
               key={jackpot.potId}
               direction="vertical"
               justify="space-between"
-              className="t-border-r--md u-overflow--hidden u-width--full t-background-black"
+              className="t-border-r--md u-overflow--hidden u-width--full t-background-black u-padding-x"
             >
               <Flex
                 key={jackpot.potId}
@@ -108,7 +108,7 @@ export function BlueRibbonJackpotsInGameWidget({
                 {splitPot.map(({ id, ...x }) => (
                   <JackpotRow
                     key={id}
-                    className="u-padding--md u-padding-bottom o-flex--1"
+                    className="u-padding--md u-padding-bottom o-flex--1 u-padding-x"
                     {...x}
                   />
                 ))}
