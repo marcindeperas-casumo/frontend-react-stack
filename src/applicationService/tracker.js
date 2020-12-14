@@ -2,7 +2,6 @@
 import config from "Src/config";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
-import createAdapterGTM from "Lib/tracker.adapter.gtm";
 import createAdapterLog from "Lib/tracker.adapter.log";
 import logger from "Services/logger";
 
@@ -24,11 +23,15 @@ function getAdaptersDev() {
   return [adapterLog];
 }
 
+/**
+ * NOTE: to enable tracking on GTM, add gtm adapter to the array
+ * import createAdapterGTM from "Lib/tracker.adapter.gtm";
+ * const adapterGTM = createAdapterGTM();
+ */
 function getAdaptersProd() {
   const { mixpanelToken, mixpanelProjectName } = config;
   const mixpanelConfig = { mixpanelToken, mixpanelProjectName };
   const adapterMixpanel = createAdapterMixpanel(mixpanelConfig);
-  const adapterGTM = createAdapterGTM();
 
-  return [adapterMixpanel, adapterGTM];
+  return [adapterMixpanel];
 }

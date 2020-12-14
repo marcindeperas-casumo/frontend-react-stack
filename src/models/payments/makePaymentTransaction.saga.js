@@ -73,7 +73,8 @@ export function* makePaymentTransactionSaga(
   const { redirectOutput, success } = response;
 
   if (!success) {
-    yield call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED);
+    call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED, {});
+
     yield put(setPaymentRequestFinished());
     return yield put(
       methodUseError({
@@ -85,7 +86,7 @@ export function* makePaymentTransactionSaga(
 
   if (redirectOutput) {
     if (redirectOutput.url) {
-      yield call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_STARTED);
+      call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_STARTED, {});
 
       yield put(
         showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
@@ -102,20 +103,14 @@ export function* makePaymentTransactionSaga(
       }
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED) {
-        yield call(
-          tracker.track,
-          EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_SUCCESS
-        );
+        call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_SUCCESS, {});
 
         yield put(setPaymentRequestFinished());
         return yield put(methodUseSuccess({ amount }));
       }
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
-        yield call(
-          tracker.track,
-          EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED
-        );
+        call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED, {});
 
         yield put(setPaymentRequestFinished());
 

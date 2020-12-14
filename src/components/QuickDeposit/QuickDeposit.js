@@ -3,7 +3,6 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
-import TrackClick from "Components/TrackClick";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
@@ -44,8 +43,14 @@ export const QuickDeposit = ({
   }
   const cashierLinkClickHandler = () => {
     tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED);
-    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED); // todo: can we just omit this?
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED);
     onCashierLinkClick();
+  };
+
+  const currencySymbolClickHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_CASHIER_LINK_CLICKED);
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED);
+    onQuickDepositLinkClick();
   };
 
   return (
@@ -72,20 +77,16 @@ export const QuickDeposit = ({
             align="center"
             justify="center"
             className="t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
-            onClick={onQuickDepositLinkClick}
+            onClick={currencySymbolClickHandler}
           >
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED}
-            >
-              <CurrencyIcon
-                currency={currency}
-                selected
-                classList="u-position--absolute o-inset-x--none t-color-purple-60"
-              />
-              <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
-                <AddIcon className="t-color-purple-60" size="md" />
-              </div>
-            </TrackClick>
+            <CurrencyIcon
+              currency={currency}
+              selected
+              classList="u-position--absolute o-inset-x--none t-color-purple-60"
+            />
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
+              <AddIcon className="t-color-purple-60" size="md" />
+            </div>
           </Flex>
         ) : (
           <Text
