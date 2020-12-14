@@ -34,7 +34,7 @@ const removeGameActivityListeners = (
 export const useGameActivityStatus = () => {
   const { gameProviderModel } = useGameModelContext();
   const [active, setActive] = useState(false);
-  const [gameBonusBusy, setGameBonusBusy] = useState(false);
+  const [gameJackpotBusy, setGameJackpotBusy] = useState(false);
   const awardedBonus = useGameBonusActivity();
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const {
@@ -85,7 +85,7 @@ export const useGameActivityStatus = () => {
 
   useMemo(() => {
     if (awardedBonus) {
-      setGameBonusBusy(true);
+      setGameJackpotBusy(true);
       async function delayed() {
         // Timeout required in cases like blueribbon where the wallet event is received before the notification event
         await new Promise(resolve => {
@@ -94,7 +94,7 @@ export const useGameActivityStatus = () => {
           }
           // eslint-disable-next-line fp/no-mutation
           bonusBusyTimeoutRef.current = setTimeout(() => {
-            setGameBonusBusy(false);
+            setGameJackpotBusy(false);
             resolve();
           }, WALLET_BALANCE_DELAY_DURATION);
         });
@@ -104,5 +104,5 @@ export const useGameActivityStatus = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [awardedBonus, playerBalance]);
 
-  return active || gameBonusBusy;
+  return active || gameJackpotBusy;
 };

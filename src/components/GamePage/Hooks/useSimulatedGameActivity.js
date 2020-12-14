@@ -39,7 +39,7 @@ export const useSimulatedGameActivity = (
 
   useEffect(() => {
     if (simulatedGameActivityEnabled) {
-      if (previousWalletAmount.current !== currentWalletAmount) {
+      if (previousWalletAmount.current > currentWalletAmount) {
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
 
