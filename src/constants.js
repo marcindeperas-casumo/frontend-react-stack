@@ -62,6 +62,7 @@ export const DEVICES = {
   MOBILE: "mobile",
 };
 
+// todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
 export const APP_SUB_TYPES = {
   IOS_HYBRID: "ios hybrid",
   ANDROID_HYBRID: "android hybrid",

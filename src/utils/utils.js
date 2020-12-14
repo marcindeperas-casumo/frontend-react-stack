@@ -31,6 +31,7 @@ export const getAppVersion = (w: window = window) => {
   return undefined;
 };
 
+// todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
 export const getAppSubType = (w: window = window) => {
   if (isIosNative) {
     return APP_SUB_TYPES.IOS_HYBRID;
