@@ -36,6 +36,10 @@ const quickDepositEnabledMarkets = [
   MARKETS.es_es,
   MARKETS.fi_fi,
   MARKETS.se_sv,
+  MARKETS.in_en,
+  MARKETS.jp_ja,
+  MARKETS.no_no,
+  MARKETS.ca_en,
   MARKETS.___en,
 ];
 
