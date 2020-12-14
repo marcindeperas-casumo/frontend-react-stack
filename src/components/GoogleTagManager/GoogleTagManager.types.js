@@ -16,7 +16,6 @@ export type GTMEventParams = {
 export type TSharedEventConfig = {
   userId: string,
   testSubjectId?: string,
-  affTrackId?: string, // todo: confirm if still needed
-  btag?: string,
+  btag?: string, // todo: confirm if still needed
   userStatus: "Logged-In" | "Logged-Out",
 };
