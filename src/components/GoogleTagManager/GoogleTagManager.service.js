@@ -1,27 +1,38 @@
 // @flow
 import { initialize, pushToGTM } from "./GoogleTagManager";
-import type { GTMEventParams } from "./GoogleTagManager.types";
 import { getProdConfig } from "./GoogleTagManager.constants";
+import type {
+  GTMEventParams,
+  TSharedEventConfig,
+} from "./GoogleTagManager.types";
 
-export const init = () => {
+// eslint-disable-next-line fp/no-let
+let sharedEventConfig: TSharedEventConfig;
+
+export const init = (
+  eventConfig: TSharedEventConfig,
+  dataLayer?: Object
+): Promise<*> => {
   // Already Initialized
   if (window.dataLayer) {
-    return;
+    return Promise.resolve();
   }
 
-  // @todo: add defalt values to data layer and pass here
-  const gtmConfig = getProdConfig();
+  // eslint-disable-next-line fp/no-mutation
+  sharedEventConfig = eventConfig;
 
-  initialize(gtmConfig);
+  const gtmConfig = dataLayer ? getProdConfig(dataLayer) : getProdConfig();
+
+  return initialize(gtmConfig);
 };
 
 export const trackEvent = ({ event, payload = {} }: GTMEventParams) => {
-  // @todo: add extra payload params
-  // affTrackId, btag, userId, userStatus, isTestSubjectIdReady
-
   const params = {
     event,
-    payload,
+    payload: {
+      ...sharedEventConfig,
+      ...payload,
+    },
   };
 
   pushToGTM(params);

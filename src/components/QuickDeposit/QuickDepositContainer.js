@@ -18,7 +18,7 @@ import {
 } from "Models/player";
 import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { REACT_APP_MODAL, MARKETS } from "Src/constants";
+import { REACT_APP_MODAL } from "Src/constants";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { CMS_SLUGS as CMS_SLUG } from "../../models/playing/playing.constants";
 import { QuickDeposit } from "./QuickDeposit";
@@ -27,17 +27,7 @@ type Props = {
   className?: string,
 };
 
-const quickDepositEnabledMarkets = [
-  MARKETS.gb_en,
-  MARKETS.nz_en,
-  MARKETS.at_de,
-  MARKETS.de_de,
-  MARKETS.dk_da,
-  MARKETS.es_es,
-  MARKETS.fi_fi,
-  MARKETS.se_sv,
-  MARKETS.___en,
-];
+const quickDepositDisabledMarkets = [];
 
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
   if (prev > next) {
@@ -65,7 +55,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     featureFlagSelector("quick-deposit")
   );
   const showQuickDeposit =
-    quickDepositEnabledMarkets.includes(market) ||
+    !quickDepositDisabledMarkets.includes(market) ||
     quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
   const playerBalance = useSelector(playerBalanceAmountSelector);
