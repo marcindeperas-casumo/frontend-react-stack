@@ -3,7 +3,12 @@ import * as React from "react";
 import * as R from "ramda";
 import { DateTime, Duration } from "luxon";
 import * as A from "Types/apollo";
-import { DEVICES, CURRENCY_SYMBOLS, EMBEDDED_GAMES } from "Src/constants";
+import {
+  DEVICES,
+  CURRENCY_SYMBOLS,
+  EMBEDDED_GAMES,
+  APP_SUB_TYPES,
+} from "Src/constants";
 import type { AppDevice } from "Src/types";
 
 export const noop = () => {};
@@ -13,6 +18,9 @@ export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 export const isIosNative = (w: window = window) =>
   R.pathOr(false, ["native", "ios"], w);
 
+export const isAndroidNative = (w: window = window) =>
+  R.pathOr(false, ["native", "android"], w);
+
 export const getAppVersion = (w: window = window) => {
   const appVersion = R.pathOr(undefined, ["native", "version"], w);
 
@@ -21,6 +29,23 @@ export const getAppVersion = (w: window = window) => {
   }
 
   return undefined;
+};
+
+// todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
+export const getAppSubType = (w: window = window) => {
+  if (isIosNative) {
+    return APP_SUB_TYPES.IOS_HYBRID;
+  }
+
+  if (isAndroidNative) {
+    return APP_SUB_TYPES.ANDROID_HYBRID;
+  }
+
+  if (window.matchMedia("(display-mode: standalone)").matches) {
+    return APP_SUB_TYPES.ANDROID;
+  }
+
+  return APP_SUB_TYPES.WEB;
 };
 
 export const isEmbeddedOn = (userEmail: string) => {

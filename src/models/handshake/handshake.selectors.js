@@ -68,6 +68,11 @@ export const playerCasumoNameSelector = createSelector(
   prop("casumoName")
 );
 
+export const playerReferrerInfoSelector = createSelector(
+  playerSelector,
+  prop("referrerInfo")
+);
+
 export const sessionIdSelector = createSelector(
   session,
   prop("sessionId")
@@ -253,6 +258,11 @@ export const isProductionBackendSelector = createSelector(
     path(["common/composition/context", "siteUrl"]),
     includes("casumo.com")
   )
+);
+
+export const commonContextSelector = createSelector(
+  applicationHandshakeSelector,
+  prop("common/composition/context")
 );
 
 export const piqConfigSelector = createSelector(
