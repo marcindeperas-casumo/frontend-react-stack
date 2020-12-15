@@ -74,7 +74,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
         direction="vertical"
         align="stretch"
         spacing="none"
-        className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow--hidden"
+        className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none t-border-r--md@tablet t-border-r--md@desktop u-overflow--hidden"
       >
         <Flex direction="vertical" align="center">
           {props.history.map((historyItem, i) => (
