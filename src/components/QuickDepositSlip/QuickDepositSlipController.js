@@ -65,7 +65,7 @@ export const QuickDepositSlipController = ({
       align="center"
       justify="center"
       className={cx(
-        "u-width--screen o-position--absolute u-pointer--none c-deposit-slip-container",
+        "c-deposit-slip-container u-width--screen o-position--absolute u-pointer--none",
         {
           "o-inset-top--none": position === "top",
           "o-inset-bottom--none": position === "bottom",
