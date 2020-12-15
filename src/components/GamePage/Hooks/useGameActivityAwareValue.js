@@ -1,6 +1,6 @@
 // @flow
 import { useMemoCompare } from "Utils/hooks";
-import { useGameActivityStatusContext } from "Components/GamePage/Contexts";
+import { useGameActivityStatusContext } from "../Contexts";
 
 type CompareFunctionType<T> = (
   previousValue: T,
@@ -12,18 +12,9 @@ export function useGameActivityAwareValue<T>(
   value: T,
   compareFunction?: CompareFunctionType<T>
 ): T {
-  const {
-    active: isGameActive,
-    gameServicesBusy,
-  } = useGameActivityStatusContext();
+  const isGameActive = useGameActivityStatusContext();
 
   return useMemoCompare<T>(value, (previousValue, currentValue) => {
-    // since balance should not update due to ongoing game activity
-    // if blueribbon notification added cometD event is received (which waits for user to click cta)
-    // - return true aka balance is equal to previous to keep balance unchanged momentarily
-    if (gameServicesBusy || isGameActive) {
-      return true;
-    }
     if (compareFunction) {
       return compareFunction(previousValue, currentValue, isGameActive);
     }

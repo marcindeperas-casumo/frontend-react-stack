@@ -1,8 +1,5 @@
 // @flow
-import { useState, useEffect, useRef, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { WALLET_BALANCE_DELAY_DURATION } from "Models/playing/playing.constants";
-import { playerBalanceAmountSelector } from "Models/player";
+import { useState, useEffect } from "react";
 import {
   GAME_ACTIVE_EVENT_NAME,
   GAME_IDLE_EVENT_NAME,
@@ -10,7 +7,6 @@ import {
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
 } from "../../../gameProviders";
 import { useSimulatedGameActivity } from "../Hooks/useSimulatedGameActivity";
-import { useGameBonusActivity } from "../Hooks/useGameBonusActivity";
 import { useGameModelContext } from "../Contexts/GameModelContext";
 
 const addGameActivityListeners = (
@@ -34,14 +30,11 @@ const removeGameActivityListeners = (
 export const useGameActivityStatus = () => {
   const { gameProviderModel } = useGameModelContext();
   const [active, setActive] = useState(false);
-  const [gameJackpotBusy, setGameJackpotBusy] = useState(false);
-  const awardedBonus = useGameBonusActivity();
-  const playerBalance = useSelector(playerBalanceAmountSelector);
+
   const {
     enableSimulatedGameActivity,
     disableSimulatedGameActivity,
   } = useSimulatedGameActivity(setActive);
-  const bonusBusyTimeoutRef = useRef();
 
   useEffect(() => {
     if (gameProviderModel && gameProviderModel.props.gameRef.current) {
@@ -83,26 +76,5 @@ export const useGameActivityStatus = () => {
     gameProviderModel,
   ]);
 
-  useMemo(() => {
-    if (awardedBonus) {
-      setGameJackpotBusy(true);
-      async function delayed() {
-        // Timeout required in cases like blueribbon where the wallet event is received before the notification event
-        await new Promise(resolve => {
-          if (bonusBusyTimeoutRef.current) {
-            clearTimeout(bonusBusyTimeoutRef.current);
-          }
-          // eslint-disable-next-line fp/no-mutation
-          bonusBusyTimeoutRef.current = setTimeout(() => {
-            setGameJackpotBusy(false);
-            resolve();
-          }, WALLET_BALANCE_DELAY_DURATION);
-        });
-      }
-      delayed();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [awardedBonus, playerBalance]);
-
-  return active || gameJackpotBusy;
+  return active;
 };

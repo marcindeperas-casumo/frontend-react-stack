@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useThrottledGameBalance } from "Components/GamePage/Hooks/useThrottledGameBalance";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
 import {
   localeSelector,
@@ -12,7 +13,6 @@ import {
   useAvailableQuickDepositMethods,
 } from "Utils/hooks";
 import {
-  playerBalanceAmountSelector,
   playerWalletBonusSelector,
   playerCurrencySelector,
 } from "Models/player";
@@ -72,9 +72,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     quickDepositEnabledMarkets.includes(market) ||
     quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
-  const playerBalance = useSelector(playerBalanceAmountSelector);
-  const gameActivityAwarePlayerBalance = useGameActivityAwareValue<number>(
-    playerBalance,
+  const gameActivityAwarePlayerBalance = useThrottledGameBalance<number>(
     gameAwareBalanceCompareFunction
   );
   const bonusBalance = useSelector(playerWalletBonusSelector);

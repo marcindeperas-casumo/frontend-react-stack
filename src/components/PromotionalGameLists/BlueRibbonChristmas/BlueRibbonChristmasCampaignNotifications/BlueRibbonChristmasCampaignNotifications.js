@@ -8,7 +8,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
 import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
-import { useGameActivityStatusContext } from "Components/GamePage/Contexts";
+import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
 import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import {
@@ -34,9 +34,11 @@ export function BlueRibbonChristmasCampaignNotifications({
   });
   const { isJackpotGame } = useBlueRibbonAutoOptIn();
   const [acknowledged, setAcknowledged] = React.useState(false);
-  const { setGameServicesBusy } = useGameActivityStatusContext();
+  const {
+    setBlueRibbonNotificationNeedsAccepting,
+  } = useGameJackpotStatusContext();
   const brNotificationAcknowledged = () => {
-    setGameServicesBusy(false);
+    setBlueRibbonNotificationNeedsAccepting(false);
     acknowledge();
   };
 

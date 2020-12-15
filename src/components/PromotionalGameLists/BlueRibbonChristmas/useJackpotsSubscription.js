@@ -8,7 +8,7 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
-import { useGameActivityStatusContext } from "Components/GamePage/Contexts";
+import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
 import { WALLET_BONUS_UNBLOCK_AFTER } from "../../../models/playing/playing.constants";
 
 export type NotificationType =
@@ -48,7 +48,9 @@ export function useJackpotsSubscription({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
-  const { setGameServicesBusy } = useGameActivityStatusContext();
+  const {
+    setBlueRibbonNotificationNeedsAccepting,
+  } = useGameJackpotStatusContext();
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
@@ -62,17 +64,17 @@ export function useJackpotsSubscription({
       ) {
         return;
       }
-      // Set setGameServicesBusy to true until user clicks CTA on br full screen notification
+      // Set setBlueRibbonNotificationNeedsAccepting to true until user clicks CTA on br full screen notification
       // this avoids balance from updating before notification shows
-      setGameServicesBusy(true);
+      setBlueRibbonNotificationNeedsAccepting(true);
 
-      // Wallet Balance Update fallback - set gameServicesBusy to false should for some reason br modal never shows aka user never clicks CTA
+      // Wallet Balance Update fallback - set setBlueRibbonNotificationNeedsAccepting to false, in case br modal never shows aka user never clicks CTA
       // eslint-disable-next-line fp/no-let
-      let gameServicesBusyTimeout = null;
+      let gameJackpotBusyTimeout = null;
       // eslint-disable-next-line fp/no-mutation
-      gameServicesBusyTimeout = setTimeout(() => {
-        setGameServicesBusy(false);
-        clearTimeout(gameServicesBusyTimeout);
+      gameJackpotBusyTimeout = setTimeout(() => {
+        setBlueRibbonNotificationNeedsAccepting(false);
+        clearTimeout(gameJackpotBusyTimeout);
       }, WALLET_BONUS_UNBLOCK_AFTER);
       const { amount, currency } = notificationData.parameters;
       await pauseGame();
@@ -96,7 +98,7 @@ export function useJackpotsSubscription({
       );
       setType(notificationData.type);
     },
-    [locale, pauseGame, setGameServicesBusy]
+    [locale, pauseGame, setBlueRibbonNotificationNeedsAccepting]
   );
 
   React.useEffect(() => {
