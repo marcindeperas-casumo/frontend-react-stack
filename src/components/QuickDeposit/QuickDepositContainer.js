@@ -39,19 +39,16 @@ const quickDepositEnabledMarkets = [
   MARKETS.___en,
 ];
 
+// TODO - to investigate if gameActive is checked and returned first wallet balance updates nicer on the ui rather than in spikes
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
-  // Game is active/busy aka balance shouldn't be updated yet
-  // - return true meaning new balance is equal to previous (no change) until game is no longer busy
-  if (isGameActive) {
-    return isGameActive;
-  }
-  if (prev !== next) {
+  if (prev > next) {
     // Return fresh value
     return false;
   } else if (prev === next) {
     // Return cached value
     return true;
   }
+
   return isGameActive;
 }
 

@@ -69,12 +69,8 @@ export function useJackpotsSubscription({
       setBlueRibbonNotificationNeedsAccepting(true);
 
       // Wallet Balance Update fallback - set setBlueRibbonNotificationNeedsAccepting to false, in case br modal never shows aka user never clicks CTA
-      // eslint-disable-next-line fp/no-let
-      let gameJackpotBusyTimeout = null;
-      // eslint-disable-next-line fp/no-mutation
-      gameJackpotBusyTimeout = setTimeout(() => {
+      setTimeout(() => {
         setBlueRibbonNotificationNeedsAccepting(false);
-        clearTimeout(gameJackpotBusyTimeout);
       }, WALLET_BONUS_UNBLOCK_AFTER);
       const { amount, currency } = notificationData.parameters;
       await pauseGame();
