@@ -2,6 +2,8 @@
 import * as React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
+import TrackClick from "Components/TrackClick";
+import { EVENTS } from "Src/constants";
 import { type QuickDepositMethod } from "Models/payments";
 
 type PaymentMethodDetailsProps = {
@@ -24,12 +26,16 @@ export const PaymentMethodDetails = ({ method }: PaymentMethodDetailsProps) => {
         />
       )}
       renderText={() => (
-        <Text
-          size="sm"
-          className="u-margin-bottom--sm u-font-weight-bold t-color-black"
+        <TrackClick
+          eventName={EVENTS.MIXPANEL_QUICK_DEPOSIT_CARD_NUMBER_CLICKED}
         >
-          {identifier}
-        </Text>
+          <Text
+            size="sm"
+            className="u-margin-bottom--sm u-font-weight-bold t-color-black"
+          >
+            {identifier}
+          </Text>
+        </TrackClick>
       )}
     />
   );
