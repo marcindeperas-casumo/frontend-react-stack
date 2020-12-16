@@ -3,6 +3,10 @@ import React, { PureComponent } from "react";
 import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import type {
+  spacerSizes,
+  responsiveSpacerSizes,
+} from "@casumo/cudl-react-prop-types";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
