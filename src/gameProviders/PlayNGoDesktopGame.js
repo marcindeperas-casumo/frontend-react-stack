@@ -95,9 +95,9 @@ export class PlayNGoDesktopGame extends BaseGame {
     if (this.engage) {
       this.engage.addEventListener(EVENTS.ON_GAME_ROUND_END.type, function() {
         resolve();
-        if (this.engage) {
-          this.engage.removeEventListener(EVENTS.ON_GAME_ROUND_END.type, this);
-        }
+        // $FlowFixMe
+        // eslint-disable-next-line no-unused-expressions
+        this.engage?.removeEventListener(EVENTS.ON_GAME_ROUND_END.type, this);
       });
     } else {
       reject();
