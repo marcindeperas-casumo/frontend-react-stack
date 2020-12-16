@@ -1,32 +1,52 @@
 /* @flow */
 import React from "react";
-import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import { BlueRibbon } from "./BlueRibbon";
-import { Counter } from "./Counter";
-import { Coins } from "./Coins";
-import {Jackpots} from './Jackpots.js'
+import { BlueRibbonAnimation } from "./BlueRibbon";
+import { CoinContainer } from "./Coins";
+import { CounterScreen } from "./CounterScreen";
 
+const stories = storiesOf("BlueRibbonWinAnimation", module).addParameters({
+  noGlobalDecorator: true,
+});
 
-const stories = storiesOf("BlueRibbonWinAnimation", module);
+stories.add("Coins and Jackpots screen", () => {
+  return (
+    <div className="u-width--screen u-height--screen">
+      <BlueRibbonAnimation />
+    </div>
+  );
+});
 
-stories.add("Coins and Jackpot", () => (
-  <div
-  >
-    <BlueRibbon onClose={action("onClose")}>
-      <Coins></Coins>
-    </BlueRibbon>
-  </div>
-));
+const coin = {
+  id: "Frame1",
+  order: 1,
+  left: 0,
+  top: 0,
+  group: "big",
+  width: 92,
+  height: 88,
+};
 
-stories.add("Jackpots", () => (
-  <div>
-    <Jackpots jackpotType='MINI'></Jackpots>
-  </div>
-));
+const CoinWrapper = () => {
+  return (
+    <div className="u-width--full u-height--full">
+      <div className="c-coins-container">
+        <CoinContainer
+          definition={coin}
+          isVisible={true}
+          isHighlighted={true}
+        />
+      </div>
+    </div>
+  );
+};
 
-stories.add("Jackpot counter", () => (
-  <div>
-    <Counter></Counter>
-  </div>
-));
+stories.add("Single coin", () => <CoinWrapper />);
+
+stories.add("Counter screen", () => {
+  return (
+    <div className="u-width--screen u-height--screen">
+      <CounterScreen amount={12314} type="mega" locale="en-GB" currency="GBP" />
+    </div>
+  );
+});

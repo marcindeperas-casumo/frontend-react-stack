@@ -1,44 +1,42 @@
-/* @flow */
 import React from "react";
-import type { Node } from "react";
-import Flex from "@casumo/cmp-flex";
-import classNames from "classnames";
-
+import { JackpotLogo } from "./JackpotLogo";
+import { Jackpots } from "./Jackpots";
+import { Coins } from "./Coins";
+import { CounterScreen } from "./CounterScreen";
 import "./BlueRibbon.scss";
 
+export const BlueRibbonAnimation = ({ type = "major", amount }) => {
+  const [coinsStaged, setCoinsStaged] = React.useState(false);
+  const [showCounterScreen, setShowCounterScreen] = React.useState(false);
 
-type SharedProps = {
-  children: Node,
-  className?: string,
+  return (
+    <div className="c-blueribbon-animation-container u-width--full u-height--full">
+      <div class="c-background-scale-in-center"></div>
+      {coinsStaged && <JackpotLogo />}
+      {!showCounterScreen && (
+        <Coins
+          endSelection={type}
+          type="landscape"
+          onCoinsStaged={() => {
+            setCoinsStaged(true);
+          }}
+          onJackpotSelected={() => {
+            setShowCounterScreen(true);
+          }}
+        />
+      )}
+      {coinsStaged && !showCounterScreen && (
+        <Jackpots started={coinsStaged} endSelection={type} />
+      )}
+      {showCounterScreen && (
+        <CounterScreen
+          jackpotType={type}
+          amount={amount}
+          onConfirm={() => {
+            /* close br screen */
+          }}
+        />
+      )}
+    </div>
+  );
 };
-
-const ModalContainer = ({ children, className }: SharedProps): Node => (
-  <Flex
-    className={classNames("c-modal", className)}
-    direction="vertical"
-    spacing="none"
-  >
-    {children}
-  </Flex>
-);
-
-const Header = ({ children, className }: SharedProps): Node => (
-  <Flex.Item className={classNames("c-modal__header", className)}>
-    {children}
-  </Flex.Item>
-);
-
-const Content = ({ children, className }: SharedProps): Node => (
-  <Flex.Block className={classNames("c-modal__content", className)}>
-    {children}
-  </Flex.Block>
-);
-
-export const BlueRibbon = ({ children, className }: SharedProps) => (
-  <div className='blue-ribbon'>{children}</div>
-);
-
-/* eslint-disable fp/no-mutation */
-BlueRibbon.Header = Header;
-BlueRibbon.Content = Content;
-/* eslint-enable fp/no-mutation */

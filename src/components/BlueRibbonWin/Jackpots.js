@@ -1,29 +1,52 @@
-import './Jackpots.scss';
-import React from 'react';
+import classNames from "classnames";
+import React from "react";
+import "./Jackpots.scss";
 
-export const Jackpots = ({jackpotType}) => {
+const jackpotNames = ["mini", "major", "mega"];
 
-    var highlightClass = () => {
-        switch (jackpotType) {
-            case 'MINI':
-                return 'Rectangle2377-position-mini';
-            case 'MAJOR':
-                return 'Rectangle2377-position-major';
-            case 'MEGA':
-                return 'Rectangle2377-position-mega';
-        }
+export const Jackpots = ({ jackpotType, started }) => {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (started) {
+        const step = currentStep + 1;
+        setCurrentStep(step >= 3 ? 0 : step);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
     };
+  }, [currentStep, started]);
 
-    return <div id='BG'>
-        <div id='Rectangle2376'></div>
-        <div id='Rectangle2377' className ={highlightClass()}></div>
-        <div id='MINI' className={ jackpotType === 'MINI' ? "highlighted" : "non-highlighted" }>MINI</div>
-        <div id='MAJOR' className={ jackpotType === 'MAJOR' ? "highlighted" : "non-highlighted" }>MAJOR</div>
-        <div id='MEGA' className={ jackpotType === 'MEGA' ? "highlighted" : "non-highlighted" }>MEGA</div>
-        <div id="JACKPOT">
-            <div id="Overline">
-                JACKPOT
+  const highlightedName = jackpotNames.filter(
+    (name, index) => index === currentStep
+  )[0];
+
+  return (
+    <div className="c-jackpot-picker c-jackpot-picker-slide-in">
+      <div
+        className={classNames(
+          "c-jackpot-items-inner",
+          `c-highlight-${highlightedName}`
+        )}
+      >
+        <div className="c-jackpot-highlighter"></div>
+        <div className="c-jackpots-list">
+          {jackpotNames.map(name => (
+            <div
+              className={classNames(
+                "c-single-jackpot",
+                `${name === highlightedName && "c-highlighted"}`
+              )}
+            >
+              {name.toUpperCase()}
             </div>
+          ))}
         </div>
+      </div>
+      <div className="c-jackpot-title-container">JACKPOT</div>
     </div>
-}
+  );
+};

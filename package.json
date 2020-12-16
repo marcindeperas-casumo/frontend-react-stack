@@ -34,6 +34,7 @@
     "apollo-link-context": "^1.0.19",
     "apollo-link-http": "^1.5.16",
     "apollo-link-persisted-queries": "^0.2.2",
+    "bezier-easing": "^2.1.0",
     "classnames": "^2.2.6",
     "cometd": "^3.1.9",
     "graphql": "^14.6.0",

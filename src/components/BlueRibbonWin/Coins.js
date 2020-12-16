@@ -1,114 +1,113 @@
-import React from 'react';
-import './Coins.scss';
-import CoinMega from './assets/coin-mega.js';
-import CoinMajor from './assets/coin-major.js';
-import CoinMini from './assets/coin-mini.js';
-import {Jackpots} from './Jackpots.js'
+import React from "react";
+import "./Coins.scss";
+import classNames from "classnames";
+import CoinMega from "./assets/coin-mega.svg";
+import CoinMajor from "./assets/coin-major.svg";
+import CoinMini from "./assets/coin-mini.svg";
+import { coinsDefinitions } from "./coinsDefinitions";
 
-const coins = []
-const fpsInterval = 9;
-let fpsElapsed = 0;
-let previousTime = 0;
-let selected = 0;
-
-const animate = time => {
-    if (fpsElapsed >= fpsInterval) {
-        fpsElapsed = 0;
-        // Put your drawing code here
-        animateCoinSelection(coins);
-    }
-    fpsElapsed++;
-
-    previousTime = time;
-    requestAnimationFrame(animate);
+const CoinType = props => {
+  const { group } = props.coinDefinition;
+  if (group === "small") {
+    return <CoinMini />;
   }
 
-const animateCoinSelection = (coins) => {
+  if (group === "medium") {
+    return <CoinMajor />;
+  }
 
-    for (let index = 0; index < coins.length; index++) {
-        let coin = coins[index].ref.current
-        coin.classList.remove('lighten')
+  if (group === "big") {
+    return <CoinMega />;
+  }
+};
 
-        if (index === selected) {
-            coin.classList.add('lighten');
-        }
-    }
-    selected++;
-    if(selected >= coins.length) {
-        selected = 0;
-    }
+export const CoinContainer = ({
+  definition,
+  isVisible,
+  isHighlighted,
+  coinStageMet,
+}) => {
+  const inlineStyle = {
+    top: `${definition.top - definition.height / 2}px`,
+    left: `${definition.left - definition.width / 2}px`,
+    width: definition.width,
+    height: definition.height,
+  };
 
-}
-
-const createCoins = (coins) => {
-    let totalCoins = 29;
-
-    for (let index = 1; index <= totalCoins; index++) {
-        let coinType;
-        let className;
-        let coinRef = React.createRef();
-
-        if(index === 1) {
-            className = 'mega-scale-in-center';
-            coinType = <CoinMega></CoinMega>;
-        }
-        if(index > 1 && index < 10) {
-            className = 'major-scale-in-center';
-            coinType = <CoinMajor></CoinMajor>;
-        }
-        if(index >= 10) {
-            className = 'mini-scale-in-center';
-            coinType = <CoinMini></CoinMini>;
-        }
-
-        let coin = <div className={className} key={index} ref={coinRef} id={`Frame${index}`}>{coinType}</div>
-        coins.push(coin)
-      }
-}
-
-const startCoinSelection = () => {
-    for (let index = 0; index < coins.length; index++) {
-        let coin = coins[index].ref.current
-        if(index === 0) {
-            coin.classList.add('darken');
-            coin.classList.add('lighten');
-        } else {
-            coin.classList.add('animateDarken');
-        }
-    }
-}
-
-createCoins(coins);
-
-export const Coins = () => {
-    const [count, setCount] = React.useState(0)
-    const [jackpotType, setJackpotType] = React.useState('MINI')
-
-    const handleSetJackpotType = (newJackpotType) => {
-        setJackpotType(newJackpotType);
-    }
-
-    const onAnimEnd = (event) => {
-        if(event.animationName === 'timer-anim') {
-            startCoinSelection();
-            setTimeout(() => {requestAnimationFrame(animate);}, 1000);
-
-            const jackpotEnums = ['MINI', 'MAJOR', 'MEGA']
-            let jackpotEnumsCounter = 0;
-            setInterval(() => {
-                handleSetJackpotType(jackpotEnums[jackpotEnumsCounter%3])
-                jackpotEnumsCounter++;
-            }, 500)
-        }
-    }
-
-    return <div className='timer-anim' onAnimationEnd={onAnimEnd}>
-        <div id='overlay' class='background-scale-in-center'></div>
-        <div id='coinsContainer'>
-            {coins}
-        </div>
-        <div></div>
-        <Jackpots jackpotType={jackpotType}></Jackpots>
-
+  return isVisible ? (
+    <div
+      style={inlineStyle}
+      className={classNames(
+        "c-scale-in-center",
+        "c-blue-ribbon-coin",
+        coinStageMet && (isHighlighted ? "c-lighten" : "c-darken")
+      )}
+    >
+      <CoinType coinDefinition={definition} />
     </div>
-}
+  ) : null;
+};
+
+const triggerCoinsAfterStage = 6;
+
+// eslint-disable-next-line sonarjs/cognitive-complexity
+export const Coins = ({ type = "landscape", onCoinsStaged }) => {
+  const [coinIndex, setCoinIndex] = React.useState(0);
+  const [animationStage, setAnimationStage] = React.useState(0);
+
+  const coinSet =
+    type === "landscape"
+      ? coinsDefinitions.landscape
+      : coinsDefinitions.portrait;
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (animationStage >= triggerCoinsAfterStage) {
+        const index = coinIndex + 1;
+        setCoinIndex(index >= coinSet.length ? 0 : index);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [animationStage, coinIndex, coinSet.length]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (animationStage >= triggerCoinsAfterStage) {
+        clearInterval(interval);
+      }
+      setAnimationStage(animationStage + 1);
+      if (animationStage >= 2 && onCoinsStaged) {
+        onCoinsStaged();
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [animationStage, onCoinsStaged]);
+
+  const isCoinGroupVisible = coin => {
+    return (
+      (coin.group === "big" && animationStage >= 0) ||
+      (coin.group === "medium" && animationStage >= 1) ||
+      (coin.group === "small" && animationStage >= 2)
+    );
+  };
+
+  return (
+    <div className="c-coins-container">
+      {coinSet.map(coin => (
+        <CoinContainer
+          key={coin.id}
+          definition={coin}
+          isVisible={isCoinGroupVisible(coin)}
+          coinStageMet={animationStage >= triggerCoinsAfterStage}
+          isHighlighted={coinIndex + 1 === coin.order}
+        />
+      ))}
+    </div>
+  );
+};
