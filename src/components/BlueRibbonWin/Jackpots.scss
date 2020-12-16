@@ -5,6 +5,7 @@ $color-purple-darker: #3c0098;
 $color-purple-light: #c3b5fc;
 $color-gold: #ffc930;
 $color-white: #fff;
+$color-highlight-orange: #b06e0a;
 
 .c-jackpot-picker {
   background: $color-purple;
@@ -52,7 +53,7 @@ $color-white: #fff;
   &.c-highlighted {
     color: $color-gold;
     opacity: 1;
-    text-shadow: 0px 0.773224px 0px #b06e0a;
+    text-shadow: 0px 0.773224px 0px $color-highlight-orange;
   }
 
   &:last-child {
