@@ -5,9 +5,10 @@ import {
   CHANNEL,
   PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE,
 } from "Models/payments";
+import tracker from "Services/tracker";
 import { isMobile } from "Components/ResponsiveLayout";
 import { showModal } from "Models/modal";
-import { REACT_APP_MODAL } from "Src/constants";
+import { REACT_APP_MODAL, EVENTS } from "Src/constants";
 import {
   playerIdSelector,
   piqConfigSelector,
@@ -72,7 +73,7 @@ export function* makePaymentTransactionSaga(
   const { redirectOutput, success } = response;
 
   if (!success) {
-    // track error
+    call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED, {});
 
     yield put(setPaymentRequestFinished());
     return yield put(
@@ -85,6 +86,8 @@ export function* makePaymentTransactionSaga(
 
   if (redirectOutput) {
     if (redirectOutput.url) {
+      call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_STARTED, {});
+
       yield put(
         showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
           redirectOutput,
@@ -96,17 +99,19 @@ export function* makePaymentTransactionSaga(
       const { status } = piqIframeResolution.payload;
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.MODAL_CLOSED) {
-        // track cancel
         return yield put(setPaymentRequestFinished());
       }
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FINISHED) {
+        call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_SUCCESS, {});
+
         yield put(setPaymentRequestFinished());
         return yield put(methodUseSuccess({ amount }));
-        // track success
       }
 
       if (status === PIQ_IFRAME_REDIRECTION_MESSAGE_TYPE.FAILED) {
+        call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED, {});
+
         yield put(setPaymentRequestFinished());
 
         // do a call to getTransactionStatus to get detailed error if possible
