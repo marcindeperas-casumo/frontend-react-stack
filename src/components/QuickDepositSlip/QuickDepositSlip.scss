@@ -6,7 +6,6 @@
 }
 
 .c-deposit-slip-container {
-  position: absolute;
   z-index: cudl-z("modal");
 }
 
@@ -14,7 +13,7 @@
   max-width: 500px;
 
   @include cudl-breakpoint(desktop) {
-    top: 70px;
+    top: 100px;
     width: 500px;
   }
 }

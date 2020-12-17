@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
-import classNames from "classnames";
+import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon, CheckIcon } from "@casumo/cmp-icons";
@@ -11,6 +11,7 @@ import type {
   DepositLimitsHistoryType,
   LimitChangeType,
 } from "Models/playOkay/depositLimits";
+import { SectionHeader } from "../DepositLimitsOverview/SectionHeader";
 import "./depositLimitsHistory.scss";
 
 type Props = {
@@ -67,112 +68,114 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
   }
 
   return (
-    <Flex
-      direction="vertical"
-      align="stretch"
-      spacing="none"
-      className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow--hidden"
-    >
+    <>
+      <SectionHeader>{t.history}</SectionHeader>
       <Flex
-        align="center"
-        justify="space-between"
+        direction="vertical"
+        align="stretch"
         spacing="none"
-        className="u-padding--md"
+        className={cx(
+          "t-background-white",
+          "t-border-r--none t-border-r--md@tablet t-border-r--md@desktop",
+          "u-padding--md u-height--full u-margin-top u-overflow--hidden"
+        )}
       >
-        <Text tag="span" className="u-font-weight-bold o-flex--1">
-          {t.history}
-        </Text>
-      </Flex>
-
-      <Flex direction="vertical" align="center">
-        {props.history.map((historyItem, i) => (
-          <Flex
-            key={historyItem.id}
-            direction="vertical"
-            spacing="none"
-            align="stretch"
-            className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
-          >
-            <Flex className="t-color-green-30 u-margin-y" align="center">
-              <CheckIcon
-                size="sm"
-                className="t-border--md t-border-current t-border-r--circle u-margin-right--md"
-              />
-              <Text
-                tag="span"
-                size="sm"
-                className="u-font-weight-black u-margin-right--sm"
-              >
-                {t.adjustment_status_success}
-              </Text>
-              <Text tag="span" size="sm" className="t-color-grey-50">
-                {DateTime.fromISO(historyItem.timestamp).toLocaleString(
-                  DateTime.DATETIME_SHORT
-                )}
-              </Text>
-            </Flex>
-
-            <Flex>
-              <Flex />
-              {/* ^-- dumb workaround for margin: 0 !important on horizontal flex} */}
-              <Flex
-                className={classNames(
-                  "u-margin-left u-margin-right--lg t-background-grey-0 c-deposit-limits-history__left-bar",
-                  i === props.history.length - 1 &&
-                    "c-deposit-limits-history__left-bar--small"
-                )}
-              />
-              <Flex
-                direction="vertical"
-                spacing="none"
-                className="t-background-grey-0 u-padding--md t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md o-flex--1"
-              >
-                <Text tag="span" className="t-color-grey-50">
-                  {t[getTranslationKeyForHistoryEntry(historyItem)]}
+        <Flex direction="vertical" align="center">
+          {props.history.map((historyItem, i) => (
+            <Flex
+              key={historyItem.id}
+              direction="vertical"
+              spacing="none"
+              align="stretch"
+              className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
+            >
+              <Flex className="t-color-green-30 u-margin-y" align="center">
+                <CheckIcon
+                  size="sm"
+                  className="t-border--md t-border-current t-border-r--circle u-margin-right--md"
+                />
+                <Text
+                  tag="span"
+                  size="sm"
+                  className="u-font-weight-black u-margin-right--sm"
+                >
+                  {t.adjustment_status_success}
                 </Text>
-                {historyItem.type === ("removed": LimitChangeType) ? (
-                  <Text
-                    tag="span"
-                    className="u-padding-top u-font-weight-black"
-                  >
-                    {t.all_limits_removed}
+                <Text tag="span" size="sm" className="t-color-grey-50">
+                  {DateTime.fromISO(historyItem.timestamp).toLocaleString(
+                    DateTime.DATETIME_SHORT
+                  )}
+                </Text>
+              </Flex>
+
+              <Flex>
+                <Flex />
+                {/* ^-- dumb workaround for margin: 0 !important on horizontal flex} */}
+                <Flex
+                  className={cx(
+                    "c-deposit-limits-history__left-bar",
+                    "t-background-grey-0",
+                    "u-margin-left u-margin-right--lg",
+                    i === props.history.length - 1 &&
+                      "c-deposit-limits-history__left-bar--small"
+                  )}
+                />
+                <Flex
+                  direction="vertical"
+                  spacing="none"
+                  className={cx(
+                    "t-background-grey-0",
+                    "t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md",
+                    " u-padding--md o-flex--1"
+                  )}
+                >
+                  <Text tag="span" className="t-color-grey-50">
+                    {t[getTranslationKeyForHistoryEntry(historyItem)]}
                   </Text>
-                ) : (
-                  historyItem.changes.map(x => (
+                  {historyItem.type === ("removed": LimitChangeType) ? (
                     <Text
                       tag="span"
-                      key={x.limitKind}
-                      className="u-padding-top"
+                      className="u-padding-top u-font-weight-black"
                     >
-                      {t[`${x.limitKind}_adjusted`]}{" "}
-                      <Text tag="span" className="u-font-weight-black">
-                        {x.before ? (
-                          <>
-                            {formatCurrency({
-                              locale: props.locale,
-                              currency: props.currency,
-                              value: x.before,
-                            })}
-                            <ArrowRightIcon
-                              size="sm"
-                              className="t-color-grey-50 c-deposit-limits-history__change-icon"
-                            />
-                          </>
-                        ) : null}
-                        {formatCurrency({
-                          locale: props.locale,
-                          currency: props.currency,
-                          value: x.after,
-                        })}
-                      </Text>
+                      {t.all_limits_removed}
                     </Text>
-                  ))
-                )}
+                  ) : (
+                    historyItem.changes.map(x => (
+                      <Text
+                        tag="span"
+                        key={x.limitKind}
+                        className="u-padding-top"
+                      >
+                        {t[`${x.limitKind}_adjusted`]}{" "}
+                        <Text tag="span" className="u-font-weight-black">
+                          {x.before ? (
+                            <>
+                              {formatCurrency({
+                                locale: props.locale,
+                                currency: props.currency,
+                                value: x.before,
+                              })}
+                              <ArrowRightIcon
+                                size="sm"
+                                className="t-color-grey-50 c-deposit-limits-history__change-icon"
+                              />
+                            </>
+                          ) : null}
+                          {formatCurrency({
+                            locale: props.locale,
+                            currency: props.currency,
+                            value: x.after,
+                          })}
+                        </Text>
+                      </Text>
+                    ))
+                  )}
+                </Flex>
               </Flex>
             </Flex>
-          </Flex>
-        ))}
+          ))}
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 }
