@@ -3,6 +3,10 @@ import React, { PureComponent } from "react";
 import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import type {
+  spacerSizes,
+  responsiveSpacerSizes,
+} from "@casumo/cudl-react-prop-types";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
@@ -13,6 +17,8 @@ type Props = {
   seeMore?: SeeMoreProps,
   /** Whether applying padding left or not */
   paddingLeft?: boolean,
+  /** Size to apply on padding left */
+  paddingPerDevice?: spacerSizes | responsiveSpacerSizes,
 };
 
 export class ScrollableListTitleRow extends PureComponent<Props> {
@@ -21,12 +27,16 @@ export class ScrollableListTitleRow extends PureComponent<Props> {
   };
 
   render() {
-    const { title, seeMore, paddingLeft } = this.props;
+    const { title, seeMore, paddingLeft, paddingPerDevice } = this.props;
 
     return (
       <Flex justify="space-between">
         <Flex.Item>
-          <ScrollableListTitle paddingLeft={paddingLeft} title={title} />
+          <ScrollableListTitle
+            paddingLeft={paddingLeft}
+            paddingPerDevice={paddingPerDevice}
+            title={title}
+          />
         </Flex.Item>
         {seeMore?.url && (
           <Flex.Item className="u-padding-right--md">
