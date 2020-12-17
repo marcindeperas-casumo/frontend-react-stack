@@ -59,11 +59,11 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     !quickDepositDisabledMarkets.includes(market) ||
     quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
-  const gameActivityAwarePlayerBalance = useThrottledGameBalance<number>(
+  const gameActivityAwarePlayerBalance = useThrottledGameBalance(
     gameAwareBalanceCompareFunction
   );
   const bonusBalance = useSelector(playerWalletBonusSelector);
-  const gameActivityAwareBonusBalance = useGameActivityAwareValue<number>(
+  const gameActivityAwareBonusBalance = useGameActivityAwareValue(
     bonusBalance,
     gameAwareBalanceCompareFunction
   );
