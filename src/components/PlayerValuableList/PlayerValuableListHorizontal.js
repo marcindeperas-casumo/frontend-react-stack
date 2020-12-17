@@ -15,8 +15,8 @@ import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
+  tablet: "md",
+  desktop: "none",
 };
 
 const seeAllUrl = "/player/valuables";
@@ -63,6 +63,7 @@ export function PlayerValuableListHorizontal() {
     <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
       <ScrollableListTitleRow
         paddingLeft
+        paddingPerDevice={PADDING_PER_DEVICE}
         seeMore={{
           text: noValuablesAvailable ? "" : seeAllLabel,
           url: seeAllUrl,
