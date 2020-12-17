@@ -51,7 +51,7 @@ export function SinglePeriodLimitOverview(props: Props) {
         <Flex
           onClick={props.onClick}
           spacing="none"
-          className="u-padding-x--md"
+          className="u-padding-x--md t-background-white"
           align="center"
         >
           <ProgressArc value={props.progressPercentage} />
@@ -78,7 +78,7 @@ export function SinglePeriodLimitOverview(props: Props) {
       <Desktop>
         <Flex
           onClick={props.onClick}
-          className="u-padding--2xlg u-margin--md o-flex--1 u-position-relative"
+          className="t-border-r--md u-padding--2xlg u-margin--md o-flex--1 u-position-relative t-background-white"
           align="center"
           justify="center"
           direction="vertical"
