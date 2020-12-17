@@ -23,7 +23,8 @@ export class BaseGame {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
-    this.urlPrefix = window.location.pathname.split("/")?.[1];
+    this.urlPrefix =
+      window.location.pathname.split("/")?.[1] || this.props.language;
   }
 
   get lobbyUrl() {
