@@ -44,6 +44,7 @@ export function useJackpotsSubscription({
   const locale = useLocale();
   // TODO: replace with actual functions after #1194 is merged
   const [jackpotAmount, setJackpotAmount] = React.useState(null);
+  const [jackpotAmountRaw, setJackpotAmountRaw] = React.useState(null);
   const [type, setType] = React.useState<?NotificationType>(null);
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
@@ -51,6 +52,13 @@ export function useJackpotsSubscription({
   const {
     setBlueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
+
+  const consumeEvent = () => {
+    setJackpotAmount(null);
+    setJackpotAmountRaw(null);
+    setType(null);
+    setIsFullScreen(false);
+  };
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
@@ -92,6 +100,7 @@ export function useJackpotsSubscription({
           value: parseFloat(amount),
         })
       );
+      setJackpotAmountRaw(amount);
       setType(notificationData.type);
     },
     [locale, pauseGame, setBlueRibbonNotificationNeedsAccepting]
@@ -113,8 +122,10 @@ export function useJackpotsSubscription({
 
   return {
     jackpotAmount,
+    jackpotAmountRaw,
     acknowledge,
     type,
     isFullScreen,
+    consumeEvent,
   };
 }

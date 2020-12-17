@@ -8,15 +8,15 @@ import { coinsDefinitions } from "./coinsDefinitions";
 
 const CoinType = props => {
   const { group } = props.coinDefinition;
-  if (group === "small") {
+  if (group === "mini") {
     return <CoinMini />;
   }
 
-  if (group === "medium") {
+  if (group === "major") {
     return <CoinMajor />;
   }
 
-  if (group === "big") {
+  if (group === "mega") {
     return <CoinMega />;
   }
 };
@@ -51,7 +51,7 @@ export const CoinContainer = ({
 const triggerCoinsAfterStage = 6;
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export const Coins = ({ type = "landscape", onCoinsStaged }) => {
+export const Coins = ({ type = "landscape", onCoinsStaged, selected }) => {
   const [coinIndex, setCoinIndex] = React.useState(0);
   const [animationStage, setAnimationStage] = React.useState(0);
   const [orientation, setOrientation] = React.useState();
@@ -79,17 +79,27 @@ export const Coins = ({ type = "landscape", onCoinsStaged }) => {
   }, []);
 
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (animationStage >= triggerCoinsAfterStage) {
-        const index = coinIndex + 1;
-        setCoinIndex(index >= coinSet.length ? 0 : index);
-      }
-    }, 100);
+    if (!selected) {
+      const interval = setInterval(() => {
+        if (animationStage >= triggerCoinsAfterStage) {
+          const index = coinIndex + 1;
+          setCoinIndex(index >= coinSet.length ? 0 : index);
+        }
+      }, 100);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [animationStage, coinIndex, coinSet.length]);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [animationStage, coinIndex, coinSet.length, selected]);
+
+  React.useEffect(() => {
+    if (selected) {
+      setCoinIndex(
+        coinSet.indexOf(coinSet.find(coin => coin.group === selected))
+      );
+    }
+  }, [coinSet, selected]);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -109,9 +119,9 @@ export const Coins = ({ type = "landscape", onCoinsStaged }) => {
 
   const isCoinGroupVisible = coin => {
     return (
-      (coin.group === "big" && animationStage >= 0) ||
-      (coin.group === "medium" && animationStage >= 1) ||
-      (coin.group === "small" && animationStage >= 2)
+      (coin.group === "mega" && animationStage >= 0) ||
+      (coin.group === "major" && animationStage >= 1) ||
+      (coin.group === "mini" && animationStage >= 2)
     );
   };
 

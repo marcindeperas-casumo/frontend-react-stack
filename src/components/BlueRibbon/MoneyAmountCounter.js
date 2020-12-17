@@ -46,13 +46,11 @@ export const MoneyAmountCounter = ({
     }
   }, [amount, animationTime, onAnimationEnd, passedTime, startTime]);
 
-  return (
-    <span>
-      {formatCurrency({
-        value,
-        currency,
-        locale,
-      })}
-    </span>
-  );
+  const formattedValue = formatCurrency({
+    value,
+    currency,
+    locale,
+  });
+
+  return <span>{formattedValue}</span>;
 };

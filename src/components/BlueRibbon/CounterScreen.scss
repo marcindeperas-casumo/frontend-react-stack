@@ -1,5 +1,4 @@
 // stylelint-disable xi/selector-pattern
-
 $color-gold: #ffca30;
 $color-dark-gold: #955a04;
 
@@ -42,13 +41,12 @@ $coin-base-width: 10vw;
   font-weight: bold;
   position: absolute;
   text-align: center;
-  -webkit-text-stroke: 1px $color-dark-gold;
   width: 100%;
 }
 
 .c-title-typography {
   font-size: 35px;
-  text-shadow: 0px 2px 0px $color-dark-gold;
+  text-shadow: 0px 3px 0px $color-dark-gold;
 }
 
 .c-money-typography {
@@ -66,6 +64,14 @@ $coin-base-width: 10vw;
   }
 }
 
+.c-counter_screen--ui-positioner {
+  bottom: 20vw;
+  left: 10%;
+  max-width: 80%;
+  position: absolute;
+  z-index: 1;
+}
+
 @media (orientation: portrait) {
   .c-coin-positioner {
     bottom: calc(26vw - (#{$coin-base-width} / 2));
@@ -73,5 +79,13 @@ $coin-base-width: 10vw;
 
   .c-text-positioner {
     bottom: calc(35vw + #{$coin-base-width});
+  }
+}
+
+@media (max-width: 900px), (orientation: portrait) {
+  .c-counter_screen--ui-positioner {
+    bottom: 16vw !important;
+    left: 5% !important;
+    max-width: 90% !important;
   }
 }

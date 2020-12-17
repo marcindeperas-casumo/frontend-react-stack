@@ -1,5 +1,4 @@
 $jackpot-win-background: rgba(39, 12, 90, 0.8);
-$jackpot-win-amount-border: #955a04;
 
 .c-game-notification--reset-top-left {
   left: -16px;
@@ -24,13 +23,4 @@ $jackpot-win-amount-border: #955a04;
 
 .c-game-notification__win-info--size {
   width: 343px;
-}
-
-.c-game-notification__win-amount--size {
-  height: 98px;
-}
-
-.c-game-notification__win-amount--effect {
-  paint-order: stroke fill;
-  -webkit-text-stroke: 4px $jackpot-win-amount-border;
 }

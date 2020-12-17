@@ -4,24 +4,26 @@ import "./Jackpots.scss";
 
 const jackpotNames = ["mini", "major", "mega"];
 
-export const Jackpots = ({ jackpotType, started }) => {
+export const Jackpots = ({ started, selected }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (started) {
-        const step = currentStep + 1;
-        setCurrentStep(step >= 3 ? 0 : step);
-      }
-    }, 500);
+    if (!selected) {
+      const interval = setInterval(() => {
+        if (started) {
+          const step = currentStep + 1;
+          setCurrentStep(step >= 3 ? 0 : step);
+        }
+      }, 500);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [currentStep, started]);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [currentStep, started, selected]);
 
-  const highlightedName = jackpotNames.filter(
-    (name, index) => index === currentStep
+  const highlightedName = jackpotNames.filter((name, index) =>
+    selected ? name === selected : index === currentStep
   )[0];
 
   return (

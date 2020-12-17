@@ -4,55 +4,40 @@ import { useGameModelContext } from "Components/GamePage/Contexts";
 import { BlueRibbonAnimation } from "Components/BlueRibbon";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 
-export function BlueRibbonChristmasCampaignAnimationContainer() {
+const typesToAnimationMap = {
+  jackpot_win_mini: "mini",
+  jackpot_win_major: "major",
+  jackpot_win_mega: "mega",
+  community_jackpot_win: "",
+};
+
+export const BlueRibbonChristmasCampaignAnimationContainer = () => {
   const { pauseGame, resumeGame } = useGameModelContext();
 
-  const { isFullScreen, jackpotAmount, type } = useJackpotsSubscription({
+  const {
+    isFullScreen,
+    jackpotAmountRaw,
+    type,
+    consumeEvent,
+  } = useJackpotsSubscription({
     pauseGame,
     resumeGame,
   });
 
+  const onClose = () => {
+    resumeGame();
+    consumeEvent();
+  };
+
   return (
     isFullScreen &&
-    jackpotAmount &&
-    type && <BlueRibbonAnimation type={type} amount={jackpotAmount} />
+    jackpotAmountRaw &&
+    type && (
+      <BlueRibbonAnimation
+        type={typesToAnimationMap[type]}
+        amount={jackpotAmountRaw}
+        onClose={onClose}
+      />
+    )
   );
-}
-
-// function JackpotAmount({ value }: { value: string }) {
-//   return (
-//     <Flex justify="center" className="c-game-notification__win-amount--size">
-//       <Text
-//         tag="span"
-//         size="3xlg"
-//         className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute c-game-notification__win-amount--effect"
-//       >
-//         {value}
-//       </Text>
-//       <Text
-//         tag="span"
-//         size="3xlg"
-//         className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute"
-//       >
-//         {value}
-//       </Text>
-//     </Flex>
-//   );
-// }
-
-// export function BlueRibbonChristmasCampaignNotificationsContainer() {
-//   const { pauseGame, resumeGame } = useGameModelContext();
-//   const { response } = useFetch(urls.handshake);
-//   const available = R.propOr(false, "available", response);
-
-//   if (!available) {
-//     return null;
-//   }
-
-//   return (
-//     <BlueRibbonChristmasCampaignNotifications
-//       pauseGame={pauseGame}
-//       resumeGame={resumeGame}
-//     />
-//   );
-// }
+};

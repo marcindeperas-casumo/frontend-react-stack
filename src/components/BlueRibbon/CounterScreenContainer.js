@@ -4,7 +4,7 @@ import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { CounterScreen } from "./CounterScreen";
 
-export const CounterScreenContainer = ({ amount, type }) => {
+export const CounterScreenContainer = ({ amount, type, onClose }) => {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
@@ -13,6 +13,7 @@ export const CounterScreenContainer = ({ amount, type }) => {
     type,
     locale,
     currency,
+    onClose,
   };
 
   return <CounterScreen {...props} />;
