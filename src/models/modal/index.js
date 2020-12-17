@@ -29,7 +29,8 @@ export type ModalId =
   | "GAME_PAGE_RR_LEADERBOARD"
   | "GGL_PRE_PANIC_BUTTON"
   | "GGL_POST_PANIC_BUTTON"
-  | "PAYMENT_RESULT";
+  | "PAYMENT_RESULT"
+  | "REEL_RACES_TAC";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
