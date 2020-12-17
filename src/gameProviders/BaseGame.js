@@ -1,6 +1,5 @@
 // @flow
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
-import { useUrlPrefix } from "Utils/hooks/useUrlPrefix";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { expandElementHeightToMatchItsParent } from "./utils";
@@ -19,15 +18,16 @@ export class BaseGame {
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
   gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
+  market: string;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
+    this.market = window.location.pathname.split("/")[1];
   }
 
   get lobbyUrl() {
-    const market = useUrlPrefix() || this.props.language;
     const getRoute = routeTranslator(this.props.language);
     const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
     const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
@@ -36,7 +36,7 @@ export class BaseGame {
       return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }
 
-    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${market}/${encodedTranslatedRoute}`;
+    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.market}/${encodedTranslatedRoute}`;
   }
 
   goToLobby() {
