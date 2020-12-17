@@ -1,6 +1,9 @@
 // @flow
 import * as React from "react";
-import { useGameModelContext } from "Components/GamePage/Contexts";
+import {
+  useGameModelContext,
+  useGameJackpotStatusContext,
+} from "Components/GamePage/Contexts";
 import { BlueRibbonAnimation } from "Components/BlueRibbon";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 
@@ -24,9 +27,14 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     resumeGame,
   });
 
+  const {
+    setBlueRibbonNotificationNeedsAccepting,
+  } = useGameJackpotStatusContext();
+
   const onClose = () => {
     resumeGame();
     consumeEvent();
+    setBlueRibbonNotificationNeedsAccepting(false);
   };
 
   return (
