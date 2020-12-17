@@ -1,10 +1,15 @@
 // @flow
 import { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import { WALLET_BALANCE_DELAY_DURATION } from "Models/playing/playing.constants";
-import { useGameWalletActivity } from "../Hooks/useGameWalletActivity";
+import { playerBalanceUpdateReasonSelector } from "Models/player";
+import { WALLET_UPATE_REASONS } from "Models/player/player.constants";
 
 export const useGameJackpotActivity = () => {
-  const awardedBonus = useGameWalletActivity();
+  const walletUpdateReason = useSelector(playerBalanceUpdateReasonSelector);
+  const awardedBonus =
+    // $FlowFixMe
+    walletUpdateReason?.includes(WALLET_UPATE_REASONS.BONUS_AWARDED) || false;
   const [gameJackpotBusy, setGameJackpotBusy] = useState(awardedBonus);
   const jackpotDelayTimeoutRef = useRef();
 
