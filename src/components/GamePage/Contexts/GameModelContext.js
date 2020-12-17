@@ -40,18 +40,17 @@ export const GameModelContextProvider = ({
       remoteGameLaunchData,
     }
   );
+  const providerValues = {
+    gameProviderModel,
+    error,
+    pauseGame,
+    resumeGame,
+    slug,
+    playForFun,
+  };
 
   return (
-    <GameModelContext.Provider
-      value={{
-        pauseGame,
-        resumeGame,
-        gameProviderModel,
-        error,
-        slug,
-        playForFun,
-      }}
-    >
+    <GameModelContext.Provider value={providerValues}>
       {children}
     </GameModelContext.Provider>
   );
