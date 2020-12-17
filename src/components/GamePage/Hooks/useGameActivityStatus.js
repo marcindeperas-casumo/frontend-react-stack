@@ -30,6 +30,7 @@ const removeGameActivityListeners = (
 export const useGameActivityStatus = () => {
   const { gameProviderModel } = useGameModelContext();
   const [active, setActive] = useState(false);
+
   const {
     enableSimulatedGameActivity,
     disableSimulatedGameActivity,
