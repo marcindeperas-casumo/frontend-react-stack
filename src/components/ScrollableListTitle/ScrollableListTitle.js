@@ -1,22 +1,45 @@
 // @flow
 import React from "react";
-import classNames from "classnames";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
+import type {
+  spacerSizes,
+  responsiveSpacerSizes,
+} from "@casumo/cudl-react-prop-types";
 import DangerousHtml from "Components/DangerousHtml";
+
+const PADDING_PER_DEVICE = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "3xlg",
+};
 
 type Props = {
   /** The text to show */
   title: ?string,
   /** Whether applying padding left or not */
   paddingLeft?: boolean,
+  /** Size to apply on padding left */
+  paddingPerDevice?: spacerSizes | responsiveSpacerSizes,
 };
 
-export default function ScrollableListTitle({ title, paddingLeft }: Props) {
-  const paddingLeftClasses =
-    "u-padding-left--md u-padding-left--3xlg@tablet u-padding-left--3xlg@desktop";
+export default function ScrollableListTitle({
+  title,
+  paddingLeft,
+  paddingPerDevice,
+}: Props) {
+  const paddingLeftClasses = cx(
+    paddingLeft &&
+      createModifierClasses(
+        "u-padding-left",
+        paddingPerDevice || PADDING_PER_DEVICE
+      )
+  );
+
   return (
     <Text
-      className={classNames(
+      className={cx(
         "u-padding-bottom--md",
         "u-padding-bottom--lg@tablet",
         "u-padding-bottom--lg@desktop",
