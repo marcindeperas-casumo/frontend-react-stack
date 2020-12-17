@@ -70,12 +70,13 @@ export const Coins = ({ type = "landscape", onCoinsStaged }) => {
       : coinsDefinitions.portrait;
 
   React.useEffect(() => {
+    setScreenOrientation();
     window.addEventListener("resize", setScreenOrientation);
 
     return () => {
       window.removeEventListener("resize", setScreenOrientation);
     };
-  });
+  }, []);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
