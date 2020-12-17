@@ -18,6 +18,7 @@ export class BaseGame {
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
   gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
+  urlPrefix: string;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
