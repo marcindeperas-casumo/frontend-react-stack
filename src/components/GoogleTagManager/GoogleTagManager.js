@@ -5,7 +5,10 @@ import { injectScript } from "Utils";
 import { getDataLayerSnippet, getGTMScript } from "./GoogleTagManager.utils";
 import type { GTMScriptParams, GTMEventParams } from "./GoogleTagManager.types";
 
-export const initialize = ({ dataLayer, containerId }: GTMScriptParams) => {
+export const initialize = ({
+  dataLayer,
+  containerId,
+}: GTMScriptParams): Promise<*> => {
   // Setup dataLayer object and wrap in script element
   const dataLayerScript = getDataLayerSnippet(dataLayer);
   // Get main GTM script
@@ -16,6 +19,7 @@ export const initialize = ({ dataLayer, containerId }: GTMScriptParams) => {
       return await injectScript(dataLayerScript, "gtm-init-datalayer", true);
     } catch (e) {
       logger.error("[GTM] Error initializing DataLayer", e);
+      return e;
     }
   };
 
@@ -24,11 +28,12 @@ export const initialize = ({ dataLayer, containerId }: GTMScriptParams) => {
       return await injectScript(gtmScript, "google-tag-manger", true);
     } catch (e) {
       logger.error("[GTM] Error injecting script", e);
+      return e;
     }
   };
 
   // Add Datalayer and GTM scripts
-  initDataLayer().then(() => injectGTM());
+  return initDataLayer().then(() => injectGTM());
 };
 
 export const pushToGTM = ({ event, payload }: GTMEventParams) => {
