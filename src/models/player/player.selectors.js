@@ -83,6 +83,11 @@ export const playerBalanceAmountSelector = createSelector(
   }
 );
 
+export const playerBalanceUpdateReasonSelector = createSelector(
+  playerWalletSelector,
+  propOr(null, "lastBalanceUpdateReason")
+);
+
 export const playerSessionIsValidSelector: any => boolean = createSelector(
   player,
   prop("sessionValid")
