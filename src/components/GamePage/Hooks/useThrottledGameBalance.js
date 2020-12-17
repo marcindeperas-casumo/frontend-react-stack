@@ -14,7 +14,7 @@ export const useThrottledGameBalance = (
   const {
     blueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
-  const [balanceToReturn, setBalanceToReturn] = useState(0);
+  const [throttledBalance, setThrottledBalance] = useState(0);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const playerBalanceRef = useRef(playerBalance);
   const jackpotBusy = useGameJackpotActivity();
@@ -29,17 +29,17 @@ export const useThrottledGameBalance = (
         jackpotBusy || blueRibbonNotificationNeedsAccepting
           ? playerBalanceRef.current
           : fallbackPlayerBalance;
-      setBalanceToReturn(playerBalanceRef.current);
+      setThrottledBalance(playerBalanceRef.current);
     },
     WALLET_BALANCE_DELAY_DURATION,
     [
       blueRibbonNotificationNeedsAccepting,
       jackpotBusy,
       playerBalance,
-      balanceToReturn,
+      throttledBalance,
       fallbackPlayerBalance,
     ]
   );
 
-  return balanceToReturn;
+  return throttledBalance;
 };
