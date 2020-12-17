@@ -23,7 +23,7 @@ export class BaseGame {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
-    this.market = window.location.pathname.split("/")?.[1];
+    this.urlPrefix = window.location.pathname.split("/")?.[1];
   }
 
   get lobbyUrl() {
@@ -35,7 +35,7 @@ export class BaseGame {
       return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }
 
-    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.market}/${encodedTranslatedRoute}`;
+    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.urlPrefix}/${encodedTranslatedRoute}`;
   }
 
   goToLobby() {
