@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
-import classNames from "classnames";
+import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon, CheckIcon } from "@casumo/cmp-icons";
@@ -74,7 +74,11 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
         direction="vertical"
         align="stretch"
         spacing="none"
-        className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none t-border-r--md@tablet t-border-r--md@desktop u-overflow--hidden"
+        className={cx(
+          "t-background-white",
+          "t-border-r--none t-border-r--md@tablet t-border-r--md@desktop",
+          "u-padding--md u-height--full u-margin-top u-overflow--hidden"
+        )}
       >
         <Flex direction="vertical" align="center">
           {props.history.map((historyItem, i) => (
@@ -108,8 +112,10 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                 <Flex />
                 {/* ^-- dumb workaround for margin: 0 !important on horizontal flex} */}
                 <Flex
-                  className={classNames(
-                    "u-margin-left u-margin-right--lg t-background-grey-0 c-deposit-limits-history__left-bar",
+                  className={cx(
+                    "c-deposit-limits-history__left-bar",
+                    "t-background-grey-0",
+                    "u-margin-left u-margin-right--lg",
                     i === props.history.length - 1 &&
                       "c-deposit-limits-history__left-bar--small"
                   )}
@@ -117,7 +123,11 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                 <Flex
                   direction="vertical"
                   spacing="none"
-                  className="t-background-grey-0 u-padding--md t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md o-flex--1"
+                  className={cx(
+                    "t-background-grey-0",
+                    "t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md",
+                    " u-padding--md o-flex--1"
+                  )}
                 >
                   <Text tag="span" className="t-color-grey-50">
                     {t[getTranslationKeyForHistoryEntry(historyItem)]}
