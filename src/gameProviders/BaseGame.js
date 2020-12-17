@@ -18,13 +18,12 @@ export class BaseGame {
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
   gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
-  market: string;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
-    this.market = window.location.pathname.split("/").length?.[1];
+    this.market = window.location.pathname.split("/")?.[1];
   }
 
   get lobbyUrl() {
