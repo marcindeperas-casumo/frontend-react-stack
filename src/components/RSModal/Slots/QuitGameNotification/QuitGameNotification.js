@@ -20,6 +20,7 @@ export const QuitGameNotification = ({
   const { navigateToKO } = useCrossCodebaseNavigation();
   const redirectToCashierPage = () => {
     tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_COMPLETED, {});
     navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
 
@@ -36,6 +37,7 @@ export const QuitGameNotification = ({
     closeIcon: {
       action: () => {
         tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
+        tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_COMPLETED, {});
         acceptModal();
       },
     },

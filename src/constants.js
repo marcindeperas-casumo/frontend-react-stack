@@ -61,6 +61,15 @@ export const DEVICES = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
 };
+
+// todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
+export const APP_SUB_TYPES = {
+  IOS_HYBRID: "ios hybrid",
+  ANDROID_HYBRID: "android hybrid",
+  ANDROID: "android-standalone",
+  WEB: "web",
+};
+
 export const ENVIRONMENTS = {
   TEST: "test",
   PRODUCTION: "production",
@@ -357,6 +366,28 @@ export const EVENTS = {
   MIXPANEL_GAME_SET_SORTING_OPTION_CLICKED: "Sorting Option Clicked",
   MIXPANEL_GAME_SET_FILTERING_CLICKED: "Filtering Clicked",
   MIXPANEL_GAME_SET_FILTERING_OPTION_CLICKED: "Filtering Option Clicked",
+  MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED:
+    "RETPAY - Quick Deposit Process Initiated",
+  MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED:
+    "RETPAY - Deposit Currency Sign Clicked",
+  MIXPANEL_QUICK_DEPOSIT_PRE_DEFINED_AMOUNT_ADJUSTED:
+    "RETPAY - Pre Defined Amount Adjusted",
+  MIXPANEL_QUICK_DEPOSIT_CARD_NUMBER_CLICKED: "RETPAY - Card Number Clicked",
+  MIXPANEL_QUICK_DEPOSIT_ENABLED_BUTTON_CLICKED:
+    "RETPAY - Enabled Deposit Button Clicked",
+  MIXPANEL_QUICK_DEPOSIT_DISABLED_BUTTON_CLICKED:
+    "RETPAY - Disabled Deposit Button Clicked",
+  MIXPANEL_QUICK_DEPOSIT_3DS_STEP_STARTED: "RETPAY - 3DSecure Step Started",
+  MIXPANEL_QUICK_DEPOSIT_3DS_STEP_SUCCESS: "RETPAY - 3DSecure Step Success",
+  MIXPANEL_QUICK_DEPOSIT_3DS_STEP_FAILED: "RETPAY - 3DSecure Step Failed",
+  MIXPANEL_QUICK_DEPOSIT_STEP_SUCCESS: "RETPAY - Quick Deposit Process Success",
+  MIXPANEL_QUICK_DEPOSIT_STEP_FAILED: "RETPAY - Quick Deposit Process Failed",
+  MIXPANEL_EXIT_GAME_STEP_STARTED: "RETPAY - Exit Game Step Started",
+  MIXPANEL_CASHIER_LINK_CLICKED: "RETPAY - Cashier Link Clicked",
+  MIXPANEL_EXIT_GAME_NOTIFICATION_CLICKED:
+    "RETPAY - Close Exit Game Notification Clicked",
+  MIXPANEL_MAKE_DEPOSIT_BUTTON_CLICKED: "RETPAY - Make Deposit Button Clicked",
+  MIXPANEL_EXIT_GAME_STEP_COMPLETED: "RETPAY - Exit Game Step Completed",
 };
 
 export const EVENT_PROPS = {

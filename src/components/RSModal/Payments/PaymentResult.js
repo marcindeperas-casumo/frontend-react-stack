@@ -3,6 +3,8 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Modal from "@casumo/cmp-modal";
+import TrackView from "Components/TrackView";
+import { EVENTS } from "Src/constants";
 import { stringToHTML, formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
@@ -56,8 +58,13 @@ export const PaymentResult = ({
   const message =
     (isSuccess ? t.payment_result_success_message : errorMessage) || "";
 
+  const mixpanelEvent = isSuccess
+    ? EVENTS.MIXPANEL_QUICK_DEPOSIT_STEP_SUCCESS
+    : EVENTS.MIXPANEL_QUICK_DEPOSIT_STEP_FAILED;
+
   return (
     <Modal closeIcon={{ action: closeModal }} spotImage={paymentResultImage}>
+      <TrackView eventName={mixpanelEvent} />
       <Text tag="h3" className="u-padding u-margin-top--lg u-text-align-center">
         {title}
       </Text>
