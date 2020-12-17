@@ -4,7 +4,7 @@ import "./JackpotLogo.scss";
 
 export const JackpotLogo = () => {
   return (
-    <div class="c-jackpot-logo u-position-absolute c-jackpot-logo-slide-in">
+    <div className="c-jackpot-logo u-position-absolute c-jackpot-logo-slide-in">
       <JackpotCasumoImg />
     </div>
   );

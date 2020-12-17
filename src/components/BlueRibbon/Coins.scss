@@ -1,9 +1,20 @@
 // stylelint-disable xi/selector-pattern
 .c-coins-container {
-  left: 50vw;
+  left: 50%;
   position: absolute;
-  top: 50vh;
-  transform: scale(1.5);
+  top: 50%;
+}
+
+@media (orientation: portrait) {
+  .c-coins-container {
+    top: calc(50% + 50px);
+  }
+}
+
+@media (orientation: landscape) and (min-width: 900px) {
+  .c-coins-container {
+    transform: scale(1.5);
+  }
 }
 
 .c-blue-ribbon-coin {

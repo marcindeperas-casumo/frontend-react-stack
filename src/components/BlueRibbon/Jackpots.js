@@ -36,6 +36,7 @@ export const Jackpots = ({ jackpotType, started }) => {
         <div className="c-jackpots-list">
           {jackpotNames.map(name => (
             <div
+              key={name}
               className={classNames(
                 "c-single-jackpot",
                 `${name === highlightedName && "c-highlighted"}`

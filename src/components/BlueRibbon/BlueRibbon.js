@@ -10,8 +10,8 @@ export const BlueRibbonAnimation = ({ type = "major", amount }) => {
   const [showCounterScreen, setShowCounterScreen] = React.useState(false);
 
   return (
-    <div className="c-blueribbon-animation-container u-width--full u-height--full u-position--absolute">
-      <div class="c-background-scale-in-center u-width--full u-height--full u-position--absolute"></div>
+    <div className="c-blueribbon-animation-container u-width--full u-height--full">
+      <div className="c-background-scale-in-center u-width--full u-height--full u-position--absolute"></div>
       {coinsStaged && <JackpotLogo />}
       {!showCounterScreen && (
         <Coins

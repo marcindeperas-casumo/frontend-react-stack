@@ -11,8 +11,25 @@
   animation: jackpot-logo-slide-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@keyframes jackpot-logo-slide-in {
-  100% {
-    left: 150px;
+@media (orientation: portrait) {
+  @keyframes jackpot-logo-slide-in {
+    100% {
+      left: 30px;
+      top: 20px;
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  @keyframes jackpot-logo-slide-in {
+    100% {
+      left: calc(50% - 320px);
+    }
+  }
+}
+
+@media (max-width: 900px), (orientation: portrait) {
+  .c-jackpot-logo {
+    zoom: 1 !important;
   }
 }

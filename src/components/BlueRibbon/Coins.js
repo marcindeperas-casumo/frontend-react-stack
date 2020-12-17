@@ -54,11 +54,28 @@ const triggerCoinsAfterStage = 6;
 export const Coins = ({ type = "landscape", onCoinsStaged }) => {
   const [coinIndex, setCoinIndex] = React.useState(0);
   const [animationStage, setAnimationStage] = React.useState(0);
+  const [orientation, setOrientation] = React.useState();
+
+  const setScreenOrientation = () => {
+    setOrientation(
+      window.matchMedia("(orientation: landscape)").matches
+        ? "landscape"
+        : "portrait"
+    );
+  };
 
   const coinSet =
-    type === "landscape"
+    orientation === "landscape"
       ? coinsDefinitions.landscape
       : coinsDefinitions.portrait;
+
+  React.useEffect(() => {
+    window.addEventListener("resize", setScreenOrientation);
+
+    return () => {
+      window.removeEventListener("resize", setScreenOrientation);
+    };
+  });
 
   React.useEffect(() => {
     const interval = setInterval(() => {
