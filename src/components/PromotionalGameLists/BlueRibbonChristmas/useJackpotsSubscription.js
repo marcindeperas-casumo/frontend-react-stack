@@ -8,6 +8,8 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
+import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
+import { WALLET_BONUS_UNBLOCK_AFTER } from "../../../models/playing/playing.constants";
 
 export type NotificationType =
   | "jackpot_win_mini"
@@ -46,6 +48,9 @@ export function useJackpotsSubscription({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
+  const {
+    setBlueRibbonNotificationNeedsAccepting,
+  } = useGameJackpotStatusContext();
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
@@ -59,7 +64,14 @@ export function useJackpotsSubscription({
       ) {
         return;
       }
+      // Set setBlueRibbonNotificationNeedsAccepting to true until user clicks CTA on br full screen notification
+      // this avoids balance from updating before notification shows
+      setBlueRibbonNotificationNeedsAccepting(true);
 
+      // Wallet Balance Update fallback - set setBlueRibbonNotificationNeedsAccepting to false, in case br modal never shows aka user never clicks CTA
+      setTimeout(() => {
+        setBlueRibbonNotificationNeedsAccepting(false);
+      }, WALLET_BONUS_UNBLOCK_AFTER);
       const { amount, currency } = notificationData.parameters;
       await pauseGame();
 
@@ -82,7 +94,7 @@ export function useJackpotsSubscription({
       );
       setType(notificationData.type);
     },
-    [locale, pauseGame]
+    [locale, pauseGame, setBlueRibbonNotificationNeedsAccepting]
   );
 
   React.useEffect(() => {

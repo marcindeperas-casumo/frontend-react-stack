@@ -23,6 +23,7 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
         iso4217CurrencyCode:
           data.walletBalanceUpdated.updatedBalance.realBalance
             .iso4217CurrencyCode,
+        lastBalanceUpdateReason: data.walletBalanceUpdated?.source,
       };
       return {
         ...state,
