@@ -9,8 +9,13 @@ type Props = {
   closeModal: () => void,
 };
 
+export type ReelRacesTCPage = {
+  title: string,
+  content: string,
+};
+
 export const ReelRacesTAC = ({ closeModal }: Props) => {
-  const t = useTranslations<any>("shared.tournament-terms");
+  const t = useTranslations<ReelRacesTCPage>("shared.tournament-terms");
 
   return (
     <Modal closeIcon={{ action: closeModal }}>
@@ -18,7 +23,7 @@ export const ReelRacesTAC = ({ closeModal }: Props) => {
         {t?.title}
       </Text>
       <Text
-        className="u-padding u-text-align-center"
+        className="u-padding u-text-align-left"
         dangerouslySetInnerHTML={stringToHTML(t?.content || "")}
       ></Text>
     </Modal>

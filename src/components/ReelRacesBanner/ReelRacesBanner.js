@@ -53,22 +53,29 @@ export function ReelRacesBanner() {
         direction={isNotMobile ? "horizontal" : "vertical"}
         justify="center"
         spacing="none"
-        className="u-text-align-left t-background-white u-margin--md t-border-r--md u-margin-x--md"
+        className="u-text-align-left t-background-white u-margin--md t-border-r--md u-margin-x--md u-padding--lg"
       >
         <Flex.Block
           align={isNotMobile ? "left" : "center"}
           className={cx({ "c-reel-races-banner__logo-mobile": isNotMobile })}
         >
-          <Text className="u-padding-y--md u-padding-x--lg" tag="div">
+          <Text
+            className={cx("u-padding-y--md  u-padding-left--none", {
+              "u-padding-x--md": isNotMobile,
+            })}
+            tag="div"
+          >
             <ReelRaceLogo />
           </Text>
         </Flex.Block>
 
         <Flex.Block
           align={isNotMobile ? "left" : "center"}
-          className="u-padding-y--md u-padding-x--lg"
+          className="u-padding-x--md"
         >
-          <Text>{t?.text}</Text>
+          <Text className={cx({ "u-margin-bottom--md": isNotMobile })}>
+            {t?.text}
+          </Text>
 
           {/* TODO when designs come */}
           {isNotMobile && (
