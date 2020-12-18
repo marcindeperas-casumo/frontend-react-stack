@@ -5,6 +5,9 @@ import { Coins } from "./Coins";
 import { CounterScreenContainer } from "./CounterScreenContainer";
 import "./BlueRibbon.scss";
 
+const LOTERY_END_TIME = 5000;
+const SWITCH_TO_NEXT_SCREEN_AFTER = 3000;
+
 export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
   const [coinsStaged, setCoinsStaged] = React.useState(false);
   const [showCounterScreen, setShowCounterScreen] = React.useState(false);
@@ -18,7 +21,7 @@ export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
     if (!jackpotSelected) {
       const timeout = setTimeout(() => {
         pickJackpot();
-      }, 5000);
+      }, LOTERY_END_TIME);
 
       return () => {
         clearTimeout(timeout);
@@ -30,7 +33,7 @@ export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
     if (!showCounterScreen && jackpotSelected) {
       const timeout = setTimeout(() => {
         setShowCounterScreen(true);
-      }, 3000);
+      }, SWITCH_TO_NEXT_SCREEN_AFTER);
 
       return () => {
         clearTimeout(timeout);

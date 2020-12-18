@@ -4,17 +4,15 @@ import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { CounterScreen } from "./CounterScreen";
 
-export const CounterScreenContainer = ({ amount, type, onClose }) => {
+export const CounterScreenContainer = props => {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
-  const props = {
-    amount,
-    type,
+  const mergedProps = {
+    ...props,
     locale,
     currency,
-    onClose,
   };
 
-  return <CounterScreen {...props} />;
+  return <CounterScreen {...mergedProps} />;
 };
