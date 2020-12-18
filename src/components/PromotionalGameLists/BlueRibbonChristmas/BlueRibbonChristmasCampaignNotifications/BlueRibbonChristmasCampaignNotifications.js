@@ -2,20 +2,17 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ButtonSecondary } from "@casumo/cmp-button";
 import { CloseIcon } from "@casumo/cmp-icons";
-import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations } from "Utils/hooks";
+import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
-import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
 import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import {
   jackpotWidgetContentPage,
   type JackpotWidgetContentPage,
 } from "../blueRibbonConsts";
-import WinBackground from "./win.svg";
 import "./blueRibbonChristmasCampaignNotifications.scss";
 
 export function BlueRibbonChristmasCampaignNotifications({
@@ -23,24 +20,12 @@ export function BlueRibbonChristmasCampaignNotifications({
   resumeGame,
 }: PauseResumeProps) {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  const {
-    isFullScreen,
-    jackpotAmount,
-    acknowledge,
-    type,
-  } = useJackpotsSubscription({
+  const { jackpotAmount, acknowledge, type } = useJackpotsSubscription({
     pauseGame,
     resumeGame,
   });
   const { isJackpotGame } = useBlueRibbonAutoOptIn();
   const [acknowledged, setAcknowledged] = React.useState(false);
-  const {
-    setBlueRibbonNotificationNeedsAccepting,
-  } = useGameJackpotStatusContext();
-  const brNotificationAcknowledged = () => {
-    setBlueRibbonNotificationNeedsAccepting(false);
-    acknowledge();
-  };
 
   if (!t || !isJackpotGame) {
     return null;
@@ -48,32 +33,6 @@ export function BlueRibbonChristmasCampaignNotifications({
 
   return (
     <>
-      {isFullScreen && jackpotAmount && type && (
-        <div className="u-position-absolute u-width--screen u-height--screen c-game-notification--reset-top-left">
-          <WinBackground className="c-game-notification--absolute-center c-game-notification--win-background" />
-          <Flex
-            direction="vertical"
-            align="center"
-            justify="center"
-            className="c-game-notification--absolute-center c-game-notification__win-info--size"
-          >
-            <Text
-              tag="span"
-              size="md"
-              className="t-color-yellow-30 u-font-weight-black u-text-align-center u-width--full c-game-notification__win-info"
-            >
-              {t[type]}
-            </Text>
-            <JackpotAmount value={jackpotAmount} />
-            <ButtonSecondary
-              className="u-width--full"
-              onClick={brNotificationAcknowledged}
-            >
-              {t.continue_playing}
-            </ButtonSecondary>
-          </Flex>
-        </div>
-      )}
       {!acknowledged && (
         <Flex
           direction="horizontal"
@@ -149,26 +108,5 @@ export function BlueRibbonChristmasCampaignNotifications({
         </Flex>
       )}
     </>
-  );
-}
-
-function JackpotAmount({ value }: { value: string }) {
-  return (
-    <Flex justify="center" className="c-game-notification__win-amount--size">
-      <Text
-        tag="span"
-        size="3xlg"
-        className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute c-game-notification__win-amount--effect"
-      >
-        {value}
-      </Text>
-      <Text
-        tag="span"
-        size="3xlg"
-        className="t-color-yellow-30 u-font-weight-black u-text-align-center u-position-absolute"
-      >
-        {value}
-      </Text>
-    </Flex>
   );
 }
