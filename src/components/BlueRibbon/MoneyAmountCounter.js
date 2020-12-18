@@ -46,6 +46,7 @@ export const MoneyAmountCounter = ({
     value,
     currency,
     locale,
+    minimumFractionDigits: 2,
   });
 
   return <span>{formattedValue}</span>;

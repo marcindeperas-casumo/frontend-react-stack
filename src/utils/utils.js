@@ -289,10 +289,12 @@ export function formatCurrency({
   locale,
   currency,
   value,
+  minimumFractionDigits,
 }: {
   locale: string,
   currency: string,
   value: ?number,
+  minimumFractionDigits: ?number,
 }): string {
   /**
    * Hack? if modulo 1 returns something other than 0 we have fractions and
@@ -301,12 +303,13 @@ export function formatCurrency({
    * rather than €50.00). I'm pretty sure that latter should never happened
    * https://github.com/search?q=This+should+never+happen&type=Code&utf8=✓
    */
-  const minimumFractionDigits = (value || 0) % 1 === 0 ? 0 : 2;
+  const fractionDigitsFallbackFix = (value || 0) % 1 === 0 ? 0 : 2;
+  const fractionDigits = minimumFractionDigits || fractionDigitsFallbackFix;
 
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    minimumFractionDigits,
+    minimumFractionDigits: fractionDigits,
   }).format(value || 0);
 }
 
