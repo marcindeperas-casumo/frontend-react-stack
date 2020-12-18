@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
+import cx from "classnames";
 import { Link, useMatch } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -30,7 +30,7 @@ const NavLinkDesktop = ({
         direction="vertical"
         align="center"
         justify="center"
-        className={classNames("u-padding--sm", {
+        className={cx("u-padding--sm", {
           "t-color-grey-90": active,
           "t-color-grey-70": !active,
         })}
@@ -40,7 +40,7 @@ const NavLinkDesktop = ({
       </Flex>
       <Flex
         style={{ height: 3 }}
-        className={classNames("t-border-r", {
+        className={cx("t-border-r", {
           "t-background-purple-60": active,
         })}
       />
@@ -112,10 +112,13 @@ const NavLinkMobile = ({
           direction="vertical"
           align="center"
           justify="center"
-          className={classNames(tablet ? "u-padding--md" : "u-padding", {
-            "t-color-grey-90": active,
-            "t-color-grey-70": !active,
-          })}
+          className={cx(
+            tablet ? "u-padding--md u-margin-x--md" : "u-padding u-margin-x",
+            {
+              "t-color-grey-90": active,
+              "t-color-grey-70": !active,
+            }
+          )}
         >
           <Icon size={tablet ? "md" : "default"} className="u-padding-y" />
           <Text size={tablet ? "sm" : "xs"} className="u-font-weight-bold">
@@ -127,7 +130,7 @@ const NavLinkMobile = ({
             height: 3,
             margin: tablet ? -2 : 0, // this is for compatibility with current ko menu
           }}
-          className={classNames("t-border-r", {
+          className={cx("t-border-r", {
             "t-background-purple-60": active,
           })}
         />
