@@ -22,7 +22,7 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     isFullScreen,
     jackpotAmountRaw,
     type,
-    consumeEvent,
+    acknowledge,
   } = useJackpotsSubscription({
     pauseGame,
     resumeGame,
@@ -32,11 +32,11 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     setBlueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
 
-  const t = useTranslations("jackpot-animation-screen");
+  const t = useTranslations("blue-ribbon-christmas/jackpot-animation-screen");
 
   const onClose = () => {
     resumeGame();
-    consumeEvent();
+    acknowledge();
     setBlueRibbonNotificationNeedsAccepting(false);
   };
 

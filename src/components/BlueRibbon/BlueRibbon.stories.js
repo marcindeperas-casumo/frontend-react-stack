@@ -17,6 +17,11 @@ stories.add("Coins and Jackpots screen", () => {
   );
 });
 
+const t = {
+  jackpot_win_title: "You won {{type}} jackpot!",
+  continue_button: "Continue",
+};
+
 const coin = {
   id: "Frame1",
   order: 1,
@@ -46,7 +51,13 @@ stories.add("Single coin", () => <CoinWrapper />);
 stories.add("Counter screen", () => {
   return (
     <div className="u-width--screen u-height--screen">
-      <CounterScreen amount={12314} type="mega" locale="en-GB" currency="GBP" />
+      <CounterScreen
+        t={t}
+        amount={12314}
+        type="mega"
+        locale="en-GB"
+        currency="GBP"
+      />
     </div>
   );
 });

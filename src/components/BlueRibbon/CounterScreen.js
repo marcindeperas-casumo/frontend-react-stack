@@ -45,7 +45,6 @@ export const CounterScreen = ({
               animationTime={3000}
               locale={locale}
               currency={currency}
-              onAnimationEnd={() => {}}
             />
           </div>
         </Flex>

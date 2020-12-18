@@ -5,7 +5,6 @@ import { formatCurrency } from "Utils";
 export const MoneyAmountCounter = ({
   amount,
   animationTime = 2000,
-  onAnimationEnd,
   locale,
   currency,
 }) => {
@@ -28,9 +27,6 @@ export const MoneyAmountCounter = ({
 
         if (passedTime >= animationTime) {
           clearInterval(interval);
-          if (onAnimationEnd) {
-            onAnimationEnd();
-          }
         }
       }, 20);
 
@@ -44,7 +40,7 @@ export const MoneyAmountCounter = ({
     } else {
       setValue(amount);
     }
-  }, [amount, animationTime, onAnimationEnd, passedTime, startTime]);
+  }, [amount, animationTime, passedTime, startTime]);
 
   const formattedValue = formatCurrency({
     value,

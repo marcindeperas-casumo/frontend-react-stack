@@ -53,13 +53,6 @@ export function useJackpotsSubscription({
     setBlueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
 
-  const consumeEvent = () => {
-    setJackpotAmount(null);
-    setJackpotAmountRaw(null);
-    setType(null);
-    setIsFullScreen(false);
-  };
-
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
       if (!event.data.notificationAdded) {
@@ -126,6 +119,5 @@ export function useJackpotsSubscription({
     acknowledge,
     type,
     isFullScreen,
-    consumeEvent,
   };
 }
