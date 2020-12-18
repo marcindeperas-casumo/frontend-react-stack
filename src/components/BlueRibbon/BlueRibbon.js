@@ -5,7 +5,7 @@ import { Coins } from "./Coins";
 import { CounterScreenContainer } from "./CounterScreenContainer";
 import "./BlueRibbon.scss";
 
-export const BlueRibbonAnimation = ({ type = "major", amount, onClose }) => {
+export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
   const [coinsStaged, setCoinsStaged] = React.useState(false);
   const [showCounterScreen, setShowCounterScreen] = React.useState(false);
   const [jackpotSelected, setJackpotSelected] = React.useState();
@@ -58,7 +58,12 @@ export const BlueRibbonAnimation = ({ type = "major", amount, onClose }) => {
         <Jackpots started={coinsStaged} selected={jackpotSelected} />
       )}
       {showCounterScreen && (
-        <CounterScreenContainer type={type} amount={amount} onClose={onClose} />
+        <CounterScreenContainer
+          t={t}
+          type={type}
+          amount={amount}
+          onClose={onClose}
+        />
       )}
     </div>
   );

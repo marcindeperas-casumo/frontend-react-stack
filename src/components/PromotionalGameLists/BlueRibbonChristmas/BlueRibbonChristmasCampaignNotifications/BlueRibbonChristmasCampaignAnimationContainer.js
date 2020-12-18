@@ -4,6 +4,7 @@ import {
   useGameModelContext,
   useGameJackpotStatusContext,
 } from "Components/GamePage/Contexts";
+import { useTranslations } from "Utils/hooks";
 import { BlueRibbonAnimation } from "Components/BlueRibbon";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
 
@@ -31,6 +32,8 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     setBlueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
 
+  const t = useTranslations("jackpot-animation-screen");
+
   const onClose = () => {
     resumeGame();
     consumeEvent();
@@ -42,6 +45,7 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     jackpotAmountRaw &&
     type && (
       <BlueRibbonAnimation
+        t={t}
         type={typesToAnimationMap[type]}
         amount={jackpotAmountRaw}
         onClose={onClose}
