@@ -50,6 +50,7 @@ $coin-base-width: 10vw;
 }
 
 .c-money-typography {
+  font-feature-settings: "tnum" on, "lnum" on;
   font-size: 45px;
   text-shadow: 0px 4px 0px $color-dark-gold;
 }
