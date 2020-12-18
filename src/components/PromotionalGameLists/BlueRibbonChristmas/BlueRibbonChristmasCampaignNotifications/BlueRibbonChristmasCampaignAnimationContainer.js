@@ -32,10 +32,9 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     setBlueRibbonNotificationNeedsAccepting,
   } = useGameJackpotStatusContext();
 
-  const t = useTranslations("blue-ribbon-christmas/jackpot-animation-screen");
+  const t = useTranslations("blue-ribbon-christmas.jackpot-animation-screen");
 
   const onClose = () => {
-    resumeGame();
     acknowledge();
     setBlueRibbonNotificationNeedsAccepting(false);
   };
