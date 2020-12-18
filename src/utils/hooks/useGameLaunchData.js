@@ -9,6 +9,7 @@ import {
 import { getGameModel } from "GameProviders";
 import { ENVIRONMENTS } from "Src/constants";
 import { isTestEnv, getPlatform } from "Utils";
+import { useUrlPrefix } from "Utils/hooks";
 import { languageSelector } from "Models/handshake";
 
 type Props = {
@@ -28,6 +29,7 @@ export const useGameLaunchData = ({
   const gameRef = useRef(null);
   const environment = isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION;
   const language = useSelector(languageSelector);
+  const urlPrefix = useUrlPrefix();
   const platform = getPlatform();
 
   useEffect(() => {
@@ -49,7 +51,8 @@ export const useGameLaunchData = ({
               responseData.providedSession.parameters,
               gameRef,
               language,
-              environment
+              environment,
+              urlPrefix
             )
           );
         } catch (e) {
@@ -62,7 +65,15 @@ export const useGameLaunchData = ({
     return () => {
       setGameProviderModel(null);
     };
-  }, [environment, language, playForFun, remoteGameLaunchData, slug, platform]);
+  }, [
+    environment,
+    language,
+    playForFun,
+    remoteGameLaunchData,
+    slug,
+    platform,
+    urlPrefix,
+  ]);
 
   const determineWhichGameProviderModel = () => {
     return remoteGameLaunchData

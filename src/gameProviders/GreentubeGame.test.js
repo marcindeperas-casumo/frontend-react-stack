@@ -15,6 +15,7 @@ describe("GreentubeGame", () => {
     gameRef,
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
+    urlPrefix: DEFAULT_LANGUAGE,
   });
 
   test("should return the element as iframe", () => {
