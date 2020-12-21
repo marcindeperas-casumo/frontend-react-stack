@@ -7,6 +7,7 @@ import * as Icons from "@casumo/cmp-icons";
 import { useTranslations } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+import "./GameBrowserSets.scss";
 
 const GameSetChip = ({
   Icon,
@@ -22,7 +23,7 @@ const GameSetChip = ({
 
   return (
     <Flex.Item>
-      <Link to={to}>
+      <Link to={to} className="c-nav-chip">
         <ChipNavigation isActive={active} Icon={Icon}>
           {text}
         </ChipNavigation>

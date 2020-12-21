@@ -1,0 +1,10 @@
+// stylelint-disable xi/selector-pattern
+a {
+  .c-nav-chip:hover {
+    button {
+      background: cudl-palette(purple, "50") !important;
+      color: cudl-palette(white, "base") !important;
+    }
+  }
+}
+// stylelint-enable xi/selector-pattern

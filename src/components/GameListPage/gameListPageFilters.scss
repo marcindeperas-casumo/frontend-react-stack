@@ -4,3 +4,24 @@
     cudl-palette(white, "base") 30%
   );
 }
+
+.c-dropdown-filter {
+  transition: top ease 0.3s;
+
+  &:hover {
+    top: -5px !important;
+  }
+}
+
+// stylelint-disable xi/selector-pattern
+.c-toggle-filter {
+  button {
+    position: relative;
+    top: 0 !important;
+    transition: top ease 0.3s;
+    &:hover {
+      top: -5px !important;
+    }
+  }
+}
+// stylelint-enable xi/selector-pattern

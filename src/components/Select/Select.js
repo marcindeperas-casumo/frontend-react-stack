@@ -13,6 +13,7 @@ type Props<T> = {
   options: { [T]: string },
   /** value used when nothing is selected */
   emptyState: string,
+  selectClassNames?: string,
 };
 export function Select<T>(props: Props<T>) {
   const [width, setWidth] = React.useState(0);
@@ -49,7 +50,10 @@ export function Select<T>(props: Props<T>) {
           onClick={() => setDesktopSelect(!desktopSelect)}
         />
       )}
-      <div className="u-position-relative u-cursor-pointer">
+      <div
+        className={`u-position-relative u-cursor-pointer ${props?.selectClassNames ||
+          ""}`}
+      >
         <div
           ref={measuredRef}
           className={classNames(
