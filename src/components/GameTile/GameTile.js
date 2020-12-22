@@ -3,7 +3,9 @@ import React from "react";
 import { Link } from "@reach/router";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { MoreIcon } from "@casumo/cmp-icons";
+import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
+import { Button } from "@casumo/cmp-button";
+import Text from "@casumo/cmp-text";
 import { isMobile } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
@@ -13,12 +15,18 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 import { LiveCasinoCardSmallContainer } from "Components/LiveCasinoCard/LiveCasinoCardSmallContainer";
+import "./GameTile.scss";
+
+export type GameTileTranslations = {
+  play_button_text_game_tile: string,
+};
 
 export type Props = {
   className?: string,
   game: A.GameTile_Game,
   imgixOpts?: Object,
   ratio?: string,
+  t: GameTileTranslations,
 };
 
 export const DEFAULT_CLASSES =
@@ -32,6 +40,7 @@ export const GameTile = ({
     q: 70,
   },
   ratio = "game-tile",
+  t = { play_button_text_game_tile: "Play" },
 }: Props) => {
   const {
     isInMaintenance,
@@ -79,35 +88,56 @@ export const GameTile = ({
           name={name}
           imgixOpts={imgixOpts}
         />
-        <Flex
-          justify="space-between"
-          align="end"
-          className="u-width--full o-ratio__content"
-        >
-          <Flex.Item onClick={e => e.stopPropagation()}>
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-              data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        <div className="o-ratio__content c-game-tile-con">
+          <Flex
+            direction="horizontal"
+            justify="center"
+            align="center"
+            className="c-game-tile-play-button u-width--full u-display--none"
+          >
+            <Button
+              size="sm"
+              className="u-width--3/4 t-background-white t-background-white:hover t-color-purple-60"
+              data-test="game-list-tile-launch-link"
             >
-              {isMobile() ? (
-                <a
-                  className="u-padding u-display--block"
-                  href={`/play/${slug}`}
-                >
-                  <MoreIcon className="t-color-white" />
-                </a>
-              ) : (
-                <Link
-                  to={`/games/details/${slug}`}
-                  className="u-padding u-display--block"
-                >
-                  <MoreIcon className="t-color-white" />
-                </Link>
-              )}
-            </TrackClick>
-          </Flex.Item>
-          <GameTileHeart gameId={id} gameName={name} />
-        </Flex>
+              <div className="u-display--flex">
+                <Text className="u-font u-font-weight-bold u-margin-right o-position--relative c-game-tile-button-text">
+                  {t.play_button_text_game_tile}
+                </Text>
+                <PlayIcon size="default" />
+              </div>
+            </Button>
+          </Flex>
+          <Flex
+            justify="space-between"
+            align="end"
+            className="u-width--full c-game-tile-bottom-bar"
+          >
+            <Flex.Item onClick={e => e.stopPropagation()}>
+              <TrackClick
+                eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+                data={{ [EVENT_PROPS.GAME_NAME]: name }}
+              >
+                {isMobile() ? (
+                  <a
+                    className="u-padding u-display--block"
+                    href={`/play/${slug}`}
+                  >
+                    <MoreIcon className="t-color-white" />
+                  </a>
+                ) : (
+                  <Link
+                    to={`/games/details/${slug}`}
+                    className="u-padding u-display--block"
+                  >
+                    <MoreIcon className="t-color-white" />
+                  </Link>
+                )}
+              </TrackClick>
+            </Flex.Item>
+            <GameTileHeart gameId={id} gameName={name} />
+          </Flex>
+        </div>
       </Flex>
     </TrackClick>
   );

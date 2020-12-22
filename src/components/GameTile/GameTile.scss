@@ -1,0 +1,30 @@
+.c-game-tile-con:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(76, 0, 194, 0.8) 51.62%
+  ) !important;
+
+  .c-game-tile-play-button {
+    display: flex !important;
+  }
+
+  svg.c-game-tile-heart {
+    fill: #fff;
+  }
+}
+
+.c-game-tile-play-button {
+  position: absolute;
+  top: 40%;
+  z-index: cudl-z("content-overlay");
+
+  .c-game-tile-button-text {
+    top: 2px;
+  }
+}
+
+.c-game-tile-bottom-bar {
+  bottom: 0;
+  position: absolute;
+}
