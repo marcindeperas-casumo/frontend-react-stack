@@ -22,8 +22,8 @@ const GameSetChip = ({
   const active = Boolean(match);
 
   return (
-    <Flex.Item>
-      <Link to={to} className="c-nav-chip">
+    <Flex.Item className="c-nav-chip-container o-position--relative">
+      <Link to={to}>
         <ChipNavigation isActive={active} Icon={Icon}>
           {text}
         </ChipNavigation>
