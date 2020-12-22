@@ -42,6 +42,8 @@ export function Select<T>(props: Props<T>) {
       : "t-background-grey-5 t-color-grey-90"
   );
 
+  const selectClassNames = props?.selectClassNames || "";
+
   return (
     <>
       {desktopSelect && (
@@ -51,8 +53,7 @@ export function Select<T>(props: Props<T>) {
         />
       )}
       <div
-        className={`u-position-relative u-cursor-pointer ${props?.selectClassNames ||
-          ""}`}
+        className={`u-position-relative u-cursor-pointer ${selectClassNames}`}
       >
         <div
           ref={measuredRef}
