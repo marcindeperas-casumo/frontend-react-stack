@@ -12,9 +12,6 @@ export type Props = {
 };
 
 export const GameTileContainer = props => {
-  // const t = useTranslations(
-  //   `${CMS_SLUG.LOBBY}.${CMS_SLUG.PLAY_BUTTON_TEXT_GAME_TILE}`
-  // );
-  const t = { play_button_text_game_tile: "Play" };
+  const t = useTranslations("new-game-browser.top-nav");
   return <GameTile t={t} {...props} />;
 };
