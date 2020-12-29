@@ -23,7 +23,6 @@ const ALL_CURRENCIES_ICONS = {
   [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
   [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
   [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
-  [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
   [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
   [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
   [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
