@@ -76,59 +76,55 @@ export const ProfileIconWithDrawer = ({
   return (
     <React.Fragment>
       <SumoIcon onClick={toggleDrawer} openedState={isDrawerOpen} />
-      {isDrawerOpen && (
+      <div
+        className={cx(
+          `${baseClassName}__bottom-wrapper-bg`,
+          `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,
+          "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
+          "u-padding-left u-padding-left--md@desktop u-padding-right",
+          "u-overflow--hidden",
+          {
+            [`${baseClassName}__bottom-wrapper-bg--visible`]: isDrawerOpen,
+            [`${baseClassName}__bottom-wrapper-bg--hidden`]: !isDrawerOpen,
+          }
+        )}
+      >
         <div
           className={cx(
-            `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,
-            "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
-            "u-padding-left u-padding-left--md@desktop u-padding-right",
-            "u-overflow--hidden",
-            `${baseClassName}__bottom-wrapper-bg`
+            `${baseClassName}__bottom-wrapper-bg-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
           )}
         >
-          <div
-            className={cx(
-              `${baseClassName}__bottom-wrapper-bg-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
-            )}
-          >
-            <div className={`${baseClassName}__item u-padding-bottom`}>
-              <BlueRibbonJackpotsInGameWidgetContainer
-                {...blueRibbonJackpotsWidgetData}
-              />
-            </div>
-            {shouldShowReelRace && (
-              <ReelRacesDrawerWidget
-                className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
-              />
-            )}
-            <div className={`${baseClassName}__item u-padding-bottom`}>
-              <InGameAdventureWidget />
-            </div>
-            <MobileAndTablet>
-              <div className={`${baseClassName}__item u-padding-bottom`}>
-                <InGameDrawer
-                  onLiveChatClick={() => {
-                    tracker.track(
-                      EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED,
-                      {}
-                    );
-                    openChatWindow();
-                    setDrawerOpen(false);
-                  }}
-                  onExitGameClick={() => {
-                    tracker.track(
-                      EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED,
-                      {}
-                    );
-                    navigateToKO(ROUTE_IDS.TOP_LISTS);
-                    setDrawerOpen(false);
-                  }}
-                />
-              </div>
-            </MobileAndTablet>
+          <div className={`${baseClassName}__item u-padding-bottom`}>
+            <BlueRibbonJackpotsInGameWidgetContainer
+              {...blueRibbonJackpotsWidgetData}
+            />
           </div>
+          {shouldShowReelRace && (
+            <ReelRacesDrawerWidget
+              className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
+            />
+          )}
+          <div className={`${baseClassName}__item u-padding-bottom`}>
+            <InGameAdventureWidget />
+          </div>
+          <MobileAndTablet>
+            <div className={`${baseClassName}__item u-padding-bottom`}>
+              <InGameDrawer
+                onLiveChatClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_LIVE_CHAT_CLICKED, {});
+                  openChatWindow();
+                  setDrawerOpen(false);
+                }}
+                onExitGameClick={() => {
+                  tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
+                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  setDrawerOpen(false);
+                }}
+              />
+            </div>
+          </MobileAndTablet>
         </div>
-      )}
+      </div>
     </React.Fragment>
   );
 };

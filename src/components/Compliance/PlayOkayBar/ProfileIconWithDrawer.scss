@@ -33,6 +33,12 @@
       top: -16px;
       width: var(--game-page-sidebar-width-desktop) !important;
     }
+    &--hidden {
+      animation: drawerSlideUpAnimation 1s normal forwards ease;
+    }
+    &--visible {
+      animation: drawerSlideDownAnimation 1s normal forwards ease;
+    }
 
     &-inner {
       scrollbar-width: none;
@@ -42,4 +48,27 @@
       }
     }
   }
+  // stylelint-disable xi/selector-pattern
+  @keyframes drawerSlideDownAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes drawerSlideUpAnimation {
+    0% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+  }
 }
+// stylelint-enable xi/selector-pattern

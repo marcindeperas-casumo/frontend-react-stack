@@ -11,13 +11,20 @@
 
   &__close-drawer {
     background-color: cudl-palette(grey, "70");
-    left: map-get($cudl-spacer-sizes, md);
-    top: map-get($cudl-spacer-sizes, sm);
+    left: 0;
+    top: 0;
 
     @include cudl-breakpoint(desktop) {
       background-color: cudl-palette(grey, "90");
       left: auto;
-      top: auto;
+      top: 0;
+    }
+    &--hidden {
+      animation: menuClosedChevronAnimation 0.3s normal forwards ease-in;
+    }
+
+    &--visible {
+      animation: menuOpenChevronAnimation 0.3s normal forwards ease-out;
     }
   }
 
@@ -36,10 +43,44 @@
   &__chevron-icon {
     bottom: 0;
     right: 0;
+
+    &--hidden {
+      animation: menuClosedChevronAnimation 0.3s normal forwards ease-in;
+    }
+
+    &--visible {
+      animation: menuOpenChevronAnimation 0.3s normal forwards ease-out;
+    }
   }
 }
 
 // stylelint-disable xi/selector-pattern
+@keyframes menuOpenChevronAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
+@keyframes menuClosedChevronAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center;
+  }
+}
+
 @keyframes sumoIconoOld {
   0% {
     margin-top: 0;
