@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import cx from "classnames";
+import { CSSTransition } from "react-transition-group";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
@@ -76,22 +77,21 @@ export const ProfileIconWithDrawer = ({
   return (
     <React.Fragment>
       <SumoIcon onClick={toggleDrawer} openedState={isDrawerOpen} />
-      <div
+      <CSSTransition
+        in={isDrawerOpen}
+        unmountOnExit
+        timeout={500}
         className={cx(
-          `${baseClassName}__bottom-wrapper-bg`,
+          `${baseClassName}__animated-drawer`,
           `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,
           "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
           "u-padding-left u-padding-left--md@desktop u-padding-right",
-          "u-overflow--hidden",
-          {
-            [`${baseClassName}__bottom-wrapper-bg--visible`]: isDrawerOpen,
-            [`${baseClassName}__bottom-wrapper-bg--hidden`]: !isDrawerOpen,
-          }
+          "u-overflow--hidden"
         )}
       >
         <div
           className={cx(
-            `${baseClassName}__bottom-wrapper-bg-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
+            `${baseClassName}__animated-drawer-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
           )}
         >
           <div className={`${baseClassName}__item u-padding-bottom`}>
@@ -124,7 +124,7 @@ export const ProfileIconWithDrawer = ({
             </div>
           </MobileAndTablet>
         </div>
-      </div>
+      </CSSTransition>
     </React.Fragment>
   );
 };
