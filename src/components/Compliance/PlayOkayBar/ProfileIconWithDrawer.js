@@ -22,12 +22,15 @@ import tracker from "Services/tracker";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
-import "./ProfileIconWithDrawer.scss";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+// eslint-disable-next-line import/no-duplicates
+import { animation_duration } from "./ProfileIconWithDrawer.scss";
+// eslint-disable-next-line import/no-duplicates
+import "./ProfileIconWithDrawer.scss";
 
 type Props = IntercomPlayerDetailsProps;
 const baseClassName = "c-profile-icon-with-drawer";
@@ -42,6 +45,7 @@ export const ProfileIconWithDrawer = ({
   const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets } = usePinnedWidgetsContext();
+  const animationDuration = Number(animation_duration);
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -80,7 +84,18 @@ export const ProfileIconWithDrawer = ({
       <CSSTransition
         in={isDrawerOpen}
         unmountOnExit
-        timeout={500}
+        timeout={animationDuration}
+        className={cx(
+          `${baseClassName}__animated-drawer-overlay`,
+          `u-position-absolute u-zindex--content-overlay`
+        )}
+      >
+        <div className="overlay"></div>
+      </CSSTransition>
+      <CSSTransition
+        in={isDrawerOpen}
+        unmountOnExit
+        timeout={animationDuration}
         className={cx(
           `${baseClassName}__animated-drawer`,
           `u-position-absolute u-zindex--content-overlay t-opacity-background--100`,

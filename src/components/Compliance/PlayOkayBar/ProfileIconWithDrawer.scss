@@ -1,3 +1,10 @@
+/* stylelint-disable */
+$animation_duration: 500;
+
+:export {
+  animation_duration: $animation_duration;
+}
+
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
   left: map-get($cudl-spacer-sizes, default);
@@ -13,8 +20,25 @@
     max-width: 442px;
   }
 
-  &__animated-drawer {
+  &__animated-drawer-overlay {
     background: linear-gradient(white, transparent);
+    height: calc(100% - 48px);
+    top: 48px;
+    width: 100%;
+    // stylelint-disable xi/selector-pattern
+    &.enter {
+      animation: drawerOverlayFadeInAnimation $animation_duration + ms normal
+        forwards ease;
+    }
+
+    &.exit {
+      animation: drawerOverlayFadeOutAnimation $animation_duration + ms normal
+        forwards ease;
+    }
+    // stylelint-enable xi/selector-pattern
+  }
+
+  &__animated-drawer {
     bottom: 0;
     min-height: 150px;
     top: 48px;
@@ -36,11 +60,13 @@
 
     // stylelint-disable xi/selector-pattern
     &.enter {
-      animation: drawerSlideDownAnimation 0.5s normal forwards ease;
+      animation: drawerSlideDownAnimation $animation_duration + ms normal
+        forwards ease;
     }
 
     &.exit {
-      animation: drawerSlideUpAnimation 0.5s normal forwards ease;
+      animation: drawerSlideUpAnimation $animation_duration + ms normal forwards
+        ease;
     }
     // stylelint-enable xi/selector-pattern
 
@@ -54,6 +80,24 @@
   }
 
   // stylelint-disable xi/selector-pattern
+  @keyframes drawerOverlayFadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawerOverlayFadeOutAnimation {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
   @keyframes drawerSlideDownAnimation {
     0% {
       opacity: 0;
