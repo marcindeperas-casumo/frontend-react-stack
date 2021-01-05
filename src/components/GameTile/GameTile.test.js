@@ -2,7 +2,7 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import MockStore from "Components/MockStore";
 import { launchGame } from "Services/LaunchGameService";
-import { GameTile } from "Components/GameTile";
+import { GameTile } from "Components/GameTile/GameTile";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "./GameTileInMaintenanceContainer";
 import gameInfo from "./__mocks__/Game.json";
 
@@ -49,7 +49,7 @@ describe("GameTile", () => {
     expect(rendered.find(GameTileInMaintenance)).toHaveLength(1);
   });
 
-  test("should launchGame if component is clickedd", () => {
+  test("should launchGame if component is clicked", () => {
     const rendered = mount(
       <MockStore>
         <GameTile game={gameInfo} />
