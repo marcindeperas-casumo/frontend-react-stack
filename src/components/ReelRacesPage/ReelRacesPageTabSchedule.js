@@ -29,8 +29,12 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
 
   const reelRaces = data?.reelRaces || [];
 
-  const scheduledreelRaces = filter(propEq("status", RACE_STATE.SCHEDULED))(
+  const scheduledReelRaces = filter(propEq("status", RACE_STATE.SCHEDULED))(
     reelRaces
+  );
+
+  const promotedScheduledReelRaces = filter(propEq("promoted", true))(
+    scheduledReelRaces
   );
 
   const [showMore, setShowMore] = React.useState(true);
@@ -39,10 +43,10 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
   const [totalArrayData, setTotalArrayData] = React.useState();
 
   React.useEffect(() => {
-    if (scheduledreelRaces.length && !totalArrayData) {
-      setTotalArrayData([...Array(scheduledreelRaces.length).keys()]);
+    if (scheduledReelRaces.length && !totalArrayData) {
+      setTotalArrayData([...Array(scheduledReelRaces.length).keys()]);
     }
-  }, [scheduledreelRaces.length, totalArrayData]);
+  }, [scheduledReelRaces.length, totalArrayData]);
 
   React.useEffect(() => {
     if (totalArrayData) {
@@ -54,16 +58,16 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
     const newIndex = index + PAGE_LIMIT;
     setIndex(index + PAGE_LIMIT);
     setList(concat(list, slice(index, newIndex, totalArrayData)));
-    setShowMore(newIndex < scheduledreelRaces.length - 1);
-  }, [index, list, scheduledreelRaces.length, totalArrayData]);
+    setShowMore(newIndex < scheduledReelRaces.length - 1);
+  }, [index, list, scheduledReelRaces.length, totalArrayData]);
 
-  if (scheduledreelRaces.length) {
+  if (scheduledReelRaces.length) {
     return (
       <>
         {list.map(i => {
           return (
-            <div key={reelRaces[i]?.id}>
-              {i === 1 && (
+            <div key={scheduledReelRaces[i]?.id}>
+              {i === promotedScheduledReelRaces.length && (
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <div className="u-width u-height t-border-r--circle t-background-green-30"></div>
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
@@ -71,7 +75,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
                   </Text>
                 </Flex>
               )}
-              {i === 2 && (
+              {i === promotedScheduledReelRaces.length + 1 && (
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <div className="u-width u-height t-border-r--circle t-background-yellow-30"></div>
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
@@ -79,7 +83,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
                   </Text>
                 </Flex>
               )}
-              {i === 3 && (
+              {i === promotedScheduledReelRaces.length + 2 && (
                 <Flex align="center" className="u-padding-x--md u-padding-top">
                   <Text className="u-padding-left u-font-weight-bold" tag="div">
                     {t?.later_today}
@@ -87,7 +91,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
                 </Flex>
               )}
               <ReelRaceScheduleCard
-                reelRace={reelRaces[i]}
+                reelRace={scheduledReelRaces[i]}
                 t={t}
                 expanded={i === 0 || i === 1}
               />
