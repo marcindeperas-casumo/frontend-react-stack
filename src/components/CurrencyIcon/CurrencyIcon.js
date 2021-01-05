@@ -32,9 +32,8 @@ const currencyIconMapper = (
     [CURRENCIES.USD]: WalletTabDollarSelectedIcon,
     [CURRENCIES.NZD]: WalletTabDollarSelectedIcon,
     [CURRENCIES.CAD]: WalletTabDollarSelectedIcon,
-    DKK: WalletTabKroneSelectedIcon,
-    SEK: WalletTabKroneSelectedIcon,
-    KR: WalletTabKroneSelectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneSelectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneSelectedIcon,
   };
 
   const currencyComponentIcons = {
@@ -44,9 +43,8 @@ const currencyIconMapper = (
     [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
     [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
     [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
-    DKK: WalletTabKroneUnselectedIcon,
-    SEK: WalletTabKroneUnselectedIcon,
-    KR: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
   };
   const IconTagName = selected
     ? currencyComponentSelectedIcons[currency]
