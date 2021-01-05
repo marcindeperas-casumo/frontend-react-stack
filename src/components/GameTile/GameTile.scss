@@ -1,3 +1,4 @@
+/* stylelint-disable xi/selector-pattern */
 .c-game-tile-con:hover {
   background: linear-gradient(
     180deg,
@@ -9,8 +10,10 @@
     display: flex !important;
   }
 
-  svg.c-game-tile-heart {
-    fill: #fff;
+  svg {
+    .c-game-tile-heart {
+      fill: #fff;
+    }
   }
 }
 
@@ -28,3 +31,4 @@
   bottom: 0;
   position: absolute;
 }
+/* stylelint-enable xi/selector-pattern */
