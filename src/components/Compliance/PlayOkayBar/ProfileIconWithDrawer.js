@@ -81,17 +81,19 @@ export const ProfileIconWithDrawer = ({
   return (
     <React.Fragment>
       <SumoIcon onClick={toggleDrawer} openedState={isDrawerOpen} />
-      <CSSTransition
-        in={isDrawerOpen}
-        unmountOnExit
-        timeout={animationDuration}
-        className={cx(
-          `${baseClassName}__animated-drawer-overlay`,
-          `u-position-absolute u-zindex--content-overlay`
-        )}
-      >
-        <div className="overlay"></div>
-      </CSSTransition>
+      <MobileAndTablet>
+        <CSSTransition
+          in={isDrawerOpen}
+          unmountOnExit
+          timeout={animationDuration}
+          className={cx(
+            `${baseClassName}__animated-drawer-overlay`,
+            `u-position-absolute u-zindex--content-overlay`
+          )}
+        >
+          <div className="overlay"></div>
+        </CSSTransition>
+      </MobileAndTablet>
       <CSSTransition
         in={isDrawerOpen}
         unmountOnExit
