@@ -25,7 +25,7 @@ $animation_duration: 500;
     height: calc(100% - 48px);
     top: 48px;
     width: 100%;
-    // stylelint-disable xi/selector-pattern
+
     &.enter {
       animation: drawerOverlayFadeInAnimation $animation_duration + ms normal
         forwards ease;
@@ -35,7 +35,6 @@ $animation_duration: 500;
       animation: drawerOverlayFadeOutAnimation $animation_duration + ms normal
         forwards ease;
     }
-    // stylelint-enable xi/selector-pattern
   }
 
   &__animated-drawer {
@@ -58,7 +57,6 @@ $animation_duration: 500;
       width: var(--game-page-sidebar-width-desktop) !important;
     }
 
-    // stylelint-disable xi/selector-pattern
     &.enter {
       animation: drawerSlideDownAnimation $animation_duration + ms normal
         forwards ease;
@@ -68,7 +66,6 @@ $animation_duration: 500;
       animation: drawerSlideUpAnimation $animation_duration + ms normal forwards
         ease;
     }
-    // stylelint-enable xi/selector-pattern
 
     &-inner {
       scrollbar-width: none;
@@ -79,7 +76,6 @@ $animation_duration: 500;
     }
   }
 
-  // stylelint-disable xi/selector-pattern
   @keyframes drawerOverlayFadeInAnimation {
     0% {
       opacity: 0;
@@ -120,4 +116,3 @@ $animation_duration: 500;
     }
   }
 }
-// stylelint-enable xi/selector-pattern
