@@ -295,8 +295,8 @@ export const CURRENCY_SYMBOLS = {
 export const CURRENCIES = Object.freeze({
   EUR: "EUR",
   GBP: "GBP",
-  DKK: "KR",
-  SEK: "KR",
+  DKK: "DKK",
+  SEK: "SEK",
   CAD: "CAD",
   NZD: "NZD",
   INR: "INR",
