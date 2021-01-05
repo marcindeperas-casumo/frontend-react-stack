@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
-import { GameTileContainer as GameTile } from "Components/GameTile/GameTileContainer";
+import { GameTile } from "Components/GameTile/GameTile";
 import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
 import { ScrollableListPaginated } from "./ScrollableListPaginated";
 
