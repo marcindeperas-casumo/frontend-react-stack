@@ -107,7 +107,7 @@ export function GameListPageFilters(props: Props) {
         )}
         <Flex className="u-padding--2xlg o-flex__item--no-shrink" />
       </Flex>
-      <Flex className="u-padding-x--md u-padding-y--xlg u-position-absolute u-bottom-0 u-left-0 u-right-0 c-game-list-page-filters__main-button-bg">
+      <Flex className="u-padding--md u-position-absolute u-bottom-0 u-left-0 u-right-0 c-game-list-page-filters__main-button-bg">
         <ButtonPrimary className="u-width--full" onClick={props.close}>
           {interpolate(t?.modal_button || "", {
             numberOfGames: props.numberOfGames,
