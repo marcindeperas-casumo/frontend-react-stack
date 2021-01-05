@@ -20,11 +20,11 @@
       top: 0;
     }
     &--hidden {
-      animation: menuClosedChevronAnimation 0.3s normal forwards ease-in;
+      animation: menuClosedChevronAnimation 0.5s normal forwards ease-in;
     }
 
     &--visible {
-      animation: menuOpenChevronAnimation 0.3s normal forwards ease-out;
+      animation: menuOpenChevronAnimation 0.5s normal forwards ease-out;
     }
   }
 
