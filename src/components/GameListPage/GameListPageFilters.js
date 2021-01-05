@@ -31,6 +31,7 @@ export function GameListPageFilters(props: Props) {
       isOpen={props.isOpen}
       onRequestClose={props.close}
       mustAccept={false}
+      isWide
     >
       <ModalHeader showCloseButton closeAction={props.close} title={t?.title} />
       <Flex

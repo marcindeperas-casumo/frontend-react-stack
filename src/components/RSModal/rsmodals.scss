@@ -20,6 +20,12 @@
   }
 }
 
+.c-rsmodal__wide {
+  @include cudl-breakpoint(tablet) {
+    width: 732px;
+  }
+}
+
 .c-rsmodal__overlay {
   background-color: rgba(cudl-palette(grey, "90"), 0.8);
   bottom: 0;

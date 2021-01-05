@@ -12,12 +12,14 @@ type Props = {
   mustAccept: boolean,
   isOpen: boolean,
   onRequestClose: Function,
+  isWide?: boolean,
 };
 export function ModalBase({
   children,
   mustAccept,
   isOpen,
   onRequestClose,
+  isWide = false,
 }: Props) {
   const { jurisdiction } = useJurisdiction();
 
@@ -29,6 +31,7 @@ export function ModalBase({
         "t-background-white o-flex--vertical c-rsmodal u-overflow--hidden",
         {
           "t-border-r--md": !isMobile(),
+          "c-rsmodal__wide": isWide,
         }
       )}
       overlayClassName={`c-rsmodal__overlay c-rsmodal__overlay--${jurisdiction}`}
