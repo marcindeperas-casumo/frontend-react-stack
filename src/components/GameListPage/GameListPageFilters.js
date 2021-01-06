@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
+import { isMobile } from "Components/ResponsiveLayout";
 import { ModalBase, ModalHeader } from "Components/RSModal";
 import { Toggle } from "Components/Toggle/Toggle";
 import { useTranslations } from "Utils/hooks";
@@ -41,6 +42,9 @@ export function GameListPageFilters(props: Props) {
         {props.availableFilters.map(
           ({ key, type, title, description, values }) => {
             const isHorizontal = type === "toggle";
+            const availableValues = isHorizontal
+              ? values
+              : values.filter(x => x.title);
 
             return (
               <Flex
@@ -59,7 +63,7 @@ export function GameListPageFilters(props: Props) {
                   <Text size="sm">{description}</Text>
                 </Flex>
                 <Flex spacing="none" className="o-flex--wrap">
-                  {values.map(x => {
+                  {availableValues.map((x, i) => {
                     const isActive = props.activeFilters[x.query];
                     const onChange = () => {
                       props.setFilters({
@@ -89,13 +93,28 @@ export function GameListPageFilters(props: Props) {
                         />
                       );
                     } else if (type === "checkbox") {
-                      return (
+                      const filterCheckbox = (
                         <FilterCheckbox
                           key={x.key}
                           onChange={onChange}
                           isActive={isActive}
                           title={x.title}
                         />
+                      );
+
+                      if (isMobile()) {
+                        return filterCheckbox;
+                      }
+
+                      return (
+                        <Flex
+                          className={classNames(
+                            "u-width--1/2",
+                            i % 2 ? "u-padding-left--sm" : "u-padding-right--sm"
+                          )}
+                        >
+                          {filterCheckbox}
+                        </Flex>
                       );
                     }
 
