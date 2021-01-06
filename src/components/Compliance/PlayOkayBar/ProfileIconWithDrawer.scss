@@ -1,3 +1,10 @@
+/* stylelint-disable */
+$animation_duration: 500;
+
+:export {
+  animation_duration: $animation_duration;
+}
+
 .c-profile-icon-with-drawer {
   background-clip: padding-box;
   left: map-get($cudl-spacer-sizes, default);
@@ -13,8 +20,24 @@
     max-width: 442px;
   }
 
-  &__bottom-wrapper-bg {
+  &__animated-drawer-overlay {
     background: linear-gradient(white, transparent);
+    height: calc(100% - 48px);
+    top: 48px;
+    width: 100%;
+
+    &.enter {
+      animation: drawerOverlayFadeInAnimation $animation_duration + ms normal
+        forwards ease;
+    }
+
+    &.exit {
+      animation: drawerOverlayFadeOutAnimation $animation_duration + ms normal
+        forwards ease;
+    }
+  }
+
+  &__animated-drawer {
     bottom: 0;
     min-height: 150px;
     top: 48px;
@@ -34,12 +57,62 @@
       width: var(--game-page-sidebar-width-desktop) !important;
     }
 
+    &.enter {
+      animation: drawerSlideDownAnimation $animation_duration + ms normal
+        forwards ease;
+    }
+
+    &.exit {
+      animation: drawerSlideUpAnimation $animation_duration + ms normal forwards
+        ease;
+    }
+
     &-inner {
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
         width: 0;
       }
+    }
+  }
+
+  @keyframes drawerOverlayFadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawerOverlayFadeOutAnimation {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes drawerSlideDownAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes drawerSlideUpAnimation {
+    0% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-5%);
     }
   }
 }
