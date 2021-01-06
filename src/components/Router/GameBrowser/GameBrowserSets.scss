@@ -1,10 +1,10 @@
 // stylelint-disable xi/selector-pattern
 .c-nav-chip-container {
   position: relative;
-  top: 0 !important;
-  transition: top ease 0.3s;
+  transform: translateY(0);
+  transition: transform ease 0.3s;
   &:hover {
-    top: -5px !important;
+    transform: translateY(-5px);
   }
 }
 // stylelint-enable xi/selector-pattern

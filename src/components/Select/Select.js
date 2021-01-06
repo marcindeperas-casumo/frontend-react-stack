@@ -53,7 +53,10 @@ export function Select<T>(props: Props<T>) {
         />
       )}
       <div
-        className={`u-position-relative u-cursor-pointer ${selectClassNames}`}
+        className={classNames(
+          "u-position-relative u-cursor--pointer",
+          selectClassNames
+        )}
       >
         <div
           ref={measuredRef}

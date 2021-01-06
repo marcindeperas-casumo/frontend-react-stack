@@ -52,7 +52,7 @@ export function GameListPageSort({ sort, setSort, supportedSorts }: Props) {
           value={sort}
           emptyState={t.title}
           selectClassNames={
-            "c-dropdown-filter u-position-relative o-inset-top--none"
+            "c-dropdown-nav-filter-options u-position-relative o-inset-top--none"
           }
         />
       ) : (
