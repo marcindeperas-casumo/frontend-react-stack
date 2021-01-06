@@ -1,4 +1,8 @@
 /* stylelint-disable xi/selector-pattern */
+.c-game-tile-con {
+  transition: background-color ease 0.9s;
+}
+
 .c-game-tile-con:hover {
   background: linear-gradient(
     180deg,
@@ -16,9 +20,7 @@
 }
 
 .c-game-tile-play-button {
-  position: absolute;
   top: 40%;
-  z-index: cudl-z("content-overlay");
 
   .c-game-tile-button-text {
     top: 2px;

@@ -6,10 +6,10 @@ import { GameTile } from "./GameTile";
 
 // eslint-disable-next-line flowtype/no-types-missing-file-annotation
 export type Props = {
-  className?: ?string,
+  className?: string,
   game: A.GameTile_Game,
-  imgixOpts?: ?Object,
-  ratio?: ?string,
+  imgixOpts?: Object,
+  ratio?: string,
 };
 
 export const GameTileContainer = props => {
