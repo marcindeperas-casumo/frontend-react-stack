@@ -1,15 +1,26 @@
 /* stylelint-disable xi/selector-pattern */
-.c-game-tile-con {
-  transition: background-color ease 0.3s;
-}
-
-.c-game-tile-con:hover {
+.c-game-tile-con::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.9) 0%,
     rgba(76, 0, 194, 0.8) 51.62%
   ) !important;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.4s;
+  width: 100%;
+  z-index: -1;
+}
 
+.c-game-tile-con:hover::before {
+  opacity: 1;
+}
+
+.c-game-tile-con:hover {
   .c-game-tile-play-button {
     display: flex !important;
   }
