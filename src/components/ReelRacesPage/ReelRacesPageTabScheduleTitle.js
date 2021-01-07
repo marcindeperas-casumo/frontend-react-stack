@@ -19,7 +19,7 @@ export function ReelRacesPageTabScheduleTitle({ t, startTime }: Props) {
       {circleClass && (
         <div
           className={cx("u-width u-height t-border-r--circle", circleClass)}
-        ></div>
+        />
       )}
       <Text className="u-padding-left u-font-weight-bold" tag="div">
         {title}
