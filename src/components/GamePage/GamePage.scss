@@ -13,7 +13,9 @@ $directions: (top, left, bottom, right);
   background-size: cover;
 
   &__layout-container {
-    padding-bottom: env(safe-area-inset-bottom);
+    @media (orientation: portrait) {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
   }
 
   &__flexible-game-container {
