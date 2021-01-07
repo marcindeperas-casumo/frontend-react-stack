@@ -93,7 +93,7 @@ export const GameTile = ({
             direction="horizontal"
             justify="center"
             align="center"
-            className="c-game-tile-play-button u-width--full u-display--none o-position-absolute u-zindex--content-overlay"
+            className="c-game-tile-play-button u-width--full u-display--none u-position-absolute u-zindex--content-overlay"
           >
             <Button
               size="sm"
@@ -101,7 +101,7 @@ export const GameTile = ({
               data-test="game-list-tile-launch-link"
             >
               <div className="u-display--flex">
-                <Text className="u-font u-font-weight-bold u-margin-right o-position--relative c-game-tile-button-text">
+                <Text className="u-font u-font-weight-bold u-margin-right u-position--relative c-game-tile-button-text">
                   {t?.play_button_text_game_tile}
                 </Text>
                 <PlayIcon size="default" />
@@ -111,7 +111,7 @@ export const GameTile = ({
           <Flex
             justify="space-between"
             align="end"
-            className="u-width--full c-game-tile-bottom-bar o-position--absolute o-inset-bottom--none"
+            className="u-width--full c-game-tile-bottom-bar u-position--absolute o-inset-bottom--none"
           >
             <Flex.Item onClick={e => e.stopPropagation()}>
               <TrackClick
