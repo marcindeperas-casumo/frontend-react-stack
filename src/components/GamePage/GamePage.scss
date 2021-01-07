@@ -12,6 +12,10 @@ $directions: (top, left, bottom, right);
   background-position: center;
   background-size: cover;
 
+  &__layout-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   &__flexible-game-container {
     // This tells it's children to have only space it gives them, not more
     // but also growing up to whole remaining flex space. Prevents games to grow outside

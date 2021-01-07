@@ -47,7 +47,7 @@ export const GamePage = ({
         gameProviderModel={gameProviderModel}
       >
         <Flex
-          className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
+          className="u-width--full u-height--full t-background-grey-90 u-padding-bottom-xlg t-color-white c-game-page"
           direction="vertical"
           spacing="none"
           style={{ backgroundImage: `url('${gameBackground || ""}')` }}
@@ -56,7 +56,7 @@ export const GamePage = ({
           <Flex
             direction="horizontal"
             spacing="none"
-            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full c-game-page__layout-container"
           >
             <Flex.Item>{sidebar}</Flex.Item>
             <Flex.Block className="u-position-relative o-flex c-game-page__flexible-game-container">
