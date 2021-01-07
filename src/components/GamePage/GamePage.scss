@@ -5,18 +5,18 @@ $directions: (top, left, bottom, right);
   .u-safe-area-inset-#{$direction} {
     #{$direction}: env(safe-area-inset-#{$direction});
   }
+  /* stylelint-disable-next-line xi/selector-pattern */
+  .u-safe-area-inset-padding-#{$direction} {
+    @media (orientation: portrait) {
+      padding-#{$direction}: env(safe-area-inset-#{$direction});
+    }
+  }
 }
 
 .c-game-page {
   --game-page-sidebar-width-desktop: 290px;
   background-position: center;
   background-size: cover;
-
-  &__layout-container {
-    @media (orientation: portrait) {
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-  }
 
   &__flexible-game-container {
     // This tells it's children to have only space it gives them, not more

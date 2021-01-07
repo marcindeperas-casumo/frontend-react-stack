@@ -17,13 +17,16 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop, isMobile } from "Components/ResponsiveLayout";
+import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
-import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import {
+  useDataForBlueRibbonJackpotsWidget,
+  BlueRibbonJackpotsFooterWidgetContainer,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -55,6 +58,7 @@ export const GamePageContainer = () => {
   const errorMessages = useTranslations("mobile.errors");
   const gameContent = useTranslations(`games.${slug}`);
   const { loading, gameCategory } = useGameCategory(slug);
+  const { jackpots, available } = useDataForBlueRibbonJackpotsWidget();
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
   const quickDepositInProgress = Boolean(
@@ -80,6 +84,15 @@ export const GamePageContainer = () => {
     ),
   });
 
+  const infoBar = () => shouldShowSlotControlSystem && <InfoBar />;
+
+  const safeArea = () => {
+    if (available && jackpots.length > 0) {
+      return null;
+    }
+    return <div className="u-safe-area-inset-padding-bottom"></div>;
+  };
+
   return (
     <GamePage
       error={
@@ -91,10 +104,13 @@ export const GamePageContainer = () => {
         ) : null
       }
       footer={
-        <>
-          {shouldShowSlotControlSystem && <InfoBar />}
-          {isMobile() && <BlueRibbonJackpotsFooterWidgetContainer />}
-        </>
+        <React.Fragment>
+          {infoBar()}
+          <Mobile>
+            <BlueRibbonJackpotsFooterWidgetContainer />
+            {safeArea()}
+          </Mobile>
+        </React.Fragment>
       }
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
@@ -124,10 +140,10 @@ export const GamePageContainer = () => {
         </React.Fragment>
       }
       overScreenNotifications={
-        <>
+        <React.Fragment>
           <GamePageNotifications />
           <FullScreenGamePageNotifications />
-        </>
+        </React.Fragment>
       }
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
