@@ -47,7 +47,7 @@ export const GamePage = ({
         gameProviderModel={gameProviderModel}
       >
         <Flex
-          className="u-width--full u-height--full t-background-grey-90 u-padding-bottom-xlg t-color-white c-game-page"
+          className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
           direction="vertical"
           spacing="none"
           style={{ backgroundImage: `url('${gameBackground || ""}')` }}
