@@ -44,7 +44,7 @@ export class RelaxGame extends BaseIframeGame {
         ...super.componentProps,
         src: `${url}${
           !isEmbedded ? `&homeurl=${encodedLobbyUrl}` : ""
-        } &fullscreen=false&rcenable=true`,
+        }&fullscreen=false&rcenable=true`,
       };
     }
 
