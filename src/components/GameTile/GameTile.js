@@ -102,7 +102,7 @@ export const GameTile = ({
             >
               <div className="u-display--flex">
                 <Text className="u-font u-font-weight-bold u-margin-right o-position--relative c-game-tile-button-text">
-                  {t.play_button_text_game_tile}
+                  {t?.play_button_text_game_tile}
                 </Text>
                 <PlayIcon size="default" />
               </div>
