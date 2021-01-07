@@ -125,30 +125,41 @@ export function ReelRaceScheduleCardContent({
         </Flex>
       </Flex>
 
-      <Flex
-        direction={isNotMobile ? "horizontal" : "vertical"}
-        className={cx(isNotMobile && "u-margin-left--5xlg")}
-        align="center"
+      <div
+        className={cx(
+          "o-flex-align--center@tablet o-flex--vertical@mobile",
+          isNotMobile && "u-margin-left--4xlg"
+        )}
       >
-        {reelRace.translations.caveatShort &&
-          reelRace.translations.caveatShort !== "false" && (
-            <Text
-              tag="div"
-              className="t-color-grey-50 u-padding--md"
-              onClick={showCaveatsModal}
-            >
-              <DangerousHtml
-                html={interpolate(reelRace.translations.caveatShort, {
-                  ctaTermsAndConditions: 'class="t-color-grey-50"',
-                })}
-              />
-            </Text>
-          )}
-        <Flex justify="end" className="o-flex--1 u-margin--lg">
-          <Button size="md" onClick={toggleExpandPrizes}>
+        <div className="u-width--1/2@tablet">
+          {reelRace.translations.caveatShort &&
+            reelRace.translations.caveatShort !== "false" && (
+              <Text
+                tag="div"
+                className="t-color-grey-50 u-padding-x--md"
+                style={{ maxWidth: 300 }}
+                onClick={showCaveatsModal}
+              >
+                <DangerousHtml
+                  html={interpolate(reelRace.translations.caveatShort, {
+                    ctaTermsAndConditions: 'class="t-color-grey-50"',
+                  })}
+                />
+              </Text>
+            )}
+        </div>
+        <Flex
+          className="u-width--1/2@tablet u-margin-top--md u-padding-x--md u-margin-bottom--md"
+          spacing="3xlg"
+        >
+          <Button
+            size="md"
+            onClick={toggleExpandPrizes}
+            className="u-width--full"
+          >
             {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
           </Button>
-          <div className="u-margin-left--md">
+          <div className="u-width--full u-padding-left--md">
             {reelRace.optedIn ? (
               <TrackClick eventName={disabled.eventName} data={disabled.data}>
                 <ButtonPrimary
@@ -158,6 +169,7 @@ export function ReelRaceScheduleCardContent({
                       ? disabled.onClick(reelRace.game.slug)
                       : noop()
                   }
+                  className="u-width--full"
                 >
                   <PlayIcon size="sm" />
                   <Text tag="span" className="u-margin-left">
@@ -167,14 +179,18 @@ export function ReelRaceScheduleCardContent({
               </TrackClick>
             ) : (
               <TrackClick eventName={active.eventName} data={active.data}>
-                <ButtonPrimary size="md" onClick={active.onClick || noop}>
+                <ButtonPrimary
+                  size="md"
+                  onClick={active.onClick || noop}
+                  className="u-width--full"
+                >
                   <Text tag="span">{active.label}</Text>
                 </ButtonPrimary>
               </TrackClick>
             )}
           </div>
         </Flex>
-      </Flex>
+      </div>
       {expandPrizes && (
         <ReelRaceScheduleCardPrizes
           formattedPrizes={reelRace.formattedPrizes}
