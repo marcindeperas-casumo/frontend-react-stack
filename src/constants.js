@@ -458,6 +458,7 @@ export const REACT_APP_MODAL = {
     GGL_POST_PANIC_BUTTON: "GGL_POST_PANIC_BUTTON",
     GGL_PRE_PANIC_BUTTON: "GGL_PRE_PANIC_BUTTON",
     PAYMENT_RESULT: "PAYMENT_RESULT",
+    CONTENT_HTML: "CONTENT_HTML",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

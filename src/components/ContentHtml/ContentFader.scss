@@ -1,0 +1,7 @@
+.s-content-fader {
+  bottom: -1px;
+}
+
+.s-content-fader__child {
+  background-image: linear-gradient(hsla(0, 0%, 100%, 0.001), currentColor);
+}
