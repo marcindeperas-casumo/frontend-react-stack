@@ -1,0 +1,20 @@
+// stylelint-disable xi/selector-pattern
+
+$dark-purple: #270c5a;
+
+.c-background-scale-in-center {
+  animation: background-scale-in-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  background-color: $dark-purple;
+  left: 0;
+  top: 0;
+}
+
+@keyframes background-scale-in-center {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}

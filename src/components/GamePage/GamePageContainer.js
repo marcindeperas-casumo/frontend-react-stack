@@ -24,7 +24,10 @@ import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
-import { GamePageNotifications } from "./GamePageNotifications";
+import {
+  GamePageNotifications,
+  FullScreenGamePageNotifications,
+} from "./GamePageNotifications";
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
@@ -120,7 +123,12 @@ export const GamePageContainer = () => {
           <ReelRacesDrawerWidgetTrigger />
         </React.Fragment>
       }
-      overScreenNotifications={<GamePageNotifications />}
+      overScreenNotifications={
+        <>
+          <GamePageNotifications />
+          <FullScreenGamePageNotifications />
+        </>
+      }
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
       sidebar={<GamePageSidebar />}
