@@ -3,7 +3,6 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import cx from "classnames";
-import { once } from "ramda";
 import { timeRemainingBeforeStart } from "Utils";
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
@@ -37,7 +36,7 @@ export function ReelRacesPageTabScheduleTitle({ t, startTime }: Props) {
   }
 
   if (timeRemainingBeforeStart(startTime) <= ONE_HOUR + THIRTY_MINUTES) {
-    return once(renderTitle)(t?.later_today);
+    return renderTitle(t?.up_next, "t-background-yellow-30");
   }
 
   return null;
