@@ -1,10 +1,9 @@
-// @Flow
+// @flow
 import React from "react";
 import { useTranslations } from "Utils/hooks";
 import { CMS_SLUGS } from "../GameListPage/GameList.constants";
 import { GameTile } from "./GameTile";
 
-// eslint-disable-next-line flowtype/no-types-missing-file-annotation
 export type Props = {
   className?: string,
   game: A.GameTile_Game,

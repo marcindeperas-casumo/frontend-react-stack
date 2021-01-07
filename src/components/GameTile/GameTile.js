@@ -6,7 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import { Button } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
-import { isMobile } from "Components/ResponsiveLayout";
+import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -93,7 +93,7 @@ export const GameTile = ({
             direction="horizontal"
             justify="center"
             align="center"
-            className="c-game-tile-play-button u-width--full u-display--none u-position-absolute u-zindex--content-overlay"
+            className="c-game-tile-play-button u-width--full u-display--none o-position-absolute u-zindex--content-overlay"
           >
             <Button
               size="sm"
@@ -111,28 +111,29 @@ export const GameTile = ({
           <Flex
             justify="space-between"
             align="end"
-            className="u-width--full c-game-tile-bottom-bar"
+            className="u-width--full c-game-tile-bottom-bar o-position--absolute o-inset-bottom--none"
           >
             <Flex.Item onClick={e => e.stopPropagation()}>
               <TrackClick
                 eventName={EVENTS.MIXPANEL_GAME_DETAILS}
                 data={{ [EVENT_PROPS.GAME_NAME]: name }}
               >
-                {isMobile() ? (
+                <Mobile>
                   <a
                     className="u-padding u-display--block"
                     href={`/play/${slug}`}
                   >
                     <MoreIcon className="t-color-white" />
                   </a>
-                ) : (
+                </Mobile>
+                <TabletAndDesktop>
                   <Link
                     to={`/games/details/${slug}`}
                     className="u-padding u-display--block"
                   >
                     <MoreIcon className="t-color-white" />
                   </Link>
-                )}
+                </TabletAndDesktop>
               </TrackClick>
             </Flex.Item>
             <GameTileHeart gameId={id} gameName={name} />
