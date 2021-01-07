@@ -36,7 +36,7 @@ export function ReelRacesPageTabScheduleTitle({ t, startTime }: Props) {
   }
 
   if (timeRemainingBeforeStart(startTime) <= ONE_HOUR + THIRTY_MINUTES) {
-    return renderTitle(t?.up_next, "t-background-yellow-30");
+    return renderTitle(t?.later_today);
   }
 
   return null;
