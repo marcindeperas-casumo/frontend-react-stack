@@ -2,7 +2,7 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import MockStore from "Components/MockStore";
 import { launchGame } from "Services/LaunchGameService";
-import { GameTile } from "Components/GameTile/GameTile";
+import { GameTile } from "./GameTile";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "./GameTileInMaintenanceContainer";
 import gameInfo from "./__mocks__/Game.json";
 
