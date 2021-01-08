@@ -2,7 +2,7 @@
 import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations, useJurisdiction } from "Utils/hooks";

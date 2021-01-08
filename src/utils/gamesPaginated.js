@@ -1,7 +1,7 @@
 // @flow
 
 import * as R from "ramda";
-import type { ObservableQueryFields } from "@apollo/react-hooks";
+import type { ObservableQueryFields } from "@apollo/client";
 
 type GamesPaginatedQuery = {
   getGamesPaginated: {
@@ -18,10 +18,7 @@ type GamesPaginatedQueryVariables = {
 
 const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
 export function insertIntoArray(newData: Array<any>, offset: number) {
-  return R.pipe(
-    R.remove(offset, newData.length),
-    R.insertAll(offset, newData)
-  );
+  return R.pipe(R.remove(offset, newData.length), R.insertAll(offset, newData));
 }
 export function loadMoreConstructor(
   fetchMore: $PropertyType<

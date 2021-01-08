@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { Router, Redirect } from "@reach/router";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { getGamePage } from "Models/gameBrowser";
 import * as A from "Types/apollo";

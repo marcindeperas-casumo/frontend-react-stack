@@ -1,13 +1,12 @@
 // @flow
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { setContext } from "apollo-link-context";
-import { HttpLink } from "apollo-link-http";
-import { createPersistedQueryLink } from "apollo-link-persisted-queries";
 import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from "apollo-cache-inmemory";
+  ApolloClient,
+  ApolloLink,
+  setContext,
+  HttpLink,
+  createPersistedQueryLink,
+} from "@apollo/client";
+import { InMemoryCache } from "@apollo/client/cache";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -21,7 +20,7 @@ import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getAppVersion, isEmbeddedOn } from "Utils";
-import introspectionQueryResultData from "./introspections.json";
+import possibleTypes from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
 import { defaultState } from "./apollo.client.defaultState";
@@ -50,12 +49,8 @@ export async function getApolloClient(): Promise<ApolloClientType> {
   });
 }
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData,
-});
-
 export async function getCache() {
-  const cache = new InMemoryCache({ fragmentMatcher });
+  const cache = new InMemoryCache({ possibleTypes });
 
   await cache.writeData({
     data: defaultState,

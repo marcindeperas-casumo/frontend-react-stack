@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";

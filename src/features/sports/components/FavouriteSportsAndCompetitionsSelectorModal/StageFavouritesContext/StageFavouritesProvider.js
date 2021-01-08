@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
-import gql from "graphql-tag";
-import { getApolloContext } from "@apollo/react-hooks";
+import { gql, getApolloContext } from "@apollo/client";
 import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import tracker from "Services/tracker";

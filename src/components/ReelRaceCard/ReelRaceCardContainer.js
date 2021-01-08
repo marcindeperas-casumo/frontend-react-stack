@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
 import { ReelRaceCard } from "./ReelRaceCard";
 import { OptInForReelRace } from "./ReelRaceCard.graphql";

@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { SettingsAccountDetails } from "./SettingsAccountDetails";
 import { SettingsAccountDetailsContainer } from "./SettingsAccountDetailsContainer";
 import {

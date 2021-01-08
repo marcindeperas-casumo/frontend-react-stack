@@ -4,13 +4,13 @@
  */
 
 // @flow
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
-} from "apollo-cache-inmemory";
+} from "@apollo/client/cache";
 import introspectionQueryResultData from "Models/apollo/introspections.json";
 import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
 

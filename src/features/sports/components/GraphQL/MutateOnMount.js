@@ -1,9 +1,9 @@
 /* @flow */
 
 import * as React from "react";
-import { Mutation } from "react-apollo";
-import type { MutationResult } from "react-apollo";
-import type { FetchPolicy } from "apollo-client";
+import { Mutation } from "@apollo/client/react/components";
+import type { MutationResult } from "@apollo/client/react/components";
+import type { FetchPolicy } from "@apollo/client";
 
 export type MutationProps<D, V> = {
   mutation: any,

@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { POLL_INTERVAL } from "Src/constants";
 import { MustDropJackpotsWidget } from "Components/MustDropJackpotsWidget/MustDropJackpotsWidget";

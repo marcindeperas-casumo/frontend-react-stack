@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { launchModal } from "Services/LaunchModalService";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";

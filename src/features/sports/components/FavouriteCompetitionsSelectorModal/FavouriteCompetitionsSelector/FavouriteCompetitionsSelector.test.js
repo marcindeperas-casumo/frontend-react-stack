@@ -1,6 +1,6 @@
 import React from "react";
 import { all, equals, F } from "ramda";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { mount } from "enzyme";
 import { isNilOrEmpty } from "Utils";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";

@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { getApolloContext } from "@apollo/react-hooks";
+import { gql, getApolloContext } from "@apollo/client";
+import { Query } from "@apollo/client/react/components";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,

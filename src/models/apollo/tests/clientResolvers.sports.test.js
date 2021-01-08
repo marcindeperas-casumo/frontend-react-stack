@@ -1,6 +1,6 @@
 // @flow
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from "@apollo/client";
+import { InMemoryCache } from "@apollo/client/cache";
 import * as A from "Types/apollo";
 import * as kambi from "Features/sports/kambi";
 import { MODAL } from "Features/sports/components/Modals";
@@ -338,13 +338,17 @@ describe("Client state resolvers", () => {
 
       await client.mutate({ mutation: mutations.SHOW_SEARCH });
 
-      const isSearchVisible = (await client.query({
-        query: queries.SEARCH_VISIBLE_QUERY,
-      })).data.isSearchVisible;
+      const isSearchVisible = (
+        await client.query({
+          query: queries.SEARCH_VISIBLE_QUERY,
+        })
+      ).data.isSearchVisible;
 
-      const kambiClientVisible = (await client.query({
-        query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
-      })).data.kambiClientVisible;
+      const kambiClientVisible = (
+        await client.query({
+          query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
+        })
+      ).data.kambiClientVisible;
 
       expect(isSearchVisible).toBe(true);
       expect(kambiClientVisible).toBe(false);
@@ -360,13 +364,17 @@ describe("Client state resolvers", () => {
 
       await client.mutate({ mutation: mutations.HIDE_SEARCH });
 
-      const isSearchVisible = (await client.query({
-        query: queries.SEARCH_VISIBLE_QUERY,
-      })).data.isSearchVisible;
+      const isSearchVisible = (
+        await client.query({
+          query: queries.SEARCH_VISIBLE_QUERY,
+        })
+      ).data.isSearchVisible;
 
-      const clientVisible = (await client.query({
-        query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
-      })).data.kambiClientVisible;
+      const clientVisible = (
+        await client.query({
+          query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
+        })
+      ).data.kambiClientVisible;
 
       expect(isSearchVisible).toBe(false);
       expect(clientVisible).toBe(true);

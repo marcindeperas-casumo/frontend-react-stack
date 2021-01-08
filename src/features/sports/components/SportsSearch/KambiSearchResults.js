@@ -1,8 +1,8 @@
 /* @flow */
 import * as React from "react";
 import classNames from "classnames";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { gql } from "@apollo/client";
+import { Query } from "@apollo/client/react/components";
 import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
 import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";
@@ -133,9 +133,10 @@ class KambiSearchResults extends React.Component<Props, State> {
   ) => {
     // will have either props
     const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
-    const name = propOr(prop("localizedName", resultOrGroup), "name")(
-      resultOrGroup
-    );
+    const name = propOr(
+      prop("localizedName", resultOrGroup),
+      "name"
+    )(resultOrGroup);
 
     if (list === "result") {
       tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {

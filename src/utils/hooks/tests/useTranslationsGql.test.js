@@ -1,7 +1,7 @@
 import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
-import { MockedProvider } from "@apollo/react-testing";
-import gql from "graphql-tag";
+import { MockedProvider } from "@apollo/client/testing";
+import { gql } from "@apollo/client";
 import { useTranslationsGql } from "../useTranslationsGql";
 
 // We need this because Apollo's useQuery hook works in an async manner.

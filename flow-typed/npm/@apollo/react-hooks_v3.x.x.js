@@ -1,7 +1,7 @@
 // flow-typed signature: a73bcecce8efd79b66cb9a8d47b52ad6
-// flow-typed version: d2637541e8/@apollo/react-hooks_v3.x.x/flow_>=v0.104.x
+// flow-typed version: d2637541e8/@apollo/client_v3.x.x/flow_>=v0.104.x
 
-declare module '@apollo/react-hooks' {
+declare module '@apollo/client' {
   import type { ComponentType, Element, Node } from 'react';
   import type { DocumentNode, GraphQLError } from 'graphql';
 
@@ -51,7 +51,7 @@ declare module '@apollo/react-hooks' {
   declare export function resetApolloContext(): void;
   /* end @apollo/react-common types */
 
-  /* start @apollo/react-hooks types */
+  /* start @apollo/client types */
   declare type Record<T, U> = {
     [key: $Keys<T>]: U,
     ...,
@@ -383,9 +383,9 @@ declare module '@apollo/react-hooks' {
     ...
   };
 
-  /* end @apollo/react-hooks types */
+  /* end @apollo/client types */
 
-  /* start apollo-client types */
+  /* start @apollo/client types */
 
   declare class ObservableQuery<T, V = { [key: string]: any, ... }> extends Observable<ApolloQueryResult<T>> {
     options: WatchQueryOptions;
@@ -1151,5 +1151,5 @@ declare module '@apollo/react-hooks' {
     writeData<TData>(options: DataProxyWriteDataOptions<TData>): void;
   }
   /* End apollo-cache types */
-  /* end apollo-client types */
+  /* end @apollo/client types */
 }

@@ -1,5 +1,5 @@
 // @flow
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const ACTIVE_MODALS_QUERY = gql`
   query ActiveModals {

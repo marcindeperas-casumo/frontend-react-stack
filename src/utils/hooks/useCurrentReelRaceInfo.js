@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
@@ -142,10 +142,7 @@ export const createCurrentReelRaceData = (
     ),
     hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
-    leaderboard: R.pipe(
-      R.values,
-      R.sortBy(R.prop("position"))
-    )(leaderboard),
+    leaderboard: R.pipe(R.values, R.sortBy(R.prop("position")))(leaderboard),
     formattedPrizes: formattedPrizes || [],
     boosters: R.propOr(
       defaultReelRaceInfo.boosters,
