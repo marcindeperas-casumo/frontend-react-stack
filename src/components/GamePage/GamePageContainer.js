@@ -24,10 +24,7 @@ import { isNativeByUserAgent } from "GameProviders";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
-import {
-  useDataForBlueRibbonJackpotsWidget,
-  BlueRibbonJackpotsFooterWidgetContainer,
-} from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -59,8 +56,6 @@ export const GamePageContainer = () => {
   const errorMessages = useTranslations("mobile.errors");
   const gameContent = useTranslations(`games.${slug}`);
   const { loading, gameCategory } = useGameCategory(slug);
-  const { jackpots, available } = useDataForBlueRibbonJackpotsWidget();
-  const isBlueRibbonFooterShown = available && jackpots.length > 0;
   const isNative = isNativeByUserAgent();
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
@@ -90,9 +85,8 @@ export const GamePageContainer = () => {
   const infoBar = () => shouldShowSlotControlSystem && <InfoBar />;
 
   const safeArea = () =>
-    !isBlueRibbonFooterShown &&
     !isNative && (
-      <div className="c-game-page__safe-area u-safe-area-inset-padding-bottom" />
+      <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
     );
 
   return (
