@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import * as A from "Types/apollo";
-import { GameTile } from "Components/GameTile";
+import { GameTileContainer as GameTile } from "Components/GameTile/GameTileContainer";
 import { VirtualGrid } from "Components/VirtualGrid";
 
 type Props = {
