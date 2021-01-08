@@ -20,7 +20,6 @@ import { ROUTE_IDS } from "Src/constants";
 import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
-import { isNativeByUserAgent } from "GameProviders";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
@@ -56,7 +55,6 @@ export const GamePageContainer = () => {
   const errorMessages = useTranslations("mobile.errors");
   const gameContent = useTranslations(`games.${slug}`);
   const { loading, gameCategory } = useGameCategory(slug);
-  const isNative = isNativeByUserAgent();
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
   const quickDepositInProgress = Boolean(
@@ -82,13 +80,6 @@ export const GamePageContainer = () => {
     ),
   });
 
-  const infoBar = () => shouldShowSlotControlSystem && <InfoBar />;
-
-  const safeArea = () =>
-    !isNative && (
-      <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
-    );
-
   return (
     <GamePage
       error={
@@ -101,10 +92,10 @@ export const GamePageContainer = () => {
       }
       footer={
         <React.Fragment>
-          {infoBar()}
+          {shouldShowSlotControlSystem && <InfoBar />}
           <Mobile>
             <BlueRibbonJackpotsFooterWidgetContainer />
-            {safeArea()}
+            <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
           </Mobile>
         </React.Fragment>
       }
