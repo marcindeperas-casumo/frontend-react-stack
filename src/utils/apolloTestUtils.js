@@ -7,11 +7,8 @@
 import { gql } from "@apollo/client";
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from "@apollo/client/cache";
-import introspectionQueryResultData from "Models/apollo/introspections.json";
+import { InMemoryCache } from "@apollo/client/cache";
+import possibleTypes from "Models/apollo/introspections.json";
 import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
 
 // https://github.com/wesbos/waait/blob/master/index.js
@@ -38,11 +35,7 @@ export async function waitAndUpdateWrapper(
 }
 
 export function getCacheWithIntrospections() {
-  const fragmentMatcher = new IntrospectionFragmentMatcher({
-    introspectionQueryResultData,
-  });
-
-  return new InMemoryCache({ fragmentMatcher });
+  return new InMemoryCache({ possibleTypes });
 }
 
 export function generateTranslationsQuery(translationKeyIdMap: {

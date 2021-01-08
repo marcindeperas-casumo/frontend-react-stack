@@ -142,7 +142,10 @@ export const createCurrentReelRaceData = (
     ),
     hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
-    leaderboard: R.pipe(R.values, R.sortBy(R.prop("position")))(leaderboard),
+    leaderboard: R.pipe(
+      R.values,
+      R.sortBy(R.prop("position"))
+    )(leaderboard),
     formattedPrizes: formattedPrizes || [],
     boosters: R.propOr(
       defaultReelRaceInfo.boosters,

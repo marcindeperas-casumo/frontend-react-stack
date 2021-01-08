@@ -18,7 +18,10 @@ type GamesPaginatedQueryVariables = {
 
 const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
 export function insertIntoArray(newData: Array<any>, offset: number) {
-  return R.pipe(R.remove(offset, newData.length), R.insertAll(offset, newData));
+  return R.pipe(
+    R.remove(offset, newData.length),
+    R.insertAll(offset, newData)
+  );
 }
 export function loadMoreConstructor(
   fetchMore: $PropertyType<

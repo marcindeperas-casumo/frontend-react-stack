@@ -133,10 +133,9 @@ class KambiSearchResults extends React.Component<Props, State> {
   ) => {
     // will have either props
     const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
-    const name = propOr(
-      prop("localizedName", resultOrGroup),
-      "name"
-    )(resultOrGroup);
+    const name = propOr(prop("localizedName", resultOrGroup), "name")(
+      resultOrGroup
+    );
 
     if (list === "result") {
       tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
