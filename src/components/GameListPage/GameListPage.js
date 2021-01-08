@@ -178,8 +178,10 @@ export function GameListPage({ set }: Props) {
         numberOfGames={data?.getGamesPaginated.gamesCount || 0}
       />
       <div className="t-background-grey">
-        <div className="o-wrapper u-padding-y--lg">
-          <div className="u-padding-bottom--lg">{topSection}</div>
+        <div className="o-wrapper">
+          <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
+            {topSection}
+          </div>
           {(() => {
             if (!data || !data.getGamesPaginated.games) {
               if (isLiveCasino) {
