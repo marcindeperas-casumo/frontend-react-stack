@@ -88,12 +88,12 @@ export const GameTile = ({
           name={name}
           imgixOpts={imgixOpts}
         />
-        <div className="o-ratio__content c-game-tile-con u-cursor--pointer u-position-absolute u-zindex--content-overlay">
+        <div className="o-ratio__content c-game-tile-con u-cursor--pointer o-position--absolute u-zindex--content-overlay">
           <Flex
             direction="horizontal"
             justify="center"
             align="center"
-            className="c-game-tile-play-button u-width--full u-display--none u-position-absolute u-zindex--content-overlay"
+            className="c-game-tile-play-button u-width--full u-display--none o-position--absolute u-zindex--content-overlay"
           >
             <Button
               size="sm"
