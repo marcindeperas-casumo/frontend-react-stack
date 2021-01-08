@@ -70,7 +70,7 @@ export function ReelRaceScheduleCardContent({
     <>
       <Flex
         className={cx(
-          "u-padding--lg",
+          "u-padding-y--lg",
           isNotMobile && "u-width--1/2 u-margin-left--4xlg"
         )}
       >
@@ -128,7 +128,7 @@ export function ReelRaceScheduleCardContent({
       <div
         className={cx(
           "o-flex-align--center@tablet o-flex--vertical@mobile",
-          isNotMobile && "u-margin-left--4xlg"
+          isNotMobile && "u-margin-left--2xlg"
         )}
       >
         <div className="u-width--1/2@tablet">
@@ -136,8 +136,10 @@ export function ReelRaceScheduleCardContent({
             reelRace.translations.caveatShort !== "false" && (
               <Text
                 tag="div"
-                className="t-color-grey-50 u-padding-x--md"
-                style={{ maxWidth: 300 }}
+                className={cx(
+                  "t-color-grey-50",
+                  isNotMobile ? "u-margin-left--4xlg" : "u-padding--md"
+                )}
                 onClick={showCaveatsModal}
               >
                 <DangerousHtml
