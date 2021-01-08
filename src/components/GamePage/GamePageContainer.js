@@ -20,6 +20,7 @@ import { ROUTE_IDS } from "Src/constants";
 import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
+import { isNativeByUserAgent } from "GameProviders";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
@@ -59,6 +60,8 @@ export const GamePageContainer = () => {
   const gameContent = useTranslations(`games.${slug}`);
   const { loading, gameCategory } = useGameCategory(slug);
   const { jackpots, available } = useDataForBlueRibbonJackpotsWidget();
+  const isBlueRibbonFooterShown = available && jackpots.length > 0;
+  const isNative = isNativeByUserAgent();
   const shouldShowSlotControlSystem =
     !loading && isDGOJ && isSlotGame(gameCategory);
   const quickDepositInProgress = Boolean(
@@ -86,12 +89,11 @@ export const GamePageContainer = () => {
 
   const infoBar = () => shouldShowSlotControlSystem && <InfoBar />;
 
-  const safeArea = () => {
-    if (available && jackpots.length > 0) {
-      return null;
-    }
-    return <div className="u-safe-area-inset-padding-bottom"></div>;
-  };
+  const safeArea = () =>
+    !isBlueRibbonFooterShown &&
+    !isNative && (
+      <div className="c-game-page__safe-area u-safe-area-inset-padding-bottom" />
+    );
 
   return (
     <GamePage

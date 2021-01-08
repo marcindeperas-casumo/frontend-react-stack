@@ -35,4 +35,9 @@ $directions: (top, left, bottom, right);
     margin: 0;
     width: 100%;
   }
+
+  &__safe-area {
+    background: cudl-palette(grey, "90");
+    background-clip: content-box, padding-box;
+  }
 }
