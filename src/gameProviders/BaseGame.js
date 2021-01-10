@@ -18,14 +18,18 @@ export class BaseGame {
   isGameIdle: boolean = true;
   swipeUpToPlayPanelPossible: boolean = true;
   gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
+  urlPrefix: string;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
+    this.urlPrefix =
+      window.location.pathname.split("/")?.[1] || this.props.language;
   }
 
   get lobbyUrl() {
+    const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
     const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
     const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
@@ -34,7 +38,7 @@ export class BaseGame {
       return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }
 
-    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.props.language}/${encodedTranslatedRoute}`;
+    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${urlPrefix}/${encodedTranslatedRoute}`;
   }
 
   goToLobby() {

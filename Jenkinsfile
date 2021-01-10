@@ -11,12 +11,12 @@ if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
                 .checkout()
-                .customStep('Install dependencies', this.&installDependencies)
-                .customStep('Build', this.&runBuild)
+        .customStep('Install dependencies', { installDependencies() })
+        .customStep('Build', { runBuild() })
                 .with(Docker) { it.publishDockerImage() }
                 .with(Release) { it.release() }
                 .with(DeployService) { it.deployToProduction('frontend-react-stack') }
-                .customStep('Rollbar Deploy Tracking', this.&rollbarDeployTracking)
+        .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
                 .build('js-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
@@ -33,16 +33,16 @@ Started by: *${env.gitAuthor}* :eyes:
 } else {
     new PluggablePipelineBuilder(this)
             .checkout()
-            .customStep('Install dependencies', this.&installDependencies)
-            .customStep('Tests', this.&runTests)
+    .customStep('Install dependencies', { installDependencies() })
+    .customStep('Tests', { runTests() })
             .parallel([
-                    "Flow"             : { it.customStepTask('Flow', this.&runFlow) },
-                    "Lint"             : { it.customStepTask('Lint', this.&runLint) },
-                    "Visual Regression": { it.customStepTask('Visual Regression', this.&runChromatic) },
+                "Flow"             : { it.customStepTask('Flow', { runFlow() }) },
+                "Lint"             : { it.customStepTask('Lint', { runLint() }) },
+                "Visual Regression": { it.customStepTask('Visual Regression', { runChromatic() }) },
                     // uncomment after adding first pact test
                     // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
             ])
-            .customStep('Build', this.&runBuild)
+    .customStep('Build', { runBuild() })
             .with(Docker) { it.publishDockerImage() }
             .with(Release) { it.release() }
             .with(DeployService) { it.deployToTest('frontend-react-stack') }
