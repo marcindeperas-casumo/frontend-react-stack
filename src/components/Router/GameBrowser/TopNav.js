@@ -1,12 +1,14 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import { Link, useMatch } from "@reach/router";
+import { Link, useLocation } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, SearchIcon, TournamentIcon } from "@casumo/cmp-icons";
 import { isTablet, isMobile } from "Components/ResponsiveLayout";
-import { useTranslations, useMarketConfig } from "Utils/hooks";
+import { useTranslations, useMarketConfig, useLanguage } from "Utils/hooks";
+import { routeTranslator } from "Utils";
+import { ROUTE_IDS } from "Src/constants";
 
 const NavLinkDesktop = ({
   Icon,
@@ -98,40 +100,57 @@ const NavLinkMobile = ({
   );
 };
 
-export const TopNav = () => {
+export const TopNav = (props: { basepath: string }) => {
   const t = useTranslations<{
     search: string,
     games: string,
     reel_races: string,
   }>("new-game-browser.top-nav");
   const reelRacesHidden = useMarketConfig("reelRacesHidden");
-  const searchActive = Boolean(useMatch("search"));
-  const reelRacesActive = Boolean(useMatch("reel-races"));
+  const language = useLanguage();
+  const translateRoute = routeTranslator(language);
+  const { pathname } = useLocation();
+  const gamesUrl = `/${props.basepath}/${translateRoute(ROUTE_IDS.GAMES)}`;
+  const reelRacesUrl = `/${props.basepath}/${translateRoute(
+    ROUTE_IDS.REEL_RACES
+  )}`;
+  const searchUrl = `/${props.basepath}/${translateRoute(
+    ROUTE_IDS.GAMES_SEARCH
+  )}`;
+  const reelRacesActive = pathname === reelRacesUrl;
+  const searchActive = pathname === searchUrl;
   const gamesActive = !searchActive && !reelRacesActive;
+
+  const routesProps = [
+    {
+      Icon: PlayIcon,
+      text: t?.games,
+      to: gamesUrl,
+      active: gamesActive,
+    },
+    // writing it as "!reelRacesHidden && { ... }," upsets flow
+    !reelRacesHidden
+      ? {
+          Icon: TournamentIcon,
+          text: t?.reel_races,
+          to: reelRacesUrl,
+          active: reelRacesActive,
+        }
+      : null,
+    {
+      Icon: SearchIcon,
+      text: t?.search,
+      to: searchUrl,
+      active: searchActive,
+    },
+  ].filter(Boolean);
 
   if (isMobile() || isTablet()) {
     return (
       <Flex spacing={isTablet() ? "md" : "sm"}>
-        <NavLinkMobile
-          Icon={PlayIcon}
-          text={t?.games}
-          to="top"
-          active={gamesActive}
-        />
-        {!reelRacesHidden && (
-          <NavLinkMobile
-            Icon={TournamentIcon}
-            text={t?.reel_races}
-            to={`/reel-races`}
-            active={reelRacesActive}
-          />
-        )}
-        <NavLinkMobile
-          Icon={SearchIcon}
-          text={t?.search}
-          to="search"
-          active={searchActive}
-        />
+        {routesProps.map(x => (
+          <NavLinkMobile key={x.to} {...x} />
+        ))}
       </Flex>
     );
   }
@@ -139,25 +158,9 @@ export const TopNav = () => {
   return (
     <Flex className="o-wrapper " align="center" justify="center">
       <Flex spacing="lg">
-        <NavLinkDesktop
-          Icon={PlayIcon}
-          text={t?.games}
-          to="."
-          active={!searchActive}
-        />
-        {!reelRacesHidden && (
-          <NavLinkDesktop
-            Icon={TournamentIcon}
-            text={t?.reel_races}
-            to={`/reel-races`}
-          />
-        )}
-        <NavLinkDesktop
-          Icon={SearchIcon}
-          text={t?.search}
-          to="search"
-          active={searchActive}
-        />
+        {routesProps.map(x => (
+          <NavLinkDesktop key={x.to} {...x} />
+        ))}
       </Flex>
     </Flex>
   );
