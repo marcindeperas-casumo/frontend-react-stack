@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { useIsScreenMinimumTablet, useTranslations } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
+import { isMobile } from "Components/ResponsiveLayout";
 import { showModal } from "Models/modal";
 import { REACT_APP_MODAL } from "Src/constants";
 import ReelRaceLogo from "./reel-race.svg";
@@ -33,7 +34,7 @@ function BannerLink({ children, onClick }: BannerLinkProps) {
 }
 
 export function ReelRacesBanner() {
-  const isNotMobile = useIsScreenMinimumTablet();
+  const isNotMobile = !isMobile();
   const dispatch = useDispatch();
 
   const t = useTranslations<ReelRacesContentPage>("reel-races");
@@ -85,7 +86,7 @@ export function ReelRacesBanner() {
             </Text>
           )}
 
-          {!isNotMobile && (
+          {isMobile() && (
             <Flex
               direction="vertical"
               justify="start"
