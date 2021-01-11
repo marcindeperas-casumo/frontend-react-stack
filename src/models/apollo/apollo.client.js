@@ -1,12 +1,7 @@
 // @flow
-import {
-  ApolloClient,
-  ApolloLink,
-  setContext,
-  HttpLink,
-  createPersistedQueryLink,
-} from "@apollo/client";
+import { ApolloClient, ApolloLink, setContext, HttpLink } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
