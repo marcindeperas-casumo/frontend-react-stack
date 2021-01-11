@@ -11,7 +11,7 @@
   opacity: 0;
   position: absolute;
   top: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.2s;
   width: 100%;
   z-index: -1;
 }
@@ -27,6 +27,10 @@
 
   .c-game-tile-heart {
     fill: #fff;
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 
