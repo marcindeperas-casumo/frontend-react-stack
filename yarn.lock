@@ -1906,17 +1906,17 @@
   dependencies:
     "@casumo/cmp-flex" "^3.0.6"
 
-"@casumo/cmp-chip@^1.1.1":
-  version "1.1.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/1.1.1/b7ac74e6c8ede07b68e519d58644a84c0f27ba153311d4e0676b9b3c4aa4b821#8bc50713db8cb8b42bbbd24fdedbd25949f3897f"
-  integrity sha512-Y2kjU/9VFEZqKJckRfYMAhk2uosCGZBeMeoi9HVqjah7g+Ose080al4el+ccUagUBDtWMwB0rwwTHWPQ5RLZWA==
-  dependencies:
-    "@casumo/cmp-icons" "^3.0.1"
-
 "@casumo/cmp-chip@^2.0.1":
   version "2.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/2.0.2/d02c89a4289f8b188d37a4d2d8d5848a7ed51ff6b524e2550b99ba820eec1dea#fbd1c5288108881d85b26597ed4ec43de5d20399"
   integrity sha512-exVc9wivUZO4qj86zhRlWIgNp7xtdlGBx9lghV0szNEsdmBPYKV9s7RdjPMExZTROB/HuuuZQ2DiOjq4y8Uoog==
+  dependencies:
+    "@casumo/cmp-icons" "^4.1.0"
+
+"@casumo/cmp-chip@^2.0.8":
+  version "2.0.8"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/2.0.8/4423f1ca0eb4b08518a9a933ce45c71497f3dd034d183c53f316fcf6f4d5d339#43e288c0dd7c59f0ceebc78e94569705a7bea57d"
+  integrity sha512-55GAS9zln/8oGVQ4Nvhffv0eEoDWXo0P5Ahqkfm3X2H3WmSonNbV9YtGVqxK1J5RrJk12XavsJopTh2INFwZ0w==
   dependencies:
     "@casumo/cmp-icons" "^4.1.0"
 
@@ -1940,14 +1940,6 @@
   version "4.0.2"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-flex/4.0.2/c9796276b2eff8cd47be0d9c2aab19b5428bb9000aadd7e39430c5204219938a#21e7186c6dd9f9571a0044e9c376415847788d15"
   integrity sha512-qT2zce4s9q9qHSMV7CsTgafH1UnU71X5nw5MbepRaf/S4Bn0CzJFVE5Mrg9yrX7+sHAhaHspjASYmiuu17uoiQ==
-  dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.3"
-    "@casumo/cudl-react-utils" "^1.0.7"
-
-"@casumo/cmp-icons@^3.0.1":
-  version "3.0.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/3.0.2/711e9b9cdf7335ee3a213d8396050e334c0bd86e8d1a6a09a57cc703d246921c#b9e29d880132e2effdb05740c2206f286722c87e"
-  integrity sha512-+wOubrspBEvDJFNxVJ7BWMMlMa6sspJGpUajHh4HSZC1ZcuR2wJ/nu9TmOfhzPaR2+aU/updTpY0KemahnIDxw==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
@@ -16861,6 +16853,16 @@ react-transition-group@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"
   integrity sha512-1qRV1ZuVSdxPlPf4O8t7inxUGpdyO5zG9IoNfJxSO0ImU2A1YWkEQvFPuIPZmMLkg5hYs7vv5mMOyfgSkvAwvw==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    dom-helpers "^5.0.1"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+
+react-transition-group@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.1.tgz#63868f9325a38ea5ee9535d828327f85773345c9"
+  integrity sha512-Djqr7OQ2aPUiYurhPalTrVy9ddmFCCzwhqQmtN+J3+3DzLO209Fdr70QrN8Z3DsglWql6iY1lDWAfpFiBtuKGw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     dom-helpers "^5.0.1"

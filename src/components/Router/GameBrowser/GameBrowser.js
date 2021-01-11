@@ -74,9 +74,15 @@ export const GameBrowser = () => {
 
       <WaitForHostElement hostElementId={hostElementId}>
         <Portal hostElementId={hostElementId}>
-          <GameBrowserSets sets={gameBrowserSetsData} />
+          <div className="o-wrapper u-overflow-x--auto u-overflow-scrolling--touch u-padding-top--lg u-padding-top@mobile u-padding-top@phablet u-padding-x--md u-padding-x--none@desktop">
+            <GameBrowserSets sets={gameBrowserSetsData} />
+          </div>
+
           <React.Suspense fallback={null}>
-            <Router className="u-padding-bottom--2xlg" primary={false}>
+            <Router
+              className="u-padding-bottom--2xlg u-padding-top--4xlg@desktop u-padding-top--xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
+              primary={false}
+            >
               <Redirect from="/" to={redirectTarget} noThrow />
               <TopList path="top" />
               <>

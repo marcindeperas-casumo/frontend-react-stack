@@ -49,7 +49,7 @@ describe("GameTile", () => {
     expect(rendered.find(GameTileInMaintenance)).toHaveLength(1);
   });
 
-  test("should launchGame if component is clickedd", () => {
+  test("should launchGame if component is clicked", () => {
     const rendered = mount(
       <MockStore>
         <GameTile game={gameInfo} />
