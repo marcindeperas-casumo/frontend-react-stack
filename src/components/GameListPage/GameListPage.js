@@ -221,7 +221,7 @@ type SProps = {
 };
 function SortAndFilterSection(props: SProps) {
   return (
-    <Flex className="o-flex--wrap">
+    <Flex className="o-flex--wrap c-games-list-filter">
       <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
         <GameListPageSort
           setSort={props.setSort}
