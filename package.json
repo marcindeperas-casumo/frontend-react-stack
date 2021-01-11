@@ -33,6 +33,7 @@
     "bezier-easing": "^2.1.0",
     "classnames": "^2.2.6",
     "cometd": "^3.1.9",
+    "crypto-hash": "^1.3.0",
     "graphql": "^14.6.0",
     "intersection-observer": "^0.7.0",
     "invariant": "^2.2.4",

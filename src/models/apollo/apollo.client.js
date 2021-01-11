@@ -1,7 +1,9 @@
 // @flow
-import { ApolloClient, ApolloLink, setContext, HttpLink } from "@apollo/client";
+import { ApolloClient, ApolloLink, HttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { InMemoryCache } from "@apollo/client/cache";
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
+import { sha256 } from "crypto-hash";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -89,7 +91,7 @@ function getHttpLink() {
 
 function getLinks() {
   const LINKS = [
-    createPersistedQueryLink({ useGETForHashedQueries: true }),
+    createPersistedQueryLink({ useGETForHashedQueries: true, sha256 }),
     getContextLink(),
     getHttpLink(),
   ];
