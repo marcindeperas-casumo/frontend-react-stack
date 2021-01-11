@@ -7,9 +7,8 @@ import { getGamePage } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import { WaitForHostElement } from "Components/WaitForHostElement";
 import Portal from "Components/Portal";
-import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GetGameSets } from "./GetGameSets.graphql";
-import { TopNavDesktop, TopNavMobile } from "./TopNav";
+import { TopNav } from "./TopNav";
 import { GameBrowserSets } from "./GameBrowserSets";
 import { useScrollPositionPersistor } from "./gameBrowserHooks";
 
@@ -63,12 +62,7 @@ export const GameBrowser = () => {
     <>
       <WaitForHostElement hostElementId={mobileNav}>
         <Portal hostElementId={mobileNav}>
-          <MobileAndTablet>
-            <TopNavMobile />
-          </MobileAndTablet>
-          <Desktop>
-            <TopNavDesktop />
-          </Desktop>
+          <TopNav />
         </Portal>
       </WaitForHostElement>
 
