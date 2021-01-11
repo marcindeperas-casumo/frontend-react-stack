@@ -6,7 +6,7 @@
 }
 
 // stylelint-disable xi/selector-pattern
-.c-dropdown-nav-filter-options {
+.c-games-list-filter-options {
   .t-border-r--pill {
     &:hover {
       background: rgba(cudl-palette(grey, "5"), 0.5) !important;
@@ -15,7 +15,7 @@
   }
 }
 
-.c-toggle-filter {
+.c-games-list-filter {
   button {
     &:hover {
       background: rgba(cudl-palette(grey, "5"), 0.5) !important;
