@@ -20,7 +20,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered, 100);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
@@ -42,7 +42,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered, 100);
 
     expect(rendered.text()).toBe(NOT_FOUND_STRING);
   });
@@ -65,8 +65,8 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
-    await waitAndUpdateWrapper(rendered2);
+    await waitAndUpdateWrapper(rendered, 100);
+    await waitAndUpdateWrapper(rendered2, 100);
 
     expect(rendered.text()).toBe("Liverpool have scored 1 goal");
     expect(rendered2.text()).toBe("Manchester have scored 0 goal");
@@ -84,7 +84,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered, 100);
 
     expect(rendered.text()).toBe("No goals have scored {goalCount} goal");
   });

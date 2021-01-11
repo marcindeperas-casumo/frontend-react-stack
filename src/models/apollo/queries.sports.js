@@ -24,3 +24,18 @@ export const SEARCH_VISIBLE_QUERY = gql`
     isSearchVisible @client
   }
 `;
+
+export const SPORTS_SHELL_QUERY = gql`
+  query SportsShellQuery {
+    hasSelectedFavourites
+    isSearchVisible @client
+  }
+`;
+
+export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
+  query LaunchableKambiClientQuery {
+    userHomepage
+    kambiClientVisible @client
+    isBetslipVisible @client
+  }
+`;

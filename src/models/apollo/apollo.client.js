@@ -17,10 +17,11 @@ import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getAppVersion, isEmbeddedOn } from "Utils";
-import possibleTypes from "./introspections.json";
+// import introspectionsData from "./introspections.json";
+import * as queries from "Models/apollo/queries.sports";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
-import { defaultState } from "./apollo.client.defaultState";
+// import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
@@ -47,10 +48,28 @@ export async function getApolloClient(): Promise<ApolloClientType> {
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache({ possibleTypes });
+  const cache = new InMemoryCache();
 
-  await cache.writeData({
-    data: defaultState,
+  await cache.writeQuery({
+    query: queries.SPORTS_SHELL_QUERY,
+    data: {
+      isSearchVisible: false,
+    },
+  });
+
+  await cache.writeQuery({
+    query: queries.LAUNCHABLE_KAMBI_CLIENT_QUERY,
+    data: {
+      isSearchVisible: false,
+      kambiClientVisible: true,
+    },
+  });
+
+  await cache.writeQuery({
+    query: queries.ACTIVE_MODALS_QUERY,
+    data: {
+      activeModals: [],
+    },
   });
 
   return cache;

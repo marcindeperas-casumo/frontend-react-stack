@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, useEffect } from "react";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { last } from "ramda";
 import { useSelector } from "react-redux";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
@@ -9,17 +9,10 @@ import { currencySelector } from "Models/handshake";
 import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
+import { LAUNCHABLE_KAMBI_CLIENT_QUERY } from "Models/apollo/queries";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
-
-export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
-  query LaunchableKambiClientQuery {
-    userHomepage
-    kambiClientVisible @client
-    isBetslipVisible @client
-  }
-`;
 
 export function LaunchableKambiClient() {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);

@@ -20,7 +20,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered, 100);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
@@ -35,7 +35,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered, 100);
 
     expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
   });

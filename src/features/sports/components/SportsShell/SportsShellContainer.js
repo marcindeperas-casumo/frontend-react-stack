@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { gql, getApolloContext } from "@apollo/client";
+import { getApolloContext } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import bridge from "Src/DurandalReactBridge";
 import {
@@ -24,14 +24,8 @@ import {
   HIDE_SEARCH,
   CLOSE_ALL_MODALS_MUTATION,
 } from "Models/apollo/mutations";
+import { SPORTS_SHELL_QUERY } from "Models/apollo/queries";
 import SportsShellSkeleton from "./SportsShellSkeleton";
-
-export const SPORTS_SHELL_QUERY = gql`
-  query SportsShellQuery {
-    hasSelectedFavourites
-    isSearchVisible @client
-  }
-`;
 
 const bridgeEventHandlers = [
   [

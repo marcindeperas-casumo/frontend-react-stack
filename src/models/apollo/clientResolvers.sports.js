@@ -1,6 +1,6 @@
 /* @flow */
 
-import { uniq } from "ramda";
+import { uniq, T, F } from "ramda";
 import type { InMemoryCache } from "@apollo/client/cache";
 import * as A from "Types/apollo";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
@@ -10,12 +10,17 @@ type Context = {
   cache: InMemoryCache,
 };
 
-export const updateBetslipState = (
+export const updateBetslipState = async (
   _: null,
   { isVisible }: { isVisible: boolean },
   { cache }: Context
 ) => {
-  cache.writeData({ data: { isBetslipVisible: isVisible } });
+  await cache.modify({
+    fields: {
+      isBetslipVisible: () => isVisible,
+    },
+  });
+
   return null;
 };
 
@@ -28,7 +33,7 @@ export const openModal = async (
     query: ACTIVE_MODALS_QUERY,
   }).activeModals;
 
-  updateBetslipState(_, { isVisible: false }, context);
+  await updateBetslipState(_, { isVisible: false }, context);
 
   await context.cache.writeQuery({
     query: ACTIVE_MODALS_QUERY,
@@ -53,7 +58,7 @@ export const closeModal = async (
 
   // if all modals are closed, then allow betslip to be visible
   if (newActiveModals.length === 0) {
-    updateBetslipState(_, { isVisible: true }, context);
+    await updateBetslipState(_, { isVisible: true }, context);
   }
 
   await context.cache.writeQuery({
@@ -68,7 +73,7 @@ export const closeModal = async (
 
 export const closeAllModals = async (_: null, __: null, context: Context) => {
   // all modals will be closed, so allow betslip to be visible
-  updateBetslipState(_, { isVisible: true }, context);
+  await updateBetslipState(_, { isVisible: true }, context);
 
   await context.cache.writeQuery({
     query: ACTIVE_MODALS_QUERY,
@@ -102,31 +107,36 @@ export const navigateClient = async (
   return null;
 };
 
-export const updateKambiClientState = (
+export const updateKambiClientState = async (
   _: null,
   { isVisible }: { isVisible: boolean },
   { cache }: Context
 ) => {
-  cache.writeData({ data: { kambiClientVisible: isVisible } });
-  return null;
-};
-
-export const showSearch = (_: null, __: null, { cache }: Context) => {
-  cache.writeData({
-    data: {
-      kambiClientVisible: false,
-      isSearchVisible: true,
+  await cache.modify({
+    fields: {
+      kambiClientVisible: () => isVisible,
     },
   });
 
   return null;
 };
 
-export const hideSearch = (_: null, __: null, { cache }: Context) => {
-  cache.writeData({
-    data: {
-      kambiClientVisible: true,
-      isSearchVisible: false,
+export const showSearch = async (_: null, __: null, { cache }: Context) => {
+  await cache.modify({
+    fields: {
+      kambiClientVisible: F,
+      isSearchVisible: T,
+    },
+  });
+
+  return null;
+};
+
+export const hideSearch = async (_: null, __: null, { cache }: Context) => {
+  await cache.modify({
+    fields: {
+      kambiClientVisible: T,
+      isSearchVisible: F,
     },
   });
 

@@ -8,7 +8,6 @@ import { gql } from "@apollo/client";
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
 import { InMemoryCache } from "@apollo/client/cache";
-import possibleTypes from "Models/apollo/introspections.json";
 import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
 
 // https://github.com/wesbos/waait/blob/master/index.js
@@ -35,7 +34,7 @@ export async function waitAndUpdateWrapper(
 }
 
 export function getCacheWithIntrospections() {
-  return new InMemoryCache({ possibleTypes });
+  return new InMemoryCache();
 }
 
 export function generateTranslationsQuery(translationKeyIdMap: {
