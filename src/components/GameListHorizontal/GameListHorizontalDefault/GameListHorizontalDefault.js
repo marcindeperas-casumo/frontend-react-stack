@@ -4,7 +4,7 @@ import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { GameTile } from "Components/GameTile";
+import { GameTileContainer as GameTile } from "Components/GameTile/GameTileContainer";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "./GameListHorizontalDefault.scss";

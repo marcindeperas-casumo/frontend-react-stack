@@ -3,6 +3,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import MockDate from "mockdate";
+import { isChromatic } from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
 import { RealityCheck } from "./RealityCheck";
 
@@ -20,7 +21,9 @@ const t = {
 const stories = storiesOf("Compliance/RealityCheck", module);
 const sessionStartedTime = 1575624543323;
 
-MockDate.set(new Date(sessionStartedTime + 360000).toString());
+if (isChromatic) {
+  MockDate.set(new Date(sessionStartedTime + 360000).toString());
+}
 
 const realityCheck = {
   totalWinAmount: {

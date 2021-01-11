@@ -29,6 +29,7 @@ describe("NetentGame", () => {
     gameRef,
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
+    urlPrefix: DEFAULT_LANGUAGE,
   });
 
   it("should call injectScript when onMount is called", () => {
