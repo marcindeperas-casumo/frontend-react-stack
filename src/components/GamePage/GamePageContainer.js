@@ -17,7 +17,7 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop, isMobile } from "Components/ResponsiveLayout";
+import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
@@ -91,10 +91,13 @@ export const GamePageContainer = () => {
         ) : null
       }
       footer={
-        <>
+        <React.Fragment>
           {shouldShowSlotControlSystem && <InfoBar />}
-          {isMobile() && <BlueRibbonJackpotsFooterWidgetContainer />}
-        </>
+          <Mobile>
+            <BlueRibbonJackpotsFooterWidgetContainer />
+            <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
+          </Mobile>
+        </React.Fragment>
       }
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
@@ -124,10 +127,10 @@ export const GamePageContainer = () => {
         </React.Fragment>
       }
       overScreenNotifications={
-        <>
+        <React.Fragment>
           <GamePageNotifications />
           <FullScreenGamePageNotifications />
-        </>
+        </React.Fragment>
       }
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
