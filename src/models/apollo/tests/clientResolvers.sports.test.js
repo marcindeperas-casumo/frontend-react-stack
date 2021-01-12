@@ -202,11 +202,11 @@ describe("Client state resolvers", () => {
           modal: modal1,
         },
       });
-      // const result1 = await client.query({
-      //   query: queries.BETSLIP_VISIBLE_QUERY,
-      // });
+      const result1 = await client.query({
+        query: queries.BETSLIP_VISIBLE_QUERY,
+      });
 
-      // expect(result1.data.isBetslipVisible).toBe(false);
+      expect(result1.data.isBetslipVisible).toBe(false);
 
       await client.mutate({
         mutation: mutations.CLOSE_MODAL_MUTATION,
