@@ -28,6 +28,7 @@ import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
 import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
 import { PaymentResult } from "./Payments";
+import { ReelRacesTAC } from "./ReelRacesTAC";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -119,6 +120,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.PAYMENT_RESULT]: {
     slug: "",
     Content: PaymentResult,
+  },
+  [REACT_APP_MODAL.ID.REEL_RACES_TAC]: {
+    slug: "",
+    Content: ReelRacesTAC,
   },
 };
 
