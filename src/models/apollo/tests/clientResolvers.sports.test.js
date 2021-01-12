@@ -4,6 +4,7 @@ import { InMemoryCache } from "@apollo/client/cache";
 import * as A from "Types/apollo";
 import * as kambi from "Features/sports/kambi";
 import { MODAL } from "Features/sports/components/Modals";
+import { wait } from "Utils/apolloTestUtils";
 import * as queries from "../queries.sports";
 import * as mutations from "../mutations.sports";
 import { defaultState } from "../apollo.client.defaultState";
@@ -206,7 +207,9 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result1.data.isBetslipVisible).toBe(false);
+      wait().then(() => {
+        expect(result1.data.isBetslipVisible).toBe(false);
+      });
 
       await client.mutate({
         mutation: mutations.CLOSE_MODAL_MUTATION,
