@@ -2354,6 +2354,16 @@
     "@casumo/cudl-spacers" "^4.2.0"
     sass-pathfinder "^0.0.5"
 
+"@casumo/cudl-scrollbar@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl-scrollbar/1.1.0/0533b4f5a8c46df2bffbd3f3cc85cc0e5407c1d878bb48f0324e8884d7cbda22#ad19ef676aaeea3dab64ec94b9f3feb4c490a377"
+  integrity sha512-5lNhs2sare0YqLhi+v+Urmp8jKI89+8uBeNMVWgcss7vGit6zzTxwTori3Yd8v4hilcivak9FoN51r5PbOkBAw==
+  dependencies:
+    "@casumo/cudl-colors" "^3.4.0"
+    "@casumo/cudl-compile" "^1.0.8"
+    "@casumo/cudl-variants" "^1.2.0"
+    sass-pathfinder "^0.0.5"
+
 "@casumo/cudl-spacers@^4.0.3":
   version "4.0.7"
   resolved "https://npm.pkg.github.com/download/@casumo/cudl-spacers/4.0.7/b8e6438797a34ddc1e88656121e93cfdff508b4d671e62e155f31b894104870d#6f52ba8cfe1fbe03bb351602a6a357f138e72903"
@@ -2450,10 +2460,10 @@
     "@casumo/cudl-utils" "^1.0.7"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@9.3.3":
-  version "9.3.3"
-  resolved "https://npm.pkg.github.com/download/@casumo/cudl/9.3.3/edec1eadaae34ba37ff6e409bdeb9956ef0cf69fdfbb12592ba9cf48a36684a1#1b2ac96c88ae1c0f66fdfb032626792df5c974c2"
-  integrity sha512-c+eFGyShdrKvjsMVKG3WDPa3kL8SyhqeD00d+mUE+bzToGYj2UM1DETgG91p62jEQxGmEWm5w0jfTTtcF67MRQ==
+"@casumo/cudl@9.3.4":
+  version "9.3.4"
+  resolved "https://npm.pkg.github.com/download/@casumo/cudl/9.3.4/ba1b663f1475dfe06c8cf26c1f153c0cea644ba2d6f4bbbed6fd12a99970980f#80265eeb6809756ad165030f688742f04a81bae5"
+  integrity sha512-szpni0z+T/AkSGWK1zKV+pbCfJwPEwhlFJ5ojykEADTwZdncYpiXp49Orz68UfW29EcZU3kbdL/I5YBLMvYsIw==
   dependencies:
     "@casumo/cudl-appearance" "^1.4.0"
     "@casumo/cudl-border-radius" "^1.3.0"
@@ -2481,6 +2491,7 @@
     "@casumo/cudl-ratio" "^1.1.6"
     "@casumo/cudl-reset" "^1.0.9"
     "@casumo/cudl-scrollable" "^4.0.11"
+    "@casumo/cudl-scrollbar" "^1.1.0"
     "@casumo/cudl-spacers" "^4.2.0"
     "@casumo/cudl-types" "^1.0.8"
     "@casumo/cudl-typography" "^4.2.2"
