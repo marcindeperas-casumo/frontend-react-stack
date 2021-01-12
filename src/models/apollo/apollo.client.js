@@ -17,8 +17,8 @@ import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getAppVersion, isEmbeddedOn } from "Utils";
-// import introspectionsData from "./introspections.json";
 import * as queries from "Models/apollo/queries.sports";
+import introspectionsData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
 // import { defaultState } from "./apollo.client.defaultState";
@@ -48,7 +48,9 @@ export async function getApolloClient(): Promise<ApolloClientType> {
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache();
+  const cache = new InMemoryCache({
+    possibleTypes: introspectionsData,
+  });
 
   await cache.writeQuery({
     query: queries.SPORTS_SHELL_QUERY,

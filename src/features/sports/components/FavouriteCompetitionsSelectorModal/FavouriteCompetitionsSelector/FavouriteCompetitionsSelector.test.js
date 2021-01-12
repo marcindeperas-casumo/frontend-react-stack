@@ -2,8 +2,8 @@ import React from "react";
 import { all, equals, F } from "ramda";
 import { MockedProvider } from "@apollo/client/testing";
 import { mount } from "enzyme";
+import { wait } from "Utils/apolloTestUtils";
 import { isNilOrEmpty } from "Utils";
-import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   FavouriteCompetitionsSelector,
@@ -92,7 +92,7 @@ describe("transformOrphanGroup", () => {
 });
 
 describe("<FavouriteCompetitionsSelector />", () => {
-  test("should render a region competition selector for each region group, and group all leaf regions into a single group", async () => {
+  test("should render a region competition selector for each region group, and group all leaf regions into a single group", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks}>
         <FavouriteCompetitionsSelector
@@ -103,15 +103,15 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
-
-    expect(rendered.find(FavouriteCompetitionsSelectorRegion)).toHaveLength(
-      footballData.data.group.groups.filter(g => !isNilOrEmpty(g.groups))
-        .length + 1
-    );
+    wait().then(() => {
+      expect(rendered.find(FavouriteCompetitionsSelectorRegion)).toHaveLength(
+        footballData.data.group.groups.filter(g => !isNilOrEmpty(g.groups))
+          .length + 1
+      );
+    });
   });
 
-  test("should render the first region as expanded", async () => {
+  test("should render the first region as expanded", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks}>
         <FavouriteCompetitionsSelector
@@ -122,17 +122,17 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
-
-    expect(
-      rendered
-        .find(FavouriteCompetitionsSelectorRegion)
-        .first()
-        .props().isExpanded
-    ).toBe(true);
+    wait().then(() => {
+      expect(
+        rendered
+          .find(FavouriteCompetitionsSelectorRegion)
+          .first()
+          .props().isExpanded
+      ).toBe(true);
+    });
   });
 
-  test("should pass its toggleCompetition and isCompetition logic to the FavouriteCompetitionsSelectorRegion(s)", async () => {
+  test("should pass its toggleCompetition and isCompetition logic to the FavouriteCompetitionsSelectorRegion(s)", () => {
     const toggleCompetition = jest.fn();
     const isCompetitionSelected = jest.fn();
     const rendered = mount(
@@ -145,32 +145,32 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
+    wait().then(() => {
+      expect(
+        rendered
+          .find(FavouriteCompetitionsSelectorRegion)
+          .first()
+          .props().isSelected
+      ).toBe(isCompetitionSelected);
+      expect(
+        rendered
+          .find(FavouriteCompetitionsSelectorRegion)
+          .first()
+          .props().onClick
+      ).toBe(toggleCompetition);
 
-    expect(
-      rendered
-        .find(FavouriteCompetitionsSelectorRegion)
-        .first()
-        .props().isSelected
-    ).toBe(isCompetitionSelected);
-    expect(
-      rendered
-        .find(FavouriteCompetitionsSelectorRegion)
-        .first()
-        .props().onClick
-    ).toBe(toggleCompetition);
-
-    expect(
-      rendered
-        .find(FavouriteCompetitionsSelectorRegion)
-        .last()
-        .props().isSelected
-    ).toBe(isCompetitionSelected);
-    expect(
-      rendered
-        .find(FavouriteCompetitionsSelectorRegion)
-        .last()
-        .props().onClick
-    ).toBe(toggleCompetition);
+      expect(
+        rendered
+          .find(FavouriteCompetitionsSelectorRegion)
+          .last()
+          .props().isSelected
+      ).toBe(isCompetitionSelected);
+      expect(
+        rendered
+          .find(FavouriteCompetitionsSelectorRegion)
+          .last()
+          .props().onClick
+      ).toBe(toggleCompetition);
+    });
   });
 });

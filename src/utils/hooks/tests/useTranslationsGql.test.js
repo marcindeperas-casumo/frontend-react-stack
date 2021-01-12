@@ -1,7 +1,8 @@
 import * as React from "react";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 import { MockedProvider } from "@apollo/client/testing";
-import { gql } from "@apollo/client";
+import gql from "graphql-tag";
+import { wait } from "Utils/apolloTestUtils";
 import { useTranslationsGql } from "../useTranslationsGql";
 
 // We need this because Apollo's useQuery hook works in an async manner.
@@ -65,14 +66,13 @@ describe("Hooks/useTranlationsGql", () => {
 
     expect(result.current.loading).toBe(true);
 
-    act(() => {
-      jest.runAllTimers();
-    });
+    wait().then(o => {
+      expect(result.current.loading).toBe(false);
 
-    expect(result.current.loading).toBe(false);
-    expect(result.current.t).toEqual({
-      one: "See More",
-      two: "See More",
+      expect(result.current.t).toEqual({
+        one: "See More",
+        two: "See More",
+      });
     });
   });
 
