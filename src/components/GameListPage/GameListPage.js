@@ -138,31 +138,29 @@ export function GameListPage({ set }: Props) {
           activeFilters={filters}
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
-        <div className="t-background-white">
-          <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
-          {(() => {
-            if (!data || !data.getGamesPaginated.games) {
-              return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
-            }
+        <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
+        {(() => {
+          if (!data || !data.getGamesPaginated.games) {
+            return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
+          }
 
-            const { games, gamesCount } = data.getGamesPaginated;
+          const { games, gamesCount } = data.getGamesPaginated;
 
-            return (
-              <GamesVirtualList
-                games={games}
-                fetchMoreRows={loadMore}
-                listHash={listHash}
-                rowCount={gamesCount}
-                renderItem={game => (
-                  <GameRow
-                    game={game}
-                    renderText={() => <GameRowText name={game.name} />}
-                  />
-                )}
-              />
-            );
-          })()}
-        </div>
+          return (
+            <GamesVirtualList
+              games={games}
+              fetchMoreRows={loadMore}
+              listHash={listHash}
+              rowCount={gamesCount}
+              renderItem={game => (
+                <GameRow
+                  game={game}
+                  renderText={() => <GameRowText name={game.name} />}
+                />
+              )}
+            />
+          );
+        })()}
       </TrackProvider>
     );
   }
@@ -177,34 +175,34 @@ export function GameListPage({ set }: Props) {
         activeFilters={filters}
         numberOfGames={data?.getGamesPaginated.gamesCount || 0}
       />
-      <div className="t-background-white">
-        <div className="o-wrapper u-padding-y--lg">
-          <div className="u-padding-bottom--lg">{topSection}</div>
-          {(() => {
-            if (!data || !data.getGamesPaginated.games) {
-              if (isLiveCasino) {
-                return <LiveCasinoGamesVirtualGridSkeleton />;
-              }
-
-              return <GamesVirtualGridSkeleton />;
-            }
-
-            const { games, gamesCount } = data.getGamesPaginated;
-            const props = {
-              games,
-              gamesCount,
-              loadMore,
-            };
-
-            if (isLiveCasino) {
-              // $FlowIgnore
-              return <LiveCasinoGamesVirtualGrid {...props} />;
-            }
-
-            // $FlowIgnore: object has few extra fields
-            return <GamesVirtualGrid {...props} />;
-          })()}
+      <div className="o-wrapper">
+        <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
+          {topSection}
         </div>
+        {(() => {
+          if (!data || !data.getGamesPaginated.games) {
+            if (isLiveCasino) {
+              return <LiveCasinoGamesVirtualGridSkeleton />;
+            }
+
+            return <GamesVirtualGridSkeleton />;
+          }
+
+          const { games, gamesCount } = data.getGamesPaginated;
+          const props = {
+            games,
+            gamesCount,
+            loadMore,
+          };
+
+          if (isLiveCasino) {
+            // $FlowIgnore
+            return <LiveCasinoGamesVirtualGrid {...props} />;
+          }
+
+          // $FlowIgnore: object has few extra fields
+          return <GamesVirtualGrid {...props} />;
+        })()}
       </div>
     </>
   );
@@ -223,7 +221,7 @@ type SProps = {
 };
 function SortAndFilterSection(props: SProps) {
   return (
-    <Flex className="o-flex--wrap">
+    <Flex className="o-flex--wrap c-games-list-filter">
       <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
         <GameListPageSort
           setSort={props.setSort}
