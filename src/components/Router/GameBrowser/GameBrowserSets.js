@@ -7,6 +7,7 @@ import * as Icons from "@casumo/cmp-icons";
 import { useTranslations } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+import "./GameBrowserSets.scss";
 
 const GameSetChip = ({
   Icon,
@@ -21,7 +22,7 @@ const GameSetChip = ({
   const active = Boolean(match);
 
   return (
-    <Flex.Item>
+    <Flex.Item className="c-nav-chip-container o-position--relative">
       <Link to={to}>
         <ChipNavigation isActive={active} Icon={Icon}>
           {text}
@@ -51,11 +52,7 @@ export const GameBrowserSets = (props: Props) => {
   }
 
   return (
-    <Flex
-      direction="horizontal"
-      spacing="default"
-      className="o-wrapper u-padding--md@mobile u-padding--md@tablet u-padding-y--lg@desktop u-overflow-x--auto u-overflow-scrolling--touch"
-    >
+    <Flex direction="horizontal" spacing="default">
       <GameSetChip
         to="top"
         Icon={Icons.TopListsIcon}
