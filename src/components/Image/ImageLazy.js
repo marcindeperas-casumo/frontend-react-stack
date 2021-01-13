@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import Observer from "@researchgate/react-intersection-observer";
+import { InView } from "react-intersection-observer";
 import type { Pictures } from "@casumo/cudl-react-prop-types";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import ImageResponsive from "Components/Image/ImageResponsive";
@@ -21,38 +21,23 @@ type Props = {
   height?: number,
 };
 
-type State = {
-  intersectionRatio: number,
-  isIntersecting: boolean,
-};
-
-export default class ImageLazy extends React.Component<Props, State> {
-  state = {
-    intersectionRatio: 0,
-    isIntersecting: false,
-  };
-
-  handleChange = (
-    { intersectionRatio, isIntersecting }: State,
-    unobserve: Function
-  ) => {
-    if (isIntersecting) {
-      unobserve();
-    }
-    this.setState({ intersectionRatio, isIntersecting });
-  };
-
-  render() {
-    const { isIntersecting } = this.state;
-
-    return (
-      <Observer onChange={this.handleChange}>
-        {this.props.images ? (
-          <ImageAdaptive {...this.props} isIntersecting={isIntersecting} />
+const ImageLazy = ({ images, ...props }: Props) => (
+  <InView triggerOnce>
+    {({ inView, ref, entry }) => (
+      <React.Fragment>
+        {images ? (
+          <ImageAdaptive
+            ref={ref}
+            images={images}
+            isIntersecting={inView}
+            {...props}
+          />
         ) : (
-          <ImageResponsive {...this.props} isIntersecting={isIntersecting} />
+          <ImageResponsive ref={ref} {...props} isIntersecting={inView} />
         )}
-      </Observer>
-    );
-  }
-}
+      </React.Fragment>
+    )}
+  </InView>
+);
+
+export default ImageLazy;
