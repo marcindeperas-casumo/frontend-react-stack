@@ -6,7 +6,7 @@ import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerP
 import { LazyCasinoGamesRTPLight } from "Components/CasinoGames";
 
 export const AppLiS = () => (
-  <>
+  <React.StrictMode>
     <Router></Router>
     <LazyPortal
       hostElementId="react-host-deposit-limits"
@@ -17,5 +17,5 @@ export const AppLiS = () => (
     />
     <LazyPlayerPlayOkaySettings />
     <LazyCasinoGamesRTPLight />
-  </>
+  </React.StrictMode>
 );

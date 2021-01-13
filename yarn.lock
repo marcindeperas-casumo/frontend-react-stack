@@ -1944,11 +1944,25 @@
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
+"@casumo/cmp-icon@^1.1.1":
+  version "1.1.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icon/1.1.1/05a080681d17c47692adbff709432cb8b62187cf31008081bc54bae9cc282959#9fdfded86db7d8b972d3663bb3a1858f27cb9f42"
+  integrity sha512-YPHq1XilHrmgH8PGMi6L/8vuZhDfqQD626Oo3rF8IiWT3LllnQyLPlqh69Hm1XRW5idmTxC+eWwouundJjc++A==
+
 "@casumo/cmp-icons@^4.0.0", "@casumo/cmp-icons@^4.1.0":
   version "4.1.0"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.1.0/a18ddbf596e61153c0daa5552a06fc8a2bf47cffea8e1c874652f8a05240b74d#836490637c5dac18a4cd24bec9ae6296632bf354"
   integrity sha512-IG4CUr8DWG1BmAPpm1LRiH292P1wDxwNamo/JlwNJ578PtlfGlHMI8JRDuABLThYJwNUgSfqupD1nKXVUVYsyA==
   dependencies:
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
+
+"@casumo/cmp-icons@^4.2.0":
+  version "4.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.2.1/7223f0e607adbaeaca142d6d90993d345cd30e855e73ce39de44a321b48e4587#51a09fa71b3ea7e673693761237ce6422b546d6b"
+  integrity sha512-RZOa1ql1xZu4FvhmpGidz2suKfqKRHsg2mQKUeQScRNe0/mRbhM7mEo5HtH7PyPGXj7XG5PHLFQxg1Jkmr8LVA==
+  dependencies:
+    "@casumo/cmp-icon" "^1.1.1"
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
@@ -3209,13 +3223,10 @@
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-"@researchgate/react-intersection-observer@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@researchgate/react-intersection-observer/-/react-intersection-observer-1.0.5.tgz#085f104d1f0b21eecc5ef11f30cc5a2ec4426f38"
-  integrity sha512-AR2afu0MM8XuKn05OyT6E4wsxD0xM2521syxQ2mFO3201OE+L0z3BNdxXzlJhxvNLk0+caY3jxKSUObG8DoLCg==
-  dependencies:
-    invariant "^2.2.4"
-    prop-types "^15.7.2"
+"@researchgate/react-intersection-observer@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@researchgate/react-intersection-observer/-/react-intersection-observer-1.3.5.tgz#0321d2dd609aaacdb9bace8004d99c72824fb142"
+  integrity sha512-aYlsex5Dd6BAHMJvJrUoFp8gzgMSL27xFvrxkVYW0bV1RMAapVsO+QeYLtTaSF/QCflktODodvv+wJm49oMnnQ==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
