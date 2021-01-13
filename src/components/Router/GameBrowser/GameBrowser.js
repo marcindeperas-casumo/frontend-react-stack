@@ -59,9 +59,7 @@ export const GameBrowser = () => {
   return (
     <WaitForHostElement hostElementId={hostElementId}>
       <Portal hostElementId={hostElementId}>
-        <div className="o-wrapper u-overflow-x--auto u-overflow-scrolling--touch u-padding-top--lg u-padding-top@mobile u-padding-top@phablet u-padding-x--md u-padding-x--none@desktop">
-          <GameBrowserSets sets={gameBrowserSetsData} />
-        </div>
+        <GameBrowserSets sets={gameBrowserSetsData} />
 
         <React.Suspense fallback={null}>
           <Router
