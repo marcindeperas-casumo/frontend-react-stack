@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/client/testing";
-import { waitAndUpdateWrapper, actWait } from "Utils/apolloTestUtils";
+import { wait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
@@ -13,19 +13,19 @@ import {
 } from "./__mocks__/termMocks";
 
 describe("<PluralisableDictionaryTerm />", () => {
-  test("renders the string for the dictionary key", async () => {
+  test("renders the string for the dictionary key", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <PluralisableDictionaryTerm termKey={WORKING_TERM.key} />
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered, 100);
-
-    expect(rendered.text()).toBe(WORKING_TERM.value);
+    wait(1000).then(() => {
+      expect(rendered.text()).toBe(WORKING_TERM.value);
+    });
   });
 
-  test("renders the plural version for the dictionary key when isPlural is truthy", async () => {
+  test("renders the plural version for the dictionary key when isPlural is truthy", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <PluralisableDictionaryTerm
@@ -35,9 +35,9 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered, 100);
-
-    expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
+    wait(1000).then(() => {
+      expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
+    });
   });
 
   test("renders the LOADING_STRING when translation is loading", () => {
@@ -75,9 +75,10 @@ describe("<PluralisableDictionaryTerm />", () => {
 
     await waitAndUpdateWrapper(renderedSingular);
     await waitAndUpdateWrapper(renderedPlural);
-
-    expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
-    expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
+    wait(1000).then(() => {
+      expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
+      expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
+    });
   });
 
   test("replaces any replacement keys in the translation before rendering", async () => {
@@ -101,12 +102,13 @@ describe("<PluralisableDictionaryTerm />", () => {
 
     await waitAndUpdateWrapper(rendered);
     await waitAndUpdateWrapper(rendered2);
-
-    expect(rendered.text()).toBe("Liverpool have scored 1 goal");
-    expect(rendered2.text()).toBe("Manchester have scored 0 goals");
+    wait(1000).then(() => {
+      expect(rendered.text()).toBe("Liverpool have scored 1 goal");
+      expect(rendered2.text()).toBe("Manchester have scored 0 goals");
+    });
   });
 
-  test("calls children render props with string to be rendered if children function provided", async () => {
+  test("calls children render props with string to be rendered if children function provided", () => {
     const children = jest.fn().mockReturnValue(null);
     const children2 = jest.fn().mockReturnValue(null);
     const children3 = jest.fn().mockReturnValue(null);
@@ -134,10 +136,10 @@ describe("<PluralisableDictionaryTerm />", () => {
     expect(children2).toBeCalledWith(LOADING_STRING);
     expect(children3).toBeCalledWith(LOADING_STRING);
 
-    await actWait();
-
-    expect(children).toBeCalledWith(WORKING_TERM.value);
-    expect(children2).toBeCalledWith(WORKING_TERM.pluralValue);
-    expect(children3).toBeCalledWith(NOT_FOUND_STRING);
+    wait(1000).then(() => {
+      expect(children).toBeCalledWith(WORKING_TERM.value);
+      expect(children2).toBeCalledWith(WORKING_TERM.pluralValue);
+      expect(children3).toBeCalledWith(NOT_FOUND_STRING);
+    });
   });
 });
