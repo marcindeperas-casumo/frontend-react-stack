@@ -1,0 +1,11 @@
+overwrite: true
+schema: "schema.json"
+documents: "src/**/!(useTranslationsGql|apolloTestUtils|apollo|*.test|*.stories).{js,graphql}"
+generates:
+  # src/models/apollo/introspections.json:
+  #   plugins:
+  #     - "flow"
+  #     - "flow-operations"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

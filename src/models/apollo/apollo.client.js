@@ -52,21 +52,23 @@ export async function getCache() {
     possibleTypes: introspectionsData,
   });
 
+  // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
+  // write default state in cache, is the right place?
   await cache.writeQuery({
     query: queries.SPORTS_SHELL_QUERY,
     data: {
       isSearchVisible: false,
+      hasSelectedFavourites: false,
     },
   });
-
   await cache.writeQuery({
     query: queries.LAUNCHABLE_KAMBI_CLIENT_QUERY,
     data: {
-      isSearchVisible: false,
+      userHomepage: "home",
+      isBetslipVisible: true,
       kambiClientVisible: true,
     },
   });
-
   await cache.writeQuery({
     query: queries.ACTIVE_MODALS_QUERY,
     data: {
