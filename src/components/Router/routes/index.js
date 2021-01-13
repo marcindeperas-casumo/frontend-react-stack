@@ -16,3 +16,4 @@ export * from "./LazyRealMoneyGamePage";
 export * from "./LazyCasinoGamesPage";
 export * from "./LazyCasinoGamesSlotsPage";
 export * from "./LazyReelRacesPage";
+export * from "./LazyTopNav";
