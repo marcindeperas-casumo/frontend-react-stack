@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import classNames from "classnames";
 import { isMobile } from "Components/ResponsiveLayout";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
@@ -156,11 +155,7 @@ export const GameSearch = (props: Props) => {
 
   return (
     <div className="o-wrapper">
-      <div
-        className={classNames(
-          "c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-x--md@mobile u-padding-y--md u-padding-y--lg@desktop u-padding-x--none@desktop"
-        )}
-      >
+      <div className="c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-x--md@mobile u-padding-y--md u-padding-y--lg@desktop u-padding-x--none@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}
