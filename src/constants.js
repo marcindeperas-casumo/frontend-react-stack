@@ -106,6 +106,7 @@ export const ROUTE_IDS = {
   PRACTICE_NATIVE: "PRACTICE_NATIVE",
   TOP_LISTS: "TOP_LISTS",
   REEL_RACES: "REEL_RACES",
+  GAMES: "GAMES",
   GAMES_SEARCH: "GAMES_SEARCH",
   GAME_DETAILS: "GAME_DETAILS",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
@@ -145,6 +146,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAME_DETAILS]: "{{play}}/:slug",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
+  [ROUTE_IDS.GAMES]: "{{games}}",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
@@ -458,6 +460,7 @@ export const REACT_APP_MODAL = {
     GGL_POST_PANIC_BUTTON: "GGL_POST_PANIC_BUTTON",
     GGL_PRE_PANIC_BUTTON: "GGL_PRE_PANIC_BUTTON",
     PAYMENT_RESULT: "PAYMENT_RESULT",
+    REEL_RACES_TAC: "REEL_RACES_TAC",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
