@@ -190,9 +190,9 @@ For more information on how to configure Sonar itself, please refer to the [jenk
 ```
     "sonarlint.connectedMode.servers": [
         {
-           "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
-           "serverUrl": "http://sonar.casumo.cloud", //http://sonar.casumo.cloud/account -> Security -> Generate token
-           "token": "<myToken>" //http://sonar.casumo.cloud/account -> Security -> Generate token. Make sure to have your own user set up first!
+           "serverId": "<key>", // https://sonarcloud.io/admin/settings -> System -> System -> Server ID
+           "serverUrl": "https://sonarcloud.io", // https://sonarcloud.io/account -> Security -> Generate token
+           "token": "<myToken>" // https://sonarcloud.io/account -> Security -> Generate token. Make sure to have your own user set up first!
         }
     ],
 ```
@@ -201,7 +201,11 @@ For more information on how to configure Sonar itself, please refer to the [jenk
 
 ```
     "sonarlint.connectedMode.project": {
-        "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
-        "projectKey": "frontend-react-stack"
-      }
+        "serverId": "<key>", // https://sonarcloud.io/admin/settings -> System -> System -> Server ID
+        "projectKey": "Casumo_:frontend-react-stack",
+        "organization": "casumo"
+    },
+    "sonar.pullrequest.provider": "github"
 ```
+
+not using `sonar.casumo.cloud` anymore, more info [Migrating existing Sonarqube configurations to Sonarcloud])https://confluence.casumocave.com/display/XB/SonarQube#SonarQube-MigratingexistingSonarqubeconfigurationstoSonarcloud)
