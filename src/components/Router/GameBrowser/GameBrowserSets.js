@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import { Link, useMatch } from "@reach/router";
 import { ChipNavigation } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
@@ -41,6 +42,7 @@ type Props = {
   }>,
 };
 export const GameBrowserSets = (props: Props) => {
+  const topActive = Boolean(useMatch("top"));
   const searchActive = Boolean(useMatch("search"));
   const detailsActive = Boolean(useMatch("details/:slug"));
   const t = useTranslations<{
@@ -51,8 +53,35 @@ export const GameBrowserSets = (props: Props) => {
     return null;
   }
 
+  const commonClasses = [
+    "o-wrapper",
+    "u-padding-top--lg",
+    "u-padding-top@mobile",
+    "u-padding-top@phablet",
+    "u-padding-x--md",
+    "u-padding-x--none@desktop",
+    "u-overflow-x--auto",
+    "u-overflow-scrolling--touch",
+  ];
+
+  const topPageBottomPaddings = [
+    "u-padding-bottom--lg@desktop",
+    "u-padding-bottom",
+  ];
+  const defaultBottomPaddings = [
+    "u-padding-bottom--4xlg@desktop",
+    "u-padding-bottom--xlg",
+  ];
+
   return (
-    <Flex direction="horizontal" spacing="default">
+    <Flex
+      direction="horizontal"
+      spacing="default"
+      className={classNames(
+        commonClasses,
+        topActive ? topPageBottomPaddings : defaultBottomPaddings
+      )}
+    >
       <GameSetChip
         to="top"
         Icon={Icons.TopListsIcon}
