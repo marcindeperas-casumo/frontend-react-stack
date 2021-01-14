@@ -1,11 +1,11 @@
 // @flow
 import React, { PureComponent } from "react";
+import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary, ButtonPrimary } from "@casumo/cmp-button";
 import { prop } from "ramda";
-import cx from "classnames";
 import { launchGame } from "Services/LaunchGameService";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
