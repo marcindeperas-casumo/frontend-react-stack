@@ -155,11 +155,10 @@ export const GameSearch = (props: Props) => {
   }, [props.query]);
 
   return (
-    <div className="c-game-search o-wrapper t-background-white u-margin-top--xlg@desktop">
+    <div className="o-wrapper">
       <div
         className={classNames(
-          "c-game-search-bar u-position-sticky--top u-padding--lg@desktop t-border-bottom t-border-grey-5",
-          isMobile() ? "t-background-grey-0" : "t-background-white"
+          "c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-x--md@mobile u-padding-y--md u-padding-y--lg@desktop u-padding-x--none@desktop"
         )}
       >
         <GameSearchInput
@@ -167,12 +166,9 @@ export const GameSearch = (props: Props) => {
           clearSearch={clearSearch}
           noResults={noResults}
           placeholder={inputPromptPlaceholder}
-          {...(!isMobile()
-            ? { colorBackgroundClass: "t-background-grey-0" }
-            : {})}
         />
       </div>
-      <div className="u-padding-x--xlg@desktop">
+      <div className="t-border-r--md t-border-r--none@mobile t-background-white">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
         {searchResults.length === 0 && loading ? (
           <GameListSkeleton hasTitle={false} big={!isMobile()} />
