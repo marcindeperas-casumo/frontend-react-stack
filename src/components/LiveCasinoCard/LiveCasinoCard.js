@@ -3,8 +3,9 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
-import { ButtonPrimary } from "@casumo/cmp-button";
+import { ButtonSecondary, ButtonPrimary } from "@casumo/cmp-button";
 import { prop } from "ramda";
+import cx from "classnames";
 import { launchGame } from "Services/LaunchGameService";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -14,6 +15,7 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
 import * as A from "Types/apollo";
+import "./LiveCasinoCard.scss";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
@@ -68,6 +70,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
 
   renderContent = () => {
     const { game } = this.props;
+    const { isInMaintenance } = game;
 
     return (
       <Flex onClick={this.onLaunchGame} className="u-padding-x--md">
@@ -87,9 +90,18 @@ export class LiveCasinoCard extends PureComponent<Props> {
             eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <ButtonPrimary size="sm" className="u-text-transform-capitalize">
-              <span>{this.props.t.playNowText}</span>
-            </ButtonPrimary>
+            {isInMaintenance ? (
+              <ButtonSecondary
+                size="sm"
+                className="u-text-transform-capitalize c-live-casino-card-play-button-maintenance"
+              >
+                <span>{this.props.t.playNowText}</span>
+              </ButtonSecondary>
+            ) : (
+              <ButtonPrimary size="sm" className="u-text-transform-capitalize">
+                <span>{this.props.t.playNowText}</span>
+              </ButtonPrimary>
+            )}
           </TrackClick>
         </Flex.Item>
       </Flex>
@@ -149,6 +161,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
   };
 
   render() {
+    const { isInMaintenance } = this.props.game;
     if (!this.liveCasinoLobby) {
       return (
         <Card
@@ -165,7 +178,11 @@ export class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <Card
-        className="u-width--full u-height--full t-background-white t-border-r--md t-elevation--10 u-overflow--hidden"
+        className={cx(
+          "u-width--full u-height--full t-background-white t-border-r--md t-elevation--10 u-overflow--hidden",
+          isInMaintenance &&
+            "c-live-casino-card-maintenance o-position--relative"
+        )}
         spacing="md"
         header={this.renderHeader}
         content={this.renderContent}
