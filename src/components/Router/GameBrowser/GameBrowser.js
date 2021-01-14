@@ -63,7 +63,7 @@ export const GameBrowser = () => {
 
         <React.Suspense fallback={null}>
           <Router
-            className="u-padding-bottom--2xlg u-padding-top--4xlg@desktop u-padding-top--xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
+            className="u-padding-bottom--2xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
             primary={false}
           >
             <Redirect from="/" to={redirectTarget} noThrow />
