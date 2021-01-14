@@ -1,5 +1,14 @@
 // stylelint-disable xi/selector-pattern
 .c-live-casino-card-maintenance {
+  &::after {
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
   img {
     filter: grayscale(1);
   }
