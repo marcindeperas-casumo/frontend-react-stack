@@ -29,3 +29,25 @@
 .c-card-data__badges-mask {
   background: linear-gradient(270deg, rgba(#000, 1) 0%, rgba(#000, 0) 30%);
 }
+
+// stylelint-disable xi/selector-pattern
+.c-live-casino-card-maintenance {
+  .c-card-data__badges-mask {
+    cursor: not-allowed !important;
+
+    &:hover {
+      background-color: rgba(cudl-palette(grey, "5"), 1) !important;
+    }
+
+    &::after {
+      background: rgba(cudl-palette(black, "base"), 0.75);
+      bottom: 0;
+      content: "";
+      height: 40px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+// stylelint-enable xi/selector-pattern

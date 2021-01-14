@@ -13,16 +13,6 @@
     filter: grayscale(1);
   }
 
-  .c-card-data__badges-mask::after {
-    background: rgba(cudl-palette(black, "base"), 0.75);
-    bottom: 0;
-    content: "";
-    height: 40px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-
   .c-live-casino-card-play-button-maintenance {
     cursor: not-allowed !important;
     &:hover {
