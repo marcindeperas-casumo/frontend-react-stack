@@ -1998,20 +1998,20 @@
     "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-picture@^1.1.2":
-  version "1.1.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-picture/1.1.2/5663288b3160e0d76aa9d7cc64daba5d7c85be86b3adf85a4df6444707417f2b#6fd4d0d7bc1553a0a833a7b2ec93be51576b35aa"
-  integrity sha512-XVJ27nP1i+zQZU10wZgvUyIp1KnXaZ2midx4CHlpV2FuJm1JwVhT+Ns42iudYlI2814hFz70i7n6QgRTyd23GA==
+"@casumo/cmp-picture@^1.2.0":
+  version "1.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-picture/1.2.1/69a0be224d7d2f4d17603c4cf7b7e95fbe2fade3980e1de1ad4f41b0cf8e18dc#e93f16db9c9a85398e477ac632e63a1f3211c511"
+  integrity sha512-FqYySW5A9FlNAMNtJHRebDziqOVEGdBOaWTN1/d4VH0Sbwu7oBELTKcuGKrdPIOrJlIXxUrsYZNHC7wgFBMk5Q==
   dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.1"
-    "@casumo/cudl-react-utils" "^1.0.6"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-responsive-image@^1.3.9":
-  version "1.3.9"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-responsive-image/1.3.9/597e379073d24982078a8a3ae2fa919b1a9bd6018d90d10782f8985cee3b9df7#749507deea37d69f867b09cf498790fafddd82a5"
-  integrity sha512-eIkZfsq8VrpuoyLAX/31rUwDBUSnELMEYCh/RS3l2TX0a90nHHkAX608w1Qggiu8LE5jIDKQpNh7yjYS34WmJQ==
+"@casumo/cmp-responsive-image@^1.4.0":
+  version "1.4.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-responsive-image/1.4.1/15add263650c342f0e233ef4351f27c16ad88d012100e6081640076783dee5a8#39e0e2ded75badd21d6f098c0a434670661533d9"
+  integrity sha512-fqQ5brvjIXQUtfUeH2FHcmLsSjQsLhlVV7Ams09WJSf3crPzm7jCq7UB3w249CB8SDq+WwKU5hngEccZmgcY5w==
   dependencies:
-    "@casumo/cudl-react-utils" "^1.0.6"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
 "@casumo/cmp-scrollable-paginated@^1.1.3":
   version "1.1.4"
