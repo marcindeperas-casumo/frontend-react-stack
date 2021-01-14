@@ -10,7 +10,7 @@ type Props = {
   alt?: string,
 };
 
-const ImageResponsive = React.forwardRef<Props, HTMLDivElement>(
+const ImageResponsive = React.forwardRef<Props, HTMLImageElement>(
   (
     { isIntersecting, src = "", imgixOpts = { w: 170 }, ...rest }: Props,
     ref

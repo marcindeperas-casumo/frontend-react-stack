@@ -16,7 +16,7 @@ type Props = {
 // loading `<Picture>` on top when ready instead,
 // not replacing when `isIntersecting` untill we find a better fix
 // another solution could be delaying the replacement
-const ImageAdaptive = React.forwardRef<Props, HTMLDivElement>(
+const ImageAdaptive = React.forwardRef<Props, HTMLElement>(
   ({ className = "", images, isIntersecting, alt }: Props, ref) => (
     <React.Fragment>
       <ResponsiveImage
