@@ -24,7 +24,7 @@
     "@casumo/cmp-table": "^3.0.0",
     "@casumo/cmp-text": "^2.0.5",
     "@casumo/cmp-text-input": "^2.0.2",
-    "@casumo/cudl": "9.3.3",
+    "@casumo/cudl": "9.3.4",
     "@casumo/is-mobile": "^1.1.0",
     "@casumo/sports-navigation": "^1.7.1",
     "@reach/router": "^1.3.3",
