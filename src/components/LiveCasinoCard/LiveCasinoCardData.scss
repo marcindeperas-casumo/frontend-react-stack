@@ -33,8 +33,6 @@
 // stylelint-disable xi/selector-pattern
 .c-live-casino-card-maintenance {
   .c-card-data__badges-mask {
-    cursor: not-allowed !important;
-
     &:hover {
       background-color: rgba(cudl-palette(grey, "5"), 1) !important;
     }
