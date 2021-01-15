@@ -147,18 +147,20 @@ export function GameListPage({ set }: Props) {
           const { games, gamesCount } = data.getGamesPaginated;
 
           return (
-            <GamesVirtualList
-              games={games}
-              fetchMoreRows={loadMore}
-              listHash={listHash}
-              rowCount={gamesCount}
-              renderItem={game => (
-                <GameRow
-                  game={game}
-                  renderText={() => <GameRowText name={game.name} />}
-                />
-              )}
-            />
+            <div className="t-background-white">
+              <GamesVirtualList
+                games={games}
+                fetchMoreRows={loadMore}
+                listHash={listHash}
+                rowCount={gamesCount}
+                renderItem={game => (
+                  <GameRow
+                    game={game}
+                    renderText={() => <GameRowText name={game.name} />}
+                  />
+                )}
+              />
+            </div>
           );
         })()}
       </TrackProvider>
