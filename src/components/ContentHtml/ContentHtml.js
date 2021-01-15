@@ -41,7 +41,8 @@ export function ContentHtml({
         <DangerousHtml element="div" html={html} />
         {expandable && (
           <>
-            <ContentFader />
+            <ContentFader to="top" />
+            <ContentFader to="bottom" />
             <MaximizeIcon
               onClick={onClickExpand}
               className={cx(
