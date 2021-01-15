@@ -208,4 +208,4 @@ For more information on how to configure Sonar itself, please refer to the [jenk
     "sonar.pullrequest.provider": "github"
 ```
 
-not using `sonar.casumo.cloud` anymore, more info [Migrating existing Sonarqube configurations to Sonarcloud])https://confluence.casumocave.com/display/XB/SonarQube#SonarQube-MigratingexistingSonarqubeconfigurationstoSonarcloud)
+More info [migrating existing Sonarqube configurations to Sonarcloud])https://confluence.casumocave.com/display/XB/SonarQube#SonarQube-MigratingexistingSonarqubeconfigurationstoSonarcloud)
