@@ -1,7 +1,7 @@
 // TODO: Make these components lazy-loaded
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
-import MustDropJackpotsList from "Components/MustDropJackpotsList";
+import { MustDropJackpotsListContainer } from "Components/MustDropJackpotsList";
 import { GameListHorizontalCMS } from "Components/GameListHorizontal/GameListHorizontalCMS";
 import { ContentGameList as GameListVertical } from "Components/ContentGameList";
 import { ContentImage } from "Components/ContentImage";
@@ -47,7 +47,7 @@ export const COMPONENT_MAPPING = {
   PROMOTION_TITLE: PromotionTitle,
   PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
   MUST_DROP_JACKPOTS: ContentMustDropJackpotsWidget,
-  MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsList,
+  MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsListContainer,
   PRIZE_LIST: PromotionPrizeTable,
   REEL_RACES: ReelRacesList,
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,

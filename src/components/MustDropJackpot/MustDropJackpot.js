@@ -14,12 +14,12 @@ export const MustDropJackpot = ({ jackpot }: Props) => {
 
   return (
     <Media
-      className="o-flex--1 u-padding-x--lg u-padding-y--md t-background-grey-90"
+      className="u-padding--md"
       renderImage={() => (
         <img
           className="u-display--block"
-          width={48}
-          height={48}
+          width={64}
+          height={64}
           alt=""
           src={image}
         />
