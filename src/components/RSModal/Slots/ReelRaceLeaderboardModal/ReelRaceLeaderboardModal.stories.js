@@ -18,6 +18,9 @@ stories.add("Someone won the race", () => {
   return (
     <ReelRaceLeaderboardModal
       acceptModal={action("acceptModal")}
+      closeModal={() => {}}
+      dismissModal={() => {}}
+      t={{}}
       config={{
         input: {
           playerId: "player-123",
@@ -42,6 +45,9 @@ stories.add("Player won the race", () => {
   return (
     <ReelRaceLeaderboardModal
       acceptModal={action("acceptModal")}
+      closeModal={() => {}}
+      dismissModal={() => {}}
+      t={{}}
       config={{
         input: {
           playerId,
@@ -66,6 +72,9 @@ stories.add("Player scored 3rd", () => {
   return (
     <ReelRaceLeaderboardModal
       acceptModal={action("acceptModal")}
+      closeModal={() => {}}
+      dismissModal={() => {}}
+      t={{}}
       config={{
         input: {
           playerId,
