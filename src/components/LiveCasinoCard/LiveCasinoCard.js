@@ -93,7 +93,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
             {isInMaintenance ? (
               <ButtonSecondary
                 size="sm"
-                className="u-text-transform-capitalize c-live-casino-card-play-button-maintenance"
+                className="u-text-transform-capitalize c-live-casino-card-maintenance__play-button"
               >
                 <span>{this.props.t.playNowText}</span>
               </ButtonSecondary>

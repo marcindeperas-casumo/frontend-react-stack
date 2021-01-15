@@ -13,7 +13,7 @@
     filter: grayscale(1);
   }
 
-  .c-live-casino-card-play-button-maintenance {
+  &__play-button {
     cursor: not-allowed !important;
     &:hover {
       background-color: rgba(cudl-palette(grey, "5"), 1) !important;
