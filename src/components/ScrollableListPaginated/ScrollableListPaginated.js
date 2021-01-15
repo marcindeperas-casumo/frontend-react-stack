@@ -11,11 +11,9 @@ import "./ScrollableListPaginated.scss";
 
 export type SeeMoreProps = {
   /** The text to render on the seeMore button. */
-  text?: ?string,
+  text: string,
   /** The link where to redirect once clicking the seeMore button. */
-  url?: string,
-  /** The seeMore text color */
-  color?: string,
+  url: string,
 };
 
 type Props = {
@@ -61,7 +59,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
               onClick={previousClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--left`}
             >
-              <ArrowRightIcon className="t-color-grey-90 Icons-c-icon--flip-horiz" />
+              <ArrowRightIcon className="t-color-grey-90" />
             </div>
           )}
         </Flex.Item>
