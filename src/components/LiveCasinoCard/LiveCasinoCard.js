@@ -185,7 +185,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
         className={cx(
           "u-width--full u-height--full t-background-white t-border-r--md t-elevation--10 u-overflow--hidden",
           isInMaintenance &&
-            "c-live-casino-card-maintenance o-position--relative"
+            "c-live-casino-card-maintenance o-position--relative u-pointer--none"
         )}
         spacing="md"
         header={this.renderHeader}
