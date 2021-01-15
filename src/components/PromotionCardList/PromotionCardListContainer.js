@@ -24,7 +24,7 @@ const PromotionCardListContainer = ({ slug }: Props) => {
     seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
   });
 
-  if (loading || cmsLoading) {
+  if (loading || cmsLoading || !t || !t.seeMoreText) {
     return <PromotionCardListSkeleton />;
   }
 
