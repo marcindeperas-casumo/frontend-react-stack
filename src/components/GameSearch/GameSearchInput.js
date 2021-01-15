@@ -67,17 +67,15 @@ export class GameSearchInput extends PureComponent<Props, State> {
 
   render() {
     return (
-      <div className="u-padding--md">
-        <SearchInput
-          autoFocus
-          value={this.state.query}
-          onChange={this.handleSearchInput}
-          onClear={this.handleClearSearchInput}
-          placeholder={this.props.placeholder}
-          onFocus={this.onFocus}
-          colorBackgroundClass={this.props.colorBackgroundClass}
-        />
-      </div>
+      <SearchInput
+        autoFocus
+        value={this.state.query}
+        onChange={this.handleSearchInput}
+        onClear={this.handleClearSearchInput}
+        placeholder={this.props.placeholder}
+        onFocus={this.onFocus}
+        colorBackgroundClass={this.props.colorBackgroundClass}
+      />
     );
   }
 }

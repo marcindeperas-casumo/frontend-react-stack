@@ -59,13 +59,11 @@ export const GameBrowser = () => {
   return (
     <WaitForHostElement hostElementId={hostElementId}>
       <Portal hostElementId={hostElementId}>
-        <div className="o-wrapper u-overflow-x--auto u-overflow-scrolling--touch u-padding-top--lg u-padding-top@mobile u-padding-top@phablet u-padding-x--md u-padding-x--none@desktop">
-          <GameBrowserSets sets={gameBrowserSetsData} />
-        </div>
+        <GameBrowserSets sets={gameBrowserSetsData} />
 
         <React.Suspense fallback={null}>
           <Router
-            className="u-padding-bottom--2xlg u-padding-top--4xlg@desktop u-padding-top--xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
+            className="u-padding-bottom--2xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
             primary={false}
           >
             <Redirect from="/" to={redirectTarget} noThrow />
