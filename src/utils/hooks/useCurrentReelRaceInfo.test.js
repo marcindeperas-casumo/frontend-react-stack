@@ -101,7 +101,6 @@ describe("useCurrentReelRaceInfo", () => {
         tournamentId: id,
         formattedPrizes,
         leaderboard: [leaderboardEntryOther],
-        optedIn: false,
       });
     });
     test("first position", () => {
@@ -118,6 +117,7 @@ describe("useCurrentReelRaceInfo", () => {
       ).toEqual({
         isInProgress: true,
         hasEnded: false,
+        optedIn: false,
         game,
         startTime,
         endTime,
