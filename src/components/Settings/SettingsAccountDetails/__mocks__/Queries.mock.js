@@ -1,5 +1,5 @@
 // @flow
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { PLAYER_SETTINGS_QUERY } from "../PlayerSettingsQuery.graphql";
 
 export const playerSettingsQueryMock = {

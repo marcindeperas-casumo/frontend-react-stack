@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import ReactModal from "react-modal";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "@apollo/client";
 import { App } from "Components/App";
 import { apolloClientPromise } from "Models/apollo/apollo.client";
 import { ErrorBoundary } from "Components/ErrorBoundary";

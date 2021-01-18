@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";

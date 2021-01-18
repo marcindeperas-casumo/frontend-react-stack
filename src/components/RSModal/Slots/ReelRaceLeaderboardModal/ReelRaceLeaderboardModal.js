@@ -7,24 +7,20 @@ import Text from "@casumo/cmp-text";
 import { TournamentIcon } from "@casumo/cmp-icons";
 import { getOrdinalSuffix, interpolateWithJSX } from "Utils";
 import { useLocale, useTranslationsGql } from "Utils/hooks";
-import { type GamePageRrLeaderboardInput } from "Models/modal";
+import type { ModalContentComponent } from "Components/RSModal/rsmodal.mappings";
 import {
   ReelRaceLeaderboardResults,
   ReelRaceLeaderboardListEntry,
 } from "Components/ReelRaceLeaderboard";
 import FeaturedImage from "./featuredImage.svg";
 
-type Props = {
-  acceptModal: () => void,
-  config: {
-    input?: GamePageRrLeaderboardInput,
-  },
-};
-
 const cmsPrefix = "root:iframe-solution:fields";
 const LEADERBOARD_SIZE = 20;
 
-export function ReelRaceLeaderboardModal({ acceptModal, config }: Props) {
+export function ReelRaceLeaderboardModal({
+  acceptModal,
+  config,
+}: ModalContentComponent<{}>) {
   const locale = useLocale();
   const { t, loading: tLoading } = useTranslationsGql({
     playerPlacedHigh: `${cmsPrefix}.rr_leaderboard_modal_title_player_placed_high`,

@@ -1,7 +1,6 @@
 // @flow
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
-import * as A from "Types/apollo";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 
@@ -30,6 +29,7 @@ export type ModalId =
   | "GGL_PRE_PANIC_BUTTON"
   | "GGL_POST_PANIC_BUTTON"
   | "PAYMENT_RESULT"
+  | "CONTENT_HTML"
   | "REEL_RACES_TAC";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
@@ -41,18 +41,10 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 (REACT_APP_MODAL.ID: { [ModalId]: ModalId });
 (REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
 */
-export type GamePageRrLeaderboardInput = {|
-  playerId: string,
-  playerName: string,
-  position: number,
-  points: number,
-  leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
-  prizes: Array<string>,
-|};
 
 export type ModalConfig = {
   mustAccept?: boolean,
-  input?: GamePageRrLeaderboardInput,
+  input?: any,
 };
 
 type ModalState = {

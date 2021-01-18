@@ -51,6 +51,11 @@ const GameMaintenanceText = () => {
     </Text>
   );
 };
+
+const GameStudioText = ({ studioName }) => (
+  <div className="t-color-grey-20">{studioName}</div>
+);
+
 const gameRowHighlightSearch = query => game => (
   <GameRow
     big={!isMobile()}
@@ -61,7 +66,11 @@ const gameRowHighlightSearch = query => game => (
         search={{ query, highlightSearchQuery: true }}
         isInMaintenance={game.isInMaintenance}
         renderSecondaryText={() =>
-          game.isInMaintenance && <GameMaintenanceText />
+          game.isInMaintenance ? (
+            <GameMaintenanceText />
+          ) : (
+            <GameStudioText studioName={game.gameStudio} />
+          )
         }
       />
     )}

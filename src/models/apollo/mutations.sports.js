@@ -1,6 +1,6 @@
 /* @flow */
 
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const NAVIGATE_CLIENT_MUTATION = gql`
   mutation NavigateClient($path: String!, $trackingLocation: String!) {
