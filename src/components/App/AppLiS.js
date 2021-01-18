@@ -4,6 +4,7 @@ import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerPlayOkaySettings";
 import { LazyCasinoGamesRTPLight } from "Components/CasinoGames";
+import { LazyFooterTermsAndConditionsForBonuses } from "Components/Router/routes/LazyFooterTermsAndConditionsForBonuses";
 
 export const AppLiS = () => (
   <>
@@ -17,5 +18,6 @@ export const AppLiS = () => (
     />
     <LazyPlayerPlayOkaySettings />
     <LazyCasinoGamesRTPLight />
+    <LazyFooterTermsAndConditionsForBonuses />
   </>
 );

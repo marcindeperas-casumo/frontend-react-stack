@@ -3,6 +3,10 @@
   font-size: cudl-font-size(default, $cudl-font-sizes);
   line-height: 1.5;
 
+  &--expandable {
+    height: 300px;
+  }
+
   p {
     margin-bottom: 1rem;
   }
