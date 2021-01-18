@@ -173,8 +173,6 @@ Writing tests is an even better way of documenting your code!
 
 [SonarQube](https://www.sonarqube.org/) is a Continuous Inspection tool capable of showing the current health of an application and highlighting newly introduced issues.
 
-The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=frontend-react-stack).
-
 It is advised that all issues raised by Sonar be solved prior to any code merge. To help with that, using [SonarLint's VSCode extension](https://www.sonarlint.org/vscode/) is recommended. Instructions on setting up the extension can be found on the [Configuring SonarLint](#configuring-sonarlint-with-vscode) session below.
 
 For more information on how to configure Sonar itself, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project.
