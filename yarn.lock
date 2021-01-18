@@ -1913,11 +1913,25 @@
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
+"@casumo/cmp-icon@^1.1.1":
+  version "1.1.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icon/1.1.1/05a080681d17c47692adbff709432cb8b62187cf31008081bc54bae9cc282959#9fdfded86db7d8b972d3663bb3a1858f27cb9f42"
+  integrity sha512-YPHq1XilHrmgH8PGMi6L/8vuZhDfqQD626Oo3rF8IiWT3LllnQyLPlqh69Hm1XRW5idmTxC+eWwouundJjc++A==
+
 "@casumo/cmp-icons@^4.0.0", "@casumo/cmp-icons@^4.1.0":
   version "4.1.0"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.1.0/a18ddbf596e61153c0daa5552a06fc8a2bf47cffea8e1c874652f8a05240b74d#836490637c5dac18a4cd24bec9ae6296632bf354"
   integrity sha512-IG4CUr8DWG1BmAPpm1LRiH292P1wDxwNamo/JlwNJ578PtlfGlHMI8JRDuABLThYJwNUgSfqupD1nKXVUVYsyA==
   dependencies:
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
+
+"@casumo/cmp-icons@^4.2.0":
+  version "4.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/4.2.1/7223f0e607adbaeaca142d6d90993d345cd30e855e73ce39de44a321b48e4587#51a09fa71b3ea7e673693761237ce6422b546d6b"
+  integrity sha512-RZOa1ql1xZu4FvhmpGidz2suKfqKRHsg2mQKUeQScRNe0/mRbhM7mEo5HtH7PyPGXj7XG5PHLFQxg1Jkmr8LVA==
+  dependencies:
+    "@casumo/cmp-icon" "^1.1.1"
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
@@ -1953,20 +1967,20 @@
     "@casumo/cudl-breakpoints" "^1.1.7"
     "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-picture@^1.1.2":
-  version "1.1.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-picture/1.1.2/5663288b3160e0d76aa9d7cc64daba5d7c85be86b3adf85a4df6444707417f2b#6fd4d0d7bc1553a0a833a7b2ec93be51576b35aa"
-  integrity sha512-XVJ27nP1i+zQZU10wZgvUyIp1KnXaZ2midx4CHlpV2FuJm1JwVhT+Ns42iudYlI2814hFz70i7n6QgRTyd23GA==
+"@casumo/cmp-picture@^1.2.0":
+  version "1.2.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-picture/1.2.1/69a0be224d7d2f4d17603c4cf7b7e95fbe2fade3980e1de1ad4f41b0cf8e18dc#e93f16db9c9a85398e477ac632e63a1f3211c511"
+  integrity sha512-FqYySW5A9FlNAMNtJHRebDziqOVEGdBOaWTN1/d4VH0Sbwu7oBELTKcuGKrdPIOrJlIXxUrsYZNHC7wgFBMk5Q==
   dependencies:
-    "@casumo/cudl-react-prop-types" "^2.1.1"
-    "@casumo/cudl-react-utils" "^1.0.6"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-responsive-image@^1.3.9":
-  version "1.3.9"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-responsive-image/1.3.9/597e379073d24982078a8a3ae2fa919b1a9bd6018d90d10782f8985cee3b9df7#749507deea37d69f867b09cf498790fafddd82a5"
-  integrity sha512-eIkZfsq8VrpuoyLAX/31rUwDBUSnELMEYCh/RS3l2TX0a90nHHkAX608w1Qggiu8LE5jIDKQpNh7yjYS34WmJQ==
+"@casumo/cmp-responsive-image@^1.4.0":
+  version "1.4.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-responsive-image/1.4.1/15add263650c342f0e233ef4351f27c16ad88d012100e6081640076783dee5a8#39e0e2ded75badd21d6f098c0a434670661533d9"
+  integrity sha512-fqQ5brvjIXQUtfUeH2FHcmLsSjQsLhlVV7Ams09WJSf3crPzm7jCq7UB3w249CB8SDq+WwKU5hngEccZmgcY5w==
   dependencies:
-    "@casumo/cudl-react-utils" "^1.0.6"
+    "@casumo/cudl-react-utils" "^1.0.7"
 
 "@casumo/cmp-scrollable-paginated@^1.1.3":
   version "1.1.4"
@@ -3119,14 +3133,6 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@researchgate/react-intersection-observer/-/react-intersection-observer-1.0.1.tgz#dfa43457a8712f7eaf8c5f7957385b5fdedf4800"
   integrity sha512-Px8Y5jpnHC9UZLzVNmcJ4/vRYgMFfjwmCJn2N+qCBmbXRxIbPf9CrCy5WDF9Mr3DXDHZT4VtoaNRn65OO+nwoQ==
-  dependencies:
-    invariant "^2.2.4"
-    prop-types "^15.7.2"
-
-"@researchgate/react-intersection-observer@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@researchgate/react-intersection-observer/-/react-intersection-observer-1.0.5.tgz#085f104d1f0b21eecc5ef11f30cc5a2ec4426f38"
-  integrity sha512-AR2afu0MM8XuKn05OyT6E4wsxD0xM2521syxQ2mFO3201OE+L0z3BNdxXzlJhxvNLk0+caY3jxKSUObG8DoLCg==
   dependencies:
     invariant "^2.2.4"
     prop-types "^15.7.2"
@@ -8972,10 +8978,10 @@ eslint-plugin-react@^7.16.0:
     prop-types "^15.7.2"
     resolve "^1.12.0"
 
-eslint-plugin-sonarjs@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-sonarjs/-/eslint-plugin-sonarjs-0.4.0.tgz#85b7dce10b9a464fb1062f0afc88694b6faaba84"
-  integrity sha512-l8E4ueMKVtEcocINHSNVH/YBSmDDXZlPEbud7bagRGyoCeB0otoyltoro5kdnIvVzS5usUwvjzMocHnPax2FEw==
+eslint-plugin-sonarjs@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-sonarjs/-/eslint-plugin-sonarjs-0.5.0.tgz#ce17b2daba65a874c2862213a9e38e8986ad7d7d"
+  integrity sha512-XW5MnzlRjhXpIdbULC/qAdJYHWw3rRLws/DyawdlPU/IdVr9AmRK1r2LaCvabwKOAW2XYYSo3kDX58E4MrB7PQ==
 
 eslint-scope@3.7.1:
   version "3.7.1"
@@ -16679,6 +16685,11 @@ react-inspector@^4.0.0:
     "@babel/runtime" "^7.6.3"
     is-dom "^1.0.9"
     prop-types "^15.6.1"
+
+react-intersection-observer@^8.31.0:
+  version "8.31.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.31.0.tgz#0ed21aaf93c4c0475b22b0ccaba6169076d01605"
+  integrity sha512-XraIC/tkrD9JtrmVA7ypEN1QIpKc52mXBH1u/bz/aicRLo8QQEJQAMUTb8mz4B6dqpPwyzgjrr7Ljv/2ACDtqw==
 
 react-is@^16.10.2, react-is@^16.9.0:
   version "16.11.0"

@@ -755,6 +755,7 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   backgroundImage: string,
   logo: string,
   name: string,
+  gameStudio: string,
   slug: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
@@ -2670,6 +2671,7 @@ export type GameDetails_Game = {
   id: string,
   name: string,
   logo: string,
+  gameStudio: string,
   backgroundImage: string,
   slug: string,
   description: ?string,
@@ -2699,6 +2701,7 @@ export type GameRow_Game_lobby = {
 export type GameRow_Game = {
   id: string,
   backgroundImage: string,
+  gameStudio: string,
   logo: string,
   name: string,
   slug: string,
