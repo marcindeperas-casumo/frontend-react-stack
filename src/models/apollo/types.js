@@ -1,6 +1,6 @@
 // @flow
-import type { MutationRenderPropFunction } from "react-apollo";
-import type { FetchPolicy } from "apollo-client";
+import type { MutationRenderPropFunction } from "@apollo/client/react/components";
+import type { FetchPolicy } from "@apollo/client";
 import * as React from "react";
 
 export type MutationProps<D, V> = {

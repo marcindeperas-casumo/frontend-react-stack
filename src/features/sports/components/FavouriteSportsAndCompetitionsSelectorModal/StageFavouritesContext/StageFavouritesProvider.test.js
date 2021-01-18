@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { actWait } from "Utils/apolloTestUtils";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {

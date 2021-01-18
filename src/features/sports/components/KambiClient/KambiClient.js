@@ -1,9 +1,8 @@
 /* @flow */
 import React from "react";
-import gql from "graphql-tag";
+import { gql, getApolloContext } from "@apollo/client";
 import classNames from "classnames";
-import type { ExecutionResult } from "@apollo/react-hooks";
-import { getApolloContext } from "@apollo/react-hooks";
+import type { ExecutionResult } from "@apollo/client";
 import { pick } from "ramda";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";

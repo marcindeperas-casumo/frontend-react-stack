@@ -1,13 +1,9 @@
 // @flow
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { setContext } from "apollo-link-context";
-import { HttpLink } from "apollo-link-http";
-import { createPersistedQueryLink } from "apollo-link-persisted-queries";
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from "apollo-cache-inmemory";
+import { ApolloClient, ApolloLink, HttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { InMemoryCache } from "@apollo/client/cache";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
+import { sha256 } from "crypto-hash";
 import { isMobile } from "@casumo/is-mobile";
 import { DEVICES } from "Src/constants";
 import {
@@ -21,10 +17,11 @@ import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getAppVersion, isEmbeddedOn } from "Utils";
-import introspectionQueryResultData from "./introspections.json";
+import * as queries from "Models/apollo/queries.sports";
+import introspectionsData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
-import { defaultState } from "./apollo.client.defaultState";
+// import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
@@ -50,15 +47,33 @@ export async function getApolloClient(): Promise<ApolloClientType> {
   });
 }
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData,
-});
-
 export async function getCache() {
-  const cache = new InMemoryCache({ fragmentMatcher });
+  const cache = new InMemoryCache({
+    possibleTypes: introspectionsData,
+  });
 
-  await cache.writeData({
-    data: defaultState,
+  // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
+  // write default state in cache, is the right place?
+  await cache.writeQuery({
+    query: queries.SPORTS_SHELL_QUERY,
+    data: {
+      isSearchVisible: false,
+      hasSelectedFavourites: false,
+    },
+  });
+  await cache.writeQuery({
+    query: queries.LAUNCHABLE_KAMBI_CLIENT_QUERY,
+    data: {
+      userHomepage: "home",
+      isBetslipVisible: true,
+      kambiClientVisible: true,
+    },
+  });
+  await cache.writeQuery({
+    query: queries.ACTIVE_MODALS_QUERY,
+    data: {
+      activeModals: [],
+    },
   });
 
   return cache;
@@ -99,7 +114,7 @@ function getHttpLink() {
 
 function getLinks() {
   const LINKS = [
-    createPersistedQueryLink({ useGETForHashedQueries: true }),
+    createPersistedQueryLink({ useGETForHashedQueries: true, sha256 }),
     getContextLink(),
     getHttpLink(),
   ];
