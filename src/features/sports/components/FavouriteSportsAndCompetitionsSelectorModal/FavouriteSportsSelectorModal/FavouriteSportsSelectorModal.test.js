@@ -51,7 +51,7 @@ describe("<FavouriteSportsSelectorModal />", () => {
     await waitAndUpdateWrapper(rendered);
     await waitAndUpdateWrapper(renderedNoFavourites);
 
-    expect(rendered.find("ModalButtonFooter").length).toBe(1);
+    expect(rendered.find("Button").length).toBe(1);
     expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
   });
 });
