@@ -78,10 +78,10 @@ export const ProfileIconWithDrawer = ({
 
   React.useEffect(() => {
     if (
-      currentRace?.isInProgress &&
-      currentRace?.optedIn &&
       isDesktop() &&
-      !pinnedWidgets.includes(DRAWERS.REEL_RACES)
+      !pinnedWidgets.includes(DRAWERS.REEL_RACES) &&
+      currentRace?.isInProgress &&
+      currentRace?.optedIn
     ) {
       togglePin(DRAWERS.REEL_RACES);
     }
