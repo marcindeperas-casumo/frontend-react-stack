@@ -113,7 +113,7 @@ export default class Jackpots extends React.PureComponent<Props> {
               itemCount={this.columns.length}
               title={this.props.title}
               itemRenderer={this.desktopJackpotColumnRenderer}
-              tileHeight={315}
+              tileHeight={240}
             />
           </Desktop>
         </div>
