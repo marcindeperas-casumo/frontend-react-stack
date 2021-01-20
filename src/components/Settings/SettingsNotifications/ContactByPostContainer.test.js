@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
+import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { ContactByPostContainer } from "./ContactByPostContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
@@ -43,25 +43,15 @@ describe("SettingsNotifications - Contact By Post", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.runAllTimers();
-      rendered.update();
+    wait().then(() => {
+      // initial value should be the one from the query
+      expect(isCheckboxChecked(rendered)).toBe(true);
+      actWithClick(rendered);
+      // optimisticResponse kicks in here
+      expect(isCheckboxChecked(rendered)).toBe(false);
+      //actual response from the mutation
+      expect(isCheckboxChecked(rendered)).toBe(false);
     });
-
-    // initial value should be the one from the query
-    expect(isCheckboxChecked(rendered)).toBe(true);
-
-    actWithClick(rendered);
-    // optimisticResponse kicks in here
-    expect(isCheckboxChecked(rendered)).toBe(false);
-
-    act(() => {
-      jest.runAllTimers();
-      rendered.update();
-    });
-
-    //actual response from the mutation
-    expect(isCheckboxChecked(rendered)).toBe(false);
   });
 
   test("should revert to initial value on error", () => {
@@ -86,15 +76,10 @@ describe("SettingsNotifications - Contact By Post", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.runAllTimers();
-      rendered.update();
+    wait().then(() => {
+      expect(isCheckboxChecked(rendered)).toBe(true);
+      actWithClick(rendered);
+      expect(isCheckboxChecked(rendered)).toBe(true);
     });
-
-    expect(isCheckboxChecked(rendered)).toBe(true);
-
-    actWithClick(rendered);
-
-    expect(isCheckboxChecked(rendered)).toBe(true);
   });
 });

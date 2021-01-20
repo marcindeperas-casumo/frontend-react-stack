@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import TrackClick from "Components/TrackClick";

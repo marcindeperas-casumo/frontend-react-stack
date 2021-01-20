@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import classNames from "classnames";
 import { isMobile } from "Components/ResponsiveLayout";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
@@ -52,6 +51,11 @@ const GameMaintenanceText = () => {
     </Text>
   );
 };
+
+const GameStudioText = ({ studioName }) => (
+  <div className="t-color-grey-20">{studioName}</div>
+);
+
 const gameRowHighlightSearch = query => game => (
   <GameRow
     big={!isMobile()}
@@ -62,7 +66,11 @@ const gameRowHighlightSearch = query => game => (
         search={{ query, highlightSearchQuery: true }}
         isInMaintenance={game.isInMaintenance}
         renderSecondaryText={() =>
-          game.isInMaintenance && <GameMaintenanceText />
+          game.isInMaintenance ? (
+            <GameMaintenanceText />
+          ) : (
+            <GameStudioText studioName={game.gameStudio} />
+          )
         }
       />
     )}
@@ -155,24 +163,16 @@ export const GameSearch = (props: Props) => {
   }, [props.query]);
 
   return (
-    <div className="c-game-search o-wrapper t-background-white u-margin-top--xlg@desktop">
-      <div
-        className={classNames(
-          "c-game-search-bar u-position-sticky--top u-padding--lg@desktop t-border-bottom t-border-grey-5",
-          isMobile() ? "t-background-grey-0" : "t-background-white"
-        )}
-      >
+    <div className="o-wrapper">
+      <div className="c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-x--md@mobile u-padding-y--md u-padding-y--lg@desktop u-padding-x--none@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}
           noResults={noResults}
           placeholder={inputPromptPlaceholder}
-          {...(!isMobile()
-            ? { colorBackgroundClass: "t-background-grey-0" }
-            : {})}
         />
       </div>
-      <div className="u-padding-x--xlg@desktop">
+      <div className="t-border-r--md t-border-r--none@mobile t-background-white">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
         {searchResults.length === 0 && loading ? (
           <GameListSkeleton hasTitle={false} big={!isMobile()} />

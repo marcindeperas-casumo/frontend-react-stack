@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from "react";
-import { Query } from "react-apollo";
-import type { FetchPolicy } from "apollo-client";
+import { Query } from "@apollo/client/react/components";
+import type { FetchPolicy } from "@apollo/client";
 import { isEmpty } from "ramda";
 
 export type SimpleQueryProps<D, V> = {

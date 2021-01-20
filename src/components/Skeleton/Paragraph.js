@@ -7,11 +7,12 @@ import type { fontSizes } from "@casumo/cudl-react-prop-types";
 
 type Props = {
   size: fontSizes,
+  className?: string,
 };
 
 export function ParagraphSkeleton(props: Props) {
   return (
-    <Text size={props.size}>
+    <Text size={props.size} className={props.className}>
       <Skeleton width="100%" height="5em">
         {R.times(
           i => (

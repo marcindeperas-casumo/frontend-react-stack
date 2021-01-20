@@ -173,8 +173,6 @@ Writing tests is an even better way of documenting your code!
 
 [SonarQube](https://www.sonarqube.org/) is a Continuous Inspection tool capable of showing the current health of an application and highlighting newly introduced issues.
 
-The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=frontend-react-stack).
-
 It is advised that all issues raised by Sonar be solved prior to any code merge. To help with that, using [SonarLint's VSCode extension](https://www.sonarlint.org/vscode/) is recommended. Instructions on setting up the extension can be found on the [Configuring SonarLint](#configuring-sonarlint-with-vscode) session below.
 
 For more information on how to configure Sonar itself, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project.
@@ -190,9 +188,9 @@ For more information on how to configure Sonar itself, please refer to the [jenk
 ```
     "sonarlint.connectedMode.servers": [
         {
-           "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
-           "serverUrl": "http://sonar.casumo.cloud", //http://sonar.casumo.cloud/account -> Security -> Generate token
-           "token": "<myToken>" //http://sonar.casumo.cloud/account -> Security -> Generate token. Make sure to have your own user set up first!
+           "serverId": "<key>", // https://sonarcloud.io/admin/settings -> System -> System -> Server ID
+           "serverUrl": "https://sonarcloud.io", // https://sonarcloud.io/account -> Security -> Generate token
+           "token": "<myToken>" // https://sonarcloud.io/account -> Security -> Generate token. Make sure to have your own user set up first!
         }
     ],
 ```
@@ -201,7 +199,11 @@ For more information on how to configure Sonar itself, please refer to the [jenk
 
 ```
     "sonarlint.connectedMode.project": {
-        "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
-        "projectKey": "frontend-react-stack"
-      }
+        "serverId": "<key>", // https://sonarcloud.io/admin/settings -> System -> System -> Server ID
+        "projectKey": "Casumo_:frontend-react-stack",
+        "organization": "casumo"
+    },
+    "sonar.pullrequest.provider": "github"
 ```
+
+More info [migrating existing Sonarqube configurations to Sonarcloud])https://confluence.casumocave.com/display/XB/SonarQube#SonarQube-MigratingexistingSonarqubeconfigurationstoSonarcloud)

@@ -4,6 +4,7 @@ fragment GameRow_Game on Game {
   logo
   name
   slug
+  gameStudio
   lobby {
     bets {
       min

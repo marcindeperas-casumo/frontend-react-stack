@@ -1,7 +1,6 @@
 // @flow
 import * as R from "ramda";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { useQuery, gql } from "@apollo/client";
 import { generateQueries } from "./useTranslationsGql.utils";
 
 export function useTranslationsGql<T: Object>(

@@ -6,7 +6,7 @@ import {
   Mutation,
   type MutationOptions,
   type QueryResult,
-} from "react-apollo";
+} from "@apollo/client/react/components";
 import { adopt } from "react-adopt";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
