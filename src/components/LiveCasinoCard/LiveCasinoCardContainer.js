@@ -15,9 +15,5 @@ export const LiveCasinoCardContainer = ({ game }: Props) => {
     play_now: string,
   }>("mobile.live-casino-cards-content");
 
-  if (!t) {
-    return null;
-  }
-
   return <LiveCasinoCard t={t} game={game} />;
 };

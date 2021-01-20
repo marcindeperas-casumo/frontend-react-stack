@@ -17,7 +17,7 @@ import * as A from "Types/apollo";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
-  t: {
+  t?: {
     play_now: string,
     bet_behind: string,
     open_seats: string,
@@ -88,7 +88,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
             <ButtonPrimary size="sm" className="u-text-transform-capitalize">
-              <span>{this.props.t.play_now}</span>
+              <span>{this.props.t?.play_now}</span>
             </ButtonPrimary>
           </TrackClick>
         </Flex.Item>
