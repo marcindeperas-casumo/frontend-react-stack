@@ -6,7 +6,7 @@ import { isChromatic } from "Storybook/isNotChromatic";
 import { FiveMinuteBreakDrawerWidget } from "./FiveMinuteBreakDrawerWidget";
 
 if (isChromatic) {
-  MockDate.set(new Date("2020-01-01T14:54:10").toString());
+  MockDate.set(new Date("2021-01-01T00:00:00").toString());
 }
 
 const t = {
@@ -20,8 +20,17 @@ const stories = storiesOf("Compliance/GGL/FiveMinuteBreakDrawerWidget", module);
 stories.add("Default", () => {
   return (
     <FiveMinuteBreakDrawerWidget
-      timeLeft={Date.now() + 60 * 1000}
-      timeElapsed={Date.now()}
+      timeElapsed={Date.now() - 900 * 1000}
+      timeLeft={Date.now() + 2700 * 1000}
+      t={t}
+    />
+  );
+});
+stories.add("Less than a minute left", () => {
+  return (
+    <FiveMinuteBreakDrawerWidget
+      timeElapsed={Date.now() - 3550 * 1000}
+      timeLeft={Date.now() + 51 * 1000}
       t={t}
     />
   );
