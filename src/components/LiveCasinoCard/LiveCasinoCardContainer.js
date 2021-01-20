@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { LiveCasinoCard } from "Components/LiveCasinoCard/LiveCasinoCard";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useTranslations } from "Utils/hooks";
 import * as A from "Types/apollo";
 
 type Props = {
@@ -9,13 +9,13 @@ type Props = {
 };
 
 export const LiveCasinoCardContainer = ({ game }: Props) => {
-  const { t, loading } = useTranslationsGql({
-    betBehindText: "root:mobile.live-casino-cards-content:fields.bet_behind",
-    openSeatsText: "root:mobile.live-casino-cards-content:fields.open_seats",
-    playNowText: "root:mobile.live-casino-cards-content:fields.play_now",
-  });
+  const t = useTranslations<{
+    betBehindText: string,
+    openSeatsText: string,
+    playNowText: string,
+  }>("mobile.live-casino-cards-content");
 
-  if (loading) {
+  if (!t) {
     return null;
   }
 
