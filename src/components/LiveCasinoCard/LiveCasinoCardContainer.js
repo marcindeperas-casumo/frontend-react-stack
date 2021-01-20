@@ -10,14 +10,20 @@ type Props = {
 
 export const LiveCasinoCardContainer = ({ game }: Props) => {
   const t = useTranslations<{
-    betBehindText: string,
-    openSeatsText: string,
-    playNowText: string,
+    bet_behind: string,
+    open_seats: string,
+    play_now: string,
   }>("mobile.live-casino-cards-content");
 
-  if (!t) {
+  const translations = {
+    betBehindText: t?.bet_behind,
+    openSeatsText: t?.open_seats,
+    playNowText: t?.play_now,
+  };
+
+  if (!translations) {
     return null;
   }
 
-  return <LiveCasinoCard t={t} game={game} />;
+  return <LiveCasinoCard t={translations} game={game} />;
 };
