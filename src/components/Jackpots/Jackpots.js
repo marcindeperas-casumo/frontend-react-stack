@@ -11,6 +11,8 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { generateColumns } from "Utils";
 
+const GRID_TILE_HEIGHT = 240;
+
 const PADDING_PER_DEVICE = {
   default: "md",
   tablet: "3xlg",
@@ -113,7 +115,7 @@ export default class Jackpots extends React.PureComponent<Props> {
               itemCount={this.columns.length}
               title={this.props.title}
               itemRenderer={this.desktopJackpotColumnRenderer}
-              tileHeight={315}
+              tileHeight={GRID_TILE_HEIGHT}
             />
           </Desktop>
         </div>
