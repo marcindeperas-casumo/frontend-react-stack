@@ -36,6 +36,7 @@ export type GameProviderModelProps = {
   gameRef: GameRef,
   language: AppLanguage,
   environment: AppEnvironment,
+  urlPrefix: string,
 };
 
 export type IframeGameApiMessage = ?string | ?{};

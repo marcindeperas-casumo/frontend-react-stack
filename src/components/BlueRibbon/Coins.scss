@@ -1,0 +1,67 @@
+// stylelint-disable xi/selector-pattern
+.c-coins-container {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+
+@media (orientation: portrait) {
+  .c-coins-container {
+    top: calc(50% + 50px);
+  }
+}
+
+@media (orientation: landscape) and (min-width: 900px) {
+  .c-coins-container {
+    transform: scale(1.5);
+  }
+}
+
+.c-blue-ribbon-coin {
+  opacity: 1;
+  position: absolute;
+  transition: opacity 0.7s linear;
+}
+
+.c-scale-in-center {
+  animation: scale-in-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+@keyframes scale-in-center {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lighten {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes darken {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.c-lighten {
+  animation: lighten 0.1s linear;
+  opacity: 1 !important;
+}
+
+.c-darken {
+  animation: darken 0.1s linear;
+  opacity: 0.6 !important;
+}

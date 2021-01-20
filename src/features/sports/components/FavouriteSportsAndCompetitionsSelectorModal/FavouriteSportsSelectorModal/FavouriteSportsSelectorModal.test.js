@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
-import { actWait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
+import { MockedProvider } from "@apollo/client/testing";
+import { wait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import {
   withFavouritesMock,
@@ -13,7 +13,7 @@ import competitionsSuggestionsMock from "../StageFavouritesContext/__mocks__/com
 import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 
 describe("<FavouriteSportsSelectorModal />", () => {
-  test("should render save button only when there are selected sports", async () => {
+  test("should render save button only when there are selected sports", () => {
     const rendered = mount(
       <MockedProvider
         mocks={[
@@ -47,11 +47,11 @@ describe("<FavouriteSportsSelectorModal />", () => {
       </MockedProvider>
     );
 
-    await actWait(20);
-    await waitAndUpdateWrapper(rendered);
-    await waitAndUpdateWrapper(renderedNoFavourites);
-
-    expect(rendered.find("ModalButtonFooter").length).toBe(1);
-    expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
+    wait().then(async () => {
+      await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(renderedNoFavourites);
+      expect(rendered.find("ModalButtonFooter").length).toBe(1);
+      expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
+    });
   });
 });

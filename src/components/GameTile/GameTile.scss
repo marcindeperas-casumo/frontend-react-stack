@@ -1,0 +1,48 @@
+/* stylelint-disable xi/selector-pattern */
+.c-game-tile-container::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(76, 0, 194, 0.8) 51.62%
+  ) !important;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.2s;
+  width: 100%;
+  z-index: -1;
+}
+
+.c-game-tile-container:hover::before {
+  opacity: 1;
+}
+
+.c-game-tile-container:hover {
+  .c-game-tile-play-button {
+    display: flex !important;
+  }
+
+  .c-game-tile-heart {
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.c-game-tile-play-button {
+  top: 40%;
+
+  .c-game-tile-button-text {
+    top: 2px;
+  }
+}
+
+.c-game-tile-bottom-bar {
+  bottom: 0;
+  position: absolute;
+}
+/* stylelint-enable xi/selector-pattern */

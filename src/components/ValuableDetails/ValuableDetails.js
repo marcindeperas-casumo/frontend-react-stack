@@ -29,7 +29,7 @@ import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
-  expiresToday: "red",
+  expiresToday: "red-30",
   default: "grey-50",
 };
 
@@ -208,7 +208,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     return (
       <div>
-        <div className="o-ratio o-ratio--valuable-details">
+        <div className="o-ratio c-valuable-details t-border-r--md">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
@@ -220,7 +220,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </MaskImage>
           </div>
           <Flex
-            className="o-ratio__content u-margin-bottom--md"
+            className="o-ratio__content u-margin-bottom--md c-valuable-details__valuable-card-wrapper u-margin-bottom--lg"
             justify="end"
             align="center"
             direction="vertical"
@@ -228,11 +228,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <div data-test-id="valuable-renderer-wrapper">{children}</div>
           </Flex>
         </div>
-        <div className="u-margin-top--2xlg u-padding-x--md">
+        <div className="u-padding-x--md">
           <Flex
             direction="vertical"
             align="center"
-            className="u-margin-bottom--lg"
+            className="u-margin-bottom--lg u-margin-top--xlg"
           >
             <Flex.Item>
               <Text className="center">
@@ -251,27 +251,29 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 />
               </Flex.Item>
             )}
-            <Flex.Item className="u-margin-top--lg">
-              <Badge
-                tag="p"
-                size="2xs"
-                data-test="valuable-expiration-badge"
-                bgColor={this.expirationBadgeColour}
-                className="u-text-transform-uppercase u-font-weight-bold"
-                radius="sm"
-              >
-                {`${expirationTimeLabel} ${expirationValueText}`}
-              </Badge>
-            </Flex.Item>
-            <Flex.Item className="u-margin-top--lg">
-              {caveat && (
+            {expirationTimeLabel && (
+              <Flex.Item className="u-margin-top--lg">
+                <Badge
+                  tag="p"
+                  size="2xs"
+                  data-test="valuable-expiration-badge"
+                  bgColor={this.expirationBadgeColour}
+                  className="u-text-transform-uppercase u-font-weight-bold"
+                  radius="sm"
+                >
+                  {`${expirationTimeLabel} ${expirationValueText}`}
+                </Badge>
+              </Flex.Item>
+            )}
+            {caveat && (
+              <Flex.Item className="u-margin-top--lg">
                 <Text className="t-color-grey-20" size="sm">
                   <DangerousHtml html={caveat} />
                 </Text>
-              )}
-            </Flex.Item>
-            <Flex.Item className="u-width--1/3 u-margin-y--xlg">
-              <hr className="c-valuable-details__separator t-border t-border-r--pill" />
+              </Flex.Item>
+            )}
+            <Flex.Item className="u-width--1/3 u-margin-y--md">
+              <hr className="c-valuable-details__separator t-border t-border-r--pill t-border-grey-0" />
             </Flex.Item>
             <Flex.Item>
               <Text tag="strong" className="t-color-grey-70" size="xs">

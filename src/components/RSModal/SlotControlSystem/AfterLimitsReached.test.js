@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { act } from "react-dom/test-utils";
+import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
@@ -94,12 +94,9 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.advanceTimersByTime(10);
-      rendered.update();
+    wait().then(() => {
+      expect(rendered.isEmptyRender()).toEqual(true);
     });
-
-    expect(rendered.isEmptyRender()).toEqual(true);
   });
 
   test("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion; also Session Details are injected with latest played game.", () => {
@@ -120,16 +117,12 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.advanceTimersByTime(10);
-      rendered.update();
+    wait().then(() => {
+      const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
+
+      expect(foundWrapper).toHaveLength(1);
+      expect(foundWrapper.prop("playAgainGame")).toEqual(deadOrAlive2);
     });
-
-    const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
-
-    expect(foundWrapper).toHaveLength(1);
-
-    expect(foundWrapper.prop("playAgainGame")).toEqual(deadOrAlive2);
   });
 
   test("it renders SessionDetailsForLimitsReached if there is last ended session and no active exclusion. If we're on game page Session Details are injected with the current game.", () => {
@@ -152,16 +145,12 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.advanceTimersByTime(10);
-      rendered.update();
+    wait().then(() => {
+      const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
+
+      expect(foundWrapper).toHaveLength(1);
+      expect(foundWrapper.prop("playAgainGame")).toEqual(gonzosQuest);
     });
-
-    const foundWrapper = rendered.find(SessionDetailsForLimitsReached);
-
-    expect(foundWrapper).toHaveLength(1);
-
-    expect(foundWrapper.prop("playAgainGame")).toEqual(gonzosQuest);
   });
 
   test("it renders SessionDetailsForLimitsReachedExcluded if there is last ended session and active exclusion", () => {
@@ -184,13 +173,10 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
       </MockStore>
     );
 
-    act(() => {
-      jest.advanceTimersByTime(10);
-      rendered.update();
+    wait().then(() => {
+      expect(
+        rendered.find(SessionDetailsForLimitsReachedExcluded)
+      ).toHaveLength(1);
     });
-
-    expect(rendered.find(SessionDetailsForLimitsReachedExcluded)).toHaveLength(
-      1
-    );
   });
 });

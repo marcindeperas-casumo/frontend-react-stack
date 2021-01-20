@@ -37,3 +37,7 @@ export { useReelRaceProgress } from "./useReelRaceProgress";
 export { useMarketConfig } from "./useMarketConfig";
 export { useMemoCompare } from "./useMemoCompare";
 export { useMessaging } from "./useFirebaseSDK";
+export { usePlayerLevelUpEvent } from "./usePlayerLevelUpEvent";
+export {
+  usePlayerReceivedValuableEvent,
+} from "./usePlayerReceivedValuableEvent";

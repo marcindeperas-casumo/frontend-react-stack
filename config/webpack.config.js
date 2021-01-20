@@ -375,7 +375,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
                 sourceMaps: false,
               },
             },
-            // "graphql-tag" loader loaded graphql schema files as executable schemas
+            // "@apollo/client" gql loader for graphql schema files as executable schemas
             {
               test: /\.(graphql|gql)$/,
               loader: require.resolve("graphql-tag/loader"),

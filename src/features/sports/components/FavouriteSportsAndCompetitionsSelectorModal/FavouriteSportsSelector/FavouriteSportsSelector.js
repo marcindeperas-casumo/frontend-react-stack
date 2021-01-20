@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";

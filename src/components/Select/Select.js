@@ -13,6 +13,7 @@ type Props<T> = {
   options: { [T]: string },
   /** value used when nothing is selected */
   emptyState: string,
+  selectClassNames?: string,
 };
 export function Select<T>(props: Props<T>) {
   const [width, setWidth] = React.useState(0);
@@ -26,17 +27,22 @@ export function Select<T>(props: Props<T>) {
     if (node !== null) {
       setWidth(
         node.getBoundingClientRect().width +
-          44 /* padding from both sides + icon size */
+          /* padding from both sides (8) + icon size (20) */
+          36
       );
     }
   };
 
+  const pillFontClass = "u-font-weight-bold u-font-xs u-line-height--1";
   const pillClass = classNames(
-    "c-select t-border-r--pill u-height--xlg u-font-weight-bold u-font-sm u-padding-x",
+    "c-select t-border-r--pill u-padding-x u-height--xlg",
+    pillFontClass,
     props.value
       ? "t-background-grey-70 t-color-white"
       : "t-background-grey-5 t-color-grey-90"
   );
+
+  const selectClassNames = props?.selectClassNames || "";
 
   return (
     <>
@@ -46,10 +52,18 @@ export function Select<T>(props: Props<T>) {
           onClick={() => setDesktopSelect(!desktopSelect)}
         />
       )}
-      <div className="u-position-relative u-cursor-pointer u-height--xlg">
+      <div
+        className={classNames(
+          "u-position-relative u-cursor--pointer",
+          selectClassNames
+        )}
+      >
         <div
           ref={measuredRef}
-          className="u-font-sm u-font-weight-bold u-position-absolute u-visibility--hidden"
+          className={classNames(
+            "u-position-absolute u-visibility--hidden",
+            pillFontClass
+          )}
         >
           {props.value ? props.options[props.value] : props.emptyState}
         </div>
@@ -101,7 +115,7 @@ export function Select<T>(props: Props<T>) {
                   }}
                 >
                   <Text
-                    size="md"
+                    size="xs"
                     className={classNames(
                       "u-padding-right--5xlg",
                       key === props.value
@@ -112,7 +126,7 @@ export function Select<T>(props: Props<T>) {
                     {props.options[key]}
                   </Text>
                   {key === props.value && (
-                    <CheckIcon size="md" className="t-color-purple-60" />
+                    <CheckIcon className="t-color-purple-60 c-chip__x-icon" />
                   )}
                 </Flex>
               ))}
@@ -123,7 +137,7 @@ export function Select<T>(props: Props<T>) {
           align="center"
           justify="end"
           className={classNames(
-            "u-position-absolute u-right-0 u-top-0 u-height--xlg",
+            "u-position-absolute u-padding-right--sm u-right-0 u-top-0 u-height--xlg",
             {
               "u-pointer-events-none": !props.value,
             }
@@ -131,12 +145,11 @@ export function Select<T>(props: Props<T>) {
         >
           {props.value ? (
             <CloseIcon
-              size="md"
-              className="u-padding--sm t-color-white"
+              className="t-color-white c-chip__x-icon"
               onClick={() => props.onChange(null)}
             />
           ) : (
-            <ChevronDownIcon size="md" className="u-padding--sm" />
+            <ChevronDownIcon className="c-chip__x-icon" />
           )}
         </Flex>
       </div>

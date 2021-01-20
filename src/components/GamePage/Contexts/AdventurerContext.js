@@ -3,6 +3,11 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
 import {
+  usePlayerLevelUpEvent,
+  usePlayerReceivedValuableEvent,
+} from "Utils/hooks";
+import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
+import {
   type BeltType,
   adventurerSelector,
   initAdventurerSaga,
@@ -24,6 +29,8 @@ type TAdventurerContext = {
   rawProgressPercentage: number,
   inBonusMode: boolean,
   belt: BeltType,
+  onLevelUp: LevelUpCallback,
+  recentValuable: ?string,
 };
 
 export const AdventurerContext = React.createContext<TAdventurerContext>({
@@ -34,12 +41,15 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   rawProgressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
+  onLevelUp: usePlayerLevelUpEvent,
+  recentValuable: null,
 });
 
 export const AdventurerContextProvider = ({
   children,
 }: TAdventurerContextProviderProps) => {
   const dispatch = useDispatch();
+  const [recentValuable, setRecentValuable] = React.useState(null);
   const playerId = useSelector(playerIdSelector);
   const sessionId = useSelector(sessionIdSelector);
   const {
@@ -49,6 +59,11 @@ export const AdventurerContextProvider = ({
     inBonusMode,
     belt,
   } = useSelector(adventurerSelector);
+  const onValuableReceived = data => {
+    setRecentValuable(data.itemCreated.event.badgeId);
+  };
+
+  usePlayerReceivedValuableEvent(onValuableReceived);
 
   const rawProgressPercentage = (points / pointsRequiredForNextLevel) * 100;
 
@@ -75,6 +90,8 @@ export const AdventurerContextProvider = ({
         belt,
         progressPercentage,
         rawProgressPercentage,
+        onLevelUp: usePlayerLevelUpEvent,
+        recentValuable,
       }}
     >
       {children}

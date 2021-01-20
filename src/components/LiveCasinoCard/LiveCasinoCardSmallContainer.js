@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { useIntersection } from "react-use";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import * as A from "Types/apollo";
 import { LiveCasinoCardSmallDataQuery } from "./LiveCasinoCardSmall.graphql";

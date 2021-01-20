@@ -30,7 +30,7 @@ export const ProfileIcon = ({
 
     setTimeout(() => {
       setAnimating(true);
-    }, 0);
+    }, 2000);
   }, [progressPercentage]);
 
   return (

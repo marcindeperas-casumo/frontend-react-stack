@@ -10,6 +10,12 @@ const ABTestsSelector = createSelector(
   prop(APP_COMMON_KEYS.AB_TESTING)
 );
 
+export const testSubjectIDSelector = () =>
+  createSelector(
+    ABTestsSelector,
+    prop("testSubjectId")
+  );
+
 export const featureSelector = feature =>
   createSelector(
     ABTestsSelector,

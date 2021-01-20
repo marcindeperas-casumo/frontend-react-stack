@@ -41,7 +41,6 @@ export function LiveCasinoCardFooter({ players, provider }: Props) {
           >
             {players}
           </Text>
-          )}
         </div>
       ) : (
         <div className="u-padding--md u-margin--sm" />

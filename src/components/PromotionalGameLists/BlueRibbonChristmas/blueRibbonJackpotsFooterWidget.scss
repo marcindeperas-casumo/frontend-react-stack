@@ -14,12 +14,6 @@ $container-horizontal: 24px;
   }
 }
 
-.c-br-footer-widget__container-padding-bottom {
-  @media (orientation: portrait) {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-}
-
 .c-br-footer-widget__container-height {
   @media (orientation: landscape) {
     height: $container-landscape;

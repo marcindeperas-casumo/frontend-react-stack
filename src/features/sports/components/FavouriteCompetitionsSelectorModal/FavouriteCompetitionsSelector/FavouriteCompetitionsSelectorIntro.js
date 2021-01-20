@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
