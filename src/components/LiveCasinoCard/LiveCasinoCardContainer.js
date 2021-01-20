@@ -15,15 +15,9 @@ export const LiveCasinoCardContainer = ({ game }: Props) => {
     play_now: string,
   }>("mobile.live-casino-cards-content");
 
-  const translations = {
-    betBehindText: t?.bet_behind,
-    openSeatsText: t?.open_seats,
-    playNowText: t?.play_now,
-  };
-
-  if (!translations) {
+  if (!t) {
     return null;
   }
 
-  return <LiveCasinoCard t={translations} game={game} />;
+  return <LiveCasinoCard t={t} game={game} />;
 };
