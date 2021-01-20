@@ -2,7 +2,6 @@
 import * as React from "react";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
