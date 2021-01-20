@@ -28,6 +28,7 @@ import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 // eslint-disable-next-line import/no-duplicates
 import { animation_duration } from "./ProfileIconWithDrawer.scss";
 // eslint-disable-next-line import/no-duplicates
@@ -44,8 +45,9 @@ export const ProfileIconWithDrawer = ({
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
+  const currentRace = useCurrentReelRaceInfo();
   const { pauseGame, resumeGame } = useGameModelContext();
-  const { pinnedWidgets } = usePinnedWidgetsContext();
+  const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
   const animationDuration = Number(animation_duration);
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -74,6 +76,17 @@ export const ProfileIconWithDrawer = ({
   React.useEffect(() => {
     setDrawerOpen(false);
   }, [pinnedWidgets]);
+
+  React.useEffect(() => {
+    if (
+      isDesktop() &&
+      !pinnedWidgets.includes(DRAWERS.REEL_RACES) &&
+      currentRace?.isInProgress &&
+      currentRace?.optedIn
+    ) {
+      togglePin(DRAWERS.REEL_RACES);
+    }
+  }, [currentRace, pinnedWidgets, togglePin]);
 
   const shouldShowReelRace =
     (isDesktop() && !pinnedWidgets.includes(DRAWERS.REEL_RACES)) ||

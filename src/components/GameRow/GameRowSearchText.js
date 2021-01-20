@@ -31,14 +31,20 @@ export const GameRowSearchText = (props: Props) => {
   /* eslint-enable fp/no-let, fp/no-mutation */
 
   return (
-    <Flex.Block className="u-padding-left--sm t-color-grey-70">
-      <GameRowSearchTitle
-        highlightSearchQuery={highlightSearchQuery}
-        name={name}
-        isInMaintenance={isInMaintenance}
-        query={query}
-      />
-      {renderSecondaryText && renderSecondaryText()}
-    </Flex.Block>
+    <Flex
+      className="u-padding-left--md t-color-grey-70"
+      direction="vertical"
+      spacing="sm"
+    >
+      <Flex.Item>
+        <GameRowSearchTitle
+          highlightSearchQuery={highlightSearchQuery}
+          name={name}
+          isInMaintenance={isInMaintenance}
+          query={query}
+        />
+      </Flex.Item>
+      {renderSecondaryText && <Flex.Item>{renderSecondaryText()}</Flex.Item>}
+    </Flex>
   );
 };

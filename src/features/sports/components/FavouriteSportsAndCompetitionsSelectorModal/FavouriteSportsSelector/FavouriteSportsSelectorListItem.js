@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import * as A from "Types/apollo";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";

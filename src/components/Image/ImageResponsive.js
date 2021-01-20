@@ -10,21 +10,19 @@ type Props = {
   alt?: string,
 };
 
-export default class ImageResponsive extends React.PureComponent<Props> {
-  render() {
-    const {
-      isIntersecting,
-      src = "",
-      imgixOpts = { w: 170 },
-      ...rest
-    } = this.props;
-    return (
-      <ResponsiveImage
-        imgixOpts={isIntersecting ? imgixOpts : { ...LOW_RES_IMAGE_SETTINGS }}
-        dpr={isIntersecting ? DEVICE_PIXEL_RATIO : 1}
-        src={src}
-        {...rest}
-      />
-    );
-  }
-}
+const ImageResponsive = React.forwardRef<Props, HTMLImageElement>(
+  (
+    { isIntersecting, src = "", imgixOpts = { w: 170 }, ...rest }: Props,
+    ref
+  ) => (
+    <ResponsiveImage
+      containerRef={ref}
+      imgixOpts={isIntersecting ? imgixOpts : { ...LOW_RES_IMAGE_SETTINGS }}
+      dpr={isIntersecting ? DEVICE_PIXEL_RATIO : 1}
+      src={src}
+      {...rest}
+    />
+  )
+);
+
+export default ImageResponsive;

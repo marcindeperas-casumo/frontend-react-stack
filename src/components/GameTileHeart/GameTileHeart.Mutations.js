@@ -1,6 +1,6 @@
 // @flow
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
+import { gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { reject } from "ramda";
 import * as A from "Types/apollo";
 import { GameTileHeartQuery } from "./GameTileHeart.graphql";

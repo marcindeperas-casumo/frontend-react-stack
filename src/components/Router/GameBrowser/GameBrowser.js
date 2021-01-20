@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
 import { Router, Redirect } from "@reach/router";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { getGamePage } from "Models/gameBrowser";
 import * as A from "Types/apollo";
 import { WaitForHostElement } from "Components/WaitForHostElement";
 import Portal from "Components/Portal";
-import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GetGameSets } from "./GetGameSets.graphql";
-import { TopNavDesktop, TopNavMobile } from "./TopNav";
 import { GameBrowserSets } from "./GameBrowserSets";
 import { useScrollPositionPersistor } from "./gameBrowserHooks";
 
@@ -46,7 +44,6 @@ const keyToUrl = {
   JACKPOTS: "jackpots",
 };
 const hostElementId = "react-host-games-lists";
-const mobileNav = "react-host-top-nav";
 
 export const GameBrowser = () => {
   useScrollPositionPersistor();
@@ -60,51 +57,36 @@ export const GameBrowser = () => {
   const redirectTarget = useSelector(getGamePage);
 
   return (
-    <>
-      <WaitForHostElement hostElementId={mobileNav}>
-        <Portal hostElementId={mobileNav}>
-          <MobileAndTablet>
-            <TopNavMobile />
-          </MobileAndTablet>
-          <Desktop>
-            <TopNavDesktop />
-          </Desktop>
-        </Portal>
-      </WaitForHostElement>
+    <WaitForHostElement hostElementId={hostElementId}>
+      <Portal hostElementId={hostElementId}>
+        <GameBrowserSets sets={gameBrowserSetsData} />
 
-      <WaitForHostElement hostElementId={hostElementId}>
-        <Portal hostElementId={hostElementId}>
-          <div className="o-wrapper u-overflow-x--auto u-overflow-scrolling--touch u-padding-top--lg u-padding-top@mobile u-padding-top@phablet u-padding-x--md u-padding-x--none@desktop">
-            <GameBrowserSets sets={gameBrowserSetsData} />
-          </div>
-
-          <React.Suspense fallback={null}>
-            <Router
-              className="u-padding-bottom--2xlg u-padding-top--4xlg@desktop u-padding-top--xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
-              primary={false}
-            >
-              <Redirect from="/" to={redirectTarget} noThrow />
-              <TopList path="top" />
-              <>
-                {sets
-                  .filter((x, i) => gameBrowserSetsData[i].url)
-                  .map((x, i) => (
-                    <GameListPage
-                      key={x.key}
-                      path={gameBrowserSetsData[i].url}
-                      set={x}
-                    />
-                  ))}
-              </>
-              <GameSearch path="search" />
-              {/* $FlowIgnore:  missing 'provider' prop will come from ':provider' part in path */}
-              <ProviderGamesList path="provider/:provider" />
-              {/* $FlowIgnore:  missing 'slug' prop will come from ':slug' part in path */}
-              <GameDetailsPage path="details/:slug" />
-            </Router>
-          </React.Suspense>
-        </Portal>
-      </WaitForHostElement>
-    </>
+        <React.Suspense fallback={null}>
+          <Router
+            className="u-padding-bottom--2xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
+            primary={false}
+          >
+            <Redirect from="/" to={redirectTarget} noThrow />
+            <TopList path="top" />
+            <>
+              {sets
+                .filter((x, i) => gameBrowserSetsData[i].url)
+                .map((x, i) => (
+                  <GameListPage
+                    key={x.key}
+                    path={gameBrowserSetsData[i].url}
+                    set={x}
+                  />
+                ))}
+            </>
+            <GameSearch path="search" />
+            {/* $FlowIgnore:  missing 'provider' prop will come from ':provider' part in path */}
+            <ProviderGamesList path="provider/:provider" />
+            {/* $FlowIgnore:  missing 'slug' prop will come from ':slug' part in path */}
+            <GameDetailsPage path="details/:slug" />
+          </Router>
+        </React.Suspense>
+      </Portal>
+    </WaitForHostElement>
   );
 };

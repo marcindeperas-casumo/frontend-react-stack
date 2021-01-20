@@ -65,5 +65,8 @@
   &--before-close.c-rsmodal {
     transform: scale(0.8);
   }
+  &:focus {
+    outline: none;
+  }
 }
 // stylelint-enable xi/selector-pattern
