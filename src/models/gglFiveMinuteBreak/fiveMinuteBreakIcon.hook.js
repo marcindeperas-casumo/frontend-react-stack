@@ -15,7 +15,10 @@ const isFallbackValue = equals(YEAR_10K_TIMESTAMP);
 
 export function useFiveMinuteBreakIcon() {
   const { isGGL } = useJurisdiction();
-  const { activeRCSession }: GglRealityCheckSummary = useSelector(
+  const {
+    activeRCSession,
+    activeRCBreak,
+  }: GglRealityCheckSummary = useSelector(
     fiveMinuteBreakSelector,
     shallowEqual
   );
@@ -27,6 +30,14 @@ export function useFiveMinuteBreakIcon() {
   });
   const [isTimeToShowIcon, setIsTimeToShowIcon] = React.useState(false);
   const timer = useTimeoutFn();
+
+  React.useEffect(() => {
+    if (!isGGL || !activeRCBreak) {
+      return;
+    }
+
+    setIsTimeToShowIcon(false);
+  }, [activeRCBreak, isGGL]);
 
   React.useEffect(() => {
     if (!isGGL || isFallbackValue(expiringTime) || isTimeToShowIcon) {
