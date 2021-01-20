@@ -224,28 +224,36 @@ type SProps = {
 function SortAndFilterSection(props: SProps) {
   return (
     <Flex className="o-flex--wrap c-games-list-filter">
-      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
-        <GameListPageSort
-          setSort={props.setSort}
-          supportedSorts={props.supportedSorts}
-          sort={props.sort}
-        />
-      </TrackClick>
-      {props.appliedFilters.map(x => (
-        <Flex key={x} className="u-margin-right u-margin-bottom">
-          <ChipFilterable
-            isActive
-            onRemove={() => props.setFilters({ ...props.filters, [x]: false })}
-          >
-            {findQueryTranslation(x, props.additionalFilterGroups)}
-          </ChipFilterable>
-        </Flex>
-      ))}
-      <Flex className="u-margin-right u-margin-bottom">
-        <ChipFilterable onClick={props.openFilter}>
-          {props.openFilterText}
-        </ChipFilterable>
-      </Flex>
+      {props.supportedSorts.length !== 0 && (
+        <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+          <GameListPageSort
+            setSort={props.setSort}
+            supportedSorts={props.supportedSorts}
+            sort={props.sort}
+          />
+        </TrackClick>
+      )}
+      {props.additionalFilterGroups.length !== 0 && (
+        <>
+          {props.appliedFilters.map(x => (
+            <Flex key={x} className="u-margin-right u-margin-bottom">
+              <ChipFilterable
+                isActive
+                onRemove={() =>
+                  props.setFilters({ ...props.filters, [x]: false })
+                }
+              >
+                {findQueryTranslation(x, props.additionalFilterGroups)}
+              </ChipFilterable>
+            </Flex>
+          ))}
+          <Flex className="u-margin-right u-margin-bottom">
+            <ChipFilterable onClick={props.openFilter}>
+              {props.openFilterText}
+            </ChipFilterable>
+          </Flex>
+        </>
+      )}
     </Flex>
   );
 }
