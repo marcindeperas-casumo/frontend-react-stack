@@ -11,8 +11,8 @@ import "./FiveMinuteBreakDrawerWidget.scss";
 
 type Props = {
   className?: string,
-  timeLeft: number,
   timeElapsed: number,
+  timeLeft: number,
   t: ?{
     tooltip_title: ?string,
     tooltip_message: ?string,
@@ -22,10 +22,12 @@ type Props = {
 
 export const FiveMinuteBreakDrawerWidget = ({
   className,
-  timeLeft,
   timeElapsed,
+  timeLeft,
   t,
 }: Props) => {
+  const shouldShowTimeLeft = timeLeft - Date.now() <= 60 * 1000;
+
   return (
     <Flex
       className={cx(
@@ -61,24 +63,26 @@ export const FiveMinuteBreakDrawerWidget = ({
           </Flex.Block>
         </Flex>
       </Flex.Item>
-      <Flex.Item className="u-padding--md u-margin t-background-grey-70 t-opacity-background--25 t-border-r u-font-sm">
-        {interpolateWithJSX(
-          {
-            secondsLeft: (
-              <Timer
-                endTime={timeLeft}
-                onEnd={() => "00"}
-                render={state => (
-                  <span className="u-font-variant-numeric--tabular-nums">
-                    {state.seconds}
-                  </span>
-                )}
-              />
-            ),
-          },
-          t?.remaining_seconds
-        )}
-      </Flex.Item>
+      {shouldShowTimeLeft ? (
+        <Flex.Item className="u-padding--md u-margin t-background-grey-70 t-opacity-background--25 t-border-r u-font-sm">
+          {interpolateWithJSX(
+            {
+              secondsLeft: (
+                <Timer
+                  endTime={timeLeft}
+                  onEnd={() => "00"}
+                  render={state => (
+                    <span className="u-font-variant-numeric--tabular-nums u-font-family--noncustom">
+                      {state.seconds}
+                    </span>
+                  )}
+                />
+              ),
+            },
+            t?.remaining_seconds
+          )}
+        </Flex.Item>
+      ) : null}
     </Flex>
   );
 };
