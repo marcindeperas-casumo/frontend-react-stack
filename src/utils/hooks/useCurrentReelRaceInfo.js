@@ -27,6 +27,7 @@ export type CurrentReelRaceInfo = {
   remainingSpins: number,
   isInProgress: boolean,
   hasEnded: boolean,
+  optedIn: boolean,
   tournamentId: ?string,
   formattedPrizes: Array<string>,
   boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
@@ -40,6 +41,7 @@ type CreateCurrentReelRaceDataType = {
   leaderboard?: LeaderboardObjectType,
   formattedPrizes?: Array<string>,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+  optedIn?: boolean,
 };
 
 type CometdReelRaceEnteredType = {
@@ -67,6 +69,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
   hasEnded: false,
+  optedIn: false,
   tournamentId: null,
   formattedPrizes: [],
   leaderboard: [],
@@ -104,6 +107,7 @@ export const createCurrentReelRaceData = (
     leaderboard,
     formattedPrizes,
     game,
+    optedIn,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
@@ -111,6 +115,7 @@ export const createCurrentReelRaceData = (
     formattedPrizes: [],
     game: null,
     id: null,
+    optedIn: false,
   }
 ): CurrentReelRaceInfo => {
   const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
@@ -140,6 +145,7 @@ export const createCurrentReelRaceData = (
         endTime >= 0 &&
         Date.now() < endTime
     ),
+    optedIn: optedIn || false,
     hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
     leaderboard: R.pipe(
@@ -316,6 +322,8 @@ export function useCurrentReelRaceInfo(
             id: localCurrentReelRace.id,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             formattedPrizes: localCurrentReelRace.formattedPrizes,
+            // $FlowIgnoreError
+            optedIn: localCurrentReelRace.optedIn,
           })
         );
 
