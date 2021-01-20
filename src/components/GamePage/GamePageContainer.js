@@ -12,6 +12,7 @@ import {
   useInGameBonusOrRealBalanceCheck,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
+import { useFiveMinuteBreakRealityCheck } from "Models/gglFiveMinuteBreak";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
@@ -62,6 +63,8 @@ export const GamePageContainer = () => {
   );
 
   useRealityCheckModal({ pauseGame, resumeGame });
+
+  useFiveMinuteBreakRealityCheck({ pauseGame, resumeGame, gameSlug: slug });
 
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 

@@ -3,7 +3,7 @@ import { makeProtocolAwareUrl } from "Utils";
 
 const defaultUrl = makeProtocolAwareUrl("/cometd/");
 
-/* eslint-disable fp/no-mutation, fp/no-delete */
+/* eslint-disable fp/no-mutation, fp/no-delete, fp/no-mutating-methods, sonarjs/cognitive-complexity */
 export const CometdFactory = ({ cometd, url }) => {
   // We want to know how many subscriptions happened to a certain channel,
   // so we only unsubscribe finally when there are no more outstanding subscriptions
@@ -31,13 +31,7 @@ export const CometdFactory = ({ cometd, url }) => {
 
   async function subscribe(channel, callback, ...args) {
     incrementSubcriptionCounter(channel);
-
-    if (!subscriptionCallbacks[channel]) {
-      subscriptionCallbacks[channel] = [];
-    }
-
-    // eslint-disable-next-line fp/no-mutating-methods
-    subscriptionCallbacks[channel].push(callback);
+    registerSubscriptionCallback(channel, callback);
 
     if (!subscriptions[channel]) {
       subscriptions[channel] = await cometd.subscribe(
@@ -48,9 +42,10 @@ export const CometdFactory = ({ cometd, url }) => {
     }
   }
 
-  async function unsubscribe(channel) {
+  async function unsubscribe(channel, callback) {
     const subscription = subscriptions[channel];
 
+    unregisterSubscriptionCallback(channel, callback);
     decrementSubscriptionCounter(channel);
 
     if (subscription && isNoPendingSubscriptions(channel)) {
@@ -92,7 +87,23 @@ export const CometdFactory = ({ cometd, url }) => {
       .filter(subscribedChannel => channel.match(subscribedChannel))
       .map(x => subscriptionCallbacks[x]);
   }
+
+  function registerSubscriptionCallback(channel, callback) {
+    if (!subscriptionCallbacks[channel]) {
+      subscriptionCallbacks[channel] = [];
+    }
+
+    subscriptionCallbacks[channel].push(callback);
+  }
+
+  function unregisterSubscriptionCallback(channel, callback) {
+    const idx = (subscriptionCallbacks[channel] || []).indexOf(callback);
+
+    if (idx !== -1) {
+      subscriptionCallbacks[channel].splice(idx, 1);
+    }
+  }
 };
-/* eslint-enable fp/no-mutation, fp/no-delete */
+/* eslint-enable fp/no-mutation, fp/no-delete, fp/no-mutating-methods, sonarjs/cognitive-complexity */
 
 export default CometdFactory({ cometd: defaultCometD, url: defaultUrl });

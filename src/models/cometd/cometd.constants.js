@@ -33,4 +33,10 @@ export const MESSAGES = {
   STATS_UPDATED_NOTIFICATION:
     "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification",
   REALITY_CHECK_PERIODIC_NOTIFICATION: "realityCheck",
+  GGL_REALITY_CHECK_SESSION_STARTED:
+    "com.casumo.playok.realitychecks.api.events.GGLRealityCheckSessionStartedEvent",
+  GGL_REALITY_CHECK_BREAK_STARTED:
+    "com.casumo.playok.realitychecks.api.events.GGLRealityCheckBreakStartedEvent",
+  GGL_REALITY_CHECK_BREAK_ENDED:
+    "com.casumo.playok.realitychecks.api.events.GGLRealityCheckBreakEndedEvent",
 };

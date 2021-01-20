@@ -140,6 +140,9 @@ export const ProfileIconWithDrawer = ({
                 }}
               />
             </div>
+            <FiveMinuteBreakDrawerWidget
+              className={`${baseClassName}__item u-padding-bottom`}
+            />
           </MobileAndTablet>
         </div>
       </CSSTransition>

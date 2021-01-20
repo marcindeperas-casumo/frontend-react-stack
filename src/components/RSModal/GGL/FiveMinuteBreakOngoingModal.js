@@ -43,12 +43,12 @@ export function FiveMinuteBreakOngoingModal({ acceptModal, config }: Props) {
               <Timer
                 endTime={config.timeLeft}
                 onEnd={() => (
-                  <span className="u-font-variant-numeric--tabular-nums">
+                  <span className="u-font-variant-numeric--tabular-nums u-font-family--noncustom">
                     00:00
                   </span>
                 )}
                 render={state => (
-                  <span className="u-font-variant-numeric--tabular-nums">
+                  <span className="u-font-variant-numeric--tabular-nums u-font-family--noncustom">
                     {state.minutes}:{state.seconds}
                   </span>
                 )}
