@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { useUnmount } from "react-use";
 import { useQuery } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
@@ -34,9 +35,7 @@ export const GameTileHeartContainer = React.memo<Props>(
       A.GameTileHeartQueryVariables
     >(GameTileHeartQuery, { variables: { numberOfGames }, skip });
 
-    React.useEffect(() => {
-      return () => setSkip(true);
-    }, []);
+    useUnmount(() => setSkip(true));
 
     const addGame = useAddGameToMyList(gameId);
     const removeGame = useRemoveGameFromMyList(gameId);
