@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import * as A from "Types/apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";

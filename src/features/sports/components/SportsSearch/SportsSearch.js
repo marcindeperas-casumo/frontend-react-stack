@@ -1,6 +1,6 @@
 /* @flow */
 import React from "react";
-import { getApolloContext } from "@apollo/react-hooks";
+import { getApolloContext } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import SearchInput from "Components/SearchInput";

@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";

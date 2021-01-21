@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import SportsTopBar, { hashes } from "./SportsTopBar";
 import mocks from "./__mocks__/termMocks";
 

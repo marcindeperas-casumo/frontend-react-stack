@@ -1,5 +1,5 @@
 // @flow
-import { SPORTS_SHELL_QUERY } from "../SportsShellContainer";
+import { SPORTS_SHELL_QUERY } from "Models/apollo/queries";
 
 type MockData = {
   hasSelectedFavourites: boolean,

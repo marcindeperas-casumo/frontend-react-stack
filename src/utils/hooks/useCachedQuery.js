@@ -5,7 +5,7 @@ import {
   useApolloClient,
   type QueryHookOptions,
   type QueryResult,
-} from "@apollo/react-hooks";
+} from "@apollo/client";
 import { usePrevious } from "react-use";
 import { insertIntoArray } from "Utils/gamesPaginated";
 

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
 import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
