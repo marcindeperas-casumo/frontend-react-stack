@@ -153,10 +153,10 @@ export const ProfileIconWithDrawer = ({
                 }}
               />
             </div>
-            <FiveMinuteBreakDrawerWidget
-              className={`${baseClassName}__item u-padding-bottom`}
-            />
           </MobileAndTablet>
+          <FiveMinuteBreakDrawerWidget
+            className={`${baseClassName}__item u-padding-bottom`}
+          />
         </div>
       </CSSTransition>
     </React.Fragment>
