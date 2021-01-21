@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useQuery, getApolloContext } from "@apollo/react-hooks";
+import { useQuery, getApolloContext } from "@apollo/client";
 import { SportsNavigation } from "@casumo/sports-navigation";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -42,7 +42,7 @@ const renderSportsNav = (
   };
 
   return (
-    <>
+    <div className="u-padding-top--md">
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {openChooseFavouritesModal => (
           <SportsNavigation
@@ -56,7 +56,7 @@ const renderSportsNav = (
           />
         )}
       </OpenModalMutation>
-    </>
+    </div>
   );
 };
 

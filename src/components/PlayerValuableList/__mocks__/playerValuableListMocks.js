@@ -1,5 +1,5 @@
 // @flow
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { PlayerValuablesQuery } from "../PlayerValuables.graphql";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import translationsMock from "./translations.mock.json";

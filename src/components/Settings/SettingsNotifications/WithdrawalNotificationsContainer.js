@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";

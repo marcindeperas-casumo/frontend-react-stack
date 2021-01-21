@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { getApolloContext } from "@apollo/react-hooks";
+import { getApolloContext } from "@apollo/client";
 import classNames from "classnames";
 import Card from "@casumo/cmp-card";
 import TrackView from "Components/TrackView";
