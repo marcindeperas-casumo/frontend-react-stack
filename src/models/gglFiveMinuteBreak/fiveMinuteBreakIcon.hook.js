@@ -62,7 +62,7 @@ export function useFiveMinuteBreakIcon() {
   }, [expiringTime, isGGL, isTimeToShowIcon, timer]);
 
   React.useEffect(() => {
-    if (!isGGL || isFallbackValue(expiringTime)) {
+    if (!isGGL) {
       return;
     }
 

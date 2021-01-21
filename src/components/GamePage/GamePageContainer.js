@@ -12,7 +12,6 @@ import {
   useInGameBonusOrRealBalanceCheck,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
-import { useFiveMinuteBreakRealityCheck } from "Models/gglFiveMinuteBreak";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
@@ -24,6 +23,7 @@ import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
+import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import {
   GamePageNotifications,
@@ -63,8 +63,6 @@ export const GamePageContainer = () => {
   );
 
   useRealityCheckModal({ pauseGame, resumeGame });
-
-  useFiveMinuteBreakRealityCheck({ pauseGame, resumeGame, gameSlug: slug });
 
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
@@ -127,6 +125,11 @@ export const GamePageContainer = () => {
             position={isDesktop() ? "top" : "bottom"}
           />
           <ReelRacesDrawerWidgetTrigger />
+          <FiveMinuteBreakIconTrigger
+            slug={slug}
+            pauseGame={pauseGame}
+            resumeGame={resumeGame}
+          />
         </React.Fragment>
       }
       overScreenNotifications={

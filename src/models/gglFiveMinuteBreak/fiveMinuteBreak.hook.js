@@ -10,15 +10,8 @@ import {
 import { playerIdSelector } from "Models/handshake";
 import { gglRealityCheckUpdateAction } from "./fiveMinuteBreak.actions";
 import { RC_STATE_URL } from "./fiveMinuteBreak.constants";
-import type { PauseResumeGameSlugProps } from "./fiveMinuteBreak.types";
-import { useFiveMinuteBreakModals } from "./fiveMinuteBreakModals.hook";
-import { useFiveMinuteBreakIcon } from "./fiveMinuteBreakIcon.hook";
 
-export function useFiveMinuteBreakRealityCheck({
-  pauseGame,
-  resumeGame,
-  gameSlug,
-}: PauseResumeGameSlugProps) {
+export function useFiveMinuteBreakRealityCheck() {
   const { isGGL } = useJurisdiction();
   const dispatch = useDispatch();
   const playerId = useSelector(playerIdSelector, shallowEqual);
@@ -90,11 +83,4 @@ export function useFiveMinuteBreakRealityCheck({
 
     return () => cometd.unsubscribe(channel, subscriptionHandler);
   }, [channel, isGGL]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useFiveMinuteBreakModals({
-    pauseGame,
-    resumeGame,
-    gameSlug,
-  });
-  useFiveMinuteBreakIcon();
 }
