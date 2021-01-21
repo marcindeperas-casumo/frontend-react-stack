@@ -126,9 +126,9 @@ export const GamePageContainer = () => {
           />
           <ReelRacesDrawerWidgetTrigger />
           <FiveMinuteBreakIconTrigger
-            slug={slug}
             pauseGame={pauseGame}
             resumeGame={resumeGame}
+            gameSlug={slug}
           />
         </React.Fragment>
       }
