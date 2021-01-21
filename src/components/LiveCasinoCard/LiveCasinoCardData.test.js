@@ -12,8 +12,8 @@ import {
 } from "./__mocks__";
 
 const t = {
-  betBehindText: "Bet behind",
-  openSeatsText: "Seats left",
+  bet_behind: "Bet behind",
+  open_seats: "Seats left",
 };
 
 describe("LiveCasinoCardData", () => {
@@ -81,7 +81,7 @@ describe("LiveCasinoCardData", () => {
       );
       const data = component.find("LobbyType").shallow();
 
-      expect(data.find(Text).contains(t.openSeatsText)).toBe(true);
+      expect(data.find(Text).contains(t.open_seats)).toBe(true);
     });
   });
 
@@ -95,7 +95,7 @@ describe("LiveCasinoCardData", () => {
       );
       const data = component.find("LobbyType").shallow();
 
-      expect(data.find(Text).contains(t.betBehindText)).toBe(true);
+      expect(data.find(Text).contains(t.bet_behind)).toBe(true);
     });
   });
 });

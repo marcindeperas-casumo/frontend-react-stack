@@ -14,12 +14,12 @@ import { LiveCasinoCardData } from "./LiveCasinoCardData";
 export type Props = {
   game: A.GameTile_Game,
   liveCasinoTable?: A.LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
-  t: {
-    playNowText: string,
-    betBehindText: string,
-    openSeatsText: string,
-    opensAtText: string,
-    tableClosedText: string,
+  t?: {
+    bet_behind: string,
+    open_seats: string,
+    play_now: string,
+    opens_at: string,
+    table_closed: string,
   },
 };
 
@@ -89,7 +89,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
         <div />
         {liveCasinoTable?.operationHours.startTime && (
           <ButtonSecondary size="xs" className="u-margin">
-            {interpolate(t.opensAtText, {
+            {interpolate(t?.opens_at, {
               // $FlowIgnore: Checked above
               time: liveCasinoTable?.operationHours.startTime,
             })}
@@ -100,7 +100,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
           size="2xs"
           className="u-font-weight-black t-color-white"
         >
-          {(t.tableClosedText || "").toUpperCase()}
+          {(t?.table_closed || "").toUpperCase()}
         </Text>
       </Flex>
     );
