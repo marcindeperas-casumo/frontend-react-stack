@@ -15,11 +15,11 @@ import {
 
 const stories = storiesOf("LiveCasinoCardSmall", module);
 const t = {
-  playNowText: "Play now 👻",
-  betBehindText: "Bet behind",
-  openSeatsText: "Seats left",
-  opensAtText: "Opens at {{time}}",
-  tableClosedText: "Closed",
+  play_now: "Play now 👻",
+  bet_behind: "Bet behind",
+  open_seats: "Seats left",
+  opens_at: "Opens at {{time}}",
+  table_closed: "Closed",
 };
 
 stories.add("Card MoneyWheel", () => (
