@@ -15,9 +15,9 @@ import {
 
 const stories = storiesOf("LiveCasinoCard", module);
 const t = {
-  playNowText: "Play now 👻",
-  betBehindText: "Bet behind",
-  openSeatsText: "Seats left",
+  play_now: "Play now 👻",
+  bet_behind: "Bet behind",
+  open_seats: "Seats left",
 };
 
 stories.add("Card MoneyWheel", () => (
