@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useTranslations } from "Utils/hooks";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
@@ -19,11 +19,11 @@ const MustDropJackpotsListContainer = () => {
     },
   });
 
-  const { t } = useTranslationsGql({
-    seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
-  });
+  const t = useTranslations<{ more_link: string }>(
+    "built-pages.top-lists-translations"
+  );
 
-  if (data && data.gamesList && data.gamesList.games) {
+  if (data && data.gamesList && data.gamesList.games && t) {
     return (
       <TrackProvider
         data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
@@ -31,7 +31,7 @@ const MustDropJackpotsListContainer = () => {
         <MustDropJackpotsList
           jackpots={data.gamesList.games}
           name={data.gamesList?.name}
-          seeMoreText={t.seeMoreText}
+          seeMoreText={t.more_link}
         />
       </TrackProvider>
     );
