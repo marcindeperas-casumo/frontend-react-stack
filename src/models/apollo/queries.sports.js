@@ -1,5 +1,5 @@
 // @flow
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const ACTIVE_MODALS_QUERY = gql`
   query ActiveModals {
@@ -22,5 +22,20 @@ export const KAMBI_CLIENT_VISIBLE_QUERY = gql`
 export const SEARCH_VISIBLE_QUERY = gql`
   query SearchVisible {
     isSearchVisible @client
+  }
+`;
+
+export const SPORTS_SHELL_QUERY = gql`
+  query SportsShellQuery {
+    hasSelectedFavourites
+    isSearchVisible @client
+  }
+`;
+
+export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
+  query LaunchableKambiClientQuery {
+    userHomepage
+    kambiClientVisible @client
+    isBetslipVisible @client
   }
 `;

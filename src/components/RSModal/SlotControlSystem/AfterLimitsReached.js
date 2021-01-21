@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { path } from "ramda";
 import * as A from "Types/apollo";
 import { ROUTE_IDS } from "Src/constants";

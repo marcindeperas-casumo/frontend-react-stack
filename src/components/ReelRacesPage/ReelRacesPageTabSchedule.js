@@ -2,7 +2,7 @@
 import React from "react";
 import { filter, propEq, slice, concat } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { RACE_STATE } from "Models/reelRaces";
 import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";

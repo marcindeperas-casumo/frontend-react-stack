@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { MockedProvider } from "@apollo/client/testing";
+import { useQuery, gql } from "@apollo/client";
+import { InMemoryCache } from "@apollo/client/cache";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { HookWrapper, getHookValue } from "Utils/HookWrapper";
 import { useCachedQuery } from "./useCachedQuery";

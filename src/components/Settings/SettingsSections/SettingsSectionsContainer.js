@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { appManualLogoutInit } from "Models/app";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
