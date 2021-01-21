@@ -28,35 +28,11 @@ export function useFiveMinuteBreakRealityCheck() {
     if (cometdMessages.GGL_REALITY_CHECK_SESSION_STARTED in data) {
       dispatch(
         gglRealityCheckUpdateAction({
-          activeRCSession: {
-            startedTime: Date.now(),
-            expiringTime: Date.now() + 60000,
-          },
-          //data[cometdMessages.GGL_REALITY_CHECK_SESSION_STARTED],
+          activeRCSession:
+            data[cometdMessages.GGL_REALITY_CHECK_SESSION_STARTED],
           activeRCBreak: null,
         })
       );
-      setTimeout(() => {
-        dispatch(
-          gglRealityCheckUpdateAction({
-            activeRCBreak: {
-              startedTime: Date.now(),
-              expiringTime: Date.now() + 60000,
-            },
-            //data[cometdMessages.GGL_REALITY_CHECK_SESSION_STARTED],
-            activeRCSession: null,
-          })
-        );
-
-        setTimeout(() => {
-          dispatch(
-            gglRealityCheckUpdateAction({
-              activeRCSession: null,
-              activeRCBreak: null,
-            })
-          );
-        }, 60000);
-      }, 60000);
     } else if (cometdMessages.GGL_REALITY_CHECK_BREAK_STARTED in data) {
       dispatch(
         gglRealityCheckUpdateAction({

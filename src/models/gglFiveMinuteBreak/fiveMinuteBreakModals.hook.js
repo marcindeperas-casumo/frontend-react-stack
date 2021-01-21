@@ -53,14 +53,15 @@ export function useFiveMinuteBreakModals({
   const showModal = (id, settings) => dispatch(showModalAction(id, settings));
 
   React.useEffect(() => {
-    // eslint-disable-next-line no-switch-statements/no-switch, default-case
-    switch (modalId) {
-      case null:
-      case REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_ONGOING:
-      case REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_FINISHED:
-      case REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_REEL_RACE:
-        setVisibleModal(modalId);
-        break;
+    if (
+      [
+        null,
+        REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_ONGOING,
+        REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_FINISHED,
+        REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_REEL_RACE,
+      ].some(id => id === modalId)
+    ) {
+      setVisibleModal(modalId);
     }
   }, [modalId]);
 
