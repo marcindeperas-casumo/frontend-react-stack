@@ -23,7 +23,7 @@ export default function Lazy({
 }: Props) {
   const LazyComponent = React.lazy(() =>
     loader().then(module => ({
-      default: module[namedExport],
+      default: module[namedExport] || module.default,
     }))
   );
 
