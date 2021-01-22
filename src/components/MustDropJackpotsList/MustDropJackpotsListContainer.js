@@ -8,7 +8,7 @@ import { useTranslations } from "Utils/hooks";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
-const MustDropJackpotsListContainer = () => {
+const MustDropJackpotsListContainer = React.memo<null>(() => {
   const { data } = useQuery<
     A.MustDropJackpotsGamesListQuery,
     A.MustDropJackpotsGamesListQueryVariables
@@ -38,6 +38,6 @@ const MustDropJackpotsListContainer = () => {
   }
 
   return null;
-};
+});
 
 export default MustDropJackpotsListContainer;
