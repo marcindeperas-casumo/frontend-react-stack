@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
@@ -138,7 +139,13 @@ export function GameListPage({ set }: Props) {
           activeFilters={filters}
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
-        <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
+        <div
+          className={classNames("o-wrapper u-padding--md@mobile", {
+            "t-background-white": isMobile(),
+          })}
+        >
+          {topSection}
+        </div>
         {(() => {
           if (!data || !data.getGamesPaginated.games) {
             return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
@@ -224,28 +231,36 @@ type SProps = {
 function SortAndFilterSection(props: SProps) {
   return (
     <Flex className="o-flex--wrap c-games-list-filter">
-      <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
-        <GameListPageSort
-          setSort={props.setSort}
-          supportedSorts={props.supportedSorts}
-          sort={props.sort}
-        />
-      </TrackClick>
-      {props.appliedFilters.map(x => (
-        <Flex key={x} className="u-margin-right u-margin-bottom">
-          <ChipFilterable
-            isActive
-            onRemove={() => props.setFilters({ ...props.filters, [x]: false })}
-          >
-            {findQueryTranslation(x, props.additionalFilterGroups)}
-          </ChipFilterable>
-        </Flex>
-      ))}
-      <Flex className="u-margin-right u-margin-bottom">
-        <ChipFilterable onClick={props.openFilter}>
-          {props.openFilterText}
-        </ChipFilterable>
-      </Flex>
+      {props.supportedSorts.length !== 0 && (
+        <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+          <GameListPageSort
+            setSort={props.setSort}
+            supportedSorts={props.supportedSorts}
+            sort={props.sort}
+          />
+        </TrackClick>
+      )}
+      {props.additionalFilterGroups.length !== 0 && (
+        <>
+          {props.appliedFilters.map(x => (
+            <Flex key={x} className="u-margin-right u-margin-bottom">
+              <ChipFilterable
+                isActive
+                onRemove={() =>
+                  props.setFilters({ ...props.filters, [x]: false })
+                }
+              >
+                {findQueryTranslation(x, props.additionalFilterGroups)}
+              </ChipFilterable>
+            </Flex>
+          ))}
+          <Flex className="u-margin-right u-margin-bottom">
+            <ChipFilterable onClick={props.openFilter}>
+              {props.openFilterText}
+            </ChipFilterable>
+          </Flex>
+        </>
+      )}
     </Flex>
   );
 }
