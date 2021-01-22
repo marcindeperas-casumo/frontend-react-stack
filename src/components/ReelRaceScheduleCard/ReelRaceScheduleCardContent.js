@@ -127,11 +127,11 @@ export function ReelRaceScheduleCardContent({
 
       <div
         className={cx(
-          "o-flex-align--center@tablet o-flex-align--center@desktop o-flex--vertical@mobile",
+          "o-flex-align--center@tablet o-flex--vertical@mobile",
           isNotMobile && "u-margin-left--2xlg"
         )}
       >
-        <div className="u-width--1/2@tablet u-width--1/2@desktop">
+        <div className="u-width--1/2@tablet">
           {reelRace.translations.caveatShort &&
             reelRace.translations.caveatShort !== "false" && (
               <Text
@@ -151,7 +151,7 @@ export function ReelRaceScheduleCardContent({
             )}
         </div>
         <Flex
-          className="u-width--1/2@tablet u-width--1/2@desktop u-margin-top--md u-padding-x--md u-margin-bottom--md"
+          className="u-width--1/2@tablet u-margin-top--md u-padding-x--md u-margin-bottom--md"
           spacing="3xlg"
         >
           <Button

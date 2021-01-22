@@ -22,7 +22,7 @@ export const CuratedCardFooterGameMobile = ({
 
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game?.slug),
+    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game.slug),
   };
 
   return (

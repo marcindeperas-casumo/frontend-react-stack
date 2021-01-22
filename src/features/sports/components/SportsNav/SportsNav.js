@@ -42,7 +42,7 @@ const renderSportsNav = (
   };
 
   return (
-    <div className="u-padding-top--md">
+    <>
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {openChooseFavouritesModal => (
           <SportsNavigation
@@ -56,7 +56,7 @@ const renderSportsNav = (
           />
         )}
       </OpenModalMutation>
-    </div>
+    </>
   );
 };
 
