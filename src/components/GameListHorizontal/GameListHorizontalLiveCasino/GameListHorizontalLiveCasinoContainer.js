@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
 import TrackProvider from "Components/TrackProvider";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useTranslations } from "Utils/hooks";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
@@ -15,39 +15,46 @@ type Props = {
   numberOfGames: number,
 };
 
-export const GameListHorizontalLiveCasinoContainer = ({
-  id,
-  numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
-}: Props) => {
-  const { data, loading } = useQuery<
-    A.GameListLiveCasinoQuery,
-    A.GameListLiveCasinoQueryVariables
-  >(GameListLiveCasinoQuery, { variables: { id, numberOfGames } });
+export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
+  ({ id, numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT }: Props) => {
+    const { data, loading } = useQuery<
+      A.GameListLiveCasinoQuery,
+      A.GameListLiveCasinoQueryVariables
+    >(GameListLiveCasinoQuery, { variables: { id, numberOfGames } });
 
-  const { t } = useTranslationsGql({
-    seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
-    playNowText: "root:mobile.live-casino-cards-content:fields.play_now",
-  });
-
-  if (loading) {
-    return (
-      <div className="o-wrapper">
-        <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
-      </div>
+    const translationsBuiltPages = useTranslations<{ more_link: string }>(
+      "built-pages.top-lists-translations"
     );
-  }
+    const translationsMobileLiveCasino = useTranslations<{
+      playNowText: string,
+    }>("mobile.live-casino-cards-content");
 
-  if (data && data.gamesList && data.gamesList.games.length) {
-    return (
-      <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-        <GameListHorizontalLiveCasino
-          seeMoreText={t.seeMoreText}
-          playNowText={t.playNowText}
-          list={data.gamesList}
-        />
-      </TrackProvider>
-    );
-  }
+    if (loading) {
+      return (
+        <div className="o-wrapper">
+          <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+        </div>
+      );
+    }
 
-  return null;
-};
+    if (
+      data &&
+      data.gamesList &&
+      data.gamesList.games.length &&
+      translationsBuiltPages &&
+      translationsMobileLiveCasino
+    ) {
+      return (
+        <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+          <GameListHorizontalLiveCasino
+            seeMoreText={translationsBuiltPages.more_link}
+            playNowText={translationsMobileLiveCasino.playNowText}
+            list={data.gamesList}
+          />
+        </TrackProvider>
+      );
+    }
+
+    return null;
+  }
+);
