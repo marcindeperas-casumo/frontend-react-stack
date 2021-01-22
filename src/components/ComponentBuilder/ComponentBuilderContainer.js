@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, gql } from "@apollo/client";
 import { propOr } from "ramda";
-import gql from "graphql-tag";
 import logger from "Services/logger";
 import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 

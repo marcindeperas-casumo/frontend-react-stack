@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
+import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { SettingsSections } from "./SettingsSections";
 import { SettingsSectionsContainer } from "./SettingsSectionsContainer";
@@ -39,12 +40,9 @@ describe("SettingsSections", () => {
         </MockStore>
       );
 
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
+      wait().then(() => {
+        expect(rendered.find("ErrorMessage")).toHaveLength(1);
       });
-
-      expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
     test("should pass correct player to child", () => {
@@ -54,14 +52,11 @@ describe("SettingsSections", () => {
         </MockStore>
       );
 
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
+      wait().then(() => {
+        expect(
+          rendered.find(SettingsSections).prop("playerLoginHistory")
+        ).toStrictEqual(playerSectionsQueryMock.result.data);
       });
-
-      expect(
-        rendered.find(SettingsSections).prop("playerLoginHistory")
-      ).toStrictEqual(playerSectionsQueryMock.result.data);
     });
   });
 });

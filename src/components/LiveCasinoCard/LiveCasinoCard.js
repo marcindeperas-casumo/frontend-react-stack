@@ -4,6 +4,7 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
+import { PlayIcon } from "@casumo/cmp-icons";
 import { ButtonSecondary, ButtonPrimary } from "@casumo/cmp-button";
 import { prop } from "ramda";
 import { launchGame } from "Services/LaunchGameService";
@@ -19,10 +20,10 @@ import "./LiveCasinoCard.scss";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
-  t: {
-    playNowText: string,
-    betBehindText: string,
-    openSeatsText: string,
+  t?: {
+    play_now: string,
+    bet_behind: string,
+    open_seats: string,
   },
 };
 
@@ -36,6 +37,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
   }
 
   renderHeader = () => {
+    const { isInMaintenance } = this.props.game;
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
@@ -62,6 +64,11 @@ export class LiveCasinoCard extends PureComponent<Props> {
             t={this.props.t}
           />
         </Flex>
+        {isInMaintenance && (
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold">
+            <span>{this.props.t?.table_temporarily_unavailable}</span>
+          </div>
+        )}
       </div>
     );
   };
@@ -93,13 +100,14 @@ export class LiveCasinoCard extends PureComponent<Props> {
             {isInMaintenance ? (
               <ButtonSecondary
                 size="sm"
-                className="u-text-transform-capitalize c-live-casino-card-maintenance__play-button"
+                className="u-text-transform-capitalize c-live-casino-card-maintenance__play-button t-color-white"
               >
-                <span>{this.props.t.playNowText}</span>
+                <PlayIcon size="sm" className="u-margin-right--sm" />
+                <span>{this.props.t?.play_now}</span>
               </ButtonSecondary>
             ) : (
               <ButtonPrimary size="sm" className="u-text-transform-capitalize">
-                <span>{this.props.t.playNowText}</span>
+                <span>{this.props.t?.play_now}</span>
               </ButtonPrimary>
             )}
           </TrackClick>
@@ -118,6 +126,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderHeaderNoLobby = () => {
+    const { isInMaintenance } = this.props.game;
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
@@ -156,6 +165,11 @@ export class LiveCasinoCard extends PureComponent<Props> {
             gameName={this.props.game.name}
           />
         </Flex>
+        {isInMaintenance && (
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold">
+            <span>{this.props.t?.table_temporarily_unavailable}</span>
+          </div>
+        )}
       </div>
     );
   };

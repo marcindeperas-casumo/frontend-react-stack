@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { LiveCasinoDetailPageQuery } from "./LiveCasinoDetailPage.graphql";
 import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";

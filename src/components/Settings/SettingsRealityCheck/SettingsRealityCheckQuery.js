@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 //.graphql extension doesn't allow export fragments properly (for now), so they need to be in a js file
 export const REALITY_CHECK_FRAGMENT = gql`

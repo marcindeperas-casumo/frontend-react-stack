@@ -1,7 +1,7 @@
 // @flow
 
 import * as R from "ramda";
-import type { ObservableQueryFields } from "@apollo/react-hooks";
+import type { ObservableQueryFields } from "@apollo/client";
 
 type GamesPaginatedQuery = {
   getGamesPaginated: {

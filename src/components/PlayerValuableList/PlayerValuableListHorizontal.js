@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import Scrollable from "@casumo/cmp-scrollable";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
