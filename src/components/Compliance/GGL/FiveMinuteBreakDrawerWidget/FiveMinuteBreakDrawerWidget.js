@@ -31,7 +31,7 @@ export const FiveMinuteBreakDrawerWidget = ({
   return (
     <Flex
       className={cx(
-        "c-five-minute-break-drawer-widget t-background-grey-90 t-color-white u-padding--md u-padding-top--none@desktop t-border-r u-margin-bottom--none@desktop",
+        "c-five-minute-break-drawer-widget t-background-grey-90 t-color-white u-padding--md t-border-r u-margin-bottom--none@desktop",
         className
       )}
       direction="vertical"

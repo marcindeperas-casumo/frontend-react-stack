@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
+import { useSelector, shallowEqual } from "react-redux";
 import { useTranslations, useJurisdiction } from "Utils/hooks";
+import { fiveMinuteBreakSelector } from "Models/gglFiveMinuteBreak";
 import { FiveMinuteBreakDrawerWidget } from "./FiveMinuteBreakDrawerWidget";
 
 type Props = {
@@ -9,10 +11,13 @@ type Props = {
 
 export const FiveMinuteBreakDrawerWidgetContainer = ({ className }: Props) => {
   const { isGGL } = useJurisdiction();
-
+  const { activeRCSession } = useSelector(
+    fiveMinuteBreakSelector,
+    shallowEqual
+  );
   const t = useTranslations("ggl-five-minute-break");
 
-  if (!isGGL) {
+  if (!isGGL || !activeRCSession || !t) {
     return null;
   }
 
@@ -20,8 +25,8 @@ export const FiveMinuteBreakDrawerWidgetContainer = ({ className }: Props) => {
     <div className={className}>
       <FiveMinuteBreakDrawerWidget
         t={t}
-        timeLeft={Date.now() + 60 * 1000}
-        timeElapsed={Date.now()}
+        timeLeft={activeRCSession.expiringTime}
+        timeElapsed={activeRCSession.startedTime}
       />
     </div>
   );

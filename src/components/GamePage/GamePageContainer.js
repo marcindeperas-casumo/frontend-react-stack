@@ -23,6 +23,7 @@ import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
+import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import {
   GamePageNotifications,
@@ -124,6 +125,11 @@ export const GamePageContainer = () => {
             position={isDesktop() ? "top" : "bottom"}
           />
           <ReelRacesDrawerWidgetTrigger />
+          <FiveMinuteBreakIconTrigger
+            pauseGame={pauseGame}
+            resumeGame={resumeGame}
+            gameSlug={slug}
+          />
         </React.Fragment>
       }
       overScreenNotifications={
