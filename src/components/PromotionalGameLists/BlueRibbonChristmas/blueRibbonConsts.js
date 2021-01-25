@@ -50,7 +50,6 @@ export type JackpotWidgetContentPage = {
   eligible_games_cta_label: string,
   jackpot_split_explanation: string,
 };
-export const jackpotWidgetWidth = 313;
 export const jackpotWidgetInGameWidth = 359;
 export const colors = {
   jackpotWidgetPurpleDark: "#0A0449",

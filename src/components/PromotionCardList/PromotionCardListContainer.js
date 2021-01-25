@@ -24,7 +24,7 @@ const PromotionCardListContainer = React.memo<Props>(({ slug }: Props) => {
     "built-pages.top-lists-translations"
   );
 
-  if (!t || loading) {
+  if (loading || !t) {
     return <PromotionCardListSkeleton />;
   }
 
