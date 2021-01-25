@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";

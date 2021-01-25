@@ -3,9 +3,9 @@ import http from "Lib/http";
 
 export const URL = {
   PLAYER_ACKNOWLEDGEMENTS_FIRST:
-    "/casino-player/tac-versioning-public-api/api/v2/player-acks/first",
+    "/casino-player/tac-versioning/api/v2/player-acks/first",
   PLAYER_ACKNOWLEDGEMENTS_LAST:
-    "/casino-player/tac-versioning-public-api/api/v2/player-acks/",
+    "/casino-player/tac-versioning/api/v2/player-acks/",
 };
 
 export const getFirstTACApproval = () =>

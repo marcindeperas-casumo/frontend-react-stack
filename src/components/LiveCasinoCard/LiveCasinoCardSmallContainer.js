@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import { useIntersection } from "react-use";
-import { useQuery } from "@apollo/react-hooks";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useQuery } from "@apollo/client";
+import { useTranslations } from "Utils/hooks";
 import * as A from "Types/apollo";
 import { LiveCasinoCardSmallDataQuery } from "./LiveCasinoCardSmall.graphql";
 import { LiveCasinoCardSmall } from "./LiveCasinoCardSmall";
@@ -12,13 +12,13 @@ type Props = {
 };
 
 export const LiveCasinoCardSmallContainer = ({ game }: Props) => {
-  const { t } = useTranslationsGql({
-    betBehindText: "root:mobile.live-casino-cards-content:fields.bet_behind",
-    openSeatsText: "root:mobile.live-casino-cards-content:fields.open_seats",
-    playNowText: "root:mobile.live-casino-cards-content:fields.play_now",
-    opensAtText: "root:mobile.live-casino-cards-content:fields.opens_at",
-    tableClosedText: "root:mobile.live-casino-cards-content:fields.closed",
-  });
+  const t = useTranslations<{
+    bet_behind: string,
+    open_seats: string,
+    play_now: string,
+    opens_at: string,
+    table_closed: string,
+  }>("mobile.live-casino-cards-content");
   const intersectionRef = React.useRef(null);
   const observerEntry = useIntersection(intersectionRef, {
     threshold: 0.1,

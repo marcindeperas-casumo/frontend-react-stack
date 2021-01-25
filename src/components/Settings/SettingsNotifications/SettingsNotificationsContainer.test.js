@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
+import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { SettingsNotifications } from "./SettingsNotifications";
 import { SettingsNotificationsContainer } from "./SettingsNotificationsContainer";
@@ -43,14 +43,11 @@ describe("Notifications", () => {
         </MockStore>
       );
 
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
+      wait().then(() => {
+        expect(
+          rendered.find(SettingsNotifications).prop("player")
+        ).toStrictEqual(playerContactSettingsQueryMock.result.data.player);
       });
-
-      expect(rendered.find(SettingsNotifications).prop("player")).toStrictEqual(
-        playerContactSettingsQueryMock.result.data.player
-      );
     });
 
     test("should show error when settings fail to load", () => {
@@ -63,12 +60,9 @@ describe("Notifications", () => {
         </MockStore>
       );
 
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
+      wait().then(() => {
+        expect(rendered.find("ErrorMessage")).toHaveLength(1);
       });
-
-      expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
   });
 });

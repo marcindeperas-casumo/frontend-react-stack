@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import Scrollable from "@casumo/cmp-scrollable";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
