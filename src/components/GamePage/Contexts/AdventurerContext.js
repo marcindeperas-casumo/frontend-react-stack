@@ -2,7 +2,10 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
-import { usePlayerLevelUpEvent } from "Utils/hooks/usePlayerLevelUpEvent";
+import {
+  usePlayerLevelUpEvent,
+  usePlayerReceivedValuableEvent,
+} from "Utils/hooks";
 import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
 import {
   type BeltType,
@@ -23,9 +26,11 @@ type TAdventurerContext = {
   points: number,
   pointsRequiredForNextLevel: number,
   progressPercentage: number,
+  rawProgressPercentage: number,
   inBonusMode: boolean,
   belt: BeltType,
   onLevelUp: LevelUpCallback,
+  recentValuable: ?string,
 };
 
 export const AdventurerContext = React.createContext<TAdventurerContext>({
@@ -33,15 +38,18 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   points: 0,
   pointsRequiredForNextLevel: 100,
   progressPercentage: 0,
+  rawProgressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
   onLevelUp: usePlayerLevelUpEvent,
+  recentValuable: null,
 });
 
 export const AdventurerContextProvider = ({
   children,
 }: TAdventurerContextProviderProps) => {
   const dispatch = useDispatch();
+  const [recentValuable, setRecentValuable] = React.useState(null);
   const playerId = useSelector(playerIdSelector);
   const sessionId = useSelector(sessionIdSelector);
   const {
@@ -51,6 +59,13 @@ export const AdventurerContextProvider = ({
     inBonusMode,
     belt,
   } = useSelector(adventurerSelector);
+  const onValuableReceived = data => {
+    setRecentValuable(data.itemCreated.event.badgeId);
+  };
+
+  usePlayerReceivedValuableEvent(onValuableReceived);
+
+  const rawProgressPercentage = (points / pointsRequiredForNextLevel) * 100;
 
   const progressPercentage = Math.floor(
     (points / pointsRequiredForNextLevel) * 100
@@ -74,7 +89,9 @@ export const AdventurerContextProvider = ({
         inBonusMode,
         belt,
         progressPercentage,
+        rawProgressPercentage,
         onLevelUp: usePlayerLevelUpEvent,
+        recentValuable,
       }}
     >
       {children}
