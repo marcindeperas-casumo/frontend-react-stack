@@ -279,12 +279,13 @@ export class ReelRaceCard extends React.Component<Props> {
         {t.caveatShort && t.caveatShort !== "false" && (
           <Text
             size="xs"
-            className="c-reel-race__terms t-color-grey-20"
+            className="c-reel-race__terms u-margin-y--md t-color-grey-90"
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
               html={interpolate(t.caveatShort, {
-                ctaTermsAndConditions: 'class="t-color-black"',
+                ctaTermsAndConditions:
+                  'class="t-color-black u-text-decoration-underline"',
               })}
             />
           </Text>
