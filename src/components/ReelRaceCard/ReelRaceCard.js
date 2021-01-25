@@ -285,7 +285,7 @@ export class ReelRaceCard extends React.Component<Props> {
             <DangerousHtml
               html={interpolate(t.caveatShort, {
                 ctaTermsAndConditions:
-                  'class="t-color-black u-text-decoration-underline"',
+                  'class="t-color-black u-font-weight-bold u-text-decoration-underline"',
               })}
             />
           </Text>
