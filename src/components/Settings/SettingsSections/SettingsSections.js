@@ -4,22 +4,14 @@ import { ArrowRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
+import { SettingsTranslations } from "Components/Settings/SettingsSections/SettingsSectionsContainer";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 
 type Props = {
   playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
-  labels: {
-    accountDetailsTitle: ?string,
-    accountDetailsDescription: ?string,
-    notificationsTitle: ?string,
-    notificationsDescription: ?string,
-    currentSessionMessage: ?string,
-    lastSessionMessage: ?string,
-    accountActivity: ?string,
-    logout: ?string,
-  },
+  labels: SettingsTranslations,
   logout: () => void,
 };
 
@@ -43,13 +35,13 @@ export class SettingsSections extends PureComponent<Props> {
         },
       },
       labels: {
-        currentSessionMessage,
-        lastSessionMessage,
-        accountDetailsTitle,
-        accountDetailsDescription,
-        notificationsTitle,
-        notificationsDescription,
-        accountActivity,
+        current_session_length: currentSessionMessage,
+        last_session_message: lastSessionMessage,
+        account_details_title: accountDetailsTitle,
+        account_details_description: accountDetailsDescription,
+        notifications_title: notificationsTitle,
+        notifications_description: notificationsDescription,
+        account_activity: accountActivity,
         logout: logoutLabel,
       },
       logout,
