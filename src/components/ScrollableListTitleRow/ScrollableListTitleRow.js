@@ -13,7 +13,7 @@ import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 type Props = {
   /** The list title */
   title: ?string,
-  /** The seeMore text, url, and color */
+  /** The seeMore text and url */
   seeMore?: SeeMoreProps,
   /** Whether applying padding left or not */
   paddingLeft?: boolean,
@@ -41,7 +41,7 @@ export class ScrollableListTitleRow extends PureComponent<Props> {
         {seeMore?.url && (
           <Flex.Item className="u-padding-right--md">
             <Link to={seeMore?.url}>
-              <Text tag="h3" className={seeMore?.color || "t-color-blue-60"}>
+              <Text tag="h3" className="t-color-blue-60">
                 {seeMore?.text}
               </Text>
             </Link>

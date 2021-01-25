@@ -32,21 +32,3 @@ stories.add("Default", () => (
     </div>
   </MockStore>
 ));
-stories.add("Default (big)", () => (
-  <MockStore>
-    <div className="u-height--screen">
-      <GamesVirtualList
-        big
-        {...props}
-        renderItem={game => (
-          <GameRow
-            big
-            game={game}
-            onLaunchGame={() => {}}
-            renderText={() => <GameRowText name={game.name} />}
-          />
-        )}
-      />
-    </div>
-  </MockStore>
-));

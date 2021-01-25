@@ -110,12 +110,12 @@ export class ValuableCard extends PureComponent<Props> {
       <>
         <div
           className={classNames(
-            "c-valuable-card o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
+            "o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
             className
           )}
         >
           <Flex
-            className="o-ratio__content u-padding"
+            className="c-valuable-card o-ratio__content u-padding"
             data-test="valuable-card"
             direction="vertical"
             onClick={this.props.onCardClick}

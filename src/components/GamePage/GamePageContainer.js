@@ -24,6 +24,7 @@ import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -127,6 +128,7 @@ export const GamePageContainer = () => {
             position={isDesktop() ? "top" : "bottom"}
           />
           <ReelRacesDrawerWidgetTrigger />
+          <InGameAdventureTrigger />
         </React.Fragment>
       }
       overScreenNotifications={

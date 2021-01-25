@@ -7,9 +7,9 @@ import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
+import { topListWidgetWidth } from "Src/constants";
 import {
   colors,
-  jackpotWidgetWidth,
   type JackpotWidgetContentPage,
   type JackpotStatus,
 } from "./blueRibbonConsts";
@@ -41,7 +41,7 @@ export function BlueRibbonJackpotsWidget({
       className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
       style={{
         backgroundColor: colors.jackpotWidgetPurpleLight,
-        width: jackpotWidgetWidth,
+        width: topListWidgetWidth,
       }}
     >
       {jackpots.map(jackpot => {
