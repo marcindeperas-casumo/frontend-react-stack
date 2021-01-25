@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import { isMobile } from "Components/ResponsiveLayout";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
@@ -58,7 +57,6 @@ const GameStudioText = ({ studioName }) => (
 
 const gameRowHighlightSearch = query => game => (
   <GameRow
-    big={!isMobile()}
     game={game}
     renderText={() => (
       <GameRowSearchText
@@ -88,7 +86,6 @@ const RenderResults = ({ query, ...rest }) => (
   <GamesVirtualList
     renderItem={gameRowHighlightSearch(query)}
     renderTitle={title => <GamesVirtualListTitle title={title} />}
-    big={!isMobile()}
     {...rest}
   />
 );
@@ -175,7 +172,7 @@ export const GameSearch = (props: Props) => {
       <div className="t-border-r--md t-border-r--none@mobile t-background-white">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
         {searchResults.length === 0 && loading ? (
-          <GameListSkeleton hasTitle={false} big={!isMobile()} />
+          <GameListSkeleton hasTitle={false} />
         ) : (
           renderResults()
         )}

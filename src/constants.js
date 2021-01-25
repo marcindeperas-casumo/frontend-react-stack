@@ -532,3 +532,6 @@ export const EMBEDDED_GAMES = {
     "theis.warmdahl+dk5@casumo.com",
   ],
 };
+
+export const topListWidgetWidth = 328;
+export const topListWidgetHeight = 304;

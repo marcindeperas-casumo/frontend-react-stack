@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import * as A from "Types/apollo";
 import { GameRow, GameRowText } from "Components/GameRow";
 
@@ -8,22 +7,18 @@ import "./JackpotsListTile.scss";
 
 type Props = {
   games?: Array<A.GameRow_Game>,
-  isScrolling?: boolean,
 };
 // __FIX__ this should be the source of truth for the MustDrop and
 // standard jackpot tiles.
-export const JackpotsListTile = ({ games = [], isScrolling = false }: Props) =>
+export const JackpotsListTile = ({ games = [] }: Props) =>
   games.map<React.Node>(game => (
-    <div key={game.id} className="u-padding-y--sm">
+    <div key={game.id} className="u-padding-bottom">
       <GameRow
         game={game}
-        className={classNames(
-          "t-background-white u-padding--md t-border-r--md",
-          {
-            "t-elevation--10": !isScrolling,
-          }
+        className="t-background-white u-padding--md t-border-r--md t-elevation--10"
+        renderText={() => (
+          <GameRowText name={game.name} description={game.gameStudio} />
         )}
-        renderText={() => <GameRowText name={game.name} />}
       />
     </div>
   ));

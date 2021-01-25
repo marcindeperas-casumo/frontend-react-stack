@@ -370,6 +370,7 @@ export type GameListVerticalQuery_gamesBySlugs = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
   isInMaintenance: boolean,
 };
@@ -427,6 +428,7 @@ export type GameSearchQuery_gamesSearch_results = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameSearchQuery_gamesSearch_results_lobby,
   isInMaintenance: boolean,
 };
@@ -470,6 +472,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
@@ -586,6 +589,7 @@ export type JackpotsQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
@@ -672,6 +676,7 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
   isInMaintenance: boolean,
 };
@@ -757,6 +762,7 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   name: string,
   gameStudio: string,
   slug: string,
+  gameStudio: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
@@ -1007,6 +1013,7 @@ export type GameStudioQuery_gameStudio_games = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameStudioQuery_gameStudio_games_lobby,
   isInMaintenance: boolean,
 };
@@ -2705,6 +2712,7 @@ export type GameRow_Game = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameRow_Game_lobby,
   isInMaintenance: boolean,
 };
@@ -2733,6 +2741,7 @@ export type GameSearch_Game = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?GameSearch_Game_lobby,
   isInMaintenance: boolean,
 };
@@ -2805,6 +2814,7 @@ export type Jackpots_Game = {
   logo: string,
   name: string,
   slug: string,
+  gameStudio: string,
   lobby: ?Jackpots_Game_lobby,
   isInMaintenance: boolean,
   jackpot: ?Jackpots_Game_jackpot,
