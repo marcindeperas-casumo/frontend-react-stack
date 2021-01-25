@@ -4,7 +4,6 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
-import { isMobile } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
@@ -19,12 +18,10 @@ type Props = {
   className?: string,
   /** a function that renders some text */
   renderText: () => React.Node,
-  /** use bigger version, ie. on search page */
-  big?: boolean,
 };
 
 export const GameRow = (props: Props) => {
-  const { game, renderText, big = false } = props;
+  const { game, renderText } = props;
   const onLaunchGame = () => {
     if (game.isInMaintenance) {
       return;
@@ -38,51 +35,52 @@ export const GameRow = (props: Props) => {
       return (
         <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
       );
-    } else if (isMobile()) {
-      return <GameRowTrackMoreIcon name={game.name} slug={game.slug} />;
     }
 
-    return null;
+    return <GameRowTrackMoreIcon name={game.name} slug={game.slug} />;
   })();
 
   return (
-    <Flex
-      align="center"
-      className={classNames(
-        "u-padding-x--md u-padding-x--lg@desktop u-padding-y u-width--full u-height--full",
-        props.className
-      )}
-      onClick={onLaunchGame}
+    <TrackClick
+      eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+      data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
+      className="u-width--full"
     >
-      <Flex.Block>
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
-          data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
+      <Flex
+        className={classNames(
+          "u-width--full u-height--full u-padding--md",
+          props.className
+        )}
+        align="center"
+        justify="space-around"
+        onClick={onLaunchGame}
+      >
+        <Flex
+          className={classNames("o-flex__item--no-shrink", {
+            "t-greyscale c-game-row__game-thumb--maintenance":
+              game.isInMaintenance,
+          })}
         >
-          <Flex align="center">
-            <Flex.Item
-              className={classNames("o-flex__item--no-shrink", {
-                "t-greyscale c-game-row__game-thumb--maintenance":
-                  game.isInMaintenance,
-              })}
-            >
-              <GameThumb
-                src={game.backgroundImage}
-                alt={game.name}
-                mark={game.logo}
-                {...(big
-                  ? {
-                      width: 80,
-                      height: 80,
-                    }
-                  : {})}
-              />
-            </Flex.Item>
-            {renderText()}
-          </Flex>
-        </TrackClick>
-      </Flex.Block>
-      {rightSideComponent}
-    </Flex>
+          <GameThumb
+            src={game.backgroundImage}
+            alt={game.name}
+            mark={game.logo}
+            width={GameRow.ICON_SIZE}
+            height={GameRow.ICON_SIZE}
+          />
+        </Flex>
+        <Flex className="u-padding-x--md o-flex--1 u-width">
+          {renderText()}
+        </Flex>
+        {rightSideComponent && (
+          <Flex className="o-flex__item--no-shrink">{rightSideComponent}</Flex>
+        )}
+      </Flex>
+    </TrackClick>
   );
 };
+
+/* eslint-disable fp/no-mutation */
+GameRow.ROW_HEIGHT = 96; // 64px icon with 16px padding around
+GameRow.ICON_SIZE = 64;
+/* eslint-enable fp/no-mutation */

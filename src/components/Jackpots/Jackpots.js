@@ -3,15 +3,15 @@ import * as React from "react";
 import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
 import type { CellRendererParams } from "react-virtualized";
-import { createModifierClasses } from "@casumo/cudl-react-utils";
+import Flex from "@casumo/cmp-flex";
+import spacerSizesMap from "Components/VirtualGrid/spacerSizesMap";
 import * as A from "Types/apollo";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { generateColumns } from "Utils";
-
-const GRID_TILE_HEIGHT = 240;
+import { topListWidgetWidth } from "Src/constants";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -34,7 +34,11 @@ const JackpotsColumn = ({
   locale: ?string,
 }) =>
   column.map<React.Node>(game => (
-    <div key={game.id} className="u-padding-y--sm">
+    <div
+      key={game.id}
+      className="u-margin-top"
+      style={{ width: topListWidgetWidth }}
+    >
       <GameRow
         game={game}
         className="t-background-white u-padding--md t-border-r--md t-elevation--10"
@@ -49,8 +53,6 @@ const JackpotsColumn = ({
       />
     </div>
   ));
-
-const SPACER_CLASSES = createModifierClasses("u-margin-left", "default");
 
 export default class Jackpots extends React.PureComponent<Props> {
   static defaultProps = {
@@ -79,17 +81,17 @@ export default class Jackpots extends React.PureComponent<Props> {
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames(
       "u-height--full",
-      isNotFirstElement && SPACER_CLASSES
+      isNotFirstElement && "u-margin-left"
     );
     return (
       <div style={style}>
-        <div className={`${elementClassNames} c-jackpots-list-tile`}>
+        <Flex className={elementClassNames} direction="vertical">
           <JackpotsColumn
             key={jackpotColumn[0].slug}
             column={jackpotColumn}
             locale={this.props.locale}
           />
-        </div>
+        </Flex>
       </div>
     );
   };
@@ -115,7 +117,7 @@ export default class Jackpots extends React.PureComponent<Props> {
               itemCount={this.columns.length}
               title={this.props.title}
               itemRenderer={this.desktopJackpotColumnRenderer}
-              tileHeight={GRID_TILE_HEIGHT}
+              tileHeight={GameRow.ROW_HEIGHT * 3 + spacerSizesMap.default * 2}
             />
           </Desktop>
         </div>

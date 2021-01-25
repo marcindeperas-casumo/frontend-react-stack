@@ -15,7 +15,7 @@ export const ProviderGamesListRow = ({
   game,
 }: ProviderGamesListRowProps) => (
   <div
-    className="u-padding-x--md u-padding-y t-border-bottom t-border-grey-5"
+    className="t-border-bottom t-border-grey-5 t-background-white"
     style={style}
   >
     <GameRow game={game} renderText={() => <GameRowText name={game.name} />} />

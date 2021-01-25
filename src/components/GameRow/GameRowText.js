@@ -9,34 +9,41 @@ import * as A from "Types/apollo";
 
 export const GameRowText = ({
   name,
+  description,
   bets,
   jackpot,
   locale,
 }: {
   name: string,
+  description?: string,
   locale?: ?string,
   bets?: ?A.GameRow_Game_lobby_bets,
   jackpot?: ?A.Jackpots_Game_jackpot,
 }) => (
-  <Flex.Block className="t-color-grey-90 u-padding-left--sm">
+  <Flex direction="vertical" className="t-color-grey-90 u-width--full">
     <Text
-      tag="div"
+      tag="span"
       size="sm"
-      className={classNames("u-text-overflow--ellipsis", {
-        "u-font-weight-bold": bets,
+      className={classNames("u-text-overflow--ellipsis u-margin-top", {
+        "u-font-weight-bold": bets || description,
       })}
     >
       <DangerousHtml html={name} />
     </Text>
+    {description && (
+      <Text tag="span" className="t-color-grey-50 u-margin-top" size="sm">
+        {description}
+      </Text>
+    )}
     <JackpotAmount {...jackpot} locale={locale} />
     <BetsLevels bets={renderBets(bets)} />
-  </Flex.Block>
+  </Flex>
 );
 
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey-50">
+      <Text tag="span" size="sm" className="t-color-grey-50 u-margin-top">
         {bets}
       </Text>
     );
@@ -54,9 +61,9 @@ function JackpotAmount({ value, locale }) {
 
   return (
     <Text
-      tag="div"
+      tag="span"
       size="sm"
-      className="u-font-weight-bold t-color-red-30 u-padding-bottom--sm"
+      className="u-font-weight-bold t-color-red-30  u-margin-top"
     >
       {formatCurrency({ currency, locale, value: amount })}
     </Text>

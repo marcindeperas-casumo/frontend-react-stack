@@ -3,6 +3,7 @@ import React from "react";
 import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
+import { GameRow } from "Components/GameRow";
 import { isMobile } from "Components/ResponsiveLayout";
 import {
   GamesVirtualGrid,
@@ -24,7 +25,7 @@ type Props = {
 };
 
 export const PAGE_SIZE = 20;
-export const ROW_HEIGHT = 72;
+export const ROW_HEIGHT = GameRow.ROW_HEIGHT;
 
 // Called by react-virtualized
 const renderRow = ({ games, key, index, style }) => {
@@ -73,15 +74,13 @@ export const ProviderGamesList = ({
             rowRenderer={props => renderRow({ games, ...props })}
           />
         ) : (
-          <div className="t-background-white">
-            <div className="o-wrapper u-padding-y--2xlg">
-              <GamesVirtualGrid
-                games={games}
-                gamesCount={gamesCount}
-                loadMore={onLoadMore}
-                pageSize={PAGE_SIZE}
-              />
-            </div>
+          <div className="o-wrapper">
+            <GamesVirtualGrid
+              games={games}
+              gamesCount={gamesCount}
+              loadMore={onLoadMore}
+              pageSize={PAGE_SIZE}
+            />
           </div>
         )}
       </div>
