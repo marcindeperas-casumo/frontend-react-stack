@@ -36,7 +36,7 @@
 }
 
 .c-scrollable-list-paginated__button--left {
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(180deg);
 }
 // stylelint-disable-next-line xi/selector-pattern
 .c-scrollable-list-paginated__live_casino-button--right {

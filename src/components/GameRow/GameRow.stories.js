@@ -24,7 +24,6 @@ const propsDefault = {
   renderText: () => <GameRowText name={game.name} />,
 };
 stories.add("Default", () => <GameRow {...propsDefault} />);
-stories.add("Default (big)", () => <GameRow big {...propsDefault} />);
 
 const propsShowingJackpot = {
   game: { ...game, jackpot },
@@ -34,9 +33,6 @@ const propsShowingJackpot = {
   onLaunchGame: action(gonzosQuest),
 };
 stories.add("Showing a Jackpot", () => <GameRow {...propsShowingJackpot} />);
-stories.add("Showing a Jackpot (big)", () => (
-  <GameRow big {...propsShowingJackpot} />
-));
 
 const propsShowingLiveCasino = {
   game: liveCasinoGame,
@@ -51,9 +47,6 @@ const propsShowingLiveCasino = {
 stories.add("Showing a Live Casino", () => (
   <GameRow {...propsShowingLiveCasino} />
 ));
-stories.add("Showing a Live Casino (big)", () => (
-  <GameRow big {...propsShowingLiveCasino} />
-));
 
 const propsSearchWithMatch = {
   game,
@@ -67,9 +60,6 @@ const propsSearchWithMatch = {
   ),
 };
 stories.add("Search with match", () => <GameRow {...propsSearchWithMatch} />);
-stories.add("Search with match (big)", () => (
-  <GameRow big {...propsSearchWithMatch} />
-));
 
 const propsSearchWithNoMatch = {
   game,
@@ -84,9 +74,6 @@ const propsSearchWithNoMatch = {
 };
 stories.add("Search with no match", () => (
   <GameRow {...propsSearchWithNoMatch} />
-));
-stories.add("Search with no match (big)", () => (
-  <GameRow big {...propsSearchWithNoMatch} />
 ));
 
 const isInMaintenance = boolean("In maintenance mode", true);
@@ -103,7 +90,4 @@ const propsGameInMaintenance = {
 };
 stories.add("Showing Games in maintenance mode", () => (
   <GameRow {...propsGameInMaintenance} />
-));
-stories.add("Showing Games in maintenance mode (big)", () => (
-  <GameRow big {...propsGameInMaintenance} />
 ));

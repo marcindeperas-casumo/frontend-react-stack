@@ -3,6 +3,7 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
 import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow";
 
 type Props = {
   jackpot: A.MustDropJackpot_MustDropJackpot,
@@ -14,12 +15,12 @@ export const MustDropJackpot = ({ jackpot }: Props) => {
 
   return (
     <Media
-      className="o-flex--1 u-padding-x--lg u-padding-y--md t-background-grey-90"
+      className="u-padding--md"
       renderImage={() => (
         <img
           className="u-display--block"
-          width={48}
-          height={48}
+          width={GameRow.ICON_SIZE}
+          height={GameRow.ICON_SIZE}
           alt=""
           src={image}
         />
