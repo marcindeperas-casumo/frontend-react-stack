@@ -24,6 +24,7 @@ export type Props = {
     play_now: string,
     bet_behind: string,
     open_seats: string,
+    table_temporarily_unavailable: string,
   },
 };
 
@@ -65,7 +66,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
           />
         </Flex>
         {isInMaintenance && (
-          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold">
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold t-opacity--75 t-background-black">
             <span>{this.props.t?.table_temporarily_unavailable}</span>
           </div>
         )}
@@ -166,7 +167,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
           />
         </Flex>
         {isInMaintenance && (
-          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold">
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold t-opacity--75 t-background-black">
             <span>{this.props.t?.table_temporarily_unavailable}</span>
           </div>
         )}

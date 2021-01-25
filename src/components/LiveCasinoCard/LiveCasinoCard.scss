@@ -19,5 +19,9 @@
       background-color: rgba(cudl-palette(grey, "5"), 1) !important;
     }
   }
+
+  &__notification {
+    line-height: 40px; // Height of grayscale bar in maintenance mode live tile
+  }
 }
 // stylelint-enable xi/selector-pattern
