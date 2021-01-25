@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
 import { useDispatch, useSelector } from "react-redux";
@@ -138,7 +139,13 @@ export function GameListPage({ set }: Props) {
           activeFilters={filters}
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
-        <div className="o-wrapper u-padding--md@mobile">{topSection}</div>
+        <div
+          className={classNames("o-wrapper u-padding--md@mobile", {
+            "t-background-white": isMobile(),
+          })}
+        >
+          {topSection}
+        </div>
         {(() => {
           if (!data || !data.getGamesPaginated.games) {
             return <GameListSkeleton numberOfItems={12} hasTitle={false} />;
