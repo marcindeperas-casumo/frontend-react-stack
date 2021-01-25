@@ -1,5 +1,6 @@
 // @flow
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "Utils/hooks";
 import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";
 import { InGameAdventureWidget } from "./InGameAdventureWidget";
 import { InGameRecentValuableWidget } from "./InGameRecentValuableWidget";
@@ -15,6 +16,7 @@ export const InGameAdventureWidgetContainer = () => {
     recentValuable,
   } = useAdventurerContext();
   const [showRecentValuable, setShowRecentValuable] = useState(true);
+  const recentValuablesContent = useTranslations("iframe-solution");
 
   const onValuableConsumed = () => {
     setShowRecentValuable(false);
@@ -42,6 +44,7 @@ export const InGameAdventureWidgetContainer = () => {
         <InGameRecentValuableWidget
           onValuableConsumed={onValuableConsumed}
           recentValuable={recentValuable}
+          content={recentValuablesContent}
         />
       )}
     </div>

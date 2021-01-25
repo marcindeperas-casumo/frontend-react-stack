@@ -34,11 +34,15 @@ const ValuableThumbnailRenderer = ({ backgroundImage, valuableType }) => {
 type Props = {
   onValuableConsumed: () => void,
   recentValuable: ?string,
+  content: ?{
+    valuables_more_info: string,
+  },
 };
 
 export const InGameRecentValuableWidget = ({
   onValuableConsumed,
   recentValuable,
+  content,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
   const [showModal, setShowModal] = React.useState(false);
@@ -123,7 +127,7 @@ export const InGameRecentValuableWidget = ({
               size="md"
             >
               <Text className="u-margin--none u-padding-x" tag="span">
-                More Info
+                {content?.valuables_more_info}
               </Text>
             </ButtonInverted>
           )}
