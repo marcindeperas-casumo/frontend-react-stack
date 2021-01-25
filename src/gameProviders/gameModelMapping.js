@@ -60,6 +60,7 @@ export const models = {
   [PROVIDERS.RGS_HTML5]: BaseIframeGame,
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
   [PROVIDERS.PUSHGAMING_MOBILE]: PushGame,
+  [PROVIDERS.PLAYTECH_DESKTOP]: BaseIframeGame,
   [PROVIDERS.PLAYTECH_MOBILE]: BaseIframeGame,
   [PROVIDERS.PRAGMATIC_DESKTOP]: PragmaticGame,
   [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
