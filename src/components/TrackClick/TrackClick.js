@@ -9,6 +9,7 @@ type Props = {
   eventName?: string,
   data?: Object,
   trackHandler?: (eventName: string, data: ?Object) => void,
+  className?: string,
 };
 
 export default class TrackClick extends React.PureComponent<Props> {
@@ -20,10 +21,15 @@ export default class TrackClick extends React.PureComponent<Props> {
       eventName = "Click",
       data = {},
       trackHandler = tracker.track,
+      className = "",
     } = this.props;
     const contextData = this.context;
     const onClick = () => trackHandler(eventName, { ...contextData, ...data });
 
-    return <div onClick={onClick}>{children}</div>;
+    return (
+      <div onClick={onClick} className={className}>
+        {children}
+      </div>
+    );
   }
 }

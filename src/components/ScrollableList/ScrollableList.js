@@ -22,7 +22,7 @@ type Props = {
   items: Array<any>,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
-  seeMoreText?: ?string,
+  seeMoreText?: string,
   itemClassName?: string,
   itemRenderer: (i: number) => React.Node,
 };
@@ -55,8 +55,10 @@ export default class ScrollableList extends React.PureComponent<Props> {
         {title && (
           <ScrollableListTitleRow
             paddingLeft
-            seeMore={{ text: seeMoreText, url: seeMoreUrl }}
             title={title}
+            {...(seeMoreText && seeMoreUrl
+              ? { seeMore: { text: seeMoreText, url: seeMoreUrl } }
+              : {})}
           />
         )}
         <Scrollable

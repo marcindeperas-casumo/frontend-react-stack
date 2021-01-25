@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { useState, useEffect } from "react";
 import cx from "classnames";
 import { type BeltType } from "Models/adventure";
 import { ProgressCircle } from "Components/Progress";
@@ -23,6 +23,16 @@ export const ProfileIcon = ({
   inBonusMode = false,
   progressPercentage,
 }: Props = {}) => {
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    setAnimating(false);
+
+    setTimeout(() => {
+      setAnimating(true);
+    }, 2000);
+  }, [progressPercentage]);
+
   return (
     <div
       onClick={onClick}
@@ -43,6 +53,7 @@ export const ProfileIcon = ({
         value={progressPercentage}
         fgColor="grey-20"
         bgColor="grey-50"
+        fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
         className="c-profile-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute"
         width={4}
         radius={24}
