@@ -11,6 +11,12 @@ $shadow-width: 130px;
     margin-top: -240px;
   }
 
+  /* stylelint-disable xi/selector-pattern */
+  .c-valuable-card {
+    box-sizing: border-box;
+  }
+  /* stylelint-enable xi/selector-pattern */
+
   &__footer {
     background-color: rgba(cudl-palette(white, "base"), 0.9);
   }
