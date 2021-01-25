@@ -21,10 +21,10 @@
       &::before {
         opacity: 1;
       }
-      &__play-button {
+      .c-game-tile-container__play-button {
         display: flex !important;
       }
-      &__heart {
+      .c-game-tile-container__heart {
         transition: transform 0.2s;
         &:hover {
           transform: scale(1.2);
