@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
+import { GameRow } from "Components/GameRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
@@ -9,8 +10,7 @@ import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import "./GamesVirtualList.scss";
 
-export const ROW_HEIGHT = 74;
-export const ROW_HEIGHT_BIG = 129;
+export const ROW_HEIGHT = GameRow.ROW_HEIGHT;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
@@ -23,8 +23,6 @@ type Props = {
   renderItem: (game: A.GameRow_Game) => React.Node,
   /** Variable page size number */
   pageSize: number,
-  /** use bigger version, ie. on search page */
-  big?: boolean,
   /**
    * if this prop will change list will know to update its rows
    * Only changes to this prop will trigger list updates!
@@ -36,7 +34,6 @@ type Props = {
 const nEqProps = R.complement(R.eqProps);
 export class GamesVirtualList extends React.Component<Props> {
   static defaultProps = {
-    big: false,
     pageSize: PAGE_SIZE,
     listHash: "",
   };
@@ -74,7 +71,7 @@ export class GamesVirtualList extends React.Component<Props> {
           index={index}
           style={style}
         >
-          <GameRowSkeleton big={this.props.big} />
+          <GameRowSkeleton />
         </Flex>
       );
     }
@@ -98,7 +95,7 @@ export class GamesVirtualList extends React.Component<Props> {
       <VirtualList
         scrollElement={this.scrollElement}
         totalNumberOfRows={this.props.rowCount}
-        rowHeight={this.props.big ? ROW_HEIGHT_BIG : ROW_HEIGHT}
+        rowHeight={ROW_HEIGHT}
         loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}
