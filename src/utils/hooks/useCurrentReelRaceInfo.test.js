@@ -69,7 +69,6 @@ describe("useCurrentReelRaceInfo", () => {
       points: 0,
       remainingSpins: UNSET_VALUE,
       isInProgress: false,
-      optedIn: false,
       hasEnded: false,
       tournamentId: null,
       formattedPrizes: [],
@@ -117,7 +116,6 @@ describe("useCurrentReelRaceInfo", () => {
       ).toEqual({
         isInProgress: true,
         hasEnded: false,
-        optedIn: false,
         game,
         startTime,
         endTime,
