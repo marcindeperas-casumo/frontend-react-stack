@@ -13,6 +13,8 @@ export const LiveCasinoCardContainer = ({ game }: Props) => {
     bet_behind: string,
     open_seats: string,
     play_now: string,
+    table_temporarily_unavailable: string,
+    table_unavailable: string,
   }>("mobile.live-casino-cards-content");
 
   return <LiveCasinoCard t={t} game={game} />;
