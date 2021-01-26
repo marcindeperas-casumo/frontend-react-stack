@@ -18,7 +18,7 @@ describe("<Lazy />", () => {
       />
     );
 
-    setImmediate(() => {
+    setTimeout(() => {
       act(() => {
         rendered.update();
       });
@@ -26,7 +26,7 @@ describe("<Lazy />", () => {
 
       expect(renderedHtml).toMatch(html);
       done();
-    });
+    }, 50);
   });
 
   test("renders the a fallback component", done => {
