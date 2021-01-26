@@ -91,7 +91,7 @@ export const ReelRacesDrawerWidgetContainer = ({
     currentRace
   );
 
-  if (!currentRace || !currentRace?.isInProgress) {
+  if (!gameActivityAwareRaceData || !currentRace?.isInProgress) {
     return null;
   }
 
