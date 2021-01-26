@@ -33,6 +33,7 @@ import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
 import { useGameModelContext, GamePageContextProvider } from "./Contexts";
+import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
@@ -80,6 +81,8 @@ export const GamePageContainer = () => {
         shouldShowSlotControlSystem
     ),
   });
+
+  useFitToParentSize();
 
   return (
     <GamePage
