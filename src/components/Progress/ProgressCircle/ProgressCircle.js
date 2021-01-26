@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import cx from "classnames";
 import "./ProgressCircle.scss";
 
 type Props = {
   /** from 0 to 100, represents current progress */
   value?: number,
+  fgClassName?: string,
   /** color class name without 't-color-' prefix */
   fgColor?: string,
   /** color class name without 't-color-' prefix */
@@ -19,6 +21,7 @@ export function ProgressCircle({
   value = 0,
   className = "",
   fgColor = "teal-50",
+  fgClassName = "",
   bgColor = "grey-90",
   radius = 25,
   width = 5,
@@ -49,7 +52,11 @@ export function ProgressCircle({
         stroke="currentColor"
         strokeWidth={width}
         strokeLinecap="round"
-        className={`t-opacity-color--100 t-color-${fgColor}`}
+        className={cx(
+          "t-opacity-color--100",
+          `t-color-${fgColor}`,
+          fgClassName
+        )}
         r={innerRadius}
         strokeDasharray={circleC}
         strokeDashoffset={dashOffset}

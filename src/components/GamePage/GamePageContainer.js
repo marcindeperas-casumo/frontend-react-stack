@@ -25,6 +25,7 @@ import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -33,6 +34,7 @@ import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
 import { useGameModelContext, GamePageContextProvider } from "./Contexts";
+import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
@@ -80,6 +82,8 @@ export const GamePageContainer = () => {
         shouldShowSlotControlSystem
     ),
   });
+
+  useFitToParentSize();
 
   return (
     <GamePage
@@ -130,6 +134,7 @@ export const GamePageContainer = () => {
             resumeGame={resumeGame}
             gameSlug={slug}
           />
+          <InGameAdventureTrigger />
         </React.Fragment>
       }
       overScreenNotifications={
