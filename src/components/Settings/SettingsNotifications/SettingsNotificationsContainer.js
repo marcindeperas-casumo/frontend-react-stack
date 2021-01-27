@@ -2,12 +2,19 @@
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useTranslations, useJurisdiction } from "Utils/hooks";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { useJurisdiction } from "Utils/hooks";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import { SettingsNotifications } from "./SettingsNotifications";
+
+export interface NotificationTranslations {
+  subscriptions_title: string;
+  subscriptions_description: string;
+  notifications_ingame_session_updates_label: string;
+  in_game_updates_off_label: string;
+  in_game_updates_options_label: string;
+}
 
 export function SettingsNotificationsContainer() {
   const { isDGOJ } = useJurisdiction();
@@ -15,20 +22,11 @@ export function SettingsNotificationsContainer() {
     A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
   >(PLAYER_CONTACT_SETTINGS_QUERY);
-  const { t, loading: cmsLoading } = useTranslationsGql({
-    subscriptionsTitle:
-      "root:player-settings-component:fields.subscriptions_title",
-    subscriptionsDescription:
-      "root:player-settings-component:fields.subscriptions_description",
-    notificationsInGameSessionUpdatesLabel:
-      "root:player-settings-component:fields.notifications_ingame_session_updates_label",
-    inGameSessionUpdatesOffLabel:
-      "root:player-settings-component:fields.in_game_updates_off_label",
-    inGameSessionUpdatesFrequencyLabel:
-      "root:player-settings-component:fields.in_game_updates_options_label",
-  });
+  const notificationTranslations = useTranslations<NotificationTranslations>(
+    "player-settings-component"
+  );
 
-  if (loading || cmsLoading) {
+  if (loading || !notificationTranslations) {
     return <SettingsRowListSkeleton count={8} />;
   }
   if (!data || error) {
@@ -36,6 +34,10 @@ export function SettingsNotificationsContainer() {
   }
 
   return (
-    <SettingsNotifications player={data.player} labels={t} isDGOJ={isDGOJ} />
+    <SettingsNotifications
+      player={data.player}
+      labels={notificationTranslations}
+      isDGOJ={isDGOJ}
+    />
   );
 }

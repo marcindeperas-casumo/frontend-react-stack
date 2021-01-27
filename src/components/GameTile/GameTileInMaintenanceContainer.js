@@ -2,7 +2,7 @@
 import React from "react";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useTranslations } from "Utils/hooks";
 
 type Props = {
   ratio: string,
@@ -18,18 +18,17 @@ export const GameTileInMaintenanceContainer = ({
   game,
   imgixOpts,
 }: Props) => {
-  const { t, loading } = useTranslationsGql({
-    temporaryUnavailableText:
-      "root:mobile.game-details:fields.temporarily_unavailable",
-  });
+  const t = useTranslations<{ temporarily_unavailable: string }>(
+    "mobile.game-details"
+  );
 
-  if (loading) {
+  if (!t) {
     return null;
   }
 
   return (
     <GameTileInMaintenance
-      temporaryUnavailableText={t.temporaryUnavailableText}
+      temporaryUnavailableText={t.temporarily_unavailable}
       ratio={ratio}
       className={className}
       game={game}

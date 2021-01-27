@@ -2,14 +2,14 @@
 import PLAYER_LOGIN_HISTORY_QUERY from "../PlayerLoginHistoryQuery.graphql";
 
 export const labels = {
-  accountDetailsDescription: "Manage your personal and account info",
-  accountDetailsTitle: "Account details",
-  currentSessionMessage: "Your current session length is:",
-  lastSessionMessage:
+  account_details_description: "Manage your personal and account info",
+  account_details_title: "Account details",
+  current_session_length: "Your current session length is:",
+  last_session_message:
     "Your last session was on <strong>{{lastLoginDate}}</strong>, at <strong>{{lastLoginTime}}</strong>",
-  notificationsDescription: "Manage your notification preferences",
-  notificationsTitle: "Notifications",
-  accountActivity: "Account Activity",
+  notifications_description: "Manage your notification preferences",
+  notifications_title: "Notifications",
+  account_activity: "Account Activity",
   logout: "Logout",
 };
 
