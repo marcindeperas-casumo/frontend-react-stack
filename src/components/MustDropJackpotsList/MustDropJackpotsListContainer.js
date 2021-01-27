@@ -1,14 +1,16 @@
 // @flow
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import * as React from "react";
+import * as R from "ramda";
+import { useQuery } from "@apollo/client";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
-import MustDropJackpotsList from "./MustDropJackpotsList";
+import { useTranslations } from "Utils/hooks/useTranslations";
+import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/GameListHorizontalWithWidget";
+import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
-const MustDropJackpotsListContainer = () => {
+export const MustDropJackpotsListContainer = () => {
   const { data } = useQuery<
     A.MustDropJackpotsGamesListQuery,
     A.MustDropJackpotsGamesListQueryVariables
@@ -19,19 +21,23 @@ const MustDropJackpotsListContainer = () => {
     },
   });
 
-  const { t } = useTranslationsGql({
-    seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
-  });
+  const t = useTranslations<{ more_link: string }>(
+    "built-pages.top-lists-translations"
+  );
 
-  if (data && data.gamesList && data.gamesList.games) {
+  if (t && data?.gamesList?.games) {
     return (
       <TrackProvider
         data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
       >
-        <MustDropJackpotsList
-          jackpots={data.gamesList.games}
-          name={data.gamesList?.name}
-          seeMoreText={t.seeMoreText}
+        <GameListHorizontalWithWidget
+          name={R.pathOr([], ["gamesList", "name"], data)}
+          games={R.pathOr([], ["gamesList", "games"], data)}
+          Widget={MustDropJackpotsWidget}
+          seeMore={{
+            text: t.more_link,
+            url: "../must-drop-jackpots",
+          }}
         />
       </TrackProvider>
     );
@@ -39,5 +45,3 @@ const MustDropJackpotsListContainer = () => {
 
   return null;
 };
-
-export default MustDropJackpotsListContainer;

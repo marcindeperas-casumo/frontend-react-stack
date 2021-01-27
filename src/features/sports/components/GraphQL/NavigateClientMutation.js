@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { Mutation } from "react-apollo";
+import { Mutation } from "@apollo/client/react/components";
 import * as A from "Types/apollo";
 import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import type { MutationProps } from "Models/apollo/types";

@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
+import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import defaultState from "Models/__mocks__/state.mock";
@@ -292,30 +293,30 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
-      act(jest.runOnlyPendingTimers);
-      wrapper.update();
-      expectHook(wrapper).toEqual({
-        isInProgress: false,
-        hasEnded: false,
-        endTime: nextRace.endTime,
-        startTime: nextRace.startTime,
-        position: nextRace.position,
-        points: nextRace.points,
-        remainingSpins: nextRace.remainingSpins,
-        game: genGame(nextRace.slug),
-        tournamentId: nextRace.slug,
-        formattedPrizes: [],
-        leaderboard: [
-          {
-            playerId,
-            playerName,
-            position: nextRace.position,
-            points: nextRace.points,
-            remainingSpins: nextRace.remainingSpins,
-            boosters,
-          },
-        ],
-        boosters,
+      wait().then(() => {
+        expectHook(wrapper).toEqual({
+          isInProgress: false,
+          hasEnded: false,
+          endTime: nextRace.endTime,
+          startTime: nextRace.startTime,
+          position: nextRace.position,
+          points: nextRace.points,
+          remainingSpins: nextRace.remainingSpins,
+          game: genGame(nextRace.slug),
+          tournamentId: nextRace.slug,
+          formattedPrizes: [],
+          leaderboard: [
+            {
+              playerId,
+              playerName,
+              position: nextRace.position,
+              points: nextRace.points,
+              remainingSpins: nextRace.remainingSpins,
+              boosters,
+            },
+          ],
+          boosters,
+        });
       });
     });
 
@@ -339,30 +340,30 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
-      act(jest.runOnlyPendingTimers);
-      wrapper.update();
-      expectHook(wrapper).toEqual({
-        isInProgress: true,
-        hasEnded: false,
-        endTime: nextRace.endTime,
-        startTime: nextRace.startTime,
-        position: nextRace.position,
-        points: nextRace.points,
-        remainingSpins: nextRace.remainingSpins,
-        game: genGame(nextRace.slug),
-        tournamentId: nextRace.slug,
-        formattedPrizes: [],
-        leaderboard: [
-          {
-            playerId,
-            playerName,
-            position: nextRace.position,
-            points: nextRace.points,
-            remainingSpins: nextRace.remainingSpins,
-            boosters,
-          },
-        ],
-        boosters,
+      wait().then(() => {
+        expectHook(wrapper).toEqual({
+          isInProgress: true,
+          hasEnded: false,
+          endTime: nextRace.endTime,
+          startTime: nextRace.startTime,
+          position: nextRace.position,
+          points: nextRace.points,
+          remainingSpins: nextRace.remainingSpins,
+          game: genGame(nextRace.slug),
+          tournamentId: nextRace.slug,
+          formattedPrizes: [],
+          leaderboard: [
+            {
+              playerId,
+              playerName,
+              position: nextRace.position,
+              points: nextRace.points,
+              remainingSpins: nextRace.remainingSpins,
+              boosters,
+            },
+          ],
+          boosters,
+        });
       });
     });
 
@@ -386,30 +387,31 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
-      act(jest.runOnlyPendingTimers);
-      wrapper.update();
-      expectHook(wrapper).toEqual({
-        isInProgress: true,
-        hasEnded: false,
-        endTime: nextRace.endTime,
-        startTime: nextRace.startTime,
-        position: nextRace.position,
-        points: nextRace.points,
-        remainingSpins: nextRace.remainingSpins,
-        game: genGame(nextRace.slug),
-        tournamentId: nextRace.slug,
-        formattedPrizes: [],
-        leaderboard: [
-          {
-            playerId,
-            playerName,
-            position: nextRace.position,
-            points: nextRace.points,
-            remainingSpins: nextRace.remainingSpins,
-            boosters,
-          },
-        ],
-        boosters,
+      // eslint-disable-next-line sonarjs/no-identical-functions
+      wait().then(() => {
+        expectHook(wrapper).toEqual({
+          isInProgress: true,
+          hasEnded: false,
+          endTime: nextRace.endTime,
+          startTime: nextRace.startTime,
+          position: nextRace.position,
+          points: nextRace.points,
+          remainingSpins: nextRace.remainingSpins,
+          game: genGame(nextRace.slug),
+          tournamentId: nextRace.slug,
+          formattedPrizes: [],
+          leaderboard: [
+            {
+              playerId,
+              playerName,
+              position: nextRace.position,
+              points: nextRace.points,
+              remainingSpins: nextRace.remainingSpins,
+              boosters,
+            },
+          ],
+          boosters,
+        });
       });
     });
     test("dont find reel race that has finished just now", () => {

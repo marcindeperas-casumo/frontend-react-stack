@@ -3,7 +3,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as R from "ramda";
 import { showModal } from "Models/modal";
-import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import {
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
@@ -48,20 +47,19 @@ export function TimeLimitsCardContainer({ selectedPeriod }: Props) {
     R.filter(isNotNil, [dailyLimit, weeklyLimit, monthlyLimit])
   );
 
+  if (selectedLimit) {
+    return (
+      <TimeLimitsCardDesktop t={t} limit={selectedLimit} onClick={onClick} />
+    );
+  }
+
   return (
-    <>
-      <Mobile>
-        <TimeLimitsCardMobile
-          t={t}
-          dailyLimit={dailyLimit}
-          weeklyLimit={weeklyLimit}
-          monthlyLimit={monthlyLimit}
-          onClick={onClick}
-        />
-      </Mobile>
-      <TabletAndDesktop>
-        <TimeLimitsCardDesktop t={t} limit={selectedLimit} onClick={onClick} />
-      </TabletAndDesktop>
-    </>
+    <TimeLimitsCardMobile
+      t={t}
+      dailyLimit={dailyLimit}
+      weeklyLimit={weeklyLimit}
+      monthlyLimit={monthlyLimit}
+      onClick={onClick}
+    />
   );
 }

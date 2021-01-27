@@ -24,7 +24,7 @@ describe("<LazyPortal />", () => {
       />
     );
 
-    setImmediate(() => {
+    setTimeout(() => {
       act(() => {
         rendered.update();
       });
@@ -34,7 +34,7 @@ describe("<LazyPortal />", () => {
       expect(domHtml).toMatch(html);
       expect(renderedHtml).toMatch(html);
       done();
-    });
+    }, 50);
   });
 });
 

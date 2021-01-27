@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { type ValuableType } from "Models/valuables";
 import { PlayerValuablesQuery } from "./PlayerValuables.graphql";

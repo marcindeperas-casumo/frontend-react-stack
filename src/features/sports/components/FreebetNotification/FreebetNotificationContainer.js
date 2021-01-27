@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as R from "ramda";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { gql, useQuery } from "@apollo/client";
 import * as storage from "Services/storage";
 import {
   VALUABLE_STATES,

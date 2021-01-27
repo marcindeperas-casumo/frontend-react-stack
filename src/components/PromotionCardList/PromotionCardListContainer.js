@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { PromotionCardList } from "./PromotionCardList";
@@ -24,7 +24,7 @@ const PromotionCardListContainer = ({ slug }: Props) => {
     seeMoreText: "root:built-pages.top-lists-translations:fields.more_link",
   });
 
-  if (loading || cmsLoading) {
+  if (loading || cmsLoading || !t || !t.seeMoreText) {
     return <PromotionCardListSkeleton />;
   }
 

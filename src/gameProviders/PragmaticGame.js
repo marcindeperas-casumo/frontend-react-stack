@@ -106,6 +106,6 @@ export class PragmaticGame extends BaseIframeGame {
   }
 
   extractEventId(data: any) {
-    return data.method;
+    return data.name;
   }
 }
