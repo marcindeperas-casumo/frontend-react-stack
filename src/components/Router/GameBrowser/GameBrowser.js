@@ -55,6 +55,9 @@ export const GameBrowser = () => {
     url: keyToUrl[key] || key.toLowerCase(),
   }));
   const redirectTarget = useSelector(getGamePage);
+  const setForMustDropJackpotsPage = gameBrowserSetsData.find(
+    set => set.key === "JACKPOTS"
+  );
 
   return (
     <WaitForHostElement hostElementId={hostElementId}>
@@ -79,12 +82,14 @@ export const GameBrowser = () => {
                   />
                 ))}
             </>
-            <GameListPage
-              set={gameBrowserSetsData.find(set => set.key === "JACKPOTS")}
-              key="JACKPOTS"
-              path="must-drop-jackpots"
-              presetFilters={{ "gameFeatures=mustDropJackpot": true }}
-            />
+            {setForMustDropJackpotsPage && (
+              <GameListPage
+                set={setForMustDropJackpotsPage}
+                key="JACKPOTS"
+                path="must-drop-jackpots"
+                prefilledFilters={{ "gameFeatures=mustDropJackpot": true }}
+              />
+            )}
             <GameSearch path="search" />
             {/* $FlowIgnore:  missing 'provider' prop will come from ':provider' part in path */}
             <ProviderGamesList path="provider/:provider" />
