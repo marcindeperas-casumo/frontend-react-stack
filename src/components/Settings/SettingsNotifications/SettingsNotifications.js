@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import * as A from "Types/apollo";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
+import { NotificationTranslations } from "Components/Settings/SettingsNotifications/SettingsNotificationsContainer";
 import { RealityCheckField } from "./SettingsNotificationsFields";
 import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
 import { NewsletterSubscriptionContainer } from "./NewsletterSubscriptionContainer";
@@ -12,13 +13,7 @@ import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
-  labels: {
-    subscriptionsTitle: ?string,
-    subscriptionsDescription: ?string,
-    notificationsInGameSessionUpdatesLabel: ?string,
-    inGameSessionUpdatesOffLabel: ?string,
-    inGameSessionUpdatesFrequencyLabel: ?string,
-  },
+  labels: NotificationTranslations,
   isDGOJ: boolean,
 };
 
@@ -31,11 +26,11 @@ export class SettingsNotifications extends PureComponent<Props> {
         },
       },
       labels: {
-        subscriptionsTitle,
-        subscriptionsDescription,
-        notificationsInGameSessionUpdatesLabel,
-        inGameSessionUpdatesOffLabel,
-        inGameSessionUpdatesFrequencyLabel,
+        subscriptions_title: subscriptionsTitle,
+        subscriptions_description: subscriptionsDescription,
+        notifications_ingame_session_updates_label: notificationsInGameSessionUpdatesLabel,
+        in_game_updates_off_label: inGameSessionUpdatesOffLabel,
+        in_game_updates_options_label: inGameSessionUpdatesFrequencyLabel,
       },
       isDGOJ,
     } = this.props;

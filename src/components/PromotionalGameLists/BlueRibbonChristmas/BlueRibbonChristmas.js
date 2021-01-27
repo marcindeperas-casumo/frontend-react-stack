@@ -24,7 +24,7 @@ type Props = {
   },
 };
 
-export function BlueRibbonChristmas({ jackpot }: Props) {
+export const BlueRibbonChristmas = React.memo<Props>(({ jackpot }: Props) => {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
   const { data } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
@@ -44,4 +44,4 @@ export function BlueRibbonChristmas({ jackpot }: Props) {
       Widget={BlueRibbonJackpotsWidgetContainer}
     />
   );
-}
+});

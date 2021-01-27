@@ -10,7 +10,7 @@ import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/Game
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
-export const MustDropJackpotsListContainer = () => {
+export const MustDropJackpotsListContainer = React.memo<null>(() => {
   const { data } = useQuery<
     A.MustDropJackpotsGamesListQuery,
     A.MustDropJackpotsGamesListQueryVariables
@@ -44,4 +44,4 @@ export const MustDropJackpotsListContainer = () => {
   }
 
   return null;
-};
+});
