@@ -29,35 +29,39 @@ export const BlueRibbonJackpotsWidgetPromotionPage = () => (
   </div>
 );
 
-export function BlueRibbonJackpotsWidgetContainer({
-  className = "",
-}: {
-  className?: string,
-}) {
-  const { response } = useFetch(urls.handshake);
-  const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  useBlueRibbonSDKAnonymous();
-  const pots = usePotStateChangeEvent();
+export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
+  ({ className = "" }: { className?: string }) => {
+    const { response } = useFetch(urls.handshake);
+    const t = useTranslations<JackpotWidgetContentPage>(
+      jackpotWidgetContentPage
+    );
+    useBlueRibbonSDKAnonymous();
+    const pots = usePotStateChangeEvent();
 
-  const available = R.propOr(false, "available", response);
-  const jackpots: Array<BlueRibbonJackpotEntry> = R.pipe(
-    R.pathOr([], ["jackpots", 0, "pots"]),
-    R.map(({ communityWinRatio, mainWinRatio, potId, potName }) => ({
-      value: pots[potId]?.progressive,
-      label: potName,
-      status: pots[potId]?.potStatus,
-      potId,
-      communityWinRatio,
-      mainWinRatio,
-    })),
-    R.filter(R.prop("value"))
-  )(response);
+    const available = R.propOr(false, "available", response);
+    const jackpots: Array<BlueRibbonJackpotEntry> = R.pipe(
+      R.pathOr([], ["jackpots", 0, "pots"]),
+      R.map(({ communityWinRatio, mainWinRatio, potId, potName }) => ({
+        value: pots[potId]?.progressive,
+        label: potName,
+        status: pots[potId]?.potStatus,
+        potId,
+        communityWinRatio,
+        mainWinRatio,
+      })),
+      R.filter(R.prop("value"))
+    )(response);
 
-  if (!t || !available || !jackpots || jackpots.length === 0) {
-    return null;
+    if (!t || !available || !jackpots || jackpots.length === 0) {
+      return null;
+    }
+
+    return (
+      <BlueRibbonJackpotsWidget
+        className={className}
+        jackpots={jackpots}
+        t={t}
+      />
+    );
   }
-
-  return (
-    <BlueRibbonJackpotsWidget className={className} jackpots={jackpots} t={t} />
-  );
-}
+);

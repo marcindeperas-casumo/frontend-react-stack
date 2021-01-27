@@ -34,8 +34,8 @@ describe("SettingsSections", () => {
         />
       );
 
-      expect(rendered.contains(labels.accountDetailsTitle)).toBe(true);
-      expect(rendered.contains(labels.accountDetailsDescription)).toBe(true);
+      expect(rendered.contains(labels.account_details_title)).toBe(true);
+      expect(rendered.contains(labels.account_details_description)).toBe(true);
     });
   });
 
@@ -48,8 +48,8 @@ describe("SettingsSections", () => {
         />
       );
 
-      expect(rendered.contains(labels.notificationsTitle)).toBe(true);
-      expect(rendered.contains(labels.notificationsDescription)).toBe(true);
+      expect(rendered.contains(labels.notifications_title)).toBe(true);
+      expect(rendered.contains(labels.account_details_description)).toBe(true);
     });
   });
 
@@ -74,7 +74,7 @@ describe("SettingsSections", () => {
       );
 
       const LastLoginBar = rendered.find("SettingsSectionsLastLogin");
-      expect(LastLoginBar.contains(props.labels.currentSessionMessage)).toBe(
+      expect(LastLoginBar.contains(props.labels.current_session_length)).toBe(
         true
       );
     });
@@ -98,7 +98,7 @@ describe("SettingsSections", () => {
         />
       );
       expect(rendered.find("ContentReplacer").prop("value")).toEqual(
-        props.labels.lastSessionMessage
+        props.labels.last_session_message
       );
     });
   });
