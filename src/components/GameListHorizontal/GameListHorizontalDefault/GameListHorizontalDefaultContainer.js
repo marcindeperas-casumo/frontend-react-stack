@@ -19,30 +19,32 @@ type Props = {
   numberOfGames: number,
 };
 
-export const GameListHorizontalDefaultContainer = ({
-  id,
-  numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
-}: Props) => {
-  const { data, loading } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
-    GameListQuery,
-    { pollInterval: POLL_INTERVAL.GAMES_LIST, variables: { id, numberOfGames } }
-  );
+export const GameListHorizontalDefaultContainer = React.memo<Props>(
+  ({ id, numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT }: Props) => {
+    const { data, loading } = useQuery<
+      A.GameListQuery,
+      A.GameListQueryVariables
+    >(GameListQuery, {
+      pollInterval: POLL_INTERVAL.GAMES_LIST,
+      variables: { id, numberOfGames },
+    });
 
-  if (data && data.gamesList && data.gamesList.games.length) {
-    return (
-      <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-        <GameListHorizontalDefault list={data.gamesList} />
-      </TrackProvider>
-    );
+    if (data && data.gamesList && data.gamesList.games.length) {
+      return (
+        <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+          <GameListHorizontalDefault list={data.gamesList} />
+        </TrackProvider>
+      );
+    }
+
+    if (loading) {
+      return (
+        <div className="o-wrapper">
+          <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+        </div>
+      );
+    }
+
+    return null;
   }
-
-  if (loading) {
-    return (
-      <div className="o-wrapper">
-        <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
-      </div>
-    );
-  }
-
-  return null;
-};
+);
