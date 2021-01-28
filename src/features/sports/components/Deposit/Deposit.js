@@ -8,7 +8,7 @@ import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
 import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
-import type { navigateToDeposit } from "Features/sports/utils";
+import { navigateToDeposit } from "Features/sports/utils";
 
 export const CMS_SLUG = "welcome-offer-sports";
 
@@ -29,9 +29,9 @@ export const Deposit = ({
 }: Props) => {
   const t = useTranslations("iframe-solution");
 
-  if (!hasDeposited) {
-    return null;
-  }
+  // if (!hasDeposited) {
+  //   return null;
+  // }
 
   const balanceFormatted = formatCurrency({
     locale,
