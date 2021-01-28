@@ -357,6 +357,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_SPORTS_DEPOSIT_CLICKED: "Sports deposit component clicked",
   MIXPANEL_SPORTS_BETSLIP_DEPOSIT_CLICKED: "Sports - betslip deposit clicked",
+  MIXPANEL_SPORTS_BET_FAILED: "Sports - bet placement failed for lack of funds",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",

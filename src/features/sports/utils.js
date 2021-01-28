@@ -18,8 +18,8 @@ export type NavigateByIdType = {
 };
 
 export const navigateToDeposit = () => {
-  const redirectUrl = encodeURIComponent(
-    window.location.href.substr(window.location.origin.length + 1)
+  const redirectUrl = window.location.href.substr(
+    window.location.origin.length + 1
   );
 
   navigateById({
