@@ -38,8 +38,10 @@
   display: none !important;
 }
 
-#mod-KambiBC-betslip-container .mod-KambiBC-betslip {
-  max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
+#mod-KambiBC-betslip-container.mod-KambiBC-betslip-container--maximized
+  .mod-KambiBC-betslip {
+  bottom: 48px !important;
+  max-height: calc(100% - var(--play-okay-bar-height, 0) - 48px) !important;
 }
 
 .mod-KambiBC-betslip__header-pin-btn {
@@ -48,14 +50,6 @@
 
 .c-sports-shell--site .KambiBC-event-groups-list {
   padding: 0 !important;
-}
-
-// move betslip on desktop only so chat icon does not overlap PRS-176
-#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
-  .mod-KambiBC-betslip,
-#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
-  .mod-KambiBC-betslip__outer-wrapper {
-  right: 95px !important;
 }
 
 // https://jira.casumocave.com/browse/PRS-354 fast fix, should be send later to kambi css
