@@ -33,14 +33,16 @@ const renderApp = async AppComponent => {
 
   if (root) {
     ReactDOM.render(
-      <Provider store={reduxStore}>
-        <ApolloProvider client={apolloClient}>
-          <ErrorBoundary>
-            <Modal />
-            <AppComponent />
-          </ErrorBoundary>
-        </ApolloProvider>
-      </Provider>,
+      <React.StrictMode>
+        <Provider store={reduxStore}>
+          <ApolloProvider client={apolloClient}>
+            <ErrorBoundary>
+              <Modal />
+              <AppComponent />
+            </ErrorBoundary>
+          </ApolloProvider>
+        </Provider>
+      </React.StrictMode>,
       root
     );
   }
