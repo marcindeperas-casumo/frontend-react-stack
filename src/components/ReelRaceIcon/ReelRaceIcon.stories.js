@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { text } from "@storybook/addon-knobs";
 import { ReelRaceIcon } from "./ReelRaceIcon";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
@@ -30,7 +31,7 @@ t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-
       withBg ? "t-background-grey-90" : ""
     }`}
   >
-    <div className="t-border-r--circle u-height--full u-overflow--hidden u-position-relative u-zindex--content-overlay">
+    <div className="t-border-r--circle u-height--full u-position-relative u-zindex--content-overlay">
       {children}
     </div>
   </div>
@@ -81,6 +82,19 @@ stories.add("Default", () => {
           </div>
         </div>
       ))}
+    </div>
+  );
+});
+
+stories.add("points animation", () => {
+  const currentRace = getCurrentRace();
+  currentRace.points = text("points", "100");
+
+  return (
+    <div className="o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x u-margin-top--2xlg">
+      <Wrapper withBg={false}>
+        <ReelRaceIcon onClick={action("clicked")} currentRace={currentRace} />
+      </Wrapper>
     </div>
   );
 });

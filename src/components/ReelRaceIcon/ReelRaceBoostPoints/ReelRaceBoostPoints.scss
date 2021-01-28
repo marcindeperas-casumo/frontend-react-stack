@@ -1,0 +1,59 @@
+/* stylelint-disable */
+.c-reel-race-icon__boost-points {
+  font-weight: 700;
+  height: 16px;
+  opacity: 0;
+  position: absolute;
+  right: -4px;
+  top: -20px;
+  transform: scale(0.75) skew(5deg, -5deg) translate(-100%, 64%);
+  width: 16px;
+
+  &--animating {
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: reveal-points;
+    animation-timing-function: ease-out;
+  }
+}
+
+.c-reel-race-icon__boost-points__value {
+  bottom: 0;
+  color: #000;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9999999;
+
+  &:first-child {
+    font-size: 16px;
+  }
+
+  &:nth-child(2) {
+    font-size: 15px;
+  }
+
+  &:last-child {
+    color: #ffca30;
+    font-size: 14px;
+  }
+}
+
+@keyframes reveal-points {
+  6%,
+  85% {
+    opacity: 1;
+    transform: scale(1) skew(5deg, -5deg) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) skew(5deg, -5deg) translate(0, -100%);
+  }
+}

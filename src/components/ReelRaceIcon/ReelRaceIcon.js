@@ -8,10 +8,12 @@ import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { getProgressColor } from "Models/reelRaces";
+import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
 import { PointsView } from "./views/PointsView";
+import ReelRaceBoostPoints from "./ReelRaceBoostPoints";
 
 import "./ReelRaceIcon.scss";
 
@@ -51,12 +53,16 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
   const { t } = useTranslationsGql({
     reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
   });
+
   const gameProgress = useReelRaceProgress(currentRace);
 
   const viewProps = {
     ...currentRace,
     pointsText: t.reel_races_drawer_pts,
   };
+
+  const gameActivityAwareRaceData =
+    useGameActivityAwareValue<CurrentReelRaceInfo>(currentRace) || {};
 
   const transitionTimer = useTimeoutFn();
 
@@ -117,6 +123,7 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
           />
         )}
       </div>
+
       <ProgressCircle
         value={gameProgress}
         fgColor={getProgressColor(gameProgress)}
@@ -124,6 +131,11 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
         className="c-reel-race-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute"
         width={4}
         radius={24}
+      />
+
+      <ReelRaceBoostPoints
+        boosters={gameActivityAwareRaceData.boosters}
+        points={gameActivityAwareRaceData.points}
       />
     </div>
   );
