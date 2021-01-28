@@ -17,6 +17,7 @@ export const KAMBI_EVENTS = {
   PROMO_CARD_CLICK: "kambi promo card click",
   SANDWICH_FILTER_CLICK: "kambi sandwich filter click",
   MORE_WAGERS_CLICK: "kambi kambi more wagers click",
+  BET_DENIED: "kambi bet denied",
 };
 
 const trackPageView = (page: { type: string, title: string, path: string }) => {
@@ -97,6 +98,16 @@ const emitBetslipVisibleToKoStack = (
 export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
   if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
     return;
+  }
+
+  if (
+    event.data.event === KAMBI_EVENTS.BET_DENIED &&
+    event.data.kambi?.hit?.bet &&
+    event.data.kambi?.hit?.bet["denied reason"] === "not enough funds"
+  ) {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_BET_FAILED, {
+      [EVENT_PROPS.BET_VALUE]: event.data.kambi?.hit?.bet["bet value"],
+    });
   }
 
   if (event.data.event === KAMBI_EVENTS.BETSLIP_STATUS && !isDesktop()) {

@@ -426,6 +426,7 @@ export const EVENT_PROPS = {
   STAKE: "stake",
   CATEGORY: "category",
   BALANCE: "balance",
+  BET_VALUE: "bet value",
 };
 
 export const EVENT_LOCATIONS = {
