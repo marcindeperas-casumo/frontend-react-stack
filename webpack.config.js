@@ -23,7 +23,9 @@ module.exports = env => {
   const fileNamePattern = `[name].[${env.production ? "contenthash" : "hash"}]`;
 
   return {
+    mode: env.production ? "production" : "development",
     entry: paths.entry,
+    devtool: env.production ? "source-map" : "cheap-module-source-map",
     resolve: {
       modules: ["node_modules"],
       alias: {
@@ -72,8 +74,16 @@ module.exports = env => {
             {
               test: /\.s[ac]ss$/i,
               use: [
-                "style-loader",
-                "css-loader",
+                ...(env.production
+                  ? [MiniCssExtractPlugin.loader]
+                  : [require.resolve("style-loader")]),
+                {
+                  loader: require.resolve("css-loader"),
+                  options: {
+                    importLoaders: 2,
+                    sourceMap: true,
+                  },
+                },
                 {
                   loader: require.resolve("sass-loader"),
                   options: {
@@ -114,6 +124,13 @@ module.exports = env => {
     },
     plugins: [
       new CleanWebpackPlugin(),
+      ...(env.production
+        ? [
+            new MiniCssExtractPlugin({
+              filename: `${staticFolderName}/css/${fileNamePattern}.css`,
+            }),
+          ]
+        : []),
       new WebpackManifestPlugin({
         fileName: `${staticFolderName}/manifest.json`,
         publicPath: "/",
@@ -122,13 +139,6 @@ module.exports = env => {
           !x.name.endsWith(".map") &&
           !x.name.startsWith(staticFolderName),
       }),
-      ...(env.production
-        ? [
-            new MiniCssExtractPlugin({
-              filename: `${staticFolderName}/css/${fileNamePattern}.css`,
-            }),
-          ]
-        : []),
       new HtmlWebpackPlugin({
         filename: `index.html`,
         template: paths.indexHtml,
