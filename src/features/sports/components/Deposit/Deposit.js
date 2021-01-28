@@ -29,9 +29,9 @@ export const Deposit = ({
 }: Props) => {
   const t = useTranslations("iframe-solution");
 
-  // if (!hasDeposited) {
-  //   return null;
-  // }
+  if (!hasDeposited) {
+    return null;
+  }
 
   const balanceFormatted = formatCurrency({
     locale,
