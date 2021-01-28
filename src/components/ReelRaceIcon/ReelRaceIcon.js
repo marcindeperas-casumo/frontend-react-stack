@@ -9,11 +9,11 @@ import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { getProgressColor } from "Models/reelRaces";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
+import ReelRaceBoosterPoints from "Components/ReelRaceBoosterPoints";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
 import { PointsView } from "./views/PointsView";
-import ReelRaceBoostPoints from "./ReelRaceBoostPoints";
 
 import "./ReelRaceIcon.scss";
 
@@ -133,7 +133,7 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
         radius={24}
       />
 
-      <ReelRaceBoostPoints
+      <ReelRaceBoosterPoints
         boosters={gameActivityAwareRaceData.boosters}
         points={gameActivityAwareRaceData.points}
       />
