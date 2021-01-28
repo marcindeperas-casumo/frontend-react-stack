@@ -1,66 +1,148 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const staticFolderName = "react-stack";
-
-module.exports = {
+const paths = {
+  root: path.resolve(__dirname, "./"),
   entry: path.resolve(__dirname, "src/index.js"),
-  module: {
-    rules: [
-      {
-        test: /\.(js|mjs|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
+  indexHtml: path.resolve(__dirname, "src/index.html"),
+  eventBubblerHtml: path.resolve(__dirname, "src/event-bubbler.html"),
+  navigationBubblerHtml: path.resolve(__dirname, "src/navigation-bubbler.html"),
+  cudl: path.resolve(__dirname, "src/styles/_tools.cudl.scss"),
+  modules: path.resolve(__dirname, "node_modules"),
+  styles: path.resolve(__dirname, "src/styles"),
+  build: path.resolve(__dirname, "build"),
+};
+
+module.exports = env => {
+  const fileNamePattern = `[name].[${env.production ? "contenthash" : "hash"}]`;
+
+  return {
+    entry: paths.entry,
+    resolve: {
+      modules: ["node_modules"],
+      alias: {
+        Styles: paths.styles,
       },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: require.resolve("sass-loader"),
-            options: {
-              sassOptions: {
-                includePaths: cudl,
-              },
-              sourceMap: true,
+    },
+    output: {
+      path: paths.build,
+      filename: `${staticFolderName}/js/${fileNamePattern}.js`,
+      publicPath: env.production ? staticFolderName : "/",
+    },
+    devServer: {
+      contentBase: paths.build,
+      port: 3000,
+    },
+    optimization: {
+      moduleIds: env.production ? "hashed" : false,
+      splitChunks: {
+        chunks: "async",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/](?!@formatjs[\\/]intl-relativetimeformat[\\/])/,
+            name(module) {
+              if (module.context.includes("@casumo")) {
+                return "cudl";
+              }
+
+              return "vendors";
             },
+            chunks: "all",
           },
-          {
-            loader: require.resolve("sass-resources-loader"),
-            options: {
-              resources: path.resolve(__dirname, "src/styles/_tools.cudl.scss"),
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        loader: require.resolve("graphql-tag/loader"),
-        include: path.resolve(__dirname, "./"),
-      },
-      {
-        test: /\.svg$/,
-        loader: require.resolve("@svgr/webpack"),
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve("url-loader"),
-        options: {
-          limit: 10000,
-          name: `${staticFolderName}/media/[name].[hash:8].[ext]`,
         },
       },
-    ],
-  },
-  resolve: {
-    modules: [path.resolve("node_modules"), "node_modules"],
-    alias: {
-      Styles: path.resolve(__dirname, "src/styles"),
+      minimize: env.production,
+      minimizer: [`...`, new CssMinimizerPlugin()],
     },
-  },
-  output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
-  },
+    module: {
+      rules: [
+        {
+          oneOf: [
+            {
+              test: /\.(js|mjs|jsx)$/,
+              exclude: /node_modules/,
+              use: ["babel-loader"],
+            },
+            {
+              test: /\.s[ac]ss$/i,
+              use: [
+                "style-loader",
+                "css-loader",
+                {
+                  loader: require.resolve("sass-loader"),
+                  options: {
+                    sassOptions: {
+                      includePaths: cudl,
+                    },
+                    sourceMap: true,
+                  },
+                },
+                {
+                  loader: require.resolve("sass-resources-loader"),
+                  options: {
+                    resources: paths.cudl,
+                  },
+                },
+              ],
+            },
+            {
+              test: /\.(graphql|gql)$/,
+              loader: require.resolve("graphql-tag/loader"),
+              include: paths.root,
+            },
+            {
+              test: /\.svg$/,
+              loader: require.resolve("@svgr/webpack"),
+            },
+            {
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              loader: require.resolve("url-loader"),
+              options: {
+                limit: 10000,
+                name: `${staticFolderName}/media/[name].[hash:8].[ext]`,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new WebpackManifestPlugin({
+        fileName: `${staticFolderName}/manifest.json`,
+        publicPath: "/",
+        filter: x =>
+          x.isChunk &&
+          !x.name.endsWith(".map") &&
+          !x.name.startsWith(staticFolderName),
+      }),
+      ...(env.production
+        ? [
+            new MiniCssExtractPlugin({
+              filename: `${staticFolderName}/css/${fileNamePattern}.css`,
+            }),
+          ]
+        : []),
+      new HtmlWebpackPlugin({
+        filename: `index.html`,
+        template: paths.indexHtml,
+      }),
+      new HtmlWebpackPlugin({
+        filename: `${staticFolderName}/event-bubbler.html`,
+        template: paths.eventBubblerHtml,
+        inject: false,
+      }),
+      new HtmlWebpackPlugin({
+        filename: `${staticFolderName}/navigation-bubbler.html`,
+        template: paths.navigationBubblerHtml,
+        inject: false,
+      }),
+    ],
+  };
 };
