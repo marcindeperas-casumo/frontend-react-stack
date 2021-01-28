@@ -27,7 +27,13 @@ import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
-import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
+import {
+  PostPanicButtonModal,
+  PrePanicButtonModal,
+  FiveMinuteBreakFinishedModal,
+  FiveMinuteBreakOngoingModal,
+  FiveMinuteBreakReelRaceModal,
+} from "./GGL";
 import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
 
@@ -117,6 +123,18 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON]: {
     slug: "",
     Content: PrePanicButtonModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_FINISHED]: {
+    slug: "",
+    Content: FiveMinuteBreakFinishedModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_ONGOING]: {
+    slug: "",
+    Content: FiveMinuteBreakOngoingModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_REEL_RACE]: {
+    slug: "",
+    Content: FiveMinuteBreakReelRaceModal,
   },
   [REACT_APP_MODAL.ID.PAYMENT_RESULT]: {
     slug: "",

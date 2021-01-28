@@ -1,3 +1,12 @@
+.u-font-variant-numeric--tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+// Below needed for "font-variant-numeric: tabular-nums" to work it seems
+.u-font-family--noncustom {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .u-text-transform-capitalize {
   text-transform: capitalize;
 }
