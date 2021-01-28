@@ -33,11 +33,10 @@ import { findQueryTranslation, getAppliedFilters } from "./GameListPage.utils";
 
 type Props = {
   set: A.GetGameSets_gameSetsList,
-  prefilledFilters: {},
 };
 
 /* eslint-disable-next-line sonarjs/cognitive-complexity */
-export function GameListPage({ set, prefilledFilters = {} }: Props) {
+export function GameListPage({ set }: Props) {
   const t = useTranslations<{
     title: string,
     modal_button: string,
@@ -55,10 +54,7 @@ export function GameListPage({ set, prefilledFilters = {} }: Props) {
       sortOrder: s,
     });
   };
-  const [
-    prefilledFiltersHasApplied,
-    setPrefilledFiltersHasApplied,
-  ] = React.useState(false);
+
   const [filters, setFiltersRaw] = React.useState<{}>(defaultFilters);
   const setFilters = f => {
     setFiltersRaw(f);
@@ -66,16 +62,6 @@ export function GameListPage({ set, prefilledFilters = {} }: Props) {
       filteringOption: getAppliedFilters(f).join("&"),
     });
   };
-
-  React.useEffect(() => {
-    if (
-      Object.keys(prefilledFilters).length > 0 &&
-      !prefilledFiltersHasApplied
-    ) {
-      setFiltersRaw(prefilledFilters);
-      setPrefilledFiltersHasApplied(true);
-    }
-  }, [prefilledFilters, prefilledFiltersHasApplied]);
 
   const [filtersVisible, setFiltersVisibility] = React.useState(false);
   const sortOrder = `sortOrder=${sort || set.defaultSort}`;
