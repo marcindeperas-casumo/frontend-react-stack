@@ -64,8 +64,8 @@
   },
   "scripts": {
     "flow": "flow",
-    "start": "NODE_ENV=development webpack serve --env development --progress --config webpack.config.js",
-    "build": "NODE_ENV=production webpack --env production --progress --config webpack.config.js",
+    "start": "NODE_ENV=development webpack serve --env development --env staticDir=/ --progress --config config/webpack",
+    "build": "NODE_ENV=production webpack --env production --env staticDir=react-stack --progress --config config/webpack",
     "test": "node scripts/test.js",
     "pact": "jest --testMatch '<rootDir>/pact/*.pact.js'",
     "pact:publish": "node pact/publish.js",
