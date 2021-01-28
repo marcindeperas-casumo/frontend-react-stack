@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import { act } from "react-dom/test-utils";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
+import { wait } from "Utils/apolloTestUtils";
 import { SettingsAccountDetails } from "./SettingsAccountDetails";
 import { SettingsAccountDetailsContainer } from "./SettingsAccountDetailsContainer";
 import {
@@ -27,9 +27,9 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      act(() => jest.runAllTimers());
-
-      expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
+      wait().then(() => {
+        expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
+      });
     });
 
     test("should show error", () => {
@@ -39,12 +39,9 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      act(() => {
-        jest.advanceTimersByTime(10);
-        rendered.update();
+      wait().then(() => {
+        expect(rendered.find("ErrorMessage")).toHaveLength(1);
       });
-
-      expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
     test("should pass correct player to child", () => {
@@ -54,14 +51,11 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      act(() => {
-        jest.runAllTimers();
-        rendered.update();
+      wait().then(() => {
+        expect(
+          rendered.find(SettingsAccountDetails).prop("player")
+        ).toStrictEqual(playerSettingsQueryMock.result.data.player);
       });
-
-      expect(
-        rendered.find(SettingsAccountDetails).prop("player")
-      ).toStrictEqual(playerSettingsQueryMock.result.data.player);
     });
   });
 });

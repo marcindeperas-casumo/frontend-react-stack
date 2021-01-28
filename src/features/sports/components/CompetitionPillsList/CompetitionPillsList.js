@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { makeOptionalCallback } from "Utils";

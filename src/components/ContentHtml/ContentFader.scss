@@ -1,0 +1,21 @@
+.s-content-fader {
+  &--bottom {
+    bottom: -1px;
+
+    &__child {
+      background-image: linear-gradient(hsla(0, 0%, 100%, 0.001), currentColor);
+    }
+  }
+
+  &--top {
+    top: -1px;
+
+    &__child {
+      background-image: linear-gradient(
+        to top,
+        hsla(0, 0%, 100%, 0.001),
+        currentColor
+      );
+    }
+  }
+}

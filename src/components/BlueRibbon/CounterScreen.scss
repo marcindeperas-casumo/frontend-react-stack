@@ -1,0 +1,92 @@
+// stylelint-disable xi/selector-pattern
+$color-gold: #ffca30;
+$color-dark-gold: #955a04;
+
+.c-bottom-snow {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.c-snow-falling-background {
+  background: url("./assets/snow.png");
+  background-repeat: repeat;
+  background-size: 70% auto;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.c-snow-bottom-layer {
+  bottom: 0;
+  position: absolute;
+}
+
+$coin-base-width: 10vw;
+
+.c-coin-scalable {
+  width: $coin-base-width;
+}
+
+.c-coin-positioner {
+  left: calc(50% - (#{$coin-base-width} / 2));
+  position: absolute;
+  width: 80px;
+}
+
+.c-text-positioner {
+  color: $color-gold;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.c-title-typography {
+  font-size: 35px;
+  text-shadow: 0px 3px 0px $color-dark-gold;
+}
+
+.c-money-typography {
+  font-feature-settings: "tnum" on, "lnum" on;
+  font-size: 45px;
+  text-shadow: 0px 4px 0px $color-dark-gold;
+}
+
+@media (orientation: landscape) {
+  .c-coin-positioner {
+    bottom: calc(11vw - (#{$coin-base-width} / 2));
+  }
+
+  .c-text-positioner {
+    bottom: calc(12vw + #{$coin-base-width});
+  }
+}
+
+.c-counter_screen--ui-positioner {
+  bottom: 20vw;
+  left: 10%;
+  max-width: 80%;
+  position: absolute;
+  z-index: 1;
+}
+
+@media (orientation: portrait) {
+  .c-coin-positioner {
+    bottom: calc(26vw - (#{$coin-base-width} / 2));
+  }
+
+  .c-text-positioner {
+    bottom: calc(35vw + #{$coin-base-width});
+  }
+}
+
+@media (max-width: 900px), (orientation: portrait) {
+  .c-counter_screen--ui-positioner {
+    bottom: 16vw !important;
+    left: 5% !important;
+    max-width: 90% !important;
+  }
+}

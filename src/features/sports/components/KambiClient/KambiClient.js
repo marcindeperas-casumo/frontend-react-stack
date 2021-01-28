@@ -1,9 +1,8 @@
 /* @flow */
 import React from "react";
-import gql from "graphql-tag";
+import { gql, getApolloContext } from "@apollo/client";
 import classNames from "classnames";
-import type { ExecutionResult } from "@apollo/react-hooks";
-import { getApolloContext } from "@apollo/react-hooks";
+import type { ExecutionResult } from "@apollo/client";
 import { pick } from "ramda";
 import { BalanceBetSlip } from "Features/sports/components/BalanceBetSlip";
 import * as A from "Types/apollo";

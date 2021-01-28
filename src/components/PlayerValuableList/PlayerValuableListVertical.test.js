@@ -1,12 +1,9 @@
 //@flow
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
+import { wait, getCacheWithIntrospections } from "Utils/apolloTestUtils";
 import { VALUABLE_STATES } from "Models/valuables";
-import {
-  waitAndUpdateWrapper,
-  getCacheWithIntrospections,
-} from "Utils/apolloTestUtils";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRow } from "Components/ValuableRow";
@@ -14,7 +11,7 @@ import { mocks } from "./__mocks__/playerValuableListMocks";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 
 describe("PlayerValuableListVertical", () => {
-  test("Should render a ValuablesVerticalList", async () => {
+  test("Should render a ValuablesVerticalList", () => {
     const rendered = mount(
       <MockedProvider
         mocks={mocks.mockedValuables}
@@ -24,12 +21,12 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
-
-    expect(rendered.find(ValuablesVerticalList).exists()).toBe(true);
+    wait().then(() => {
+      expect(rendered.find(ValuablesVerticalList).exists()).toBe(true);
+    });
   });
 
-  test("should render one EmptyValuablesList if no valuables are provided", async () => {
+  test("should render one EmptyValuablesList if no valuables are provided", () => {
     const rendered = mount(
       <MockedProvider
         mocks={mocks.emptyValuables}
@@ -39,12 +36,12 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
 
-    await waitAndUpdateWrapper(rendered);
-
-    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
+    wait().then(() => {
+      expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
+    });
   });
 
-  test("should render the correct types under each section", async () => {
+  test("should render the correct types under each section", () => {
     const rendered = mount(
       <MockedProvider
         mocks={mocks.mockedValuables}
@@ -63,23 +60,23 @@ describe("PlayerValuableListVertical", () => {
       val => val.valuableState === VALUABLE_STATES.LOCKED
     ).length;
 
-    await waitAndUpdateWrapper(rendered);
+    wait().then(() => {
+      const actualAvailable = rendered
+        .find(ValuablesVerticalList)
+        .find({ "data-test-id": "list-available" })
+        .find(ValuableRow).length;
+      const actualUsed = rendered
+        .find(ValuablesVerticalList)
+        .find({ "data-test-id": "list-used" })
+        .find(ValuableRow).length;
+      const actualLocked = rendered
+        .find(ValuablesVerticalList)
+        .find({ "data-test-id": "list-locked" })
+        .find(ValuableRow).length;
 
-    const actualAvailable = rendered
-      .find(ValuablesVerticalList)
-      .find({ "data-test-id": "list-available" })
-      .find(ValuableRow).length;
-    const actualUsed = rendered
-      .find(ValuablesVerticalList)
-      .find({ "data-test-id": "list-used" })
-      .find(ValuableRow).length;
-    const actualLocked = rendered
-      .find(ValuablesVerticalList)
-      .find({ "data-test-id": "list-locked" })
-      .find(ValuableRow).length;
-
-    expect(actualAvailable).toEqual(expectedAvailable);
-    expect(actualUsed).toEqual(expectedUsed);
-    expect(actualLocked).toEqual(expectedLocked);
+      expect(actualAvailable).toEqual(expectedAvailable);
+      expect(actualUsed).toEqual(expectedUsed);
+      expect(actualLocked).toEqual(expectedLocked);
+    });
   });
 });

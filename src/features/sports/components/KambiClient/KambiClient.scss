@@ -103,21 +103,31 @@
   padding: 6px 16px !important;
 }
 
+.KambiBC-sandwich-filter-background--level-0 {
+  height: 40px !important;
+}
+
+.KambiBC-sandwich-filter-background--level-1 {
+  height: 40px !important;
+  margin-top: 8px !important;
+}
+
 .KambiBC-sandwich-filter-background--level-2 {
   background: #e5eaed !important;
   border-radius: 12px 12px 0 0 !important;
   box-shadow: inset 0px -1px 0px #e5eaed !important;
-  top: 88px !important;
+  height: 40px !important;
+  margin-top: 8px !important;
 }
 
 .KambiBC-sandwich-filter-foreground--level-2 {
   margin-top: 8px !important;
-  padding-top: 8px !important;
+  padding-top: 0px !important;
 }
 
 .KambiBC-sandwich-filter__event-detail-container {
-  align-items: flex-start !important;
-  flex-direction: column !important;
+  align-items: center !important;
+  flex-direction: row !important;
   height: 100% !important;
   justify-content: center !important;
   width: 100% !important;
@@ -150,20 +160,10 @@
 
 .KambiBC-sandwich-filter__list .KambiBC-event-item__match-clock-container {
   color: #798291 !important;
+  display: flex !important;
+  flex-direction: column !important;
   font-size: 10px !important;
-  justify-content: left !important;
   line-height: 12px !important;
-  padding: 0px !important;
-  text-align: left !important;
-
-  .KambiBC-event-item__start-time--date {
-    display: inline-block !important;
-  }
-
-  .KambiBC-event-item__start-time--time {
-    display: inline-block !important;
-    margin-left: 4px !important;
-  }
 }
 
 .KambiBC-sandwich-filter__list .KambiBC-event-participants__name {

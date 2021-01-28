@@ -10,6 +10,7 @@ import { CMS_SLUGS as MODAL_CMS_SLUGS } from "Models/playing/playing.constants";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
+import { ContentHtmlModal } from "Components/ContentHtml";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -26,8 +27,15 @@ import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
-import { PostPanicButtonModal, PrePanicButtonModal } from "./GGL";
+import {
+  PostPanicButtonModal,
+  PrePanicButtonModal,
+  FiveMinuteBreakFinishedModal,
+  FiveMinuteBreakOngoingModal,
+  FiveMinuteBreakReelRaceModal,
+} from "./GGL";
 import { PaymentResult } from "./Payments";
+import { ReelRacesTAC } from "./ReelRacesTAC";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -116,9 +124,29 @@ export const mappings: Mapping = {
     slug: "",
     Content: PrePanicButtonModal,
   },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_FINISHED]: {
+    slug: "",
+    Content: FiveMinuteBreakFinishedModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_ONGOING]: {
+    slug: "",
+    Content: FiveMinuteBreakOngoingModal,
+  },
+  [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_REEL_RACE]: {
+    slug: "",
+    Content: FiveMinuteBreakReelRaceModal,
+  },
   [REACT_APP_MODAL.ID.PAYMENT_RESULT]: {
     slug: "",
     Content: PaymentResult,
+  },
+  [REACT_APP_MODAL.ID.CONTENT_HTML]: {
+    slug: "",
+    Content: ContentHtmlModal,
+  },
+  [REACT_APP_MODAL.ID.REEL_RACES_TAC]: {
+    slug: "",
+    Content: ReelRacesTAC,
   },
 };
 

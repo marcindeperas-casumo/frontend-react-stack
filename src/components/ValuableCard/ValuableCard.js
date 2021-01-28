@@ -110,12 +110,12 @@ export class ValuableCard extends PureComponent<Props> {
       <>
         <div
           className={classNames(
-            "c-valuable-card o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
+            "o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
             className
           )}
         >
           <Flex
-            className="o-ratio__content u-padding"
+            className="c-valuable-card o-ratio__content u-padding"
             data-test="valuable-card"
             direction="vertical"
             onClick={this.props.onCardClick}
@@ -139,7 +139,7 @@ export class ValuableCard extends PureComponent<Props> {
               </Text>
               {description && (
                 <Text
-                  className="t-color-grey-20 u-margin-top"
+                  className="t-color-grey-50 u-margin-top"
                   size="xs"
                   tag="div"
                 >
@@ -155,7 +155,7 @@ export class ValuableCard extends PureComponent<Props> {
         {caveat && (
           <Text
             size="2xs"
-            className="t-color-grey-5 u-text-align-center u-margin-top u-padding-x"
+            className="t-color-grey-50 t-opacity-color--50 u-text-align-center u-margin-top u-padding-x"
             tag="div"
           >
             <DangerousHtml html={caveat} />

@@ -4,6 +4,7 @@ import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
 import { SumoIconContext } from "./SumoIconContext";
+import SumoIconConfetti from "./SumoIconConfettiContainer";
 
 import "./SumoIcon.scss";
 
@@ -28,16 +29,14 @@ export const SumoIcon = ({
 
   return (
     <>
+      <SumoIconConfetti />
       <div
         onClick={onClick}
         className={cx(
           baseClassName,
           "u-position-relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "u-position-absolute@mobile u-zindex--header",
-          {
-            "u-display--none": openedState,
-          }
+          "u-position-absolute@mobile u-zindex--header"
         )}
       >
         <div
@@ -76,27 +75,34 @@ export const SumoIcon = ({
         </div>
         <ChevronDownIcon
           size="sm"
-          className={`${baseClassName}__chevron-icon t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`}
+          className={cx(
+            `${baseClassName}__chevron-icon`,
+            `t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`,
+            {
+              [`${baseClassName}__chevron-icon--visible`]: !openedState,
+              [`${baseClassName}__chevron-icon--hidden`]: openedState,
+            }
+          )}
         />
+        <Flex
+          className={cx(
+            `${baseClassName}__close-drawer`,
+            "u-position-absolute u-height--3xlg u-width--3xlg",
+            "t-border-r--circle u-margin-right--md u-cursor--pointer",
+            "t-color-white u-position-absolute@mobile u-zindex--header",
+            {
+              [`${baseClassName}__close-drawer--visible`]: openedState,
+              [`${baseClassName}__close-drawer--hidden`]: !openedState,
+            }
+          )}
+          align="center"
+          justify="center"
+        >
+          <Flex.Item>
+            <ChevronUpIcon />
+          </Flex.Item>
+        </Flex>
       </div>
-      <Flex
-        className={cx(
-          `${baseClassName}__close-drawer`,
-          "u-position-relative u-height--3xlg u-width--3xlg",
-          "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "t-color-white u-position-absolute@mobile u-zindex--header",
-          {
-            "u-display--none": !openedState,
-          }
-        )}
-        align="center"
-        justify="center"
-        onClick={onClick}
-      >
-        <Flex.Item>
-          <ChevronUpIcon />
-        </Flex.Item>
-      </Flex>
     </>
   );
 };

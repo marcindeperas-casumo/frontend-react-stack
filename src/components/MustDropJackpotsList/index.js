@@ -1,1 +1,2 @@
-export { default } from "./MustDropJackpotsListContainer";
+// @flow
+export { MustDropJackpotsListContainer } from "./MustDropJackpotsListContainer";

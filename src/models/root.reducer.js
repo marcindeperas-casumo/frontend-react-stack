@@ -10,9 +10,10 @@ import { reducer as playing } from "Models/playing";
 import { reducer as sidebar } from "Models/sidebar";
 import { modalReducer as modal } from "Models/modal";
 import { slotControlSystemReducer as slotControlSystem } from "Models/slotControlSystem";
+import { fiveMinuteBreakReducer as fiveMinuteBreak } from "Models/gglFiveMinuteBreak";
 import { methodConfigReducer as paymentMethodConfigs } from "./payments/methodConfig.reducer";
 import { paymentsReducer as playerPayments } from "./payments/payments.reducer";
-import { playOkayReducer } from "./playOkay/playOkay.rootReducer";
+import { playOkayReducer as playOkay } from "./playOkay/playOkay.rootReducer";
 import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 
 const rootReducer = combineReducers({
@@ -23,13 +24,14 @@ const rootReducer = combineReducers({
   promotions,
   schema,
   modal,
-  playOkay: playOkayReducer,
+  playOkay,
   playing,
   slotControlSystem,
   sidebar,
   gameBrowser,
   paymentMethodConfigs,
   playerPayments,
+  fiveMinuteBreak,
 });
 
 export default rootReducer;

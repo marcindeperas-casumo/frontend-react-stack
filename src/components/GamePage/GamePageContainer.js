@@ -17,17 +17,24 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { MobileAndTablet } from "Components/ResponsiveLayout";
+import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
-import { GamePageNotifications } from "./GamePageNotifications";
+import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
+import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
+import {
+  GamePageNotifications,
+  FullScreenGamePageNotifications,
+} from "./GamePageNotifications";
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
 import { useGameModelContext, GamePageContextProvider } from "./Contexts";
+import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
@@ -76,6 +83,8 @@ export const GamePageContainer = () => {
     ),
   });
 
+  useFitToParentSize();
+
   return (
     <GamePage
       error={
@@ -86,7 +95,15 @@ export const GamePageContainer = () => {
           />
         ) : null
       }
-      footer={shouldShowSlotControlSystem && <InfoBar />}
+      footer={
+        <React.Fragment>
+          {shouldShowSlotControlSystem && <InfoBar />}
+          <Mobile>
+            <BlueRibbonJackpotsFooterWidgetContainer />
+            <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
+          </Mobile>
+        </React.Fragment>
+      }
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
       gameWindow={
@@ -108,13 +125,24 @@ export const GamePageContainer = () => {
       loading={(!gameProviderModel || loading) && <LoaderGlobal />}
       offscreenElements={
         <React.Fragment>
-          <MobileAndTablet>
-            <QuickDepositSlipController position="bottom" />
-          </MobileAndTablet>
+          <QuickDepositSlipController
+            position={isDesktop() ? "top" : "bottom"}
+          />
           <ReelRacesDrawerWidgetTrigger />
+          <FiveMinuteBreakIconTrigger
+            pauseGame={pauseGame}
+            resumeGame={resumeGame}
+            gameSlug={slug}
+          />
+          <InGameAdventureTrigger />
         </React.Fragment>
       }
-      overScreenNotifications={<GamePageNotifications />}
+      overScreenNotifications={
+        <React.Fragment>
+          <GamePageNotifications />
+          <FullScreenGamePageNotifications />
+        </React.Fragment>
+      }
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
       sidebar={<GamePageSidebar />}

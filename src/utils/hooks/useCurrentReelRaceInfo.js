@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
@@ -285,7 +285,7 @@ export function useCurrentReelRaceInfo(
   }, [playerId, refetch, tournamentChannels]);
 
   React.useEffect(() => {
-    if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces) {
+    if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces?.length) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
       const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
         reelRaceQueryData.reelRaces
@@ -294,7 +294,7 @@ export function useCurrentReelRaceInfo(
       refetchTimeout.scheduleAt(
         refetch,
         Math.floor(
-          (closestReelRace ? closestReelRace.endTime : 0) +
+          (closestReelRace ? closestReelRace.endTime : Date.now()) +
             (61 + Math.random() * 60) * 1000
         )
       ); // distribute refetch within 60s
