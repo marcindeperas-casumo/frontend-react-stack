@@ -3,12 +3,12 @@ import * as React from "react";
 import "./Deposit.scss";
 import { AddIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { navigateById } from "Services/NavigationService";
 import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
 import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
+import type { navigateToDeposit } from "Features/sports/utils";
 
 export const CMS_SLUG = "welcome-offer-sports";
 
@@ -49,7 +49,7 @@ export const Deposit = ({
     tracker.track(EVENTS.MIXPANEL_SPORTS_DEPOSIT_CLICKED, {
       [EVENT_PROPS.BALANCE]: balance,
     });
-    navigateById({ routeId: "deposit" });
+    navigateToDeposit();
   };
 
   return (
