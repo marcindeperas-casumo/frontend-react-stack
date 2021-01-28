@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { type Adventurer, type AdventureContent } from "Models/adventure";
 import AdventureAvatarAndDetails from "./AdventureAvatarAndDetails";
@@ -16,6 +17,8 @@ export type Props = {
   subscribeToAdventureUpdates: Function,
   unsubscribeFromAdventureUpdates: Function,
 };
+
+const COMPONENT_CLASSNAME = "c-adventure-card";
 
 export default class AdventureCard extends PureComponent<Props> {
   componentDidMount() {
@@ -48,14 +51,20 @@ export default class AdventureCard extends PureComponent<Props> {
     }
 
     return (
-      <Flex
-        align="center"
-        className="t-background-white u-padding-x--md u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--lg"
-        direction="vertical"
-      >
-        <AdventureAvatarAndDetails {...this.props} />
-        <AdventureProgressBar {...this.props} />
-      </Flex>
+      <div className="u-padding-y--md u-padding-left--md u-padding-x--md u-padding-x--none@desktop">
+        <Flex
+          align="center"
+          className={cx(
+            COMPONENT_CLASSNAME,
+            "t-border-r--md t-background-white",
+            "u-padding-x--md u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--lg"
+          )}
+          direction="vertical"
+        >
+          <AdventureAvatarAndDetails {...this.props} />
+          <AdventureProgressBar {...this.props} />
+        </Flex>
+      </div>
     );
   }
 }

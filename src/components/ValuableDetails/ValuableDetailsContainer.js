@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import { useLanguage, useUrlPrefix, useTranslationsGql } from "Utils/hooks";
 import { ValuableDetails } from "./ValuableDetails";
 
 export const ValuableDetailsContainer = props => {
@@ -28,6 +28,15 @@ export const ValuableDetailsContainer = props => {
     day_singular: "root:units:fields.day_singular",
     day_plural: "root:units:fields.days",
   });
+  const language = useLanguage();
+  const urlPrefix = useUrlPrefix();
 
-  return loading ? null : <ValuableDetails {...props} translations={t} />;
+  return loading ? null : (
+    <ValuableDetails
+      {...props}
+      translations={t}
+      language={language}
+      urlPrefix={urlPrefix}
+    />
+  );
 };

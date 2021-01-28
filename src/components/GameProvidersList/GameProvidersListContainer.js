@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, gql } from "@apollo/client";
 import { propOr, isEmpty } from "ramda";
-import gql from "graphql-tag";
 import { GameProvidersList } from "./GameProvidersList";
 import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
 

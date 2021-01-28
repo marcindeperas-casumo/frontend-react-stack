@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { viewports } from "Storybook/viewports";
+import MockStore from "Components/MockStore";
 import { ProviderGamesList } from "./ProviderGamesList";
 import { games } from "./__mocks__";
 import "./ProviderGamesList.stories.scss";
@@ -11,12 +12,14 @@ const stories = storiesOf("ProviderGamesList", module);
   stories.add(
     `Default (${viewport})`,
     () => (
-      <ProviderGamesList
-        loading={false}
-        games={games}
-        gamesCount={games.length}
-        onLoadMore={() => Promise.resolve(true)}
-      />
+      <MockStore>
+        <ProviderGamesList
+          loading={false}
+          games={games}
+          gamesCount={games.length}
+          onLoadMore={() => Promise.resolve(true)}
+        />
+      </MockStore>
     ),
     viewports[viewport]
   );
@@ -24,12 +27,14 @@ const stories = storiesOf("ProviderGamesList", module);
   stories.add(
     `Loading State (${viewport})`,
     () => (
-      <ProviderGamesList
-        loading={true}
-        games={[]}
-        gamesCount={0}
-        onLoadMore={() => Promise.resolve(true)}
-      />
+      <MockStore>
+        <ProviderGamesList
+          loading={true}
+          games={[]}
+          gamesCount={0}
+          onLoadMore={() => Promise.resolve(true)}
+        />
+      </MockStore>
     ),
     viewports[viewport]
   );

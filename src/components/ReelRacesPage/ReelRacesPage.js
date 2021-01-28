@@ -4,6 +4,7 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { useIsScreenMinimumTablet, useTranslations } from "Utils/hooks";
+import ReelRacesBanner from "../ReelRacesBanner";
 import { ReelRacesPageTabSchedule } from "./ReelRacesPageTabSchedule";
 import { ReelRacesPageTabPrevious } from "./ReelRacesPageTabPrevious";
 
@@ -42,6 +43,8 @@ export function ReelRacesPage() {
 
   return (
     <div className="t-background-grey-0">
+      <ReelRacesBanner />
+
       <div className="u-content-width--tablet-landscape u-padding-y--md">
         {/* Tabs */}
         <Flex

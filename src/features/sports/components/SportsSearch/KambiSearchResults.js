@@ -1,8 +1,8 @@
 /* @flow */
 import * as React from "react";
 import classNames from "classnames";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { gql } from "@apollo/client";
+import { Query } from "@apollo/client/react/components";
 import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
 import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";

@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { viewports } from "Storybook/viewports";
 import { BettingGlossary } from "Features/sports/components/BettingGlossary";
 import { ModalsArea } from "Features/sports/components/Modals";

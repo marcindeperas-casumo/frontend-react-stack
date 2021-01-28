@@ -8,7 +8,7 @@ export function ProfileIconContainer() {
     level,
     belt,
     inBonusMode,
-    progressPercentage,
+    rawProgressPercentage,
   } = useAdventurerContext();
 
   return (
@@ -16,7 +16,7 @@ export function ProfileIconContainer() {
       level={level}
       belt={belt}
       inBonusMode={inBonusMode}
-      progressPercentage={progressPercentage}
+      progressPercentage={rawProgressPercentage}
     />
   );
 }

@@ -1,33 +1,11 @@
 {
-  "__schema": {
-    "types": [
-      {
-        "kind": "INTERFACE",
-        "name": "PlayerValuable",
-        "possibleTypes": [
-          {
-            "name": "PlayerValuableCash"
-          },
-          {
-            "name": "PlayerValuableCashback"
-          },
-          {
-            "name": "PlayerValuableDeposit"
-          },
-          {
-            "name": "PlayerValuableFreeBet"
-          },
-          {
-            "name": "PlayerValuableSpins"
-          },
-          {
-            "name": "PlayerValuableSport"
-          },
-          {
-            "name": "PlayerValuableWageringLock"
-          }
-        ]
-      }
-    ]
-  }
+  "PlayerValuable": [
+    "PlayerValuableCash",
+    "PlayerValuableSpins",
+    "PlayerValuableDeposit",
+    "PlayerValuableSport",
+    "PlayerValuableCashback",
+    "PlayerValuableWageringLock",
+    "PlayerValuableFreeBet"
+  ]
 }

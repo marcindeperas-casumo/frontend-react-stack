@@ -44,6 +44,7 @@ import {
 import { paymentTransactionFinishedSaga } from "Models/payments/paymentTransactionFinished.saga";
 import { actionTypes as methodConfigActionTypes } from "Models/payments/methodConfig.constants";
 import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
+import { initializeTrackers } from "Models/trackers/initializeTrackers.saga";
 
 export default function* rootSaga(dispatch: any): * {
   // __FIX__ (REMOVE) Fetches the common handshake
@@ -131,6 +132,7 @@ export default function* rootSaga(dispatch: any): * {
     fetchAnnualOverviewSaga
   );
   yield fork(takeEvery, appTypes.APP_STARTED, danishOverlaySaga);
+  yield fork(takeEvery, appTypes.APP_STARTED, initializeTrackers);
   yield fork(takeLatest, appTypes.APP_MANUAL_LOGOUT_INIT, appManualLogoutSaga);
   yield fork(
     takeLatest,

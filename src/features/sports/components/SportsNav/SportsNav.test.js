@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 jest.mock("Utils/hooks/useIsAuthenticated");

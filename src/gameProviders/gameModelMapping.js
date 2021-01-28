@@ -60,6 +60,8 @@ export const models = {
   [PROVIDERS.RGS_HTML5]: BaseIframeGame,
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
   [PROVIDERS.PUSHGAMING_MOBILE]: PushGame,
+  [PROVIDERS.PUSHGAMING_DESKTOP]: PushGame,
+  [PROVIDERS.PLAYTECH_DESKTOP]: BaseIframeGame,
   [PROVIDERS.PLAYTECH_MOBILE]: BaseIframeGame,
   [PROVIDERS.PRAGMATIC_DESKTOP]: PragmaticGame,
   [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
@@ -85,9 +87,10 @@ export const getGameModel = (
   gameData: GameProps,
   gameRef: GameRef,
   language: string,
-  environment: string
+  environment: string,
+  urlPrefix: string
 ): GameProviderModel => {
   const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
-  return new GameModel({ gameData, gameRef, language, environment });
+  return new GameModel({ gameData, gameRef, language, environment, urlPrefix });
 };

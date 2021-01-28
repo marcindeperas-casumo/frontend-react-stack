@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
-import gql from "graphql-tag";
-import { getApolloContext } from "@apollo/react-hooks";
+import { gql, getApolloContext } from "@apollo/client";
 import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import tracker from "Services/tracker";
@@ -150,15 +149,19 @@ class StageFavouritesProvider extends React.Component<
     };
 
     Promise.all(promisesToCompetitionSuggestions).then(results => {
+      const newSportsList = [...sports];
       results.forEach(result => {
         const index = sports.findIndex(g => g.id === result.id);
         // eslint-disable-next-line fp/no-mutation
-        sports[index].favouriteCompetitions = result.favouriteCompetitions;
+        newSportsList[index] = {
+          ...sports[index],
+          favouriteCompetitions: result.favouriteCompetitions,
+        };
       });
 
       this.setState(
         {
-          sports,
+          sports: newSportsList,
         },
         trackOnboardingStart
       );

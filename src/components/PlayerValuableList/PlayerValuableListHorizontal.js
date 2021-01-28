@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import Scrollable from "@casumo/cmp-scrollable";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -15,8 +15,8 @@ import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
+  tablet: "md",
+  desktop: "none",
 };
 
 const seeAllUrl = "/player/valuables";
@@ -63,6 +63,7 @@ export function PlayerValuableListHorizontal() {
     <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
       <ScrollableListTitleRow
         paddingLeft
+        paddingPerDevice={PADDING_PER_DEVICE}
         seeMore={{
           text: noValuablesAvailable ? "" : seeAllLabel,
           url: seeAllUrl,
@@ -87,7 +88,7 @@ export function PlayerValuableListHorizontal() {
               onConsumeValuable={consumeValuable}
               valuableDetails={selectedValuable}
             >
-              <div className="c-valuable-list__valuable-card">
+              <div className="c-valuable-details__valuable-card o-position--relative">
                 <ValuableCard
                   {...selectedValuable}
                   translations={translations}

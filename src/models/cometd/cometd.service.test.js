@@ -89,4 +89,23 @@ describe("Models/Cometd/Service", () => {
     cometdService.emit(emittedChannel, data);
     expect(callback).toBeCalledWith({ channel: emittedChannel, data });
   });
+
+  test("removes provided callback when unsubscribing", async () => {
+    const channel = "/foo";
+    const callback1 = jest.fn();
+    const callback2 = jest.fn();
+
+    await cometdService.subscribe(channel, callback1);
+    await cometdService.subscribe(channel, callback2);
+
+    cometdService.emit(channel, {});
+    expect(callback1).toBeCalledTimes(1);
+    expect(callback2).toBeCalledTimes(1);
+
+    await cometdService.unsubscribe(channel, callback1);
+
+    cometdService.emit(channel, {});
+    expect(callback1).toBeCalledTimes(1);
+    expect(callback2).toBeCalledTimes(2);
+  });
 });

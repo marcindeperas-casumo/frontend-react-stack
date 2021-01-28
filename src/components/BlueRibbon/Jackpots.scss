@@ -1,0 +1,119 @@
+// stylelint-disable xi/selector-pattern
+
+$color-purple: #4c00c2;
+$color-purple-darker: #3c0098;
+$color-purple-light: #c3b5fc;
+$color-gold: #ffc930;
+$color-white: #fff;
+$color-highlight-orange: #b06e0a;
+
+.c-jackpot-picker {
+  background: $color-purple;
+  border-radius: 12px;
+  position: absolute;
+  right: -300px;
+  text-align: center;
+  top: calc(50% - 60px);
+  width: 90px;
+
+  zoom: 1.5;
+}
+
+.c-jackpot-highlighter {
+  background: $color-purple;
+  border-radius: 6px;
+  height: 25px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  transition-duration: 0.4s;
+
+  transition-property: left top right bottom;
+  transition-timing-function: ease-in-out;
+  width: 66px;
+}
+
+.c-jackpots-list {
+  position: relative;
+}
+
+.c-single-jackpot {
+  color: $color-purple-light;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 20px;
+  opacity: 0.7;
+  padding-bottom: 5px;
+  transition-duration: 0.2s;
+
+  transition-property: color opacity;
+  transition-timing-function: ease-in-out;
+
+  &.c-highlighted {
+    color: $color-gold;
+    opacity: 1;
+    text-shadow: 0px 0.773224px 0px $color-highlight-orange;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.c-jackpot-picker-slide-in {
+  animation: jackpot-picker-slide-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+}
+
+@media (orientation: portrait) {
+  @keyframes jackpot-picker-slide-in {
+    100% {
+      right: 40px;
+      top: 20px;
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  @keyframes jackpot-picker-slide-in {
+    100% {
+      right: calc(50% - 300px);
+    }
+  }
+}
+
+@media (max-width: 900px), (orientation: portrait) {
+  .c-jackpot-picker {
+    zoom: 1 !important;
+  }
+}
+
+.c-jackpot-items-inner {
+  background: $color-purple-darker;
+  border-radius: 8px;
+  margin: 10px 10px 0px;
+  padding: 5px;
+  position: relative;
+
+  &.c-highlight-major {
+    .c-jackpot-highlighter {
+      top: 27px;
+    }
+  }
+
+  &.c-highlight-mega {
+    .c-jackpot-highlighter {
+      top: 54px;
+    }
+  }
+}
+
+.c-jackpot-title-container {
+  color: $color-white;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 10px;
+  padding: 12px 0px;
+}

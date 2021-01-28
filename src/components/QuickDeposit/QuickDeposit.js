@@ -3,6 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
@@ -39,6 +41,17 @@ export const QuickDeposit = ({
   if (!t) {
     return null;
   }
+  const cashierLinkClickHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED);
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED);
+    onCashierLinkClick();
+  };
+
+  const currencySymbolClickHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_CASHIER_LINK_CLICKED);
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED);
+    onQuickDepositLinkClick();
+  };
 
   return (
     <Flex className={className} align="center">
@@ -63,8 +76,8 @@ export const QuickDeposit = ({
           <Flex
             align="center"
             justify="center"
-            className="t-background-white t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
-            onClick={onQuickDepositLinkClick}
+            className="t-background-white t-opacity-background--100 t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            onClick={currencySymbolClickHandler}
           >
             <CurrencyIcon
               currency={currency}
@@ -79,7 +92,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
-            onClick={onCashierLinkClick}
+            onClick={cashierLinkClickHandler}
           >
             {t.cashier_link_text}
           </Text>

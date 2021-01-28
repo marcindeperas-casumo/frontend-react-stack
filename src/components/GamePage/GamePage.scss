@@ -5,6 +5,12 @@ $directions: (top, left, bottom, right);
   .u-safe-area-inset-#{$direction} {
     #{$direction}: env(safe-area-inset-#{$direction});
   }
+  /* stylelint-disable-next-line xi/selector-pattern */
+  .u-safe-area-inset-padding-#{$direction} {
+    @media (orientation: portrait) {
+      padding-#{$direction}: env(safe-area-inset-#{$direction});
+    }
+  }
 }
 
 .c-game-page {

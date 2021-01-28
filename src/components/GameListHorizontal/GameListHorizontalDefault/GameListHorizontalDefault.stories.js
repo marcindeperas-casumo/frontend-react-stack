@@ -1,7 +1,8 @@
 // // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/client/testing";
+import MockStore from "Components/MockStore";
 import { GameListHorizontalDefault } from "./GameListHorizontalDefault";
 import { GameListQuery } from "./GameListHorizontalDefault.graphql";
 import { gamesListMock } from "./__mock__";
@@ -25,6 +26,8 @@ const mocks = [
 
 stories.add("Default", () => (
   <MockedProvider mocks={mocks}>
-    <GameListHorizontalDefault list={mocks[0].result.data.gamesList} />
+    <MockStore>
+      <GameListHorizontalDefault list={mocks[0].result.data.gamesList} />
+    </MockStore>
   </MockedProvider>
 ));
