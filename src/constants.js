@@ -355,6 +355,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ADD_TO_BETSLIP: "Sports - add to betslip",
   MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
+  MIXPANEL_SPORTS_DEPOSIT_CLICKED: "Sports deposit component clicked",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -422,6 +423,7 @@ export const EVENT_PROPS = {
   TYPE: "type",
   STAKE: "stake",
   CATEGORY: "category",
+  BALANCE: "balance",
 };
 
 export const EVENT_LOCATIONS = {
