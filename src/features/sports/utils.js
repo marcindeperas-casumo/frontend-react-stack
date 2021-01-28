@@ -14,6 +14,7 @@ export type NavigateToSportsHashType = {
 export type NavigateByIdType = {
   routeId: string,
   params?: Object,
+  queryParams?: Object,
 };
 
 export const navigateToDeposit = () => {
@@ -22,8 +23,8 @@ export const navigateToDeposit = () => {
   );
 
   navigateById({
-    routeId: "deposit-redirect",
-    params: {
+    routeId: "deposit",
+    queryParams: {
       redirectionUrl: redirectUrl,
     },
   });
