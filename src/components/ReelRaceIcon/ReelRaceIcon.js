@@ -9,7 +9,7 @@ import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { getProgressColor } from "Models/reelRaces";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
-import ReelRaceBoosterPoints from "Components/ReelRaceBoosterPoints";
+import { ReelRaceBoosterPoints } from "Components/ReelRaceBoosterPoints";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";

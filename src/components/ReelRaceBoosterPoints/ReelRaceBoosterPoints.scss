@@ -13,7 +13,7 @@
     animation-duration: 4s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    animation-name: reveal-points;
+    animation-name: reel-race-icon-reveal-points;
     animation-timing-function: ease-out;
   }
 }
@@ -32,7 +32,7 @@
   }
 }
 
-@keyframes reveal-points {
+@keyframes reel-race-icon-reveal-points {
   6%,
   85% {
     opacity: 1;
