@@ -48,7 +48,7 @@ describe("Sports/Deposit", () => {
       />
     );
 
-    expect(rendered.find(".c-sport-deposit-bonus")).toHaveLength(1);
+    expect(rendered.find(".c-sport-deposit__bonus")).toHaveLength(1);
   });
 
   test("renders no bonus amount when bonus = 0", () => {
@@ -62,6 +62,6 @@ describe("Sports/Deposit", () => {
       />
     );
 
-    expect(rendered.find(".c-sport-deposit-bonus")).toHaveLength(0);
+    expect(rendered.find(".c-sport-deposit__bonus")).toHaveLength(0);
   });
 });

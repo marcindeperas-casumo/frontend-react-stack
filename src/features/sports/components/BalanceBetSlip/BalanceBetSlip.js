@@ -24,39 +24,37 @@ export const BalanceBetSlip = ({
   balance,
   bonus,
   goToDeposit = () => {},
-}: Props) => {
-  return (
-    <Flex
-      align="center"
-      className={cx(
-        "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full t-color-white u-padding u-overflow--hidden u-height--3xlg t-background-purple-100",
-        maximized && "c-sports-balance-bet-slip--maximized o-inset-bottom--none"
-      )}
+}: Props) => (
+  <Flex
+    align="center"
+    className={cx(
+      "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full t-color-white u-padding u-overflow--hidden u-height--3xlg t-background-purple-100",
+      maximized && "c-sports-balance-bet-slip--maximized o-inset-bottom--none"
+    )}
+  >
+    <Flex.Item
+      onClick={goToDeposit}
+      className="o-flex u-padding t-border-r--circle t-background-purple-80"
     >
-      <Flex.Item
-        onClick={() => goToDeposit()}
-        className="o-flex u-padding t-border-r--circle t-background-purple-80"
-      >
-        <AddIcon size="sm" />
-      </Flex.Item>
-      <Flex direction="vertical" className="u-padding-x--md">
+      <AddIcon size="sm" />
+    </Flex.Item>
+    <Flex direction="vertical" className="u-padding-x--md">
+      <Text tag="div" size="xs">
+        {t?.balance_title}
+      </Text>
+      <Text tag="div" className="u-font-weight-bold">
+        {balance}
+      </Text>
+    </Flex>
+    {bonus && (
+      <Flex direction="vertical">
         <Text tag="div" size="xs">
-          {t?.balance_title}
+          {t?.bonus_title}
         </Text>
         <Text tag="div" className="u-font-weight-bold">
-          {balance}
+          {bonus}
         </Text>
       </Flex>
-      {bonus && (
-        <Flex direction="vertical">
-          <Text tag="div" size="xs">
-            {t?.bonus_title}
-          </Text>
-          <Text tag="div" className="u-font-weight-bold">
-            {bonus}
-          </Text>
-        </Flex>
-      )}
-    </Flex>
-  );
-};
+    )}
+  </Flex>
+);

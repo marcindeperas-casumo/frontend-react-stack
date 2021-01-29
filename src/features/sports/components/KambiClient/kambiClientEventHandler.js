@@ -103,10 +103,10 @@ export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
   if (
     event.data.event === KAMBI_EVENTS.BET_DENIED &&
     event.data.kambi?.hit?.bet &&
-    event.data.kambi?.hit?.bet["denied reason"] === "not enough funds"
+    event.data.kambi.hit.bet["denied reason"] === "not enough funds"
   ) {
     tracker.track(EVENTS.MIXPANEL_SPORTS_BET_FAILED, {
-      [EVENT_PROPS.BET_VALUE]: event.data.kambi?.hit?.bet["bet value"],
+      [EVENT_PROPS.BET_VALUE]: event.data.kambi.hit.bet["bet value"],
     });
   }
 

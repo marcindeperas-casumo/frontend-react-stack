@@ -63,18 +63,14 @@ export const Deposit = ({
             </div>
           </div>
           {bonus > 0 && (
-            <div className="o-flex--vertical t-color-grey-50 c-sport-deposit-bonus">
+            <div className="o-flex--vertical t-color-grey-50 c-sport-deposit__bonus">
               <div className="u-font-sm">{t?.bonus_title}</div>
               <div className="u-font-md">{bonusFormatted}</div>
             </div>
           )}
-          <div className="u-display--flex c-sport-deposit-grow-2" />
+          <div className="u-display--flex c-sport-deposit__separator" />
           <div className="o-flex-align--end">
-            <ButtonPrimary
-              size="sm"
-              icon={<AddIcon />}
-              onClick={() => goToDeposit()}
-            />
+            <ButtonPrimary size="sm" icon={<AddIcon />} onClick={goToDeposit} />
           </div>
         </div>
       </div>
