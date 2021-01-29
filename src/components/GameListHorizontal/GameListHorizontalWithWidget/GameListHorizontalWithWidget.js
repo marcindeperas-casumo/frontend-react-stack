@@ -8,15 +8,12 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
-
+import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 export type Props = {
   games: Array<A.GameRow_Game>,
   Widget: React.AbstractComponent<{}>,
   name: ?string,
-  seeMore?: {
-    text: string,
-    url: string,
-  },
+  seeMore?: SeeMoreProps,
 };
 
 const PADDING_PER_DEVICE = {

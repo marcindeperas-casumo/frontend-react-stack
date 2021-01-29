@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isTLDMarketSpecific } from "Utils";
@@ -44,17 +45,17 @@ export function useScrollPositionPersistor() {
       return;
     }
 
-    function scrollHandler() {
+    const debouncedScrollHandler = debounce(() => {
       const val = scrollEl.scrollTop;
       if (val && val !== scrollPos) {
         dispatch(setScroll(scrollEl.scrollTop));
       }
-    }
+    }, 75);
 
-    scrollEl.addEventListener("scroll", scrollHandler);
+    scrollEl.addEventListener("scroll", debouncedScrollHandler);
 
     return () => {
-      scrollEl.removeEventListener("scroll", scrollHandler);
+      scrollEl.removeEventListener("scroll", debouncedScrollHandler);
     };
   }, [dispatch, scrollPos]);
 }
