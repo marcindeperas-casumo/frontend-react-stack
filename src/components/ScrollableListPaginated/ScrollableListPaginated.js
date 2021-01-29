@@ -15,7 +15,7 @@ export type SeeMoreProps = {
   /** The link where to redirect once clicking the seeMore button. */
   url: string,
   /** Optional onClick handler for seeMore link */
-  onClick?: () => any,
+  onClick?: () => void,
 };
 
 type Props = {

@@ -84,7 +84,6 @@ export const GameBrowser = () => {
             <ProviderGamesList path="provider/:provider" />
             {/* $FlowIgnore:  missing 'slug' prop will come from ':slug' part in path */}
             <GameDetailsPage path="details/:slug" />
-            {/* <div path="must-drop-jackpots">asdfasdasdf</div> */}
           </Router>
         </React.Suspense>
       </Portal>
