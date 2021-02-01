@@ -54,7 +54,7 @@ export const Deposit = ({
 
   return (
     <MobileAndTablet>
-      <div className="u-padding-top u-padding-x--md c-sport-deposit">
+      <div className="u-padding-top--md u-padding-x--md c-sport-deposit">
         <div className="t-background-white t-border-r--md t-elevation--10 u-padding-x--lg u-padding-y u-margin-bottom u-display--flex">
           <div className="o-flex--vertical u-margin-right--lg">
             <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
