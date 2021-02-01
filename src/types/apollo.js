@@ -172,16 +172,25 @@ export type GameDetailsQueryVariables = {
 // GraphQL query operation: GameListQuery
 // ====================================================
 
+export type GameListQuery_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameListQuery_gamesList_games_lobby = {
+  bets: ?GameListQuery_gamesList_games_lobby_bets
+};
+
 export type GameListQuery_gamesList_games = {
-  isInMaintenance: boolean,
+  id: string,
   backgroundImage: string,
   logo: string,
   name: string,
   slug: string,
-  id: string,
-  liveCasinoId: ?string,
-  playBackground: string,
-  category: ?string,
+  gameStudio: string,
+  lobby: ?GameListQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 
 export type GameListQuery_gamesList = {
@@ -760,7 +769,6 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   backgroundImage: string,
   logo: string,
   name: string,
-  gameStudio: string,
   slug: string,
   gameStudio: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
@@ -1471,6 +1479,31 @@ export type SettingsNotificationsContactByPostQuery = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: SettingsNotificationsSubscribedToMarketingCrossSellQuery
+// ====================================================
+
+export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details_contactSettings = {
+  subscribedToMarketingCrossSell: boolean
+};
+
+export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details = {
+  contactSettings: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details_contactSettings
+};
+
+export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player = {
+  id: string,
+  details: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details,
+};
+
+export type SettingsNotificationsSubscribedToMarketingCrossSellQuery = {
+  player: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player
+};
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: SetAdventurerPublicity
 // ====================================================
 
@@ -1559,6 +1592,22 @@ export type SetContactByPost = {
 };
 
 export type SetContactByPostVariables = {
+  input?: ?ContactSettingsInput
+};
+/* @flow */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SetMarketingCrossSellSubscription
+// ====================================================
+
+export type SetMarketingCrossSellSubscription = {
+  setMarketingCrossSellSubscription: ?boolean
+};
+
+export type SetMarketingCrossSellSubscriptionVariables = {
   input?: ?ContactSettingsInput
 };
 /* @flow */
@@ -2678,7 +2727,6 @@ export type GameDetails_Game = {
   id: string,
   name: string,
   logo: string,
-  gameStudio: string,
   backgroundImage: string,
   slug: string,
   description: ?string,
@@ -2708,7 +2756,6 @@ export type GameRow_Game_lobby = {
 export type GameRow_Game = {
   id: string,
   backgroundImage: string,
-  gameStudio: string,
   logo: string,
   name: string,
   slug: string,

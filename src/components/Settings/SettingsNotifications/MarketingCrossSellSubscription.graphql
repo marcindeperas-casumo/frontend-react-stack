@@ -1,0 +1,10 @@
+query SettingsNotificationsSubscribedToMarketingCrossSellQuery {
+  player {
+    id
+    details {
+      contactSettings {
+        subscribedToMarketingCrossSell
+      }
+    }
+  }
+}

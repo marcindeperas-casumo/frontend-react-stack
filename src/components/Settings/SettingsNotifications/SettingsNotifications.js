@@ -10,6 +10,7 @@ import { NewsletterSubscriptionContainer } from "./NewsletterSubscriptionContain
 import { SmsSubscriptionContainer } from "./SmsSubscriptionContainer";
 import { ContactByPostContainer } from "./ContactByPostContainer";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
+import { MarketingCrossSellSubscriptionContainer } from "./MarketingCrossSellSubscriptionContainer";
 
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
@@ -69,6 +70,8 @@ export class SettingsNotifications extends PureComponent<Props> {
           <ContactByPhoneContainer />
 
           <ContactByPostContainer />
+
+          <MarketingCrossSellSubscriptionContainer />
         </div>
       </div>
     );
