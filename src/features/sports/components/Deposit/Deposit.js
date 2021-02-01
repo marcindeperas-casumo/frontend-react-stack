@@ -6,7 +6,7 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
-import { MobileAndTablet } from "Components/ResponsiveLayout";
+import { Mobile } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { navigateToDeposit } from "Features/sports/utils";
 
@@ -53,7 +53,7 @@ export const Deposit = ({
   };
 
   return (
-    <MobileAndTablet>
+    <Mobile>
       <div className="u-padding-top--md u-padding-x--md c-sport-deposit">
         <div className="t-background-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin-bottom u-display--flex">
           <div className="o-flex--vertical u-margin-right--lg">
@@ -74,6 +74,6 @@ export const Deposit = ({
           </div>
         </div>
       </div>
-    </MobileAndTablet>
+    </Mobile>
   );
 };
