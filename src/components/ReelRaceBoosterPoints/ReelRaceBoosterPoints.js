@@ -1,51 +1,103 @@
 // @flow
 import React, { useLayoutEffect, useRef, useState } from "react";
 import cx from "classnames";
-
+import { getBoostersConfig } from "./const";
 import "./ReelRaceBoosterPoints.scss";
 
-export const ReelRaceBoosterPoints = ({ boosters = {}, points = 0 }) => {
-  const animationContainer = useRef(null);
+type Props = {
+  boosters: Object,
+};
 
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [prevPoints, setPrevPoints] = useState(0);
-  const [pointDifference, setPointDifference] = useState(0);
+const boostersConfig = getBoostersConfig();
+
+export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
+  const pointsContainerRef = useRef({});
+  const [basePointsValue, setBasePointsValue] = useState(0);
+  const [extraPointsValue, setExtraPointsValue] = useState(0);
+  const [isBaseAnimating, setIsBaseAnimating] = useState(false);
+  const [prevBoosters, setPrevBoosters] = useState(0);
 
   useLayoutEffect(() => {
-    const currentAnimationContainer = animationContainer.current;
+    const pointsContainer = pointsContainerRef.current;
 
-    if (Number(points)) {
-      setPointDifference(points - prevPoints);
-      setPrevPoints(points);
-      setIsAnimating(true);
+    // eslint-disable-next-line fp/no-loops, no-unused-vars
+    for (const booster in boosters) {
+      const currentBooster = boosters[booster] || {};
+      const currentBoosterConfig = boostersConfig[booster] || {};
 
-      currentAnimationContainer.addEventListener(
-        "animationend",
-        () => setIsAnimating(false),
-        {}
-      );
+      if (currentBooster && currentBooster !== prevBoosters[booster]) {
+        if (
+          currentBoosterConfig.extra &&
+          currentBooster % currentBoosterConfig.showExtraAfter === 0
+        ) {
+          setExtraPointsValue(currentBoosterConfig.extra);
+        }
+
+        setBasePointsValue(currentBoosterConfig.base);
+
+        pointsContainer.addEventListener(
+          "animationend",
+          () => {
+            setIsBaseAnimating(false);
+            setBasePointsValue(0);
+            setExtraPointsValue(0);
+          },
+          {}
+        );
+
+        setIsBaseAnimating(true);
+        break;
+      }
     }
 
-    return () => {
-      currentAnimationContainer.removeEventListener("animationend", {});
-    };
-  }, [points, prevPoints]);
+    setPrevBoosters(boosters);
 
-  const classes = cx("c-reel-race-icon__boost-points o-position--absolute", {
-    "c-reel-race-icon__boost-points--animating": isAnimating,
-  });
+    return () => {
+      pointsContainer.removeEventListener("animationend", {});
+    };
+  }, [
+    boosters,
+    boosters.bigWins,
+    boosters.megaWins,
+    boosters.triples,
+    boosters.wins,
+    boosters.winsInARow,
+    prevBoosters,
+  ]);
+
+  const renderPointsValue = value => {
+    const shadowDepth = new Array(3).fill("");
+
+    return shadowDepth.map((_, index) => {
+      const isLast = index === shadowDepth.length - 1;
+
+      return (
+        <p
+          className={`
+            c-reel-race-icon__boost-points__value
+            u-margin--none
+            o-ratio__content
+            u-font-weight-bold
+            ${isLast ? "t-color-yellow-30" : "t-color-black"}
+          `}
+        >
+          {basePointsValue > 0 && <span>+{basePointsValue}</span>}
+          {extraPointsValue > 0 && <span>+{extraPointsValue}</span>}
+        </p>
+      );
+    });
+  };
+
+  const pointsContainerClasses = cx(
+    "c-reel-race-icon__boost-points o-position--absolute",
+    {
+      "c-reel-race-icon__boost-points--animating": isBaseAnimating,
+    }
+  );
 
   return (
-    <div className={classes} ref={animationContainer}>
-      <p class="c-reel-race-icon__boost-points__value u-margin--none o-ratio__content u-font-weight-bold t-color-black">
-        +{pointDifference}
-      </p>
-      <p class="c-reel-race-icon__boost-points__value u-margin--none o-ratio__content u-font-weight-bold t-color-black">
-        +{pointDifference}
-      </p>
-      <p class="c-reel-race-icon__boost-points__value u-margin--none o-ratio__content u-font-weight-bold t-color-yellow-30">
-        +{pointDifference}
-      </p>
+    <div className={pointsContainerClasses} ref={pointsContainerRef}>
+      {renderPointsValue()}
     </div>
   );
 };

@@ -1,17 +1,26 @@
 // @flow
-export const getPointsMap = () => ({
+export const BASE_POINTS = 2;
+
+export const getBoostersConfig = () => ({
   bigWins: {
-    base: "20",
-    extra: "35",
+    base: 20,
+    extra: 35,
+    showExtraAfter: 2,
   },
   megaWins: {
-    base: "100",
+    base: 100,
+  },
+  triples: {
+    base: BASE_POINTS,
+    extra: 5,
+    showExtraAfter: 1,
   },
   wins: {
-    base: "1",
+    base: BASE_POINTS,
   },
   winsInARow: {
-    base: "1",
-    extra: "5",
+    base: BASE_POINTS,
+    extra: 5,
+    showExtraAfter: 3,
   },
 });
