@@ -18,7 +18,7 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
   const [prevBoosters, setPrevBoosters] = useState(0);
 
   useLayoutEffect(() => {
-    const pointsContainer = pointsContainerRef.current || {};
+    const pointsContainer = pointsContainerRef.current;
 
     // eslint-disable-next-line fp/no-loops, no-unused-vars
     for (const booster in boosters) {
@@ -35,7 +35,8 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
 
         setBasePointsValue(currentBoosterConfig.base);
 
-        pointsContainer.addEventListener(
+        // eslint-disable-next-line no-unused-expressions
+        pointsContainer?.addEventListener(
           "animationend",
           () => {
             setIsBaseAnimating(false);
@@ -53,7 +54,8 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
     setPrevBoosters(boosters);
 
     return () => {
-      pointsContainer.removeEventListener("animationend", {});
+      // eslint-disable-next-line no-unused-expressions
+      pointsContainer?.removeEventListener("animationend", {});
     };
   }, [
     boosters,
