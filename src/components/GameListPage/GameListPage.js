@@ -54,6 +54,7 @@ export function GameListPage({ set }: Props) {
       sortOrder: s,
     });
   };
+
   const [filters, setFiltersRaw] = React.useState<{}>(defaultFilters);
   const setFilters = f => {
     setFiltersRaw(f);
@@ -61,6 +62,7 @@ export function GameListPage({ set }: Props) {
       filteringOption: getAppliedFilters(f).join("&"),
     });
   };
+
   const [filtersVisible, setFiltersVisibility] = React.useState(false);
   const sortOrder = `sortOrder=${sort || set.defaultSort}`;
   const f = getAppliedFilters(filters);
