@@ -57,14 +57,13 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
       // eslint-disable-next-line no-unused-expressions
       pointsContainer?.removeEventListener("animationend", {});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    boosters,
     boosters.bigWins,
     boosters.megaWins,
     boosters.triples,
     boosters.wins,
     boosters.winsInARow,
-    prevBoosters,
   ]);
 
   const renderPointsValue = value => {
