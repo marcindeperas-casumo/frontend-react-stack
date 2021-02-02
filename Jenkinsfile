@@ -42,55 +42,39 @@ Started by: *${env.gitAuthor}* :eyes:
     .customStep('Install yarn', {
         shell("npm install --global yarn")
     })
-    .customStep('Install dependencies', { installDependencies() })
-    .customStep('Tests', { runTests() })
-            .parallel([
-                "Flow"             : { it.customStepTask('Flow', { runFlow() }) },
-                "Lint"             : { it.customStepTask('Lint', { runLint() }) },
-                "Visual Regression": { it.customStepTask('Visual Regression', { runChromatic() }) },
-                    // uncomment after adding first pact test
-                    // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
-            ])
-    .customStep('Build', { runBuild() })
-            .with(Docker) { it.publishDockerImage() }
-            .with(Release) { it.release() }
-            .with(DeployService) { it.deployToTest('frontend-react-stack') }
-            .build('nvm-builder')
-}
-
-def installYarn() {
-    sh "npm install --global yarn"
-}
-
-def installDependencies() {
-    sh "yarn"
-}
-
-def runBuild() {
-    sh "yarn build"
+    .customStep('Install dependencies', {
+        shell("yarn")
+    })
+    .customStep('Tests', {
+        shell("yarn test:ci")
+    })
+        .parallel([
+            "Flow": { it.customStepTask('Flow', {
+                shell("yarn flow check")
+            }) },
+            "Lint": { it.customStepTask('Lint', {
+                shell("yarn lint")
+            }) },
+            "Visual Regression": { it.customStepTask('Visual Regression', { runChromatic() }) },
+                // uncomment after adding first pact test
+                // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
+        ])
+    .customStep('Build', {
+        shell("yarn build")
+    })
+        .with(Docker) { it.publishDockerImage() }
+        .with(Release) { it.release() }
+        .with(DeployService) { it.deployToTest('frontend-react-stack') }
+        .build('nvm-builder')
 }
 
 def pact() {
     sh "yarn pact:ci"
 }
 
-def runTests() {
-    sh "yarn test:ci"
-}
-
-def runFlow() {
-    sh "yarn flow check"
-}
-
-def runLint() {
-    sh "yarn lint"
-}
-
 def runChromatic () {
     withCredentials([string(credentialsId: 'REACT_POC_CHROMATIC_APP_CODE', variable: 'REACT_POC_CHROMATIC_APP_CODE')]) {
-        sh """
-            yarn chromatic
-        """
+        shell("yarn chromatic")
     }
 }
 
@@ -105,10 +89,10 @@ def rollbarDeployTracking() {
         }
         """.replace('\n',  '')
 
-        sh "curl --request POST \
+        shell("curl --request POST \
             --url https://api.rollbar.com/api/1/deploy/ \
             --header 'content-type: application/json' \
-            --data '${data}'"
+            --data '${data}'")
         }
 }
 
