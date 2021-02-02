@@ -107,11 +107,16 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
         className
       )}
     >
-      <div className="c-reel-race-icon__info u-height--2xlg u-width--2xlg t-opacity-background--100 t-background-grey-90 t-border-r--circle t-background-grey-90">
+      <div
+        className={cx(
+          "c-reel-race-icon__info u-height--2xlg u-width--2xlg t-opacity-background--100 t-background-grey-90 t-border-r--circle t-background-grey-90",
+          { "u-overflow--hidden": isTransitionRunning }
+        )}
+      >
         <CurrentView
           {...viewProps}
           className={cx("c-reel-race-icon__content u-position-absolute", {
-            "c-reel-race-icon__content--old u-overflow--hidden": isTransitionRunning,
+            "c-reel-race-icon__content--old": isTransitionRunning,
           })}
         />
         {isTransitionRunning && (
@@ -133,10 +138,7 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
         radius={24}
       />
 
-      <ReelRaceBoosterPoints
-        boosters={gameActivityAwareRaceData.boosters}
-        points={gameActivityAwareRaceData.points}
-      />
+      <ReelRaceBoosterPoints boosters={gameActivityAwareRaceData.boosters} />
     </div>
   );
 };
