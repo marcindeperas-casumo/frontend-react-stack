@@ -138,7 +138,7 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
         radius={24}
       />
 
-      <ReelRaceBoosterPoints boosters={gameActivityAwareRaceData.boosters} />
+      <ReelRaceBoosterPoints {...gameActivityAwareRaceData.boosters} />
     </div>
   );
 };

@@ -18,9 +18,4 @@ export const getBoostersConfig = () => ({
   wins: {
     base: BASE_POINTS,
   },
-  winsInARow: {
-    base: BASE_POINTS,
-    extra: 5,
-    showExtraAfter: 3,
-  },
 });

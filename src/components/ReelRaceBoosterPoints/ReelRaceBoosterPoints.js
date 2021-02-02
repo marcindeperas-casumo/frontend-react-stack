@@ -4,20 +4,29 @@ import cx from "classnames";
 import { getBoostersConfig } from "./const";
 import "./ReelRaceBoosterPoints.scss";
 
-type Props = {
-  boosters: Object,
+type Boosters = {
+  bigWins: Number,
+  megaWins: Number,
+  triples: Number,
+  wins: Number,
 };
 
 const boostersConfig = getBoostersConfig();
 
-export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
+export const ReelRaceBoosterPoints = ({
+  bigWins,
+  megaWins,
+  triples,
+  wins,
+}: Boosters) => {
   const pointsContainerRef = useRef({});
   const [basePointsValue, setBasePointsValue] = useState(0);
   const [extraPointsValue, setExtraPointsValue] = useState(0);
-  const [isBaseAnimating, setIsBaseAnimating] = useState(false);
+  const [isPointsAnimating, setIsPointsAnimating] = useState(false);
   const [prevBoosters, setPrevBoosters] = useState({});
 
   useLayoutEffect(() => {
+    const boosters = { bigWins, megaWins, triples, wins };
     const pointsContainer = pointsContainerRef.current || {};
 
     // eslint-disable-next-line fp/no-loops, no-unused-vars
@@ -39,7 +48,7 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
           pointsContainer.addEventListener(
             "animationend",
             () => {
-              setIsBaseAnimating(false);
+              setIsPointsAnimating(false);
               setBasePointsValue(0);
               setExtraPointsValue(0);
             },
@@ -47,7 +56,7 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
           );
         }
 
-        setIsBaseAnimating(true);
+        setIsPointsAnimating(true);
         break;
       }
     }
@@ -59,14 +68,9 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
         pointsContainer.removeEventListener("animationend", {});
       }
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    boosters.bigWins,
-    boosters.megaWins,
-    boosters.triples,
-    boosters.wins,
-    boosters.winsInARow,
-  ]);
+  }, [bigWins, megaWins, triples, wins]);
 
   const renderPointsValue = value => {
     const shadowDepth = new Array(3).fill("");
@@ -91,15 +95,13 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
     });
   };
 
-  const pointsContainerClasses = cx(
-    "c-reel-race-icon__boost-points o-position--absolute",
-    {
-      "c-reel-race-icon__boost-points--animating": isBaseAnimating,
-    }
-  );
-
   return (
-    <div className={pointsContainerClasses} ref={pointsContainerRef}>
+    <div
+      className={cx("c-reel-race-icon__boost-points o-position--absolute", {
+        "c-reel-race-icon__boost-points--animating": isPointsAnimating,
+      })}
+      ref={pointsContainerRef}
+    >
       {renderPointsValue()}
     </div>
   );
