@@ -17,6 +17,7 @@ import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
+import { Deposit } from "Features/sports/components/Deposit";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
 import {
   UPDATE_BETSLIP_STATE_MUTATION,
@@ -86,6 +87,8 @@ export class SportsShellContainer extends React.Component<{}> {
                       currentHash={currentHash}
                       isSearchVisible={data.isSearchVisible}
                     />
+
+                    <Deposit />
 
                     {/* Top Content Area */}
 
