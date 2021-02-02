@@ -15,7 +15,7 @@ export const ReelRaceBoosterPoints = ({ boosters = {} }: Props) => {
   const [basePointsValue, setBasePointsValue] = useState(0);
   const [extraPointsValue, setExtraPointsValue] = useState(0);
   const [isBaseAnimating, setIsBaseAnimating] = useState(false);
-  const [prevBoosters, setPrevBoosters] = useState(0);
+  const [prevBoosters, setPrevBoosters] = useState({});
 
   useLayoutEffect(() => {
     const pointsContainer = pointsContainerRef.current || {};
