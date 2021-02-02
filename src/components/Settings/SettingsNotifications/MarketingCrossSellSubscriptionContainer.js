@@ -16,8 +16,8 @@ export function MarketingCrossSellSubscriptionContainer() {
       "root:player-settings-component:fields.subscriptions_cross_sell",
   });
   const [setMarketingCrossSellSubscription] = useMutation<
-    A.MarketingCrossSellSubscription,
-    A.MarketingCrossSellSubscriptionVariables
+    A.SetMarketingCrossSellSubscription,
+    A.SetMarketingCrossSellSubscriptionVariables
   >(SetMarketingCrossSellSubscription, {
     onError: onMutationError,
     refetchQueries: [
@@ -45,7 +45,9 @@ export function MarketingCrossSellSubscriptionContainer() {
       onChange={value =>
         setMarketingCrossSellSubscription({
           variables: { input: { on: value } },
-          optimisticResponse: { setMarketingCrossSellSubscription: value },
+          optimisticResponse: {
+            setMarketingCrossSellSubscription: value,
+          },
         })
       }
     />
