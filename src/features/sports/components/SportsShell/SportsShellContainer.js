@@ -88,7 +88,7 @@ export class SportsShellContainer extends React.Component<{}> {
                       isSearchVisible={data.isSearchVisible}
                     />
 
-                    {currentHash.split("?")[0] === "#home" && <Deposit />}
+                    <Deposit />
 
                     {/* Top Content Area */}
 
