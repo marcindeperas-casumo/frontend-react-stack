@@ -11,6 +11,9 @@ if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
                 .checkout()
+        .customStep('Install node version', {
+            shell("set +x; nvm install")
+        })
         .customStep('Install dependencies', { installDependencies() })
         .customStep('Build', { runBuild() })
                 .with(Docker) { it.publishDockerImage() }
@@ -33,8 +36,11 @@ Started by: *${env.gitAuthor}* :eyes:
 } else {
     new PluggablePipelineBuilder(this)
             .checkout()
-    .customStep('Install node version and yarn', {
+    .customStep('Install node version', {
         shell("set +x; nvm install")
+    })
+    .customStep('Install yarn', {
+        shell("npm install --global yarn")
     })
     .customStep('Install dependencies', { installDependencies() })
     .customStep('Tests', { runTests() })
@@ -50,6 +56,10 @@ Started by: *${env.gitAuthor}* :eyes:
             .with(Release) { it.release() }
             .with(DeployService) { it.deployToTest('frontend-react-stack') }
             .build('nvm-builder')
+}
+
+def installYarn() {
+    sh "npm install --global yarn"
 }
 
 def installDependencies() {
@@ -110,6 +120,5 @@ def shell(cmd) {
     . ~/.nvm/nvm.sh
     cd -
     set -x
-    ${cmd}
-    npm install --global yarn"""
+    ${cmd}"""
 }
