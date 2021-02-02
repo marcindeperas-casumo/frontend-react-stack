@@ -11,13 +11,16 @@ if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
                 .checkout()
+        .customStep('Install node version', {
+            shell("set +x; nvm install")
+        })
         .customStep('Install dependencies', { installDependencies() })
         .customStep('Build', { runBuild() })
                 .with(Docker) { it.publishDockerImage() }
                 .with(Release) { it.release() }
                 .with(DeployService) { it.deployToProduction('frontend-react-stack') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
-                .build('js-builder')
+                .build('nvm-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
 Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda:
@@ -33,6 +36,9 @@ Started by: *${env.gitAuthor}* :eyes:
 } else {
     new PluggablePipelineBuilder(this)
             .checkout()
+    .customStep('Install node version', {
+        shell("set +x; nvm install")
+    })
     .customStep('Install dependencies', { installDependencies() })
     .customStep('Tests', { runTests() })
             .parallel([
@@ -46,7 +52,7 @@ Started by: *${env.gitAuthor}* :eyes:
             .with(Docker) { it.publishDockerImage() }
             .with(Release) { it.release() }
             .with(DeployService) { it.deployToTest('frontend-react-stack') }
-            .build('js-builder')
+            .build('nvm-builder')
 }
 
 def installDependencies() {
@@ -97,4 +103,15 @@ def rollbarDeployTracking() {
             --header 'content-type: application/json' \
             --data '${data}'"
         }
+}
+
+def shell(cmd) {
+    sh """
+    set +x
+    cd ..
+    export NVM_DIR="$HOME/.nvm"
+    . ~/.nvm/nvm.sh
+    cd -
+    set -x
+    ${cmd}"""
 }
