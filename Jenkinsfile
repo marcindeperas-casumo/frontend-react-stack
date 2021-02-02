@@ -14,6 +14,7 @@ if (env.BRANCH_NAME == "master") {
         .customStep('Install node version', {
             shell("set +x; nvm install")
         })
+        .customStep('Install Yarn', { installYarn() })
         .customStep('Install dependencies', { installDependencies() })
         .customStep('Build', { runBuild() })
                 .with(Docker) { it.publishDockerImage() }
@@ -39,6 +40,7 @@ Started by: *${env.gitAuthor}* :eyes:
     .customStep('Install node version', {
         shell("set +x; nvm install")
     })
+    .customStep('Install Yarn', { installYarn() })
     .customStep('Install dependencies', { installDependencies() })
     .customStep('Tests', { runTests() })
             .parallel([
@@ -53,6 +55,10 @@ Started by: *${env.gitAuthor}* :eyes:
             .with(Release) { it.release() }
             .with(DeployService) { it.deployToTest('frontend-react-stack') }
             .build('nvm-builder')
+}
+
+def installYarn() {
+    sh "npm install --global yarn"
 }
 
 def installDependencies() {
