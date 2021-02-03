@@ -1,7 +1,6 @@
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "../../");
-const buildPath = path.resolve(ROOT, "build");
 
 module.exports = env => {
   const plugins = require("./plugins")(env, ROOT);
@@ -19,15 +18,12 @@ module.exports = env => {
       },
     },
     output: {
-      path: buildPath,
-      filename: `${env.staticDir}/js/[name].[${
+      path: env.production ? path.resolve(ROOT, "build") : undefined,
+      pathinfo: env.development,
+      filename: `react-stack/js/[name].[${
         env.production ? "contenthash" : "hash"
       }].js`,
-      publicPath: path.resolve(ROOT, "package.json"),
-    },
-    devServer: {
-      contentBase: buildPath,
-      port: 3000,
+      publicPath: env.production ? "react-stack" : "/",
     },
     optimization,
     module,

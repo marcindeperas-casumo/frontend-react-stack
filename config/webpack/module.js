@@ -55,7 +55,9 @@ module.exports = (env, ROOT) => ({
           loader: require.resolve("url-loader"),
           options: {
             limit: 10000,
-            name: `${env.staticDir}/media/[name].[hash:8].[ext]`,
+            name: `${
+              env.production ? "react-stack" : "."
+            }/media/[name].[hash:8].[ext]`,
           },
         },
       ],
