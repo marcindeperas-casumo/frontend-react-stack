@@ -31,7 +31,7 @@ export const ReelRaceBoosterPoints = ({
 
     // eslint-disable-next-line fp/no-loops, no-unused-vars
     for (const booster in boosters) {
-      const currentBooster = boosters[booster] || {};
+      const currentBooster = boosters[booster];
       const currentBoosterConfig = boostersConfig[booster] || {};
 
       if (currentBooster && currentBooster !== prevBoosters[booster]) {
@@ -49,8 +49,8 @@ export const ReelRaceBoosterPoints = ({
             "animationend",
             () => {
               setIsPointsAnimating(false);
-              setBasePointsValue(0);
-              setExtraPointsValue(0);
+              setBasePointsValue(null);
+              setExtraPointsValue(null);
             },
             {}
           );
@@ -88,8 +88,8 @@ export const ReelRaceBoosterPoints = ({
             ${isLast ? "t-color-yellow-30" : "t-color-black"}
           `}
         >
-          {basePointsValue > 0 && <span>+{basePointsValue}</span>}
-          {extraPointsValue > 0 && <span>+{extraPointsValue}</span>}
+          {basePointsValue && <span>+{basePointsValue}</span>}
+          {extraPointsValue && <span>+{extraPointsValue}</span>}
         </p>
       );
     });
@@ -97,10 +97,10 @@ export const ReelRaceBoosterPoints = ({
 
   return (
     <div
+      ref={pointsContainerRef}
       className={cx("c-reel-race-icon__boost-points o-position--absolute", {
         "c-reel-race-icon__boost-points--animating": isPointsAnimating,
       })}
-      ref={pointsContainerRef}
     >
       {renderPointsValue()}
     </div>
