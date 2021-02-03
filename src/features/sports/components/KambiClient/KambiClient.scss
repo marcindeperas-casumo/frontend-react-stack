@@ -615,6 +615,14 @@ KambiBC-event-countdown__circles-text {
 .KambiBC-promo-cards-wrapper {
   left: -8px !important;
 }
+
+.KambiBC-event-item__match-clock-container {
+  padding: 0 !important;
+
+  .KambiBC-event-item__time-separator {
+    display: none !important;
+  }
+}
 // END: PROMO AREA
 
 //LANDING PAGE END
