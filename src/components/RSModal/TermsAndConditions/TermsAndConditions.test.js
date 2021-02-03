@@ -14,15 +14,6 @@ const baseProps = {
   t: cms,
 };
 describe("RSModal/T&C", () => {
-  beforeEach(function() {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => {},
-      })
-    );
-  });
-
   test("doesn't initialize with history view", () => {
     const wrapper = shallow(
       <MockStore state={state}>

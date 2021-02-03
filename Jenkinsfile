@@ -10,15 +10,22 @@ import com.casumo.jenkins.pipeline.features.release.Release
 if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
-                .checkout()
+            .checkout()
         .customStep('Install node version', {
             shell("set +x; nvm install")
         })
-        .customStep('Install dependencies', { installDependencies() })
-        .customStep('Build', { runBuild() })
-                .with(Docker) { it.publishDockerImage() }
-                .with(Release) { it.release() }
-                .with(DeployService) { it.deployToProduction('frontend-react-stack') }
+        .customStep('Install yarn', {
+            shell("npm install --global yarn")
+        })
+        .customStep('Install dependencies', {
+            shell("yarn")
+        })
+        .customStep('Build', {
+            shell("yarn build")
+        })
+        .with(Docker) { it.publishDockerImage() }
+        .with(Release) { it.release() }
+        .with(DeployService) { it.deployToProduction('frontend-react-stack') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
                 .build('nvm-builder')
 
@@ -66,10 +73,6 @@ Started by: *${env.gitAuthor}* :eyes:
         .with(Release) { it.release() }
         .with(DeployService) { it.deployToTest('frontend-react-stack') }
         .build('nvm-builder')
-}
-
-def pact() {
-    sh "yarn pact:ci"
 }
 
 def runChromatic () {

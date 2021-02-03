@@ -13,7 +13,8 @@ describe("Lib/http", () => {
       ...responseMockOverride,
     };
 
-    global.fetch = jest.fn().mockResolvedValue(responseMock);
+    // eslint-disable-next-line no-native-reassign
+    fetch = jest.fn().mockResolvedValue(responseMock);
   };
 
   beforeEach(() => {
