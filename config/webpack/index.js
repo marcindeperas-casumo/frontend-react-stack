@@ -1,10 +1,11 @@
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "../../");
+const STATIC_DIR = "react-stack";
 
 module.exports = env => {
-  const plugins = require("./plugins")(env, ROOT);
-  const module = require("./module")(env, ROOT);
+  const plugins = require("./plugins")(env, ROOT, STATIC_DIR);
+  const module = require("./module")(env, ROOT, STATIC_DIR);
   const optimization = require("./optimization")(env);
 
   return {
@@ -20,10 +21,10 @@ module.exports = env => {
     output: {
       path: env.production ? path.resolve(ROOT, "build") : undefined,
       pathinfo: env.development,
-      filename: `react-stack/js/[name].[${
+      filename: `${STATIC_DIR}/js/[name].[${
         env.production ? "contenthash" : "hash"
       }].js`,
-      publicPath: env.production ? "react-stack" : "/",
+      publicPath: env.production ? STATIC_DIR : "/",
     },
     optimization,
     module,

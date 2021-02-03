@@ -2,7 +2,7 @@ const path = require("path");
 const cudl = require("@casumo/cudl");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = (env, ROOT) => ({
+module.exports = (env, ROOT, STATIC_DIR) => ({
   rules: [
     {
       oneOf: [
@@ -56,7 +56,7 @@ module.exports = (env, ROOT) => ({
           options: {
             limit: 10000,
             name: `${
-              env.production ? "react-stack" : "."
+              env.production ? STATIC_DIR : "."
             }/media/[name].[hash:8].[ext]`,
           },
         },
