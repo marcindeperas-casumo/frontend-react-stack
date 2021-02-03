@@ -4,10 +4,10 @@ const WebpackManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WebpackBar = require("webpackbar");
 
 module.exports = (env, ROOT, STATIC_DIR) => {
   return [
-    new CleanWebpackPlugin(),
     new DefinePlugin({
       __DEV__: Boolean(env.development),
     }),
@@ -19,7 +19,8 @@ module.exports = (env, ROOT, STATIC_DIR) => {
             }].css`,
           }),
         ]
-      : []),
+      : [new WebpackBar()]),
+    new CleanWebpackPlugin(),
     new WebpackManifestPlugin({
       fileName: `${STATIC_DIR}/manifest.json`,
       publicPath: env.production ? STATIC_DIR : "/",
