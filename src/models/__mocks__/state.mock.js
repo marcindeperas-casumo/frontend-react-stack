@@ -407,7 +407,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
             wallet: {
               id: "2d9dd240-7937-11e8-b6b5-0242ac11000b",
               balance: {
-                amount: 0,
+                amount: 30.19,
                 iso4217CurrencyCode: "EUR",
               },
               depositsBlocked: false,
@@ -2903,6 +2903,13 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         children: [],
         childSlugs: [],
       },
+      "iframe-solution": {
+        slug: "iframe-solution",
+        fields: {
+          balance_title: "Balance",
+          bonus_title: "Bonus",
+        },
+      }
     },
     transactionsBetsHistoryAnnualOverview: {
       2018: {

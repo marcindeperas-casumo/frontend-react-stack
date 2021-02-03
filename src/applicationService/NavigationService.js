@@ -8,11 +8,14 @@ export const navigate = ({ url }: { url: string }) =>
 export const navigateById = ({
   routeId,
   params,
+  queryParams,
 }: {
   routeId: string,
   params?: Object,
+  queryParams?: Object,
 }) =>
   bridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
     routeId,
     params,
+    queryParams,
   });
