@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import Skeleton from "@casumo/cmp-skeleton";
+import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
 import { useFetch, useTranslations } from "Utils/hooks";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import {
@@ -53,7 +55,17 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
     )(response);
 
     if (!t || !available || !jackpots || jackpots.length === 0) {
-      return null;
+      return (
+        <Skeleton
+          colorHi="#d3d8e1"
+          colorLow="#e5eaed"
+          viewBox={null}
+          width={topListWidgetWidth}
+          height={topListWidgetHeight}
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="100%" />
+        </Skeleton>
+      );
     }
 
     return (
