@@ -19,5 +19,5 @@ module.exports = env => ({
     },
   },
   minimize: env.production,
-  minimizer: [`...`, new CssMinimizerPlugin()],
+  minimizer: [new CssMinimizerPlugin()],
 });
