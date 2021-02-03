@@ -79,7 +79,7 @@
     "format": "eslint --fix '**/*.js' && stylelint --fix '**/*.scss'",
     "storybook": "start-storybook -s ./.storybook/static -p 6006",
     "storybook:build": "build-storybook -c .storybook -s ./.storybook/static -o .out",
-    "chromatic": "CI=true CHROMATIC_APP_CODE=$CHROMATIC_APP_CODE chromatic test --build-script-name storybook:build --exit-zero-on-changes",
+    "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --build-script-name storybook:build --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components",
     "apollo-codegen": "apollo codegen:generate src/types/apollo.js --config=codegen.apollo.config.js --target=flow --includes='./src/**/!(useTranslationsGql|apolloTestUtils|apollo|*.test|*.stories).{js,graphql}' --outputFlat --no-addTypename --passthroughCustomScalars",
     "graphql-introspection": "node ./scripts/generate-possible-types.js",
