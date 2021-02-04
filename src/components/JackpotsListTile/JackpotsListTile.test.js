@@ -17,6 +17,9 @@ describe("<JackpotsListTile />", () => {
         logo: "string",
         name: "string",
         isInMaintenance: false,
+        category: null,
+        liveCasinoId: null,
+        playBackground: "bg",
       },
       {
         id: "2",
@@ -27,6 +30,9 @@ describe("<JackpotsListTile />", () => {
         logo: "string",
         name: "string",
         isInMaintenance: false,
+        category: null,
+        liveCasinoId: null,
+        playBackground: "bg",
       },
       {
         id: "3",
@@ -37,6 +43,9 @@ describe("<JackpotsListTile />", () => {
         logo: "string",
         name: "string",
         isInMaintenance: false,
+        category: null,
+        liveCasinoId: null,
+        playBackground: "bg",
       },
     ];
     const rendered = shallow(<JackpotsListTile games={games} />);

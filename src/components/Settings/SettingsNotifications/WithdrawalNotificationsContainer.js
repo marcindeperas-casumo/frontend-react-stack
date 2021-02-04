@@ -6,7 +6,6 @@ import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SetWithdrawalNotifications } from "./Mutations.graphql";
-// import { SettingsNotificationsWithdrawalNotificationsQuery } from "./WithdrawalNotifications.graphql";
 import { SettingsNotificationsToggleRow as ToggleRow } from "./SettingsNotificationsToggleRow";
 import { onMutationError } from "./SettingsNotifications.utils";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";

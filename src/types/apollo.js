@@ -191,6 +191,9 @@ export type GameListQuery_gamesList_games = {
   gameStudio: string,
   lobby: ?GameListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type GameListQuery_gamesList = {
@@ -382,6 +385,9 @@ export type GameListVerticalQuery_gamesBySlugs = {
   gameStudio: string,
   lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type GameListVerticalQuery = {
@@ -440,6 +446,9 @@ export type GameSearchQuery_gamesSearch_results = {
   gameStudio: string,
   lobby: ?GameSearchQuery_gamesSearch_results_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type GameSearchQuery_gamesSearch = {
@@ -484,6 +493,9 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   gameStudio: string,
   lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
@@ -601,6 +613,9 @@ export type JackpotsQuery_gamesList_games = {
   gameStudio: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
 
@@ -688,6 +703,9 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   gameStudio: string,
   lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames = {
@@ -773,6 +791,9 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   gameStudio: string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type MustDropJackpotsGamesListQuery_gamesList = {
@@ -1024,6 +1045,9 @@ export type GameStudioQuery_gameStudio_games = {
   gameStudio: string,
   lobby: ?GameStudioQuery_gameStudio_games_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 
 export type GameStudioQuery_gameStudio = {
@@ -2618,6 +2642,9 @@ export type GameRow_Game = {
   gameStudio: string,
   lobby: ?GameRow_Game_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 /* @flow */
 /* eslint-disable */
@@ -2647,6 +2674,9 @@ export type GameSearch_Game = {
   gameStudio: string,
   lobby: ?GameSearch_Game_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
 };
 /* @flow */
 /* eslint-disable */
@@ -2720,6 +2750,9 @@ export type Jackpots_Game = {
   gameStudio: string,
   lobby: ?Jackpots_Game_lobby,
   isInMaintenance: boolean,
+  category: ?string,
+  liveCasinoId: ?string,
+  playBackground: string,
   jackpot: ?Jackpots_Game_jackpot,
 };
 /* @flow */
