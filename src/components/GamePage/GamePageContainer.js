@@ -53,7 +53,7 @@ export const GamePageContainer = () => {
     error,
   } = useGameModelContext();
   const bonusAmount = useSelector(playerWalletBonusSelector);
-  const { isDGOJ } = useJurisdiction();
+  const { isDGOJ, isGGL } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
   const gameContent = useTranslations(`games.${slug}`);
@@ -129,11 +129,13 @@ export const GamePageContainer = () => {
             position={isDesktop() ? "top" : "bottom"}
           />
           <ReelRacesDrawerWidgetTrigger />
-          <FiveMinuteBreakIconTrigger
-            pauseGame={pauseGame}
-            resumeGame={resumeGame}
-            gameSlug={slug}
-          />
+          {isGGL && (
+            <FiveMinuteBreakIconTrigger
+              pauseGame={pauseGame}
+              resumeGame={resumeGame}
+              gameSlug={slug}
+            />
+          )}
           <InGameAdventureTrigger />
         </React.Fragment>
       }
