@@ -1,0 +1,21 @@
+.c-sports-balance-bet-slip {
+  bottom: -48px;
+  transition: bottom 500ms ease-out 300ms;
+
+  @media (max-width: 499px) {
+    right: 0;
+  }
+
+  @media (min-width: 500px) {
+    right: 35px;
+    width: 375px !important;
+  }
+
+  @media (min-width: 500px) and (max-width: 960px) {
+    right: 13px;
+  }
+
+  &--maximized {
+    transition: bottom 100ms ease-out 0ms;
+  }
+}

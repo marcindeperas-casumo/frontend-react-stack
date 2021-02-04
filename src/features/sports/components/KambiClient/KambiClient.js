@@ -4,6 +4,7 @@ import { gql, getApolloContext } from "@apollo/client";
 import classNames from "classnames";
 import type { ExecutionResult } from "@apollo/client";
 import { pick } from "ramda";
+import { BalanceBetSlip } from "Features/sports/components/BalanceBetSlip";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
@@ -41,12 +42,16 @@ type Props = {
 
 type State = {
   sportsFirstBet: boolean,
+  isBetSlipMaximized: boolean,
 };
 
 export default class KambiClient extends React.Component<Props, State> {
   static contextType = getApolloContext();
 
-  state = { sportsFirstBet: false };
+  state = {
+    sportsFirstBet: false,
+    isBetSlipMaximized: false,
+  };
 
   static defaultProps = {
     onNavigate: () => {},
@@ -131,6 +136,12 @@ export default class KambiClient extends React.Component<Props, State> {
     } else {
       kambiClientEventHandler(event, false);
     }
+
+    if (event?.data?.event === "kambi betslip status") {
+      const isBetSlipMaximized =
+        event.data.kambi.betslip.position === "maximized";
+      this.setState({ isBetSlipMaximized });
+    }
   };
 
   onWidgetMessage = (message: MessageEvent) => {
@@ -208,6 +219,7 @@ export default class KambiClient extends React.Component<Props, State> {
             }}
           />
         )}
+        <BalanceBetSlip maximized={this.state.isBetSlipMaximized} />
       </div>
     );
   }
