@@ -26,7 +26,7 @@ export function SettingsNotificationsContainer() {
     "player-settings-component"
   );
 
-  if (loading || !notificationTranslations) {
+  if ((loading && !data) || !notificationTranslations) {
     return <SettingsRowListSkeleton count={8} />;
   }
   if (!data || error) {

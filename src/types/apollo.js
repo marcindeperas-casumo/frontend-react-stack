@@ -1429,81 +1429,6 @@ export type PLAYER_SETTINGS_QUERY = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: SettingsNotificationsContactByPhoneQuery
-// ====================================================
-
-export type SettingsNotificationsContactByPhoneQuery_player_details_contactSettings = {
-  contactByPhone: boolean
-};
-
-export type SettingsNotificationsContactByPhoneQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPhoneQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsContactByPhoneQuery_player = {
-  id: string,
-  details: SettingsNotificationsContactByPhoneQuery_player_details,
-};
-
-export type SettingsNotificationsContactByPhoneQuery = {
-  player: SettingsNotificationsContactByPhoneQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsContactByPostQuery
-// ====================================================
-
-export type SettingsNotificationsContactByPostQuery_player_details_contactSettings = {
-  contactByPost: boolean
-};
-
-export type SettingsNotificationsContactByPostQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPostQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsContactByPostQuery_player = {
-  id: string,
-  details: SettingsNotificationsContactByPostQuery_player_details,
-};
-
-export type SettingsNotificationsContactByPostQuery = {
-  player: SettingsNotificationsContactByPostQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsSubscribedToMarketingCrossSellQuery
-// ====================================================
-
-export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details_contactSettings = {
-  subscribedToMarketingCrossSell: boolean
-};
-
-export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsSubscribedToMarketingCrossSellQuery_player = {
-  id: string,
-  details: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player_details,
-};
-
-export type SettingsNotificationsSubscribedToMarketingCrossSellQuery = {
-  player: SettingsNotificationsSubscribedToMarketingCrossSellQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: SetAdventurerPublicity
 // ====================================================
 
@@ -1616,36 +1541,17 @@ export type SetMarketingCrossSellSubscriptionVariables = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: SettingsNotificationsSubscribedToNewslettersQuery
-// ====================================================
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings = {
-  subscribedToNewsletters: boolean
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player = {
-  id: string,
-  details: SettingsNotificationsSubscribedToNewslettersQuery_player_details,
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToNewslettersQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
 // ====================================================
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
-  adventurerPublic: boolean
+  adventurerPublic: boolean,
+  contactByPhone: boolean,
+  contactByPost: boolean,
+  subscribedToMarketingCrossSell: boolean,
+  subscribedToNewsletters: boolean,
+  subscribedToSMSNewsletters: boolean,
+  withdrawalNotifications: boolean,
 };
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
@@ -1673,56 +1579,6 @@ export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
 
 export type PLAYER_CONTACT_SETTINGS_QUERY = {
   player: PLAYER_CONTACT_SETTINGS_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsSubscribedToSmsNewslettersQuery
-// ====================================================
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings = {
-  subscribedToSMSNewsletters: boolean
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player = {
-  id: string,
-  details: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details,
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToSmsNewslettersQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsWithdrawalNotificationsQuery
-// ====================================================
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings = {
-  withdrawalNotifications: boolean
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player_details = {
-  contactSettings: SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player = {
-  id: string,
-  details: SettingsNotificationsWithdrawalNotificationsQuery_player_details,
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery = {
-  player: SettingsNotificationsWithdrawalNotificationsQuery_player
 };
 /* @flow */
 /* eslint-disable */
@@ -3305,7 +3161,13 @@ export type SETTINGS_PLAYER = {
 // ====================================================
 
 export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
-  adventurerPublic: boolean
+  adventurerPublic: boolean,
+  contactByPhone: boolean,
+  contactByPost: boolean,
+  subscribedToMarketingCrossSell: boolean,
+  subscribedToNewsletters: boolean,
+  subscribedToSMSNewsletters: boolean,
+  withdrawalNotifications: boolean,
 };
 
 export type Contact_Settings_Player_adventurerPublic_details = {

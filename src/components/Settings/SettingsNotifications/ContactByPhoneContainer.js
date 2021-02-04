@@ -6,28 +6,27 @@ import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/Setting
 import { ErrorMessage } from "Components/ErrorMessage";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SetContactByPhone } from "./Mutations.graphql";
-import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function ContactByPhoneContainer() {
-  const { t, loading: cmsLoading } = useTranslationsGql({
-    subscriptionsPhoneLabel:
-      "root:player-settings-component:fields.subscriptions_phone_label",
+  const { t } = useTranslationsGql({
+    label: "root:player-settings-component:fields.subscriptions_phone_label",
   });
   const [setContactByPhone] = useMutation<
     A.SetContactByPhone,
     A.SetContactByPhoneVariables
   >(SetContactByPhone, {
     onError: onMutationError,
-    refetchQueries: [{ query: SettingsNotificationsContactByPhoneQuery }],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-    A.SettingsNotificationsContactByPhoneQuery,
+    A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
-  >(SettingsNotificationsContactByPhoneQuery);
+  >(PLAYER_CONTACT_SETTINGS_QUERY);
 
-  if (loading || cmsLoading) {
+  if ((loading && !data) || !t?.label) {
     return <SettingsRowListSkeleton count={1} />;
   }
   if (!data || error) {
@@ -36,12 +35,11 @@ export function ContactByPhoneContainer() {
 
   return (
     <SubscriptionRow
-      label={t.subscriptionsPhoneLabel}
+      label={t.label}
       isEnabled={data.player.details.contactSettings.contactByPhone}
       onChange={value =>
         setContactByPhone({
           variables: { input: { on: value } },
-          optimisticResponse: { setContactByPhone: value },
         })
       }
     />

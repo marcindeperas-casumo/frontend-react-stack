@@ -3,7 +3,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
-import { ContactByPostContainer } from "./ContactByPostContainer";
+import { MarketingCrossSellSubscriptionContainer } from "./MarketingCrossSellSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
@@ -20,7 +20,7 @@ jest.mock("Utils/hooks/useTranslationsGql", () => ({
   }),
 }));
 
-describe("SettingsNotifications - Contact By Post", () => {
+describe("SettingsNotifications - Marketing CrossSell Subscription", () => {
   test("should toggle to false", () => {
     const queryMocks = [
       ...contactByPostMock,
@@ -39,7 +39,7 @@ describe("SettingsNotifications - Contact By Post", () => {
     ];
     const rendered = mount(
       <MockStore queryMocks={queryMocks}>
-        <ContactByPostContainer />
+        <MarketingCrossSellSubscriptionContainer />
       </MockStore>
     );
 
@@ -72,7 +72,7 @@ describe("SettingsNotifications - Contact By Post", () => {
     ];
     const rendered = mount(
       <MockStore queryMocks={queryMocks}>
-        <ContactByPostContainer />
+        <MarketingCrossSellSubscriptionContainer />
       </MockStore>
     );
 

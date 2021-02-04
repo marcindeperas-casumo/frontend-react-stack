@@ -5,7 +5,7 @@ import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
-import { SettingsNotificationsWithdrawalNotificationsQuery } from "./WithdrawalNotifications.graphql";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {
   withdrawalNotificationsMock,
@@ -26,13 +26,13 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
       ...withdrawalNotificationsMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsWithdrawalNotificationsQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "withdrawalNotifications",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsWithdrawalNotificationsQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "withdrawalNotifications",
         false
       ),
@@ -58,13 +58,13 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
       ...withdrawalNotificationsErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsWithdrawalNotificationsQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "withdrawalNotifications",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsWithdrawalNotificationsQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "withdrawalNotifications",
         false
       ),

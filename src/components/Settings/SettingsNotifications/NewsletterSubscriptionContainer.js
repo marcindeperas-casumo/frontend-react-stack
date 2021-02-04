@@ -6,30 +6,27 @@ import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SetNewsletterSubscription } from "./Mutations.graphql";
-import { SettingsNotificationsSubscribedToNewslettersQuery } from "./NewsletterSubscription.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function NewsletterSubscriptionContainer() {
-  const { t, loading: cmsLoading } = useTranslationsGql({
-    subscriptionsEmailLabel:
-      "root:player-settings-component:fields.subscriptions_email_label",
+  const { t } = useTranslationsGql({
+    label: "root:player-settings-component:fields.subscriptions_email_label",
   });
   const [setNewsletterSubscription] = useMutation<
     A.SetNewsletterSubscription,
     A.SetNewsletterSubscriptionVariables
   >(SetNewsletterSubscription, {
     onError: onMutationError,
-    refetchQueries: [
-      { query: SettingsNotificationsSubscribedToNewslettersQuery },
-    ],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-    A.SettingsNotificationsSubscribedToNewslettersQuery,
+    A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
-  >(SettingsNotificationsSubscribedToNewslettersQuery);
+  >(PLAYER_CONTACT_SETTINGS_QUERY);
 
-  if (loading || cmsLoading) {
+  if ((loading && !data) || !t?.label) {
     return <SettingsRowListSkeleton count={1} />;
   }
   if (!data || error) {
@@ -38,12 +35,11 @@ export function NewsletterSubscriptionContainer() {
 
   return (
     <SubscriptionRow
-      label={t.subscriptionsEmailLabel}
+      label={t.label}
       isEnabled={data.player.details.contactSettings.subscribedToNewsletters}
       onChange={value =>
         setNewsletterSubscription({
           variables: { input: { on: value } },
-          optimisticResponse: { setNewsletterSubscription: value },
         })
       }
     />

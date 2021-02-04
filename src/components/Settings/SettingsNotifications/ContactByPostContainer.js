@@ -6,28 +6,27 @@ import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SetContactByPost } from "./Mutations.graphql";
-import { SettingsNotificationsContactByPostQuery } from "./ContactByPost.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function ContactByPostContainer() {
-  const { t, loading: cmsLoading } = useTranslationsGql({
-    subscriptionsPostLabel:
-      "root:player-settings-component:fields.subscriptions_post_label",
+  const { t } = useTranslationsGql({
+    label: "root:player-settings-component:fields.subscriptions_post_label",
   });
   const [setContactByPost] = useMutation<
     A.SetContactByPost,
     A.SetContactByPostVariables
   >(SetContactByPost, {
     onError: onMutationError,
-    refetchQueries: [{ query: SettingsNotificationsContactByPostQuery }],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-    A.SettingsNotificationsContactByPostQuery,
+    A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
-  >(SettingsNotificationsContactByPostQuery);
+  >(PLAYER_CONTACT_SETTINGS_QUERY);
 
-  if (loading || cmsLoading) {
+  if ((loading && !data) || !t?.label) {
     return <SettingsRowListSkeleton count={1} />;
   }
   if (!data || error) {
@@ -36,12 +35,11 @@ export function ContactByPostContainer() {
 
   return (
     <SubscriptionRow
-      label={t.subscriptionsPostLabel}
+      label={t.label}
       isEnabled={data.player.details.contactSettings.contactByPost}
       onChange={value =>
         setContactByPost({
           variables: { input: { on: value } },
-          optimisticResponse: { setContactByPost: value },
         })
       }
     />

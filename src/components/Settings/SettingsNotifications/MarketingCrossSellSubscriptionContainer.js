@@ -6,30 +6,27 @@ import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SetMarketingCrossSellSubscription } from "./Mutations.graphql";
-import { SettingsNotificationsSubscribedToMarketingCrossSellQuery } from "./MarketingCrossSellSubscription.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function MarketingCrossSellSubscriptionContainer() {
-  const { t, loading: cmsLoading } = useTranslationsGql({
-    subscriptionsMarketingCrossSellLabel:
-      "root:player-settings-component:fields.subscriptions_cross_sell",
+  const { t } = useTranslationsGql({
+    label: "root:player-settings-component:fields.subscriptions_cross_sell",
   });
   const [setMarketingCrossSellSubscription] = useMutation<
     A.SetMarketingCrossSellSubscription,
     A.SetMarketingCrossSellSubscriptionVariables
   >(SetMarketingCrossSellSubscription, {
     onError: onMutationError,
-    refetchQueries: [
-      { query: SettingsNotificationsSubscribedToMarketingCrossSellQuery },
-    ],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-    A.SettingsNotificationsSubscribedToMarketingCrossSellQuery,
+    A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
-  >(SettingsNotificationsSubscribedToMarketingCrossSellQuery);
+  >(PLAYER_CONTACT_SETTINGS_QUERY);
 
-  if (loading || cmsLoading) {
+  if ((loading && !data) || !t?.label) {
     return <SettingsRowListSkeleton count={1} />;
   }
   if (!data || error) {
@@ -38,16 +35,13 @@ export function MarketingCrossSellSubscriptionContainer() {
 
   return (
     <SubscriptionRow
-      label={t.subscriptionsMarketingCrossSellLabel}
+      label={t.label}
       isEnabled={
         data.player.details.contactSettings.subscribedToMarketingCrossSell
       }
       onChange={value =>
         setMarketingCrossSellSubscription({
           variables: { input: { on: value } },
-          optimisticResponse: {
-            setMarketingCrossSellSubscription: value,
-          },
         })
       }
     />

@@ -5,7 +5,7 @@ import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { SmsSubscriptionContainer } from "./SmsSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
-import { SettingsNotificationsSubscribedToSmsNewslettersQuery } from "./SmsSubscription.graphql";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {
   SMSNewsletterSubscriptionMock,
@@ -26,13 +26,13 @@ describe("SettingsNotifications - SMS Subscription", () => {
       ...SMSNewsletterSubscriptionMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToSmsNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToSMSNewsletters",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToSmsNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToSMSNewsletters",
         false
       ),
@@ -59,13 +59,13 @@ describe("SettingsNotifications - SMS Subscription", () => {
       ...SMSNewsletterSubscriptionErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToSmsNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToSMSNewsletters",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToSmsNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToSMSNewsletters",
         false
       ),

@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
-import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import { actWithClick, isCheckboxChecked } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {
@@ -26,13 +26,13 @@ describe("SettingsNotifications - Contact By Phone", () => {
       ...contactByPhoneMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPhoneQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPhone",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPhoneQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPhone",
         false
       ),
@@ -59,13 +59,13 @@ describe("SettingsNotifications - Contact By Phone", () => {
       ...contactByPhoneErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPhoneQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPhone",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPhoneQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPhone",
         false
       ),
