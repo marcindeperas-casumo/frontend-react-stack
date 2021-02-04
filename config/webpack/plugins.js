@@ -23,7 +23,7 @@ module.exports = (env, ROOT, STATIC_DIR) => {
     new CleanWebpackPlugin(),
     new WebpackManifestPlugin({
       fileName: `${STATIC_DIR}/manifest.json`,
-      publicPath: env.production ? STATIC_DIR : "/",
+      publicPath: "/",
       filter: x =>
         x.isChunk && !x.name.endsWith(".map") && !x.name.startsWith(STATIC_DIR),
     }),
