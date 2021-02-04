@@ -24,7 +24,7 @@ module.exports = env => {
       filename: `${STATIC_DIR}/js/[name].[${
         env.production ? "contenthash" : "hash"
       }].js`,
-      publicPath: env.production ? STATIC_DIR : "/",
+      publicPath: "/",
     },
     optimization,
     module,
