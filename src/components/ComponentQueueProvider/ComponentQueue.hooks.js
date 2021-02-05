@@ -48,8 +48,14 @@ export const useComponentQueueState = (
     });
   };
 
-  const queueDispatch = { show: queueAdd, close: queueRemove };
-  const stackDispatch = { show: stackAdd, close: stackRemove };
+  const closeAll = () => {
+    dispatch({
+      type: ACTION_TYPES.CLEAR,
+    });
+  };
+
+  const queueDispatch = { show: queueAdd, close: queueRemove, closeAll };
+  const stackDispatch = { show: stackAdd, close: stackRemove, closeAll };
   const reducerDispatch = isQueue ? queueDispatch : stackDispatch;
 
   useEffect(() => {
