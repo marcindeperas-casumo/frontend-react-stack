@@ -1,19 +1,52 @@
-$width: 56px;
+$min-width: 64px;
+$max-width: 120px;
+$max-label-width: 80px;
 $height: 32px;
 $border-offset: 2px;
+$radius: 12px;
+
+// stylelint-disable xi/selector-pattern
 
 .c-toggle {
+  font-size: 12px;
+  font-weight: bold;
   height: $height;
+  max-width: $max-width;
+  min-width: $min-width;
+  padding: 5px 10px;
+  position: relative;
   transition: background-color 0.25s;
-  width: $width;
+}
+
+.c-toggle__label {
+  max-width: $max-label-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .c-toggle-circle--active {
-  transform: translate3d(($width / 2) - $border-offset, 0, 0);
-  transition: transform 0.25s;
+  position: absolute;
+  right: 3px;
+  top: 2px;
+  // transition: transform 0.25s;
+  // transition: right .3s ease-in-out;
+  // transform: translate3d(($maxWidth / 2) - $border-offset, 0, 0);
+
+  + .c-toggle__label {
+    padding-right: 2 * $radius;
+  }
 }
 
 .c-toggle-circle--inactive {
-  transform: translate3d($border-offset, 0, 0);
-  transition: transform 0.25s;
+  left: 3px;
+  position: absolute;
+  top: 2px;
+  // transform: translate3d($border-offset, 0, 0);
+  // transition: transform 0.25s;
+  // transition: left .3s ease-in-out;
+
+  + .c-toggle__label {
+    padding-left: 2 * $radius;
+  }
 }
