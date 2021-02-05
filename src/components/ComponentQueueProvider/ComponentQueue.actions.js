@@ -2,9 +2,9 @@
 export const ACTION_TYPES = {
   PUSH: "[QUEUE] PUSH",
   POP: "[QUEUE] POP",
-  shift: "[QUEUE] SHIFT",
-  unshift: "[QUEUE] UNSHIFT",
-  clear: "[QUEUE] CLEAR",
+  SHIFT: "[QUEUE] SHIFT",
+  UNSHIFT: "[QUEUE] UNSHIFT",
+  CLEAR: "[QUEUE] CLEAR",
 };
 
 // TODO: Define payload typings

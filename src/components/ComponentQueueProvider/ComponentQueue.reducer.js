@@ -46,6 +46,8 @@ export const queueReducer = (mapping, defaultSettings = {}) => {
         return state.slice(0, -1);
       case ACTION_TYPES.UNSHIFT:
         return unshiftOrReplace(state, { component, settings });
+      case ACTION_TYPES.CLEAR:
+        return [];
 
       default:
         return state;
