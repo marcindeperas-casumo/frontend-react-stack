@@ -1,19 +1,31 @@
 /* eslint-disable no-switch-statements/no-switch */
 // @flow
 import { ACTION_TYPES } from "./ComponentQueue.actions";
+import { bubbleSort } from "./ComponentQueue.utils";
 
-const pushOrReplace = (state, newState) => {
-  if (newState.settings?.replaceCurrent) {
-    return [...state.slice(1), newState];
+const sortKeyPath = ["settings", "priority"];
+
+const pushOrReplace = (state, item) => {
+  if (item.settings?.priority) {
+    return bubbleSort([...state, item], sortKeyPath);
   }
-  return [...state, newState];
+
+  if (item.settings?.replaceCurrent) {
+    return [...state.slice(1), item];
+  }
+
+  return [...state, item];
 };
 
-const unshiftOrReplace = (state, newState) => {
-  if (newState.settings?.replaceCurrent) {
-    return [newState, ...state.slice(0, -1)];
+const unshiftOrReplace = (state, item) => {
+  if (item.settings?.priority) {
+    return bubbleSort([...state, item], sortKeyPath, true);
   }
-  return [newState, ...state];
+
+  if (item.settings?.replaceCurrent) {
+    return [item, ...state.slice(0, -1)];
+  }
+  return [item, ...state];
 };
 
 export const queueReducer = (mapping, defaultSettings = {}) => {
