@@ -58,7 +58,6 @@ export const GameBrowser = () => {
 
   return (
     <WaitForHostElement hostElementId={hostElementId}>
-      <Redirect from="/" to={redirectTarget} noThrow />
       <Portal hostElementId={hostElementId}>
         <GameBrowserSets sets={gameBrowserSetsData} />
 
@@ -67,6 +66,7 @@ export const GameBrowser = () => {
             className="u-padding-bottom--2xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
             primary={false}
           >
+            <Redirect path="/" from="/" to={redirectTarget} noThrow />
             <TopList path="top" />
             <>
               {sets
