@@ -1,5 +1,5 @@
 // @flow
-
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export class MahjongGame extends BaseIframeGame {
@@ -20,10 +20,6 @@ export class MahjongGame extends BaseIframeGame {
     }
 
     return super.componentProps;
-  }
-
-  onMessageHandler(message: PushGameMessage) {
-    super.onMessageHandler(message);
   }
 
   extractEventId(data: any) {
