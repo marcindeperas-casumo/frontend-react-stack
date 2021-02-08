@@ -1,14 +1,14 @@
 // @flow
-import { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { queueReducer } from "./ComponentQueue.reducer";
-import { ACTION_TYPES } from "./ComponentQueue.actions";
+import { ACTION_TYPES, TQueueAction } from "./ComponentQueue.actions";
 
-export const DataStructure = {
+export const DATA_STRUCTURE = {
   QUEUE: "QUEUE",
   STACK: "STACK",
 };
 
-export type TDispatch = (action: TQueueAction) => void;
+type TDispatch = (action: TQueueAction) => void;
 
 export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
 
@@ -22,7 +22,7 @@ export type TComponentQueueConfigMap = {
   settings?: TComponentQueueConfigSettings,
 };
 
-export type TComponentQueueHoookParameters = {
+export type TComponentQueueParameters = {
   config: TComponentQueueConfigMap,
   defaultSetttings?: TComponentQueueConfigSettings,
   dataStructure?: TDataStructure,
@@ -38,9 +38,9 @@ export type TComponentQueueState = {
 export const useComponentQueueState = ({
   config,
   defaultSettings = {},
-  dataStructure = DataStructure.QUEUE,
+  dataStructure = DATA_STRUCTURE.QUEUE,
 }: TComponentQueueParameters): TComponentQueueState => {
-  const isQueue = dataStructure === DataStructure.QUEUE;
+  const isQueue = dataStructure === DATA_STRUCTURE.QUEUE;
   const [localContent, setContent] = useState(null);
   const reducerWithConfig = queueReducer(config, defaultSettings);
   const [queue: Array<any>, dispatch: TDispatch] = useReducer(

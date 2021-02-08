@@ -1,8 +1,8 @@
-// @flow
 import * as R from "ramda";
 
 export function bubbleSort(queue, sortKeyPath, reverse = false) {
   queue.map(_ =>
+    // eslint-disable-next-line array-callback-return
     queue.map((__, i) => {
       // make sure there is another element to compare with
       if (
