@@ -29,7 +29,7 @@ $radius: 12px;
   position: absolute;
   right: 1px;
   top: 0px;
-  transition: all 2s ease 0s;
+  transition: left 2s ease 0s;
 
   + .c-toggle__label {
     padding-right: 2 * $radius;
@@ -40,7 +40,7 @@ $radius: 12px;
   left: 1px;
   position: absolute;
   top: 0px;
-  transition: all 2s ease 0s;
+  transition: right 2s ease 0s;
 
   + .c-toggle__label {
     padding-left: 2 * $radius;
