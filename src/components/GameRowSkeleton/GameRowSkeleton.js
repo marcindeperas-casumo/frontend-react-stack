@@ -28,7 +28,15 @@ export const GameRowSkeleton = () => {
       />
       <rect
         x={padding + tileSize + 16}
-        y={padding + tileSize / 2 - 8}
+        y={padding + tileSize / 2 - (16 + padding / 2)}
+        rx="3"
+        ry="3"
+        width="150"
+        height="16"
+      />
+      <rect
+        x={padding + tileSize + 16}
+        y={padding + tileSize / 2 + padding / 2}
         rx="3"
         ry="3"
         width="150"
