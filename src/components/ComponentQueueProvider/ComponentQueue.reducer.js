@@ -6,8 +6,15 @@ import { bubbleSort } from "./ComponentQueue.utils";
 const sortKeyPath = ["settings", "priority"];
 
 const pushOrReplace = (state, item) => {
+  if (item.settings?.priority && item.settings?.replaceCurrent) {
+    return bubbleSort([...state.slice(1), item]);
+  }
+
   if (item.settings?.priority) {
-    return bubbleSort([...state, item], sortKeyPath);
+    // we need to exclude current from sort
+    const current = state[0];
+    const sortSkippedCurrent = bubbleSort([...state.slice(1), item]);
+    return [current, ...sortSkippedCurrent];
   }
 
   if (item.settings?.replaceCurrent) {
