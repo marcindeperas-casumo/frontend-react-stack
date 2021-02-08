@@ -45,10 +45,14 @@ describe("useComponentQueueState Hook", () => {
     const { result } = renderHook(() =>
       useComponentQueueState({ config: mockedConfig })
     );
+    const { queue, show } = result.current;
+
+    expect(queue.length).toBe(0);
 
     wait().then(() => {
-      act(() => result.current.show("component1"));
-      act(() => result.current.show("component2"));
+      act(() => show("component1"));
+      act(() => show("component2"));
+      console.warn("result.current.queue", result.current.queue.length);
       expect(result.current.queue.length).toBe(2);
 
       const CurrentComponent = result.current.queue[0].component;
@@ -58,6 +62,5 @@ describe("useComponentQueueState Hook", () => {
   });
 
   test("queue with priority and additional config", () => {});
-  test("stack add and remove", () => {});
   test("stack add and remove", () => {});
 });

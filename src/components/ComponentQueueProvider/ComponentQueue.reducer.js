@@ -1,6 +1,7 @@
 /* eslint-disable no-switch-statements/no-switch */
 // @flow
-import { ACTION_TYPES } from "./ComponentQueue.actions";
+import { ACTION_TYPES, TQueueAction } from "./ComponentQueue.actions";
+import type { TComponentQueueConfigSettings } from "./ComponentQueue.types";
 import { bubbleSort } from "./ComponentQueue.utils";
 
 const sortKeyPath = ["settings", "priority"];
@@ -36,16 +37,16 @@ const unshiftOrReplace = (state, item) => {
 };
 const requiresMapping = payload => typeof payload === "string";
 
-export const queueReducer = (mapping, defaultSettings = {}) => {
-  return (state, action) => {
+export const queueReducer = (
+  mapping: Object,
+  defaultSettings: TComponentQueueConfigSettings = {}
+) => {
+  return (state: Array<any>, action: TQueueAction) => {
     const configSettings = {
       ...(mapping[action.payload]?.settings || {}),
       ...action.settings,
     };
 
-    console.warn(">>>>>>>>> action", action);
-    console.warn(">>>>>>>>> mapping", mapping);
-    console.warn(">>>>>>>>> configSettings", configSettings);
     // get component by ID or inline
     const component =
       (requiresMapping(action.payload) && mapping[action.payload]?.component) ||
@@ -55,7 +56,6 @@ export const queueReducer = (mapping, defaultSettings = {}) => {
       ...defaultSettings,
       ...configSettings,
     };
-    // console.warn("settings", settings);
 
     switch (action.type) {
       case ACTION_TYPES.PUSH:
