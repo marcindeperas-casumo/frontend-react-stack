@@ -34,15 +34,28 @@ const unshiftOrReplace = (state, item) => {
   }
   return [item, ...state];
 };
+const requiresMapping = payload => typeof payload === "string";
 
 export const queueReducer = (mapping, defaultSettings = {}) => {
   return (state, action) => {
-    const settings = {
-      ...defaultSettings,
+    const configSettings = {
+      ...(mapping[action.payload]?.settings || {}),
       ...action.settings,
     };
 
-    const component = mapping[action.payload]?.component || action.payload;
+    console.warn(">>>>>>>>> action", action);
+    console.warn(">>>>>>>>> mapping", mapping);
+    console.warn(">>>>>>>>> configSettings", configSettings);
+    // get component by ID or inline
+    const component =
+      (requiresMapping(action.payload) && mapping[action.payload]?.component) ||
+      action.payload;
+
+    const settings = {
+      ...defaultSettings,
+      ...configSettings,
+    };
+    // console.warn("settings", settings);
 
     switch (action.type) {
       case ACTION_TYPES.PUSH:
@@ -53,12 +66,11 @@ export const queueReducer = (mapping, defaultSettings = {}) => {
         return state.slice(0, -1);
       case ACTION_TYPES.UNSHIFT:
         return unshiftOrReplace(state, { component, settings });
-      case ACTION_TYPES.CLEAR:
-        return [];
 
       default:
         return state;
     }
   };
 };
+
 /* eslint-enable no-switch-statements/no-switch */

@@ -8,11 +8,29 @@ export const DataStructure = {
   STACK: "STACK",
 };
 
-export const useComponentQueueState = (
+export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
+
+export type TComponentQueueConfigSettings = {
+  priority?: number,
+  closeCurrent?: boolean,
+};
+
+export type TComponentQueueConfigMap = {
+  component: string | (() => React.Node),
+  settings?: TComponentQueueConfigSettings,
+};
+
+export type TComponentQueueHoookParameters = {
+  config: TComponentQueueConfigMap,
+  defaultSetttings?: TComponentQueueConfigSettings,
+  dataStructure?: TDataStructure,
+};
+
+export const useComponentQueueState = ({
   config,
-  defaultSettings,
-  dataStructure = DataStructure.QUEUE
-) => {
+  defaultSettings = {},
+  dataStructure = DataStructure.QUEUE,
+}: TComponentQueueParameters) => {
   const isQueue = dataStructure === DataStructure.QUEUE;
   const [localContent, setContent] = useState(null);
   const reducerWithConfig = queueReducer(config, defaultSettings);
