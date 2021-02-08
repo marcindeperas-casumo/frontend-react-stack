@@ -8,6 +8,8 @@ export const DataStructure = {
   STACK: "STACK",
 };
 
+export type TDispatch = (action: TQueueAction) => void;
+
 export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
 
 export type TComponentQueueConfigSettings = {
@@ -26,17 +28,27 @@ export type TComponentQueueHoookParameters = {
   dataStructure?: TDataStructure,
 };
 
+export type TComponentQueueState = {
+  show: () => void,
+  close: () => void,
+  localContent: any,
+  queue: Array<any>,
+};
+
 export const useComponentQueueState = ({
   config,
   defaultSettings = {},
   dataStructure = DataStructure.QUEUE,
-}: TComponentQueueParameters) => {
+}: TComponentQueueParameters): TComponentQueueState => {
   const isQueue = dataStructure === DataStructure.QUEUE;
   const [localContent, setContent] = useState(null);
   const reducerWithConfig = queueReducer(config, defaultSettings);
-  const [queue, dispatch] = useReducer(reducerWithConfig, []);
+  const [queue: Array<any>, dispatch: TDispatch] = useReducer(
+    reducerWithConfig,
+    []
+  );
 
-  const queueAdd = (content, settings) => {
+  const queueAdd = (content: any, settings: any) => {
     dispatch({
       type: ACTION_TYPES.PUSH,
       payload: content,
@@ -44,14 +56,14 @@ export const useComponentQueueState = ({
     });
   };
 
-  const queueRemove = settings => {
+  const queueRemove = (settings: any) => {
     dispatch({
       type: ACTION_TYPES.SHIFT,
       settings,
     });
   };
 
-  const stackAdd = (content, settings) => {
+  const stackAdd = (content: any, settings: any) => {
     dispatch({
       type: ACTION_TYPES.UNSHIFT,
       payload: content,
@@ -59,7 +71,7 @@ export const useComponentQueueState = ({
     });
   };
 
-  const stackRemove = settings => {
+  const stackRemove = (settings: any) => {
     dispatch({
       type: ACTION_TYPES.POP,
       settings,
