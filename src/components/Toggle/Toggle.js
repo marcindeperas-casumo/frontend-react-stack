@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-// import div from "@casumo/cmp-flex";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import "./Toggle.scss";
@@ -12,42 +12,48 @@ type Props = {
   onChange: (active: boolean) => void,
 };
 
-type UncheckedProps = {
-  label?: string,
+type InnerToggleProps = {
+  labelOn?: string,
+  labelOff?: string,
+  checked?: boolean,
 };
 
-type CheckedProps = {
-  label?: string,
-};
-
-const Unchecked = ({ label }: UncheckedProps) => (
-  <div className="c-toggle u-cursor-pointer t-border-r--pill u-overflow--hidden t-background-grey-5 t-color-white">
-    <div className="c-toggle-circle--inactive">
+const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
+  <div
+    className={cx(
+      "c-toggle u-cursor-pointer t-border-r--pill u-overflow--hidden",
+      {
+        "t-background-purple-60 t-color-white t-border-white": checked,
+        "t-background-white t-color-grey-5 t-border-grey-5": !checked,
+      }
+    )}
+  >
+    <div
+      className={cx({
+        "c-toggle-circle--active": checked,
+        "c-toggle-circle--inactive t-color-grey-9": !checked,
+        "t-color-grey-5": !checked,
+      })}
+    >
       <svg width="28" viewBox="0 0 28 28">
-        <circle cx="14" cy="14" r="12" fill="currentColor" />
+        <circle cx="14" cy="14" r="11" fill="currentColor" />
       </svg>
     </div>
-    <Text className="c-toggle__label">{label}</Text>
-  </div>
-);
-
-const Checked = ({ label }: CheckedProps) => (
-  <div className="c-toggle u-cursor-pointer t-border-r--pill u-overflow--hidden t-background-purple-60 t-color-white">
-    <div className="c-toggle-circle--active">
-      <svg width="28" viewBox="0 0 28 28">
-        <circle cx="14" cy="14" r="12" fill="currentColor" />
-      </svg>
-    </div>
-    <Text className="c-toggle__label">{label}</Text>
+    <Text className="c-toggle__label">{checked ? labelOn : labelOff}</Text>
   </div>
 );
 
 export function Toggle(props: Props) {
+  const { labelOn, labelOff, checked } = props;
+  const current = (
+    <ToggleInner labelOn={labelOn} labelOff={labelOff} checked={checked} />
+  );
+
   return (
     <Checkbox
       {...props}
-      renderChecked={() => <Checked label={props.labelOn} />}
-      renderUnchecked={() => <Unchecked label={props.labelOff} />}
+      renderChecked={() => current}
+      renderUnchecked={() => current}
     />
   );
 }
