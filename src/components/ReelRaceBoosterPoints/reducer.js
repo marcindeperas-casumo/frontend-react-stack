@@ -1,29 +1,29 @@
 // @flow
 import { UPDATE_ANIMATION, UPDATE_PREV_VALUES } from "./const";
 
-type AnimationState = {
+type TAnimationState = {
   active: boolean,
   basePoints: null | String,
   extraPoints: null | String,
 };
 
-type BoostersState = {
+type TBoostersState = {
   bigWins: number,
   megaWins: number,
   triples: number,
   wins: number,
 };
 
-type State = {
-  animation: AnimationState,
-  boosters: BoostersState,
+type TState = {
+  animation: TAnimationState,
+  boosters: TBoostersState,
 };
 
-type Actions =
-  | { type: UPDATE_ANIMATION, payload: AnimationState }
-  | { type: UPDATE_PREV_VALUES, payload: BoostersState };
+type TActions =
+  | { type: UPDATE_ANIMATION, payload: TAnimationState }
+  | { type: UPDATE_PREV_VALUES, payload: TBoostersState };
 
-export const reducer = (prevState: State, action: Actions): State => {
+export const reducer = (prevState: TState, action: TActions): TState => {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (action.type) {
     case UPDATE_ANIMATION:

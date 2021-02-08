@@ -1,13 +1,14 @@
 // @flow
 import React, { useLayoutEffect, useReducer, useRef } from "react";
 import cx from "classnames";
+import { ReelRaceBoosterPointsValue } from "./ReelRaceBoosterPointsValue";
+import { reducer } from "./reducer";
 import {
   getBoostersConfig,
   getInitialState,
   UPDATE_ANIMATION,
   UPDATE_PREV_VALUES,
 } from "./const";
-import { reducer } from "./reducer";
 import "./ReelRaceBoosterPoints.scss";
 
 type Props = {
@@ -21,12 +22,12 @@ const boostersConfig = getBoostersConfig();
 const initialState = getInitialState();
 
 export const ReelRaceBoosterPoints = ({
-  bigWins,
-  megaWins,
-  triples,
-  wins,
+  bigWins = 0,
+  megaWins = 0,
+  triples = 0,
+  wins = 0,
 }: Props) => {
-  const pointsContainerRef = useRef({});
+  const pointsContainerRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useLayoutEffect(() => {
@@ -126,38 +127,6 @@ export const ReelRaceBoosterPoints = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bigWins, megaWins, triples, wins]);
 
-  // Using this function to achieve the same affect as text
-  // shadow, without using css text-shadow. What happens here
-  // is we render 3 Ps positioned absolute on each other.
-  // Using css, we can target each P to have staggering sizes.
-  const renderPointsValue = value => {
-    const shadowDepth = new Array(3).fill("");
-
-    return shadowDepth.map((_, index) => {
-      const isLast = index === shadowDepth.length - 1;
-
-      return (
-        <p
-          key={index}
-          className={`
-            c-reel-race-icon__boost-points__value
-            u-margin--none
-            o-ratio__content
-            u-font-weight-bold
-            ${isLast ? "t-color-yellow-30" : "t-color-black"}
-          `}
-        >
-          {state.animation.basePoints && (
-            <span>+{state.animation.basePoints}</span>
-          )}
-          {state.animation.extraPoints && (
-            <span>+{state.animation.extraPoints}</span>
-          )}
-        </p>
-      );
-    });
-  };
-
   return (
     <div
       ref={pointsContainerRef}
@@ -165,7 +134,10 @@ export const ReelRaceBoosterPoints = ({
         "c-reel-race-icon__boost-points--animating": state.animation.active,
       })}
     >
-      {renderPointsValue()}
+      <ReelRaceBoosterPointsValue
+        basePoints={state.animation.basePoints}
+        extraPoints={state.animation.extraPoints}
+      />
     </div>
   );
 };
