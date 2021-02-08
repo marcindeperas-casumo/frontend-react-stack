@@ -39,7 +39,13 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
         <circle cx="14" cy="14" r="11" fill="currentColor" />
       </svg>
     </div>
-    <Text className="c-toggle__label">{checked ? labelOn : labelOff}</Text>
+    <Text
+      className={cx("c-toggle__label", {
+        "t-color-grey-90": !checked,
+      })}
+    >
+      {checked ? labelOn : labelOff}
+    </Text>
   </div>
 );
 
