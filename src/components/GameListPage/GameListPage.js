@@ -165,7 +165,12 @@ export function GameListPage({ set }: Props) {
                 renderItem={game => (
                   <GameRow
                     game={game}
-                    renderText={() => <GameRowText name={game.name} />}
+                    renderText={() => (
+                      <GameRowText
+                        name={game.name}
+                        description={game.gameStudio}
+                      />
+                    )}
                   />
                 )}
               />
