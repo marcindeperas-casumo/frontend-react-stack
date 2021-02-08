@@ -1,11 +1,13 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
 export class MahjongGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
     this.targetDomain = window.location.origin;
+    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {
@@ -20,9 +22,5 @@ export class MahjongGame extends BaseIframeGame {
     }
 
     return super.componentProps;
-  }
-
-  extractEventId(data: any) {
-    return data.method;
   }
 }
