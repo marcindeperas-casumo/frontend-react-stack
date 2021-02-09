@@ -5,8 +5,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const WebpackBar = require("webpackbar");
+const { ROOT, STATIC_DIR } = require("./utils");
 
-module.exports = (env, ROOT, STATIC_DIR) => {
+module.exports = env => {
   return [
     new DefinePlugin({
       __DEV__: Boolean(env.development),

@@ -1,8 +1,9 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { shouldUseSourceMap, ROOT, STATIC_DIR } = require("./utils");
 
-module.exports = (env, ROOT, STATIC_DIR) => ({
+module.exports = env => ({
   rules: [
     {
       oneOf: [
@@ -21,7 +22,23 @@ module.exports = (env, ROOT, STATIC_DIR) => ({
               loader: require.resolve("css-loader"),
               options: {
                 importLoaders: 2,
-                sourceMap: true,
+                sourceMap: env.production && shouldUseSourceMap,
+              },
+            },
+            {
+              loader: require.resolve("postcss-loader"),
+              options: {
+                ident: "postcss",
+                plugins: () => [
+                  require("postcss-flexbugs-fixes"),
+                  require("postcss-preset-env")({
+                    autoprefixer: {
+                      flexbox: "no-2009",
+                    },
+                    stage: 3,
+                  }),
+                ],
+                sourceMap: env.production && shouldUseSourceMap,
               },
             },
             {
@@ -30,7 +47,7 @@ module.exports = (env, ROOT, STATIC_DIR) => ({
                 sassOptions: {
                   includePaths: cudl,
                 },
-                sourceMap: true,
+                sourceMap: env.production && shouldUseSourceMap,
               },
             },
             {

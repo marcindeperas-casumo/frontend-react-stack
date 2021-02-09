@@ -1,17 +1,15 @@
 const path = require("path");
-
-const ROOT = path.resolve(__dirname, "../../");
-const STATIC_DIR = "react-stack";
+const { ROOT, STATIC_DIR } = require("./utils");
 
 module.exports = env => {
-  const plugins = require("./plugins")(env, ROOT, STATIC_DIR);
-  const module = require("./module")(env, ROOT, STATIC_DIR);
+  const plugins = require("./plugins")(env);
+  const module = require("./module")(env);
   const optimization = require("./optimization")(env);
 
   return {
     mode: env.production ? "production" : "development",
     entry: path.resolve(ROOT, "src/index.js"),
-    devtool: env.production ? "source-map" : "cheap-module-source-map",
+    devtool: env.development ? "cheap-module-source-map" : false,
     resolve: {
       modules: ["node_modules"],
       alias: {
