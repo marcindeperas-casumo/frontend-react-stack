@@ -15,6 +15,7 @@ export { RelaxGame } from "./RelaxGame";
 export { ThunderkickGame } from "./ThunderkickGame";
 export { YggdrasilGame } from "./YggdrasilGame";
 export { PragmaticGame } from "./PragmaticGame";
+export { MahjongGame } from "./MahjongGame";
 export * from "./gameModelMapping";
 export * from "./constants";
 export * from "./types";
