@@ -1,4 +1,4 @@
-/* eslint-disable fp/no-let,fp/no-mutation,fp/no-mutating-methods */
+/* eslint-disable fp/no-let,fp/no-mutation,fp/no-mutating-methods,fp/no-delete */
 const localStorageMock = (function() {
   let store = {};
   return {
@@ -20,4 +20,4 @@ const localStorageMock = (function() {
 Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
-/* eslint-enable fp/no-let,fp/no-mutation,fp/no-mutating-methods */
+/* eslint-enable fp/no-let,fp/no-mutation,fp/no-mutating-methods,fp/no-delete */
