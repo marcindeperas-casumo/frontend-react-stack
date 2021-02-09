@@ -1,10 +1,12 @@
 // @flow
-import { useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect, Reducer } from "react";
 import { queueReducer } from "./ComponentQueue.reducer";
-import { ACTION_TYPES, TQueueAction } from "./ComponentQueue.actions";
+import { ACTION_TYPES, type TQueueAction } from "./ComponentQueue.actions";
 import {
   DATA_STRUCTURE,
+  type TComponentQueueContent,
   type TComponentQueueHookState,
+  type TComponentQueueConfigSettings,
   type TComponentQueueParameters,
 } from "./ComponentQueue.types";
 
@@ -18,10 +20,9 @@ export const useComponentQueueState = ({
   const isQueue = dataStructure === DATA_STRUCTURE.QUEUE;
   const [localContent, setContent] = useState(null);
   const reducerWithConfig = queueReducer(config, defaultSettings);
-  const [queue: Array<any>, dispatch: TDispatch] = useReducer(
-    reducerWithConfig,
-    []
-  );
+  const [queue: Array<any>, dispatch: TDispatch] = useReducer<
+    Reducer<Array<any>, TQueueAction>
+  >(reducerWithConfig, []);
 
   const queueAdd = (
     content: TComponentQueueContent,

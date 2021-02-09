@@ -1,5 +1,5 @@
 // @flow
-import { Node } from "react";
+import type { Node } from "react";
 
 export const DATA_STRUCTURE = {
   QUEUE: "QUEUE",
@@ -22,7 +22,7 @@ export type TComponentQueueConfigMap = {
 
 export type TComponentQueueParameters = {
   config: Object,
-  defaultSetttings?: TComponentQueueConfigSettings,
+  defaultSettings?: TComponentQueueConfigSettings,
   dataStructure?: TDataStructure,
 };
 
