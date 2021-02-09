@@ -1,13 +1,20 @@
 /* eslint-disable no-switch-statements/no-switch */
 // @flow
-import { ACTION_TYPES, TQueueAction } from "./ComponentQueue.actions";
-import type { TComponentQueueConfigSettings } from "./ComponentQueue.types";
+import {
+  ACTION_TYPES,
+  type TQueueApi,
+  type TQueueAction,
+} from "./ComponentQueue.actions";
+import type {
+  TComponentQueueConfig,
+  TComponentQueueState,
+} from "./ComponentQueue.types";
 import { bubbleSort } from "./ComponentQueue.utils";
 
 const sortKeyPath = ["settings", "priority"];
 
 const pushOrReplace = (state, item) => {
-  if (item.settings?.priority && item.settings?.replaceCurrent) {
+  if (item.settings?.priority && item.settings?.closeCurrent) {
     return bubbleSort([...state.slice(1), item]);
   }
 
@@ -18,7 +25,7 @@ const pushOrReplace = (state, item) => {
     return [current, ...sortSkippedCurrent];
   }
 
-  if (item.settings?.replaceCurrent) {
+  if (item.settings?.closeCurrent) {
     return [...state.slice(1), item];
   }
 
@@ -30,42 +37,43 @@ const unshiftOrReplace = (state, item) => {
     return bubbleSort([...state, item], sortKeyPath, true);
   }
 
-  if (item.settings?.replaceCurrent) {
+  if (item.settings?.closeCurrent) {
     return [item, ...state.slice(0, -1)];
   }
   return [item, ...state];
 };
 const requiresMapping = payload => typeof payload === "string";
 
+const getQueueItem = (mapping, defaultSettings, action) => {
+  const settings = {
+    ...defaultSettings,
+    ...(mapping[action.payload]?.settings || {}),
+    ...(action.settings || {}),
+  };
+  // get component by ID or inline
+  const component =
+    (requiresMapping(action.payload) && mapping[action.payload]?.component) ||
+    action.payload;
+
+  return { component, settings };
+};
+
 export const queueReducer = (
-  mapping: Object,
-  defaultSettings: TComponentQueueConfigSettings = {}
-) => {
-  return (state: Array<any>, action: TQueueAction) => {
-    const configSettings = {
-      ...(mapping[action.payload]?.settings || {}),
-      ...action.settings,
-    };
-
-    // get component by ID or inline
-    const component =
-      (requiresMapping(action.payload) && mapping[action.payload]?.component) ||
-      action.payload;
-
-    const settings = {
-      ...defaultSettings,
-      ...configSettings,
-    };
-
+  mapping: TComponentQueueConfig,
+  defaultSettings: Object = {}
+): TQueueApi => {
+  return (state: TComponentQueueState, action: TQueueAction) => {
     switch (action.type) {
       case ACTION_TYPES.PUSH:
-        return pushOrReplace(state, { component, settings });
+        const itemToPush = getQueueItem(mapping, defaultSettings, action);
+        return pushOrReplace(state, itemToPush);
       case ACTION_TYPES.SHIFT:
         return state.slice(1);
       case ACTION_TYPES.POP:
         return state.slice(0, -1);
       case ACTION_TYPES.UNSHIFT:
-        return unshiftOrReplace(state, { component, settings });
+        const itemToUnshift = getQueueItem(mapping, defaultSettings, action);
+        return unshiftOrReplace(state, itemToUnshift);
 
       default:
         return state;

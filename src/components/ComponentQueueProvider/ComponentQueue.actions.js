@@ -1,4 +1,9 @@
 // @flow
+import type {
+  TComponentQueueItemContent,
+  TComponentQueueState,
+} from "./ComponentQueue.types";
+
 export const ACTION_TYPES = {
   PUSH: "[QUEUE] PUSH",
   POP: "[QUEUE] POP",
@@ -7,29 +12,38 @@ export const ACTION_TYPES = {
   CLEAR: "[QUEUE] CLEAR",
 };
 
-// TODO: Define payload typings
 type TPushAction = {
   type: typeof ACTION_TYPES.PUSH,
-  payload: {},
+  payload: TComponentQueueItemContent,
+  settings: Object,
 };
-// TODO: Define payload typings
-type TPopAction = {
+
+type TPopAction = {|
   type: typeof ACTION_TYPES.POP,
-  payload: {},
-};
-// TODO: Define payload typings
-type TShiftAction = {
+|};
+
+type TShiftAction = {|
   type: typeof ACTION_TYPES.SHIFT,
-  payload: {},
-};
-// TODO: Define payload typings
-type TUnshiftAction = {
+|};
+
+type TUnshiftAction = {|
   type: typeof ACTION_TYPES.UNSHIFT,
-  payload: {},
-};
+  payload: TComponentQueueItemContent,
+  settings: Object,
+|};
+
+type TClearAction = {|
+  type: typeof ACTION_TYPES.CLEAR,
+|};
 
 export type TQueueAction =
   | TPushAction
   | TPopAction
   | TShiftAction
-  | TUnshiftAction;
+  | TUnshiftAction
+  | TClearAction;
+
+export type TQueueApi = (
+  state: TComponentQueueState,
+  action: TQueueAction
+) => TComponentQueueState;

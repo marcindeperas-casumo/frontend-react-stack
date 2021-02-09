@@ -1,62 +1,50 @@
 // @flow
-import { useState, useReducer, useEffect, Reducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { queueReducer } from "./ComponentQueue.reducer";
-import { ACTION_TYPES, type TQueueAction } from "./ComponentQueue.actions";
+import { ACTION_TYPES } from "./ComponentQueue.actions";
 import {
   DATA_STRUCTURE,
-  type TComponentQueueContent,
+  type TComponentQueueItem,
+  type TComponentQueueItemContent,
   type TComponentQueueHookState,
-  type TComponentQueueConfigSettings,
-  type TComponentQueueParameters,
+  type TComponentQueueHookParameters,
 } from "./ComponentQueue.types";
-
-type TDispatch = (action: TQueueAction) => void;
 
 export const useComponentQueueState = ({
   config,
   defaultSettings = {},
   dataStructure = DATA_STRUCTURE.QUEUE,
-}: TComponentQueueParameters): TComponentQueueHookState => {
+}: TComponentQueueHookParameters): TComponentQueueHookState => {
   const isQueue = dataStructure === DATA_STRUCTURE.QUEUE;
-  const [localContent, setContent] = useState(null);
+  const [current, setCurrent] = useState<TComponentQueueItem | null>(null);
   const reducerWithConfig = queueReducer(config, defaultSettings);
-  const [queue: Array<any>, dispatch: TDispatch] = useReducer<
-    Reducer<Array<any>, TQueueAction>
-  >(reducerWithConfig, []);
+  const [queue, dispatch] = useReducer(reducerWithConfig, []);
 
-  const queueAdd = (
-    content: TComponentQueueContent,
-    settings: TComponentQueueConfigSettings
-  ) => {
+  const queueAdd = (payload: TComponentQueueItemContent, settings: Object) => {
     dispatch({
       type: ACTION_TYPES.PUSH,
-      payload: content,
+      payload,
       settings,
     });
   };
 
-  const queueRemove = (settings: TComponentQueueConfigSettings) => {
+  const queueRemove = () => {
     dispatch({
       type: ACTION_TYPES.SHIFT,
-      settings,
     });
   };
 
-  const stackAdd = (
-    content: TComponentQueueContent,
-    settings: TComponentQueueConfigSettings
-  ) => {
+  const stackAdd = (payload: TComponentQueueItemContent, settings: Object) => {
     dispatch({
       type: ACTION_TYPES.UNSHIFT,
-      payload: content,
+      payload,
       settings,
     });
   };
 
-  const stackRemove = (settings: TComponentQueueConfigSettings) => {
+  const stackRemove = () => {
     dispatch({
       type: ACTION_TYPES.POP,
-      settings,
     });
   };
 
@@ -75,15 +63,15 @@ export const useComponentQueueState = ({
       // Stack pointer is at the top
       // Queue pointer is at the beginning
       const pointer = isQueue ? 0 : queue.length - 1;
-      setContent(queue[pointer]);
+      setCurrent(queue[pointer]);
     } else {
-      setContent(null);
+      setCurrent(null);
     }
   }, [queue, isQueue]);
 
   return {
     ...reducerDispatch,
-    localContent,
+    current,
     queue,
   };
 };
