@@ -30,8 +30,8 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
   >
     <div
       className={cx({
-        "c-toggle-circle--active": checked,
-        "c-toggle-circle--inactive t-color-grey-9": !checked,
+        "c-toggle__circle--active": checked,
+        "c-toggle__circle--inactive t-color-grey-9": !checked,
         "t-color-grey-5": !checked,
       })}
     >
