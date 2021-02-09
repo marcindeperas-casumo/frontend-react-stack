@@ -103,7 +103,11 @@ export function RealityCheck(props: RealityCheckProps) {
         {!isCmsEntryEmpty(amountLostMessage) && amountLostMessage}
       </Text>
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
-        <a href="/" onClick={onClickViewHistoryBets}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a
+          className="u-cursor-pointer t-color-purple-60"
+          onClick={onClickViewHistoryBets}
+        >
           {t.reality_check_game_round_history_button_text}
         </a>
       </Text>
