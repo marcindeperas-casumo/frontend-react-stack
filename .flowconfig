@@ -2,6 +2,7 @@
 ; Ignore VSCode files
 .*/.history/.*
 .*/.vscode/.*
+.*/__tests__/.*
 
 [include]
 
