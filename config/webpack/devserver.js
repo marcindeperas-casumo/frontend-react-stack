@@ -1,27 +1,17 @@
-"use strict";
-
+const path = require("path");
 const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
 const evalSourceMapMiddleware = require("react-dev-utils/evalSourceMapMiddleware");
 const noopServiceWorkerMiddleware = require("react-dev-utils/noopServiceWorkerMiddleware");
 const ignoredFiles = require("react-dev-utils/ignoredFiles");
-const paths = require("./paths");
 
 module.exports = {
-  // after update dev server was pinging localhost/sockjs-node and it was
-  // causing problems with certificate. Setting host to '0.0.0.0' appears
-  // to solve it.
   host: "0.0.0.0",
-  // by default webpack dev server does host check. It's unfortunate for us
-  // because we are using that on differend host via proxy. If you have
-  // custom proxy config and you don't reffer to react stack as
-  // `host.docker.internal` then you need to change that
   allowedHosts: [
     "mobile.dev",
     "host.docker.internal",
     "site.dev",
     "mobile.local",
   ],
-  // Enable gzip compression of generated files.
   compress: true,
   // Silence WebpackDevServer's own logs since they're generally not useful.
   // It will still show compile warnings and errors with this setting.
@@ -41,12 +31,10 @@ module.exports = {
   // WebpackDevServer is noisy by default so we emit custom message instead
   // by listening to the compiler events with `compiler.hooks[...].tap` calls above.
   quiet: true,
-  // Reportedly, this avoids CPU overload on some systems.
-  // https://github.com/facebook/create-react-app/issues/293
   // src/node_modules is not ignored to support absolute imports
   // https://github.com/facebook/create-react-app/issues/1065
   watchOptions: {
-    ignored: ignoredFiles(paths.appSrc),
+    ignored: ignoredFiles(path.resolve(__dirname, "../../src")),
   },
   overlay: false,
   historyApiFallback: {
