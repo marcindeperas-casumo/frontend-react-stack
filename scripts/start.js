@@ -61,7 +61,7 @@ checkBrowsers(path.resolve(__dirname, "../"), isInteractive)
     if (port == null) {
       return;
     }
-    const config = configFactory("development");
+    const config = configFactory({ development: true });
     const appName = require(path.resolve(__dirname, "../package.json")).name;
     const urls = { localUrlForTerminal: "https://mobile.dev" };
     // Create a webpack compiler that is configured with custom messages.
