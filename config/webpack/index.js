@@ -14,6 +14,7 @@ module.exports = env => {
       modules: ["node_modules"],
       alias: {
         Styles: path.resolve(ROOT, "src/styles"),
+        ...(env.development ? { "react-dom": "@hot-loader/react-dom" } : {}),
       },
     },
     output: {
