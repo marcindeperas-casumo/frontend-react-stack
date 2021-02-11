@@ -105,6 +105,8 @@ export function RealityCheck(props: RealityCheckProps) {
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a
+          role="button"
+          tabindex="0"
           className="u-cursor-pointer t-color-purple-60"
           onClick={onClickViewHistoryBets}
         >
