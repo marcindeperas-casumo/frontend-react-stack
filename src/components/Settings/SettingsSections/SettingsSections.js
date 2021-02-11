@@ -1,5 +1,5 @@
 // @flow
-import React, { useRef } from "react";
+import React from "react";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
@@ -9,6 +9,8 @@ import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 import { isIosNative, isAndroidNative } from "Utils";
+
+const isNotNative = !isAndroidNative() && !isIosNative();
 
 type Props = {
   playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
@@ -46,8 +48,6 @@ export const SettingsSections = React.memo<Props>((props: Props) => {
     },
     logout,
   } = props;
-
-  const { current: isNotNative } = useRef(!isAndroidNative() && !isIosNative());
 
   return (
     <Flex
