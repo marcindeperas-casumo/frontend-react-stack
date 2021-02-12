@@ -5,47 +5,12 @@ import { Link, useLocation } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, SearchIcon, TournamentIcon } from "@casumo/cmp-icons";
-import { isTablet, isMobile } from "Components/ResponsiveLayout";
+import { isTablet, isDesktop } from "Components/ResponsiveLayout";
 import { useTranslations, useMarketConfig, useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 
-const NavLinkDesktop = ({
-  Icon,
-  text,
-  to,
-  active,
-}: {
-  Icon: React.StatelessFunctionalComponent<any>,
-  text: ?string,
-  to: string,
-  active?: boolean,
-}) => (
-  <Flex.Item>
-    <Link to={to}>
-      <Flex
-        direction="vertical"
-        align="center"
-        justify="center"
-        className={cx("u-padding--sm", {
-          "t-color-grey-90": active,
-          "t-color-grey-70": !active,
-        })}
-      >
-        <Icon size="md" />
-        <Text className="u-font-weight-bold">{text}</Text>
-      </Flex>
-      <Flex
-        style={{ height: 3 }}
-        className={cx("t-border-r", {
-          "t-background-purple-60": active,
-        })}
-      />
-    </Link>
-  </Flex.Item>
-);
-
-const NavLinkMobile = ({
+const NavLinkItem = ({
   Icon,
   text,
   to,
@@ -56,41 +21,40 @@ const NavLinkMobile = ({
   to: string,
   active?: boolean,
 }) => {
-  const tablet = isTablet();
-
+  const navItemSpacing = isDesktop() ? "u-padding--sm" : "u-padding";
+  const navItemIconSize = isDesktop() ? "md" : "default";
+  const navItemIconClass = isDesktop() ? "" : "u-padding-y";
+  const navItemTextSize = isDesktop() ? "default" : "xs";
+  const navItemLinkStyleResetForKO = !isDesktop()
+    ? {
+        borderBottom: "none",
+        padding: 0,
+        margin: 0,
+      }
+    : {};
   return (
-    <Flex.Item>
-      <Link
-        to={to}
-        style={{
-          /* kill styles from knockout side */
-          borderBottom: "none",
-          padding: 0,
-          margin: 0,
-        }}
-      >
+    <Flex.Item
+      className={cx("c-top-nav--item", {
+        active,
+      })}
+    >
+      <Link to={to} style={navItemLinkStyleResetForKO}>
         <Flex
           direction="vertical"
           align="center"
           justify="center"
-          className={cx(
-            tablet ? "u-padding--md u-margin-x--md" : "u-padding u-margin-x",
-            {
-              "t-color-grey-90": active,
-              "t-color-grey-70": !active,
-            }
-          )}
+          className={cx("c-top-nav--item", navItemSpacing, {
+            "t-color-grey-90": active,
+            "t-color-grey-70": !active,
+          })}
         >
-          <Icon size={tablet ? "md" : "default"} className="u-padding-y" />
-          <Text size={tablet ? "sm" : "xs"} className="u-font-weight-bold">
+          <Icon size={navItemIconSize} className={navItemIconClass} />
+          <Text size={navItemTextSize} className="u-font-weight-bold">
             {text}
           </Text>
         </Flex>
         <Flex
-          style={{
-            height: 3,
-            margin: tablet ? -2 : 0, // this is for compatibility with current ko menu
-          }}
+          style={{ height: 3 }}
           className={cx("t-border-r", {
             "t-background-purple-60": active,
           })}
@@ -145,23 +109,14 @@ export const TopNav = (props: { basepath: string }) => {
     },
   ].filter(Boolean);
 
-  if (isMobile() || isTablet()) {
-    return (
-      <Flex spacing={isTablet() ? "md" : "sm"}>
-        {routesProps.map(x => (
-          <NavLinkMobile key={x.to} {...x} />
-        ))}
-      </Flex>
-    );
-  }
+  // eslint-disable-next-line no-nested-ternary
+  const navItemSpacing = isTablet() ? "md" : isDesktop() ? "lg" : "sm";
 
   return (
-    <Flex className="o-wrapper " align="center" justify="center">
-      <Flex spacing="lg">
-        {routesProps.map(x => (
-          <NavLinkDesktop key={x.to} {...x} />
-        ))}
-      </Flex>
+    <Flex className="o-wrapper " spacing={navItemSpacing}>
+      {routesProps.map(x => (
+        <NavLinkItem key={x.to} {...x} />
+      ))}
     </Flex>
   );
 };
