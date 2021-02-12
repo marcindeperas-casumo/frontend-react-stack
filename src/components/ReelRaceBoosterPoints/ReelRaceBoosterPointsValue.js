@@ -3,6 +3,7 @@ import React from "react";
 import cx from "classnames";
 
 type TReelRaceBoosterPointsValueProps = {
+  animating: boolean,
   basePoints: null | String,
   depth?: number,
   extraPoints: null | String,

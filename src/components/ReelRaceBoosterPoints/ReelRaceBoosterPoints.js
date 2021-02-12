@@ -44,11 +44,7 @@ export const ReelRaceBoosterPoints = ({
     // means that the user has landed on the race and this component
     // just mounted for the first time. Otherwise, user's boosters
     // and state boosters will be in sync.
-    if (
-      wins &&
-      state.boosters.wins &&
-      typeof state.boosters.wins === "number"
-    ) {
+    if (wins && typeof state.boosters.wins === "number") {
       // The user's boosters object and the boostersConfig object have
       // the same keys. This allows us to loop through the users boosters
       // and match the current value with the prev value in state and then
