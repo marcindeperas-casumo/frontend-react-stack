@@ -16,3 +16,28 @@ export type ReelRacesTranslations = {
   prize_win_tagline?: string,
   spin_count?: string,
 };
+
+export type CometdLeaderboard = {
+  boosters: {
+    winsInARow: number,
+    triples: number,
+    wins: number,
+    bigWins: number,
+    megaWins: number,
+  },
+  mostPlayedGame: string, // legacy, don't use
+  playerId: string,
+  playerName: string,
+  points: number, // only relevant for active player
+  position: number, // only relevant for active player
+  remainingSpins: number, // only relevant for active player
+};
+
+export type CometdLeaderboardUpdate = {
+  channel: string,
+  data: {
+    leaderboard: {
+      [string]: CometdLeaderboard,
+    },
+  },
+};
