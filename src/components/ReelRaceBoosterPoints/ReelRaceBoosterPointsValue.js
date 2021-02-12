@@ -4,9 +4,9 @@ import cx from "classnames";
 
 type TReelRaceBoosterPointsValueProps = {
   animating: boolean,
-  basePoints: null | String,
+  basePoints: null | string,
   depth?: number,
-  extraPoints: null | String,
+  extraPoints: null | string,
 };
 
 export const ReelRaceBoosterPointsValue = ({
