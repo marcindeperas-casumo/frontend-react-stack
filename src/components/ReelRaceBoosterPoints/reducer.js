@@ -1,17 +1,20 @@
 // @flow
 import { UPDATE_ANIMATION, UPDATE_PREV_VALUES } from "./const";
 
+type TAnimationValue = null | string;
+type TBoosterValue = null | number;
+
 type TAnimationState = {
   active: boolean,
-  basePoints: null | String,
-  extraPoints: null | String,
+  basePoints: TAnimationValue,
+  extraPoints: TAnimationValue,
 };
 
 type TBoostersState = {
-  bigWins: number,
-  megaWins: number,
-  triples: number,
-  wins: number,
+  bigWins: TBoosterValue,
+  megaWins: TBoosterValue,
+  triples: TBoosterValue,
+  wins: TBoosterValue,
 };
 
 type TState = {

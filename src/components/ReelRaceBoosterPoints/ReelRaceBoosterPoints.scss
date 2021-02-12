@@ -1,48 +1,78 @@
 /* stylelint-disable */
 .c-reel-race-icon__boost-points {
   height: 16px;
-  opacity: 0;
-  right: -50px;
-  top: -19px;
-  transform: scale(0.75) skew(12deg, -12deg) translate(-100%, 64%);
+  right: -51px;
+  top: -24px;
+  transform: rotate(-9deg);
   width: 64px;
-
-  &--animating {
-    animation-delay: 0;
-    animation-direction: normal;
-    animation-duration: 4s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-name: reel-race-icon-reveal-points;
-    animation-timing-function: ease-out;
-  }
 }
 
 .c-reel-race-icon__boost-points__value {
   color: cudl-palette(black);
 
   &:first-child {
-    font-size: 15px;
+    font-size: cudl-font-size(sm, $cudl-font-sizes);
   }
 
   &:nth-child(2) {
-    font-size: cudl-font-size(sm, $cudl-font-sizes);
+    font-size: cudl-font-size(xs, $cudl-font-sizes);
   }
 
   &:last-child {
     color: cudl-palette(yellow, "30");
-    font-size: cudl-font-size(xs, $cudl-font-sizes);
+    font-size: 12px;
   }
 }
 
-@keyframes reel-race-icon-reveal-points {
+.c-boost-points__value {
+  opacity: 0;
+  transform: scale(0.75) translate3d(-50%, -30%, 0);
+}
+
+.c-boost-points__value__base {
+  &--animating {
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: reel-race-icon-reveal-points-base;
+    animation-timing-function: ease-out;
+  }
+}
+
+.c-boost-points__value__extra {
+  &--animating {
+    animation-delay: 0.2s;
+    animation-direction: normal;
+    animation-duration: 3.8s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: reel-race-icon-reveal-points-extra;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes reel-race-icon-reveal-points-base {
   6%,
   85% {
     opacity: 1;
-    transform: scale(1) skew(5deg, -5deg) translate(0, 0);
+    transform: scale(1) skew(3deg, -3deg) translate(0);
   }
   100% {
     opacity: 0;
-    transform: scale(1) skew(5deg, -5deg) translate(0, -100%);
+    transform: scale(1) skew(3deg, -3deg) translate(5%, -100%);
+  }
+}
+
+@keyframes reel-race-icon-reveal-points-extra {
+  6%,
+  85% {
+    opacity: 1;
+    transform: scale(1) skew(-5deg, 5deg) translate(0, 7%);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) skew(-5deg, 5deg) translate(0, -100%);
   }
 }

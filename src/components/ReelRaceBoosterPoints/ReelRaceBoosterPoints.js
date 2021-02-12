@@ -1,6 +1,5 @@
 // @flow
 import React, { useLayoutEffect, useReducer, useRef } from "react";
-import cx from "classnames";
 import { ReelRaceBoosterPointsValue } from "./ReelRaceBoosterPointsValue";
 import { reducer } from "./reducer";
 import {
@@ -30,6 +29,7 @@ export const ReelRaceBoosterPoints = ({
   const pointsContainerRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  /* eslint-disable-next-line sonarjs/cognitive-complexity */
   useLayoutEffect(() => {
     const boosters = { bigWins, megaWins, triples, wins };
     const pointsContainer = pointsContainerRef.current || {};
@@ -44,7 +44,11 @@ export const ReelRaceBoosterPoints = ({
     // means that the user has landed on the race and this component
     // just mounted for the first time. Otherwise, user's boosters
     // and state boosters will be in sync.
-    if (wins && state.boosters.wins) {
+    if (
+      wins &&
+      state.boosters.wins &&
+      typeof state.boosters.wins === "number"
+    ) {
       // The user's boosters object and the boostersConfig object have
       // the same keys. This allows us to loop through the users boosters
       // and match the current value with the prev value in state and then
@@ -79,20 +83,22 @@ export const ReelRaceBoosterPoints = ({
           // This event listener is added to update the state when the points
           // animation is ended. Check reel-race-points-reveal animation in
           // ./ReelRaceBoosterPoints.scss for more information.
-          pointsContainer.addEventListener(
-            "animationend",
-            () => {
-              dispatch({
-                type: UPDATE_ANIMATION,
-                payload: {
-                  active: false,
-                  basePoints: null,
-                  extraPoints: null,
-                },
-              });
-            },
-            {}
-          );
+          if (typeof pointsContainer.addEventListener === "function") {
+            pointsContainer.addEventListener(
+              "animationend",
+              () => {
+                dispatch({
+                  type: UPDATE_ANIMATION,
+                  payload: {
+                    active: false,
+                    basePoints: null,
+                    extraPoints: null,
+                  },
+                });
+              },
+              {}
+            );
+          }
 
           // Update the state once, setting the point values
           // to animate as well as enabling the animation.
@@ -121,7 +127,9 @@ export const ReelRaceBoosterPoints = ({
     });
 
     return () => {
-      pointsContainer.removeEventListener("animationend", {});
+      if (typeof pointsContainer.removeEventListener === "function") {
+        pointsContainer.removeEventListener("animationend", {});
+      }
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,12 +137,11 @@ export const ReelRaceBoosterPoints = ({
 
   return (
     <div
+      className="c-reel-race-icon__boost-points o-position--absolute"
       ref={pointsContainerRef}
-      className={cx("c-reel-race-icon__boost-points o-position--absolute", {
-        "c-reel-race-icon__boost-points--animating": state.animation.active,
-      })}
     >
       <ReelRaceBoosterPointsValue
+        animating={state.animation.active}
         basePoints={state.animation.basePoints}
         extraPoints={state.animation.extraPoints}
       />
