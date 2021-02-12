@@ -71,6 +71,7 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
           <div key={reelRace?.id}>
             <ReelRacesPageTabScheduleTitle
               startTime={reelRace?.startTime}
+              status={reelRace?.status}
               t={t}
             />
             <ReelRaceScheduleCard
