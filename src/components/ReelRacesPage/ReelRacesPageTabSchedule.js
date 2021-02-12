@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { filter, propEq, slice, concat } from "ramda";
+import { filter, propEq, slice, concat, anyPass } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
@@ -28,9 +28,12 @@ export function ReelRacesPageTabSchedule({ t }: Props) {
 
   const reelRaces = data?.reelRaces || [];
 
-  const scheduledReelRaces = filter(propEq("status", RACE_STATE.SCHEDULED))(
-    reelRaces
-  );
+  const scheduledReelRaces = filter(
+    anyPass([
+      propEq("status", RACE_STATE.SCHEDULED),
+      propEq("status", RACE_STATE.STARTED),
+    ])
+  )(reelRaces);
 
   const [showMore, setShowMore] = React.useState(true);
   const [list, setList] = React.useState([]);
