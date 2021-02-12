@@ -1,5 +1,6 @@
 // @flow
-import React, { useLayoutEffect, useReducer, useRef } from "react";
+import React, { useReducer, useRef } from "react";
+import { useUpdateEffect } from "react-use";
 import { ReelRaceBoosterPointsValue } from "./ReelRaceBoosterPointsValue";
 import { reducer } from "./reducer";
 import {
@@ -30,7 +31,7 @@ export const ReelRaceBoosterPoints = ({
   const [state, dispatch] = useReducer(reducer, initialState);
 
   /* eslint-disable-next-line sonarjs/cognitive-complexity */
-  useLayoutEffect(() => {
+  useUpdateEffect(() => {
     const boosters = { bigWins, megaWins, triples, wins };
     const pointsContainer = pointsContainerRef.current || {};
     const currentPoints = {};
@@ -127,8 +128,6 @@ export const ReelRaceBoosterPoints = ({
         pointsContainer.removeEventListener("animationend", {});
       }
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bigWins, megaWins, triples, wins]);
 
   return (
