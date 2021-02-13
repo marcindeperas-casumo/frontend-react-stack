@@ -1,5 +1,7 @@
-/* eslint-disable no-switch-statements/no-switch */
 // @flow
+/* eslint-disable fp/no-let */
+/* eslint-disable fp/no-mutation */
+/* eslint-disable no-switch-statements/no-switch  */
 import {
   ACTION_TYPES,
   type TQueueReducer,
@@ -50,43 +52,26 @@ const unshiftOrReplace = (
   return [item, ...state];
 };
 
-// const getQueueItem = (
-//   mapping: TComponentQueueConfig,
-//   defaultSettings: Object,
-//   action: TQueueAction
-// ): TComponentQueueItem => {
-//   const settings = {
-//     ...defaultSettings,
-//     ...(mapping[action.payload]?.settings || {}),
-//     ...(action.settings || {}),
-//   };
-//   // get component by ID or inline
-//   const component =
-//     (requiresMapping(action.payload) && mapping[action.payload]?.component) ||
-//     action.payload;
-
-//   return { component, settings };
-// };
-
 export const queueReducer = (
   mapping: TComponentQueueConfig,
   defaultSettings: Object = {}
 ): TQueueReducer => {
   return (state: TComponentQueueState, action: TQueueAction) => {
+    let configSettings, settings, component;
     switch (action.type) {
       case ACTION_TYPES.PUSH:
-        const configSettings =
+        configSettings =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.settings) ||
           {};
 
-        const settings = {
+        settings = {
           ...defaultSettings,
           ...configSettings,
           ...(action.settings || {}),
         };
         // get component by ID or inline
-        const component =
+        component =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.component) ||
           action.payload;
@@ -97,24 +82,24 @@ export const queueReducer = (
       case ACTION_TYPES.POP:
         return state.slice(0, -1);
       case ACTION_TYPES.UNSHIFT:
-        const configSettings2 =
+        configSettings =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.settings) ||
           {};
 
-        const settings2 = {
+        settings = {
           ...defaultSettings,
-          ...configSettings2,
+          ...configSettings,
           ...(action.settings || {}),
         };
         // get component by ID or inline
-        const component2 =
+        component =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.component) ||
           action.payload;
         return unshiftOrReplace(state, {
-          settings: settings2,
-          component: component2,
+          settings,
+          component,
         });
 
       default:
@@ -124,3 +109,5 @@ export const queueReducer = (
 };
 
 /* eslint-enable no-switch-statements/no-switch */
+/* eslint-enable fp/no-let */
+/* eslint-enable fp/no-mutation */
