@@ -2,12 +2,12 @@
 import http from "Lib/http";
 
 export type LoginSessionSummary = {
-  totalBets: number,
-  totalWins: number,
+  bets: number,
+  winnings: number,
 };
 
-const BASE = "/casino-player/es-vault-integration/api/session-summary";
+const BASE = "/casino-player/game-rounds/api/session-summary/aggregated";
 
 export function getLoginSessionSummary(): Promise<LoginSessionSummary> {
-  return http.get(BASE);
+  return http.get(BASE, { except: "SPORTS_BETTING" });
 }
