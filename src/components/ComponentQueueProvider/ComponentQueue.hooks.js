@@ -1,11 +1,13 @@
 // @flow
 import { useState, useReducer, useEffect } from "react";
 import { queueReducer } from "./ComponentQueue.reducer";
-import { ACTION_TYPES } from "./ComponentQueue.actions";
+import {
+  ACTION_TYPES,
+  type TQueueActionPayload,
+} from "./ComponentQueue.actions";
 import {
   DATA_STRUCTURE,
   type TComponentQueueItem,
-  type TComponentQueueItemContent,
   type TComponentQueueHookState,
   type TComponentQueueHookParameters,
 } from "./ComponentQueue.types";
@@ -20,7 +22,7 @@ export const useComponentQueueState = ({
   const reducerWithConfig = queueReducer(config, defaultSettings);
   const [queue, dispatch] = useReducer(reducerWithConfig, []);
 
-  const queueAdd = (payload: TComponentQueueItemContent, settings: Object) => {
+  const queueAdd = (payload: TQueueActionPayload, settings: Object) => {
     dispatch({
       type: ACTION_TYPES.PUSH,
       payload,
@@ -34,7 +36,7 @@ export const useComponentQueueState = ({
     });
   };
 
-  const stackAdd = (payload: TComponentQueueItemContent, settings: Object) => {
+  const stackAdd = (payload: TQueueActionPayload, settings: Object) => {
     dispatch({
       type: ACTION_TYPES.UNSHIFT,
       payload,

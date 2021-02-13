@@ -1,8 +1,6 @@
 // @flow
-import type {
-  TComponentQueueItemContent,
-  TComponentQueueState,
-} from "./ComponentQueue.types";
+import type { Element } from "react";
+import type { TComponentQueueState } from "./ComponentQueue.types";
 
 export const ACTION_TYPES = {
   PUSH: "[QUEUE] PUSH",
@@ -12,10 +10,12 @@ export const ACTION_TYPES = {
   CLEAR: "[QUEUE] CLEAR",
 };
 
+export type TQueueActionPayload = string | (() => Element<*>);
+
 type TPushAction = {
   type: typeof ACTION_TYPES.PUSH,
-  payload: TComponentQueueItemContent,
-  settings: Object,
+  payload: TQueueActionPayload,
+  settings?: Object,
 };
 
 type TPopAction = {|
@@ -28,8 +28,8 @@ type TShiftAction = {|
 
 type TUnshiftAction = {|
   type: typeof ACTION_TYPES.UNSHIFT,
-  payload: TComponentQueueItemContent,
-  settings: Object,
+  payload: TQueueActionPayload,
+  settings?: Object,
 |};
 
 type TClearAction = {|
@@ -43,7 +43,7 @@ export type TQueueAction =
   | TUnshiftAction
   | TClearAction;
 
-export type TQueueApi = (
+export type TQueueReducer = (
   state: TComponentQueueState,
   action: TQueueAction
 ) => TComponentQueueState;

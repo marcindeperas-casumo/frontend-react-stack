@@ -1,5 +1,6 @@
 // @flow
-import type { Node } from "react";
+import type { Element } from "react";
+import type { TQueueActionPayload } from "./ComponentQueue.actions";
 
 export const DATA_STRUCTURE = {
   QUEUE: "QUEUE",
@@ -8,7 +9,7 @@ export const DATA_STRUCTURE = {
 
 export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
 
-export type TComponentQueueItemContent = string | (() => Node);
+export type TComponentQueueItemContent = string | (() => Element<*>);
 
 export type TComponentQueueConfigSettings = {
   priority?: number,
@@ -38,7 +39,7 @@ export type TComponentQueueHookParameters = {
 };
 
 export type TComponentQueueHookState = {
-  show: (payload: TComponentQueueItemContent, settings: Object) => void,
+  show: (payload: TQueueActionPayload, settings: Object) => void,
   close: () => void,
   closeAll: () => void,
   current: TComponentQueueItem | null,
