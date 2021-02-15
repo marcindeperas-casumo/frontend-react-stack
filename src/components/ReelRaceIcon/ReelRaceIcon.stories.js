@@ -4,7 +4,6 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { text } from "@storybook/addon-knobs";
 import MockStore from "Components/MockStore";
 import { ReelRaceIcon } from "./ReelRaceIcon";
 import { RRIconView } from "./views/RRIconView";
@@ -107,18 +106,5 @@ stories.add("Default", () => {
         ))}
       </div>
     </MockStore>
-  );
-});
-
-stories.add("points animation", () => {
-  const currentRace = getCurrentRace();
-  currentRace.points = text("points", "100");
-
-  return (
-    <div className="o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x u-margin-top--2xlg">
-      <Wrapper withBg={false}>
-        <ReelRaceIcon onClick={action("clicked")} currentRace={currentRace} />
-      </Wrapper>
-    </div>
   );
 });
