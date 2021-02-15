@@ -1,1 +1,1 @@
-export { default } from "./SupportRow";
+export { SupportRow } from "./SupportRow";
