@@ -1,4 +1,5 @@
 // @flow
+import { getCookie } from "Utils";
 import http from "Lib/http";
 
 export const URLS = {
@@ -10,6 +11,9 @@ export const URLS = {
 };
 
 export const getCommonHandshake = (httpService: typeof http = http) =>
-  httpService.get(URLS.HANDSHAKE);
+  httpService.post(URLS.HANDSHAKE, {
+    url: window?.location.href,
+    trackingId: getCookie("kazumoTrackingId"),
+  });
 
 export const commandLogout = () => http.post(URLS.COMMAND.LOGOUT);
