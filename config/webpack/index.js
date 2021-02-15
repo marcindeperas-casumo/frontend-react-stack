@@ -7,7 +7,7 @@ module.exports = env => {
   const plugins = require("./plugins")(env);
   const module = require("./module")(env);
   const optimization = require("./optimization")(env);
-  const resolve = require("./resolve")(env, brand, ROOT);
+  const resolve = require("./resolve")(env, brand);
 
   return {
     mode: env.production ? "production" : "development",

@@ -1,6 +1,7 @@
 const path = require("path");
+const { ROOT } = require("./utils");
 
-module.exports = (env, brand, ROOT) => ({
+module.exports = (env, brand) => ({
   modules: ["node_modules"],
   alias: {
     Styles: path.resolve(ROOT, "src/styles"),
