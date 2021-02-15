@@ -1,6 +1,9 @@
 // @flow
 import type { Element } from "react";
-import type { TComponentQueueState } from "./ComponentQueue.types";
+import type {
+  TComponentQueueState,
+  TComponentQueueConfigSettings,
+} from "./ComponentQueue.types";
 
 export const ACTION_TYPES = {
   PUSH: "[QUEUE] PUSH",
