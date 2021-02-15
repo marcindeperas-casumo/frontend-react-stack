@@ -1,3 +1,4 @@
+// @flow
 import * as R from "ramda";
 import { createSelector } from "reselect";
 import { ENTITY_KEYS } from "Models/schema";

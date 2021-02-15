@@ -40,11 +40,11 @@ export function LoginSessionDetailsSection() {
       </Text>
       <Row
         label={t.totalBets}
-        value={formatCurrencyBound(Math.abs(loginSessionSummary.totalBets))}
+        value={formatCurrencyBound(Math.abs(loginSessionSummary.bets))}
       />
       <Row
         label={t.totalWins}
-        value={formatCurrencyBound(loginSessionSummary.totalWins)}
+        value={formatCurrencyBound(loginSessionSummary.winnings)}
       />
     </>
   );
