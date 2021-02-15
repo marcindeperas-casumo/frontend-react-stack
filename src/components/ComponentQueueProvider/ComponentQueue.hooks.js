@@ -9,6 +9,7 @@ import {
   DATA_STRUCTURE,
   type TComponentQueueItem,
   type TComponentQueueHookState,
+  type TComponentQueueConfigSettings,
   type TComponentQueueHookParameters,
 } from "./ComponentQueue.types";
 
@@ -22,7 +23,10 @@ export const useComponentQueueState = ({
   const reducerWithConfig = queueReducer(config, defaultSettings);
   const [queue, dispatch] = useReducer(reducerWithConfig, []);
 
-  const queueAdd = (payload: TQueueActionPayload, settings: Object) => {
+  const queueAdd = (
+    payload: TQueueActionPayload,
+    settings: TComponentQueueConfigSettings
+  ) => {
     dispatch({
       type: ACTION_TYPES.PUSH,
       payload,
@@ -36,7 +40,10 @@ export const useComponentQueueState = ({
     });
   };
 
-  const stackAdd = (payload: TQueueActionPayload, settings: Object) => {
+  const stackAdd = (
+    payload: TQueueActionPayload,
+    settings: TComponentQueueConfigSettings
+  ) => {
     dispatch({
       type: ACTION_TYPES.UNSHIFT,
       payload,
