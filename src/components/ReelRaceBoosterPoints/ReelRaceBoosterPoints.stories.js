@@ -13,6 +13,12 @@ const getCurrentRace = (value = null) => ({
   points: value || 42,
   startTime: Date.now() - 10000,
   endTime: Date.now() + 3000,
+  boosters: {
+    bigWins: 0,
+    megaWins: 0,
+    triples: 0,
+    wins: 0,
+  },
 });
 
 const playerId = "a1";
@@ -25,7 +31,10 @@ stories.add("Default", () => {
   };
 
   const currentRace = getCurrentRace();
-  currentRace.boosters = boosters;
+  currentRace.boosters = {
+    ...currentRace.boosters,
+    ...boosters,
+  };
 
   return (
     <MockStore
