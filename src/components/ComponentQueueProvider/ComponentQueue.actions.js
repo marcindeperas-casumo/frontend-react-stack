@@ -15,7 +15,7 @@ export type TQueueActionPayload = string | (() => Element<*>);
 type TPushAction = {
   type: typeof ACTION_TYPES.PUSH,
   payload: TQueueActionPayload,
-  settings?: Object,
+  settings?: TComponentQueueConfigSettings,
 };
 
 type TPopAction = {|
@@ -29,7 +29,7 @@ type TShiftAction = {|
 type TUnshiftAction = {|
   type: typeof ACTION_TYPES.UNSHIFT,
   payload: TQueueActionPayload,
-  settings?: Object,
+  settings?: TComponentQueueConfigSettings,
 |};
 
 type TClearAction = {|
