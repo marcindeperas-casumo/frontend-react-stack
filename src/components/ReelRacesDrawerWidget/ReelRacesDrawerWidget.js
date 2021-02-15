@@ -4,10 +4,13 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SpinIcon, ChevronDownIcon, ChevronUpIcon } from "@casumo/cmp-icons";
-import * as A from "Types/apollo";
+import { useSelector } from "react-redux";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
+import { useTranslations, useReelRaceProgress } from "Utils/hooks";
+import { playerIdSelector } from "Models/handshake";
+import { CMS_SLUGS } from "Models/playing";
 import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";
 import RRLogo from "./images/rrLogo.svg";
@@ -16,18 +19,7 @@ import "./ReelRacesDrawerWidget.scss";
 
 type Props = {
   className?: string,
-  spinsLeft: string,
-  position: string,
-  points: string,
-  boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
-  gameProgress: number,
-  gameDuration: number,
-  t?: {
-    reel_races_drawer_pts: ?string,
-    reel_races_drawer_points: ?string,
-    reel_races_drawer_spins: ?string,
-    reel_races_drawer_full_leaderboard: ?string,
-  },
+  currentRace: any,
   onShowLeaderboardClick?: () => void,
   showLeaderboardLink?: boolean,
   isLeaderboardOpen?: boolean,
@@ -49,23 +41,32 @@ const StatusElement = ({ children }) => (
 
 export const ReelRacesDrawerWidget = ({
   className,
-  spinsLeft,
-  position,
-  points,
-  boosters,
-  gameProgress,
-  gameDuration,
+  currentRace,
   onShowLeaderboardClick = () => {},
   showLeaderboardLink = false,
   isLeaderboardOpen = false,
-  t,
 }: Props) => {
-  const gameDurationFormatted = `${gameDuration}:00`;
-  const gameDurationInS = gameDuration * 60;
-  const elapsedTime = (gameDurationInS * gameProgress) / 100;
-  const elapsedMinutes = `${Math.floor(elapsedTime / 60)}`.padStart(2, "0");
-  const elapsedSeconds = `${Math.floor(elapsedTime % 60)}`.padStart(2, "0");
-  const timeElapsedFormatted = `${elapsedMinutes}:${elapsedSeconds}`;
+  const t = useTranslations<{
+    reel_races_drawer_pts: string,
+    reel_races_drawer_points: string,
+    reel_races_drawer_spins: string,
+    reel_races_drawer_full_leaderboard: string,
+  }>(CMS_SLUGS.MODAL_WAGERING);
+  const playerId = useSelector(playerIdSelector);
+  const userLeaderboard = useSelector(
+    x => x.reelRaces.leaderboard[playerId],
+    (left, right) => {
+      if (
+        ["remainingSpins", "points", "position"].some(x => left[x] !== right[x])
+      ) {
+        return false;
+      }
+
+      return !["winsInARow", "bigWins", "megaWins"].some(
+        x => left.boosters[x] !== right.boosters[x]
+      );
+    }
+  );
 
   const raceLogo = (
     <Desktop>
@@ -73,44 +74,6 @@ export const ReelRacesDrawerWidget = ({
         <RRLogo className="u-width--1/3 u-margin-x--auto u-display--block" />
       </div>
     </Desktop>
-  );
-  const raceProgress = (
-    <Flex
-      direction="horizontal"
-      justify="space-between"
-      className="u-width--full"
-      spacing="none"
-    >
-      <Flex.Item>
-        <CheckeredFlagIcon />
-      </Flex.Item>
-      <Flex
-        direction="horizontal"
-        className="o-flex--wrap u-width--full u-padding-left u-padding-right"
-      >
-        <Flex.Item className="c-progress-bar t-background-grey-70 t-opacity-background-100 t-border-r u-height--sm u-width--full">
-          <div
-            className={`c-highlighted-progress-bar t-background-${getProgressColor(
-              gameProgress
-            )}`}
-            style={{ width: `${gameProgress}%` }}
-          ></div>
-        </Flex.Item>
-        <Flex
-          direction="horizontal"
-          className="u-width--full t-color-grey-20"
-          justify="space-between"
-        >
-          <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
-          <Flex.Item className="u-font-2xs t-color-grey-50">
-            {gameDurationFormatted}
-          </Flex.Item>
-        </Flex>
-      </Flex>
-      <Flex.Item>
-        <CheckeredFlagIcon inactive />
-      </Flex.Item>
-    </Flex>
   );
 
   const raceStatus = (
@@ -137,14 +100,14 @@ export const ReelRacesDrawerWidget = ({
               />
             </MobileAndTablet>
             <Text tag="span" size="md" className="t-color-white">
-              {spinsLeft}
+              {userLeaderboard.remainingSpins}
             </Text>
           </>
         </StatusElement>
       </Flex.Block>
       <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position u-position-relative">
         <PositionView
-          position={parseInt(position, 10)}
+          position={parseInt(userLeaderboard.position, 10)}
           className="u-margin-top--lg@desktop"
         />
       </Flex.Item>
@@ -159,7 +122,7 @@ export const ReelRacesDrawerWidget = ({
           </Text>
           <>
             <Text tag="span" size="md">
-              {points}
+              {userLeaderboard.points}
             </Text>
             <MobileAndTablet>
               <Text
@@ -207,15 +170,67 @@ export const ReelRacesDrawerWidget = ({
       spacing="md"
     >
       {raceLogo}
-      {raceProgress}
+      <RaceProgress currentRace={currentRace} />
       {raceStatus}
       <ReelRaceBoosters
         className="u-width--full u-margin-top--2xlg u-margin-top--none@desktop"
-        winsInARow={boosters.winsInARow}
-        bigWins={boosters.bigWins}
-        megaWins={boosters.megaWins}
+        winsInARow={userLeaderboard.boosters.winsInARow}
+        bigWins={userLeaderboard.boosters.bigWins}
+        megaWins={userLeaderboard.boosters.megaWins}
       />
       {leaderboard}
+    </Flex>
+  );
+};
+
+const RaceProgress = ({ currentRace }) => {
+  const gameProgress = useReelRaceProgress(currentRace, 1000);
+  const gameDuration =
+    parseInt((currentRace.endTime - currentRace.startTime) / 1000 / 60, 10) ||
+    0;
+  const gameDurationFormatted = `${gameDuration}:00`;
+  const gameDurationInS = gameDuration * 60;
+  const elapsedTime = (gameDurationInS * gameProgress) / 100;
+  const elapsedMinutes = `${Math.floor(elapsedTime / 60)}`.padStart(2, "0");
+  const elapsedSeconds = `${Math.floor(elapsedTime % 60)}`.padStart(2, "0");
+  const timeElapsedFormatted = `${elapsedMinutes}:${elapsedSeconds}`;
+
+  return (
+    <Flex
+      direction="horizontal"
+      justify="space-between"
+      className="u-width--full"
+      spacing="none"
+    >
+      <Flex.Item>
+        <CheckeredFlagIcon />
+      </Flex.Item>
+      <Flex
+        direction="horizontal"
+        className="o-flex--wrap u-width--full u-padding-left u-padding-right"
+      >
+        <Flex.Item className="c-progress-bar t-background-grey-70 t-opacity-background-100 t-border-r u-height--sm u-width--full">
+          <div
+            className={`c-highlighted-progress-bar t-background-${getProgressColor(
+              gameProgress
+            )}`}
+            style={{ width: `${gameProgress}%` }}
+          ></div>
+        </Flex.Item>
+        <Flex
+          direction="horizontal"
+          className="u-width--full t-color-grey-20"
+          justify="space-between"
+        >
+          <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
+          <Flex.Item className="u-font-2xs t-color-grey-50">
+            {gameDurationFormatted}
+          </Flex.Item>
+        </Flex>
+      </Flex>
+      <Flex.Item>
+        <CheckeredFlagIcon inactive />
+      </Flex.Item>
     </Flex>
   );
 };
