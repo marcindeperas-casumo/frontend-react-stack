@@ -22,7 +22,7 @@ export class PromotionTeaserList extends PureComponent<Props> {
     }
 
     return (
-      <div className="u-padding-bottom--xlg">
+      <div className="u-padding-bottom--xlg o-wrapper u-margin-top--5xlg@tablet u-padding-top--lg u-margin-top--5xlg@desktop t-background-white t-border-r--none t-border-r--md@tablet t-border-r--md@desktop">
         <div className="u-padding-x--lg u-padding-y o-list-wrapper">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionTeaserRow
