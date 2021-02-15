@@ -4,14 +4,15 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { SpinIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
-import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
-
 import "../ReelRaceIcon.scss";
 
 export const RemainingSpinsView = ({
   remainingSpins,
   className,
-}: CurrentReelRaceInfo & { className?: string }) => (
+}: {
+  className?: string,
+  remainingSpins: number,
+}) => (
   <Flex
     className={cx("t-color-white ", className)}
     direction="vertical"

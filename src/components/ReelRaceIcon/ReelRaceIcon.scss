@@ -2,51 +2,34 @@
   background-clip: padding-box;
 
   &__content {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
     &--old {
       animation: rrIconOld 0.9s normal forwards ease-out;
     }
     &--next {
       animation: rrIconNew 0.9s normal forwards ease-out;
     }
-  }
-
-  &__progress {
-    left: 0;
-    margin-top: -50%;
-    top: 0;
-  }
-
-  &__info {
-    margin: 0 auto;
-    margin-top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &-color-brown {
-    color: #b96e00;
+    &--off {
+      transform: translateY(48px);
+    }
   }
 }
 
 // stylelint-disable xi/selector-pattern
 @keyframes rrIconOld {
   0% {
-    margin-top: 0;
+    transform: translateY(0);
   }
   100% {
-    margin-top: -40px;
+    transform: translateY(-48px);
   }
 }
 
 @keyframes rrIconNew {
   0% {
-    margin-top: 40px;
+    transform: translateY(48px);
   }
   100% {
-    margin-top: 0;
+    transform: translateY(0);
   }
 }
 // stylelint-enable xi/selector-pattern

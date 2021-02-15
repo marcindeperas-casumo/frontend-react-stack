@@ -3,6 +3,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import LoaderGlobal from "@casumo/cmp-loader-global";
+import { useCurrentReelRaceLeaderboard } from "Utils/hooks/useCurrentReelRaceLeaderboard";
 import {
   useCrossCodebaseNavigation,
   useTranslations,
@@ -52,6 +53,7 @@ export const GamePageContainer = () => {
     playForFun,
     error,
   } = useGameModelContext();
+  useCurrentReelRaceLeaderboard(slug);
   const bonusAmount = useSelector(playerWalletBonusSelector);
   const { isDGOJ, isGGL } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
