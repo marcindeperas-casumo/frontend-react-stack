@@ -1,19 +1,13 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { number } from "@storybook/addon-knobs";
+import MockStore from "Components/MockStore";
 import { ReelRaceIcon } from "../ReelRaceIcon";
 
-const stories = storiesOf("ReelRaceBoosterPoints", module);
+const stories = storiesOf("ReelRaceIconBooserPoints", module);
 
 const getCurrentRace = (value = null) => ({
-  boosters: {
-    bigWins: 0,
-    megaWins: 0,
-    triples: 0,
-    wins: 0,
-  },
   position: value || 1,
   remainingSpins: value || 99,
   points: value || 42,
@@ -21,20 +15,8 @@ const getCurrentRace = (value = null) => ({
   endTime: Date.now() + 3000,
 });
 
-const Wrapper = ({ children, withBg = true }) => (
-  <div
-    className={`c-reel-race-icon u-position-relative u-zindex--content-overlay u-position-relative u-height--3xlg u-width--3xlg
-t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left ${
-      withBg ? "t-background-grey-90" : ""
-    }`}
-  >
-    <div className="t-border-r--circle u-height--full u-position-relative u-zindex--content-overlay">
-      {children}
-    </div>
-  </div>
-);
-
-stories.add("Reel Race Booster Points Animation", () => {
+const playerId = "a1";
+stories.add("Default", () => {
   const boosters = {
     bigWins: number("Big Wins", 0),
     megaWins: number("Mega Wins", 0),
@@ -46,10 +28,36 @@ stories.add("Reel Race Booster Points Animation", () => {
   currentRace.boosters = boosters;
 
   return (
-    <div className="o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x u-margin-top--2xlg">
-      <Wrapper withBg={false}>
-        <ReelRaceIcon onClick={action("clicked")} currentRace={currentRace} />
-      </Wrapper>
-    </div>
+    <MockStore
+      state={{
+        handshake: {
+          app: {
+            "common/composition/session": {
+              id: playerId,
+            },
+          },
+        },
+        reelRaces: {
+          leaderboard: {
+            [playerId]: currentRace,
+          },
+        },
+      }}
+    >
+      <div
+        style={{
+          boxSizing: "content-box",
+        }}
+      >
+        <div
+          className="t-background-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
+          style={{
+            height: 48,
+          }}
+        >
+          <ReelRaceIcon currentRace={currentRace} />
+        </div>
+      </div>
+    </MockStore>
   );
 });
