@@ -1,17 +1,3 @@
-.u-content-width {
-  box-sizing: border-box;
-  margin: auto;
-  width: 100%;
-
-  @include cudl-breakpoint(tablet) {
-    max-width: 766px;
-  }
-
-  @include cudl-breakpoint(desktop) {
-    max-width: 1440px;
-  }
-}
-
 .u-content-width--tablet {
   margin: auto;
 
