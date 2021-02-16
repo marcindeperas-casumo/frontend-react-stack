@@ -52,7 +52,6 @@ describe("useComponentQueueState Hook", () => {
     wait().then(() => {
       act(() => show("component1"));
       act(() => show("component2"));
-      console.warn("result.current.queue", result.current.queue.length);
       expect(result.current.queue.length).toBe(2);
 
       const CurrentComponent = result.current.queue[0].component;

@@ -1,7 +1,4 @@
 // @flow
-/* eslint-disable fp/no-let */
-/* eslint-disable fp/no-mutation */
-/* eslint-disable no-switch-statements/no-switch  */
 import {
   ACTION_TYPES,
   type TQueueReducer,
@@ -52,14 +49,18 @@ const unshiftOrReplace = (
   return [item, ...state];
 };
 
+/* eslint-disable no-switch-statements/no-switch  */
 export const queueReducer = (
   mapping: TComponentQueueConfig,
   defaultSettings: Object = {}
 ): TQueueReducer => {
   return (state: TComponentQueueState, action: TQueueAction) => {
+    /* eslint-disable fp/no-let */
     let configSettings, settings, component;
+    /* eslint-enable fp/no-let */
     switch (action.type) {
       case ACTION_TYPES.PUSH:
+        /* eslint-disable fp/no-mutation */
         configSettings =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.settings) ||
@@ -75,13 +76,14 @@ export const queueReducer = (
           (typeof action.payload === "string" &&
             mapping[action.payload]?.component) ||
           action.payload;
-
+        /* eslint-enable fp/no-mutation */
         return pushOrReplace(state, { settings, component });
       case ACTION_TYPES.SHIFT:
         return state.slice(1);
       case ACTION_TYPES.POP:
         return state.slice(0, -1);
       case ACTION_TYPES.UNSHIFT:
+        /* eslint-disable fp/no-mutation */
         configSettings =
           (typeof action.payload === "string" &&
             mapping[action.payload]?.settings) ||
@@ -97,6 +99,7 @@ export const queueReducer = (
           (typeof action.payload === "string" &&
             mapping[action.payload]?.component) ||
           action.payload;
+        /* eslint-enable fp/no-mutation */
         return unshiftOrReplace(state, {
           settings,
           component,
@@ -107,7 +110,4 @@ export const queueReducer = (
     }
   };
 };
-
 /* eslint-enable no-switch-statements/no-switch */
-/* eslint-enable fp/no-let */
-/* eslint-enable fp/no-mutation */
