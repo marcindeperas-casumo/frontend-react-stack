@@ -63,4 +63,4 @@ const WalletCard = React.memo<Props>((props: Props) => {
   );
 });
 
-export default WalletCard;
+export { WalletCard };

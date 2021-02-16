@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
-import WalletCard from ".";
+import { WalletCard } from ".";
 
 const stories = storiesOf("WalletCard", module);
 
