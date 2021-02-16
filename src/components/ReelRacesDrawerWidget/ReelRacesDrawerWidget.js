@@ -8,8 +8,11 @@ import { useSelector } from "react-redux";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
+import {
+  diffLeaderboardWidget,
+  userLeaderboardSelector,
+} from "Models/reelRaces";
 import { useTranslations, useReelRaceProgress } from "Utils/hooks";
-import { playerIdSelector } from "Models/handshake";
 import { CMS_SLUGS } from "Models/playing";
 import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";
@@ -52,20 +55,9 @@ export const ReelRacesDrawerWidget = ({
     reel_races_drawer_spins: string,
     reel_races_drawer_full_leaderboard: string,
   }>(CMS_SLUGS.MODAL_WAGERING);
-  const playerId = useSelector(playerIdSelector);
   const userLeaderboard = useSelector(
-    x => x.reelRaces.leaderboard[playerId],
-    (left, right) => {
-      if (
-        ["remainingSpins", "points", "position"].some(x => left[x] !== right[x])
-      ) {
-        return false;
-      }
-
-      return !["winsInARow", "bigWins", "megaWins"].some(
-        x => left.boosters[x] !== right.boosters[x]
-      );
-    }
+    userLeaderboardSelector,
+    diffLeaderboardWidget
   );
 
   const raceLogo = (
