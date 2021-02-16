@@ -4,12 +4,12 @@ import cx from "classnames";
 
 import "./ContentWrapper.scss";
 
-type Props = {
+type TProps = {
   children: React.Node,
   className?: string,
 };
 
-export const ContentWrapper = ({ children, className }: Props) => {
+export const ContentWrapper = ({ children, className }: TProps) => {
   return (
     <div
       className={cx(
