@@ -12,7 +12,7 @@ stories.add("Default", () => {
   };
 
   return (
-    <div className="t-background-grey-50">
+    <div className="t-background-grey-20 u-padding--lg">
       <h2>First deposit:</h2>
       <WalletCard {...{ ...props, firstDeposit: true }} />
       <hr />

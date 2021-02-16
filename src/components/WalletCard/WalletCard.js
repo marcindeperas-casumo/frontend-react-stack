@@ -2,6 +2,7 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { Panel } from "Components/Panel";
 import Icon from "./icon.svg";
 
 type Props = {
@@ -16,7 +17,7 @@ const WalletCard = React.memo<Props>((props: Props) => {
   const { translations, currency, firstDeposit, balance, bonus } = props;
 
   return (
-    <>
+    <Panel roundedTop roundedBottom>
       <Icon className="u-width--3xlg u-margin-y--md u-margin-x" />
       {firstDeposit ? (
         <>
@@ -63,7 +64,7 @@ const WalletCard = React.memo<Props>((props: Props) => {
           {translations.withdraw || "Withdraw"}
         </ButtonPrimary>
       )}
-    </>
+    </Panel>
   );
 });
 
