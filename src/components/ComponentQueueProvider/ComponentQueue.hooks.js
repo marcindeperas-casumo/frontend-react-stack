@@ -1,16 +1,13 @@
 // @flow
 import { useState, useReducer, useEffect } from "react";
 import { queueReducer } from "./ComponentQueue.reducer";
-import {
-  ACTION_TYPES,
-  type TQueueActionPayload,
-} from "./ComponentQueue.actions";
-import {
-  DATA_STRUCTURE,
-  type TComponentQueueItem,
-  type TComponentQueueHookState,
-  type TComponentQueueConfigSettings,
-  type TComponentQueueHookParameters,
+import { ACTION_TYPES, DATA_STRUCTURE } from "./ComponentQueue.constants";
+import type { TQueueActionPayload } from "./ComponentQueue.actions";
+import type {
+  TComponentQueueItem,
+  TComponentQueueHookState,
+  TComponentQueueConfigSettings,
+  TComponentQueueHookParameters,
 } from "./ComponentQueue.types";
 
 export const useComponentQueueState = ({

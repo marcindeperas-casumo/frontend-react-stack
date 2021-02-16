@@ -1,11 +1,7 @@
 // @flow
 import type { Element } from "react";
 import type { TQueueActionPayload } from "./ComponentQueue.actions";
-
-export const DATA_STRUCTURE = {
-  QUEUE: "QUEUE",
-  STACK: "STACK",
-};
+import { DATA_STRUCTURE } from "./ComponentQueue.constants";
 
 export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
 

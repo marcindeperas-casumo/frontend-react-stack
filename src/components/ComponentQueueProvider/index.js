@@ -1,6 +1,8 @@
 // @flow
-export { DATA_STRUCTURE } from "./ComponentQueue.types";
-export { ACTION_TYPES as QUEUE_ACTION_TYPES } from "./ComponentQueue.actions";
+export {
+  DATA_STRUCTURE,
+  ACTION_TYPES as QUEUE_ACTION_TYPES,
+} from "./ComponentQueue.constants";
 export type { TQueueAction } from "./ComponentQueue.actions";
 export type {
   TComponentQueueItem,

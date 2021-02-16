@@ -1,9 +1,6 @@
 // @flow
-import {
-  ACTION_TYPES,
-  type TQueueReducer,
-  type TQueueAction,
-} from "./ComponentQueue.actions";
+import { ACTION_TYPES } from "./ComponentQueue.constants";
+import type { TQueueReducer, TQueueAction } from "./ComponentQueue.actions";
 import type {
   TComponentQueueItem,
   TComponentQueueState,
