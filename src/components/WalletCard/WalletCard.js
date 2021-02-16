@@ -1,33 +1,36 @@
 // @flow
-import React from "react";
-import type { Element } from "react";
+import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { Panel } from "Components/Panel";
 import Icon from "./icon.svg";
 
-type Props = {
+type TProps = {
   balance: number,
   firstDeposit: boolean,
-  BalanceLabelElement: () => Element<*>,
-  FirstDepositElement: () => Element<*>,
-  FirstDepositDescElement: () => Element<*>,
-  BalanceElement: () => Element<*>,
-  BonusElement: () => Element<*>,
-  DepositLabelElement: () => Element<*>,
-  WithdrawLabelElement: () => Element<*>,
+  BalanceHeader: () => React.Node | string,
+  Balance: () => React.Node | string,
+  FirstDepositHeader: () => React.Node | string,
+  FirstDepositDesc: () => React.Node | string,
+  Bonus: () => React.Node | string,
+  DepositLabel: () => React.Node | string,
+  WithdrawLabel: () => React.Node | string,
+  onDeposit: () => any,
+  onWithdraw: () => any,
 };
 
-const WalletCard = React.memo<Props>((props: Props) => {
+export const WalletCard = React.memo<TProps>((props: TProps) => {
   const {
     firstDeposit,
     balance,
-    FirstDepositElement,
-    FirstDepositDescElement,
-    BalanceLabelElement,
-    BonusElement,
-    BalanceElement,
-    DepositLabelElement,
-    WithdrawLabelElement,
+    FirstDepositHeader,
+    FirstDepositDesc,
+    BalanceHeader,
+    Balance,
+    Bonus,
+    DepositLabel,
+    WithdrawLabel,
+    onDeposit,
+    onWithdraw,
   } = props;
 
   return (
@@ -35,19 +38,23 @@ const WalletCard = React.memo<Props>((props: Props) => {
       <Icon className="u-width--3xlg u-margin-y--md u-margin-x" />
       {firstDeposit ? (
         <>
-          <FirstDepositElement />
-          <FirstDepositDescElement />
+          <FirstDepositHeader />
+          <FirstDepositDesc />
         </>
       ) : (
         <>
-          <BalanceLabelElement />
-          <BalanceElement />
-          <BonusElement />
+          <BalanceHeader />
+          <Balance />
+          <Bonus />
         </>
       )}
 
-      <ButtonPrimary size="md" className="u-padding-x--3xlg u-margin-right">
-        <DepositLabelElement />
+      <ButtonPrimary
+        size="md"
+        className="u-padding-x--3xlg u-margin-right"
+        onClick={onDeposit}
+      >
+        <DepositLabel />
       </ButtonPrimary>
 
       {!firstDeposit && (
@@ -55,12 +62,11 @@ const WalletCard = React.memo<Props>((props: Props) => {
           size="md"
           className="u-padding-x--3xlg"
           isDisabled={!balance}
+          onClick={onWithdraw}
         >
-          <WithdrawLabelElement />
+          <WithdrawLabel />
         </ButtonPrimary>
       )}
     </Panel>
   );
 });
-
-export { WalletCard };
