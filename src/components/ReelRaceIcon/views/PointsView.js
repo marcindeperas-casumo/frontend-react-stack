@@ -3,7 +3,6 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
-import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 
 import "../ReelRaceIcon.scss";
 
@@ -11,7 +10,11 @@ export const PointsView = ({
   points,
   pointsText,
   className,
-}: CurrentReelRaceInfo & { className?: string }) => {
+}: {
+  className?: string,
+  points: number,
+  pointsText?: string,
+}) => {
   return (
     <Flex
       className={cx("u-line-height--1", className)}
