@@ -13,22 +13,16 @@ $radius: 12px;
   max-width: $max-width;
   min-width: $min-width;
   padding: 6px 7px;
-  position: relative;
   transition: background-color 0.25s;
 }
 
 .c-toggle__label {
   font-size: cudl-font-size(xs, $cudl-font-sizes);
   max-width: $max-label-width;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .c-toggle__circle--active {
-  position: absolute;
   right: 1px;
-  top: 0px;
   transition: left 2s ease 0s;
 
   + .c-toggle__label {
@@ -38,8 +32,6 @@ $radius: 12px;
 
 .c-toggle__circle--inactive {
   left: 1px;
-  position: absolute;
-  top: 0px;
   transition: right 2s ease 0s;
 
   + .c-toggle__label {
