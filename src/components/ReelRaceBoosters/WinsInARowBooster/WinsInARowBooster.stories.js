@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useInterval } from "react-use";
+import { useInterval, useTimeoutFn } from "react-use";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { WinsInARowBooster } from "./WinsInARowBooster";
@@ -25,7 +25,13 @@ if (isNotChromatic) {
   });
 
   stories.add("3 wins in a row", () => {
-    return <WinsInARowBooster {...props} winsInARow={3} />;
+    const [threeWinsInARow, setWinsInARow] = React.useState(2);
+
+    useTimeoutFn(() => {
+      setWinsInARow(3);
+    }, 500);
+
+    return <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />;
   });
 
   stories.add("step by step", () => {
@@ -39,12 +45,18 @@ if (isNotChromatic) {
   });
 } else {
   stories.add("Chromatic", () => {
+    const [threeWinsInARow, setWinsInARow] = React.useState(2);
+
+    useTimeoutFn(() => {
+      setWinsInARow(3);
+    }, 500);
+
     return (
       <>
         <WinsInARowBooster {...props} winsInARow={0} />
         <WinsInARowBooster {...props} winsInARow={1} />
         <WinsInARowBooster {...props} winsInARow={2} />
-        <WinsInARowBooster {...props} winsInARow={3} />
+        <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />
       </>
     );
   });
