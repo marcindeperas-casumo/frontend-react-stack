@@ -65,7 +65,7 @@ stories.add("Default", () => {
       <h2>First deposit:</h2>
       <WalletCard {...{ ...props, firstDeposit: true }} />
 
-      <h2>Basic usage:</h2>
+      <h2>Loading state:</h2>
       <WalletCard {...propsLoading} />
     </div>
   );
