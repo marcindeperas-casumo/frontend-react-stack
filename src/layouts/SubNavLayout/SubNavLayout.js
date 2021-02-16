@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 
-type Props = {
+type TProps = {
   children: React.Node,
 };
 
-export const SubNavLayout = ({ children }: Props) => {
+export const SubNavLayout = ({ children }: TProps) => {
   return <div>{children}</div>;
 };

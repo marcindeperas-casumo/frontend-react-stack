@@ -5,11 +5,11 @@ import { ContentWrapper } from "Components/ContentWrapper";
 
 import "./MainNavLayout.scss";
 
-type Props = {
+type TProps = {
   children: React.Node,
 };
 
-export const MainNavLayout = ({ children }: Props) => {
+export const MainNavLayout = ({ children }: TProps) => {
   return (
     <div className="c-main-nav-layout u-height--screen">
       <ContentWrapper className="c-main-nav-layout__nav u-height--lg u-height--4xlg@tablet u-height--5xlg@desktop u-padding-y--md">

@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 
-type Props = {
+type TProps = {
   children: React.Node,
 };
 
-export const GamePageLayout = ({ children }: Props) => {
+export const GamePageLayout = ({ children }: TProps) => {
   return <div>{children}</div>;
 };
