@@ -1,4 +1,3 @@
-import { getCookie } from "Utils";
 import { getCommonHandshake, URLS } from "./api.common";
 
 describe("API/Common", () => {
@@ -13,7 +12,7 @@ describe("API/Common", () => {
       expect(http.post).toHaveBeenCalledTimes(1);
       expect(http.post).toHaveBeenCalledWith(URLS.HANDSHAKE, {
         url: window?.location.href,
-        trackingId: getCookie("kazumoTrackingId"),
+        trackingId: null,
       });
     });
   });
