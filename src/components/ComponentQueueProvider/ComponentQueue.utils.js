@@ -1,5 +1,8 @@
 import * as R from "ramda";
 
+/** todo: remove [DEPRECATED] - replaced by sortByPriority
+/* @deprecated
+**/
 export function bubbleSort(queue, sortKeyPath, reverse = false) {
   queue.forEach(_ =>
     queue.forEach((__, i) => {
@@ -18,4 +21,14 @@ export function bubbleSort(queue, sortKeyPath, reverse = false) {
 
   // eslint-disable-next-line fp/no-mutating-methods
   return reverse ? queue.reverse() : queue;
+}
+
+export function sortByPriority(a, b) {
+  if (!a.settings.priority) {
+    return 0;
+  }
+  if (!b.settings.priority) {
+    return -1;
+  }
+  return a.settings.priority - b.settings.priority;
 }

@@ -6,22 +6,24 @@ import type {
   TComponentQueueState,
   TComponentQueueConfig,
 } from "./ComponentQueue.types";
-import { bubbleSort } from "./ComponentQueue.utils";
-
-const sortKeyPath = ["settings", "priority"];
+import { sortByPriority } from "./ComponentQueue.utils";
 
 const pushOrReplace = (
   state: TComponentQueueState,
   item: TComponentQueueItem
 ): TComponentQueueState => {
   if (item.settings?.priority && item.settings?.closeCurrent) {
-    return bubbleSort([...state.slice(1), item]);
+    // eslint-disable-next-line fp/no-mutating-methods
+    return [...state.slice(1), item].sort(sortByPriority);
+    // eslint-enable-next-line fp/no-mutating-methods
   }
 
   if (item.settings?.priority) {
     // we need to exclude current from sort
     const current = state[0];
-    const sortSkippedCurrent = bubbleSort([...state.slice(1), item]);
+    // eslint-disable-next-line fp/no-mutating-methods
+    const sortSkippedCurrent = [...state.slice(1), item].sort(sortByPriority);
+    // eslint-enable-next-line fp/no-mutating-methods
     return [current, ...sortSkippedCurrent];
   }
 
@@ -37,7 +39,9 @@ const unshiftOrReplace = (
   item: TComponentQueueItem
 ): TComponentQueueState => {
   if (item.settings?.priority) {
-    return bubbleSort([...state, item], sortKeyPath, true);
+    // eslint-disable-next-line fp/no-mutating-methods
+    return [...state, item].sort(sortByPriority).reverse();
+    // eslint-enable-next-line fp/no-mutating-methods
   }
 
   if (item.settings?.closeCurrent) {
