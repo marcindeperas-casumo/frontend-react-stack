@@ -1,9 +1,8 @@
 import * as R from "ramda";
 
 export function bubbleSort(queue, sortKeyPath, reverse = false) {
-  queue.map(_ =>
-    // eslint-disable-next-line array-callback-return
-    queue.map((__, i) => {
+  queue.forEach(_ =>
+    queue.forEach((__, i) => {
       // make sure there is another element to compare with
       if (
         queue[i + 1] &&
@@ -16,5 +15,7 @@ export function bubbleSort(queue, sortKeyPath, reverse = false) {
       }
     })
   );
-  return reverse ? queue.reverse : queue;
+
+  // eslint-disable-next-line fp/no-mutating-methods
+  return reverse ? queue.reverse() : queue;
 }
