@@ -1,10 +1,9 @@
 /* stylelint-disable */
 .c-reel-race-icon__boost-points {
-  height: 16px;
-  right: -51px;
-  top: -24px;
-  transform: rotate(-9deg);
-  width: 64px;
+  height: 20px;
+  left: 50%;
+  top: 8px;
+  width: 52px;
 }
 
 .c-reel-race-icon__boost-points__value {
@@ -26,7 +25,7 @@
 
 .c-boost-points__value {
   opacity: 0;
-  transform: scale(0.75) translate3d(-50%, -30%, 0);
+  transform: scale(0.75) skew(0) translate3d(0, -2px, 0);
 }
 
 .c-boost-points__value__base {
@@ -57,11 +56,11 @@
   6%,
   85% {
     opacity: 1;
-    transform: scale(1) skew(3deg, -3deg) translate(0);
+    transform: scale(1) skew(8deg, -8deg) translate3d(12px, -3px, 0);
   }
   100% {
     opacity: 0;
-    transform: scale(1) skew(3deg, -3deg) translate(5%, -100%);
+    transform: scale(1) skew(8deg, -8deg) translate3d(12px, -100%, 0);
   }
 }
 
@@ -69,10 +68,10 @@
   6%,
   85% {
     opacity: 1;
-    transform: scale(1) skew(-5deg, 5deg) translate(0, 7%);
+    transform: scale(1.1) skew(-2deg, 2deg) translate3d(15px, -4px, 0);
   }
   100% {
     opacity: 0;
-    transform: scale(1) skew(-5deg, 5deg) translate(0, -100%);
+    transform: scale(1.1) skew(-2deg, 2deg) translate3d(15px, -100%, 0);
   }
 }

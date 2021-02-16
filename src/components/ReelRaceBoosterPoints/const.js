@@ -31,9 +31,9 @@ export const getInitialState = () => ({
     extraPoints: null,
   },
   boosters: {
-    bigWins: null,
-    megaWins: null,
-    triples: null,
-    wins: null,
+    bigWins: 0,
+    megaWins: 0,
+    triples: 0,
+    wins: 0,
   },
 });

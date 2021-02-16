@@ -10,13 +10,6 @@ type TAnimationState = {
   extraPoints: TAnimationValue,
 };
 
-type TBoostersState = {
-  bigWins: TBoosterValue,
-  megaWins: TBoosterValue,
-  triples: TBoosterValue,
-  wins: TBoosterValue,
-};
-
 type TState = {
   animation: TAnimationState,
   boosters: TBoostersState,
@@ -25,6 +18,13 @@ type TState = {
 type TActions =
   | { type: UPDATE_ANIMATION, payload: TAnimationState }
   | { type: UPDATE_PREV_VALUES, payload: TBoostersState };
+
+export type TBoostersState = {
+  bigWins: TBoosterValue,
+  megaWins: TBoosterValue,
+  triples: TBoosterValue,
+  wins: TBoosterValue,
+};
 
 export const reducer = (prevState: TState, action: TActions): TState => {
   // eslint-disable-next-line no-switch-statements/no-switch
