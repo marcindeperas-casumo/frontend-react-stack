@@ -99,12 +99,12 @@ stories.add("Default", () => {
   }));
 
   return (
-    <>
+    <div className="t-background-grey-20 u-padding--lg">
       <h2>Loading state:</h2>
       <SupportRow cards={loadingProps.cards} />
 
       <h2>Loaded:</h2>
       <SupportRow cards={props.cards} />
-    </>
+    </div>
   );
 });
