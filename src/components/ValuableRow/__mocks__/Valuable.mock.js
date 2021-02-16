@@ -1,4 +1,4 @@
-import mockData from "./Valuable";
+import mockData from "./Valuable.json";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { find, propEq } from "ramda";
 import { DateTime } from "luxon";
