@@ -3,9 +3,48 @@ import * as React from "react";
 import * as R from "ramda";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import MockStore from "Components/MockStore";
 import { leaderboard } from "Components/ReelRaceLeaderboard/__mocks__/leaderboard.mock";
 import { prizes } from "Components/ReelRaceLeaderboard/__mocks__/prizes.mock";
 import { ReelRaceLeaderboardModal } from "./ReelRaceLeaderboardModal";
+
+const newLeaderboard = leaderboard.reduce(
+  (acc, curr) => ({
+    ...acc,
+    [curr.playerId]: curr,
+  }),
+  {}
+);
+
+const Wrapper = ({
+  children,
+  playerId = "one",
+}: {
+  children: React.Node,
+  playerId?: string,
+}) => (
+  <MockStore
+    state={{
+      handshake: {
+        app: {
+          "common/composition/session": {
+            id: playerId,
+          },
+        },
+      },
+      reelRaces: {
+        leaderboard: newLeaderboard,
+        order: R.pipe(
+          R.values,
+          R.sortBy(R.prop("position")),
+          R.pluck("playerId")
+        )(newLeaderboard),
+      },
+    }}
+  >
+    <>{children}</>
+  </MockStore>
+);
 
 const stories = storiesOf(
   "RSModal/Slots/ReelRaceLeaderboardModal",
@@ -16,22 +55,24 @@ const furtherEntry = R.find(R.propEq("position", 57), leaderboard);
 
 stories.add("Someone won the race", () => {
   return (
-    <ReelRaceLeaderboardModal
-      acceptModal={action("acceptModal")}
-      closeModal={() => {}}
-      dismissModal={() => {}}
-      t={{}}
-      config={{
-        input: {
-          playerId: "player-123",
-          playerName: "Player",
-          position: 100,
-          points: 0,
-          leaderboard: [...leaderboard, ...R.repeat(furtherEntry, 10)],
-          prizes,
-        },
-      }}
-    />
+    <Wrapper>
+      <ReelRaceLeaderboardModal
+        acceptModal={action("acceptModal")}
+        closeModal={() => {}}
+        dismissModal={() => {}}
+        t={{}}
+        config={{
+          input: {
+            playerId: "player-123",
+            playerName: "Player",
+            position: 100,
+            points: 0,
+            leaderboard: [...leaderboard, ...R.repeat(furtherEntry, 10)],
+            prizes,
+          },
+        }}
+      />
+    </Wrapper>
   );
 });
 
@@ -43,22 +84,24 @@ stories.add("Player won the race", () => {
   );
 
   return (
-    <ReelRaceLeaderboardModal
-      acceptModal={action("acceptModal")}
-      closeModal={() => {}}
-      dismissModal={() => {}}
-      t={{}}
-      config={{
-        input: {
-          playerId,
-          playerName,
-          position,
-          points,
-          leaderboard,
-          prizes,
-        },
-      }}
-    />
+    <Wrapper playerId={playerId}>
+      <ReelRaceLeaderboardModal
+        acceptModal={action("acceptModal")}
+        closeModal={() => {}}
+        dismissModal={() => {}}
+        t={{}}
+        config={{
+          input: {
+            playerId,
+            playerName,
+            position,
+            points,
+            leaderboard,
+            prizes,
+          },
+        }}
+      />
+    </Wrapper>
   );
 });
 
@@ -70,21 +113,23 @@ stories.add("Player scored 3rd", () => {
   );
 
   return (
-    <ReelRaceLeaderboardModal
-      acceptModal={action("acceptModal")}
-      closeModal={() => {}}
-      dismissModal={() => {}}
-      t={{}}
-      config={{
-        input: {
-          playerId,
-          playerName,
-          position,
-          points,
-          leaderboard,
-          prizes,
-        },
-      }}
-    />
+    <Wrapper playerId={playerId}>
+      <ReelRaceLeaderboardModal
+        acceptModal={action("acceptModal")}
+        closeModal={() => {}}
+        dismissModal={() => {}}
+        t={{}}
+        config={{
+          input: {
+            playerId,
+            playerName,
+            position,
+            points,
+            leaderboard,
+            prizes,
+          },
+        }}
+      />
+    </Wrapper>
   );
 });
