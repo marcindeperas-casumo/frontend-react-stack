@@ -151,7 +151,10 @@ export const VerticalStretcher = ({
     showSwipePanel &&
     !quickDepositInProgress &&
     !isNative &&
-    !isDismissed;
+    !isDismissed &&
+    // being triggered on desktop devices, disabling till fixed
+    // eslint-disable-next-line sonarjs/no-redundant-boolean
+    false;
 
   return (
     <div
