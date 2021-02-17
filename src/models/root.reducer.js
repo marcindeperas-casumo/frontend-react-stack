@@ -15,6 +15,7 @@ import { methodConfigReducer as paymentMethodConfigs } from "./payments/methodCo
 import { paymentsReducer as playerPayments } from "./payments/payments.reducer";
 import { playOkayReducer as playOkay } from "./playOkay/playOkay.rootReducer";
 import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
+import { reelRacesReducer as reelRaces } from "./reelRaces";
 
 const rootReducer = combineReducers({
   router,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   paymentMethodConfigs,
   playerPayments,
   fiveMinuteBreak,
+  reelRaces,
 });
 
 export default rootReducer;

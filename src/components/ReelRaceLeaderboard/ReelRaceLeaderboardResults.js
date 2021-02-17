@@ -2,15 +2,15 @@
 import * as React from "react";
 import * as R from "ramda";
 import cx from "classnames";
+import { useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
 
 import "./ReelRaceLeaderboardResults.scss";
 
 type Props = {
-  leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
-  playerId: string,
   size?: number,
+  playerId: string,
   prizes?: Array<string>,
   forceLaurelPositions?: number,
   className?: string,
@@ -34,8 +34,6 @@ type ListProps = {
   listRef?: React.Ref<any>,
   scrollable?: boolean,
 };
-
-const LEADERBOARD_SIZE = 25;
 
 export const getPrize = (position: number, prizes?: Array<string> = []) =>
   prizes[position - 1] || null;
@@ -80,8 +78,6 @@ const InnerList = ({
 
 export function ReelRaceLeaderboardResults({
   playerId,
-  leaderboard = [],
-  size = LEADERBOARD_SIZE,
   prizes = [],
   forceLaurelPositions = 0,
   inverted = false,
@@ -90,9 +86,15 @@ export function ReelRaceLeaderboardResults({
   rowClassName = "",
   scrollable = false,
   style = {},
+  ...props
 }: Props) {
   const listRef = React.useRef(null);
   const currentPositionRef = React.useRef(null);
+
+  const leaderboardOrder = useSelector(R.path(["reelRaces", "order"]));
+  const leaderboardObj = useSelector(R.path(["reelRaces", "leaderboard"]));
+  const leaderboard = leaderboardOrder.map(x => leaderboardObj[x]);
+  const size = props.size || leaderboard.length;
   const sorted = R.sortBy(R.prop("position"))(leaderboard);
   const leaderboardSortedSliced = sorted.slice(0, size);
 

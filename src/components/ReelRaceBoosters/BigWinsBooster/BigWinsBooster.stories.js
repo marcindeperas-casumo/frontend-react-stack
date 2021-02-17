@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useInterval } from "react-use";
+import { useInterval, useTimeoutFn } from "react-use";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { BigWinsBooster } from "./BigWinsBooster";
@@ -21,7 +21,13 @@ if (isNotChromatic) {
   });
 
   stories.add("2 big wins", () => {
-    return <BigWinsBooster {...props} bigWins={2} />;
+    const [twoBigWins, setBigWins] = React.useState(1);
+
+    useTimeoutFn(() => {
+      setBigWins(2);
+    }, 500);
+
+    return <BigWinsBooster {...props} bigWins={twoBigWins} />;
   });
 
   stories.add("3 big wins", () => {
@@ -39,11 +45,17 @@ if (isNotChromatic) {
   });
 } else {
   stories.add("Chromatic", () => {
+    const [twoBigWins, setBigWins] = React.useState(1);
+
+    useTimeoutFn(() => {
+      setBigWins(2);
+    }, 500);
+
     return (
       <>
         <BigWinsBooster {...props} bigWins={0} />
         <BigWinsBooster {...props} bigWins={1} />
-        <BigWinsBooster {...props} bigWins={2} />
+        <BigWinsBooster {...props} bigWins={twoBigWins} />
       </>
     );
   });

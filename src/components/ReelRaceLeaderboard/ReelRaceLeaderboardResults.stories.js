@@ -1,11 +1,45 @@
 // @flow
 import React from "react";
+import * as R from "ramda";
 import { storiesOf } from "@storybook/react";
+import MockStore from "Components/MockStore";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { ReelRaceLeaderboardResults } from "./ReelRaceLeaderboardResults";
 import { leaderboard, boosters } from "./__mocks__/leaderboard.mock";
 import { prizes } from "./__mocks__/prizes.mock";
 
+const playerId = "a1";
+const newLeaderboard = leaderboard.reduce(
+  (acc, curr) => ({
+    ...acc,
+    [curr.playerId]: curr,
+  }),
+  {}
+);
+
+const Wrapper = ({ children }) => (
+  <MockStore
+    state={{
+      handshake: {
+        app: {
+          "common/composition/session": {
+            id: playerId,
+          },
+        },
+      },
+      reelRaces: {
+        leaderboard: newLeaderboard,
+        order: R.pipe(
+          R.values,
+          R.sortBy(R.prop("position")),
+          R.pluck("playerId")
+        )(newLeaderboard),
+      },
+    }}
+  >
+    <>{children}</>
+  </MockStore>
+);
 const stories = storiesOf(
   "ReelRaceLeaderboard/ReelRaceLeaderboardResults",
   module
@@ -13,13 +47,13 @@ const stories = storiesOf(
 
 stories.add("Default", () => {
   return (
-    <div>
+    <Wrapper>
       <ReelRaceLeaderboardResults
         leaderboard={leaderboard}
         playerId="777"
         prizes={prizes}
       />
-    </div>
+    </Wrapper>
   );
 });
 
@@ -54,7 +88,7 @@ const SimulateLeaderboard = () => {
   }, []);
 
   return (
-    <div>
+    <Wrapper>
       <SidebarElementWrapper>
         <ReelRaceLeaderboardResults
           size={lb.length}
@@ -82,7 +116,7 @@ const SimulateLeaderboard = () => {
           scrollable
         />
       </SidebarElementWrapper>
-    </div>
+    </Wrapper>
   );
 };
 

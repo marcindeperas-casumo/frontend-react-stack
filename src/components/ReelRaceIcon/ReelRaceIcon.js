@@ -1,13 +1,18 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import { useTranslationsGql } from "Utils/hooks";
+import { useSelector } from "react-redux";
+import { useTranslations } from "Utils/hooks";
 import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
+import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
-import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
-import { getProgressColor } from "Models/reelRaces";
+import {
+  getProgressColor,
+  diffIconLeaderboard,
+  userLeaderboardSelector,
+} from "Models/reelRaces";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
@@ -21,110 +26,147 @@ type Props = {
   className?: string,
 };
 
+export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
+  if (!currentRace) {
+    return null;
+  }
+
+  return (
+    <div
+      className={cx(
+        "c-reel-race-icon u-position-relative u-height--3xlg u-width--3xlg",
+        className
+      )}
+    >
+      <AnimatedReelRaceWidget />
+      <RRProgress currentRace={currentRace} />
+    </div>
+  );
+};
+
+function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
+  const gameProgress = useReelRaceProgress(currentRace);
+
+  return (
+    <ProgressCircle
+      value={gameProgress}
+      fgColor={getProgressColor(gameProgress)}
+      bgColor="grey-50"
+      className="t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute u-top-0 u-left-0"
+      width={4}
+      radius={24}
+    />
+  );
+}
+
 const INITIAL_VIEW_CHANGE_INTERVAL_MS = 3 * 1000;
 const VIEW_CHANGE_INTERVAL_MS = 5 * 1000;
-const VIEW_CHANGE_TRANSITION_MS = 1 * 1000;
 
-export const rrViews = [
-  RRIconView,
-  PositionView,
-  RemainingSpinsView,
-  PointsView,
-];
-
-export const getNextView = (
-  currentView: number,
-  numberOfViews: number = rrViews.length
-) => {
+export const getNextView = (currentView: number, numberOfViews: number = 4) => {
   const newView = (currentView + 1) % numberOfViews;
 
   return newView === 0 && numberOfViews > 1 ? 1 : newView;
 };
 
-export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
-  const [currentViewIndex, setCurrentViewIndex] = React.useState(0);
-  const [nextViewIndex, setNextViewIndex] = React.useState(
-    getNextView(currentViewIndex)
+const animationClasses = {
+  in: "c-reel-race-icon__content--next",
+  out: "c-reel-race-icon__content--old",
+};
+const baseClasses =
+  "u-height--2xlg u-width--2xlg u-position-absolute u-top-0 u-left-0";
+const widgetEntryClasses =
+  "o-flex--vertical o-flex-align--center o-flex-justify--center";
+function AnimatedReelRaceWidget() {
+  const activeView = React.useRef<number>(0);
+  const t = useTranslations<{ reel_races_drawer_pts: string }>(
+    CMS_SLUG.MODAL_WAGERING
   );
-  const [isTransitionRunning, setIsTransitionRunning] = React.useState(false);
+  const userLeaderboard = useSelector(
+    userLeaderboardSelector,
+    diffIconLeaderboard
+  );
 
-  const { t } = useTranslationsGql({
-    reel_races_drawer_pts: `root:${CMS_SLUG.MODAL_WAGERING}:fields.reel_races_drawer_pts`,
-  });
-  const gameProgress = useReelRaceProgress(currentRace);
+  const refs = [React.useRef(), React.useRef(), React.useRef(), React.useRef()];
+  const timer = useTimeoutFn();
 
-  const viewProps = {
-    ...currentRace,
-    pointsText: t.reel_races_drawer_pts,
-  };
+  const refreshProgress = React.useCallback(() => {
+    const nextView = getNextView(activeView.current);
+    if (!refs[activeView.current].current) {
+      return;
+    }
 
-  const transitionTimer = useTimeoutFn();
+    // animate out current view
+    const activeViewClassList = refs[activeView.current].current.classList;
+    const animationInClass = Array.from(activeViewClassList).find(
+      x => x === animationClasses.in
+    );
+    animationInClass && activeViewClassList.remove(animationInClass);
+    activeViewClassList.add(animationClasses.out);
+
+    // animate in next view
+    if (!refs[nextView].current) {
+      return;
+    }
+    const nextViewClassList = refs[nextView].current.classList;
+    nextViewClassList.add(animationClasses.in);
+
+    // eslint-disable-next-line fp/no-mutation
+    activeView.current = nextView;
+
+    timer.scheduleIn(refreshProgress, VIEW_CHANGE_INTERVAL_MS);
+  }, [refs, timer]);
 
   React.useEffect(() => {
-    const scheduleClassChange = () =>
-      transitionTimer.scheduleIn(
-        () => {
-          if (currentViewIndex === nextViewIndex) {
-            return;
-          }
-          setIsTransitionRunning(true);
-
-          transitionTimer.scheduleIn(() => {
-            setIsTransitionRunning(false);
-
-            const nextViewIndexToDisplay = getNextView(nextViewIndex);
-            setCurrentViewIndex(nextViewIndex);
-
-            if (nextViewIndexToDisplay !== nextViewIndex) {
-              setNextViewIndex(nextViewIndexToDisplay);
-              scheduleClassChange();
-            }
-          }, VIEW_CHANGE_TRANSITION_MS);
-        },
-        currentViewIndex === 0
-          ? INITIAL_VIEW_CHANGE_INTERVAL_MS
-          : VIEW_CHANGE_INTERVAL_MS
-      );
-    scheduleClassChange();
+    timer.scheduleIn(refreshProgress, INITIAL_VIEW_CHANGE_INTERVAL_MS);
 
     return () => {
-      transitionTimer.clear();
+      timer.clear();
     };
-  }, [currentViewIndex, transitionTimer, nextViewIndex]);
+  }, [refreshProgress, timer]);
 
-  const CurrentView = rrViews[currentViewIndex];
-  const NextView = rrViews[nextViewIndex];
   return (
     <div
       className={cx(
-        "c-reel-race-icon u-position-relative u-height--3xlg u-width--3xlg t-border-r--circle",
-        className
+        baseClasses,
+        "u-margin--sm t-border-r--circle u-overflow--hidden t-opacity-background--100 t-background-grey-90"
       )}
     >
-      <div className="c-reel-race-icon__info u-height--2xlg u-width--2xlg t-opacity-background--100 t-background-grey-90 u-overflow--hidden t-border-r--circle t-background-grey-90">
-        <CurrentView
-          {...viewProps}
-          className={cx("c-reel-race-icon__content u-position-absolute", {
-            "c-reel-race-icon__content--old": isTransitionRunning,
-          })}
-        />
-        {isTransitionRunning && (
-          <NextView
-            {...viewProps}
-            className={cx("c-reel-race-icon__content u-position-absolute", {
-              "c-reel-race-icon__content--next": isTransitionRunning,
-            })}
-          />
-        )}
+      <div ref={refs[0]} className={cx(baseClasses, widgetEntryClasses)}>
+        <RRIconView />
       </div>
-      <ProgressCircle
-        value={gameProgress}
-        fgColor={getProgressColor(gameProgress)}
-        bgColor="grey-50"
-        className="c-reel-race-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute"
-        width={4}
-        radius={24}
-      />
+      <div
+        ref={refs[1]}
+        className={cx(
+          baseClasses,
+          widgetEntryClasses,
+          "c-reel-race-icon__content--off"
+        )}
+      >
+        <PositionView position={userLeaderboard.position} />
+      </div>
+      <div
+        ref={refs[2]}
+        className={cx(
+          baseClasses,
+          widgetEntryClasses,
+          "c-reel-race-icon__content--off"
+        )}
+      >
+        <RemainingSpinsView remainingSpins={userLeaderboard.remainingSpins} />
+      </div>
+      <div
+        ref={refs[3]}
+        className={cx(
+          baseClasses,
+          widgetEntryClasses,
+          "c-reel-race-icon__content--off"
+        )}
+      >
+        <PointsView
+          points={userLeaderboard.points}
+          pointsText={t?.reel_races_drawer_pts}
+        />
+      </div>
     </div>
   );
-};
+}
