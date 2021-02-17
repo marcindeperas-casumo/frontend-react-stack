@@ -2,14 +2,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
+import { ChevronRightIcon } from "@casumo/cmp-icons";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 import type { SupportRowProps } from "./SupportRow";
 import ChatIcon from "./chat-icon.svg";
 import Email from "./email-icon.svg";
 import Faq from "./faq-icon.svg";
-import Arrow from "./arrow.svg";
-import { SupportRow } from ".";
-import "./arrow.scss";
+import { SupportRow } from "./SupportRow";
 
 const stories = storiesOf("SupportRow", module);
 
@@ -35,7 +34,7 @@ stories.add("Default", () => {
             className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Start Chat
-            <Arrow className="arrow-img" />
+            <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
           </Text>
         ),
       },
@@ -59,7 +58,7 @@ stories.add("Default", () => {
             className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Send Email
-            <Arrow className="arrow-img" />
+            <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
           </Text>
         ),
       },
@@ -82,7 +81,7 @@ stories.add("Default", () => {
             className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Go to FAQs
-            <Arrow className="arrow-img" />
+            <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
           </Text>
         ),
       },

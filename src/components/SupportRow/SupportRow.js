@@ -7,7 +7,7 @@ import { Link } from "@reach/router";
 import { getMediaQuery, mobileBreakpoint } from "Components/ResponsiveLayout";
 import { Panel } from "Components/Panel";
 
-type CardProps = {
+type TCardProps = {
   Icon: () => Element<*>,
   Header: () => Element<any>,
   Description: () => Element<any>,
@@ -21,7 +21,7 @@ const SupportCard = ({
   Description,
   linkHref,
   LinkElement,
-}: CardProps) => (
+}: TCardProps) => (
   <>
     <Icon />
 
@@ -35,7 +35,7 @@ const SupportCard = ({
 );
 
 export type SupportRowProps = {
-  cards: CardProps[],
+  cards: TCardProps[],
 };
 
 const SupportRow = ({ cards }: SupportRowProps) => {
