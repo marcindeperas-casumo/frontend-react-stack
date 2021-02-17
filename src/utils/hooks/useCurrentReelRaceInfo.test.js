@@ -92,6 +92,7 @@ describe("useCurrentReelRaceInfo", () => {
           formattedPrizes,
           leaderboard: convertLeaderboardToObject([leaderboardEntryOther]),
           cometdChannels: [],
+          optedIn: false,
         })
       ).toEqual({
         ...emptyResult,
