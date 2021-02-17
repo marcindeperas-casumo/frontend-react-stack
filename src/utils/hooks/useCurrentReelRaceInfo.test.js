@@ -73,6 +73,7 @@ describe("useCurrentReelRaceInfo", () => {
       tournamentId: null,
       formattedPrizes: [],
       leaderboard: [],
+      optedIn: false,
       boosters,
       cometdChannels: [],
     };
