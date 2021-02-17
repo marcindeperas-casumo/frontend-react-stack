@@ -1,0 +1,41 @@
+.c-main-nav-layout {
+  --main-nav-layout-header-height: 0;
+  --main-nav-layout-footer-height: 56px;
+  --main-nav-layout-header-grid-area: footer;
+
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-rows: var(--main-nav-layout-header-height) 1fr var(
+      --main-nav-layout-footer-height
+    );
+
+  @include cudl-breakpoint(tablet) {
+    --main-nav-layout-header-height: 72px;
+    --main-nav-layout-footer-height: 0;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    --main-nav-layout-header-height: 80px;
+    --main-nav-layout-footer-height: 0;
+  }
+}
+
+.c-main-nav-layout__nav {
+  grid-area: var(--main-nav-layout-header-grid-area);
+
+  @include cudl-breakpoint(tablet) {
+    --main-nav-layout-header-grid-area: header;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    --main-nav-layout-header-grid-area: header;
+  }
+}
+
+.c-main-nav-layout__content {
+  grid-area: content;
+  overflow-y: auto;
+}
