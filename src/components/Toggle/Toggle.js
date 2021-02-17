@@ -1,44 +1,69 @@
 // @flow
-import React, { PureComponent } from "react";
-import Flex from "@casumo/cmp-flex";
+import React from "react";
+import cx from "classnames";
+import Text from "@casumo/cmp-text";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import "./Toggle.scss";
 
 type Props = {
+  labelOn?: string,
+  labelOff?: string,
   checked?: boolean,
   onChange: (active: boolean) => void,
 };
 
-const Unchecked = () => (
-  <Flex
-    justify="start"
-    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow--hidden t-background-grey-5 t-color-white"
+type InnerToggleProps = {
+  labelOn?: string,
+  labelOff?: string,
+  checked?: boolean,
+};
+
+const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
+  <div
+    className={cx(
+      "c-toggle u-position-relative t-border--md u-font-weight-bold u-cursor-pointer t-border-r--pill u-overflow--hidden",
+      {
+        "t-background-purple-60 t-color-white t-border-white": checked,
+        "t-background-white t-color-grey-5 t-border-grey-5": !checked,
+      }
+    )}
   >
-    <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--inactive">
-      <circle cx="14" cy="14" r="14" fill="currentColor" />
-    </svg>
-  </Flex>
+    <div
+      className={cx("o-position--absolute o-inset-top--none", {
+        "c-toggle__circle--active ": checked,
+        "c-toggle__circle--inactive t-color-grey-9": !checked,
+        "t-color-grey-5": !checked,
+      })}
+    >
+      <svg width="28" viewBox="0 0 28 28">
+        <circle cx="14" cy="14" r="11" fill="currentColor" />
+      </svg>
+    </div>
+    <Text
+      className={cx(
+        "c-toggle__label u-text-nowrap u-overflow--hidden u-text-overflow--ellipsis",
+        {
+          "t-color-grey-90": !checked,
+        }
+      )}
+      size="xs"
+    >
+      {checked ? labelOn : labelOff}
+    </Text>
+  </div>
 );
 
-const Checked = () => (
-  <Flex
-    justify="start"
-    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow--hidden t-background-purple-60 t-color-white"
-  >
-    <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--active">
-      <circle cx="14" cy="14" r="14" fill="currentColor" />
-    </svg>
-  </Flex>
-);
+export function Toggle(props: Props) {
+  const { labelOn, labelOff, checked } = props;
+  const current = (
+    <ToggleInner labelOn={labelOn} labelOff={labelOff} checked={checked} />
+  );
 
-export class Toggle extends PureComponent<Props> {
-  render() {
-    return (
-      <Checkbox
-        {...this.props}
-        renderChecked={Checked}
-        renderUnchecked={Unchecked}
-      />
-    );
-  }
+  return (
+    <Checkbox
+      {...props}
+      renderChecked={() => current}
+      renderUnchecked={() => current}
+    />
+  );
 }
