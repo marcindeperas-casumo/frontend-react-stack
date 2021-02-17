@@ -2,8 +2,8 @@
 import * as React from "react";
 import cx from "classnames";
 
-export type TProps = {
-  children?: React.Node,
+type TProps = {
+  children: React.Node,
   className?: string,
   roundedTop?: boolean,
   roundedBottom?: boolean,

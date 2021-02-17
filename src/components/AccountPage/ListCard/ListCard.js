@@ -3,19 +3,23 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ChevronRightIcon } from "@casumo/cmp-icons";
+import type { iconSizes } from "@casumo/cudl-react-prop-types";
 import { Link } from "@reach/router";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
-import { Panel, type TPanelProps } from "../Panel";
+import { Panel } from "Components/Panel";
 
 type TProps = {
-  Icon: React.ComponentType<{}>,
+  Icon: React.ComponentType<{ size: iconSizes }>,
   title: string,
   action: {
     label: string,
     url: string,
   },
   children: React.Node,
-  panelProps?: TPanelProps,
+  panelProps?: $Diff<
+    React.ElementProps<typeof Panel>,
+    { children: React.Node }
+  >,
 };
 
 export function ListCard({

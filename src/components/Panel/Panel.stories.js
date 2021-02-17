@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
 import { Panel } from "./Panel";
 
-const stories = storiesOf("AccountPage/Panel", module).addParameters({
+const stories = storiesOf("Panel", module).addParameters({
   noGlobalDecorator: true,
 });
 const Wrapper = ({ children }) => (
