@@ -39,16 +39,12 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
     >
       <AnimatedReelRaceWidget />
       <RRProgress currentRace={currentRace} />
-      <RRBoosterPoints currentRace={currentRace} />
+      <RRBoosterPoints />
     </div>
   );
 };
 
-function RRBoosterPoints({
-  currentRace,
-}: {
-  currentRace: CurrentReelRaceInfo,
-}) {
+function RRBoosterPoints() {
   const userLeaderboard = useGameActivityAwareIconLeaderboard();
 
   return <ReelRaceBoosterPoints {...userLeaderboard.boosters} />;
