@@ -172,7 +172,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 5e2,
                 monthly: 1e4,
                 currency: "EUR",
@@ -195,7 +194,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             },
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
@@ -217,7 +215,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             adjustment: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
@@ -229,7 +226,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             },
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 595,
                 monthly: 3e3,
                 currency: "EUR",
@@ -241,7 +237,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
