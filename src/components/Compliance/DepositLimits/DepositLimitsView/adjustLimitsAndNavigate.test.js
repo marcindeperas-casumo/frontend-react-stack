@@ -19,7 +19,6 @@ describe("adjustLimitsAndNavigate", () => {
         currency: "EUR",
         daily: null,
         monthly: null,
-        previouslyIncreased: true,
         weekly: null,
       },
       rules: [
@@ -55,7 +54,6 @@ describe("adjustLimitsAndNavigate", () => {
         currency: "EUR",
         daily: null,
         monthly: null,
-        previouslyIncreased: true,
         weekly: null,
       },
       rules: [
@@ -91,7 +89,6 @@ describe("adjustLimitsAndNavigate", () => {
         currency: "EUR",
         daily: 600,
         monthly: 3333,
-        previouslyIncreased: true,
         weekly: 1500,
       },
       rules: [
@@ -127,7 +124,6 @@ describe("adjustLimitsAndNavigate", () => {
         currency: "EUR",
         daily: 600,
         monthly: 3000,
-        previouslyIncreased: true,
         weekly: 1000,
       },
       rules: [
