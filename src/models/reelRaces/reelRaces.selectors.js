@@ -56,3 +56,12 @@ export function useGameActivityAwareWidgetLeaderboard() {
 
   return useGameActivityAwareValue(userLeaderboard);
 }
+
+export function useGameActivityAwareLeaderboard() {
+  const leaderboardOrder = useSelector(R.path(["reelRaces", "order"]));
+  const leaderboardObj = useSelector(R.path(["reelRaces", "leaderboard"]));
+  const leaderboard = leaderboardOrder.map(x => leaderboardObj[x]);
+  const sorted = R.sortBy(R.prop("position"))(leaderboard);
+
+  return useGameActivityAwareValue(sorted);
+}
