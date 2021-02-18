@@ -1,15 +1,17 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import { useSelector } from "react-redux";
 import { useTranslations } from "Utils/hooks";
-import { playerIdSelector } from "Models/handshake";
 import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
-import { getProgressColor } from "Models/reelRaces";
+import {
+  getProgressColor,
+  useGameActivityAwareIconLeaderboard,
+} from "Models/reelRaces";
+import { ReelRaceBoosterPoints } from "Components/ReelRaceBoosterPoints";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
@@ -37,9 +39,16 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
     >
       <AnimatedReelRaceWidget />
       <RRProgress currentRace={currentRace} />
+      <RRBoosterPoints />
     </div>
   );
 };
+
+function RRBoosterPoints() {
+  const userLeaderboard = useGameActivityAwareIconLeaderboard();
+
+  return <ReelRaceBoosterPoints {...userLeaderboard.boosters} />;
+}
 
 function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
   const gameProgress = useReelRaceProgress(currentRace);
@@ -78,12 +87,7 @@ function AnimatedReelRaceWidget() {
   const t = useTranslations<{ reel_races_drawer_pts: string }>(
     CMS_SLUG.MODAL_WAGERING
   );
-  const playerId = useSelector(playerIdSelector);
-  const userLeaderboard = useSelector(
-    x => x.reelRaces.leaderboard[playerId],
-    (left, right) =>
-      !["remainingSpins", "points", "position"].some(x => left[x] !== right[x])
-  );
+  const userLeaderboard = useGameActivityAwareIconLeaderboard();
 
   const refs = [React.useRef(), React.useRef(), React.useRef(), React.useRef()];
   const timer = useTimeoutFn();

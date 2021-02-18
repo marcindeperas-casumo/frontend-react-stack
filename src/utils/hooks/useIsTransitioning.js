@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { useUpdateEffect } from "react-use";
 import { useTimeoutFn } from "Utils/hooks";
 
 type Props = {
@@ -20,7 +21,7 @@ export function useIsTransitioning({
   const [isTransitioning, setIsTransitioning] = React.useState(false);
   const { clear, scheduleIn } = useTimeoutFn();
 
-  React.useEffect(() => {
+  useUpdateEffect(() => {
     if (enterPredicate()) {
       setIsTransitioning(true);
 
@@ -32,7 +33,6 @@ export function useIsTransitioning({
     return function unsubscribe() {
       clear();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tweenedValue]);
 
   return {

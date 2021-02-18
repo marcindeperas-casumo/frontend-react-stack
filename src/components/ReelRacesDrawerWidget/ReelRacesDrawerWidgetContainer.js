@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
-import { useCurrentReelRaceInfo } from "Utils/hooks";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { playingSelector } from "Models/playing";
 import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
