@@ -6,7 +6,7 @@ import classNames from "classnames";
 import debounce from "lodash.debounce";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
-import { isMobile } from "Components/ResponsiveLayout";
+import { isMobileByPlatform } from "Utils";
 import { isNativeByUserAgent } from "GameProviders";
 import type { GameProviderModel } from "GameProviders";
 import { SwipeUpPanelContainer } from "./SwipeUpPanelContainer";
@@ -51,6 +51,7 @@ export const VerticalStretcher = ({
 
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
+  const isMobile = isMobileByPlatform();
 
   const debouncedScrollToTop = debounce(() => {
     if (!quickDepositInProgress) {
@@ -100,8 +101,12 @@ export const VerticalStretcher = ({
     }
 
     const interval = setInterval(() => {
+      /**
+       * 1px diff is acceptable, this is a fix for zommed in
+       * browsers and rounded up height fractions
+       */
       const deviceNotInFullScreenMode =
-        window.innerHeight < measure?.clientHeight;
+        Math.abs(window.innerHeight - (measure?.clientHeight || 0)) > 1;
 
       // don't resize body when quick-deposit is displayed
       if (quickDepositInProgress) {
@@ -151,10 +156,7 @@ export const VerticalStretcher = ({
     showSwipePanel &&
     !quickDepositInProgress &&
     !isNative &&
-    !isDismissed &&
-    // being triggered on desktop devices, disabling till fixed
-    // eslint-disable-next-line sonarjs/no-redundant-boolean
-    false;
+    !isDismissed;
 
   return (
     <div
