@@ -1,0 +1,77 @@
+/* stylelint-disable */
+.c-reel-race-icon__boost-points {
+  height: 20px;
+  left: 50%;
+  top: 8px;
+  width: 52px;
+}
+
+.c-reel-race-icon__boost-points__value {
+  color: cudl-palette(black);
+
+  &:first-child {
+    font-size: cudl-font-size(sm, $cudl-font-sizes);
+  }
+
+  &:nth-child(2) {
+    font-size: cudl-font-size(xs, $cudl-font-sizes);
+  }
+
+  &:last-child {
+    color: cudl-palette(yellow, "30");
+    font-size: 12px;
+  }
+}
+
+.c-boost-points__value {
+  opacity: 0;
+  transform: scale(0.75) skew(0) translate3d(0, -2px, 0);
+}
+
+.c-boost-points__value__base {
+  &--animating {
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: reel-race-icon-reveal-points-base;
+    animation-timing-function: ease-out;
+  }
+}
+
+.c-boost-points__value__extra {
+  &--animating {
+    animation-delay: 0.2s;
+    animation-direction: normal;
+    animation-duration: 3.8s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: reel-race-icon-reveal-points-extra;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes reel-race-icon-reveal-points-base {
+  6%,
+  85% {
+    opacity: 1;
+    transform: scale(1) skew(8deg, -8deg) translate3d(12px, -3px, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) skew(8deg, -8deg) translate3d(12px, -100%, 0);
+  }
+}
+
+@keyframes reel-race-icon-reveal-points-extra {
+  6%,
+  85% {
+    opacity: 1;
+    transform: scale(1.1) skew(-2deg, 2deg) translate3d(15px, -4px, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1) skew(-2deg, 2deg) translate3d(15px, -100%, 0);
+  }
+}
