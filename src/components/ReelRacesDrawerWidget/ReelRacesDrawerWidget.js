@@ -4,14 +4,10 @@ import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SpinIcon, ChevronDownIcon, ChevronUpIcon } from "@casumo/cmp-icons";
-import { useSelector } from "react-redux";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
-import {
-  diffLeaderboardWidget,
-  userLeaderboardSelector,
-} from "Models/reelRaces";
+import { useGameActivityAwareWidgetLeaderboard } from "Models/reelRaces";
 import { useTranslations, useReelRaceProgress } from "Utils/hooks";
 import { CMS_SLUGS } from "Models/playing";
 import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
@@ -55,10 +51,7 @@ export const ReelRacesDrawerWidget = ({
     reel_races_drawer_spins: string,
     reel_races_drawer_full_leaderboard: string,
   }>(CMS_SLUGS.MODAL_WAGERING);
-  const userLeaderboard = useSelector(
-    userLeaderboardSelector,
-    diffLeaderboardWidget
-  );
+  const userLeaderboard = useGameActivityAwareWidgetLeaderboard();
 
   const raceLogo = (
     <Desktop>
