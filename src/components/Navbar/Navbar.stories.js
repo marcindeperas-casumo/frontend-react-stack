@@ -29,4 +29,4 @@ const items = [
   },
 ];
 
-stories.add("Default", () => <Navbar items={items} sticky />);
+stories.add("Default", () => <Navbar items={items} />);

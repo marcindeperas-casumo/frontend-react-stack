@@ -46,16 +46,8 @@ const NavItem = ({ Icon, text, to, active }: NavbarItemProps) => {
   );
 };
 
-export const Navbar = ({ items, sticky = false }: Props) => {
-  return sticky ? (
-    <Flex className={cx({ "o-position-sticky": true })}>
-      <Flex spacing="lg">
-        {items.map(x => (
-          <NavItem key={x.to} {...x} />
-        ))}
-      </Flex>
-    </Flex>
-  ) : (
+export const Navbar = ({ items }: Props) => {
+  return (
     <Flex spacing="lg">
       {items.map(x => (
         <NavItem key={x.to} {...x} />
