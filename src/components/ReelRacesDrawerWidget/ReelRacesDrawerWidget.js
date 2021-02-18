@@ -8,7 +8,8 @@ import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIco
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
 import { useGameActivityAwareWidgetLeaderboard } from "Models/reelRaces";
-import { useTranslations, useReelRaceProgress } from "Utils/hooks";
+import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
+import { useTranslations } from "Utils/hooks/useTranslations";
 import { CMS_SLUGS } from "Models/playing";
 import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";

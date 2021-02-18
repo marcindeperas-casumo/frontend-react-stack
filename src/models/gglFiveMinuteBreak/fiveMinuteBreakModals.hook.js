@@ -5,11 +5,8 @@ import { DateTime } from "luxon";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fiveMinuteBreakSelector } from "Models/gglFiveMinuteBreak";
 import { useSelectModal, showModal as showModalAction } from "Models/modal";
-import {
-  useTranslations,
-  useCurrentReelRaceInfo,
-  useCrossCodebaseNavigation,
-} from "Utils/hooks";
+import { useTranslations, useCrossCodebaseNavigation } from "Utils/hooks";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { REACT_APP_MODAL, ROUTE_IDS } from "Src/constants";
 import type {
   PauseResumeGameSlugProps,
