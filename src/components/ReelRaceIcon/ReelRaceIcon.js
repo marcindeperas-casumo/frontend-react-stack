@@ -13,6 +13,7 @@ import {
   diffIconLeaderboard,
   userLeaderboardSelector,
 } from "Models/reelRaces";
+import { ReelRaceBoosterPoints } from "Components/ReelRaceBoosterPoints";
 import { RRIconView } from "./views/RRIconView";
 import { PositionView } from "./views/PositionView";
 import { RemainingSpinsView } from "./views/RemainingSpinsView";
@@ -40,9 +41,23 @@ export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
     >
       <AnimatedReelRaceWidget />
       <RRProgress currentRace={currentRace} />
+      <RRBoosterPoints currentRace={currentRace} />
     </div>
   );
 };
+
+function RRBoosterPoints({
+  currentRace,
+}: {
+  currentRace: CurrentReelRaceInfo,
+}) {
+  const userLeaderboard = useSelector(
+    userLeaderboardSelector,
+    diffIconLeaderboard
+  );
+
+  return <ReelRaceBoosterPoints {...userLeaderboard.boosters} />;
+}
 
 function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
   const gameProgress = useReelRaceProgress(currentRace);

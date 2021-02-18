@@ -41,7 +41,8 @@ export const SumoIcon = ({
       >
         <div
           className={cx(
-            "t-border-r--circle u-height--full u-overflow--hidden u-position-relative"
+            "t-border-r--circle u-height--full u-position-relative",
+            { "u-overflow--hidden": isTransitionRunning }
           )}
         >
           {PrimaryIcon && (
