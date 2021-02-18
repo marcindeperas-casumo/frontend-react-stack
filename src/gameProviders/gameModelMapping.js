@@ -23,6 +23,7 @@ import { CasumoGame } from "./CasumoGame";
 import { NyxGame } from "./NyxGame";
 import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
+import { LeapGame } from "./LeapGame";
 
 export type GameProps = {
   providerType: GameProviderType,
@@ -68,6 +69,7 @@ export const models = {
   [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
   [PROVIDERS.MAHJONG_DESKTOP]: MahjongGame,
   [PROVIDERS.MAHJONG_MOBILE]: MahjongGame,
+  [PROVIDERS.LEAP]: LeapGame,
 };
 
 const whichProviderType = gameData => {
