@@ -184,8 +184,19 @@ export default class KambiClient extends React.Component<Props, State> {
     }
   };
 
+  replaceSportsHub = () => {
+    if (window.location.hash.indexOf("sports-hub") > -1) {
+      // eslint-disable-next-line fp/no-mutation
+      window.location.hash = window.location.hash.replace(
+        "sports-hub",
+        "filter"
+      );
+    }
+  };
+
   handleHashChange = () => {
     this.redirectToUserHomeRoute();
+    this.replaceSportsHub();
     this.props.onNavigate(window.location.hash);
   };
 
