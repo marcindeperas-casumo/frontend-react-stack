@@ -76,6 +76,8 @@ export const getPlatform = (): AppDevice => {
   return isMobile ? DEVICES.MOBILE : DEVICES.DESKTOP;
 };
 
+export const isMobileByPlatform = () => getPlatform() === DEVICES.MOBILE;
+
 export const bridgeFactory = () => {
   const obj = {};
   return {
