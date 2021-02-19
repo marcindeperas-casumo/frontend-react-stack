@@ -17,6 +17,15 @@ type TProps = {
   items: Array<TNavbarItemProps>,
 };
 
+const getLinkClasses = isCurrent => {
+  return {
+    className: cx({
+      "t-color-purple-60": isCurrent,
+      "t-color-grey-70": !isCurrent,
+    }),
+  };
+};
+
 const NavItem = ({
   icon,
   label,
@@ -28,14 +37,11 @@ const NavItem = ({
 
   return (
     <Flex.Block>
-      <Link to={to}>
+      <Link to={to} getProps={({ isCurrent }) => getLinkClasses(isCurrent)}>
         <Flex
           align="center"
           justify="center"
-          className={cx("u-padding--sm o-flex--vertical@mobile", {
-            "t-color-purple-60": isActive,
-            "t-color-grey-70": !isActive,
-          })}
+          className="u-padding--sm o-flex--vertical@mobile"
         >
           <Icon
             className={cx(

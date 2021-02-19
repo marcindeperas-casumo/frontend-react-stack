@@ -12,19 +12,19 @@ const items = [
   {
     icon: CasinoTabSelectedIcon,
     label: "Casino",
-    to: "/",
+    to: "/casino",
     isActive: true,
   },
   {
     icon: FootballIcon,
     label: "Sports",
-    to: "/",
+    to: "/sports",
     isActive: false,
   },
   {
     icon: CasumoProfileIcon,
     label: "Samuel L. Jackson",
-    to: "/",
+    to: "/profile",
     isActive: false,
   },
 ];
