@@ -1,13 +1,17 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import debounce from "lodash/debounce";
 import { Link, useLocation } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, SearchIcon, TournamentIcon } from "@casumo/cmp-icons";
 import { isTablet, isDesktop } from "Components/ResponsiveLayout";
-import { useTranslations, useMarketConfig, useLanguage } from "Utils/hooks";
+import {
+  useTranslations,
+  useMarketConfig,
+  useLanguage,
+  useResize,
+} from "Utils/hooks";
 import { routeTranslator } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 
@@ -72,21 +76,7 @@ export const TopNav = (props: { basepath: string }) => {
     reel_races: string,
   }>("new-game-browser.top-nav");
 
-  const [setWindowInnerWidth] = React.useState({
-    windowInnerWidth: window.innerWidth,
-  });
-
-  React.useEffect(() => {
-    const handleWindowResizeDebounced = debounce(
-      () => setWindowInnerWidth({ windowInnerWidth: window.innerWidth }),
-      1000
-    );
-    window.addEventListener("resize", handleWindowResizeDebounced);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResizeDebounced);
-    };
-  }, [setWindowInnerWidth]);
+  useResize();
 
   const reelRacesHidden = useMarketConfig("reelRacesHidden");
   const language = useLanguage();
