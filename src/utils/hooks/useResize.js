@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 
+// Can be used for any window resize events triggering rerender
 export const useResize = () => {
   // eslint-disable-next-line no-unused-vars
   const [windowInnerWidth, setWindowInnerWidth] = useState({
