@@ -2,9 +2,11 @@
 import * as React from "react";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
+import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
+import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
+import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -23,7 +25,6 @@ import tracker from "Services/tracker";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
-import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
@@ -45,7 +46,11 @@ export const ProfileIconWithDrawer = ({
   const { navigateToKO } = useCrossCodebaseNavigation();
   const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
   const { pauseGame, resumeGame } = useGameModelContext();
-  const { pinnedWidgets } = usePinnedWidgetsContext();
+  const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
+  const currentRace = useCurrentReelRaceInfo();
+  useCallOnce(currentRace?.isInProgress && currentRace?.optedIn, () => {
+    togglePin(DRAWERS.REEL_RACES);
+  });
   const animationDuration = Number(animation_duration);
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
