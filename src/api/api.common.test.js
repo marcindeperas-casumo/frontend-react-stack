@@ -11,8 +11,9 @@ describe("API/Common", () => {
 
       expect(http.post).toHaveBeenCalledTimes(1);
       expect(http.post).toHaveBeenCalledWith(URLS.HANDSHAKE, {
-        url: window?.location.href,
+        referrerUrl: document?.referrer,
         trackingId: null,
+        url: window?.location.href,
       });
     });
   });

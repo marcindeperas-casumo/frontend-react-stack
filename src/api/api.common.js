@@ -12,8 +12,9 @@ export const URLS = {
 
 export const getCommonHandshake = (httpService: typeof http = http) =>
   httpService.post(URLS.HANDSHAKE, {
-    url: window?.location.href,
+    referrerUrl: document?.referrer,
     trackingId: getCookie("kazumoTrackingId"),
+    url: window?.location.href,
   });
 
 export const commandLogout = () => http.post(URLS.COMMAND.LOGOUT);
