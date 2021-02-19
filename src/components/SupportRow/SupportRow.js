@@ -8,7 +8,7 @@ import { getMediaQuery, mobileBreakpoint } from "Components/ResponsiveLayout";
 import { Panel } from "Components/Panel";
 
 type TCardProps = {
-  Icon: () => Element<*>,
+  Icon: () => Element<any>,
   Header: () => Element<any>,
   Description: () => Element<any>,
   linkHref: string,
@@ -24,10 +24,8 @@ const SupportCard = ({
 }: TCardProps) => (
   <>
     <Icon />
-
     <Header />
     <Description />
-
     <Link to={linkHref}>
       <LinkElement />
     </Link>
@@ -35,7 +33,7 @@ const SupportCard = ({
 );
 
 export type SupportRowProps = {
-  cards: TCardProps[],
+  cards: Array<TCardProps>,
 };
 
 const SupportRow = ({ cards }: SupportRowProps) => {

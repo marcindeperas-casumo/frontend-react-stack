@@ -6,8 +6,8 @@ import { ChevronRightIcon } from "@casumo/cmp-icons";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 import type { SupportRowProps } from "./SupportRow";
 import ChatIcon from "./chat-icon.svg";
-import Email from "./email-icon.svg";
-import Faq from "./faq-icon.svg";
+import EmailIcon from "./email-icon.svg";
+import FaqIcon from "./faq-icon.svg";
 import { SupportRow } from "./SupportRow";
 
 const stories = storiesOf("SupportRow", module);
@@ -39,7 +39,7 @@ stories.add("Default", () => {
         ),
       },
       {
-        Icon: () => <Email className="u-margin-y" />,
+        Icon: () => <EmailIcon className="u-margin-y" />,
         linkHref: "email",
         Header: () => (
           <Text tag="h3" className="t-color-grey-90 u-font-weight-bold">
@@ -63,7 +63,7 @@ stories.add("Default", () => {
         ),
       },
       {
-        Icon: () => <Faq className="u-margin-y" />,
+        Icon: () => <FaqIcon className="u-margin-y" />,
         linkHref: "faq",
         Header: () => (
           <Text tag="h3" className="t-color-grey-90 u-font-weight-bold">
