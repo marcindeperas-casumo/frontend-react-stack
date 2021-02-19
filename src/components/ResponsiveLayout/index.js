@@ -9,7 +9,6 @@ export {
   isDesktop,
   isTablet,
 } from "./ResponsiveLayout";
-
 export {
   getMediaQuery,
   desktopBreakpoint,
