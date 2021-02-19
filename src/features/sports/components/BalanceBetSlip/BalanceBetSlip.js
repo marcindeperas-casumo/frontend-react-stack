@@ -8,7 +8,7 @@ import Text from "@casumo/cmp-text";
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  t: {
+  t: ?{
     balance_title: string,
     bonus_title: string,
   },
