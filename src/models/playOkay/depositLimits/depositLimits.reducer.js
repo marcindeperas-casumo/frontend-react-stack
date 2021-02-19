@@ -40,7 +40,7 @@ function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
     },
     limits,
     undoable: R.prop("undoable", limitDGOJ),
-    lock: null, //R.pathOr(null, ["lock", "expiresOn"], limitDGOJ),
+    lock: R.pathOr(null, ["lock", "expiresOn"], limitDGOJ),
   };
 }
 
