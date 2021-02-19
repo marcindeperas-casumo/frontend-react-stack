@@ -60,11 +60,7 @@ export function validate(
         replacements
       );
     }
-    if (
-      formProps.responsibleGamblingTestRequired &&
-      !formProps.responsibleGamblingTest
-        .responsibleGamblingQuestionnaireAttemptAllowed
-    ) {
+    if (!formProps.responsibleGamblingTestCanBeTaken) {
       return interpolate(
         t.input_validation
           .has_to_be_lower_after_responsible_gambling_test_failed,

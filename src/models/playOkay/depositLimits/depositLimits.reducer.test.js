@@ -11,7 +11,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       },
       undoable: true,
       lock: false,
-      responsibleGamblingTest: undefined,
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
@@ -26,7 +25,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       history: undefined,
       pendingLimitChanges: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
     });
   });
 
@@ -57,7 +55,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           lock: undefined,
           preadjust: undefined,
           pendingLimitChanges: undefined,
-          responsibleGamblingTest: undefined,
           remaining: undefined,
           history: undefined,
         },
@@ -113,7 +110,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         },
         undoable: false,
         lock: null,
-        responsibleGamblingTest: undefined,
       },
     };
     expect(
@@ -152,7 +148,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       lock: null,
       preadjust: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
       pendingLimitChanges: undefined,
       undoable: false,
     });
@@ -316,7 +311,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       pendingLimitChanges: undefined,
       preadjust: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
       undoable: undefined,
     });
   });

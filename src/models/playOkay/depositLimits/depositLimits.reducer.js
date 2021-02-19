@@ -7,7 +7,6 @@ import type {
   DepositLimitsReduxStore,
   LimitChangeType,
   DepositLimit,
-  ResponsibleGamblingTest,
   LimitAdjustmentHistory,
 } from "./depositLimits.types";
 import { kindEq } from "./depositLimits.selectors";
@@ -23,7 +22,6 @@ export const DEFAULT_STATE = {
   undoable: undefined,
   lock: undefined,
   remaining: undefined,
-  responsibleGamblingTest: undefined,
   pendingLimitChanges: undefined,
   history: undefined,
 };
@@ -42,7 +40,7 @@ function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
     },
     limits,
     undoable: R.prop("undoable", limitDGOJ),
-    lock: R.pathOr(null, ["lock", "expiresOn"], limitDGOJ),
+    lock: null, //R.pathOr(null, ["lock", "expiresOn"], limitDGOJ),
   };
 }
 
@@ -78,13 +76,6 @@ const handlers = {
   [depositLimitsTypes.REMAINING_LIMITS_DONE]: (state, { response }) => ({
     ...state,
     remaining: R.propOr({}, "value", response),
-  }),
-  [depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE]: (
-    state,
-    { response }: { response: ResponsibleGamblingTest }
-  ) => ({
-    ...state,
-    responsibleGamblingTest: response,
   }),
   [depositLimitsTypes.GET_HISTORY_DONE]: (
     state,
