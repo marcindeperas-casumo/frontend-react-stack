@@ -6,10 +6,9 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 
 type TNavbarItemProps = {
-  icon: React.Node,
+  icon: React.ComponentType<{ size: iconSizes }>,
   label: ?string,
   to: string,
-  isActive?: boolean,
   showLabel?: boolean,
 };
 
@@ -26,13 +25,7 @@ const getLinkClasses = isCurrent => {
   };
 };
 
-const NavItem = ({
-  icon,
-  label,
-  to,
-  isActive,
-  showLabel = true,
-}: TNavbarItemProps) => {
+const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {
   const Icon = icon;
 
   return (
