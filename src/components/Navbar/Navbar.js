@@ -4,6 +4,7 @@ import cx from "classnames";
 import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import type { iconSizes } from "@casumo/cudl-react-prop-types";
 
 type TNavbarItemProps = {
   icon: React.ComponentType<{ size: iconSizes }>,
