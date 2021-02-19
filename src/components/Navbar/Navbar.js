@@ -4,53 +4,59 @@ import cx from "classnames";
 import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { isMobile } from "Components/ResponsiveLayout";
 
-type NavbarItemProps = {
-  Icon: React.StatelessFunctionalComponent<any>,
-  text: ?string,
+type TNavbarItemProps = {
+  icon: React.Node,
+  label: ?string,
   to: string,
-  active?: boolean,
+  isActive?: boolean,
+  showLabel?: boolean,
 };
 
-type Props = {
-  items: Array<NavbarItemProps>,
-  sticky?: boolean,
+type TProps = {
+  items: Array<TNavbarItemProps>,
 };
 
-const NavItem = ({ Icon, text, to, active }: NavbarItemProps) => {
-  const direction = isMobile() ? "vertical" : "horizontal";
+const NavItem = ({
+  icon,
+  label,
+  to,
+  isActive,
+  showLabel = true,
+}: TNavbarItemProps) => {
+  const Icon = icon;
+
   return (
     <Flex.Block>
       <Link to={to}>
         <Flex
-          direction={direction}
           align="center"
           justify="center"
-          className={cx("u-padding--sm", {
-            "t-color-purple-60": active,
-            "t-color-grey-70": !active,
+          className={cx("u-padding--sm o-flex--vertical@mobile", {
+            "t-color-purple-60": isActive,
+            "t-color-grey-70": !isActive,
           })}
         >
           <Icon
-            className={cx({
-              "u-padding-right": !isMobile(),
-              "u-padding-bottom--sm": isMobile(),
-            })}
+            className={cx(
+              "u-padding-right u-padding-right--none@mobile u-padding-bottom--sm@mobile"
+            )}
             size="md"
           />
-          <Text className="u-font-weight-bold u-margin--none">{text}</Text>
+          {showLabel && (
+            <Text className="u-font-weight-bold u-margin--none">{label}</Text>
+          )}
         </Flex>
       </Link>
     </Flex.Block>
   );
 };
 
-export const Navbar = ({ items }: Props) => {
+export const Navbar = ({ items }: TProps) => {
   return (
     <Flex spacing="lg">
-      {items.map(x => (
-        <NavItem key={x.to} {...x} />
+      {items.map((item, i) => (
+        <NavItem key={i} {...item} />
       ))}
     </Flex>
   );

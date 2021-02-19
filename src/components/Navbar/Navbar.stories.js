@@ -10,22 +10,22 @@ import { Navbar } from "Components/Navbar";
 const stories = storiesOf("Navbar", module);
 const items = [
   {
-    Icon: CasinoTabSelectedIcon,
-    text: "Casino",
+    icon: CasinoTabSelectedIcon,
+    label: "Casino",
     to: "/",
-    active: true,
+    isActive: true,
   },
   {
-    Icon: FootballIcon,
-    text: "Sports",
+    icon: FootballIcon,
+    label: "Sports",
     to: "/",
-    active: false,
+    isActive: false,
   },
   {
-    Icon: CasumoProfileIcon,
-    text: "Samuel L. Jackson",
+    icon: CasumoProfileIcon,
+    label: "Samuel L. Jackson",
     to: "/",
-    active: false,
+    isActive: false,
   },
 ];
 
