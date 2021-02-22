@@ -2,7 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: {
@@ -36,8 +36,6 @@ export class CasumoGame extends BaseIframeGame {
     const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
-    // eslint-disable-next-line no-console
-    console.log("PUFTA ", url);
     if (url) {
       const paramsToAdd = [
         {
@@ -56,7 +54,7 @@ export class CasumoGame extends BaseIframeGame {
         ...super.componentProps,
 
         src: !isEmbedded
-          ? appendLobbyUrl({
+          ? appendToGameUrl({
               url,
               paramsToAdd,
             })

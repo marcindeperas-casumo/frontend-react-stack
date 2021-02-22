@@ -97,5 +97,12 @@ export const getGameModel = (
 ): GameProviderModel => {
   const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
-  return new GameModel({ gameData, gameRef, language, environment, urlPrefix });
+  return new GameModel({
+    gameData,
+    gameRef,
+    language,
+    environment,
+    urlPrefix,
+    origin: window.location.origin,
+  });
 };

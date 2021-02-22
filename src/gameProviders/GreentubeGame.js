@@ -2,7 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: "AUTOPLAYOFF:",
@@ -33,7 +33,7 @@ export class GreentubeGame extends BaseIframeGame {
       return {
         ...super.componentProps,
         src: !isEmbedded
-          ? appendLobbyUrl({
+          ? appendToGameUrl({
               url,
               paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
             })

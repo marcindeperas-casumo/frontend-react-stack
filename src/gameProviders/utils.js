@@ -1,6 +1,6 @@
 //@flow
 
-import type { GameRef, GameUrlProps } from "./types";
+import type { GameRef, TGameUrlProps } from "./types";
 
 // isNativeByUserAgent @lukasz.kowalski
 // native app doesnt set window.native in game launch windows,
@@ -20,10 +20,16 @@ export const expandElementHeightToMatchItsParent = (iframeRef: GameRef) => {
   }
 };
 
-export const appendLobbyUrl = ({ url, paramsToAdd }: GameUrlProps): string => {
+export const appendToGameUrl = ({
+  url,
+  paramsToAdd,
+}: TGameUrlProps): string => {
   const urlObject = new URL(url);
   const urlParams = new URLSearchParams(urlObject.search);
-  paramsToAdd.forEach(param => urlParams.set(param.key, param.value));
+  // DecodeUriComponent below is needed to avoid duplicate encoding - https://stackoverflow.com/questions/59889140/different-output-from-encodeuricomponent-vs-urlsearchparams
+  paramsToAdd.forEach(param =>
+    urlParams.set(param.key, decodeURIComponent(param.value))
+  );
   const urlTrimmedHost = urlObject.toString().replace(urlObject.search, "");
 
   return `${urlTrimmedHost}?${urlParams.toString()}`;

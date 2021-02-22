@@ -3,7 +3,7 @@ import type { GameProviderModelProps, IframeMessageEvent } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export class PlayNGoMobileGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
@@ -12,7 +12,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     this.api.commands.resume = COMMANDS.RESUME;
     this.api.events.onGameRoundStart = EVENTS.ON_GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.ON_GAME_ROUND_END;
-    this.targetDomain = window.location.origin;
+    this.targetDomain = props.origin || window.location.origin;
 
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
@@ -21,7 +21,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
-    const encodedOrigin = encodeURIComponent(window.location.origin);
+    const encodedOrigin = encodeURIComponent(this.targetDomain);
 
     if (url) {
       const paramsToAdd = [
@@ -34,7 +34,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
       }
       return {
         ...super.componentProps,
-        src: appendLobbyUrl({
+        src: appendToGameUrl({
           url,
           paramsToAdd,
         }),

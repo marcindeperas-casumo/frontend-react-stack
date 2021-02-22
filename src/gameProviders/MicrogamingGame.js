@@ -3,7 +3,7 @@ import { ENVIRONMENTS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export const TARGET_DOMAINS = {
   [ENVIRONMENTS.TEST]: "https://mobile32.gameassists.co.uk",
@@ -38,7 +38,7 @@ export class MicrogamingGame extends BaseIframeGame {
       return {
         ...super.componentProps,
         src: !isEmbedded
-          ? appendLobbyUrl({
+          ? appendToGameUrl({
               url,
               paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
             })

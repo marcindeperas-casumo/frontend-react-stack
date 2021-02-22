@@ -1,7 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export const PUSH_GAME_EVENT_TYPE = Object.freeze({
   DISABLE: "disable",
@@ -44,7 +44,7 @@ export class PushGame extends BaseIframeGame {
     this.api.commands.resume = PUSH_GAME_COMMANDS.RESUME;
     this.api.events.onGameRoundStart = PUSH_GAME_EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = PUSH_GAME_EVENTS.GAME_ROUND_END;
-    this.targetDomain = window.location.origin;
+    this.targetDomain = props.origin || window.location.origin;
   }
 
   get componentProps() {
@@ -54,7 +54,7 @@ export class PushGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: appendLobbyUrl({
+        src: appendToGameUrl({
           url,
           paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
         }),

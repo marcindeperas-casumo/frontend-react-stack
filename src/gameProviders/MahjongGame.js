@@ -2,12 +2,12 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
-import { appendLobbyUrl } from "./utils";
+import { appendToGameUrl } from "./utils";
 
 export class MahjongGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
-    this.targetDomain = window.location.origin;
+    this.targetDomain = props.origin || window.location.origin;
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
@@ -18,7 +18,7 @@ export class MahjongGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: appendLobbyUrl({
+        src: appendToGameUrl({
           url,
           paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
         }),
