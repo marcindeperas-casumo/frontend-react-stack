@@ -25,7 +25,7 @@ const DEFAULT_API = {
 };
 
 export class BaseIframeGame extends BaseGame {
-  targetDomain: string = "*";
+  targetDomain: string = window.location.origin || "*";
   api: IframeGameApi = DEFAULT_API;
   messageGuard: Function;
 
@@ -41,7 +41,7 @@ export class BaseIframeGame extends BaseGame {
   }
 
   get eventBubblerUrl() {
-    return `${window.location.origin}/${EVENT_BUBBLER_PATH}`;
+    return `${this.origin}/${EVENT_BUBBLER_PATH}`;
   }
 
   get componentTag() {
