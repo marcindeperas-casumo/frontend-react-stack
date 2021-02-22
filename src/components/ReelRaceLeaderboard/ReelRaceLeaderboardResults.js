@@ -1,9 +1,8 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import cx from "classnames";
-import { useSelector } from "react-redux";
 import * as A from "Types/apollo";
+import { useGameActivityAwareLeaderboard } from "Models/reelRaces";
 import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
 
 import "./ReelRaceLeaderboardResults.scss";
@@ -90,13 +89,9 @@ export function ReelRaceLeaderboardResults({
 }: Props) {
   const listRef = React.useRef(null);
   const currentPositionRef = React.useRef(null);
-
-  const leaderboardOrder = useSelector(R.path(["reelRaces", "order"]));
-  const leaderboardObj = useSelector(R.path(["reelRaces", "leaderboard"]));
-  const leaderboard = leaderboardOrder.map(x => leaderboardObj[x]);
+  const leaderboard = useGameActivityAwareLeaderboard();
   const size = props.size || leaderboard.length;
-  const sorted = R.sortBy(R.prop("position"))(leaderboard);
-  const leaderboardSortedSliced = sorted.slice(0, size);
+  const leaderboardSliced = leaderboard.slice(0, size);
 
   const commonProps = {
     prizes,
@@ -132,11 +127,11 @@ export function ReelRaceLeaderboardResults({
       >
         <InnerList
           className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
-          items={leaderboardSortedSliced.slice(0, fixedRows)}
+          items={leaderboardSliced.slice(0, fixedRows)}
           {...commonProps}
         />
         <InnerList
-          items={leaderboardSortedSliced.slice(fixedRows)}
+          items={leaderboardSliced.slice(fixedRows)}
           {...commonProps}
         />
       </div>

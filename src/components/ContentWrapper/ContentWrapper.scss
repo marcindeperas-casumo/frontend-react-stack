@@ -1,0 +1,11 @@
+.c-content-wrapper {
+  box-sizing: border-box;
+
+  @include cudl-breakpoint(tablet) {
+    max-width: 766px;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    max-width: 1440px;
+  }
+}
