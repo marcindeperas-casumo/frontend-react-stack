@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: {
@@ -40,11 +41,25 @@ export class RelaxGame extends BaseIframeGame {
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
+      const paramsToAdd = [
+        { key: "fullscreen", value: "false" },
+        { key: "rcenable", value: "true" },
+      ];
+      if (!isEmbedded) {
+        // eslint-disable-next-line fp/no-mutating-methods
+        paramsToAdd.push({
+          key: "homeurl",
+          value: encodedLobbyUrl,
+        });
+      }
       return {
         ...super.componentProps,
-        src: `${url}${
-          !isEmbedded ? `&homeurl=${encodedLobbyUrl}` : ""
-        }&fullscreen=false&rcenable=true`,
+        src: !isEmbedded
+          ? appendToGameUrl({
+              url,
+              paramsToAdd,
+            })
+          : "",
       };
     }
 

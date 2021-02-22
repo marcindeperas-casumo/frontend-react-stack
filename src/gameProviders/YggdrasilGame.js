@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendToGameUrl } from "./utils";
 
 // ISSUES:
 // back to lobby and other urls are coming from backend
@@ -25,7 +26,12 @@ export class YggdrasilGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}${!isEmbedded ? `&lobby=${encodedLobbyUrl}` : ""}`,
+        src: !isEmbedded
+          ? appendToGameUrl({
+              url,
+              paramsToAdd: [{ key: "lobby", value: encodedLobbyUrl }],
+            })
+          : "",
       };
     }
 

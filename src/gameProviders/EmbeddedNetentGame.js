@@ -1,4 +1,5 @@
 import { BaseIframeGame } from "./BaseIframeGame";
+import { appendToGameUrl } from "./utils";
 
 export class EmbeddedNetentGame extends BaseIframeGame {
   get componentProps() {
@@ -12,7 +13,10 @@ export class EmbeddedNetentGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&parentOrigin=${urlData.origin}`,
+        src: appendToGameUrl({
+          url,
+          paramsToAdd: [{ key: "parentOrigin", value: urlData.origin }],
+        }),
       };
     }
 
