@@ -45,10 +45,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
     navigateToDeposit();
   };
 
-  if (!t || !playerBalance) {
-    return null;
-  }
-
   return (
     <BalanceBetSlip
       t={t}
