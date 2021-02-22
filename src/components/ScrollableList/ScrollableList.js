@@ -7,13 +7,8 @@ import type {
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-
+import { horizontalListsDevicePaddings } from "Src/constants";
 export const DEFAULT_SPACING = "default";
-export const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
-};
 
 type Props = {
   title?: ?string,
@@ -51,7 +46,7 @@ export default class ScrollableList extends React.PureComponent<Props> {
     }
 
     return (
-      <div className="u-padding-top--xlg">
+      <div>
         {title && (
           <ScrollableListTitleRow
             paddingLeft
@@ -66,7 +61,7 @@ export default class ScrollableList extends React.PureComponent<Props> {
           keyGetter={this.keyGetter}
           itemRenderer={itemRenderer}
           itemClassName={itemClassName}
-          padding={PADDING_PER_DEVICE}
+          padding={horizontalListsDevicePaddings}
           itemSpacing={spacing}
         />
       </div>
