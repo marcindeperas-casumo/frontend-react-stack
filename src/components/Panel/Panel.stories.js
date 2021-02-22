@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import { boolean } from "@storybook/addon-knobs/react";
 import { Panel } from "./Panel";
 
 const stories = storiesOf("Panel", module).addParameters({
@@ -12,6 +13,11 @@ const Wrapper = ({ children }) => (
 
 stories.add("Default", () => (
   <Wrapper>
-    <Panel>contents</Panel>
+    <Panel
+      roundedTop={boolean("Rounded Top?", false)}
+      roundedBottom={boolean("Rounded Bottom?", false)}
+    >
+      contents
+    </Panel>
   </Wrapper>
 ));

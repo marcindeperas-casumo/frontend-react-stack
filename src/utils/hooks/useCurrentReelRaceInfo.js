@@ -27,6 +27,7 @@ export type CurrentReelRaceInfo = {
   points: number,
   remainingSpins: number,
   isInProgress: boolean,
+  optedIn: boolean,
   hasEnded: boolean,
   tournamentId: ?string,
   formattedPrizes: Array<string>,
@@ -36,6 +37,7 @@ export type CurrentReelRaceInfo = {
 
 type CreateCurrentReelRaceDataType = {
   id?: ?string,
+  optedIn?: boolean,
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
@@ -64,6 +66,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   points: 0,
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
+  optedIn: false,
   hasEnded: false,
   tournamentId: null,
   formattedPrizes: [],
@@ -102,6 +105,7 @@ export const createCurrentReelRaceData = (
     leaderboard,
     formattedPrizes,
     game,
+    optedIn,
     cometdChannels,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
@@ -109,6 +113,7 @@ export const createCurrentReelRaceData = (
     leaderboard: {},
     formattedPrizes: [],
     game: null,
+    optedIn: false,
     id: null,
     cometdChannels: [],
   }
@@ -132,7 +137,7 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
-
+    optedIn,
     isInProgress: Boolean(
       startTime &&
         startTime >= 0 &&
@@ -297,6 +302,8 @@ export function useCurrentReelRaceInfo(
             formattedPrizes: localCurrentReelRace.formattedPrizes,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             cometdChannels: localCurrentReelRace.cometdChannels,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            optedIn: localCurrentReelRace.optedIn,
           })
         );
 

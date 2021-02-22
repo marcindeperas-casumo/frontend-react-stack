@@ -12,8 +12,10 @@ import * as React from "react";
 export function useCallOnce(cond: any, fn: void => any) {
   const ref = React.useRef(false);
 
-  if (!ref.current && cond) {
-    ref.current = true; // eslint-disable-line fp/no-mutation
-    fn();
-  }
+  React.useEffect(() => {
+    if (!ref.current && cond) {
+      ref.current = true; // eslint-disable-line fp/no-mutation
+      fn();
+    }
+  });
 }
