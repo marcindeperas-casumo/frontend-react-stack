@@ -91,7 +91,7 @@ export type DepositLimitsHistoryType = Array<{
 export type DepositLimitsReduxStore = {|
   limits: ?AllLimits,
   preadjust: ?DepositLimitPreadjust,
-  lock: ?ISO8601DateTime,
+  lock: ?LimitLock,
   undoable: ?boolean,
   remaining: ?AllLimitsOnlyValues,
   responsibleGamblingTest: ?ResponsibleGamblingTest,
@@ -104,7 +104,7 @@ type LimitAdjustmentState = {
   limit?: {
     value: AllLimits,
   },
-  lock?: { expiresOn: ISO8601DateTime },
+  lock?: LimitLock,
 };
 export type LimitAdjustmentHistory = {
   id: string,

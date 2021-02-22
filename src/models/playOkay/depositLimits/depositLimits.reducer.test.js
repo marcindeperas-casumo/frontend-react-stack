@@ -10,7 +10,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         value: "1.limit.value",
       },
       undoable: true,
-      lock: false,
+      lock: null,
       responsibleGamblingTest: undefined,
     };
     const action = {
