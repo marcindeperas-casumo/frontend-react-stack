@@ -1,6 +1,7 @@
 // @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { appendLobbyUrl } from "./utils";
 
 export const PUSH_GAME_EVENT_TYPE = Object.freeze({
   DISABLE: "disable",
@@ -53,7 +54,10 @@ export class PushGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+        src: appendLobbyUrl({
+          url,
+          paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+        }),
       };
     }
 

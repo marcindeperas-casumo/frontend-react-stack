@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendLobbyUrl } from "./utils";
 
 export class MahjongGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
@@ -17,7 +18,10 @@ export class MahjongGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+        src: appendLobbyUrl({
+          url,
+          paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+        }),
       };
     }
 

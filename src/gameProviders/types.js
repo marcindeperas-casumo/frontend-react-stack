@@ -70,3 +70,13 @@ export type GameProviderModel = {
   pauseGame: () => Promise<void>,
   resumeGame: () => {},
 };
+
+export type GameUrlParams = {
+  key: string,
+  value: string,
+};
+
+export type GameUrlProps = {
+  url: string,
+  paramsToAdd: Array<GameUrlParams>,
+};

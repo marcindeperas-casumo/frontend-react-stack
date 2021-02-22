@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendLobbyUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: { eventid: "pausegame" },
@@ -32,7 +33,12 @@ export class ThunderkickGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}${!isEmbedded ? `&lobbyUrl=${encodedLobbyUrl}` : ""}`,
+        src: !isEmbedded
+          ? appendLobbyUrl({
+              url,
+              paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+            })
+          : "",
       };
     }
 

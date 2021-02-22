@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendLobbyUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: {
@@ -35,13 +36,31 @@ export class CasumoGame extends BaseIframeGame {
     const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
-
+    // eslint-disable-next-line no-console
+    console.log("PUFTA ", url);
     if (url) {
+      const paramsToAdd = [
+        {
+          key: "iframeUrl",
+          value: encodedEventBubblerUrl,
+        },
+      ];
+      if (!isEmbedded) {
+        // eslint-disable-next-line fp/no-mutating-methods
+        paramsToAdd.push({
+          key: "lobbyUrl",
+          value: encodedLobbyUrl,
+        });
+      }
       return {
         ...super.componentProps,
-        src: `${url}${
-          !isEmbedded ? `&lobbyUrl=${encodedLobbyUrl}` : ""
-        }&iframeUrl=${encodedEventBubblerUrl}`,
+
+        src: !isEmbedded
+          ? appendLobbyUrl({
+              url,
+              paramsToAdd,
+            })
+          : "",
       };
     }
 

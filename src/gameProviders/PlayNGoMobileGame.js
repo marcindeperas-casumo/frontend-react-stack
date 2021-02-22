@@ -3,6 +3,7 @@ import type { GameProviderModelProps, IframeMessageEvent } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendLobbyUrl } from "./utils";
 
 export class PlayNGoMobileGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
@@ -23,11 +24,20 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     const encodedOrigin = encodeURIComponent(window.location.origin);
 
     if (url) {
+      const paramsToAdd = [
+        { key: "iframeoverlay", value: encodedEventBubblerUrl },
+        { key: "origin", value: encodedOrigin },
+      ];
+      if (!isEmbedded) {
+        // eslint-disable-next-line fp/no-mutating-methods
+        paramsToAdd.push({ key: "lobby", value: encodedLobbyUrl });
+      }
       return {
         ...super.componentProps,
-        src: `${url}${
-          !isEmbedded ? `&lobby=${encodedLobbyUrl}` : ""
-        }&iframeoverlay=${encodedEventBubblerUrl}&origin=${encodedOrigin}`,
+        src: appendLobbyUrl({
+          url,
+          paramsToAdd,
+        }),
       };
     }
 

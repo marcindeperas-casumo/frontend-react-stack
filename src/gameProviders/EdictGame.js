@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendLobbyUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: "pauseGame",
@@ -34,7 +35,12 @@ export class EdictGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}${!isEmbedded ? `&referrerUrl=${encodedLobbyUrl}` : ""}`,
+        src: !isEmbedded
+          ? appendLobbyUrl({
+              url,
+              paramsToAdd: [{ key: "referrerUrl", value: encodedLobbyUrl }],
+            })
+          : "",
       };
     }
 
