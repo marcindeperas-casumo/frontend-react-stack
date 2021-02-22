@@ -204,7 +204,9 @@ describe("Models/playOkay/depositLimits/.selectors", () => {
     expect(
       canIncreaseLimitsSelector({
         playOkay: {
-          depositLimits: { lock: "2019-07-31T20:04:23.048184+02:00" },
+          depositLimits: {
+            lock: { expiresOn: "2019-07-31T20:04:23.048184+02:00" },
+          },
         },
       })
     ).toEqual(false);
