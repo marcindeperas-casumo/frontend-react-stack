@@ -8,6 +8,7 @@ import { GameTileContainer as GameTile } from "Components/GameTile/GameTileConta
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "./GameListHorizontalDefault.scss";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 export type Props = {
   list: A.GameListQuery_gamesList,
@@ -32,25 +33,23 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
   };
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <ScrollableList
-            itemClassName="c-top-game"
-            itemRenderer={i => <GameTile game={games[i]} />}
-            items={games}
-            title={name}
-          />
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            title={name}
-            itemCount={games.length}
-            itemRenderer={itemRenderer}
-            tileHeight={192}
-          />
-        </Desktop>
-      </div>
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        <ScrollableList
+          itemClassName="c-top-game"
+          itemRenderer={i => <GameTile game={games[i]} />}
+          items={games}
+          title={name}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          title={name}
+          itemCount={games.length}
+          itemRenderer={itemRenderer}
+          tileHeight={192}
+        />
+      </Desktop>
     </div>
   );
 };

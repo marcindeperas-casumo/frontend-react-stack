@@ -2,18 +2,12 @@
 import React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
-import { createModifierClasses } from "@casumo/cudl-react-utils";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
 import DangerousHtml from "Components/DangerousHtml";
-
-const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
-};
+import { leftPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
   /** The text to show */
@@ -29,13 +23,7 @@ export default function ScrollableListTitle({
   paddingLeft,
   paddingPerDevice,
 }: Props) {
-  const paddingLeftClasses = cx(
-    paddingLeft &&
-      createModifierClasses(
-        "u-padding-left",
-        paddingPerDevice || PADDING_PER_DEVICE
-      )
-  );
+  const paddingLeftClasses = cx(paddingLeft && leftPaddingClasses);
 
   return (
     <Text
