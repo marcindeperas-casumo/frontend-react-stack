@@ -2,9 +2,9 @@
 export type DepositKinds = "daily" | "weekly" | "monthly";
 export type LimitChangeType = "unchanged" | "increase" | "decrease" | "removed";
 export type AllLimitsOnlyValues = {
-  daily: ?number,
-  monthly: ?number,
-  weekly: ?number,
+  daily?: ?number,
+  monthly?: ?number,
+  weekly?: ?number,
 };
 export type AllLimits = {
   currency: string,
