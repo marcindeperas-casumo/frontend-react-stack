@@ -8,6 +8,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
+import { promotionsTileHeight } from "Src/constants";
 
 type Props = A.PromotionsListQuery_promotionsList & {
   seeMoreText: string,
@@ -49,7 +50,7 @@ export const PromotionCardList = ({
           title={name}
           itemCount={promotions.length}
           itemRenderer={itemRenderer}
-          tileHeight={318}
+          tileHeight={promotionsTileHeight}
           seeMore={{
             text: seeMoreText,
             url: seeMoreUrl,
