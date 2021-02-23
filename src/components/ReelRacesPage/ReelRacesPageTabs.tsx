@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
@@ -8,8 +7,9 @@ import type {
   TReelRacesContentPage,
   TReelRaceTabs,
 } from "./ReelRacesPageContainer";
+
 type Props = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
   activeTab: string,
   setActiveTab: (tab: TReelRaceTabs) => void,
 };

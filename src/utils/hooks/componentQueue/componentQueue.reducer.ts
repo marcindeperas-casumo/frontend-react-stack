@@ -1,4 +1,3 @@
-// @flow
 import { ACTION_TYPES } from "./componentQueue.constants";
 import type { TQueueReducer, TQueueAction } from "./componentQueue.actions";
 import type {

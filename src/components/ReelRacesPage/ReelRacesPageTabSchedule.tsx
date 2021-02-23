@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { slice, concat } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
@@ -9,7 +8,7 @@ import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
 const PAGE_LIMIT = 10;
 
 type TProps = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
   reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
   cardComponent: Function,
 };

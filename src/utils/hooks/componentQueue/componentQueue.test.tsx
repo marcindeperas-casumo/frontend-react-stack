@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 import { shallow, mount } from "enzyme";

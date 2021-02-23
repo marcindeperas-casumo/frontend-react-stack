@@ -1,4 +1,3 @@
-// @flow
 export {
   DATA_STRUCTURE,
   ACTION_TYPES as QUEUE_ACTION_TYPES,

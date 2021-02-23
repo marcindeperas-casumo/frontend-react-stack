@@ -1,11 +1,10 @@
-// @flow
 import * as React from "react";
 import { ReelRacePreviousCard } from "Components/ReelRacePreviousCard/ReelRacePreviousCard";
 import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 
 type Props = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
   reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
 };
 

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { filter, propEq, anyPass } from "ramda";
 import { useLazyQuery } from "@apollo/client";
@@ -10,7 +9,7 @@ import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabSchedule } from "./ReelRacesPageTabSchedule";
 
 type Props = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
 };
 
 export function ReelRacesPageTabScheduleContainer({ t }: Props) {

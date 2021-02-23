@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { FEATURE_FLAGS, VERTICALS } from "Src/constants";
 import {

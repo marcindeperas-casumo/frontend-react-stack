@@ -1,11 +1,10 @@
-// @flow
-import type { Element } from "react";
+import * as React from "react";
 import type { TQueueActionPayload } from "./componentQueue.actions";
 import { DATA_STRUCTURE } from "./componentQueue.constants";
 
 export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
 
-export type TComponentQueueItemContent = string | (() => Element<*>);
+export type TComponentQueueItemContent = string | (() => React.ReactNode);
 
 export type TComponentQueueConfigSettings = {
   priority?: number,

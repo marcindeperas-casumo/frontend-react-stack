@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import ReelRacesBanner from "Components/ReelRacesBanner";

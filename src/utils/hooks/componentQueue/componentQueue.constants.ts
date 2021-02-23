@@ -1,8 +1,7 @@
-// @flow
 export const DATA_STRUCTURE = {
   QUEUE: "QUEUE",
   STACK: "STACK",
-};
+} as const;
 
 export const ACTION_TYPES = {
   PUSH: "QUEUE/PUSH",
@@ -10,4 +9,4 @@ export const ACTION_TYPES = {
   SHIFT: "QUEUE/SHIFT",
   UNSHIFT: "QUEUE/UNSHIFT",
   CLEAR: "QUEUE/CLEAR",
-};
+} as const;

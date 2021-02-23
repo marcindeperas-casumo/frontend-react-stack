@@ -1,7 +1,5 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
-// __FIX__ Why can't it resolve "Components/CuratedCard"?
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 import { MARKETS } from "Src/constants";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";

@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
@@ -7,7 +6,7 @@ import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabPrevious } from "./ReelRacesPageTabPrevious";
 
 type Props = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
 };
 
 export function ReelRacesPageTabPreviousContainer({ t }: Props) {

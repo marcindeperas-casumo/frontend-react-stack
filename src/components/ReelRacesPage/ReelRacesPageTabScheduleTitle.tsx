@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -11,9 +10,9 @@ const THIRTY_MINUTES = 30 * 60 * 1000;
 const ONE_HOUR = 60 * 60 * 1000;
 
 type Props = {
-  t: ?TReelRacesContentPage,
+  t: TReelRacesContentPage | null,
   startTime: number,
-  status: ?string,
+  status: string | null,
 };
 
 export function ReelRacesPageTabScheduleTitle({ t, startTime, status }: Props) {
