@@ -1,4 +1,3 @@
-// @flow
 import http from "Lib/http";
 import type {
   AdventurerProgressionRaw,
@@ -10,9 +9,9 @@ export const URL = {
   ADVENTURE: "/api/common/query/gamification/adventure",
 };
 
-type ReqParams = {|
+type ReqParams = {
   playerId: string,
-|};
+};
 
 export const getAdventurerDetailsReq = ({
   playerId,

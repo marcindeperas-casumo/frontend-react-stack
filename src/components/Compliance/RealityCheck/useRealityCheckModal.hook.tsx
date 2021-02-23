@@ -21,9 +21,11 @@ export function useRealityCheckModal({ pauseGame, resumeGame }: Props) {
     if (!isEmpty(realityCheck)) {
       if (pauseGame) {
         pauseGame().then(() => {
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
           dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
         });
       } else {
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
         dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
       }
     }

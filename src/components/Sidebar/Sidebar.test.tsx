@@ -8,6 +8,7 @@ describe("Sidebar", () => {
   test("should render casumo link", () => {
     const rendered = mount(
       <MockStore>
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'logout' is missing in type '{ username: ... Remove this comment to see the full error message */}
         <Sidebar username="Sumo20" wallet="£987.65" bonus="+ £55.03 Bonus" />
       </MockStore>
     );
@@ -17,6 +18,7 @@ describe("Sidebar", () => {
   test("should render menu rows", () => {
     const rendered = mount(
       <MockStore>
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'logout' is missing in type '{ username: ... Remove this comment to see the full error message */}
         <Sidebar username="Sumo20" wallet="£987.65" bonus="+ £55.03 Bonus" />
       </MockStore>
     );

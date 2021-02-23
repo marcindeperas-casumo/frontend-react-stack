@@ -16,8 +16,10 @@ import {
 describe("GameDetailsMedia", () => {
   test("should return null unknown media types", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2786) FIXME: 'GameDetailsMedia' cannot be used as a JSX compone... Remove this comment to see the full error message
       <GameDetailsMedia
         media={[
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'order' is missing in type '{ type: strin... Remove this comment to see the full error message
           {
             type: "video",
             path: "/my/cool/video.mp4",
@@ -29,12 +31,15 @@ describe("GameDetailsMedia", () => {
   });
   test("should return ImageLazy for each image", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2786) FIXME: 'GameDetailsMedia' cannot be used as a JSX compone... Remove this comment to see the full error message
       <GameDetailsMedia
         media={[
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'order' is missing in type '{ type: strin... Remove this comment to see the full error message
           {
             type: "image",
             path: "/my/best/cat.gif",
           },
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'order' is missing in type '{ type: strin... Remove this comment to see the full error message
           {
             type: "image",
             path: "/my/favourite/dog.jpg",
@@ -54,6 +59,7 @@ describe("GameDetailsButtons", () => {
   };
   test("should display play and practice buttons if hasPlayForFun", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'name' is missing in type '{ hasPlayForFu... Remove this comment to see the full error message
       <GameDetailsButtons {...props} hasPlayForFun={true} />
     );
     expect(rendered.find(ButtonPrimary).length).toBe(1);
@@ -62,6 +68,7 @@ describe("GameDetailsButtons", () => {
 
   test("should only display play button if not hasPlayForFun", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'name' is missing in type '{ hasPlayForFu... Remove this comment to see the full error message
       <GameDetailsButtons {...props} hasPlayForFun={false} />
     );
     expect(rendered.find(ButtonPrimary).length).toBe(1);

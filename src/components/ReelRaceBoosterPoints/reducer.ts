@@ -16,7 +16,9 @@ type TState = {
 };
 
 type TActions =
+  // @ts-expect-error ts-migrate(2749) FIXME: 'UPDATE_ANIMATION' refers to a value, but is being... Remove this comment to see the full error message
   | { type: UPDATE_ANIMATION, payload: TAnimationState }
+  // @ts-expect-error ts-migrate(2749) FIXME: 'UPDATE_PREV_VALUES' refers to a value, but is bei... Remove this comment to see the full error message
   | { type: UPDATE_PREV_VALUES, payload: TBoostersState };
 
 export type TBoostersState = {

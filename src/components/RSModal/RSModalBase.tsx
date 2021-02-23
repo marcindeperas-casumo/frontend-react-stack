@@ -8,6 +8,7 @@ import "./rsmodals.scss";
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
 type Props = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   mustAccept: boolean,
   isOpen: boolean,
@@ -26,6 +27,7 @@ export function ModalBase({
   return (
     <ReactModal
       isOpen={isOpen}
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       onRequestClose={onRequestClose}
       className={classNames(
         "t-background-white o-flex--vertical c-rsmodal u-overflow--hidden",

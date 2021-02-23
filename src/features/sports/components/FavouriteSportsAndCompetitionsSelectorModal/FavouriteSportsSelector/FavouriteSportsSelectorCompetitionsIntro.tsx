@@ -9,6 +9,7 @@ const FavouriteSportsSelectorCompetitionsIntro = ({
   onAdd,
 }: {
   onAdd: () => void,
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 }): React.Node => (
   <Flex
     direction="horizontal"

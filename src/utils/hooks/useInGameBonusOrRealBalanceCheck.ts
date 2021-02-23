@@ -24,6 +24,7 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
       // Positive bonus balance - show modal once
       if (bonusAmount && !bonusBalanceModalShown) {
         dispatch(
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
           showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
             mustAccept: false,
             type: WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING,
@@ -37,6 +38,7 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
         !realBalanceModalShown
       ) {
         dispatch(
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
           showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
             mustAccept: false,
             type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING,

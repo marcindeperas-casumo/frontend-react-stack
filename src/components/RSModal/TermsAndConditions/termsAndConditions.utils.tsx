@@ -68,6 +68,7 @@ export function createVersionDateFormatter(data: {
   };
 }
 /*:: const __createVersionDateFormatter = createVersionDateFormatter({}); */
+// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__createVersionDateFormatter'. D... Remove this comment to see the full error message
 export type VersionDateFormatter = typeof __createVersionDateFormatter;
 
 export function createVersionFormatter(data: {
@@ -104,6 +105,7 @@ export function createVersionFormatter(data: {
   };
 }
 /*:: const __createVersionFormatter = createVersionFormatter({}); */
+// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__createVersionFormatter'. Did y... Remove this comment to see the full error message
 export type VersionFormatter = typeof __createVersionFormatter;
 
 export function parseTableOfContents(content: string) {

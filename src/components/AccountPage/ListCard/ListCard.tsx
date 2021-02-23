@@ -15,9 +15,12 @@ type TProps = {
     label: string,
     url: string,
   },
-  children: React.Node,
+  children: React.ReactChild,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Diff'.
   panelProps?: $Diff<
+    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'ElementP... Remove this comment to see the full error message
     React.ElementProps<typeof Panel>,
+    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
     { children: React.Node }
   >,
 };

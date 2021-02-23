@@ -47,6 +47,7 @@ describe("handleLinkedEntries", () => {
     const mockElem = { getAttribute: () => "mock-term" };
     const mockEvent = createMockEvent(mockElem);
 
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ getAttribute: () => string; }' is missing ... Remove this comment to see the full error message
     jest.spyOn(document, "querySelector").mockImplementation(() => mockElem);
 
     rendered.instance();
@@ -80,6 +81,7 @@ describe("scrollToTerm", () => {
     jest.spyOn(instance, "scrollToTerm");
 
     jest.spyOn(document, "documentElement", "get").mockImplementation(() => ({
+      // @ts-expect-error ts-migrate(2740) FIXME: Type '{ getPropertyValue: Mock<any, any>; }' is mi... Remove this comment to see the full error message
       style: {
         getPropertyValue: jest.fn(),
       },
@@ -87,6 +89,7 @@ describe("scrollToTerm", () => {
 
     jest
       .spyOn(window.document, "querySelectorAll")
+      // @ts-expect-error ts-migrate(2740) FIXME: Type '{ classList: { remove: Mock<any, any>; }; }'... Remove this comment to see the full error message
       .mockImplementation(() => [mockElem, mockElem, mockElem]);
 
     jest.spyOn(window.document, "querySelector").mockImplementation(() => elem);

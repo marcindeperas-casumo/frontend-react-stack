@@ -10,12 +10,14 @@ import {
 
 export function useGameCategory(slug: string) {
   const dispatch = useDispatch();
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   const [gameCategory, setGameCategory] = React.useState<?string>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const storedCategory = useSelector(slugToCategorySelector(slug), R.equals);
 
   React.useEffect(() => {
     if (storedCategory && loading) {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
       setGameCategory(storedCategory);
       setLoading(false);
     }

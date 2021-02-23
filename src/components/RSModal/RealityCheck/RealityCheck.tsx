@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { RealityCheckContainer } from "Components/Compliance/RealityCheck";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
 import { type ModalContentComponent } from "Components/RSModal";
 import { RealityCheckModalLayout } from "./RealityCheckModalLayout";
 

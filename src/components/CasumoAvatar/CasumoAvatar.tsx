@@ -3,7 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
-import { type BeltType, isMaxLevel } from "Models/adventure";
+import { BeltType, isMaxLevel } from "Models/adventure";
 import { beltToColorMap } from "./beltUtils";
 import SumoAvatar from "./sumo-avatar.svg";
 import SumoAvatarSm from "./sumo-avatar-sm.svg";

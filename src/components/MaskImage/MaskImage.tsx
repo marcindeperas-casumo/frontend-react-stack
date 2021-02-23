@@ -12,6 +12,7 @@ type Props = {
   /** Class name to attach to the masked item */
   className?: string,
   /** The mask shape/s to clip the image */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   /** The url of the image to be nasked */
   imageUrl: string,

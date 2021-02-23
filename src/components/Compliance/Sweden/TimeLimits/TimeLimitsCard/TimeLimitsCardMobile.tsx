@@ -4,6 +4,7 @@ import { Duration as LuxonDuration } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { interpolateWithJSX } from "Utils";
+// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
 import { type LoginTimeLimit } from "Models/playOkay";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";

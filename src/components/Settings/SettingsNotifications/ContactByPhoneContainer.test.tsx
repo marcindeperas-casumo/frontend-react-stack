@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ContactByPhone.graphql' or i... Remove this comment to see the full error message
 import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
 import { actWithClick, isCheckboxChecked } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";

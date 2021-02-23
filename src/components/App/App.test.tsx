@@ -18,6 +18,7 @@ describe("App", () => {
     const fn = jest.fn();
     mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{ onAppStarted: Mock<any, any>; }' is missin... Remove this comment to see the full error message */}
         <App onAppStarted={fn} />
       </Provider>
     );
@@ -27,6 +28,7 @@ describe("App", () => {
   test("does not render anything if app handshake is not loaded", () => {
     const rendered = mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{ onAppStarted: () => void; }' is missing th... Remove this comment to see the full error message */}
         <App onAppStarted={() => {}} />
       </Provider>
     );
@@ -38,6 +40,7 @@ describe("App", () => {
 
     mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; subscribeToUpdat... Remove this comment to see the full error message */}
         <App
           onAppStarted={() => {}}
           subscribeToUpdates={subscribeFn}
@@ -52,6 +55,7 @@ describe("App", () => {
   test("renders <AppLoS /> if not isAuthenticated", () => {
     const rendered = mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; isAppHandshakeLo... Remove this comment to see the full error message */}
         <App onAppStarted={() => {}} isAppHandshakeLoaded />
       </Provider>
     );
@@ -61,6 +65,7 @@ describe("App", () => {
   test("renders <AppLiS /> if isAuthenticated", () => {
     const rendered = mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; isAppHandshakeLo... Remove this comment to see the full error message */}
         <App
           onAppStarted={() => {}}
           isAppHandshakeLoaded
@@ -75,11 +80,12 @@ describe("App", () => {
     const fn = jest.fn();
     const rendered = mount(
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: Mock<any, any>; isAppHandsha... Remove this comment to see the full error message */}
         <App onAppStarted={fn} isAppHandshakeLoaded />
       </Provider>
     );
 
-    act(() => bridge.emit(REACT_APP_EVENT_ON_LOGIN));
+    act(() => bridge.emit(REACT_APP_EVENT_ON_LOGIN, {}));
     rendered.update();
 
     expect(fn).toHaveBeenCalledTimes(2);

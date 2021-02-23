@@ -13,6 +13,7 @@ const groupedLiveCasinoGames = [
 describe("<LiveCasinoDetailPage />", () => {
   test("renders correctly", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ title: string; games: string[]; }[]' is no... Remove this comment to see the full error message
       <LiveCasinoDetailPage groupedLiveCasinoGames={groupedLiveCasinoGames} />
     );
     // Two titles...

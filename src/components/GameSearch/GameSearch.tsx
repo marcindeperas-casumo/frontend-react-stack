@@ -35,6 +35,7 @@ type Props = {
   },
   inputPromptPlaceholder: string,
   clearSearch: () => {},
+  // @ts-expect-error ts-migrate(2368) FIXME: Type parameter name cannot be 'any'.
   fetchMoreRows: Function => Promise<any>,
   queryChanged: (query: string) => {},
 };
@@ -47,6 +48,7 @@ const GameMaintenanceText = () => {
 
   return (
     <Text className="u-padding-top--sm t-color-grey-70" size="sm">
+      {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'gameInMaintenanceText' does not exist on... Remove this comment to see the full error message */}
       {t.gameInMaintenanceText}
     </Text>
   );
@@ -86,6 +88,7 @@ const SectionTitle = props => (
 const RenderResults = ({ query, ...rest }) => (
   <GamesVirtualList
     renderItem={gameRowHighlightSearch(query)}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ renderItem: (game: any) => Element; render... Remove this comment to see the full error message
     renderTitle={title => <GamesVirtualListTitle title={title} />}
     {...rest}
   />

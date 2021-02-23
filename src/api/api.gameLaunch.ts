@@ -1,4 +1,3 @@
-// @flow
 import clientHttp from "Lib/http";
 import { getDeveloperOptions } from "Utils/developerOptions";
 

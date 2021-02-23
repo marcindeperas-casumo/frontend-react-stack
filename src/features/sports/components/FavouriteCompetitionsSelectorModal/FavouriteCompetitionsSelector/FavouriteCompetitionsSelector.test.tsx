@@ -20,8 +20,11 @@ const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
 describe("isOrphanGroup", () => {
   test("should return true for orphaned groups", () => {
     const orphanedGroups = [
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ groups: undefined; }' is not a... Remove this comment to see the full error message
       isOrphanGroup({ groups: undefined }),
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ groups: null; }' is not assign... Remove this comment to see the full error message
       isOrphanGroup({ groups: null }),
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ groups: undefined[]; }' is not... Remove this comment to see the full error message
       isOrphanGroup({ groups: [] }),
     ];
 
@@ -29,6 +32,7 @@ describe("isOrphanGroup", () => {
   });
 
   test("should return false for non-orphaned groups", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Favourite... Remove this comment to see the full error message
     const orphanGroup = isOrphanGroup({ groups: ["non-empty-array"] });
     expect(orphanGroup).toBe(false);
   });
@@ -37,6 +41,7 @@ describe("isOrphanGroup", () => {
 describe("isPopularGroup", () => {
   test("should return true for a popular group", () => {
     const popularGroup = isPopularGroup({
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: true; }' is missing the following... Remove this comment to see the full error message
       groups: [{ popular: true }, { popular: false }],
     });
     expect(popularGroup).toBe(true);
@@ -45,13 +50,18 @@ describe("isPopularGroup", () => {
   test("should return false for a non-popular group", () => {
     const unpopularGroups = isPopularGroup({
       groups: [
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'boolean'.
         { popular: "true" },
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: null; }' is missing the following... Remove this comment to see the full error message
         { popular: null },
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: undefined; }' is missing the foll... Remove this comment to see the full error message
         { popular: undefined },
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'boolean'.
         { popular: 42 },
       ],
     });
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'boolean' is not assignable to pa... Remove this comment to see the full error message
     expect(all(equals(false), unpopularGroups)).toBe(true);
   });
 });
@@ -69,6 +79,7 @@ describe("transformOrphanGroup", () => {
       {},
     ];
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(group: A.FavouriteCompetitionsS... Remove this comment to see the full error message
     const transformedOrphanGroups = orphanGroups.map(transformOrphanGroup);
 
     expect(transformedOrphanGroups).toEqual([
@@ -95,6 +106,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
   test("should render a region competition selector for each region group, and group all leaf regions into a single group", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ groupId: number; isCompetitionSelected: ()... Remove this comment to see the full error message */}
         <FavouriteCompetitionsSelector
           groupId={1}
           isCompetitionSelected={F}
@@ -114,6 +126,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
   test("should render the first region as expanded", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ groupId: number; isCompetitionSelected: ()... Remove this comment to see the full error message */}
         <FavouriteCompetitionsSelector
           groupId={1}
           isCompetitionSelected={F}
@@ -137,6 +150,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
     const isCompetitionSelected = jest.fn();
     const rendered = mount(
       <MockedProvider mocks={mocks}>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ groupId: number; isCompetitionSelected: Mo... Remove this comment to see the full error message */}
         <FavouriteCompetitionsSelector
           groupId={1}
           isCompetitionSelected={isCompetitionSelected}

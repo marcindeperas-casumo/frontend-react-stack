@@ -75,6 +75,7 @@ stories.add("Default", () => {
           <Wrapper withBg={false}>
             <ReelRaceIcon
               onClick={action("clicked")}
+              // @ts-expect-error ts-migrate(2740) FIXME: Type '{ position: any; remainingSpins: any; points... Remove this comment to see the full error message
               currentRace={getCurrentRace()}
             />
           </Wrapper>

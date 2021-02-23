@@ -16,6 +16,7 @@ const GameSetChip = ({
   text,
   to,
 }: {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Stateles... Remove this comment to see the full error message
   Icon: React.StatelessFunctionalComponent<any>,
   text: string,
   to: string,

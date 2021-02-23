@@ -8,8 +8,11 @@ import TimeLimitIcon from "./timeLimit.svg";
 
 type Props = {
   t: {
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     form_intro_header: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     form_intro_copy: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     form_intro_cta: ?string,
   },
   onClickCta: () => void,

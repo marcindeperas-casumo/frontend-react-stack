@@ -19,6 +19,7 @@ type Props = {
 const GameProviderAvatar = ({
   logo,
   background,
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ w: number; h: number; markalign: string; }... Remove this comment to see the full error message
   imgixOpts = { w: 160, h: 160, markalign: "middle" },
   ...rest
 }: Props) => {

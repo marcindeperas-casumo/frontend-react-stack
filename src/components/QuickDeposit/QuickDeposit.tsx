@@ -9,8 +9,11 @@ import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
 export type QuickDepositTranslations = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   bonus_title: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   balance_title: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   cashier_link_text: ?string,
 };
 
@@ -42,13 +45,17 @@ export const QuickDeposit = ({
     return null;
   }
   const cashierLinkClickHandler = () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED);
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED);
     onCashierLinkClick();
   };
 
   const currencySymbolClickHandler = () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_CASHIER_LINK_CLICKED);
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED);
     onQuickDepositLinkClick();
   };

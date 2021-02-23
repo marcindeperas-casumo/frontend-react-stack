@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { Link } from "@reach/router";
 import classNames from "classnames";

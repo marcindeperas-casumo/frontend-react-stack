@@ -7,12 +7,19 @@ import Icon from "./icon.svg";
 type TProps = {
   balance: number,
   firstDeposit: boolean,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   BalanceHeader: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   Balance: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   FirstDepositHeader: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   FirstDepositDesc: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   Bonus: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   DepositLabel: () => React.Node | string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   WithdrawLabel: () => React.Node | string,
   onDeposit: () => any,
   onWithdraw: () => any,

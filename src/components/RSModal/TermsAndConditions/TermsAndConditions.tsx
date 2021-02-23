@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalLoadingState,
   ModalAcknowledgment,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
   type ModalContentComponent,
 } from "Components/RSModal";
 import { HistoryView } from "./HistoryView";
@@ -78,6 +79,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
   const formatVersionDate = createVersionDateFormatter({
     acks,
     t,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ acks: any; t: any; locale: any... Remove this comment to see the full error message
     locale,
   });
   const formatVersion = createVersionFormatter({ acks, t });
@@ -104,6 +106,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
           formatVersionDate={formatVersionDate}
           formatVersion={formatVersion}
           setVersion={(v: number) => {
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             setVersion(v);
             setHistoryView(false);
           }}
@@ -127,6 +130,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
       {!isLatestVersion && (
         <ArchivedVersionHeader
           onClick={() => {
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             setVersion(acks.last.version);
             setHistoryView(false);
           }}
@@ -137,6 +141,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
         <Flex.Item>
           <TermsAndConditionsVersionDetails
             onShowHistory={() => setHistoryView(true)}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | Dispatch<SetStateAction<number>>' i... Remove this comment to see the full error message
             currentVersion={version}
             shouldAllowHistoryView={
               hasNewerVersions && !props.config.mustAccept
@@ -154,6 +159,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
         {isLatestVersion && hasNewerVersions && visibleVersionData.changelog && (
           <Flex.Item>
             <Changelog
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ locale: any; t: { date_changes_accepted: a... Remove this comment to see the full error message
               locale={locale}
               t={{
                 date_changes_accepted: t.date_changes_accepted,
@@ -174,6 +180,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
           </Text>
         </Flex.Item>
         <Flex.Item>
+          {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'number | Dispatch<SetStateAction<number>>' i... Remove this comment to see the full error message */}
           <TermsAndConditionsContent version={version} />
         </Flex.Item>
       </Flex>

@@ -48,6 +48,7 @@ export const SidebarRow = (props: Props) => {
       <a
         data-test-id="sidebar-link"
         className={secondary ? "t-color-grey-50" : "t-color-white"}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '(event:... Remove this comment to see the full error message
         onClick={action}
         href={link || "#"}
         target={openNewTab ? "_blank" : "_self"}
@@ -60,6 +61,7 @@ export const SidebarRow = (props: Props) => {
         >
           {Icon && (
             <Icon
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: string; "data-test-id": string;... Remove this comment to see the full error message
               className="u-height--3xlg u-width--3xlg u-margin-bottom--sm"
               data-test-id="sidebar-icon"
             />

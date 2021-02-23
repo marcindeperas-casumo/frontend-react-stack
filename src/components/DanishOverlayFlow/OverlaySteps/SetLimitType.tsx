@@ -32,14 +32,17 @@ export const SetLimitType = ({ t, chooseLimitType }: Props) => (
       className="u-padding"
     >
       <ButtonElement
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.DAILY)}
         text={t.limit_type_daily}
       />
       <ButtonElement
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.WEEKLY)}
         text={t.limit_type_weekly}
       />
       <ButtonElement
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.MONTHLY)}
         text={t.limit_type_monthly}
       />

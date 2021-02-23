@@ -14,7 +14,9 @@ const getAcknowledgement = (x: any): Acknowledgement => ({
 });
 
 export const getAcknowledgements: any => {
+  // @ts-expect-error ts-migrate(2693) FIXME: 'Acknowledgement' only refers to a type, but is be... Remove this comment to see the full error message
   first: Acknowledgement,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'last'.
   last: Acknowledgement,
 } = createSelector(
   R.pathOr({}, ["schema", "acknowledgements"]),
@@ -25,6 +27,7 @@ export const getAcknowledgements: any => {
 );
 
 export const getRelevantVersionsSlugs: any => {
+  // @ts-expect-error ts-migrate(2693) FIXME: 'number' only refers to a type, but is being used ... Remove this comment to see the full error message
   [number]: string,
 } = createSelector(
   getAcknowledgements,
@@ -34,9 +37,11 @@ export const getRelevantVersionsSlugs: any => {
 
     if (firstVersion && lastVersion) {
       return R.pipe(
+        // @ts-expect-error ts-migrate(2365) FIXME: Operator '+' cannot be applied to types 'number' a... Remove this comment to see the full error message
         R.times(i => i + firstVersion),
         R.map(version => [version, interpolate(cmsSlugs.version, { version })]),
         R.fromPairs
+      // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
       )(lastVersion - firstVersion + 1);
     }
 

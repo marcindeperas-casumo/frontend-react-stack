@@ -11,6 +11,7 @@ import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 const SECONDS_LEFT_WHEN_SHOWN = 10;
 
 function secondsLeftFromNow(dt: DateTime) {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
   return parseInt(dt.diffNow().as("seconds"));
 }
 
@@ -18,6 +19,7 @@ export function ReelRaceStartingNotificationContainer() {
   const playing = useSelector(playingSelector);
   const [dismissed, setDismissed] = React.useState(false);
   const [secondsLeft, setSecondsLeft] = React.useState(0);
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameId' does not exist on type 'unknown'... Remove this comment to see the full error message
   const reelRaceInfo = useCurrentReelRaceInfo(playing?.gameId);
   const startTime = DateTime.fromMillis(R.propOr(0, "startTime", reelRaceInfo));
   const skipInterval = dismissed || secondsLeft < 0;

@@ -13,6 +13,7 @@ const cmsKey = "shared.playokay.dgoj.deposit-limits.history";
 export const DepositLimitsHistoryContainer = connect(
   (state, ownProps) => ({
     ...getCurrencyAndLocaleSelector(state),
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     t: R.prop("fields", getPage(cmsKey)(state)),
     history: getDepositLimitsHistorySelector(state),
   }),

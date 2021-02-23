@@ -21,6 +21,7 @@ describe("CuratedCard/Utils", () => {
     test("returns an empty string if is not a string", () => {
       expect(prefixCuratedSlug(null)).toEqual("");
       expect(prefixCuratedSlug(false)).toEqual("");
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
       expect(prefixCuratedSlug()).toEqual("");
     });
   });

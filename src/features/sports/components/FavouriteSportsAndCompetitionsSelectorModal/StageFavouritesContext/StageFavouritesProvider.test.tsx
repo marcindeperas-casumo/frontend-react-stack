@@ -28,6 +28,7 @@ describe("<StageFavouritesProvider />", () => {
           competitionsSuggestionsMock,
         ]}
       >
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message */}
         <StageFavouritesProvider />
       </MockedProvider>
     );
@@ -48,11 +49,13 @@ describe("<StageFavouritesProvider />", () => {
           competitionsSuggestionsMock,
         ]}
       >
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message */}
         <StageFavouritesProvider />
       </MockedProvider>
     );
     const renderedWithFavourites = mount(
       <MockedProvider mocks={[playerVerticalMock, withFavouritesMock]}>
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message */}
         <StageFavouritesProvider />
       </MockedProvider>
     );
@@ -73,6 +76,7 @@ describe("<StageFavouritesProvider />", () => {
 
   describe("toggleFavouriteSport()", () => {
     test("should toggle whether the sport is selected", () => {
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -103,6 +107,7 @@ describe("<StageFavouritesProvider />", () => {
 
   describe("toggleAllSports()", () => {
     test("should set all sports to be favourited if they aren't already", () => {
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -126,6 +131,7 @@ describe("<StageFavouritesProvider />", () => {
     });
 
     test("should set all sports to not favourited if they all are favourited", () => {
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -151,6 +157,7 @@ describe("<StageFavouritesProvider />", () => {
 
   describe("getSelectedSportsCount()", () => {
     test("should return number of selected sports", () => {
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -175,6 +182,7 @@ describe("<StageFavouritesProvider />", () => {
   describe("setFavouriteCompetitions()", () => {
     test("should set the favouriteCompetitions for a given sport", () => {
       const favouriteCompetitions = [{ id: 123 }, { id: 456 }];
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -195,6 +203,7 @@ describe("<StageFavouritesProvider />", () => {
   describe("toggleFavouriteCompetition()", () => {
     test("should set the favouriteCompetitions for a given sport", () => {
       const favouriteCompetitions = [{ id: 123 }, { id: 456 }];
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -219,6 +228,7 @@ describe("<StageFavouritesProvider />", () => {
   describe("getSelectedIds()", () => {
     test("should return list of selected ids for sports and competitions", () => {
       const favouriteCompetitions = [{ id: 123 }, { id: 456 }];
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });
@@ -241,6 +251,7 @@ describe("<StageFavouritesProvider />", () => {
   describe("isSelected()", () => {
     test("should return true only if that group id is selected", () => {
       const favouriteCompetitions = [{ id: 123 }, { id: 456 }];
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{}' but re... Remove this comment to see the full error message
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });

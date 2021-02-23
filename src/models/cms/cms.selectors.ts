@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo, not, isNil } from "ramda";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Utils/' or its corresponding t... Remove this comment to see the full error message
 import { interpolate } from "Utils/";
 import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
@@ -7,6 +8,7 @@ import { isSuspiciousAccount } from "Models/handshake";
 
 export const getCms = compose(
   defaultTo({}),
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   prop("cms"),
   prop("schema")
 );

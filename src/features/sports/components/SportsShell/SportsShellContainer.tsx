@@ -67,6 +67,7 @@ export class SportsShellContainer extends React.Component<{}> {
 
   componentDidMount() {
     bridgeEventHandlers.map(([event, handler]) =>
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | ((client: any) => (data... Remove this comment to see the full error message
       bridge.on(event, handler(this.context.client))
     );
   }
@@ -74,6 +75,7 @@ export class SportsShellContainer extends React.Component<{}> {
   render() {
     return (
       <Query query={SPORTS_SHELL_QUERY}>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '({ loading, data, error }: { loading: any; d... Remove this comment to see the full error message */}
         {({ loading, data, error }) => {
           if (loading || error) {
             return <SportsShellSkeleton />;
@@ -81,6 +83,7 @@ export class SportsShellContainer extends React.Component<{}> {
           return (
             <>
               <SportsHashWatcher>
+                {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
                 {({ currentHash }) => (
                   <div className="t-background-grey-0">
                     <SportsTopBar

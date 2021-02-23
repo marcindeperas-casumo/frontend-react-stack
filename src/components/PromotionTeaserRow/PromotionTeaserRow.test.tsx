@@ -9,6 +9,7 @@ describe("PromotionTeaserRow", () => {
   test("should render a date", () => {
     const rendered = shallow(
       <PromotionTeaserRow
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="promotions.boosted-reelraces"
         dates={promotion.fields.dates}
         title={promotion.fields.title}
@@ -25,6 +26,7 @@ describe("PromotionTeaserRow", () => {
   test("should render a title", () => {
     const rendered = shallow(
       <PromotionTeaserRow
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="promotions.boosted-reelraces"
         dates={promotion.fields.dates}
         title={promotion.fields.title}

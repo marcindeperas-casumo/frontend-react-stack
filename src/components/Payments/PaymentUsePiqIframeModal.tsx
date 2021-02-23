@@ -41,6 +41,7 @@ export const PaymentUsePiqIframeModal = ({ config }: Props) => {
       }
 
       if (method.toUpperCase() === "GET" && iframe.current) {
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         iframe.current.setAttribute("src", url);
       }
     }

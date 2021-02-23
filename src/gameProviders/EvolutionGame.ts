@@ -17,6 +17,7 @@ declare var EvolutionGaming: { init: Function };
 export class EvolutionGame extends BaseIframeGame {
   get componentProps() {
     return {
+      // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
       ...super.componentProps,
       style: {
         minHeight: "auto",

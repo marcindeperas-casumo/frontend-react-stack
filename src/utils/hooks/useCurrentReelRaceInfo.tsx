@@ -11,11 +11,13 @@ import {
   getClosestReelRace,
   RACE_STATE,
 } from "Models/reelRaces";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './useCurrentReelRaceInfo.graph... Remove this comment to see the full error message
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 import { useCallOnce } from "./useCallOnce";
 
 type LeaderboardObjectType = {
+  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
   [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
 };
 
@@ -60,7 +62,9 @@ export const UNSET_VALUE = -1;
 
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
   game: null,
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'BigInt'.
   startTime: UNSET_VALUE,
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'BigInt'.
   endTime: UNSET_VALUE,
   position: UNSET_VALUE,
   points: 0,
@@ -122,7 +126,9 @@ export const createCurrentReelRaceData = (
 
   return {
     ...defaultReelRaceInfo,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | BigInt' is not assignable to type '... Remove this comment to see the full error message
     startTime: startTime || defaultReelRaceInfo.startTime,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | BigInt' is not assignable to type '... Remove this comment to see the full error message
     endTime: endTime || defaultReelRaceInfo.endTime,
     game,
     cometdChannels,
@@ -164,15 +170,19 @@ export const createCurrentReelRaceData = (
 const statusHandler = (
   reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
   setCurrentReelRaceData: CurrentReelRaceInfo => void,
+  // @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'playerId'.
   playerId: string
 ) => ({ data }: { data: CometdReelRaceEnteredType }) => {
   if (
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
     reelRace?.id === data.tournamentId &&
     data.status === RACE_STATE.STARTED
   ) {
     const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
       reelRace || {};
 
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setCurrentReelRaceData'.
     setCurrentReelRaceData({
       ...createCurrentReelRaceData(playerId, {
         ...(currentReelRaceRest
@@ -192,12 +202,16 @@ const statusHandler = (
 const finishedHandler = (
   reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
   setCurrentReelRaceData: CurrentReelRaceInfo => void,
+  // @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'playerId'.
   playerId: string
 ) => ({ data }: { data: CometdReelRaceFinishedType }) => {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
   if (reelRace?.id === data.tournamentId) {
     const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
       reelRace || {};
 
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setCurrentReelRaceData'.
     setCurrentReelRaceData({
       ...createCurrentReelRaceData(playerId, {
         ...(currentReelRaceRest
@@ -233,12 +247,14 @@ export function useCurrentReelRaceInfo(
 ): ?CurrentReelRaceInfo {
   const { data: reelRaceQueryData, loading, refetch } = useQuery<
     A.CurrentReelRaceInfoQuery,
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
     _
   >(CurrentReelRaceInfoQuery, {
     fetchPolicy: "cache-first",
   });
   // This combined with cache-first fetch policy will make sure that we are not
   // bombarding graphql server with unnecessary requests
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
   useCallOnce(true, refetch);
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
@@ -278,6 +294,7 @@ export function useCurrentReelRaceInfo(
       refetchTimeout.scheduleAt(
         refetch,
         Math.floor(
+          // @ts-expect-error ts-migrate(2365) FIXME: Operator '+' cannot be applied to types 'number | ... Remove this comment to see the full error message
           (closestReelRace ? closestReelRace.endTime : Date.now()) +
             (61 + Math.random() * 60) * 1000
         )
@@ -285,6 +302,7 @@ export function useCurrentReelRaceInfo(
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
         setCurrentReelRaceData(
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
           createCurrentReelRaceData(playerId, {
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             startTime: localCurrentReelRace.startTime,
@@ -314,6 +332,7 @@ export function useCurrentReelRaceInfo(
             statusHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
+              // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 3.
               playerId
             )
           );
@@ -323,6 +342,7 @@ export function useCurrentReelRaceInfo(
             finishedHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
+              // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 3.
               playerId
             )
           );
@@ -335,9 +355,11 @@ export function useCurrentReelRaceInfo(
         if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
           // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
           localCurrentReelRace.cometdChannels.forEach(channel => {
+            // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
             cometd.unsubscribe(
               `${channel}/tournaments/tournamentProperties/status`
             );
+            // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
             cometd.unsubscribe(
               `${channel}/tournaments/tournamentEvents/finished`
             );

@@ -46,6 +46,7 @@ stories.add("Default", () => {
         realityCheck={realityCheck}
         currency="GBP"
         locale="en-gb"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ casumoName: string; realityCheck: { totalW... Remove this comment to see the full error message
         onClickCancel={action("onClickCancel")}
         onClickContinue={action("onClickContinue")}
         t={t}

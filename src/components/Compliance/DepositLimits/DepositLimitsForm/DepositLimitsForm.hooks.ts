@@ -6,6 +6,7 @@ import type {
   LimitInputs,
 } from "./DepositLimitsForm.types";
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 function useInput(initialValue: ?number = null): LimitInput {
   const [value, setValue] = React.useState(initialValue);
 

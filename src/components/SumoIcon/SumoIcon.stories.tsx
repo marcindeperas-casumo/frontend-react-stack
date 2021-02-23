@@ -13,6 +13,7 @@ const ToggleWrapper = ({
   color = "white",
   bgColor = "blue-50",
 }: {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   icon: any,
   color?: string,

@@ -17,6 +17,7 @@ stories.add("Default", () => (
   <MockStore state={state}>
     <PromotionCardTeaserList
       slug="campaigns.winter_games"
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ slug: string; backgroundColor: string; }' ... Remove this comment to see the full error message
       backgroundColor="blue-50"
     />
   </MockStore>

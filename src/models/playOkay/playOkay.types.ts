@@ -1,5 +1,7 @@
 // @flow
+// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
 import { type DepositLimitsReduxStore } from "./depositLimits";
+// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
 import { type LoginTimeLimit } from "./timeLimits/timeLimits.types";
 
 export type Period = "Daily" | "Weekly" | "Monthly";

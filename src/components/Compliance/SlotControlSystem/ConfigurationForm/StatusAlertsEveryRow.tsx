@@ -25,6 +25,7 @@ export function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.get_status_alerts}
       </Text>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <PillSelector options={options} onChange={onChange} value={value} />
     </Flex>
   );

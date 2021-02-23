@@ -1,5 +1,4 @@
-// @flow
-import React from "react";
+import * as React from "react";
 import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";

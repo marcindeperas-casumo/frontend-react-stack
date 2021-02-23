@@ -34,6 +34,7 @@ describe("AccountDetails", () => {
 
     test("should show error", () => {
       const rendered = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
         <MockedProvider mocks={[playerSettingsQueryErrorMock]}>
           <SettingsAccountDetailsContainer />
         </MockedProvider>

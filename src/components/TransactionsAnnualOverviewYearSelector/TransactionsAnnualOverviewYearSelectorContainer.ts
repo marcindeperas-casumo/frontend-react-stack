@@ -15,6 +15,7 @@ import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOver
 
 const CURRENT_YEAR = new Date().getFullYear();
 const getRegistrationYear = state => {
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   return new Date(registrationDateSelector(state)).getFullYear();
 };
 
@@ -22,9 +23,11 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
   state => ({
     yearOptions: range(getRegistrationYear(state), CURRENT_YEAR + 1),
     selectedYear: CURRENT_YEAR,
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     content: transactionsBetsHistoryContentSelector(state),
     isContentFetched: isPageFetchedSelector(CMS_CONTENT_SLUG)(state),
     isAnnualOverviewLoading: year =>
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       isAnnualOverviewFetchingSelector(year)(state),
   }),
   (dispatch, ownProps) => ({
@@ -34,6 +37,7 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
         dispatch(
           initFetchAnnualOverview({
             year,
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '(value: unknown) => void' is not assignable ... Remove this comment to see the full error message
             meta: { resolve, reject },
           })
         )
@@ -46,4 +50,5 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
           })
         ),
   })
+// @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ fetchContent, isContentFetche... Remove this comment to see the full error message
 )(TransactionsAnnualOverviewYearSelector);

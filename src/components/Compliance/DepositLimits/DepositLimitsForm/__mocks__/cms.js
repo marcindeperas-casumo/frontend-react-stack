@@ -20,4 +20,5 @@ export default ({
     "has_to_be_lower_after_responsible_gambling_test_failed": "has_to_be_lower_after_responsible_gambling_test_failed",
     "has_to_be_lower_while_not_risk_safe": "has_to_be_lower_while_not_risk_safe"
   }
+// @ts-expect-error ts-migrate(2693) FIXME: 'Translations' only refers to a type, but is being... Remove this comment to see the full error message
 }: Translations);

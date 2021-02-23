@@ -6,6 +6,7 @@ import { playerIdSelector } from "Models/handshake";
 import {
   updateLeaderboard,
   initializeLeaderboard,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/reelRaces"' has no exported ... Remove this comment to see the full error message
   type CometdLeaderboardUpdate,
 } from "Models/reelRaces";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
@@ -16,8 +17,10 @@ export function useCurrentReelRaceLeaderboard(currentGameSlug: ?string) {
   const playerId = useSelector(playerIdSelector, shallowEqual);
 
   const reelRaceQueryData = useCurrentReelRaceInfo(currentGameSlug);
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'cometdChannels' does not exist on type '... Remove this comment to see the full error message
   const { cometdChannels, tournamentId } = reelRaceQueryData || {};
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
   useCallOnce(
     reelRaceQueryData && reelRaceQueryData.leaderboard,
     // $FlowIgnore: this check above will make sure that we can get this property

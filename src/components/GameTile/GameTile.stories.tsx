@@ -16,6 +16,7 @@ stories.add("Default", () => {
     <div className="c-top-game">
       <MockStore>
         <GameTile
+          // @ts-expect-error ts-migrate(2739) FIXME: Type '{ isInMaintenance: any; name: string; slug: ... Remove this comment to see the full error message
           game={{ ...game, isInMaintenance }}
           onLaunchGame={action(game.name)}
           onFavouriteGame={action("favourite game")}

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
@@ -14,6 +13,7 @@ type Props = {
 };
 
 export function ResponsibleGamblingTest({ t, ...props }: Props) {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'answers' does not exist on type '((value... Remove this comment to see the full error message
   const [{ answers, page }, next] = usePaging();
   const numberOfQuestions = t?.questions.length ?? -1;
 
@@ -24,6 +24,7 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
   React.useEffect(() => {
     if (page === numberOfQuestions) {
       const allResponsesEqualNo = !R.find(R.equals(1), answers);
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       props.sendRGTestResult(allResponsesEqualNo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,6 +52,7 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
             size="sm"
             className="u-width--full u-margin-right"
             data-test-id="buttonYes"
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             onClick={() => next(1)}
           >
             {t.yes}
@@ -61,6 +63,7 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
             size="sm"
             className="u-width--full u-margin-left"
             data-test-id="buttonNo"
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             onClick={() => next(0)}
           >
             {t.questions[page].answer}

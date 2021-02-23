@@ -38,6 +38,7 @@ export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
               KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW,
               "suspendAccount"
             );
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             props.showOldSuspendAccountView();
           }}
         >

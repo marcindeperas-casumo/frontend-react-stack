@@ -17,9 +17,11 @@ const skeletonItems = R.flatten(
 const SkeletonItem = ({ height, index }) => {
   const offsetTop = R.pipe(
     R.take(index),
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     R.intersperse(heights.margin),
     R.prepend(index === 0 ? 0 : heights.margin),
     R.sum
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(skeletonItems);
 
   return (

@@ -54,6 +54,7 @@ export type Limits = {
 
 export type LimitInput = {
   value: ?number,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticInputEvent'.
   onChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 

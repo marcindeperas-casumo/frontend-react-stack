@@ -7,6 +7,7 @@ import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSessio
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
 import {
   useSessionsState,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../models/slotControlSystem"' has n... Remove this comment to see the full error message
   type UseSessionsStateType,
 } from "Models/slotControlSystem";
 import {
@@ -66,6 +67,7 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
     // eslint-disable-next-line fp/no-delete
     delete window.location;
 
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ pathname: string; hostname: string; }' is ... Remove this comment to see the full error message
     window.location = {
       pathname: "/games/top",
       hostname: "casumotest.com",

@@ -76,6 +76,7 @@ export const ProviderGamesList = ({
         ) : (
           <div className="o-wrapper">
             <GamesVirtualGrid
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'Object[]' is not assignable to type 'GameTil... Remove this comment to see the full error message
               games={games}
               gamesCount={gamesCount}
               loadMore={onLoadMore}

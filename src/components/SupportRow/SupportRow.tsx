@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+// @ts-expect-error ts-migrate(2724) FIXME: '"../../../node_modules/@types/react"' has no expo... Remove this comment to see the full error message
 import type { Element } from "react";
 import { useMedia } from "react-use";
 import Flex from "@casumo/cmp-flex";

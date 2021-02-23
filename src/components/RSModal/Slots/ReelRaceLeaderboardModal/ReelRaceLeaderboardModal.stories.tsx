@@ -20,6 +20,7 @@ const Wrapper = ({
   children,
   playerId = "one",
 }: {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   playerId?: string,
 }) => (
@@ -37,7 +38,9 @@ const Wrapper = ({
         order: R.pipe(
           R.values,
           R.sortBy(R.prop("position")),
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           R.pluck("playerId")
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(newLeaderboard),
       },
     }}
@@ -78,6 +81,7 @@ stories.add("Someone won the race", () => {
 
 stories.add("Player won the race", () => {
   const position = 1;
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'playerId' does not exist on type 'Record... Remove this comment to see the full error message
   const { playerId, playerName, points } = R.find(
     R.propEq("position", position),
     leaderboard
@@ -107,6 +111,7 @@ stories.add("Player won the race", () => {
 
 stories.add("Player scored 3rd", () => {
   const position = 3;
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'playerId' does not exist on type 'Record... Remove this comment to see the full error message
   const { playerId, playerName, points } = R.find(
     R.propEq("position", position),
     leaderboard

@@ -19,6 +19,7 @@ jest.mock("react-redux", () => {
   const { Provider, useSelector } = jest.requireActual("react-redux");
 
   return {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     useDispatch: jest.fn().mockReturnValue(),
     useSelector,
     Provider,
@@ -42,6 +43,7 @@ describe("Components/Compliance/TimeLimits/TimeLimitsFormContainer", () => {
   beforeAll(() => {
     onLimitsSaved = jest.fn();
     dispatchMock = jest.fn();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
     useDispatch.mockReturnValue(dispatchMock);
 
     wrapper = mount(
@@ -55,6 +57,7 @@ describe("Components/Compliance/TimeLimits/TimeLimitsFormContainer", () => {
 
     // wrap real implementation with a mock to inspect arguments
     dispatchMock.mockImplementation(action => globalStore.dispatch(action));
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
     useDispatch.mockReturnValue(dispatchMock);
   });
 

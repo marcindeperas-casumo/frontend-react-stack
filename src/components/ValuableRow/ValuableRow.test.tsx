@@ -16,6 +16,7 @@ describe("ValuableRow", () => {
   const onMoreInfo = jest.fn();
 
   beforeEach(() => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     mockValuable = mockData(VALUABLE_TYPES.CASH);
     rendered = shallow(
       <ValuableRow

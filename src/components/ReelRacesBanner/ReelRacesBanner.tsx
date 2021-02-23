@@ -39,6 +39,7 @@ export function ReelRacesBanner() {
 
   const t = useTranslations<ReelRacesContentPage>("reel-races");
 
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   const showTAC = () => dispatch(showModal(REACT_APP_MODAL.ID.REEL_RACES_TAC));
 
   const links: any = {

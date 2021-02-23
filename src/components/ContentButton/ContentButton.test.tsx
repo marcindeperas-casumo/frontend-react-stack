@@ -9,6 +9,7 @@ describe("ContentButton", () => {
 
     actionKeys.forEach(actionKey => {
       const action = ACTION_MAP[actionKey];
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       const rendered = shallow(<ContentButton type={actionKey} />);
 
       expect(rendered.find(ButtonPrimary).prop("href")).toBe(action);
@@ -16,6 +17,7 @@ describe("ContentButton", () => {
   });
 
   test("should render nothing if ACTION_MAP[key] doesn't exist", () => {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ContentButton type={"sausage"} />);
 
     expect(rendered.html()).toBeNull();

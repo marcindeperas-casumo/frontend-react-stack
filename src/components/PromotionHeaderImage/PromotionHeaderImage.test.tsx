@@ -6,6 +6,7 @@ import PromotionHeaderImage, {
 
 describe("PromotionHeaderImage", () => {
   test("should not render a badge if one isn't passed in", () => {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<PromotionHeaderImage image="/a.jpg" />);
     expect(rendered.find("PromotionHeaderBadge").length).toBe(0);
   });

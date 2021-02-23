@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
@@ -27,6 +26,7 @@ import {
 } from "Components/Router/GameBrowser";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListPage.graphql' or its... Remove this comment to see the full error message
 import { GameListPageQuery } from "./GameListPage.graphql";
 import { GameListPageFilters } from "./GameListPageFilters";
 import { GameListPageSort } from "./GameListPageSort";
@@ -71,6 +71,7 @@ export function GameListPage({ set }: Props) {
     dispatch(
       setData({
         page,
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ page: string; sort: A.GamesSor... Remove this comment to see the full error message
         sort,
         filters,
       })
@@ -84,10 +85,12 @@ export function GameListPage({ set }: Props) {
     setFiltersVisibility(true);
   };
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'data' does not exist on type 'void'.
   const { data, fetchMore, loading } = useCachedQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
   >(
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 3.
     GameListPageQuery,
     {
       variables: {
@@ -114,10 +117,12 @@ export function GameListPage({ set }: Props) {
   const topSection = (
     <SortAndFilterSection
       sort={sort}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '(s: any) => void' is not assignable to type ... Remove this comment to see the full error message
       setSort={setSort}
       supportedSorts={set.supportedSorts}
       additionalFilterGroups={set.additionalFilterGroups}
       filters={filters}
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '(f: any) => void' is missing the following p... Remove this comment to see the full error message
       setFilters={setFilters}
       openFilter={openFilter}
       openFilterText={t?.title || ""}
@@ -134,6 +139,7 @@ export function GameListPage({ set }: Props) {
           }),
         }}
       >
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ isOpen: bool... Remove this comment to see the full error message */}
         <GameListPageFilters
           isOpen={filtersVisible}
           setFilters={setFilters}
@@ -158,6 +164,7 @@ export function GameListPage({ set }: Props) {
 
           return (
             <div className="t-background-white">
+              {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'Promise' is missing in type '{ games: an... Remove this comment to see the full error message */}
               <GamesVirtualList
                 games={games}
                 fetchMoreRows={loadMore}
@@ -184,6 +191,7 @@ export function GameListPage({ set }: Props) {
 
   return (
     <>
+      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ isOpen: bool... Remove this comment to see the full error message */}
       <GameListPageFilters
         isOpen={filtersVisible}
         setFilters={setFilters}
@@ -228,10 +236,13 @@ export function GameListPage({ set }: Props) {
 
 type SProps = {
   sort: ?A.GamesSortOrder,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   setSort: A.GamesSortOrder => void,
   supportedSorts: Array<A.GamesSortOrder>,
   additionalFilterGroups: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'GetGameSets_gameSetsList_additionalFilte... Remove this comment to see the full error message
   filters: { [A.GetGameSets_gameSetsList_additionalFilterGroups]: boolean },
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   setFilters: A.GetGameSets_gameSetsList_additionalFilterGroups => void,
   openFilter: () => void,
   openFilterText: string,
@@ -242,6 +253,7 @@ function SortAndFilterSection(props: SProps) {
     <Flex className="o-flex--wrap c-games-list-filter">
       {props.supportedSorts.length !== 0 && (
         <TrackClick eventName={EVENTS.MIXPANEL_GAME_SET_SORTING_CLICKED}>
+          {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ setSort: Gam... Remove this comment to see the full error message */}
           <GameListPageSort
             setSort={props.setSort}
             supportedSorts={props.supportedSorts}
@@ -256,6 +268,7 @@ function SortAndFilterSection(props: SProps) {
               <ChipFilterable
                 isActive
                 onRemove={() =>
+                  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                   props.setFilters({ ...props.filters, [x]: false })
                 }
               >

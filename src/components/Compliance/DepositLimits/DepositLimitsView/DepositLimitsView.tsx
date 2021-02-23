@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
@@ -8,10 +7,8 @@ import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimi
 import { DepositLimitsOverviewContainer } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsCancelAdjustment } from "Components/Compliance/DepositLimits/DepositLimitsCancelAdjustment";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
-import {
-  DepositLimitsConfirmationsContainer,
-  type ConfirmationPage,
-} from "Components/Compliance/DepositLimits/DepositLimitsConfirmations";
+import { DepositLimitsConfirmationsContainer } from "Components/Compliance/DepositLimits/DepositLimitsConfirmations";
+import type { ConfirmationPage } from "Components/Compliance/DepositLimits/DepositLimitsConfirmations";
 import type {
   AllLimits,
   AllLimitsOnlyValues,
@@ -90,6 +87,7 @@ export function DepositLimitsView(props: Props) {
     // it handles suspendAccount view. On site there's old view for that
     // when it's shown we are rendering null from this component, and
     // when event comes we are showing back overview
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     const goBackToOverview = () => navigate({ route: "overview" });
 
     bridge.on(REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED, goBackToOverview);
@@ -119,36 +117,54 @@ export function DepositLimitsView(props: Props) {
   const routes = {
     overview: (
       <DepositLimitsOverviewContainer
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ button_no: string; button_yes: string; can... Remove this comment to see the full error message
         t={props.t}
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         limitCancel={() => navigate({ route: "cancelAdjustment" })}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(x: any) => any' is not assignable to type '... Remove this comment to see the full error message
         edit={x => navigate({ route: "form", depositKind: x })}
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         add={() => navigate({ route: "form" })}
         removeAll={() =>
+          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           navigate({
             route: "summary",
             limitChanges: { daily: null, weekly: null, monthly: null },
           })
         }
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         showOldSuspendAccountView={() => navigate({ route: "suspendAccount" })}
       />
     ),
     form: (
       <DepositLimitsFormContainer
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ button_no: string; button_yes: string; can... Remove this comment to see the full error message
         t={props.t}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'LimitLock' is not assignable to type 'never'... Remove this comment to see the full error message
         lock={props.lock}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'DepositLimitsAdjustment' is not assignable t... Remove this comment to see the full error message
         pendingLimitChanges={props.pendingLimitChanges}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         currency={props.currency}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         locale={props.locale}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
         responsibleGamblingTestCanBeTaken={
           props.preadjust.responsibleGamblingTestCanBeTaken
         }
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'any' is not assignable to type 'never'.
         increasesOrRevocationsBlocked={
           props.preadjust.increasesOrRevocationsBlocked
         }
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'AllLimitsOnlyValues' is not assignable to ty... Remove this comment to see the full error message
         limitChanges={limitChanges}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'AllLimits' is not assignable to type 'never'... Remove this comment to see the full error message
         limits={props.limits}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         initiallyVisible={depositKind}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(changes: any) => void' is not assignable to... Remove this comment to see the full error message
         applyLimitsChanges={changes => {
+          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           navigate({ route: "summary", limitChanges: changes });
         }}
       />
@@ -161,8 +177,10 @@ export function DepositLimitsView(props: Props) {
         preadjust={props.preadjust}
         currentLimits={props.limits}
         newLimits={newLimits}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(x: any) => any' is not assignable to type '... Remove this comment to see the full error message
         edit={x => navigate({ route: "form", depositKind: x })}
         confirmLimitsAdjust={() =>
+          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           adjustLimitsAndNavigate({
             limitsDiff,
             decreases,
@@ -171,10 +189,13 @@ export function DepositLimitsView(props: Props) {
             newLimits,
             limitAdjust: (x: AllLimits) => {
               if (R.has("currency", x)) {
+                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 props.limitAdjust(x);
               } else {
+                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 props.limitAdjust({
                   currency: props.currency,
+                  // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
                   ...x,
                 });
               }
@@ -186,33 +207,45 @@ export function DepositLimitsView(props: Props) {
     confirmations: (
       <DepositLimitsConfirmationsContainer
         pages={pages}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ pages: ConfirmationPage[]; decreases: Pick... Remove this comment to see the full error message
         decreases={R.pick(decreases, newLimits)}
         lastButtonCaption={
           R.last(pages) === ("RG_REQUIRED": ConfirmationPage)
             ? "button_answer_questions"
             : "button_back_to_limits"
         }
+        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'lastButtonAction'.
         lastButtonAction={() => {
+          // @ts-expect-error ts-migrate(2693) FIXME: 'ConfirmationPage' only refers to a type, but is b... Remove this comment to see the full error message
           if (R.last(pages) === ("RG_REQUIRED": ConfirmationPage)) {
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             navigate({ route: "responsibleGamblingTest" });
           } else {
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             navigate({ route: "overview" });
           }
         }}
       />
     ),
+    // @ts-expect-error ts-migrate(2695) FIXME: Left side of comma operator is unused and has no s... Remove this comment to see the full error message
     responsibleGamblingTest: (
       <ResponsibleGamblingTestContainer
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(passed: any) => void' is not assignable to ... Remove this comment to see the full error message
         sendRGTestResult={passed => {
           sendResponsibleGamblingTest(passed).then(() => {
             if (passed) {
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'props'.
               props.limitAdjust({ ...props.limits, ...limitChanges });
             } else {
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'props'.
               props.limitAdjust({
+                // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'props'.
                 ...props.limits,
+                // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'decreases'.
                 ...R.pick(decreases, newLimits),
               });
             }
+            // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'navigate'.
             navigate({
               route: "confirmations",
               pages: [passed ? "RG_SUCCESS" : "RG_FAIL"],
@@ -221,18 +254,24 @@ export function DepositLimitsView(props: Props) {
         }}
       />
     ),
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'cancelAdjustment'.
     cancelAdjustment: (
       <DepositLimitsCancelAdjustment
+        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'props'.
         t={props.t}
         handleButtonYes={() => {
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'props'.
           props.limitCancel();
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'navigate'.
           navigate({ route: "overview" });
         }}
+        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'navigate'.
         handleButtonNo={() => navigate({ route: "overview" })}
       />
     ),
   };
 
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'route'.
   if (route === "suspendAccount") {
     // it uses view from old codebase
     return null;
@@ -260,6 +299,7 @@ export function useRouting(initialRoute: DepositLimitsRoute = "overview") {
   const [limitChangesI, setChanges] = React.useState();
   const [pagesI, setPages] = React.useState<ConfirmationPage[]>([]);
 
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'route' is missing in type '({ route, dep... Remove this comment to see the full error message
   const navigate: Navigate = ({
     route,
     depositKind = "daily",
@@ -267,6 +307,7 @@ export function useRouting(initialRoute: DepositLimitsRoute = "overview") {
     pages,
   }) => {
     setRoute(route);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     setDepositKind(depositKind);
     limitChanges && setChanges(limitChanges);
     pages && setPages(pages);

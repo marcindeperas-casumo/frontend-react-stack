@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2459) FIXME: Module '"../playOkay.types"' declares 'type' local... Remove this comment to see the full error message
 import { type Period } from "../playOkay.types";
 
 export type SetLoginTimeLimitProps = {

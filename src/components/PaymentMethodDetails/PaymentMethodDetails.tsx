@@ -4,6 +4,7 @@ import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/payments"' has no exported m... Remove this comment to see the full error message
 import { type QuickDepositMethod } from "Models/payments";
 
 type PaymentMethodDetailsProps = {

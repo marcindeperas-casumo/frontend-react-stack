@@ -44,6 +44,7 @@ const nonLiveMock = {
 const mockWithXSports = numberOfSports =>
   evolve({
     result: {
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ sportsNavigation: { (xs: string): string; ... Remove this comment to see the full error message
       data: {
         ...labels,
         sportsNavigation: take(numberOfSports),
@@ -52,6 +53,8 @@ const mockWithXSports = numberOfSports =>
   });
 
 export const error = [{ ...nonLiveMock, error: true }];
+// @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
 export const singleSport = [mockWithXSports(1)(nonLiveMock), liveMock];
+// @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
 export const multipleSports = [mockWithXSports(3)(nonLiveMock), liveMock];
 export const manySports = [nonLiveMock, liveMock];

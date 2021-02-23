@@ -29,6 +29,7 @@ export const ReelRacesDrawerWidgetContainer = ({
 }: Props) => {
   const playing = useSelector(playingSelector);
   const playerId = useSelector(playerIdSelector);
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameId' does not exist on type 'unknown'... Remove this comment to see the full error message
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentRace = isNativeByUserAgent() ? null : currentReelRaceFromHook;
   const [showLeaderboard, setShowLeaderboard] = React.useState(
@@ -76,6 +77,7 @@ export const ReelRacesDrawerWidgetContainer = ({
                 "t-border-r",
                 initialShowLeaderboard ? "u-height--full" : "u-height--auto"
               )}
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
               playerId={playerId}
               forceLaurelPositions={LEADERBOARD_LAURELS}
               inverted

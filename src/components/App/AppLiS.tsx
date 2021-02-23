@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";

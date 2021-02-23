@@ -63,6 +63,7 @@ describe("RSModal/T&C/createVersionDateFormatter", () => {
   const formatVersionDate = createVersionDateFormatter({
     t: cms,
     acks,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ t: { table_of_contents_title: ... Remove this comment to see the full error message
     locale: "en-GB",
   });
 

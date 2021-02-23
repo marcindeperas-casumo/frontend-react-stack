@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { reject } from "ramda";
 import * as A from "Types/apollo";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameTileHeart.graphql' or it... Remove this comment to see the full error message
 import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 
 const ADD_GAME = gql`
@@ -30,6 +31,7 @@ export const useAddGameToMyList = (id: string) => {
       optimisticResponse: {
         __typename: "Mutation",
         addGameToMyList: {
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ __typename: string; id: string; }' is not ... Remove this comment to see the full error message
           __typename: "Game",
           id,
         },
@@ -76,6 +78,7 @@ export const useRemoveGameFromMyList = (id: string) => {
     optimisticResponse: {
       __typename: "Mutation",
       removeGameFromMyList: {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ __typename: string; id: string; }' is not ... Remove this comment to see the full error message
         __typename: "Game",
         id,
       },

@@ -21,7 +21,9 @@ describe("Models/curated/utils", () => {
 
     test("returns an empty string if is not a string", () => {
       expect(prefixCuratedSlug(null)).toEqual("");
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'boolean' is not assignable to pa... Remove this comment to see the full error message
       expect(prefixCuratedSlug(false)).toEqual("");
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
       expect(prefixCuratedSlug()).toEqual("");
     });
   });

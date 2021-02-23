@@ -8,8 +8,11 @@ import { launchModal } from "Services/LaunchModalService";
 import { MODALS } from "Src/constants";
 
 type SettingsSectionsLastLoginType = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   currentSessionMessageLabel: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   lastSessionMessageLabel: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   accountActivityLabel: ?string,
   currentTime: number,
   previousTime: number,
@@ -20,6 +23,7 @@ const PreviousLoginTime = ({
   label,
 }: {
   time: number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   label: ?string,
 }) => {
   const dateObject = DateTime.fromMillis(time);
@@ -46,6 +50,7 @@ const CurrentLoginTime = ({
   label = "",
 }: {
   time: number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   label: ?string,
 }) => (
   <Text size="sm" className="t-color-grey-50">
@@ -69,6 +74,7 @@ export const SettingsSectionsLastLogin = ({
   previousTime,
 }: SettingsSectionsLastLoginType) => {
   const openAccountActivity = () =>
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
     launchModal({
       modal: MODALS.ACCOUNT_SETTINGS.SHOW_ACCOUNT_ACTIVITY,
     });

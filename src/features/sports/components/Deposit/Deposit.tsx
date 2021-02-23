@@ -57,6 +57,7 @@ export const Deposit = ({
       <div className="u-padding-top--md u-padding-x--md c-sport-deposit">
         <div className="t-background-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin-bottom u-display--flex">
           <div className="o-flex--vertical u-margin-right--lg">
+            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'balance_title' does not exist on type 'u... Remove this comment to see the full error message */}
             <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
             <div className="t-color-grey-90 u-font-md u-font-weight-bold">
               {balanceFormatted}
@@ -64,6 +65,7 @@ export const Deposit = ({
           </div>
           {bonus > 0 && (
             <div className="o-flex--vertical t-color-grey-50 c-sport-deposit__bonus">
+              {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'bonus_title' does not exist on type 'unk... Remove this comment to see the full error message */}
               <div className="u-font-sm">{t?.bonus_title}</div>
               <div className="u-font-md">{bonusFormatted}</div>
             </div>

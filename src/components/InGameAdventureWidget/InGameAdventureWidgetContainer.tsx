@@ -44,6 +44,7 @@ export const InGameAdventureWidgetContainer = () => {
         <InGameRecentValuableWidget
           onValuableConsumed={onValuableConsumed}
           recentValuable={recentValuable}
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'valuables_more_info' is missing in type ... Remove this comment to see the full error message
           content={recentValuablesContent}
         />
       )}

@@ -9,5 +9,6 @@ const stories = storiesOf("GameListVertical", module);
 
 stories.add("Default", () => {
   const loading = boolean("Is Loading", false);
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: boolean; backgroundImage:... Remove this comment to see the full error message
   return <GameListVertical games={games} loading={loading} />;
 });

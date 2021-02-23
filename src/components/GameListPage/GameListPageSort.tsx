@@ -39,6 +39,7 @@ export function GameListPageSort({ sort, setSort, supportedSorts }: Props) {
   return (
     <Flex className="u-margin-right u-margin-bottom">
       {t ? (
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ onChange: Ga... Remove this comment to see the full error message
         <Select
           onChange={setSort}
           options={supportedSorts.reduce(

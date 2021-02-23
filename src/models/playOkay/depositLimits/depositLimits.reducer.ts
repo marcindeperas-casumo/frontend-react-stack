@@ -28,13 +28,16 @@ export const DEFAULT_STATE = {
 
 function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
   const limits = R.pathOr({}, ["limit", "value"], limitDGOJ);
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const rawAdjustments = R.prop("adjustment", limitDGOJ);
 
   return {
     pendingLimitChanges: rawAdjustments && {
       ...rawAdjustments,
       value: getChangedLimitsValues({
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
         before: limits,
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type '<P extend... Remove this comment to see the full error message
         after: rawAdjustments.value,
       }),
     },
@@ -56,6 +59,7 @@ const handlers = {
     state,
     { response }: { response: DepositLimit[] }
   ) => {
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     const limitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
 
     return {

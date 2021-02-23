@@ -12,6 +12,7 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { MODALS } from "Src/constants";
 
 const showBonusTerms = () => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
   launchModal({ modal: MODALS.DEPOSIT.SHOW_BONUS_TERMS });
 };
 
@@ -20,7 +21,9 @@ const selectBonus = badgeId => {
 };
 
 export const PlayerDepositValuables = () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Boolean... Remove this comment to see the full error message
   const { loading, valuables, translations } = usePlayerValuableList(
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     VALUABLE_TYPES.DEPOSIT
   );
 
@@ -38,6 +41,7 @@ export const PlayerDepositValuables = () => {
         <Flex.Item className="u-overflow-y--auto">
           <ValuablesVerticalList
             valuables={valuables}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ valuables: any; translations: any; loading... Remove this comment to see the full error message
             translations={translations}
             loading={loading}
             onItemClick={selectBonus}

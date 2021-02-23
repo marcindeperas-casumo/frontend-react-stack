@@ -8,11 +8,17 @@ type Props = {
   tileWidth: number,
   tileHeight: number,
   children: ({
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
     columnWidth: number,
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
     rowHeight: number,
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
     width: number, // TO BE REMOVED?
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
     cardMargin: number,
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
     columnCount: number,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   }) => React.Node,
 };
 

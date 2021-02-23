@@ -64,6 +64,7 @@ stories.add("Default", () => {
             height: 48,
           }}
         >
+          {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{ position: any; remainingSpins: any; points... Remove this comment to see the full error message */}
           <ReelRaceIcon currentRace={currentRace} />
         </div>
       </div>

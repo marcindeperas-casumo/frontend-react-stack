@@ -7,9 +7,11 @@ type Props = {
   /** onClick handler of the footer button */
   onClick: () => any,
   /** child components to render */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
   <Flex
     align="stretch"

@@ -29,7 +29,9 @@ export const PromotionCardHeader = ({ badge, dates }) => {
         {badge && (
           <ImageLazy
             className="u-display--block"
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'number'.
             width="40px"
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'number'.
             height="40px"
             src={badge}
             imgixOpts={{ w: 40, h: 40 }}

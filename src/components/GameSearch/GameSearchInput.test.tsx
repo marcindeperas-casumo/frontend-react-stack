@@ -17,6 +17,7 @@ describe("GameSearchInput", () => {
   });
 
   test("should render a SearchInput component", () => {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
     const rendered = shallow(<GameSearchInput />);
 
     expect(rendered.find("SearchInput")).toHaveLength(1);
@@ -25,6 +26,7 @@ describe("GameSearchInput", () => {
   test("should pass down to SearchInput the right props", () => {
     const placeholder = "whatever";
 
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ placeholder: string; }' is missing the fol... Remove this comment to see the full error message
     const rendered = shallow(<GameSearchInput placeholder={placeholder} />);
 
     expect(rendered.find("SearchInput").prop("placeholder")).toBe(placeholder);
@@ -32,6 +34,7 @@ describe("GameSearchInput", () => {
 
   test("should debounce onChange", () => {
     const onChange = jest.fn();
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ onChange: Mock<any, any>; }' is missing th... Remove this comment to see the full error message
     const rendered = shallow(<GameSearchInput onChange={onChange} />);
 
     expect(onChange).toHaveBeenCalledTimes(0);
@@ -53,6 +56,7 @@ describe("GameSearchInput", () => {
 
   test("should call clear search when onClear (handleClearSearchInput) is called", () => {
     const clearSearch = jest.fn();
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ clearSearch: Mock<any, any>; }' is missing... Remove this comment to see the full error message
     const rendered = shallow(<GameSearchInput clearSearch={clearSearch} />);
 
     const instance = rendered.instance();
@@ -63,6 +67,7 @@ describe("GameSearchInput", () => {
 
     expect(clearSearch).toHaveBeenCalledTimes(0);
 
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     handleClearSearchInput();
 
     expect(clearSearch).toHaveBeenCalledTimes(1);

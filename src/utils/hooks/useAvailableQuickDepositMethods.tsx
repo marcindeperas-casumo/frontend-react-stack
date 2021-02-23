@@ -25,6 +25,7 @@ const isAvailableInCountry = (cmsConfig: MethodConfigType, country: string) =>
 
 export const convertMethodTypesToMap = (
   methods: Array<AvailableMethod>
+// @ts-expect-error ts-migrate(1023) FIXME: An index signature parameter type must be either '... Remove this comment to see the full error message
 ): { [key: LocalPaymentMethodTypeKeys]: AvailableMethod } =>
   methods.reduce((acc, cur) => {
     return {
@@ -52,12 +53,14 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
 
   const playerCountry = useSelector(countrySelector);
   const methodsConfigs = useSelector(
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'unknown'.
     methodsConfigsSelector(savedMethods.map(method => method.type))
   );
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'forEach' does not exist on type 'unknown... Remove this comment to see the full error message
     savedMethods.forEach(({ type }) => {
       if (R.includes(type, SUPPORTED_QUICKDEPOSIT_TYPES)) {
         dispatch(preparePaymentMethodConfig(type));
@@ -75,8 +78,10 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
   }, [loading, methodTypes]);
 
   React.useEffect(() => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'length' does not exist on type 'unknown'... Remove this comment to see the full error message
     if (methodTypes && savedMethods.length && playerCountry) {
       setAvailableMethods(
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'reduce' does not exist on type 'unknown'... Remove this comment to see the full error message
         savedMethods.reduce((quickDepositMethods, playerMethod) => {
           const config = methodsConfigs[playerMethod.type];
 
@@ -84,6 +89,7 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
             config &&
             !playerMethod.deleted &&
             isMethodAvailableForQuickDeposit(config) &&
+            // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
             isAvailableInCountry(config, playerCountry) &&
             !methodTypes[playerMethod.type].inMaintenanceMode
           ) {

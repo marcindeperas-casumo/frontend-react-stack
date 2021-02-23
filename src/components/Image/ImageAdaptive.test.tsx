@@ -23,6 +23,7 @@ describe("ImageAdaptive", () => {
   describe("isIntersecting true", () => {
     test("should render Picture component", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       expect(component.find("Picture").exists()).toBe(true);
@@ -30,6 +31,7 @@ describe("ImageAdaptive", () => {
 
     test("should render imgix src for small_image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const img = getImgixUrl(head(images).src, null, defaultImgixOpts);
@@ -42,6 +44,7 @@ describe("ImageAdaptive", () => {
 
     test("should render imgix <source> srcSet for small_image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const srcSet = component
@@ -54,6 +57,7 @@ describe("ImageAdaptive", () => {
 
     test("should render imgix <source> srcSet for medium_image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const srcSet = component
@@ -67,6 +71,7 @@ describe("ImageAdaptive", () => {
 
     test("should render imgix <source> srcSet for large_image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const srcSet = component
@@ -82,6 +87,7 @@ describe("ImageAdaptive", () => {
   describe("isIntersecting false", () => {
     test("should render ResponsiveImage component", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={false} images={images} />
       );
       expect(component.find(ResponsiveImage).exists()).toBe(true);
@@ -89,6 +95,7 @@ describe("ImageAdaptive", () => {
 
     test("should render imgix src for small_image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={false} images={images} />
       );
       const img = getImgixUrl(head(images).src, null, LOW_RES_IMAGE_SETTINGS);

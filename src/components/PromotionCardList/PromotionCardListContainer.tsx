@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 import { PromotionCardList } from "./PromotionCardList";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './PromotionCardListContainer.g... Remove this comment to see the full error message
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 type Props = {

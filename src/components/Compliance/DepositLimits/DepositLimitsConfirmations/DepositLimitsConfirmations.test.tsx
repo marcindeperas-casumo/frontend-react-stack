@@ -14,6 +14,7 @@ const props = {
 
 describe("DepositLimitsConfirmations", () => {
   test("clicking button causes page to change", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: { saved_right_away_title: string; being... Remove this comment to see the full error message
     const rendered = shallow(<DepositLimitsConfirmations {...props} />);
     const getText = () =>
       rendered
@@ -29,6 +30,7 @@ describe("DepositLimitsConfirmations", () => {
   test("doesn't call lastButtonAction() if it is not the last page", () => {
     const lastButtonAction = jest.fn();
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: { sav... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
         lastButtonAction={lastButtonAction}
@@ -42,6 +44,7 @@ describe("DepositLimitsConfirmations", () => {
   test("lastButtonAction() is only triggered once when finishing the flow", () => {
     const lastButtonAction1 = jest.fn();
     const rendered1 = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: { sav... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
         lastButtonAction={lastButtonAction1}

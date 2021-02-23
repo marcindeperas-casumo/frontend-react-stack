@@ -19,6 +19,7 @@ export const ChatIconPlaceHolder = ({
 
   return (
     <div
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '(event:... Remove this comment to see the full error message
       onClick={onClick}
       className={`
       c-chat-icon

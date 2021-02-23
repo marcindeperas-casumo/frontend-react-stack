@@ -46,6 +46,7 @@ export function StillOnBreak(props: Props) {
                 endTime={props.endTime}
                 onEnd={() => "00:00"}
                 render={state => (
+                  // @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component.
                   <Duration
                     duration={R.omit(["hasEnded"], state)}
                     separator=" "

@@ -11,6 +11,7 @@ type Props = {
 };
 
 const ImageResponsive = React.forwardRef<Props, HTMLImageElement>(
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ isIntersecting, src, imgixOpt... Remove this comment to see the full error message
   (
     { isIntersecting, src = "", imgixOpts = { w: 170 }, ...rest }: Props,
     ref

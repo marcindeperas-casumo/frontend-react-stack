@@ -59,9 +59,11 @@ export type MethodConfigType = {
 export type SavedMethodType = {
   deleted: boolean,
   id: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   identifier: ?string,
   lastUsageTime: number,
   name: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   token: ?string,
   type: string,
 };
@@ -78,6 +80,9 @@ export type QuickDepositMethod = SavedMethodType & {
   displayName: string,
 };
 
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 export type ActionTypes = $Values<typeof actionTypes>;
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 export type IframeModeValues = $Values<typeof IFRAME_MODE>;
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 export type IframePiqEnvValues = $Values<typeof IFRAME_PIQ_ENV>;

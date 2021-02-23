@@ -17,6 +17,7 @@ describe("<LazyPortal />", () => {
 
   test("renders the lazy-loaded component to the DOM element", done => {
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <LazyPortal
         hostElementId={hostElementId}
         loader={() => import("Components/DangerousHtml")}

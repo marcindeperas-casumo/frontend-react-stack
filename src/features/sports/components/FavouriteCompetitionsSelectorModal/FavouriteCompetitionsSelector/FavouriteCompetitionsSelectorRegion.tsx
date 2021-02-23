@@ -17,6 +17,7 @@ type Props = {
   /** Whether this region's competitions should be initially expanded */
   isExpanded: boolean,
   /** Is the competition with this Id selected? */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
   isSelected: (groupId: $ElementType<Competition, "id">) => boolean,
   /** What to do when a competition is clicked, given the competition data */
   onClick: (group: Competition) => void,
@@ -39,6 +40,7 @@ const FavouriteCompetitionsSelectorRegion = ({
   sportId,
   isOnboarding,
   groupId,
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 }: Props): React.Node =>
   !group.groups || isNilOrEmpty(group.groups) ? null : (
     <div className="u-margin-y">
@@ -69,6 +71,7 @@ const FavouriteCompetitionsSelectorRegion = ({
       >
         <CompetitionPillsList
           competitions={group.groups}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: FavouriteCompetitionsSelecto... Remove this comment to see the full error message
           isActive={c => isSelected(c.id)}
           onClick={onClick}
         />

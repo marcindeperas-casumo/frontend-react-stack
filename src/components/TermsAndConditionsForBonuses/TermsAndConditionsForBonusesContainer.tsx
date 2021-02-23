@@ -25,6 +25,7 @@ export function TermsAndConditionsForBonusesContainer() {
 
   const onClickExpand = () =>
     dispatch(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.CONTENT_HTML, { input: { html: content } })
     );
 

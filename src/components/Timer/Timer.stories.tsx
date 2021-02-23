@@ -24,6 +24,7 @@ if (isNotChromatic) {
           {state.seconds}
         </div>
       )}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '(state: any) => Element' is not assignable t... Remove this comment to see the full error message
       onEnd={state => <div>Times up!</div>}
     />
   ));

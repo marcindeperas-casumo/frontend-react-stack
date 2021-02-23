@@ -7,6 +7,7 @@ type RealBonusAmountType = {
 };
 
 export type AnnualOverviewType = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
   currency: $Values<typeof CURRENCIES>,
   startingBalance: RealBonusAmountType,
   endingBalance: RealBonusAmountType,

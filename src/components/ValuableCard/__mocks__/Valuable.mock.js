@@ -1,4 +1,5 @@
 import mockData from "./Valuable";
+// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
 import { VALUABLE_TYPES, type ValuableType, type ValuableListProps } from "Models/valuables";
 import { find, propEq } from "ramda";
 import { DateTime } from "luxon";

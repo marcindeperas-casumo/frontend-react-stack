@@ -7,6 +7,7 @@ import { WildDots } from "./WildDots";
 
 storiesOf("WildDots", module).add("Default", () => (
   <Flex style={{ width: 400, flexWrap: "wrap" }}>
+    {/* @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component. */}
     <WildDots
       activeDotIndex={number("Active dot index", 3, {
         range: true,

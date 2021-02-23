@@ -22,17 +22,20 @@ type InputProps = {
 type SearchInputProps = {
   onBlur: () => void,
   onClear: () => void,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'empty'.
   children?: empty,
   noResults?: boolean,
 };
 
-type Props = InputProps & SearchInputProps;
+type OwnProps = InputProps & SearchInputProps;
 
 type State = {
   hasFocus: boolean,
 };
 
 const noop = () => {};
+
+type Props = (OwnProps & typeof SearchInput.defaultProps);
 
 class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
@@ -42,6 +45,7 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   state = { hasFocus: false };
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   textInput: { current: ?HTMLInputElement } = React.createRef();
 
   get inputProps() {

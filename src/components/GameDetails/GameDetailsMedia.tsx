@@ -9,6 +9,7 @@ type Props = {
 };
 
 export const GameDetailsMedia = ({ media, name }: Props) => {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   return media.map<React.Node>(gameMedia => {
     if (gameMedia.type !== "image") {
       return null;

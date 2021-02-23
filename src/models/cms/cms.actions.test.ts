@@ -18,6 +18,7 @@ describe("Models/CMS/Actions", () => {
     test("initiates an API fetch", () => {
       const slug = "foo";
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slug: string; }' is not assign... Remove this comment to see the full error message
       expect(initiateFetch({ slug })).toMatchObject({
         type: fetchTypes.FETCH,
         name: `${types.FETCH_PAGE_BY_SLUG}-${slug}`,
@@ -27,6 +28,7 @@ describe("Models/CMS/Actions", () => {
     test("fires a completed action when fetch finished", () => {
       const slug = "foo";
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slug: string; }' is not assign... Remove this comment to see the full error message
       expect(initiateFetch({ slug })).toMatchObject({
         postFetch: `${types.FETCH_PAGE_BY_SLUG_COMPLETE}-${slug}`,
       });
@@ -34,6 +36,7 @@ describe("Models/CMS/Actions", () => {
 
     test("passes the fetcher function to the action", () => {
       const slug = "foo";
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slug: string; }' is not assign... Remove this comment to see the full error message
       const action = initiateFetch({ slug });
 
       expect(typeof action.asyncCall).toBe("function");

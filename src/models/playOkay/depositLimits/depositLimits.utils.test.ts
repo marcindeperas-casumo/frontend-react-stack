@@ -8,6 +8,7 @@ import {
 describe("checkIfConditionsApply", () => {
   test("returns true if at least 1 increase or removal was found", () => {
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "increase",
         weekly: "unchanged",
@@ -15,6 +16,7 @@ describe("checkIfConditionsApply", () => {
       })
     ).toBe(true);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "increase",
         weekly: "increase",
@@ -22,6 +24,7 @@ describe("checkIfConditionsApply", () => {
       })
     ).toBe(true);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "removed",
         weekly: "increase",
@@ -29,6 +32,7 @@ describe("checkIfConditionsApply", () => {
       })
     ).toBe(true);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "unchanged",
         weekly: "unchanged",
@@ -39,6 +43,7 @@ describe("checkIfConditionsApply", () => {
 
   test("returns false if there was no increase or removal", () => {
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "unchanged",
         weekly: "unchanged",
@@ -46,6 +51,7 @@ describe("checkIfConditionsApply", () => {
       })
     ).toBe(false);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "decrease",
         weekly: "decrease",
@@ -53,6 +59,7 @@ describe("checkIfConditionsApply", () => {
       })
     ).toBe(false);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       checkIfConditionsApply({
         daily: "unchanged",
         weekly: "unchanged",
@@ -228,8 +235,10 @@ describe("diffLimits", () => {
 
 describe("getSpecificKinds", () => {
   test("unchanged", () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const getUnchanged = getSpecificKinds("unchanged");
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getUnchanged({
         daily: "unchanged",
         weekly: "increase",
@@ -237,6 +246,7 @@ describe("getSpecificKinds", () => {
       })
     ).toMatchObject(["daily"]);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getUnchanged({
         daily: "unchanged",
         weekly: "increase",
@@ -246,8 +256,10 @@ describe("getSpecificKinds", () => {
   });
 
   test("increase", () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const getIncreased = getSpecificKinds("increase");
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getIncreased({
         daily: "removed",
         weekly: "removed",
@@ -255,6 +267,7 @@ describe("getSpecificKinds", () => {
       })
     ).toMatchObject(["monthly"]);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getIncreased({
         daily: "increase",
         weekly: "increase",
@@ -264,8 +277,10 @@ describe("getSpecificKinds", () => {
   });
 
   test("decrease", () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const getDecreased = getSpecificKinds("decrease");
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getDecreased({
         daily: "removed",
         weekly: "decrease",
@@ -273,6 +288,7 @@ describe("getSpecificKinds", () => {
       })
     ).toMatchObject(["weekly"]);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getDecreased({
         daily: "increase",
         weekly: "decrease",
@@ -282,8 +298,10 @@ describe("getSpecificKinds", () => {
   });
 
   test("removed", () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     const getRemoved = getSpecificKinds("removed");
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getRemoved({
         daily: "removed",
         weekly: "decrease",
@@ -291,6 +309,7 @@ describe("getSpecificKinds", () => {
       })
     ).toMatchObject(["daily"]);
     expect(
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       getRemoved({
         daily: "removed",
         weekly: "removed",

@@ -63,6 +63,7 @@ stories.add("Default", () => {
   };
 
   return (
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     <ScrollablePaginated
       columnCount={numberOfCells}
       cellRenderer={cellRenderer}
@@ -96,6 +97,7 @@ stories.add("Mixed width elements", () => {
   };
 
   return (
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     <ScrollablePaginated
       columnCount={numberOfCells}
       cellRenderer={cellRendererAltWidths}

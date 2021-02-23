@@ -31,11 +31,15 @@ export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
 
   return (
     <TimeLimitsFormOutro
+      // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       initial={initial}
       onClickCta={onClickCta}
+      // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       dailyLimit={dailyLimit}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'LoginTim... Remove this comment to see the full error message
       weeklyLimit={weeklyLimit}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'LoginTim... Remove this comment to see the full error message
       monthlyLimit={monthlyLimit}
     />
   );

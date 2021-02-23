@@ -1,7 +1,6 @@
-// @flow
 import Rollbar from "rollbar";
 
-function checkIgnore(isUncaught, args, payload) {
+function checkIgnore(isUncaught: boolean, args: Rollbar.LogArgument[], payload: object) {
   try {
     if (__DEV__) {
       /**
@@ -17,7 +16,8 @@ function checkIgnore(isUncaught, args, payload) {
      * based on that we can get raw stacktrace, split it on line break and check
      * if second line contains react-stack in path (first line contains error msg)
      */
-    const error: Error = args[1];
+    const error = args[1];
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'stack' does not exist on type 'LogArgume... Remove this comment to see the full error message
     const firstStackTraceLine: string = error.stack.split("\n")[1];
     if (!/react-stack/.test(firstStackTraceLine)) {
       return true;

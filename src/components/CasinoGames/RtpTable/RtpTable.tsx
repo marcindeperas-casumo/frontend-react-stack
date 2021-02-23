@@ -8,6 +8,7 @@ import { isMobile } from "Components/ResponsiveLayout";
 import { loadMoreConstructor } from "Utils";
 import { RtpTableRow } from "./RtpTableRow";
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 const formatRTPValue = (x: ?string) => {
   if (!x) {
     return "";
@@ -43,6 +44,7 @@ export const RtpTable = ({
   query: string,
   gamesCount: number,
   scrollElementId: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   headerColumns: Array<?string>,
   valuesColumns: Array<string>,
 }) => {
@@ -65,6 +67,7 @@ export const RtpTable = ({
       </Flex>
 
       <VirtualList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         games={games}
         loadMoreRows={loadMoreConstructor(
           fetchMore,

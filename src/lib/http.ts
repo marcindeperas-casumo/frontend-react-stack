@@ -1,10 +1,9 @@
-// @flow
 import { stringify } from "qs";
 
 export type FetchType = (
   url: string,
-  data: ?Object,
-  options: ?Object
+  data?: Object,
+  options?: Object,
 ) => Promise<any>;
 
 export const DEFAULT_FETCH_OPTIONS = {
@@ -14,10 +13,10 @@ export const DEFAULT_FETCH_OPTIONS = {
   },
 };
 
-export const createGetUrl = (url: string, data: ?Object) =>
+export const createGetUrl = (url: string, data: Object | undefined) =>
   data ? `${url}?${buildQueryParams(data)}` : url;
 
-export const buildQueryParams = (params: ?Object, options: ?Object) =>
+export const buildQueryParams = (params: Object | undefined, options = {}) =>
   stringify(params, { skipNulls: true, arrayFormat: "brackets", ...options });
 
 const errorHandler = response => {
@@ -39,6 +38,7 @@ const emptyResponseHandler = response =>
     );
 
 const get: FetchType = (url, data, options) =>
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ constructor: Function; toStrin... Remove this comment to see the full error message
   fetch(createGetUrl(url, data), {
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
@@ -47,6 +47,7 @@ const get: FetchType = (url, data, options) =>
     .then(response => response.json());
 
 const post: FetchType = (url, data, options) =>
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ constructor: Function; toStrin... Remove this comment to see the full error message
   fetch(url, {
     method: "POST",
     body: data ? JSON.stringify(data) : undefined,
@@ -57,11 +58,13 @@ const post: FetchType = (url, data, options) =>
     .then(emptyResponseHandler);
 
 const del: FetchType = (url, options) =>
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ constructor: Function; toStrin... Remove this comment to see the full error message
   fetch(url, {
     method: "DELETE",
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
   });
+
 
 export default {
   del,

@@ -25,6 +25,7 @@ export function LoginSessionDetailsSection() {
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency,
       locale,
     });
@@ -36,13 +37,16 @@ export function LoginSessionDetailsSection() {
   return (
     <>
       <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'header' does not exist on type '{}'. */}
         {t.header}
       </Text>
       <Row
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'totalBets' does not exist on type '{}'.
         label={t.totalBets}
         value={formatCurrencyBound(Math.abs(loginSessionSummary.bets))}
       />
       <Row
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'totalWins' does not exist on type '{}'.
         label={t.totalWins}
         value={formatCurrencyBound(loginSessionSummary.winnings)}
       />

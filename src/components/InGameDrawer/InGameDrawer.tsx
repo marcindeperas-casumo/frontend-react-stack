@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { isNativeByUserAgent } from "GameProviders";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { QuickDeposit } from "Components/QuickDeposit";
@@ -22,7 +23,9 @@ export const InGameDrawer = ({ onLiveChatClick, onExitGameClick }: Props) => {
       )}
       <InGameDrawerLinks
         className="u-padding--lg"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '() => v... Remove this comment to see the full error message
         onExitGameClick={onExitGameClick}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '() => v... Remove this comment to see the full error message
         onLiveChatClick={onLiveChatClick}
       />
     </div>

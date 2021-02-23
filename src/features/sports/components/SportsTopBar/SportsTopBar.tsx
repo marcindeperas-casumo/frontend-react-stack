@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
 import type { Node } from "react";
 import classNames from "classnames";
 import { SearchIcon } from "@casumo/cmp-icons";
@@ -107,6 +108,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
       <Flex.Block>
         <Flex justify="end" spacing="xlg">
           <Flex.Item>
+            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.home"
               onClick={navigateTo.home}
@@ -116,6 +118,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>
+            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.search"
               onClick={navigateTo.search}
@@ -126,6 +129,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>
+            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.bet-history"
               onClick={navigateTo.myBets}

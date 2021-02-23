@@ -1,13 +1,13 @@
 // @flow
 import React from "react";
 
-type Props = {
-  start: number,
-  end: number,
-  duration: number,
-  decimals: number,
-  easeFn: Function,
-  render: Function,
+type OwnProps = {
+    start: number;
+    end: number;
+    duration: number;
+    decimals: number;
+    easeFn: Function;
+    render: Function;
 };
 
 type State = {
@@ -24,11 +24,17 @@ export const REFRESH_RATE = 1000 / 30;
  * d: duration
  */
 const easeOutExpo = (t: number, b: number, c: number, d: number) =>
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
   parseFloat((c * (-(2 ** ((-10 * t) / d)) + 1) * 1024) / 1023 + b);
 
+type Props = OwnProps & typeof Counter.defaultProps;
+
 export class Counter extends React.Component<Props, State> {
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'setTimer'.
   setTimer: Function;
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'IntervalID'.
   timer: IntervalID | void;
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'countUp'.
   countUp: Function;
   startTime: number;
 
@@ -77,6 +83,7 @@ export class Counter extends React.Component<Props, State> {
     return false;
   }
 
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'setTimer'.
   setTimer() {
     if (this.timer) {
       return;
@@ -89,6 +96,7 @@ export class Counter extends React.Component<Props, State> {
     this.timer = undefined;
   }
 
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'countUp'.
   countUp() {
     const { start, end, duration, decimals } = this.props;
 

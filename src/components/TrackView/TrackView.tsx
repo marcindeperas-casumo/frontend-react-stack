@@ -5,6 +5,7 @@ import tracker from "Services/tracker";
 export type Props = {
   eventName?: string,
   data?: Object,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   trackHandler?: (eventName: string, data: ?Object) => void,
 };
 

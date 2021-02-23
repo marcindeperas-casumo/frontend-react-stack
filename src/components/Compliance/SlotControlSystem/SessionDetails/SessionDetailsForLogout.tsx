@@ -3,6 +3,7 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/slotControlSystem"' ha... Remove this comment to see the full error message
 import { type ActiveSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 import { LoginSessionDetailsSection } from "./LoginSessionDetailsSection";

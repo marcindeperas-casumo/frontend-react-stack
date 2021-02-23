@@ -6,6 +6,7 @@ describe("Models/CometD/Unsubscribe", () => {
   const channel = "/foo/bar";
   const action = { channel };
   const generator = cometdUnsubscribeSaga(action);
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
   const isGeneratorDone = (...args) => generator.next(...args).done;
 
   test("calls cometd.unsubscribe with the channel name", () => {
@@ -14,7 +15,9 @@ describe("Models/CometD/Unsubscribe", () => {
       prop("FORK"),
       prop("value")
     )(effect);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fn = prop("fn")(FORK);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fnArgs = prop("args")(FORK);
 
     expect(fn).toEqual(cometd.unsubscribe);

@@ -13,9 +13,13 @@ type Props = {
   className?: string,
   timeElapsed: number,
   timeLeft: number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   t: ?{
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     tooltip_title: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     tooltip_message: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     remaining_seconds: ?string,
   },
 };

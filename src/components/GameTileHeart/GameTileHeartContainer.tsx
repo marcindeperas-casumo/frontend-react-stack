@@ -7,6 +7,7 @@ import * as A from "Types/apollo";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameTileHeart } from "Components/GameTileHeart/GameTileHeart";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameTileHeart.graphql' or it... Remove this comment to see the full error message
 import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 import {
   useAddGameToMyList,
@@ -64,6 +65,7 @@ export const GameTileHeartContainer = React.memo<Props>(
           <GameTileHeart
             className={heartClassName}
             onClick={onFavouriteGame}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'GameTileHeartQuery_gamesList_games' is not a... Remove this comment to see the full error message
             isActive={isInMyList}
           />
         </TrackClick>

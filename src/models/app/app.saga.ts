@@ -12,6 +12,7 @@ export function* appSaga() {
   // the application handshake is loaded and a logged in session is active).
   // This is under the assumption that the react-stack will only run in logged
   // in mode
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   yield call(waitForSelector, isAuthenticated);
 
   yield put(initFetchActiveSessionAction());

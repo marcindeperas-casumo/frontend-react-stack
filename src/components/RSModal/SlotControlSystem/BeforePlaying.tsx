@@ -6,6 +6,7 @@ import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSys
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
 import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
 import { type ModalContentComponent } from "Components/RSModal";
 import { useWalletAmount, useCrossCodebaseNavigation } from "Utils/hooks";
 import { ModalSkin } from "./ModalSkin";

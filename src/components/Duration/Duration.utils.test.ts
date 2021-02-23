@@ -35,8 +35,10 @@ describe("Components/Duration.utils", () => {
     const separator = " ";
 
     test(`it returns full representation when passed: ${JSON.stringify(
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
       getDuration()
     )}`, () => {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
       const duration = getDuration();
       const { years, months, days, hours, minutes, seconds } = duration;
 

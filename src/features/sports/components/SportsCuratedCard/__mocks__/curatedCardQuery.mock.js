@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CuratedCard/Curated... Remove this comment to see the full error message
 import { CuratedCardQuery } from "Components/CuratedCard/CuratedCard.graphql";
 
 export const curatedCardQueryMock = {

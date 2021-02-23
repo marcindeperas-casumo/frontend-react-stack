@@ -10,6 +10,7 @@ describe("Models/CometD/Subscribe", () => {
   const emittedChannel = "/foo/bar";
   const generator = cometdSubscribeSaga({ channel, sessionId });
   const fakeMessageStream = "PATTERN";
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
   const isGeneratorDone = (...args) => generator.next(...args).done;
 
   test("requests for creating a message stream", () => {
@@ -18,7 +19,9 @@ describe("Models/CometD/Subscribe", () => {
       prop("CALL"),
       prop("value")
     )(effect);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fn = prop("fn")(CALL);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fnArgs = prop("args")(CALL);
 
     expect(fn).toEqual(getCometdMessagesStream);
@@ -30,6 +33,7 @@ describe("Models/CometD/Subscribe", () => {
     const expectedAction = message({ channel: emittedChannel, data });
 
     // We are "yielding" the take() and passing down the message stream
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
     generator.next(fakeMessageStream);
 
     // Push message (would come from the message stream) and get the result of put()
@@ -38,6 +42,7 @@ describe("Models/CometD/Subscribe", () => {
       prop("PUT"),
       prop("value")
     )(effect);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const action = prop("action")(PUT);
 
     expect(action).toEqual(expectedAction);

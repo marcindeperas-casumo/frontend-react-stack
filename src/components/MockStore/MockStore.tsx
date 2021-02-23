@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
 import React, { type ElementProps } from "react";
 import { mergeDeepRight } from "ramda";
 import { Provider } from "react-redux";

@@ -13,6 +13,7 @@ stories.add("Default", () => (
       add: "Add",
     }}
     fetchTranslations={action("fetchTranslations click")}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'HandlerFunction' is not assignable to type '... Remove this comment to see the full error message
     showOldSuspendAccountView={action("showOldSuspendAccountView click")}
   />
 ));

@@ -14,5 +14,6 @@ export type GameTileContainerProps = {
 
 export const GameTileContainer = (props: GameTileContainerProps) => {
   const t = useTranslations(`${CMS_SLUGS.LOBBY}.${CMS_SLUGS.GAMES_LIST}`);
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'play_button_text_game_tile' is missing i... Remove this comment to see the full error message
   return <GameTile t={t} {...props} />;
 };

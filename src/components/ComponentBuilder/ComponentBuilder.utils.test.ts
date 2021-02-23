@@ -9,6 +9,7 @@ describe("ComponentBuilder Utils", () => {
 
       supportedComponents.forEach((id, i) => {
         const contentDefinition = { acf_fc_layout: id };
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 2.
         const component = mapContentDefinitionToComponent(contentDefinition, i);
         const originalComponent = COMPONENT_MAPPING[id];
 
@@ -30,6 +31,7 @@ describe("ComponentBuilder Utils", () => {
           acf_fc_layout: id,
           ...expectedProps,
         };
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 2.
         const { props } = mapContentDefinitionToComponent(contentDefinition, i);
 
         expect(props).toEqual(expectedProps);
@@ -42,6 +44,7 @@ describe("ComponentBuilder Utils", () => {
         foo: "bar",
       };
       const i = 1;
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 2.
       const component = mapContentDefinitionToComponent(contentDefinition, i);
 
       expect(component).toBeNull();

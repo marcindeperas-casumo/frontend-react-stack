@@ -11,6 +11,7 @@ describe("ScrollableListPaginated", () => {
 
   beforeEach(() => {
     rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollableListPaginated
         title={gamesListMock.name}
         itemCount={gamesListMock.games.length}

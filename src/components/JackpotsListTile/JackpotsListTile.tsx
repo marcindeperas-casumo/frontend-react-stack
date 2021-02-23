@@ -11,6 +11,7 @@ type Props = {
 // __FIX__ this should be the source of truth for the MustDrop and
 // standard jackpot tiles.
 export const JackpotsListTile = ({ games = [] }: Props) =>
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   games.map<React.Node>(game => (
     <div key={game.id} className="u-padding-bottom">
       <GameRow

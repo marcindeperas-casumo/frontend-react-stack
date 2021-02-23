@@ -8,6 +8,7 @@ import type {
 import type { QuickDepositMethod } from "./methodConfig.types";
 
 export const setQuickDepositMethod = (
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   method: ?QuickDepositMethod
 ): SetQuickDepositMethodReturnType => ({
   type: actionTypes.SET_QUICK_DEPOSIT_METHOD,

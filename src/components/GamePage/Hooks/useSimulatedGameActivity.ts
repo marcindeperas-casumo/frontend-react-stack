@@ -43,6 +43,7 @@ export const useSimulatedGameActivity = (
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
 
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timeout' is not assignable to type 'undefine... Remove this comment to see the full error message
           // eslint-disable-next-line fp/no-mutation
           timeoutRef.current = setTimeout(() => {
             onChange(false);
@@ -60,6 +61,7 @@ export const useSimulatedGameActivity = (
 
   useEffect(() => {
     if (gameActive) {
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timeout' is not assignable to type 'undefine... Remove this comment to see the full error message
       // eslint-disable-next-line fp/no-mutation
       timeoutRef.current = setTimeout(() => {
         onChange(false);

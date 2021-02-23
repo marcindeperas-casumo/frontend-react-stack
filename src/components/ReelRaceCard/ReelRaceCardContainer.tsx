@@ -3,6 +3,7 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
 import { ReelRaceCard } from "./ReelRaceCard";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ReelRaceCard.graphql' or its... Remove this comment to see the full error message
 import { OptInForReelRace } from "./ReelRaceCard.graphql";
 
 type Props = {

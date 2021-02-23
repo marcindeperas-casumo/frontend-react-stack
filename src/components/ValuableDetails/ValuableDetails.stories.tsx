@@ -20,7 +20,9 @@ const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
   const valuableType =
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     VALUABLE_TYPES.CASH;
   const valuableDetailsMock = mockData(valuableType);
   const expiresWith24Hours = boolean("Expires within 24 hours", false);
@@ -28,6 +30,7 @@ stories.add("Default", () => {
 
   return (
     <div style={{ width: "420px" }}>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <ValuableDetails
         valuableDetails={{
           ...valuableDetailsMock,
@@ -38,6 +41,7 @@ stories.add("Default", () => {
         onLaunchGame={() => {}}
       >
         <div style={{ width: "160px" }}>
+          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           <ValuableCard
             {...mockValuableCard(valuableType)}
             caveat={null}
@@ -50,6 +54,7 @@ stories.add("Default", () => {
 });
 
 stories.add("Default - With modal", () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
   const valuableDetailsMock = mockData(VALUABLE_TYPES.CASH);
 
   return (
@@ -57,11 +62,14 @@ stories.add("Default - With modal", () => {
       <ValuableDetailsWithModal
         isOpen={true}
         onClose={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ expiryDate: number; valuableType: any; }' ... Remove this comment to see the full error message
         valuableDetails={valuableDetailsMock}
         translations={translations}
       >
         <div style={{ width: "160px" }}>
+          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           <ValuableCard
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
             {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
             className="t-elevation--30"
@@ -73,10 +81,12 @@ stories.add("Default - With modal", () => {
 });
 
 stories.add("Deposit - Locked", () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
   const valuableDetailsMock = mockData(VALUABLE_TYPES.DEPOSIT);
 
   return (
     <div style={{ width: "420px" }}>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <ValuableDetails
         valuableDetails={valuableDetailsMock}
         translations={translations}
@@ -84,7 +94,9 @@ stories.add("Deposit - Locked", () => {
         onLaunchGame={() => {}}
       >
         <div style={{ width: "160px" }}>
+          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           <ValuableCard
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
             {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
             className="t-elevation--30"

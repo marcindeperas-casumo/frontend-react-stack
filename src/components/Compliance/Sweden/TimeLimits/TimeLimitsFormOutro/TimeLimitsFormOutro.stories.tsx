@@ -19,8 +19,11 @@ stories.add("Default", () => {
       t={cmsMock}
       initial={boolean("Is initial?", false)}
       onClickCta={() => {}}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ comingLimit: { activationTime: number; aut... Remove this comment to see the full error message
       dailyLimit={dailyLimitMock}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ comingLimit: any; comingRevocation: any; c... Remove this comment to see the full error message
       weeklyLimit={weeklyLimitMock}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ comingLimit: any; comingRevocation: any; c... Remove this comment to see the full error message
       monthlyLimit={monthlyLimitMock}
     />
   );

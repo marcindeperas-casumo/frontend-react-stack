@@ -13,12 +13,18 @@ import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 type Props = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'liveCasinoLobby'.
   liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
+  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 't'. Did you mean 'T'?
   t?: {
+    // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
     bet_behind: string,
+    // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
     open_seats: string,
   },
+  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'className'. Did you mean 'classN... Remove this comment to see the full error message
   className?: string,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'small'.
   small?: boolean,
 |};
 

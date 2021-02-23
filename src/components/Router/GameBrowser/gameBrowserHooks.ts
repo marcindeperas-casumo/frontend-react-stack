@@ -17,6 +17,7 @@ function getPage() {
   const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
   return (
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     window.location.pathname.split("/")[isTLDMarketSpecific(tld) ? 2 : 3] ||
     "top"
   );
@@ -74,6 +75,7 @@ export function useSetScrollPosition(loading: boolean) {
       return;
     }
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     scrollEl.scrollTo(0, scrollPos);
     initialized.current = true; // eslint-disable-line fp/no-mutation
   });

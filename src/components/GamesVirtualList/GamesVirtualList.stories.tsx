@@ -15,6 +15,7 @@ const props = {
   renderItem: game => (
     <GameRow
       game={game}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: any; onLaunchGame: () => void; rende... Remove this comment to see the full error message
       onLaunchGame={() => {}}
       renderText={() => <GameRowText name={game.name} />}
     />
@@ -28,6 +29,7 @@ const props = {
 stories.add("Default", () => (
   <MockStore>
     <div className="u-height--screen">
+      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'Promise' is missing in type '{ games: { ... Remove this comment to see the full error message */}
       <GamesVirtualList {...props} />
     </div>
   </MockStore>

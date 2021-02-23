@@ -3,6 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import logger from "Services/logger";
 import { interpolate } from "Utils";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/payments"' has no exported m... Remove this comment to see the full error message
 import { type CvvValidationEvent } from "Models/payments";
 import type {
   QuickDepositSlipFormProps,
@@ -29,9 +30,13 @@ export const useQuickDepositSlipForm = ({
   translations: t,
 }: QuickDepositSlipFormProps) => {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'error_deposit_minimum' does not exist on... Remove this comment to see the full error message
     error_deposit_minimum,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'error_deposit_maximum' does not exist on... Remove this comment to see the full error message
     error_deposit_maximum,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'error_deposit_amount_required' does not ... Remove this comment to see the full error message
     error_deposit_amount_required,
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipFormErrorTransla... Remove this comment to see the full error message
   } = R.map(v => v || "")(t);
 
   const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors(t));
@@ -48,6 +53,7 @@ export const useQuickDepositSlipForm = ({
   ] = React.useState<QuickDepositSlipFormErrors>({});
 
   const onAmountChange = React.useCallback(
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
     (e: SyntheticEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
       if (!isNaN(value)) {
@@ -71,11 +77,13 @@ export const useQuickDepositSlipForm = ({
         return;
       }
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       setCvvError(e.errorType);
       setCvvValue(null);
     }
 
     if (e.status === "success") {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       setCvvValue(e.data);
       setCvvError(null);
     }
@@ -116,6 +124,7 @@ export const useQuickDepositSlipForm = ({
       if (cvvError) {
         setFormErrors(
           R.mergeLeft({
+            // @ts-expect-error ts-migrate(2538) FIXME: Type 'undefined' cannot be used as an index type.
             cvv: cvvErrorTranslationKeys[cvvError],
           })
         );

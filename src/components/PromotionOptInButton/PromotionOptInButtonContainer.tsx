@@ -24,6 +24,7 @@ const defaultOptInValue = "Opt-In";
 const defaultOptOutValue = "Opted-In";
 
 const PromotionOptInButtonConnected = connect(
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'slug' does not exist on type '{}'.
   (state, { slug, optInField, optOutField }) => ({
     active: {
       label: getField({
@@ -53,8 +54,10 @@ const PromotionOptInButtonConnected = connect(
     },
     isOptedIn: isPromotionOptedInSelector(slug)(state),
   }),
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'slug' does not exist on type '{}'.
   (dispatch, { slug }) => ({
     active: {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(dispatch: (action: any) => void... Remove this comment to see the full error message
       onClick: () => dispatch(setPromotionOptIn(slug, true)),
     },
   }),

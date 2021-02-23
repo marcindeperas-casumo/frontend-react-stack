@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/SumoIcon/SumoIconCo... Remove this comment to see the full error message
 import { animation_duration } from "Components/SumoIcon/SumoIconConfetti.scss";
 import SumoIconConfettiContainer from "./SumoIconConfettiContainer";
 

@@ -1779,6 +1779,7 @@ export type PLAYER_REALITY_CHECK_QUERY = {
 // ====================================================
 
 export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Long'.
   loginTime: Long
 };
 
@@ -2741,10 +2742,10 @@ export type GameRow_Game_lobby = {
 export type GameRow_Game = {
   id: string,
   backgroundImage: string,
+  gameStudio: string,
   logo: string,
   name: string,
   slug: string,
-  gameStudio: string,
   category: ?string,
   playBackground: string,
   liveCasinoId: ?string,
@@ -3810,10 +3811,12 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 export type ContactSettingsInput = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'on'.
   on: boolean
 |};
 
 export type UpdateRealityCheckIntervalInput = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'intervalSeconds'.
   intervalSeconds: number
 |};
 

@@ -106,6 +106,7 @@ export function RealityCheck(props: RealityCheckProps) {
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a
           role="button"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: string; role: string; tabindex: ... Remove this comment to see the full error message
           tabindex="0"
           className="u-cursor-pointer t-color-purple-60"
           onClick={onClickViewHistoryBets}

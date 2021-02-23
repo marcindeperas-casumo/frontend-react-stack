@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
 import { type SessionEndedCometdMessage, END_SESSION_REASONS } from "Models/slotControlSystem";
 import endedSessionMock from "./endedSession.mock";
 

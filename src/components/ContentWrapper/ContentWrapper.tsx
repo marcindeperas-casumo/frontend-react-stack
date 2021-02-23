@@ -5,6 +5,7 @@ import cx from "classnames";
 import "./ContentWrapper.scss";
 
 type TProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   className?: string,
 };

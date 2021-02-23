@@ -11,16 +11,19 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 import { rightPaddingClasses } from "Components/GameListHorizontal/constants";
 
-type Props = {
-  /** The list title */
-  title: ?string,
-  /** The seeMore text and url */
-  seeMore?: SeeMoreProps,
-  /** Whether applying padding left or not */
-  paddingLeft?: boolean,
-  /** Size to apply on padding left */
-  paddingPerDevice?: spacerSizes | responsiveSpacerSizes,
+type OwnProps = {
+    /** The list title */
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
+    title: ?string;
+    /** The seeMore text and url */
+    seeMore?: SeeMoreProps;
+    /** Whether applying padding left or not */
+    paddingLeft?: boolean;
+    /** Size to apply on padding left */
+    paddingPerDevice?: spacerSizes | responsiveSpacerSizes;
 };
+
+type Props = OwnProps & typeof ScrollableListTitleRow.defaultProps;
 
 export class ScrollableListTitleRow extends PureComponent<Props> {
   static defaultProps = {

@@ -1,4 +1,3 @@
-// @flow
 import http from "Lib/http";
 
 export type LoginSessionSummary = {

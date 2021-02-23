@@ -10,6 +10,7 @@ export type LuxonDurationKey =
   | "milliseconds";
 
 export type LuxonDurationObject = {
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   [LuxonDurationKey]: number,
 };
 

@@ -29,6 +29,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
@@ -64,6 +65,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -99,6 +101,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -134,6 +137,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);

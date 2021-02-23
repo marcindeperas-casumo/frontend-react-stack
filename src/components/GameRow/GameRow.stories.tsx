@@ -23,15 +23,18 @@ const propsDefault = {
   onLaunchGame: action(gonzosQuest),
   renderText: () => <GameRowText name={game.name} />,
 };
+// @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { name: string; slug: string; backgr... Remove this comment to see the full error message
 stories.add("Default", () => <GameRow {...propsDefault} />);
 
 const propsShowingJackpot = {
   game: { ...game, jackpot },
   renderText: () => (
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; gameProvider: string; value: {... Remove this comment to see the full error message
     <GameRowText name={game.name} jackpot={jackpot} locale="en" />
   ),
   onLaunchGame: action(gonzosQuest),
 };
+// @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { jackpot: { id: string; gameProvide... Remove this comment to see the full error message
 stories.add("Showing a Jackpot", () => <GameRow {...propsShowingJackpot} />);
 
 const propsShowingLiveCasino = {
@@ -45,6 +48,7 @@ const propsShowingLiveCasino = {
   ),
 };
 stories.add("Showing a Live Casino", () => (
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { backgroundImage: string; id: strin... Remove this comment to see the full error message
   <GameRow {...propsShowingLiveCasino} />
 ));
 
@@ -59,6 +63,7 @@ const propsSearchWithMatch = {
     />
   ),
 };
+// @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { name: string; slug: string; backgr... Remove this comment to see the full error message
 stories.add("Search with match", () => <GameRow {...propsSearchWithMatch} />);
 
 const propsSearchWithNoMatch = {
@@ -73,6 +78,7 @@ const propsSearchWithNoMatch = {
   ),
 };
 stories.add("Search with no match", () => (
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { name: string; slug: string; backgr... Remove this comment to see the full error message
   <GameRow {...propsSearchWithNoMatch} />
 ));
 
@@ -89,5 +95,6 @@ const propsGameInMaintenance = {
   ),
 };
 stories.add("Showing Games in maintenance mode", () => (
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { isInMaintenance: any; name: string... Remove this comment to see the full error message
   <GameRow {...propsGameInMaintenance} />
 ));

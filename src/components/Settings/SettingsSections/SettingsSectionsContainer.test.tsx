@@ -28,6 +28,7 @@ describe("SettingsSections", () => {
         </MockStore>
       );
 
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(() => jest.runAllTimers());
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);

@@ -1,17 +1,15 @@
-// @flow
 import * as React from "react";
 import classNames from "classnames";
 import ScrollableList from "Components/ScrollableList";
 import * as A from "Types/apollo";
-// __FIX__ Why can't it resolve "Components/ReelRaceCard"?
 import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/ReelRaceCardContainer";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
-  title: ?string,
-  seeMore: ?string,
+  title: string | null,
+  seeMore: string | null,
 };
 
 type ReelRacesListProps = Props & A.ReelRaceListQuery;

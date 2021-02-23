@@ -1,4 +1,3 @@
-// @flow
 import { stringify } from "qs";
 import http from "Lib/http";
 

@@ -11,6 +11,7 @@ describe("<FavouriteCompetitionsCount/>", () => {
 
   test("should not render if count is 0 or not provided", () => {
     const rendered0 = shallow(<FavouriteCompetitionsCount count={0} />);
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'count' is missing in type '{}' but requi... Remove this comment to see the full error message
     const renderedUndefined = shallow(<FavouriteCompetitionsCount />);
     const renderedNull = shallow(<FavouriteCompetitionsCount count={null} />);
 

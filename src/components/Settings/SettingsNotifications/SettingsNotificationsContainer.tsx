@@ -19,6 +19,7 @@ export interface NotificationTranslations {
 export function SettingsNotificationsContainer() {
   const { data, error, loading, refetch } = useQuery<
     A.PLAYER_CONTACT_SETTINGS_QUERY,
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
     _
   >(PLAYER_CONTACT_SETTINGS_QUERY);
   const notificationTranslations = useTranslations<NotificationTranslations>(
@@ -29,6 +30,7 @@ export function SettingsNotificationsContainer() {
     return <SettingsRowListSkeleton count={8} />;
   }
   if (!data || error) {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Promise<ApolloQueryResult<PLAYER_CONTACT_SET... Remove this comment to see the full error message
     return <ErrorMessage retry={() => refetch()} />;
   }
 

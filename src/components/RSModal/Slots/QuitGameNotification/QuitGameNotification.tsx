@@ -10,6 +10,7 @@ import type { CmsContent } from "./QuitGameNotification.types";
 
 type QuitGameNotificationProps = {
   acceptModal?: () => void,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   t: ?CmsContent,
 };
 

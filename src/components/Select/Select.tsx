@@ -10,6 +10,7 @@ import "./select.scss";
 type Props<T> = {
   onChange: T => void,
   value: ?T,
+  // @ts-expect-error ts-migrate(2693) FIXME: 'T' only refers to a type, but is being used as a ... Remove this comment to see the full error message
   options: { [T]: string },
   /** value used when nothing is selected */
   emptyState: string,
@@ -65,13 +66,16 @@ export function Select<T>(props: Props<T>) {
             pillFontClass
           )}
         >
+          {/* @ts-expect-error ts-migrate(2536) FIXME: Type 'T' cannot be used to index type '{}'. */}
           {props.value ? props.options[props.value] : props.emptyState}
         </div>
         {isMobile() ? (
           <select
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string | T' is not assignable to type 'strin... Remove this comment to see the full error message
             value={props.value || ""}
             className={pillClass}
             style={{ width }}
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             onChange={event => props.onChange((event.target.value: T))}
           >
             <option value="" disabled hidden>
@@ -90,6 +94,7 @@ export function Select<T>(props: Props<T>) {
             onClick={() => setDesktopSelect(!desktopSelect)}
             className={pillClass}
           >
+            {/* @ts-expect-error ts-migrate(2536) FIXME: Type 'T' cannot be used to index type '{}'. */}
             {props.value ? props.options[props.value] : props.emptyState}
           </Flex>
         )}
@@ -111,6 +116,7 @@ export function Select<T>(props: Props<T>) {
                   className="t-border-bottom u-padding--md"
                   onClick={() => {
                     setDesktopSelect(false);
+                    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                     props.onChange(key);
                   }}
                 >
@@ -118,6 +124,7 @@ export function Select<T>(props: Props<T>) {
                     size="xs"
                     className={classNames(
                       "u-padding-right--5xlg",
+                      // @ts-expect-error ts-migrate(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message
                       key === props.value
                         ? "t-color-grey-90"
                         : "t-color-grey-50"
@@ -125,6 +132,7 @@ export function Select<T>(props: Props<T>) {
                   >
                     {props.options[key]}
                   </Text>
+                  {/* @ts-expect-error ts-migrate(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message */}
                   {key === props.value && (
                     <CheckIcon className="t-color-purple-60 c-chip__x-icon" />
                   )}
@@ -146,6 +154,7 @@ export function Select<T>(props: Props<T>) {
           {props.value ? (
             <CloseIcon
               className="t-color-white c-chip__x-icon"
+              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
               onClick={() => props.onChange(null)}
             />
           ) : (

@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import { insertIntoArray } from "Utils/gamesPaginated";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameSearchContainer.graphql'... Remove this comment to see the full error message
 import { GameSearchQuery } from "./GameSearchContainer.graphql";
 import { useGameSearchSuggestions } from "./useGameSearchSuggestions";
 
@@ -27,6 +28,7 @@ export const GameSearchContainer = () => {
   const { t } = useTranslationsGql({
     searchSuggestionText: "root:mobile.games-search:fields.input_prompt",
   });
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'searchSuggestionText' does not exist on ... Remove this comment to see the full error message
   const inputPromptPlaceholder = t?.searchSuggestionText || "";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
@@ -38,6 +40,7 @@ export const GameSearchContainer = () => {
 
   const fetchMoreRows = () => {
     setPageNumber(pageNumber + 1);
+    // @ts-expect-error ts-migrate(2344) FIXME: Type 'GameSearchQueryVariables' does not satisfy t... Remove this comment to see the full error message
     return fetchMore<A.GameSearchQueryVariables>({
       variables: {
         page: pageNumber,
@@ -78,8 +81,10 @@ export const GameSearchContainer = () => {
       suggestions={list}
       inputPromptPlaceholder={inputPromptPlaceholder}
       fetchMoreRows={fetchMoreRows}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<string>>' is not ass... Remove this comment to see the full error message
       queryChanged={setSearchQuery}
       query={searchQuery}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
       clearSearch={clearSearch}
     />
   );

@@ -35,6 +35,7 @@ describe("Player/reducer", () => {
         },
       },
     };
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     const state = reducer({}, action);
     expect(state).toMatchObject({ wallet: walletData });
   });
@@ -60,6 +61,7 @@ describe("Player/reducer", () => {
       },
     };
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     const state = reducer({}, realityCheck);
     expect(state).toMatchObject(realityCheck.data);
   });
@@ -75,6 +77,7 @@ describe("Player/reducer", () => {
       channel: "/session/d1be3423-d26e-4ce3-88c4-1916289ffb9b/ended",
       data: "TakenOver",
     };
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     const state = reducer({}, action);
     expect(state).toMatchObject({ sessionValid: false });
   });
@@ -88,6 +91,7 @@ describe("Player/reducer", () => {
     const action = {
       type: ACTION_TYPES.SET_LOGOUT_STARTED,
     };
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     const state = reducer({}, action);
     expect(state).toMatchObject({ logoutStarted: true });
   });

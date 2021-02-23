@@ -9,6 +9,7 @@ function setPathname(pathname) {
   // eslint-disable-next-line fp/no-delete
   delete window.location;
 
+  // @ts-expect-error ts-migrate(2740) FIXME: Type '{ href: string; origin: string; pathname: an... Remove this comment to see the full error message
   window.location = {
     href: `https://mydomain.com${pathname}`,
     origin: "https://mydomain.com",

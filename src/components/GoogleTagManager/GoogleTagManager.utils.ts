@@ -2,6 +2,7 @@
 import type { GTMDataLayer, GTMScriptParams } from "./GoogleTagManager.types";
 
 export const getDataLayerSnippet = (
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
   dataLayer?: $PropertyType<GTMDataLayer, "dataLayer">
 ) => {
   return `window.dataLayer = window.dataLayer || []; if (dataLayer) { window.dataLayer.push(${JSON.stringify(
@@ -10,6 +11,7 @@ export const getDataLayerSnippet = (
 };
 
 export const getGTMScript = (
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
   containerId: $PropertyType<GTMScriptParams, "containerId">
 ) => {
   return `

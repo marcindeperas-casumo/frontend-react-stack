@@ -11,6 +11,7 @@ import { EVENTS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
 import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"./QuickDepositSlip.types"' has no exporte... Remove this comment to see the full error message
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
 import "./QuickDepositSlip.scss";
@@ -27,8 +28,10 @@ export const QuickDepositSlip = ({
   renderPaymentMethodDetails: PaymentMethodComponent,
   translations: t,
 }: QuickDepositSlipProps) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'deposit_cta_text' does not exist on type... Remove this comment to see the full error message
   const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = R.map(
     v => v || ""
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipTranslations' is... Remove this comment to see the full error message
   )(t);
 
   const {
@@ -96,7 +99,9 @@ export const QuickDepositSlip = ({
             <Flex direction="vertical" spacing="sm">
               <Flex.Item>
                 <CvvCodeIframe
+                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(message: any) => void' is not assignable to... Remove this comment to see the full error message
                   onValidation={onCvvError}
+                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(message: any) => void' is not assignable to... Remove this comment to see the full error message
                   onSuccess={onCvvSuccess}
                 />
               </Flex.Item>

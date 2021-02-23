@@ -76,6 +76,7 @@ describe("SettingsRealityCheckContainer", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
             playerRealityCheckQueryErrorMock,
             realityCheckLabelsQueryMock,
           ]}
@@ -94,6 +95,7 @@ describe("SettingsRealityCheckContainer", () => {
         <MockedProvider
           mocks={[
             playerRealityCheckQueryMock,
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
             realityCheckLabelsQueryErrorMock,
           ]}
         >
@@ -324,7 +326,9 @@ describe("SettingsRealityCheckContainer", () => {
           mocks={[
             playerRealityCheckQueryMock,
             realityCheckLabelsQueryMock,
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
             ...updateRealityCheckIntervalErrorMock,
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ request: { query: DocumentNode; }; result:... Remove this comment to see the full error message
             playerRealityCheckQueryWithInterval(45),
           ]}
         >

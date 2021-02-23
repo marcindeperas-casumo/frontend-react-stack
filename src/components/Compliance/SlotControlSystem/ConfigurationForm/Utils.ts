@@ -1,7 +1,7 @@
 // @flow
 import { reject, isNil } from "ramda";
-import { type NewSessionRequestType } from "Models/slotControlSystem";
-import { type ConfigurationFormData } from "./ConfigurationForm";
+import { NewSessionRequestType } from "Models/slotControlSystem";
+import { ConfigurationFormData } from "./ConfigurationForm";
 
 export function isBudgetTooLow({ budget }: { budget: number }) {
   return budget < 0;
@@ -24,6 +24,7 @@ export function isBudgetInvalid(props: { budget: number, balance: number }) {
 export function transformFormDataToRequestPayload(
   formData: ConfigurationFormData
 ): NewSessionRequestType {
+  // @ts-expect-error ts-migrate(2739) FIXME: Type 'Dictionary<any>' is missing the following pr... Remove this comment to see the full error message
   return reject(isNil, {
     durationInSecs: formData.time,
     reminderFrequencyInSecs: formData.alertsEvery,

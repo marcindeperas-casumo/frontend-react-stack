@@ -1,20 +1,15 @@
 // @flow
 type Props = {
-  getKey: Function,
-  matchers: Object,
+    getKey: Function;
+    matchers: Object;
 };
-
 const renderNothing = () => null;
-
 const Matcher = ({ getKey, matchers, ...rest }: Props) => {
-  const key = getKey(rest);
-  const matchingMode = matchers[key];
-
-  if (!matchingMode) {
-    console.warn(`No matching mode for key ${key}`);
-  }
-
-  return (matchingMode || matchers.default || renderNothing)(rest);
+    const key = getKey(rest);
+    const matchingMode = matchers[key];
+    if (!matchingMode) {
+        console.warn(`No matching mode for key ${key}`);
+    }
+    return (matchingMode || (matchers as any).default || renderNothing)(rest);
 };
-
 export default Matcher;

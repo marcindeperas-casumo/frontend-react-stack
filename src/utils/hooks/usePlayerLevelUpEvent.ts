@@ -13,6 +13,7 @@ type AdventurerEvent = {
   },
 };
 
+// @ts-expect-error ts-migrate(2693) FIXME: 'any' only refers to a type, but is being used as ... Remove this comment to see the full error message
 export type LevelUpCallback = any => any;
 
 export function usePlayerLevelUpEvent(callback: LevelUpCallback) {

@@ -5,7 +5,7 @@ import { AbstractModal } from "Components/AbstractModal";
 describe("AbstractModal", () => {
   test("should render close button", () => {
     const rendered = shallow(
-      <AbstractModal isOpen={true}>
+      <AbstractModal isOpen={true} hideModal={() => {}}>
         <div>hello</div>
       </AbstractModal>
     );

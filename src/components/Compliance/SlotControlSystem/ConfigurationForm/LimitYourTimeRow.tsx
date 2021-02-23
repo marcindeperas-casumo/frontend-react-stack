@@ -25,6 +25,7 @@ export function LimitYourTimeRow(props: LimitYourTimeRowType) {
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.limit_your_time}
       </Text>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <PillSelector options={options} onChange={onChange} value={value} />
     </Flex>
   );

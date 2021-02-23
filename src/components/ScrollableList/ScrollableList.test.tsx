@@ -9,6 +9,7 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
     const title = "hi";
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ScrollableList items={[1]} title={title} />);
     const titleComponent = rendered.find(ScrollableListTitleRow);
 
@@ -17,6 +18,7 @@ describe("ScrollableList", () => {
   });
 
   test("do not render anything if the items are empty", () => {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ScrollableList items={[]} title="hi" />);
 
     expect(rendered.get(0)).toBeNull();
@@ -53,6 +55,7 @@ describe("ScrollableList", () => {
   });
 
   test("has default spacing", () => {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ScrollableList items={[1]} title="hi" />);
     const scrollable = rendered.find(Scrollable);
 
@@ -62,6 +65,7 @@ describe("ScrollableList", () => {
   test("overrides the spacing if needed", () => {
     const spacing = "md";
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollableList items={[1]} title="hi" spacing={spacing} />
     );
     const scrollable = rendered.find(Scrollable);

@@ -4,7 +4,9 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 
 type Props = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   label: ?string | React.Node,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   value: string | React.Node,
 };
 

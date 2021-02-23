@@ -34,6 +34,7 @@ type ListProps = {
   scrollable?: boolean,
 };
 
+// @ts-expect-error ts-migrate(1015) FIXME: Parameter cannot have question mark and initialize... Remove this comment to see the full error message
 export const getPrize = (position: number, prizes?: Array<string> = []) =>
   prizes[position - 1] || null;
 
@@ -57,6 +58,7 @@ const InnerList = ({
         return (
           <ReelRaceLeaderboardListEntry
             key={position}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ key: number; points: number; position: num... Remove this comment to see the full error message
             points={points}
             position={position}
             text={playerName}
@@ -127,10 +129,12 @@ export function ReelRaceLeaderboardResults({
       >
         <InnerList
           className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown[]' is not assignable to type 'ReelRa... Remove this comment to see the full error message
           items={leaderboardSliced.slice(0, fixedRows)}
           {...commonProps}
         />
         <InnerList
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown[]' is not assignable to type 'ReelRa... Remove this comment to see the full error message
           items={leaderboardSliced.slice(fixedRows)}
           {...commonProps}
         />

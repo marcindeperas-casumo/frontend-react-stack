@@ -6,6 +6,7 @@ import { quickDepositMethod } from "Models/payments/__mocks__/quickDepositMethod
 import MockStore from "Components/MockStore";
 import { PaymentMethodDetails } from "../PaymentMethodDetails";
 import { QuickDepositSlip } from "./QuickDepositSlip";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"./QuickDepositSlip.types"' has no exporte... Remove this comment to see the full error message
 import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
 import { translations } from "./__mocks__/cms";
 

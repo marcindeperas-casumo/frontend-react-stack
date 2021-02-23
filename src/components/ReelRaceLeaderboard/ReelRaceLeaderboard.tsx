@@ -31,6 +31,7 @@ export function ReelRaceLeaderboard(props: Props) {
     props.cometdChannels,
     props.initialLeaderboard
   );
+  // @ts-expect-error ts-migrate(2739) FIXME: Type 'Record<"playerId", any>' is missing the foll... Remove this comment to see the full error message
   const player: A.ReelRaceWidgetQuery_reelRaces_leaderboard = R.find(
     R.propEq("playerId", playerId)
   )(board);

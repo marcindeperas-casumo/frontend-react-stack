@@ -7,6 +7,7 @@ type GamesPaginatedQuery = {
   getGamesPaginated: {
     gamesCount: number,
     offset: number,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     games: Array<*>,
   },
 };
@@ -24,6 +25,7 @@ export function insertIntoArray(newData: Array<any>, offset: number) {
   );
 }
 export function loadMoreConstructor(
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
   fetchMore: $PropertyType<
     ObservableQueryFields<GamesPaginatedQuery, GamesPaginatedQueryVariables>,
     "fetchMore"

@@ -15,12 +15,15 @@ export const noop = () => {};
 
 export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
+// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
 export const isIosNative = (w: window = window) =>
   R.pathOr(false, ["native", "ios"], w);
 
+// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
 export const isAndroidNative = (w: window = window) =>
   R.pathOr(false, ["native", "android"], w);
 
+// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
 export const getAppVersion = (w: window = window) => {
   const appVersion = R.pathOr(undefined, ["native", "version"], w);
 
@@ -32,6 +35,7 @@ export const getAppVersion = (w: window = window) => {
 };
 
 // todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
+// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
 export const getAppSubType = (w: window = window) => {
   if (isIosNative) {
     return APP_SUB_TYPES.IOS_HYBRID;
@@ -81,7 +85,7 @@ export const isMobileByPlatform = () => getPlatform() === DEVICES.MOBILE;
 export const bridgeFactory = () => {
   const obj = {};
   return {
-    on: (ev: string, cb: any => void) => {
+    on: (ev: string, cb: (data: any) => void) => {
       if (!obj[ev]) {
         // eslint-disable-next-line fp/no-mutation
         obj[ev] = [];
@@ -90,7 +94,7 @@ export const bridgeFactory = () => {
       // eslint-disable-next-line fp/no-mutating-methods
       obj[ev].push(cb);
     },
-    off: (ev: string, cb: any => void) => {
+    off: (ev: string, cb: (data: any) => void) => {
       if (obj[ev]) {
         const index = R.findIndex(fn => fn === cb)(obj[ev]);
         if (index !== -1) {
@@ -117,8 +121,10 @@ export const bridgeFactory = () => {
 
 const findOrUncurried = (
   defaultValue: any,
+  // @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
   predicate: (*) => boolean,
   items: any[]
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'predicate'.
 ) => R.find(predicate, items) || defaultValue;
 
 export const findOr = R.curry(findOrUncurried);
@@ -260,6 +266,7 @@ export const injectScript = (src: string, elId?: string, inline?: boolean) =>
     /* eslint-enable fp/no-mutation */
 
     if (inline && injectedScript) {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
       script.onload();
     }
   });
@@ -346,17 +353,21 @@ export const canBeInterpolated = (target: string) =>
 
 export const interpolate = (
   target: string = defaultTranslation,
+  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
   replacements: { [string]: string | number }
 ) =>
   target
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     .replace(INTERPOLATION_REGEX, (match, param) =>
       R.propOr(match, param, replacements)
     )
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     .replace(CURRENCY_INTERPOLATION_REGEX, (match, param) =>
       R.propOr(match, param, replacements)
     );
 
 export const interpolateWithJSX = R.curry(
+  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
   (replacements: { [string]: React.Node }, target: string) =>
     R.pipe(
       R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
@@ -364,8 +375,10 @@ export const interpolateWithJSX = R.curry(
         <React.Fragment key={i}>
           {R.pipe(
             R.match(/{{2,3}\s*(\w+)\s*}{2,3}/),
+            // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
             R.prop(1),
             R.propOr(x, R.__, replacements)
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
           )(x)}
         </React.Fragment>
       ))
@@ -452,6 +465,7 @@ export const timeRemainingBeforeStart = (time: number): number => {
     .valueOf();
 };
 
+// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
 export const isTLDMarketSpecific: string => boolean = R.pipe(
   R.anyPass([
     R.equals("com"),
@@ -462,6 +476,7 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   R.not
 );
 
+// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
 export const hasAlphaCharactersOnly: string => boolean = str => {
   return !/[a-z]+/i.test(str);
 };

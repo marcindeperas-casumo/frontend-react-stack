@@ -15,6 +15,7 @@ export function useCallOnce(cond: any, fn: void => any) {
   React.useEffect(() => {
     if (!ref.current && cond) {
       ref.current = true; // eslint-disable-line fp/no-mutation
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       fn();
     }
   });

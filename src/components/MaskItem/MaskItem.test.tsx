@@ -9,6 +9,7 @@ describe("MaskItem", () => {
 
   beforeEach(() => {
     rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ children: Element; className: string; shap... Remove this comment to see the full error message
       <MaskItem className="c-foo" shapeMask={mockMask} id={id}>
         <div className="foo-bar" />
       </MaskItem>

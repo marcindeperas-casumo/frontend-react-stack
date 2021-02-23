@@ -35,6 +35,7 @@ export const EditFavouriteCompetitionsModal = ({
       {setFavouriteCompetitions => (
         <FavouriteCompetitionsSelectorModal
           onClose={onClose}
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           onSave={selectedCompetitions => {
             setFavouriteCompetitions({
               variables: {

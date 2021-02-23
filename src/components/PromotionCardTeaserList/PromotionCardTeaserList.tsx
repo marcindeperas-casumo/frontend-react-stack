@@ -50,6 +50,7 @@ class PromotionCardTeaserList extends PureComponent<Props> {
               <div className="u-margin-bottom--md" key={promotionSlug}>
                 <PromotionCardTeaser
                   slug={`promotions.${promotionSlug}`}
+                  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ slug: string; link: string; key: string; }... Remove this comment to see the full error message
                   link={`promotions/${promotionSlug}`}
                   key={promotionSlug}
                 />

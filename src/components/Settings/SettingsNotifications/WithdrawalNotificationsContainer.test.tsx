@@ -5,6 +5,7 @@ import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './WithdrawalNotifications.grap... Remove this comment to see the full error message
 import { SettingsNotificationsWithdrawalNotificationsQuery } from "./WithdrawalNotifications.graphql";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {

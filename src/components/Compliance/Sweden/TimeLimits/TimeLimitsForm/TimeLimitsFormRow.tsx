@@ -29,6 +29,7 @@ export function TimeLimitsFormRow({
     <Flex.Item>
       <Flex align="center" spacing="md">
         <Flex.Item className="u-width--1/2">
+          {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ currencySign... Remove this comment to see the full error message */}
           <TextInput
             currencySign=""
             type="number"
@@ -39,6 +40,7 @@ export function TimeLimitsFormRow({
             fontClassName="u-font"
             colorClassName="t-color-green-30"
             inputClassName="u-text-align-right u-padding-bottom--sm"
+            // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
             onChange={textInputOnChange(setter)}
           />
         </Flex.Item>

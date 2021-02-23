@@ -6,6 +6,7 @@ import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemExpiredEvent } from "Components/PlayerValuableList/utils";
 import { navigateToSportsHash } from "Features/sports/utils";
 import { navigateById } from "Services/NavigationService";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './CuratedCard.graphql' or its ... Remove this comment to see the full error message
 import { CuratedCardQuery } from "./CuratedCard.graphql";
 import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 import { CuratedCard } from "./CuratedCard";

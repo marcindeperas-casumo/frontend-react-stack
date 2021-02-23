@@ -7,6 +7,7 @@ import * as A from "Types/apollo";
 
 type Props = {
   /** The list of game objects. */
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   games: ?Array<A.GameListVerticalQuery_gamesBySlugs>,
   loading: boolean,
 };

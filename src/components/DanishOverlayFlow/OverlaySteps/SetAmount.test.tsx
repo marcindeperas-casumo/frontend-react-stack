@@ -27,6 +27,7 @@ describe("SetAmount", () => {
       amount: 10000,
     };
 
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ amount: number; DGAComplianceState: { depo... Remove this comment to see the full error message
     const component = mount(<SetAmount {...props} />);
 
     expect(component.find({ "data-test-id": "warning-message" }).exists()).toBe(
@@ -41,6 +42,7 @@ describe("SetAmount", () => {
       amount: 5000,
     };
 
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ amount: number; DGAComplianceState: { depo... Remove this comment to see the full error message
     const component = mount(<SetAmount {...props} />);
 
     expect(component.find({ "data-test-id": "warning-message" }).exists()).toBe(
@@ -53,6 +55,7 @@ describe("SetAmount", () => {
       ...baseProps,
     };
 
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ t: {}; locale: string; currency: string; c... Remove this comment to see the full error message
     const component = mount(<SetAmount {...props} />);
 
     expect(component.find(TextInput).exists()).toBe(true);

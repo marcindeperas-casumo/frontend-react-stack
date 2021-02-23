@@ -8,6 +8,7 @@ describe("PromotionTeaserList", () => {
     const fetchPromotions = jest.fn();
     const rendered = shallow(
       <PromotionTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
@@ -23,6 +24,7 @@ describe("PromotionTeaserList", () => {
   test("should not render any PromotionTeaserRow component if promotionSlugs is empty", () => {
     const rendered = shallow(
       <PromotionTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={() => {}}
         fetchPromotions={() => {}}

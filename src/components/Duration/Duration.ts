@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { Duration as LuxonDuration } from "luxon";
 import { useTranslations } from "Utils/hooks";

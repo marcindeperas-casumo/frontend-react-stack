@@ -9,6 +9,7 @@ export const useGameJackpotActivity = () => {
   const walletUpdateReason = useSelector(playerBalanceUpdateReasonSelector);
   const awardedBonus =
     // $FlowFixMe
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'includes' does not exist on type 'unknow... Remove this comment to see the full error message
     walletUpdateReason?.includes(WALLET_UPATE_REASONS.BONUS_AWARDED) || false;
   const [gameJackpotBusy, setGameJackpotBusy] = useState(awardedBonus);
   const jackpotDelayTimeoutRef = useRef();
@@ -18,6 +19,7 @@ export const useGameJackpotActivity = () => {
     if (awardedBonus) {
       // Timeout required in cases like blueribbon where the wallet balance update event is received before the notificationAdded event
       clearTimeout(jackpotDelayTimeoutRef.current);
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timeout' is not assignable to type 'undefine... Remove this comment to see the full error message
       // eslint-disable-next-line fp/no-mutation
       jackpotDelayTimeoutRef.current = setTimeout(() => {
         setGameJackpotBusy(false);

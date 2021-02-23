@@ -31,6 +31,7 @@ describe("Counter", () => {
   });
 
   test("should call countUp by REFRESH_RATE", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"countUp"' is not assignable to ... Remove this comment to see the full error message
     const spy = jest.spyOn(Counter.prototype, "countUp");
     const renderProp = jest.fn();
     shallow(<Counter start={0} end={100} render={renderProp} />);

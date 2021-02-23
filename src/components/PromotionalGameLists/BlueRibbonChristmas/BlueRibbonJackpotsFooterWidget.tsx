@@ -53,6 +53,7 @@ export function BlueRibbonJackpotsFooterWidget({
         key: jackpot.potId,
         formattedValue: formatCurrency({
           locale,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
           currency,
           value: jackpot.value,
         }),
@@ -65,6 +66,7 @@ export function BlueRibbonJackpotsFooterWidget({
         key: "main",
         formattedValue: formatCurrency({
           locale,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
           currency,
           value: jackpots[2].value * (jackpots[2].mainWinRatio / 100),
         }),
@@ -75,6 +77,7 @@ export function BlueRibbonJackpotsFooterWidget({
         key: "community",
         formattedValue: formatCurrency({
           locale,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
           currency,
           value: jackpots[2].value * (jackpots[2].communityWinRatio / 100),
         }),

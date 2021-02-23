@@ -11,6 +11,7 @@ const stories = storiesOf("SectionList", module);
 const renderItem = game => (
   <GameRow
     game={game}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: any; onLaunchGame: () => void; rende... Remove this comment to see the full error message
     onLaunchGame={() => {}}
     renderText={() => <GameRowText name={game.name} />}
   />

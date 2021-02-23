@@ -1,5 +1,6 @@
 /* @flow */
 import React from "react";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
 import type { Node } from "react";
 import {
   ActiveModalsQuery,
@@ -56,6 +57,7 @@ class Modals extends React.Component<{}> {
                     key={activeModal}
                     variables={{ modal: activeModal }}
                   >
+                    {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
                     {closeModal => <ModalComponent onClose={closeModal} />}
                   </CloseModalMutation>
                 );

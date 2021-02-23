@@ -16,6 +16,7 @@ export const DepositLimitsViewContainer = connect(
   state => ({
     ...getDepositLimitsSelector(state),
     ...getCurrencyAndLocaleSelector(state),
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     t: R.prop("fields", getPage(cmsKey)(state)),
   }),
   {
@@ -24,4 +25,5 @@ export const DepositLimitsViewContainer = connect(
     limitCancel,
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }
+// @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(props: Props) => string' is not... Remove this comment to see the full error message
 )(DepositLimitsView);

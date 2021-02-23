@@ -88,6 +88,7 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
               isOnboarding={isOnboarding}
               onBack={this.hideCompetitionSelector}
               onClose={this.props.onClose}
+              // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
               onSave={selectedCompetitions => {
                 selectingCompetitionsFor &&
                   setFavouriteCompetitions(

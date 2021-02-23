@@ -25,6 +25,7 @@ import "./CuratedCard.scss";
 type Props = {
   className?: string,
   market: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   curatedCard: ?A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
   navigateToSportsHash: (args: NavigateToSportsHashType) => void,
@@ -58,6 +59,7 @@ export const CuratedCard = ({
         return navigateById({ routeId: curatedCard.sportsRoute });
       }
       return navigateToSportsHash({
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'ApolloClient<object>' is not assignable to t... Remove this comment to see the full error message
         client,
         path: curatedCard.sportsRoute,
         trackingLocation: "CuratedCard",

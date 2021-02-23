@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
 import type { Node } from "react";
 
 const DefaultFallback = () => null;
@@ -23,6 +24,7 @@ export default class Portal extends PureComponent<Props> {
   el: HTMLElement;
 
   constructor(props: Props) {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     super((props: Props));
 
     this.rootEl = document.getElementById(this.props.hostElementId);

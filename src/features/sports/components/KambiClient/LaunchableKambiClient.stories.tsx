@@ -18,6 +18,7 @@ const props = {
 stories.add("Loading", () => (
   <MockStore state={stateMock}>
     <MockedProvider mocks={loadingMocks} addTypename={false}>
+      {/* @ts-expect-error ts-migrate(2559) FIXME: Type '{ currency: string; market: string; locale: ... Remove this comment to see the full error message */}
       <LaunchableKambiClient {...props} />
     </MockedProvider>
   </MockStore>
@@ -26,6 +27,7 @@ stories.add("Loading", () => (
 stories.add("Error", () => (
   <MockStore state={stateMock}>
     <MockedProvider mocks={errorMocks} addTypename={false}>
+      {/* @ts-expect-error ts-migrate(2559) FIXME: Type '{ currency: string; market: string; locale: ... Remove this comment to see the full error message */}
       <LaunchableKambiClient {...props} />
     </MockedProvider>
   </MockStore>

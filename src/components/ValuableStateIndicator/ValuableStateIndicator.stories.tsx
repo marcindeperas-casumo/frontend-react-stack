@@ -12,6 +12,7 @@ stories.add("Default", () => {
   const valuableState = select(
     "Valuable State",
     VALUABLE_STATES,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     VALUABLE_STATES.LOCKED
   );
   const label = text("Status label", "Locked") || null;

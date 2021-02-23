@@ -10,7 +10,9 @@ import { formatCurrency } from "Utils";
 import { topListWidgetWidth } from "Src/constants";
 import {
   colors,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type JackpotWidgetContentPage,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type JackpotStatus,
 } from "./blueRibbonConsts";
 
@@ -53,6 +55,7 @@ export function BlueRibbonJackpotsWidget({
               key={jackpot.potId}
               formattedValue={formatCurrency({
                 locale,
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
                 currency,
                 value: jackpot.value,
               })}
@@ -72,6 +75,7 @@ export function BlueRibbonJackpotsWidget({
             id: "main",
             formattedValue: formatCurrency({
               locale,
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
               currency,
               value: jackpot.value * (jackpot.mainWinRatio / 100),
             }),
@@ -83,6 +87,7 @@ export function BlueRibbonJackpotsWidget({
             id: "community",
             formattedValue: formatCurrency({
               locale,
+              // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
               currency,
               value: jackpot.value * (jackpot.communityWinRatio / 100),
             }),

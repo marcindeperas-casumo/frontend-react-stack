@@ -10,6 +10,7 @@ describe("Timer", () => {
 
   beforeEach(() => {
     endTime = new Date(Date.UTC(2018, 1, 1, 1, 1, 10));
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Date' is not assignable to type 'number'.
     Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 1, 0));
     jest.spyOn(window, "requestAnimationFrame").mockImplementation(mockRaf.raf);
   });
@@ -33,6 +34,7 @@ describe("Timer", () => {
     );
     expect(spy).toHaveBeenCalledTimes(0);
 
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Date' is not assignable to type 'number'.
     Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 1, 5));
     mockRaf.step({ time: 1000, count: 1 });
 
@@ -68,6 +70,7 @@ describe("Timer", () => {
         onEnd={onEndProp}
       />
     );
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Date' is not assignable to type 'number'.
     Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 1, 10));
     mockRaf.step({ time: 1000, count: 1 });
 

@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../ReelRaceWidget.graphql' or ... Remove this comment to see the full error message
 import { ReelRaceWidgetQuery } from "../ReelRaceWidget.graphql";
 
 export const getReelRaceWidgetQueryMock = () => {

@@ -55,6 +55,7 @@ describe("ReelRaceCard", () => {
       endTime: now + 60 * minute,
     };
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
 
     test('should show "Starting In" text', () => {
@@ -95,6 +96,7 @@ describe("ReelRaceCard", () => {
       endTime: now + 30 * minute,
       launchGame: launchGame,
     };
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
 
     test('should show "Ending In" text', () => {
@@ -125,6 +127,7 @@ describe("ReelRaceCard", () => {
       startTime: now,
       endTime: now + 30 * minute,
     };
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
 
     expect(rendered.find(".c-reel-race__badge")).toHaveLength(1);

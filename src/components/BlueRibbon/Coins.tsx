@@ -58,6 +58,7 @@ export const Coins = ({ type = "landscape", onCoinsStaged, selected }) => {
 
   const setScreenOrientation = () => {
     setOrientation(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       window.matchMedia("(orientation: landscape)").matches
         ? "landscape"
         : "portrait"

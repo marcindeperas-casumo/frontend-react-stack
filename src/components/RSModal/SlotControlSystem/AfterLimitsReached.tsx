@@ -10,6 +10,7 @@ import {
   useSessionsState,
   getSlugFromGamePage,
 } from "Models/slotControlSystem";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
 import { type ModalContentComponent } from "Components/RSModal";
 import {
   SessionDetailsForLimitsReached,
@@ -19,6 +20,7 @@ import { ModalSkin } from "./ModalSkin";
 import {
   PlayAgainGameBySlugQuery,
   PlayAgainLatestPlayedQuery,
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './AfterLimitsReached.graphql' ... Remove this comment to see the full error message
 } from "./AfterLimitsReached.graphql";
 
 type ContentType = {
@@ -49,17 +51,20 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
     skip: !isPlayRouteActive,
     variables: { slug: gameSlug || "" },
   });
+  // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   const gameBySlug: ?A.AfterLimitsReached_Game = path([
     "data",
     "gamesBySlugs",
     0,
   ])(gameQueryProps);
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
   const latestPlayedQueryProps = useQuery<A.PlayAgainLatestPlayedQuery, _>(
     PlayAgainLatestPlayedQuery,
     {
       skip: isPlayRouteActive,
     }
   );
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'AfterLim... Remove this comment to see the full error message
   const gameById: ?A.AfterLimitsReached_Game = path([
     "data",
     "gamesList",

@@ -2,6 +2,7 @@
 import * as R from "ramda";
 import * as React from "react";
 import { useSelector } from "react-redux";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../Compliance/PlayOkayBar/PlayOkayBarC... Remove this comment to see the full error message
 import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
@@ -83,6 +84,7 @@ export function useJackpotsSubscription({
             "jackpot_win_mini",
             "jackpot_win_major",
             "jackpot_win_mega",
+          // @ts-expect-error ts-migrate(2554) FIXME: Expected 1-2 arguments, but got 3.
           ]: Array<NotificationType>)
         )
       );

@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { IFRAME_MODE } from "Models/payments";
 import { PiqIframeComponent } from "./PiqIframeComponent";
 
+// @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
 const stories = storiesOf("Payments");
 
 const iframeSettings = {

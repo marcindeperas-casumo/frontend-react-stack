@@ -5,6 +5,7 @@ import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
 import type { AllLimits } from "./depositLimits.types";
 
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'ThunkDispatch'.
 export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
   dispatch(limitPreadjust);
@@ -40,6 +41,7 @@ export const getLimitsHistory = () => ({
 });
 
 export function limitAdjust(limitAdjustement: AllLimits) {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'ThunkDispatch'.
   return (dispatch: ThunkDispatch) => {
     const shouldRemove = R.pipe(
       R.toPairs,

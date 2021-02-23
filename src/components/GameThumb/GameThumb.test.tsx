@@ -9,6 +9,7 @@ describe("GameThumb", () => {
     "https://cms.casumo.com/wp-content/uploads/2014/02/Starburst_Logo.png";
 
   test("sets the default of 56 to width, height and imgixOpts props", () => {
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'mark' is missing in type '{ src: string;... Remove this comment to see the full error message
     const rendered = shallow(<GameThumb src={src} />);
 
     expect(rendered.prop("width")).toBe(56);

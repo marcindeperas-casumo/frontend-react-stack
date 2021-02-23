@@ -6,6 +6,7 @@ import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import defaultState from "Models/__mocks__/state.mock";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './useCurrentReelRaceInfo.graph... Remove this comment to see the full error message
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import {
   createCurrentReelRaceData,
@@ -57,7 +58,9 @@ describe("useCurrentReelRaceInfo", () => {
     };
     const formattedPrizes = ["$100"];
     const leaderboard = convertLeaderboardToObject([
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'boosters' is missing in type '{ playerId... Remove this comment to see the full error message
       leaderboardEntryOther,
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'boosters' is missing in type '{ playerId... Remove this comment to see the full error message
       leaderboardEntryMe,
     ]);
 
@@ -79,6 +82,7 @@ describe("useCurrentReelRaceInfo", () => {
     };
 
     test("no data", () => {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 1-2 arguments, but got 0.
       expect(createCurrentReelRaceData()).toEqual(emptyResult);
     });
     test("no player on the list", () => {
@@ -88,8 +92,10 @@ describe("useCurrentReelRaceInfo", () => {
           id,
           startTime,
           endTime,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'CurrentRe... Remove this comment to see the full error message
           game,
           formattedPrizes,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ playerId: number; playerName: string; posi... Remove this comment to see the full error message
           leaderboard: convertLeaderboardToObject([leaderboardEntryOther]),
           cometdChannels: [],
           optedIn: false,
@@ -113,6 +119,7 @@ describe("useCurrentReelRaceInfo", () => {
           id,
           startTime,
           endTime,
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'CurrentRe... Remove this comment to see the full error message
           game,
           formattedPrizes,
           leaderboard,
@@ -207,6 +214,7 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(jest.runOnlyPendingTimers);
 
       wrapper.update();
@@ -231,6 +239,7 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(jest.runOnlyPendingTimers);
 
       wrapper.update();
@@ -262,6 +271,7 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(jest.runOnlyPendingTimers);
 
       wrapper.update();
@@ -438,6 +448,7 @@ describe("useCurrentReelRaceInfo", () => {
           <HookWrapper hook={useCurrentReelRaceInfo} args={[]} />
         </MockStore>
       );
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(jest.runOnlyPendingTimers);
       wrapper.update();
       expectHook(wrapper).toBeNull();

@@ -21,6 +21,7 @@ export const featureSelector = feature =>
     ABTestsSelector,
     pipe(
       prop("features"),
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'unknown'.
       find(f => equals(f.name, feature)),
       defaultTo({})
     )

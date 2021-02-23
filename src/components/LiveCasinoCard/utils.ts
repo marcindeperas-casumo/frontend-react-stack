@@ -129,20 +129,25 @@ const getBaccaratColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 export const getBadgeColor = (type: ?string, liveCasinoResult: string) => {
   if (type === TYPES.MONEYWHEEL) {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     return getMoneyWheelColor(liveCasinoResult);
   }
   if (type === TYPES.ROULETTE) {
     return getRouletteColor(liveCasinoResult);
   }
   if (type === TYPES.TOPCARD) {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     return getTopCardColor(liveCasinoResult);
   }
   if (type === TYPES.MONOPOLY) {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     return getMonopolyColor(liveCasinoResult);
   }
   if (type === TYPES.BACCARAT) {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     return getBaccaratColor(liveCasinoResult);
   }
 
@@ -150,16 +155,19 @@ export const getBadgeColor = (type: ?string, liveCasinoResult: string) => {
 };
 
 export const getBadgeBorderColor = (
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   type: ?string,
   liveCasinoResult: string
 ) => {
   if (type === TYPES.MONOPOLY) {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     return prop(liveCasinoResult, monopolyResultsBorderColor);
   }
 
   return null;
 };
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 export const getResultsDisplay = (type: ?string, liveCasinoResult: string) => {
   if (type === TYPES.TOPCARD) {
     return propOr(liveCasinoResult, liveCasinoResult, topCardLettersDisplay);

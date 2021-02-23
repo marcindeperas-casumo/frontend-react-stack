@@ -10,6 +10,7 @@ import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { RtpTable } from "./RtpTable/RtpTable";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GetGamesRTP.graphql' or its ... Remove this comment to see the full error message
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
 
 export const CasinoGames = () => {

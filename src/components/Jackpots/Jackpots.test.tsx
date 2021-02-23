@@ -10,6 +10,7 @@ describe("<Jackpots />", () => {
   test("Should render ScrollableListPaginated and a title on Desktop", () => {
     setDesktopViewport();
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <Jackpots jackpots={jackpotsMock} title="All them jackpots" />
     );
 
@@ -19,6 +20,7 @@ describe("<Jackpots />", () => {
 
   test("Should not render ScrollableListPaginated on Mobile and Tablet", () => {
     setMobileViewport();
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = mount(<Jackpots jackpots={jackpotsMock} />);
 
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);

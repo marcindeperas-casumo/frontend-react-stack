@@ -29,6 +29,7 @@ class PillSelectorContainer extends Component<Props, State> {
     this.onChange = this.onChange.bind(this);
   }
 
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
   onChange = value => {
     this.setState({ value });
   };
@@ -55,6 +56,7 @@ class PillSelectorContainer extends Component<Props, State> {
         <PillSelector
           options={options}
           value={value}
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           onChange={this.onChange}
           disabled={this.props.disabled}
         />

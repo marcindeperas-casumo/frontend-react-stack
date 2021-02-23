@@ -1,4 +1,4 @@
-// @flow
+// @ts-nocheck - redux-saga types are not playing nice
 import { fork, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   periodicReminderNotificationSaga,
@@ -46,7 +46,7 @@ import { actionTypes as methodConfigActionTypes } from "Models/payments/methodCo
 import { actionTypes as paymentActionTypes } from "Models/payments/payments.constants";
 import { initializeTrackers } from "Models/trackers/initializeTrackers.saga";
 
-export default function* rootSaga(dispatch: any): * {
+export default function* rootSaga() {
   // __FIX__ (REMOVE) Fetches the common handshake
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
 

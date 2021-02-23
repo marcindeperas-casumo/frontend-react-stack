@@ -6,8 +6,10 @@ import { BaseGame } from "./BaseGame";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { EdictGame } from "./EdictGame";
 import { EvolutionGame } from "./EvolutionGame";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { EmbeddedEvolutionGame } from "./EmbeddedEvolutionGame";
 import { NetentGame } from "./NetentGame";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { EmbeddedNetentGame } from "./EmbeddedNetentGame";
 import { ThunderkickGame } from "./ThunderkickGame";
 import { YggdrasilGame } from "./YggdrasilGame";
@@ -20,6 +22,7 @@ import { RelaxGame } from "./RelaxGame";
 import { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { NyxGame } from "./NyxGame";
 import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
@@ -97,6 +100,7 @@ export const getGameModel = (
 ): GameProviderModel => {
   const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
+  // @ts-expect-error ts-migrate(2739) FIXME: Type 'BaseGame' is missing the following propertie... Remove this comment to see the full error message
   return new GameModel({
     gameData,
     gameRef,

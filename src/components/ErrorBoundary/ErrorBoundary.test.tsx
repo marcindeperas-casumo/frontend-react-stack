@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { mount } from "enzyme";
 import logger from "Services/logger";
@@ -67,6 +66,7 @@ describe("<ErrorBoundary />", () => {
 
   test("calls the logError() function if there was an error thrown in the children", () => {
     const logError = logger.error;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '(...a... Remove this comment to see the full error message
     logError.mockClear();
     const error = new Error("Random Error");
     const Component = () => {
@@ -82,6 +82,7 @@ describe("<ErrorBoundary />", () => {
       </MockStore>
     );
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mock' does not exist on type '(...args: ... Remove this comment to see the full error message
     const firstArg = logError.mock.calls[0][0];
 
     expect(logError).toHaveBeenCalledTimes(1);

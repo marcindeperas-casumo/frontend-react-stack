@@ -3,6 +3,7 @@ import { useUrlPrefix, useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils";
 
 type RouteParamsType = {
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   [string]: string,
 };
 
@@ -16,6 +17,7 @@ export function useCrossCodebaseNavigation(): UseCrossCodebaseNavigationType {
   const translateRoute = routeTranslator(language);
 
   return {
+    // @ts-expect-error ts-migrate(1015) FIXME: Parameter cannot have question mark and initialize... Remove this comment to see the full error message
     navigateToKO: (routeId: string, routeParams?: RouteParamsType = {}) => {
       const processedBasePath = basePath ? `/${basePath}` : "";
       const path = `${processedBasePath}/${translateRoute(routeId)}`;

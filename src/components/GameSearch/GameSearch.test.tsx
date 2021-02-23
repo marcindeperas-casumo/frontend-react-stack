@@ -33,7 +33,9 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
         loadingSuggestions={true}
       />
@@ -52,7 +54,9 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
         loadingSuggestions={true}
       />
@@ -71,7 +75,9 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
         loadingSuggestions={true}
       />
@@ -86,13 +92,16 @@ describe("GameSearch", () => {
     const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameSea... Remove this comment to see the full error message
         searchResults={searchResults}
         searchResultsCount={4}
         loading={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
         loadingSuggestions={true}
       />
@@ -108,13 +117,16 @@ describe("GameSearch", () => {
     const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
         searchResults={["game"]}
         searchResultsCount={1}
         loading={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
         loadingSuggestions={false}
       />

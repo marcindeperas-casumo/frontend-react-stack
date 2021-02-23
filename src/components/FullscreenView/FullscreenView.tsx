@@ -6,6 +6,7 @@ export const FullscreenViewContext = React.createContext<HTMLElement | null>(
 );
 
 type Props = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   className?: string,
 };

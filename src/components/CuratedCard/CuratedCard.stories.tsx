@@ -8,10 +8,12 @@ import { curatedGameMock, curatedPromotionMock } from "./__mocks__";
 const stories = storiesOf("CuratedCard", module);
 
 stories.add("Game", () => {
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
   return <CuratedCard curatedCard={curatedGameMock} />;
 });
 
 stories.add("Promotion", () => {
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
   return <CuratedCard curatedCard={curatedPromotionMock} />;
 });
 
@@ -77,6 +79,7 @@ stories.add(
           promotionSlug: null,
           promotionLegalText,
           launchGameText,
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ name: any; slu... Remove this comment to see the full error message
           game,
         }}
       />
@@ -141,6 +144,7 @@ stories.add(
           promotionSlug: null,
           promotionLegalText,
           launchGameText,
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ name: any; slu... Remove this comment to see the full error message
           game,
         }}
       />

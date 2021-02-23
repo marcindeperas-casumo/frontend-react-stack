@@ -5,6 +5,7 @@ import {
   SetContactByPhone,
   SetNewsletterSubscription,
   SetSMSNewsletterSubscription,
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../Mutations.graphql' or its c... Remove this comment to see the full error message
 } from "../Mutations.graphql";
 
 export const withdrawalNotificationsMock = [true, false].map(on => ({

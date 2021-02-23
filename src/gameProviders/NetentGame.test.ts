@@ -6,6 +6,7 @@ import { NETENT_SCRIPT_URL } from "./netentConstants";
 
 jest.mock("../utils/utils.js", () => ({
   ...jest.requireActual("../utils/utils.js"),
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
   injectScript: jest.fn().mockResolvedValue(),
 }));
 

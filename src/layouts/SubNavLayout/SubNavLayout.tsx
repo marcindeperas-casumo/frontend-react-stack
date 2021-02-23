@@ -14,6 +14,7 @@ type TLinkItem = {
   text: string,
 };
 type TProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   links: TLinkItem[],
 };

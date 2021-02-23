@@ -11,7 +11,7 @@ const SWITCH_TO_NEXT_SCREEN_AFTER = 3000;
 export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
   const [coinsStaged, setCoinsStaged] = React.useState(false);
   const [showCounterScreen, setShowCounterScreen] = React.useState(false);
-  const [jackpotSelected, setJackpotSelected] = React.useState();
+  const [jackpotSelected, setJackpotSelected] = React.useState<string | undefined>();
 
   const pickJackpot = () => {
     setJackpotSelected(type);
@@ -52,6 +52,7 @@ export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
           onCoinsStaged={() => {
             setCoinsStaged(true);
           }}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ selected: string; type: string; onCoinsSta... Remove this comment to see the full error message
           onJackpotSelected={() => {
             setShowCounterScreen(true);
           }}

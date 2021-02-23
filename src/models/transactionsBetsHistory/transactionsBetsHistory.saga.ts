@@ -7,10 +7,12 @@ import { getSummaryReq } from "Api/api.transactionsBetsHistory";
 import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   const { year, meta = {} } = action;
   const date = DateTime.utc(year);
   const currency = yield select(currencySelector);
+  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const annualOverview = yield select(annualOverviewSelector(year));
 
   if (annualOverview) {

@@ -1,5 +1,6 @@
 //@flow
 import { DateTime } from "luxon";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
 import { type ActiveSessionType } from "Models/slotControlSystem";
 
 const initialLimit = 20;
@@ -31,4 +32,5 @@ export default ({
     remainingBalance,
     lastUpdateTime: lastUpdateTime.toMillis(),
   },
+// @ts-expect-error ts-migrate(2693) FIXME: 'ActiveSessionType' only refers to a type, but is ... Remove this comment to see the full error message
 } : ActiveSessionType);

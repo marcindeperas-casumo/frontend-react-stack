@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { appStarted } from "Models/app";
 import {

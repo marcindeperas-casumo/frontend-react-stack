@@ -8,7 +8,9 @@ import { Desktop } from "Components/ResponsiveLayout";
 import { FullscreenToggle } from "Components/FullscreenView";
 
 type Translations = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   in_game_drawer_live_chat: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   in_game_drawer_exit_game: ?string,
 };
 

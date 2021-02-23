@@ -78,10 +78,15 @@ type ConfigurationFormProps = {
 
 type IsPlayActiveType = {
   balance: number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   budget: ?number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   time: ?number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   alertsEvery: ?number,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   wantsBreak: ?boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   breakAfter: ?number,
 };
 
@@ -120,6 +125,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
   const mapSecondsToPillOpts = map(seconds => ({
     value: seconds,
     label: interpolateTimeInterval({
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
       seconds,
       t: {
         seconds: "unused",
@@ -150,21 +156,28 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
       <LimitYourTimeRow
         t={t}
         value={time}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ value: unknown; label: string; }[]' is not... Remove this comment to see the full error message
         options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setTime}
       />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ value: unknown; label: string; }[]' is not... Remove this comment to see the full error message
         options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
         t={t}
         value={wantsBreak}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setWantsBreak}
         breakValue={breakAfter}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ value: unknown; label: string; }[]' is not... Remove this comment to see the full error message
         breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChangeBreak={setBreakAfter}
       />
       <ButtonPrimary

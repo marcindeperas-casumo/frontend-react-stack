@@ -30,6 +30,7 @@ type Props = {
 export function LimitYourBudget(props: Props) {
   const { balance, currency, t, locale, onSubmit } = props;
   const [budget, setBudget] = useState(props.budget);
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
   const parsedBudget = parseFloat(budget);
   const budgetBalance = { balance, budget: parsedBudget };
   const formattedBalance = formatCurrency({
@@ -58,6 +59,7 @@ export function LimitYourBudget(props: Props) {
         <strong>{t.limit_your_budget}</strong>
       </Text>
       <Flex align="center">
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ currencySign... Remove this comment to see the full error message */}
         <TextInput
           currencySign={getSymbolForCurrency({ locale, currency })}
           onChange={onChange}
@@ -76,6 +78,7 @@ export function LimitYourBudget(props: Props) {
       <ErrorMessage
         {...props}
         budget={parsedBudget}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ budget: number; formattedBalance: string; ... Remove this comment to see the full error message
         formattedBalance={formattedBalance}
       />
       <ButtonSecondary

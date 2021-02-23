@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CheckIcon } from "@casumo/cmp-icons";
+// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
 import { type LoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
 

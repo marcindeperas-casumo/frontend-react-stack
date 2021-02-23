@@ -9,6 +9,7 @@ describe("GameTile", () => {
       w: 170,
     };
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ game: { name: string; slug: string; backgr... Remove this comment to see the full error message
       <GameTileInMaintenance game={gameInfo} imgixOpts={imgixOpts} />
     );
     const renderedGameTileImageProps = rendered.find("GameTileImage").props();
@@ -23,6 +24,7 @@ describe("GameTile", () => {
   });
 
   test("should add default game-tile ratio class", () => {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ game: { name: string; slug: string; backgr... Remove this comment to see the full error message
     const rendered = shallow(<GameTileInMaintenance game={gameInfo} />);
     expect(
       rendered

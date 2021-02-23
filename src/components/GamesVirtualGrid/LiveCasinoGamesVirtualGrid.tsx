@@ -7,6 +7,7 @@ import { VirtualGrid } from "Components/VirtualGrid";
 type Props = {
   games: Array<A.LiveCasinoCard>,
   gamesCount: number,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
   loadMore: ({ startIndex: number, stopIndex: number }) => Promise<any>,
 };
 
@@ -14,7 +15,7 @@ export const liveCasinoTileWidth = 328;
 export const liveCasinoTileHeight = 298;
 
 class OptimizedLiveCasinoCard extends React.Component<A.LiveCasinoCard> {
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps: A.LiveCasinoCard) {
     return this.props.id !== nextProps.id;
   }
 
@@ -38,6 +39,7 @@ export const LiveCasinoGamesVirtualGrid = ({
   const filteredOut = games.length - newGames.length;
 
   return (
+    // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'VirtualGrid' does not have any c... Remove this comment to see the full error message
     <VirtualGrid
       loadMore={loadMore}
       numberOfEntries={gamesCount - filteredOut}

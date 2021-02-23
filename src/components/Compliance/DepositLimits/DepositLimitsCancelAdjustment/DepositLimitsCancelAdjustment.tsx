@@ -11,7 +11,9 @@ type Props = {
     button_yes: string,
     button_no: string,
   },
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
   handleButtonYes: (event: SyntheticEvent<HTMLElement>) => void,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
   handleButtonNo: (event: SyntheticEvent<HTMLElement>) => void,
 };
 

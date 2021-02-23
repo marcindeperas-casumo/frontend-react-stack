@@ -109,6 +109,7 @@ const KambiOfferingSkeleton = ({ width, height, x, y }: BaseSkeletonParams) => (
 
 type OutlinedBoxParams = BaseSkeletonParams & {
   thickness: number,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children?: React.Node,
 };
 

@@ -19,11 +19,13 @@ export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
   });
   const headerProps = !config.mustAccept
     ? {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'form_top_header_edit' does not exist on ... Remove this comment to see the full error message
         title: t?.form_top_header_edit || "",
         showCloseButton: true,
         closeAction: acceptModal,
       }
     : {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'form_top_header_initial' does not exist ... Remove this comment to see the full error message
         title: t?.form_top_header_initial || "",
       };
 

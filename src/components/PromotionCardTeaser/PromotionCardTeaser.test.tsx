@@ -9,6 +9,7 @@ describe("PromotionCardTeaser", () => {
   test("should render a date", () => {
     const rendered = shallow(
       <PromotionCardTeaser
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="promotions.boosted-reelraces"
         isFetched={true}
         badge={promotion.fields.badge}
@@ -28,6 +29,7 @@ describe("PromotionCardTeaser", () => {
   test("should render a title", () => {
     const rendered = shallow(
       <PromotionCardTeaser
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="promotions.boosted-reelraces"
         isFetched={true}
         badge={promotion.fields.badge}
@@ -47,6 +49,7 @@ describe("PromotionCardTeaser", () => {
   test("should render an image", () => {
     const rendered = shallow(
       <PromotionCardTeaser
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="promotions.boosted-reelraces"
         isFetched={true}
         badge={promotion.fields.badge}

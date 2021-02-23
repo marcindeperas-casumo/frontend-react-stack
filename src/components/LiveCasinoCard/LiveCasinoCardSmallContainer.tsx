@@ -4,6 +4,7 @@ import { useIntersection } from "react-use";
 import { useQuery } from "@apollo/client";
 import { useTranslations } from "Utils/hooks";
 import * as A from "Types/apollo";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './LiveCasinoCardSmall.graphql'... Remove this comment to see the full error message
 import { LiveCasinoCardSmallDataQuery } from "./LiveCasinoCardSmall.graphql";
 import { LiveCasinoCardSmall } from "./LiveCasinoCardSmall";
 

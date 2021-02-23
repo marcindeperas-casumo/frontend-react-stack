@@ -41,6 +41,7 @@ import "./GamePage.scss";
 type Props = {
   slug: string,
   playForFun: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   remoteGameLaunchData: ?Object,
 };
 
@@ -68,6 +69,7 @@ export const GamePageContainer = () => {
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   useDispatchPlaying({
@@ -92,6 +94,7 @@ export const GamePageContainer = () => {
       error={
         error ? (
           <GamePageError
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_title' does not exist on t... Remove this comment to see the full error message
             errorMessage={errorMessages?.general_error_title || ""}
             onRetry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
           />
@@ -106,6 +109,7 @@ export const GamePageContainer = () => {
           </Mobile>
         </React.Fragment>
       }
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'play_background' does not exist on type ... Remove this comment to see the full error message
       gameBackground={gameContent?.play_background}
       gameProviderModel={gameProviderModel}
       gameWindow={
@@ -147,6 +151,7 @@ export const GamePageContainer = () => {
           <FullScreenGamePageNotifications />
         </React.Fragment>
       }
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: Element; footer: Element; gameBackg... Remove this comment to see the full error message
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
       sidebar={<GamePageSidebar />}

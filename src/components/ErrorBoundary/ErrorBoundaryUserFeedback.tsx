@@ -14,5 +14,6 @@ export function ErrorBoundaryUserFeedback() {
     return <div>Something went wrong, we are working on it.</div>;
   }
 
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{ errorMessage: any; }' is missing the follo... Remove this comment to see the full error message
   return <ErrorMessage errorMessage={t.errorText} />;
 }

@@ -11,17 +11,24 @@ import type {
 } from "./termsAndConditions.utils";
 
 type BaseProps = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'viewButtonText'.
   viewButtonText: string,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setVersion'.
   setVersion: number => void,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'formatVersion'.
   formatVersion: VersionFormatter,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'formatVersionDate'.
   formatVersionDate: VersionDateFormatter,
 |};
 
 type PropsHistoryView = {|
+  // @ts-expect-error ts-migrate(2693) FIXME: 'BaseProps' only refers to a type, but is being us... Remove this comment to see the full error message
   ...BaseProps,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'versions'.
   versions: { [number]: string },
 |};
 
+// @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
 const versionsByNewestFirst = R.descend(R.prop(0));
 export function HistoryView({ versions, ...props }: PropsHistoryView) {
   return (
@@ -39,8 +46,11 @@ export function HistoryView({ versions, ...props }: PropsHistoryView) {
 }
 
 type PropsHistoryRow = {|
+  // @ts-expect-error ts-migrate(2693) FIXME: 'BaseProps' only refers to a type, but is being us... Remove this comment to see the full error message
   ...BaseProps,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'slug'.
   slug: string,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'version'.
   version: number,
 |};
 
@@ -71,13 +81,15 @@ function HistoryRow(props: PropsHistoryRow) {
           className="u-font-weight-bold u-margin-bottom"
         >
           {versionData
-            ? props.formatVersion(props.version, versionData.version)
+            ? // @ts-expect-error ts-migrate(2339) FIXME: Property 'version' does not exist on type 'unknown... Remove this comment to see the full error message
+              props.formatVersion(props.version, versionData.version)
             : loaderVersion}
         </Text>
         <Text tag="span" size="sm">
           {versionData
             ? props.formatVersionDate(
                 props.version,
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'iso_8601_published_date' does not exist ... Remove this comment to see the full error message
                 versionData.iso_8601_published_date
               )
             : loaderDate}

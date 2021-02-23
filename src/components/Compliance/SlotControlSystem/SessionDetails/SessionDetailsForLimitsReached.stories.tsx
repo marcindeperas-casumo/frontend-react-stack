@@ -28,6 +28,7 @@ stories.add("Default", () => {
       <SessionDetailsForLimitsReached
         t={t}
         locale="en-GB"
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ name: string; slug: string; backgroundImag... Remove this comment to see the full error message
         playAgainGame={gameMock}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}

@@ -14,7 +14,9 @@ stories.add("Default", () => {
   return (
     <ValuablesVerticalList
       title="Valuables Vertical list"
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '({ __typename: string; id: string; valuableT... Remove this comment to see the full error message
       valuables={valuables}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'strin... Remove this comment to see the full error message
       onConsumeValuable={onConsume}
       translations={translationsMock}
     />

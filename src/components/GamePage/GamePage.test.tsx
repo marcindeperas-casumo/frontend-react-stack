@@ -9,6 +9,7 @@ const SUCCESSFUL_SLUG = "successfully-loaded-game";
 const LoadingComponent = () => <div>Loading</div>;
 const GameComponent = () => <div>Game</div>;
 const mockedProps = {
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   error: <GamePageError />,
   gameBackground: "",
   gameProviderModel: {
@@ -30,6 +31,7 @@ describe("GamePage", () => {
   test("should not render if error occurs", () => {
     const rendered = mount(
       <MockStore>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ error: Element; gameBackground: string; ga... Remove this comment to see the full error message */}
         <GamePage {...mockedProps} />
       </MockStore>
     );
@@ -44,6 +46,7 @@ describe("GamePage", () => {
     };
     const rendered = mount(
       <MockStore>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ error: any; slug: string; gameBackground: ... Remove this comment to see the full error message */}
         <GamePage {...props} />
       </MockStore>
     );
@@ -60,6 +63,7 @@ describe("GamePage", () => {
     };
     const rendered = mount(
       <MockStore>
+        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ error: any; loading: any; slug: string; ga... Remove this comment to see the full error message */}
         <GamePage {...props} />
       </MockStore>
     );

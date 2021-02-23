@@ -40,6 +40,7 @@ export function CometDFactory(cometd) {
   ) {
     let subscription; // eslint-disable-line fp/no-let
 
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     await context.init();
 
     return new Promise(resolve => {
@@ -60,6 +61,7 @@ export function CometDFactory(cometd) {
   async function unsubscribe(subscription) {
     const unsubscribeProps = {};
 
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     await context.init();
 
     return new Promise(resolve =>
@@ -75,6 +77,7 @@ export function CometDFactory(cometd) {
     return new Promise((resolve, reject) => {
       cometd.handshake(handshake => {
         if (handshake.successful) {
+          // @ts-expect-error ts-migrate(2794) FIXME: Expected 1 arguments, but got 0. Did you forget to... Remove this comment to see the full error message
           resolve();
         } else {
           reject();

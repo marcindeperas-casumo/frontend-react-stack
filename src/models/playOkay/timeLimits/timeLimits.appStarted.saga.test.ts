@@ -19,14 +19,17 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
 
   test("it should wait for playerId and jurisdiction in Redux store", () => {
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, playerIdSelector)
     );
 
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, jurisdictionSelector)
     );
 
     expect(generator.next().value).toEqual(select(playerIdSelector));
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '["p123"]' is not assignable to p... Remove this comment to see the full error message
     expect(generator.next(playerId).value).toEqual(
       select(jurisdictionSelector)
     );
@@ -35,10 +38,12 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
   test("it should exit early if jurisdiction is other than SGA", () => {
     const clonedGenerator = generator.clone();
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
     expect(clonedGenerator.next(JURISDICTIONS.MGA).done).toEqual(true);
   });
 
   test("it should proceed if jurisdiction is SGA", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
     const effect = generator.next(JURISDICTIONS.SGA);
 
     expect(effect.done).toEqual(false);
@@ -77,23 +82,28 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
   });
 
   test("it should not start fetching if fetch is initialized", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[true]' is not assignable to par... Remove this comment to see the full error message
     expect(generator.next(true).value.SELECT).toBeInstanceOf(Object);
   });
 
   test("it should select time limits Redux state if fetch has completed", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[true]' is not assignable to par... Remove this comment to see the full error message
     expect(generator.next(true).value).toEqual(
       select(allLoginTimeLimitsDefinedSelector)
     );
   });
 
   test("it should wait till any open modal is closed", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[false]' is not assignable to pa... Remove this comment to see the full error message
     expect(generator.next(false).value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, isModalHiddenSelector)
     );
   });
 
   test("it should open up non-closable modal if there are no defined time limits", () => {
     expect(generator.next(null).value).toEqual(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       put(showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true }))
     );
   });

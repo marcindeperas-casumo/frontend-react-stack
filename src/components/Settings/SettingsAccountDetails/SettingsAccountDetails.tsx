@@ -14,13 +14,21 @@ import { PASSWORD_PLACEHOLDER_VALUE, onOldStackEvent } from "./utils";
 type Props = {
   player: A.SETTINGS_PLAYER,
   labels: {
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     name: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     email: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     password: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     mobileNumber: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     address: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     edit: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     verify: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     gamblingExtent: ?string,
   },
   refetchSettings: () => {},
@@ -34,8 +42,11 @@ const RowTemplate = ({
   action,
   onClick,
 }: {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   label: ?string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   value?: React.Node,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   action?: React.Node,
   onClick?: () => void,
 }) => (
@@ -83,6 +94,7 @@ export class SettingsAccountDetails extends React.PureComponent<Props> {
 }
 
 const Name = ({ labels, details }) => {
+  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const fullName = hasAlphaCharactersOnly(details.name.first)
     ? `${details.name.last} ${details.name.first}`
     : `${details.name.first} ${details.name.last}`;
@@ -92,6 +104,7 @@ const Name = ({ labels, details }) => {
 
 const Email = ({ labels, details }) => (
   <RowTemplate
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
     onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}
     label={labels.email}
     value={details.email}
@@ -106,6 +119,7 @@ const ExtentOfGambling = ({ labels, details }) => {
     return (
       <RowTemplate
         onClick={() =>
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
           launchModal({
             modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING,
           })
@@ -124,6 +138,7 @@ const ExtentOfGambling = ({ labels, details }) => {
 const Password = ({ labels }) => {
   return (
     <RowTemplate
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
       onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD })}
       label={labels.password}
       value={PASSWORD_PLACEHOLDER_VALUE}
@@ -137,6 +152,7 @@ const Password = ({ labels }) => {
 const VerifiedMobileNumber = ({ labels, details }) => (
   <RowTemplate
     onClick={() =>
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
       launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
     }
     label={labels.mobileNumber}

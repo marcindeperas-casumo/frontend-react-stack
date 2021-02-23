@@ -12,6 +12,7 @@ describe("Payments utils", () => {
         "error_1_2",
       ];
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ txState: string; errors: ({ fi... Remove this comment to see the full error message
       expect(extractErrorKeys(piqErrorResponse)).toEqual(expectedValues);
     });
   });

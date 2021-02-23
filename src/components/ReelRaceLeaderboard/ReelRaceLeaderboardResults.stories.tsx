@@ -32,7 +32,9 @@ const Wrapper = ({ children }) => (
         order: R.pipe(
           R.values,
           R.sortBy(R.prop("position")),
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           R.pluck("playerId")
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(newLeaderboard),
       },
     }}
@@ -49,6 +51,7 @@ stories.add("Default", () => {
   return (
     <Wrapper>
       <ReelRaceLeaderboardResults
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ leaderboard: { playerId: string; playerNam... Remove this comment to see the full error message
         leaderboard={leaderboard}
         playerId="777"
         prizes={prizes}
@@ -93,6 +96,7 @@ const SimulateLeaderboard = () => {
         <ReelRaceLeaderboardResults
           size={lb.length}
           // $FlowIgnore
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; leaderboard: { playerId: str... Remove this comment to see the full error message
           leaderboard={lb}
           playerId="50"
           forceLaurelPositions={3}
@@ -107,6 +111,7 @@ const SimulateLeaderboard = () => {
         <ReelRaceLeaderboardResults
           size={lb.length}
           // $FlowIgnore
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; leaderboard: { playerId: str... Remove this comment to see the full error message
           leaderboard={lb}
           playerId="50"
           forceLaurelPositions={3}

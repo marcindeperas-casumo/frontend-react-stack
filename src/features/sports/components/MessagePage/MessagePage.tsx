@@ -8,6 +8,7 @@ import "./MessagePage.scss";
 type Props = {
   headingTermKey: string,
   messageTermKey: string,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   image: React.Node,
 };
 

@@ -10,8 +10,10 @@ import TrackClick from "Components/TrackClick";
 type Props = {
   slug: string,
   name: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   playButtonText: ?string,
   hasPlayForFun: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   practiceButtonText: ?string,
 };
 

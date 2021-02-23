@@ -6,8 +6,11 @@ import {
   VALUABLE_REQUIREMENT_TYPES,
 } from "./valuables.constants";
 
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 export type ValuableType = $Values<typeof VALUABLE_TYPES>;
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 export type ValuableState = $Values<typeof VALUABLE_STATES>;
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
 // eslint-disable-next-line prettier/prettier
 export type ValuableRequirementType = $Values<typeof VALUABLE_REQUIREMENT_TYPES>;
 
@@ -73,13 +76,18 @@ export type ValuableListProps = {
   /** The list of valuables to be displayed as cards */
   valuables: Array<A.PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
+  // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
   onConsumeValuable: string => Promise<void>,
   /** The function to be called on click of a valuable row item */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'onItemClick'.
   onItemClick?: string => void,
   /** Icon to be used as selector */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'valuableSelector'.
   valuableSelector?: Node,
   /** Allows a valuable item to be selectable */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'isItemSelectable'.
   isItemSelectable: boolean,
   /** An array of translated labels */
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'translations'.
   translations: ValuableListTranslations,
 };

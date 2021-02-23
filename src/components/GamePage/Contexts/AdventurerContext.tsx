@@ -8,6 +8,7 @@ import {
 } from "Utils/hooks";
 import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
 import {
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../models/adventure"' has no export... Remove this comment to see the full error message
   type BeltType,
   adventurerSelector,
   initAdventurerSaga,
@@ -18,6 +19,7 @@ import {
 } from "Models/cometd";
 
 type TAdventurerContextProviderProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 
@@ -87,6 +89,7 @@ export const AdventurerContextProvider = ({
         points,
         pointsRequiredForNextLevel,
         inBonusMode,
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'BeltType'... Remove this comment to see the full error message
         belt,
         progressPercentage,
         rawProgressPercentage,

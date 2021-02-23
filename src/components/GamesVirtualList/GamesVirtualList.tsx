@@ -12,26 +12,32 @@ import "./GamesVirtualList.scss";
 
 export const ROW_HEIGHT = GameRow.ROW_HEIGHT;
 
-type Props = {
-  /** The array of games slugs to render within the AllGamesList */
-  games: Array<any>,
-  /** The function that triggers the action that fetches the next batch of games */
-  fetchMoreRows: Function => Promise<any>,
-  /** The total number of rows */
-  rowCount: number,
-  /** The element to render as a row  */
-  renderItem: (game: A.GameRow_Game) => React.Node,
-  /** Variable page size number */
-  pageSize: number,
-  /**
-   * if this prop will change list will know to update its rows
-   * Only changes to this prop will trigger list updates!
-   * Changes to games prop will be ignored
-   */
-  listHash: string,
+type OwnProps = {
+    /** The array of games slugs to render within the AllGamesList */
+    games: Array<any>;
+    /** The function that triggers the action that fetches the next batch of games */
+    fetchMoreRows: Function;
+    // @ts-expect-error ts-migrate(2368) FIXME: Type parameter name cannot be 'any'.
+    Promise<any>();
+    /** The total number of rows */
+    rowCount: number;
+    /** The element to render as a row  */
+    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
+    renderItem: (game: A.GameRow_Game) => React.Node;
+    /** Variable page size number */
+    pageSize: number;
+    /**
+     * if this prop will change list will know to update its rows
+     * Only changes to this prop will trigger list updates!
+     * Changes to games prop will be ignored
+     */
+    listHash: string;
 };
 
+// @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ <T, U>(prop: string, obj1: T, ... Remove this comment to see the full error message
 const nEqProps = R.complement(R.eqProps);
+
+type Props = OwnProps & typeof GamesVirtualList.defaultProps;
 export class GamesVirtualList extends React.Component<Props> {
   static defaultProps = {
     pageSize: PAGE_SIZE,
@@ -45,6 +51,7 @@ export class GamesVirtualList extends React.Component<Props> {
   }
 
   shouldComponentUpdate(nextProps: Props) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 3.
     return nEqProps("listHash", this.props, nextProps);
   }
 
@@ -96,6 +103,7 @@ export class GamesVirtualList extends React.Component<Props> {
         scrollElement={this.scrollElement}
         totalNumberOfRows={this.props.rowCount}
         rowHeight={ROW_HEIGHT}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}

@@ -1,6 +1,7 @@
 // @flow
 import { createReducer } from "Utils";
 import { types } from "./playOkay.actions";
+// @ts-expect-error ts-migrate(2459) FIXME: Module '"./playOkay.types"' declares 'type' locall... Remove this comment to see the full error message
 import { type PlayOkayReduxStore } from "./playOkay.types";
 
 export const DEFAULT_STATE: PlayOkayReduxStore = {

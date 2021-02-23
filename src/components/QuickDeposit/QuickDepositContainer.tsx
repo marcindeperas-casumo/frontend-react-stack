@@ -71,6 +71,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const hasQuickDepositMethods =
     showQuickDeposit && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };
 
@@ -80,17 +81,21 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   return (
     <QuickDeposit
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       walletBalance={formatCurrency({
         locale,
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
         currency,
         value: gameActivityAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
         currency,
         value: gameActivityAwareBonusBalance,
       })}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}
       onCashierLinkClick={navigateToCashier}

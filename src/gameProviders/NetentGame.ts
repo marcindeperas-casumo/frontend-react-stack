@@ -1,6 +1,7 @@
 // @flow
 import logger from "Services/logger";
 import type { GameProviderModelProps } from "./types";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
@@ -33,6 +34,7 @@ const NETENT_EVENTS = {
 const ELEMENT_ID = "netent-game";
 
 export class NetentGame extends BaseGame {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   extend: ?Extend = null;
 
   constructor(props: GameProviderModelProps) {

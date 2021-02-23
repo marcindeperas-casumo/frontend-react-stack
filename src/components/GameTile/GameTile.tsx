@@ -34,6 +34,7 @@ export const DEFAULT_CLASSES =
 
 export const GameTile = ({
   className,
+  // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   game = {},
   imgixOpts = {
     w: 170,
@@ -86,6 +87,7 @@ export const GameTile = ({
           logoBackground={backgroundImage}
           logo={logo}
           name={name}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ logoBackground: string; logo: string; name... Remove this comment to see the full error message
           imgixOpts={imgixOpts}
         />
         <div className="o-ratio__content c-game-tile-container u-cursor--pointer o-position--absolute u-zindex--content-overlay">

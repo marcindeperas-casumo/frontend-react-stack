@@ -12,6 +12,7 @@ type Props = {
   presetAmount?: number,
   requestStatus: DepositRequestStateType,
   onDeposit: (amount: number, cvvEncoded: string) => void,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   paymentMethodDetails: () => React.Node,
 };
 
@@ -46,6 +47,7 @@ export function QuickDepositSlipContainer({
 
   return (
     <QuickDepositSlip
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'QuickDepositS... Remove this comment to see the full error message
       translations={t}
       currencySymbol={currencySymbol}
       minAmount={minAmount}

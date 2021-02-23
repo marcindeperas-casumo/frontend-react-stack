@@ -18,6 +18,7 @@ type Props = {
   className?: string,
 };
 
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 export const CmsImageContainer = ({ id, className }: Props): React.Node => {
   const variables = { key: id };
   const { data, loading } = useQuery(CMS_IMAGE_QUERY, { variables });

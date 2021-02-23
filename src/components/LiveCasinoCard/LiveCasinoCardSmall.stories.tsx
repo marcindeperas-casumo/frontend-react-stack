@@ -25,6 +25,7 @@ const t = {
 stories.add("Card MoneyWheel", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={MoneyWheel}
         t={t}
@@ -37,6 +38,7 @@ stories.add("Card MoneyWheel", () => (
 stories.add("Card Roulette", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={Roulette}
         t={t}
@@ -49,6 +51,7 @@ stories.add("Card Roulette", () => (
 stories.add("Card Blackjack Open Seats", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={Blackjack}
         t={t}
@@ -61,6 +64,7 @@ stories.add("Card Blackjack Open Seats", () => (
 stories.add("Card Blackjack Full", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={BlackjackFull}
         t={t}
@@ -73,6 +77,7 @@ stories.add("Card Blackjack Full", () => (
 stories.add("Card TopCard (Football)", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={TopCard}
         t={t}
@@ -85,6 +90,7 @@ stories.add("Card TopCard (Football)", () => (
 stories.add("Card Monopoly", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={Monopoly}
         t={t}
@@ -97,6 +103,7 @@ stories.add("Card Monopoly", () => (
 stories.add("Card Baccarat", () => (
   <div className="c-live-casino-card--small">
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <LiveCasinoCardSmall
         game={Baccarat}
         t={t}

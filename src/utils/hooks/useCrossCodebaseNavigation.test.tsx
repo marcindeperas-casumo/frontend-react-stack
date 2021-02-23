@@ -53,6 +53,7 @@ describe("useCrossCodebaseNavigation", () => {
     // eslint-disable-next-line fp/no-delete
     delete window.location;
 
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ replace: Mock<any, any>; }' is missing the... Remove this comment to see the full error message
     window.location = {
       replace: jest.fn(),
     };

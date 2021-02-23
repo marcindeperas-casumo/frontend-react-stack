@@ -9,6 +9,7 @@ describe("WildDots", () => {
     R.times(() => {
       const random = Math.round(Math.random() * 100);
       const render = shallow(
+        // @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component.
         <WildDots numberOfDots={random} activeDotIndex={0} />
       );
 
@@ -20,6 +21,7 @@ describe("WildDots", () => {
     R.times(() => {
       const random = Math.round(Math.random() * 99);
       const render = shallow(
+        // @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component.
         <WildDots
           numberOfDots={100}
           activeDotIndex={random}

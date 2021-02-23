@@ -19,7 +19,9 @@ export class PlayNGoMobileGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null, isEmbedded } = this.props.gameData;
+    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
     const encodedOrigin = encodeURIComponent(this.targetDomain);
 
@@ -33,6 +35,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
         paramsToAdd.push({ key: "lobby", value: encodedLobbyUrl });
       }
       return {
+        // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
         ...super.componentProps,
         src: appendToGameUrl({
           url,
@@ -41,6 +44,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
       };
     }
 
+    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     return super.componentProps;
   }
 

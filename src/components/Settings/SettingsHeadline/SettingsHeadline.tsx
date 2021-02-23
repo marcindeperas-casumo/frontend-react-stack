@@ -3,7 +3,9 @@ import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 
 type Props = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   title: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   description: ?string,
 };
 

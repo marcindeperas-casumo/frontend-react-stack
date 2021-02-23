@@ -8,6 +8,7 @@ import { NavLink } from "Components/NavLink";
 
 type TNavbarItemProps = {
   icon: React.ComponentType<{ size: iconSizes }>,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   label: ?string,
   to: string,
   showLabel?: boolean,
@@ -33,6 +34,7 @@ const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {
           className="u-padding--sm o-flex--vertical@mobile"
         >
           <Icon
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: string; size: string; }' is not... Remove this comment to see the full error message
             className={cx(
               "u-padding-right u-padding-right--none@mobile u-padding-bottom--sm@mobile"
             )}

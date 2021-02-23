@@ -31,6 +31,7 @@ describe("<GameProvidersList /> - Mobile and Tablet", () => {
     setMobileViewport();
     rendered = mount(
       <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; url: string; logo: string; bac... Remove this comment to see the full error message */}
         <GameProvidersList gameStudios={items} title="I'm a cute title" />
       </MockStore>
     );
@@ -77,6 +78,7 @@ describe("<GameProvidersList /> - Desktop", () => {
     setDesktopViewport();
     rendered = mount(
       <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; url: string; logo: string; bac... Remove this comment to see the full error message */}
         <GameProvidersList gameStudios={items} title={title} />
       </MockStore>
     );

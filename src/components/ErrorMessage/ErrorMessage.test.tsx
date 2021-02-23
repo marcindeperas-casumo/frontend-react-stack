@@ -15,6 +15,7 @@ const findElements = container => ({
 describe("ErrorMessage", () => {
   describe("when given no props", () => {
     test("should render with defaults", () => {
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage />);
       const elements = findElements(rendered);
 
@@ -27,6 +28,7 @@ describe("ErrorMessage", () => {
 
   describe("when given the direction prop 'vertical'", () => {
     test("should render vertically", () => {
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ direction: "vertical"; }' is missing the f... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage direction="vertical" />);
       const elements = findElements(rendered);
 
@@ -39,6 +41,7 @@ describe("ErrorMessage", () => {
 
   describe("when given the direction prop 'horizontal'", () => {
     test("should render horizontally", () => {
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ direction: "horizontal"; }' is missing the... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage direction="horizontal" />);
       const elements = findElements(rendered);
 
@@ -52,6 +55,7 @@ describe("ErrorMessage", () => {
   describe("when given an error message", () => {
     test("should render the custom error message", () => {
       const errorMessage = "Loading === exploding";
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ errorMessage: string; }' is missing the fo... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage {...{ errorMessage }} />);
       const elements = findElements(rendered);
 
@@ -66,6 +70,7 @@ describe("ErrorMessage", () => {
     test("should render the retry button, with default text", () => {
       const retry = jest.fn();
       const rendered = shallow(
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'retryMessage' is missing in type '{ retr... Remove this comment to see the full error message
         <ErrorMessage direction="vertical" {...{ retry }} />
       );
       const elements = findElements(rendered);
@@ -83,6 +88,7 @@ describe("ErrorMessage", () => {
       const retry = jest.fn();
       const retryMessage = "Try again, before I cry again";
       const rendered = shallow(
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'errorMessage' is missing in type '{ retr... Remove this comment to see the full error message
         <ErrorMessage direction="vertical" {...{ retry, retryMessage }} />
       );
       const elements = findElements(rendered);

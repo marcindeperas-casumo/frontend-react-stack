@@ -26,6 +26,7 @@ type Props = {
 };
 
 type State = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
   selectedCompetitions: $ElementType<Props, "initiallySelectedCompetitions">,
 };
 
@@ -64,6 +65,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
           [EVENT_PROPS.SPORTS_NAME]: this.props.groupName,
           [EVENT_PROPS.COMPETITION_ID]: group.id,
           // $FlowFixMe
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'FavouriteC... Remove this comment to see the full error message
           [EVENT_PROPS.COMPETITION_NAME]: group.name,
         };
         tracker.track(eventName, data);
@@ -81,6 +83,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
   };
 
   onSave = () => {
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     this.props.onSave(this.state.selectedCompetitions);
   };
 

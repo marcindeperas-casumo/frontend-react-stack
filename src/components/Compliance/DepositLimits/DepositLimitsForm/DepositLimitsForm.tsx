@@ -44,6 +44,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
     if (invalid) {
       setVisible(invalid);
     } else {
+      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       props.applyLimitsChanges(R.pluck("value", limitInputs));
     }
   }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
@@ -56,6 +57,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       <Text className={`u-font-weight-bold t-color-grey-90 ${flexItemWidth}`}>
         {t[visible]}
       </Text>
+      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ value: numbe... Remove this comment to see the full error message */}
       <TextInput
         className={flexItemWidth}
         currencySign={getSymbolForCurrency({
@@ -98,6 +100,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
                   ? formatCurrency({
                       locale: props.locale,
                       currency: props.currency,
+                      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
                       value: parseInt(limitInputs[limitName].value),
                     })
                   : "+"}

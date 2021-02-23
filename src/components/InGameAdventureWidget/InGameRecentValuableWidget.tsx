@@ -11,6 +11,7 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import { VALUABLE_TYPES, getExpiryTimeLeft } from "Models/valuables";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/PlayerValuableList/... Remove this comment to see the full error message
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 
 import "./InGameRecentValuableWidget.scss";
@@ -26,6 +27,7 @@ const ValuableThumbnailRenderer = ({ backgroundImage, valuableType }) => {
     <ImageLazy
       className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow--hidden"
       src={backgroundImage}
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
       imgixOpts={valuableType === VALUABLE_TYPES.SPINS ? imgixOptsForSpins : {}}
     />
   );
@@ -33,7 +35,9 @@ const ValuableThumbnailRenderer = ({ backgroundImage, valuableType }) => {
 
 type Props = {
   onValuableConsumed: () => void,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   recentValuable: ?string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   content: ?{
     valuables_more_info: string,
   },
@@ -44,6 +48,7 @@ export const InGameRecentValuableWidget = ({
   recentValuable,
   content,
 }: Props) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Boolean... Remove this comment to see the full error message
   const { loading, valuables, translations } = usePlayerValuableList();
   const [showModal, setShowModal] = React.useState(false);
   const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
@@ -138,6 +143,7 @@ export const InGameRecentValuableWidget = ({
         <ValuableDetailsWithModal
           isOpen={Boolean(showModal)}
           onClose={() => setShowModal(false)}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; onClos... Remove this comment to see the full error message
           onConsumeValuable={consumeValuable}
           valuableDetails={latestValuable}
           isGamePage={true}

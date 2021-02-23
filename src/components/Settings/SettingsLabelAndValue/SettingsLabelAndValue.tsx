@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../node_modules/@types/react"' h... Remove this comment to see the full error message
 import React, { PureComponent, type Node } from "react";
 import Text from "@casumo/cmp-text";
 

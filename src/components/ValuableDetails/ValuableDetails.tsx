@@ -1,4 +1,5 @@
 /* @flow */
+// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
 import React, { type Node } from "react";
 import { allPass, propIs } from "ramda";
 import Flex from "@casumo/cmp-flex";
@@ -12,14 +13,18 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import { launchGame } from "Services/LaunchGameService";
 import {
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ValuableDetailsTranslations as Translations,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ValuableActionProps,
   VALUABLE_STATES,
   VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ValuableRequirementType,
   getExpiryTimeLeft,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
@@ -69,6 +74,7 @@ const ActionButtonContent = ({ isLocked, text }) => {
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get expiryTimeLeft(): DurationProps {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
@@ -139,9 +145,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
     try {
       await onConsumeValuable(id);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
       if ((this.props.valuableDetails.games || []).length) {
         return launchGame({
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'ValuableDetails_PlayerValuable' is not assig... Remove this comment to see the full error message
           slug: (this.props.valuableDetails: any).games[0].slug,
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'playForFun'.
           playForFun: false,
         });
       }
@@ -162,7 +171,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
     }
   };
 
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'render'.
   render() {
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const { translations, children, valuableDetails } = this.props;
     const {
       id,
@@ -182,11 +193,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
       termsAndConditionsContent,
       wageringStatus,
     } = translations;
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
       expirationInfo.key,
       expirationInfo.value
     );
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const requirementType = this.requirementType;
 
     const expirationValueText =
@@ -203,7 +216,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
     });
 
     const actionButtonVisible =
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
       valuableState !== VALUABLE_STATES.USED ||
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
       valuableType === VALUABLE_TYPES.CASHBACK;
 
     return (

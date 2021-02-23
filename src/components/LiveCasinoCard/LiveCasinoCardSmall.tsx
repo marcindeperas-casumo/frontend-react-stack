@@ -33,6 +33,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
       return (
         <ImageLazy
           className="o-ratio__content"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: string; style: { height: string... Remove this comment to see the full error message
           style={{ height: cardVerticalCenter }}
           src={game.playBackground}
           alt={game.name}

@@ -18,30 +18,34 @@ export type State = {
 
 export type ClickHandlerType = (direction: "previous" | "next") => void;
 
-type Props = {
-  /** The height of the horizontal scrolling container in pixels. */
-  height: number,
-  /** The total number of columns that can be rendered. */
-  columnCount: number,
-  /** An easing function to use for animated pagination */
-  easing: number => number,
-  /** The duration of animated pagination */
-  duration: number,
-  /** The renderProp responsible for rendering each "cell" */
-  cellRenderer: CellRenderer,
-  /** The renderProp responsible for rendering the controls to paginate through the columns */
-  buttonRenderer: (boolean, boolean, ClickHandlerType) => React.Node,
-  /** Custom classname for styling the wrapping div elements. */
-  className: string,
-  /** Number of items to render before/after the visible slice of the grid.
-      Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md **/
-  overscanColumnCount?: overscanColumnCountType,
-  /** A way to force the column widths to recalculate by changing the string passed here */
-  cacheBuster?: string,
-  /** The number of items that will be shown on both the current page and next/previous pages */
-  overlappingItemCount: number,
-  defaultWidth: number,
+type OwnProps = {
+    /** The height of the horizontal scrolling container in pixels. */
+    height: number;
+    /** The total number of columns that can be rendered. */
+    columnCount: number;
+    /** An easing function to use for animated pagination */
+    easing: number;
+    number;
+    /** The duration of animated pagination */
+    duration: number;
+    /** The renderProp responsible for rendering each "cell" */
+    cellRenderer: CellRenderer;
+    /** The renderProp responsible for rendering the controls to paginate through the columns */
+    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'boolean'.
+    buttonRenderer: (boolean, boolean, ClickHandlerType) => React.Node;
+    /** Custom classname for styling the wrapping div elements. */
+    className: string;
+    /** Number of items to render before/after the visible slice of the grid.
+        Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md **/
+    overscanColumnCount?: overscanColumnCountType;
+    /** A way to force the column widths to recalculate by changing the string passed here */
+    cacheBuster?: string;
+    /** The number of items that will be shown on both the current page and next/previous pages */
+    overlappingItemCount: number;
+    defaultWidth: number;
 };
+
+type Props = OwnProps & typeof ScrollablePaginated.defaultProps;
 
 export default class ScrollablePaginated extends React.PureComponent<
   Props,
@@ -74,6 +78,7 @@ export default class ScrollablePaginated extends React.PureComponent<
   }
 
   get isEndOfScroll() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property '_scrollingContainer' does not exist on t... Remove this comment to see the full error message
     const scrollingContainer = this.gridRefCurrent._scrollingContainer;
 
     return (
@@ -85,6 +90,7 @@ export default class ScrollablePaginated extends React.PureComponent<
   }
 
   get isStartOfScroll() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property '_scrollingContainer' does not exist on t... Remove this comment to see the full error message
     const scrollingContainer = this.gridRefCurrent._scrollingContainer;
     return scrollingContainer && Math.ceil(scrollingContainer.scrollLeft) === 0;
   }
@@ -93,7 +99,9 @@ export default class ScrollablePaginated extends React.PureComponent<
     this.currentScrollOffset = scrollLeft;
 
     if (!isEmpty(this.gridRefCurrent)) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStartIndex' does not exis... Remove this comment to see the full error message
       this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+      // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStopIndex' does not exist... Remove this comment to see the full error message
       this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
 
       this.setState({
@@ -119,6 +127,7 @@ export default class ScrollablePaginated extends React.PureComponent<
         : this.startColumn -
             (this.visibleColumns - this.props.overlappingItemCount)
     );
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'getOffsetForCell' does not exist on type... Remove this comment to see the full error message
     this.scrollToOffset = this.gridRefCurrent.getOffsetForCell({
       alignment: "start",
       columnIndex: nextColumn,
@@ -149,7 +158,9 @@ export default class ScrollablePaginated extends React.PureComponent<
         this.isScrolling = false;
         this.currentScrollOffset = this.scrollToOffset;
         this.animationStartTime = undefined;
+        // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStartIndex' does not exis... Remove this comment to see the full error message
         this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+        // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStopIndex' does not exist... Remove this comment to see the full error message
         this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
         this.setState({
           scrollLeft: null,
@@ -174,8 +185,11 @@ export default class ScrollablePaginated extends React.PureComponent<
         hasPreviousPage: !this.isStartOfScroll,
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStartIndex' does not exis... Remove this comment to see the full error message
       this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+      // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStopIndex' does not exist... Remove this comment to see the full error message
       this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
+      // @ts-expect-error ts-migrate(2339) FIXME: Property '_renderedColumnStopIndex' does not exist... Remove this comment to see the full error message
       this.visibleColumns = this.gridRefCurrent._renderedColumnStopIndex;
     }, 0);
 
@@ -198,6 +212,7 @@ export default class ScrollablePaginated extends React.PureComponent<
         <div style={{ height }} className={`${className}__list`}>
           <ScrollableWithRef
             ref={this.gridRef}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ ref: RefObject<GridRef>; columnCount: numb... Remove this comment to see the full error message
             columnCount={this.props.columnCount}
             cellRenderer={this.props.cellRenderer}
             height={height}

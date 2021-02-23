@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { type Adventurer, type AdventureContent } from "Models/adventure";
+import type { Adventurer, AdventureContent } from "Models/adventure";
 import AdventureAvatarAndDetails from "./AdventureAvatarAndDetails";
 import AdventureProgressBar from "./AdventureProgressBar";
 import "./AdventureCard.scss";

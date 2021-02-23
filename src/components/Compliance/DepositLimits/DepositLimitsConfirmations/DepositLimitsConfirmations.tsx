@@ -32,8 +32,10 @@ type Props = {
   fetchTranslations: () => void,
   lastButtonCaption: TranslationKeys, // eslint-disable-line no-use-before-define
 };
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
 type TranslationKeys = $Keys<$PropertyType<Props, "t">>;
 const confirmationPageToTranslation: {
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   [ConfirmationPage]: {
     title: TranslationKeys,
     content?: TranslationKeys,
@@ -95,6 +97,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
       <Flex direction="vertical">
         {numberOfPages > 1 && (
           <Flex align="center" justify="center" className="u-padding-y--xlg">
+            {/* @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component. */}
             <WildDots
               numberOfDots={numberOfPages}
               activeDotIndex={pageNumber}

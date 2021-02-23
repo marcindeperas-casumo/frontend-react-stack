@@ -3,7 +3,9 @@ import { getSessionState, createSession } from "Api/api.esSlotSessions";
 import { types as fetchTypes } from "Models/fetch";
 import {
   ACTION_TYPES,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type NewSessionRequestType,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ActiveSessionType,
 } from "Models/slotControlSystem";
 

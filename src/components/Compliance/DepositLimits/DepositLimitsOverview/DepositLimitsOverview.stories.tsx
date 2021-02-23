@@ -18,6 +18,7 @@ const actions = {
 
 stories.add("Default", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ add: Handler... Remove this comment to see the full error message */}
     <DepositLimitsOverview
       locale="en-GB"
       currency="EUR"
@@ -54,6 +55,7 @@ stories.add("Default", () => (
 
 stories.add("No limits", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ add: Handler... Remove this comment to see the full error message */}
     <DepositLimitsOverview
       locale="en-GB"
       currency="EUR"
@@ -69,6 +71,7 @@ stories.add("No limits", () => (
 
 stories.add("Removing all", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ add: Handler... Remove this comment to see the full error message */}
     <DepositLimitsOverview
       locale="en-GB"
       currency="EUR"

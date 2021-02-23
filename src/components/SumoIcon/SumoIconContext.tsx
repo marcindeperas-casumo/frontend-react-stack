@@ -18,15 +18,19 @@ export type SumoIconContextType = {
   updateProps: (iconId: string, data: Object) => void,
   addIcon: (
     iconId: string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     icon: React.Component<*, *> | React.StatelessFunctionalComponent<*>
   ) => string,
   removeIcon: (iconId: string, done?: () => void) => void,
   hasIcon: (iconId: string) => boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   primaryIcon: ?React.Component<*, *> | ?React.StatelessFunctionalComponent<*>,
   primaryIconType: string,
   primaryIconProps: Object,
   secondaryIcon:
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     | ?React.Component<*, *>
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     | ?React.StatelessFunctionalComponent<*>,
   secondaryIconType: string,
   secondaryIconProps: Object,
@@ -50,6 +54,7 @@ export const SumoIconContext = React.createContext<SumoIconContextType>({
 export const SumoIconContextProvider = ({
   children,
 }: {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 }) => {
   const transitionTimer = useTimeoutFn();
@@ -84,6 +89,7 @@ export const SumoIconContextProvider = ({
   const addIcon = React.useCallback(
     (
       iconId: string,
+      // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
       icon: ?React.Component<*, *> | ?React.StatelessFunctionalComponent<*>
     ) => {
       transitionTimer.clear();

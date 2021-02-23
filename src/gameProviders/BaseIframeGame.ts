@@ -27,6 +27,7 @@ const DEFAULT_API = {
 export class BaseIframeGame extends BaseGame {
   targetDomain: string = window.location.origin || "*";
   api: IframeGameApi = DEFAULT_API;
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'messageGuard'.
   messageGuard: Function;
 
   constructor(props: GameProviderModelProps) {
@@ -50,6 +51,7 @@ export class BaseIframeGame extends BaseGame {
 
   get componentProps() {
     return {
+      // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
       ...super.componentProps,
       allow: "autoplay",
       scrolling: "no",
@@ -101,6 +103,7 @@ export class BaseIframeGame extends BaseGame {
     });
   }
 
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'messageGuard'.
   messageGuard(event: IframeMessageEvent) {
     if (event.origin === this.targetDomain) {
       this.onMessageHandler(event);

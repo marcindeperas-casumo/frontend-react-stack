@@ -92,6 +92,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     return (
       <div data-test="scrollable-list-paginated">
         {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ScrollablePaginated
           className="c-scrollable-list-paginated"
           columnCount={itemCount}

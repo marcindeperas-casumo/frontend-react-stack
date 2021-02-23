@@ -1,15 +1,10 @@
-// @flow
-
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
 import { ProgressBar } from "Components/Progress";
-import {
-  isMaxLevel,
-  type Adventurer,
-  type AdventureContent,
-} from "Models/adventure";
+import { isMaxLevel } from "Models/adventure";
+import type { Adventurer, AdventureContent } from "Models/adventure";
 
 export type Props = {
   adventurer: Adventurer,

@@ -12,6 +12,7 @@ stories.add("Default", () => (
     t={t}
     currency="EUR"
     pendingLimitChanges={undefined}
+    // @ts-expect-error ts-migrate(2739) FIXME: Type 'HandlerFunction' is missing the following pr... Remove this comment to see the full error message
     applyLimitsChanges={action("applyLimitsChanges click")}
     limits={{
       daily: 600,

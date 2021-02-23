@@ -25,6 +25,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   componentDidMount() {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INTENT);
   }
 
@@ -35,6 +36,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   setClientVisible = (visible: boolean) => {
+    // @ts-expect-error ts-migrate(2347) FIXME: Untyped function calls may not accept type argumen... Remove this comment to see the full error message
     this.context.client.mutate<A.UpdateKambiClientState>({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {
@@ -76,6 +78,7 @@ export default class SportsSearch extends React.Component<{}, State> {
     resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches
   ) => {
     // $FlowIgnore: either type will have either prop
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'localizedName' does not exist on type 'S... Remove this comment to see the full error message
     const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
 
     this.setState({
@@ -97,6 +100,7 @@ export default class SportsSearch extends React.Component<{}, State> {
                   <SearchInput
                     autofocus
                     value={this.state.query}
+                    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
                     onChange={this.handleSearchInput}
                     onClear={this.handleClearSearchInput}
                     onFocus={this.handleFocusSearchInput}
@@ -111,6 +115,7 @@ export default class SportsSearch extends React.Component<{}, State> {
           <KambiSearchResults
             query={this.state.query}
             hideSearchResults={this.state.hideSearchResults}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '(resultOrEventGroup: A.SearchQuery_search | ... Remove this comment to see the full error message
             onResultClick={this.handleSearchResultClick}
           />
         </div>

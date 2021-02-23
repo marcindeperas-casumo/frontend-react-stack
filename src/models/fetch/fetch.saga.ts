@@ -20,8 +20,8 @@ export function* fetchSaga(action) {
     const isPost = method === "POST";
     const httpMethod = isPost ? http.post : http.get;
     const response = asyncCall
-      ? yield call(asyncCall, asyncCallData)
-      : yield call(httpMethod, url, data);
+      ? (yield call(asyncCall, asyncCallData))
+      : (yield call(httpMethod, url, data));
 
     if (action.postFetch) {
       yield put(actions.postFetch(postFetch, response));

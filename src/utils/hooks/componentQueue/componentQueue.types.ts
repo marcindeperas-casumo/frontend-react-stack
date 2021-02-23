@@ -2,9 +2,9 @@ import * as React from "react";
 import type { TQueueActionPayload } from "./componentQueue.actions";
 import { DATA_STRUCTURE } from "./componentQueue.constants";
 
-export type TDataStructure = $Values<typeof DATA_STRUCTURE>;
+export type TDataStructure = typeof DATA_STRUCTURE[keyof typeof DATA_STRUCTURE];
 
-export type TComponentQueueItemContent = string | (() => React.ReactNode);
+export type TComponentQueueItemContent = string | (() => React.ReactElement);
 
 export type TComponentQueueConfigSettings = {
   priority?: number,
@@ -16,13 +16,8 @@ export type TComponentQueueItem = {
   settings?: TComponentQueueConfigSettings,
 };
 
-export type TComponentQueueMapping<T> = $ObjMap<
-  T,
-  <P>(P) => TComponentQueueItem
->;
-
 export type TComponentQueueConfig = {
-  [string]: TComponentQueueItem,
+  [s: string]: TComponentQueueItem,
 };
 
 export type TComponentQueueState = Array<TComponentQueueItem>;

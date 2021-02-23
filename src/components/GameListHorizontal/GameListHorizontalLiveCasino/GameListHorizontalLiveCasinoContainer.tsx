@@ -7,6 +7,7 @@ import TrackProvider from "Components/TrackProvider";
 import { useTranslations } from "Utils/hooks";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalLiveCasino... Remove this comment to see the full error message
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
 type Props = {
   /** The id of the game list. */

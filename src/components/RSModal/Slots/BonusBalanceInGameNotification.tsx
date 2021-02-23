@@ -16,6 +16,7 @@ export type CmsContent = {
 type BonusBalanceInGameNotificationProps = {
   acceptModal?: () => void,
   config: any,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   t: ?CmsContent,
 };
 

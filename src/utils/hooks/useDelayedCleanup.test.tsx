@@ -27,6 +27,7 @@ describe("useDelayedCleanup", () => {
       wrapper.setProps({ args: [null, 1000] });
       wrapper.update();
       expectHook(wrapper).toEqual("second");
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       act(jest.runAllTimers);
       expectHook(wrapper).toEqual("second");
     });
@@ -42,6 +43,7 @@ describe("useDelayedCleanup", () => {
     wrapper.setProps({ args: ["second", 1000] });
     wrapper.update();
     expectHook(wrapper).toEqual("second");
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     act(jest.runAllTimers);
     expectHook(wrapper).toEqual("second");
   });

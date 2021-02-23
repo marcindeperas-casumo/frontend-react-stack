@@ -23,6 +23,7 @@ describe("<Router /> utils", () => {
     // eslint-disable-next-line fp/no-delete
     delete window.location;
 
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ pathname: string; assign: Mock<any, any>; ... Remove this comment to see the full error message
     window.location = {
       pathname,
       assign: jest.fn(),

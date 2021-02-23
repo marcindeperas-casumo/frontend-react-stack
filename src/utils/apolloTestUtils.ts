@@ -41,6 +41,7 @@ export function getCacheWithIntrospections() {
 }
 
 export function generateTranslationsQuery(translationKeyIdMap: {
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   [string]: string,
 }) {
   return gql`
@@ -52,7 +53,9 @@ export function generateTranslationsQuery(translationKeyIdMap: {
 
 export function generateTranslationsQueryMock(
   query: any,
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   translationKeyIdMap: { [string]: string },
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   translationKeyValueMap: { [string]: string }
 ) {
   return {

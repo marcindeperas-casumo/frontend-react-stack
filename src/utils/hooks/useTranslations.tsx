@@ -1,15 +1,15 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchPageBySlug, getPage } from "Models/cms";
 
-type __useTranslations1 = <T>(string) => ?T;
-type __useTranslations2 = (string, true) => ?string;
+type __useTranslations1 = <T>(slug: string) => T | undefined;
+type __useTranslations2 = (slug: string, passContent: true) => string | undefined;
 type __useTranslations = __useTranslations1 & __useTranslations2;
+
 export const useTranslations: __useTranslations = (
-  slug,
-  passContent = false
+  slug: string,
+  passContent: boolean = false
 ) => {
   const dispatch = useDispatch();
   React.useEffect(

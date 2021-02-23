@@ -1,6 +1,7 @@
 // @flow
 
 import React, { useEffect } from "react";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import type { GameProviderModel } from "GameProviders";
 
 type Props = {

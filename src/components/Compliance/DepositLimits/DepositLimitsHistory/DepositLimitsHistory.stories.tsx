@@ -86,4 +86,5 @@ const props = {
   t,
 };
 
+// @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ fetchTransla... Remove this comment to see the full error message
 stories.add("Default", () => <DepositLimitsHistory {...props} />);

@@ -8,7 +8,9 @@ import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import {
   urls,
   jackpotWidgetContentPage,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type JackpotWidgetContentPage,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type JackpotStatus,
 } from "./blueRibbonConsts";
 import {

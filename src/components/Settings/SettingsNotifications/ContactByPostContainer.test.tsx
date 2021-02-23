@@ -6,6 +6,7 @@ import MockStore from "Components/MockStore";
 import { ContactByPostContainer } from "./ContactByPostContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ContactByPost.graphql' or it... Remove this comment to see the full error message
 import { SettingsNotificationsContactByPostQuery } from "./ContactByPost.graphql";
 import {
   contactByPostMock,

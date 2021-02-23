@@ -28,7 +28,9 @@ export function ReelRaceScheduleCard({
   const [open, setOpen] = React.useState(expanded);
   const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
+  // @ts-expect-error ts-migrate(2365) FIXME: Operator '>' cannot be applied to types 'Duration'... Remove this comment to see the full error message
   const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
 
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);

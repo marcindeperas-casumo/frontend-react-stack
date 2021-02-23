@@ -37,6 +37,7 @@ stories.add(
     <MockStore state={state}>
       <div style={{ maxWidth: 350 }}>
         <PromotionCardTeaserPresentational
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           slug="promotions.boosted-reelraces"
           link="promotions/boosted-reelraces"
           isFetched={true}

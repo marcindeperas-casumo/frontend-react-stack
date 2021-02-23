@@ -29,12 +29,14 @@ const methodTypesMap = convertMethodTypesToMap(methodTypes);
 const expectedQuickDepositMethods = [
   prepareQuickDepositMethod(
     playerMethod,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ profiles: { default: { limits:... Remove this comment to see the full error message
     mock.paymentMethodConfigs.methods.VISA_CARD,
     methodTypesMap[playerMethod.type]
   ),
 ];
 
 // $FlowIgnore
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
 getPaymentMethodTypes.mockReturnValue(Promise.resolve(methodTypes));
 
 describe("useAvailableQuickDepositMethod hook", () => {

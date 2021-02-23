@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
 import { type Saga } from "redux-saga";
 import { put, select } from "redux-saga/effects";
 import { showModal } from "Models/modal";
@@ -6,7 +7,9 @@ import { REACT_APP_MODAL } from "Src/constants";
 import {
   ACTION_TYPES,
   END_SESSION_REASONS,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type SessionEndedCometdMessage,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type EndedSessionType,
   endedSessionSelector,
 } from "Models/slotControlSystem";
@@ -30,6 +33,7 @@ export function* sessionEndedSaga(
   }
 
   yield put(
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED, {
       mustAccept: true,
     })

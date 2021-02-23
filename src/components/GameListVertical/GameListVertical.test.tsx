@@ -10,6 +10,7 @@ import { games } from "./__mock__";
 describe("<GameListVertical />", () => {
   test("should render a list", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: boolean; backgroundImage:... Remove this comment to see the full error message
       <GameListVertical games={games} loading={false} />
     );
 
@@ -18,6 +19,7 @@ describe("<GameListVertical />", () => {
 
   test("should render a <GameRow /> component for each game", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: boolean; backgroundImage:... Remove this comment to see the full error message
       <GameListVertical games={games} loading={false} />
     );
 
@@ -27,6 +29,7 @@ describe("<GameListVertical />", () => {
   });
 
   test("should render a <GameListSkeleton /> component if the data is loading", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: boolean; backgroundImage:... Remove this comment to see the full error message
     const rendered = shallow(<GameListVertical games={games} loading={true} />);
 
     expect(rendered.find(GameListSkeleton)).toHaveLength(1);

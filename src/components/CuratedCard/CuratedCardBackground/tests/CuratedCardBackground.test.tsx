@@ -8,6 +8,7 @@ import { CuratedCardBackground } from "../CuratedCardBackground";
 describe("CuratedCardBackground", () => {
   test("should use CuratedCardBackgroundNew if image is passed in", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ link: string; onClick: () => void; image: ... Remove this comment to see the full error message
       <CuratedCardBackground
         link="/promotions"
         onClick={() => {}}
@@ -20,6 +21,7 @@ describe("CuratedCardBackground", () => {
 
   test("should use CuratedCardBackgroundDeprecated if small, medium, and large images are passed in", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ link: string; smallImage: string; mediumIm... Remove this comment to see the full error message
       <CuratedCardBackground
         link="/promotions"
         smallImage={curatedData.image}

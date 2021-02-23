@@ -5,6 +5,7 @@ import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import { SmsSubscriptionContainer } from "./SmsSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './SmsSubscription.graphql' or ... Remove this comment to see the full error message
 import { SettingsNotificationsSubscribedToSmsNewslettersQuery } from "./SmsSubscription.graphql";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
 import {

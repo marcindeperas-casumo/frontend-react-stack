@@ -87,12 +87,19 @@ export type DepositLimitsHistoryType = Array<{
 }>;
 
 export type DepositLimitsReduxStore = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'limits'.
   limits: ?AllLimits,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'preadjust'.
   preadjust: ?DepositLimitPreadjust,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'lock'.
   lock: ?LimitLock,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'undoable'.
   undoable: ?boolean,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'remaining'.
   remaining: ?AllLimitsOnlyValues,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'pendingLimitChanges'.
   pendingLimitChanges: ?DepositLimitsAdjustment,
+  // @ts-expect-error ts-migrate(2693) FIXME: 'DepositLimitsHistoryType' only refers to a type, ... Remove this comment to see the full error message
   history: ?DepositLimitsHistoryType,
 |};
 

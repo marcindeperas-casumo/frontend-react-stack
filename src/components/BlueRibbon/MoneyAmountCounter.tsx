@@ -14,6 +14,7 @@ export const MoneyAmountCounter = ({
 
   React.useEffect(() => {
     if (!startTime) {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
       setStartTime(Date.now());
     }
   }, [startTime]);
@@ -23,6 +24,7 @@ export const MoneyAmountCounter = ({
 
     if (passedTime <= animationTime) {
       const interval = setInterval(() => {
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         setPassedTime(Date.now() - startTime);
 
         if (passedTime >= animationTime) {

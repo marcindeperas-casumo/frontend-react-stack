@@ -17,6 +17,7 @@ describe("ValuablesVerticalList", () => {
     onMoreInfo = jest.fn();
     rendered = shallow(
       <ValuablesVerticalList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '({ __typename: string; id: string; valuableT... Remove this comment to see the full error message
         valuables={mockedValuables}
         loading={false}
         translations={{}}
@@ -27,6 +28,7 @@ describe("ValuablesVerticalList", () => {
 
   test("should render skeleton while loading", async () => {
     rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ valuables: undefined[]; loading: true; tra... Remove this comment to see the full error message
       <ValuablesVerticalList valuables={[]} loading={true} translations={{}} />
     );
 
@@ -49,6 +51,7 @@ describe("ValuablesVerticalList", () => {
 
     rendered = shallow(
       <ValuablesVerticalList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
         valuables={mockedData}
         loading={false}
         translations={{}}
@@ -70,6 +73,7 @@ describe("ValuablesVerticalList", () => {
 
     rendered = shallow(
       <ValuablesVerticalList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
         valuables={mockedData}
         loading={false}
         translations={{}}

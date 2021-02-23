@@ -21,7 +21,9 @@ const NavLinkItem = ({
   to,
   active,
 }: {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Stateles... Remove this comment to see the full error message
   Icon: React.StatelessFunctionalComponent<any>,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   text: ?string,
   to: string,
   active?: boolean,

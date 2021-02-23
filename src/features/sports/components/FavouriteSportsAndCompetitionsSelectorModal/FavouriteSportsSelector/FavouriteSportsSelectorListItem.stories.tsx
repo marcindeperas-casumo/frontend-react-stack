@@ -12,6 +12,7 @@ import FavouriteSportsSelectorListItem from "./FavouriteSportsSelectorListItem";
 const stories = storiesOf("Sports/FavouriteSportsSelectorListItem", module);
 
 stories.add("Simple", () => (
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { userFavourite: boolean; favourite... Remove this comment to see the full error message
   <FavouriteSportsSelectorListItem
     group={noFavouritesResult.groups[1]}
     onToggleFavouriteSport={action("onToggleFavouriteSport")}
@@ -20,6 +21,7 @@ stories.add("Simple", () => (
 ));
 
 stories.add("Simple selected", () => (
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { __typename: string; id: number; u... Remove this comment to see the full error message
   <FavouriteSportsSelectorListItem
     group={withFavouritesResult.groups[1]}
     onToggleFavouriteSport={action("onToggleFavouriteSport")}
@@ -28,6 +30,7 @@ stories.add("Simple selected", () => (
 ));
 
 stories.add("With competition selection", () => (
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'isOnboarding' is missing in type '{ grou... Remove this comment to see the full error message
   <FavouriteSportsSelectorListItem
     group={withFavouritesResult.groups[0]}
     onToggleFavouriteSport={action("onToggleFavouriteSport")}
@@ -39,6 +42,7 @@ stories.add("With competition selection", () => (
 ));
 
 stories.add("With competition selection and selected", () => (
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'isOnboarding' is missing in type '{ grou... Remove this comment to see the full error message
   <FavouriteSportsSelectorListItem
     group={withFavouritesResult.groups[0]}
     onToggleFavouriteSport={action("onToggleFavouriteSport")}
@@ -51,6 +55,7 @@ stories.add("With competition selection and selected", () => (
 
 stories.add("With competition intro", () => (
   <MockedProvider mocks={cmsMocks}>
+    {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'isOnboarding' is missing in type '{ grou... Remove this comment to see the full error message */}
     <FavouriteSportsSelectorListItem
       group={withFavouritesResult.groups[0]}
       onToggleFavouriteSport={action("onToggleFavouriteSport")}

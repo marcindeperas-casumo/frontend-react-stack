@@ -6,6 +6,7 @@ import { updateEntity } from "Models/schema";
 import { getAcknowledgements, getRelevantVersionsSlugs } from "./tac.selectors";
 
 /*:: const __getAcknowledgements = getAcknowledgements(); */
+// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__getAcknowledgements'. Did you ... Remove this comment to see the full error message
 export function useTACAcknowledgements(): typeof __getAcknowledgements {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -20,6 +21,7 @@ export function useTACAcknowledgements(): typeof __getAcknowledgements {
 }
 
 /*:: const __getRelevantVersionsSlugs = getRelevantVersionsSlugs(); */
+// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__getRelevantVersionsSlugs'. Did... Remove this comment to see the full error message
 export function useRelevantVersionsSlugs(): typeof __getRelevantVersionsSlugs {
   return useSelector(getRelevantVersionsSlugs, shallowEqual);
 }

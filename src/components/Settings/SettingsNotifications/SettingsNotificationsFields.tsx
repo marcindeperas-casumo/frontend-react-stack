@@ -1,4 +1,5 @@
 //@flow
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../node_modules/@types/react"' h... Remove this comment to see the full error message
 import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -57,11 +58,13 @@ export const RealityCheckField = ({
   frequencyOffLabel,
 }: {
   link: string,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'enabled'.
   enabled: boolean,
   title: ?string,
   interval: number,
   frequencyLabel: ?string,
   frequencyOffLabel: ?string,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'enabled'.
   enabled: boolean,
 }) => (
   <LinkOrNode link={link} enabled={enabled}>

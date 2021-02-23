@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ProviderGamesList.graphql' o... Remove this comment to see the full error message
 import { GameStudioQuery } from "./ProviderGamesList.graphql";
 type Props = {
   /** Provider slug whose games will be fetched */
@@ -23,6 +24,7 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
 
   const fetchMoreGames = () => {
     setPageNumber(pageNumber + 1);
+    // @ts-expect-error ts-migrate(2344) FIXME: Type 'GameStudioQueryVariables' does not satisfy t... Remove this comment to see the full error message
     return fetchMore<A.GameStudioQueryVariables>({
       variables: {
         page: pageNumber,

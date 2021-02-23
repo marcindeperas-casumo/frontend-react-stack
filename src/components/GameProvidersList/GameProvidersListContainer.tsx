@@ -34,5 +34,6 @@ export const GameProvidersListContainer = ({ title }: Props) => {
     return null;
   }
 
+  // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   return <GameProvidersList title={title} gameStudios={gameStudios} />;
 };

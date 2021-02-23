@@ -6,6 +6,7 @@ describe("Models/Router/Reducer", () => {
     const state = {
       activeComponents: [],
     };
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ componentId: string; }' is not... Remove this comment to see the full error message
     const result = reducer(state, activateComponent({ componentId: "foo" }));
     expect(result.activeComponents).toEqual(["foo"]);
   });
@@ -16,7 +17,9 @@ describe("Models/Router/Reducer", () => {
     };
 
     const result = reducer(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ componentId: string; }' is not... Remove this comment to see the full error message
       reducer(state, activateComponent({ componentId: "foo" })),
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ componentId: string; }' is not... Remove this comment to see the full error message
       activateComponent({ componentId: "foo" })
     );
 
@@ -44,6 +47,7 @@ describe("Models/Router/Reducer", () => {
     };
     const state = reducer(
       defaultState,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ componentId: string; }' is not... Remove this comment to see the full error message
       activateComponent({ componentId: "foo" })
     );
 

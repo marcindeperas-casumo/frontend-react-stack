@@ -5,6 +5,7 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { ValuableRow } from "Components/ValuableRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/valuables"' has no exported ... Remove this comment to see the full error message
 import { type ValuableListProps, VALUABLE_STATES } from "Models/valuables";
 import { useValuableDetails } from "Components/ValuableDetails/useValuableDetails";
 
@@ -23,6 +24,7 @@ const valuableItemRenderer = (
   const moreInfo = () => onMoreInfo(valuable);
   const itemClick = onItemClick ? () => onItemClick(valuable.id) : moreInfo;
   const isSelected =
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
     isItemSelectable && valuable.valuableState === VALUABLE_STATES.USED;
 
   return (
@@ -43,11 +45,14 @@ const valuableItemRenderer = (
 export const ValuablesVerticalList = ({
   title,
   valuables,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'translations' does not exist on type 'Va... Remove this comment to see the full error message
   translations,
   loading,
   className,
   onConsumeValuable,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onItemClick' does not exist on type 'Val... Remove this comment to see the full error message
   onItemClick,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isItemSelectable' does not exist on type... Remove this comment to see the full error message
   isItemSelectable,
 }: ValuableListProps) => {
   const { detailsComponent, showValuableDetails } = useValuableDetails(

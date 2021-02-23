@@ -1,4 +1,3 @@
-// @flow
 import config from "Src/config";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";

@@ -5,6 +5,7 @@ export default [
   {
     __typename: "PlayerValuableCash",
     id: "1",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.CASH,
     title: "€50 Bonus Money",
     currency: "EUR",
@@ -27,6 +28,7 @@ export default [
   {
     __typename: "PlayerValuableDeposit",
     id: "2",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.DEPOSIT,
     title: "100% Deposit Bonus",
     market: "en",
@@ -50,6 +52,7 @@ export default [
   {
     __typename: "PlayerValuableDeposit",
     id: "3",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.DEPOSIT,
     title: "20% Deposit Bonus",
     market: "en",
@@ -73,6 +76,7 @@ export default [
   {
     __typename: "PlayerValuableDeposit",
     id: "4",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.DEPOSIT,
     title: "10% Deposit Bonus",
     market: "en",
@@ -96,6 +100,7 @@ export default [
   {
     __typename: "PlayerValuableDeposit",
     id: "5",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPORT' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.SPORT,
     title: "€5 Sport Bet",
     market: "en",
@@ -119,6 +124,7 @@ export default [
   {
     __typename: "PlayerValuableSpins",
     id: "654",
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     valuableType: VALUABLE_TYPES.SPINS,
     title: "20 Free Spins",
     magnitude: 20,

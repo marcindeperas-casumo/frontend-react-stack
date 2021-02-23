@@ -8,6 +8,7 @@ type MarketConfigProp = "reelRacesHidden";
 
 type GetMarketConfigProps = {
   prop: MarketConfigProp,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
   market: $Keys<typeof MARKETS>,
 };
 
@@ -16,6 +17,7 @@ export function useMarketConfig(
 ): string | boolean | number {
   const market = useSelector(marketSelector);
 
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string |... Remove this comment to see the full error message
   return getMarketConfig({
     prop,
     market,

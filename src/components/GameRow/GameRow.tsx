@@ -17,6 +17,7 @@ type Props = {
   /** Class name to apply to the game row */
   className?: string,
   /** a function that renders some text */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   renderText: () => React.Node,
 };
 

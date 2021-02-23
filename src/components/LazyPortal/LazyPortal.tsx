@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
 import type { Node } from "react";
 import Lazy from "Components/Lazy";
 import Portal from "Components/Portal";
@@ -37,6 +38,7 @@ export default class LazyPortal extends React.PureComponent<Props> {
         <Portal hostElementId={hostElementId}>
           {/* Show a fallback until the bundle is loaded, then load the bundle. */}
           <Lazy
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '() => P... Remove this comment to see the full error message
             loader={loader}
             fallback={fallback}
             props={props}

@@ -10,6 +10,7 @@ import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalDefault } from "./GameListHorizontalDefault";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalDefault.gr... Remove this comment to see the full error message
 import { GameListQuery } from "./GameListHorizontalDefault.graphql";
 
 type Props = {

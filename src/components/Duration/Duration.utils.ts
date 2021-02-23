@@ -17,6 +17,7 @@ export function durationToTranslationKey(
   durationKey: LuxonDurationKey,
   value: number,
   preferAbbreviated?: boolean
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
 ): $Keys<DurationTranslations> {
   if (preferAbbreviated) {
     return LUXON_KEY_TO_CMS_KEY_ABBREVIATED[durationKey];
@@ -41,6 +42,7 @@ export function interpolateDurationObject(
 ): string {
   return R.pipe(
     // we could just iterate over duration but it would create issue with preserving proper order in output
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     R.filter(R.has(R.__, props.duration)),
     // drop items from the beginning which values in duration are lte 0
     R.dropWhile(
@@ -61,5 +63,6 @@ export function interpolateDurationObject(
       );
     }),
     R.join(props.separator)
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(LUXON_DURATION_KEYS);
 }

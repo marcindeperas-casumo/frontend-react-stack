@@ -14,6 +14,7 @@ describe("PromotionCardTeaserList", () => {
   test("should initiate the fetching if page is not available", () => {
     shallow(
       <PromotionCardTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
@@ -27,6 +28,7 @@ describe("PromotionCardTeaserList", () => {
   test("should not render any PromotionCardTeaser component if promotionSlugs is empty", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
@@ -40,6 +42,7 @@ describe("PromotionCardTeaserList", () => {
   test("should set a background color if backgroundColor is coming down as a prop", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}
@@ -54,6 +57,7 @@ describe("PromotionCardTeaserList", () => {
   test("should not set a background color if backgroundColor is not coming down as a prop", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         slug="foo"
         fetchCampaign={fetchCampaign}
         fetchPromotions={fetchPromotions}

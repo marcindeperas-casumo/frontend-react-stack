@@ -30,12 +30,14 @@ describe("CuratedCard", () => {
   });
 
   test("should render nothing if curated-card is not defined", () => {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ curatedCard: null; }' is missing the follo... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={null} />);
 
     expect(component.isEmptyRender()).toBe(true);
   });
 
   test("should render CuratedCardBackground and Card", () => {
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 
     expect(component.find(CuratedCardBackground).exists()).toBe(true);
@@ -43,6 +45,7 @@ describe("CuratedCard", () => {
   });
 
   test("should render CuratedCardFooterGame if there is a game", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 
     expect(component.find(CuratedCardFooterGame).exists()).toBe(true);
@@ -50,6 +53,7 @@ describe("CuratedCard", () => {
   });
 
   test("should render CuratedCardFooterText if it is a promotion", () => {
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedPromotionMock} />);
 
     expect(component.find(CuratedCardFooterText).exists()).toBe(true);
@@ -57,12 +61,14 @@ describe("CuratedCard", () => {
   });
 
   test("should render the header with a subtitle if it is a promotion", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedPromotionMock} />);
 
     expect(component.find(CuratedCardHeaderWithSubtitle)).toHaveLength(1);
   });
 
   test("should render the simple header if it is a game", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 
     expect(component.find(CuratedCardHeaderSimple)).toHaveLength(1);
@@ -70,6 +76,7 @@ describe("CuratedCard", () => {
 
   test("should not render a header if the data is missing", () => {
     const component = mount(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ heade... Remove this comment to see the full error message
       <CuratedCard curatedCard={{ ...curatedGameMock, header: null }} />
     );
 
@@ -77,6 +84,7 @@ describe("CuratedCard", () => {
   });
 
   test("should not link to anywhere if it is displaying a game", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 
     const { href } = component
@@ -88,6 +96,7 @@ describe("CuratedCard", () => {
   });
 
   test("should link to a specific promotion if curated type is promotion", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
     const component = mount(<CuratedCard curatedCard={curatedPromotionMock} />);
 
     const { href } = component
@@ -102,6 +111,7 @@ describe("CuratedCard", () => {
     const component = mount(
       <CuratedCard
         onLaunchGame={onLaunchGame}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
         curatedCard={curatedPromotionMock}
       />
     );
@@ -114,6 +124,7 @@ describe("CuratedCard", () => {
 
   test("should call onLaunchGame if curated type is game", () => {
     const component = mount(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; type: string; im... Remove this comment to see the full error message
       <CuratedCard onLaunchGame={onLaunchGame} curatedCard={curatedGameMock} />
     );
     const cardBackground = component.find("CuratedCardBackground");
@@ -128,6 +139,7 @@ describe("CuratedCard", () => {
       <CuratedCard
         onLaunchGame={onLaunchGame}
         navigateToSportsHash={navigateToSportsHash}
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
         curatedCard={curatedSportsMock}
       />
     );
@@ -140,6 +152,7 @@ describe("CuratedCard", () => {
 
   test("should call navigateById if curated type is SPORTS and deposit link", () => {
     const component = mount(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'market' is missing in type '{ onLaunchGa... Remove this comment to see the full error message
       <CuratedCard
         onLaunchGame={onLaunchGame}
         navigateToSportsHash={navigateToSportsHash}

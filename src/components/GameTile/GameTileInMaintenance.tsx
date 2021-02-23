@@ -36,6 +36,7 @@ export const GameTileInMaintenance = ({
         logoBackground={backgroundImage}
         logo={logo}
         name={name}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ logoBackground: string; logo: string; name... Remove this comment to see the full error message
         imgixOpts={imgixOpts}
       />
       <Flex

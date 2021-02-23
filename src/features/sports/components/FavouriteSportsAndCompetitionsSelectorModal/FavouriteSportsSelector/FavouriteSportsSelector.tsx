@@ -74,6 +74,7 @@ const FavouriteSportsSelector = (props: Props) => (
                 icon:
                   "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
                 name: allSportsGroupTitle,
+                // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: number; icon: string; name: string; sp... Remove this comment to see the full error message
                 sport: "all",
                 canSelectSubgroups: false,
                 favouriteCompetitions: [],

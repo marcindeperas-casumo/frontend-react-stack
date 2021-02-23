@@ -21,6 +21,7 @@ type Props = {
   isOnboarding: boolean,
   /** Is the competition with this id selected? */
   isCompetitionSelected: (
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
     competitionId: $ElementType<Competition, "id">
   ) => boolean,
   /** What should happen when this competition is toggled between selected/unselected */
@@ -84,6 +85,7 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
   const groups: Array<A.FavouriteCompetitionsSelectorQuery_group_groups> =
     data.group.groups || [];
 
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const [orphanGroups, nonOrphanGroups] = partition(isOrphanGroup, groups);
 
   const regionGroups = [
@@ -93,12 +95,14 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       name: data.internationalGroupName,
       userFavourite: false,
       popular: false,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(group: A.FavouriteCompetitionsS... Remove this comment to see the full error message
       groups: orphanGroups.map(transformOrphanGroup),
       id: -1,
       regionCode: "",
     },
   ];
 
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const [popularRegionGroups, otherRegionGroups] = partition(
     isPopularGroup,
     regionGroups

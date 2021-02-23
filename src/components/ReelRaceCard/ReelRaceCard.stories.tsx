@@ -33,6 +33,7 @@ stories.add("Default", () => {
   return (
     <div className="c-reel-race-card">
       <ReelRaceCard
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         reelRace={reelRace}
         optIn={() => {}}
         locale="en"

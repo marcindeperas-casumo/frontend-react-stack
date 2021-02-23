@@ -15,8 +15,10 @@ jest.mock("Services/LaunchGameService", () => ({
 
 describe("LiveCasinoCard", () => {
   test("launchGame is called when clicking in card header", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '({ sl... Remove this comment to see the full error message
     launchGame.mockClear();
     const game = { liveCasinoLobby: { tableId: "table" } };
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
 
     rendered
@@ -29,8 +31,10 @@ describe("LiveCasinoCard", () => {
   });
 
   test("launchGame is called when clicking in card content", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '({ sl... Remove this comment to see the full error message
     launchGame.mockClear();
     const game = { liveCasinoLobby: { tableId: "table" } };
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const rendered = shallow(<LiveCasinoCard game={game} t={t} />);
 
     rendered

@@ -7,10 +7,12 @@ import { isEmpty } from "ramda";
 export type SimpleQueryProps<D, V> = {
   query: any,
   variables?: V,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: (data: D) => React.Node,
   fetchPolicy?: FetchPolicy,
 };
 
+// @ts-expect-error ts-migrate(2368) FIXME: Type parameter name cannot be 'any'.
 export class SimpleQuery<D: ?any = {}, V: ?any = {}> extends React.Component<
   SimpleQueryProps<D, V>
 > {
@@ -23,6 +25,7 @@ export class SimpleQuery<D: ?any = {}, V: ?any = {}> extends React.Component<
         variables={variables}
         fetchPolicy={fetchPolicy || "cache-and-network"}
       >
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '({ loading, error, data, }: { loading: boole... Remove this comment to see the full error message */}
         {({
           loading,
           error,

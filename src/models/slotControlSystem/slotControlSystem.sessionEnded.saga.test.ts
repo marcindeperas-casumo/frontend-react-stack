@@ -42,6 +42,7 @@ describe("Models/slotControlSystem/sessionEndedSaga", () => {
     test("then it gets endedSession from state", selectorTest(generator));
 
     test("then saga is done", () => {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[{ id: string; startedTime: numb... Remove this comment to see the full error message
       expect(generator.next(endedSessionMock).done).toBe(true);
     });
   });
@@ -63,6 +64,7 @@ describe("Models/slotControlSystem/sessionEndedSaga", () => {
     test("then it gets endedSession from state", selectorTest(generator));
 
     test("then shows After Limits Reached modal", () => {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[{ endReason: string; id: string... Remove this comment to see the full error message
       const dispatchedAction = generator.next(modifiedEndedSessionMock).value
         .PUT.action;
 

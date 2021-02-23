@@ -15,6 +15,7 @@ const isFallbackValue = equals(YEAR_10K_TIMESTAMP);
 
 export function useFiveMinuteBreakIcon() {
   const { isGGL } = useJurisdiction();
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   const {
     activeRCSession,
     activeRCBreak,

@@ -14,6 +14,7 @@ stories.add("Basic", () => (
 stories.add("With onRemove", () => (
   <CompetitionPillsList
     competitions={competitions}
+    // @ts-expect-error ts-migrate(2739) FIXME: Type 'HandlerFunction' is missing the following pr... Remove this comment to see the full error message
     onRemove={action("onRemove")}
   />
 ));
@@ -21,6 +22,7 @@ stories.add("With onRemove", () => (
 stories.add("With onAdd", () => (
   <CompetitionPillsList
     competitions={competitions}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'HandlerFunction' is not assignable to type '... Remove this comment to see the full error message
     onRemove={action("onRemove")}
     onAdd={action("onAdd")}
   />
@@ -29,6 +31,7 @@ stories.add("With onAdd", () => (
 stories.add("With onClick", () => (
   <CompetitionPillsList
     competitions={competitions}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'HandlerFunction' is not assignable to type '... Remove this comment to see the full error message
     onRemove={action("onRemove")}
     onAdd={action("onAdd")}
     onClick={action("onClick")}
@@ -38,6 +41,7 @@ stories.add("With onClick", () => (
 stories.add("With isActive", () => (
   <CompetitionPillsList
     competitions={competitions}
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'HandlerFunction' is not assignable to type '... Remove this comment to see the full error message
     onRemove={action("onRemove")}
     onAdd={action("onAdd")}
     onClick={action("onClick")}

@@ -11,6 +11,7 @@ jest.mock("react-redux", () => {
   const { Provider, useSelector } = jest.requireActual("react-redux");
 
   return {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     useDispatch: jest.fn().mockReturnValue(),
     useSelector,
     Provider,
@@ -40,6 +41,7 @@ describe("<QuickDepositSlip />", () => {
 
     beforeEach(() => {
       dispatchMock = jest.fn();
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
       useDispatch.mockReturnValue(dispatchMock);
       rendered = mount(<QuickDepositSlip {...props} />);
       depositAmountSelector = rendered.find(`[data-test-id='${DATA_TEST_ID}']`);

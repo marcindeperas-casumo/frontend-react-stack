@@ -12,6 +12,7 @@ describe("Scrollable", () => {
 
   test("should render an Autosized Grid", () => {
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <Scrollable
         columnCount={columnCount}
         height={height}
@@ -31,6 +32,7 @@ describe("Scrollable", () => {
         className="test-test"
         defaultWidth={defaultWidth}
         scrollLeft={300}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         scrollHandler={scrollHandler}
       />
     );
@@ -45,6 +47,7 @@ describe("Scrollable", () => {
 
   test("should only have one row", () => {
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <Scrollable
         columnCount={columnCount}
         height={height}
@@ -59,6 +62,7 @@ describe("ScrollableWithRef", () => {
   test("should forward innerRef to Scrollable", () => {
     const rendered = mount(
       <ScrollableWithRef
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ columnCount: number; height: number; cellR... Remove this comment to see the full error message
         columnCount={10}
         height={10}
         cellRenderer={() => <div />}

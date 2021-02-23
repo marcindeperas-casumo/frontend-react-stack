@@ -24,6 +24,7 @@ describe("AdditionalConditions", () => {
       "REVOCATION_ALLOWED",
     ];
     const text = mount(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'Deposit... Remove this comment to see the full error message
       <AdditionalConditions {...props} rules={rules} />
     ).text();
 

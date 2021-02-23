@@ -12,6 +12,7 @@ type Props = {
   /** A replacements map, for variable replacements in the dictionary term string */
   replacements?: Replacements,
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children?: (dictionaryTerm: string) => React.Node,
 };
 
@@ -22,6 +23,7 @@ export const DICTIONARY_TERM_QUERY = gql`
 `;
 
 const getDictionaryTerm = (
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   data: ?A.DictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements
@@ -41,6 +43,7 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 }: Props): React.Node => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<

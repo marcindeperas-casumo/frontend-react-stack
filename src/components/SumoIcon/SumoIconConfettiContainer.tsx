@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";
 import SumoIconConfetti from "./SumoIconConfetti";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './SumoIconConfetti.scss' or it... Remove this comment to see the full error message
 import { animation_duration } from "./SumoIconConfetti.scss";
 
 export default function SumoIconConfettiContainer() {
@@ -15,6 +16,7 @@ export default function SumoIconConfettiContainer() {
   const runAnimation = useCallback(() => {
     showConfetti(true);
 
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'TimeoutID'.
     const timeoutId: TimeoutID = setTimeout(
       hideConfetti,
       Number(animation_duration)

@@ -26,13 +26,16 @@ const render = (props, isMobile) => () => (
   </div>
 );
 
+// @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
 stories.add("Site: Home Active", render({ currentHash: hashes.home }));
 
 stories.add(
   "Site: Search Active",
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
   render({ currentHash: hashes.home, isSearchVisible: true })
 );
 
+// @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
 stories.add("Site: My Bets Active", render({ currentHash: hashes.betHistory }));
 
 stories.add("Mobile (hidden)", render({ currentHash: hashes.home }, true));

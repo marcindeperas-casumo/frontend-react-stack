@@ -24,12 +24,14 @@ describe("appAutomaticLogoutSaga()", () => {
   });
 
   test("if logout has already started, it returns", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[true]' is not assignable to par... Remove this comment to see the full error message
     const effect = generator.clone().next(true);
 
     expect(effect.done).toEqual(true);
   });
 
   test("it sets flag that logout has started", () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[false]' is not assignable to pa... Remove this comment to see the full error message
     const effect = generator.next(false);
     const expectedAction = setPlayerLogoutStarted();
 
@@ -38,6 +40,7 @@ describe("appAutomaticLogoutSaga()", () => {
 
   test("it triggers showing Slot System Modal", () => {
     const expectedAction = showModal(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT,
       {
         mustAccept: true,

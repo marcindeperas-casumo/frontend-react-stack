@@ -30,6 +30,7 @@ export const ComponentBuilderContainer = ({ slug }: Props) => {
   try {
     return (
       <ComponentBuilderRenderer
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '<T, V>(val: T) => V' is not assi... Remove this comment to see the full error message
         componentDefinitions={JSON.parse(componentDefinitionJSON)}
       />
     );

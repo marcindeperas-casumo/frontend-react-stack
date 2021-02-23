@@ -10,6 +10,7 @@ const noop = () => undefined;
 
 stories.add("Default", () => (
   <MustDropJackpotsWidget
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isFetched: boolean; jackpots: ({ label: st... Remove this comment to see the full error message
     isFetched={true}
     jackpots={data}
     fetchJackpots={noop}

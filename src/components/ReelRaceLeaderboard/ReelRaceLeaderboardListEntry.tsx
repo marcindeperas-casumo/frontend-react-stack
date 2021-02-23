@@ -11,6 +11,7 @@ import "./ReelRaceLeaderboardListEntry.scss";
 type Props = {
   position: number,
   text: string,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   prize?: ?string,
   points: number,
   highlighted?: boolean,
@@ -23,6 +24,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
   Props,
   HTMLDivElement
 >(
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ position, text, prize, showLa... Remove this comment to see the full error message
   (
     {
       position,

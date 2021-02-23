@@ -27,5 +27,6 @@ export const setPaymentMethodConfig = (
 ): SetPaymentMethodConfigReturnType => ({
   type: actionTypes.SET_METHOD_CONFIG,
   methodType,
+  // @ts-expect-error ts-migrate(2696) FIXME: The 'Object' type is assignable to very few other ... Remove this comment to see the full error message
   config,
 });

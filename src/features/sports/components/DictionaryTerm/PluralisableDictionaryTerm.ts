@@ -14,6 +14,7 @@ type Props = {
   /** A replacements map, for variable replacements in the dictionary term string */
   replacements?: Replacements,
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children?: (dictionaryTerm: string) => React.Node,
 };
 
@@ -31,9 +32,11 @@ export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
 const getPluralisableDictionaryTerm = (
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   data: ?A.PluralisableDictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements,
+  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
   isPlural: boolean
 ): string => {
   if (loading) {
@@ -59,6 +62,7 @@ export const PluralisableDictionaryTerm = ({
   replacements,
   isPlural = false,
   children,
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 }: Props): React.Node => {
   const variables = {
     singularKey: createSingularKey(termKey),

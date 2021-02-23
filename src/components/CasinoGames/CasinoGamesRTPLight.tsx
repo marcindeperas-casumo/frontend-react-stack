@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GetGamesRTPLight.graphql' or... Remove this comment to see the full error message
 import { GetGamesRTPLight } from "./GetGamesRTPLight.graphql";
 import { RtpTable } from "./RtpTable/RtpTable";
 

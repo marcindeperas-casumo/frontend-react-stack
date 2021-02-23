@@ -28,13 +28,17 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   const balance = formatCurrency({
     locale,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: playerBalance,
   });
 
   const bonus = formatCurrency({
     locale,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: bonusBalance,
   });
 
@@ -47,6 +51,7 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   return (
     <BalanceBetSlip
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       maximized={maximized}
       goToDeposit={goToDeposit}

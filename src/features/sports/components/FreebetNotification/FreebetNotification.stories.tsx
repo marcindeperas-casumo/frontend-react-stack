@@ -12,9 +12,12 @@ const stories = storiesOf("FreebetNotification", module);
 stories.add("Default", () => {
   const isLocked = boolean("Locked", true);
   const valuableState = isLocked
-    ? VALUABLE_STATES.LOCKED
-    : VALUABLE_STATES.FRESH;
+    ? // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
+      VALUABLE_STATES.LOCKED
+    : // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
+      VALUABLE_STATES.FRESH;
   return (
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'translations' is missing in type '{ valu... Remove this comment to see the full error message
     <FreebetNotification
       {...freebetProps}
       valuableState={valuableState}

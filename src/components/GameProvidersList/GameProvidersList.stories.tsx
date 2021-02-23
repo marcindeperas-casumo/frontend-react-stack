@@ -11,6 +11,7 @@ const title = "Game Providers";
 
 stories.add("Game Providers List (Presentational)", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ background: string; logo: string; url: str... Remove this comment to see the full error message */}
     <GameProvidersList title={title} gameStudios={GameProvidersListData} />
   </MockStore>
 ));

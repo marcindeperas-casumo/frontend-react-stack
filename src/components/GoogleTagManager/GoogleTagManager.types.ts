@@ -4,6 +4,7 @@ export type GTMDataLayer = {
 };
 
 export type GTMScriptParams = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
   dataLayer?: $PropertyType<GTMDataLayer, "dataLayer">,
   containerId: string,
 };

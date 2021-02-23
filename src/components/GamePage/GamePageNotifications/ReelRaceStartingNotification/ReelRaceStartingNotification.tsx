@@ -54,9 +54,11 @@ export function ReelRaceStartingNotification({
       </Flex.Item>
       <Flex.Block>
         <Text tag="div" className="t-color-black u-font-weight-bold">
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'header' does not exist on type '{}'. */}
           {t.header}
         </Text>
         <Text tag="div" className="t-color-grey-50">
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'subheader' does not exist on type '{}'. */}
           {t.subheader}
         </Text>
       </Flex.Block>

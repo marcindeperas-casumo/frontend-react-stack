@@ -15,10 +15,12 @@ stories.add("Default", () => (
     {["unchanged", "increase", "decrease", "removed"].map(x => (
       <div
         key={x}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: string; justify: s... Remove this comment to see the full error message
         justify="center"
         align="center"
         style={{ backgroundColor: "#ffcd32" }}
       >
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'LimitChan... Remove this comment to see the full error message */}
         <LimitChangeIcon change={x} />
       </div>
     ))}

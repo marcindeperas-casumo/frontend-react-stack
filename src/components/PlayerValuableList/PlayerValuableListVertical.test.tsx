@@ -51,12 +51,15 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
     const expectedAvailable = mocks.allValuables.filter(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
       val => val.valuableState === VALUABLE_STATES.FRESH
     ).length;
     const expectedUsed = mocks.allValuables.filter(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
       val => val.valuableState === VALUABLE_STATES.USED
     ).length;
     const expectedLocked = mocks.allValuables.filter(
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
       val => val.valuableState === VALUABLE_STATES.LOCKED
     ).length;
 

@@ -7,8 +7,11 @@ import type { ModalContentComponent } from "Components/RSModal";
 import { ModalSkin } from "./ModalSkin";
 
 type ContentType = {|
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'modal_body'.
   modal_body: string,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'modal_title'.
   modal_title: string,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'continue_playing_button'.
   continue_playing_button: string,
 |};
 

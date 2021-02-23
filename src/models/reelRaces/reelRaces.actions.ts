@@ -3,6 +3,7 @@ import * as A from "Types/apollo";
 import type { CometdLeaderboard } from "./reelRaces.types";
 
 type LeaderboardUpdate = {
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
   [string]: CometdLeaderboard,
 };
 

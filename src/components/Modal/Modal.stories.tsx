@@ -18,6 +18,7 @@ stories.add("Default", () => (
       minHeight: 1000,
     }}
   >
+    {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element[]; onClose: HandlerFunct... Remove this comment to see the full error message */}
     <Modal onClose={action("onClose")}>
       <Modal.Header>Header</Modal.Header>
       <Modal.Content>

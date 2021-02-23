@@ -6,6 +6,7 @@ import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalExclusive } from "./GameListHorizontalExclusive";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalExclusive.... Remove this comment to see the full error message
 import { GameListExclusiveQuery } from "./GameListHorizontalExclusive.graphql";
 
 type Props = {

@@ -26,7 +26,9 @@ export const PiqIframeComponent = ({
   luhnCheck = true,
   onSuccess,
   onValidation,
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(para... Remove this comment to see the full error message
   onCardType = () => {},
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(para... Remove this comment to see the full error message
   onCardIdentifier = () => {},
 }: Props) => {
   const iframe = useRef(null);

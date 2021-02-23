@@ -1,5 +1,3 @@
-// @flow
-
 import { connect } from "react-redux";
 import { omit } from "ramda";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";

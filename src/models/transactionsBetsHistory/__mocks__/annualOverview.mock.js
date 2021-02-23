@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2724) FIXME: '".."' has no exported member named 'type'. Did yo... Remove this comment to see the full error message
 import { type AnnualOverviewType } from "Models/transactionsBetsHistory";
 
 export default ({
@@ -26,4 +27,5 @@ export default ({
   },
   realMoneyGiven: 200,
   currency: "GBP"
+// @ts-expect-error ts-migrate(2693) FIXME: 'AnnualOverviewType' only refers to a type, but is... Remove this comment to see the full error message
 }: AnnualOverviewType);

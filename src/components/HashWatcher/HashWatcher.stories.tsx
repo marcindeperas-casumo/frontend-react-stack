@@ -33,6 +33,7 @@ class HashWatcherDemo extends React.Component<{}, State> {
           set hash
         </button>
         <HashWatcher>
+          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           {({ currentHash }) => (
             <div className="u-margin u-padding t-border-r--sm t-background-grey-0">
               <strong>window.location.hash:&nbsp;</strong>

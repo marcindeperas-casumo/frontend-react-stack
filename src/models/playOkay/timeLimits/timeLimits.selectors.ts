@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import { propEq, find, prop } from "ramda";
 import { limitPeriod } from "../constants";
 import { playOkaySelector } from "../playOkay.selectors";
+// @ts-expect-error ts-migrate(2459) FIXME: Module '"./timeLimits.types"' declares 'type' loca... Remove this comment to see the full error message
 import { type LoginTimeLimit } from "./timeLimits.types";
 
 export const loginTimeLimitsSelector = createSelector(
@@ -11,6 +12,7 @@ export const loginTimeLimitsSelector = createSelector(
 );
 
 export const dailyLoginTimeLimitSelector = createSelector<
+  // @ts-expect-error ts-migrate(2558) FIXME: Expected 3 type arguments, but got 1.
   (any) => LoginTimeLimit | void
 >(
   loginTimeLimitsSelector,
@@ -18,6 +20,7 @@ export const dailyLoginTimeLimitSelector = createSelector<
 );
 
 export const weeklyLoginTimeLimitSelector = createSelector<
+  // @ts-expect-error ts-migrate(2558) FIXME: Expected 3 type arguments, but got 1.
   (any) => LoginTimeLimit | void
 >(
   loginTimeLimitsSelector,
@@ -25,6 +28,7 @@ export const weeklyLoginTimeLimitSelector = createSelector<
 );
 
 export const monthlyLoginTimeLimitSelector = createSelector<
+  // @ts-expect-error ts-migrate(2558) FIXME: Expected 3 type arguments, but got 1.
   (any) => LoginTimeLimit | void
 >(
   loginTimeLimitsSelector,
@@ -32,6 +36,7 @@ export const monthlyLoginTimeLimitSelector = createSelector<
 );
 
 export const allLoginTimeLimitsDefinedSelector = createSelector<
+  // @ts-expect-error ts-migrate(2558) FIXME: Expected 3 type arguments, but got 1.
   (any) => boolean
 >(
   dailyLoginTimeLimitSelector,

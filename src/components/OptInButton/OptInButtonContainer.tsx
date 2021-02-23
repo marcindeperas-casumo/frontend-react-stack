@@ -17,6 +17,7 @@ const defaultOptInValue = "Opt-In";
 const defaultOptOutValue = "Opted-In";
 
 const OptInButtonConnected = connect(
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'slug' does not exist on type '{}'.
   (state, { slug, optInField, optOutField, active, disabled }) => ({
     active: {
       ...active,
@@ -35,12 +36,14 @@ const OptInButtonConnected = connect(
       })(state),
     },
   }),
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'slug' does not exist on type '{}'.
   (dispatch, { slug }) => ({
     fetchPage: () => dispatch(fetchPageBySlug(slug)),
   })
 )(OptInButton);
 
 const OptInButtonContainer = (props: Props) => (
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'isOptedIn' is missing in type '{ slug: s... Remove this comment to see the full error message
   <OptInButtonConnected {...props} />
 );
 

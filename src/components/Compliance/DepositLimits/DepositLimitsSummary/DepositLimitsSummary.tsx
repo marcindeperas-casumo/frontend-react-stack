@@ -10,8 +10,11 @@ import {
   diffLimits,
   checkIfConditionsApply,
   getChangedLimitsValues,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type AllLimits,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type DepositKinds,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
 import { LimitChangeIcon } from "./LimitChangeIcon";
@@ -72,6 +75,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
         props.confirmLimitsAdjust();
       }}
     >
+      {/* @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable. */}
       {checkIfConditionsApply(limitsDiff)
         ? t.save_limits_button_conditions
         : t.save_limits_button}
@@ -93,6 +97,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
           key={x}
           data-test-id={`limit-${x}`}
           align="center"
+          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           onClick={() => props.edit(x)}
           className={flexChildWidth}
         >
@@ -122,6 +127,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
         </Flex>
       ))}
       <Flex.Block />
+      {/* @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable. */}
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"

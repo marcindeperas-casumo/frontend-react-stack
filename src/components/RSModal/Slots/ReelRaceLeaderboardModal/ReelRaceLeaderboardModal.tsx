@@ -39,6 +39,7 @@ export function ReelRaceLeaderboardModal({
     playerId,
     playerName,
   } = config.input;
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const winnerName = R.prop("playerName", R.head(leaderboard));
   const playerInTop3 = position < 4;
   const playerOutsideLeaderboard = position > LEADERBOARD_SIZE;
@@ -55,12 +56,14 @@ export function ReelRaceLeaderboardModal({
                 </span>
               ),
             },
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'playerPlacedHigh' does not exist on type... Remove this comment to see the full error message
             t.playerPlacedHigh
           )
         : interpolateWithJSX(
             {
               winnerName: <span className="t-color-teal-50">{winnerName}</span>,
             },
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'someoneWon' does not exist on type '{}'.
             t.someoneWon
           )}
     </Text>
@@ -83,6 +86,7 @@ export function ReelRaceLeaderboardModal({
       featuredTitle={featuredTitle}
     >
       <ReelRaceLeaderboardResults
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ leaderboard: any; size: number; prizes: an... Remove this comment to see the full error message
         leaderboard={leaderboard}
         size={LEADERBOARD_SIZE}
         prizes={prizes}
@@ -91,6 +95,7 @@ export function ReelRaceLeaderboardModal({
       {playerOutsideLeaderboard && (
         <ReelRaceLeaderboardListEntry
           className="o-position--sticky o-inset-bottom--none"
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: string; points: any; position: ... Remove this comment to see the full error message
           points={points}
           position={position}
           text={playerName}

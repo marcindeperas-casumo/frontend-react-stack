@@ -30,6 +30,7 @@ describe("playOkay/timeLimits.selectors", () => {
     test("it returns daily limit if defined", () => {
       const state = prepareStateMock({ loginTimeLimits: { daily: true } });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(dailyLoginTimeLimitSelector(state)).toEqual(dailyLimitMock);
     });
   });
@@ -40,12 +41,14 @@ describe("playOkay/timeLimits.selectors", () => {
         loginTimeLimits: { daily: true, weekly: true },
       });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(weeklyLoginTimeLimitSelector(state)).toEqual(weeklyLimitMock);
     });
 
     test("it returns nothing if weekly limit is undefined", () => {
       const state = prepareStateMock({ loginTimeLimits: { daily: true } });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(weeklyLoginTimeLimitSelector(state)).toBeUndefined();
     });
   });
@@ -56,12 +59,14 @@ describe("playOkay/timeLimits.selectors", () => {
         loginTimeLimits: { daily: true, weekly: true, monthly: true },
       });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(monthlyLoginTimeLimitSelector(state)).toEqual(monthlyLimitMock);
     });
 
     test("it returns nothing if monthly limit is undefined", () => {
       const state = prepareStateMock({ loginTimeLimits: { weekly: true } });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(monthlyLoginTimeLimitSelector(state)).toBeUndefined();
     });
   });
@@ -72,6 +77,7 @@ describe("playOkay/timeLimits.selectors", () => {
         loginTimeLimits: { daily: true, weekly: true, monthly: true },
       });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(allLoginTimeLimitsDefinedSelector(state)).toEqual(true);
     });
 
@@ -80,6 +86,7 @@ describe("playOkay/timeLimits.selectors", () => {
         loginTimeLimits: { weekly: true, monthly: true },
       });
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ playOkay: { playOkay: PlayOkay... Remove this comment to see the full error message
       expect(allLoginTimeLimitsDefinedSelector(state)).toEqual(false);
     });
   });

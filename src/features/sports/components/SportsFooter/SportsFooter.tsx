@@ -20,6 +20,7 @@ export const SportsFooter = () => (
       </span>
     </Flex.Item>
     <Flex.Item>
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
       <OpenModalMutation variables={{ modal: MODAL.BETTING_GLOSSARY }}>
         {openChooseFavouritesModal => (
           <span

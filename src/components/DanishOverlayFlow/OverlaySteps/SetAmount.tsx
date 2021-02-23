@@ -66,6 +66,7 @@ export const SetAmount = (props: Props) => {
         {limitType ? periodLabels[limitType] : ""} {t.limit}
       </Text>
       <div className="u-padding-x">
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ currencySign... Remove this comment to see the full error message */}
         <TextInput
           currencySign={currencySign}
           value={amount}

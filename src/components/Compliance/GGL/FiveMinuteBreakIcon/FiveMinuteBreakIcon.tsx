@@ -9,6 +9,7 @@ import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import "./FiveMinuteBreakIcon.scss";
 
 type Props = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
   onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void,
   progressPercentage: number,
   expiringTime: number,

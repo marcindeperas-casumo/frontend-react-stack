@@ -2,7 +2,9 @@
 import {
   ACTION_TYPES,
   slotControlSystemReducer,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type SessionStateResponseType,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type GameSessionStatsType,
 } from "Models/slotControlSystem";
 import activeSessionMock from "./__mocks__/activeSession.mock";
@@ -26,6 +28,7 @@ describe("Models/slotControlSystem/Reducer", () => {
   describe("UPDATE_SESSION", () => {
     test("response contains activeSession, state is empty", () => {
       const response: SessionStateResponseType = {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; expiringTime: number; startedT... Remove this comment to see the full error message
         activeSession: responseActiveSession,
         lastEndedSession: null,
         activeExclusion: null,
@@ -52,6 +55,7 @@ describe("Models/slotControlSystem/Reducer", () => {
 
     test("response contains activeSession, state contains activeSession", () => {
       const response: SessionStateResponseType = {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; expiringTime: number; startedT... Remove this comment to see the full error message
         activeSession: responseActiveSession,
         lastEndedSession: null,
         activeExclusion: null,
@@ -72,6 +76,7 @@ describe("Models/slotControlSystem/Reducer", () => {
         activeExclusion: null,
       };
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slugToCategoryMap: {}; lastUpd... Remove this comment to see the full error message
       expect(slotControlSystemReducer(state, action)).toEqual({
         slugToCategoryMap: {},
         lastUpdateTime: now,
@@ -105,6 +110,7 @@ describe("Models/slotControlSystem/Reducer", () => {
         activeExclusion: null,
       };
 
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slugToCategoryMap: {}; lastUpd... Remove this comment to see the full error message
       expect(slotControlSystemReducer(state, action)).toEqual({
         slugToCategoryMap: {},
         lastUpdateTime: now,
@@ -186,6 +192,7 @@ describe("Models/slotControlSystem/Reducer", () => {
 
   test("response contains lastEndedSession and activeSession, state contains activeSession and lastEndedSession", () => {
     const response: SessionStateResponseType = {
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; expiringTime: number; startedT... Remove this comment to see the full error message
       activeSession: responseActiveSession,
       lastEndedSession: endedSessionMock,
       activeExclusion: null,
@@ -211,6 +218,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       activeExclusion: null,
     };
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ slugToCategoryMap: {}; lastUpd... Remove this comment to see the full error message
     expect(slotControlSystemReducer(state, action)).toEqual({
       slugToCategoryMap: {},
       lastUpdateTime: now,

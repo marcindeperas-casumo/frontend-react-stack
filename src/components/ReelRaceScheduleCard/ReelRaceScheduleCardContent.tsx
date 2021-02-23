@@ -40,7 +40,9 @@ export function ReelRaceScheduleCardContent({
   const isNotMobile = useIsScreenMinimumTablet();
 
   const getDuration = () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     return DateTime.fromMillis(reelRace.endTime)
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
       .diff(DateTime.fromMillis(reelRace.startTime))
       .toFormat("mm");
   };
@@ -63,6 +65,7 @@ export function ReelRaceScheduleCardContent({
   };
 
   const showCaveatsModal = () => {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
@@ -87,6 +90,7 @@ export function ReelRaceScheduleCardContent({
             {reelRace.translations.startingIn}
           </Text>
           <Text className="u-font-weight-bold">
+            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message */}
             {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
           </Text>
         </Flex>

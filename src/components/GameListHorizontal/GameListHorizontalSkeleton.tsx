@@ -7,16 +7,18 @@ import {
   topMarginClasses,
 } from "Components/GameListHorizontal/constants";
 
-type Props = {
-  itemWidth: number,
-  items: number,
-  itemRatio: number,
-  itemGap: number,
-  cornerRadius: number,
-  display: string,
-  title: boolean,
-  className: string,
+type OwnProps = {
+    itemWidth: number;
+    items: number;
+    itemRatio: number;
+    itemGap: number;
+    cornerRadius: number;
+    display: string;
+    title: boolean;
+    className: string;
 };
+
+type Props = OwnProps & typeof GameListHorizontalSkeleton.defaultProps;
 
 export class GameListHorizontalSkeleton extends React.Component<Props> {
   static defaultProps = {
@@ -53,6 +55,7 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
   }
 
   get renderTiles() {
+    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
     return this.itemsPos.map<React.Node>((pos, i) => (
       <rect
         key={i}
@@ -69,6 +72,7 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
   get renderCards() {
     const { title, itemWidth } = this.props;
 
+    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
     return this.itemsPos.map<React.Node>((pos, i) => (
       <React.Fragment key={i}>
         <rect

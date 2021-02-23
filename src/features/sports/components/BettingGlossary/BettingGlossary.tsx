@@ -37,11 +37,13 @@ export const BettingGlossary = ({ onClose }: Props) => (
 );
 
 export const BettingGlossaryModalContent = () => {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
   const { data, error, loading } = useQuery<A.GlossaryQuery, _>(GLOSSARY_QUERY);
 
   if (error) {
     return (
       <ErrorMessage
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type 'string'.
         errorMessage={<DictionaryTerm termKey="glossary.error" />}
       />
     );

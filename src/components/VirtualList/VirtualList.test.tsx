@@ -8,6 +8,7 @@ describe("VirtualList", () => {
     const rendered = mount(
       <VirtualList
         isRowLoaded={always(true)}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         loadMoreRows={() => [1, 2, 3]}
         rowHeight={10}
         rowRenderer={() => <div />}
@@ -22,6 +23,7 @@ describe("VirtualList", () => {
     const rendered = mount(
       <VirtualList
         isRowLoaded={always(true)}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         loadMoreRows={() => [1, 2, 3]}
         rowHeight={10}
         rowRenderer={() => <div />}
@@ -36,6 +38,7 @@ describe("VirtualList", () => {
     const rendered = mount(
       <VirtualList
         isRowLoaded={always(true)}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         loadMoreRows={() => [1, 2, 3]}
         rowHeight={10}
         rowRenderer={() => <div />}
@@ -50,6 +53,7 @@ describe("VirtualList", () => {
     const rendered = mount(
       <VirtualList
         isRowLoaded={always(true)}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         loadMoreRows={() => [1, 2, 3]}
         rowHeight={10}
         rowRenderer={() => <div />}

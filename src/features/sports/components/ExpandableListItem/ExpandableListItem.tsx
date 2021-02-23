@@ -1,6 +1,7 @@
 /* @flow */
 import React, { PureComponent } from "react";
 import classNames from "classnames";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
 import type { Node } from "react";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";

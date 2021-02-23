@@ -1,9 +1,9 @@
-// @flow
 import * as React from "react";
 import logger from "Services/logger";
 import { ErrorBoundaryUserFeedback } from "./ErrorBoundaryUserFeedback";
 
 type Props = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children?: React.Node,
   withoutUserFeedback?: boolean,
 };

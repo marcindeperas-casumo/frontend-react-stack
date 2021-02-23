@@ -11,6 +11,7 @@ import { leftPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
   /** The text to show */
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   title: ?string,
   /** Whether applying padding left or not */
   paddingLeft?: boolean,

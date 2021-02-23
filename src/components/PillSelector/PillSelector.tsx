@@ -11,17 +11,20 @@ export type PillSelectorOption = {
   value: any,
 };
 
-type Props = {
-  className?: string,
-  disabled?: boolean,
-  onChange: (value: any) => void,
-  options: PillSelectorOption[],
-  value?: any,
+type OwnProps = {
+    className?: string;
+    disabled?: boolean;
+    onChange: (value: any) => void;
+    options: PillSelectorOption[];
+    value?: any;
 };
 
 const noop = () => {};
 
+type Props = OwnProps & typeof PillSelector.defaultProps;
+
 export class PillSelector extends PureComponent<Props> {
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
   onChange: Function;
 
   static defaultProps = {
@@ -44,6 +47,7 @@ export class PillSelector extends PureComponent<Props> {
     return "t-background-grey-0 t-color-grey-90";
   }
 
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
   onChange(value: any) {
     if (this.props.disabled) {
       return false;

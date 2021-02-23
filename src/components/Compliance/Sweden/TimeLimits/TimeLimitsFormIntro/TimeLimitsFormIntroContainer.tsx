@@ -15,5 +15,6 @@ export function TimeLimitsFormIntroContainer({ onClickCta }: Props) {
     form_intro_cta: `${cmsKeyPrefix}form_intro_cta`,
   });
 
+  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   return <TimeLimitsFormIntro t={t} onClickCta={onClickCta} />;
 }

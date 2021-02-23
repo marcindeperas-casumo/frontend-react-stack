@@ -62,10 +62,14 @@ const trackAddToBetslip = (kambi: any) => {
 
   bet &&
     tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP, {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'any[]'.
       [EVENT_PROPS.SPORTS_EVENT_ID]: bet.id,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'any[]'.
       [EVENT_PROPS.SPORTS_EVENT_NAME]: bet.name,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'category' does not exist on type 'any[]'... Remove this comment to see the full error message
       [EVENT_PROPS.CATEGORY]: bet.category,
       [EVENT_PROPS.SPORTS_PAGE_TYPE]: `${isLivePage ? "Live " : ""}${
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'betslipLocationSource' does not exist on... Remove this comment to see the full error message
         bet.betslipLocationSource
       }`,
     });

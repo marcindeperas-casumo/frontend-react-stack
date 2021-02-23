@@ -6,6 +6,7 @@ import MockStore from "Components/MockStore";
 import { NewsletterSubscriptionContainer } from "./NewsletterSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './NewsletterSubscription.graph... Remove this comment to see the full error message
 import { SettingsNotificationsSubscribedToNewslettersQuery } from "./NewsletterSubscription.graphql";
 import {
   newsletterSubscriptionMock,

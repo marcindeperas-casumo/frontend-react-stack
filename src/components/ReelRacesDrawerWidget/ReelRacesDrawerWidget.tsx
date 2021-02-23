@@ -93,6 +93,7 @@ export const ReelRacesDrawerWidget = ({
       </Flex.Block>
       <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position u-position-relative">
         <PositionView
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
           position={parseInt(userLeaderboard.position, 10)}
           className="u-margin-top--lg@desktop"
         />
@@ -172,6 +173,7 @@ export const ReelRacesDrawerWidget = ({
 const RaceProgress = ({ currentRace }) => {
   const gameProgress = useReelRaceProgress(currentRace, 1000);
   const gameDuration =
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
     parseInt((currentRace.endTime - currentRace.startTime) / 1000 / 60, 10) ||
     0;
   const gameDurationFormatted = `${gameDuration}:00`;

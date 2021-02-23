@@ -3,6 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import { useTranslations } from "Utils/hooks";
 import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../utils/hooks/useCurrentReelRaceInfo"... Remove this comment to see the full error message
 import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
@@ -20,6 +21,7 @@ import { PointsView } from "./views/PointsView";
 import "./ReelRaceIcon.scss";
 
 type Props = {
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
   onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void,
   currentRace: ?CurrentReelRaceInfo,
   className?: string,
@@ -99,6 +101,7 @@ function AnimatedReelRaceWidget() {
     }
 
     // animate out current view
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const activeViewClassList = refs[activeView.current].current.classList;
     const animationInClass = Array.from(activeViewClassList).find(
       x => x === animationClasses.in
@@ -110,6 +113,7 @@ function AnimatedReelRaceWidget() {
     if (!refs[nextView].current) {
       return;
     }
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const nextViewClassList = refs[nextView].current.classList;
     nextViewClassList.add(animationClasses.in);
 

@@ -1,5 +1,4 @@
-//@flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { times } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
 import {
@@ -18,7 +17,7 @@ type Props = {
   tileGutter: number,
 };
 
-export default class GameProvidersListSkeleton extends PureComponent<Props> {
+export default class GameProvidersListSkeleton extends React.PureComponent<Props> {
   static defaultProps = {
     className: `o-wrapper ${leftPaddingClasses} ${topMarginClasses}`,
     numberOfItems: 5,

@@ -13,6 +13,7 @@ export const message = ({ channel, data }) => {
 };
 
 export const subscribeJackpotUpdates = () => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ channel: string; }' is not ass... Remove this comment to see the full error message
   return subscribe({ channel: CHANNELS.JACKPOTS });
 };
 
@@ -21,6 +22,7 @@ export const unsubscribeJackpotUpdates = () => {
 };
 
 export const subscribeLiveCasinoUpdates = id => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ channel: string; }' is not ass... Remove this comment to see the full error message
   return subscribe({ channel: `${CHANNELS.LIVE_CASINO_TABLE}/${id}` });
 };
 
@@ -29,6 +31,7 @@ export const unsubscribeLiveCasinoUpdates = id => {
 };
 
 export const subscribeMustDropJackpotUpdates = () => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ channel: string; }' is not ass... Remove this comment to see the full error message
   return subscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
 };
 
@@ -37,6 +40,7 @@ export const unsubscribeMustDropJackpotUpdates = () => {
 };
 
 export const subscribeReelRaceUpdates = (channelPrefix, playerId) => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ channel: string; }' is not ass... Remove this comment to see the full error message
   return subscribe({
     channel: `${channelPrefix}/tournaments/players/${playerId}/tournamentEvents/entered`,
   });
@@ -49,6 +53,7 @@ export const unsubscribeReelRaceUpdates = (channelPrefix, playerId) => {
 };
 
 export const subscribeReelRaceLeaderboard = (tournamentId, playerId) => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ channel: string; }' is not ass... Remove this comment to see the full error message
   return subscribe({
     channel: `${CHANNELS.REEL_RACES}/tournaments/${tournamentId}/leaderboard/${playerId}`,
   });

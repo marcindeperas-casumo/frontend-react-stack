@@ -19,6 +19,7 @@ describe("ImageResponsive", () => {
 
   test("should render ResponsiveImage component", () => {
     const component = mount(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; src: string; }' i... Remove this comment to see the full error message
       <ImageResponsive isIntersecting={true} src={image.src} />
     );
     expect(component.find(ResponsiveImage).exists()).toBe(true);
@@ -30,6 +31,7 @@ describe("ImageResponsive", () => {
       const imgixOpts = { w: 150 };
       const component = mount(
         <ImageResponsive
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; src: string; imgi... Remove this comment to see the full error message
           isIntersecting={true}
           src={image.src}
           imgixOpts={imgixOpts}
@@ -47,6 +49,7 @@ describe("ImageResponsive", () => {
   describe("isIntersecting false", () => {
     test("should render lowres image", () => {
       const component = mount(
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; src: string; }' i... Remove this comment to see the full error message
         <ImageResponsive isIntersecting={false} src={image.src} />
       );
       expect(component.find(ResponsiveImage).prop("dpr")).toBe(1);

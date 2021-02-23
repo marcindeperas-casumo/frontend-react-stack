@@ -14,6 +14,7 @@ const findElements = container => ({
 
 describe("SportsIcon", () => {
   test("renders the icon but no active indicator by default", () => {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ src: string; srcWhenActive: string; }' is ... Remove this comment to see the full error message
     const rendered = shallow(<SportsIcon {...props} />);
     const { icon, activeIndicator } = findElements(rendered);
 
@@ -22,6 +23,7 @@ describe("SportsIcon", () => {
   });
 
   test("renders the icon but no active indicator when `isActive` is false", () => {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ isActive: false; src: string; srcWhenActiv... Remove this comment to see the full error message
     const rendered = shallow(<SportsIcon {...props} isActive={false} />);
     const { icon, activeIndicator } = findElements(rendered);
 

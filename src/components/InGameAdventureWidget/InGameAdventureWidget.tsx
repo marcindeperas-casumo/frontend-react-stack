@@ -3,6 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/adventure"' has no exported ... Remove this comment to see the full error message
 import { type BeltType } from "Models/adventure";
 import { ProgressBar } from "Components/Progress";
 import { CasumoAvatar } from "Components/CasumoAvatar";

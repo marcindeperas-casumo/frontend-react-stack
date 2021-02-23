@@ -104,6 +104,7 @@ export function DepositLimitsOverview(props: Props) {
                 shouldRenderSeparator={shouldRenderSeparator}
                 currency={props.currency}
                 locale={props.locale}
+                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 onClick={() => props.edit(x.limitKind)}
                 {...x}
               />
@@ -126,9 +127,11 @@ export function DepositLimitsOverview(props: Props) {
 
       <DepositLimitsSuspendAccount
         t={t}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'void'... Remove this comment to see the full error message
         showOldSuspendAccountView={props.showOldSuspendAccountView}
         className="u-width--1/2@desktop"
       />
+      {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message */}
       <DepositLimitsHistoryContainer />
     </Flex>
   );

@@ -14,17 +14,20 @@ type WantBreakAfterRowType = {
   },
   /* if a user wants a break after playing or not */
   value: ?boolean,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   onChange: boolean => void,
   /* how long a break should be */
   breakValue: ?number,
   /* pill options where value is number of seconds */
   breakOptions: Array<{ value: number, label: string }>,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   onChangeBreak: number => void,
 };
 
 export function WantBreakAfterRow(props: WantBreakAfterRowType) {
   const { t, value, onChangeBreak, breakValue, breakOptions } = props;
   const onChange = v => {
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     props.onChange(castToBoolean(v));
   };
 
@@ -38,6 +41,7 @@ export function WantBreakAfterRow(props: WantBreakAfterRowType) {
       </Text>
       <PillSelector
         options={t.want_break_after_opts}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         onChange={onChange}
         value={String(value)}
       />
@@ -49,6 +53,7 @@ export function WantBreakAfterRow(props: WantBreakAfterRowType) {
           <PillSelector
             options={breakOptions}
             value={breakValue}
+            // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
             onChange={onChangeBreak}
           />
         </>

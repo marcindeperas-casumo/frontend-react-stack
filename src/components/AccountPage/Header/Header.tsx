@@ -4,7 +4,7 @@ import cx from "classnames";
 import Text from "@casumo/cmp-text";
 
 type Props = {
-  children: React.Node,
+  children: React.ReactChild,
 };
 
 export function Header({ children }: Props) {

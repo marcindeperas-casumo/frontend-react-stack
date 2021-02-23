@@ -7,10 +7,13 @@ describe("Game providers utils", () => {
       current: (document.createElement("iframe"): HTMLIFrameElement),
     };
 
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expandElementHeightToMatchItsParent(gameRef);
 
     //expecting 0px as unmounted element will always have 0 width/height
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expect(gameRef.current.style.height).toEqual("0px");
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expect(gameRef.current.style.width).toEqual("0px");
   });
 });

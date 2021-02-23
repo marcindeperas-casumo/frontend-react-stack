@@ -9,6 +9,7 @@ describe("CuratedCardBackgroundDeprecated", () => {
     const component = shallow(
       <CuratedCardBackgroundDeprecated
         onClick={onClick}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ onClick: Mock<any, any>; small_image: stri... Remove this comment to see the full error message
         small_image={curatedData.image}
         medium_image={curatedData.image}
         large_image={curatedData.image}

@@ -41,6 +41,7 @@ export function useBeforePlayingModal({
 
     bridge.on(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     dispatch(showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION));
 
     return function unsubscribe() {

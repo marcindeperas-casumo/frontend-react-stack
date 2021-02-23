@@ -6,6 +6,7 @@ import FavouriteSportsAndCompetitionsSelectorModal from "./FavouriteSportsAndCom
 describe("<FavouriteSportsAndCompetitionsSelectorModal />", () => {
   test("should show sports selector by default", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <FavouriteSportsAndCompetitionsSelectorModal onClose={() => {}} />
     );
 

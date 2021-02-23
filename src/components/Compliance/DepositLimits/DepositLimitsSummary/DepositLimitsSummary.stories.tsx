@@ -45,6 +45,7 @@ stories.add("Default", () => {
         ...currentLimits,
         currency: "EUR",
       }}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ schema: string; increaseEffectiveAfter: st... Remove this comment to see the full error message
       preadjust={preadjust}
       {...actions}
     />

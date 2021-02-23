@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
@@ -29,7 +28,7 @@ const JackpotsColumn = ({
   locale,
 }: {
   column: Array<A.Jackpots_Game>,
-  locale: ?string,
+  locale: string | null,
 }) =>
   column.map<React.Node>(game => (
     <div

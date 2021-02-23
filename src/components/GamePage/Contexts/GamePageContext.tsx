@@ -8,9 +8,11 @@ import { GameJackpotStatusContextProvider } from "./GameJackpotStatusContext";
 import { AdventurerContextProvider } from "./AdventurerContext";
 
 type GamePageContextProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   slug: string,
   playForFun: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   remoteGameLaunchData: ?Object,
 };
 

@@ -19,6 +19,7 @@ stories.add("Default", () => {
       <TimeLimitsCardDesktop
         t={cmsMock}
         onClick={action("card clicked")}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ comingLimit: { activationTime: number; aut... Remove this comment to see the full error message
         limit={dailyLimitMock}
       />
     </MockStore>

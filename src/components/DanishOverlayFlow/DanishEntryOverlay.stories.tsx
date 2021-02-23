@@ -48,6 +48,7 @@ const OverlayDecorator = ({ depositLimitSet }) => {
         playerId={""}
         iso4217CurrencyCode={"DGA"}
         isDepositLimitProperlySet={depositLimitSet}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ playerId: string; iso4217CurrencyCode: str... Remove this comment to see the full error message
         DGAComplianceState={{ depositLimit: 10000 }}
         saveLimit={() => {}}
       />

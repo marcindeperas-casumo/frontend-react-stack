@@ -23,6 +23,7 @@ if (isNotChromatic) {
     return (
       <MockStore>
         <Modal
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ hideModal: () => void; t: { title: string;... Remove this comment to see the full error message
           hideModal={() => {}}
           t={loading ? null : text}
           modalType={visible && modalTypes[loading ? 1 : 0]}

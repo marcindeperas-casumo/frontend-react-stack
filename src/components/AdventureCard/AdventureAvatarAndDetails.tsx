@@ -1,13 +1,13 @@
-// @flow
-
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
+import type {
+  Adventurer,
+  AdventureContent,
+} from "Models/adventure";
 import {
   isMaxLevel,
-  type Adventurer,
-  type AdventureContent,
 } from "Models/adventure";
 import { CasumoAvatar } from "Components/CasumoAvatar";
 

@@ -1,4 +1,3 @@
-// @flow
 import { getCookie } from "Utils";
 import http from "Lib/http";
 

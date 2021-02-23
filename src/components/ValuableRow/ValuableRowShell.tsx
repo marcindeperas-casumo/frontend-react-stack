@@ -7,6 +7,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import "./ValuableRow.scss";
 
 type Props = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   text: ?string,
 };
 

@@ -8,6 +8,7 @@ import { tournamentChannelsSelector } from "Models/handshake";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslations } from "Utils/hooks";
 import { ReelRacesList } from "./ReelRacesList";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ReelRacesListContainer.graph... Remove this comment to see the full error message
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
 export const ReelRacesListContainer = () => {
@@ -35,6 +36,7 @@ export const ReelRacesListContainer = () => {
 
     return function cleanup() {
       tournamentChannels.forEach(channel =>
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
         cometd.unsubscribe(`${channel}/tournaments/tournamentProperties/status`)
       );
     };
@@ -52,6 +54,7 @@ export const ReelRacesListContainer = () => {
 
     return function cleanup() {
       tournamentChannels.forEach(channel =>
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
         cometd.unsubscribe(`${channel}/tournaments/tournamentEvents/finished`)
       );
     };

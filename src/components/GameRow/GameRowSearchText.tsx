@@ -14,6 +14,7 @@ type Props = {
   name: string,
   search: SearchProps | boolean,
   isInMaintenance: boolean,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   renderSecondaryText?: () => React.Node,
 };
 

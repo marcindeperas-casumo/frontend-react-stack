@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number, boolean } from "@storybook/addon-knobs/react";
@@ -18,6 +17,7 @@ if (isNotChromatic) {
           either={LowerCaseExample}
           or={UpperCaseExample}
           condition={() => boolean("Show Either", true)}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ either: ({ k1 }: { k1: any; }) => any; or:... Remove this comment to see the full error message
           k1="Key 1"
         />
       );
@@ -35,6 +35,7 @@ if (isNotChromatic) {
             either={LowerCaseExample}
             or={UpperCaseExample}
             condition={({ someValue }) => someValue % 2 === 0}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ either: ({ k1 }: { k1: any; }) => any; or:... Remove this comment to see the full error message
             k1="foo"
             someValue={value}
           />

@@ -1,6 +1,7 @@
 // @flow
 import * as A from "Types/apollo";
 
+// @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
 export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   CASH: "cash",
   SPINS: "spins",
@@ -11,6 +12,7 @@ export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   WAGERING_LOCK: "wageringLock",
 };
 
+// @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
 export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {
   FRESH: "Fresh",
   USED: "Used",
@@ -24,6 +26,7 @@ export const VALUABLE_SPIN_TYPES = Object.freeze({
   MEGA: "mega",
 });
 
+// @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
 export const VALUABLE_REQUIREMENT_TYPES: { [string]: A.RequirementType } = {
   WAGER: "wager",
   DEPOSIT: "deposit",

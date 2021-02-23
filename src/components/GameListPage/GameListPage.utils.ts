@@ -14,6 +14,7 @@ export function findQueryTranslation(
   currentQuery: string,
   allFilters: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>
 ): string {
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
   return R.pipe(
     R.pluck("values"),
     R.flatten,

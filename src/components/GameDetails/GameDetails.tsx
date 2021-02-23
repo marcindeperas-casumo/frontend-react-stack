@@ -15,8 +15,11 @@ import "./GameDetails.scss";
 type Props = {
   game: A.GameDetailsQuery_game,
   t: {
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     gameInMaintenanceText: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     playButtonText: ?string,
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     practiceButtonText: ?string,
   },
 };
@@ -32,6 +35,7 @@ export const GameDetails = ({ game, t }: Props) => {
       <TileImage
         image={game.backgroundImage}
         mark={game.logo}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; image: string; mark: st... Remove this comment to see the full error message
         alt={game.name}
         className={game.isInMaintenance ? "t-greyscale" : ""}
       >
@@ -72,6 +76,7 @@ export const GameDetails = ({ game, t }: Props) => {
               <DangerousHtml html={game.description} />
             </Text>
           )}
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'GameDetailsMedia' cannot be used as a JSX compone... Remove this comment to see the full error message */}
           <GameDetailsMedia media={game.media} name={game.name} />
         </Flex>
         {game && !game.isInMaintenance && (

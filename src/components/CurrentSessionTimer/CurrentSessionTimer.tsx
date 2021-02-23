@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/Settings/SettingsSe... Remove this comment to see the full error message
 import PLAYER_LOGIN_HISTORY_QUERY from "Components/Settings/SettingsSections/PlayerLoginHistoryQuery.graphql";
 import Timer from "Components/Timer";
 

@@ -4,6 +4,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
   VALUABLE_SPIN_TYPES,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"."' has no exported member 'type'.
   type ValuableActionProps,
 } from "Models/valuables";
 import {
@@ -25,8 +26,11 @@ describe("Valuables.utils", () => {
   let requirementType;
 
   beforeEach(() => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.DEPOSIT;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
     valuableState = VALUABLE_STATES.FRESH;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
   });
 
@@ -46,6 +50,7 @@ describe("Valuables.utils", () => {
   });
 
   test("should return gamebrowser url and play now translation when type is CASH unlocked", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.CASH;
 
     const expectedValue = getExpectedActionValue(
@@ -63,6 +68,7 @@ describe("Valuables.utils", () => {
   });
 
   test("should return gamebrowser url and play now translation when type is SPINS unlocked", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.SPINS;
 
     const expectedValue = getExpectedActionValue(
@@ -78,8 +84,11 @@ describe("Valuables.utils", () => {
   });
 
   test("should return an empty url and depositToUnlock label when CASH, locked with deposit req.", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.CASH;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     valuableState = VALUABLE_STATES.LOCKED;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
@@ -97,8 +106,11 @@ describe("Valuables.utils", () => {
   });
 
   test("should return gamebrowser url and playToUnlock label when CASH, locked with wager req.", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.CASH;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     valuableState = VALUABLE_STATES.LOCKED;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'WAGER' does not exist on type '{}'.
     requirementType = VALUABLE_REQUIREMENT_TYPES.WAGER;
 
     const expectedValue = getExpectedActionValue(
@@ -117,8 +129,11 @@ describe("Valuables.utils", () => {
   });
 
   test("should return an empty url and depositToUnlock label when SPINS, locked with deposit req.", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.SPINS;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     valuableState = VALUABLE_STATES.LOCKED;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
@@ -136,8 +151,11 @@ describe("Valuables.utils", () => {
   });
 
   test("should return empty url and playToUnlock label when SPINS, locked with wager req.", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     valuableType = VALUABLE_TYPES.SPINS;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     valuableState = VALUABLE_STATES.LOCKED;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'WAGER' does not exist on type '{}'.
     requirementType = VALUABLE_REQUIREMENT_TYPES.WAGER;
 
     const expectedValue = getExpectedActionValue(
@@ -215,14 +233,17 @@ describe("Valuables.utils", () => {
 
   describe("showStateBadge", () => {
     test("should return true if locked but not close to expiry", () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
       expect(showStateBadge(VALUABLE_STATES.LOCKED, 100)).toBe(true);
     });
 
     test("should return true if not locked but close to expiry", () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
       expect(showStateBadge(VALUABLE_STATES.FRESH, 10)).toBe(true);
     });
 
     test("should return false if not locked and not close to expiry", () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
       expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
     });
   });
@@ -231,25 +252,32 @@ describe("Valuables.utils", () => {
     test("should filter based on state provided", () => {
       const valuables = [
         {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
           valuableState: VALUABLE_STATES.LOCKED,
         },
         {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
           valuableState: VALUABLE_STATES.FRESH,
         },
         {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
           valuableState: VALUABLE_STATES.FRESH,
         },
         {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
           valuableState: VALUABLE_STATES.USED,
         },
       ];
       expect(
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
         getValuablesByState([VALUABLE_STATES.LOCKED])(valuables)
       ).toHaveLength(1);
       expect(
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
         getValuablesByState([VALUABLE_STATES.FRESH])(valuables)
       ).toHaveLength(2);
       expect(
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
         getValuablesByState([VALUABLE_STATES.FRESH, VALUABLE_STATES.USED])(
           valuables
         )

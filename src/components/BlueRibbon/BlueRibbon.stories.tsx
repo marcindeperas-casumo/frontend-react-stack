@@ -11,6 +11,7 @@ const stories = storiesOf("BlueRibbonWinAnimation", module).addParameters({
 stories.add("Coins and Jackpots screen", () => {
   return (
     <div className="u-width--screen u-height--screen">
+      {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message */}
       <BlueRibbonAnimation />
     </div>
   );
@@ -24,6 +25,7 @@ const t = {
 stories.add("Counter screen", () => {
   return (
     <div className="u-width--screen u-height--screen">
+      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'onClose' is missing in type '{ t: { jack... Remove this comment to see the full error message */}
       <CounterScreen
         t={t}
         amount={12314}

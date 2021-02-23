@@ -17,6 +17,7 @@ const setupEmitter = (channel, args) => emitter => {
 };
 
 export const getCometdMessagesStream = (channel, ...args) => {
+  // @ts-expect-error ts-migrate(2556) FIXME: Expected 2 arguments, but got 1 or more.
   return eventChannel(setupEmitter(channel, ...args), buffers.sliding(50));
 };
 

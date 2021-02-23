@@ -30,12 +30,14 @@ const ImageLazy = ({ images, ...props }: Props) => {
     <React.Fragment>
       {images ? (
         <ImageAdaptive
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(node?: Element) => void' is not assignable ... Remove this comment to see the full error message
           ref={ref}
           images={images}
           isIntersecting={inView}
           {...props}
         />
       ) : (
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(node?: Element) => void' is not assignable ... Remove this comment to see the full error message
         <ImageResponsive ref={ref} {...props} isIntersecting={inView} />
       )}
     </React.Fragment>

@@ -10,9 +10,11 @@ describe("danish overlay saga", () => {
     const generator = danishOverlaySaga();
 
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, playerIdSelector)
     );
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, marketSelector)
     );
 
@@ -26,9 +28,11 @@ describe("danish overlay saga", () => {
     const generator = danishOverlaySaga();
 
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, playerIdSelector)
     );
     expect(generator.next().value).toEqual(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       call(waitForSelector, marketSelector)
     );
 
@@ -48,6 +52,7 @@ describe("danish overlay saga", () => {
     };
 
     expect(generator.next({ response }).value).toEqual(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       put(showModal(REACT_APP_MODAL.ID.DANISH_ENTRY_OVERLAY, modalConfig))
     );
 

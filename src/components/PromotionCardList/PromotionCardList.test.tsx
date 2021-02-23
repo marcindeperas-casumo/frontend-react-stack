@@ -13,6 +13,7 @@ describe("<PromotionCardList /> - Mobile and Tablet", () => {
 
   beforeEach(() => {
     setMobileViewport();
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; title: string; }... Remove this comment to see the full error message
     rendered = mount(<PromotionCardList slug="foo" promotions={promotions} />);
   });
 
@@ -30,6 +31,7 @@ describe("<PromotionCardList /> - Desktop", () => {
 
   beforeEach(() => {
     setDesktopViewport();
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; slug: string; title: string; }... Remove this comment to see the full error message
     rendered = mount(<PromotionCardList slug="foo" promotions={promotions} />);
   });
 

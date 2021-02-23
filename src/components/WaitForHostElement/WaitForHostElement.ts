@@ -5,6 +5,7 @@ type Props = {
   /** The id of the DOM element to render into */
   hostElementId: string,
   /** The children to render */
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 

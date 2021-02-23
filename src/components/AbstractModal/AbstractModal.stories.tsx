@@ -21,6 +21,7 @@ function AbstractModalStory() {
     <AbstractModal
       isOpen={isOpen}
       hideModal={() => setOpen(false)}
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       parentSelector={getParent}
       closeTimeoutMS={100}
     >

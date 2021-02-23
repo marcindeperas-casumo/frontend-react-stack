@@ -10,6 +10,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
     const rendered = {
       emptyGroups: shallow(
         <FavouriteCompetitionsSelectorRegion
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ groups... Remove this comment to see the full error message
           group={{ groups: [], name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -18,6 +19,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
       ),
       nullGroups: shallow(
         <FavouriteCompetitionsSelectorRegion
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ groups... Remove this comment to see the full error message
           group={{ groups: null, name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -26,6 +28,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
       ),
       undefinedGroups: shallow(
         <FavouriteCompetitionsSelectorRegion
+          // @ts-expect-error ts-migrate(2739) FIXME: Type '{ name: string; }' is missing the following ... Remove this comment to see the full error message
           group={{ name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -43,6 +46,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
     const isSelected = jest.fn();
     const regionGroup = footballData.data.group.groups[1];
     shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { __typename: string; id: number; p... Remove this comment to see the full error message
       <FavouriteCompetitionsSelectorRegion
         group={regionGroup}
         isExpanded={true}
@@ -59,6 +63,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
   test("should render a CompetitionPillsList with the region's competitions", () => {
     const regionGroup = footballData.data.group.groups[1];
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { __typename: string; id: number; p... Remove this comment to see the full error message
       <FavouriteCompetitionsSelectorRegion
         group={regionGroup}
         isExpanded={true}
@@ -79,6 +84,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
     };
     const rendered = mount(
       <FavouriteCompetitionsSelectorRegion
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ name: ... Remove this comment to see the full error message
         group={regionGroup}
         isExpanded={true}
         isSelected={id => id % 2 !== 0}
@@ -92,6 +98,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
   test("should pass the onClick handler to CompetitionPillsList to handle competition selection", () => {
     const onClick = jest.fn();
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { __typename: string; id: number; p... Remove this comment to see the full error message
       <FavouriteCompetitionsSelectorRegion
         group={footballData.data.group.groups[1]}
         isExpanded={true}

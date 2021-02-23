@@ -15,12 +15,14 @@ describe("CMS Selectors", () => {
       const cms = { foo: "bar" };
       const state = { schema: { cms } };
 
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
       expect(getCms(state)).toEqual(cms);
     });
 
     test("returns an empty object if it is not defined", () => {
       const state = {};
 
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
       expect(getCms(state)).toEqual({});
     });
   });

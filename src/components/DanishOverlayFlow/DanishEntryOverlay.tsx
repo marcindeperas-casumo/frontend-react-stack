@@ -22,8 +22,10 @@ export type CmsContent = {
 };
 
 type LmitData = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   playerId: ?string,
   limit: any,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   periodSetting: ?string,
 };
 
@@ -31,8 +33,10 @@ type OverlayProps = {
   t: CmsContent,
   saveLimit: (limitData: LmitData) => void,
   acceptModal?: () => void,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   playerId: ?string,
   isDepositLimitProperlySet: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   iso4217CurrencyCode: ?string,
 };
 
@@ -107,6 +111,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
     return (
       <>
         <Header title={t.modal_title} />
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '(type: any) => void' is not assignable to ty... Remove this comment to see the full error message */}
         <SetLimitType t={t} chooseLimitType={chooseLimitType} />
       </>
     );

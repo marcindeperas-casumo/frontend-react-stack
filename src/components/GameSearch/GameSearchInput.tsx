@@ -5,18 +5,20 @@ import SearchInput from "Components/SearchInput";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
-type Props = {
-  onChange: (query: string) => {},
-  clearSearch: Function,
-  noResults: boolean,
-  placeholder: string,
-  trackHandler: Function,
-  colorBackgroundClass?: string,
+type OwnProps = {
+    onChange: (query: string) => {};
+    clearSearch: Function;
+    noResults: boolean;
+    placeholder: string;
+    trackHandler: Function;
+    colorBackgroundClass?: string;
 };
 
 type State = {
   query: string,
 };
+
+type Props = OwnProps & typeof GameSearchInput.defaultProps;
 
 export class GameSearchInput extends PureComponent<Props, State> {
   static defaultProps = {
@@ -39,6 +41,7 @@ export class GameSearchInput extends PureComponent<Props, State> {
   }
 
   onFocus = () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     this.props.trackHandler(EVENTS.MIXPANEL_SEARCH_INTENT);
   };
 
@@ -70,6 +73,7 @@ export class GameSearchInput extends PureComponent<Props, State> {
       <SearchInput
         autoFocus
         value={this.state.query}
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
         placeholder={this.props.placeholder}

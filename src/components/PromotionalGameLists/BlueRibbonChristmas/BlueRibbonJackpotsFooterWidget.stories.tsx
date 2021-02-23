@@ -9,6 +9,7 @@ import { jackpots } from "./__mocks__/jackpots";
 const stories = storiesOf("BlueRibbon", module);
 stories.add("JackpotsFooterWidget", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ communityWinRatio: number; label: string; ... Remove this comment to see the full error message */}
     <BlueRibbonJackpotsFooterWidget jackpots={jackpots} t={t} />
   </MockStore>
 ));

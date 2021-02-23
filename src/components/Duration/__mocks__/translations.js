@@ -35,4 +35,5 @@ export default ({
   "millisecond_abbreviated": "{{value}}ms",
 
   "separator": ", "
+// @ts-expect-error ts-migrate(2693) FIXME: 'DurationTranslations' only refers to a type, but ... Remove this comment to see the full error message
 }: DurationTranslations);

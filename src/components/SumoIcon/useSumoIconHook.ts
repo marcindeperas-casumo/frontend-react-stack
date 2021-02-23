@@ -15,6 +15,7 @@ export const useSumoIcon = (currentProps: Object = {}) => {
   }, [currentProps, sumoIconContext, updateProps]);
 
   const addIcon = React.useCallback(
+    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
     (icon: React.Component<*, *> | React.StatelessFunctionalComponent<*>) => {
       if (!sumoIconContext.hasIcon(iconId.current)) {
         sumoIconContext.addIcon(iconId.current, icon);

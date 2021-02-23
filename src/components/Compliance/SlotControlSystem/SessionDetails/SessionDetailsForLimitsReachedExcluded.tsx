@@ -7,6 +7,7 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
 import { Duration } from "Components/Duration";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/slotControlSystem"' ha... Remove this comment to see the full error message
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
@@ -42,6 +43,7 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
                 endTime={props.endTime}
                 onEnd={() => "00:00"}
                 render={state => (
+                  // @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component.
                   <Duration
                     duration={R.omit(["hasEnded"], state)}
                     separator=" "

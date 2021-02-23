@@ -37,6 +37,7 @@ const props = {
 describe("DepositLimitsOverview", () => {
   test("has daily, weekly, monthly limits that can be edited", () => {
     const edit = jest.fn();
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<any, any>' is not assignable to type 'D... Remove this comment to see the full error message
     const rendered = shallow(<DepositLimitsOverview {...props} edit={edit} />);
 
     ["daily", "weekly", "monthly"].forEach(limit => {
@@ -47,6 +48,7 @@ describe("DepositLimitsOverview", () => {
 
   test("has doesn't render limits that are not set", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ limits: { li... Remove this comment to see the full error message
       <DepositLimitsOverview
         {...props}
         limits={[

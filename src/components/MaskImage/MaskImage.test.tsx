@@ -9,6 +9,7 @@ describe("MaskImage", () => {
 
   beforeEach(() => {
     rendered = shallow(
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ className: string; id: string; imageUrl: s... Remove this comment to see the full error message
       <MaskImage className="c-foo" id={id} imageUrl={imageUrl} />
     );
   });

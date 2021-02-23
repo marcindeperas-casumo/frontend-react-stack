@@ -30,6 +30,7 @@ stories.add("Default", () => {
 
   return (
     <div style={{ height }}>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <Scrollable
         columnCount={columnCount}
         height={height}
@@ -63,6 +64,7 @@ stories.add("Mixed width elements", () => {
 
   return (
     <div style={{ height: height }}>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <Scrollable
         columnCount={columnCount}
         height={height}

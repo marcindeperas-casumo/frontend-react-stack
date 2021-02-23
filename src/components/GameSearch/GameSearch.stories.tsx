@@ -67,6 +67,7 @@ if (isNotChromatic) {
   stories.add("Loading", () => (
     <MockStore state={state}>
       <GameSearch
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ initFetchGameSearchCount: () => {}; clearS... Remove this comment to see the full error message
         initFetchGameSearchCount={noop}
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
@@ -83,6 +84,7 @@ if (isNotChromatic) {
   stories.add("Not Found - Latest Played Games", () => (
     <MockStore state={latestPlayedGamesState}>
       <GameSearch
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ initFetchGameSearchCount: () => {}; clearS... Remove this comment to see the full error message
         initFetchGameSearchCount={noop}
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
@@ -99,6 +101,7 @@ if (isNotChromatic) {
   stories.add("Not Found - Popular Games", () => (
     <MockStore state={state}>
       <GameSearch
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ initFetchGameSearchCount: () => {}; clearS... Remove this comment to see the full error message
         initFetchGameSearchCount={noop}
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
@@ -119,6 +122,7 @@ if (isNotChromatic) {
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
         fetchPageBySlug={noop}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
         searchResults={["starburst"]}
         searchResultsCount={1}
         loading={false}
@@ -135,6 +139,7 @@ if (isNotChromatic) {
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
         fetchPageBySlug={noop}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
         searchResults={["mega-fortune", "mega-fortune-dreams"]}
         searchResultsCount={1}
         loading={false}

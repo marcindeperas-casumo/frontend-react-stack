@@ -3,12 +3,14 @@ import * as React from "react";
 import { ModalHeader } from "../RSModalHeader";
 
 type ModalSkinProps = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   t: ?{
     modal_title: string,
   },
   dismissModal: () => void,
   closeAction?: () => void,
   hideCloseButton?: boolean,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 

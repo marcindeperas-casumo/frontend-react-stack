@@ -1,5 +1,3 @@
-// @flow
-
 import { createSelector } from "reselect";
 import { compose, not, isNil, pathOr, prop, propOr, identity } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
@@ -12,9 +10,9 @@ import type {
 } from "./adventure.types";
 import { getProgression } from "./adventure.utils";
 
-export const adventurerSelector: void => Adventurer = createSelector(
+export const adventurerSelector = createSelector(
   pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
-  adventurer => {
+  (adventurer: AdventurerRaw) => {
     const {
       belt,
       inTravelMode = false,
@@ -49,12 +47,14 @@ export const adventurerSelector: void => Adventurer = createSelector(
   }
 );
 
-export const adventurerRawSelector: void => AdventurerRaw = createSelector(
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, {}, (res: {}) => {}>' is... Remove this comment to see the full error message
+export const adventurerRawSelector: (state: any) => AdventurerRaw = createSelector(
   pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
   identity
 );
 
-export const adventureContentSelector: ({}) => AdventureContent = createSelector(
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<unknown, unknown, (res: unkno... Remove this comment to see the full error message
+export const adventureContentSelector: (state: any) => AdventureContent = createSelector(
   getPage(CMS_CONTENT_SLUG),
   propOr({}, "fields")
 );

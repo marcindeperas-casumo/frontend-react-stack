@@ -38,10 +38,12 @@ export const QuickDepositSlipController = ({
     return null;
   }
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'limits' does not exist on type 'unknown'... Remove this comment to see the full error message
   const { min, max } = selectedMethod?.limits?.deposit;
 
   const onDeposit = (amount: number, cvvEncoded: string) => {
     dispatch(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'QuickDep... Remove this comment to see the full error message
       startQuickDeposit({ amount, cvvEncoded, paymentMethod: selectedMethod })
     );
   };
@@ -90,6 +92,7 @@ export const QuickDepositSlipController = ({
               direction="horizontal"
               align="center"
             >
+              {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'quick_deposit_title' does not exist on t... Remove this comment to see the full error message */}
               <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
               <Flex.Item
                 onClick={closeQuickDeposit}
@@ -102,8 +105,10 @@ export const QuickDepositSlipController = ({
               minAmount={min}
               maxAmount={max}
               onDeposit={onDeposit}
+              // @ts-expect-error ts-migrate(2741) FIXME: Property 'state' is missing in type '{}' but requi... Remove this comment to see the full error message
               requestStatus={paymentRequest}
               paymentMethodDetails={() => (
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'QuickDep... Remove this comment to see the full error message
                 <PaymentMethodDetails method={selectedMethod} />
               )}
               currencySymbol={currency}

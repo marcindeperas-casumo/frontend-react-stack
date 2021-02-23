@@ -16,6 +16,7 @@ jest.mock("Api/api.casinoPlayerGames", () => ({
 }));
 
 // $FlowIgnore
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
 getGameCategory.mockReturnValue(Promise.resolve(gameCategory));
 
 const slug = "tiger-rush";
@@ -30,6 +31,7 @@ const state = {
 describe("useGameCategory", () => {
   beforeEach(() => {
     // $FlowIgnore
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '(slug... Remove this comment to see the full error message
     getGameCategory.mockClear();
   });
 

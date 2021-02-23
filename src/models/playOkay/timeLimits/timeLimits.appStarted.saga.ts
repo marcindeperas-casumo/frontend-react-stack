@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"../../../../node_modules/redux-saga"' has... Remove this comment to see the full error message
 import { type Saga } from "redux-saga";
 import { put, select, call, take } from "redux-saga/effects";
 import { waitForSelector } from "Utils";
@@ -13,7 +14,9 @@ import {
 import { JURISDICTIONS, REACT_APP_MODAL } from "Src/constants";
 
 export function* appStartedSaga(): Saga {
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   yield call(waitForSelector, playerIdSelector);
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   yield call(waitForSelector, jurisdictionSelector);
 
   const playerId = yield select(playerIdSelector);
@@ -43,9 +46,11 @@ export function* appStartedSaga(): Saga {
   const allLimitsDefined = yield select(allLoginTimeLimitsDefinedSelector);
 
   if (!allLimitsDefined) {
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     yield call(waitForSelector, isModalHiddenSelector);
 
     yield put(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true })
     );
   }

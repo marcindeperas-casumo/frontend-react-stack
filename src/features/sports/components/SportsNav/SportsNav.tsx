@@ -43,6 +43,7 @@ const renderSportsNav = (
 
   return (
     <div className="u-padding-top--md">
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {openChooseFavouritesModal => (
           <SportsNavigation
@@ -91,6 +92,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   if (error) {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ direction: "horizontal"; }' is missing the... Remove this comment to see the full error message
     return <ErrorMessage direction="horizontal" />;
   }
 
@@ -103,6 +105,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     return (
       <ErrorMessage
         direction="horizontal"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'void' is not assignable to type '() => void'... Remove this comment to see the full error message
         retry={() => clickRetryRefetchNavigation()}
       />
     );

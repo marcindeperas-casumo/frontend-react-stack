@@ -1,4 +1,3 @@
-// @flow
 import clientHttp from "Lib/http";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getPlatform } from "Utils";
@@ -25,10 +24,10 @@ export const gameSlugToId = (
   name: string,
 }> => clientHttp.get(`${URL.GAME_SLUG_TO_ID}/${slug}`, {}, DEFAULT_HEADERS);
 
-export const gameById = (gameId: string): Promise<{ category: ?string }> =>
+export const gameById = (gameId: string): Promise<{ category: string | undefined }> =>
   clientHttp.get(`${URL.GAMES}/${gameId}`, {}, DEFAULT_HEADERS);
 
-export async function getGameCategory(slug: string): Promise<?string> {
+export async function getGameCategory(slug: string): Promise<string | undefined> {
   if (!slug) {
     return;
   }

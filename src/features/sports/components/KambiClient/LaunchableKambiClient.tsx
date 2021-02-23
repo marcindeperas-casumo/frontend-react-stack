@@ -46,6 +46,7 @@ export function LaunchableKambiClient() {
     kambiData.kambiClientVisible && firstLoadCompleted;
 
   if (error) {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
     return <ErrorMessage />;
   }
 
@@ -65,6 +66,7 @@ export function LaunchableKambiClient() {
 
   return (
     <>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <KambiClient
         isBetslipVisible={kambiData.isBetslipVisible}
         currency={currency}

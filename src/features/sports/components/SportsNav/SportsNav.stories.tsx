@@ -60,6 +60,7 @@ if (isNotChromatic) {
 
   stories.add("Error", () => (
     <MockStore>
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: boolean; request: { query: Document... Remove this comment to see the full error message */}
       <MockedProvider mocks={mocks.error} addTypename={false}>
         <SportsNav currentHash="#filter/tennis/wta" />
       </MockedProvider>

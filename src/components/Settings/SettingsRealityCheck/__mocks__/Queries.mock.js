@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../SettingsRealityCheckLabelsQ... Remove this comment to see the full error message
 import { REALITY_CHECK_LABELS_QUERY } from "../SettingsRealityCheckLabelsQuery.graphql";
 import { PLAYER_REALITY_CHECK_QUERY } from "../SettingsRealityCheckQuery";
 

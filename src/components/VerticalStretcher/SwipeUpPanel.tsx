@@ -7,6 +7,7 @@ import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import HandSymbol from "./icons/hand.svg";
 import type { TSwipeUpTranslations } from "./SwipeUpPanelContainer";
 
+// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
 const onSwipePanelClick = (element: ?HTMLElement) => {
   if (element && supportsTogglingFullscreen(element) && isMobile) {
     element.requestFullscreen();
@@ -19,6 +20,7 @@ export const SwipeUpPanel = ({
   t,
   loading,
 }: {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   fullScreenElement: ?HTMLElement,
   onDismiss: () => void,
   t: TSwipeUpTranslations,

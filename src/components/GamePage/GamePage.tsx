@@ -3,19 +3,28 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { FullscreenView } from "Components/FullscreenView";
 import { VerticalStretcher } from "Components/VerticalStretcher";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import type { GameProviderModel } from "GameProviders";
 
 type Props = {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   error: ?React.Node,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   footer: ?React.Node,
   gameBackground?: string,
   gameProviderModel: GameProviderModel,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   gameWindow: ?React.Node,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   header: ?React.Node,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   loading: ?React.Node,
   quickDepositInProgress: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   offscreenElements: ?React.Node,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   overScreenNotifications: ?React.Node,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   sidebar?: React.Node,
 };
 
@@ -42,6 +51,7 @@ export const GamePage = ({
 
   return (
     <FullscreenView className="u-height--screen u-width--screen t-background-grey-90">
+      {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ children: any[]; quickDepositInProgress: b... Remove this comment to see the full error message */}
       <VerticalStretcher
         quickDepositInProgress={quickDepositInProgress}
         gameProviderModel={gameProviderModel}

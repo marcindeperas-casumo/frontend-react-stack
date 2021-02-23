@@ -29,6 +29,7 @@ describe("SettingsSections", () => {
     it("should render with correct labels", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ player: { loginHistory: { loginTime: numbe... Remove this comment to see the full error message
           playerLoginHistory={props.playerLoginHistory}
           labels={props.labels}
         />
@@ -43,6 +44,7 @@ describe("SettingsSections", () => {
     it("should render with correct labels", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ player: { loginHistory: { loginTime: numbe... Remove this comment to see the full error message
           playerLoginHistory={props.playerLoginHistory}
           labels={props.labels}
         />
@@ -57,6 +59,7 @@ describe("SettingsSections", () => {
     it("should not render", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ loginHistory: ... Remove this comment to see the full error message
           playerLoginHistory={{ player: { loginHistory: [] } }}
           labels={props.labels}
         />
@@ -68,6 +71,7 @@ describe("SettingsSections", () => {
     it("should display correct current session label", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ player: { loginHistory: { loginTime: numbe... Remove this comment to see the full error message
           playerLoginHistory={props.playerLoginHistory}
           labels={props.labels}
         />
@@ -82,6 +86,7 @@ describe("SettingsSections", () => {
     it("should pass correct time to Timer", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ player: { loginHistory: { loginTime: numbe... Remove this comment to see the full error message
           playerLoginHistory={props.playerLoginHistory}
           labels={props.labels}
         />
@@ -93,6 +98,7 @@ describe("SettingsSections", () => {
     it("should interpolate and display last session message", () => {
       const rendered = mount(
         <SettingsSections
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ player: { loginHistory: { loginTime: numbe... Remove this comment to see the full error message
           playerLoginHistory={props.playerLoginHistory}
           labels={props.labels}
         />

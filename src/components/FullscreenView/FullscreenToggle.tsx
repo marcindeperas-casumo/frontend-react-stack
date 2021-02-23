@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { MaximizeIcon, MinimizeIcon } from "@casumo/cmp-icons";
+// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { isNativeByUserAgent } from "GameProviders";
 import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
 import { FullscreenViewContext } from "./FullscreenView";

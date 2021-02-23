@@ -14,5 +14,6 @@ export function BlueRibbonChristmasContainer() {
     return null;
   }
 
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'pots' is missing in type 'any[]' but req... Remove this comment to see the full error message
   return <BlueRibbonChristmas jackpot={jackpot} />;
 }

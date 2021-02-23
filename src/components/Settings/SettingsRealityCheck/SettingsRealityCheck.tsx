@@ -7,14 +7,16 @@ import { SettingsNotificationsToggleRow as ToggleRow } from "Components/Settings
 import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
-type Props = {
-  labels: A.REALITY_CHECK_LABELS_QUERY,
-  onChange: (interval: number) => void,
-  isLoading: boolean,
-  onSave: () => void,
-  interval: number,
-  canToggleInterval: boolean,
+type OwnProps = {
+    labels: A.REALITY_CHECK_LABELS_QUERY;
+    onChange: (interval: number) => void;
+    isLoading: boolean;
+    onSave: () => void;
+    interval: number;
+    canToggleInterval: boolean;
 };
+
+type Props = OwnProps & typeof SettingsRealityCheck.defaultProps;
 
 export class SettingsRealityCheck extends PureComponent<Props> {
   static defaultProps = {

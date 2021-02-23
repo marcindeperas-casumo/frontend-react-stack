@@ -1,6 +1,4 @@
-// @flow
-
-export type * from "./adventure.types";
+export * from "./adventure.types";
 export * from "./adventure.actions";
 export * from "./adventure.constants";
 export * from "./adventure.saga";

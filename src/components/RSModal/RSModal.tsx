@@ -10,6 +10,7 @@ const CLOSING_ANIMATION_LENGTH_MS = 150;
 export function Modal() {
   const state = useSelectModal();
   const modalId = useDelayedCleanup(state.modalId, CLOSING_ANIMATION_LENGTH_MS);
+  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const { slug, Content } = getModalData(modalId);
   const { closeModal, dismissModal, acceptModal } = useHideModal(modalId);
   const t = useTranslations(slug);
@@ -19,6 +20,7 @@ export function Modal() {
       isOpen={Boolean(state.modalId)}
       mustAccept={!state.config.mustAccept}
       onRequestClose={dismissModal}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; mustAc... Remove this comment to see the full error message
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
       <Content

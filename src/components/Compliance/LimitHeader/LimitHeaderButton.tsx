@@ -5,6 +5,7 @@ import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 
 export function LimitHeaderButton(props: {
   onClick: () => void,
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
   variesForDesktop?: boolean,
 }) {
@@ -26,6 +27,7 @@ export function LimitHeaderButton(props: {
   return <NormalVariant {...props} />;
 }
 
+// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
 function NormalVariant(props: { onClick: () => void, children: React.Node }) {
   return (
     <ButtonSecondary size="sm" onClick={props.onClick}>

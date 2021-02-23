@@ -15,6 +15,7 @@ import { languageSelector } from "Models/handshake";
 type Props = {
   slug: string,
   playForFun: boolean,
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   remoteGameLaunchData: ?Object,
 };
 
@@ -77,7 +78,8 @@ export const useGameLaunchData = ({
 
   const determineWhichGameProviderModel = () => {
     return remoteGameLaunchData
-      ? getGameModel(remoteGameLaunchData, gameRef, language, environment)
+      ? // @ts-expect-error ts-migrate(2554) FIXME: Expected 5 arguments, but got 4.
+               getGameModel(remoteGameLaunchData, gameRef, language, environment)
       : gameProviderModel;
   };
 

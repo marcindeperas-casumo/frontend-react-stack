@@ -6,9 +6,13 @@ import {
   activeExclusionSelector,
   isFetchingActiveSessionSelector,
   lastUpdateTimeSelector,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ActiveSessionType,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type EndedSessionType,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ExclusionType,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type UseSessionsStateType,
 } from "Models/slotControlSystem";
 

@@ -31,6 +31,7 @@ const { showDisabledGames } = getDeveloperOptions();
 const device = !isMobile(window) ? DEVICES.DESKTOP : DEVICES.MOBILE;
 
 export async function getApolloClient(): Promise<ApolloClientType> {
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'ApolloClient<NormalizedCacheObject>' is not ... Remove this comment to see the full error message
   return new ApolloClient({
     link: getLinks(),
     cache: await getCache(),
@@ -41,6 +42,7 @@ export async function getApolloClient(): Promise<ApolloClientType> {
         fetchPolicy: "cache-and-network",
       },
       query: {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '"cache-and-network"' is not assignable to ty... Remove this comment to see the full error message
         fetchPolicy: "cache-and-network",
       },
     },
@@ -93,6 +95,7 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         ...(isEmbeddedOn(emailSelector(state))
           ? {
               "X-Request-Client-Details": getAppVersion(),
@@ -131,9 +134,11 @@ function getFetchExtendedWithMarketAndLocale() {
     const locale = languageSelector(state);
     const url = new URL(uri, window.location.origin);
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     url.searchParams.append("market", market);
     url.searchParams.append("locale", locale);
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'URL' is not assignable to parame... Remove this comment to see the full error message
     return fetch(url, options);
   };
 }

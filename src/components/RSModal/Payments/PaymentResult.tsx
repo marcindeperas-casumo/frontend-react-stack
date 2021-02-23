@@ -8,6 +8,7 @@ import { EVENTS } from "Src/constants";
 import { stringToHTML, formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"./PaymentResult.types"' has no exported m... Remove this comment to see the full error message
 import { PAYMENT_RESULT_STATUS, type CmsContent } from "./PaymentResult.types";
 
 type Props = {

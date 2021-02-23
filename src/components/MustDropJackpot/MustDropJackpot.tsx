@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const MustDropJackpot = ({ jackpot }: Props) => {
-  const { image, label, amount = {} } = jackpot;
+  const { image, label, amount } = jackpot;
   const { formattedAmount } = amount;
 
   return (

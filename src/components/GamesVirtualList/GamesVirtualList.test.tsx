@@ -14,6 +14,7 @@ describe("GamesVirtualList", () => {
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type '(game: G... Remove this comment to see the full error message
         renderItem={renderItem}
       />
     );
@@ -27,6 +28,7 @@ describe("GamesVirtualList", () => {
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type '(game: G... Remove this comment to see the full error message
         renderItem={renderItem}
       />
     );
@@ -40,6 +42,7 @@ describe("GamesVirtualList", () => {
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type '(game: G... Remove this comment to see the full error message
         renderItem={renderItem}
       />
     );
@@ -53,6 +56,7 @@ describe("GamesVirtualList", () => {
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type '(game: G... Remove this comment to see the full error message
         renderItem={renderItem}
       />
     );

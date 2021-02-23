@@ -10,6 +10,7 @@ const stories = storiesOf("ReelRacePreviousCard", module);
 stories.add("Default", () => {
   return (
     <div className="c-reel-race-card">
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; game: { id: string; name: stri... Remove this comment to see the full error message */}
       <ReelRacePreviousCard reelRace={reelRaceMock} t={tMock} />
     </div>
   );
@@ -18,6 +19,7 @@ stories.add("Default", () => {
 stories.add("Expanded", () => {
   return (
     <div className="c-reel-race-card">
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; game: { id: string; name: stri... Remove this comment to see the full error message */}
       <ReelRacePreviousCard reelRace={reelRaceMock} t={tMock} expanded={true} />
     </div>
   );

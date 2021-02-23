@@ -1,4 +1,5 @@
 // @flow
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../PlayerLoginHistoryQuery.gra... Remove this comment to see the full error message
 import PLAYER_LOGIN_HISTORY_QUERY from "../PlayerLoginHistoryQuery.graphql";
 
 export const labels = {

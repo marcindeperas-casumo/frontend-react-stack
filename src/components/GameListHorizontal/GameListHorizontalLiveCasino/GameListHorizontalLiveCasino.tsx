@@ -1,10 +1,8 @@
-// @flow
 import React from "react";
 import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-// __FIX__ Fix this import as well.
 import { LiveCasinoCardContainer as LiveCasinoCard } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";

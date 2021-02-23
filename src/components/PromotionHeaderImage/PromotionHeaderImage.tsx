@@ -24,6 +24,7 @@ export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {
       align="center"
       justify="center"
     >
+      {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'ImageLazy' does not exist on type 'JSX.I... Remove this comment to see the full error message */}
       <ImageComponent className="c-promotion-header-badge" src={badge} />
     </Flex>
   );

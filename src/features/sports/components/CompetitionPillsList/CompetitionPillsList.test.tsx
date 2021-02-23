@@ -18,6 +18,7 @@ describe("<CompetitionPillsList />", () => {
 
   test("renders add button only when onAdd callback is provided", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onAdd={() => {}} />
     );
     const renderedNoOnAdd = shallow(
@@ -31,6 +32,7 @@ describe("<CompetitionPillsList />", () => {
   test("passes the onAdd callback to the add button", () => {
     const onAdd = jest.fn();
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onAdd={onAdd} />
     );
 
@@ -40,6 +42,7 @@ describe("<CompetitionPillsList />", () => {
   test("passes correct competition item to onClick callback", () => {
     const onClick = jest.fn();
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onClick={onClick} />
     );
     const indexToTest = 2;
@@ -68,6 +71,7 @@ describe("<CompetitionPillsList />", () => {
     shallow(
       <CompetitionPillsList
         competitions={[competitions[0]]}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
         isActive={isActive}
       />
     );
@@ -83,6 +87,7 @@ describe("<CompetitionPillsList />", () => {
       .mockReturnValueOnce(false);
 
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} isActive={isActive} />
     );
     const pills = rendered.find("GroupPill");

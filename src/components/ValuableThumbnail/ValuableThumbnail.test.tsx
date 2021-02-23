@@ -14,7 +14,9 @@ jest.mock("Utils", () => ({
 
 describe("ValuableThumbnail", () => {
   let rendered;
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
   let mockCashValuable = mockData(VALUABLE_TYPES.CASH);
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
   let mockCashbackValuable = mockData(VALUABLE_TYPES.CASHBACK);
   let expiryTimeLeft = { hours: 10, minutes: 10 };
 
@@ -26,6 +28,7 @@ describe("ValuableThumbnail", () => {
     shallow(
       <ValuableThumbnail
         {...mockCashValuable}
+        // @ts-expect-error ts-migrate(2741) FIXME: Property 'seconds' is missing in type '{ hours: nu... Remove this comment to see the full error message
         expiryTimeLeft={expiryTimeLeft}
         translations={mockTranslations}
       />
@@ -42,6 +45,7 @@ describe("ValuableThumbnail", () => {
     shallow(
       <ValuableThumbnail
         {...mockCashValuable}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ hours: number; minutes: number; }' is not ... Remove this comment to see the full error message
         expiryTimeLeft={expiryTimeLeft}
         translations={mockTranslations}
       />
@@ -59,6 +63,7 @@ describe("ValuableThumbnail", () => {
     shallow(
       <ValuableThumbnail
         {...mockCashValuable}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ hours: number; minutes: number; }' is not ... Remove this comment to see the full error message
         expiryTimeLeft={expiryTimeLeft}
         translations={mockTranslations}
       />
@@ -73,6 +78,7 @@ describe("ValuableThumbnail", () => {
     rendered = shallow(
       <ValuableThumbnail
         {...mockCashbackValuable}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ hours: number; minutes: number; }' is not ... Remove this comment to see the full error message
         expiryTimeLeft={expiryTimeLeft}
         translations={mockTranslations}
       />

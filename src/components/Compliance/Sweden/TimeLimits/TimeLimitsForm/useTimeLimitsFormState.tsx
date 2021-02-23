@@ -3,6 +3,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Duration } from "luxon";
 import {
+  // @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
   type LoginTimeLimit,
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
@@ -31,8 +32,11 @@ export type UseTimeLimitsFormStateType = {
   maxHrsPerDay: number,
   maxHrsPerWeek: number,
   maxHrsPerMonth: number,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   setHrsPerDay: number => void,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   setHrsPerWeek: number => void,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
   setHrsPerMonth: number => void,
   dailyLimitErrorMessage: string,
   weeklyLimitErrorMessage: string,
@@ -48,8 +52,11 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
   const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
   const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
   const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
   const savedHrsPerDay = isoLimitAsHours(dailyLimit);
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
   const savedHrsPerWeek = isoLimitAsHours(weeklyLimit);
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
   const savedHrsPerMonth = isoLimitAsHours(monthlyLimit);
 
   const [hrsPerDay, setHrsPerDay] = React.useState<number>(savedHrsPerDay);
@@ -77,18 +84,21 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     minHrsPerDay,
     maxHrsPerDay,
     hrsPerDay,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const weeklyLimitErrorMessage = limitErrorMessage(
     minHrsPerWeek,
     maxHrsPerWeek,
     hrsPerWeek,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const monthlyLimitErrorMessage = limitErrorMessage(
     minHrsPerMonth,
     maxHrsPerMonth,
     hrsPerMonth,
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const anyLimitChanged =
@@ -126,8 +136,11 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     maxHrsPerDay,
     maxHrsPerWeek,
     maxHrsPerMonth,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerDay,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerWeek,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerMonth,
     dailyLimitErrorMessage,
     weeklyLimitErrorMessage,

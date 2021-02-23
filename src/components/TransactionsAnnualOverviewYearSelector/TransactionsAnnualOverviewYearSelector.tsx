@@ -34,6 +34,7 @@ function YearSelector({
   setYear,
   htmlId,
 }: YearSelectorProps) {
+  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const onChangeYear = e => setYear(Number.parseInt(e.target.value, 10));
 
   return (
@@ -64,6 +65,7 @@ export function TransactionsAnnualOverviewYearSelector({
 }: Props) {
   const [year, setYear] = React.useState(selectedYear);
   const [isTriggeredFetch, triggerFetch] = React.useState(false);
+  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const loading = isAnnualOverviewLoading(year);
   const onClick = () => {
     triggerFetch(true);
@@ -75,6 +77,7 @@ export function TransactionsAnnualOverviewYearSelector({
     }
 
     triggerFetch(false);
+    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     fetchYearOverview(year);
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
@@ -104,6 +107,7 @@ export function TransactionsAnnualOverviewYearSelector({
           <YearSelector
             yearOptions={yearOptions}
             selectedYear={year}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
             setYear={setYear}
             htmlId={selectorHtmlId}
           />

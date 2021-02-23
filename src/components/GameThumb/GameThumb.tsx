@@ -28,6 +28,7 @@ export const GameThumb = ({
       height={height}
       src={src}
       mark={mark}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string | void' is not assignable to type 'st... Remove this comment to see the full error message
       alt={alt}
       imgixOpts={{
         w: width,

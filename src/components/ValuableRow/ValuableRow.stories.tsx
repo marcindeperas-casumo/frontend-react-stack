@@ -13,7 +13,9 @@ const stories = storiesOf("ValuableRow", module);
 
 stories.add("Default", () => {
   const valuableType =
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
   const isActive = boolean("Active", false);
@@ -21,14 +23,17 @@ stories.add("Default", () => {
 
   const valuableDetails = mockData(valuableType);
   const valuableState = isLocked
-    ? VALUABLE_STATES.LOCKED
-    : VALUABLE_STATES.FRESH;
+    ? // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
+      VALUABLE_STATES.LOCKED
+    : // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
+      VALUABLE_STATES.FRESH;
 
   return (
     <ValuableRow
       {...valuableDetails}
       valuableState={valuableState}
       onClick={action("click")}
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       translatedHoursUnit={translationsMock.hoursUnit}
       onMoreInfo={onMoreInfo}
       isSelected={isActive}

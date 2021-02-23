@@ -1,5 +1,4 @@
-// @flow
-import React from "react";
+import * as React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
 import ScrollableList from "Components/ScrollableList";

@@ -4,10 +4,10 @@ import classNames from "classnames";
 
 import "./ProgressBar.scss";
 
-type Props = {
-  progress: number,
-  fillerClassNames?: string,
-  trackClassNames?: string,
+type OwnProps = {
+    progress: number;
+    fillerClassNames?: string;
+    trackClassNames?: string;
 };
 
 export const ProgressBarFiller = (props: Props) => {
@@ -21,6 +21,9 @@ export const ProgressBarFiller = (props: Props) => {
     />
   );
 };
+
+// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
+type Props = OwnProps & typeof ProgressBar.defaultProps;
 
 export class ProgressBar extends PureComponent<Props> {
   static defaultProps = {

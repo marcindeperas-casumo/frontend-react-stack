@@ -8,45 +8,47 @@ import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";
 import {
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
   getExpiryTimeLeft,
+  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
   type ValuableThumbnailTranslations,
 } from "Models/valuables";
 
-type Props = {
-  /** Unique id of the valuable */
-  id: string,
-  /** Title of the valuable */
-  title: string,
-  /** Description of the valuable. Ex: title of a game etc.*/
-  description?: string,
-  /** Expiry date of the valuable */
-  expiryDate: number,
-  /** award type - applies when valuableType === Wagering Lock */
-  awardType?: A.WageringLockAwardType,
-  /** Valuable type of the valuable */
-  valuableType: A.ValuableType,
-  /** currency of the player */
-  currency: string,
-  /** The coin value of each spin. Applies when valuable is type spins */
-  coinValue?: number,
-  /** Market of the player */
-  market: string,
-  /** URL of background image to be displayed in the Card header */
-  backgroundImage: string,
-  /** Valuable caveats to be displayed */
-  caveat: ?string,
-  /** The state of the valuable */
-  valuableState: ValuableState,
-  /** Function to be triggered on click of card */
-  onCardClick?: () => void,
-  /** translations */
-  translations: ValuableThumbnailTranslations,
-  /** addition css classes to add to containing element */
-  className?: string,
+type OwnProps = {
+    /** Unique id of the valuable */
+    id: string;
+    /** Title of the valuable */
+    title: string;
+    /** Description of the valuable. Ex: title of a game etc.*/
+    description?: string;
+    /** Expiry date of the valuable */
+    expiryDate: number;
+    /** award type - applies when valuableType === Wagering Lock */
+    awardType?: A.WageringLockAwardType;
+    /** Valuable type of the valuable */
+    valuableType: A.ValuableType;
+    /** currency of the player */
+    currency: string;
+    /** The coin value of each spin. Applies when valuable is type spins */
+    coinValue?: number;
+    /** Market of the player */
+    market: string;
+    /** URL of background image to be displayed in the Card header */
+    backgroundImage: string;
+    /** Valuable caveats to be displayed */
+    caveat: ?string;
+    /** The state of the valuable */
+    valuableState: ValuableState;
+    /** Function to be triggered on click of card */
+    onCardClick?: () => void;
+    /** translations */
+    translations: ValuableThumbnailTranslations;
+    /** addition css classes to add to containing element */
+    className?: string;
 };
 
 const headerDimensions = {
@@ -54,12 +56,16 @@ const headerDimensions = {
   height: 80,
 };
 
+type Props = OwnProps & typeof ValuableCard.defaultProps;
+
 export class ValuableCard extends PureComponent<Props> {
   static defaultProps = {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
     valuableState: VALUABLE_STATES.FRESH,
   };
 
   get isValuableTypeSpins() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     return this.props.valuableType === VALUABLE_TYPES.SPINS;
   }
 

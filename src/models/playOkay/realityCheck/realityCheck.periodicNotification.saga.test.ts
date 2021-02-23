@@ -52,6 +52,7 @@ describe("realityCheck/periodicNotificationSaga", () => {
     const effect = generator.next(false);
 
     expect(effect.value.PUT.action).toEqual(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.REALITY_CHECK)
     );
   });

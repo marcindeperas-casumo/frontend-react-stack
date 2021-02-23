@@ -26,6 +26,7 @@ export function ReelRaceWidgetInfo({ t, ...props }: Props) {
           className="u-font-weight-bold t-color-purple-60"
         >
           <Timer
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'BigInt' is not assignable to type 'number'.
             endTime={props.startTime}
             render={o => `${o.minutes}:${o.seconds}`}
             onEnd={() => "00:00"}

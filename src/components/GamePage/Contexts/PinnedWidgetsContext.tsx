@@ -8,6 +8,7 @@ type PinnedWidgetsContextType = {
 };
 
 type PinnedWidgetsContextProviderProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 

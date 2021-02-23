@@ -47,6 +47,7 @@ export function useReelRaceLeaderboard(
 
     return function cleanup() {
       cometdChannels.forEach(channel =>
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
         cometd.unsubscribe(
           `${channel}/tournaments/players/${playerId}/tournaments/${tournamentId}/leaderboard`
         )

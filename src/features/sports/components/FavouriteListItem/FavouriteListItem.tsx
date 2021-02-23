@@ -1,6 +1,7 @@
 /* @flow */
 import React, { PureComponent } from "react";
 import classNames from "classnames";
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
 import type { Node } from "react";
 import { CheckIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
@@ -16,14 +17,17 @@ export type Props = {
   /** Should the list item be favouritable, false values disable toggle */
   isFavouritable?: boolean,
   /** Callback for when the list item is clicked */
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   onClick?: () => *,
 };
 
 export default class FavouriteListItem extends PureComponent<Props> {
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   get icon(): ?Node {
     return this.props.icon && <Flex.Item>{this.props.icon}</Flex.Item>;
   }
 
+  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
   get favouriteIcon(): ?Node {
     const { isFavouritable = true, isFavourite } = this.props;
 

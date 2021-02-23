@@ -1,4 +1,3 @@
-// @flow
 import { DateTime } from "luxon";
 import clientHttp from "Lib/http";
 import { CURRENCIES } from "Src/constants";
@@ -8,14 +7,13 @@ type HTTPClient = typeof clientHttp;
 
 type GetSummaryUrlProps = {
   date: DateTime,
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
   currency: $Values<typeof CURRENCIES>,
   periodicity?: "ANNUAL" | "MONTHLY" | "DAILY",
   asPdf?: boolean,
 };
 
-/**
- * @url http://player-transactions.at.casumotest.local:8080/swagger-ui.html#/summaries-public-controller/getSummaryReportFileUsingGET
- */
+// http://player-transactions.at.casumotest.local:8080/swagger-ui.html#/summaries-public-controller/getSummaryReportFileUsingGET
 export const getSummaryUrl = ({
   periodicity = "ANNUAL",
   date,

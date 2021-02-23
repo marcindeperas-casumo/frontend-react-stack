@@ -1,4 +1,3 @@
-// @flow
 // 📣📣📣 NOTE 📣📣📣
 //
 // The contents of this file are meant to be reflected and kept in sync between

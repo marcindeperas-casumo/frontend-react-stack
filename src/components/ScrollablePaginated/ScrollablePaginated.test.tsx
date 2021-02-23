@@ -10,6 +10,7 @@ describe("ScrollablePaginated", () => {
 
   test("should render ScrollableWithRef", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         columnCount={columnCount}
         buttonRenderer={myButtonRenderer}
@@ -22,6 +23,7 @@ describe("ScrollablePaginated", () => {
 
   test("should set classNames on wrapping divs", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}
@@ -41,6 +43,7 @@ describe("ScrollablePaginated", () => {
 
   test("should pass props to ScrollableWithRef", () => {
     const rendered = shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}
@@ -57,6 +60,7 @@ describe("ScrollablePaginated", () => {
   test("should render buttons", () => {
     const spy = jest.fn();
     shallow(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}

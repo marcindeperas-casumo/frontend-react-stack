@@ -19,6 +19,7 @@ export const PlayerDepositValuablesWithModal = ({
     isOpen={isOpen}
     hideModal={onClose}
     className="c-valuable-details-modal u-height--full u-width--full"
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     closeTimeoutMS={100}
   >
     <PlayerDepositValuables />

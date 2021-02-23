@@ -9,6 +9,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import {
   getExpiryTimeLeft,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/valuables"' has no exp... Remove this comment to see the full error message
   type ValuableThumbnailTranslations,
   VALUABLE_STATES,
 } from "Models/valuables";
@@ -88,6 +89,7 @@ const renderValuableText = ({
         size="sm"
         tag="div"
       >
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'. */}
         {valuableState === VALUABLE_STATES.LOCKED && (
           <LockIcon size="sm" className="u-margin-right--sm" />
         )}

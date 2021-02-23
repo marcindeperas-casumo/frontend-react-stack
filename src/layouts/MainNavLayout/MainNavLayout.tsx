@@ -13,6 +13,7 @@ import { navItems, dropdownItems } from "./__mocks__";
 import "./MainNavLayout.scss";
 
 type TProps = {
+  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
   children: React.Node,
 };
 
