@@ -540,7 +540,7 @@ export const EMBEDDED_GAMES = {
 
 export const topListWidgetWidth = 328;
 export const topListWidgetHeight = 304;
-export const exlusiveTileHeight = 280;
+export const exclusiveTileHeight = 280;
 export const exlusiveTileWidth = 188;
 
 export const horizontalListsDevicePaddings = {

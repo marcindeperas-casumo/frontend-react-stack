@@ -7,7 +7,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileExclusive } from "Components/GameTileExclusive";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
-import { exlusiveTileHeight } from "Src/constants";
+import { exclusiveTileHeight } from "Src/constants";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import "./GameListHorizontalExclusive.scss";
 
@@ -47,7 +47,7 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
           title={name}
           itemCount={games.length}
           itemRenderer={itemRenderer}
-          tileHeight={exlusiveTileHeight}
+          tileHeight={exclusiveTileHeight}
         />
       </Desktop>
     </div>
