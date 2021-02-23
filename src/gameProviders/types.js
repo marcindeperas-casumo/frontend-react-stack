@@ -37,6 +37,7 @@ export type GameProviderModelProps = {
   language: AppLanguage,
   environment: AppEnvironment,
   urlPrefix: string,
+  origin?: string,
 };
 
 export type IframeGameApiMessage = ?string | ?{};
@@ -69,4 +70,14 @@ export type GameProviderModel = {
   lobbyUrl: string,
   pauseGame: () => Promise<void>,
   resumeGame: () => {},
+};
+
+export type TGameUrlParams = {
+  key: string,
+  value: string,
+};
+
+export type TGameUrlProps = {
+  url: string,
+  paramsToAdd: Array<TGameUrlParams>,
 };

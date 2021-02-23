@@ -2,15 +2,19 @@ import { getCommonHandshake, URLS } from "./api.common";
 
 describe("API/Common", () => {
   const http = {
-    get: jest.fn(),
+    post: jest.fn(),
   };
 
   describe("getCommonHandshake()", () => {
-    test("calls http.get() with the right URL", () => {
+    test("calls http.post() with the right URL", () => {
       getCommonHandshake(http);
 
-      expect(http.get).toHaveBeenCalledTimes(1);
-      expect(http.get).toHaveBeenCalledWith(URLS.HANDSHAKE);
+      expect(http.post).toHaveBeenCalledTimes(1);
+      expect(http.post).toHaveBeenCalledWith(URLS.HANDSHAKE, {
+        referrerUrl: document?.referrer,
+        trackingId: null,
+        url: window?.location.href,
+      });
     });
   });
 });
