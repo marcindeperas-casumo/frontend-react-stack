@@ -1,3 +1,13 @@
 .c-sub-nav-layout {
   height: 80px;
 }
+
+.c-sub-nav-item--active::after {
+  background-color: cudl-palette(purple, "80");
+  border-radius: 50%;
+  bottom: -8px;
+  content: "";
+  height: 6px;
+  position: absolute;
+  width: 6px;
+}

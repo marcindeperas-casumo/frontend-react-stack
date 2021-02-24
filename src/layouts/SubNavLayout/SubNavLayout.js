@@ -1,7 +1,7 @@
 // @flow
 import cx from "classnames";
 import * as React from "react";
-import { Link, Location } from "@reach/router";
+import { Link } from "@reach/router";
 import InputField from "@casumo/cmp-input-field";
 import { ContentWrapper } from "Components/ContentWrapper";
 
@@ -25,28 +25,23 @@ export const SubNavLayout = ({ links }: TProps) => {
       <ContentWrapper>
         <div className="c-sub-nav-layout o-flex-align--center">
           <div className="o-flex u-padding-right--sm">
-            <Location>
-              {({ location }) =>
-                links.map(link => (
-                  <div key={link.to} className="u-margin-x--md">
-                    <Link
-                      className={cx(
-                        "u-font-weight-bold o-flex-align--center o-flex--vertical",
-                        location.pathname === link.to
-                          ? "t-color-purple-80"
-                          : "t-color-grey-70"
-                      )}
-                      to={link.to}
-                    >
-                      <span>{link.text}</span>
-                      {location.pathname === link.to && (
-                        <div className="u-width--sm u-height--sm t-background-purple-80 t-border-r--circle u-margin-top--sm" />
-                      )}
-                    </Link>
-                  </div>
-                ))
-              }
-            </Location>
+            {links.map(link => (
+              <div key={link.to} className="u-margin-x--md">
+                <Link
+                  getProps={({ isCurrent }) => ({
+                    className: cx(
+                      "u-font-weight-bold o-flex-align--center o-flex--vertical",
+                      isCurrent
+                        ? "c-sub-nav-item--active u-position-relative t-color-purple-80"
+                        : "t-color-grey-70"
+                    ),
+                  })}
+                  to={link.to}
+                >
+                  {link.text}
+                </Link>
+              </div>
+            ))}
           </div>
 
           <div className="o-flex__block u-padding-x--lg">
