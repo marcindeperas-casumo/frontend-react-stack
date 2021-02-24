@@ -3,6 +3,7 @@ import cx from "classnames";
 import * as React from "react";
 import { Link } from "@reach/router";
 import InputField from "@casumo/cmp-input-field";
+import { SearchIcon } from "@casumo/cmp-icons";
 import { ContentWrapper } from "Components/ContentWrapper";
 
 import "./SubNavLayout.scss";
@@ -52,6 +53,7 @@ export const SubNavLayout = ({ links }: TProps) => {
               placeholder="Search"
               type="text"
               value=""
+              icon={SearchIcon}
             />
           </div>
 
