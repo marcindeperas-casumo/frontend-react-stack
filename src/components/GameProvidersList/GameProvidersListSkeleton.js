@@ -2,6 +2,10 @@
 import React, { PureComponent } from "react";
 import { times } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
+import {
+  leftPaddingClasses,
+  topMarginClasses,
+} from "Components/GameListHorizontal/constants";
 
 type Props = {
   /* Additional css classes to add to the component **/
@@ -14,18 +18,9 @@ type Props = {
   tileGutter: number,
 };
 
-const defaultClassNames = `
-  u-padding-top--lg
-  u-padding-top--xlg@tablet
-  u-padding-top--xlg@desktop
-  u-padding-left--md
-  u-padding-left--3xlg@tablet
-  u-padding-left--3xlg@desktop
-`;
-
 export default class GameProvidersListSkeleton extends PureComponent<Props> {
   static defaultProps = {
-    className: defaultClassNames,
+    className: `o-wrapper ${leftPaddingClasses} ${topMarginClasses}`,
     numberOfItems: 5,
     tileRadius: 80,
     tileGutter: 10,

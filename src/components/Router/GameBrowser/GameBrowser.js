@@ -62,10 +62,7 @@ export const GameBrowser = () => {
         <GameBrowserSets sets={gameBrowserSetsData} />
 
         <React.Suspense fallback={null}>
-          <Router
-            className="u-padding-bottom--2xlg u-padding-x--md u-padding-x--none@mobile u-padding-x--none@desktop"
-            primary={false}
-          >
+          <Router className="u-padding-bottom--2xlg" primary={false}>
             <Redirect path="/" from="/" to={redirectTarget} noThrow />
             <TopList path="top" />
             <>

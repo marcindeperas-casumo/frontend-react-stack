@@ -90,7 +90,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
+      <div data-test="scrollable-list-paginated">
         {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
         <ScrollablePaginated
           className="c-scrollable-list-paginated"

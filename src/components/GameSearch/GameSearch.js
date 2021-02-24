@@ -17,6 +17,7 @@ import {
   GamesVirtualList,
   GamesVirtualListTitle,
 } from "Components/GamesVirtualList";
+import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 
 import "./GameSearch.scss";
 
@@ -160,8 +161,8 @@ export const GameSearch = (props: Props) => {
   }, [props.query]);
 
   return (
-    <div className="o-wrapper">
-      <div className="c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-x--md@mobile u-padding-y--md u-padding-y--lg@desktop u-padding-x--none@desktop">
+    <div className={`o-wrapper ${xPaddingClasses}`}>
+      <div className="c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-y--md u-padding-y--lg@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}

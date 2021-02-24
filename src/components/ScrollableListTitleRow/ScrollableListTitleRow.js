@@ -9,6 +9,7 @@ import type {
 } from "@casumo/cudl-react-prop-types";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
+import { rightPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
   /** The list title */
@@ -39,7 +40,7 @@ export class ScrollableListTitleRow extends PureComponent<Props> {
           />
         </Flex.Item>
         {seeMore?.url && (
-          <Flex.Item className="u-padding-right--md">
+          <Flex.Item className={rightPaddingClasses}>
             <Link to={seeMore?.url} onClick={seeMore?.onClick}>
               <Text tag="h3" className="t-color-blue-60">
                 {seeMore?.text}

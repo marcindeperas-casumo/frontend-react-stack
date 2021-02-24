@@ -7,19 +7,19 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
-import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
+import {
+  topListWidgetWidth,
+  topListWidgetHeight,
+  horizontalListsDevicePaddings,
+} from "Src/constants";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
+
 export type Props = {
   games: Array<A.GameRow_Game>,
   Widget: React.AbstractComponent<{}>,
   name: ?string,
   seeMore?: SeeMoreProps,
-};
-
-const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "none",
 };
 
 export const GameListHorizontalWithWidget = ({
@@ -79,34 +79,26 @@ export const GameListHorizontalWithWidget = ({
   };
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <div className="u-padding-top--xlg">
-            {name && (
-              <ScrollableListTitleRow
-                paddingLeft
-                title={name}
-                seeMore={seeMore}
-              />
-            )}
-            <Scrollable
-              padding={PADDING_PER_DEVICE}
-              numberOfItems={columns.length}
-              itemRenderer={mobileItemRenderer}
-            />
-          </div>
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            title={name}
-            itemCount={columns.length}
-            itemRenderer={desktopItemRenderer}
-            tileHeight={topListWidgetHeight}
-            seeMore={seeMore}
-          />
-        </Desktop>
-      </div>
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        {name && (
+          <ScrollableListTitleRow paddingLeft title={name} seeMore={seeMore} />
+        )}
+        <Scrollable
+          numberOfItems={columns.length}
+          itemRenderer={mobileItemRenderer}
+          padding={horizontalListsDevicePaddings}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          title={name}
+          itemCount={columns.length}
+          itemRenderer={desktopItemRenderer}
+          tileHeight={topListWidgetHeight}
+          seeMore={seeMore}
+        />
+      </Desktop>
     </div>
   );
 };
