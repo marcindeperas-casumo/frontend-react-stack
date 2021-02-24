@@ -14,8 +14,8 @@ const Wrapper = ({ children }) => (
 stories.add("Default", () => (
   <Wrapper>
     <Panel
-      roundedTop={boolean("Rounded Top?", false)}
-      roundedBottom={boolean("Rounded Bottom?", false)}
+      roundedTop={boolean("Rounded Top?", true)}
+      roundedBottom={boolean("Rounded Bottom?", true)}
     >
       contents
     </Panel>
