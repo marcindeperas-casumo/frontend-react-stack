@@ -1,6 +1,10 @@
 // @flow
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import cx from "classnames";
+import Text from "@casumo/cmp-text";
+import Flex from "@casumo/cmp-flex";
+import { ChevronDownIcon } from "@casumo/cmp-icons";
+import { useClientRect } from "Utils/hooks";
 import { useDropdown } from "./Dropdown.hooks";
 
 import "./Dropdown.scss";
@@ -9,12 +13,14 @@ export type TDropdownItemProps = {
   className?: string,
   children: React.Node,
   withBottomBorder?: boolean,
+  icon: string,
 };
 
 export type TDropdownProps = {
   className?: string,
   children: React.Node,
-  label?: string,
+  triggerLabel?: string,
+  triggerIcon?: string,
   showImmediately?: boolean,
   withRoundedCorners?: boolean,
   anchorPosition?: "left" | "right",
@@ -23,37 +29,56 @@ export type TDropdownProps = {
 export const DropdownItem = ({
   className,
   children,
-  withBottomBorder = true,
+  withBottomBorder = false,
+  Icon,
 }: TDropdownItemProps) => {
   return (
-    <div
+    <li
       className={cx(
-        "u-padding--lg u-padding-y--md",
+        "u-padding--md",
+        "t-border-grey-5",
         { "t-border-bottom": withBottomBorder },
         className
       )}
     >
       {children}
-    </div>
+    </li>
   );
 };
 
 export const Dropdown = ({
   className,
   children,
-  label,
+  triggerLabel,
+  triggerIcon = ChevronDownIcon,
+  triggerClassName,
   showImmediately = false,
   withRoundedCorners = true,
   anchorPosition = "right",
 }: TDropdownProps) => {
   const dropdownRef = useRef(null);
+  const { rect, triggerRef } = useClientRect();
   const { isOpen, setIsOpen } = useDropdown(showImmediately);
-  const open = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
+  const togggleDropdown = useCallback(() => setIsOpen(!isOpen), [
+    isOpen,
+    setIsOpen,
+  ]);
+
+  const TriggerIcon = triggerIcon;
+
+  const rootClasses = cx(
+    "c-dropdown-container",
+    "u-display--inline-flex",
+    "u-position-relative"
+  );
 
   const dropdownClasses = cx(
     "c-dropdown",
     "u-position-absolute",
-    "u-margin-top--md",
+    "u-position-absolute",
+    "u-padding--none",
+    "u-margin-top--sm",
+    "t-elevation--30",
     "t-background-white",
     `o-inset-${anchorPosition}--none`,
     {
@@ -62,19 +87,41 @@ export const Dropdown = ({
     className
   );
 
-  return (
-    <>
-      <div className="c-dropdown-trigger" onClick={open}>
-        {label}
-      </div>
+  const dropdownTriggerClasses = cx(
+    "c-dropdown-trigger",
+    "u-display--inline-flex",
+    "u-cursor--pointer",
+    "u-margin--none",
+    triggerClassName
+  );
 
-      <div className="c-dropdown-container u-position-relative">
-        {isOpen && (
-          <div ref={dropdownRef} className={dropdownClasses}>
-            {children}
-          </div>
+  useEffect(() => {
+    console.warn("rect", rect);
+  }, [rect]);
+
+  return (
+    <div className={rootClasses}>
+      <Flex
+        containeref={triggerRef}
+        className={dropdownTriggerClasses}
+        onClick={togggleDropdown}
+      >
+        {triggerLabel && (
+          <Flex.Item>
+            <Text className="u-margin--none">{triggerLabel}</Text>
+          </Flex.Item>
         )}
-      </div>
-    </>
+        {triggerIcon && (
+          <Flex.Item>
+            <TriggerIcon />
+          </Flex.Item>
+        )}
+      </Flex>
+      {isOpen && (
+        <ul ref={dropdownRef} className={dropdownClasses}>
+          {children}
+        </ul>
+      )}
+    </div>
   );
 };
