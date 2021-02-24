@@ -9,12 +9,10 @@ export const useDropdown = (initialState = INITIAL_STATE) => {
 
   useEffect(() => {
     const onClick = (event: SyntheticEvent<HTMLElement>) => {
-      if (
-        dropdownRef.current !== null &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        setIsOpen(!isOpen);
+      if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+        return;
       }
+      setIsOpen(!isOpen);
     };
 
     if (isOpen) {

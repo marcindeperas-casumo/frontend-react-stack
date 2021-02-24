@@ -24,7 +24,7 @@ export const DropdownItem = ({
   className,
   children,
   withBottomBorder = true,
-}) => {
+}: TDropdownItemProps) => {
   return (
     <div
       className={cx(
@@ -45,7 +45,7 @@ export const Dropdown = ({
   showImmediately = false,
   withRoundedCorners = true,
   anchorPosition = "right",
-}: TProps) => {
+}: TDropdownProps) => {
   const dropdownRef = useRef(null);
   const { isOpen, setIsOpen } = useDropdown(showImmediately);
   const open = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
