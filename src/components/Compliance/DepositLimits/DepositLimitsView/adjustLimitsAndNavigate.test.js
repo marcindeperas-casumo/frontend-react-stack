@@ -2,8 +2,15 @@
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
 
 describe("adjustLimitsAndNavigate", () => {
+  // these flags are now always true
+  const rules = [
+    "APPROVAL_REQUIRED_FOR_INCREASE",
+    "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
+    "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
+    "DECREASE_EFFECTIVE_IMMEDIATELY",
+  ];
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
-  test("delete/increase flow, APPROVAL_REQUIRED_FOR_INCREASE", () => {
+  test("delete/increase flow, APPROVAL_REQUIRED_FOR_INCREASE | RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props = {
@@ -21,47 +28,7 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: null,
         weekly: null,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "APPROVAL_REQUIRED_FOR_INCREASE",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
-    };
-
-    adjustLimitsAndNavigate(props);
-
-    expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
-    expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["BEING_REVIEWED"],
-      route: "confirmations",
-    });
-  });
-
-  test("delete/increase flow, RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
-    const limitAdjust = jest.fn();
-    const navigate = jest.fn();
-    const props = {
-      limitAdjust,
-      navigate,
-      decreases: [],
-      limitsDiff: {
-        daily: "removed",
-        monthly: "removed",
-        weekly: "removed",
-      },
-      newLimits: {
-        currency: "EUR",
-        daily: null,
-        monthly: null,
-        weekly: null,
-      },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
     adjustLimitsAndNavigate(props);
@@ -91,12 +58,7 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: 3333,
         weekly: 1500,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
     adjustLimitsAndNavigate(props);
@@ -126,12 +88,7 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: 3000,
         weekly: 1000,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
     adjustLimitsAndNavigate(props);

@@ -6,7 +6,6 @@ import {
   type DepositKinds,
   type DepositLimitPreadjustRules,
   getSpecificKinds,
-  hasRule,
 } from "Models/playOkay/depositLimits";
 import type { Navigate } from "./DepositLimitsView";
 
@@ -32,20 +31,10 @@ export const adjustLimitsAndNavigate = ({
   const hasDecreased = !R.isEmpty(decreases);
 
   if (hasRemovedOrIncreased) {
-    if (hasRule("RESPONSIBLE_GAMBLING_TEST_REQUIRED", rules)) {
-      navigate({
-        route: "confirmations",
-        pages: ["RG_REQUIRED"],
-      });
-    } else if (hasRule("APPROVAL_REQUIRED_FOR_INCREASE", rules)) {
-      limitAdjust(newLimits);
-      navigate({
-        route: "confirmations",
-        pages: [hasDecreased && "SAVED_RIGHT_AWAY", "BEING_REVIEWED"].filter(
-          Boolean
-        ),
-      });
-    }
+    navigate({
+      route: "confirmations",
+      pages: ["RG_REQUIRED"],
+    });
   } else if (hasDecreased) {
     limitAdjust(newLimits);
     navigate({
