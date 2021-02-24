@@ -7,6 +7,8 @@ import { PromotionCard } from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
+import { promotionsTileHeight } from "Src/constants";
 
 type Props = A.PromotionsListQuery_promotionsList & {
   seeMoreText: string,
@@ -32,31 +34,29 @@ export const PromotionCardList = ({
   );
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <ScrollableList
-            itemClassName="c-promotion-card"
-            title={name}
-            seeMoreText={seeMoreText}
-            seeMoreUrl={seeMoreUrl}
-            items={promotions}
-            itemRenderer={i => <PromotionCard promotion={promotions[i]} />}
-          />
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            title={name}
-            itemCount={promotions.length}
-            itemRenderer={itemRenderer}
-            tileHeight={318}
-            seeMore={{
-              text: seeMoreText,
-              url: seeMoreUrl,
-            }}
-          />
-        </Desktop>
-      </div>
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        <ScrollableList
+          itemClassName="c-promotion-card"
+          title={name}
+          seeMoreText={seeMoreText}
+          seeMoreUrl={seeMoreUrl}
+          items={promotions}
+          itemRenderer={i => <PromotionCard promotion={promotions[i]} />}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          title={name}
+          itemCount={promotions.length}
+          itemRenderer={itemRenderer}
+          tileHeight={promotionsTileHeight}
+          seeMore={{
+            text: seeMoreText,
+            url: seeMoreUrl,
+          }}
+        />
+      </Desktop>
     </div>
   );
 };
