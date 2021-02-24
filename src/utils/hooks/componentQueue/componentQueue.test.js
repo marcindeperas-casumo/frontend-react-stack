@@ -2,7 +2,7 @@
 import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 import { shallow, mount } from "enzyme";
-import { useComponentQueueState } from "./ComponentQueue.hooks";
+import { useComponentQueueState } from "../useComponentQueueState.js";
 
 jest.useFakeTimers();
 

@@ -1,12 +1,12 @@
 // @flow
-import { ACTION_TYPES } from "./ComponentQueue.constants";
-import type { TQueueReducer, TQueueAction } from "./ComponentQueue.actions";
+import { ACTION_TYPES } from "./componentQueue.constants";
+import type { TQueueReducer, TQueueAction } from "./componentQueue.actions";
 import type {
   TComponentQueueItem,
   TComponentQueueState,
   TComponentQueueConfig,
-} from "./ComponentQueue.types";
-import { sortByPriority } from "./ComponentQueue.utils";
+} from "./componentQueue.types";
+import { sortByPriority } from "./componentQueue.utils";
 
 const pushOrReplace = (
   state: TComponentQueueState,
