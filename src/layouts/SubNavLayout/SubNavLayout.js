@@ -33,7 +33,7 @@ export const SubNavLayout = ({ links }: TProps) => {
                     className: cx(
                       "u-font-weight-bold o-flex-align--center o-flex--vertical",
                       isCurrent
-                        ? "c-sub-nav-item--active u-position-relative t-color-purple-80"
+                        ? "c-sub-nav-item--active u-position-relative t-color-purple-60"
                         : "t-color-grey-70"
                     ),
                   })}
