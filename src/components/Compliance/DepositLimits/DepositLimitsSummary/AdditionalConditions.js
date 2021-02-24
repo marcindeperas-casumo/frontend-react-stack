@@ -25,7 +25,6 @@ export function AdditionalConditions(props: Props) {
       postIncreaseWindow: (
         <Duration duration={props.increaseProhibitedAfterwardsFor} />
       ),
-      revocationWindow: <Duration duration={props.increaseEffectiveAfter} />,
     })
   )(props.rules);
 
