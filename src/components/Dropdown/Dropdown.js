@@ -1,10 +1,9 @@
 // @flow
-import React, { useCallback, useRef, useEffect } from "react";
+import React, { useCallback, useRef } from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
-import { useClientRect } from "Utils/hooks";
 import { useDropdown } from "./Dropdown.hooks";
 
 import "./Dropdown.scss";
@@ -13,7 +12,6 @@ export type TDropdownItemProps = {
   className?: string,
   children: React.Node,
   withBottomBorder?: boolean,
-  icon: string,
 };
 
 export type TDropdownProps = {
@@ -30,7 +28,6 @@ export const DropdownItem = ({
   className,
   children,
   withBottomBorder = false,
-  Icon,
 }: TDropdownItemProps) => {
   return (
     <li
@@ -57,7 +54,6 @@ export const Dropdown = ({
   anchorPosition = "right",
 }: TDropdownProps) => {
   const dropdownRef = useRef(null);
-  const { rect, triggerRef } = useClientRect();
   const { isOpen, setIsOpen } = useDropdown(showImmediately);
   const togggleDropdown = useCallback(() => setIsOpen(!isOpen), [
     isOpen,
@@ -95,17 +91,9 @@ export const Dropdown = ({
     triggerClassName
   );
 
-  useEffect(() => {
-    console.warn("rect", rect);
-  }, [rect]);
-
   return (
     <div className={rootClasses}>
-      <Flex
-        containeref={triggerRef}
-        className={dropdownTriggerClasses}
-        onClick={togggleDropdown}
-      >
+      <Flex className={dropdownTriggerClasses} onClick={togggleDropdown}>
         {triggerLabel && (
           <Flex.Item>
             <Text className="u-margin--none">{triggerLabel}</Text>
