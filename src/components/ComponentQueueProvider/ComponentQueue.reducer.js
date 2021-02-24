@@ -19,6 +19,10 @@ const pushOrReplace = (
   }
 
   if (item.settings?.priority) {
+    if (!state.length) {
+      return [item];
+    }
+
     // we need to exclude current from sort
     const current = state[0];
     // eslint-disable-next-line fp/no-mutating-methods

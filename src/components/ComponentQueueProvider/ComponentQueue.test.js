@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
-import { shallow } from "enzyme";
-import { wait } from "Utils/apolloTestUtils";
+import { shallow, mount } from "enzyme";
 import { useComponentQueueState } from "./ComponentQueue.hooks";
 
 jest.useFakeTimers();
@@ -20,6 +19,12 @@ const mockedConfig = {
       priority: 1,
     },
   },
+  component3: {
+    component: () => <div data-test-id="component3">This is Component 3</div>,
+    settings: {
+      closeCurrent: true,
+    },
+  },
 };
 
 describe("useComponentQueueState Hook", () => {
@@ -29,16 +34,10 @@ describe("useComponentQueueState Hook", () => {
     );
 
     act(() => result.current.show("component1"));
-
-    wait().then(() => {
-      expect(result.current.queue.length).toBe(1);
-    });
+    expect(result.current.queue.length).toBe(1);
 
     act(() => result.current.close());
-
-    wait().then(() => {
-      expect(result.current.queue.length).toBe(0);
-    });
+    expect(result.current.queue.length).toBe(0);
   });
 
   test("queue with priority", () => {
@@ -48,18 +47,50 @@ describe("useComponentQueueState Hook", () => {
     const { queue, show } = result.current;
 
     expect(queue.length).toBe(0);
+    act(() => show("component1"));
+    act(() => show("component2"));
+    expect(result.current.queue.length).toBe(2);
 
-    wait().then(() => {
-      act(() => show("component1"));
-      act(() => show("component2"));
-      expect(result.current.queue.length).toBe(2);
-
-      const CurrentComponent = result.current.queue[0].component;
-      const rendered = shallow(<CurrentComponent />);
-      expect(rendered.find({ "data-test-id": "component2" }).length).toBe(1);
-    });
+    const CurrentComponent = result.current.queue[0].component;
+    const rendered = shallow(<CurrentComponent />);
+    expect(rendered.props()["data-test-id"]).toBe("component1");
   });
 
   test("queue with priority and additional config", () => {});
-  test("stack add and remove", () => {});
+  test("queue add and forced replace current component", () => {
+    const { result } = renderHook(() =>
+      useComponentQueueState({ config: mockedConfig })
+    );
+
+    act(() => result.current.show("component1"));
+    expect(result.current.queue.length).toBe(1);
+
+    let CurrentComponent = result.current.queue[0].component;
+    const rendered = shallow(<CurrentComponent />);
+
+    expect(rendered.props()["data-test-id"]).toBe("component1");
+
+    // component3 should replace current one (closeCurrent: true)
+    act(() => result.current.show("component3"));
+    CurrentComponent = result.current.queue[0].component;
+    const rendered2 = shallow(<CurrentComponent />);
+    expect(rendered2.props()["data-test-id"]).toBe("component3");
+  });
+
+  test("adding new component which wont be rendered, should not cause rerender", () => {
+    const { result } = renderHook(() =>
+      useComponentQueueState({ config: mockedConfig })
+    );
+
+    act(() => result.current.show("component1"));
+
+    const CurrentComponent = result.current.queue[0].component;
+    const wrapper = mount(<CurrentComponent />);
+    const initInstance = wrapper.getDOMNode();
+
+    act(() => result.current.show("component2"));
+    wrapper.update();
+
+    expect(initInstance).toBe(wrapper.getDOMNode());
+  });
 });
