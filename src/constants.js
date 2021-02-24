@@ -542,6 +542,7 @@ export const topListWidgetWidth = 328;
 export const topListWidgetHeight = 304;
 export const exclusiveTileHeight = 280;
 export const exlusiveTileWidth = 188;
+export const promotionsTileHeight = 311;
 
 export const horizontalListsDevicePaddings = {
   default: "md",
