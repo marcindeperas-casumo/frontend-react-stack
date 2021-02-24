@@ -8,6 +8,14 @@ import { useDropdown } from "./Dropdown.hooks";
 
 import "./Dropdown.scss";
 
+export type TDropdownItemContentProps = {
+  Icon?: React.StatelessFunctionalComponent<any>,
+  DescriptionIcon?: React.StatelessFunctionalComponent<any>,
+  label: string,
+  linkTo?: string,
+  description?: string,
+};
+
 export type TDropdownItemProps = {
   className?: string,
   children: React.Node,
@@ -23,6 +31,39 @@ export type TDropdownProps = {
   withRoundedCorners?: boolean,
   anchorPosition?: "left" | "right",
 };
+
+export const DropdownItemContent = ({
+  Icon,
+  DescriptionIcon,
+  label,
+  description,
+}) => (
+  <Flex align="center" spacing="md">
+    {Icon && (
+      <Flex.Item>
+        <Icon />
+      </Flex.Item>
+    )}
+    <Flex.Item>
+      <Flex direction="vertical">
+        <Flex.Item>
+          <Text className="u-margin--none u-font-weight-bold">{label}</Text>
+        </Flex.Item>
+        {description && (
+          <Flex.Item>
+            {DescriptionIcon && <DescriptionIcon size="sm" />}
+            <Text
+              tag="span"
+              className="u-margin-left--sm u-font-sm t-color-grey-50"
+            >
+              {description}
+            </Text>
+          </Flex.Item>
+        )}
+      </Flex>
+    </Flex.Item>
+  </Flex>
+);
 
 export const DropdownItem = ({
   className,
@@ -47,7 +88,7 @@ export const Dropdown = ({
   className,
   children,
   triggerLabel,
-  triggerIcon = ChevronDownIcon,
+  TriggerIcon = ChevronDownIcon,
   triggerClassName,
   showImmediately = false,
   withRoundedCorners = true,
@@ -60,8 +101,6 @@ export const Dropdown = ({
     setIsOpen,
   ]);
 
-  const TriggerIcon = triggerIcon;
-
   const rootClasses = cx(
     "c-dropdown-container",
     "u-display--inline-flex",
@@ -70,7 +109,6 @@ export const Dropdown = ({
 
   const dropdownClasses = cx(
     "c-dropdown",
-    "u-position-absolute",
     "u-position-absolute",
     "u-padding--none",
     "u-margin-top--sm",
@@ -99,7 +137,7 @@ export const Dropdown = ({
             <Text className="u-margin--none">{triggerLabel}</Text>
           </Flex.Item>
         )}
-        {triggerIcon && (
+        {TriggerIcon && (
           <Flex.Item>
             <TriggerIcon />
           </Flex.Item>
