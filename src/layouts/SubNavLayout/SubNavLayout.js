@@ -51,6 +51,7 @@ export const SubNavLayout = ({ links }: TProps) => {
               inputClassName="u-width--full"
               placeholder="Search"
               type="text"
+              value=""
             />
           </div>
 
