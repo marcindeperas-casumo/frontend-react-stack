@@ -8,6 +8,7 @@ import * as Icons from "@casumo/cmp-icons";
 import { useTranslations } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
+import { leftPaddingClasses } from "Components/GameListHorizontal/constants";
 import "./GameBrowserSets.scss";
 
 const GameSetChip = ({
@@ -58,10 +59,9 @@ export const GameBrowserSets = (props: Props) => {
     "u-padding-top--lg",
     "u-padding-top@mobile",
     "u-padding-top@phablet",
-    "u-padding-x--md",
-    "u-padding-x--none@desktop",
     "u-overflow-x--auto",
     "u-overflow-scrolling--touch",
+    leftPaddingClasses,
   ];
 
   const topPageBottomPaddings = [

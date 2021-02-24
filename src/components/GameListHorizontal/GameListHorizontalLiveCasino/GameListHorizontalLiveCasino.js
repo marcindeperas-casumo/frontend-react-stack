@@ -7,6 +7,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 // __FIX__ Fix this import as well.
 import { LiveCasinoCardContainer as LiveCasinoCard } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import * as A from "Types/apollo";
 import "./GameListHorizontalLiveCasino.scss";
 
@@ -43,34 +44,32 @@ export const GameListHorizontalLiveCasino = ({
   };
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <ScrollableList
-            itemClassName="c-live-casino-card u-margin-bottom--sm"
-            itemRenderer={i => (
-              <LiveCasinoCard game={games[i]} playNowText={playNowText} />
-            )}
-            items={games}
-            seeMoreText={seeMoreText}
-            seeMoreUrl={seeMoreUrl}
-            title={name}
-          />
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            title={name}
-            itemCount={games.length}
-            itemRenderer={itemRenderer}
-            itemControlClass="c-scrollable-list-paginated__live_casino-button"
-            tileHeight={305}
-            seeMore={{
-              text: seeMoreText,
-              url: seeMoreUrl,
-            }}
-          />
-        </Desktop>
-      </div>
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        <ScrollableList
+          itemClassName="c-live-casino-card u-margin-bottom--sm"
+          itemRenderer={i => (
+            <LiveCasinoCard game={games[i]} playNowText={playNowText} />
+          )}
+          items={games}
+          seeMoreText={seeMoreText}
+          seeMoreUrl={seeMoreUrl}
+          title={name}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          title={name}
+          itemCount={games.length}
+          itemRenderer={itemRenderer}
+          itemControlClass="c-scrollable-list-paginated__live_casino-button"
+          tileHeight={305}
+          seeMore={{
+            text: seeMoreText,
+            url: seeMoreUrl,
+          }}
+        />
+      </Desktop>
     </div>
   );
 };

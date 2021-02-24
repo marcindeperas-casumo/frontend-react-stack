@@ -2,14 +2,10 @@
 import * as React from "react";
 import { times } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
-
-const defaultClassNames = `
-  u-padding-top--lg
-  u-padding-top--xlg@tablet
-  u-padding-top--xlg@desktop
-  u-padding-left--md
-  u-padding-left--3xlg@tablet
-`;
+import {
+  leftPaddingClasses,
+  topMarginClasses,
+} from "Components/GameListHorizontal/constants";
 
 type Props = {
   itemWidth: number,
@@ -31,7 +27,7 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
     cornerRadius: 8,
     display: "tiles",
     title: true,
-    className: defaultClassNames,
+    className: `o-wrapper ${leftPaddingClasses} ${topMarginClasses}`,
   };
 
   get itemsPos(): Array<number> {
