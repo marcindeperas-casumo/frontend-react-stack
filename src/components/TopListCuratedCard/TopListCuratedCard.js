@@ -1,8 +1,10 @@
 // @flow
 import * as React from "react";
+import cx from "classnames";
 // __FIX__ Why can't it resolve "Components/CuratedCard"?
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 import { MARKETS } from "Src/constants";
+import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 
 export const CURATED_COMPONENT_GENERAL_SLUG = "welcome-offer-test";
 export const CURATED_COMPONENT_JP_CASHBACK_SLUG =
@@ -48,7 +50,12 @@ export const TopListCuratedCard = ({
     : normalizedSlug;
 
   return (
-    <div className="u-margin-top--md u-margin-top--none@desktop u-margin-x--md@mobile u-margin-x--3xlg">
+    <div
+      className={cx(
+        "u-margin-top--md u-margin-top--none@desktop",
+        xPaddingClasses
+      )}
+    >
       <div className="o-wrapper u-overflow--hidden t-border-r--md">
         <CuratedCard slug={computedSlug} />
       </div>
