@@ -26,6 +26,7 @@ import {
   useSetScrollPosition,
 } from "Components/Router/GameBrowser";
 import { GameRow, GameRowText } from "Components/GameRow";
+import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 import { GameListPageQuery } from "./GameListPage.graphql";
 import { GameListPageFilters } from "./GameListPageFilters";
 import { GameListPageSort } from "./GameListPageSort";
@@ -142,7 +143,7 @@ export function GameListPage({ set }: Props) {
           numberOfGames={data?.getGamesPaginated.gamesCount || 0}
         />
         <div
-          className={classNames("o-wrapper u-padding--md@mobile", {
+          className={classNames("u-padding--md@mobile", {
             "t-background-white": isMobile(),
           })}
         >
@@ -191,7 +192,8 @@ export function GameListPage({ set }: Props) {
         activeFilters={filters}
         numberOfGames={data?.getGamesPaginated.gamesCount || 0}
       />
-      <div className="o-wrapper">
+
+      <div className={classNames("o-wrapper", xPaddingClasses)}>
         <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
           {topSection}
         </div>

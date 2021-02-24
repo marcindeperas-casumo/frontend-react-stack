@@ -7,6 +7,8 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileExclusive } from "Components/GameTileExclusive";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
+import { exclusiveTileHeight } from "Src/constants";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import "./GameListHorizontalExclusive.scss";
 
 export type Props = {
@@ -31,25 +33,23 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
   };
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <ScrollableList
-            itemClassName="c-exclusive-game"
-            itemRenderer={i => <GameTileExclusive game={games[i]} />}
-            items={games}
-            title={name}
-          />
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            title={name}
-            itemCount={games.length}
-            itemRenderer={itemRenderer}
-            tileHeight={300}
-          />
-        </Desktop>
-      </div>
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        <ScrollableList
+          itemClassName="c-exclusive-game"
+          itemRenderer={i => <GameTileExclusive game={games[i]} />}
+          items={games}
+          title={name}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          title={name}
+          itemCount={games.length}
+          itemRenderer={itemRenderer}
+          tileHeight={exclusiveTileHeight}
+        />
+      </Desktop>
     </div>
   );
 };
