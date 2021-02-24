@@ -54,11 +54,10 @@ export const Dropdown = ({
     "c-dropdown",
     "u-position-absolute",
     "u-margin-top--md",
-    "t-background-red-30",
-    "t-border-r--sm",
+    "t-background-white",
     `o-inset-${anchorPosition}--none`,
     {
-      "t-border-radius-sm": withRoundedCorners,
+      "t-border-r--sm": withRoundedCorners,
     },
     className
   );
