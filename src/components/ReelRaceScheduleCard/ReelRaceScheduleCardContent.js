@@ -14,7 +14,7 @@ import {
 import { interpolate, noop } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { launchGame } from "Services/LaunchGameService";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import DangerousHtml from "Components/DangerousHtml";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";

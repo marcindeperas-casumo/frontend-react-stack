@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import cx from "classnames";
 import { timeRemainingBeforeStart } from "Utils";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { RACE_STATE } from "Models/reelRaces";
 
 const THIRTY_MINUTES = 30 * 60 * 1000;

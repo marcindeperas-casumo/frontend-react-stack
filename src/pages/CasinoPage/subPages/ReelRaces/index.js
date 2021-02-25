@@ -1,2 +1,2 @@
 // @flow
-export { ReelRacesPage } from "./ReelRaces";
+export { ReelRaces as ReelRacesPage } from "./ReelRaces";

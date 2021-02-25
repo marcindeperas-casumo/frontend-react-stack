@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
-import { ReelRacesPageTabs } from "Components/ReelRacesPage/ReelRacesPageTabs";
-import { ReelRacesPageTabSchedule } from "Components/ReelRacesPage/ReelRacesPageTabSchedule";
-import { ReelRacesPageTabPrevious } from "Components/ReelRacesPage/ReelRacesPageTabPrevious";
-import { t, reelRacesSchedule, reelRacesPrevious } from "./__mocks__";
+import { useTranslations } from "Utils/hooks";
+import ReelRacesBanner from "Components/ReelRacesBanner";
+import { ReelRacesPageTabScheduleContainer } from "Components/ReelRacesPage/ReelRacesPageTabScheduleContainer";
+import { ReelRacesPageTabPreviousContainer } from "Components/ReelRacesPage/ReelRacesPageTabPreviousContainer";
+import { ReelRacesPageTabs } from "./ReelRacesPageTabs";
 
 export type ReelRacesContentPage = {
   schedule_tab_title: string,
@@ -24,11 +25,15 @@ export type ReelRacesContentPage = {
   leaderboard_rank: string,
 };
 
-export function ReelRaces() {
+export function ReelRacesPageContainer() {
+  const t = useTranslations<ReelRacesContentPage>(
+    "mobile.tournament-campaigns"
+  );
   const [activeTab, setActiveTab] = React.useState("SCHEDULE");
 
   return (
     <>
+      <ReelRacesBanner />
       <ReelRacesPageTabs
         t={t}
         activeTab={activeTab}
@@ -37,10 +42,10 @@ export function ReelRaces() {
 
       <div className="u-content-width--tablet-landscape u-padding-y--md">
         {activeTab === "SCHEDULE" && (
-          <ReelRacesPageTabSchedule reelRaces={reelRacesSchedule} t={t} />
+          <ReelRacesPageTabScheduleContainer t={t} />
         )}
         {activeTab === "PREVIOUS" && (
-          <ReelRacesPageTabPrevious reelRaces={reelRacesPrevious} t={t} />
+          <ReelRacesPageTabPreviousContainer t={t} />
         )}
       </div>
     </>

@@ -8,7 +8,7 @@ import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils/utils";
 
 type Props = {

@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
 
