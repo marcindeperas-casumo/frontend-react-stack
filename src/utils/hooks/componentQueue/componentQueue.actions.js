@@ -1,10 +1,10 @@
 // @flow
 import type { Element } from "react";
-import { ACTION_TYPES } from "./ComponentQueue.constants";
+import { ACTION_TYPES } from "./componentQueue.constants";
 import type {
   TComponentQueueState,
   TComponentQueueConfigSettings,
-} from "./ComponentQueue.types";
+} from "./componentQueue.types";
 
 export type TQueueActionPayload = string | (() => Element<*>);
 
