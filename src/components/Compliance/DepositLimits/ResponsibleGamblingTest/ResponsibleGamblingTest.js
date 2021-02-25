@@ -5,24 +5,18 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { ProgressBar } from "Components/Progress";
+import type { TTranslations } from "./ResponsibleGamblingTest.types";
 
 type Props = {
-  t: {
-    yes: string,
-    no: string,
-    [number]: string,
-  },
+  t?: TTranslations,
   fetchQuestions: () => void,
   sendRGTestResult: boolean => void,
-  numberOfQuestions?: number,
 };
 
-export function ResponsibleGamblingTest({
-  t,
-  numberOfQuestions = 10,
-  ...props
-}: Props) {
+export function ResponsibleGamblingTest({ t, ...props }: Props) {
   const [{ answers, page }, next] = usePaging();
+  const numberOfQuestions = t?.questions.length ?? -1;
+
   React.useEffect(() => {
     props.fetchQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +27,7 @@ export function ResponsibleGamblingTest({
       props.sendRGTestResult(allResponsesEqualNo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answers, page]);
+  }, [answers, page, numberOfQuestions]);
 
   if (!t || page === numberOfQuestions) {
     return "Loading";
@@ -49,7 +43,7 @@ export function ResponsibleGamblingTest({
     >
       <ProgressBar progress={progress} />
       <Text size="xlg" data-test-id="txt">
-        {t[page + 1]}
+        {t.questions[page].question}
       </Text>
       <Flex>
         <Flex.Block>
@@ -69,7 +63,7 @@ export function ResponsibleGamblingTest({
             data-test-id="buttonNo"
             onClick={() => next(0)}
           >
-            {t.no}
+            {t.questions[page].answer}
           </ButtonSecondary>
         </Flex.Block>
       </Flex>
