@@ -26,6 +26,7 @@ export type TDropdownProps = {
   children: React.Node,
   triggerLabel?: string,
   TriggerIcon?: React.StatelessFunctionalComponent<any>,
+  triggerClasName?: string,
   showImmediately?: boolean,
   withRoundedCorners?: boolean,
   anchorPosition?: "left" | "right",
