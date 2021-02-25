@@ -5,36 +5,27 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
-import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
 import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
 import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
-import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
   t: ReelRacesContentPage,
   expanded: boolean,
+  optInForReelRace: () => void,
 };
 
-export function ReelRaceScheduleCard({ reelRace, t, expanded = false }: Props) {
+export function ReelRaceScheduleCard({
+  reelRace,
+  t,
+  expanded = false,
+  optInForReelRace = () => {},
+}: Props) {
   const [open, setOpen] = React.useState(expanded);
-  const [optInForReelRace] = useMutation(ReelRaceOptInMutation, {
-    variables: {
-      id: reelRace.id,
-    },
-    optimisticResponse: {
-      __typename: "Mutation",
-      optInForReelRace: {
-        __typename: "ReelRace",
-        id: reelRace.id,
-        optedIn: true,
-      },
-    },
-  });
   const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
