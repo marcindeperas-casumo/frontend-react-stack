@@ -1,13 +1,15 @@
 // @flow
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-export const useDropdown = (initialState: boolean = false) => {
-  const dropdownRef = useRef(null);
+export const useDropdown = (
+  initialState: boolean = false,
+  ref: React.Ref<any>
+) => {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
 
   useEffect(() => {
     const onClick = (event: SyntheticEvent<HTMLElement>) => {
-      if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+      if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
       setIsOpen(!isOpen);
@@ -20,7 +22,7 @@ export const useDropdown = (initialState: boolean = false) => {
     return () => {
       window.removeEventListener("click", onClick);
     };
-  }, [isOpen, dropdownRef]);
+  }, [isOpen, ref]);
 
   return {
     isOpen,

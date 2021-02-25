@@ -110,11 +110,8 @@ export const Dropdown = ({
   anchorPosition = "right",
 }: TDropdownProps) => {
   const dropdownRef = React.useRef(null);
-  const { isOpen, setIsOpen } = useDropdown(showImmediately);
-  const togggleDropdown = React.useCallback(() => setIsOpen(!isOpen), [
-    isOpen,
-    setIsOpen,
-  ]);
+  const { isOpen, setIsOpen } = useDropdown(showImmediately, dropdownRef);
+  const togggleDropdown = setIsOpen(currentIsOpen => !currentIsOpen);
 
   const rootClasses = cx(
     "c-dropdown-container",
