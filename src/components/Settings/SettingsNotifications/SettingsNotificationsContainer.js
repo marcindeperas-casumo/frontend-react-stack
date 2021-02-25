@@ -17,7 +17,7 @@ export interface NotificationTranslations {
 }
 
 export function SettingsNotificationsContainer() {
-  const { isDGOJ } = useJurisdiction();
+  const { isDGOJ, isGGL } = useJurisdiction();
   const { data, error, loading, refetch } = useQuery<
     A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
@@ -37,7 +37,7 @@ export function SettingsNotificationsContainer() {
     <SettingsNotifications
       player={data.player}
       labels={notificationTranslations}
-      isDGOJ={isDGOJ}
+      isRealityCheckShown={!(isGGL || isDGOJ)}
     />
   );
 }

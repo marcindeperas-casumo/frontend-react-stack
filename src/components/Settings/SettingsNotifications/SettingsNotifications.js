@@ -14,7 +14,7 @@ import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
   labels: NotificationTranslations,
-  isDGOJ: boolean,
+  isRealityCheckShown: boolean,
 };
 
 export class SettingsNotifications extends PureComponent<Props> {
@@ -32,7 +32,7 @@ export class SettingsNotifications extends PureComponent<Props> {
         in_game_updates_off_label: inGameSessionUpdatesOffLabel,
         in_game_updates_options_label: inGameSessionUpdatesFrequencyLabel,
       },
-      isDGOJ,
+      isRealityCheckShown,
     } = this.props;
 
     return (
@@ -40,7 +40,7 @@ export class SettingsNotifications extends PureComponent<Props> {
         <div className="t-elevation--30@tablet t-elevation--30@desktop">
           <WithdrawalNotificationsContainer />
 
-          {!isDGOJ && (
+          {isRealityCheckShown && (
             <RealityCheckField
               enabled={canChangeInterval}
               link="/player/settings/reality-check"
