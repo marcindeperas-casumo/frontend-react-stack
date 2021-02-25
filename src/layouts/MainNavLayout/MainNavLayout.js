@@ -19,8 +19,8 @@ type TProps = {
 const MainDropdown = () => (
   <Dropdown>
     {dropdownItems.map((item, i) => (
-      <DropdownItem withBottomBorder={i === 0}>
-        <DropdownItemContent key={i} {...item} />
+      <DropdownItem key={i} withBottomBorder={i === 0}>
+        <DropdownItemContent {...item} />
       </DropdownItem>
     ))}
   </Dropdown>
