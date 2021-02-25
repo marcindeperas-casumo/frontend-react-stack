@@ -1,5 +1,5 @@
 // @flow
-import React, { useCallback, useRef } from "react";
+import * as React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
@@ -12,7 +12,6 @@ export type TDropdownItemContentProps = {
   Icon?: React.StatelessFunctionalComponent<any>,
   DescriptionIcon?: React.StatelessFunctionalComponent<any>,
   label: string,
-  linkTo?: string,
   description?: string,
 };
 
@@ -26,7 +25,7 @@ export type TDropdownProps = {
   className?: string,
   children: React.Node,
   triggerLabel?: string,
-  triggerIcon?: string,
+  TriggerIcon?: React.StatelessFunctionalComponent<any>,
   showImmediately?: boolean,
   withRoundedCorners?: boolean,
   anchorPosition?: "left" | "right",
@@ -37,7 +36,7 @@ export const DropdownItemContent = ({
   DescriptionIcon,
   label,
   description,
-}) => (
+}: TDropdownItemContentProps) => (
   <Flex align="center" spacing="md">
     {Icon && (
       <Flex.Item>
@@ -94,9 +93,9 @@ export const Dropdown = ({
   withRoundedCorners = true,
   anchorPosition = "right",
 }: TDropdownProps) => {
-  const dropdownRef = useRef(null);
+  const dropdownRef = React.useRef(null);
   const { isOpen, setIsOpen } = useDropdown(showImmediately);
-  const togggleDropdown = useCallback(() => setIsOpen(!isOpen), [
+  const togggleDropdown = React.useCallback(() => setIsOpen(!isOpen), [
     isOpen,
     setIsOpen,
   ]);
