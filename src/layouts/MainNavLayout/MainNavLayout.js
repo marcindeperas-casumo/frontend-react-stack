@@ -1,37 +1,30 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import {
-  CasinoTabSelectedIcon,
-  CasumoProfileIcon,
-  FootballIcon,
-} from "@casumo/cmp-icons";
 import { Navbar } from "Components/Navbar";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownItemContent,
+} from "Components/Dropdown";
 import { ContentWrapper } from "Components/ContentWrapper";
-
+import { navItems, dropdownItems } from "./__mocks__";
 import "./MainNavLayout.scss";
 
 type TProps = {
   children: React.Node,
 };
 
-const items = [
-  {
-    icon: CasinoTabSelectedIcon,
-    label: "Casino",
-    to: "/casino",
-  },
-  {
-    icon: FootballIcon,
-    label: "Sports",
-    to: "/sports",
-  },
-  {
-    icon: CasumoProfileIcon,
-    label: "Samuel L. Jackson",
-    to: "/profile",
-  },
-];
+// @todo: need to add support for links/onClick
+const MainDropdown = () => (
+  <Dropdown>
+    {dropdownItems.map((item, i) => (
+      <DropdownItem withBottomBorder={i === 0}>
+        <DropdownItemContent key={i} {...item} />
+      </DropdownItem>
+    ))}
+  </Dropdown>
+);
 
 export const MainNavLayout = ({ children }: TProps) => {
   return (
@@ -39,8 +32,9 @@ export const MainNavLayout = ({ children }: TProps) => {
       <ContentWrapper className="c-main-nav-layout__nav u-height--lg u-height--4xlg@tablet u-height--5xlg@desktop u-padding-y--md">
         <Flex justify="space-between" align="center" className="u-height--full">
           <Flex.Item>Logo</Flex.Item>
-          <Flex.Item>
-            <Navbar items={items}></Navbar>
+          <Flex.Item className="o-flex--horizontal o-flex-align--center">
+            <Navbar items={navItems}></Navbar>
+            <MainDropdown />
           </Flex.Item>
         </Flex>
       </ContentWrapper>

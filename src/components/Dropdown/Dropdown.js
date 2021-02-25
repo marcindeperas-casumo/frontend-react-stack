@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
+import { Link } from "@reach/router";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
@@ -19,6 +20,7 @@ export type TDropdownItemProps = {
   className?: string,
   children: React.Node,
   withBottomBorder?: boolean,
+  onClick?: () => void,
 };
 
 export type TDropdownProps = {
@@ -31,6 +33,17 @@ export type TDropdownProps = {
   withRoundedCorners?: boolean,
   anchorPosition?: "left" | "right",
 };
+
+export const DropdownIconLink = ({
+  to,
+  ...rest
+}: TDropdownItemContentProps & {
+  to: string,
+}) => (
+  <Link to={to}>
+    <DropdownItemContent {...rest} />
+  </Link>
+);
 
 export const DropdownItemContent = ({
   Icon,
@@ -69,6 +82,7 @@ export const DropdownItem = ({
   className,
   children,
   withBottomBorder = false,
+  onClick,
 }: TDropdownItemProps) => {
   return (
     <li
@@ -78,6 +92,7 @@ export const DropdownItem = ({
         { "t-border-bottom": withBottomBorder },
         className
       )}
+      onClick={onClick}
     >
       {children}
     </li>
