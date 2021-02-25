@@ -63,17 +63,17 @@ export function validate(
         }),
       });
     }
-    // if (
-    //   formProps.responsibleGamblingTestRequired &&
-    //   !formProps.responsibleGamblingTest
-    //     .responsibleGamblingQuestionnaireAttemptAllowed
-    // ) {
-    //   return interpolate(
-    //     t.input_validation
-    //       .has_to_be_lower_after_responsible_gambling_test_failed,
-    //     replacements
-    //   );
-    // }
+    if (
+      formProps.responsibleGamblingTestRequired &&
+      !formProps.responsibleGamblingTest
+        .responsibleGamblingQuestionnaireAttemptAllowed
+    ) {
+      return interpolate(
+        t.input_validation
+          .has_to_be_lower_after_responsible_gambling_test_failed,
+        replacements
+      );
+    }
   }
 
   if (formProps.pendingLimitChanges?.value) {
