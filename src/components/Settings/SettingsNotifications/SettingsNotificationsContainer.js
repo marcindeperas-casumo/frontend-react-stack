@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
-import { useTranslations, useJurisdiction } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
@@ -17,7 +17,6 @@ export interface NotificationTranslations {
 }
 
 export function SettingsNotificationsContainer() {
-  const { isDGOJ, isGGL } = useJurisdiction();
   const { data, error, loading, refetch } = useQuery<
     A.PLAYER_CONTACT_SETTINGS_QUERY,
     _
@@ -37,7 +36,6 @@ export function SettingsNotificationsContainer() {
     <SettingsNotifications
       player={data.player}
       labels={notificationTranslations}
-      isRealityCheckShown={!(isGGL || isDGOJ)}
     />
   );
 }
