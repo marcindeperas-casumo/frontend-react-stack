@@ -1,11 +1,9 @@
 // @flow
 import { useState, useEffect, useRef } from "react";
 
-const INITIAL_STATE = false;
-
-export const useDropdown = (initialState: boolean = INITIAL_STATE) => {
+export const useDropdown = (initialState: boolean = false) => {
   const dropdownRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(initialState);
+  const [isOpen, setIsOpen] = useState<boolean>(initialState);
 
   useEffect(() => {
     const onClick = (event: SyntheticEvent<HTMLElement>) => {
