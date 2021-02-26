@@ -11,8 +11,8 @@ import { useDropdown } from "./Dropdown.hooks";
 import "./Dropdown.scss";
 
 export type TDropdownItemContentProps = {
-  Icon?: React.StatelessFunctionalComponent<{ size: iconSizes }>,
-  DescriptionIcon?: React.StatelessFunctionalComponent<{ size: iconSizes }>,
+  Icon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
+  DescriptionIcon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
   label: string,
   description?: string,
 };
@@ -28,7 +28,7 @@ export type TDropdownProps = {
   className?: string,
   children: React.Node,
   triggerLabel?: string,
-  TriggerIcon?: React.StatelessFunctionalComponent<{ size: iconSizes }>,
+  TriggerIcon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
   triggerClassName?: string,
   showImmediately?: boolean,
   withRoundedCorners?: boolean,
