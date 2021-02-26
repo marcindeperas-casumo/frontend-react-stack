@@ -34,7 +34,7 @@ export const WalletCard = React.memo<TProps>((props: TProps) => {
   } = props;
 
   return (
-    <Panel roundedTop roundedBottom>
+    <Panel>
       <Icon className="u-width--3xlg u-margin-y--md u-margin-x" />
       {firstDeposit ? (
         <>

@@ -2,8 +2,8 @@
 export {
   DATA_STRUCTURE,
   ACTION_TYPES as QUEUE_ACTION_TYPES,
-} from "./ComponentQueue.constants";
-export type { TQueueAction } from "./ComponentQueue.actions";
+} from "./componentQueue.constants";
+export type { TQueueAction } from "./componentQueue.actions";
 export type {
   TComponentQueueItem,
   TComponentQueueState,
@@ -11,6 +11,6 @@ export type {
   TComponentQueueHookParameters,
   TComponentQueueItemContent,
   TComponentQueueConfigSettings,
-} from "./ComponentQueue.types";
-export { useComponentQueueState } from "./ComponentQueue.hooks";
-export { queueReducer } from "./ComponentQueue.reducer";
+} from "./componentQueue.types";
+export { useComponentQueueState } from "../useComponentQueueState";
+export { queueReducer } from "./componentQueue.reducer";
