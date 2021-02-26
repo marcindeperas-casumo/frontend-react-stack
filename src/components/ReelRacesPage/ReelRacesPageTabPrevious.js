@@ -12,7 +12,7 @@ type Props = {
 export function ReelRacesPageTabPrevious({ t, reelRaces }: Props) {
   return (
     <>
-      {reelRaces.map((reelRace, i) => (
+      {reelRaces.map(reelRace => (
         <ReelRacePreviousCard key={reelRace.id} reelRace={reelRace} t={t} />
       ))}
     </>
