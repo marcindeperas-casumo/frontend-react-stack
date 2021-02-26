@@ -4,7 +4,6 @@ import type {
   AllLimitsOnlyValues,
   LimitLock,
   DepositKinds,
-  ResponsibleGamblingTest,
   DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 
@@ -33,8 +32,7 @@ export type Translations = {
 export type FormProps = {
   currency: string,
   locale: string,
-  responsibleGamblingTestRequired?: boolean,
-  responsibleGamblingTest: ResponsibleGamblingTest,
+  responsibleGamblingTestCanBeTaken: boolean,
   limits: AllLimits,
   limitChanges?: AllLimitsOnlyValues,
   initiallyVisible: DepositKinds,

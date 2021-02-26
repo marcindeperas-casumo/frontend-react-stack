@@ -65,14 +65,12 @@ describe("Models/playOkay/depositLimits/.selectors", () => {
         playOkay: {
           depositLimits: {
             limits: {
-              previouslyIncreased: true,
               daily: 1000,
               monthly: 4000,
               currency: "EUR",
               weekly: 2000,
             },
             remaining: {
-              previouslyIncreased: true,
               daily: 500,
               monthly: 2000,
               currency: "EUR",
@@ -110,7 +108,6 @@ describe("Models/playOkay/depositLimits/.selectors", () => {
         playOkay: {
           depositLimits: {
             limits: {
-              previouslyIncreased: true,
               daily: 1000,
               monthly: 4000,
               currency: "EUR",
