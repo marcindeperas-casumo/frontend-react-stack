@@ -43,7 +43,7 @@ const SupportRow = ({ cards }: SupportRowProps) => {
     <Flex direction={isMobile ? "vertical" : "horizontal"} justify="center">
       {cards.map(card => (
         <Flex.Item>
-          <Panel className="u-text-align-center" roundedTop roundedBottom>
+          <Panel className="u-text-align-center">
             <SupportCard
               Icon={card.Icon}
               linkHref="chat"

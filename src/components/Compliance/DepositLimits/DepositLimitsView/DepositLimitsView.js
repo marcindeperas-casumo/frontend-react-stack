@@ -3,11 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { sendResponsibleGamblingTest } from "Api/api.depositLimits";
-import {
-  diffLimits,
-  getSpecificKinds,
-  hasRule,
-} from "Models/playOkay/depositLimits";
+import { diffLimits, getSpecificKinds } from "Models/playOkay/depositLimits";
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverviewContainer } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsCancelAdjustment } from "Components/Compliance/DepositLimits/DepositLimitsCancelAdjustment";
@@ -22,7 +18,6 @@ import type {
   DepositKinds,
   DepositLimitPreadjust,
   LimitLock,
-  ResponsibleGamblingTest,
   DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import bridge from "Src/DurandalReactBridge";
@@ -35,7 +30,6 @@ import "./styles.scss";
 type Props = {
   limits: AllLimits,
   preadjust: DepositLimitPreadjust,
-  responsibleGamblingTest: ResponsibleGamblingTest,
   lock: ?LimitLock,
   undoable: ?boolean,
   remaining: AllLimitsOnlyValues,
@@ -145,11 +139,9 @@ export function DepositLimitsView(props: Props) {
         pendingLimitChanges={props.pendingLimitChanges}
         currency={props.currency}
         locale={props.locale}
-        responsibleGamblingTestRequired={hasRule(
-          "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-          props.preadjust.rules
-        )}
-        responsibleGamblingTest={props.responsibleGamblingTest}
+        responsibleGamblingTestCanBeTaken={
+          props.preadjust.responsibleGamblingTestCanBeTaken
+        }
         limitChanges={limitChanges}
         limits={props.limits}
         initiallyVisible={depositKind}
@@ -163,7 +155,6 @@ export function DepositLimitsView(props: Props) {
         t={props.t}
         currency={props.currency}
         locale={props.locale}
-        responsibleGamblingTest={props.responsibleGamblingTest}
         preadjust={props.preadjust}
         currentLimits={props.limits}
         newLimits={newLimits}
