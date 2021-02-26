@@ -5,14 +5,13 @@ import { Link } from "@reach/router";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
-import type { iconSizes } from "@casumo/cudl-react-prop-types";
 import { useDropdown } from "./Dropdown.hooks";
 
 import "./Dropdown.scss";
 
 export type TDropdownItemContentProps = {
-  Icon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
-  DescriptionIcon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
+  Icon?: React.StatelessFunctionalComponent<any>,
+  DescriptionIcon?: React.StatelessFunctionalComponent<any>,
   label: string,
   description?: string,
 };
@@ -28,7 +27,7 @@ export type TDropdownProps = {
   className?: string,
   children: React.Node,
   triggerLabel?: string,
-  TriggerIcon?: React.StatelessFunctionalComponent<{ size?: iconSizes }>,
+  TriggerIcon?: React.StatelessFunctionalComponent<any>,
   triggerClassName?: string,
   showImmediately?: boolean,
   withRoundedCorners?: boolean,
@@ -110,7 +109,7 @@ export const Dropdown = ({
   withRoundedCorners = true,
   anchorPosition = "right",
 }: TDropdownProps) => {
-  const dropdownRef = React.useRef(null);
+  const dropdownRef = React.useRef<null | HTMLElement>(null);
   const { isOpen, setIsOpen } = useDropdown(showImmediately, dropdownRef);
   const togggleDropdown = React.useCallback(() => setIsOpen(!isOpen), [
     isOpen,
