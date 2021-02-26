@@ -1,13 +1,13 @@
 // @flow
-import { useState, useEffect } from "react";
+import * as React from "react";
 
 export const useDropdown = (
   initialState: boolean = false,
   ref: React.Ref<any>
 ) => {
-  const [isOpen, setIsOpen] = useState<boolean>(initialState);
+  const [isOpen, setIsOpen] = React.useState<boolean>(initialState);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onClick = (event: SyntheticEvent<HTMLElement>) => {
       if (!ref.current || ref.current.contains(event.target)) {
         return;
