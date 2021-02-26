@@ -23,7 +23,7 @@ export const getWelcomeOfferSlug = (welcomeOfferId: string, market: string) => {
   return CURATED_COMPONENT_GENERAL_SLUG;
 };
 
-type Props = {
+type TProps = {
   /** The slug of the curated card to render. */
   card: string | Array<string>,
   /** A boolean indicating if the player has deposited yet or not. */
@@ -42,7 +42,7 @@ export const TopListCuratedCard = ({
   market,
   welcomeOfferId,
   enforceOriginalSlug = false,
-}: Props) => {
+}: TProps) => {
   const normalizedSlug = Array.isArray(card) ? card[0] : card;
   const shouldShowWelcomeOffer = !hasDeposited && !enforceOriginalSlug;
   const computedSlug = shouldShowWelcomeOffer
