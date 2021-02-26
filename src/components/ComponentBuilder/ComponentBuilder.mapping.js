@@ -1,4 +1,8 @@
 // TODO: Make these components lazy-loaded
+import {
+  DefaultCuratedCard,
+  TopListCuratedCard,
+} from "Components/CuratedCard/Variants";
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
 import { MustDropJackpotsListContainer } from "Components/MustDropJackpotsList";
@@ -19,7 +23,6 @@ import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpot
 import { GameProvidersList } from "Components/GameProvidersList";
 import { ReelRacesList } from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
-import { TopListCuratedCard } from "Components/TopListCuratedCard";
 import {
   BlueRibbonChristmasContainer,
   BlueRibbonJackpotsWidgetPromotionPage,
@@ -31,6 +34,8 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST_HORIZONTAL: GameListHorizontalCMS,
   GAMES_LIST_VERTICAL: GameListVertical,
   GROUPED_LIST_HORIZONTAL: GameProvidersList,
+  CURATED_CARD_DEFAULT: DefaultCuratedCard,
+  CURATED_CARD_TOPLIST: TopListCuratedCard,
   CURATED_CARD: TopListCuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
