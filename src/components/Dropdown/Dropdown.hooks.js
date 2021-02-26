@@ -3,7 +3,7 @@ import * as React from "react";
 
 export const useDropdown = (
   initialState: boolean = false,
-  ref: React.Ref<any>
+  ref: React.Ref<HTMLElement>
 ) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(initialState);
 
