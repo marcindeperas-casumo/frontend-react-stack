@@ -10,8 +10,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         value: "1.limit.value",
       },
       undoable: true,
-      lock: false,
-      responsibleGamblingTest: undefined,
+      lock: null,
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
@@ -26,7 +25,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       history: undefined,
       pendingLimitChanges: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
     });
   });
 
@@ -57,7 +55,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           lock: undefined,
           preadjust: undefined,
           pendingLimitChanges: undefined,
-          responsibleGamblingTest: undefined,
           remaining: undefined,
           history: undefined,
         },
@@ -113,7 +110,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         },
         undoable: false,
         lock: null,
-        responsibleGamblingTest: undefined,
       },
     };
     expect(
@@ -152,7 +148,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       lock: null,
       preadjust: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
       pendingLimitChanges: undefined,
       undoable: false,
     });
@@ -172,7 +167,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 5e2,
                 monthly: 1e4,
                 currency: "EUR",
@@ -195,7 +189,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             },
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
@@ -217,7 +210,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             adjustment: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
@@ -229,7 +221,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             },
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 595,
                 monthly: 3e3,
                 currency: "EUR",
@@ -241,7 +232,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             undoable: false,
             limit: {
               value: {
-                previouslyIncreased: true,
                 daily: 666,
                 monthly: 3e3,
                 currency: "EUR",
@@ -321,7 +311,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       pendingLimitChanges: undefined,
       preadjust: undefined,
       remaining: undefined,
-      responsibleGamblingTest: undefined,
       undoable: undefined,
     });
   });

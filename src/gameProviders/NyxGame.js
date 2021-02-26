@@ -1,5 +1,6 @@
 // @flow
 import { BaseIframeGame } from "./BaseIframeGame";
+import { appendToGameUrl } from "./utils";
 
 export class NyxGame extends BaseIframeGame {
   get componentProps() {
@@ -9,7 +10,12 @@ export class NyxGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}${!isEmbedded ? `&lobbyurl=${encodedLobbyUrl}` : ""}`,
+        src: !isEmbedded
+          ? appendToGameUrl({
+              url,
+              paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+            })
+          : "",
       };
     }
 

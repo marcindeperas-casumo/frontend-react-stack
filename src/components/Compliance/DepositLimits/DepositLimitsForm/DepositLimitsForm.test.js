@@ -19,11 +19,7 @@ const props = {
   },
   pendingLimitChanges: undefined,
   applyLimitsChanges: () => {},
-  responsibleGamblingTest: {
-    responsibleGamblingQuestionnaireStatus: "SUCCESS",
-    responsibleGamblingQuestionnaireLastAttempt: null,
-    responsibleGamblingQuestionnaireAttemptAllowed: false,
-  },
+  responsibleGamblingTestCanBeTaken: false,
   fetchTranslations: () => {},
 };
 

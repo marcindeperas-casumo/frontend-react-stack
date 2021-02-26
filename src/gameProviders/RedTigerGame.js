@@ -2,6 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
+import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: { type: "popupDisplayed" },
@@ -36,7 +37,12 @@ export class RedTigerGame extends BaseIframeGame {
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}${!isEmbedded ? `&lobbyUrl=${encodedLobbyUrl}` : ""}`,
+        src: !isEmbedded
+          ? appendToGameUrl({
+              url,
+              paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+            })
+          : "",
       };
     }
 

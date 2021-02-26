@@ -1,9 +1,10 @@
 import React from "react";
 import { GameTile } from "Components/GameTile";
+import { exclusiveTileHeight, exlusiveTileWidth } from "Src/constants";
 
 const EXCLUSIVE_GAME_TILE_IMGIX_OPTS = {
-  w: 188,
-  h: 280,
+  w: exlusiveTileWidth,
+  h: exclusiveTileHeight,
   fit: "crop",
 };
 export const GameTileExclusive = props => (
