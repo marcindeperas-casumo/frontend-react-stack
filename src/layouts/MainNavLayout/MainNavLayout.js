@@ -39,7 +39,7 @@ export const MainNavLayout = ({ children }: TProps) => {
         </Flex>
       </ContentWrapper>
       <div className="t-background-grey-0 c-main-nav-layout__content">
-        <ContentWrapper>{children}</ContentWrapper>
+        {children}
       </div>
     </div>
   );
