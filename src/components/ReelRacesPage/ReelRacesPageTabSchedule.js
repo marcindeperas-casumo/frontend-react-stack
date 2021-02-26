@@ -3,14 +3,15 @@ import React from "react";
 import { slice, concat } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
-import type { ReelRacesContentPage } from "./ReelRacesPageContainer";
+import * as A from "Types/apollo";
+import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
 
 const PAGE_LIMIT = 10;
 
 type Props = {
-  t: ?ReelRacesContentPage,
-  reelRaces: any,
+  t: ?TReelRacesContentPage,
+  reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
 };
 
 export function ReelRacesPageTabSchedule({ t, reelRaces = [] }: Props) {

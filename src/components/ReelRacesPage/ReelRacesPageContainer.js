@@ -6,7 +6,7 @@ import { ReelRacesPageTabScheduleContainer } from "Components/ReelRacesPage/Reel
 import { ReelRacesPageTabPreviousContainer } from "Components/ReelRacesPage/ReelRacesPageTabPreviousContainer";
 import { ReelRacesPageTabs } from "./ReelRacesPageTabs";
 
-export type ReelRacesContentPage = {
+export type TReelRacesContentPage = {
   schedule_tab_title: string,
   previous_winners_tab_title: string,
   mobile_promoted_race_title_single: string,
@@ -25,11 +25,13 @@ export type ReelRacesContentPage = {
   leaderboard_rank: string,
 };
 
+export type TReelRaceTabs = "SCHEDULE" | "PREVIOUS";
+
 export function ReelRacesPageContainer() {
-  const t = useTranslations<ReelRacesContentPage>(
+  const t = useTranslations<TReelRacesContentPage>(
     "mobile.tournament-campaigns"
   );
-  const [activeTab, setActiveTab] = React.useState("SCHEDULE");
+  const [activeTab, setActiveTab] = React.useState<TReelRaceTabs>("SCHEDULE");
 
   return (
     <>

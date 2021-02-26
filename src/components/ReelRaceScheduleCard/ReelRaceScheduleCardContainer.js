@@ -2,13 +2,13 @@
 import * as React from "react";
 import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
-  t: ReelRacesContentPage,
+  t: TReelRacesContentPage,
   expanded: boolean,
 };
 

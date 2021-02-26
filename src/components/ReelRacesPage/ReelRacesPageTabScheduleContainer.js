@@ -5,11 +5,11 @@ import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { RACE_STATE } from "Models/reelRaces";
 import { ReelRacesPageTabScheduleQuery } from "./ReelRacesPageTabScheduleContainer.graphql";
-import type { ReelRacesContentPage } from "./ReelRacesPageContainer";
+import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabSchedule } from "./ReelRacesPageTabSchedule";
 
 type Props = {
-  t: ?ReelRacesContentPage,
+  t: ?TReelRacesContentPage,
 };
 
 export function ReelRacesPageTabScheduleContainer({ t }: Props) {

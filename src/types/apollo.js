@@ -172,16 +172,28 @@ export type GameDetailsQueryVariables = {
 // GraphQL query operation: GameListQuery
 // ====================================================
 
+export type GameListQuery_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameListQuery_gamesList_games_lobby = {
+  bets: ?GameListQuery_gamesList_games_lobby_bets
+};
+
 export type GameListQuery_gamesList_games = {
-  isInMaintenance: boolean,
+  id: string,
   backgroundImage: string,
   logo: string,
   name: string,
   slug: string,
-  id: string,
-  liveCasinoId: ?string,
-  playBackground: string,
+  gameStudio: string,
   category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
+  lobby: ?GameListQuery_gamesList_games_lobby,
+  isInMaintenance: boolean,
 };
 
 export type GameListQuery_gamesList = {
@@ -371,6 +383,9 @@ export type GameListVerticalQuery_gamesBySlugs = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
   isInMaintenance: boolean,
 };
@@ -429,6 +444,9 @@ export type GameSearchQuery_gamesSearch_results = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameSearchQuery_gamesSearch_results_lobby,
   isInMaintenance: boolean,
 };
@@ -473,6 +491,9 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
@@ -590,6 +611,9 @@ export type JackpotsQuery_gamesList_games = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
@@ -677,6 +701,9 @@ export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
   isInMaintenance: boolean,
 };
@@ -760,9 +787,11 @@ export type MustDropJackpotsGamesListQuery_gamesList_games = {
   backgroundImage: string,
   logo: string,
   name: string,
-  gameStudio: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
   isInMaintenance: boolean,
 };
@@ -1014,6 +1043,9 @@ export type GameStudioQuery_gameStudio_games = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameStudioQuery_gameStudio_games_lobby,
   isInMaintenance: boolean,
 };
@@ -1156,6 +1188,7 @@ export type ReelRacesPageTabPreviousQuery_reelRaces = {
   startTime: BigInt,
   endTime: BigInt,
   formattedPrizes: Array<string>,
+  status: ?string,
   leaderboard: Array<ReelRacesPageTabPreviousQuery_reelRaces_leaderboard>,
 };
 
@@ -2173,6 +2206,7 @@ export type UserNavigation = {
   allLabel: string,
   editLabel: string,
   liveLabel: string,
+  allSportsLabel: string,
   sportsNavigation: Array<UserNavigation_sportsNavigation>,
 };
 
@@ -2678,7 +2712,6 @@ export type GameDetails_Game = {
   id: string,
   name: string,
   logo: string,
-  gameStudio: string,
   backgroundImage: string,
   slug: string,
   description: ?string,
@@ -2708,11 +2741,13 @@ export type GameRow_Game_lobby = {
 export type GameRow_Game = {
   id: string,
   backgroundImage: string,
-  gameStudio: string,
   logo: string,
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameRow_Game_lobby,
   isInMaintenance: boolean,
 };
@@ -2742,6 +2777,9 @@ export type GameSearch_Game = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?GameSearch_Game_lobby,
   isInMaintenance: boolean,
 };
@@ -2815,6 +2853,9 @@ export type Jackpots_Game = {
   name: string,
   slug: string,
   gameStudio: string,
+  category: ?string,
+  playBackground: string,
+  liveCasinoId: ?string,
   lobby: ?Jackpots_Game_lobby,
   isInMaintenance: boolean,
   jackpot: ?Jackpots_Game_jackpot,
@@ -3130,6 +3171,7 @@ export type ReelRacePreviousCard_ReelRace = {
   startTime: BigInt,
   endTime: BigInt,
   formattedPrizes: Array<string>,
+  status: ?string,
   leaderboard: Array<ReelRacePreviousCard_ReelRace_leaderboard>,
 };
 /* @flow */

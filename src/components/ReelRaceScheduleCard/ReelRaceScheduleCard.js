@@ -7,14 +7,14 @@ import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
-  t: ReelRacesContentPage,
+  t: TReelRacesContentPage,
   expanded: boolean,
   optInForReelRace: () => void,
 };

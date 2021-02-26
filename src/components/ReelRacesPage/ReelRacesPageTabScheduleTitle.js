@@ -4,16 +4,16 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import cx from "classnames";
 import { timeRemainingBeforeStart } from "Utils";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { RACE_STATE } from "Models/reelRaces";
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 const ONE_HOUR = 60 * 60 * 1000;
 
 type Props = {
-  t: ?ReelRacesContentPage,
+  t: ?TReelRacesContentPage,
   startTime: number,
-  status: string,
+  status: ?string,
 };
 
 export function ReelRacesPageTabScheduleTitle({ t, startTime, status }: Props) {
