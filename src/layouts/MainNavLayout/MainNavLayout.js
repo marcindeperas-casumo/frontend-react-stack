@@ -30,7 +30,7 @@ const MainDropdown = () => (
 export const MainNavLayout = ({ children }: TProps) => {
   return (
     <div className="c-main-nav-layout u-height--screen">
-      <ContentWrapper className="c-main-nav-layout__nav u-height--lg u-height--4xlg@tablet u-height--5xlg@desktop u-padding-y--md">
+      <ContentWrapper className="c-main-nav-layout__nav u-height--lg u-height--4xlg@tablet u-height--5xlg@desktop u-padding-y--md u-height--full t-background-white">
         <Flex justify="space-between" align="center" className="u-height--full">
           <TabletAndDesktop>
             <Flex.Block>Logo</Flex.Block>
