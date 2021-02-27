@@ -2,6 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { Navbar } from "Components/Navbar";
+import { TabletAndDesktop } from "Components/ResponsiveLayout";
 import {
   Dropdown,
   DropdownItem,
@@ -31,10 +32,14 @@ export const MainNavLayout = ({ children }: TProps) => {
     <div className="c-main-nav-layout u-height--screen">
       <ContentWrapper className="c-main-nav-layout__nav u-height--lg u-height--4xlg@tablet u-height--5xlg@desktop u-padding-y--md">
         <Flex justify="space-between" align="center" className="u-height--full">
-          <Flex.Item>Logo</Flex.Item>
+          <TabletAndDesktop>
+            <Flex.Block>Logo</Flex.Block>
+          </TabletAndDesktop>
           <Flex.Item className="o-flex--horizontal o-flex-align--center">
             <Navbar items={navItems}></Navbar>
-            <MainDropdown />
+            <TabletAndDesktop>
+              <MainDropdown />
+            </TabletAndDesktop>
           </Flex.Item>
         </Flex>
       </ContentWrapper>

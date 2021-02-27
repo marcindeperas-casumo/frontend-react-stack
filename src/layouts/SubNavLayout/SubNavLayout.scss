@@ -1,5 +1,21 @@
 .c-sub-nav-layout {
-  height: 80px;
+  height: 56px;
+
+  @include cudl-breakpoint(tablet) {
+    height: 72px;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    height: 80px;
+  }
+
+  &__search {
+    width: clamp(250px, 100%, 570px);
+  }
+
+  &__wallet {
+    width: clamp(250px, 100%, 570px);
+  }
 }
 
 .c-sub-nav-item--active::after {
