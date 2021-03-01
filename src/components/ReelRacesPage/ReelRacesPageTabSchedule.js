@@ -2,7 +2,7 @@
 import React from "react";
 import { slice, concat } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
+import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard";
 import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
