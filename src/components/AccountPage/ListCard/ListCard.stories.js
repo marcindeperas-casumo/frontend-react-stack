@@ -27,10 +27,10 @@ stories.add(
   "Default (mobile)",
   () => (
     <Wrapper>
-      <ListCard {...props} panelProps={{ roundedTop: true }}>
+      <ListCard {...props} panelProps={{ roundedBottom: false }}>
         mobile content
       </ListCard>
-      <ListCard {...props} panelProps={{ roundedBottom: true }}>
+      <ListCard {...props} panelProps={{ roundedTop: false }}>
         mobile content 2
       </ListCard>
     </Wrapper>
@@ -41,10 +41,10 @@ stories.add(
   "Default (tablet)",
   () => (
     <Wrapper>
-      <ListCard {...props} panelProps={{ roundedTop: true }}>
+      <ListCard {...props} panelProps={{ roundedBottom: false }}>
         tablet content
       </ListCard>
-      <ListCard {...props} panelProps={{ roundedBottom: true }}>
+      <ListCard {...props} panelProps={{ roundedTop: false }}>
         tablet content 2
       </ListCard>
     </Wrapper>
@@ -56,20 +56,10 @@ stories.add(
   () => (
     <Wrapper>
       <Flex.Item>
-        <ListCard
-          {...props}
-          panelProps={{ roundedTop: true, roundedBottom: true }}
-        >
-          desktop content
-        </ListCard>
+        <ListCard {...props}>desktop content</ListCard>
       </Flex.Item>
       <Flex.Item>
-        <ListCard
-          {...props}
-          panelProps={{ roundedTop: true, roundedBottom: true }}
-        >
-          desktop content 2
-        </ListCard>
+        <ListCard {...props}>desktop content 2</ListCard>
       </Flex.Item>
     </Wrapper>
   ),

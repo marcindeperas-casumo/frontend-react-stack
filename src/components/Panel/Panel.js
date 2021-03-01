@@ -12,8 +12,8 @@ type TProps = {
 export function Panel({
   className,
   children,
-  roundedTop,
-  roundedBottom,
+  roundedTop = true,
+  roundedBottom = true,
 }: TProps) {
   return (
     <div
