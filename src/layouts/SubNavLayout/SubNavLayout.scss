@@ -24,6 +24,8 @@
   bottom: -8px;
   content: "";
   height: 6px;
+  left: 50%;
   position: absolute;
+  transform: translateX(-50%);
   width: 6px;
 }
