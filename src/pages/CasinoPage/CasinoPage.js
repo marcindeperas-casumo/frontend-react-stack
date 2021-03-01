@@ -8,6 +8,7 @@ import {
   MustDropJackpotsPage,
   GameProviderGamesPage,
   LiveCasinoPage,
+  ReelRacesPage,
 } from "./subPages";
 
 export const CasinoPage = () => {
@@ -17,7 +18,7 @@ export const CasinoPage = () => {
       text: "Games",
     },
     {
-      to: "/casino/races",
+      to: "/casino/reel-races",
       text: "Races",
     },
   ];
@@ -30,6 +31,7 @@ export const CasinoPage = () => {
       <Link to="must-drop-jackpots">Must drop jackpots</Link>
       <Link to="live-casino">Live Casino</Link>
       <Router>
+        <ReelRacesPage path="/reel-races" />
         <CasinoSearchPage path="/search" />
         <CasinoListsPage path="/lists" />
         <MustDropJackpotsPage path="/must-drop-jackpots" />

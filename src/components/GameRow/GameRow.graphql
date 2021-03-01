@@ -5,6 +5,9 @@ fragment GameRow_Game on Game {
   name
   slug
   gameStudio
+  category
+  playBackground
+  liveCasinoId
   lobby {
     bets {
       min
