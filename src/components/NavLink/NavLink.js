@@ -13,8 +13,8 @@ type TProps = {
 export const NavLink = ({
   to,
   children,
-  className,
-  activeClassName,
+  className = "",
+  activeClassName = "",
 }: TProps) => {
   return (
     <Link
