@@ -14,61 +14,63 @@ type Props = {
   reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
 };
 
-export function ReelRacesPageTabSchedule({ t, reelRaces = [] }: Props) {
-  const [showMore, setShowMore] = React.useState(true);
-  const [list, setList] = React.useState([]);
-  const [index, setIndex] = React.useState(PAGE_LIMIT);
-  const [totalArrayData, setTotalArrayData] = React.useState();
+export const ReelRacesPageTabSchedule = React.memo<Props>(
+  ({ t, reelRaces = [] }) => {
+    const [showMore, setShowMore] = React.useState(true);
+    const [list, setList] = React.useState([]);
+    const [index, setIndex] = React.useState(PAGE_LIMIT);
+    const [totalArrayData, setTotalArrayData] = React.useState();
 
-  React.useEffect(() => {
-    if (reelRaces.length && !totalArrayData) {
-      setTotalArrayData([...Array(reelRaces.length).keys()]);
+    React.useEffect(() => {
+      if (reelRaces.length && !totalArrayData) {
+        setTotalArrayData([...Array(reelRaces.length).keys()]);
+      }
+    }, [reelRaces.length, totalArrayData]);
+
+    React.useEffect(() => {
+      if (totalArrayData) {
+        setList(slice(0, PAGE_LIMIT, totalArrayData));
+      }
+    }, [totalArrayData]);
+
+    const loadMore = React.useCallback(() => {
+      const newIndex = index + PAGE_LIMIT;
+      setIndex(index + PAGE_LIMIT);
+      setList(concat(list, slice(index, newIndex, totalArrayData)));
+      setShowMore(newIndex < reelRaces.length - 1);
+    }, [index, list, reelRaces.length, totalArrayData]);
+
+    if (!reelRaces.length) {
+      return null;
     }
-  }, [reelRaces.length, totalArrayData]);
 
-  React.useEffect(() => {
-    if (totalArrayData) {
-      setList(slice(0, PAGE_LIMIT, totalArrayData));
-    }
-  }, [totalArrayData]);
-
-  const loadMore = React.useCallback(() => {
-    const newIndex = index + PAGE_LIMIT;
-    setIndex(index + PAGE_LIMIT);
-    setList(concat(list, slice(index, newIndex, totalArrayData)));
-    setShowMore(newIndex < reelRaces.length - 1);
-  }, [index, list, reelRaces.length, totalArrayData]);
-
-  if (!reelRaces.length) {
-    return null;
-  }
-
-  return (
-    <>
-      {list.map(i => {
-        const reelRace = reelRaces[i];
-        return (
-          <div key={reelRace?.id}>
-            <ReelRacesPageTabScheduleTitle
-              startTime={reelRace?.startTime}
-              status={reelRace?.status}
-              t={t}
-            />
-            <ReelRaceScheduleCard
-              reelRace={reelRace}
-              t={t}
-              expanded={i === 0 || i === 1}
-            />
+    return (
+      <>
+        {list.map(i => {
+          const reelRace = reelRaces[i];
+          return (
+            <div key={reelRace?.id}>
+              <ReelRacesPageTabScheduleTitle
+                startTime={reelRace?.startTime}
+                status={reelRace?.status}
+                t={t}
+              />
+              <ReelRaceScheduleCard
+                reelRace={reelRace}
+                t={t}
+                expanded={i === 0 || i === 1}
+              />
+            </div>
+          );
+        })}
+        {showMore && (
+          <div className="u-text-align-center u-margin-bottom--lg">
+            <ButtonPrimary size="md" onClick={loadMore}>
+              {t?.show_more_reel_races}
+            </ButtonPrimary>
           </div>
-        );
-      })}
-      {showMore && (
-        <div className="u-text-align-center u-margin-bottom--lg">
-          <ButtonPrimary size="md" onClick={loadMore}>
-            {t?.show_more_reel_races}
-          </ButtonPrimary>
-        </div>
-      )}
-    </>
-  );
-}
+        )}
+      </>
+    );
+  }
+);

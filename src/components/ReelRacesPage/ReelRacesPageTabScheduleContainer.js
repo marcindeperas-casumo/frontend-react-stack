@@ -1,7 +1,7 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { filter, propEq, anyPass } from "ramda";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { RACE_STATE } from "Models/reelRaces";
 import { ReelRacesPageTabScheduleQuery } from "./ReelRacesPageTabScheduleContainer.graphql";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function ReelRacesPageTabScheduleContainer({ t }: Props) {
-  const { data } = useQuery<
+  const [execReelRacesQuery, { data }] = useLazyQuery<
     A.ReelRacesPageTabScheduleQuery,
     A.ReelRacesPageTabScheduleQueryVariables
   >(ReelRacesPageTabScheduleQuery, {
@@ -21,19 +21,28 @@ export function ReelRacesPageTabScheduleContainer({ t }: Props) {
       limit: 30,
     },
   });
+  const [reelRaces, setReelRaces] = React.useState([]);
 
-  const reelRaces = data?.reelRaces || [];
+  React.useEffect(() => {
+    execReelRacesQuery();
+  }, [execReelRacesQuery]);
 
-  const scheduledReelRaces = filter(
-    anyPass([
-      propEq("status", RACE_STATE.SCHEDULED),
-      propEq("status", RACE_STATE.STARTED),
-    ])
-  )(reelRaces);
+  React.useEffect(() => {
+    if (data?.reelRaces) {
+      const scheduledReelRaces = filter(
+        anyPass([
+          propEq("status", RACE_STATE.SCHEDULED),
+          propEq("status", RACE_STATE.STARTED),
+        ])
+      )(data.reelRaces);
 
-  if (!scheduledReelRaces.length) {
+      setReelRaces(scheduledReelRaces);
+    }
+  }, [data]);
+
+  if (!reelRaces.length) {
     return null;
   }
 
-  return <ReelRacesPageTabSchedule reelRaces={scheduledReelRaces} t={t} />;
+  return <ReelRacesPageTabSchedule reelRaces={reelRaces} t={t} />;
 }

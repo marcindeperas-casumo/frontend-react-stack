@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { ReelRacePreviousCard } from "Components/ReelRacePreviousCard/ReelRacePreviousCard";
 import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
@@ -9,12 +9,12 @@ type Props = {
   reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
 };
 
-export function ReelRacesPageTabPrevious({ t, reelRaces }: Props) {
-  return (
+export const ReelRacesPageTabPrevious = React.memo<Props>(
+  ({ t, reelRaces }) => (
     <>
       {reelRaces.map(reelRace => (
         <ReelRacePreviousCard key={reelRace.id} reelRace={reelRace} t={t} />
       ))}
     </>
-  );
-}
+  )
+);
