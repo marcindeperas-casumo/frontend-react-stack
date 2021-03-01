@@ -7,8 +7,10 @@ import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
 
 type TProps = {
-  reelRace: A.ReelRaceScheduleCard_ReelRace,
-  t: TReelRacesContentPage,
+  reelRace:
+    | A.ReelRaceScheduleCard_ReelRace
+    | A.ReelRacesPageTabPreviousQuery_reelRaces,
+  t: ?TReelRacesContentPage,
   expanded: boolean,
 };
 
