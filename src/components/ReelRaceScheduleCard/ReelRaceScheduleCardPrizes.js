@@ -5,12 +5,12 @@ import { append, contains, reduce, ifElse, identity } from "ramda";
 import { LaurelIcon, TournamentIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import type { ReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPage";
+import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 
 type Props = {
   formattedPrizes: Array<string>,
-  t: ReelRacesContentPage,
+  t: TReelRacesContentPage,
 };
 
 export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {

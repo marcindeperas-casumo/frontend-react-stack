@@ -12,7 +12,7 @@ export default {
   rg_fail_content:
     "For your own safety, keep to your current limits for now. You can try make another adjustment in 7 days time.",
   rg_required_title: "To adjust the rest, just answer the 10 questions",
-  rg_required_content: "This should only take a sec.",
+  rg_required_content: "This might take a few days. We'll inform you once it's all done.",
   button_back_to_limits: "Back to limits",
   button_answer_questions: "Answer questions",
 }

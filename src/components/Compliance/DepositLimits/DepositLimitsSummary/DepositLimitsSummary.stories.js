@@ -7,7 +7,7 @@ import { DepositLimitsSummary } from "./DepositLimitsSummary";
 import t from "./__mocks__/cms";
 import preadjust from "./__mocks__/preadjust";
 
-const stories = storiesOf("DepositLimitsSummary", module);
+const stories = storiesOf("DepositLimits/DepositLimitsSummary", module);
 
 const actions = {
   confirmLimitsAdjust: action("confirmLimitsAdjust clicked"),

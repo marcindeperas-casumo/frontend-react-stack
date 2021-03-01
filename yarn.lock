@@ -1951,7 +1951,7 @@
 "@casumo/cmp-input-field@^2.1.0":
   version "2.1.0"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-input-field/2.1.0/e416ff6cb6e520575947271432323ad6f3980d9f24e248cb6fc90028e32a5837#981c1b2af77f89df6070191f18bdc1c25c1e9ce7"
-  integrity sha512-ANBGaI51LyFwUlEmiS74hXS6/BhS3L6mPA8ZZttvNcMGt0B+lb6EMbZurMU5qYnsbsXC/UnwcvEVgY/FYS56oQ==
+  integrity sha1-mBwbKvd/id9gcBkfGL3BwlwenOc=
   dependencies:
     "@casumo/cmp-flex" "^4.1.0"
 

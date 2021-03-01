@@ -2,7 +2,7 @@
 import React from "react";
 import { Router, Redirect } from "@reach/router";
 import { SubNavLayout } from "Layouts/SubNavLayout/index";
-import { CasinoListsPage, CasinoReelRacesPage } from "./subPages";
+import { CasinoListsPage, ReelRacesPage } from "./subPages";
 
 export const CasinoPage = () => {
   const subNavLinks = [
@@ -11,7 +11,7 @@ export const CasinoPage = () => {
       text: "Games",
     },
     {
-      to: "/casino/races",
+      to: "/casino/reel-races",
       text: "Races",
     },
   ];
@@ -21,7 +21,7 @@ export const CasinoPage = () => {
       <Router>
         <Redirect from="/" to="lists" />
         <CasinoListsPage path="lists" />
-        <CasinoReelRacesPage path="races" />
+        <ReelRacesPage path="reel-races" />
       </Router>
     </SubNavLayout>
   );
