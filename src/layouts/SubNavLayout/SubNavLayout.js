@@ -14,7 +14,7 @@ type TLinkItem = {
   text: string,
 };
 type TProps = {
-  children?: ?React.Node,
+  children: React.Node,
   links: TLinkItem[],
 };
 
