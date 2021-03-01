@@ -6,7 +6,7 @@ import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPa
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
 
-type Props = {
+type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRace,
   t: TReelRacesContentPage,
   expanded: boolean,
@@ -16,7 +16,7 @@ export function ReelRaceScheduleCardContainer({
   reelRace,
   t,
   expanded = false,
-}: Props) {
+}: TProps) {
   const [optInForReelRace] = useMutation(ReelRaceOptInMutation, {
     variables: {
       id: reelRace.id,
