@@ -16,4 +16,6 @@ const subNavLinks = [
   },
 ];
 
-stories.add("Default", () => <SubNavLayout links={subNavLinks} />);
+stories.add("Default", () => (
+  <SubNavLayout links={subNavLinks}>My page</SubNavLayout>
+));

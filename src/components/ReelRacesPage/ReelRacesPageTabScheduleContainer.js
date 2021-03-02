@@ -4,6 +4,7 @@ import { filter, propEq, anyPass } from "ramda";
 import { useLazyQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { RACE_STATE } from "Models/reelRaces";
+import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard";
 import { ReelRacesPageTabScheduleQuery } from "./ReelRacesPageTabScheduleContainer.graphql";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabSchedule } from "./ReelRacesPageTabSchedule";
@@ -44,5 +45,11 @@ export function ReelRacesPageTabScheduleContainer({ t }: Props) {
     return null;
   }
 
-  return <ReelRacesPageTabSchedule reelRaces={reelRaces} t={t} />;
+  return (
+    <ReelRacesPageTabSchedule
+      cardComponent={ReelRaceScheduleCard}
+      reelRaces={reelRaces}
+      t={t}
+    />
+  );
 }

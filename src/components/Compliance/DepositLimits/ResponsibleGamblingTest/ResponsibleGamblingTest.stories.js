@@ -11,6 +11,4 @@ const props = {
   sendRGTestResult: action("sendRGTestResult"),
   fetchQuestions: action("fetchQuestions"),
 };
-stories.add("Default", () => (
-  <ResponsibleGamblingTest t={t} numberOfQuestions={5} {...props} />
-));
+stories.add("Default", () => <ResponsibleGamblingTest t={t} {...props} />);
