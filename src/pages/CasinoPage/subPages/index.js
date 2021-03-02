@@ -1,5 +1,5 @@
 // @flow
-export { CasinoSearchPage } from "./Search";
+export { CasinoSearchPage } from "./GameSearch";
 export { CasinoListsPage } from "./Lists";
 export { MustDropJackpotsPage } from "./MustDropJackpots";
 export { GameProviderGamesPage } from "./GameProviderGames";
