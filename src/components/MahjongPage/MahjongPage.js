@@ -6,7 +6,9 @@ import { ComponentBuilder } from "Components/ComponentBuilder";
 export const MahjongPage = () => (
   <WaitForHostElement hostElementId="react-host-mahjong">
     <Portal hostElementId="react-host-mahjong">
-      <ComponentBuilder slug="built-pages.mahjong" />
+      <div className="u-padding-top--3xlg@desktop">
+        <ComponentBuilder slug="built-pages.mahjong" />
+      </div>
     </Portal>
   </WaitForHostElement>
 );
