@@ -1,21 +1,21 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { slice, concat } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
-import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard";
 import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
 
 const PAGE_LIMIT = 10;
 
-type Props = {
+type TProps = {
   t: ?TReelRacesContentPage,
   reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
+  cardComponent: Function,
 };
 
-export const ReelRacesPageTabSchedule = React.memo<Props>(
-  ({ t, reelRaces = [] }) => {
+export const ReelRacesPageTabSchedule = React.memo<TProps>(
+  ({ t, reelRaces = [], cardComponent: CardComponent }) => {
     const [showMore, setShowMore] = React.useState(true);
     const [list, setList] = React.useState([]);
     const [index, setIndex] = React.useState(PAGE_LIMIT);
@@ -55,7 +55,7 @@ export const ReelRacesPageTabSchedule = React.memo<Props>(
                 status={reelRace?.status}
                 t={t}
               />
-              <ReelRaceScheduleCard
+              <CardComponent
                 reelRace={reelRace}
                 t={t}
                 expanded={i === 0 || i === 1}

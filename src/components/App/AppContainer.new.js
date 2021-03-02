@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 import {
   LazyCasinoPage,
   LazySportsPage,
@@ -14,6 +14,7 @@ export default () => {
   return (
     <MainNavLayout>
       <Router>
+        <Redirect from="/" to="/casino" />
         <LazyCasinoPage path="/casino/*" />
         <LazySportsPage path="/sports/*" />
         <LazyPlayPage path="/play/*" />
