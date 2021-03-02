@@ -55,6 +55,14 @@ export function validate(
         value: limitBeforeChange,
       }),
     };
+
+    if (formProps.increasesOrRevocationsBlocked) {
+      return interpolate(
+        t.input_validation.has_to_be_lower_while_not_risk_safe,
+        replacements
+      );
+    }
+
     if (formProps.lock) {
       return interpolate(t.input_validation.has_to_be_lower_while_locked, {
         ...replacements,
@@ -63,6 +71,7 @@ export function validate(
         }),
       });
     }
+
     if (!formProps.responsibleGamblingTestCanBeTaken) {
       return interpolate(
         t.input_validation

@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 import cx from "classnames";
-import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import type { iconSizes } from "@casumo/cudl-react-prop-types";
+import { NavLink } from "Components/NavLink";
 
 type TNavbarItemProps = {
   icon: React.ComponentType<{ size: iconSizes }>,
@@ -17,21 +17,16 @@ type TProps = {
   items: Array<TNavbarItemProps>,
 };
 
-const getLinkClasses = isCurrent => {
-  return {
-    className: cx({
-      "t-color-purple-60": isCurrent,
-      "t-color-grey-70": !isCurrent,
-    }),
-  };
-};
-
 const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {
   const Icon = icon;
 
   return (
     <Flex.Block>
-      <Link to={to} getProps={({ isCurrent }) => getLinkClasses(isCurrent)}>
+      <NavLink
+        to={to}
+        className="t-color-grey-70"
+        activeClassName="t-color-purple-60"
+      >
         <Flex
           align="center"
           justify="center"
@@ -47,7 +42,7 @@ const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {
             <Text className="u-font-weight-bold u-margin--none">{label}</Text>
           )}
         </Flex>
-      </Link>
+      </NavLink>
     </Flex.Block>
   );
 };

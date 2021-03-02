@@ -5,7 +5,7 @@ type TQuestionEntry = {
   answer: string,
 };
 
-export type TTranslations = {
+export type TResponsibleGamblingTestTranslations = {
   yes: string,
   no: string,
   questions: Array<TQuestionEntry>,

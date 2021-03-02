@@ -5,10 +5,10 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { ProgressBar } from "Components/Progress";
-import type { TTranslations } from "./ResponsibleGamblingTest.types";
+import type { TResponsibleGamblingTestTranslations } from "./ResponsibleGamblingTest.types";
 
 type Props = {
-  t?: TTranslations,
+  t?: TResponsibleGamblingTestTranslations,
   fetchQuestions: () => void,
   sendRGTestResult: boolean => void,
 };
