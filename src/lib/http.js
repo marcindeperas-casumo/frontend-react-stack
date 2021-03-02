@@ -33,7 +33,7 @@ const errorHandler = response => {
 
 // Handle cases when server returns empty successful response like when 200 < status < 300
 const emptyResponseHandler = (normalHandler, emptyHandler) => response => {
-  const contentLength = parseInt(response.headers.get("Content-Length"));
+  const contentLength = parseInt(response.headers.get("Content-Length")) || 0;
 
   if (contentLength > 0) {
     return normalHandler(response);
