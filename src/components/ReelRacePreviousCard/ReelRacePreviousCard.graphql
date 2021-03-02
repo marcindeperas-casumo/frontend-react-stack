@@ -8,6 +8,7 @@ fragment ReelRacePreviousCard_ReelRace on ReelRace {
     startTime
     endTime
     formattedPrizes
+    status
     leaderboard {
       playerName
       position
