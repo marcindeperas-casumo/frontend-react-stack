@@ -1,5 +1,5 @@
 // @flow
-import type { TTranslations } from "../ResponsibleGamblingTest.types";
+import type { TResponsibleGamblingTestTranslations } from "../ResponsibleGamblingTest.types";
 
 export default ({
   "yes": "Yes",
@@ -27,4 +27,4 @@ export default ({
     }
   ],
   
-}: TTranslations);
+}: TResponsibleGamblingTestTranslations);
