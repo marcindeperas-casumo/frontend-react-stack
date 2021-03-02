@@ -3,6 +3,7 @@ import * as React from "react";
 import { ReelRacesPageTabs } from "Components/ReelRacesPage/ReelRacesPageTabs";
 import { ReelRacesPageTabSchedule } from "Components/ReelRacesPage/ReelRacesPageTabSchedule";
 import { ReelRacesPageTabPrevious } from "Components/ReelRacesPage/ReelRacesPageTabPrevious";
+import { ReelRaceScheduleCard } from "Components/ReelRaceScheduleCard/ReelRaceScheduleCard";
 import { t, reelRacesSchedule, reelRacesPrevious } from "./__mocks__";
 
 export type ReelRacesContentPage = {
@@ -37,7 +38,11 @@ export function ReelRaces() {
 
       <div className="u-content-width--tablet-landscape u-padding-y--md">
         {activeTab === "SCHEDULE" && (
-          <ReelRacesPageTabSchedule reelRaces={reelRacesSchedule} t={t} />
+          <ReelRacesPageTabSchedule
+            reelRaces={reelRacesSchedule}
+            t={t}
+            cardComponent={ReelRaceScheduleCard}
+          />
         )}
         {activeTab === "PREVIOUS" && (
           <ReelRacesPageTabPrevious reelRaces={reelRacesPrevious} t={t} />
