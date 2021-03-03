@@ -1,15 +1,19 @@
 import http, { DEFAULT_FETCH_OPTIONS } from "./http";
 
 describe("Lib/http", () => {
-  const responseObject = { foo: "bar" };
   const getFetchCallUrlArg = () => fetch.mock.calls[0][0];
   const getFetchCallOptionsArg = () => fetch.mock.calls[0][1];
   let responseMock;
+  let responseTextMock;
 
-  const mockFetch = responseMockOverride => {
+  const mockFetch = (responseMockOverride, responseTextMockOverride) => {
+    const defaultObject = { foo: "bar" };
+    responseTextMock =
+      responseTextMockOverride ?? JSON.stringify(defaultObject);
     responseMock = {
       ok: true,
-      json: jest.fn().mockReturnValue(responseObject),
+      json: jest.fn().mockResolvedValue(defaultObject),
+      text: jest.fn().mockResolvedValue(responseTextMock),
       ...responseMockOverride,
     };
 
@@ -25,8 +29,9 @@ describe("Lib/http", () => {
     test("parses the JSON response", async () => {
       const response = await http.post("/foo/bar");
 
-      expect(responseMock.json).toHaveBeenCalledTimes(1);
-      expect(response).toEqual(responseObject);
+      expect(responseMock.json).toHaveBeenCalledTimes(0);
+      expect(responseMock.text).toHaveBeenCalledTimes(1);
+      expect(response).toEqual(JSON.parse(responseTextMock));
     });
 
     test("rejects the promise if the request fails", async () => {
@@ -77,6 +82,16 @@ describe("Lib/http", () => {
 
       expect(getFetchCallOptionsArg().body).toBeUndefined();
     });
+
+    test("does not fail when response is empty", async () => {
+      mockFetch(null, "");
+
+      const response = await http.post("/foo/bar");
+
+      expect(response).toEqual({});
+      expect(responseMock.json).toHaveBeenCalledTimes(0);
+      expect(responseMock.text).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe(".get()", () => {
@@ -84,7 +99,7 @@ describe("Lib/http", () => {
       const response = await http.get("/foo/bar");
 
       expect(responseMock.json).toHaveBeenCalledTimes(1);
-      expect(response).toEqual(responseObject);
+      expect(response).toEqual(JSON.parse(responseTextMock));
     });
 
     test("rejects the promise if the request fails", async () => {
