@@ -31,6 +31,17 @@ const errorHandler = response => {
   return response;
 };
 
+// Handle cases when server returns empty successful response like when 200 < status < 300
+const emptyResponseHandler = (normalHandler, emptyHandler) => response => {
+  const contentLength = parseInt(response.headers.get("Content-Length")) || 0;
+
+  if (contentLength > 0) {
+    return normalHandler(response);
+  }
+
+  return emptyHandler(response);
+};
+
 const get: FetchType = (url, data, options) =>
   fetch(createGetUrl(url, data), {
     ...DEFAULT_FETCH_OPTIONS,
@@ -47,7 +58,7 @@ const post: FetchType = (url, data, options) =>
     ...options,
   })
     .then(errorHandler)
-    .then(response => response.json());
+    .then(emptyResponseHandler(response => response.json(), response => ({})));
 
 const del: FetchType = (url, options) =>
   fetch(url, {
