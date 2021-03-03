@@ -52,10 +52,10 @@ Started by: *${env.gitAuthor}* :eyes:
     .customStep('Install dependencies', {
         shell("yarn")
     })
-    .customStep('Tests', {
-        shell("yarn test:ci")
-    })
         .parallel([
+            "Tests": { it.customStepTask('Tests', {
+                shell("yarn test:ci")
+            }) },
             "Flow": { it.customStepTask('Flow', {
                 shell("yarn flow check")
             }) },
