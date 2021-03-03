@@ -5,21 +5,11 @@ describe("Lib/http", () => {
   const getFetchCallUrlArg = () => fetch.mock.calls[0][0];
   const getFetchCallOptionsArg = () => fetch.mock.calls[0][1];
   let responseMock;
-  let responseHeadersMock;
 
-  const mockFetch = (responseMockOverride, responseHeadersMockOverride) => {
-    responseHeadersMock = {
-      "Content-Length": JSON.stringify(responseObject).length.toString(),
-      ...responseHeadersMockOverride,
-    };
+  const mockFetch = responseMockOverride => {
     responseMock = {
       ok: true,
       json: jest.fn().mockReturnValue(responseObject),
-      headers: {
-        get: jest
-          .fn()
-          .mockImplementation(headerName => responseHeadersMock[headerName]),
-      },
       ...responseMockOverride,
     };
 
@@ -86,22 +76,6 @@ describe("Lib/http", () => {
       await http.post("/foo/bar");
 
       expect(getFetchCallOptionsArg().body).toBeUndefined();
-    });
-
-    test("does not fail when response is empty", async () => {
-      mockFetch(
-        {
-          status: 202,
-        },
-        {
-          "Content-Length": "0",
-        }
-      );
-
-      const response = await http.post("/foo/bar");
-
-      expect(responseMock.json).toHaveBeenCalledTimes(0);
-      expect(response).toEqual({});
     });
   });
 
