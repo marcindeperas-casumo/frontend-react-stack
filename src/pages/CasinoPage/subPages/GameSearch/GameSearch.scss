@@ -1,0 +1,10 @@
+.c-game-search {
+  // fix iOS Safari issue with list results not displaying
+  // https://github.com/Casumo/Home/issues/27760
+  transform: translate3d(0, 0, 0);
+}
+
+.c-game-search-bar {
+  top: 0;
+  z-index: cudl-z("content-overlay");
+}

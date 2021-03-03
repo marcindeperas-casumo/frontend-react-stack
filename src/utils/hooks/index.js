@@ -40,3 +40,4 @@ export {
 } from "./usePlayerReceivedValuableEvent";
 export { useResize } from "./useResize";
 export { useCallOnce } from "./useCallOnce";
+export { useScrollToTop } from "./useScrollToTop";

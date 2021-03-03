@@ -658,3 +658,8 @@ export const mockedSearchResults = {
     },
   },
 };
+
+export const mockedTranslations = {
+  gameInMaintenanceText: "temporarily unavailable",
+  searchSuggestionText: "E.g Starburst, Red Tiger, etc",
+};

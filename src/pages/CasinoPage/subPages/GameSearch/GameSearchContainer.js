@@ -1,27 +1,44 @@
 // @flow
 import React from "react";
-import { GameSearch } from "Components/GameSearch/GameSearch";
-import { mockedSearchResults } from "./__mocks__";
+import * as R from "ramda";
+import { insertIntoArray } from "Utils/gamesPaginated";
+import { useGameSearchSuggestions } from "Components/GameSearch/useGameSearchSuggestions";
+import { GameSearch } from "./GameSearch";
+import { mockedSearchResults, mockedTranslations as t } from "./__mocks__";
 
-// const PAGE_SIZE = 50;
+const PAGE_SIZE = 50;
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data } = mockedSearchResults;
 
-  const inputPromptPlaceholder = "E.g. game name, game provider etc";
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
+  const { list, loading: loadingSuggestions } = useGameSearchSuggestions({
+    searchResults,
+  });
 
   const [pageNumber, setPageNumber] = React.useState(0);
 
   const fetchMoreRows = () => {
-    setPageNumber(pageNumber + 1);
-    console.warn("fetchMoreRows");
+    setPageNumber(currPageNumber => currPageNumber + 1);
+
+    const mergedResults = insertIntoArray(
+      searchResults,
+      pageNumber * PAGE_SIZE
+    )(searchResults);
+
     return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(data);
-      }, 0);
+      resolve(
+        R.mergeDeepRight(data, {
+          gamesSearch: {
+            searchResultsCount: searchResultsCount,
+            results: searchQuery
+              ? mergedResults
+              : R.sortBy(R.prop("name"), mergedResults),
+          },
+        })
+      );
     });
   };
 
@@ -32,13 +49,13 @@ export const GameSearchContainer = () => {
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
       loading={false}
-      loadingSuggestions={false}
-      suggestions={[]}
-      inputPromptPlaceholder={inputPromptPlaceholder}
+      loadingSuggestions={loadingSuggestions}
+      suggestions={list}
       fetchMoreRows={fetchMoreRows}
       queryChanged={setSearchQuery}
       query={searchQuery}
       clearSearch={clearSearch}
+      t={t}
     />
   );
 };

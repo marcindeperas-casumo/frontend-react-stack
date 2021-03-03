@@ -1,22 +1,16 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
+import Flex from "@casumo/cmp-flex";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow, GameRowSearchText } from "Components/GameRow";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
-import {
-  EVENT_PROPS,
-  EVENT_LOCATIONS,
-  ROOT_SCROLL_ELEMENT_ID,
-} from "Src/constants";
+import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import { useScrollToTop } from "Utils/hooks";
 import * as A from "Types/apollo";
-import {
-  GamesVirtualList,
-  GamesVirtualListTitle,
-} from "Components/GamesVirtualList";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 
 import "./GameSearch.scss";
@@ -33,18 +27,20 @@ type Props = {
     title: ?string,
     type: string,
   },
-  inputPromptPlaceholder: string,
   clearSearch: () => {},
   fetchMoreRows: Function => Promise<any>,
   queryChanged: (query: string) => {},
+  t: {
+    inputPromptPlaceholder: string,
+    gameInMaintenanceText: string,
+  },
 };
 
-const GameMaintenanceText = () => {
-  const { t } = useTranslationsGql({
-    gameInMaintenanceText:
-      "root:mobile.game-details:fields.temporarily_unavailable",
-  });
+// const isRowLoaded = ({ index }: { index: number }) => {
+//   return Boolean(searchResults[index]);
+// };
 
+const GameMaintenanceText = t => {
   return (
     <Text className="u-padding-top--sm t-color-grey-70" size="sm">
       {t.gameInMaintenanceText}
@@ -56,7 +52,7 @@ const GameStudioText = ({ studioName }) => (
   <div className="t-color-grey-20">{studioName}</div>
 );
 
-const gameRowHighlightSearch = query => game => (
+const gameRowHighlightSearch = (query, game) => (
   <GameRow
     game={game}
     renderText={() => (
@@ -75,37 +71,61 @@ const gameRowHighlightSearch = query => game => (
     )}
   />
 );
-const SectionTitle = props => (
+
+const renderGameRow = (games, query, game, index) => {
+  if (!Boolean(games[index])) {
+    return (
+      <Flex
+        className="t-border-bottom t-color-grey-0 t-border-current"
+        key={index}
+        index={index}
+      >
+        <GameRowSkeleton />
+      </Flex>
+    );
+  }
+  return (
+    <Flex
+      className="t-border-bottom t-color-grey-0 t-background-grey-0:hover t-border-current c-game-list-row"
+      key={game.id}
+      index={index}
+      align="center"
+    >
+      {gameRowHighlightSearch(query, game)}
+    </Flex>
+  );
+};
+
+const SuggestionSectionTitle = ({ children }) => (
   <Text
     size="md"
     className="u-font-weight-black t-color-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
   >
-    {props.children}
+    {children}
   </Text>
 );
-const RenderResults = ({ query, ...rest }) => (
-  <GamesVirtualList
-    renderItem={gameRowHighlightSearch(query)}
-    renderTitle={title => <GamesVirtualListTitle title={title} />}
-    {...rest}
-  />
+
+const GameList = ({ query, games, ...rest }) => (
+  <>{games.map((game, index) => renderGameRow(games, query, game, index))}</>
 );
 
-export const GameSearch = (props: Props) => {
+export const GameSearch = ({
+  loading,
+  loadingSuggestions,
+  suggestions,
+  searchResults,
+  searchResultsCount,
+  fetchMoreRows,
+  query,
+  queryChanged,
+  clearSearch,
+  inputPromptPlaceholder,
+}: Props) => {
   const [listHash, setListHash] = React.useState("");
-  const {
-    loading,
-    loadingSuggestions,
-    suggestions,
-    searchResults,
-    searchResultsCount,
-    fetchMoreRows,
-    query,
-    queryChanged,
-    clearSearch,
-    inputPromptPlaceholder,
-  } = props;
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
+
+  useScrollToTop(query);
+
   React.useEffect(() => {
     if (!loading) {
       setListHash(query);
@@ -122,7 +142,7 @@ export const GameSearch = (props: Props) => {
               : EVENT_LOCATIONS.ALL_GAMES,
           }}
         >
-          <RenderResults
+          <GameList
             fetchMoreRows={fetchMoreRows}
             games={searchResults}
             rowCount={searchResultsCount}
@@ -133,13 +153,13 @@ export const GameSearch = (props: Props) => {
       )}
       {!loadingSuggestions && query.length > 0 && (
         <>
-          <SectionTitle>{suggestions?.title}</SectionTitle>
+          <SuggestionSectionTitle>{suggestions?.title}</SuggestionSectionTitle>
           <TrackProvider
             data={{
               [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SUGGESTED_GAMES,
             }}
           >
-            <RenderResults
+            <GameList
               games={suggestions.games}
               rowCount={suggestions.games.length}
               query=""
@@ -150,15 +170,6 @@ export const GameSearch = (props: Props) => {
       )}
     </>
   );
-
-  React.useEffect(() => {
-    const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
-
-    if (scrollElement && scrollElement.scrollTop) {
-      // eslint-disable-next-line fp/no-mutation
-      scrollElement.scrollTop = 0;
-    }
-  }, [props.query]);
 
   return (
     <div className={`o-wrapper ${xPaddingClasses}`}>
