@@ -1,5 +1,6 @@
 // @flow
 import * as R from "ramda";
+import { DateTime } from "luxon";
 import { formatCurrency, interpolate } from "Utils";
 import type { DepositKinds } from "Models/playOkay/depositLimits";
 import { limitTypes } from "Components/Compliance/DepositLimits";
@@ -54,17 +55,24 @@ export function validate(
         value: limitBeforeChange,
       }),
     };
-    if (formProps.lock) {
+
+    if (formProps.increasesOrRevocationsBlocked) {
       return interpolate(
-        t.input_validation.has_to_be_lower_while_locked,
+        t.input_validation.has_to_be_lower_while_not_risk_safe,
         replacements
       );
     }
-    if (
-      formProps.responsibleGamblingTestRequired &&
-      !formProps.responsibleGamblingTest
-        .responsibleGamblingQuestionnaireAttemptAllowed
-    ) {
+
+    if (formProps.lock) {
+      return interpolate(t.input_validation.has_to_be_lower_while_locked, {
+        ...replacements,
+        endOfLock: DateTime.fromISO(formProps.lock.expiresOn).toFormat("ff", {
+          locale: formProps.locale,
+        }),
+      });
+    }
+
+    if (!formProps.responsibleGamblingTestCanBeTaken) {
       return interpolate(
         t.input_validation
           .has_to_be_lower_after_responsible_gambling_test_failed,

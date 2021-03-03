@@ -1,13 +1,15 @@
 // @flow
 import React from "react";
+import { DateTime } from "luxon";
 import { shallow } from "enzyme";
 import { DepositLimitsForm } from "./DepositLimitsForm";
+import type { FormPropsWithTranslations } from "./DepositLimitsForm.types";
 import t from "./__mocks__/cms";
 
 const limitsDefault = {
   currency: "EUR",
 };
-const props = {
+const props: FormPropsWithTranslations = {
   t,
   currency: "EUR",
   locale: "en-GB",
@@ -18,12 +20,10 @@ const props = {
     monthly: 100,
   },
   pendingLimitChanges: undefined,
+  responsibleGamblingTestCanBeTaken: false,
+  lock: undefined,
+  initiallyVisible: "daily",
   applyLimitsChanges: () => {},
-  responsibleGamblingTest: {
-    responsibleGamblingQuestionnaireStatus: "SUCCESS",
-    responsibleGamblingQuestionnaireLastAttempt: null,
-    responsibleGamblingQuestionnaireAttemptAllowed: false,
-  },
   fetchTranslations: () => {},
 };
 
@@ -43,6 +43,7 @@ describe("DepositLimitsForm", () => {
     test("warns if can't be higher", () => {
       // daily limit can't be higher than weekly limit, weekly limit can't be higher than monthly limit
       const dailyTooHigh = setUpDepositLimitsForm({
+        t,
         limits: {
           ...limitsDefault,
           daily: 23,
@@ -126,9 +127,26 @@ describe("DepositLimitsForm", () => {
           daily: 11,
         },
         initiallyVisible: "daily",
-        lock: true,
+        lock: { expiresOn: DateTime.utc().toISO() },
       });
       expect(aboveMaximum).toBe("has_to_be_lower_while_locked");
     });
+  });
+
+  test("warns if user tries to increase limit while being not risk safe", () => {
+    const validation = setUpDepositLimitsForm({
+      limits: {
+        ...limitsDefault,
+        daily: 10,
+        weekly: 20,
+        monthly: 30,
+      },
+      limitChanges: {
+        daily: 11,
+      },
+      initiallyVisible: "daily",
+      increasesOrRevocationsBlocked: true,
+    });
+    expect(validation).toBe("has_to_be_lower_while_not_risk_safe");
   });
 });

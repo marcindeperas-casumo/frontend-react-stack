@@ -130,6 +130,7 @@ export const ROUTE_IDS = {
   FAQ: "FAQ",
   ABOUT_CASUMO: "ABOUT_CASUMO",
   CASINO_GAMES: "CASINO_GAMES",
+  MAHJONG_PAGE: "MAHJONG_PAGE",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
 };
 
@@ -171,6 +172,7 @@ export const ROUTES = {
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
   [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
+  [ROUTE_IDS.MAHJONG_PAGE]: "mahjong",
   [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
 };
@@ -540,3 +542,18 @@ export const EMBEDDED_GAMES = {
 
 export const topListWidgetWidth = 328;
 export const topListWidgetHeight = 304;
+export const exclusiveTileHeight = 280;
+export const exlusiveTileWidth = 188;
+export const promotionsTileHeight = 311;
+
+export const horizontalListsDevicePaddings = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "none",
+};
+
+export const horizontalListDeviceTopMargin = {
+  default: "lg",
+  tablet: "xlg",
+  desktop: "xlg",
+};

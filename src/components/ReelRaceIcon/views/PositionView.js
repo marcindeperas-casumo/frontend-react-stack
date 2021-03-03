@@ -5,14 +5,16 @@ import Flex from "@casumo/cmp-flex";
 import { LaurelIcon } from "@casumo/cmp-icons";
 import cx from "classnames";
 import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
-import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 
 import "../ReelRaceIcon.scss";
 
 export const PositionView = ({
   position,
   className,
-}: CurrentReelRaceInfo & { className?: string }) => (
+}: {
+  position: number,
+  className?: string,
+}) => (
   <Flex
     className={cx("t-color-white u-line-height--1", className)}
     direction="vertical"

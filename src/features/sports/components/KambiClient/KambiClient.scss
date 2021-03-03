@@ -14,6 +14,14 @@
   height: auto !important;
 }
 
+body > #KambiBC {
+  display: none;
+}
+
+body #react-host-sports-shell #KambiBC {
+  display: block !important;
+}
+
 .c-kambi-client--hidden {
   height: 0;
   overflow: hidden;
@@ -623,7 +631,42 @@ KambiBC-event-countdown__circles-text {
     display: none !important;
   }
 }
-// END: PROMO AREA
+//END: PROMO AREA
+
+//A-Z page
+#KambiBC-container .KambiBC-sport-az {
+  margin: 0 16px !important;
+  max-width: none !important;
+  width: auto !important;
+
+  @media (max-width: 1024px) {
+    margin: 16px 64px !important;
+  }
+
+  @media (max-width: 768px) {
+    margin: 16px !important;
+  }
+
+  .KambiBC-react-collapsable-container__header,
+  .KambiBC-react-collapsable-container__header:hover {
+    background-color: initial !important;
+    border-bottom: 0 !important;
+    color: #1a212c !important;
+    font-size: 16px !important;
+    padding: 7px 24px !important;
+  }
+
+  .KambiBC-modularized__group-link,
+  .KambiBC-modularized__group-link:hover {
+    color: #1a212c !important;
+    font-size: 14px !important;
+    padding: 3px 24px !important;
+  }
+
+  .KambiBC-modularized__event-groups__list li:first-child {
+    border-radius: 8px 8px 0 0 !important;
+  }
+}
 
 //LANDING PAGE END
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important, selector-max-compound-selectors */

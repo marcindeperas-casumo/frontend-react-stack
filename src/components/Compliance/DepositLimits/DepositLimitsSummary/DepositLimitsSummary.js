@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
@@ -8,6 +9,7 @@ import { formatCurrency } from "Utils";
 import {
   diffLimits,
   checkIfConditionsApply,
+  getChangedLimitsValues,
   type AllLimits,
   type DepositKinds,
   type DepositLimitPreadjust,
@@ -48,10 +50,13 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const limitsDiff = diffLimits({
+  const beforeAfterLimits = {
     before: props.currentLimits,
     after: props.newLimits,
-  });
+  };
+  const limitsDiff = diffLimits(beforeAfterLimits);
+  const limitsUnchanged = R.isEmpty(getChangedLimitsValues(beforeAfterLimits));
+
   const [req, setReq] = React.useState(false);
   const flexChildWidth = "u-width--1/2@desktop";
 
@@ -60,7 +65,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       size="md"
       data-test-id="submit-button"
       className="u-padding-y--md u-width--full"
-      isDisabled={req}
+      isDisabled={req || limitsUnchanged}
       isLoading={req}
       onClick={() => {
         setReq(true);

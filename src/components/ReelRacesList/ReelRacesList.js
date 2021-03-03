@@ -7,6 +7,7 @@ import * as A from "Types/apollo";
 import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/ReelRaceCardContainer";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
   title: ?string,
@@ -33,31 +34,29 @@ export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
     );
 
     return (
-      <div className="u-margin-x--3xlg@desktop">
-        <div className="o-wrapper">
-          <MobileAndTablet>
-            <ScrollableList
-              title={title}
-              itemClassName="c-reel-race-card"
-              items={reelRaces}
-              itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
-              Component={ReelRaceCard}
-              {...(seeMore ? { seeMoreText: seeMore, seeMoreUrl } : {})}
-            />
-          </MobileAndTablet>
-          <Desktop>
-            <ScrollableListPaginated
-              title={title}
-              itemCount={reelRaces.length}
-              itemRenderer={itemRenderer}
-              itemControlClass="c-scrollable-list-paginated__reel_races-button"
-              tileHeight={248}
-              {...(seeMore
-                ? { seeMore: { text: seeMore, url: seeMoreUrl } }
-                : {})}
-            />
-          </Desktop>
-        </div>
+      <div className={`o-wrapper ${topMarginClasses}`}>
+        <MobileAndTablet>
+          <ScrollableList
+            title={title}
+            itemClassName="c-reel-race-card"
+            items={reelRaces}
+            itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
+            Component={ReelRaceCard}
+            {...(seeMore ? { seeMoreText: seeMore, seeMoreUrl } : {})}
+          />
+        </MobileAndTablet>
+        <Desktop>
+          <ScrollableListPaginated
+            title={title}
+            itemCount={reelRaces.length}
+            itemRenderer={itemRenderer}
+            itemControlClass="c-scrollable-list-paginated__reel_races-button"
+            tileHeight={220}
+            {...(seeMore
+              ? { seeMore: { text: seeMore, url: seeMoreUrl } }
+              : {})}
+          />
+        </Desktop>
       </div>
     );
   }

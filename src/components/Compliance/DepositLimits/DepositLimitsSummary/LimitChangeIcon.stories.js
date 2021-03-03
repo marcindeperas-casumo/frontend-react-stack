@@ -4,7 +4,10 @@ import { storiesOf } from "@storybook/react";
 import Flex from "@casumo/cmp-flex";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 
-const stories = storiesOf("DepositLimitsSummary/LimitChangeIcon", module);
+const stories = storiesOf(
+  "DepositLimits/DepositLimitsSummary/LimitChangeIcon",
+  module
+);
 
 // Purpose of this is to make sure that all possible states take always the same amount of space
 stories.add("Default", () => (

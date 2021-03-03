@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { DepositLimitsForm } from "./DepositLimitsForm";
 import t from "./__mocks__/cms";
 
-const stories = storiesOf("DepositLimitsForm", module);
+const stories = storiesOf("DepositLimits/DepositLimitsForm", module);
 
 stories.add("Default", () => (
   <DepositLimitsForm
@@ -20,11 +20,7 @@ stories.add("Default", () => (
       currency: "EUR",
     }}
     locale="en-GB"
-    responsibleGamblingTest={{
-      responsibleGamblingQuestionnaireStatus: "SUCCESS",
-      responsibleGamblingQuestionnaireLastAttempt: null,
-      responsibleGamblingQuestionnaireAttemptAllowed: true,
-    }}
+    responsibleGamblingTestCanBeTaken
     fetchTranslations={() => {}}
   />
 ));

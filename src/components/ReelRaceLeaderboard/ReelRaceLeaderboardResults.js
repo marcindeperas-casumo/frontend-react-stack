@@ -1,16 +1,15 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import cx from "classnames";
 import * as A from "Types/apollo";
+import { useGameActivityAwareLeaderboard } from "Models/reelRaces";
 import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
 
 import "./ReelRaceLeaderboardResults.scss";
 
 type Props = {
-  leaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
-  playerId: string,
   size?: number,
+  playerId: string,
   prizes?: Array<string>,
   forceLaurelPositions?: number,
   className?: string,
@@ -34,8 +33,6 @@ type ListProps = {
   listRef?: React.Ref<any>,
   scrollable?: boolean,
 };
-
-const LEADERBOARD_SIZE = 25;
 
 export const getPrize = (position: number, prizes?: Array<string> = []) =>
   prizes[position - 1] || null;
@@ -80,8 +77,6 @@ const InnerList = ({
 
 export function ReelRaceLeaderboardResults({
   playerId,
-  leaderboard = [],
-  size = LEADERBOARD_SIZE,
   prizes = [],
   forceLaurelPositions = 0,
   inverted = false,
@@ -90,11 +85,13 @@ export function ReelRaceLeaderboardResults({
   rowClassName = "",
   scrollable = false,
   style = {},
+  ...props
 }: Props) {
   const listRef = React.useRef(null);
   const currentPositionRef = React.useRef(null);
-  const sorted = R.sortBy(R.prop("position"))(leaderboard);
-  const leaderboardSortedSliced = sorted.slice(0, size);
+  const leaderboard = useGameActivityAwareLeaderboard();
+  const size = props.size || leaderboard.length;
+  const leaderboardSliced = leaderboard.slice(0, size);
 
   const commonProps = {
     prizes,
@@ -130,11 +127,11 @@ export function ReelRaceLeaderboardResults({
       >
         <InnerList
           className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
-          items={leaderboardSortedSliced.slice(0, fixedRows)}
+          items={leaderboardSliced.slice(0, fixedRows)}
           {...commonProps}
         />
         <InnerList
-          items={leaderboardSortedSliced.slice(fixedRows)}
+          items={leaderboardSliced.slice(fixedRows)}
           {...commonProps}
         />
       </div>

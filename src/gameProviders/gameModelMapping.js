@@ -22,6 +22,8 @@ import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
 import { NyxGame } from "./NyxGame";
 import { PragmaticGame } from "./PragmaticGame";
+import { MahjongGame } from "./MahjongGame";
+import { LeapGame } from "./LeapGame";
 
 export type GameProps = {
   providerType: GameProviderType,
@@ -65,6 +67,9 @@ export const models = {
   [PROVIDERS.PLAYTECH_MOBILE]: BaseIframeGame,
   [PROVIDERS.PRAGMATIC_DESKTOP]: PragmaticGame,
   [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
+  [PROVIDERS.MAHJONG_DESKTOP]: MahjongGame,
+  [PROVIDERS.MAHJONG_MOBILE]: MahjongGame,
+  [PROVIDERS.LEAP]: LeapGame,
 };
 
 const whichProviderType = gameData => {
@@ -92,5 +97,12 @@ export const getGameModel = (
 ): GameProviderModel => {
   const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
-  return new GameModel({ gameData, gameRef, language, environment, urlPrefix });
+  return new GameModel({
+    gameData,
+    gameRef,
+    language,
+    environment,
+    urlPrefix,
+    origin: window.location.origin,
+  });
 };

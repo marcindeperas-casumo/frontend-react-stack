@@ -7,9 +7,14 @@
         "corejs": "3.6.4"
       }
     ],
-    "react-app"
+    "@babel/preset-react",
+    "@babel/preset-flow"
   ],
   "plugins": [
+    "@babel/plugin-transform-flow-strip-types",
+    "babel-plugin-macros",
+    "@babel/transform-runtime",
+    "@babel/plugin-proposal-class-properties",
     "react-hot-loader/babel",
     [
       "module-resolver",
@@ -18,6 +23,8 @@
           "Api": "./src/api",
           "Clients": "./src/serviceClients",
           "Components": "./src/components",
+          "Pages": "./src/pages",
+          "Layouts": "./src/layouts",
           "Containers": "./src/containers",
           "Features": "./src/features",
           "Lib": "./src/lib",

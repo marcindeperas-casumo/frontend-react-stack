@@ -73,7 +73,9 @@ describe("useCurrentReelRaceInfo", () => {
       tournamentId: null,
       formattedPrizes: [],
       leaderboard: [],
+      optedIn: false,
       boosters,
+      cometdChannels: [],
     };
 
     test("no data", () => {
@@ -89,6 +91,8 @@ describe("useCurrentReelRaceInfo", () => {
           game,
           formattedPrizes,
           leaderboard: convertLeaderboardToObject([leaderboardEntryOther]),
+          cometdChannels: [],
+          optedIn: false,
         })
       ).toEqual({
         ...emptyResult,

@@ -16,6 +16,7 @@ describe("BaseGame", () => {
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
     urlPrefix: DEFAULT_LANGUAGE,
+    origin: window.location.origin,
   });
 
   test("should set gameData params and gameRef in constructor", () => {

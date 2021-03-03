@@ -13,6 +13,7 @@ import {
 } from "Models/reelRaces";
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
+import { useCallOnce } from "./useCallOnce";
 
 type LeaderboardObjectType = {
   [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
@@ -26,6 +27,7 @@ export type CurrentReelRaceInfo = {
   points: number,
   remainingSpins: number,
   isInProgress: boolean,
+  optedIn: boolean,
   hasEnded: boolean,
   tournamentId: ?string,
   formattedPrizes: Array<string>,
@@ -35,20 +37,18 @@ export type CurrentReelRaceInfo = {
 
 type CreateCurrentReelRaceDataType = {
   id?: ?string,
+  optedIn?: boolean,
   startTime?: number,
   endTime?: number,
   leaderboard?: LeaderboardObjectType,
   formattedPrizes?: Array<string>,
   game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
+  cometdChannels?: Array<string>,
 };
 
 type CometdReelRaceEnteredType = {
   status: string,
   tournamentId: string,
-};
-
-type CometdReelRaceUpdateType = {
-  leaderboard: LeaderboardObjectType,
 };
 
 type CometdReelRaceFinishedType = {
@@ -66,6 +66,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   points: 0,
   remainingSpins: UNSET_VALUE,
   isInProgress: false,
+  optedIn: false,
   hasEnded: false,
   tournamentId: null,
   formattedPrizes: [],
@@ -104,13 +105,17 @@ export const createCurrentReelRaceData = (
     leaderboard,
     formattedPrizes,
     game,
+    optedIn,
+    cometdChannels,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
     leaderboard: {},
     formattedPrizes: [],
     game: null,
+    optedIn: false,
     id: null,
+    cometdChannels: [],
   }
 ): CurrentReelRaceInfo => {
   const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
@@ -120,6 +125,7 @@ export const createCurrentReelRaceData = (
     startTime: startTime || defaultReelRaceInfo.startTime,
     endTime: endTime || defaultReelRaceInfo.endTime,
     game,
+    cometdChannels,
     position: R.propOr(
       defaultReelRaceInfo.position,
       "position",
@@ -131,7 +137,7 @@ export const createCurrentReelRaceData = (
       "remainingSpins",
       currentPlayerEntry
     ),
-
+    optedIn,
     isInProgress: Boolean(
       startTime &&
         startTime >= 0 &&
@@ -154,9 +160,6 @@ export const createCurrentReelRaceData = (
     ),
   };
 };
-
-const rrQueryFetchPolicy =
-  process.env.NODE_ENV === "test" ? undefined : "cache-and-network";
 
 const statusHandler = (
   reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
@@ -213,27 +216,6 @@ const finishedHandler = (
   }
 };
 
-const subscriptionHandler = (
-  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
-  setCurrentReelRaceData: CurrentReelRaceInfo => void,
-  playerId: string
-) => ({ data }: { data: CometdReelRaceUpdateType }) => {
-  const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
-    reelRace || {};
-
-  setCurrentReelRaceData(
-    createCurrentReelRaceData(playerId, {
-      ...(currentReelRaceRest
-        ? {
-            ...currentReelRaceRest,
-            leaderboard: convertLeaderboardToObject(currentReelRaceLeaderboard),
-          }
-        : {}),
-      leaderboard: data.leaderboard,
-    })
-  );
-};
-
 const reelRaceApplies = (
   localCurrentReelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
   localGameSlug: ?string
@@ -253,8 +235,11 @@ export function useCurrentReelRaceInfo(
     A.CurrentReelRaceInfoQuery,
     _
   >(CurrentReelRaceInfoQuery, {
-    fetchPolicy: rrQueryFetchPolicy,
+    fetchPolicy: "cache-first",
   });
+  // This combined with cache-first fetch policy will make sure that we are not
+  // bombarding graphql server with unnecessary requests
+  useCallOnce(true, refetch);
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(tournamentChannelsSelector);
@@ -269,16 +254,15 @@ export function useCurrentReelRaceInfo(
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
         `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`,
-        () => {
-          refetch();
-        }
+        refetch
       )
     );
 
     return function cleanup() {
       tournamentChannels.forEach(channel =>
         cometd.unsubscribe(
-          `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`
+          `${channel}/tournaments/players/${playerId}/tournamentEvents/entered`,
+          refetch
         )
       );
     };
@@ -316,21 +300,15 @@ export function useCurrentReelRaceInfo(
             id: localCurrentReelRace.id,
             // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
             formattedPrizes: localCurrentReelRace.formattedPrizes,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            cometdChannels: localCurrentReelRace.cometdChannels,
+            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            optedIn: localCurrentReelRace.optedIn,
           })
         );
 
         // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
         localCurrentReelRace.cometdChannels.forEach(channel => {
-          cometd.subscribe(
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
-            `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`,
-            subscriptionHandler(
-              localCurrentReelRace,
-              setCurrentReelRaceData,
-              playerId
-            )
-          );
-
           cometd.subscribe(
             `${channel}/tournaments/tournamentProperties/status`,
             statusHandler(
@@ -357,10 +335,6 @@ export function useCurrentReelRaceInfo(
         if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
           // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
           localCurrentReelRace.cometdChannels.forEach(channel => {
-            cometd.unsubscribe(
-              // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
-              `${channel}/tournaments/players/${playerId}/tournaments/${localCurrentReelRace.id}/leaderboard`
-            );
             cometd.unsubscribe(
               `${channel}/tournaments/tournamentProperties/status`
             );
