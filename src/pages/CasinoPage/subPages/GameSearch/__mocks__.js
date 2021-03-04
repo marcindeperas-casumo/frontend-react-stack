@@ -1,3 +1,6 @@
+// @flow
+import { EVENT_LOCATIONS } from "Src/constants";
+
 export const mockedSearchResults = {
   data: {
     gamesSearch: {
@@ -657,6 +660,306 @@ export const mockedSearchResults = {
       __typename: "GamesSearchResults",
     },
   },
+};
+
+export const mockedSuggestions = {
+  games: [
+    {
+      id: "bf9faf0a-3149-445b-a51a-8da04ed44a83",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Starburst_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Starburst_Thumbnail_Logo.png",
+      name: "Starburst",
+      slug: "starburst-b",
+      gameStudio: "Net Entertainment",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Starburst_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "1d0eccfc-01ee-43d0-a5fd-900bbf1b4980",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2021/01/Coils_of_cash_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2021/01/Coils_of_cash_Thumbnail_Logo.png",
+      name: "Coils of Cash",
+      slug: "coils-of-cash",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2021/01/Coils_of_cash_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "49a0da93-c0d2-4e25-a9de-7cedcc5d9f7a",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/12/Super_joker_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/12/Super_joker_Thumbnail_Logo.png",
+      name: "Super Joker Megaways",
+      slug: "super-joker-megaways",
+      gameStudio: "Stakelogic",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/12/Super_joker_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "3c2c7066-fe98-4076-8347-67d53cc47e78",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/11/Golden_Osiris_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/11/Golden_Osiris_Thumbnail_Logo.png",
+      name: "Golden Osiris",
+      slug: "golden-osiris",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/11/Golden_Osiris_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "2707e84c-5d15-49d6-8a02-bb32a858c041",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2018/08/wolf_gold_thumbnail.jpg",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2018/08/wolf_gold_logo.png",
+      name: "Wolf Gold",
+      slug: "wolf-gold",
+      gameStudio: "Pragmatic Play",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2018/08/wolf_gold_background.jpg",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "280589b0-b89c-11e7-b304-005056a03af2",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_thumbnail.jpg",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_logo.png",
+      name: "Reactoonz",
+      slug: "reactoonz",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_background.jpg",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "c16ed3c8-fa33-4566-91fa-3a87e4b49e12",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2019/11/Sweet_bonanza_xmas_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2019/11/Sweet_bonanza_xmas_Thumbnail_Logo.png",
+      name: "Sweet Bonanza Xmas",
+      slug: "sweet-bonanza-xmas",
+      gameStudio: "Pragmatic Play",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2019/11/Sweet_bonanza_xmas_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "f4873ab0-3c42-11e6-b684-005056a03af2",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/book_of_dead_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/book_of_dead_Thumbnail_Logo.png",
+      name: "Book of Dead",
+      slug: "book-of-dead",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/book_of_dead_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "7a8180c0-2b10-11ea-a6cb-0242ac110003",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2019/12/legacy_of_dead_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2019/12/legacy_of_dead_Thumbnail_Logo.png",
+      name: "Legacy of Dead",
+      slug: "legacy-of-dead",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2019/12/legacy_of_dead_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "a65c3920-23bd-48e3-92ea-3b97f1bf8183",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Annihilator_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Annihilator_Thumbnail_Logo.png",
+      name: "Annihilator",
+      slug: "annihilator",
+      gameStudio: "Playngo",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/Annihilator_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "2f3c70ea-cee7-4848-8baf-02a9c7df2136",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/Money_Train_2_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/Money_Train_2_Thumbnail_Logo.png",
+      name: "Money Train 2",
+      slug: "money-train-2",
+      gameStudio: "Relax",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/Money_Train_2_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "f92b1cf0-8704-11e6-a100-005056a03af2",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
+      name: "Gonzo's Quest",
+      slug: "gonzos-quest",
+      gameStudio: "Net Entertainment",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2012/04/bg1.jpg",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "b89378d1-36e3-11ea-9bcb-0242ac110003",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/01/100_joker_staxx_100_lines_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/01/100_joker_staxx_100_lines_Thumbnail_Logo.png",
+      name: "100 Joker Staxx",
+      slug: "100-joker-staxx",
+      gameStudio: "Playson",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/01/100_joker_staxx_100_lines_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "20802d20-9305-46cf-99a6-7ac33a4eadb6",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/god_of_storm_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/god_of_storm_Thumbnail_Logo.png",
+      name: "Age of the Gods: God of Storms",
+      slug: "age-of-the-gods-god-of-storms",
+      gameStudio: "Playtech",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/08/god_of_storm_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "7101433c-6c71-4f03-a110-afd0f029b83b",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/crazy_time_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/crazy_time_Thumbnail_Logo.png",
+      name: "Crazy Time",
+      slug: "crazy-time",
+      gameStudio: "Evolution",
+      category: "LIVE_CASINO",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/04/crazy_time_bg.png",
+      liveCasinoId: "CrazyTime0000001",
+      lobby: {
+        bets: null,
+        __typename: "LiveCasinoTable",
+      },
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "4cec4c4d-9fc1-40ef-b8ee-8fadaf945aa9",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/blackjack_live_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/blackjack_live_Thumbnail_Logo.png",
+      name: "Live Blackjack",
+      slug: "live-blackjack",
+      gameStudio: "Playtech",
+      category: "LIVE_CASINO",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/07/blackjack_live_bg.png",
+      liveCasinoId: "bjl",
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+    {
+      id: "ecbf2ea3-7eb1-472d-aed4-223d588928a3",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2020/05/Joker_Troupe_Thumbnail_BG.png",
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2020/05/Joker_Troupe_Thumbnail_Logo.png",
+      name: "Joker Troupe",
+      slug: "joker-troupe",
+      gameStudio: "Push Gaming",
+      category: "SLOT_MACHINE",
+      playBackground:
+        "https://cms.casumo.com/wp-content/uploads/2020/05/Joker_Troupe_bg.png",
+      liveCasinoId: null,
+      lobby: null,
+      isInMaintenance: false,
+      __typename: "Game",
+    },
+  ],
+  title: "Continue Playing",
+  location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
+  type: "latest",
 };
 
 export const mockedTranslations = {
