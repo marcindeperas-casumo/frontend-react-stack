@@ -23,11 +23,11 @@ export const GameLinkButton = (props: TProps) => (
     )}
   >
     <ButtonPrimary
-      className="u-width--full@mobile u-width--full@phablet u-width--1/2@tablet u-width--1/3"
+      className="u-width--full@mobile u-padding-x--lg"
       onClick={() => launchGame({ slug: props.game })}
     >
-      <span className="u-margin-right">{props.text}</span>
       <PlayIcon />
+      <span className="u-margin-left--md">{props.text}</span>
     </ButtonPrimary>
   </div>
 );
