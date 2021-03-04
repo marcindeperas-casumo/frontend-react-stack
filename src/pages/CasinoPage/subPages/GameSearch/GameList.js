@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 
 type TProps = {
   games: Array<any>,
-  renderItem: (game: A.GameRow_Game) => React.Node,
+  renderItem?: (game: A.GameRow_Game) => React.Node,
 };
 
 export const GameList = ({ games, renderItem }: TProps) => {
@@ -32,7 +33,7 @@ export const GameList = ({ games, renderItem }: TProps) => {
             index={index}
             align="center"
           >
-            {renderItem(game)}
+            {renderItem && renderItem(game)}
           </Flex>
         );
       })}

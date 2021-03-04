@@ -34,7 +34,7 @@ type Props = {
   },
 };
 
-const gameRowSecondaryText = (game, t) => {
+const gameRowSecondaryText = (game, t) => () => {
   return game.isInMaintenance ? (
     <Text className="u-padding-top--sm t-color-grey-70" size="sm">
       {t.gameInMaintenanceText}
@@ -90,14 +90,12 @@ export const GameSearch = ({
           <GameListSkeleton hasTitle={false} />
         ) : (
           <>
-            {
-              <GameSearchResults
-                searchResults={searchResults}
-                searchResultsCount={searchResultsCount}
-                renderItem={gameRowHighlightSearch(query, t)}
-              />
-            }
-            {query.length > 0 && <GameSearchSuggestions {...suggestions} />}
+            <GameSearchResults
+              resultsCount={searchResultsCount}
+              results={searchResults}
+              renderItem={gameRowHighlightSearch(query, t)}
+            />
+            ){query.length > 0 && <GameSearchSuggestions {...suggestions} />}
           </>
         )}
       </div>
