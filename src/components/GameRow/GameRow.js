@@ -48,7 +48,7 @@ export const GameRow = (props: Props) => {
     >
       <Flex
         className={classNames(
-          "u-width--full u-height--full u-padding--md",
+          "o-flex-block u-height--full u-padding--md",
           props.className
         )}
         align="center"

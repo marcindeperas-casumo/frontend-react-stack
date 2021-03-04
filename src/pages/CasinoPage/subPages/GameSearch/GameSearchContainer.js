@@ -1,12 +1,16 @@
 // @flow
 import React from "react";
-import * as R from "ramda";
-import { insertIntoArray } from "Utils/gamesPaginated";
-import { useGameSearchSuggestions } from "Components/GameSearch/useGameSearchSuggestions";
+import { noop } from "Utils";
+import {
+  mockedSearchResults,
+  mockedSuggestions,
+  mockedTranslations as t,
+} from "./__mocks__";
 import { GameSearch } from "./GameSearch";
-import { mockedSearchResults, mockedTranslations as t } from "./__mocks__";
 
+// eslint-disable-next-line no-unused-vars
 const PAGE_SIZE = 50;
+// eslint-enable-next-line no-unused-vars
 
 export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -14,33 +18,17 @@ export const GameSearchContainer = () => {
 
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
-  const { list, loading: loadingSuggestions } = useGameSearchSuggestions({
-    searchResults,
-  });
 
+  // eslint-disable-next-line no-unused-vars
   const [pageNumber, setPageNumber] = React.useState(0);
+  // eslint-enable-next-line no-unused-vars
 
+  // eslint-disable-next-line no-unused-vars
   const fetchMoreRows = () => {
     setPageNumber(currPageNumber => currPageNumber + 1);
-
-    const mergedResults = insertIntoArray(
-      searchResults,
-      pageNumber * PAGE_SIZE
-    )(searchResults);
-
-    return new Promise(resolve => {
-      resolve(
-        R.mergeDeepRight(data, {
-          gamesSearch: {
-            searchResultsCount: searchResultsCount,
-            results: searchQuery
-              ? mergedResults
-              : R.sortBy(R.prop("name"), mergedResults),
-          },
-        })
-      );
-    });
+    // todo: implement later, likely causing current issues
   };
+  // eslint-ensable-next-line no-unused-vars
 
   const clearSearch = () => setSearchQuery("");
 
@@ -49,9 +37,9 @@ export const GameSearchContainer = () => {
       searchResults={searchResults}
       searchResultsCount={searchResultsCount}
       loading={false}
-      loadingSuggestions={loadingSuggestions}
-      suggestions={list}
-      fetchMoreRows={fetchMoreRows}
+      loadingSuggestions={false}
+      suggestions={mockedSuggestions}
+      fetchMoreRows={noop}
       queryChanged={setSearchQuery}
       query={searchQuery}
       clearSearch={clearSearch}
