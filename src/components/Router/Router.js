@@ -4,6 +4,7 @@ import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
 import { routeTranslator } from "Utils";
 import { ROUTE_IDS, TRANSLATED_ROUTES } from "Src/constants";
+import { MahjongPage } from "Components/MahjongPage/MahjongPage";
 import {
   LazyGameDetails,
   LazyPromotions,
@@ -55,6 +56,7 @@ export const Router = () => {
           // $FlowIgnore: it is string
           <GameBrowser key={x} path={`${x}/*`} />
         ))}
+        <MahjongPage path={translateRoute(ROUTE_IDS.MAHJONG_PAGE)} />
         <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
         <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY_NATIVE)} />
         <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />

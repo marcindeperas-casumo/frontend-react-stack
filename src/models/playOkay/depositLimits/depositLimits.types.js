@@ -2,9 +2,9 @@
 export type DepositKinds = "daily" | "weekly" | "monthly";
 export type LimitChangeType = "unchanged" | "increase" | "decrease" | "removed";
 export type AllLimitsOnlyValues = {
-  daily: ?number,
-  monthly: ?number,
-  weekly: ?number,
+  daily?: ?number,
+  monthly?: ?number,
+  weekly?: ?number,
 };
 export type AllLimits = {
   currency: string,
@@ -48,21 +48,19 @@ export type DepositLimitPreadjustRules =
   | "REVOCATION_ALLOWED";
 
 type ISO8601Duration = string; // ie. P7D, see: https://en.wikipedia.org/wiki/ISO_8601#Durations
+
 export type DepositLimitPreadjust = {
   schema: "MONETARY_AMOUNT_PERIODS_AND_INCREASED" | "MONETARY_AMOUNT", // TODO: will we ever get monetary amount? it would require us to ask for DGOJ_UNVERIFIED_ACCOUNT_DEPOSIT_LIMIT
   increaseEffectiveAfter: ISO8601Duration,
   increaseProhibitedAfterwardsFor: ISO8601Duration,
+  increasesOrRevocationsBlocked: boolean,
+  responsibleGamblingTestCanBeTaken: boolean,
   kind: DepositLimitKind,
   playerId: string,
   rules: Array<DepositLimitPreadjustRules>,
 };
 
 type ISO8601DateTime = string;
-export type ResponsibleGamblingTest = {|
-  responsibleGamblingQuestionnaireStatus: "SUCCESS" | "FAILED" | "NONE", // NONE if player hasn't attempted test yet
-  responsibleGamblingQuestionnaireLastAttempt: ?ISO8601DateTime, // null if there was no previous attempt, with milliseconds and retrofit
-  responsibleGamblingQuestionnaireAttemptAllowed: boolean,
-|};
 
 export type DepositLimitsAdjustment = {
   approvalRequired: boolean,
@@ -94,7 +92,6 @@ export type DepositLimitsReduxStore = {|
   lock: ?LimitLock,
   undoable: ?boolean,
   remaining: ?AllLimitsOnlyValues,
-  responsibleGamblingTest: ?ResponsibleGamblingTest,
   pendingLimitChanges: ?DepositLimitsAdjustment,
   history: ?DepositLimitsHistoryType,
 |};

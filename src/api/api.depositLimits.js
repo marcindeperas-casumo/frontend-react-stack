@@ -8,7 +8,7 @@ import type {
   LimitAdjustmentHistory,
 } from "Models/playOkay/depositLimits";
 
-// See swagger: limits.at.casumotest.local:8080/swagger-ui.html
+// See swagger: http://limits.k8s.casumotest.local/swagger-ui.html
 const BASE = "/casino-player/limits/api";
 const HISTORY = `${BASE}/audit/DGOJ_DEPOSIT_LIMIT`;
 const ALL_LIMITS = `${BASE}/limits`;
@@ -41,10 +41,6 @@ export function limitCancel() {
 
 export function limitRevoke() {
   return http.post(`${USER_LIMITS}/revoke`);
-}
-
-export function checkResponsibleGamblingTest() {
-  return http.get(ES_PLAYER_LIFECYCLE);
 }
 
 export function sendResponsibleGamblingTest(passed: boolean) {

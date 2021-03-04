@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { DepositLimitsSuspendAccount } from "./DepositLimitsSuspendAccount";
 
-const stories = storiesOf("DepositLimitsSuspendAccount", module);
+const stories = storiesOf("DepositLimits/DepositLimitsSuspendAccount", module);
 
 stories.add("Default", () => (
   <DepositLimitsSuspendAccount

@@ -8,19 +8,33 @@ const props = {
   t: {
     yes: "yes",
     no: "no",
-    /* eslint-disable no-useless-computed-key */
-    // ^ otherwise it'll auto-fix and flow won't shut up
-    [1]: "0",
-    [2]: "1",
-    [3]: "2",
-    [4]: "3",
-    [5]: "4",
-    /* eslint-enable no-useless-computed-key */
+    questions: [
+      {
+        question: "0",
+        answer: "yes",
+      },
+      {
+        question: "1",
+        answer: "yes",
+      },
+      {
+        question: "2",
+        answer: "yes",
+      },
+      {
+        question: "3",
+        answer: "yes",
+      },
+      {
+        question: "4",
+        answer: "yes",
+      },
+    ],
   },
   sendRGTestResult: () => {},
   fetchQuestions: () => {},
-  numberOfQuestions: 5,
 };
+const numberOfQuestions = props.t.questions.length;
 
 describe("ResponsibleGamblingTest", () => {
   test("fetchQuestions is called on mount", () => {
@@ -66,7 +80,7 @@ describe("ResponsibleGamblingTest", () => {
         .find({ "data-test-id": "buttonNo" })
         .find("ButtonSecondary")
         .simulate("click");
-    }, props.numberOfQuestions);
+    }, numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(true);
   });
 
@@ -75,13 +89,13 @@ describe("ResponsibleGamblingTest", () => {
     const rendered = mount(
       <ResponsibleGamblingTest {...props} sendRGTestResult={sendRGTestResult} />
     );
-    const randomYes = Math.round(Math.random() * (props.numberOfQuestions - 1));
+    const randomYes = Math.round(Math.random() * (numberOfQuestions - 1));
     R.times(i => {
       rendered
         .find({ "data-test-id": i === randomYes ? "buttonYes" : "buttonNo" })
         .find(i === randomYes ? "ButtonPrimary" : "ButtonSecondary")
         .simulate("click");
-    }, props.numberOfQuestions);
+    }, numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(false);
   });
 
@@ -97,7 +111,7 @@ describe("ResponsibleGamblingTest", () => {
         .find({ "data-test-id": testID })
         .find("Button")
         .simulate("click");
-    }, props.numberOfQuestions);
+    }, numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(false);
   });
 
@@ -111,7 +125,7 @@ describe("ResponsibleGamblingTest", () => {
         .find({ "data-test-id": "buttonYes" })
         .find("Button")
         .simulate("click");
-    }, props.numberOfQuestions);
+    }, numberOfQuestions);
     expect(sendRGTestResult).toHaveBeenCalledWith(false);
   });
 });
