@@ -9,7 +9,6 @@ export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
   dispatch(limitPreadjust);
   dispatch(getRemainingLimits);
-  dispatch(checkResponsibleGamblingTest);
 };
 
 export const getAllLimits = {
@@ -24,13 +23,6 @@ export const getRemainingLimits = {
   name: depositLimitsTypes.REMAINING_LIMITS,
   postFetch: depositLimitsTypes.REMAINING_LIMITS_DONE,
   asyncCall: api.remainingLimits,
-};
-
-export const checkResponsibleGamblingTest = {
-  type: fetchTypes.FETCH,
-  name: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST,
-  postFetch: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
-  asyncCall: api.checkResponsibleGamblingTest,
 };
 
 export const limitPreadjust = {
