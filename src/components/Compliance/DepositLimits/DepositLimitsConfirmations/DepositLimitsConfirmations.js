@@ -11,22 +11,22 @@ export type ConfirmationPage =
   | "RG_SUCCESS"
   | "RG_FAIL"
   | "RG_REQUIRED"
-  | "SAVED_RIGHT_AWAY"
-  | "BEING_REVIEWED";
+  | "SAVED_RIGHT_AWAY";
+
+export type TDepositLimitsConfirmationsTranslations = {
+  saved_right_away_title: string,
+  rg_success_title: string,
+  rg_success_content: string,
+  rg_fail_title: string,
+  rg_fail_content: string,
+  rg_required_title: string,
+  rg_required_content: string,
+  button_back_to_limits: string,
+  button_answer_questions: string,
+};
+
 type Props = {
-  t: {
-    saved_right_away_title: string,
-    being_reviewed_title: string,
-    being_reviewed_content: string,
-    rg_success_title: string,
-    rg_success_content: string,
-    rg_fail_title: string,
-    rg_fail_content: string,
-    rg_required_title: string,
-    rg_required_content: string,
-    button_back_to_limits: string,
-    button_answer_questions: string,
-  },
+  t: TDepositLimitsConfirmationsTranslations,
   pages: Array<ConfirmationPage>,
   lastButtonAction: () => void,
   fetchTranslations: () => void,
@@ -53,10 +53,6 @@ const confirmationPageToTranslation: {
   },
   SAVED_RIGHT_AWAY: {
     title: "saved_right_away_title",
-  },
-  BEING_REVIEWED: {
-    title: "being_reviewed_title",
-    content: "rg_required_content",
   },
 };
 

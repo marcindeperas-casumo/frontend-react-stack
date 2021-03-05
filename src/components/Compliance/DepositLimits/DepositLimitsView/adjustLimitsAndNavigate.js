@@ -33,7 +33,9 @@ export const adjustLimitsAndNavigate = ({
   if (hasRemovedOrIncreased) {
     navigate({
       route: "confirmations",
-      pages: ["RG_REQUIRED"],
+      pages: [hasDecreased && "SAVED_RIGHT_AWAY", "RG_REQUIRED"].filter(
+        Boolean
+      ),
     });
   } else if (hasDecreased) {
     limitAdjust(newLimits);
