@@ -1,4 +1,5 @@
 // TODO: Make these components lazy-loaded
+import { GameLinkButton } from "Components/GameLinkButton";
 import {
   DefaultCuratedCard,
   TopListCuratedCard,
@@ -41,6 +42,7 @@ export const COMPONENT_MAPPING = {
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
+  GAME_LINK: GameLinkButton,
   CTA: ContentButton,
   PROMOTION_OPT_IN_BUTTON: PromotionOptInButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,

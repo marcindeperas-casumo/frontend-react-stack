@@ -5,6 +5,10 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { useTranslations } from "Utils/hooks";
 
+const layoutSelectorCmsTypes = {
+  ONE_COL_WITH_IMG: "one_col_with_img",
+  TWO_COL_WITH_IMG: "two_col_with_img",
+};
 const markdownOptions = {
   overrides: {
     p: {
@@ -16,6 +20,42 @@ const markdownOptions = {
     },
   },
 };
+const LayoutAwareTextPlusImage = ({ layout_selector, free_text, image }) => {
+  const mapping = {
+    [layoutSelectorCmsTypes.ONE_COL_WITH_IMG]: (
+      <>
+        {free_text && (
+          <Markdown options={markdownOptions}>{free_text}</Markdown>
+        )}
+        {image && <img src={image} alt="" className="u-margin-y--md" />}
+      </>
+    ),
+    [layoutSelectorCmsTypes.TWO_COL_WITH_IMG]: (
+      <Flex
+        align="center"
+        className="u-padding-y o-flex--vertical@mobile o-flex--vertical@phablet"
+      >
+        {image && (
+          <img
+            src={image}
+            alt=""
+            className="u-margin-y--md@mobile u-margin-y--md@phablet"
+          />
+        )}
+        {free_text && (
+          <Flex.Item className="u-margin-left--lg@tablet u-margin-left--lg@desktop">
+            <Markdown options={markdownOptions}>{free_text}</Markdown>
+          </Flex.Item>
+        )}
+      </Flex>
+    ),
+  };
+
+  return (
+    mapping[layout_selector] || mapping[layoutSelectorCmsTypes.ONE_COL_WITH_IMG]
+  );
+};
+
 const Content = props => (
   <Flex direction="vertical">
     {props.heading_text && (
@@ -26,17 +66,22 @@ const Content = props => (
         {props.heading_text}
       </Text>
     )}
-    {props.free_text && (
-      <Markdown options={markdownOptions}>{props.free_text}</Markdown>
-    )}
-    {props.image && <img src={props.image} alt="" className="u-margin-y--md" />}
+    <LayoutAwareTextPlusImage {...props} />
     {(props.repeater || []).map((x, i) => (
       <Flex key={i} align="center" className="u-padding-y">
         {x.image && (
-          <img src={x.image} alt="" className="u-margin-y--md u-width--2/5" />
+          <img
+            src={x.image}
+            alt=""
+            className="u-margin-y--md u-width--2/5@mobile u-width--2/5@phablet"
+          />
         )}
         {x.image_top && (
-          <img src={x.image_top} alt="" className="u-width--2/5" />
+          <img
+            src={x.image_top}
+            alt=""
+            className="u-width--2/5@mobile u-width--2/5@phablet"
+          />
         )}
         {x.free_text && (
           <Flex.Item>

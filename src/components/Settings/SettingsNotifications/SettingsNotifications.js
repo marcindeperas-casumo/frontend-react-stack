@@ -14,7 +14,6 @@ import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 type Props = {
   player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
   labels: NotificationTranslations,
-  isDGOJ: boolean,
 };
 
 export class SettingsNotifications extends PureComponent<Props> {
@@ -32,15 +31,15 @@ export class SettingsNotifications extends PureComponent<Props> {
         in_game_updates_off_label: inGameSessionUpdatesOffLabel,
         in_game_updates_options_label: inGameSessionUpdatesFrequencyLabel,
       },
-      isDGOJ,
     } = this.props;
+    const isRealityCheckVisible = canChangeInterval || intervalInMinutes !== 0;
 
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
         <div className="t-elevation--30@tablet t-elevation--30@desktop">
           <WithdrawalNotificationsContainer />
 
-          {!isDGOJ && (
+          {isRealityCheckVisible && (
             <RealityCheckField
               enabled={canChangeInterval}
               link="/player/settings/reality-check"
