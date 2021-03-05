@@ -7,12 +7,14 @@ describe("Lib/http", () => {
   let responseTextMock;
 
   const mockFetch = (responseMockOverride, responseTextMockOverride) => {
-    const defaultObject = { foo: "bar" };
     responseTextMock =
-      responseTextMockOverride ?? JSON.stringify(defaultObject);
+      responseTextMockOverride ?? JSON.stringify({ foo: "bar" });
     responseMock = {
       ok: true,
-      json: jest.fn().mockResolvedValue(defaultObject),
+      json:
+        responseTextMock === ""
+          ? jest.fn().mockRejectedValue("error")
+          : jest.fn().mockResolvedValue(JSON.parse(responseTextMock)),
       text: jest.fn().mockResolvedValue(responseTextMock),
       ...responseMockOverride,
     };
