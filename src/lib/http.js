@@ -31,13 +31,12 @@ const errorHandler = response => {
   return response;
 };
 
-const emptyResponseHandler = response => {
-  return response
+const emptyResponseHandler = response =>
+  response
     .text()
     .then(responseText =>
       responseText.length > 0 ? JSON.parse(responseText) : {}
     );
-};
 
 const get: FetchType = (url, data, options) =>
   fetch(createGetUrl(url, data), {
