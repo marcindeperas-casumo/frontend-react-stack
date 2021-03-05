@@ -37,7 +37,7 @@ export const CasinoGames = () => {
     },
   });
 
-  const { isMGA } = useJurisdiction();
+  const { isMGA, isDGOJ } = useJurisdiction();
 
   if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
     return null;
@@ -67,10 +67,10 @@ export const CasinoGames = () => {
     );
   };
 
-  if (isMobile()) {
+  if (isDGOJ || isMobile()) {
     return (
       <>
-        <div className="u-padding">
+        <div className="u-padding u-padding--2xlg@desktop">
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
             <ButtonPrimary
