@@ -65,6 +65,14 @@ body #react-host-sports-shell #KambiBC {
   margin: auto 0 !important;
 }
 
+#KambiBC-container
+  .KambiBC-sandwich-filter__event-list-info
+  .KambiBC-event-item__match-clock-container {
+  @media (max-width: 768px) {
+    min-width: 45px !important;
+  }
+}
+
 //LANDING PAGE START
 .KambiBC-core-ux-landing-page {
   position: relative !important;
