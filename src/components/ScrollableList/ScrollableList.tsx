@@ -1,27 +1,24 @@
-// @flow
-import * as React from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import { isEmpty } from "ramda";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
+import * as React from "react";
+import { isEmpty } from "ramda";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { horizontalListsDevicePaddings } from "Src/constants";
 export const DEFAULT_SPACING = "default";
 
 type OwnProps = {
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    title?: ?string;
-    /** url to "see more" page, if null will not render "see more" link */
-    seeMoreUrl?: string;
-    items: Array<any>;
-    spacing: spacerSizes | responsiveSpacerSizes;
-    /** "see more" link translation */
-    seeMoreText?: string;
-    itemClassName?: string;
-    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-    itemRenderer: (i: number) => React.Node;
+  title?: string | undefined;
+  /** url to "see more" page, if null will not render "see more" link */
+  seeMoreUrl?: string;
+  items: Array<any>;
+  spacing: spacerSizes | responsiveSpacerSizes;
+  /** "see more" link translation */
+  seeMoreText?: string;
+  itemClassName?: string;
+  itemRenderer: (i: number) => React.ReactNode;
 };
 
 type Props = OwnProps & typeof ScrollableList.defaultProps;

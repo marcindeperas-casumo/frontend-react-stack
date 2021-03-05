@@ -1,14 +1,9 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import {
-  useSessionsState,
-  ACTION_TYPES,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"."' has no exported member 'type'.
-  type StateType,
-} from "Models/slotControlSystem";
+import { useSessionsState, ACTION_TYPES } from "Models/slotControlSystem";
+import type { StateType } from "Models/slotControlSystem";
 import activeSessionMock from "./__mocks__/activeSession.mock";
 import endedSessionMock from "./__mocks__/endedSession.mock";
 import activeExclusionMock from "./__mocks__/activeExclusion.mock";
@@ -27,7 +22,6 @@ describe("useSessionsState", () => {
   const slotControlSystem: StateType = {
     slugToCategoryMap: {},
     lastUpdateTime,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; expiringTime: number; startedT... Remove this comment to see the full error message
     activeSession,
     lastEndedSession,
     activeExclusion: null,

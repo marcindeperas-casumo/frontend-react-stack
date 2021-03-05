@@ -10,7 +10,6 @@ const onCardClick = jest.fn();
 
 describe("ValuableCard", () => {
   test("should always pass an image url to ValuableThumbnail if type is not SPINS", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'backgroundImage' does not exist on type ... Remove this comment to see the full error message
     const { backgroundImage: expectedValue } = mockValuable;
@@ -27,7 +26,6 @@ describe("ValuableCard", () => {
   });
 
   test("should not display any description if valuableType is not SPINS", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     const rendered = shallow(
       // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
@@ -40,7 +38,6 @@ describe("ValuableCard", () => {
   });
 
   test("should call the onClick function on click of card", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
 
     const rendered = shallow(

@@ -1,4 +1,3 @@
-// @flow
 import { select, take } from "redux-saga/effects";
 
 export function* waitForSelector(selector: string): any {

@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { GameTile } from "Components/GameTile/GameTile";
 import game from "./__mocks__/Game.json";
@@ -16,7 +15,7 @@ stories.add("Default", () => {
     <div className="c-top-game">
       <MockStore>
         <GameTile
-          // @ts-expect-error ts-migrate(2739) FIXME: Type '{ isInMaintenance: any; name: string; slug: ... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: any; name: string; slug: ... Remove this comment to see the full error message
           game={{ ...game, isInMaintenance }}
           onLaunchGame={action(game.name)}
           onFavouriteGame={action("favourite game")}

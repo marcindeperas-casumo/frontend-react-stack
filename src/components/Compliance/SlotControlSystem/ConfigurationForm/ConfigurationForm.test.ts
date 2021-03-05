@@ -1,4 +1,3 @@
-// @flow
 import { isPlayActive } from "./ConfigurationForm";
 
 describe("Compliance/SlotControlSystem/ConfigurationForm", () => {

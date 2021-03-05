@@ -1,12 +1,12 @@
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import EmptyValuablesImage from "./empty-valuables-image.svg";
 
 import "./EmptyValuablesList.scss";
 
 type Props = {
-  message: string,
+  message: string;
 };
 
 export const EmptyValuablesList = (props: Props) => (

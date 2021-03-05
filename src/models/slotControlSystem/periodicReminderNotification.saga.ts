@@ -1,6 +1,5 @@
-// @flow
-import * as R from "ramda";
 import { call, put } from "redux-saga/effects";
+import * as R from "ramda";
 import { MESSAGES as cometdMessages } from "Models/cometd";
 import { showModal } from "Models/modal";
 import { shouldShowSlotControlSystemSaga } from ".";

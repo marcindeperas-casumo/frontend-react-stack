@@ -1,4 +1,1 @@
-// @flow
-export {
-  ReelRaceStartingNotificationContainer as ReelRaceStartingNotification,
-} from "./ReelRaceStartingNotificationContainer";
+export { ReelRaceStartingNotificationContainer as ReelRaceStartingNotification } from "./ReelRaceStartingNotificationContainer";

@@ -1,5 +1,3 @@
-// @flow
-
 import { getPrize } from "./ReelRaceLeaderboardResults";
 
 describe("ReelRaceLeaderboardResults", () => {

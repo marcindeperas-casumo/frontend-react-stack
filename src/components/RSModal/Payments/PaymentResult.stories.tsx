@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import MockStore from "Components/MockStore";
 import t from "./__mocks__/paymentResult.mocks";
 import { PaymentResult } from "./PaymentResult";

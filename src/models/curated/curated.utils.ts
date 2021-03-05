@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { CURATED_SLUG } from "./curated.constants";
 

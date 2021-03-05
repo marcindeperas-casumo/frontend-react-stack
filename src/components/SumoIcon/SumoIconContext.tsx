@@ -1,4 +1,3 @@
-//@flow
 import * as React from "react";
 import * as R from "ramda";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
@@ -15,26 +14,17 @@ const bubbleIcons = Object.freeze({
 });
 
 export type SumoIconContextType = {
-  updateProps: (iconId: string, data: Object) => void,
-  addIcon: (
-    iconId: string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    icon: React.Component<*, *> | React.StatelessFunctionalComponent<*>
-  ) => string,
-  removeIcon: (iconId: string, done?: () => void) => void,
-  hasIcon: (iconId: string) => boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  primaryIcon: ?React.Component<*, *> | ?React.StatelessFunctionalComponent<*>,
-  primaryIconType: string,
-  primaryIconProps: Object,
-  secondaryIcon:
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    | ?React.Component<*, *>
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    | ?React.StatelessFunctionalComponent<*>,
-  secondaryIconType: string,
-  secondaryIconProps: Object,
-  isTransitionRunning: boolean,
+  updateProps: (iconId: string, data: Object) => void;
+  addIcon: (iconId: string, icon: React.ReactNode) => string;
+  removeIcon: (iconId: string, done?: () => void) => void;
+  hasIcon: (iconId: string) => boolean;
+  primaryIcon: React.ReactNode;
+  primaryIconType: string;
+  primaryIconProps: Object;
+  secondaryIcon: React.ReactNode;
+  secondaryIconType: string;
+  secondaryIconProps: Object;
+  isTransitionRunning: boolean;
 };
 
 export const SumoIconContext = React.createContext<SumoIconContextType>({
@@ -54,8 +44,7 @@ export const SumoIconContext = React.createContext<SumoIconContextType>({
 export const SumoIconContextProvider = ({
   children,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 }) => {
   const transitionTimer = useTimeoutFn();
   const [isTransitionRunning, setIsTransitionRunning] = React.useState<boolean>(
@@ -87,11 +76,7 @@ export const SumoIconContextProvider = ({
   );
 
   const addIcon = React.useCallback(
-    (
-      iconId: string,
-      // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-      icon: ?React.Component<*, *> | ?React.StatelessFunctionalComponent<*>
-    ) => {
+    (iconId: string, icon: React.ReactNode) => {
       transitionTimer.clear();
       setCustomIcons(prev => [
         ...prev,

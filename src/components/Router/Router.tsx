@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
@@ -43,7 +42,7 @@ export const Router = () => {
           basepath={basepath}
         />
         <LazyTopNav
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; basepath: string; }' is not ... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; basepath: string; }' is not ass... Remove this comment to see the full error message
           path={translateRoute(ROUTE_IDS.REEL_RACES)}
           basepath={basepath}
         />
@@ -55,20 +54,19 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.CASINO_GAMES_SLOTS)}
         />
         {Object.values(TRANSLATED_ROUTES.GAMES).map(x => (
-          // $FlowIgnore: it is string
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ key: string; path: string; }' is not assig... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ key: "spel" | "pelit" | "spillvelger" | "s... Remove this comment to see the full error message
           <GameBrowser key={x} path={`${x}/*`} />
         ))}
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <MahjongPage path={translateRoute(ROUTE_IDS.MAHJONG_PAGE)} />
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY_NATIVE)} />
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
         <LazyPlayForFunGamePage
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message
           path={translateRoute(ROUTE_IDS.PRACTICE_NATIVE)}
         />
         <LazyGameDetails path={translateRoute(ROUTE_IDS.GAME_DETAILS)} />
@@ -91,7 +89,7 @@ export const Router = () => {
         <LazyPlayerSettingsRealityCheck
           path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_REALITY_CHECK)}
         />
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <LazySports path={translateRoute(ROUTE_IDS.SPORTS)} />
         <LazyTransactionHistory
           path={translateRoute(ROUTE_IDS.TRANSACTION_HISTORY)}

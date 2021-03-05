@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsConfirmations } from "./DepositLimitsConfirmations";
@@ -17,10 +16,7 @@ describe("DepositLimitsConfirmations", () => {
     // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: { saved_right_away_title: string; being... Remove this comment to see the full error message
     const rendered = shallow(<DepositLimitsConfirmations {...props} />);
     const getText = () =>
-      rendered
-        .find({ "data-test-id": "txt" })
-        .dive()
-        .text();
+      rendered.find({ "data-test-id": "txt" }).dive().text();
     const before = getText();
     rendered.find({ "data-test-id": "buttonNext" }).simulate("click");
     const after = getText();
@@ -57,6 +53,7 @@ describe("DepositLimitsConfirmations", () => {
 
     const lastButtonAction2 = jest.fn();
     const rendered2 = shallow(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ pages: "SAVED_RIGHT_AWAY"[]; lastButtonAct... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
         pages={["SAVED_RIGHT_AWAY"]}

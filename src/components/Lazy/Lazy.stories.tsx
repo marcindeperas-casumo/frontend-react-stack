@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import Lazy from "Components/Lazy";
 
 const stories = storiesOf("Lazy", module);

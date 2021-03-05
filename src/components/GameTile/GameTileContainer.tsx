@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useTranslations } from "Utils/hooks";
 import * as A from "Types/apollo";
@@ -6,10 +5,10 @@ import { CMS_SLUGS } from "../GameListPage/GameList.constants";
 import { GameTile } from "./GameTile";
 
 export type GameTileContainerProps = {
-  className?: string,
-  game: A.GameTile_Game,
-  imgixOpts?: Object,
-  ratio?: string,
+  className?: string;
+  game: A.GameTile_GameFragment;
+  imgixOpts?: Object;
+  ratio?: string;
 };
 
 export const GameTileContainer = (props: GameTileContainerProps) => {

@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import { WAGERING_NOTIFICATION_TYPES } from "Models/playing/playing.constants";
 import { BonusBalanceInGameNotification } from "./BonusBalanceInGameNotification";
 const stories = storiesOf("BonusBalanceInGameNotification", module);

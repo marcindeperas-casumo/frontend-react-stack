@@ -1,7 +1,7 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   withFavouritesResult,

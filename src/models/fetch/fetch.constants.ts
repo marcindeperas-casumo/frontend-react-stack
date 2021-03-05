@@ -1,4 +1,3 @@
-// @flow
 export const types = {
   SENDING_REQUEST: "FETCH/SENDING_REQUEST",
   REQUEST_ERROR: "FETCH/REQUEST_ERROR",

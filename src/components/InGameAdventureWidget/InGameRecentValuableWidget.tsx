@@ -1,9 +1,8 @@
-// @flow
-import React from "react";
 import { useMutation } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonInverted } from "@casumo/cmp-button";
+import React from "react";
 import * as A from "Types/apollo";
 import ImageLazy from "Components/Image/ImageLazy";
 import { ValuableCard } from "Components/ValuableCard";
@@ -11,7 +10,6 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import { VALUABLE_TYPES, getExpiryTimeLeft } from "Models/valuables";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/PlayerValuableList/... Remove this comment to see the full error message
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 
 import "./InGameRecentValuableWidget.scss";
@@ -27,20 +25,19 @@ const ValuableThumbnailRenderer = ({ backgroundImage, valuableType }) => {
     <ImageLazy
       className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow--hidden"
       src={backgroundImage}
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
       imgixOpts={valuableType === VALUABLE_TYPES.SPINS ? imgixOptsForSpins : {}}
     />
   );
 };
 
 type Props = {
-  onValuableConsumed: () => void,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  recentValuable: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  content: ?{
-    valuables_more_info: string,
-  },
+  onValuableConsumed: () => void;
+  recentValuable: string | undefined;
+  content:
+    | {
+        valuables_more_info: string;
+      }
+    | undefined;
 };
 
 export const InGameRecentValuableWidget = ({
@@ -48,12 +45,12 @@ export const InGameRecentValuableWidget = ({
   recentValuable,
   content,
 }: Props) => {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Boolean... Remove this comment to see the full error message
   const { loading, valuables, translations } = usePlayerValuableList();
   const [showModal, setShowModal] = React.useState(false);
-  const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
-    UseValuable
-  );
+  const [mutateValuable] = useMutation<
+    A.UseValuableMutation,
+    A.UseValuableMutationVariables
+  >(UseValuable);
   const consumeValuable = (id: string) => {
     setShowModal(false);
 
@@ -81,6 +78,7 @@ export const InGameRecentValuableWidget = ({
         <div className="c-ingame-recent-valuable__thumbnail t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
           {!loading ? (
             <ValuableThumbnail
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'awardType' does not exist on type '{ __t... Remove this comment to see the full error message
               awardType={latestValuable.awardType}
               backgroundRenderer={
                 <ValuableThumbnailRenderer
@@ -88,6 +86,7 @@ export const InGameRecentValuableWidget = ({
                   valuableType={latestValuable.valuableType}
                 />
               }
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'coinValue' does not exist on type '{ __t... Remove this comment to see the full error message
               coinValue={latestValuable.coinValue}
               currency={latestValuable.currency}
               expiryTimeLeft={getExpiryTimeLeft(latestValuable.expiryDate)}
@@ -143,9 +142,9 @@ export const InGameRecentValuableWidget = ({
         <ValuableDetailsWithModal
           isOpen={Boolean(showModal)}
           onClose={() => setShowModal(false)}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; onClos... Remove this comment to see the full error message
           onConsumeValuable={consumeValuable}
           valuableDetails={latestValuable}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; onClos... Remove this comment to see the full error message
           isGamePage={true}
         >
           <div className="c-valuable-details__valuable-card o-position--relative">

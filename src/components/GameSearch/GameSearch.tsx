@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
@@ -22,22 +21,21 @@ import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 import "./GameSearch.scss";
 
 type Props = {
-  query: string,
-  searchResults: Array<A.GameSearch_Game>,
-  searchResultsCount: number,
-  loading: boolean,
-  loadingSuggestions: boolean,
+  query: string;
+  searchResults: Array<A.GameSearch_GameFragment>;
+  searchResultsCount: number;
+  loading: boolean;
+  loadingSuggestions: boolean;
   suggestions: {
-    games: Array<A.GameSearchSuggestionsListContainerQuery_gamesList_games>,
-    location: string,
-    title: ?string,
-    type: string,
-  },
-  inputPromptPlaceholder: string,
-  clearSearch: () => {},
-  // @ts-expect-error ts-migrate(2368) FIXME: Type parameter name cannot be 'any'.
-  fetchMoreRows: Function => Promise<any>,
-  queryChanged: (query: string) => {},
+    games: A.GameSearchSuggestionsListContainerQuery["gamesList"]["games"];
+    location: string;
+    title: string | undefined;
+    type: string;
+  };
+  inputPromptPlaceholder: string;
+  clearSearch: () => void;
+  fetchMoreRows: (f: Function) => Promise<any>;
+  queryChanged: (query: string) => void;
 };
 
 const GameMaintenanceText = () => {
@@ -48,7 +46,6 @@ const GameMaintenanceText = () => {
 
   return (
     <Text className="u-padding-top--sm t-color-grey-70" size="sm">
-      {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'gameInMaintenanceText' does not exist on... Remove this comment to see the full error message */}
       {t.gameInMaintenanceText}
     </Text>
   );

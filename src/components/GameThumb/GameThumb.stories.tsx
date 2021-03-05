@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { GameThumb } from "Components/GameThumb";
 
 const stories = storiesOf("GameThumb", module);

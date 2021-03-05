@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { text } from "@storybook/addon-knobs/react";
+import React from "react";
 import { EmptyValuablesList } from "./EmptyValuablesList";
 
 const stories = storiesOf("EmptyValuablesList", module);

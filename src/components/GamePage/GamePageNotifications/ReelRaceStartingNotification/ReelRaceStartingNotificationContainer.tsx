@@ -1,9 +1,8 @@
-// @flow
+import { useInterval } from "react-use";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
 import * as R from "ramda";
-import { useInterval } from "react-use";
 import { playingSelector } from "Models/playing";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";

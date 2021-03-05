@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { select, number } from "@storybook/addon-knobs/react";
+import * as React from "react";
 import { LimitYourBudget } from "./LimitYourBudget";
 
 const stories = storiesOf(

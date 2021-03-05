@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import Card from "@casumo/cmp-card";
+import React from "react";
 import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
 import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
@@ -11,7 +10,7 @@ import * as A from "Types/apollo";
 import { EVENT_PROPS, EVENTS } from "../../constants";
 
 type Props = {
-  promotion: A.PromotionCard_Promotion,
+  promotion: A.PromotionCard_PromotionFragment;
 };
 
 export const PromotionCard = ({ promotion }: Props) => {

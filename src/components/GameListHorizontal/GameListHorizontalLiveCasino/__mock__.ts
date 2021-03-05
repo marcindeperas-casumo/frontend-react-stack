@@ -1,4 +1,6 @@
-export const gamesListMock = {
+import * as A from "Types/apollo";
+
+export const gamesListMock: A.GameListLiveCasinoQuery["gamesList"] = {
   id: "liveCasinoGames",
   name: "Live Casino",
   games: [
@@ -23,6 +25,7 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2018/04/lightningroulette-logo.png",
       name: "Lightning Roulette",
       slug: "evolution-lightning-roulette",
+      gameStudio: "Evolution",
     },
     {
       backgroundImage:
@@ -45,6 +48,7 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2020/01/Lightning_baccarat_Thumbnail_Logo.png",
       name: "Lightning Baccarat",
       slug: "lightning-baccarat",
+      gameStudio: "Evolution",
     },
     {
       backgroundImage:
@@ -67,6 +71,7 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2019/03/monopoly-live_logo.png",
       name: "MONOPOLY Live",
       slug: "monopoly-live",
+      gameStudio: "Evolution",
     },
     {
       backgroundImage:
@@ -89,6 +94,7 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2019/04/deal-or-no-deal-logo.png",
       name: "Deal or No Deal",
       slug: "deal-or-no-deal-2",
+      gameStudio: "Evolution",
     },
     {
       backgroundImage:
@@ -111,6 +117,7 @@ export const gamesListMock = {
         "https://cms.casumo.com/wp-content/uploads/2017/09/three_card_poker_Thumbnail_Logo.png",
       name: "Three Card Poker",
       slug: "evolution-live-three-card-poker",
+      gameStudio: "Evolution",
     },
   ],
 };

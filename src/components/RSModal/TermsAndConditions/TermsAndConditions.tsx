@@ -1,16 +1,14 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { useTranslations, useLocale } from "Utils/hooks";
 import { useRelevantVersionsSlugs, useTACAcknowledgements } from "Models/tac";
 import {
   ModalHeader,
   ModalLoadingState,
   ModalAcknowledgment,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
-  type ModalContentComponent,
 } from "Components/RSModal";
+import type { ModalContentComponent } from "Components/RSModal";
 import { HistoryView } from "./HistoryView";
 import { ArchivedVersionHeader } from "./ArchivedVersionHeader";
 import { TermsAndConditionsVersionDetails } from "./TermsAndConditionsVersionDetails";
@@ -25,41 +23,41 @@ import "./termsAndConditions.scss";
 
 type Props = ModalContentComponent<{
   /** info that given version is outdated, text between "<#>" and "</#>" will be link to current version */
-  note_version_old: string,
+  note_version_old: string;
   /** user friendly presentation of current version number. Have to contain {version} that will be replaced */
-  version_label_current: string,
+  version_label_current: string;
   /** user friendly presentation of version number that was accepted during registration. Have to contain {version} that will be replaced */
-  version_label_original: string,
+  version_label_original: string;
   /** user friendly presentation of version number. Have to contain {version} that will be replaced */
-  version_label: string,
+  version_label: string;
   /** cta text to view specific version */
-  button_view_version: string,
+  button_view_version: string;
   /** user friendly presentation of date. Have to contain {date} that will be replaced */
-  date_published: string,
+  date_published: string;
   /** user friendly presentation of date when user registered. Have to contain {date} that will be replaced */
-  date_agreed: string,
+  date_agreed: string;
   /** user friendly presentation of date when user accepted given version. Have to contain {date} that will be replaced */
-  date_changes_accepted: string,
+  date_changes_accepted: string;
   /** text that will be shown on download pdf button */
-  button_download_pdf: string,
+  button_download_pdf: string;
   /** text that will be shown on show history button */
-  button_version_history: string,
+  button_version_history: string;
   /** title before table of contents */
-  table_of_contents_title: string,
+  table_of_contents_title: string;
   /** text that will be shown before changelog */
-  changelog_title: string,
+  changelog_title: string;
   /** title of modal component */
-  terms_and_conditions_modal_title: string,
+  terms_and_conditions_modal_title: string;
 }>;
 
 type TACVersionCMSData = {
-  iso_8601_published_date: string,
-  changelog: string,
-  version: string,
+  iso_8601_published_date: string;
+  changelog: string;
+  version: string;
   pdf: {
-    url: string,
-    title: string,
-  },
+    url: string;
+    title: string;
+  };
 };
 
 export function TermsAndConditions({ t, ...props }: Props) {
@@ -68,6 +66,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
   const relevantTACVersionsSlugs = useRelevantVersionsSlugs();
   const [version, setVersion] = useVersion(acks.last?.version);
   const visibleVersionData = useTranslations<TACVersionCMSData>(
+    // @ts-expect-error ts-migrate(2538) FIXME: Type 'Dispatch<SetStateAction<number>>' cannot be ... Remove this comment to see the full error message
     relevantTACVersionsSlugs[version]
   );
 
@@ -79,7 +78,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
   const formatVersionDate = createVersionDateFormatter({
     acks,
     t,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ acks: any; t: any; locale: any... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ acks: { first: Acknowledgement... Remove this comment to see the full error message
     locale,
   });
   const formatVersion = createVersionFormatter({ acks, t });
@@ -123,6 +122,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
 
   return (
     <>
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ showCloseButton: boolean; closeAction: (re... Remove this comment to see the full error message */}
       <ModalHeader
         title={t.terms_and_conditions_modal_title}
         {...headerProps}
@@ -159,7 +159,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
         {isLatestVersion && hasNewerVersions && visibleVersionData.changelog && (
           <Flex.Item>
             <Changelog
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ locale: any; t: { date_changes_accepted: a... Remove this comment to see the full error message
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ locale: any; t: { date_changes_accepted: s... Remove this comment to see the full error message
               locale={locale}
               t={{
                 date_changes_accepted: t.date_changes_accepted,

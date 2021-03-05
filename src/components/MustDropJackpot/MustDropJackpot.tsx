@@ -1,12 +1,11 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
+import React from "react";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow";
 
 type Props = {
-  jackpot: A.MustDropJackpot_MustDropJackpot,
+  jackpot: A.MustDropJackpotsQuery["mustDropJackpots"][number];
 };
 
 export const MustDropJackpot = ({ jackpot }: Props) => {

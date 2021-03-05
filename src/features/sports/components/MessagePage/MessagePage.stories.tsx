@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import { ComingSoonPage } from "./ComingSoonPage";
 import { MaintenancePage } from "./MaintenancePage";
 import { mocks } from "./__mocks__/termMocks";

@@ -1,6 +1,6 @@
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { MockedProvider } from "@apollo/client/testing";
 import { actWait } from "Utils/apolloTestUtils";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
@@ -34,6 +34,7 @@ describe("<StageFavouritesProvider />", () => {
     );
     const instance = rendered.find(StageFavouritesProvider).instance();
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"fetchSports"' is not assignable... Remove this comment to see the full error message
     const fetchSports = jest.spyOn(instance, "fetchSports");
     instance.componentDidMount();
 
@@ -89,15 +90,19 @@ describe("<StageFavouritesProvider />", () => {
         ],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteSport' does not exist on ... Remove this comment to see the full error message
       instance.toggleFavouriteSport(1);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports).toEqual([
         { id: 1, userFavourite: true },
         { id: 2, userFavourite: true },
       ]);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteSport' does not exist on ... Remove this comment to see the full error message
       instance.toggleFavouriteSport(2);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports).toEqual([
         { id: 1, userFavourite: true },
         { id: 2, userFavourite: false },
@@ -121,8 +126,10 @@ describe("<StageFavouritesProvider />", () => {
         ],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleAllSports' does not exist on type ... Remove this comment to see the full error message
       instance.toggleAllSports();
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports).toEqual([
         { id: 1, userFavourite: true },
         { id: 2, userFavourite: true },
@@ -145,8 +152,10 @@ describe("<StageFavouritesProvider />", () => {
         ],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleAllSports' does not exist on type ... Remove this comment to see the full error message
       instance.toggleAllSports();
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports).toEqual([
         { id: 1, userFavourite: false },
         { id: 2, userFavourite: false },
@@ -171,10 +180,13 @@ describe("<StageFavouritesProvider />", () => {
         ],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'getSelectedSportsCount' does not exist o... Remove this comment to see the full error message
       expect(instance.getSelectedSportsCount()).toBe(2);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteSport' does not exist on ... Remove this comment to see the full error message
       instance.toggleFavouriteSport(1);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'getSelectedSportsCount' does not exist o... Remove this comment to see the full error message
       expect(instance.getSelectedSportsCount()).toBe(3);
     });
   });
@@ -192,7 +204,9 @@ describe("<StageFavouritesProvider />", () => {
         sports: [{ id: 1 }],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'setFavouriteCompetitions' does not exist... Remove this comment to see the full error message
       instance.setFavouriteCompetitions(1, favouriteCompetitions);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports[0]).toEqual({
         id: 1,
         favouriteCompetitions,
@@ -213,12 +227,16 @@ describe("<StageFavouritesProvider />", () => {
         sports: [{ id: 1, favouriteCompetitions }],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteCompetition' does not exi... Remove this comment to see the full error message
       instance.toggleFavouriteCompetition(1, { id: 999 });
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports[0].favouriteCompetitions).toEqual([
         ...favouriteCompetitions,
         { id: 999 },
       ]);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteCompetition' does not exi... Remove this comment to see the full error message
       instance.toggleFavouriteCompetition(1, { id: 999 });
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sports' does not exist on type 'Readonly... Remove this comment to see the full error message
       expect(rendered.state().sports[0].favouriteCompetitions).toEqual(
         favouriteCompetitions
       );
@@ -238,12 +256,17 @@ describe("<StageFavouritesProvider />", () => {
         sports: [{ id: 1, userFavourite: true, favouriteCompetitions }],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'getSelectedIds' does not exist on type '... Remove this comment to see the full error message
       expect(instance.getSelectedIds()).toEqual([1, 123, 456]);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteCompetition' does not exi... Remove this comment to see the full error message
       instance.toggleFavouriteCompetition(1, { id: 123 });
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'getSelectedIds' does not exist on type '... Remove this comment to see the full error message
       expect(instance.getSelectedIds()).toEqual([1, 456]);
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toggleFavouriteSport' does not exist on ... Remove this comment to see the full error message
       instance.toggleFavouriteSport(1);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'getSelectedIds' does not exist on type '... Remove this comment to see the full error message
       expect(instance.getSelectedIds()).toEqual([456]);
     });
   });
@@ -264,9 +287,13 @@ describe("<StageFavouritesProvider />", () => {
         ],
       });
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelected' does not exist on type 'Comp... Remove this comment to see the full error message
       expect(instance.isSelected(1)).toBe(true);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelected' does not exist on type 'Comp... Remove this comment to see the full error message
       expect(instance.isSelected(123)).toBe(true);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelected' does not exist on type 'Comp... Remove this comment to see the full error message
       expect(instance.isSelected(2)).toBe(false);
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'isSelected' does not exist on type 'Comp... Remove this comment to see the full error message
       expect(instance.isSelected(-1)).toBe(false);
     });
   });

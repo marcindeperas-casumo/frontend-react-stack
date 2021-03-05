@@ -1,4 +1,3 @@
-// @flow
 import React, { useEffect, useRef, useState } from "react";
 import { IFRAME_MESSAGE_ACTION, IFRAME_TYPE_TO_CARD } from "Models/payments";
 import type { IframeModeValues, IframePiqEnvValues } from "Models/payments";
@@ -9,14 +8,14 @@ import {
 import "./PiqIframe.scss";
 
 export type Props = {
-  id: number | string,
-  mode: IframeModeValues,
-  env: IframePiqEnvValues,
-  luhnCheck?: boolean,
-  onSuccess: (token: string) => void,
-  onValidation: (errorCode: string) => void,
-  onCardType?: (param: string) => {},
-  onCardIdentifier?: (param: string) => {},
+  id: number | string;
+  mode: IframeModeValues;
+  env: IframePiqEnvValues;
+  luhnCheck?: boolean;
+  onSuccess: (token: string) => void;
+  onValidation: (errorCode: string) => void;
+  onCardType?: (param: string) => void;
+  onCardIdentifier?: (param: string) => void;
 };
 
 export const PiqIframeComponent = ({
@@ -26,9 +25,7 @@ export const PiqIframeComponent = ({
   luhnCheck = true,
   onSuccess,
   onValidation,
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(para... Remove this comment to see the full error message
   onCardType = () => {},
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(para... Remove this comment to see the full error message
   onCardIdentifier = () => {},
 }: Props) => {
   const iframe = useRef(null);

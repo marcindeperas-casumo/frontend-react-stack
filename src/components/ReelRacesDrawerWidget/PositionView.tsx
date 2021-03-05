@@ -1,13 +1,12 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
-import cx from "classnames";
 import { LaurelIcon } from "@casumo/cmp-icons";
+import React from "react";
+import cx from "classnames";
 import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
 
 type Props = {
-  position: number,
-  className?: string,
+  position: number;
+  className?: string;
 };
 
 const MAX_BIG_SIZE_POSITION = 99;

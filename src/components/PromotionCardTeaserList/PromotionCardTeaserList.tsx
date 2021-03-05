@@ -1,16 +1,15 @@
-// @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import "./PromotionCardTeaserList.scss";
 
 type Props = {
-  promotionsSlugs: Array<string>,
-  backgroundColor: string,
-  maskImageBottom?: string,
-  maskImageTop?: string,
-  fetchCampaign: () => void,
-  fetchPromotions: () => void,
+  promotionsSlugs: Array<string>;
+  backgroundColor: string;
+  maskImageBottom?: string;
+  maskImageTop?: string;
+  fetchCampaign: () => void;
+  fetchPromotions: () => void;
 };
 
 class PromotionCardTeaserList extends PureComponent<Props> {

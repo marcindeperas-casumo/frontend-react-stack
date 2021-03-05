@@ -1,4 +1,3 @@
-//@flow
 import { createReducer } from "Utils";
 import { actionTypes } from "./methodConfig.constants";
 

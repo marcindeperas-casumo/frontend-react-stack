@@ -1,5 +1,1 @@
-// @flow
-
-export {
-  SportsCuratedCardContainer as SportsCuratedCard,
-} from "./SportsCuratedCardContainer";
+export { SportsCuratedCardContainer as SportsCuratedCard } from "./SportsCuratedCardContainer";

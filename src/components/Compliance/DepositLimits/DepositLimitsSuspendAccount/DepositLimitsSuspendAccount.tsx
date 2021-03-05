@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import classNames from "classnames";
 import bridge from "Src/DurandalReactBridge";
@@ -11,11 +10,11 @@ import SuspendAccountIcon from "./suspendAccount.svg";
 
 type Props = {
   t: {
-    suspend_account: string,
-    add: string,
-  },
-  showOldSuspendAccountView: void => void,
-  className?: string,
+    suspend_account: string;
+    add: string;
+  };
+  showOldSuspendAccountView: () => void;
+  className?: string;
 };
 
 export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
@@ -38,7 +37,6 @@ export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
               KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW,
               "suspendAccount"
             );
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             props.showOldSuspendAccountView();
           }}
         >

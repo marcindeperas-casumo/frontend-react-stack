@@ -1,26 +1,23 @@
-// @flow
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
-import type { Node } from "react";
-import classNames from "classnames";
 import { ArrowLeftIcon, CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
+import classNames from "classnames";
 
 import "./SportsModalHeader.scss";
 
 type SharedProps = {
-  children: Node,
+  children: React.ReactChild;
 };
 
 type HeaderProps = SharedProps & {
-  className?: string,
-  onBack?: Function,
-  onClose?: Function,
+  className?: string;
+  onBack?: Function;
+  onClose?: Function;
 };
 
 type ButtonProps = {
-  className?: string,
-  onClick?: Function,
+  className?: string;
+  onClick?: Function;
 };
 
 type ButtonContainerProps = ButtonProps & SharedProps;

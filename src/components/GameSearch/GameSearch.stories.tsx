@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
@@ -122,7 +121,7 @@ if (isNotChromatic) {
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
         fetchPageBySlug={noop}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameRow_G... Remove this comment to see the full error message
         searchResults={["starburst"]}
         searchResultsCount={1}
         loading={false}
@@ -139,7 +138,7 @@ if (isNotChromatic) {
         clearSearch={noop}
         preloadFetchPlayerGames={noop}
         fetchPageBySlug={noop}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameRow_G... Remove this comment to see the full error message
         searchResults={["mega-fortune", "mega-fortune-dreams"]}
         searchResultsCount={1}
         loading={false}

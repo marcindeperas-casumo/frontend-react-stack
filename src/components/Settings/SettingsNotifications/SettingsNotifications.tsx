@@ -1,4 +1,3 @@
-// @flow
 import React, { PureComponent } from "react";
 import * as A from "Types/apollo";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
@@ -12,8 +11,8 @@ import { ContactByPostContainer } from "./ContactByPostContainer";
 import { ContactByPhoneContainer } from "./ContactByPhoneContainer";
 
 type Props = {
-  player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
-  labels: NotificationTranslations,
+  player: A.Player_Contact_Settings_Query["player"];
+  labels: NotificationTranslations;
 };
 
 export class SettingsNotifications extends PureComponent<Props> {

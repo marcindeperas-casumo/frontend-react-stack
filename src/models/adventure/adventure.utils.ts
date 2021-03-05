@@ -1,5 +1,3 @@
-// @flow
-
 import {
   MAX_LEVEL,
   NUMBER_OF_LEVELS_IN_TRAVEL_MODE,

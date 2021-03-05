@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { viewports } from "Storybook/viewports";
 import { Desktop, MobileAndTablet } from "./ResponsiveLayout";
 
@@ -16,30 +15,26 @@ stories.add(
   "Desktop - 1280px viewport",
   () => (
     <div>
-      <Desktop
-        children={
-          <p>
-            I'm a Desktop device
-            <span role="img" aria-label="desktop">
-              🖥
-            </span>
-          </p>
-        }
-      />
-      <MobileAndTablet
-        children={
-          <p>
-            I'm a Mobile device
-            <span role="img" aria-label="mobile">
-              📱
-            </span>
-            and chromatic should NOT see me
-            <span role="img" aria-label="eyes">
-              👀
-            </span>
-          </p>
-        }
-      />
+      <Desktop>
+        <p>
+          I'm a Desktop device
+          <span role="img" aria-label="desktop">
+            🖥
+          </span>
+        </p>
+      </Desktop>
+      <MobileAndTablet>
+        <p>
+          I'm a Mobile device
+          <span role="img" aria-label="mobile">
+            📱
+          </span>
+          and chromatic should NOT see me
+          <span role="img" aria-label="eyes">
+            👀
+          </span>
+        </p>
+      </MobileAndTablet>
     </div>
   ),
   viewports.desktop
@@ -49,30 +44,26 @@ stories.add(
   "MobileAndTablet - 768px viewport",
   () => (
     <div>
-      <MobileAndTablet
-        children={
-          <p>
-            I'm a Mobile device
-            <span role="img" aria-label="mobile">
-              📱
-            </span>
-          </p>
-        }
-      />
-      <Desktop
-        children={
-          <p>
-            I'm a Desktop device
-            <span role="img" aria-label="desktop">
-              🖥
-            </span>
-            and chromatic should NOT see me
-            <span role="img" aria-label="eyes">
-              👀
-            </span>
-          </p>
-        }
-      />
+      <MobileAndTablet>
+        <p>
+          I'm a Mobile device
+          <span role="img" aria-label="mobile">
+            📱
+          </span>
+        </p>
+      </MobileAndTablet>
+      <Desktop>
+        <p>
+          I'm a Desktop device
+          <span role="img" aria-label="desktop">
+            🖥
+          </span>
+          and chromatic should NOT see me
+          <span role="img" aria-label="eyes">
+            👀
+          </span>
+        </p>
+      </Desktop>
     </div>
   ),
   viewports.tablet

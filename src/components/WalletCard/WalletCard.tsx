@@ -1,28 +1,20 @@
-// @flow
-import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import { Panel } from "Components/Panel";
 import Icon from "./icon.svg";
 
 type TProps = {
-  balance: number,
-  firstDeposit: boolean,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  BalanceHeader: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  Balance: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  FirstDepositHeader: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  FirstDepositDesc: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  Bonus: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  DepositLabel: () => React.Node | string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  WithdrawLabel: () => React.Node | string,
-  onDeposit: () => any,
-  onWithdraw: () => any,
+  balance: number;
+  firstDeposit: boolean;
+  BalanceHeader: () => React.ReactNode | string;
+  Balance: () => React.ReactNode | string;
+  FirstDepositHeader: () => React.ReactNode | string;
+  FirstDepositDesc: () => React.ReactNode | string;
+  Bonus: () => React.ReactNode | string;
+  DepositLabel: () => React.ReactNode | string;
+  WithdrawLabel: () => React.ReactNode | string;
+  onDeposit: () => any;
+  onWithdraw: () => any;
 };
 
 export const WalletCard = React.memo<TProps>((props: TProps) => {
@@ -45,13 +37,18 @@ export const WalletCard = React.memo<TProps>((props: TProps) => {
       <Icon className="u-width--3xlg u-margin-y--md u-margin-x" />
       {firstDeposit ? (
         <>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'FirstDepositHeader' cannot be used as a JSX compo... Remove this comment to see the full error message */}
           <FirstDepositHeader />
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'FirstDepositDesc' cannot be used as a JSX compone... Remove this comment to see the full error message */}
           <FirstDepositDesc />
         </>
       ) : (
         <>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'BalanceHeader' cannot be used as a JSX component. */}
           <BalanceHeader />
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'Balance' cannot be used as a JSX component. */}
           <Balance />
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'Bonus' cannot be used as a JSX component. */}
           <Bonus />
         </>
       )}
@@ -61,6 +58,7 @@ export const WalletCard = React.memo<TProps>((props: TProps) => {
         className="u-padding-x--3xlg u-margin-right"
         onClick={onDeposit}
       >
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DepositLabel' cannot be used as a JSX component. */}
         <DepositLabel />
       </ButtonPrimary>
 
@@ -71,6 +69,7 @@ export const WalletCard = React.memo<TProps>((props: TProps) => {
           isDisabled={!balance}
           onClick={onWithdraw}
         >
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'WithdrawLabel' cannot be used as a JSX component. */}
           <WithdrawLabel />
         </ButtonPrimary>
       )}

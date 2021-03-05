@@ -1,8 +1,8 @@
+import type { CellRendererParams } from "react-virtualized";
+import Scrollable from "@casumo/cmp-scrollable";
 import React from "react";
 import { Link } from "@reach/router";
 import classNames from "classnames";
-import type { CellRendererParams } from "react-virtualized";
-import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
@@ -14,8 +14,8 @@ import GameProviderAvatar from "./GameProviderAvatar";
 const DEFAULT_SPACING = "default";
 
 type Props = {
-  title: string,
-  gameStudios: Array<A.GameStudiosQuery_gameStudios>,
+  title: string;
+  gameStudios: A.GameStudiosQuery["gameStudios"];
 };
 
 export const GameProvidersList = ({ title = "", gameStudios = [] }: Props) => {

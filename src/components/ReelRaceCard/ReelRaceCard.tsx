@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon, TimeLockedIcon } from "@casumo/cmp-icons";
+import { DateTime } from "luxon";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
@@ -22,15 +21,13 @@ import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
 type Props = {
-  reelRace: A.ReelRaceCard_ReelRace,
-  optIn: () => void,
+  reelRace: A.ReelRaceCard_ReelRaceFragment;
+  optIn: () => void;
 };
 
 const Column = (props: {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  top: ?string | ?number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  bottom: ?string | ?number,
+  top: string | undefined | number;
+  bottom: string | undefined | number;
 }) => (
   <Flex direction="vertical" spacing="none">
     {props.top && (
@@ -63,7 +60,6 @@ export class ReelRaceCard extends React.Component<Props> {
       data: { state: BUTTON_STATE.OPTED_IN },
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     if (timeRemainingBeforeStart(startTime) <= 0 && optedIn) {
       return (
         <TrackClick
@@ -107,7 +103,6 @@ export class ReelRaceCard extends React.Component<Props> {
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
-              // @ts-expect-error ts-migrate(2322) FIXME: Type 'BigInt' is not assignable to type 'number'.
               endTime={endTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
@@ -117,7 +112,6 @@ export class ReelRaceCard extends React.Component<Props> {
       );
     }
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     if (timeRemainingBeforeStart(startTime) <= THIRTY_MINUTES) {
       return (
         <Flex direction="vertical" spacing="none">
@@ -130,7 +124,6 @@ export class ReelRaceCard extends React.Component<Props> {
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
-              // @ts-expect-error ts-migrate(2322) FIXME: Type 'BigInt' is not assignable to type 'number'.
               endTime={startTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
@@ -140,7 +133,6 @@ export class ReelRaceCard extends React.Component<Props> {
       );
     }
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     const startTimeDate = DateTime.fromMillis(startTime);
     // @ts-expect-error ts-migrate(2365) FIXME: Operator '>' cannot be applied to types 'Duration'... Remove this comment to see the full error message
     const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
@@ -159,15 +151,12 @@ export class ReelRaceCard extends React.Component<Props> {
 
   get duration() {
     const { endTime, startTime } = this.props.reelRace;
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     return DateTime.fromMillis(endTime)
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
       .diff(DateTime.fromMillis(startTime))
       .toFormat("mm");
   }
 
   showCaveatsModal = () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
@@ -190,6 +179,7 @@ export class ReelRaceCard extends React.Component<Props> {
     };
 
     return (
+      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
       <TrackProvider data={trackData}>
         <Flex
           className={[

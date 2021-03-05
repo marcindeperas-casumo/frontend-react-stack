@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { interpolate } from "Utils";
 import {
@@ -17,8 +16,7 @@ export function durationToTranslationKey(
   durationKey: LuxonDurationKey,
   value: number,
   preferAbbreviated?: boolean
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
-): $Keys<DurationTranslations> {
+): keyof DurationTranslations {
   if (preferAbbreviated) {
     return LUXON_KEY_TO_CMS_KEY_ABBREVIATED[durationKey];
   }
@@ -30,11 +28,11 @@ export function durationToTranslationKey(
 }
 
 type InterpolateDurationObjectProps = {
-  duration: LuxonDurationObject,
-  separator: string,
-  t: DurationTranslations,
-  preferShort?: boolean,
-  preferAbbreviated?: boolean,
+  duration: LuxonDurationObject;
+  separator: string;
+  t: DurationTranslations;
+  preferShort?: boolean;
+  preferAbbreviated?: boolean;
 };
 
 export function interpolateDurationObject(
@@ -45,12 +43,7 @@ export function interpolateDurationObject(
     // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     R.filter(R.has(R.__, props.duration)),
     // drop items from the beginning which values in duration are lte 0
-    R.dropWhile(
-      R.pipe(
-        R.prop(R.__, props.duration),
-        R.lte(R.__, 0)
-      )
-    ),
+    R.dropWhile(R.pipe(R.prop(R.__, props.duration), R.lte(R.__, 0))),
     R.when(R.always(props.preferShort), R.take(2)),
     R.map((key: LuxonDurationKey) => {
       const value = props.duration[key];
@@ -63,6 +56,6 @@ export function interpolateDurationObject(
       );
     }),
     R.join(props.separator)
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(LUXON_DURATION_KEYS);
 }

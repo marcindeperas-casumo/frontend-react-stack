@@ -1,8 +1,6 @@
-// @flow
-
+import { CloseIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { CloseIcon } from "@casumo/cmp-icons";
 import { sidebarCloseAction } from "Models/sidebar";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 

@@ -1,4 +1,3 @@
-// @flow
 import { put, select, call, take } from "redux-saga/effects";
 import {
   TRANSACTION_ACTION_TYPE,
@@ -27,8 +26,7 @@ import type { StartQuickDepositActionReturnType } from "./payments.types";
 
 export function* makePaymentTransactionSaga(
   action: StartQuickDepositActionReturnType
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-): * {
+) {
   const userId = yield select(playerIdSelector);
   const locale = yield select(localeSelector);
   const { merchantId, apiUrl } = yield select(piqConfigSelector);
@@ -90,8 +88,8 @@ export function* makePaymentTransactionSaga(
       call(tracker.track, EVENTS.MIXPANEL_QUICK_DEPOSIT_3DS_STEP_STARTED, {});
 
       yield put(
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
         showModal(REACT_APP_MODAL.ID.PIQ_REDIRECTION_IFRAME_MODAL, {
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ redirectOutput: any; }' is not... Remove this comment to see the full error message
           redirectOutput,
         })
       );

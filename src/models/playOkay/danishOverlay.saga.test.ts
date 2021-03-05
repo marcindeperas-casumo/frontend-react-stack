@@ -21,6 +21,7 @@ describe("danish overlay saga", () => {
     expect(generator.next().value).toEqual(select(playerIdSelector));
     expect(generator.next().value).toEqual(select(marketSelector));
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
     expect(generator.next("gb_uk").done).toEqual(true);
   });
 
@@ -39,6 +40,7 @@ describe("danish overlay saga", () => {
     expect(generator.next().value).toEqual(select(playerIdSelector));
     expect(generator.next().value).toEqual(select(marketSelector));
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
     generator.next("dk_da");
 
     generator.next();
@@ -52,7 +54,6 @@ describe("danish overlay saga", () => {
     };
 
     expect(generator.next({ response }).value).toEqual(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       put(showModal(REACT_APP_MODAL.ID.DANISH_ENTRY_OVERLAY, modalConfig))
     );
 

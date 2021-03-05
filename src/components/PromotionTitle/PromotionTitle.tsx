@@ -1,16 +1,15 @@
-// @flow
-import React, { PureComponent } from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** Promotion name */
-  title: string,
+  title: string;
   /** The Dates a promotion runs for */
-  dates: string,
+  dates: string;
   /** Url of badge image on the left. */
-  badge?: string,
+  badge?: string;
 };
 
 const PromotionTitleText = ({ title, dates }: Props) => (

@@ -11,6 +11,7 @@ describe("GamesVirtualList", () => {
   test("should render a VirtualList given the required params", () => {
     const rendered = mount(
       <GamesVirtualList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameRow... Remove this comment to see the full error message
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
@@ -25,6 +26,7 @@ describe("GamesVirtualList", () => {
   test("should render an InfiniteLoader virtualized component", () => {
     const rendered = mount(
       <GamesVirtualList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameRow... Remove this comment to see the full error message
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
@@ -39,6 +41,7 @@ describe("GamesVirtualList", () => {
   test("should render an AutoSizer virtualized component", () => {
     const rendered = mount(
       <GamesVirtualList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameRow... Remove this comment to see the full error message
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}
@@ -53,6 +56,7 @@ describe("GamesVirtualList", () => {
   test("should render a List virtualized component", () => {
     const rendered = mount(
       <GamesVirtualList
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameRow... Remove this comment to see the full error message
         games={gamesArray}
         rowCount={50}
         fetchPage={fetchPage}

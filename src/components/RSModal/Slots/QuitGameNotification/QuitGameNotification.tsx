@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Modal from "@casumo/cmp-modal";
+import * as React from "react";
 import tracker from "Services/tracker";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { convertHTMLToString } from "Utils";
@@ -9,9 +8,8 @@ import { ROUTE_IDS, EVENTS } from "Src/constants";
 import type { CmsContent } from "./QuitGameNotification.types";
 
 type QuitGameNotificationProps = {
-  acceptModal?: () => void,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  t: ?CmsContent,
+  acceptModal?: () => void;
+  t: CmsContent | undefined;
 };
 
 export const QuitGameNotification = ({

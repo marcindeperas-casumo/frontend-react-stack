@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { shallow, mount } from "enzyme";
@@ -40,7 +39,6 @@ describe("ResponsibleGamblingTest", () => {
   test("fetchQuestions is called on mount", () => {
     const fetchQuestions = jest.fn();
     mount(
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ fetchQuestio... Remove this comment to see the full error message
       <ResponsibleGamblingTest {...props} fetchQuestions={fetchQuestions} />
     );
 
@@ -48,7 +46,6 @@ describe("ResponsibleGamblingTest", () => {
   });
 
   test("has 2 required buttons", () => {
-    // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ t: { yes: st... Remove this comment to see the full error message
     const rendered = shallow(<ResponsibleGamblingTest {...props} />);
 
     expect(rendered.find({ "data-test-id": "buttonYes" })).toHaveLength(1);
@@ -56,13 +53,8 @@ describe("ResponsibleGamblingTest", () => {
   });
 
   test("clicking buttons causes page to change", () => {
-    // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ t: { yes: st... Remove this comment to see the full error message
     const rendered = shallow(<ResponsibleGamblingTest {...props} />);
-    const getText = () =>
-      rendered
-        .find("Text")
-        .dive()
-        .text();
+    const getText = () => rendered.find("Text").dive().text();
     expect(getText()).toEqual("0");
     rendered.find({ "data-test-id": "buttonNo" }).simulate("click");
     expect(getText()).toEqual("1");
@@ -75,7 +67,6 @@ describe("ResponsibleGamblingTest", () => {
   test('giving answer "no" to all questions allows user to pass test', () => {
     const sendRGTestResult = jest.fn();
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2786) FIXME: 'ResponsibleGamblingTest' cannot be used as a JSX ... Remove this comment to see the full error message
       <ResponsibleGamblingTest {...props} sendRGTestResult={sendRGTestResult} />
     );
 
@@ -91,7 +82,6 @@ describe("ResponsibleGamblingTest", () => {
   test('giving answer "yes" to one question causes user to fail test', () => {
     const sendRGTestResult = jest.fn();
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2786) FIXME: 'ResponsibleGamblingTest' cannot be used as a JSX ... Remove this comment to see the full error message
       <ResponsibleGamblingTest {...props} sendRGTestResult={sendRGTestResult} />
     );
     const randomYes = Math.round(Math.random() * (numberOfQuestions - 1));
@@ -107,7 +97,6 @@ describe("ResponsibleGamblingTest", () => {
   test('giving answer "yes" to at least one causes user to fail test', () => {
     const sendRGTestResult = jest.fn();
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2786) FIXME: 'ResponsibleGamblingTest' cannot be used as a JSX ... Remove this comment to see the full error message
       <ResponsibleGamblingTest {...props} sendRGTestResult={sendRGTestResult} />
     );
     R.times(i => {
@@ -124,7 +113,6 @@ describe("ResponsibleGamblingTest", () => {
   test('giving answer "yes" to all questions causes user to fail test', () => {
     const sendRGTestResult = jest.fn();
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2786) FIXME: 'ResponsibleGamblingTest' cannot be used as a JSX ... Remove this comment to see the full error message
       <ResponsibleGamblingTest {...props} sendRGTestResult={sendRGTestResult} />
     );
     R.times(() => {

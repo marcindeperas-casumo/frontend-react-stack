@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { boolean } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { DanishEntryOverlay } from "./DanishEntryOverlay";
 import { SetAmount } from "./OverlaySteps/SetAmount";
 

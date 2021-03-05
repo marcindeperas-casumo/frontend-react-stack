@@ -1,7 +1,6 @@
-/* @flow */
-import * as React from "react";
 import List from "@casumo/cmp-list";
 import { gql, useQuery } from "@apollo/client";
+import * as React from "react";
 import { any, partition, propEq } from "ramda";
 import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -11,21 +10,18 @@ import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
 import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";
 
-type Competition = A.FavouriteCompetitionsSelectorQuery_group_groups_groups;
+type Competition = A.FavouriteCompetitionsSelectorQuery["group"]["groups"][number]["groups"];
 type Props = {
   /** Id of Group to select competitions for */
-  groupId: number,
+  groupId: number;
   /** Name of Group to select competitions for */
-  groupName: string,
+  groupName: string;
   /** Is player onboarding on sports*/
-  isOnboarding: boolean,
+  isOnboarding: boolean;
   /** Is the competition with this id selected? */
-  isCompetitionSelected: (
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
-    competitionId: $ElementType<Competition, "id">
-  ) => boolean,
+  isCompetitionSelected: (competitionId: number) => boolean;
   /** What should happen when this competition is toggled between selected/unselected */
-  toggleCompetition: (competition: Competition) => void,
+  toggleCompetition: (competition: Competition) => void;
 };
 
 export const FAVOURITE_COMPETITIONS_SELECTOR_QUERY = gql`
@@ -55,16 +51,16 @@ export const FAVOURITE_COMPETITIONS_SELECTOR_QUERY = gql`
 `;
 
 export const isOrphanGroup = (
-  group: A.FavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery["group"]
 ) => isNilOrEmpty(group.groups);
 
 export const isPopularGroup = (
-  group: A.FavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery["group"]
 ) => any(propEq("popular", true), group.groups);
 
 // TODO:(adampilks) - change graphql server to have concept of Sports/Regions/Competitions?
 export const transformOrphanGroup = (
-  group: A.FavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery["group"]
 ) => ({
   popular: false,
   groups: undefined,
@@ -82,7 +78,7 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
     return <Skeleton />;
   }
 
-  const groups: Array<A.FavouriteCompetitionsSelectorQuery_group_groups> =
+  const groups: A.FavouriteCompetitionsSelectorQuery["group"]["groups"] =
     data.group.groups || [];
 
   // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
@@ -113,11 +109,13 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       {data.group && <Intro group={data.group} />}
 
       <Heading>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="favourite-competitions-selector.heading.popular" />
       </Heading>
       <List
         items={popularRegionGroups}
         render={group => (
+          // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
           <Region
             key={group.id}
             group={group}
@@ -127,18 +125,19 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
             isOnboarding={props.isOnboarding}
             isExpanded={group === popularRegionGroups[0]}
             isSelected={props.isCompetitionSelected}
-            // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
             onClick={props.toggleCompetition}
           />
         )}
       />
 
       <Heading>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="favourite-competitions-selector.heading.all" />
       </Heading>
       <List
         items={otherRegionGroups}
         render={group => (
+          // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
           <Region
             key={group.id}
             sportName={props.groupName}
@@ -148,7 +147,6 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
             groupId={group.id}
             isExpanded={false}
             isSelected={props.isCompetitionSelected}
-            // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
             onClick={props.toggleCompetition}
           />
         )}

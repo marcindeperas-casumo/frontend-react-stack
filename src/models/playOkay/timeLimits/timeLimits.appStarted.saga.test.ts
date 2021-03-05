@@ -1,4 +1,3 @@
-// @flow
 import { put, select, call, take } from "redux-saga/effects";
 import { cloneableGenerator } from "redux-saga/utils";
 import { waitForSelector } from "Utils";
@@ -38,12 +37,12 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
   test("it should exit early if jurisdiction is other than SGA", () => {
     const clonedGenerator = generator.clone();
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '["MGA"]' is not assignable to pa... Remove this comment to see the full error message
     expect(clonedGenerator.next(JURISDICTIONS.MGA).done).toEqual(true);
   });
 
   test("it should proceed if jurisdiction is SGA", () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[string]' is not assignable to p... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '["SGA"]' is not assignable to pa... Remove this comment to see the full error message
     const effect = generator.next(JURISDICTIONS.SGA);
 
     expect(effect.done).toEqual(false);
@@ -103,7 +102,6 @@ describe("playOkay/timeLimts/appStartedSaga", () => {
 
   test("it should open up non-closable modal if there are no defined time limits", () => {
     expect(generator.next(null).value).toEqual(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       put(showModal(REACT_APP_MODAL.ID.TIME_LIMITS_FORM, { mustAccept: true }))
     );
   });

@@ -17,23 +17,19 @@ describe("<ContentImage />", () => {
     const rendered = shallow(
       <ContentImage src={src} alt={alt} maxWidth={maxWidth} />
     );
-    const props = rendered
-      .find("ImageLazy")
-      .first()
-      .props();
+    const props = rendered.find("ImageLazy").first().props();
 
     expect(props.src).toEqual(src);
     expect(props.alt).toEqual(alt);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'imgixOpts' does not exist on type 'HTMLA... Remove this comment to see the full error message
     expect(props.imgixOpts.w).toEqual(maxWidth);
   });
 
   test("defines a default maxWidth for <ImageLazy />", () => {
     const rendered = shallow(<ContentImage src={src} />);
-    const props = rendered
-      .find("ImageLazy")
-      .first()
-      .props();
+    const props = rendered.find("ImageLazy").first().props();
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'imgixOpts' does not exist on type 'HTMLA... Remove this comment to see the full error message
     expect(props.imgixOpts.w).toBeDefined();
   });
 });

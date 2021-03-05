@@ -11,7 +11,9 @@ const SWITCH_TO_NEXT_SCREEN_AFTER = 3000;
 export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
   const [coinsStaged, setCoinsStaged] = React.useState(false);
   const [showCounterScreen, setShowCounterScreen] = React.useState(false);
-  const [jackpotSelected, setJackpotSelected] = React.useState<string | undefined>();
+  const [jackpotSelected, setJackpotSelected] = React.useState<
+    string | undefined
+  >();
 
   const pickJackpot = () => {
     setJackpotSelected(type);

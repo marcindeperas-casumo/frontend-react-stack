@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import "./Deposit.scss";
 import { AddIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
@@ -13,11 +12,11 @@ import { navigateToDeposit } from "Features/sports/utils";
 export const CMS_SLUG = "welcome-offer-sports";
 
 type Props = {
-  hasDeposited: boolean,
-  balance: number,
-  bonus: number,
-  locale: string,
-  currency: string,
+  hasDeposited: boolean;
+  balance: number;
+  bonus: number;
+  locale: string;
+  currency: string;
 };
 
 export const Deposit = ({

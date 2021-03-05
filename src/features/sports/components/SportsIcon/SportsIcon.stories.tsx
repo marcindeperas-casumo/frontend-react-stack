@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { activeIndicator } from "Features/sports/components/SportsNav/sportsNavUtils";
 import SportsIcon from "./SportsIcon";
 

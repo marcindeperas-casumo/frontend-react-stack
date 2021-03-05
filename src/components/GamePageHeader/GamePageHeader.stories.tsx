@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { viewports } from "Storybook/viewports";
 import MockStore from "Components/MockStore";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";

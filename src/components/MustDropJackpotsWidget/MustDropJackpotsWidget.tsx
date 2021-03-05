@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { Link } from "@reach/router";
 import { MustDropJackpot } from "Components/MustDropJackpot";
@@ -6,7 +5,7 @@ import * as A from "Types/apollo";
 import { topListWidgetWidth } from "Src/constants";
 
 type Props = {
-  jackpots: Array<A.MustDropJackpotsWidget_MustDropJackpot>,
+  jackpots: Array<A.MustDropJackpotsWidget_MustDropJackpotFragment>;
 };
 
 export const MustDropJackpotsWidget = ({ jackpots }: Props) => (

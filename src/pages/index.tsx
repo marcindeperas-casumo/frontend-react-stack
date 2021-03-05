@@ -1,4 +1,3 @@
-// @flow
 import React, { lazy, Suspense } from "react";
 
 const LazyCasinoPageLoader = lazy(() =>

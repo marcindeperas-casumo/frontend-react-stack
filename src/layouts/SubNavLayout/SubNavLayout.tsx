@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import InputField from "@casumo/cmp-input-field";
 import { SearchIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { TabletAndDesktop, Mobile } from "Components/ResponsiveLayout";
 import { ContentWrapper } from "Components/ContentWrapper";
 import { NavLink } from "Components/NavLink";
@@ -10,22 +9,21 @@ import { NavLink } from "Components/NavLink";
 import "./SubNavLayout.scss";
 
 type TLinkItem = {
-  to: string,
-  text: string,
+  to: string;
+  text: string;
 };
 type TProps = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  links: TLinkItem[],
+  links: TLinkItem[];
+  children: React.ReactChild;
 };
 
 export const SubNavLayout = ({ children, links }: TProps) => {
   if (!links) {
-    return children;
+    return <>{children}</>;
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className="t-background-white">
         <ContentWrapper>
           <Flex spacing="xlg" align="center" className="c-sub-nav-layout">
@@ -78,6 +76,6 @@ export const SubNavLayout = ({ children, links }: TProps) => {
         </ContentWrapper>
       </div>
       {children}
-    </React.Fragment>
+    </>
   );
 };

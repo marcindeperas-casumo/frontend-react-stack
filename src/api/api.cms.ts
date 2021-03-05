@@ -2,9 +2,9 @@ import { stringify } from "qs";
 import http from "Lib/http";
 
 type getPageBySlugArg = {
-  slug: string,
-  hash: string,
-  lang: string,
+  slug: string;
+  hash: string;
+  lang: string;
 };
 export const getPageBySlug = async ({ slug, hash, lang }: getPageBySlugArg) => {
   const queryParams = { hash };

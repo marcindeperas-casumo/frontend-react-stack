@@ -1,17 +1,13 @@
-// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../CuratedCard.scss' or its co... Remove this comment to see the full error message
 import breakpoints from "../CuratedCard.scss";
 
 type PropsDeprecated = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  onClick: ?Function,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  link: ?string,
-  smallImage: string,
-  mediumImage: string,
-  largeImage: string,
+  onClick: Function | undefined;
+  link: string | undefined;
+  smallImage: string;
+  mediumImage: string;
+  largeImage: string;
 };
 
 export const CuratedCardBackgroundDeprecated = ({

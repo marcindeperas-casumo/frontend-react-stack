@@ -1,25 +1,22 @@
-/* @flow */
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import type { Node } from "react";
-import classNames from "classnames";
 import { CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
+import classNames from "classnames";
 import "./Pill.scss";
 
 export type Props = {
   /** The content to be displayed in the Pill */
-  children: Node,
+  children: React.ReactChild;
   /** Optional onClick handler for the Pill, if not supplied no onclick will hooked up */
-  onClick?: () => void,
+  onClick?: () => void;
   /** Optional onRemove handler for the Pill, if supplied Pill will have cross icon and call this when the cross is clicked */
-  onRemove?: () => void,
+  onRemove?: () => void;
   /** Whether the Pill is active and therefore uses it's active styles, default is false */
-  isActive?: boolean,
+  isActive?: boolean;
   /** Optional overrides for the default active classes (t-background-grey-20 t-color-grey-70) */
-  activeClassNames?: string,
+  activeClassNames?: string;
   /** Optional overrides for the default inactive classes (t-background-grey-0 t-color-grey-50) */
-  inactiveClassNames?: string,
+  inactiveClassNames?: string;
 };
 
 export const Pill = ({

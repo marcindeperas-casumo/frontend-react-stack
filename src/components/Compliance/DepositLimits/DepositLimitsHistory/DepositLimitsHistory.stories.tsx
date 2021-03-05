@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
 import { DepositLimitsHistory } from "./DepositLimitsHistory";
 import t from "./__mocks__/cms";
 
@@ -86,5 +85,5 @@ const props = {
   t,
 };
 
-// @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ fetchTransla... Remove this comment to see the full error message
+// @ts-expect-error ts-migrate(2322) FIXME: Type '{ fetchTranslations: HandlerFunction; getLim... Remove this comment to see the full error message
 stories.add("Default", () => <DepositLimitsHistory {...props} />);

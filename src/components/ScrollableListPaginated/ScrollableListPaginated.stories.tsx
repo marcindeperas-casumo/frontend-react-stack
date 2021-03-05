@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import { GameTile } from "Components/GameTile/GameTile";
 import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
 import { ScrollableListPaginated } from "./ScrollableListPaginated";
@@ -12,7 +11,7 @@ const ScrollableListPaginatedStory = () => {
   const itemRenderer = ({ style, columnIndex }) => (
     <div style={style}>
       <div style={{ width: "160px" }} className="u-margin-left--sm">
-        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ __typename: string; isInMaintenance: boole... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ __typename: string; isInMaintenance: boole... Remove this comment to see the full error message */}
         <GameTile game={gamesListMock.games[columnIndex]} />
       </div>
     </div>
@@ -20,7 +19,6 @@ const ScrollableListPaginatedStory = () => {
 
   return (
     <MockedProvider>
-      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <ScrollableListPaginated
         title={gamesListMock.name}
         itemCount={gamesListMock.games.length}

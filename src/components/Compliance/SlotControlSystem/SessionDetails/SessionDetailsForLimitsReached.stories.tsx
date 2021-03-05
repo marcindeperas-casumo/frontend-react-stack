@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
 import MockStore from "Components/MockStore";
 import gameMock from "Components/GameTile/__mocks__/Game.json";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";

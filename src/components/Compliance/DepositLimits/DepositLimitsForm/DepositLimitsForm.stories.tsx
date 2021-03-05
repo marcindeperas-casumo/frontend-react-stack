@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
 import { DepositLimitsForm } from "./DepositLimitsForm";
 import t from "./__mocks__/cms";
 
@@ -12,7 +11,6 @@ stories.add("Default", () => (
     t={t}
     currency="EUR"
     pendingLimitChanges={undefined}
-    // @ts-expect-error ts-migrate(2739) FIXME: Type 'HandlerFunction' is missing the following pr... Remove this comment to see the full error message
     applyLimitsChanges={action("applyLimitsChanges click")}
     limits={{
       daily: 600,

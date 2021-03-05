@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { Router as ReachRouter } from "@reach/router";
 

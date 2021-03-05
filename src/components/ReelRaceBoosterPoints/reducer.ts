@@ -1,31 +1,28 @@
-// @flow
 import { UPDATE_ANIMATION, UPDATE_PREV_VALUES } from "./const";
 
 type TAnimationValue = null | string;
 type TBoosterValue = null | number;
 
 type TAnimationState = {
-  active: boolean,
-  basePoints: TAnimationValue,
-  extraPoints: TAnimationValue,
+  active: boolean;
+  basePoints: TAnimationValue;
+  extraPoints: TAnimationValue;
 };
 
 type TState = {
-  animation: TAnimationState,
-  boosters: TBoostersState,
+  animation: TAnimationState;
+  boosters: TBoostersState;
 };
 
 type TActions =
-  // @ts-expect-error ts-migrate(2749) FIXME: 'UPDATE_ANIMATION' refers to a value, but is being... Remove this comment to see the full error message
-  | { type: UPDATE_ANIMATION, payload: TAnimationState }
-  // @ts-expect-error ts-migrate(2749) FIXME: 'UPDATE_PREV_VALUES' refers to a value, but is bei... Remove this comment to see the full error message
-  | { type: UPDATE_PREV_VALUES, payload: TBoostersState };
+  | { type: typeof UPDATE_ANIMATION; payload: TAnimationState }
+  | { type: typeof UPDATE_PREV_VALUES; payload: TBoostersState };
 
 export type TBoostersState = {
-  bigWins: TBoosterValue,
-  megaWins: TBoosterValue,
-  triples: TBoosterValue,
-  wins: TBoosterValue,
+  bigWins: TBoosterValue;
+  megaWins: TBoosterValue;
+  triples: TBoosterValue;
+  wins: TBoosterValue;
 };
 
 export const reducer = (prevState: TState, action: TActions): TState => {

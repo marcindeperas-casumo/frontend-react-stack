@@ -10,7 +10,6 @@ describe("ScrollablePaginated", () => {
 
   test("should render ScrollableWithRef", () => {
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         columnCount={columnCount}
         buttonRenderer={myButtonRenderer}
@@ -23,7 +22,6 @@ describe("ScrollablePaginated", () => {
 
   test("should set classNames on wrapping divs", () => {
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}
@@ -34,16 +32,12 @@ describe("ScrollablePaginated", () => {
     );
     expect(rendered.hasClass("chop-chop")).toBe(true);
     expect(
-      rendered
-        .find("ForwardRef")
-        .parent()
-        .hasClass("chop-chop__list")
+      rendered.find("ForwardRef").parent().hasClass("chop-chop__list")
     ).toBe(true);
   });
 
   test("should pass props to ScrollableWithRef", () => {
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}
@@ -53,6 +47,7 @@ describe("ScrollablePaginated", () => {
       />
     );
     const props = rendered.find("ForwardRef").props();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'columnCount' does not exist on type 'HTM... Remove this comment to see the full error message
     expect(props.columnCount).toBe(columnCount);
     expect(props.height).toBe(height);
   });
@@ -60,7 +55,6 @@ describe("ScrollablePaginated", () => {
   test("should render buttons", () => {
     const spy = jest.fn();
     shallow(
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       <ScrollablePaginated
         className="chop-chop"
         columnCount={columnCount}

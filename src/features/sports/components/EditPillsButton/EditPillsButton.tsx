@@ -1,19 +1,16 @@
-// @flow
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
-import type { Node } from "react";
-import classNames from "classnames";
 import { CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
+import React from "react";
 
 type Props = {
   /** onClick handler for the edit button */
-  onClick: () => void,
+  onClick: () => void;
   /** className overrides to restyle the button */
-  className?: string,
+  className?: string;
   /** optional label to show below the button */
-  label?: Node,
+  label?: React.ReactNode;
 };
 
 export const defaultClasses =

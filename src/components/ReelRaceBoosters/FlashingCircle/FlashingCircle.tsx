@@ -1,10 +1,9 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import "./FlashingCircle.scss";
 
 type Props = {
-  isTransitioning?: boolean,
+  isTransitioning?: boolean;
 };
 
 const classNamePrefix = "c-rr-booster__flashing-circle";

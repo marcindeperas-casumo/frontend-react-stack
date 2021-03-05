@@ -1,16 +1,15 @@
-// @flow
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
+import React, { PureComponent } from "react";
 
 type Props = {
   /** The link to the right promotion detailed view */
-  link: string,
+  link: string;
   /** The date range the promotion will run for. */
-  dates: string,
+  dates: string;
   /** The title of the promotion. */
-  title: string,
+  title: string;
 };
 
 export class PromotionTeaserRow extends PureComponent<Props> {

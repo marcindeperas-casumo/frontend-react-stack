@@ -1,8 +1,8 @@
-import * as React from "react";
-import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
 import type { CellRendererParams } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
+import * as React from "react";
 import spacerSizesMap from "Components/VirtualGrid/spacerSizesMap";
 import * as A from "Types/apollo";
 import ScrollableListTitle from "Components/ScrollableListTitle";
@@ -17,20 +17,20 @@ import {
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 export type Props = {
-  jackpots: Array<A.Jackpots_Game>,
-  className?: string,
-  locale?: string,
-  title: string,
+  jackpots: Array<A.Jackpots_GameFragment>;
+  className?: string;
+  locale?: string;
+  title: string;
 };
 
 const JackpotsColumn = ({
   column,
   locale,
 }: {
-  column: Array<A.Jackpots_Game>,
-  locale: string | null,
-}) =>
-  column.map<React.Node>(game => (
+  column: Array<A.Jackpots_GameFragment>;
+  locale: string | undefined;
+}) => {
+  const columns = column.map(game => (
     <div
       key={game.id}
       className="u-margin-top"
@@ -51,13 +51,16 @@ const JackpotsColumn = ({
     </div>
   ));
 
+  return <>{columns}</>;
+};
+
 export default class Jackpots extends React.PureComponent<Props> {
   static defaultProps = {
     jackpots: [],
     title: "",
   };
 
-  get columns(): Array<Array<A.Jackpots_Game>> {
+  get columns(): Array<Array<A.Jackpots_GameFragment>> {
     return generateColumns(this.props.jackpots);
   }
 

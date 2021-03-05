@@ -1,29 +1,27 @@
-// @flow
-import * as React from "react";
-import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CheckIcon } from "@casumo/cmp-icons";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-import { type LoginTimeLimit } from "Models/playOkay";
+import { DateTime } from "luxon";
+import * as React from "react";
+import type { LoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
 
 type Props = {
   t: {
-    form_outro_copy_initial: ?string,
-    form_outro_copy_decreasing: ?string,
-    form_outro_copy_increasing: ?string,
-    form_outro_cta: ?string,
-    period_daily: ?string,
-    period_weekly: ?string,
-    period_monthly: ?string,
-  },
-  initial?: boolean,
-  onClickCta: () => void,
-  dailyLimit: LoginTimeLimit,
-  weeklyLimit: LoginTimeLimit,
-  monthlyLimit: LoginTimeLimit,
+    form_outro_copy_initial: string | undefined;
+    form_outro_copy_decreasing: string | undefined;
+    form_outro_copy_increasing: string | undefined;
+    form_outro_cta: string | undefined;
+    period_daily: string | undefined;
+    period_weekly: string | undefined;
+    period_monthly: string | undefined;
+  };
+  initial?: boolean;
+  onClickCta: () => void;
+  dailyLimit: LoginTimeLimit;
+  weeklyLimit: LoginTimeLimit;
+  monthlyLimit: LoginTimeLimit;
 };
 
 export function TimeLimitsFormOutro({
@@ -67,18 +65,18 @@ export function TimeLimitsFormOutro({
 }
 
 type CopyProps = {
-  initial?: boolean,
-  dailyLimit: LoginTimeLimit,
-  weeklyLimit: LoginTimeLimit,
-  monthlyLimit: LoginTimeLimit,
+  initial?: boolean;
+  dailyLimit: LoginTimeLimit;
+  weeklyLimit: LoginTimeLimit;
+  monthlyLimit: LoginTimeLimit;
   t: {
-    period_daily: ?string,
-    period_weekly: ?string,
-    period_monthly: ?string,
-    form_outro_copy_initial: ?string,
-    form_outro_copy_decreasing: ?string,
-    form_outro_copy_increasing: ?string,
-  },
+    period_daily: string | undefined;
+    period_weekly: string | undefined;
+    period_monthly: string | undefined;
+    form_outro_copy_initial: string | undefined;
+    form_outro_copy_decreasing: string | undefined;
+    form_outro_copy_increasing: string | undefined;
+  };
 };
 
 function Copy({
@@ -104,14 +102,14 @@ function Copy({
 }
 
 type LimitCopyProps = {
-  limit: LoginTimeLimit,
+  limit: LoginTimeLimit;
   t: {
-    period_daily: ?string,
-    period_weekly: ?string,
-    period_monthly: ?string,
-    form_outro_copy_decreasing: ?string,
-    form_outro_copy_increasing: ?string,
-  },
+    period_daily: string | undefined;
+    period_weekly: string | undefined;
+    period_monthly: string | undefined;
+    form_outro_copy_decreasing: string | undefined;
+    form_outro_copy_increasing: string | undefined;
+  };
 };
 
 function LimitCopy({ limit, t }: LimitCopyProps) {

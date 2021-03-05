@@ -1,4 +1,3 @@
-//@flow
 const DEFAULT_DEVICE_METHOD_CONFIGURATION = {
   defaultCreate: false,
   canCreate: true,

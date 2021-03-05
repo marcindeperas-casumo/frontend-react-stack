@@ -1,15 +1,13 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import classNames from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
-  image: string,
-  mark: string,
-  className?: string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: React.Node,
+  image: string;
+  mark: string;
+  className?: string;
+  children?: React.ReactNode;
 };
 
 export const GameDetailsImage = ({

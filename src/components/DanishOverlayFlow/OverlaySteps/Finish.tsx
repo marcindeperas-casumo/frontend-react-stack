@@ -1,7 +1,7 @@
-import React from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CheckIcon } from "@casumo/cmp-icons";
+import React from "react";
 
 export const Finish = ({
   playOkayInfoText,

@@ -1,4 +1,3 @@
-// @flow
 import { act } from "react-dom/test-utils";
 import * as React from "react";
 import { mount } from "enzyme";

@@ -1,11 +1,10 @@
-// @flow
-import React from "react";
-import { Link } from "@reach/router";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import { Button } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
+import { Link } from "@reach/router";
+import React from "react";
 import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
@@ -18,15 +17,15 @@ import { LiveCasinoCardSmallContainer } from "Components/LiveCasinoCard/LiveCasi
 import "./GameTile.scss";
 
 export type GameTileTranslations = {
-  play_button_text_game_tile: string,
+  play_button_text_game_tile: string;
 };
 
 export type Props = {
-  className?: string,
-  game: A.GameTile_Game,
-  imgixOpts?: Object,
-  ratio?: string,
-  t: GameTileTranslations,
+  className?: string;
+  game: A.GameTile_GameFragment;
+  imgixOpts?: Object;
+  ratio?: string;
+  t: GameTileTranslations;
 };
 
 export const DEFAULT_CLASSES =
@@ -34,7 +33,7 @@ export const DEFAULT_CLASSES =
 
 export const GameTile = ({
   className,
-  // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'GameTile_Game... Remove this comment to see the full error message
   game = {},
   imgixOpts = {
     w: 170,
@@ -65,7 +64,6 @@ export const GameTile = ({
   }
 
   if (liveCasinoId) {
-    // $FlowIgnore: game contains string liveCasinoId, checked above
     return <LiveCasinoCardSmallContainer game={game} />;
   }
 
@@ -116,6 +114,7 @@ export const GameTile = ({
             className="u-width--full c-game-tile-container__bottom-bar o-position--absolute o-inset-bottom--none"
           >
             <Flex.Item onClick={e => e.stopPropagation()}>
+              {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
               <TrackClick
                 eventName={EVENTS.MIXPANEL_GAME_DETAILS}
                 data={{ [EVENT_PROPS.GAME_NAME]: name }}

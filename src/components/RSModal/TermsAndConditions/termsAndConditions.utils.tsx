@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
@@ -46,13 +45,13 @@ export function formatWithDateMedium(text: string, timestamp: number) {
 }
 
 export function createVersionDateFormatter(data: {
-  t: { date_agreed: string, date_published: string },
+  t: { date_agreed: string; date_published: string };
   acks: {
     first: {
-      version: number,
-      timestamp: number,
-    },
-  },
+      version: number;
+      timestamp: number;
+    };
+  };
 }) {
   return (version: number, iso8601: string) => {
     if (version === data.acks.first.version) {
@@ -67,26 +66,26 @@ export function createVersionDateFormatter(data: {
     });
   };
 }
-/*:: const __createVersionDateFormatter = createVersionDateFormatter({}); */
-// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__createVersionDateFormatter'. D... Remove this comment to see the full error message
-export type VersionDateFormatter = typeof __createVersionDateFormatter;
+export type VersionDateFormatter = ReturnType<
+  typeof createVersionDateFormatter
+>;
 
 export function createVersionFormatter(data: {
   t: {
-    version_label_current: string,
-    version_label_original: string,
-    version_label: string,
-  },
+    version_label_current: string;
+    version_label_original: string;
+    version_label: string;
+  };
   acks: {
     first: {
-      version: number,
-      timestamp: number,
-    },
+      version: number;
+      timestamp: number;
+    };
     last: {
-      version: number,
-      timestamp: number,
-    },
-  },
+      version: number;
+      timestamp: number;
+    };
+  };
 }) {
   return (version: number, versionName: string) => {
     if (version === data.acks.last.version) {
@@ -104,9 +103,8 @@ export function createVersionFormatter(data: {
     return interpolate(data.t.version_label, { version: versionName });
   };
 }
-/*:: const __createVersionFormatter = createVersionFormatter({}); */
-// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name '__createVersionFormatter'. Did y... Remove this comment to see the full error message
-export type VersionFormatter = typeof __createVersionFormatter;
+
+export type VersionFormatter = ReturnType<typeof createVersionFormatter>;
 
 export function parseTableOfContents(content: string) {
   /**
@@ -126,8 +124,8 @@ export function parseTableOfContents(content: string) {
   const sections = el.getElementsByTagName("h4");
 
   const tableOfContents: Array<{
-    href: string,
-    text: string,
+    href: string;
+    text: string;
   }> = Array.prototype.map.call(sections, (x, i) => {
     const id = makeId(i);
     /* eslint-disable fp/no-mutation */

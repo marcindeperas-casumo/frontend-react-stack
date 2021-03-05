@@ -1,3 +1,1 @@
-export {
-  GameListHorizontalLiveCasinoContainer as GameListHorizontalLiveCasino,
-} from "./GameListHorizontalLiveCasinoContainer";
+export { GameListHorizontalLiveCasinoContainer as GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasinoContainer";

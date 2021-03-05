@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { createReducer } from "Utils";
 import type {
@@ -17,7 +16,7 @@ const DEFAULT_STATE: StateType = {
 };
 
 type UpdateSessionActionType = {
-  response: SessionStateResponseType,
+  response: SessionStateResponseType;
 };
 
 const handlers = {
@@ -41,7 +40,7 @@ const handlers = {
   },
   [ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP]: (
     state,
-    { slug, category }: { slug: string, category: string }
+    { slug, category }: { slug: string; category: string }
   ) => {
     return {
       ...state,

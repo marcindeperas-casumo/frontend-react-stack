@@ -3,7 +3,6 @@ import { makeOptionalCallback } from "./makeOptionalCallback";
 describe("makeOptionalCallback", () => {
   test("returns undefined if no callback supplied", () => {
     const noCallback = makeOptionalCallback();
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0-1 arguments, but got 2.
     const noCallbackWithParams = makeOptionalCallback(undefined, "param1");
 
     expect(noCallback).toBeUndefined();
@@ -21,7 +20,6 @@ describe("makeOptionalCallback", () => {
 
   test("ensures correct parameters are applied on callback", () => {
     const fn = jest.fn();
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0-1 arguments, but got 4.
     const callback = makeOptionalCallback(fn, "param1", true, 21);
 
     callback();

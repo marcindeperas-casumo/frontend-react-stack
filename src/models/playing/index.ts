@@ -1,4 +1,3 @@
-// @flow
 export * from "./playing.constants";
 export * from "./playing.actions";
 export * from "./playing.selectors";

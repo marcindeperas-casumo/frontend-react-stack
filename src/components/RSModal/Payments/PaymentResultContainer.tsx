@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useTranslations, useTranslationsGql } from "Utils/hooks";
@@ -10,15 +9,14 @@ import { PaymentResult } from "./PaymentResult";
 const cmsKeyPrefix = "root:shared.payment-result:fields.";
 
 type TCmsError = {
-  error_code: string,
-  error_message: string,
-  error_custom_title: string,
+  error_code: string;
+  error_message: string;
+  error_custom_title: string;
 };
 
 const getErrorByCode = (
   errorKeys: Array<string>,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  cmsErrors: ?Array<TCmsError>
+  cmsErrors: Array<TCmsError>
 ) => {
   const matchingErrors = (cmsErrors || []).filter(
     cmsError =>
@@ -29,8 +27,8 @@ const getErrorByCode = (
 };
 
 type Props = {
-  closeModal: () => void,
-  config: any,
+  closeModal: () => void;
+  config: any;
 };
 
 export const PaymentResultContainer = ({ closeModal, config }: Props) => {
@@ -69,7 +67,6 @@ export const PaymentResultContainer = ({ closeModal, config }: Props) => {
 
   return (
     <PaymentResult
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       locale={locale}
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.

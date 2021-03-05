@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import type { ReelRacesTranslations } from "Models/reelRaces";
 import { ROUTE_IDS } from "Src/constants";
 import * as A from "Types/apollo";
@@ -12,8 +11,8 @@ import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
 import "./ReelRaceWidget.scss";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 
-type Props = A.ReelRaceWidgetQuery_reelRaces & {
-  t: ReelRacesTranslations,
+type Props = A.ReelRaceWidgetQuery["reelRaces"][number] & {
+  t: ReelRacesTranslations;
 };
 
 export function ReelRaceWidgetHeader({ t, ...props }: Props) {

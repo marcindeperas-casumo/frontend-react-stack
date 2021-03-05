@@ -1,10 +1,9 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
+import React from "react";
 import game from "Components/GameTile/__mocks__/Game.json";
-import jackpots from "Components/Jackpots/__mocks__/response.jackpots.mock.js";
+import jackpots from "Components/Jackpots/__mocks__/response.jackpots.mock";
 import { Roulette as liveCasinoGame } from "Components/LiveCasinoCard/__mocks__";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
@@ -16,6 +15,7 @@ const gonzosQuest = "gonzos-quest";
 const jackpot = jackpots[0];
 
 // __FIX__ Remove this once the GameRow is using the "liveCasinoLobby" instead of the deprecated "lobby"
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'lobby' does not exist on type '{ backgro... Remove this comment to see the full error message
 liveCasinoGame.lobby = liveCasinoGame.liveCasinoLobby;
 
 const propsDefault = {

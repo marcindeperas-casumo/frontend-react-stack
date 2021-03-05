@@ -8,27 +8,27 @@ import type {
 export type TQueueActionPayload = string | (() => React.ReactNode);
 
 type TPushAction = {
-  type: typeof ACTION_TYPES.PUSH,
-  payload: TQueueActionPayload,
-  settings?: TComponentQueueConfigSettings,
+  type: typeof ACTION_TYPES.PUSH;
+  payload: TQueueActionPayload;
+  settings?: TComponentQueueConfigSettings;
 };
 
 type TPopAction = {
-  type: typeof ACTION_TYPES.POP,
+  type: typeof ACTION_TYPES.POP;
 };
 
 type TShiftAction = {
-  type: typeof ACTION_TYPES.SHIFT,
+  type: typeof ACTION_TYPES.SHIFT;
 };
 
 type TUnshiftAction = {
-  type: typeof ACTION_TYPES.UNSHIFT,
-  payload: TQueueActionPayload,
-  settings?: TComponentQueueConfigSettings,
+  type: typeof ACTION_TYPES.UNSHIFT;
+  payload: TQueueActionPayload;
+  settings?: TComponentQueueConfigSettings;
 };
 
 type TClearAction = {
-  type: typeof ACTION_TYPES.CLEAR,
+  type: typeof ACTION_TYPES.CLEAR;
 };
 
 export type TQueueAction =

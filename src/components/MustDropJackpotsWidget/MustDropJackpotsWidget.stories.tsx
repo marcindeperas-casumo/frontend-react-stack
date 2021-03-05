@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import data from "Components/MustDropJackpotsWidget/__mocks__/jackpots.json";
 import { MustDropJackpotsWidget } from "./MustDropJackpotsWidget";
 

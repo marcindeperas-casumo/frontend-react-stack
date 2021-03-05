@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import { SidebarElementWrapper } from "./SidebarElementWrapper";
 
 const stories = storiesOf("SidebarElementWrapper", module);

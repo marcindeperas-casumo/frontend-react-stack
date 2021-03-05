@@ -1,21 +1,17 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import PlayOkayIcon from "./playokay.svg";
 import TimeLimitIcon from "./timeLimit.svg";
 
 type Props = {
   t: {
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    form_intro_header: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    form_intro_copy: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    form_intro_cta: ?string,
-  },
-  onClickCta: () => void,
+    form_intro_header: string | undefined;
+    form_intro_copy: string | undefined;
+    form_intro_cta: string | undefined;
+  };
+  onClickCta: () => void;
 };
 
 export function TimeLimitsFormIntro({ t, onClickCta }: Props) {

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import { EVENT_PROPS, EVENTS } from "Src/constants";
@@ -10,13 +9,13 @@ import {
 } from "./StageFavouritesContext";
 
 type State = {
-  selectingCompetitionsFor: ?number,
-  selectingCompetitionsForName: string,
-  isOnboarding: boolean,
+  selectingCompetitionsFor: number | undefined;
+  selectingCompetitionsForName: string;
+  isOnboarding: boolean;
 };
 
 type Props = {
-  onClose: any => any,
+  onClose: (e: any) => any;
 };
 
 class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
@@ -30,7 +29,7 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
   };
 
   showCompetitionSelectorFor = (
-    id: ?number,
+    id: number | undefined,
     name: string,
     isOnboarding: boolean
   ) => {
@@ -87,14 +86,16 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
               initiallySelectedCompetitions={initiallySelectedCompetitions}
               isOnboarding={isOnboarding}
               onBack={this.hideCompetitionSelector}
-              onClose={this.props.onClose}
               // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
+              onClose={this.props.onClose}
               onSave={selectedCompetitions => {
-                selectingCompetitionsFor &&
+                if (selectingCompetitionsFor) {
                   setFavouriteCompetitions(
                     selectingCompetitionsFor,
+                    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'SelectedCompetitions' is not ass... Remove this comment to see the full error message
                     selectedCompetitions
                   );
+                }
                 this.hideCompetitionSelector();
               }}
             />
@@ -106,6 +107,7 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
 
   renderSportsSelector = () => (
     <FavouriteSportsSelectorModal
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '(e: any) => any' is not assignable to type '... Remove this comment to see the full error message
       onClose={this.props.onClose}
       onAddCompetition={this.showCompetitionSelectorFor}
     />

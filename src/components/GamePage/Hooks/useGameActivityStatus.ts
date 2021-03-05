@@ -1,11 +1,9 @@
-// @flow
 import { useState, useEffect } from "react";
 import {
   GAME_ACTIVE_EVENT_NAME,
   GAME_IDLE_EVENT_NAME,
   GAME_ACTIVITY_STATUS_SOURCE,
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 } from "../../../gameProviders";
 import { useSimulatedGameActivity } from "../Hooks/useSimulatedGameActivity";
 import { useGameModelContext } from "../Contexts/GameModelContext";

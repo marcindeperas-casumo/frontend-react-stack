@@ -1,11 +1,10 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import { stringToHTML } from "Utils";
 
 export type CuratedCardHeaderSimpleProps = {
-  header: string,
+  header: string;
 };
 
 export const CuratedCardHeaderSimple = ({

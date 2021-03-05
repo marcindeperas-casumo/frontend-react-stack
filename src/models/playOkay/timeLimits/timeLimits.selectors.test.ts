@@ -1,4 +1,3 @@
-// @flow
 import { prepareStateMock } from "Models/playOkay";
 import {
   loginTimeLimitsSelector,

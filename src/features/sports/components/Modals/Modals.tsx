@@ -1,7 +1,4 @@
-/* @flow */
 import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
-import type { Node } from "react";
 import {
   ActiveModalsQuery,
   CloseModalMutation,
@@ -9,7 +6,7 @@ import {
 import { MODAL_MAPPING } from "./Modals.config";
 import "./Modals.scss";
 
-export const ModalsArea = ({ children }: { children: Node }) => (
+export const ModalsArea = ({ children }: { children: React.ReactNode }) => (
   <div className="c-modals">
     {/* Backdrop container */}
     <div className="c-modals-fade" />
@@ -57,7 +54,7 @@ class Modals extends React.Component<{}> {
                     key={activeModal}
                     variables={{ modal: activeModal }}
                   >
-                    {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+                    {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(closeModal: any) => Element' has no propert... Remove this comment to see the full error message */}
                     {closeModal => <ModalComponent onClose={closeModal} />}
                   </CloseModalMutation>
                 );

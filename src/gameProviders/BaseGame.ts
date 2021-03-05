@@ -1,9 +1,6 @@
-// @flow
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import type { GameProviderModelProps } from "./types";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { expandElementHeightToMatchItsParent } from "./utils";
 import {
   GAME_ACTIVE_EVENT_NAME,
@@ -11,7 +8,6 @@ import {
   GAME_ACTIVITY_STATUS_SOURCE,
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
 } from "./constants";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
 export class BaseGame {
@@ -39,7 +35,6 @@ export class BaseGame {
     const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     if (isTLDMarketSpecific(tld)) {
       return `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }

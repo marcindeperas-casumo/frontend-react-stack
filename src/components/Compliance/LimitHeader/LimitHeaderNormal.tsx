@@ -1,14 +1,11 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 export function LimitHeaderNormal(props: {
-  title: string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  icon: React.Node,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  children: ?React.Node,
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactChild;
 }) {
   return (
     <Flex

@@ -1,7 +1,5 @@
-// @flow
-
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
 import PlayOkayIcon from "./icons/playokay.svg";
@@ -14,7 +12,7 @@ const links = {
 };
 
 type Props = {
-  className?: string,
+  className?: string;
 };
 
 export const DGOJBar = ({ className = "" }: Props) => (

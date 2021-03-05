@@ -1,15 +1,12 @@
-// @flow
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import type { Node } from "react";
+import * as React from "react";
 import bridge from "Src/DurandalReactBridge";
 
 type State = {
-  currentHash: string,
+  currentHash: string;
 };
 
 type Props = {
-  children: State => Node,
+  children: (s: State) => React.ReactNode;
 };
 
 export const SEARCH_QUERY_UPDATED_EVENT = "search-query-updated";
@@ -29,7 +26,6 @@ export default class HashWatcher extends React.Component<Props, State> {
   render() {
     const { currentHash } = this.state;
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     return this.props.children({ currentHash });
   }
 

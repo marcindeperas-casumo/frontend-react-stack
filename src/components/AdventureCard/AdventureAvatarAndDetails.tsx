@@ -1,19 +1,14 @@
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import DangerousHtml from "Components/DangerousHtml";
-import type {
-  Adventurer,
-  AdventureContent,
-} from "Models/adventure";
-import {
-  isMaxLevel,
-} from "Models/adventure";
+import type { Adventurer, AdventureContent } from "Models/adventure";
+import { isMaxLevel } from "Models/adventure";
 import { CasumoAvatar } from "Components/CasumoAvatar";
 
 export type Props = {
-  adventurer: Adventurer,
-  content: AdventureContent,
+  adventurer: Adventurer;
+  content: AdventureContent;
 };
 
 export default class AdventureAvatarAndDetails extends PureComponent<Props> {

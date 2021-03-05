@@ -29,7 +29,7 @@ describe("GameListHorizontalDefault - Mobile and Tablet", () => {
     setMobileViewport();
     rendered = mount(
       <MockStore state={defaultState}>
-        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ name: string; ... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ name: string; games: { id: string; url: st... Remove this comment to see the full error message */}
         <GameListHorizontalDefault list={list} />
       </MockStore>
     );

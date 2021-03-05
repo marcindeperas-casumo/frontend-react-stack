@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { playerCasumoNameSelector, localeSelector } from "Models/handshake";
 import {

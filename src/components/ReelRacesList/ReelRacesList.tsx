@@ -8,8 +8,8 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
-  title: string | null,
-  seeMore: string | null,
+  title: string | undefined;
+  seeMore: string | undefined;
 };
 
 type ReelRacesListProps = Props & A.ReelRaceListQuery;
@@ -39,6 +39,7 @@ export class ReelRacesList extends React.PureComponent<ReelRacesListProps> {
             itemClassName="c-reel-race-card"
             items={reelRaces}
             itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
+            // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
             Component={ReelRaceCard}
             {...(seeMore ? { seeMoreText: seeMore, seeMoreUrl } : {})}
           />

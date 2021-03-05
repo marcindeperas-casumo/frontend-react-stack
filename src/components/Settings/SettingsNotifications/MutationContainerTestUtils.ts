@@ -1,6 +1,5 @@
-// @flow
 import { act } from "react-dom/test-utils";
-import { type ReactWrapper } from "enzyme";
+import { ReactWrapper } from "enzyme";
 
 const findCheckbox = (rendered: ReactWrapper<any>) => rendered.find("Checkbox");
 

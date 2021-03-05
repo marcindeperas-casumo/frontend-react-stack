@@ -1,18 +1,16 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import TextInput from "@casumo/cmp-text-input";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import classNames from "classnames";
+import * as R from "ramda";
+import * as React from "react";
 import { CvvCodeIframe } from "Components/Payments/CvvCodeIframe";
 import { EVENTS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
 import { requestState } from "Models/payments/payments.constants";
 import { useQuickDepositSlipForm } from "./QuickDepositSlip.hooks";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"./QuickDepositSlip.types"' has no exporte... Remove this comment to see the full error message
-import { type QuickDepositSlipProps } from "./QuickDepositSlip.types";
+import type { QuickDepositSlipProps } from "./QuickDepositSlip.types";
 
 import "./QuickDepositSlip.scss";
 
@@ -31,7 +29,7 @@ export const QuickDepositSlip = ({
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'deposit_cta_text' does not exist on type... Remove this comment to see the full error message
   const { deposit_cta_text, cvv_helper_text, deposit_helper_text } = R.map(
     v => v || ""
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipTranslations' is... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipTranslations' is... Remove this comment to see the full error message
   )(t);
 
   const {
@@ -68,8 +66,7 @@ export const QuickDepositSlip = ({
   const isProcessing = requestStatus.state === requestState.PROCESSING;
   const hasErrors = !R.isEmpty(formErrors);
 
-  const isDepositButtonDisabled =
-    isProcessing || hasErrors || !Boolean(cvvValue);
+  const isDepositButtonDisabled = isProcessing || hasErrors || !cvvValue;
 
   return (
     <Flex spacing="lg" justify="space-between" direction="vertical">
@@ -99,9 +96,7 @@ export const QuickDepositSlip = ({
             <Flex direction="vertical" spacing="sm">
               <Flex.Item>
                 <CvvCodeIframe
-                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(message: any) => void' is not assignable to... Remove this comment to see the full error message
                   onValidation={onCvvError}
-                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(message: any) => void' is not assignable to... Remove this comment to see the full error message
                   onSuccess={onCvvSuccess}
                 />
               </Flex.Item>

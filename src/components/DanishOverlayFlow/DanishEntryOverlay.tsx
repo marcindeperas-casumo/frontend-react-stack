@@ -1,6 +1,6 @@
-//@flow
 import React, { useState } from "react";
 import { ModalHeader } from "Components/RSModal/RSModalHeader";
+import type { ModalContentComponent } from "Components/RSModal";
 import { Finish, SetLimitType, SetAmountContainer } from "./OverlaySteps";
 
 const STAGE = {
@@ -9,42 +9,39 @@ const STAGE = {
 };
 
 export type CmsContent = {
-  limit_type_daily: string,
-  limit_type_weekly: string,
-  limit_type_monthly: string,
-  limit: string,
-  modal_title: string,
-  modal_description: string,
-  limit_saved_info: string,
-  playokay_settings_reference: string,
-  save_limit_button: string,
-  got_it_button: string,
+  limit_type_daily: string;
+  limit_type_weekly: string;
+  limit_type_monthly: string;
+  limit: string;
+  modal_title: string;
+  modal_description: string;
+  limit_saved_info: string;
+  playokay_settings_reference: string;
+  save_limit_button: string;
+  got_it_button: string;
 };
 
 type LmitData = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  playerId: ?string,
-  limit: any,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  periodSetting: ?string,
+  playerId: string | undefined;
+  limit: any;
+  periodSetting: string | undefined;
 };
 
-type OverlayProps = {
-  t: CmsContent,
-  saveLimit: (limitData: LmitData) => void,
-  acceptModal?: () => void,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  playerId: ?string,
-  isDepositLimitProperlySet: boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  iso4217CurrencyCode: ?string,
+type OverlayProps = ModalContentComponent<CmsContent> & {
+  saveLimit: (limitData: LmitData) => void;
+  playerId: string | undefined;
+  isDepositLimitProperlySet: boolean;
+  iso4217CurrencyCode: string | undefined;
 };
 
-type HeaderProps = {
-  title: string,
-  showBackButton?: true,
-  backAction?: () => void,
-};
+type HeaderProps =
+  | {
+      title: string;
+    }
+  | {
+      showBackButton: true;
+      backAction: () => void;
+    };
 
 const Header = (props: HeaderProps) => (
   <>
@@ -111,7 +108,6 @@ export function DanishEntryOverlay(props: OverlayProps) {
     return (
       <>
         <Header title={t.modal_title} />
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '(type: any) => void' is not assignable to ty... Remove this comment to see the full error message */}
         <SetLimitType t={t} chooseLimitType={chooseLimitType} />
       </>
     );
@@ -120,11 +116,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
   if (stage === STAGE.STAGE_SET_AMOUNT) {
     return (
       <>
-        <Header
-          showBackButton={true}
-          backAction={goBack}
-          title={t.modal_title}
-        />
+        <Header showBackButton backAction={goBack} title={t.modal_title} />
         <SetAmountContainer
           t={t}
           setAmount={setAmount}

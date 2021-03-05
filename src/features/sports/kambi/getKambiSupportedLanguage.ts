@@ -1,4 +1,3 @@
-/* @flow */
 import { contains } from "ramda";
 import { KAMBI_SUPPORTED_LANGUAGES } from "Features/sports/constants";
 

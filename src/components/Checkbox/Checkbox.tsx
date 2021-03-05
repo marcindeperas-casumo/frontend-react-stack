@@ -1,15 +1,13 @@
-// @flow
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import React, { PureComponent, type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import { CheckIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import "./Checkbox.scss";
 
-type OwnProps = {
-    checked?: boolean;
-    onChange: (active: boolean) => void;
-    renderChecked: () => Node;
-    renderUnchecked: () => Node;
+type Props = {
+  checked?: boolean;
+  onChange: (active: boolean) => void;
+  renderChecked?: () => React.ReactNode;
+  renderUnchecked?: () => React.ReactNode;
 };
 
 const CheckboxUnchecked = () => (
@@ -28,9 +26,7 @@ const CheckboxChecked = () => (
   </div>
 );
 
-type Props = OwnProps & typeof Checkbox.defaultProps;
-
-export class Checkbox extends PureComponent<Props> {
+export class Checkbox extends React.PureComponent<Props> {
   static defaultProps = {
     checked: false,
     renderChecked: CheckboxChecked,

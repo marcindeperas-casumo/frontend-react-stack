@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 
 export function ModalContentLoading() {

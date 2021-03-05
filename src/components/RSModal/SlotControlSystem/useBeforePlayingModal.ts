@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { equals } from "ramda";
@@ -13,7 +12,7 @@ import {
 import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
 
 type UseBeforePlayingModalProps = {
-  canLaunch: boolean,
+  canLaunch: boolean;
 };
 
 const isModalDismissed = equals(REACT_APP_MODAL.RETURN_CODE.DISMISSED);
@@ -41,7 +40,6 @@ export function useBeforePlayingModal({
 
     bridge.on(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     dispatch(showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION));
 
     return function unsubscribe() {

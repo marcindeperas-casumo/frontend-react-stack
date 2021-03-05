@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { connect } from "react-redux";
 import { getField } from "Models/cms";
@@ -13,11 +12,11 @@ import OptInButton from "../OptInButton";
 
 type Props = {
   /** The slug of the page in the CMS which contains opt-in/opt-out fields */
-  slug: string,
+  slug: string;
   /** The opt-in field name on the CMS page - more flexibility when there is no standard */
-  optInField: string,
+  optInField: string;
   /** The opt-out field name on the CMS page - more flexibility when there is no standard */
-  optOutField: string,
+  optOutField: string;
 };
 
 const defaultOptInValue = "Opt-In";

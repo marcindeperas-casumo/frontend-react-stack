@@ -1,32 +1,31 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import * as React from "react";
 import type {
   VersionDateFormatter,
   VersionFormatter,
 } from "./termsAndConditions.utils";
 
 type Props = {
-  onShowHistory: () => void,
-  shouldAllowHistoryView: boolean,
-  currentVersion: number,
-  formatVersion: VersionFormatter,
-  formatVersionDate: VersionDateFormatter,
+  onShowHistory: () => void;
+  shouldAllowHistoryView: boolean;
+  currentVersion: number;
+  formatVersion: VersionFormatter;
+  formatVersionDate: VersionDateFormatter;
   versionData: {
-    changelog: string,
-    version: string,
-    iso_8601_published_date: string,
+    changelog: string;
+    version: string;
+    iso_8601_published_date: string;
     pdf: {
-      url: string,
-      title: string,
-    },
-  },
+      url: string;
+      title: string;
+    };
+  };
   t: {
-    button_download_pdf: string,
-    button_version_history: string,
-  },
+    button_download_pdf: string;
+    button_version_history: string;
+  };
 };
 
 export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {

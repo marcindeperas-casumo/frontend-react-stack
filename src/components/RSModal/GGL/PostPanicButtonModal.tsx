@@ -1,16 +1,15 @@
-// @flow
-import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { ROUTE_IDS } from "Src/constants";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 
 type Props = {
-  acceptModal: () => void,
+  acceptModal: () => void;
   config: {
-    content?: any,
-  },
+    content?: any;
+  };
 };
 
 export function PostPanicButtonModal({ acceptModal, config }: Props) {

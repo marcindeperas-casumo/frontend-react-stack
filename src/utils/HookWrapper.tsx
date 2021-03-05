@@ -1,9 +1,8 @@
-// @flow
 import * as React from "react";
 
 type Props<T> = {
-  hook: (...T) => any,
-  args: T,
+  hook: (...args: T[]) => any;
+  args: T;
 };
 /**
  * For testing hooks, usage:
@@ -13,8 +12,7 @@ type Props<T> = {
  * ----------------------------------------------------------------------------
  * hook will contain exactly what your useYourHook returned.
  */
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export function HookWrapper(props: Props<*>) {
+export function HookWrapper(props: Props<any>) {
   const hook = props.hook(...props.args);
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; hook: any; }' is not assignabl... Remove this comment to see the full error message

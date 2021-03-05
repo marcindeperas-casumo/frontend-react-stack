@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { getApolloContext } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import React from "react";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,
@@ -83,7 +82,6 @@ export class SportsShellContainer extends React.Component<{}> {
           return (
             <>
               <SportsHashWatcher>
-                {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
                 {({ currentHash }) => (
                   <div className="t-background-grey-0">
                     <SportsTopBar

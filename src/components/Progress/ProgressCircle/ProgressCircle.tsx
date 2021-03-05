@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import cx from "classnames";
@@ -6,15 +5,15 @@ import "./ProgressCircle.scss";
 
 type Props = {
   /** from 0 to 100, represents current progress */
-  value?: number,
-  fgClassName?: string,
+  value?: number;
+  fgClassName?: string;
   /** color class name without 't-color-' prefix */
-  fgColor?: string,
+  fgColor?: string;
   /** color class name without 't-color-' prefix */
-  bgColor?: string,
-  className?: string,
-  radius?: number,
-  width?: number,
+  bgColor?: string;
+  className?: string;
+  radius?: number;
+  width?: number;
 };
 
 export function ProgressCircle({

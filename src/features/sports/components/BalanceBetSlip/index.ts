@@ -1,4 +1,1 @@
-// @flow
-export {
-  BalanceBetSlipContainer as BalanceBetSlip,
-} from "./BalanceBetSlipContainer";
+export { BalanceBetSlipContainer as BalanceBetSlip } from "./BalanceBetSlipContainer";

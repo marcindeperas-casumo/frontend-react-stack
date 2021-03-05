@@ -47,13 +47,9 @@ describe("SearchNotFound", () => {
       />
     );
 
-    expect(
-      rendered
-        .find("Text")
-        .first()
-        .find("span")
-        .text()
-    ).toBe(notFoundCMS.title);
+    expect(rendered.find("Text").first().find("span").text()).toBe(
+      notFoundCMS.title
+    );
   });
 
   test("should render the content with the string passed as a prop", () => {
@@ -65,12 +61,8 @@ describe("SearchNotFound", () => {
       />
     );
 
-    expect(
-      rendered
-        .find("Text")
-        .at(1)
-        .find("span")
-        .text()
-    ).toBe(notFoundCMS.content);
+    expect(rendered.find("Text").at(1).find("span").text()).toBe(
+      notFoundCMS.content
+    );
   });
 });

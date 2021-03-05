@@ -1,21 +1,19 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { GameRowSearchTitle } from "Components/GameRow";
 
 type SearchProps = {
   /** The search query */
-  query?: string,
+  query?: string;
   /** Whether highlight the search query on the game title or not  */
-  highlightSearchQuery?: boolean,
+  highlightSearchQuery?: boolean;
 };
 
 type Props = {
-  name: string,
-  search: SearchProps | boolean,
-  isInMaintenance: boolean,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  renderSecondaryText?: () => React.Node,
+  name: string;
+  search: SearchProps | boolean;
+  isInMaintenance: boolean;
+  renderSecondaryText?: () => React.ReactNode;
 };
 
 export const GameRowSearchText = (props: Props) => {

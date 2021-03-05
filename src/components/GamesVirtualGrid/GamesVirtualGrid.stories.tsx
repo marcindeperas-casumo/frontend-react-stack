@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { games } from "Components/GamesVirtualList/__mock__";
 import { GamesVirtualGrid } from "./GamesVirtualGrid";

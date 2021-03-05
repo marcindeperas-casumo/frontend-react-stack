@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react";
 import { F } from "ramda";
 import type { StageFavouritesAPI } from "./types";

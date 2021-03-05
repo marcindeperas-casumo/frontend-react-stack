@@ -1,4 +1,3 @@
-// @flow
 import { useEffect, useRef } from "react";
 
 type CompareFunctionType<T> = (previousValue: T, currentValue: T) => boolean;

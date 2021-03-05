@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import PromotionTitle from "Components/PromotionTitle";
 
 const stories = storiesOf("PromotionTitle", module);

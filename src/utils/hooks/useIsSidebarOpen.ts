@@ -1,4 +1,3 @@
-// @flow
 import { useSelector, shallowEqual } from "react-redux";
 import { isSidebarOpen } from "Models/sidebar";
 

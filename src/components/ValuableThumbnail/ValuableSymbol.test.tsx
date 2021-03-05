@@ -1,5 +1,3 @@
-import React from "react";
-import { shallow } from "enzyme";
 import {
   WalletTabDollarUnselectedIcon,
   WalletTabEuroUnselectedIcon,
@@ -7,18 +5,19 @@ import {
   WalletTabKroneUnselectedIcon,
   WalletTabRupeeUnselectedIcon,
 } from "@casumo/cmp-icons";
+import React from "react";
+import { shallow } from "enzyme";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
 import { ValuableSymbol } from "./ValuableSymbol";
 
 describe("ValuableSymbol", () => {
   let rendered;
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
   const cashValuableType = VALUABLE_TYPES.CASH;
 
   test("should render eur icon by default", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ currency: string; valuableType: any; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ currency: string; valuableType: "cash"; }'... Remove this comment to see the full error message
       <ValuableSymbol currency={"foo"} valuableType={cashValuableType} />
     );
 
@@ -27,7 +26,7 @@ describe("ValuableSymbol", () => {
 
   test("should render eur icon if currency is EUR", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ currency: string; valuableType: any; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ currency: "EUR"; valuableType: "cash"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         currency={CURRENCIES.EUR}
         valuableType={cashValuableType}
@@ -39,7 +38,7 @@ describe("ValuableSymbol", () => {
 
   test("should render cad icon if currency is CAD", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "CAD"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.CAD}
@@ -51,7 +50,7 @@ describe("ValuableSymbol", () => {
 
   test("should render cad icon if currency is GBP", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "GBP"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.GBP}
@@ -63,7 +62,7 @@ describe("ValuableSymbol", () => {
 
   test("should render krn icon if currency is SEK", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "SEK"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.SEK}
@@ -75,7 +74,7 @@ describe("ValuableSymbol", () => {
 
   test("should render krn icon if currency is DKK", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "DKK"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.DKK}
@@ -87,7 +86,7 @@ describe("ValuableSymbol", () => {
 
   test("should render cad icon if currency is RUP", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "INR"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.INR}
@@ -99,7 +98,7 @@ describe("ValuableSymbol", () => {
 
   test("should render cad icon if currency is USD", () => {
     rendered = shallow(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: any; currency: string; }' is... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableType: "cash"; currency: "USD"; }' ... Remove this comment to see the full error message
       <ValuableSymbol
         valuableType={cashValuableType}
         currency={CURRENCIES.USD}

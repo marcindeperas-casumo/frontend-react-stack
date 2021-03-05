@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
 import {
@@ -11,8 +10,8 @@ import { useTranslationsGql } from "Utils/hooks";
 import { TimeLimitsFormOutro } from "./TimeLimitsFormOutro";
 
 type Props = {
-  initial: boolean,
-  onClickCta: () => void,
+  initial: boolean;
+  onClickCta: () => void;
 };
 
 export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
@@ -31,7 +30,6 @@ export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
 
   return (
     <TimeLimitsFormOutro
-      // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       initial={initial}
       onClickCta={onClickCta}

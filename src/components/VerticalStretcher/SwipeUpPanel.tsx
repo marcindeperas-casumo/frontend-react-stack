@@ -1,14 +1,12 @@
-//@flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonInverted } from "@casumo/cmp-button";
+import React from "react";
 import { isMobile } from "Components/ResponsiveLayout";
 import { supportsTogglingFullscreen } from "Components/FullscreenView";
 import HandSymbol from "./icons/hand.svg";
 import type { TSwipeUpTranslations } from "./SwipeUpPanelContainer";
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-const onSwipePanelClick = (element: ?HTMLElement) => {
+const onSwipePanelClick = (element: HTMLElement | null) => {
   if (element && supportsTogglingFullscreen(element) && isMobile) {
     element.requestFullscreen();
   }
@@ -20,11 +18,10 @@ export const SwipeUpPanel = ({
   t,
   loading,
 }: {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  fullScreenElement: ?HTMLElement,
-  onDismiss: () => void,
-  t: TSwipeUpTranslations,
-  loading: boolean,
+  fullScreenElement: HTMLElement | undefined;
+  onDismiss: () => void;
+  t: TSwipeUpTranslations;
+  loading: boolean;
 }) => {
   const supportFullScreen = supportsTogglingFullscreen(fullScreenElement);
 

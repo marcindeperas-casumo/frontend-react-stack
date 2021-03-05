@@ -1,3 +1,1 @@
-export {
-  GameListHorizontalDefaultContainer as GameListHorizontalDefault,
-} from "./GameListHorizontalDefaultContainer";
+export { GameListHorizontalDefaultContainer as GameListHorizontalDefault } from "./GameListHorizontalDefaultContainer";

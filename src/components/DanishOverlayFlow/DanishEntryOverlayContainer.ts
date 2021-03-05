@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { playerIdSelector, currencySelector } from "Models/handshake";
 import {

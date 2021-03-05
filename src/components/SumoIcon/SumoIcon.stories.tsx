@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import MockStore from "Components/MockStore";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { SumoIcon } from "./SumoIcon";
@@ -13,11 +12,10 @@ const ToggleWrapper = ({
   color = "white",
   bgColor = "blue-50",
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  icon: any,
-  color?: string,
-  bgColor?: string,
+  children: React.ReactNode;
+  icon: any;
+  color?: string;
+  bgColor?: string;
 }) => {
   const { addIcon, hasIcon, removeIcon } = useSumoIcon({
     color,
@@ -43,8 +41,8 @@ const Example = ({
   color = "white",
   bgColor = "blue-50",
 }: {
-  color?: string,
-  bgColor?: string,
+  color?: string;
+  bgColor?: string;
 }) => (
   <div
     className={`t-background-${bgColor} t-color-${color} t-border-r--circle u-width--3xlg u-height--3xlg o-flex-align--center o-flex-justify--center u-cursor--pointer`}

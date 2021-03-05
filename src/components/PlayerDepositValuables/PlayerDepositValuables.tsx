@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
@@ -12,7 +11,6 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { MODALS } from "Src/constants";
 
 const showBonusTerms = () => {
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
   launchModal({ modal: MODALS.DEPOSIT.SHOW_BONUS_TERMS });
 };
 
@@ -21,9 +19,7 @@ const selectBonus = badgeId => {
 };
 
 export const PlayerDepositValuables = () => {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Boolean... Remove this comment to see the full error message
   const { loading, valuables, translations } = usePlayerValuableList(
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     VALUABLE_TYPES.DEPOSIT
   );
 
@@ -39,9 +35,9 @@ export const PlayerDepositValuables = () => {
         spacing="none"
       >
         <Flex.Item className="u-overflow-y--auto">
+          {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'onConsumeValuable' is missing in type '{... Remove this comment to see the full error message */}
           <ValuablesVerticalList
             valuables={valuables}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ valuables: any; translations: any; loading... Remove this comment to see the full error message
             translations={translations}
             loading={loading}
             onItemClick={selectBonus}

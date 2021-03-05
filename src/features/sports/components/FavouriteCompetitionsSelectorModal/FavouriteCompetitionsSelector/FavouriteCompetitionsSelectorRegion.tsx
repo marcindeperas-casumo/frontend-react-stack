@@ -1,34 +1,32 @@
-// @flow
-import * as React from "react";
 import { gql } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import * as A from "Types/apollo";
 import ExpandableListItem from "Features/sports/components/ExpandableListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import { isNilOrEmpty } from "Src/utils";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 
-type Competition = A.FavouriteCompetitionsSelectorRegion_Group_groups;
+type Competition = A.FavouriteCompetitionsSelectorRegion_GroupFragment["groups"];
 
 type Props = {
   /** The region Group to render the selector for, type defined by FavouriteCompetitionsSelectorRegion.fragments.group */
-  group: A.FavouriteCompetitionsSelectorRegion_Group,
+  group: A.FavouriteCompetitionsSelectorRegion_GroupFragment;
   /** Whether this region's competitions should be initially expanded */
-  isExpanded: boolean,
+  isExpanded: boolean;
   /** Is the competition with this Id selected? */
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
-  isSelected: (groupId: $ElementType<Competition, "id">) => boolean,
+  isSelected: (groupId: number) => boolean;
   /** What to do when a competition is clicked, given the competition data */
-  onClick: (group: Competition) => void,
+  onClick: (group: Competition) => void;
   /** Id of Group to select competitions for */
-  sportId: number,
+  sportId: number;
   /** Name of Group to select competitions for */
-  sportName: string,
+  sportName: string;
   /** Is favourites sports eq 0 */
-  isOnboarding: boolean,
+  isOnboarding: boolean;
   /** group ID **/
-  groupId: number,
+  groupId: number;
 };
 
 const FavouriteCompetitionsSelectorRegion = ({
@@ -40,8 +38,7 @@ const FavouriteCompetitionsSelectorRegion = ({
   sportId,
   isOnboarding,
   groupId,
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-}: Props): React.Node =>
+}: Props): React.ReactNode =>
   !group.groups || isNilOrEmpty(group.groups) ? null : (
     <div className="u-margin-y">
       <ExpandableListItem
@@ -63,6 +60,7 @@ const FavouriteCompetitionsSelectorRegion = ({
                 {group.name}
               </Text>
             </Flex.Item>
+            {/* @ts-expect-error ts-migrate(2786) FIXME: 'FavouriteCompetitionsCount' cannot be used as a J... Remove this comment to see the full error message */}
             <FavouriteCompetitionsCount
               count={group.groups.filter(c => isSelected(c.id)).length}
             />
@@ -71,8 +69,8 @@ const FavouriteCompetitionsSelectorRegion = ({
       >
         <CompetitionPillsList
           competitions={group.groups}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: FavouriteCompetitionsSelecto... Remove this comment to see the full error message
           isActive={c => isSelected(c.id)}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(group: ({ id: number; } & { id: number; use... Remove this comment to see the full error message
           onClick={onClick}
         />
       </ExpandableListItem>

@@ -1,6 +1,6 @@
+import type { CellRendererParams } from "react-virtualized";
 import * as React from "react";
 import classNames from "classnames";
-import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileExclusive } from "Components/GameTileExclusive";
@@ -11,7 +11,7 @@ import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import "./GameListHorizontalExclusive.scss";
 
 export type Props = {
-  list: A.GameListExclusiveQuery_gamesList,
+  list: A.GameListExclusiveQuery["gamesList"];
 };
 
 export const GameListHorizontalExclusive = ({ list }: Props) => {

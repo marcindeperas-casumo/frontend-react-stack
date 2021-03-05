@@ -5,35 +5,39 @@ import { BridgeToNavigationService } from "./BridgeToNavigationService";
 jest.mock("../DurandalReactBridge");
 jest.mock("@reach/router");
 describe("BridgeToNavigationService", () => {
-    const { location } = window;
-    beforeEach(() => {
-        jest.resetAllMocks();
-        // eslint-disable-next-line fp/no-delete
-        delete window.location;
-        window.location = {
-            href: "https://mydomain.com/test?myquery",
-            origin: "https://mydomain.com",
-        } as Location;
+  const { location } = window;
+  beforeEach(() => {
+    jest.resetAllMocks();
+    // eslint-disable-next-line fp/no-delete
+    delete window.location;
+    window.location = {
+      href: "https://mydomain.com/test?myquery",
+      origin: "https://mydomain.com",
+    } as Location;
+  });
+  afterEach(() => {
+    window.location = location;
+  });
+  test("listen to REACT_APP_EVENT_ROUTE_CHANGE event", () => {
+    BridgeToNavigationService();
+    expect(bridge.on).toHaveBeenCalledTimes(1);
+    expect(bridge.on).toHaveBeenCalledWith(
+      REACT_APP_EVENT_ROUTE_CHANGE,
+      expect.anything()
+    );
+  });
+  test("callback should call navigate with the processed url", () => {
+    BridgeToNavigationService();
+    const eventName = (bridge.on as jest.Mock).mock.calls[0][0];
+    const onReactAppEventRouteChange = (bridge.on as jest.Mock).mock
+      .calls[0][1];
+    // Simulating an event (can be any payload as window.location is used anyway)
+    onReactAppEventRouteChange({
+      config: { route: "/test/:foo", routePattern: /^test\/([^/]+)$/i },
+      params: ["bar"],
     });
-    afterEach(() => {
-        window.location = location;
-    });
-    test("listen to REACT_APP_EVENT_ROUTE_CHANGE event", () => {
-        BridgeToNavigationService();
-        expect(bridge.on).toHaveBeenCalledTimes(1);
-        expect(bridge.on).toHaveBeenCalledWith(REACT_APP_EVENT_ROUTE_CHANGE, expect.anything());
-    });
-    test("callback should call navigate with the processed url", () => {
-        BridgeToNavigationService();
-        const eventName = (bridge.on as any).mock.calls[0][0];
-        const onReactAppEventRouteChange = (bridge.on as any).mock.calls[0][1];
-        // Simulating an event (can be any payload as window.location is used anyway)
-        onReactAppEventRouteChange({
-            config: { route: "/test/:foo", routePattern: /^test\/([^/]+)$/i },
-            params: ["bar"],
-        });
-        expect(eventName).toEqual(REACT_APP_EVENT_ROUTE_CHANGE);
-        expect(navigate).toBeCalledTimes(1);
-        expect(navigate).toHaveBeenCalledWith("/test?myquery", { replace: true });
-    });
+    expect(eventName).toEqual(REACT_APP_EVENT_ROUTE_CHANGE);
+    expect(navigate).toBeCalledTimes(1);
+    expect(navigate).toHaveBeenCalledWith("/test?myquery", { replace: true });
+  });
 });

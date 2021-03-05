@@ -15,9 +15,8 @@ describe("Models/GameBrowser/Reducer", () => {
         page,
         ...data,
       });
-      const state = {};
+      const state = null;
 
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
       expect(gameBrowserReducer(state, action)).toEqual({ page, data });
     });
 
@@ -31,10 +30,14 @@ describe("Models/GameBrowser/Reducer", () => {
         data: {
           sort: "A-Z",
         },
+        scroll: 0,
       };
 
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ page: string; data: { sort: st... Remove this comment to see the full error message
-      expect(gameBrowserReducer(state, action)).toEqual({ page, data: {} });
+      expect(gameBrowserReducer(state, action)).toEqual({
+        page,
+        data: {},
+        scroll: 0,
+      });
     });
   });
 
@@ -46,9 +49,9 @@ describe("Models/GameBrowser/Reducer", () => {
       data: {
         sort: "A-Z",
       },
+      scroll: 0,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ page: string; data: { sort: st... Remove this comment to see the full error message
     expect(gameBrowserReducer(state, action)).toEqual({ ...state, scroll });
   });
 });

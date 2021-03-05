@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 import List from "@casumo/cmp-list";
+import React from "react";
 import FavouriteCompetitionsSelectorRegionSkeleton from "./FavouriteCompetitionsSelectorRegionSkeleton";
 
 const FavouriteCompetitionsSelectorSkeleton = () => (

@@ -1,6 +1,5 @@
-//@flow
-import * as React from "react";
 import { v4 as uuidV4 } from "uuid";
+import * as React from "react";
 import { SumoIconContext } from "./SumoIconContext";
 
 export const useSumoIcon = (currentProps: Object = {}) => {
@@ -15,8 +14,7 @@ export const useSumoIcon = (currentProps: Object = {}) => {
   }, [currentProps, sumoIconContext, updateProps]);
 
   const addIcon = React.useCallback(
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    (icon: React.Component<*, *> | React.StatelessFunctionalComponent<*>) => {
+    (icon: React.ReactNode) => {
       if (!sumoIconContext.hasIcon(iconId.current)) {
         sumoIconContext.addIcon(iconId.current, icon);
       }

@@ -1,19 +1,15 @@
-//@flow
 import { expandElementHeightToMatchItsParent, appendToGameUrl } from "./utils";
 
 describe("Game providers utils", () => {
   test("should set iframe size to fits it's parent size", () => {
     const gameRef = {
-      current: (document.createElement("iframe"): HTMLIFrameElement),
+      current: document.createElement("iframe") as HTMLIFrameElement,
     };
 
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expandElementHeightToMatchItsParent(gameRef);
 
     //expecting 0px as unmounted element will always have 0 width/height
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expect(gameRef.current.style.height).toEqual("0px");
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'gameRef'.
     expect(gameRef.current.style.width).toEqual("0px");
   });
 });

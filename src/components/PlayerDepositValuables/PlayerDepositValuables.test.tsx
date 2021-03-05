@@ -1,6 +1,6 @@
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/client/testing";
 import { wait, getCacheWithIntrospections } from "Utils/apolloTestUtils";
 import { launchModal } from "Services/LaunchModalService";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";

@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import type { Action } from "./reelRaces.actions";
 
@@ -37,7 +36,7 @@ export function reelRacesReducer(
           R.sortBy(R.prop("position")),
           // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           R.pluck("playerId")
-        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+          // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(action.leaderboard),
       };
     default:

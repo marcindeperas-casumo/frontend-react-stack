@@ -1,4 +1,3 @@
-// @flow
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
 
 describe("adjustLimitsAndNavigate", () => {
@@ -29,7 +28,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
@@ -65,7 +64,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -101,7 +100,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -137,7 +136,7 @@ describe("adjustLimitsAndNavigate", () => {
       ],
     };
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);

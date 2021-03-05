@@ -1,28 +1,25 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { topListWidgetWidth } from "Src/constants";
-import {
-  colors,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotStatus,
+import { colors } from "./blueRibbonConsts";
+import type {
+  JackpotWidgetContentPage,
+  JackpotStatus,
 } from "./blueRibbonConsts";
 
 type BlueRibbonJackpotEntry = {
-  value: number,
-  label: string,
-  status: JackpotStatus,
-  potId: string,
-  communityWinRatio: number,
-  mainWinRatio: number,
+  value: number;
+  label: string;
+  status: JackpotStatus;
+  potId: string;
+  communityWinRatio: number;
+  mainWinRatio: number;
 };
 
 export function BlueRibbonJackpotsWidget({
@@ -30,9 +27,9 @@ export function BlueRibbonJackpotsWidget({
   jackpots,
   t,
 }: {
-  className?: string,
-  jackpots: Array<BlueRibbonJackpotEntry>,
-  t: JackpotWidgetContentPage,
+  className?: string;
+  jackpots: Array<BlueRibbonJackpotEntry>;
+  t: JackpotWidgetContentPage;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
@@ -115,10 +112,10 @@ export function BlueRibbonJackpotsWidget({
 }
 
 type JackpotRowProps = {
-  formattedValue: string,
-  label: string,
-  image: string,
-  explanation?: string,
+  formattedValue: string;
+  label: string;
+  image: string;
+  explanation?: string;
 };
 function JackpotRow({
   formattedValue,

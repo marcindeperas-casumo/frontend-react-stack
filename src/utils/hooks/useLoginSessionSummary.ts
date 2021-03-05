@@ -1,14 +1,10 @@
-// @flow
 import * as React from "react";
-import {
-  getLoginSessionSummary,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../api/api.esLoginSessionSummary"' has... Remove this comment to see the full error message
-  type LoginSessionSummary,
-} from "Api/api.esLoginSessionSummary";
+import { getLoginSessionSummary } from "Api/api.esLoginSessionSummary";
+import type { LoginSessionSummary } from "Api/api.esLoginSessionSummary";
 import { useJurisdiction } from "Utils/hooks";
 
 export type UseLoginSessionSummary = {
-  loginSessionSummary: ?LoginSessionSummary,
+  loginSessionSummary: LoginSessionSummary | undefined;
 };
 
 export function useLoginSessionSummary(): UseLoginSessionSummary {
@@ -16,7 +12,7 @@ export function useLoginSessionSummary(): UseLoginSessionSummary {
   const [
     loginSessionSummary,
     setLoginSessionSummary,
-  ] = React.useState<?LoginSessionSummary>(null);
+  ] = React.useState<LoginSessionSummary | null>(null);
 
   React.useEffect(() => {
     if (isDGOJ) {

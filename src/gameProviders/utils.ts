@@ -1,5 +1,3 @@
-//@flow
-
 import type { GameRef, TGameUrlProps } from "./types";
 
 // isNativeByUserAgent @lukasz.kowalski
@@ -12,10 +10,12 @@ export const isNativeByUserAgent = (): boolean =>
 export const expandElementHeightToMatchItsParent = (iframeRef: GameRef) => {
   if (iframeRef.current) {
     /* eslint-disable fp/no-mutation */
-    iframeRef.current.style.height = `${iframeRef.current.parentElement
-      ?.clientHeight || 0}px`;
-    iframeRef.current.style.width = `${iframeRef.current.parentElement
-      ?.clientWidth || 0}px`;
+    iframeRef.current.style.height = `${
+      iframeRef.current.parentElement?.clientHeight || 0
+    }px`;
+    iframeRef.current.style.width = `${
+      iframeRef.current.parentElement?.clientWidth || 0
+    }px`;
     /* eslint-enable fp/no-mutation */
   }
 };

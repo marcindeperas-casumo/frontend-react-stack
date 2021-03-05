@@ -1,7 +1,6 @@
-// @flow
+import { storiesOf } from "@storybook/react";
 import React from "react";
 import { repeat } from "ramda";
-import { storiesOf } from "@storybook/react";
 import { ModalsArea } from "Features/sports/components/Modals";
 import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";

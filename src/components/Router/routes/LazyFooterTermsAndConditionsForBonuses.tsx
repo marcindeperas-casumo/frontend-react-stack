@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import LazyPortal from "Components/LazyPortal";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";

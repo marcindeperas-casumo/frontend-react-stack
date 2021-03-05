@@ -1,12 +1,11 @@
-// @flow
 import React from "react";
 import cx from "classnames";
 
 type TReelRaceBoosterPointsValueProps = {
-  animating: boolean,
-  basePoints: null | string,
-  depth?: number,
-  extraPoints: null | string,
+  animating: boolean;
+  basePoints: null | string;
+  depth?: number;
+  extraPoints: null | string;
 };
 
 export const ReelRaceBoosterPointsValue = ({

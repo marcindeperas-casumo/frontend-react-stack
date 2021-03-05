@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { SettingsLabelAndValue } from "./SettingsLabelAndValue";
 
 const stories = storiesOf("Settings/SettingsLabelAndValue", module);

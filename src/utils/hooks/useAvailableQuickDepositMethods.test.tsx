@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
@@ -35,9 +34,9 @@ const expectedQuickDepositMethods = [
   ),
 ];
 
-// $FlowIgnore
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-getPaymentMethodTypes.mockReturnValue(Promise.resolve(methodTypes));
+(getPaymentMethodTypes as jest.Mock).mockReturnValue(
+  Promise.resolve(methodTypes)
+);
 
 describe("useAvailableQuickDepositMethod hook", () => {
   // skipping failed test

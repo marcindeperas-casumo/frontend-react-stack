@@ -1,17 +1,16 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import React from "react";
 import classNames from "classnames";
-import Flex from "@casumo/cmp-flex";
 import { DEFAULT_CLASSES } from "Components/GameTile/GameTile";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import * as A from "Types/apollo";
 
 export type Props = {
-  ratio: string,
-  game: A.GameTileInMaintenance_Game,
-  className?: string,
-  imgixOpts?: Object,
-  temporaryUnavailableText: string,
+  ratio: string;
+  game: A.GameTileInMaintenance_GameFragment;
+  className?: string;
+  imgixOpts?: Object;
+  temporaryUnavailableText: string;
 };
 
 export const GameTileInMaintenance = ({

@@ -1,13 +1,12 @@
-// @flow
-import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import React from "react";
 import { propOr } from "ramda";
 import logger from "Services/logger";
 import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 
 type Props = {
   /** The slug of the CMS page containing the component definitions. */
-  slug: string,
+  slug: string;
 };
 
 const QUERY = gql`

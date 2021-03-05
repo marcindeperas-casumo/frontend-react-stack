@@ -1,19 +1,16 @@
-// @flow
-import React from "react";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../node_modules/@types/react"' has no expo... Remove this comment to see the full error message
-import type { Element } from "react";
 import { useMedia } from "react-use";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import { Link } from "@reach/router";
 import { getMediaQuery, mobileBreakpoint } from "Components/ResponsiveLayout";
 import { Panel } from "Components/Panel";
 
 type TCardProps = {
-  Icon: () => Element<any>,
-  Header: () => Element<any>,
-  Description: () => Element<any>,
-  linkHref: string,
-  LinkElement: () => Element<any>,
+  Icon: React.ComponentType<{}>;
+  Header: React.ComponentType<{}>;
+  Description: React.ComponentType<{}>;
+  linkHref: string;
+  LinkElement: React.ComponentType<{}>;
 };
 
 const SupportCard = ({
@@ -34,7 +31,7 @@ const SupportCard = ({
 );
 
 export type SupportRowProps = {
-  cards: Array<TCardProps>,
+  cards: Array<TCardProps>;
 };
 
 const SupportRow = ({ cards }: SupportRowProps) => {
@@ -42,8 +39,8 @@ const SupportRow = ({ cards }: SupportRowProps) => {
 
   return (
     <Flex direction={isMobile ? "vertical" : "horizontal"} justify="center">
-      {cards.map(card => (
-        <Flex.Item>
+      {cards.map((card, i) => (
+        <Flex.Item key={i}>
           <Panel className="u-text-align-center">
             <SupportCard
               Icon={card.Icon}

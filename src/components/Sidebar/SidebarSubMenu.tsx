@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
@@ -9,8 +8,8 @@ export const SidebarSubMenu = ({
   t,
   logout,
 }: {
-  t: SidebarTranslations,
-  logout: () => void,
+  t: SidebarTranslations;
+  logout: () => void;
 }) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
 

@@ -1,13 +1,11 @@
-//@flow
+import { CSSTransition } from "react-transition-group";
 import * as React from "react";
 import cx from "classnames";
-import { CSSTransition } from "react-transition-group";
 import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { isNativeByUserAgent } from "GameProviders";
 import { ROUTE_IDS, EVENTS } from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
@@ -20,9 +18,8 @@ import {
   injectIntercomScript,
   registerPauseResumeGame,
   openChatWindow,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../features/chat/IntercomChatServic... Remove this comment to see the full error message
-  type IntercomPlayerDetailsProps,
 } from "Features/chat/IntercomChatService";
+import type { IntercomPlayerDetailsProps } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
@@ -31,7 +28,7 @@ import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ProfileIconWithDrawer.scss' ... Remove this comment to see the full error message
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"*.scss"' has no exported member 'animatio... Remove this comment to see the full error message
 // eslint-disable-next-line import/no-duplicates
 import { animation_duration } from "./ProfileIconWithDrawer.scss";
 // eslint-disable-next-line import/no-duplicates
@@ -50,9 +47,7 @@ export const ProfileIconWithDrawer = ({
   const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
   const currentRace = useCurrentReelRaceInfo();
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
   useCallOnce(currentRace?.isInProgress && currentRace?.optedIn, () => {
     togglePin(DRAWERS.REEL_RACES);
   });
@@ -73,7 +68,6 @@ export const ProfileIconWithDrawer = ({
       return;
     }
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     injectIntercomScript({ playerId, email, casumoName, playerName });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

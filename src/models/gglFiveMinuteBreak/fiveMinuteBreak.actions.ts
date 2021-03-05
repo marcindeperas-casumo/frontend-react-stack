@@ -1,4 +1,3 @@
-// @flow
 import type { GglRealityCheckSummary } from "./fiveMinuteBreak.types";
 import { types } from "./fiveMinuteBreak.constants";
 

@@ -1,4 +1,3 @@
-// @flow
 import { createSelector } from "reselect";
 import { propOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";
@@ -17,10 +16,7 @@ const keyPayments = {
   text_deposit: "textDeposit",
 };
 
-export const playerWalletSelector = createSelector(
-  player,
-  prop("wallet")
-);
+export const playerWalletSelector = createSelector(player, prop("wallet"));
 
 export const playerWalletAmountSelector = createSelector(
   playerWalletSelector,
@@ -90,14 +86,12 @@ export const playerBalanceUpdateReasonSelector = createSelector(
   propOr(null, "lastBalanceUpdateReason")
 );
 
-// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
-export const playerSessionIsValidSelector: any => boolean = createSelector(
+export const playerSessionIsValidSelector = createSelector(
   player,
   prop("sessionValid")
 );
 
-// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
-export const playerLogoutStartedSelector: any => boolean = createSelector(
+export const playerLogoutStartedSelector = createSelector(
   player,
   prop("logoutStarted")
 );

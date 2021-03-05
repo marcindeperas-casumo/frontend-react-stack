@@ -1,14 +1,11 @@
-// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 import { addImageSourceToOptions } from "./CuratedCardBackground.utils";
 
 type Props = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  onClick: ?Function,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  link: ?string,
-  image: string,
+  onClick: Function | undefined;
+  link: string | undefined;
+  image: string;
 };
 
 export const CuratedCardBackgroundNew = ({ image, onClick, link }: Props) => {

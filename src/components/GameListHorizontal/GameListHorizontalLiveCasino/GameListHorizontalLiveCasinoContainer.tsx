@@ -1,19 +1,18 @@
-// @flow
-import React from "react";
 import { useQuery } from "@apollo/client";
+import React from "react";
 import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
 import TrackProvider from "Components/TrackProvider";
 import { useTranslations } from "Utils/hooks";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalLiveCasino... Remove this comment to see the full error message
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
+
 type Props = {
   /** The id of the game list. */
-  id: string,
+  id: string;
   /** The number of games to show */
-  numberOfGames: number,
+  numberOfGames: number;
 };
 
 export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
@@ -26,9 +25,6 @@ export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
     const translationsBuiltPages = useTranslations<{ more_link: string }>(
       "built-pages.top-lists-translations"
     );
-    const translationsMobileLiveCasino = useTranslations<{
-      playNowText: string,
-    }>("mobile.live-casino-cards-content");
 
     if (loading) {
       return (
@@ -42,14 +38,12 @@ export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
       data &&
       data.gamesList &&
       data.gamesList.games.length &&
-      translationsBuiltPages &&
-      translationsMobileLiveCasino
+      translationsBuiltPages
     ) {
       return (
         <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
           <GameListHorizontalLiveCasino
             seeMoreText={translationsBuiltPages.more_link}
-            playNowText={translationsMobileLiveCasino.playNowText}
             list={data.gamesList}
           />
         </TrackProvider>

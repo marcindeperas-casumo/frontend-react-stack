@@ -1,4 +1,3 @@
-// @flow
 import { realityCheckSelector } from "./realityCheck.selectors";
 
 describe("Models/playOkay/realityCheck/.selectors", () => {

@@ -1,17 +1,16 @@
-// @flow
-import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import Timer from "Components/Timer";
 import { interpolateWithJSX } from "Utils";
 
 type Props = {
-  acceptModal: () => void,
+  acceptModal: () => void;
   config: {
-    content?: any,
-    timeLeft: number,
-    extraActionOnAccept: () => void,
-  },
+    content?: any;
+    timeLeft: number;
+    extraActionOnAccept: () => void;
+  };
 };
 
 export function FiveMinuteBreakOngoingModal({ acceptModal, config }: Props) {

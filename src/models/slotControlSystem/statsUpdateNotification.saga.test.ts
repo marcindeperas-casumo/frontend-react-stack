@@ -1,5 +1,5 @@
-import * as R from "ramda";
 import { cloneableGenerator } from "redux-saga/utils";
+import * as R from "ramda";
 import { MESSAGES as cometdMessages } from "Models/cometd";
 import { statsUpdateNotificationSaga } from "./statsUpdateNotification.saga";
 

@@ -1,4 +1,3 @@
-// @flow
 export { useTranslations } from "./useTranslations";
 export { useTranslationsGql } from "./useTranslationsGql";
 export { useDelayedCleanup } from "./useDelayedCleanup";
@@ -8,9 +7,7 @@ export { useMarket } from "./useMarket";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
-export {
-  usePlayerSessionInvalidRedirect,
-} from "./usePlayerSessionInvalidRedirect";
+export { usePlayerSessionInvalidRedirect } from "./usePlayerSessionInvalidRedirect";
 export { useGameLaunchData } from "./useGameLaunchData";
 export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 export { useJurisdiction } from "./useJurisdiction";
@@ -19,15 +16,11 @@ export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";
 export { useIsAuthenticated } from "./useIsAuthenticated";
 export { useDispatchPlaying } from "./useDispatchPlaying";
 export { useLoginSessionSummary } from "./useLoginSessionSummary";
-export {
-  useInGameBonusOrRealBalanceCheck,
-} from "./useInGameBonusOrRealBalanceCheck";
+export { useInGameBonusOrRealBalanceCheck } from "./useInGameBonusOrRealBalanceCheck";
 export { useCachedQuery } from "./useCachedQuery";
 export { usePaymentMethodConfig } from "./usePaymentMethodConfig";
 export { useFetch } from "./useFetch";
-export {
-  useAvailableQuickDepositMethods,
-} from "./useAvailableQuickDepositMethods";
+export { useAvailableQuickDepositMethods } from "./useAvailableQuickDepositMethods";
 export { useTimeoutFn } from "./useTimeoutFn";
 export { useIsTransitioning } from "./useIsTransitioning";
 export { usePin } from "./usePin";
@@ -35,8 +28,6 @@ export { useMarketConfig } from "./useMarketConfig";
 export { useMemoCompare } from "./useMemoCompare";
 export { useMessaging } from "./useFirebaseSDK";
 export { usePlayerLevelUpEvent } from "./usePlayerLevelUpEvent";
-export {
-  usePlayerReceivedValuableEvent,
-} from "./usePlayerReceivedValuableEvent";
+export { usePlayerReceivedValuableEvent } from "./usePlayerReceivedValuableEvent";
 export { useResize } from "./useResize";
 export { useCallOnce } from "./useCallOnce";

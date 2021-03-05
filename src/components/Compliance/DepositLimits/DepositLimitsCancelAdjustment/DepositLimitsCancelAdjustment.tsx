@@ -1,20 +1,17 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import * as React from "react";
 
 type Props = {
   t: {
-    cancel_adjustment_title: string,
-    cancel_adjustment_content: string,
-    button_yes: string,
-    button_no: string,
-  },
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  handleButtonYes: (event: SyntheticEvent<HTMLElement>) => void,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  handleButtonNo: (event: SyntheticEvent<HTMLElement>) => void,
+    cancel_adjustment_title: string;
+    cancel_adjustment_content: string;
+    button_yes: string;
+    button_no: string;
+  };
+  handleButtonYes: (event: Event) => void;
+  handleButtonNo: (event: Event) => void;
 };
 
 export function DepositLimitsCancelAdjustment({ t, ...props }: Props) {

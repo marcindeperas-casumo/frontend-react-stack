@@ -1,32 +1,26 @@
-// @flow
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import classNames from "classnames";
 import "./PillSelector.scss";
 
 export type PillSelectorOption = {
-  label: string,
-  labelHeader?: string,
-  value: any,
+  label: string;
+  labelHeader?: string;
+  value: any;
 };
 
-type OwnProps = {
-    className?: string;
-    disabled?: boolean;
-    onChange: (value: any) => void;
-    options: PillSelectorOption[];
-    value?: any;
+type Props<T> = {
+  className?: string;
+  disabled?: boolean;
+  onChange: (value: T) => void;
+  options: PillSelectorOption[];
+  value?: T;
 };
 
 const noop = () => {};
 
-type Props = OwnProps & typeof PillSelector.defaultProps;
-
-export class PillSelector extends PureComponent<Props> {
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
-  onChange: Function;
-
+export class PillSelector extends PureComponent<Props<any>> {
   static defaultProps = {
     className: "",
     disabled: false,
@@ -47,7 +41,6 @@ export class PillSelector extends PureComponent<Props> {
     return "t-background-grey-0 t-color-grey-90";
   }
 
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
   onChange(value: any) {
     if (this.props.disabled) {
       return false;

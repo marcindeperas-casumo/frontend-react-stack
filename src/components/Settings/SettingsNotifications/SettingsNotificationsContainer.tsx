@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import { useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
@@ -18,9 +17,8 @@ export interface NotificationTranslations {
 
 export function SettingsNotificationsContainer() {
   const { data, error, loading, refetch } = useQuery<
-    A.PLAYER_CONTACT_SETTINGS_QUERY,
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
-    _
+    A.Player_Contact_Settings_Query,
+    A.Player_Contact_Settings_QueryVariables
   >(PLAYER_CONTACT_SETTINGS_QUERY);
   const notificationTranslations = useTranslations<NotificationTranslations>(
     "player-settings-component"
@@ -30,7 +28,6 @@ export function SettingsNotificationsContainer() {
     return <SettingsRowListSkeleton count={8} />;
   }
   if (!data || error) {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Promise<ApolloQueryResult<PLAYER_CONTACT_SET... Remove this comment to see the full error message
     return <ErrorMessage retry={() => refetch()} />;
   }
 

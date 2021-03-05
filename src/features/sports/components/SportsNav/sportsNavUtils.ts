@@ -1,4 +1,3 @@
-// @flow
 export const IN_PLAY_URL_PART = "in-play";
 export const SPORTS_HOME_PAGE_PATH = "home";
 export const SPORTS_COUPON_PAGE_PATH = "coupon";

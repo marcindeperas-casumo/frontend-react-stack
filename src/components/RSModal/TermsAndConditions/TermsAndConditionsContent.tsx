@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
@@ -10,7 +9,7 @@ import { parseTableOfContents } from "./termsAndConditions.utils";
 import "./termsAndConditions.scss";
 
 type Props = {
-  version: number,
+  version: number;
 };
 
 export function TermsAndConditionsContent({ version }: Props) {

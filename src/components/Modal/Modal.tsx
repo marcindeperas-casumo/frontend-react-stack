@@ -1,18 +1,15 @@
-/* @flow */
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import type { Node } from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import classNames from "classnames";
 
 import "./Modal.scss";
 
 type SharedProps = {
-  children: Node,
-  className?: string,
+  children: React.ReactChild;
+  className?: string;
 };
 
-const ModalContainer = ({ children, className }: SharedProps): Node => (
+const ModalContainer = ({ children, className }: SharedProps) => (
   <Flex
     className={classNames("c-modal", className)}
     direction="vertical"
@@ -22,19 +19,19 @@ const ModalContainer = ({ children, className }: SharedProps): Node => (
   </Flex>
 );
 
-const Footer = ({ children, className }: SharedProps): Node => (
+const Footer = ({ children, className }: SharedProps) => (
   <Flex.Item className={classNames("c-modal__footer", className)}>
     {children}
   </Flex.Item>
 );
 
-const Header = ({ children, className }: SharedProps): Node => (
+const Header = ({ children, className }: SharedProps) => (
   <Flex.Item className={classNames("c-modal__header", className)}>
     {children}
   </Flex.Item>
 );
 
-const Content = ({ children, className }: SharedProps): Node => (
+const Content = ({ children, className }: SharedProps) => (
   <Flex.Block className={classNames("c-modal__content", className)}>
     {children}
   </Flex.Block>

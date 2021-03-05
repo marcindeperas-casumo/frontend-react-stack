@@ -1,27 +1,25 @@
-// @flow
-import * as React from "react";
-import { Duration as LuxonDuration } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-import { type LoginTimeLimit } from "Models/playOkay";
+import * as React from "react";
+import { Duration as LuxonDuration } from "luxon";
+import type { LoginTimeLimit } from "Models/playOkay";
 import { interpolateWithJSX } from "Utils";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    desktop_title: ?string,
-    coming_limit_note: ?string,
-    time_left_daily: ?string,
-    time_left_weekly: ?string,
-    time_left_monthly: ?string,
-    period_daily: ?string,
-    period_weekly: ?string,
-    period_monthly: ?string,
-  },
-  limit: ?LoginTimeLimit,
-  onClick: () => void,
+    desktop_title: string | undefined;
+    coming_limit_note: string | undefined;
+    time_left_daily: string | undefined;
+    time_left_weekly: string | undefined;
+    time_left_monthly: string | undefined;
+    period_daily: string | undefined;
+    period_weekly: string | undefined;
+    period_monthly: string | undefined;
+  };
+  limit: LoginTimeLimit | undefined;
+  onClick: () => void;
 };
 
 export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {

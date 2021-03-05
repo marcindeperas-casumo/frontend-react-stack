@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { SettingsRow } from "./SettingsRow";
 
 const stories = storiesOf("Settings/SettingsRow", module);

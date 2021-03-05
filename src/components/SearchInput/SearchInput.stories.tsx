@@ -1,8 +1,7 @@
-/* @flow */
-import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import { text } from "@storybook/addon-knobs/react";
+import React from "react";
 import SearchInput from "Components/SearchInput";
 
 const stories = storiesOf("SearchInput", module);

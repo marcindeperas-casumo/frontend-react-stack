@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { OthersIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { viewports } from "Storybook/viewports";
 import { ListCard } from "./ListCard";
 

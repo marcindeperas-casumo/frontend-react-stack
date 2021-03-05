@@ -1,12 +1,11 @@
-// @flow
-import React, { useEffect } from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { DownloadIcon } from "@casumo/cmp-icons";
+import React, { useEffect } from "react";
 
 export type PdfButtonProps = {
-  href?: string,
-  label: string,
-  fetchHref?: () => void,
+  href?: string;
+  label: string;
+  fetchHref?: () => void;
 };
 
 export function PdfButton({

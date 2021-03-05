@@ -1,13 +1,12 @@
-/* @flow */
-import * as React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import * as React from "react";
 import { take, sum } from "ramda";
 
 type BaseSkeletonParams = {
-  width: string | number,
-  height: string | number,
-  x: number,
-  y: number,
+  width: string | number;
+  height: string | number;
+  x: number;
+  y: number;
 };
 
 const KambiClientSkeleton = () => (
@@ -108,9 +107,8 @@ const KambiOfferingSkeleton = ({ width, height, x, y }: BaseSkeletonParams) => (
 );
 
 type OutlinedBoxParams = BaseSkeletonParams & {
-  thickness: number,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: React.Node,
+  thickness: number;
+  children?: React.ReactNode;
 };
 
 const OutlinedBox = ({

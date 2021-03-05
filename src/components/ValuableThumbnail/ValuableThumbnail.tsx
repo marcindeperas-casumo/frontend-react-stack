@@ -1,24 +1,21 @@
-/* @flow */
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-import React, { type Node } from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
+import classNames from "classnames";
 import * as A from "Types/apollo";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
 import {
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
   showStateBadge,
   isAboutToExpire,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type DurationProps,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableThumbnailTranslations as Translations,
+} from "Models/valuables";
+import type {
+  ValuableState,
+  DurationProps,
+  ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
@@ -27,24 +24,24 @@ import Cashback from "./Icons/cashback.svg";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: A.ValuableType,
+  valuableType: A.ValuableType;
   /** award type - applies when valuableType === Wagering Lock */
-  awardType?: A.WageringLockAwardType,
+  awardType?: A.WageringLockAwardType;
   /** currency of the player */
-  currency: string,
+  currency: string;
   /** The coin value of each spin. Applies when valuable is type spins */
-  coinValue?: number,
+  coinValue?: number;
   /** Market of the player */
-  market: string,
+  market: string;
   /** Background image to be displayed in the Card header */
-  backgroundRenderer: Node,
+  backgroundRenderer: React.ReactNode;
   /** The state of the valuable */
-  valuableState: ValuableState,
+  valuableState: ValuableState;
   /** Time left in h, m for the valuable to expire */
-  expiryTimeLeft: DurationProps,
+  expiryTimeLeft: DurationProps;
   /* Translations of the component */
-  translations: Translations,
-  size?: "small" | "large",
+  translations: Translations;
+  size?: "small" | "large";
 };
 
 export const ValuableThumbnail = ({
@@ -87,7 +84,7 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType, awardType)
             )}
           >
-            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'. */}
+            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'ValuableType' is not assignable ... Remove this comment to see the full error message */}
             {[VALUABLE_TYPES.CASHBACK].includes(valuableType) ? (
               <Cashback className="u-width--full" />
             ) : (
@@ -136,11 +133,9 @@ function getStateBadgeText(
   expiryTimeLeft: DurationProps,
   translations: Translations,
   valuableState: ValuableState
-): ?string {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
+): string | undefined {
   if (valuableState === VALUABLE_STATES.LOCKED) {
     return translations.lockedListTitleLabel;
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
   } else if (valuableState === VALUABLE_STATES.USED) {
     return translations.usedListTitleLabel;
   } else if (isAboutToExpire(expiryTimeLeft.hours)) {
@@ -162,12 +157,9 @@ function getCoinClassModifier(
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     case VALUABLE_TYPES.CASH:
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
     case VALUABLE_TYPES.CASHBACK:
       return "t-color-yellow-30";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'WAGERING_LOCK' does not exist on type '{... Remove this comment to see the full error message
     case VALUABLE_TYPES.WAGERING_LOCK:
       if (awardType === "spins") {
         return "t-color-grey-90";
@@ -178,15 +170,11 @@ function getCoinClassModifier(
       }
 
       return "t-color-yellow-30";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-blue-50";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPORT' does not exist on type '{}'.
     case VALUABLE_TYPES.SPORT:
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FREE_BET' does not exist on type '{}'.
     case VALUABLE_TYPES.FREE_BET:
       return "t-color-green-30";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     case VALUABLE_TYPES.SPINS:
       return "t-color-grey-90";
     default:
@@ -200,12 +188,9 @@ function getCoinTextClassModifier(
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     case VALUABLE_TYPES.CASH:
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
     case VALUABLE_TYPES.CASHBACK:
       return "t-color-grey-70";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'WAGERING_LOCK' does not exist on type '{... Remove this comment to see the full error message
     case VALUABLE_TYPES.WAGERING_LOCK:
       if (awardType === "spins") {
         return "t-color-yellow-30";
@@ -216,15 +201,11 @@ function getCoinTextClassModifier(
       }
 
       return "t-color-grey-70";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
     case VALUABLE_TYPES.DEPOSIT:
       return "t-color-grey-70";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPORT' does not exist on type '{}'.
     case VALUABLE_TYPES.SPORT:
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FREE_BET' does not exist on type '{}'.
     case VALUABLE_TYPES.FREE_BET:
       return "t-color-grey-70";
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     case VALUABLE_TYPES.SPINS:
       return "t-color-yellow-30";
     default:

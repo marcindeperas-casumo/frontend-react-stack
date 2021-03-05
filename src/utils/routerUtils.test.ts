@@ -1,4 +1,3 @@
-// @flow
 import { navigate } from "@reach/router";
 import {
   interpolate,

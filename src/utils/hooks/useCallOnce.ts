@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 
 /**
@@ -9,13 +8,12 @@ import * as React from "react";
  * available).
  * For sake of simplicity cond is "any" since any truthy value will do.
  */
-export function useCallOnce(cond: any, fn: void => any) {
+export function useCallOnce(cond: any, fn: () => any) {
   const ref = React.useRef(false);
 
   React.useEffect(() => {
     if (!ref.current && cond) {
       ref.current = true; // eslint-disable-line fp/no-mutation
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       fn();
     }
   });

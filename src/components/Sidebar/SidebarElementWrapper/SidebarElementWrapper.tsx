@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import { WrapperPin } from "./WrapperPin";
@@ -6,12 +5,11 @@ import { WrapperPin } from "./WrapperPin";
 import "./SidebarElementWrapper.scss";
 
 type Props = {
-  className?: string,
-  style?: Object,
-  pinnable?: boolean,
-  onPinClick?: () => void,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: React.Node,
+  className?: string;
+  style?: Object;
+  pinnable?: boolean;
+  onPinClick?: () => void;
+  children?: React.ReactNode;
 };
 
 const baseClassName = "c-sidebar-element-wrapper";

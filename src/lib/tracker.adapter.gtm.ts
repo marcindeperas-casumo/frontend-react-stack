@@ -1,4 +1,3 @@
-// @flow
 import { trackEvent } from "Components/GoogleTagManager";
 
 const noop = () => {};

@@ -1,18 +1,17 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { interpolate, formatCurrency } from "Utils";
 import { isBudgetTooHigh, isBudgetTooLow, isBudgetInvalid } from "../Utils";
 
 type ErrorMessageProps = {
   t: {
-    error_budget_too_low: string,
-    error_budget_too_high: string,
-  },
-  balance: number,
-  budget: number,
-  locale: string,
-  currency: string,
+    error_budget_too_low: string;
+    error_budget_too_high: string;
+  };
+  balance: number;
+  budget: number;
+  locale: string;
+  currency: string;
 };
 
 export function ErrorMessage(props: ErrorMessageProps) {

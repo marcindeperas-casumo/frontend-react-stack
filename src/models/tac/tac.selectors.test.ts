@@ -1,4 +1,3 @@
-// @flow
 import { getAcknowledgements, getRelevantVersionsSlugs } from "./tac.selectors";
 
 describe("TAC selectors", () => {

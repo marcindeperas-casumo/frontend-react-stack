@@ -1,4 +1,3 @@
-// @flow
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showModal } from "Models/modal";
@@ -7,7 +6,7 @@ import { REACT_APP_MODAL } from "Src/constants";
 import { WAGERING_NOTIFICATION_TYPES } from "../../models/playing/playing.constants";
 
 type Props = {
-  bonusAmount: number,
+  bonusAmount: number;
 };
 
 export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
@@ -16,38 +15,40 @@ export const useInGameBonusOrRealBalanceCheck = ({ bonusAmount }: Props) => {
   const [bonusBalanceModalShown, setBonusBalanceModalShown] = useState(false);
   const [realBalanceModalShown, setRealBalanceModalShown] = useState(false);
 
-  useEffect(
-    () => {
-      if (!isUKGC) {
-        return undefined;
-      }
-      // Positive bonus balance - show modal once
-      if (bonusAmount && !bonusBalanceModalShown) {
-        dispatch(
-          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-          showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
-            mustAccept: false,
-            type: WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING,
-          })
-        );
-        setBonusBalanceModalShown(true);
-        // Negative bonus balance and bonus modal already shown - time to show real balance notification once
-      } else if (
-        !bonusAmount &&
-        bonusBalanceModalShown &&
-        !realBalanceModalShown
-      ) {
-        dispatch(
-          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-          showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
-            mustAccept: false,
-            type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING,
-          })
-        );
-        setRealBalanceModalShown(true);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [bonusAmount, bonusBalanceModalShown, realBalanceModalShown, isUKGC]
-  );
+  useEffect(() => {
+    if (!isUKGC) {
+      return undefined;
+    }
+    // Positive bonus balance - show modal once
+    if (bonusAmount && !bonusBalanceModalShown) {
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
+          mustAccept: false,
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ mustAccept: false; type: strin... Remove this comment to see the full error message
+          type: WAGERING_NOTIFICATION_TYPES.BONUS_MONEY_WAGERING,
+        })
+      );
+      setBonusBalanceModalShown(true);
+      // Negative bonus balance and bonus modal already shown - time to show real balance notification once
+    } else if (
+      !bonusAmount &&
+      bonusBalanceModalShown &&
+      !realBalanceModalShown
+    ) {
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.WAGERING_NOTIFICATION, {
+          mustAccept: false,
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ mustAccept: false; type: strin... Remove this comment to see the full error message
+          type: WAGERING_NOTIFICATION_TYPES.REAL_MONEY_WAGERING,
+        })
+      );
+      setRealBalanceModalShown(true);
+    }
+  }, [
+    bonusAmount,
+    bonusBalanceModalShown,
+    realBalanceModalShown,
+    isUKGC,
+    dispatch,
+  ]);
 };

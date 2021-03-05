@@ -1,5 +1,3 @@
-// @flow
-
 export { GameBrowser } from "./GameBrowser";
 export {
   useScrollPositionPersistor,

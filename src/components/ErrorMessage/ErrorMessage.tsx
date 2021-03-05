@@ -1,23 +1,22 @@
-// @flow
-import React from "react";
-import classNames from "classnames";
-import { equals, unless } from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React from "react";
+import classNames from "classnames";
+import { equals, unless } from "ramda";
 import SadSumo from "./sad-sumo.svg";
 import "./ErrorMessage.scss";
 
 type Direction = "horizontal" | "vertical";
 
 type ComponentProps = {
-  direction: Direction,
-  errorMessage: string,
+  direction?: Direction;
+  errorMessage?: string;
 };
 
 type RetryProps = {
-  retryMessage: string,
-  retry: () => () => void,
+  retryMessage?: string;
+  retry: () => any;
 };
 
 type Props = RetryProps & ComponentProps;
@@ -32,7 +31,6 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
     <ButtonPrimary
       size="sm"
       data-test="error-message-retry-button"
-      // $FlowFixMe
       onClick={retry}
     >
       {retryMessage}

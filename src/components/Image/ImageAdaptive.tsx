@@ -1,16 +1,15 @@
-// @flow
-import React from "react";
 import Picture from "@casumo/cmp-picture";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import type { Pictures } from "@casumo/cudl-react-prop-types";
+import React from "react";
 import { head } from "ramda";
 import { LOW_RES_IMAGE_SETTINGS, DEVICE_PIXEL_RATIO } from "../../constants";
 
 type Props = {
-  className: string,
-  images: Pictures,
-  isIntersecting: boolean,
-  alt?: string,
+  className: string;
+  images: Pictures;
+  isIntersecting: boolean;
+  alt?: string;
 };
 
 // loading `<Picture>` on top when ready instead,

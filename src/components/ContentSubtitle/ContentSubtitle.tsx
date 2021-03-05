@@ -1,10 +1,9 @@
-// @flow
-import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 
 type Props = {
   /** The Subtitle text to render */
-  subtitle: string,
+  subtitle: string;
 };
 
 export class ContentSubtitle extends PureComponent<Props> {

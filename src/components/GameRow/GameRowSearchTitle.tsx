@@ -1,18 +1,17 @@
-// @flow
-import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import MaskText from "Components/MaskText";
 import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** The search query */
-  query?: string,
+  query?: string;
   /** The text to render */
-  name: string,
+  name: string;
   /** Whether highlight the search query on the game title or not  */
-  highlightSearchQuery?: boolean,
+  highlightSearchQuery?: boolean;
   /** Whether the game is in maintenance mode or not */
-  isInMaintenance: boolean,
+  isInMaintenance: boolean;
 };
 
 const TextMatch = value => (

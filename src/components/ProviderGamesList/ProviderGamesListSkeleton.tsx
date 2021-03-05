@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import {

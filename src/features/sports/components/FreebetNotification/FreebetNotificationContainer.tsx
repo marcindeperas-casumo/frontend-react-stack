@@ -1,6 +1,6 @@
+import { gql, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import * as R from "ramda";
-import { gql, useQuery } from "@apollo/client";
 import * as storage from "Services/storage";
 import {
   VALUABLE_STATES,
@@ -42,7 +42,6 @@ export const FreebetNotificationContainer = () => {
   // Only display it for locked free bets.
   // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
   // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
   const lockedFreebets = getValuablesByState([VALUABLE_STATES.LOCKED])(
     valuables
   );

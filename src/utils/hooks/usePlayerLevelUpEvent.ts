@@ -1,4 +1,3 @@
-// @flow
 import { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import cometd from "Models/cometd/cometd.service";
@@ -6,15 +5,14 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 
 type AdventurerEvent = {
-  channel: string,
+  channel: string;
   data: {
-    setPoints?: number,
-    leveledUp?: number,
-  },
+    setPoints?: number;
+    leveledUp?: number;
+  };
 };
 
-// @ts-expect-error ts-migrate(2693) FIXME: 'any' only refers to a type, but is being used as ... Remove this comment to see the full error message
-export type LevelUpCallback = any => any;
+export type LevelUpCallback = () => any;
 
 export function usePlayerLevelUpEvent(callback: LevelUpCallback) {
   const playerId = useSelector(playerIdSelector);

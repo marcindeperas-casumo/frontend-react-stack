@@ -1,11 +1,8 @@
-// @flow
-import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
-import type { Node } from "react";
-import classNames from "classnames";
 import { SearchIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
+import React from "react";
 import { REACT_APP_SPORTS_SHOW_SEARCH } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -36,12 +33,12 @@ const navigateTo = {
 /* eslint-enable fp/no-mutation */
 
 type SportsTopBarTabProps = {
-  children: Node,
-  termKey: string,
-  onClick: any => any,
-  isActive?: boolean,
-  style?: any,
-  className?: string,
+  children: React.ReactChild;
+  termKey: string;
+  onClick: (e: any) => any;
+  isActive?: boolean;
+  style?: any;
+  className?: string;
 };
 
 export const SportsTopBarTab = ({
@@ -73,6 +70,7 @@ export const SportsTopBarTab = ({
           isActive ? "t-border-bottom--md t-border-current" : "t-border--none"
         )}
       >
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={termKey} />
       </Text>
     </Flex.Block>
@@ -80,8 +78,8 @@ export const SportsTopBarTab = ({
 );
 
 type Props = {
-  currentHash: string,
-  isSearchVisible?: boolean,
+  currentHash: string;
+  isSearchVisible?: boolean;
 };
 
 const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
@@ -102,13 +100,13 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
           className="u-padding-y--3xlg"
           data-test="sports-top-bar-title"
         >
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="desktop.header.sports" />
         </Text>
       </Flex.Block>
       <Flex.Block>
         <Flex justify="end" spacing="xlg">
           <Flex.Item>
-            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.home"
               onClick={navigateTo.home}
@@ -118,7 +116,6 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>
-            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.search"
               onClick={navigateTo.search}
@@ -129,7 +126,6 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>
-            {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'any' is missing in type '{ children: Ele... Remove this comment to see the full error message */}
             <SportsTopBarTab
               termKey="desktop.tab.bet-history"
               onClick={navigateTo.myBets}

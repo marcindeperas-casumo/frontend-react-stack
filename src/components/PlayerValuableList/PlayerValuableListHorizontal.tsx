@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { useMutation } from "@apollo/client";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
@@ -9,7 +8,6 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { usePlayerValuableList } from "./usePlayerValuableList";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './PlayerValuables.graphql' or ... Remove this comment to see the full error message
 import { UseValuable } from "./PlayerValuables.graphql";
 
 import "./PlayerValuableListHorizontal.scss";
@@ -23,11 +21,11 @@ const PADDING_PER_DEVICE = {
 const seeAllUrl = "/player/valuables";
 
 export function PlayerValuableListHorizontal() {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Boolean... Remove this comment to see the full error message
   const { loading, valuables, translations } = usePlayerValuableList();
-  const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
-    UseValuable
-  );
+  const [mutateValuable] = useMutation<
+    A.UseValuableMutation,
+    A.UseValuableMutationVariables
+  >(UseValuable);
   const consumeValuable = (id: string) =>
     mutateValuable({
       variables: {
@@ -51,6 +49,7 @@ export function PlayerValuableListHorizontal() {
   const itemRenderer = (i: number) => (
     <div id={`valuable-card-${valuables[i].id}`}>
       <div className="c-valuable-list__valuable-card u-margin-bottom--sm">
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableCard
           {...valuables[i]}
           translations={translations}
@@ -87,7 +86,7 @@ export function PlayerValuableListHorizontal() {
             <ValuableDetailsWithModal
               isOpen={Boolean(selectedValuable)}
               onClose={closeModal}
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; onClos... Remove this comment to see the full error message
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '(id: string) => Promise<FetchResult<A.UseVal... Remove this comment to see the full error message
               onConsumeValuable={consumeValuable}
               valuableDetails={selectedValuable}
             >

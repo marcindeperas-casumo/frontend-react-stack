@@ -1,10 +1,9 @@
-// @flow
 import * as React from "react";
 import "./progressArc.scss";
 
 type Props = {
   /** from 0 to 100, represents current progress */
-  value: number,
+  value: number;
 };
 // total length of svg path, taken from .getTotalLength()
 const PATH_LENGTH = 55.96251678466797;

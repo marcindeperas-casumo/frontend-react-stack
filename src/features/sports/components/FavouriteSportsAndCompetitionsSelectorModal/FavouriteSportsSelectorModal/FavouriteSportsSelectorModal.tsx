@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { SetFavouritesMutation } from "Features/sports/components/GraphQL";
@@ -11,8 +10,8 @@ import FavouriteSportsSelector from "../FavouriteSportsSelector";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 
 type Props = {
-  onClose: () => void,
-  onAddCompetition: (id: number, name: string, isOnboarding: boolean) => void,
+  onClose: () => void;
+  onAddCompetition: (id: number, name: string, isOnboarding: boolean) => void;
 };
 
 const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
@@ -23,6 +22,7 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
       return (
         <SportsModal>
           <SportsModal.Header onClose={onClose}>
+            {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
             <DictionaryTerm termKey="favourite-sports-selector.title" />
           </SportsModal.Header>
 
@@ -38,7 +38,9 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
           {selectedSportsCount === 0 ? null : (
             <SportsModal.Footer>
               <SetFavouritesMutation variables={{ ids: api.getSelectedIds() }}>
+                {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(setFavouriteGroups: any) => Element' has no... Remove this comment to see the full error message */}
                 {setFavouriteGroups => (
+                  // @ts-expect-error ts-migrate(2786) FIXME: 'ModalButtonFooter' cannot be used as a JSX compon... Remove this comment to see the full error message
                   <ModalButtonFooter
                     onClick={() => {
                       setFavouriteGroups();
@@ -46,6 +48,7 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
                       onClose();
                     }}
                   >
+                    {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
                     <PluralisableDictionaryTerm
                       termKey="favourite-sports-selector.button"
                       replacements={{ sportsCount: selectedSportsCount }}

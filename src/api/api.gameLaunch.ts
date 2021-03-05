@@ -10,9 +10,9 @@ export const URL = {
 const { showDisabledGames } = getDeveloperOptions();
 
 type LaunchProps = {
-  gameName: string,
-  playForFun: boolean,
-  platform: string,
+  gameName: string;
+  playForFun: boolean;
+  platform: string;
 };
 
 type HTTPClient = typeof clientHttp;

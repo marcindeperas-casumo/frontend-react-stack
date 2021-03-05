@@ -1,7 +1,5 @@
-// @flow
-
-import * as React from "react";
 import { gql } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
@@ -13,21 +11,20 @@ import { EVENT_PROPS, EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
-type SelectedCompetitions = Array<A.FavouriteCompetitionsSelectorModal_Group>;
+type SelectedCompetitions = Array<A.FavouriteCompetitionsSelectorModal_GroupFragment>;
 
 type Props = {
-  onClose: () => void,
-  onBack?: () => void,
-  onSave: SelectedCompetitions => void,
-  initiallySelectedCompetitions: SelectedCompetitions,
-  groupId: number,
-  groupName?: string,
-  isOnboarding?: boolean,
+  onClose: () => void;
+  onBack?: () => void;
+  onSave: (selectedCompetitions: SelectedCompetitions) => void;
+  initiallySelectedCompetitions: SelectedCompetitions;
+  groupId: number;
+  groupName?: string;
+  isOnboarding?: boolean;
 };
 
 type State = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$ElementType'.
-  selectedCompetitions: $ElementType<Props, "initiallySelectedCompetitions">,
+  selectedCompetitions: Props["initiallySelectedCompetitions"];
 };
 
 export default class FavouriteCompetitionsSelectorModal extends React.Component<
@@ -54,7 +51,9 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     return Boolean(this.state.selectedCompetitions.find(c => c.id === groupId));
   };
 
-  toggleCompetition = (group: A.FavouriteCompetitionsSelectorModal_Group) => {
+  toggleCompetition = (
+    group: A.FavouriteCompetitionsSelectorModal_GroupFragment
+  ) => {
     const trackToggleCompetition = () => {
       if (this.props.isOnboarding) {
         const eventName = this.isCompetitionSelected(group.id)
@@ -64,7 +63,6 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
           [EVENT_PROPS.SPORTS_ID]: this.props.groupId,
           [EVENT_PROPS.SPORTS_NAME]: this.props.groupName,
           [EVENT_PROPS.COMPETITION_ID]: group.id,
-          // $FlowFixMe
           // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'FavouriteC... Remove this comment to see the full error message
           [EVENT_PROPS.COMPETITION_NAME]: group.name,
         };
@@ -83,7 +81,6 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
   };
 
   onSave = () => {
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     this.props.onSave(this.state.selectedCompetitions);
   };
 
@@ -96,6 +93,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
           onClose={this.props.onClose}
           onBack={this.props.onBack}
         >
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="favourite-competitions-selector.title" />
         </SportsModal.Header>
 
@@ -105,13 +103,16 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
             groupName={this.props.groupName}
             isOnboarding={this.props.isOnboarding}
             isCompetitionSelected={this.isCompetitionSelected}
+            // @ts-expect-error ts-migrate(2322) FIXME: Type '(group: A.FavouriteCompetitionsSelectorModal... Remove this comment to see the full error message
             toggleCompetition={this.toggleCompetition}
           />
         </SportsModal.Content>
 
         {selectedCompetitionsCount > 0 && (
           <SportsModal.Footer>
+            {/* @ts-expect-error ts-migrate(2786) FIXME: 'ModalButtonFooter' cannot be used as a JSX compon... Remove this comment to see the full error message */}
             <ModalButtonFooter onClick={this.onSave}>
+              {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
               <PluralisableDictionaryTerm
                 termKey="favourite-competitions-selector.button"
                 replacements={{ competitionsCount: selectedCompetitionsCount }}

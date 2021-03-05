@@ -1,19 +1,18 @@
-// @flow
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
+import React, { PureComponent } from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 import "Components/PromotionHeaderImage/PromotionHeaderImage.scss";
 
 type Props = {
   /** Promotion badge image url */
-  badge: string,
+  badge: string;
   /** Promotion image url */
-  image: string,
+  image: string;
 };
 
 type BadgeProps = {
   /** Promotion badge image url */
-  badge: string,
+  badge: string;
 };
 
 export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {

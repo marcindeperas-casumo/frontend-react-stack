@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, boolean } from "@storybook/addon-knobs/react";
 import MockDate from "mockdate";
+import React from "react";
 import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceCard } from "./ReelRaceCard";
 import { reelRaceMock } from "./__mocks__";

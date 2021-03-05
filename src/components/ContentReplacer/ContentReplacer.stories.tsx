@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { ContentReplacer } from "./";
 
 const stories = storiesOf("ContentReplacer", module);

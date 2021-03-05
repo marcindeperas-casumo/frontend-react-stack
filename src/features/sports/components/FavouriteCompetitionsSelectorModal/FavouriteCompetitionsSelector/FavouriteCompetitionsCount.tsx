@@ -1,10 +1,12 @@
-// @flow
-import * as React from "react";
 import Badge from "@casumo/cmp-badge";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-const FavouriteCompetitionsCount = ({ count }: { count: number }): React.Node =>
+const FavouriteCompetitionsCount = ({
+  count,
+}: {
+  count: number;
+}): React.ReactNode =>
   count ? (
     <Flex.Item>
       <Badge

@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { ButtonSecondary } from "@casumo/cmp-button";
+import React from "react";
 import { limitPeriod } from "Models/playOkay";
 
 const ButtonElement = ({ text, onClick }) => (
@@ -17,8 +16,8 @@ const ButtonElement = ({ text, onClick }) => (
 );
 
 type Props = {
-  t: any,
-  chooseLimitType: string => void,
+  t: any;
+  chooseLimitType: (limitType: string) => void;
 };
 
 export const SetLimitType = ({ t, chooseLimitType }: Props) => (
@@ -32,17 +31,14 @@ export const SetLimitType = ({ t, chooseLimitType }: Props) => (
       className="u-padding"
     >
       <ButtonElement
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.DAILY)}
         text={t.limit_type_daily}
       />
       <ButtonElement
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.WEEKLY)}
         text={t.limit_type_weekly}
       />
       <ButtonElement
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         onClick={() => chooseLimitType(limitPeriod.MONTHLY)}
         text={t.limit_type_monthly}
       />

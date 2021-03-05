@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import * as A from "Types/apollo";
 import { isDesktop } from "Components/ResponsiveLayout";
 import DangerousHtml from "Components/DangerousHtml";
@@ -13,15 +12,12 @@ import { GameDetailsButtons } from "./GameDetailsButtons";
 import "./GameDetails.scss";
 
 type Props = {
-  game: A.GameDetailsQuery_game,
+  game: A.GameDetailsQuery["game"];
   t: {
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    gameInMaintenanceText: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    playButtonText: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    practiceButtonText: ?string,
-  },
+    gameInMaintenanceText: string | undefined;
+    playButtonText: string | undefined;
+    practiceButtonText: string | undefined;
+  };
 };
 
 const TileImage = isDesktop() ? GameDetailsImageDesktop : GameDetailsImage;

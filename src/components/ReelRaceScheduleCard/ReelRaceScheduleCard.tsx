@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon, TimeLockedIcon, LaurelIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { DateTime } from "luxon";
+import cx from "classnames";
 import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
@@ -13,10 +12,10 @@ import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 
 type Props = {
-  reelRace: A.ReelRaceScheduleCard_ReelRace,
-  t: TReelRacesContentPage,
-  expanded: boolean,
-  optInForReelRace: () => void,
+  reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
+  t: TReelRacesContentPage;
+  expanded: boolean;
+  optInForReelRace: () => void;
 };
 
 export function ReelRaceScheduleCard({
@@ -28,10 +27,8 @@ export function ReelRaceScheduleCard({
   const [open, setOpen] = React.useState(expanded);
   const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
-  // @ts-expect-error ts-migrate(2365) FIXME: Operator '>' cannot be applied to types 'Duration'... Remove this comment to see the full error message
-  const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
+  const isTomorrow = startTimeDate.startOf("day").diffNow("days").valueOf() > 0;
 
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
@@ -106,7 +103,6 @@ export function ReelRaceScheduleCard({
         <ReelRaceScheduleCardContent
           reelRace={reelRace}
           t={t}
-          // $FlowFixMe
           optIn={optInForReelRace}
           showPrizes={expanded}
         />

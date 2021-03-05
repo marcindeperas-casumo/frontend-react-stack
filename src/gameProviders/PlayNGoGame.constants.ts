@@ -1,4 +1,3 @@
-// @flow
 export const EVENTS = {
   ON_GAME_ROUND_START: { type: "roundStarted" },
   ON_GAME_ROUND_END: { type: "gameIdle" },

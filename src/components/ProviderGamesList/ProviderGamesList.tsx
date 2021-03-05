@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
@@ -17,11 +16,11 @@ import {
 import "./ProviderGamesList.scss";
 
 type Props = {
-  loading: boolean,
-  games: Array<Object>,
-  gamesCount: number,
+  loading: boolean;
+  games: Array<Object>;
+  gamesCount: number;
   // __FIX__ Check if this ANY here can be solved in a REASONABLE amount of time.
-  onLoadMore: () => Promise<any>,
+  onLoadMore: () => Promise<any>;
 };
 
 export const PAGE_SIZE = 20;

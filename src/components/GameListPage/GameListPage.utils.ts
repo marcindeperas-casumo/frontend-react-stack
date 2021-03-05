@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import * as A from "Types/apollo";
 
@@ -12,7 +11,7 @@ import * as A from "Types/apollo";
  */
 export function findQueryTranslation(
   currentQuery: string,
-  allFilters: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>
+  allFilters: A.GetGameSetsQuery["gameSetsList"][number]["additionalFilterGroups"]
 ): string {
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
   return R.pipe(
@@ -24,7 +23,6 @@ export function findQueryTranslation(
 }
 
 export const getAppliedFilters = (filters: Object = {}) =>
-  // $FlowIgnore
   Object.entries(filters)
     .filter(([key, val]) => val)
     .map(([key]) => key);

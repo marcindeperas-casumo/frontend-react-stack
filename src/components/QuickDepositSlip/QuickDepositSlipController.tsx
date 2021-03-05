@@ -1,9 +1,8 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
+import { CloseIcon } from "@casumo/cmp-icons";
 import React from "react";
 import cx from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import Flex from "@casumo/cmp-flex";
-import { CloseIcon } from "@casumo/cmp-icons";
 import {
   setQuickDepositMethod,
   startQuickDeposit,
@@ -22,7 +21,7 @@ const cmsPrefix = "root:iframe-solution:fields";
 export const QuickDepositSlipController = ({
   position,
 }: {
-  position: "top" | "bottom",
+  position: "top" | "bottom";
 }) => {
   const selectedMethod = useSelector(getSelectedQuickDepositMethod);
   const currency = useSelector(playerCurrencySymbolSelector);
@@ -92,7 +91,6 @@ export const QuickDepositSlipController = ({
               direction="horizontal"
               align="center"
             >
-              {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'quick_deposit_title' does not exist on t... Remove this comment to see the full error message */}
               <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
               <Flex.Item
                 onClick={closeQuickDeposit}

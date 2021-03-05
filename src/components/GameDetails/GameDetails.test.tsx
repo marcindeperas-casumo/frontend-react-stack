@@ -1,7 +1,7 @@
-import React from "react";
-import { shallow } from "enzyme";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import React from "react";
+import { shallow } from "enzyme";
 import ImageLazy from "Components/Image/ImageLazy";
 import { GameDetails } from "./GameDetails";
 import { GameDetailsButtons } from "./GameDetailsButtons";
@@ -72,13 +72,9 @@ describe("GameDetailsButtons", () => {
       <GameDetailsButtons {...props} hasPlayForFun={false} />
     );
     expect(rendered.find(ButtonPrimary).length).toBe(1);
-    expect(
-      rendered
-        .find(ButtonPrimary)
-        .dive()
-        .find("span")
-        .text()
-    ).toBe(props.playButtonText);
+    expect(rendered.find(ButtonPrimary).dive().find("span").text()).toBe(
+      props.playButtonText
+    );
   });
 });
 
@@ -86,12 +82,7 @@ describe("GameDetails", () => {
   test("should render game artwork, name and description", () => {
     const rendered = shallow(<GameDetails game={gameDetails} t={t} />);
     expect(rendered.find(GameDetailsImage).length).toBe(1);
-    expect(
-      rendered
-        .find(GameDetailsImage)
-        .dive()
-        .find(Text).length
-    ).toBe(0);
+    expect(rendered.find(GameDetailsImage).dive().find(Text).length).toBe(0);
     expect(rendered.find("[data-testid='game-name-text']").length).toBe(1);
     expect(rendered.find("[data-testid='game-description-text']").length).toBe(
       1
@@ -118,12 +109,8 @@ describe("GameDetails", () => {
       <GameDetails game={gameDetailsInMaintenance} t={t} />
     );
     expect(rendered.find(GameDetailsImage).length).toBe(1);
-    expect(
-      rendered
-        .find(GameDetailsImage)
-        .find(Text)
-        .dive()
-        .text()
-    ).toBe("Temporarily unavailable");
+    expect(rendered.find(GameDetailsImage).find(Text).dive().text()).toBe(
+      "Temporarily unavailable"
+    );
   });
 });

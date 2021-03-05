@@ -1,7 +1,7 @@
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
+import cx from "classnames";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import type {
   TReelRacesContentPage,
@@ -9,9 +9,9 @@ import type {
 } from "./ReelRacesPageContainer";
 
 type Props = {
-  t: TReelRacesContentPage | null,
-  activeTab: string,
-  setActiveTab: (tab: TReelRaceTabs) => void,
+  t: TReelRacesContentPage | null;
+  activeTab: string;
+  setActiveTab: (tab: TReelRaceTabs) => void;
 };
 
 export function ReelRacesPageTabs({

@@ -1,4 +1,3 @@
-// @flow
 export * from "./slotControlSystem.constants";
 export * from "./slotControlSystem.selectors";
 export * from "./slotControlSystem.reducer";

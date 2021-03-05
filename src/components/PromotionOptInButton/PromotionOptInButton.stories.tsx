@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 import optinData from "../OptInButton/__mocks__/optin.json";

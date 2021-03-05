@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import CudlModal from "@casumo/cmp-modal";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TournamentIcon } from "@casumo/cmp-icons";
+import * as R from "ramda";
+import * as React from "react";
 import { getOrdinalSuffix, interpolateWithJSX } from "Utils";
 import { useLocale, useTranslationsGql } from "Utils/hooks";
 import type { ModalContentComponent } from "Components/RSModal/rsmodal.mappings";
@@ -56,14 +55,12 @@ export function ReelRaceLeaderboardModal({
                 </span>
               ),
             },
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'playerPlacedHigh' does not exist on type... Remove this comment to see the full error message
             t.playerPlacedHigh
           )
         : interpolateWithJSX(
             {
               winnerName: <span className="t-color-teal-50">{winnerName}</span>,
             },
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'someoneWon' does not exist on type '{}'.
             t.someoneWon
           )}
     </Text>
@@ -95,7 +92,6 @@ export function ReelRaceLeaderboardModal({
       {playerOutsideLeaderboard && (
         <ReelRaceLeaderboardListEntry
           className="o-position--sticky o-inset-bottom--none"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ className: string; points: any; position: ... Remove this comment to see the full error message
           points={points}
           position={position}
           text={playerName}

@@ -1,4 +1,3 @@
-// @flow
 import { schema, normalize } from "normalizr";
 import { ENTITY_KEYS } from "./schema.constants";
 

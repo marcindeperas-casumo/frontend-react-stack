@@ -1,10 +1,9 @@
-// @flow
+import Text from "@casumo/cmp-text";
 import * as React from "react";
 import cx from "classnames";
-import Text from "@casumo/cmp-text";
 
 type Props = {
-  children: React.ReactChild,
+  children: React.ReactChild;
 };
 
 export function Header({ children }: Props) {

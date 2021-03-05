@@ -1,4 +1,3 @@
-// @flow
 export { ModalHeader } from "./RSModalHeader";
 export { Modal } from "./RSModal";
 export { ModalBase } from "./RSModalBase";

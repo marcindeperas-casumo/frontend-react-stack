@@ -1,7 +1,3 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
-import { equals } from "ramda";
 import {
   Grid,
   AutoSizer,
@@ -13,42 +9,40 @@ import type {
   CellRendererParams,
   Scroll,
   GridRef,
-} from "Types/ReactVirtualized/Grid";
+} from "react-virtualized";
+import * as React from "react";
+import classNames from "classnames";
+import { equals } from "ramda";
 import "./Scrollable.scss";
 
 export type overscanColumnCountType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-type OwnProps = {
-    /** The renderProp responsible for rendering each "cell" */
-    cellRenderer: CellRenderer;
-    /** Custom classname for styling the Scrollable */
-    className: string;
-    /** The total number of columns that can be rendered. */
-    columnCount: number;
-    /** The height of the horizontal scrolling container in pixels. */
-    height: number;
-    /** A function to listen to the scroll event of the component */
-    scrollHandler: Scroll;
-    void;
-    /** A ref for access to the Grid component API */
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    innerRef?: *;
-    /** Used to set the horizontal scroll position of the Grid */
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    scrollLeft?: ?number;
-    /** Number of items to render before/after the visible slice of the grid.
-    Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
-     */
-    overscanColumnCount: overscanColumnCountType;
-    /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
-    defaultWidth: number;
-    /** A way to force the column widths to recalculate by changing the string passed here */
-    cacheBuster?: string;
+type Props = {
+  /** The renderProp responsible for rendering each "cell" */
+  cellRenderer: CellRenderer;
+  /** Custom classname for styling the Scrollable */
+  className?: string;
+  /** The total number of columns that can be rendered. */
+  columnCount: number;
+  /** The height of the horizontal scrolling container in pixels. */
+  height: number;
+  /** A function to listen to the scroll event of the component */
+  scrollHandler?: (h: Scroll) => void;
+  /** A ref for access to the Grid component API */
+  innerRef?: any;
+  /** Used to set the horizontal scroll position of the Grid */
+  scrollLeft?: number | undefined;
+  /** Number of items to render before/after the visible slice of the grid.
+  Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
+   */
+  overscanColumnCount?: overscanColumnCountType;
+  /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
+  defaultWidth?: number;
+  /** A way to force the column widths to recalculate by changing the string passed here */
+  cacheBuster?: string;
 };
 
 export const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
-
-type Props = OwnProps & typeof Scrollable.defaultProps;
 export class Scrollable extends React.Component<Props> {
   static defaultProps = {
     className: "",
@@ -116,10 +110,6 @@ export class Scrollable extends React.Component<Props> {
   }
 }
 
-// This makes flow understand which props are optional because they have default value
-export const ScrollableWithRef = React.forwardRef<
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Diff'.
-  $Diff<Props, typeof Scrollable.defaultProps>,
-  GridRef
-// @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
->((props, ref) => <Scrollable innerRef={ref} {...props} />);
+export const ScrollableWithRef = React.forwardRef<GridRef, Props>(
+  (props, ref) => <Scrollable innerRef={ref} {...props} />
+);

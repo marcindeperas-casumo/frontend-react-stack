@@ -1,10 +1,8 @@
-// // @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import * as React from "react";
 import MockStore from "Components/MockStore";
 import { GameListHorizontalExclusive } from "./GameListHorizontalExclusive";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalExclusive.... Remove this comment to see the full error message
 import { GameListExclusiveQuery } from "./GameListHorizontalExclusive.graphql";
 import { gamesListMock } from "./__mock__";
 

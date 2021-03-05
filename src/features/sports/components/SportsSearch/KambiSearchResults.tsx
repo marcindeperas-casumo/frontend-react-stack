@@ -1,12 +1,11 @@
-/* @flow */
-import * as React from "react";
-import classNames from "classnames";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
 import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
+import classNames from "classnames";
+import * as React from "react";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
@@ -58,8 +57,11 @@ export const SEARCH_QUERY = gql`
   }
 `;
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
+const GroupTitle = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactNode => (
   <Text className="t-color-grey-50 u-padding--md u-font-weight-bold">
     {children}
   </Text>
@@ -70,12 +72,10 @@ const ResultRow = ({
   onClick = () => {},
   className,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  onClick?: () => void,
-  className?: string,
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-}): React.Node => (
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}): React.ReactNode => (
   <div
     className={classNames(
       "u-padding-x--md u-cursor-pointer",
@@ -90,13 +90,17 @@ const ResultRow = ({
 );
 
 type Props = {
-  query: string,
-  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
-  hideSearchResults?: boolean,
+  query: string;
+  onResultClick: (
+    e:
+      | A.SearchQuery["search"][number]
+      | A.TopSearchesQuery["topSearches"][number]
+  ) => void;
+  hideSearchResults?: boolean;
 };
 
 type State = {
-  searchHistory: Array<A.SearchQuery_search>,
+  searchHistory: A.SearchQuery["search"];
 };
 
 type TrackSearchClickListType = "popular" | "history" | "result";
@@ -131,16 +135,19 @@ class KambiSearchResults extends React.Component<Props, State> {
     });
 
   trackSearchClick = (
-    resultOrGroup: A.SearchQuery_search | A.TopSearches_topSearches,
+    resultOrGroup:
+      | A.SearchQuery["search"][number]
+      | A.TopSearchesQuery["topSearches"][number],
     list: TrackSearchClickListType
   ) => {
     // will have either props
     // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    const name = propOr(prop("localizedName", resultOrGroup), "name")(
-      resultOrGroup
-    );
+    const name = propOr(
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
+      prop("localizedName", resultOrGroup),
+      "name"
+    )(resultOrGroup);
 
     if (list === "result") {
       tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
@@ -157,7 +164,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     }
   };
 
-  saveSearchHistory = (searchResult: A.SearchQuery_search) => {
+  saveSearchHistory = (searchResult: A.SearchQuery["search"][number]) => {
     this.setState(prevState => {
       // make sure new entry is not duplicated, is added to beginning and limit to 10
       const newHistory = [
@@ -177,19 +184,16 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   renderPopularSearches = (count: number) => (
     <>
+      {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
       <GroupTitle>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="search-results.heading.popular" />
       </GroupTitle>
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'children' is missing in type '{ query: D... Remove this comment to see the full error message */}
-      <Query
-        query={TOP_SEARCHES_QUERY}
-        variables={({ count }: A.TopSearchesVariables)}
-      >
-        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'topSearches' is missing in type '{}' but... Remove this comment to see the full error message */}
-        {({ data = {} }: { data: ?A.TopSearches }) =>
+      <Query query={TOP_SEARCHES_QUERY} variables={{ count }}>
+        {({ data }) =>
+          // @ts-expect-error ts-migrate(2739) FIXME: Type 'Element[]' is missing the following properti... Remove this comment to see the full error message
           pipe(
             propOr([], "topSearches"),
-            // @ts-expect-error ts-migrate(2551) FIXME: Property 'renderPopularSearchItem' does not exist ... Remove this comment to see the full error message
             map(this.renderPopularSearchItem)
           )(data)
         }
@@ -197,33 +201,29 @@ class KambiSearchResults extends React.Component<Props, State> {
     </>
   );
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderSearchHistory'.
   renderSearchHistory = (count: number) =>
     count > 0 ? (
       <>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
         <GroupTitle>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
-          // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
           result => this.renderSearchResult(result, true, "history"),
-          // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
           take(count, this.state.searchHistory)
         )}
       </>
     ) : null;
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderSearchResultsPlaceholder'.
   renderSearchResultsPlaceholder = () =>
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     this.state.searchHistory.length
-      ? // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-               this.renderSearchHistory(TOTAL_RECENT_SEARCH_ITEMS)
-      : // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-               this.renderPopularSearches(TOTAL_POPULAR_SEARCH_ITEMS);
+      ? this.renderSearchHistory(TOTAL_RECENT_SEARCH_ITEMS)
+      : this.renderPopularSearches(TOTAL_POPULAR_SEARCH_ITEMS);
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderPopularSearchItem'.
-  renderPopularSearchItem = (eventGroup: A.TopSearches_topSearches) => {
+  renderPopularSearchItem = (
+    eventGroup: A.TopSearchesQuery["topSearches"][number]
+  ) => {
     const [sport = eventGroup] = eventGroup.parentGroups;
 
     return (
@@ -234,15 +234,15 @@ class KambiSearchResults extends React.Component<Props, State> {
           trackingLocation: "Search",
         }}
       >
+        {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(navigateClient: any) => Element' has no pro... Remove this comment to see the full error message */}
         {navigateClient => (
+          // @ts-expect-error ts-migrate(2786) FIXME: 'ResultRow' cannot be used as a JSX component.
           <ResultRow
             key={eventGroup.termKey}
             // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: string; path: stri... Remove this comment to see the full error message
             path={eventGroup.termKey}
             onClick={() => {
-              // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
               this.props.onResultClick(eventGroup);
-              // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
               this.trackSearchClick(eventGroup, "popular");
               navigateClient();
             }}
@@ -265,9 +265,8 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
   };
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderSearchResult'.
   renderSearchResult = (
-    result: A.SearchQuery_search,
+    result: A.SearchQuery["search"][number],
     renderAllTextAsMatched: boolean = false,
     trackType: TrackSearchClickListType = "result"
   ) => {
@@ -294,17 +293,16 @@ class KambiSearchResults extends React.Component<Props, State> {
           trackingLocation: "Search",
         }}
       >
+        {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(navigateClient: any) => Element' has no pro... Remove this comment to see the full error message */}
         {navigateClient => (
+          // @ts-expect-error ts-migrate(2786) FIXME: 'ResultRow' cannot be used as a JSX component.
           <ResultRow
             key={result.id}
             // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: string; path: stri... Remove this comment to see the full error message
             path={result.id}
             onClick={() => {
-              // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
               this.saveSearchHistory(result);
-              // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
               this.props.onResultClick(result);
-              // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
               this.trackSearchClick(result, trackType);
               navigateClient();
             }}
@@ -325,7 +323,6 @@ class KambiSearchResults extends React.Component<Props, State> {
                   unmatchedRender={renderText({
                     isMatch: renderAllTextAsMatched,
                   })}
-                  // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
                   search={this.props.query}
                   text={result.localizedName}
                 />
@@ -355,27 +352,18 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
   };
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderSearchResults'.
   renderSearchResults = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     if (this.props.hideSearchResults) {
       return null;
     }
 
     return (
-      <Query
-        query={SEARCH_QUERY}
-        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-        variables={({ query: this.props.query }: A.SearchQueryVariables)}
-      >
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-        {(res: { data: ?A.SearchQuery, loading: boolean, error: any }) => {
-          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'res'.
+      <Query query={SEARCH_QUERY} variables={{ query: this.props.query }}>
+        {res => {
           if (res.error) {
             return this.renderNoResultsFound();
           }
 
-          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'res'.
           if (res.loading || !res.data || !res.data.search) {
             return (
               <div className="u-margin-x--md">
@@ -384,15 +372,12 @@ class KambiSearchResults extends React.Component<Props, State> {
             );
           }
 
-          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'res'.
           if (isEmpty(res.data.search)) {
-            // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
             this.trackSearchInitiated(this.props.query, false);
 
             return this.renderNoResultsFound();
           }
 
-          // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
           this.trackSearchInitiated(this.props.query, true);
 
           return res.data.search.map(result => this.renderSearchResult(result));
@@ -401,7 +386,6 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
   };
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'renderNoResultsFound'.
   renderNoResultsFound = () => {
     return (
       <>
@@ -412,26 +396,22 @@ class KambiSearchResults extends React.Component<Props, State> {
             </Flex.Item>
             <Flex.Block>
               <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
+                {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>
           </Flex>
         </div>
-        {/* @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'. */}
         {this.renderSearchResultsPlaceholder()}
       </>
     );
   };
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'render'.
   render() {
     const content =
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       this.props.query.length >= 2
-        ? // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-                   this.renderSearchResults()
-        : // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-                   this.renderSearchResultsPlaceholder();
+        ? this.renderSearchResults()
+        : this.renderSearchResultsPlaceholder();
 
     return <Flex.Block className="u-tablet-search-width">{content}</Flex.Block>;
   }

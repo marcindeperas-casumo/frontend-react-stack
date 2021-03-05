@@ -1,17 +1,13 @@
-// @flow
+import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
 import * as R from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
 import { useFetch, useTranslations } from "Utils/hooks";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
-import {
-  urls,
-  jackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotStatus,
+import { urls, jackpotWidgetContentPage } from "./blueRibbonConsts";
+import type {
+  JackpotWidgetContentPage,
+  JackpotStatus,
 } from "./blueRibbonConsts";
 import {
   usePotStateChangeEvent,
@@ -19,12 +15,12 @@ import {
 } from "./useBlueRibbonSDK";
 
 type BlueRibbonJackpotEntry = {
-  value: number,
-  label: string,
-  status: JackpotStatus,
-  potId: string,
-  communityWinRatio: number,
-  mainWinRatio: number,
+  value: number;
+  label: string;
+  status: JackpotStatus;
+  potId: string;
+  communityWinRatio: number;
+  mainWinRatio: number;
 };
 
 export const BlueRibbonJackpotsWidgetPromotionPage = () => (

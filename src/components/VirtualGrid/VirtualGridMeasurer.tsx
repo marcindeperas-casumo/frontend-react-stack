@@ -1,25 +1,18 @@
-// @flow
-import * as React from "react";
 import type { spacerSizes } from "@casumo/cudl-react-prop-types";
+import * as React from "react";
 import spacerSizesMap from "./spacerSizesMap";
 
 type Props = {
-  spacerSize: spacerSizes,
-  tileWidth: number,
-  tileHeight: number,
-  children: ({
-    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-    columnWidth: number,
-    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-    rowHeight: number,
-    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-    width: number, // TO BE REMOVED?
-    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-    cardMargin: number,
-    // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-    columnCount: number,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  }) => React.Node,
+  spacerSize: spacerSizes;
+  tileWidth: number;
+  tileHeight: number;
+  children: (o: {
+    columnWidth: number;
+    rowHeight: number;
+    width: number; // TO BE REMOVED?
+    cardMargin: number;
+    columnCount: number;
+  }) => React.ReactNode;
 };
 
 export const VirtualGridMeasurer = ({

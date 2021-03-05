@@ -1,17 +1,15 @@
-// @flow
+import Text from "@casumo/cmp-text";
 import * as React from "react";
 import { Duration as LuxonDuration, DateTime } from "luxon";
-import Text from "@casumo/cmp-text";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-import { type LoginTimeLimit } from "Models/playOkay";
+import type { LoginTimeLimit } from "Models/playOkay";
 import { interpolateWithJSX } from "Utils";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 
 type Props = {
   t: {
-    coming_limit_note: ?string,
-  },
-  limit: LoginTimeLimit,
+    coming_limit_note: string;
+  };
+  limit: LoginTimeLimit;
 };
 
 export function ComingLimitNote({ t, limit }: Props) {

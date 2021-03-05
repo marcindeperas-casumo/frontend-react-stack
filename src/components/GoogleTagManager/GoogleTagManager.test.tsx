@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
+import * as React from "react";
 import { useGoogleTagManager, GTMHookProvider } from "./useGoogleTagManager";
 import type { GTMScriptParams } from "./GoogleTagManager.types";
 

@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import React from "react";
 import * as A from "Types/apollo";
 import { SettingsTranslations } from "Components/Settings/SettingsSections/SettingsSectionsContainer";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
@@ -13,9 +12,9 @@ import { isIosNative, isAndroidNative } from "Utils";
 const isNotNative = !isAndroidNative() && !isIosNative();
 
 type Props = {
-  playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
-  labels: SettingsTranslations,
-  logout: () => void,
+  playerLoginHistory: A.Player_Login_History_Query;
+  labels: SettingsTranslations;
+  logout: () => void;
 };
 
 const SettingsSection = ({ title, description, href }) => (

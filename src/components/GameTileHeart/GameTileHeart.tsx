@@ -1,13 +1,11 @@
-// @flow
 import React from "react";
 import classNames from "classnames";
 import "./GameTileHeart.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticInputEvent'.
-  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => any,
-  isActive: boolean,
-  className?: string,
+  onClick: (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => any;
+  isActive: boolean;
+  className?: string;
 };
 
 export const GameTileHeart = ({ onClick, isActive, className = "" }: Props) => (

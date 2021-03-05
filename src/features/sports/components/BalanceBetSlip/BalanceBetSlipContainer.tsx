@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useSelector } from "react-redux";
 import {
@@ -16,7 +15,7 @@ import { BalanceBetSlip } from "./BalanceBetSlip";
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  maximized: boolean,
+  maximized: boolean;
 };
 
 export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {

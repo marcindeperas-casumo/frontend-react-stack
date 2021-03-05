@@ -1,7 +1,6 @@
-// @flow
+import Skeleton from "@casumo/cmp-skeleton";
 import React from "react";
 import { range } from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 import {
   leftPaddingClasses,
   topMarginClasses,

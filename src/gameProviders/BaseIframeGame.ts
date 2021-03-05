@@ -1,4 +1,3 @@
-// @flow
 import { equals } from "ramda";
 import logger from "Services/logger";
 import { BaseGame } from "./BaseGame";
@@ -27,12 +26,11 @@ const DEFAULT_API = {
 export class BaseIframeGame extends BaseGame {
   targetDomain: string = window.location.origin || "*";
   api: IframeGameApi = DEFAULT_API;
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'messageGuard'.
-  messageGuard: Function;
 
   constructor(props: GameProviderModelProps) {
     super(props);
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = props.gameData;
 
     if (url) {
@@ -55,6 +53,7 @@ export class BaseIframeGame extends BaseGame {
       ...super.componentProps,
       allow: "autoplay",
       scrolling: "no",
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
       src: this.props.gameData.url || null,
       title: IFRAME_ID,
       id: IFRAME_ID,
@@ -97,13 +96,12 @@ export class BaseIframeGame extends BaseGame {
     gameElement: HTMLIFrameElement,
     resolve: (result: void) => void
   ) {
-    gameElement.addEventListener(GAME_IDLE_EVENT_NAME, function(e: Event) {
+    gameElement.addEventListener(GAME_IDLE_EVENT_NAME, function (e: Event) {
       gameElement.removeEventListener(GAME_IDLE_EVENT_NAME, this);
       resolve();
     });
   }
 
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'messageGuard'.
   messageGuard(event: IframeMessageEvent) {
     if (event.origin === this.targetDomain) {
       this.onMessageHandler(event);

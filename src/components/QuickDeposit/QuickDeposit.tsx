@@ -1,34 +1,30 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
+import React from "react";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import "./QuickDeposit.scss";
 
 export type QuickDepositTranslations = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  bonus_title: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  balance_title: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  cashier_link_text: ?string,
+  bonus_title: string | undefined;
+  balance_title: string | undefined;
+  cashier_link_text: string | undefined;
 };
 
 export type QuickDepositProps = {
-  hasSavedPaymentMethods: boolean,
-  walletBalance: string,
-  bonusBalance: string,
-  currency: string,
-  className?: string,
-  onCashierLinkClick: () => void,
-  onQuickDepositLinkClick: () => void,
+  hasSavedPaymentMethods: boolean;
+  walletBalance: string;
+  bonusBalance: string;
+  currency: string;
+  className?: string;
+  onCashierLinkClick: () => void;
+  onQuickDepositLinkClick: () => void;
 };
 
 type Props = QuickDepositProps & {
-  t?: QuickDepositTranslations,
+  t?: QuickDepositTranslations;
 };
 
 export const QuickDeposit = ({

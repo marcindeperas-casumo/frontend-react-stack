@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -19,32 +18,32 @@ import { SectionHeader } from "./SectionHeader";
 import "./styles.scss";
 
 type Props = PendingDepositLimitsChangesSelected & {
-  currency: string,
-  locale: string,
+  currency: string;
+  locale: string;
   t: {
-    daily_short: string,
-    weekly_short: string,
-    monthly_short: string,
-    deposit_limits: string,
-    pending_increase: string,
-    pending_remove_all: string,
-    remove_all: string,
-    add: string,
-    remaining_limit: string,
-    cancel_pending_increases: string,
-    cancel_pending_remove_all: string,
-    suspend_account: string,
-    active_limits_section_title: string,
-    more_limits_section_title: string,
-    adjust_limit: string,
-  },
-  canIncreaseLimits: boolean,
-  limits: DepositLimitsSelected,
-  edit: DepositKinds => void,
-  limitCancel: () => void,
-  add: () => void,
-  removeAll: () => void,
-  showOldSuspendAccountView: () => void,
+    daily_short: string;
+    weekly_short: string;
+    monthly_short: string;
+    deposit_limits: string;
+    pending_increase: string;
+    pending_remove_all: string;
+    remove_all: string;
+    add: string;
+    remaining_limit: string;
+    cancel_pending_increases: string;
+    cancel_pending_remove_all: string;
+    suspend_account: string;
+    active_limits_section_title: string;
+    more_limits_section_title: string;
+    adjust_limit: string;
+  };
+  canIncreaseLimits: boolean;
+  limits: DepositLimitsSelected;
+  edit: (depositKind: DepositKinds) => void;
+  limitCancel: () => void;
+  add: () => void;
+  removeAll: () => void;
+  showOldSuspendAccountView: () => void;
 };
 
 export function DepositLimitsOverview(props: Props) {
@@ -73,6 +72,7 @@ export function DepositLimitsOverview(props: Props) {
         spacing="none"
         className="t-border-r--none t-border-r--md@tablet t-border-r--md@desktop u-overflow--hidden u-margin-bottom--2xlg"
       >
+        {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
         <LimitHeader
           variesForDesktop
           title={t.deposit_limits}
@@ -104,7 +104,6 @@ export function DepositLimitsOverview(props: Props) {
                 shouldRenderSeparator={shouldRenderSeparator}
                 currency={props.currency}
                 locale={props.locale}
-                // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
                 onClick={() => props.edit(x.limitKind)}
                 {...x}
               />
@@ -127,11 +126,9 @@ export function DepositLimitsOverview(props: Props) {
 
       <DepositLimitsSuspendAccount
         t={t}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type 'void'... Remove this comment to see the full error message
         showOldSuspendAccountView={props.showOldSuspendAccountView}
         className="u-width--1/2@desktop"
       />
-      {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message */}
       <DepositLimitsHistoryContainer />
     </Flex>
   );

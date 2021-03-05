@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 import reelRaceMock from "./__mocks__/reelRace.json";

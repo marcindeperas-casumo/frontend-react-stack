@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { SpinIcon } from "@casumo/cmp-icons";
+import React from "react";
 import cx from "classnames";
 import "../ReelRaceIcon.scss";
 
@@ -10,8 +9,8 @@ export const RemainingSpinsView = ({
   remainingSpins,
   className,
 }: {
-  className?: string,
-  remainingSpins: number,
+  className?: string;
+  remainingSpins: number;
 }) => (
   <Flex
     className={cx("t-color-white ", className)}

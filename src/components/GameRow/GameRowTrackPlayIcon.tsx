@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon } from "@casumo/cmp-icons";
+import React from "react";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
 
@@ -9,8 +8,8 @@ export const GameRowTrackPlayIcon = ({
   name,
   onLaunchGame,
 }: {
-  name: string,
-  onLaunchGame: () => void,
+  name: string;
+  onLaunchGame: () => void;
 }) => (
   <TrackClick
     eventName={EVENTS.MIXPANEL_GAME_LAUNCH}

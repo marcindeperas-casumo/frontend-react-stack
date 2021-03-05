@@ -1,19 +1,17 @@
-// @flow
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../node_modules/@types/react"' h... Remove this comment to see the full error message
-import React, { PureComponent, type Node } from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
+import classNames from "classnames";
 
 type OwnProps = {
-    text: Node;
-    children?: Node;
-    className?: string;
-    padding: string;
+  text: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  padding: string;
 };
 
 type Props = OwnProps & typeof SettingsRow.defaultProps;
 
-export class SettingsRow extends PureComponent<Props> {
+export class SettingsRow extends React.PureComponent<Props> {
   static defaultProps = {
     padding: "lg",
   };

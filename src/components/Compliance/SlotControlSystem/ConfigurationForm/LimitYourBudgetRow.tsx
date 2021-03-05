@@ -1,19 +1,18 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary } from "@casumo/cmp-button";
 import { EditIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { formatCurrency } from "Utils";
 
 type LimitYourBudgetRowType = {
   t: {
-    limit_your_budget: string,
-  },
-  budget: number,
-  currency: string,
-  locale: string,
-  onClickEdit: () => void,
+    limit_your_budget: string;
+  };
+  budget: number;
+  currency: string;
+  locale: string;
+  onClickEdit: () => void;
 };
 
 export function LimitYourBudgetRow(props: LimitYourBudgetRowType) {

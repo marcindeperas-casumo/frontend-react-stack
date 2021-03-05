@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import React from "react";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 
 export const GameDetailsSkeleton = () => (

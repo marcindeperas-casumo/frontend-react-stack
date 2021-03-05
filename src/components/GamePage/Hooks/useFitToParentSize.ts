@@ -1,4 +1,3 @@
-// @flow
 import { useDebounce, useWindowSize } from "react-use";
 import { useGameModelContext, usePinnedWidgetsContext } from "../Contexts";
 
@@ -9,8 +8,7 @@ export function useFitToParentSize(): void {
 
   useDebounce(
     () => {
-      // $FlowIgnore
-      gameProviderModel?.fitToParentSize(); // eslint-disable-line no-unused-expressions
+      gameProviderModel?.fitToParentSize();
     },
     200,
     [pinnedWidgets, width, height]

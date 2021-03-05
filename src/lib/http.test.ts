@@ -1,7 +1,9 @@
 import http, { DEFAULT_FETCH_OPTIONS } from "./http";
 
 describe("Lib/http", () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'mock' does not exist on type '(input: Re... Remove this comment to see the full error message
   const getFetchCallUrlArg = () => fetch.mock.calls[0][0];
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'mock' does not exist on type '(input: Re... Remove this comment to see the full error message
   const getFetchCallOptionsArg = () => fetch.mock.calls[0][1];
   let responseMock;
   let responseTextMock;
@@ -19,11 +21,13 @@ describe("Lib/http", () => {
       ...responseMockOverride,
     };
 
-    // eslint-disable-next-line no-native-reassign
+    // @ts-expect-error ts-migrate(2539) FIXME: Cannot assign to 'fetch' because it is not a varia... Remove this comment to see the full error message
+    // eslint-disable-next-line no-global-assign
     fetch = jest.fn().mockResolvedValue(responseMock);
   };
 
   beforeEach(() => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
     mockFetch();
   });
 
@@ -37,6 +41,7 @@ describe("Lib/http", () => {
     });
 
     test("rejects the promise if the request fails", async () => {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
       mockFetch({ ok: false, statusText: "Some error." });
 
       await expect(http.post("/foo/bar")).rejects.toMatchObject({
@@ -105,6 +110,7 @@ describe("Lib/http", () => {
     });
 
     test("rejects the promise if the request fails", async () => {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
       mockFetch({ ok: false, statusText: "Some error." });
 
       await expect(http.get("/foo/bar")).rejects.toMatchObject({

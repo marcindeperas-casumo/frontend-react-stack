@@ -1,5 +1,3 @@
-// @flow
-
 export const CMS_SLUGS = {
   BEFORE_PLAYING: "slot-control-system.configure-session-screen",
   AFTER_PLAYING: "slot-control-system.after-playing",

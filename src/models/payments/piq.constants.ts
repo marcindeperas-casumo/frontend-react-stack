@@ -1,4 +1,3 @@
-// @flow
 // This has been copied from 'common-frontend/src/js/payment/piqConstants.js'
 
 export const PIQ_PAYMENT_TYPES = {

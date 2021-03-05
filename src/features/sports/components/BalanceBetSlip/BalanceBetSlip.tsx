@@ -1,22 +1,22 @@
-// @flow
-import React from "react";
-import cx from "classnames";
 import { AddIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import cx from "classnames";
+import React from "react";
 
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  t: ?{
-    balance_title: string,
-    bonus_title: string,
-  },
-  maximized: boolean,
-  balance: string,
-  bonus?: string,
-  goToDeposit?: () => void,
+  t:
+    | {
+        balance_title: string;
+        bonus_title: string;
+      }
+    | undefined;
+  maximized: boolean;
+  balance: string;
+  bonus?: string;
+  goToDeposit?: () => void;
 };
 
 export const BalanceBetSlip = ({

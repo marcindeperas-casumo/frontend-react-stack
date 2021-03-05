@@ -1,4 +1,3 @@
-// @flow
 import tMock from "./__mocks__/translations";
 import {
   durationToTranslationKey,

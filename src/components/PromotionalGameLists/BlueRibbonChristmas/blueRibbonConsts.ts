@@ -1,4 +1,3 @@
-// @flow
 export const urls = {
   sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.61.js",
   loginAnonymous:
@@ -21,34 +20,34 @@ export const baseConfig = {
 export type JackpotStatus = "HOT" | "WARM" | "CHILLY";
 export const jackpotWidgetContentPage = "blue-ribbon-christmas.jackpots-widget";
 export type JackpotWidgetContentPage = {
-  mini: string,
-  mini_short: string,
-  mini_icon: string,
-  major: string,
-  major_short: string,
-  major_icon: string,
-  mega_community: string,
-  mega_community_short: string,
-  mega_community_explanation: string,
-  mega_community_icon: string,
-  mega_single_winner: string,
-  mega_single_winner_short: string,
-  mega_single_winner_explanation: string,
-  mega_single_winner_icon: string,
-  section_title: string,
-  continue_playing: string,
-  jackpot_win_mini: string,
-  jackpot_win_major: string,
-  jackpot_win_mega: string,
-  community_jackpot_win: string,
-  community_jackpot_win_amount: string,
-  community_jackpot_win_icon: string,
-  community_jackpot_win_pot_restart: string,
-  blizzard_campaign_image: string,
-  blizzard_campaign_content: string,
-  campaign_logo: string,
-  eligible_games_cta_label: string,
-  jackpot_split_explanation: string,
+  mini: string;
+  mini_short: string;
+  mini_icon: string;
+  major: string;
+  major_short: string;
+  major_icon: string;
+  mega_community: string;
+  mega_community_short: string;
+  mega_community_explanation: string;
+  mega_community_icon: string;
+  mega_single_winner: string;
+  mega_single_winner_short: string;
+  mega_single_winner_explanation: string;
+  mega_single_winner_icon: string;
+  section_title: string;
+  continue_playing: string;
+  jackpot_win_mini: string;
+  jackpot_win_major: string;
+  jackpot_win_mega: string;
+  community_jackpot_win: string;
+  community_jackpot_win_amount: string;
+  community_jackpot_win_icon: string;
+  community_jackpot_win_pot_restart: string;
+  blizzard_campaign_image: string;
+  blizzard_campaign_content: string;
+  campaign_logo: string;
+  eligible_games_cta_label: string;
+  jackpot_split_explanation: string;
 };
 export const jackpotWidgetInGameWidth = 359;
 export const colors = {

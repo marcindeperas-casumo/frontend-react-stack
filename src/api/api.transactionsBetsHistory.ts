@@ -6,11 +6,10 @@ import type { AnnualOverviewType } from "Models/transactionsBetsHistory";
 type HTTPClient = typeof clientHttp;
 
 type GetSummaryUrlProps = {
-  date: DateTime,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
-  currency: $Values<typeof CURRENCIES>,
-  periodicity?: "ANNUAL" | "MONTHLY" | "DAILY",
-  asPdf?: boolean,
+  date: DateTime;
+  currency: ValueOf<typeof CURRENCIES>;
+  periodicity?: "ANNUAL" | "MONTHLY" | "DAILY";
+  asPdf?: boolean;
 };
 
 // http://player-transactions.at.casumotest.local:8080/swagger-ui.html#/summaries-public-controller/getSummaryReportFileUsingGET

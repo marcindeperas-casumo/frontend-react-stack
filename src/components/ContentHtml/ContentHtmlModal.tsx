@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
+import * as React from "react";
 import type { ModalContentComponent } from "Components/RSModal/rsmodal.mappings";
 import { ContentHtml } from "./ContentHtml";
 

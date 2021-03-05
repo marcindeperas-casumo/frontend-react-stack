@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import { mocks } from "./__mocks__/playerValuableListMocks";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";

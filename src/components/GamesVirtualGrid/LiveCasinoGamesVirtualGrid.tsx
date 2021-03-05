@@ -1,21 +1,19 @@
-// @flow
 import * as React from "react";
 import * as A from "Types/apollo";
 import { LiveCasinoCardContainer } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
 import { VirtualGrid } from "Components/VirtualGrid";
 
 type Props = {
-  games: Array<A.LiveCasinoCard>,
-  gamesCount: number,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'number'.
-  loadMore: ({ startIndex: number, stopIndex: number }) => Promise<any>,
+  games: Array<A.LiveCasinoCardFragment>;
+  gamesCount: number;
+  loadMore: (x: { startIndex: number; stopIndex: number }) => Promise<any>;
 };
 
 export const liveCasinoTileWidth = 328;
 export const liveCasinoTileHeight = 298;
 
-class OptimizedLiveCasinoCard extends React.Component<A.LiveCasinoCard> {
-  shouldComponentUpdate(nextProps: A.LiveCasinoCard) {
+class OptimizedLiveCasinoCard extends React.Component<A.LiveCasinoCardFragment> {
+  shouldComponentUpdate(nextProps: A.LiveCasinoCardFragment) {
     return this.props.id !== nextProps.id;
   }
 
@@ -39,7 +37,6 @@ export const LiveCasinoGamesVirtualGrid = ({
   const filteredOut = games.length - newGames.length;
 
   return (
-    // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'VirtualGrid' does not have any c... Remove this comment to see the full error message
     <VirtualGrid
       loadMore={loadMore}
       numberOfEntries={gamesCount - filteredOut}

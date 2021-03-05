@@ -1,12 +1,11 @@
-/* @flow */
-import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
+import * as React from "react";
 import { SetFavouriteCompetitions } from "Features/sports/components/GraphQL";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 
 type Props = {
-  onClose: any => any,
-  groupId: number,
+  onClose: () => any;
+  groupId?: number;
 };
 
 const EDIT_FAVOURITE_COMPETITIONS_QUERY = gql`
@@ -35,7 +34,6 @@ export const EditFavouriteCompetitionsModal = ({
       {setFavouriteCompetitions => (
         <FavouriteCompetitionsSelectorModal
           onClose={onClose}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           onSave={selectedCompetitions => {
             setFavouriteCompetitions({
               variables: {

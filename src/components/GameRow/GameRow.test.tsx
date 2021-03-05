@@ -39,8 +39,11 @@ describe("<GameRow />", () => {
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
 
     expect(thumbnail.length).toBe(1);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type '{}'.
     expect(thumbnailProps.src).toBe(game.backgroundImage);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mark' does not exist on type '{}'.
     expect(thumbnailProps.mark).toBe(game.logo);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'alt' does not exist on type '{}'.
     expect(thumbnailProps.alt).toBe(game.name);
   });
 

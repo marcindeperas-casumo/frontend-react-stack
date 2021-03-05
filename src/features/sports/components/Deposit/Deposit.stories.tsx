@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { viewports } from "Storybook/viewports";
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";

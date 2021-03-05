@@ -1,21 +1,20 @@
-// @flow
+import Skeleton from "@casumo/cmp-skeleton";
 import React, { PureComponent } from "react";
 import { times, identity } from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ROW_HEIGHT } from "Components/GamesVirtualList/GamesVirtualList";
 
 type OwnProps = {
-    /* Additional css classes to add to the component **/
-    className: string;
-    /* Whether the list has a title or not **/
-    hasTitle: boolean;
-    /* The number of <GameRowSkeleton /> components to show **/
-    numberOfItems: number;
-    /* X axis title offset **/
-    titleXOffset: number;
-    /* Y axis title offset **/
-    titleYOffset: number;
+  /* Additional css classes to add to the component **/
+  className: string;
+  /* Whether the list has a title or not **/
+  hasTitle: boolean;
+  /* The number of <GameRowSkeleton /> components to show **/
+  numberOfItems: number;
+  /* X axis title offset **/
+  titleXOffset: number;
+  /* Y axis title offset **/
+  titleYOffset: number;
 };
 
 type Props = OwnProps & typeof GameListSkeleton.defaultProps;

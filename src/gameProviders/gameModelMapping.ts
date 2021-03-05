@@ -1,4 +1,3 @@
-// @flow
 import { includes } from "ramda";
 import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
@@ -6,10 +5,8 @@ import { BaseGame } from "./BaseGame";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { EdictGame } from "./EdictGame";
 import { EvolutionGame } from "./EvolutionGame";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { EmbeddedEvolutionGame } from "./EmbeddedEvolutionGame";
 import { NetentGame } from "./NetentGame";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { EmbeddedNetentGame } from "./EmbeddedNetentGame";
 import { ThunderkickGame } from "./ThunderkickGame";
 import { YggdrasilGame } from "./YggdrasilGame";
@@ -22,15 +19,14 @@ import { RelaxGame } from "./RelaxGame";
 import { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { NyxGame } from "./NyxGame";
 import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
 import { LeapGame } from "./LeapGame";
 
 export type GameProps = {
-  providerType: GameProviderType,
-  url?: string,
+  providerType: GameProviderType;
+  url?: string;
 };
 
 export const models = {
@@ -102,9 +98,12 @@ export const getGameModel = (
 
   // @ts-expect-error ts-migrate(2739) FIXME: Type 'BaseGame' is missing the following propertie... Remove this comment to see the full error message
   return new GameModel({
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'GameProps' is not assignable to type 'GameLa... Remove this comment to see the full error message
     gameData,
     gameRef,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'AppLangua... Remove this comment to see the full error message
     language,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'AppEnviro... Remove this comment to see the full error message
     environment,
     urlPrefix,
     origin: window.location.origin,

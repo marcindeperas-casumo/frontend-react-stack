@@ -1,4 +1,3 @@
-// @flow
 import { createReducer } from "Utils";
 import { types } from "./fiveMinuteBreak.constants";
 import type { GglRealityCheckSummary } from "./fiveMinuteBreak.types";

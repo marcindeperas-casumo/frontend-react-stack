@@ -1,22 +1,17 @@
-//@flow
 import React from "react";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SwipeUpPanel } from "./SwipeUpPanel";
 
 type Props = {
-  shouldShowSwipePanel: boolean,
-  onDismiss: () => void,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  fullScreenElement: ?HTMLElement,
+  shouldShowSwipePanel: boolean;
+  onDismiss: () => void;
+  fullScreenElement: HTMLElement | undefined;
 };
 
 export type TSwipeUpTranslations = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  swipeUpText: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  tapToFullscreenText: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  dismissText: ?string,
+  swipeUpText: string | undefined;
+  tapToFullscreenText: string | undefined;
+  dismissText: string | undefined;
 };
 
 export const SwipeUpPanelContainer = ({
@@ -32,7 +27,6 @@ export const SwipeUpPanelContainer = ({
   });
 
   return shouldShowSwipePanel ? (
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: {}; loading: boolean; fullScreenElement... Remove this comment to see the full error message
     <SwipeUpPanel {...{ t, loading, fullScreenElement, onDismiss }} />
   ) : null;
 };

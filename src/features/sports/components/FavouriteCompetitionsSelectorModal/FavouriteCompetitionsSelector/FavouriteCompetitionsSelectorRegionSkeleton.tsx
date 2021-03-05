@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import React from "react";
 
 const FavouriteCompetitionsSelectorRegionSkeleton = () => (
   <Skeleton

@@ -1,6 +1,5 @@
-//@flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
@@ -8,8 +7,7 @@ import { isMobile } from "Components/ResponsiveLayout";
 import { loadMoreConstructor } from "Utils";
 import { RtpTableRow } from "./RtpTableRow";
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-const formatRTPValue = (x: ?string) => {
+const formatRTPValue = (x?: string) => {
   if (!x) {
     return "";
   }
@@ -38,15 +36,14 @@ export const RtpTable = ({
   headerColumns,
   valuesColumns,
 }: {
-  games: Array<A.GetGamesRTP_getGamesPaginated_games>,
-  data: any,
-  fetchMore: any,
-  query: string,
-  gamesCount: number,
-  scrollElementId: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  headerColumns: Array<?string>,
-  valuesColumns: Array<string>,
+  games: A.GetGamesRtpQuery["getGamesPaginated"]["games"];
+  data: any;
+  fetchMore: any;
+  query: string;
+  gamesCount: number;
+  scrollElementId: string;
+  headerColumns: Array<string>;
+  valuesColumns: Array<string>;
 }) => {
   const rowContainerClasses =
     "t-border-bottom t-border-left t-border-grey-5 t-background-white";
@@ -83,9 +80,9 @@ export const RtpTable = ({
           index,
           style,
         }: {
-          key: string,
-          index: number,
-          style: Object,
+          key: string;
+          index: number;
+          style: Object;
         }) => (
           <Flex
             align="stretch"

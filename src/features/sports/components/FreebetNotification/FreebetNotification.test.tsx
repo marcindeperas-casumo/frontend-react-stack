@@ -1,6 +1,6 @@
+import { LockIcon, CloseIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { shallow } from "enzyme";
-import { LockIcon, CloseIcon } from "@casumo/cmp-icons";
 import { VALUABLE_STATES, VALUABLE_TYPES } from "Models/valuables";
 import { freebetProps } from "./__mocks__/freebetProps";
 import { FreebetNotification } from "./FreebetNotification";
@@ -9,12 +9,10 @@ describe("FreebetNotification", () => {
   test("should show the Lock Icon if it is a locked free-bet", () => {
     const props = {
       ...freebetProps,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
       valuableState: VALUABLE_STATES.LOCKED,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FREE_BET' does not exist on type '{}'.
       valuableType: VALUABLE_TYPES.FREE_BET,
     };
-    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableState: any; valuableType: any; id:... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableState: "Locked"; valuableType: "fr... Remove this comment to see the full error message
     const rendered = shallow(<FreebetNotification {...props} />).dive();
 
     expect(rendered.find(LockIcon)).toHaveLength(1);
@@ -23,12 +21,10 @@ describe("FreebetNotification", () => {
   test("should NOT show the Lock Icon if it is NOT a locked free-bet", () => {
     const props = {
       ...freebetProps,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
       valuableState: VALUABLE_STATES.FRESH,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'FREE_BET' does not exist on type '{}'.
       valuableType: VALUABLE_TYPES.FREE_BET,
     };
-    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableState: any; valuableType: any; id:... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ valuableState: "Fresh"; valuableType: "fre... Remove this comment to see the full error message
     const rendered = shallow(<FreebetNotification {...props} />).dive();
 
     expect(rendered.find(LockIcon)).toHaveLength(0);

@@ -1,7 +1,6 @@
-/* @flow */
-import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { Modal } from "./Modal";
 
 const stories = storiesOf("Modal", module);
@@ -18,7 +17,7 @@ stories.add("Default", () => (
       minHeight: 1000,
     }}
   >
-    {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element[]; onClose: HandlerFunct... Remove this comment to see the full error message */}
+    {/* @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
     <Modal onClose={action("onClose")}>
       <Modal.Header>Header</Modal.Header>
       <Modal.Content>

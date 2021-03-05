@@ -1,4 +1,3 @@
-// @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { appendToGameUrl } from "./utils";
@@ -12,8 +11,7 @@ export const PUSH_GAME_EVENT_TYPE = Object.freeze({
   GAME_ANIMATION_COMPLETE: "gameAnimationComplete",
 });
 
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
-export type PushGameEventTypeLiteral = $Values<typeof PUSH_GAME_EVENT_TYPE>;
+export type PushGameEventTypeLiteral = ValueOf<typeof PUSH_GAME_EVENT_TYPE>;
 
 export interface PushGameEvent {
   method: PushGameEventTypeLiteral;
@@ -32,10 +30,10 @@ export const PUSH_GAME_EVENTS = {
 
 type PushGameMessage = {
   data: {
-    method?: PushGameEventTypeLiteral,
-    params?: { type?: string },
-  },
-  origin: string,
+    method?: PushGameEventTypeLiteral;
+    params?: { type?: string };
+  };
+  origin: string;
 };
 
 export class PushGame extends BaseIframeGame {
@@ -49,6 +47,7 @@ export class PushGame extends BaseIframeGame {
   }
 
   get componentProps() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = this.props.gameData;
     // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
@@ -71,7 +70,7 @@ export class PushGame extends BaseIframeGame {
   onMessageHandler(message: PushGameMessage) {
     super.onMessageHandler(message);
 
-    if (Boolean(message.data.method)) {
+    if (message.data.method) {
       return;
     }
 

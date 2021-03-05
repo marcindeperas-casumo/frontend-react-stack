@@ -1,4 +1,3 @@
-// @flow
 export * from "./sidebar.selectors";
 export * from "./sidebar.constants";
 export * from "./sidebar.actions";

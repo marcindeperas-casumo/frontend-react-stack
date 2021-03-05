@@ -1,30 +1,27 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
+import cx from "classnames";
 import { LaurelPosition } from "./LaurelPosition";
 import { Prize } from "./Prize";
 
 import "./ReelRaceLeaderboardListEntry.scss";
 
 type Props = {
-  position: number,
-  text: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  prize?: ?string,
-  points: number,
-  highlighted?: boolean,
-  className?: string,
-  showLaurel?: boolean,
-  inverted?: boolean,
+  position: number;
+  text: string;
+  prize?: string | undefined;
+  points: number;
+  highlighted?: boolean;
+  className?: string;
+  showLaurel?: boolean;
+  inverted?: boolean;
 };
 
 export const ReelRaceLeaderboardListEntry = React.forwardRef<
-  Props,
-  HTMLDivElement
+  HTMLDivElement,
+  Props
 >(
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ position, text, prize, showLa... Remove this comment to see the full error message
   (
     {
       position,
@@ -35,8 +32,8 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       highlighted,
       inverted,
       className,
-    }: Props,
-    ref: React.Ref<any>
+    },
+    ref
   ) => (
     <Flex
       containerRef={ref}

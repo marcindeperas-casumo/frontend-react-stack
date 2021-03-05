@@ -1,13 +1,12 @@
-//@flow
-import React from "react";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
+import React from "react";
 import { LOW_RES_IMAGE_SETTINGS, DEVICE_PIXEL_RATIO } from "../../constants";
 
 type Props = {
-  isIntersecting: boolean,
-  src?: string,
-  imgixOpts?: Object,
-  alt?: string,
+  isIntersecting: boolean;
+  src?: string;
+  imgixOpts?: Object;
+  alt?: string;
 };
 
 const ImageResponsive = React.forwardRef<Props, HTMLImageElement>(

@@ -1,4 +1,3 @@
-// @flow
 import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { OryxGame, COMMANDS } from "./OryxGame";
 

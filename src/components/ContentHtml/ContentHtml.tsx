@@ -1,17 +1,16 @@
-// @flow
+import { MaximizeIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import cx from "classnames";
-import { MaximizeIcon } from "@casumo/cmp-icons";
 import DangerousHtml from "Components/DangerousHtml";
 import { ContentFader } from "./ContentFader";
 import "./ContentHtml.scss";
 
 type Props = {
-  html: string,
-  expandable?: boolean,
-  onClickExpand?: () => void,
-  className?: string,
-  style?: string,
+  html: string;
+  expandable?: boolean;
+  onClickExpand?: () => void;
+  className?: string;
+  style?: string;
 };
 
 const defaultClasses = "s-content-html u-padding-x--lg";

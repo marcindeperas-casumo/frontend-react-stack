@@ -1,38 +1,38 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import type { CellRendererParams } from "react-virtualized";
+import * as React from "react";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"../ScrollablePaginated"' has no exported ... Remove this comment to see the full error message
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 import "./ScrollableListPaginated.scss";
 
 export type SeeMoreProps = {
   /** The text to render on the seeMore button. */
-  text: string,
+  text: string;
   /** The link where to redirect once clicking the seeMore button. */
-  url: string,
+  url: string;
   /** Optional onClick handler for seeMore link */
-  onClick?: () => void,
+  onClick?: () => void;
 };
 
 type Props = {
   /** The item height. */
-  tileHeight: number,
+  tileHeight: number;
   /** The item width. */
-  tileWidth?: number,
+  tileWidth?: number;
   /** The style to apply to the list control buttons. */
-  itemControlClass?: string,
+  itemControlClass?: string;
   /** The text and url to render on the seeMore button. */
-  seeMore?: SeeMoreProps,
+  seeMore?: SeeMoreProps;
   /** The list of items to be rendered. */
-  itemCount: number,
+  itemCount: number;
   /** The list title */
-  title: ?string,
+  title: string | undefined;
   /** The item renderer. */
-  itemRenderer: CellRendererParams => any,
+  itemRenderer: (cellRendererParams: CellRendererParams) => any;
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
@@ -92,7 +92,6 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     return (
       <div data-test="scrollable-list-paginated">
         {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
-        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ScrollablePaginated
           className="c-scrollable-list-paginated"
           columnCount={itemCount}

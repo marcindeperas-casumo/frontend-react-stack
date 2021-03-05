@@ -1,4 +1,3 @@
-// @flow
 import { useMemoCompare } from "Utils/hooks";
 import { useGameActivityStatusContext } from "../Contexts";
 

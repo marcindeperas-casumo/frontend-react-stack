@@ -1,18 +1,15 @@
-// @flow
-import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 
 type Props = {
   /** onClick handler of the footer button */
-  onClick: () => any,
+  onClick: () => any;
   /** child components to render */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
+const ModalButtonFooter = ({ onClick, children }: Props): React.ReactNode => (
   <Flex
     align="stretch"
     justify="center"

@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import {
@@ -7,13 +5,14 @@ import {
   TripleBigWinIcon,
   MegaWinIcon,
 } from "@casumo/cmp-icons";
+import * as React from "react";
 
 type Props = {
   boosters: {
-    triples: number,
-    bigWins: number,
-    megaWins: number,
-  },
+    triples: number;
+    bigWins: number;
+    megaWins: number;
+  };
 };
 
 export function ReelRacePlayerBoosters(props: Props) {

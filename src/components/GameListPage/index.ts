@@ -1,4 +1,3 @@
-// @flow
 export { GameListPage } from "./GameListPage";
 /**
  * All cool names have been taken. We have number of lists that can be viewed

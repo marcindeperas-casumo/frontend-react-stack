@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
+import * as React from "react";
 import { Panel } from "./Panel";
 
 const stories = storiesOf("Panel", module).addParameters({

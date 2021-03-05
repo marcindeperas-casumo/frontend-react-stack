@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { useDispatch } from "react-redux";
@@ -43,8 +42,7 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     const navigateToKO = jest.fn();
 
     mockFn(useCrossCodebaseNavigation).mockReturnValue({ navigateToKO });
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
     mockUseJurisdictionDGOJ();
 
     mount(
@@ -59,8 +57,7 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     const navigateToKO = jest.fn();
 
     mockFn(useCrossCodebaseNavigation).mockReturnValue({ navigateToKO });
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
     mockUseJurisdictionMGA();
 
     mount(
@@ -75,8 +72,7 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     const navigateToKO = jest.fn();
 
     mockFn(useCrossCodebaseNavigation).mockReturnValue({ navigateToKO });
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
     mockUseJurisdictionDGOJ();
 
     mount(
@@ -93,13 +89,11 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     const dispatchMock = jest.fn();
     const navigateToKO = jest.fn();
     const hideFns = useHideModal(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION
     );
 
     mockFn(useCrossCodebaseNavigation).mockReturnValue({ navigateToKO });
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
     mockUseJurisdictionDGOJ();
 
     mount(

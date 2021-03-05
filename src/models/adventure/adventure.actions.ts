@@ -1,4 +1,3 @@
-// @flow
 import { types as fetchTypes } from "Models/fetch";
 import {
   getAdventurerDetailsReq,
@@ -21,7 +20,7 @@ export function fetchAdventurerDetails(asyncCallData: { playerId: string }) {
 }
 
 export function fetchAdventurerProgression(asyncCallData: {
-  playerId: string,
+  playerId: string;
 }) {
   return {
     type: fetchTypes.FETCH,

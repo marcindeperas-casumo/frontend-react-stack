@@ -1,40 +1,29 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Skeleton from "@casumo/cmp-skeleton";
 import { CloseIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 type BackButton =
-  | {|
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'showBackButton'.
-      showBackButton: true,
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'backAction'.
-      backAction: () => void,
-    |}
-  // @ts-expect-error ts-migrate(2363) FIXME: The right-hand side of an arithmetic operation mus... Remove this comment to see the full error message
-  | {| showBackButton?: false |};
+  | {
+      showBackButton: true;
+      backAction: () => void;
+    }
+  | { showBackButton?: false };
 type CloseButton =
-  | {|
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'showCloseButton'.
-      showCloseButton: true,
-      // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'closeAction'. Did you mean 'Clos... Remove this comment to see the full error message
-      closeAction: () => void,
-    |}
-  // @ts-expect-error ts-migrate(2363) FIXME: The right-hand side of an arithmetic operation mus... Remove this comment to see the full error message
-  | {| showCloseButton?: false |};
+  | {
+      showCloseButton: true;
+      closeAction: () => void;
+    }
+  | { showCloseButton?: false };
 
 // those shenanigans are to make flow aware that `closeAction` is required when
 // `showCloseButton` is set to true, otherwise it shouldn't be present. Same thing
 // goes for `backAction` and `showBackButton`.
-type Props = {|
-  // @ts-expect-error ts-migrate(2693) FIXME: 'BackButton' only refers to a type, but is being u... Remove this comment to see the full error message
-  ...BackButton,
-  // @ts-expect-error ts-migrate(2693) FIXME: 'CloseButton' only refers to a type, but is being ... Remove this comment to see the full error message
-  ...CloseButton,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'title'.
-  title?: string,
-|};
+type Props = BackButton &
+  CloseButton & {
+    title?: string;
+  };
 
 const noIcon = <div style={{ height: 72, width: 72 }} />;
 

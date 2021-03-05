@@ -1,26 +1,23 @@
-// @flow
-import React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ChatIcon, ExitIcon } from "@casumo/cmp-icons";
+import cx from "classnames";
+import React from "react";
 import { Desktop } from "Components/ResponsiveLayout";
 import { FullscreenToggle } from "Components/FullscreenView";
 
 type Translations = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  in_game_drawer_live_chat: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  in_game_drawer_exit_game: ?string,
+  in_game_drawer_live_chat: string | undefined;
+  in_game_drawer_exit_game: string | undefined;
 };
 
 type Props = {
-  isChatDisabled: boolean,
-  onLiveChatClick: () => void,
-  onExitGameClick: () => void,
-  showLabels?: boolean,
-  className?: string,
-  t: Translations,
+  isChatDisabled: boolean;
+  onLiveChatClick: () => void;
+  onExitGameClick: () => void;
+  showLabels?: boolean;
+  className?: string;
+  t: Translations;
 };
 
 export const InGameDrawerLinks = ({

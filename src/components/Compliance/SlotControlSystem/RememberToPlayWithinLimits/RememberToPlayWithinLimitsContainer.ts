@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { configurationFormContentSelector } from "Models/slotControlSystem";
 import { RememberToPlayWithinLimits } from "./RememberToPlayWithinLimits";

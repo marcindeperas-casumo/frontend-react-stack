@@ -1,6 +1,6 @@
+import { ButtonSecondary } from "@casumo/cmp-button";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ButtonSecondary } from "@casumo/cmp-button";
 import { showModal } from "Models/modal";
 import http from "Lib/http";
 import { playerIdSelector } from "Models/handshake";
@@ -17,7 +17,7 @@ export const PanicButton = () => {
   useEffect(() => {
     if (content && !window.localStorage.preGamePanicButtonOverlayShown) {
       dispatch(
-        showModal("GGL_PRE_PANIC_BUTTON", {
+        showModal(REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON, {
           content,
         })
       );
@@ -41,7 +41,7 @@ export const PanicButton = () => {
       })
       .then(() => {
         dispatch(
-          showModal("GGL_POST_PANIC_BUTTON", {
+          showModal(REACT_APP_MODAL.ID.GGL_POST_PANIC_BUTTON, {
             content,
           })
         );

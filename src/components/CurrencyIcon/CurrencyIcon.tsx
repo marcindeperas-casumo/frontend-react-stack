@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import {
   WalletTabEuroSelectedIcon,
   WalletTabEuroUnselectedIcon,
@@ -12,12 +10,13 @@ import {
   WalletTabDollarSelectedIcon,
   WalletTabDollarUnselectedIcon,
 } from "@casumo/cmp-icons";
+import * as React from "react";
 import { CURRENCIES } from "Src/constants";
 
 type Props = {
-  currency: string,
-  selected?: boolean,
-  classList?: string,
+  currency: string;
+  selected?: boolean;
+  classList?: string;
 };
 
 const currencyIconMapper = (

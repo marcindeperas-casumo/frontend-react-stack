@@ -1,6 +1,6 @@
+import { SearchIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { shallow } from "enzyme";
-import { SearchIcon } from "@casumo/cmp-icons";
 import SearchInput from "Components/SearchInput";
 
 const clearButtonSelector = "div[data-test='search-input-clear-button']";

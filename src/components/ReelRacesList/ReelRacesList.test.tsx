@@ -1,7 +1,6 @@
-// @flow
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/client/testing";
 import ScrollableList from "Components/ScrollableList";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { ReelRacesList } from "./ReelRacesList";
@@ -16,7 +15,6 @@ describe("<ReelRacesList /> - Mobile and Tablet", () => {
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>
         <ReelRacesList
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           reelRaces={reelRacesListQueryMock.result.data.reelRaces}
           title={reelRacesListQueryMock.result.data.title}
           seeMore={reelRacesListQueryMock.result.data.seeMore}
@@ -54,7 +52,6 @@ describe("<ReelRacesList /> - Desktop", () => {
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>
         <ReelRacesList
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           reelRaces={reelRacesListQueryMock.result.data.reelRaces}
           title={reelRacesListQueryMock.result.data.title}
           seeMore={reelRacesListQueryMock.result.data.seeMore}

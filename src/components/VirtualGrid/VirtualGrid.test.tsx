@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
@@ -13,7 +12,6 @@ describe("VirtualGrid", () => {
      */
     const rendered = mount(
       <MockStore>
-        {/* @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'VirtualGrid' does not have any c... Remove this comment to see the full error message */}
         <VirtualGrid
           dataList={[{}, {}, {}, {}]}
           numberOfEntries={4}

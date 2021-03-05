@@ -1,4 +1,3 @@
-//@flow
 import { LOCAL_PAYMENT_TYPES } from "./piq.constants";
 
 const GENERAL_SLUG = "payment-method";

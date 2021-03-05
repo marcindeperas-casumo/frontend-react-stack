@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { useQuery } from "@apollo/client";
+import React from "react";
 import { useSelector } from "react-redux";
 import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
@@ -8,7 +7,6 @@ import { tournamentChannelsSelector } from "Models/handshake";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslations } from "Utils/hooks";
 import { ReelRacesList } from "./ReelRacesList";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './ReelRacesListContainer.graph... Remove this comment to see the full error message
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
 export const ReelRacesListContainer = () => {

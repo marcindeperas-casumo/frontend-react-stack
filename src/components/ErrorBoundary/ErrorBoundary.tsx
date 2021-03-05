@@ -3,13 +3,12 @@ import logger from "Services/logger";
 import { ErrorBoundaryUserFeedback } from "./ErrorBoundaryUserFeedback";
 
 type Props = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: React.Node,
-  withoutUserFeedback?: boolean,
+  children?: React.ReactNode;
+  withoutUserFeedback?: boolean;
 };
 
 type State = {
-  hasError: boolean,
+  hasError: boolean;
 };
 
 export class ErrorBoundary extends React.PureComponent<Props, State> {

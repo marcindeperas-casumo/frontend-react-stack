@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
+import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
 import { Modal } from "./RSModal";

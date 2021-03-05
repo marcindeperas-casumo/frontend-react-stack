@@ -1,6 +1,6 @@
+import type { CellRendererParams } from "react-virtualized";
 import React from "react";
 import classNames from "classnames";
-import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileContainer as GameTile } from "Components/GameTile/GameTileContainer";
@@ -10,7 +10,7 @@ import "./GameListHorizontalDefault.scss";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 export type Props = {
-  list: A.GameListQuery_gamesList,
+  list: A.GameListQuery["gamesList"];
 };
 
 export const GameListHorizontalDefault = ({ list }: Props) => {

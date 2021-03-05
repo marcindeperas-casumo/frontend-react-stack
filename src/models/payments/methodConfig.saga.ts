@@ -1,4 +1,3 @@
-// @flow
 import { put, all, take } from "redux-saga/effects";
 import { reduce, map, path, mergeDeepRight } from "ramda";
 import { fetchPageBySlug, getFetchCompleteTypeBySlug } from "Models/cms";
@@ -7,8 +6,7 @@ import { METHOD_CONFIG_PATH } from "./methodConfig.constants";
 import { FALLBACK_CONFIGURATION } from "./cmsConfigFallback";
 import { setPaymentMethodConfig } from "./methodConfig.actions";
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export function* methodConfigSaga(action: any, state: any): * {
+export function* methodConfigSaga(action: any, state: any) {
   const configSlugs = METHOD_CONFIG_PATH[action.methodType];
 
   yield all(configSlugs.map(slug => put(fetchPageBySlug(slug))));

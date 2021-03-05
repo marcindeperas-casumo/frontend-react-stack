@@ -1,12 +1,10 @@
-// @flow
-import * as React from "react";
 import { useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SettingsAccountDetails } from "./SettingsAccountDetails";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './PlayerSettingsQuery.graphql'... Remove this comment to see the full error message
 import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery.graphql";
 
 export function SettingsAccountDetailsContainer() {
@@ -25,22 +23,19 @@ export function SettingsAccountDetailsContainer() {
     gamblingExtent: "root:mobile.settings:fields.gambling_extent_label",
   });
   const { data, error, loading, refetch } = useQuery<
-    A.PLAYER_SETTINGS_QUERY,
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
-    _
+    A.Player_Settings_Query,
+    A.Player_Settings_QueryVariables
   >(PLAYER_SETTINGS_QUERY);
 
   if (cmsLoading || loading) {
     return <SettingsRowListSkeleton count={6} />;
   }
   if (!data || error) {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Promise<ApolloQueryResult<PLAYER_SETTINGS_QU... Remove this comment to see the full error message
     return <ErrorMessage retry={() => refetch()} />;
   }
 
   return (
     <SettingsAccountDetails
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       labels={t}
       player={data.player}
       refetchSettings={refetch}

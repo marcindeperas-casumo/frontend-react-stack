@@ -23,13 +23,13 @@ export const getWelcomeOfferSlug = (welcomeOfferId: string, market: string) => {
 
 type TProps = {
   /** The slug of the curated card to render. */
-  card: string | Array<string>,
+  card: string | Array<string>;
   /** A boolean indicating if the player has deposited yet or not. */
-  hasDeposited: boolean,
-  market: string,
-  welcomeOfferId: string,
+  hasDeposited: boolean;
+  market: string;
+  welcomeOfferId: string;
   /** Will enforce showing the curated content specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
-  enforceOriginalSlug?: boolean,
+  enforceOriginalSlug?: boolean;
 };
 
 // We cannot name the property to "slug" easily here, we have to keep it as "card" as it getting

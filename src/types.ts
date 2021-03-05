@@ -1,8 +1,5 @@
 import { ENVIRONMENTS, LANGUAGES, DEVICES } from "Src/constants";
 
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
-export type AppLanguage = $Values<typeof LANGUAGES>;
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
-export type AppEnvironment = $Values<typeof ENVIRONMENTS>;
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Values'.
-export type AppDevice = $Values<typeof DEVICES>;
+export type AppLanguage = typeof LANGUAGES[keyof typeof LANGUAGES];
+export type AppEnvironment = typeof ENVIRONMENTS[keyof typeof ENVIRONMENTS];
+export type AppDevice = typeof DEVICES[keyof typeof DEVICES];

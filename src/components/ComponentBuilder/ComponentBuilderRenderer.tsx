@@ -1,11 +1,10 @@
-// @flow
 import React, { PureComponent } from "react";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { mapContentDefinitionToComponent } from "Components/ComponentBuilder/ComponentBuilder.utils";
 
 type Props = {
   /** The array of component definition objects. */
-  componentDefinitions: Array<Object>,
+  componentDefinitions: Array<Object>;
 };
 
 export class ComponentBuilderRenderer extends PureComponent<Props> {

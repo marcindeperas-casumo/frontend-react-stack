@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { F } from "ramda";
 import { mount } from "enzyme";
@@ -22,7 +21,6 @@ describe("TransactionsAnnualOverviewYearSelector", () => {
 
   test("should render a select element together with a button", () => {
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ content: { annual_overview_year_selector_b... Remove this comment to see the full error message
       <TransactionsAnnualOverviewYearSelector {...props} />
     );
 
@@ -38,7 +36,6 @@ describe("TransactionsAnnualOverviewYearSelector", () => {
 
   test("should render a select element with years as options", () => {
     const rendered = mount(
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ content: { annual_overview_year_selector_b... Remove this comment to see the full error message
       <TransactionsAnnualOverviewYearSelector {...props} />
     );
     const yearSelector = rendered.find(
@@ -58,7 +55,6 @@ describe("TransactionsAnnualOverviewYearSelector", () => {
     const rendered = mount(
       <TransactionsAnnualOverviewYearSelector
         {...props}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<Promise<{}>, []>' is not assignable to ... Remove this comment to see the full error message
         fetchYearOverview={fetchYearOverview}
       />
     );

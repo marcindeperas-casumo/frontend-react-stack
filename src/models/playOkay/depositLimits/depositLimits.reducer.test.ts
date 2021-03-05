@@ -1,4 +1,3 @@
-// @flow
 import { depositLimitsTypes } from "./depositLimits.constants";
 import { DEFAULT_STATE, depositLimitsReducer } from "./depositLimits.reducer";
 
@@ -129,6 +128,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             effectiveFrom: "2012-12-12T12:12:12Z",
             reviewerApproved: false,
             value: {
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ currency: string; daily: number; weekly: n... Remove this comment to see the full error message
               currency: "EUR",
               daily: 666,
               weekly: 1500,

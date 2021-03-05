@@ -1,4 +1,3 @@
-// @flow
 export const basicForm = (
   target: string,
   url: string,

@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, text } from "@storybook/addon-knobs/react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import { VALUABLE_STATES } from "Models/valuables";
 import { ValuableStateIndicator } from "./ValuableStateIndicator";
 
@@ -12,7 +11,6 @@ stories.add("Default", () => {
   const valuableState = select(
     "Valuable State",
     VALUABLE_STATES,
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'.
     VALUABLE_STATES.LOCKED
   );
   const label = text("Status label", "Locked") || null;

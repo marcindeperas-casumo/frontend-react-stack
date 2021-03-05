@@ -1,16 +1,15 @@
-// @flow
-import * as React from "react";
-import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { Button, ButtonPrimary } from "@casumo/cmp-button";
-import cx from "classnames";
 import {
   TimeLockedIcon,
   SpinIcon,
   AthleticsIcon,
   PlayIcon,
 } from "@casumo/cmp-icons";
+import { DateTime } from "luxon";
+import cx from "classnames";
+import * as React from "react";
 import { interpolate, noop } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { launchGame } from "Services/LaunchGameService";
@@ -24,10 +23,10 @@ import TrackClick from "Components/TrackClick";
 import { ReelRaceScheduleCardPrizes } from "./ReelRaceScheduleCardPrizes";
 
 type Props = {
-  reelRace: A.ReelRaceScheduleCard_ReelRace,
-  t: TReelRacesContentPage,
-  optIn: () => void,
-  showPrizes: boolean,
+  reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
+  t: TReelRacesContentPage;
+  optIn: () => void;
+  showPrizes: boolean;
 };
 
 export function ReelRaceScheduleCardContent({
@@ -40,9 +39,7 @@ export function ReelRaceScheduleCardContent({
   const isNotMobile = useIsScreenMinimumTablet();
 
   const getDuration = () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     return DateTime.fromMillis(reelRace.endTime)
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
       .diff(DateTime.fromMillis(reelRace.startTime))
       .toFormat("mm");
   };
@@ -65,7 +62,6 @@ export function ReelRaceScheduleCardContent({
   };
 
   const showCaveatsModal = () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ modal: string; }' is not assig... Remove this comment to see the full error message
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
@@ -90,7 +86,6 @@ export function ReelRaceScheduleCardContent({
             {reelRace.translations.startingIn}
           </Text>
           <Text className="u-font-weight-bold">
-            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message */}
             {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
           </Text>
         </Flex>

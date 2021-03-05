@@ -1,9 +1,8 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import React from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { showModal } from "Models/modal";
@@ -12,14 +11,14 @@ import ReelRaceLogo from "./reel-race.svg";
 import "./ReelRacesBanner.scss";
 
 export type ReelRacesContentPage = {
-  text: string,
-  how_it_works_title: string,
-  terms_and_conditions_title: string,
+  text: string;
+  how_it_works_title: string;
+  terms_and_conditions_title: string;
 };
 
 type BannerLinkProps = {
-  children: any,
-  onClick?: () => any,
+  children: any;
+  onClick?: () => any;
 };
 
 function BannerLink({ children, onClick }: BannerLinkProps) {
@@ -39,7 +38,6 @@ export function ReelRacesBanner() {
 
   const t = useTranslations<ReelRacesContentPage>("reel-races");
 
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   const showTAC = () => dispatch(showModal(REACT_APP_MODAL.ID.REEL_RACES_TAC));
 
   const links: any = {

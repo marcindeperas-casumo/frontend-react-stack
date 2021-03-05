@@ -1,8 +1,8 @@
+import sinon from "sinon";
 import React from "react";
 import { shallow } from "enzyme";
 // Sinon is imported only for testing a debounced function, as there are still problems testing it with Jest.
 // Once Jest will fully support debounce, we should remove sinon https://github.com/facebook/jest/issues/3465
-import sinon from "sinon";
 import { GameSearchInput } from "./GameSearchInput";
 
 describe("GameSearchInput", () => {
@@ -62,6 +62,7 @@ describe("GameSearchInput", () => {
     const instance = rendered.instance();
     const handleClearSearchInput = jest.spyOn(
       instance,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '"handleClearSearchInput"' is not... Remove this comment to see the full error message
       "handleClearSearchInput"
     );
 

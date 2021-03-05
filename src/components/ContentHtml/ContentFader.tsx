@@ -1,11 +1,10 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
 import "./ContentFader.scss";
 
 type Props = {
-  to: "top" | "bottom",
+  to: "top" | "bottom";
 };
 
 export function ContentFader({ to }: Props) {

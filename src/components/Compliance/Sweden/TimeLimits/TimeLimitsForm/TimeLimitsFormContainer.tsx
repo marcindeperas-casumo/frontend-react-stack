@@ -1,13 +1,12 @@
-// @flow
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { playerIdSelector } from "Models/handshake";
 import { isFetched } from "Models/fetch";
+import type {
+  LoginTimeLimitsFormData,
+  SetLoginTimeLimitProps,
+} from "Models/playOkay";
 import {
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type LoginTimeLimitsFormData,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type SetLoginTimeLimitProps,
   saveLoginTimeLimitAction,
   getSaveLoginTimeLimitActionName,
   getAllLimits,
@@ -20,7 +19,7 @@ import { TimeLimitsForm } from "./TimeLimitsForm";
 import { transformFormDataToRequestPayloads } from "./TimeLimitsForm.utils";
 
 type Props = {
-  onLimitsSaved: () => void,
+  onLimitsSaved: () => void;
 };
 
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
@@ -55,10 +54,12 @@ export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
 
   const onClickCta = (formData: LoginTimeLimitsFormData) => {
     setCtaClicked(true);
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
-    transformFormDataToRequestPayloads(formData, playerId).map(
-      (payload: SetLoginTimeLimitProps) =>
-        dispatch(saveLoginTimeLimitAction(payload))
+    transformFormDataToRequestPayloads(
+      formData,
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
+      playerId
+    ).map((payload: SetLoginTimeLimitProps) =>
+      dispatch(saveLoginTimeLimitAction(payload))
     );
   };
 
@@ -77,7 +78,6 @@ export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
   }, [refetchingAllLimits, allLimitsRefetched, onLimitsSaved]);
 
   return (
-    // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
     <TimeLimitsForm t={t} isFetching={ctaClicked} onClickCta={onClickCta} />
   );
 }

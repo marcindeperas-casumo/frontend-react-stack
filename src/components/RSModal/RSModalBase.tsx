@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import ReactModal from "react-modal";
 import classNames from "classnames";
@@ -8,12 +7,11 @@ import "./rsmodals.scss";
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
 type Props = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  mustAccept: boolean,
-  isOpen: boolean,
-  onRequestClose: Function,
-  isWide?: boolean,
+  children: React.ReactNode;
+  mustAccept: boolean;
+  isOpen: boolean;
+  onRequestClose: Function;
+  isWide?: boolean;
 };
 export function ModalBase({
   children,

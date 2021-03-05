@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonText } from "@casumo/cmp-button";
 import { ArrowRightIcon, MoreIcon } from "@casumo/cmp-icons";
+import classNames from "classnames";
+import * as React from "react";
 import { ProgressArc } from "Components/Progress";
 import { formatCurrency, interpolate } from "Utils";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
@@ -13,22 +12,21 @@ import "./singlePeriodLimitOverview.scss";
 
 type Props = {
   t: {
-    daily_short: string,
-    weekly_short: string,
-    monthly_short: string,
-    remaining_limit: string,
-    adjust_limit: string,
-  },
-  currency: string,
-  locale: string,
-  progressPercentage: number,
-  shouldRenderSeparator: boolean,
-  limitKind: DepositKinds,
+    daily_short: string;
+    weekly_short: string;
+    monthly_short: string;
+    remaining_limit: string;
+    adjust_limit: string;
+  };
+  currency: string;
+  locale: string;
+  progressPercentage: number;
+  shouldRenderSeparator: boolean;
+  limitKind: DepositKinds;
 
-  value: number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  remaining: ?number,
-  onClick: () => void,
+  value: number;
+  remaining: number | undefined;
+  onClick: () => void;
 };
 
 export function SinglePeriodLimitOverview(props: Props) {

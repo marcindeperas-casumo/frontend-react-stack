@@ -1,15 +1,14 @@
-// @flow
 import React from "react";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 
 type Props = {
-  ratio: string,
-  game: A.GameTileInMaintenance_Game,
-  className?: string,
-  imgixOpts?: Object,
-  temporaryUnavailableText?: string,
+  ratio: string;
+  game: A.GameTileInMaintenance_GameFragment;
+  className?: string;
+  imgixOpts?: Object;
+  temporaryUnavailableText?: string;
 };
 
 export const GameTileInMaintenanceContainer = ({

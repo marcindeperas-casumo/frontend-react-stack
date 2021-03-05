@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
@@ -33,7 +32,6 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
@@ -54,7 +52,6 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
@@ -75,7 +72,6 @@ describe("GameSearch", () => {
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"ooo"}
         fetchMore={() => Promise.resolve([])}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
@@ -92,14 +88,13 @@ describe("GameSearch", () => {
     const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameSea... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'GameRow... Remove this comment to see the full error message
         searchResults={searchResults}
         searchResultsCount={4}
         loading={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
@@ -108,6 +103,7 @@ describe("GameSearch", () => {
     );
 
     expect(rendered.find("GamesVirtualList")).toHaveLength(1);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'HTMLAttri... Remove this comment to see the full error message
     expect(rendered.find("GamesVirtualList").props().games).toEqual(
       searchResults
     );
@@ -117,14 +113,13 @@ describe("GameSearch", () => {
     const rendered = mount(
       <GameSearch
         clearSearch={clearSearch}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameSearc... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'GameRow_G... Remove this comment to see the full error message
         searchResults={["game"]}
         searchResultsCount={1}
         loading={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={"hola"}
         fetchMore={() => Promise.resolve([])}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(quer... Remove this comment to see the full error message
         queryChanged={() => {}}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: string[]; location: string; title: ... Remove this comment to see the full error message
         suggestions={suggestions}
@@ -137,12 +132,14 @@ describe("GameSearch", () => {
       rendered
         .find("GamesVirtualList")
         .at(0)
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'rowCount' does not exist on type 'HTMLAt... Remove this comment to see the full error message
         .props().rowCount
     ).toEqual(1);
     expect(
       rendered
         .find("GamesVirtualList")
         .at(1)
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'rowCount' does not exist on type 'HTMLAt... Remove this comment to see the full error message
         .props().rowCount
     ).toEqual(2);
   });

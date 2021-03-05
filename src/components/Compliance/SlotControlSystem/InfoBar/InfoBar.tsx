@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import {
@@ -8,6 +6,7 @@ import {
   SpinIcon,
   TrophyIcon,
 } from "@casumo/cmp-icons";
+import * as React from "react";
 import { formatCurrency } from "Utils";
 import { useSessionsState } from "Models/slotControlSystem";
 import { useLocale } from "Utils/hooks";

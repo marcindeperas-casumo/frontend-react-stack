@@ -1,4 +1,3 @@
-// @flow
 import { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import cometd from "Models/cometd/cometd.service";
@@ -6,13 +5,13 @@ import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
 
 type AdventurerEvent = {
-  channel: string,
+  channel: string;
   data: {
-    itemCreated?: number,
-  },
+    itemCreated?: number;
+  };
 };
 
-export type PlayerReceivedValuableCallback = any => void;
+export type PlayerReceivedValuableCallback = (a: any) => void;
 
 export function usePlayerReceivedValuableEvent(
   callback: PlayerReceivedValuableCallback

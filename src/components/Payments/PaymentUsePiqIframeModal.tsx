@@ -1,7 +1,6 @@
-//@flow
+import Flex from "@casumo/cmp-flex";
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import Flex from "@casumo/cmp-flex";
 import { ModalHeader } from "Components/RSModal";
 import { hideModal } from "Models/modal";
 import { piqIframeResolve } from "Models/payments/payments.actions";
@@ -13,7 +12,7 @@ const IFRAME_TITLE = "payment-use-piq-iframe";
 const PIQ_IFRAME_MESSAGE_TYPE = "piqRedirectResponse";
 
 type Props = {
-  config: any,
+  config: any;
 };
 
 export const PaymentUsePiqIframeModal = ({ config }: Props) => {

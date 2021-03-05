@@ -1,41 +1,36 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
+import { CloseIcon, SearchIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
-import Flex from "@casumo/cmp-flex";
-import { CloseIcon, SearchIcon } from "@casumo/cmp-icons";
 
 import "./SearchInput.scss";
 
 // relevant props from input field we wish to expose
 type InputProps = {
-  value: string,
-  autofocus?: boolean,
-  name?: string,
-  placeholder?: string,
-  onChange: () => void,
-  onFocus: () => void,
-  onBlur?: () => void,
-  colorBackgroundClass?: string,
+  value: string;
+  autofocus?: boolean;
+  name?: string;
+  placeholder?: string;
+  onChange: () => void;
+  onFocus: () => void;
+  onBlur?: () => void;
+  colorBackgroundClass?: string;
 };
 
 type SearchInputProps = {
-  onBlur: () => void,
-  onClear: () => void,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'empty'.
-  children?: empty,
-  noResults?: boolean,
+  onBlur?: () => void;
+  onClear: () => void;
+  noResults?: boolean;
 };
 
-type OwnProps = InputProps & SearchInputProps;
+type Props = InputProps & SearchInputProps;
 
 type State = {
-  hasFocus: boolean,
+  hasFocus: boolean;
 };
 
 const noop = () => {};
-
-type Props = (OwnProps & typeof SearchInput.defaultProps);
 
 class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
@@ -45,8 +40,7 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   state = { hasFocus: false };
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  textInput: { current: ?HTMLInputElement } = React.createRef();
+  textInput: { current: HTMLInputElement | null } = React.createRef();
 
   get inputProps() {
     return pick(

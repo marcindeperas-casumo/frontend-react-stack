@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { useQuery } from "@apollo/client";
+import React from "react";
 import {
   EVENT_PROPS,
   GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
@@ -10,14 +9,13 @@ import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalDefault } from "./GameListHorizontalDefault";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GameListHorizontalDefault.gr... Remove this comment to see the full error message
 import { GameListQuery } from "./GameListHorizontalDefault.graphql";
 
 type Props = {
   /** The game list id */
-  id: string,
+  id: string;
   /** The number of games to show */
-  numberOfGames: number,
+  numberOfGames: number;
 };
 
 export const GameListHorizontalDefaultContainer = React.memo<Props>(

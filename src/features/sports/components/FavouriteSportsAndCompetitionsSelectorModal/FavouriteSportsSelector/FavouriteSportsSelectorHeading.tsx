@@ -1,12 +1,10 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 const FavouriteSportsSelectorHeading = ({
   children,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 }) => (
   <Text
     tag="h2"

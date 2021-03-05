@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { getField } from "Models/cms";
 import { PromotionTeaserRow } from "./PromotionTeaserRow";

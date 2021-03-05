@@ -1,4 +1,3 @@
-// @flow
 import React, { PureComponent } from "react";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 export class ContentMustDropJackpotsWidget extends PureComponent<{}> {

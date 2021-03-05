@@ -1,4 +1,3 @@
-// @flow
 import cx from "classnames";
 
 const baseClassName = "c-rr-booster";

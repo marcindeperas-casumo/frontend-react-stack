@@ -1,11 +1,10 @@
-// @flow
+import Text from "@casumo/cmp-text";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import { DateTime } from "luxon";
 import { pathOr } from "ramda";
 import { useDispatch } from "react-redux";
-import Text from "@casumo/cmp-text";
-import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import Flex from "@casumo/cmp-flex";
 import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
@@ -14,26 +13,26 @@ import { appManualLogoutInit } from "Models/app";
 
 type RealityCheckProps = {
   t: {
-    reality_check_title: string,
-    reality_check_message: string,
-    reality_check_amount_lost_message: string,
-    reality_check_game_round_history_button_text: string,
-    reality_check_continue_button_text: string,
-    reality_check_exit_game_button_text: string,
-    reality_check_logout_label: string,
-  },
-  onClickContinue: () => void,
-  casumoName: string,
-  locale: string,
-  currency: string,
-  realityCheck: RealityCheckType,
+    reality_check_title: string;
+    reality_check_message: string;
+    reality_check_amount_lost_message: string;
+    reality_check_game_round_history_button_text: string;
+    reality_check_continue_button_text: string;
+    reality_check_exit_game_button_text: string;
+    reality_check_logout_label: string;
+  };
+  onClickContinue: () => void;
+  casumoName: string;
+  locale: string;
+  currency: string;
+  realityCheck: RealityCheckType;
 };
 
 type CancelButtonProps = {
-  logoutLabel: string,
-  cancelLabel: string,
-  onClickCancel: () => void,
-  onClickLogout: () => void,
+  logoutLabel: string;
+  cancelLabel: string;
+  onClickCancel: () => void;
+  onClickLogout: () => void;
 };
 
 const CancelButton = ({
@@ -103,11 +102,9 @@ export function RealityCheck(props: RealityCheckProps) {
         {!isCmsEntryEmpty(amountLostMessage) && amountLostMessage}
       </Text>
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a
           role="button"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: string; role: string; tabindex: ... Remove this comment to see the full error message
-          tabindex="0"
+          tabIndex={0}
           className="u-cursor-pointer t-color-purple-60"
           onClick={onClickViewHistoryBets}
         >

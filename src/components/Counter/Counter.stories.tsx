@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { Counter } from "./";
 
@@ -10,8 +9,8 @@ const stories = storiesOf("Counter", module);
 type Props = {};
 
 type State = {
-  start: number,
-  end: number,
+  start: number;
+  end: number;
 };
 
 class MockTimerUpdate extends React.Component<Props, State> {

@@ -1,15 +1,13 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import "./MessagePage.scss";
 
 type Props = {
-  headingTermKey: string,
-  messageTermKey: string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  image: React.Node,
+  headingTermKey: string;
+  messageTermKey: string;
+  image: React.ReactNode;
 };
 
 export const MessagePage = ({
@@ -31,11 +29,13 @@ export const MessagePage = ({
         size="3xlg"
         className="u-text-align-center c-message-page__heading"
       >
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={headingTermKey} />
       </Text>
     </Flex.Item>
     <Flex.Item>
       <Text size="md" className="u-text-align-center">
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={messageTermKey} />
       </Text>
     </Flex.Item>

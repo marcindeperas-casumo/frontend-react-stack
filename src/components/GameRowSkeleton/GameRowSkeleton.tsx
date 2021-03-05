@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import * as React from "react";
 import { GameRow } from "Components/GameRow";
 
 export const GameRowSkeleton = () => {

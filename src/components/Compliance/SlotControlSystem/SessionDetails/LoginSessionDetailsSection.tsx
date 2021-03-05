@@ -1,7 +1,6 @@
-// @flow
+import Text from "@casumo/cmp-text";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import Text from "@casumo/cmp-text";
 import {
   useLocale,
   useLoginSessionSummary,
@@ -37,16 +36,13 @@ export function LoginSessionDetailsSection() {
   return (
     <>
       <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
-        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'header' does not exist on type '{}'. */}
         {t.header}
       </Text>
       <Row
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'totalBets' does not exist on type '{}'.
         label={t.totalBets}
         value={formatCurrencyBound(Math.abs(loginSessionSummary.bets))}
       />
       <Row
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'totalWins' does not exist on type '{}'.
         label={t.totalWins}
         value={formatCurrencyBound(loginSessionSummary.winnings)}
       />

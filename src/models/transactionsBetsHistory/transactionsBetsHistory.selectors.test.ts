@@ -19,12 +19,10 @@ describe("Transactions/Bets History Selectors", () => {
     };
 
     test("returns year overview if it exists", () => {
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       expect(annualOverviewSelector(2019)(state)).toEqual(annualOverview);
     });
 
     test("returns null if overview for a year does not exist", () => {
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       expect(annualOverviewSelector(2010)(state)).toEqual(null);
     });
   });
@@ -44,7 +42,6 @@ describe("Transactions/Bets History Selectors", () => {
     const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
 
     test("returns content properly formatted if it exists", () => {
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       expect(transactionsBetsHistoryContentSelector(state)).toEqual({
         label_1: "value_1",
       });
@@ -66,7 +63,6 @@ describe("Transactions/Bets History Selectors", () => {
         },
       };
 
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       expect(isAnnualOverviewFetchingSelector(year)(state)).toEqual(true);
     });
   });

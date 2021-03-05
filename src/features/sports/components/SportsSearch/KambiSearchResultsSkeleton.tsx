@@ -1,12 +1,10 @@
-// @flow
-import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 import List from "@casumo/cmp-list";
+import React from "react";
 
 const KambiSearchResultsSkeleton = () => (
   <List
     itemSpacing="md"
-    // @ts-expect-error ts-migrate(2569) FIXME: Type 'IterableIterator<number>' is not an array ty... Remove this comment to see the full error message
     items={[...Array(12).keys()]}
     render={id => (
       <Skeleton

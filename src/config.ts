@@ -1,4 +1,3 @@
-// @flow
 // TODO: Figure out where this file containing
 // domain specific configuration should live.
 import { GAME_LIST_IDS } from "./constants";

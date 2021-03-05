@@ -1,20 +1,19 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { TextInput } from "Components/Compliance/TextInput";
 import { textInputOnChange } from "./TimeLimitsForm.utils";
 
 type Props = {
-  value?: number,
-  setter: number => void,
-  min: number,
-  max: number,
-  errorMessage: string,
+  value?: number;
+  setter: (n: number) => void;
+  min: number;
+  max: number;
+  errorMessage: string;
   t: {
-    form_placeholder_enter_amount: ?string,
-    hrs_per_period: ?string,
-  },
+    form_placeholder_enter_amount: string | undefined;
+    hrs_per_period: string | undefined;
+  };
 };
 
 export function TimeLimitsFormRow({
@@ -29,7 +28,6 @@ export function TimeLimitsFormRow({
     <Flex.Item>
       <Flex align="center" spacing="md">
         <Flex.Item className="u-width--1/2">
-          {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ currencySign... Remove this comment to see the full error message */}
           <TextInput
             currencySign=""
             type="number"
@@ -40,7 +38,6 @@ export function TimeLimitsFormRow({
             fontClassName="u-font"
             colorClassName="t-color-green-30"
             inputClassName="u-text-align-right u-padding-bottom--sm"
-            // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
             onChange={textInputOnChange(setter)}
           />
         </Flex.Item>

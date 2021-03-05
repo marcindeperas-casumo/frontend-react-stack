@@ -1,4 +1,1 @@
-// @flow
-export {
-  InGameAdventureWidgetContainer as InGameAdventureWidget,
-} from "./InGameAdventureWidgetContainer";
+export { InGameAdventureWidgetContainer as InGameAdventureWidget } from "./InGameAdventureWidgetContainer";

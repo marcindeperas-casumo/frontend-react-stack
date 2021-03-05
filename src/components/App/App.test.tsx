@@ -13,13 +13,21 @@ import { AppLiS } from "./AppLiS";
 
 const store = createReduxStore(defaultState);
 
+const props = {
+  subscribeToUpdates: () => {},
+  unsubscribeToUpdates: () => {},
+  playerId: "",
+  sessionId: "",
+  isAuthenticatedHandshake: false,
+  isAppHandshakeLoaded: false,
+};
+
 describe("App", () => {
   test("onAppStart is called when the component is mounted", () => {
     const fn = jest.fn();
     mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{ onAppStarted: Mock<any, any>; }' is missin... Remove this comment to see the full error message */}
-        <App onAppStarted={fn} />
+        <App {...props} onAppStarted={fn} />
       </Provider>
     );
     expect(fn).toHaveBeenCalledTimes(1);
@@ -28,8 +36,7 @@ describe("App", () => {
   test("does not render anything if app handshake is not loaded", () => {
     const rendered = mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2740) FIXME: Type '{ onAppStarted: () => void; }' is missing th... Remove this comment to see the full error message */}
-        <App onAppStarted={() => {}} />
+        <App {...props} onAppStarted={() => {}} />
       </Provider>
     );
     expect(rendered.find(Router)).toHaveLength(0);
@@ -40,8 +47,8 @@ describe("App", () => {
 
     mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; subscribeToUpdat... Remove this comment to see the full error message */}
         <App
+          {...props}
           onAppStarted={() => {}}
           subscribeToUpdates={subscribeFn}
           playerId={"123"}
@@ -55,8 +62,7 @@ describe("App", () => {
   test("renders <AppLoS /> if not isAuthenticated", () => {
     const rendered = mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; isAppHandshakeLo... Remove this comment to see the full error message */}
-        <App onAppStarted={() => {}} isAppHandshakeLoaded />
+        <App {...props} onAppStarted={() => {}} isAppHandshakeLoaded />
       </Provider>
     );
     expect(rendered.find(AppLoS)).toHaveLength(1);
@@ -65,8 +71,8 @@ describe("App", () => {
   test("renders <AppLiS /> if isAuthenticated", () => {
     const rendered = mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: () => void; isAppHandshakeLo... Remove this comment to see the full error message */}
         <App
+          {...props}
           onAppStarted={() => {}}
           isAppHandshakeLoaded
           isAuthenticatedHandshake
@@ -80,8 +86,7 @@ describe("App", () => {
     const fn = jest.fn();
     const rendered = mount(
       <Provider store={store}>
-        {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ onAppStarted: Mock<any, any>; isAppHandsha... Remove this comment to see the full error message */}
-        <App onAppStarted={fn} isAppHandshakeLoaded />
+        <App {...props} onAppStarted={fn} isAppHandshakeLoaded />
       </Provider>
     );
 

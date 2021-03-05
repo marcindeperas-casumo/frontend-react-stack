@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { useInterval, useTimeoutFn } from "react-use";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { WinsInARowBooster } from "./WinsInARowBooster";
 
@@ -25,39 +24,51 @@ if (isNotChromatic) {
   });
 
   stories.add("3 wins in a row", () => {
-    const [threeWinsInARow, setWinsInARow] = React.useState(2);
+    function WinsInARowBoosterStory() {
+      const [threeWinsInARow, setWinsInARow] = React.useState(2);
 
-    useTimeoutFn(() => {
-      setWinsInARow(3);
-    }, 500);
+      useTimeoutFn(() => {
+        setWinsInARow(3);
+      }, 500);
 
-    return <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />;
+      return <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />;
+    }
+
+    return <WinsInARowBoosterStory />;
   });
 
   stories.add("step by step", () => {
-    const [winsInARow, setWinsInARow] = React.useState(0);
+    function WinsInARowBoosterStory() {
+      const [winsInARow, setWinsInARow] = React.useState(0);
 
-    useInterval(() => {
-      setWinsInARow(prevValue => prevValue + 1);
-    }, 2000);
+      useInterval(() => {
+        setWinsInARow(prevValue => prevValue + 1);
+      }, 2000);
 
-    return <WinsInARowBooster {...props} winsInARow={winsInARow % 4} />;
+      return <WinsInARowBooster {...props} winsInARow={winsInARow % 4} />;
+    }
+
+    return <WinsInARowBoosterStory />;
   });
 } else {
   stories.add("Chromatic", () => {
-    const [threeWinsInARow, setWinsInARow] = React.useState(2);
+    function WinsInARowBoosterStory() {
+      const [threeWinsInARow, setWinsInARow] = React.useState(2);
 
-    useTimeoutFn(() => {
-      setWinsInARow(3);
-    }, 500);
+      useTimeoutFn(() => {
+        setWinsInARow(3);
+      }, 500);
 
-    return (
-      <>
-        <WinsInARowBooster {...props} winsInARow={0} />
-        <WinsInARowBooster {...props} winsInARow={1} />
-        <WinsInARowBooster {...props} winsInARow={2} />
-        <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />
-      </>
-    );
+      return (
+        <>
+          <WinsInARowBooster {...props} winsInARow={0} />
+          <WinsInARowBooster {...props} winsInARow={1} />
+          <WinsInARowBooster {...props} winsInARow={2} />
+          <WinsInARowBooster {...props} winsInARow={threeWinsInARow} />
+        </>
+      );
+    }
+
+    return <WinsInARowBoosterStory />;
   });
 }

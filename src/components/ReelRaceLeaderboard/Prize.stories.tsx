@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { Prize } from "./Prize";
 
 const stories = storiesOf("ReelRaceLeaderboard/Prize", module);

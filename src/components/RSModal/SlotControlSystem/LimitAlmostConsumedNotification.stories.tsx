@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import { LimitAlmostConsumedNotification } from "./LimitAlmostConsumedNotification";
 
 const stories = storiesOf("RSModal/SlotControlSystem", module);

@@ -1,4 +1,3 @@
-//@flow
 import * as storage from "Lib/storage";
 import { STORE_PERSISTED_STATE_KEY } from "Src/constants";
 import { types } from "./promotions.constants";

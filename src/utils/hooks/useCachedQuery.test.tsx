@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
-import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/client/testing";
 import { useQuery, gql } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
+import { mount } from "enzyme";
+import * as React from "react";
 import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { HookWrapper, getHookValue } from "Utils/HookWrapper";
 import { useCachedQuery } from "./useCachedQuery";

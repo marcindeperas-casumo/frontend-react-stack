@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 export function SectionHeader(props: { children: string }) {
   return (

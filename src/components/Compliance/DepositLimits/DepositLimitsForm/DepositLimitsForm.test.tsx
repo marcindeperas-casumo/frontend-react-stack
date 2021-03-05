@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { DateTime } from "luxon";
 import { shallow } from "enzyme";
@@ -28,7 +27,6 @@ const props: FormPropsWithTranslations = {
 };
 
 function setUpDepositLimitsForm(override = {}) {
-  // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ t: { daily_s... Remove this comment to see the full error message
   return shallow(<DepositLimitsForm {...props} {...override} />)
     .find({ "data-test-id": "inputValidation" })
     .prop("children"); // for some unknown reason .text() or .children() didn't work

@@ -1,21 +1,20 @@
-// @flow
-import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import List from "@casumo/cmp-list";
 import Media from "@casumo/cmp-media";
+import React, { PureComponent } from "react";
 
 type Props = {
   /** The items to render as a list */
-  items: Array<Object>,
+  items: Array<Object>;
 };
 
 type ContentMediaListItemProps = {
   /** The image url */
-  image: string,
+  image: string;
   /** The title text */
-  title: string,
+  title: string;
   /** The description text underneath title text */
-  text: string,
+  text: string;
 };
 
 const ContentMediaListItem = ({

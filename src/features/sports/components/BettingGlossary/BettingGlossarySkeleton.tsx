@@ -1,7 +1,6 @@
-// @flow
+import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
 import * as R from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 
 const heights = {
   margin: 32,
@@ -21,7 +20,7 @@ const SkeletonItem = ({ height, index }) => {
     R.intersperse(heights.margin),
     R.prepend(index === 0 ? 0 : heights.margin),
     R.sum
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(skeletonItems);
 
   return (
@@ -47,9 +46,10 @@ export const BettingGlossarySkeleton = () => (
   >
     {skeletonItems.map((height, index) => (
       <SkeletonItem
-        {...{ height, index, key: `betting-glossary-skeleton-${index}` }}
+        key={`betting-glossary-skeleton-${index}`}
+        height={height}
+        index={index}
       />
     ))}
-    /> ))}
   </Skeleton>
 );

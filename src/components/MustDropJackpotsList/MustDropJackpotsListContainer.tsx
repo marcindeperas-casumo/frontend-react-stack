@@ -1,7 +1,6 @@
-// @flow
+import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as R from "ramda";
-import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
@@ -10,7 +9,6 @@ import { setData, setScroll } from "Models/gameBrowser";
 import { useTranslations } from "Utils/hooks/useTranslations";
 import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/GameListHorizontalWithWidget";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './MustDropJackpotsListContaine... Remove this comment to see the full error message
 import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
 export const MustDropJackpotsListContainer = React.memo<null>(() => {
@@ -30,7 +28,6 @@ export const MustDropJackpotsListContainer = React.memo<null>(() => {
     dispatch(
       setData({
         page: "jackpots",
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ page: string; filters: { "game... Remove this comment to see the full error message
         filters: { "gameFeatures=mustDropJackpot": true },
       })
     );
@@ -47,8 +44,7 @@ export const MustDropJackpotsListContainer = React.memo<null>(() => {
         data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
       >
         <GameListHorizontalWithWidget
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'any[]' is not assignable to type 'string'.
-          name={R.pathOr([], ["gamesList", "name"], data)}
+          name={R.path(["gamesList", "name"], data)}
           games={R.pathOr([], ["gamesList", "games"], data)}
           Widget={MustDropJackpotsWidget}
           seeMore={{

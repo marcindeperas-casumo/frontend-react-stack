@@ -1,8 +1,7 @@
-// @flow
-import React, { PureComponent } from "react";
-import classNames from "classnames";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
+import classNames from "classnames";
 import { isMobile } from "Components/ResponsiveLayout";
 import DangerousHtml from "Components/DangerousHtml";
 
@@ -10,12 +9,12 @@ import "./SearchNotFound.scss";
 
 export type Props = {
   /** The not found image to render */
-  image: string,
+  image: string;
   /** The not found text title to render */
-  title: string,
+  title: string;
   /** The not found text content to render */
-  content: string,
-  className?: string,
+  content: string;
+  className?: string;
 };
 
 export class SearchNotFound extends PureComponent<Props> {

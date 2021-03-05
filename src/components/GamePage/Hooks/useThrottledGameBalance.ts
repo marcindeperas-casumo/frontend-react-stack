@@ -1,6 +1,5 @@
-// @flow
-import { useRef, useState } from "react";
 import { useDebounce } from "react-use";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { WALLET_BALANCE_DELAY_DURATION } from "Models/playing/playing.constants";
 import { useGameJackpotActivity } from "Components/GamePage/Hooks/useGameJackpotActivity";

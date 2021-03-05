@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { realityCheckSelector } from "Models/playOkay/realityCheck";
 import {

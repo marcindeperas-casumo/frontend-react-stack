@@ -1,11 +1,10 @@
-// @flow
-import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import React, { PureComponent } from "react";
 
 type Props = {
   /** The section title */
-  title: string,
+  title: string;
 };
 
 export class GamesVirtualListTitle extends PureComponent<Props> {

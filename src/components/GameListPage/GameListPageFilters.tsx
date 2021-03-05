@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import classNames from "classnames";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ModalBase, ModalHeader } from "Components/RSModal";
@@ -14,18 +13,17 @@ import { FilterChip, FilterCheckbox } from "Components/FilterComponents";
 import "./gameListPageFilters.scss";
 
 type Props = {
-  isOpen: boolean,
-  setFilters: any => void,
-  close: () => void,
-  availableFilters: Array<A.GetGameSets_gameSetsList_additionalFilterGroups>,
-  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-  activeFilters: { [string]: boolean },
-  numberOfGames: number,
+  isOpen: boolean;
+  setFilters: (filter: any) => void;
+  close: () => void;
+  availableFilters: A.GetGameSetsQuery["gameSetsList"][number]["additionalFilterGroups"];
+  activeFilters: { [filter: string]: boolean };
+  numberOfGames: number;
 };
 export function GameListPageFilters(props: Props) {
   const t = useTranslations<{
-    title: string,
-    modal_button: string,
+    title: string;
+    modal_button: string;
   }>("new-game-browser.filtering");
 
   return (

@@ -1,4 +1,3 @@
-// @flow
 import { cloneableGenerator } from "redux-saga/utils";
 import { REACT_APP_MODAL } from "Src/constants";
 import { showModal, isModalHiddenSelector } from "Models/modal";
@@ -10,6 +9,7 @@ import { waitForSelector, navigateToRootWithReload } from "Utils";
 import { appAutomaticLogoutSaga } from "Models/app";
 
 describe("appAutomaticLogoutSaga()", () => {
+  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const generator = cloneableGenerator(appAutomaticLogoutSaga)();
   const delayTest = () => {
     const effect = generator.next();
@@ -40,7 +40,6 @@ describe("appAutomaticLogoutSaga()", () => {
 
   test("it triggers showing Slot System Modal", () => {
     const expectedAction = showModal(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT,
       {
         mustAccept: true,

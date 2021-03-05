@@ -1,9 +1,8 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonInverted, ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
+import React from "react";
 import { convertHTMLToString } from "Utils";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";

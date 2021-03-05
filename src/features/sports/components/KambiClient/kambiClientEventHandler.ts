@@ -1,4 +1,3 @@
-// @flow
 import { pathOr } from "ramda";
 import { isDesktop, isTablet } from "Components/ResponsiveLayout";
 import bridge from "Src/DurandalReactBridge";
@@ -18,9 +17,9 @@ export const KAMBI_EVENTS = {
   SANDWICH_FILTER_CLICK: "kambi sandwich filter click",
   MORE_WAGERS_CLICK: "kambi kambi more wagers click",
   BET_DENIED: "kambi bet denied",
-};
+} as const;
 
-const trackPageView = (page: { type: string, title: string, path: string }) => {
+const trackPageView = (page: { type: string; title: string; path: string }) => {
   // clean up bethistory date in path
   const cleanPath = page.type === "bethistory" ? "/bethistory" : page.path;
 
@@ -47,7 +46,7 @@ const trackHomeFilterClicked = (type: string) => {
   });
 };
 
-const trackHomeMatchClicked = (page: { title: string, path: string }) => {
+const trackHomeMatchClicked = (page: { title: string; path: string }) => {
   tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_MATCH_CLICKED, {
     [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
     [EVENT_PROPS.SPORTS_PAGE_PATH]: page.path,
@@ -60,7 +59,7 @@ const trackAddToBetslip = (kambi: any) => {
     .split("/")
     .includes("in-play");
 
-  bet &&
+  if (bet) {
     tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP, {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type 'any[]'.
       [EVENT_PROPS.SPORTS_EVENT_ID]: bet.id,
@@ -73,6 +72,7 @@ const trackAddToBetslip = (kambi: any) => {
         bet.betslipLocationSource
       }`,
     });
+  }
 };
 
 const trackBetPlaced = (

@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
+import * as React from "react";
 import { ProgressArc } from "./ProgressArc";
 
 const stories = storiesOf("Progress/ProgressArc", module);

@@ -1,22 +1,20 @@
-// @flow
-import React from "react";
-import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
+import cx from "classnames";
+import React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { leftPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type Props = {
   /** The text to show */
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  title: ?string,
+  title: string | undefined;
   /** Whether applying padding left or not */
-  paddingLeft?: boolean,
+  paddingLeft?: boolean;
   /** Size to apply on padding left */
-  paddingPerDevice?: spacerSizes | responsiveSpacerSizes,
+  paddingPerDevice?: spacerSizes | responsiveSpacerSizes;
 };
 
 export default function ScrollableListTitle({

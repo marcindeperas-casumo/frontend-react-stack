@@ -1,14 +1,13 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowLeftIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 
 type Props = {
   t: {
-    deposit_limits: string,
-  },
-  goBack: void => void,
+    deposit_limits: string;
+  };
+  goBack: () => void;
 };
 
 export function GoBack({ t, ...props }: Props) {

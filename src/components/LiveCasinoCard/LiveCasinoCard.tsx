@@ -1,11 +1,10 @@
-// @flow
-import React, { PureComponent } from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { ButtonSecondary, ButtonPrimary } from "@casumo/cmp-button";
+import cx from "classnames";
+import React, { PureComponent } from "react";
 import { prop } from "ramda";
 import { launchGame } from "Services/LaunchGameService";
 import { convertHTMLToString, renderBets } from "Utils";
@@ -19,13 +18,13 @@ import * as A from "Types/apollo";
 import "./LiveCasinoCard.scss";
 
 export type Props = {
-  game: A.GameListLiveCasinoQuery_gamesList_games,
+  game: A.GameListLiveCasinoQuery["gamesList"]["games"][number];
   t?: {
-    play_now: string,
-    bet_behind: string,
-    open_seats: string,
-    table_temporarily_unavailable: string,
-  },
+    play_now: string;
+    bet_behind: string;
+    open_seats: string;
+    table_temporarily_unavailable: string;
+  };
 };
 
 export class LiveCasinoCard extends PureComponent<Props> {

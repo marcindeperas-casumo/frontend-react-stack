@@ -1,7 +1,6 @@
-// @flow
+import { storiesOf } from "@storybook/react";
 import React from "react";
 import * as R from "ramda";
-import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
 import { ReelRaceLeaderboardResults } from "./ReelRaceLeaderboardResults";
@@ -34,7 +33,7 @@ const Wrapper = ({ children }) => (
           R.sortBy(R.prop("position")),
           // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           R.pluck("playerId")
-        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+          // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(newLeaderboard),
       },
     }}
@@ -84,7 +83,6 @@ const SimulateLeaderboard = () => {
   React.useEffect(() => {
     setTimeout(() => {
       setLb(s =>
-        // $FlowIgnore
         s.map(x => (x.playerId === "50" ? { ...x, position: 35 } : x))
       );
     }, 6000);
@@ -95,7 +93,6 @@ const SimulateLeaderboard = () => {
       <SidebarElementWrapper>
         <ReelRaceLeaderboardResults
           size={lb.length}
-          // $FlowIgnore
           // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; leaderboard: { playerId: str... Remove this comment to see the full error message
           leaderboard={lb}
           playerId="50"
@@ -110,7 +107,6 @@ const SimulateLeaderboard = () => {
       <SidebarElementWrapper>
         <ReelRaceLeaderboardResults
           size={lb.length}
-          // $FlowIgnore
           // @ts-expect-error ts-migrate(2322) FIXME: Type '{ size: number; leaderboard: { playerId: str... Remove this comment to see the full error message
           leaderboard={lb}
           playerId="50"

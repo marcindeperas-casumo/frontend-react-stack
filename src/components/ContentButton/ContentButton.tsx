@@ -1,12 +1,11 @@
-// @flow
-import React, { PureComponent } from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import React, { PureComponent } from "react";
 
 type Props = {
   /** text to render inside button */
-  text: string,
+  text: string;
   /** link for the button */
-  type: string,
+  type: string;
 };
 
 // TODO: Find a better way to scale this

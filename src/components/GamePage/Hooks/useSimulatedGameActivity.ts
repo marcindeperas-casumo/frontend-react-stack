@@ -1,5 +1,3 @@
-// @flow
-
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { playerBalanceAmountSelector } from "Models/player";

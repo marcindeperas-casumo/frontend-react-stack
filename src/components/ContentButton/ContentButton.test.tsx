@@ -1,6 +1,6 @@
+import { ButtonPrimary } from "@casumo/cmp-button";
 import React from "react";
 import { shallow } from "enzyme";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import { ContentButton, ACTION_MAP } from "./ContentButton";
 
 describe("ContentButton", () => {

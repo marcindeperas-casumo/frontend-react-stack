@@ -1,5 +1,3 @@
-// @flow
-
 import { put, select, take, all } from "redux-saga/effects";
 import { ENTITY_KEYS, updateEntity } from "Models/schema";
 import { playerIdSelector, adventureLevelsSelector } from "Models/handshake";
@@ -10,8 +8,7 @@ import {
 import { actionTypes } from "./adventure.constants";
 import { translateBeltNumberToColor } from "./adventure.utils";
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export function* fetchAdventurerSaga(): * {
+export function* fetchAdventurerSaga() {
   const playerId = yield select(playerIdSelector);
   const levels = yield select(adventureLevelsSelector);
 

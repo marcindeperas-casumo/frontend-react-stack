@@ -1,9 +1,7 @@
-// @flow
-
 const noop = () => {};
 
 type Logger = {
-  info: (...args: Array<any>) => void,
+  info: (...args: Array<any>) => void;
 };
 
 const trackerAdapterLog = (logger: Logger) => ({

@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import cx from "classnames";
 
 import "../ReelRaceIcon.scss";
@@ -11,9 +10,9 @@ export const PointsView = ({
   pointsText,
   className,
 }: {
-  className?: string,
-  points: number,
-  pointsText?: string,
+  className?: string;
+  points: number;
+  pointsText?: string;
 }) => {
   return (
     <Flex

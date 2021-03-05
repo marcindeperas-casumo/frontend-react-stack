@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { ContentMediaList } from "Components/ContentMediaList";
 import mockData from "./__mocks__/jackpotDetails.json";
 

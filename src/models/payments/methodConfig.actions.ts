@@ -1,11 +1,10 @@
-//@flow
 import { actionTypes } from "./methodConfig.constants";
 import type { LocalPaymentMethodType } from "./piq.types";
 import type { MethodConfigType, ActionTypes } from "./methodConfig.types";
 
 type PreparePaymentMethodConfigReturnType = {
-  type: ActionTypes,
-  methodType: LocalPaymentMethodType,
+  type: ActionTypes;
+  methodType: LocalPaymentMethodType;
 };
 
 export const preparePaymentMethodConfig = (
@@ -16,9 +15,9 @@ export const preparePaymentMethodConfig = (
 });
 
 type SetPaymentMethodConfigReturnType = {
-  type: ActionTypes,
-  methodType: LocalPaymentMethodType,
-  config: MethodConfigType,
+  type: ActionTypes;
+  methodType: LocalPaymentMethodType;
+  config: MethodConfigType;
 };
 
 export const setPaymentMethodConfig = (

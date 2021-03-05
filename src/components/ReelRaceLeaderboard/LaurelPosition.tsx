@@ -1,18 +1,17 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { LaurelIcon } from "@casumo/cmp-icons";
+import * as React from "react";
+import cx from "classnames";
 import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
 
 import "./LaurelPosition.scss";
 
 type Props = {
-  position: number,
-  className?: string,
-  highlighted?: boolean,
-  showLaurel?: boolean,
-  inverted?: boolean,
+  position: number;
+  className?: string;
+  highlighted?: boolean;
+  showLaurel?: boolean;
+  inverted?: boolean;
 };
 
 export const LaurelPosition = ({

@@ -1,5 +1,3 @@
-/* @flow */
-
 import { gql } from "@apollo/client";
 
 export const NAVIGATE_CLIENT_MUTATION = gql`

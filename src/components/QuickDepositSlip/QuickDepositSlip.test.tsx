@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useDispatch } from "react-redux";
 import { act } from "react-dom/test-utils";
@@ -41,8 +40,7 @@ describe("<QuickDepositSlip />", () => {
 
     beforeEach(() => {
       dispatchMock = jest.fn();
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-      useDispatch.mockReturnValue(dispatchMock);
+      (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
       rendered = mount(<QuickDepositSlip {...props} />);
       depositAmountSelector = rendered.find(`[data-test-id='${DATA_TEST_ID}']`);
       input = depositAmountSelector.find("input").at(0);
@@ -54,7 +52,6 @@ describe("<QuickDepositSlip />", () => {
 
     test("should show error messages for minimum amount", () => {
       act(() => {
-        // $FlowIgnore
         input.instance().value = 5;
         input.simulate("change");
         rendered.update();
@@ -69,7 +66,6 @@ describe("<QuickDepositSlip />", () => {
 
     test("should show error message for maximum amount", () => {
       act(() => {
-        // $FlowIgnore
         input.instance().value = 101;
         input.simulate("change");
         rendered.update();

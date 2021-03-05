@@ -1,6 +1,6 @@
+import Text from "@casumo/cmp-text";
 import React from "react";
 import { shallow } from "enzyme";
-import Text from "@casumo/cmp-text";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
 import { topCardLettersDisplay } from "./utils";
 import {
@@ -23,11 +23,9 @@ describe("LiveCasinoCardData", () => {
         <LiveCasinoCardData liveCasinoLobby={Roulette.liveCasinoLobby} t={t} />
       );
       const results = Roulette.liveCasinoLobby.results.slice(0, 10);
-      const numbersTexts = component
-        .find("LobbyType")
-        .shallow()
-        .find(Text);
+      const numbersTexts = component.find("LobbyType").shallow().find(Text);
       const rendered = numbersTexts.map(node =>
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'children' does not exist on type 'unknow... Remove this comment to see the full error message
         node.props().children.toString()
       );
 
@@ -47,6 +45,7 @@ describe("LiveCasinoCardData", () => {
         .map(v => topCardLettersDisplay[v]);
       const rendered = data
         .find(Text)
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'children' does not exist on type 'unknow... Remove this comment to see the full error message
         .map(node => node.props().children.toString());
       expect(rendered).toEqual(results);
       expect(data.find(Text)).toHaveLength(10);
@@ -67,6 +66,7 @@ describe("LiveCasinoCardData", () => {
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
       const rendered = data
         .find(Text)
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'children' does not exist on type 'unknow... Remove this comment to see the full error message
         .map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);

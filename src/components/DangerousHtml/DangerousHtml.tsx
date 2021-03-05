@@ -1,10 +1,9 @@
-// @flow
 import React, { PureComponent } from "react";
 
 type OwnProps = {
-    html: string;
-    element: string;
-    className: string;
+  html: string;
+  element: string;
+  className: string;
 };
 
 type Props = OwnProps & typeof DangerousHtml.defaultProps;

@@ -1,4 +1,3 @@
-// @flow
 export const depositLimitsTypes = {
   FETCH_ALL: "DEPOSIT_LIMITS/FETCH_ALL",
   FETCH_ALL_DONE: "DEPOSIT_LIMITS/FETCH_ALL_DONE",

@@ -1,8 +1,7 @@
-// @flow
+import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
-import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import cometd from "Models/cometd/cometd.service";
 import { playerIdSelector, tournamentChannelsSelector } from "Models/handshake";
@@ -11,60 +10,56 @@ import {
   getClosestReelRace,
   RACE_STATE,
 } from "Models/reelRaces";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './useCurrentReelRaceInfo.graph... Remove this comment to see the full error message
 import { CurrentReelRaceInfoQuery } from "./useCurrentReelRaceInfo.graphql";
 import { useTimeoutFn } from "./useTimeoutFn";
 import { useCallOnce } from "./useCallOnce";
 
 type LeaderboardObjectType = {
-  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-  [string]: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard,
+  [s: string]: A.CurrentReelRaceInfoQuery["reelRaces"][number]["leaderboard"];
 };
 
 export type CurrentReelRaceInfo = {
-  game: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  position: number,
-  points: number,
-  remainingSpins: number,
-  isInProgress: boolean,
-  optedIn: boolean,
-  hasEnded: boolean,
-  tournamentId: ?string,
-  formattedPrizes: Array<string>,
-  boosters: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
-  leaderboard: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
+  game: A.CurrentReelRaceInfoQuery["reelRaces"][number]["game"] | undefined;
+  startTime: number;
+  endTime: number;
+  position: number;
+  points: number;
+  remainingSpins: number;
+  isInProgress: boolean;
+  optedIn: boolean;
+  hasEnded: boolean;
+  tournamentId: string | undefined;
+  formattedPrizes: Array<string>;
+  boosters: A.CurrentReelRaceInfoQuery["reelRaces"][number]["leaderboard"][number]["boosters"];
+  leaderboard: A.CurrentReelRaceInfoQuery["reelRaces"][number]["leaderboard"];
 };
 
 type CreateCurrentReelRaceDataType = {
-  id?: ?string,
-  optedIn?: boolean,
-  startTime?: number,
-  endTime?: number,
-  leaderboard?: LeaderboardObjectType,
-  formattedPrizes?: Array<string>,
-  game?: ?A.CurrentReelRaceInfoQuery_reelRaces_game,
-  cometdChannels?: Array<string>,
+  id?: string | undefined;
+  optedIn?: boolean;
+  startTime?: number;
+  endTime?: number;
+  leaderboard?: LeaderboardObjectType;
+  formattedPrizes?: Array<string>;
+  game?: A.CurrentReelRaceInfoQuery["reelRaces"][number]["game"] | undefined;
+  cometdChannels?: Array<string>;
 };
 
 type CometdReelRaceEnteredType = {
-  status: string,
-  tournamentId: string,
+  status: string;
+  tournamentId: string;
 };
 
 type CometdReelRaceFinishedType = {
-  tournamentId: string,
-  leaderboard: LeaderboardObjectType,
+  tournamentId: string;
+  leaderboard: LeaderboardObjectType;
 };
 
 export const UNSET_VALUE = -1;
 
 const defaultReelRaceInfo: CurrentReelRaceInfo = {
   game: null,
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'BigInt'.
   startTime: UNSET_VALUE,
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'BigInt'.
   endTime: UNSET_VALUE,
   position: UNSET_VALUE,
   points: 0,
@@ -85,15 +80,17 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
 };
 
 export const convertLeaderboardToObject = (
-  leaderboard?: ?Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
+  // @ts-expect-error ts-migrate(1015) FIXME: Parameter cannot have question mark and initialize... Remove this comment to see the full error message
+  leaderboard?: Array<A.CurrentReelRaceInfoQuery_reelRaces_leaderboard> = []
 ): LeaderboardObjectType =>
   leaderboard
     ? leaderboard.reduce(
         (
           acc: LeaderboardObjectType,
-          entry: A.CurrentReelRaceInfoQuery_reelRaces_leaderboard
+          entry: A.CurrentReelRaceInfoQuery["reelRaces"][number]["leaderboard"]
         ) => ({
           ...acc,
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'playerId' does not exist on type '{ play... Remove this comment to see the full error message
           [entry.playerId]: entry,
         }),
         {}
@@ -101,7 +98,7 @@ export const convertLeaderboardToObject = (
     : {};
 
 export const createCurrentReelRaceData = (
-  playerId: ?string,
+  playerId: string | undefined,
   {
     id,
     startTime,
@@ -126,9 +123,7 @@ export const createCurrentReelRaceData = (
 
   return {
     ...defaultReelRaceInfo,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | BigInt' is not assignable to type '... Remove this comment to see the full error message
     startTime: startTime || defaultReelRaceInfo.startTime,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | BigInt' is not assignable to type '... Remove this comment to see the full error message
     endTime: endTime || defaultReelRaceInfo.endTime,
     game,
     cometdChannels,
@@ -154,10 +149,8 @@ export const createCurrentReelRaceData = (
     ),
     hasEnded: Boolean(endTime && endTime >= 0 && Date.now() >= endTime),
     tournamentId: id,
-    leaderboard: R.pipe(
-      R.values,
-      R.sortBy(R.prop("position"))
-    )(leaderboard),
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ playerId: string; playerName: string; posi... Remove this comment to see the full error message
+    leaderboard: R.pipe(R.values, R.sortBy(R.prop("position")))(leaderboard),
     formattedPrizes: formattedPrizes || [],
     boosters: R.propOr(
       defaultReelRaceInfo.boosters,
@@ -168,21 +161,20 @@ export const createCurrentReelRaceData = (
 };
 
 const statusHandler = (
-  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
-  setCurrentReelRaceData: CurrentReelRaceInfo => void,
-  // @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'playerId'.
+  reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
+  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
+  setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
   playerId: string
 ) => ({ data }: { data: CometdReelRaceEnteredType }) => {
   if (
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
     reelRace?.id === data.tournamentId &&
     data.status === RACE_STATE.STARTED
   ) {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
     const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
       reelRace || {};
 
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setCurrentReelRaceData'.
     setCurrentReelRaceData({
       ...createCurrentReelRaceData(playerId, {
         ...(currentReelRaceRest
@@ -193,6 +185,7 @@ const statusHandler = (
               ),
             }
           : {}),
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ isInProgress: boolean; leaderb... Remove this comment to see the full error message
         isInProgress: true,
       }),
     });
@@ -200,18 +193,17 @@ const statusHandler = (
 };
 
 const finishedHandler = (
-  reelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
-  setCurrentReelRaceData: CurrentReelRaceInfo => void,
-  // @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'playerId'.
+  reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
+  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
+  setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
   playerId: string
 ) => ({ data }: { data: CometdReelRaceFinishedType }) => {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
   if (reelRace?.id === data.tournamentId) {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
     const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'reelRace'.
       reelRace || {};
 
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setCurrentReelRaceData'.
     setCurrentReelRaceData({
       ...createCurrentReelRaceData(playerId, {
         ...(currentReelRaceRest
@@ -223,6 +215,7 @@ const finishedHandler = (
             }
           : {}),
         leaderboard: data.leaderboard,
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ leaderboard: LeaderboardObject... Remove this comment to see the full error message
         isInProgress: false,
         hasEnded: true,
       }),
@@ -231,30 +224,30 @@ const finishedHandler = (
 };
 
 const reelRaceApplies = (
-  localCurrentReelRace?: ?A.CurrentReelRaceInfoQuery_reelRaces,
-  localGameSlug: ?string
+  localCurrentReelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
+  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
+  localGameSlug: string | undefined
 ): boolean =>
   Boolean(
     localCurrentReelRace &&
       (!localGameSlug ||
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'game' does not exist on type '{ id: stri... Remove this comment to see the full error message
         (localGameSlug && localCurrentReelRace.game.slug === localGameSlug))
   );
 
 // After is mounted we show initial leaderboard from reelRace.
 // It shows new leaderboard only when event happens.
 export function useCurrentReelRaceInfo(
-  gameSlug: ?string
-): ?CurrentReelRaceInfo {
+  gameSlug?: string | undefined
+): CurrentReelRaceInfo | undefined {
   const { data: reelRaceQueryData, loading, refetch } = useQuery<
     A.CurrentReelRaceInfoQuery,
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '_'.
-    _
+    A.CurrentReelRaceInfoQueryVariables
   >(CurrentReelRaceInfoQuery, {
     fetchPolicy: "cache-first",
   });
   // This combined with cache-first fetch policy will make sure that we are not
   // bombarding graphql server with unnecessary requests
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
   useCallOnce(true, refetch);
 
   const playerId = useSelector(playerIdSelector, shallowEqual);
@@ -264,7 +257,7 @@ export function useCurrentReelRaceInfo(
   const [
     currentReelRaceData,
     setCurrentReelRaceData,
-  ] = React.useState<?CurrentReelRaceInfo>(null);
+  ] = React.useState<CurrentReelRaceInfo | null>(null);
 
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>
@@ -287,14 +280,14 @@ export function useCurrentReelRaceInfo(
   React.useEffect(() => {
     if (!loading && reelRaceQueryData && reelRaceQueryData.reelRaces?.length) {
       const closestReelRace = getClosestReelRace(reelRaceQueryData.reelRaces);
-      const localCurrentReelRace = getCurrentReelRace<A.CurrentReelRaceInfoQuery_reelRaces>(
-        reelRaceQueryData.reelRaces
-      );
+      const localCurrentReelRace = getCurrentReelRace<
+        A.CurrentReelRaceInfoQuery["reelRaces"]
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ id: string; startTime: number;... Remove this comment to see the full error message
+      >(reelRaceQueryData.reelRaces);
 
       refetchTimeout.scheduleAt(
         refetch,
         Math.floor(
-          // @ts-expect-error ts-migrate(2365) FIXME: Operator '+' cannot be applied to types 'number | ... Remove this comment to see the full error message
           (closestReelRace ? closestReelRace.endTime : Date.now()) +
             (61 + Math.random() * 60) * 1000
         )
@@ -304,35 +297,35 @@ export function useCurrentReelRaceInfo(
         setCurrentReelRaceData(
           // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
           createCurrentReelRaceData(playerId, {
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'startTime' does not exist on type '{ id:... Remove this comment to see the full error message
             startTime: localCurrentReelRace.startTime,
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'endTime' does not exist on type '{ id: s... Remove this comment to see the full error message
             endTime: localCurrentReelRace.endTime,
             leaderboard: convertLeaderboardToObject(
-              // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
               localCurrentReelRace.leaderboard
             ),
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'game' does not exist on type '{ id: stri... Remove this comment to see the full error message
             game: localCurrentReelRace.game,
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
             id: localCurrentReelRace.id,
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'formattedPrizes' does not exist on type ... Remove this comment to see the full error message
             formattedPrizes: localCurrentReelRace.formattedPrizes,
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'cometdChannels' does not exist on type '... Remove this comment to see the full error message
             cometdChannels: localCurrentReelRace.cometdChannels,
-            // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'optedIn' does not exist on type '{ id: s... Remove this comment to see the full error message
             optedIn: localCurrentReelRace.optedIn,
           })
         );
 
-        // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'cometdChannels' does not exist on type '... Remove this comment to see the full error message
         localCurrentReelRace.cometdChannels.forEach(channel => {
           cometd.subscribe(
             `${channel}/tournaments/tournamentProperties/status`,
             statusHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
-              // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 3.
+              // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
               playerId
             )
           );
@@ -342,7 +335,7 @@ export function useCurrentReelRaceInfo(
             finishedHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
-              // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 3.
+              // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
               playerId
             )
           );
@@ -353,7 +346,7 @@ export function useCurrentReelRaceInfo(
         refetchTimeout.clear();
         updateTimeout.clear();
         if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
-          // $FlowIgnoreError: localCurrentReelRace is checked against null inside reelRaceApplies
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'cometdChannels' does not exist on type '... Remove this comment to see the full error message
           localCurrentReelRace.cometdChannels.forEach(channel => {
             // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
             cometd.unsubscribe(

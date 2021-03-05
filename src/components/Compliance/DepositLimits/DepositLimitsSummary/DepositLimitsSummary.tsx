@@ -1,51 +1,49 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
+import * as R from "ramda";
+import * as React from "react";
 import { formatCurrency } from "Utils";
 import {
   diffLimits,
   checkIfConditionsApply,
   getChangedLimitsValues,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type AllLimits,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type DepositKinds,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
+import type {
+  AllLimits,
+  DepositKinds,
+  DepositLimitPreadjust,
+} from "Models/playOkay/depositLimits";
+import { limitTypes } from "..";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 import { AdditionalConditions } from "./AdditionalConditions";
-import { limitTypes } from "..";
 
 type Props = {
-  currency: string,
-  locale: string,
+  currency: string;
+  locale: string;
   t: {
-    summary_title: string,
-    save_limits_button_conditions: string,
-    save_limits_button: string,
-    daily: string,
-    weekly: string,
-    monthly: string,
-    daily_removed: string,
-    weekly_removed: string,
-    monthly_removed: string,
-    approval_required_for_subsequent_increases: string,
-    approval_required_for_increase: string,
-    responsible_gambling_test_required: string,
-    decrease_effective_immediately: string,
-    revocation_allowed: string,
-  },
-  newLimits: AllLimits,
-  currentLimits: AllLimits,
-  edit: DepositKinds => void,
-  confirmLimitsAdjust: () => void,
-  fetchTranslations: () => void,
-  preadjust: DepositLimitPreadjust,
+    summary_title: string;
+    save_limits_button_conditions: string;
+    save_limits_button: string;
+    daily: string;
+    weekly: string;
+    monthly: string;
+    daily_removed: string;
+    weekly_removed: string;
+    monthly_removed: string;
+    approval_required_for_subsequent_increases: string;
+    approval_required_for_increase: string;
+    responsible_gambling_test_required: string;
+    decrease_effective_immediately: string;
+    revocation_allowed: string;
+  };
+  newLimits: AllLimits;
+  currentLimits: AllLimits;
+  edit: (depositKind: DepositKinds) => void;
+  confirmLimitsAdjust: () => void;
+  fetchTranslations: () => void;
+  preadjust: DepositLimitPreadjust;
 };
 
 export function DepositLimitsSummary({ t, ...props }: Props) {
@@ -75,7 +73,6 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
         props.confirmLimitsAdjust();
       }}
     >
-      {/* @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable. */}
       {checkIfConditionsApply(limitsDiff)
         ? t.save_limits_button_conditions
         : t.save_limits_button}
@@ -97,7 +94,6 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
           key={x}
           data-test-id={`limit-${x}`}
           align="center"
-          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           onClick={() => props.edit(x)}
           className={flexChildWidth}
         >
@@ -127,7 +123,6 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
         </Flex>
       ))}
       <Flex.Block />
-      {/* @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable. */}
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"

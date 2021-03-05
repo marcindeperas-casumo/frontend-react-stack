@@ -1,4 +1,3 @@
-// @flow
 import { recordSaga } from "Utils";
 import { getGameCategory } from "Api/api.casinoPlayerGames";
 import { shouldShowSlotControlSystemSaga } from "./shouldShowSlotControlSystem.saga";
@@ -30,15 +29,10 @@ jest.mock("Api/api.casinoPlayerGames", () => ({
   getGameCategory: jest.fn(),
 }));
 
-// $FlowIgnore
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockResolvedValue' does not exist on typ... Remove this comment to see the full error message
-getGameCategory.mockResolvedValue(gameCategory);
-// $FlowIgnore
+(getGameCategory as jest.Mock).mockResolvedValue(gameCategory);
 describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
   beforeEach(() => {
-    // $FlowIgnore
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '(slug... Remove this comment to see the full error message
-    getGameCategory.mockClear();
+    (getGameCategory as jest.Mock).mockClear();
     window.location = location;
   });
 

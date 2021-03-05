@@ -1,14 +1,12 @@
-// @flow
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../node_modules/@types/react"' h... Remove this comment to see the full error message
-import React, { PureComponent, type Node } from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 type Props = {
-  label?: Node,
-  value?: Node,
+  label?: React.ReactNode;
+  value?: React.ReactNode;
 };
 
-export class SettingsLabelAndValue extends PureComponent<Props> {
+export class SettingsLabelAndValue extends React.PureComponent<Props> {
   render() {
     const { label, value } = this.props;
     return (

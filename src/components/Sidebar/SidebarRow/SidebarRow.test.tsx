@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import { IconProfile } from "../icons";
@@ -24,10 +23,7 @@ describe("SidebarRow", () => {
     const text = "FAQ";
     const rendered = shallow(<SidebarRow text={text} />);
     expect(
-      rendered
-        .find({ "data-test-id": "sidebar-text" })
-        .dive()
-        .text()
+      rendered.find({ "data-test-id": "sidebar-text" }).dive().text()
     ).toBe(text);
   });
 
@@ -35,10 +31,7 @@ describe("SidebarRow", () => {
     const text = "SuperRandomText";
     const rendered = shallow(<SidebarRow label={text} />);
     expect(
-      rendered
-        .find({ "data-test-id": "sidebar-text-small" })
-        .dive()
-        .text()
+      rendered.find({ "data-test-id": "sidebar-text-small" }).dive().text()
     ).toBe(text);
   });
 

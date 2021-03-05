@@ -1,7 +1,6 @@
-// @flow
+import debounce from "lodash.debounce";
 import * as React from "react";
 import * as R from "ramda";
-import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "Components/ResponsiveLayout";
 import { isTLDMarketSpecific } from "Utils";
@@ -17,7 +16,6 @@ function getPage() {
   const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
   return (
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     window.location.pathname.split("/")[isTLDMarketSpecific(tld) ? 2 : 3] ||
     "top"
   );

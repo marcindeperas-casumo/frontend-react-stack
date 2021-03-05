@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import Pin from "./images/pin.svg";
@@ -6,8 +5,8 @@ import Pin from "./images/pin.svg";
 import "./WrapperPin.scss";
 
 type Props = {
-  className?: string,
-  onClick?: () => void,
+  className?: string;
+  onClick?: () => void;
 };
 
 const baseClassName = "c-wrapper-pin";

@@ -1,21 +1,20 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import React, { PureComponent } from "react";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
 import type { Adventurer, AdventureContent } from "Models/adventure";
 import AdventureAvatarAndDetails from "./AdventureAvatarAndDetails";
 import AdventureProgressBar from "./AdventureProgressBar";
 import "./AdventureCard.scss";
 
 export type Props = {
-  adventurer: Adventurer,
-  content: AdventureContent,
-  isContentFetched: boolean,
-  isAdventurerFetched: boolean,
-  fetchAdventurer: Function,
-  fetchContent: Function,
-  subscribeToAdventureUpdates: Function,
-  unsubscribeFromAdventureUpdates: Function,
+  adventurer: Adventurer;
+  content: AdventureContent;
+  isContentFetched: boolean;
+  isAdventurerFetched: boolean;
+  fetchAdventurer: Function;
+  fetchContent: Function;
+  subscribeToAdventureUpdates: Function;
+  unsubscribeFromAdventureUpdates: Function;
 };
 
 const COMPONENT_CLASSNAME = "c-adventure-card";

@@ -1,4 +1,1 @@
-// @flow
-export {
-  ReelRacesListContainer as ReelRacesList,
-} from "./ReelRacesListContainer";
+export { ReelRacesListContainer as ReelRacesList } from "./ReelRacesListContainer";

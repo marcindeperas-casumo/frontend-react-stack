@@ -1,10 +1,9 @@
-// @flow
 import * as React from "react";
 import { Duration as LuxonDuration } from "luxon";
 import { Duration } from "Components/Duration";
 
 type Props = {
-  duration: LuxonDuration,
+  duration: LuxonDuration;
 };
 
 export function TimeLimitsCardDuration({ duration }: Props) {

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
@@ -14,9 +13,7 @@ import mockCms from "./__mocks__/cms";
 
 jest.useFakeTimers();
 jest.mock("Utils/hooks");
-// $FlowIgnore
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-useTranslationsGql.mockReturnValue({
+(useTranslationsGql as jest.Mock).mockReturnValue({
   t: mockCms,
 });
 

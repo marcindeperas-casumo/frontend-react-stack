@@ -9,8 +9,8 @@ import "./PromotionCardList.scss";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import { promotionsTileHeight } from "Src/constants";
 
-type Props = A.PromotionsListQuery_promotionsList & {
-  seeMoreText: string,
+type Props = A.PromotionsListQuery["promotionsList"] & {
+  seeMoreText: string;
 };
 
 export const PromotionCardList = ({

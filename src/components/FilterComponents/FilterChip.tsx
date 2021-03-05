@@ -1,12 +1,11 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ChipChoice } from "@casumo/cmp-chip";
+import * as React from "react";
 
 type Props = {
-  isActive: boolean,
-  title: string,
-  onChange: () => void,
+  isActive: boolean;
+  title: string;
+  onChange: () => void;
 };
 export function FilterChip(props: Props) {
   return (

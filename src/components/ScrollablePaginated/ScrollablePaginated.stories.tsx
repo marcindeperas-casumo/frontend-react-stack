@@ -1,10 +1,10 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
+import React from "react";
 import ScrollablePaginated from "Components/ScrollablePaginated";
+// @ts-expect-error ts-migrate(2614) FIXME: Module '"."' has no exported member 'ClickHandlerT... Remove this comment to see the full error message
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 const stories = storiesOf("ScrollablePaginated", module);
@@ -63,7 +63,6 @@ stories.add("Default", () => {
   };
 
   return (
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     <ScrollablePaginated
       columnCount={numberOfCells}
       cellRenderer={cellRenderer}
@@ -97,7 +96,6 @@ stories.add("Mixed width elements", () => {
   };
 
   return (
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     <ScrollablePaginated
       columnCount={numberOfCells}
       cellRenderer={cellRendererAltWidths}

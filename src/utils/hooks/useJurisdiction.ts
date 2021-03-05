@@ -1,16 +1,15 @@
-// @flow
 import { useSelector } from "react-redux";
 import { equals } from "ramda";
 import { jurisdictionSelector } from "Models/handshake";
 
 type UseJurisdictionType = {
-  jurisdiction: string,
-  isDGOJ: boolean,
-  isDGA: boolean,
-  isMGA: boolean,
-  isSGA: boolean,
-  isUKGC: boolean,
-  isGGL: boolean,
+  jurisdiction: string;
+  isDGOJ: boolean;
+  isDGA: boolean;
+  isMGA: boolean;
+  isSGA: boolean;
+  isUKGC: boolean;
+  isGGL: boolean;
 };
 
 export function useJurisdiction(): UseJurisdictionType {

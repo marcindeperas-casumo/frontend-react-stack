@@ -1,49 +1,42 @@
-// @flow
-
-import * as R from "ramda";
 import type { ObservableQueryFields } from "@apollo/client";
+import * as R from "ramda";
 
 type GamesPaginatedQuery = {
   getGamesPaginated: {
-    gamesCount: number,
-    offset: number,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    games: Array<*>,
-  },
+    gamesCount: number;
+    offset: number;
+    games: Array<any>;
+  };
 };
 type GamesPaginatedQueryVariables = {
-  query: string,
-  offset: number,
-  limit: number,
+  query: string;
+  offset: number;
+  limit: number;
 };
 
 const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
 export function insertIntoArray(newData: Array<any>, offset: number) {
-  return R.pipe(
-    R.remove(offset, newData.length),
-    R.insertAll(offset, newData)
-  );
+  return R.pipe(R.remove(offset, newData.length), R.insertAll(offset, newData));
 }
 export function loadMoreConstructor(
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
-  fetchMore: $PropertyType<
-    ObservableQueryFields<GamesPaginatedQuery, GamesPaginatedQueryVariables>,
-    "fetchMore"
-  >,
+  fetchMore: ObservableQueryFields<
+    GamesPaginatedQuery,
+    GamesPaginatedQueryVariables
+  >["fetchMore"],
   gamesCount: number
 ) {
   return ({
     startIndex,
     stopIndex,
   }: {
-    startIndex: number,
-    stopIndex: number,
+    startIndex: number;
+    stopIndex: number;
   }) => {
     const tmpLimit = stopIndex - startIndex;
     const limit = tmpLimit > 99 ? 100 : tmpLimit || 1; // it blows up above 100
     const offset = limit === 100 ? stopIndex - startIndex : startIndex;
 
-    return fetchMore<GamesPaginatedQueryVariables>({
+    return fetchMore({
       variables: { offset, limit },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {

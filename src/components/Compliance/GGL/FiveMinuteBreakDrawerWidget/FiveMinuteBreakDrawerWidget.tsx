@@ -1,27 +1,24 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
+import cx from "classnames";
+import * as React from "react";
 import Timer from "Components/Timer";
 import { interpolateWithJSX } from "Utils";
 
 import "./FiveMinuteBreakDrawerWidget.scss";
 
 type Props = {
-  className?: string,
-  timeElapsed: number,
-  timeLeft: number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  t: ?{
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    tooltip_title: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    tooltip_message: ?string,
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    remaining_seconds: ?string,
-  },
+  className?: string;
+  timeElapsed: number;
+  timeLeft: number;
+  t:
+    | {
+        tooltip_title: string | undefined;
+        tooltip_message: string | undefined;
+        remaining_seconds: string | undefined;
+      }
+    | undefined;
 };
 
 export const FiveMinuteBreakDrawerWidget = ({

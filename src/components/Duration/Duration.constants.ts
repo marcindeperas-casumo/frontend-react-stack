@@ -1,4 +1,3 @@
-// @flow
 export const CMS_SLUG = "i18n.durations";
 
 export const LUXON_DURATION_KEYS = [
@@ -10,7 +9,7 @@ export const LUXON_DURATION_KEYS = [
   "minutes",
   "seconds",
   "milliseconds",
-];
+] as const;
 
 export const LUXON_KEY_TO_CMS_KEY_ABBREVIATED = {
   years: "year_abbreviated",
@@ -21,7 +20,7 @@ export const LUXON_KEY_TO_CMS_KEY_ABBREVIATED = {
   minutes: "minute_abbreviated",
   seconds: "second_abbreviated",
   milliseconds: "millisecond_abbreviated",
-};
+} as const;
 
 export const LUXON_KEY_TO_CMS_KEY_SINGULAR = {
   years: "year_singular",
@@ -32,7 +31,7 @@ export const LUXON_KEY_TO_CMS_KEY_SINGULAR = {
   minutes: "minute_singular",
   seconds: "second_singular",
   milliseconds: "millisecond_singular",
-};
+} as const;
 
 export const LUXON_KEY_TO_CMS_KEY_PLURAL = {
   years: "year_plural",
@@ -43,4 +42,4 @@ export const LUXON_KEY_TO_CMS_KEY_PLURAL = {
   minutes: "minute_plural",
   seconds: "second_plural",
   milliseconds: "millisecond_plural",
-};
+} as const;

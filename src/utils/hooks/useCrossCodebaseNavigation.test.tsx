@@ -1,12 +1,11 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper } from "Utils/HookWrapper";
 import { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 
-jest.mock("../../constants.js", () => ({
-  ...jest.requireActual("../../constants.js"),
+jest.mock("../../constants", () => ({
+  ...jest.requireActual("../../constants"),
   URL_PREFIXES: {
     myMarket: "myMarketUrlPrefix",
   },
@@ -64,11 +63,13 @@ describe("useCrossCodebaseNavigation", () => {
   });
 
   test("returns navigateToKO function", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
     expect(typeof navigateToKO).toEqual("function");
   });
 
   test("calls window.location.replace with path", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
 
     navigateToKO("myRouteId");
@@ -80,6 +81,7 @@ describe("useCrossCodebaseNavigation", () => {
   });
 
   test("calls window.location.replace with path with substituted url params", () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
     const param1 = "substitutedParam1";
     const param2 = "substitutedParam2";

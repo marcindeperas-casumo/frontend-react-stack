@@ -1,6 +1,6 @@
+import type { CellRendererParams } from "react-virtualized";
 import React from "react";
 import classNames from "classnames";
-import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { LiveCasinoCardContainer as LiveCasinoCard } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
@@ -10,16 +10,11 @@ import * as A from "Types/apollo";
 import "./GameListHorizontalLiveCasino.scss";
 
 export type Props = {
-  list: A.GameListLiveCasinoQuery_gamesList,
-  seeMoreText: string,
-  playNowText: string,
+  list: A.GameListLiveCasinoQuery["gamesList"];
+  seeMoreText: string;
 };
 
-export const GameListHorizontalLiveCasino = ({
-  list,
-  seeMoreText,
-  playNowText,
-}: Props) => {
+export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
   const { name } = list;
   const games = list.games;
   const seeMoreUrl = "../live-casino";
@@ -46,9 +41,7 @@ export const GameListHorizontalLiveCasino = ({
       <MobileAndTablet>
         <ScrollableList
           itemClassName="c-live-casino-card u-margin-bottom--sm"
-          itemRenderer={i => (
-            <LiveCasinoCard game={games[i]} playNowText={playNowText} />
-          )}
+          itemRenderer={i => <LiveCasinoCard game={games[i]} />}
           items={games}
           seeMoreText={seeMoreText}
           seeMoreUrl={seeMoreUrl}

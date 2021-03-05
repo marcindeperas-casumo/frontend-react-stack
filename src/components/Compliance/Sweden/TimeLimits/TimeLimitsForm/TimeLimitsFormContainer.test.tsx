@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { mount } from "enzyme";
@@ -43,8 +42,7 @@ describe("Components/Compliance/TimeLimits/TimeLimitsFormContainer", () => {
   beforeAll(() => {
     onLimitsSaved = jest.fn();
     dispatchMock = jest.fn();
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
 
     wrapper = mount(
       <MockStore state={prepareStateMock({ loginTimeLimits: { daily: 10 } })}>
@@ -57,8 +55,7 @@ describe("Components/Compliance/TimeLimits/TimeLimitsFormContainer", () => {
 
     // wrap real implementation with a mock to inspect arguments
     dispatchMock.mockImplementation(action => globalStore.dispatch(action));
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-    useDispatch.mockReturnValue(dispatchMock);
+    (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
   });
 
   test("First the CTA button is disabled because not all limits are entered", () => {
@@ -70,10 +67,8 @@ describe("Components/Compliance/TimeLimits/TimeLimitsFormContainer", () => {
     const monthlyInput = wrapper.find("TextInput input").at(2);
 
     act(() => {
-      // $FlowIgnore
       weeklyInput.instance().value = 99;
       weeklyInput.simulate("change");
-      // $FlowIgnore
       monthlyInput.instance().value = 150;
       monthlyInput.simulate("change");
       jest.runAllTimers();

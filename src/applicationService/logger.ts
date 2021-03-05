@@ -1,6 +1,10 @@
 import Rollbar from "rollbar";
 
-function checkIgnore(isUncaught: boolean, args: Rollbar.LogArgument[], payload: object) {
+function checkIgnore(
+  isUncaught: boolean,
+  args: Rollbar.LogArgument[],
+  payload: object
+) {
   try {
     if (__DEV__) {
       /**

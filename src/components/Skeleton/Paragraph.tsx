@@ -1,14 +1,13 @@
-// @flow
-import * as R from "ramda";
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
 import type { fontSizes } from "@casumo/cudl-react-prop-types";
+import * as React from "react";
+import * as R from "ramda";
 
 type Props = {
-  size: fontSizes,
-  className?: string,
-  lines?: number,
+  size: fontSizes;
+  className?: string;
+  lines?: number;
 };
 
 export function ParagraphSkeleton(props: Props) {

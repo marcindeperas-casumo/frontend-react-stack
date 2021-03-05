@@ -1,4 +1,3 @@
-// @flow
 export * from "./utils";
 export * from "./testUtils";
 export * from "./sagaTestUtils";

@@ -1,11 +1,10 @@
-// @flow
+import Text from "@casumo/cmp-text";
 import * as React from "react";
 import cx from "classnames";
-import Text from "@casumo/cmp-text";
 
 type Props = {
-  points: number,
-  isTransitioning: boolean,
+  points: number;
+  isTransitioning: boolean;
 };
 
 const baseClassName = "c-rr-booster__points";

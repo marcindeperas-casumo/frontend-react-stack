@@ -1,6 +1,5 @@
-// @flow
-import * as R from "ramda";
 import { createSelector } from "reselect";
+import * as R from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
 
 export const playingSelector = createSelector(

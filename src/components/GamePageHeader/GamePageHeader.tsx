@@ -1,7 +1,7 @@
 // @flex
 
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { Desktop } from "Components/ResponsiveLayout";

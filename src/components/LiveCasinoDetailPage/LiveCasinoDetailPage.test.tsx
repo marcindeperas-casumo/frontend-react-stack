@@ -1,7 +1,6 @@
-// @flow
+import List from "@casumo/cmp-list";
 import React from "react";
 import { shallow } from "enzyme";
-import List from "@casumo/cmp-list";
 import SectionTitle from "./SectionTitle";
 import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";
 
@@ -21,20 +20,8 @@ describe("<LiveCasinoDetailPage />", () => {
     // ...each with lists...
     expect(rendered.find(List).length).toBe(2);
     // ...first list with 2 rows...
-    expect(
-      rendered
-        .find(List)
-        .at(0)
-        .dive()
-        .find("li").length
-    ).toBe(2);
+    expect(rendered.find(List).at(0).dive().find("li").length).toBe(2);
     // ...second list with one row...
-    expect(
-      rendered
-        .find(List)
-        .at(1)
-        .dive()
-        .find("li").length
-    ).toBe(1);
+    expect(rendered.find(List).at(1).dive().find("li").length).toBe(1);
   });
 });

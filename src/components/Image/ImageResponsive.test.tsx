@@ -1,6 +1,6 @@
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import React from "react";
 import { mount } from "enzyme";
-import ResponsiveImage from "@casumo/cmp-responsive-image";
 import ImageResponsive from "Components/Image/ImageResponsive";
 import { DEVICE_PIXEL_RATIO, LOW_RES_IMAGE_SETTINGS } from "../../constants";
 import imageData from "./__mocks__/image.json";

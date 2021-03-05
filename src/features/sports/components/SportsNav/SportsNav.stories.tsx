@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
 import { SportsNav } from "Features/sports/components/SportsNav";

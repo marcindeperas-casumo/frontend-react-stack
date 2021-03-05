@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { useInterval, useTimeoutFn } from "react-use";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { BigWinsBooster } from "./BigWinsBooster";
 
@@ -21,13 +20,17 @@ if (isNotChromatic) {
   });
 
   stories.add("2 big wins", () => {
-    const [twoBigWins, setBigWins] = React.useState(1);
+    function BigWinsBoosterTwoWinsStory() {
+      const [twoBigWins, setBigWins] = React.useState(1);
 
-    useTimeoutFn(() => {
-      setBigWins(2);
-    }, 500);
+      useTimeoutFn(() => {
+        setBigWins(2);
+      }, 500);
 
-    return <BigWinsBooster {...props} bigWins={twoBigWins} />;
+      return <BigWinsBooster {...props} bigWins={twoBigWins} />;
+    }
+
+    return <BigWinsBoosterTwoWinsStory />;
   });
 
   stories.add("3 big wins", () => {
@@ -35,28 +38,36 @@ if (isNotChromatic) {
   });
 
   stories.add("step by step", () => {
-    const [bigWins, setBigWins] = React.useState(0);
+    function BigWinsBoosterStepByStepStory() {
+      const [bigWins, setBigWins] = React.useState(0);
 
-    useInterval(() => {
-      setBigWins(prevValue => prevValue + 1);
-    }, 3000);
+      useInterval(() => {
+        setBigWins(prevValue => prevValue + 1);
+      }, 3000);
 
-    return <BigWinsBooster {...props} bigWins={bigWins} />;
+      return <BigWinsBooster {...props} bigWins={bigWins} />;
+    }
+
+    return <BigWinsBoosterStepByStepStory />;
   });
 } else {
   stories.add("Chromatic", () => {
-    const [twoBigWins, setBigWins] = React.useState(1);
+    function BigWinsBoosterStory() {
+      const [twoBigWins, setBigWins] = React.useState(1);
 
-    useTimeoutFn(() => {
-      setBigWins(2);
-    }, 500);
+      useTimeoutFn(() => {
+        setBigWins(2);
+      }, 500);
 
-    return (
-      <>
-        <BigWinsBooster {...props} bigWins={0} />
-        <BigWinsBooster {...props} bigWins={1} />
-        <BigWinsBooster {...props} bigWins={twoBigWins} />
-      </>
-    );
+      return (
+        <>
+          <BigWinsBooster {...props} bigWins={0} />
+          <BigWinsBooster {...props} bigWins={1} />
+          <BigWinsBooster {...props} bigWins={twoBigWins} />
+        </>
+      );
+    }
+
+    return <BigWinsBoosterStory />;
   });
 }

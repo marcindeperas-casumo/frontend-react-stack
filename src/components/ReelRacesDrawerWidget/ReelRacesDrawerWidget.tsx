@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SpinIcon, ChevronDownIcon, ChevronUpIcon } from "@casumo/cmp-icons";
+import cx from "classnames";
+import * as React from "react";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
@@ -18,11 +17,11 @@ import RRLogo from "./images/rrLogo.svg";
 import "./ReelRacesDrawerWidget.scss";
 
 type Props = {
-  className?: string,
-  currentRace: any,
-  onShowLeaderboardClick?: () => void,
-  showLeaderboardLink?: boolean,
-  isLeaderboardOpen?: boolean,
+  className?: string;
+  currentRace: any;
+  onShowLeaderboardClick?: () => void;
+  showLeaderboardLink?: boolean;
+  isLeaderboardOpen?: boolean;
 };
 
 const StatusElement = ({ children }) => (
@@ -47,10 +46,10 @@ export const ReelRacesDrawerWidget = ({
   isLeaderboardOpen = false,
 }: Props) => {
   const t = useTranslations<{
-    reel_races_drawer_pts: string,
-    reel_races_drawer_points: string,
-    reel_races_drawer_spins: string,
-    reel_races_drawer_full_leaderboard: string,
+    reel_races_drawer_pts: string;
+    reel_races_drawer_points: string;
+    reel_races_drawer_spins: string;
+    reel_races_drawer_full_leaderboard: string;
   }>(CMS_SLUGS.MODAL_WAGERING);
   const userLeaderboard = useGameActivityAwareWidgetLeaderboard();
 

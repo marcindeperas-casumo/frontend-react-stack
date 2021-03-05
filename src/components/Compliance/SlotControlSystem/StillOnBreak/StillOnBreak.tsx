@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as R from "ramda";
+import * as React from "react";
 import { navigateById } from "Services/NavigationService";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
@@ -13,12 +12,12 @@ import "./StillOnBreak.scss";
 
 type Props = {
   t: {
-    still_on_break: string,
-    still_on_break_subtext: string,
-    still_on_break_button_label: string,
-  },
-  onClick: () => void,
-  endTime: number,
+    still_on_break: string;
+    still_on_break_subtext: string;
+    still_on_break_button_label: string;
+  };
+  onClick: () => void;
+  endTime: number;
 };
 
 export function StillOnBreak(props: Props) {

@@ -1,15 +1,13 @@
-// @flow
-import React from "react";
 import List from "@casumo/cmp-list";
+import React from "react";
 import { GameListSkeleton } from "Components/GameListSkeleton";
 import { GameRow, GameRowText } from "Components/GameRow";
 import * as A from "Types/apollo";
 
 type Props = {
   /** The list of game objects. */
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  games: ?Array<A.GameListVerticalQuery_gamesBySlugs>,
-  loading: boolean,
+  games: A.GameListVerticalQuery["gamesBySlugs"] | undefined;
+  loading: boolean;
 };
 
 export const GameListVertical = ({ games, loading = false }: Props) => {

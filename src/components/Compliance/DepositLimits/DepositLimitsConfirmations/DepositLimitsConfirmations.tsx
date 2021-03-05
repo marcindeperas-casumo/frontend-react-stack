@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
+import * as R from "ramda";
+import * as React from "react";
 import { WildDots } from "Components/WildDots";
 
 export type ConfirmationPage =
@@ -15,32 +14,31 @@ export type ConfirmationPage =
   | "BEING_REVIEWED";
 type Props = {
   t: {
-    saved_right_away_title: string,
-    being_reviewed_title: string,
-    being_reviewed_content: string,
-    rg_success_title: string,
-    rg_success_content: string,
-    rg_fail_title: string,
-    rg_fail_content: string,
-    rg_required_title: string,
-    rg_required_content: string,
-    button_back_to_limits: string,
-    button_answer_questions: string,
-  },
-  pages: Array<ConfirmationPage>,
-  lastButtonAction: () => void,
-  fetchTranslations: () => void,
-  lastButtonCaption: TranslationKeys, // eslint-disable-line no-use-before-define
+    saved_right_away_title: string;
+    being_reviewed_title: string;
+    being_reviewed_content: string;
+    rg_success_title: string;
+    rg_success_content: string;
+    rg_fail_title: string;
+    rg_fail_content: string;
+    rg_required_title: string;
+    rg_required_content: string;
+    button_back_to_limits: string;
+    button_answer_questions: string;
+  };
+  pages: Array<ConfirmationPage>;
+  lastButtonAction: () => void;
+  fetchTranslations: () => void;
+  lastButtonCaption: TranslationKeys;
 };
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
-type TranslationKeys = $Keys<$PropertyType<Props, "t">>;
-const confirmationPageToTranslation: {
-  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
-  [ConfirmationPage]: {
-    title: TranslationKeys,
-    content?: TranslationKeys,
-  },
-} = {
+type TranslationKeys = keyof Props["t"];
+const confirmationPageToTranslation: Record<
+  ConfirmationPage,
+  {
+    title: TranslationKeys;
+    content?: TranslationKeys;
+  }
+> = {
   RG_SUCCESS: {
     title: "rg_success_title",
     content: "rg_success_content",
@@ -97,7 +95,6 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
       <Flex direction="vertical">
         {numberOfPages > 1 && (
           <Flex align="center" justify="center" className="u-padding-y--xlg">
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component. */}
             <WildDots
               numberOfDots={numberOfPages}
               activeDotIndex={pageNumber}

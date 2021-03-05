@@ -1,7 +1,6 @@
-// @flow
+import List from "@casumo/cmp-list";
 import React from "react";
 import { shallow } from "enzyme";
-import List from "@casumo/cmp-list";
 import { GameRow } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton";
 import { GameListVertical } from "./GameListVertical";

@@ -10,7 +10,7 @@ export const URL = {
 };
 
 type ReqParams = {
-  playerId: string,
+  playerId: string;
 };
 
 export const getAdventurerDetailsReq = ({

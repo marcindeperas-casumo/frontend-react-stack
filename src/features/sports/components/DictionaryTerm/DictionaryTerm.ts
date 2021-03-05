@@ -1,19 +1,16 @@
-// @flow
-
-import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
 type Props = {
   /** The dictionary key for this translation */
-  termKey: string,
+  termKey: string;
   /** A replacements map, for variable replacements in the dictionary term string */
-  replacements?: Replacements,
+  replacements?: Replacements;
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: (dictionaryTerm: string) => React.Node,
+  children?: (dictionaryTerm: string) => React.ReactNode;
 };
 
 export const DICTIONARY_TERM_QUERY = gql`
@@ -23,8 +20,7 @@ export const DICTIONARY_TERM_QUERY = gql`
 `;
 
 const getDictionaryTerm = (
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  data: ?A.DictionaryTermQuery,
+  data: A.DictionaryTermQuery | undefined,
   loading: boolean,
   replacements?: Replacements
 ): string => {
@@ -43,8 +39,7 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-}: Props): React.Node => {
+}: Props): React.ReactNode => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<
     A.DictionaryTermQuery,

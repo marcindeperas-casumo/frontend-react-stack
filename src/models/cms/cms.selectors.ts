@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo, not, isNil } from "ramda";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Utils/' or its corresponding t... Remove this comment to see the full error message
-import { interpolate } from "Utils/";
+import { interpolate } from "Utils";
 import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
 import { isSuspiciousAccount } from "Models/handshake";
@@ -14,22 +13,12 @@ export const getCms = compose(
 );
 
 export const getPage = slug =>
-  createSelector(
-    getCms,
-    compose(
-      defaultTo({}),
-      prop(slug)
-    )
-  );
+  createSelector(getCms, compose(defaultTo({}), prop(slug)));
 
 export const getField = ({ slug, field, defaultValue = null }) =>
   createSelector(
     getPage(slug),
-    compose(
-      defaultTo(defaultValue),
-      prop(field),
-      prop("fields")
-    )
+    compose(defaultTo(defaultValue), prop(field), prop("fields"))
   );
 
 export const getFieldIfNotSuspicious = ({ slug, field, defaultValue = null }) =>
@@ -54,14 +43,7 @@ export const isPageFetchingStarted = slug =>
 // parent (e.g. "/promotions.*") then the children's
 // fetch information won't be in the fetch status
 export const isPageFetchedSelector = slug =>
-  createSelector(
-    getCms,
-    compose(
-      not,
-      isNil,
-      prop(slug)
-    )
-  );
+  createSelector(getCms, compose(not, isNil, prop(slug)));
 
 // Only fetch a page if it was not fetched yet and if it is not in the store already.
 export const shouldFetchPage = slug =>

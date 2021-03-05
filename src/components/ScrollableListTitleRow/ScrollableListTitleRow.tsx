@@ -1,26 +1,24 @@
-// @flow
-import React, { PureComponent } from "react";
-import { Link } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
+import { Link } from "@reach/router";
+import React, { PureComponent } from "react";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 import { rightPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type OwnProps = {
-    /** The list title */
-    // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-    title: ?string;
-    /** The seeMore text and url */
-    seeMore?: SeeMoreProps;
-    /** Whether applying padding left or not */
-    paddingLeft?: boolean;
-    /** Size to apply on padding left */
-    paddingPerDevice?: spacerSizes | responsiveSpacerSizes;
+  /** The list title */
+  title: string | undefined;
+  /** The seeMore text and url */
+  seeMore?: SeeMoreProps;
+  /** Whether applying padding left or not */
+  paddingLeft?: boolean;
+  /** Size to apply on padding left */
+  paddingPerDevice?: spacerSizes | responsiveSpacerSizes;
 };
 
 type Props = OwnProps & typeof ScrollableListTitleRow.defaultProps;

@@ -1,6 +1,5 @@
-/* @flow */
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { BlueRibbonAnimation } from "./BlueRibbon";
 import { CounterScreen } from "./CounterScreen";
 

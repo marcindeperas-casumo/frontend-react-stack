@@ -1,9 +1,8 @@
-// @flow
-import React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import cx from "classnames";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { ReelRaceIcon } from "./ReelRaceIcon";
 import { RRIconView } from "./views/RRIconView";

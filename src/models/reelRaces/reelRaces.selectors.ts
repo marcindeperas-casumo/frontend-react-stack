@@ -1,7 +1,7 @@
-// @flow
-import * as R from "ramda";
 import { createSelector } from "reselect";
+import * as R from "ramda";
 import { useSelector } from "react-redux";
+import * as A from "Types/apollo";
 import { playerIdSelector } from "Models/handshake";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import type { CometdLeaderboard } from "./reelRaces.types";
@@ -60,9 +60,12 @@ export function useGameActivityAwareWidgetLeaderboard() {
 }
 
 export function useGameActivityAwareLeaderboard() {
-  const leaderboardOrder = useSelector(R.path(["reelRaces", "order"]));
-  const leaderboardObj = useSelector(R.path(["reelRaces", "leaderboard"]));
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'unknown'.
+  const leaderboardOrder: Array<number> = useSelector(
+    R.path(["reelRaces", "order"])
+  );
+  const leaderboardObj: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"] = useSelector(
+    R.path(["reelRaces", "leaderboard"])
+  );
   const leaderboard = leaderboardOrder.map(x => leaderboardObj[x]);
   const sorted = R.sortBy(R.prop("position"))(leaderboard);
 

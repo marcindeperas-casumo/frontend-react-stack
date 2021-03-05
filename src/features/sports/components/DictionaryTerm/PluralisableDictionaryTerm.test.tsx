@@ -1,7 +1,6 @@
-// @flow
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/client/testing";
 import { wait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
@@ -16,6 +15,7 @@ describe("<PluralisableDictionaryTerm />", () => {
   test("renders the string for the dictionary key", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm termKey={WORKING_TERM.key} />
       </MockedProvider>
     );
@@ -28,6 +28,7 @@ describe("<PluralisableDictionaryTerm />", () => {
   test("renders the plural version for the dictionary key when isPlural is truthy", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm
           termKey={WORKING_TERM.key}
           isPlural={true}
@@ -43,12 +44,14 @@ describe("<PluralisableDictionaryTerm />", () => {
   test("renders the LOADING_STRING when translation is loading", () => {
     const renderedSingular = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm termKey={WORKING_TERM.key} />
       </MockedProvider>
     );
 
     const renderedPlural = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm
           termKey={WORKING_TERM.key}
           isPlural={true}
@@ -63,12 +66,14 @@ describe("<PluralisableDictionaryTerm />", () => {
   test("renders the NOT_FOUND_STRING when not loading and no data returned", async () => {
     const renderedSingular = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm termKey={ERROR_TERM.key} />
       </MockedProvider>
     );
 
     const renderedPlural = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm termKey={ERROR_TERM.key} isPlural={true} />
       </MockedProvider>
     );
@@ -84,6 +89,7 @@ describe("<PluralisableDictionaryTerm />", () => {
   test("replaces any replacement keys in the translation before rendering", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm
           termKey={REPLACEMENT_TERM.key}
           replacements={REPLACEMENT_TERM.replacements1}
@@ -92,6 +98,7 @@ describe("<PluralisableDictionaryTerm />", () => {
     );
     const rendered2 = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
+        {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
         <PluralisableDictionaryTerm
           termKey={REPLACEMENT_TERM.key}
           replacements={REPLACEMENT_TERM.replacements2}
@@ -116,15 +123,18 @@ describe("<PluralisableDictionaryTerm />", () => {
     mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
           <PluralisableDictionaryTerm termKey={WORKING_TERM.key}>
             {children}
           </PluralisableDictionaryTerm>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
           <PluralisableDictionaryTerm
             termKey={WORKING_TERM.key}
             isPlural={true}
           >
             {children2}
           </PluralisableDictionaryTerm>
+          {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
           <PluralisableDictionaryTerm termKey="not found key">
             {children3}
           </PluralisableDictionaryTerm>

@@ -1,26 +1,24 @@
-// @flow
 import logger from "Services/logger";
 import type { GameProviderModelProps } from "./types";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { tryLaunchGame } from "./netentGameinclusionApi";
 import { BaseGame } from "./BaseGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 
-declare var netent: { launch: Function };
+declare const netent: { launch: Function }; // eslint-disable-line no-unused-vars
 
 type Extend = {
   addEventListener: (
     command: string,
     successCallback: () => void,
     errorCallback?: () => void
-  ) => {},
-  removeEventListener: (command: string) => {},
+  ) => void;
+  removeEventListener: (command: string) => void;
   call: (
     command: string,
     args: Array<string>,
     successCallback: () => void,
     errorCallback?: () => void
-  ) => {},
+  ) => void;
 };
 
 const NETENT_EVENTS = {
@@ -34,8 +32,7 @@ const NETENT_EVENTS = {
 const ELEMENT_ID = "netent-game";
 
 export class NetentGame extends BaseGame {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  extend: ?Extend = null;
+  extend: Extend | null = null;
 
   constructor(props: GameProviderModelProps) {
     super(props);
@@ -52,12 +49,19 @@ export class NetentGame extends BaseGame {
 
   get config() {
     const {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameId' does not exist on type 'GameLaun... Remove this comment to see the full error message
       gameId = null,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sessionId' does not exist on type 'GameL... Remove this comment to see the full error message
       sessionId = null,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'liveCasinoHost' does not exist on type '... Remove this comment to see the full error message
       liveCasinoHost = null,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'casinoId' does not exist on type 'GameLa... Remove this comment to see the full error message
       casinoId = null,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'staticServer' does not exist on type 'Ga... Remove this comment to see the full error message
       staticServer = "",
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameServer' does not exist on type 'Game... Remove this comment to see the full error message
       gameServer = "",
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'lang' does not exist on type 'GameLaunch... Remove this comment to see the full error message
       lang = "",
     } = this.props.gameData;
 

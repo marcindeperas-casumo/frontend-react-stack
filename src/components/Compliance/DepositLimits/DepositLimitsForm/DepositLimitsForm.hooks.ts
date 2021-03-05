@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import type {
   Limits,
@@ -6,14 +5,12 @@ import type {
   LimitInputs,
 } from "./DepositLimitsForm.types";
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-function useInput(initialValue: ?number = null): LimitInput {
+function useInput(initialValue: number | null = null): LimitInput {
   const [value, setValue] = React.useState(initialValue);
 
   return {
     value,
     onChange: function onChangeUseInputHook(event) {
-      // $FlowIgnore: flow doesn't support optional method calls
       const tmp = parseInt(event.target.value?.match(/\d/g)?.join(""));
       const val = Number.isNaN(tmp) ? null : tmp;
 

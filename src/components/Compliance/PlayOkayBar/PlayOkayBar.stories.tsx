@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
+import * as React from "react";
 import MockStore from "Components/MockStore";
 import { FullscreenView } from "Components/FullscreenView";
 import { playerSectionsQueryMock } from "Components/Settings/SettingsSections/__mocks__/Queries.mock";

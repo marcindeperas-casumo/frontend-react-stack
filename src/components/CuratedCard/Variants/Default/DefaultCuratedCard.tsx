@@ -4,7 +4,7 @@ import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/Cura
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 
 type TProps = {
-  card: string | Array<string>,
+  card: string | Array<string>;
 };
 
 // We cannot name the property to "slug" easily here, we have to keep it as "card" as it getting

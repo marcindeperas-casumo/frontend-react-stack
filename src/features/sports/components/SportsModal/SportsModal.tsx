@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import classNames from "classnames";
 import { SportsModalHeader } from "Features/sports/components/SportsModal/SportsModalHeader";
@@ -7,9 +6,8 @@ import { Modal } from "Components/Modal";
 import "./SportsModal.scss";
 
 type Props = {
-  className?: string,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  className?: string;
+  children: React.ReactNode;
 };
 
 const Content = ({ children, className }: Props) => (
@@ -26,6 +24,7 @@ export class SportsModal extends React.Component<Props> {
   render() {
     return (
       <Modal className="c-sports-modal t-background-white">
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'ReactNode' is not assignable to type 'ReactC... Remove this comment to see the full error message */}
         {this.props.children}
       </Modal>
     );

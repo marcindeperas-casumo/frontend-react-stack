@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
-import { is } from "ramda";
 import { UserIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
+import React from "react";
+import { is } from "ramda";
 import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
 import Evolution from "./providers/evolution.svg";
@@ -27,8 +26,8 @@ const Provider = props => (
 );
 
 type Props = {
-  players?: number,
-  provider: string,
+  players?: number;
+  provider: string;
 };
 export function LiveCasinoCardFooter({ players, provider }: Props) {
   return (

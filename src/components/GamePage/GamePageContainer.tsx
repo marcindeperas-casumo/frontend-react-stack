@@ -1,8 +1,7 @@
-// @flow
+import LoaderGlobal from "@casumo/cmp-loader-global";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
-import LoaderGlobal from "@casumo/cmp-loader-global";
 import { useCurrentReelRaceLeaderboard } from "Utils/hooks/useCurrentReelRaceLeaderboard";
 import {
   useCrossCodebaseNavigation,
@@ -39,10 +38,9 @@ import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
-  slug: string,
-  playForFun: boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  remoteGameLaunchData: ?Object,
+  slug: string;
+  playForFun: boolean;
+  remoteGameLaunchData: Object | undefined;
 };
 
 export const GamePageContainer = () => {
@@ -90,6 +88,7 @@ export const GamePageContainer = () => {
   useFitToParentSize();
 
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'GamePage' cannot be used as a JSX component.
     <GamePage
       error={
         error ? (

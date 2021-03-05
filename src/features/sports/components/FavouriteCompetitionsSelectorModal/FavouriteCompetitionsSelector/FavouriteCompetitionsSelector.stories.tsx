@@ -1,10 +1,9 @@
-// @flow
-import React from "react";
 import { MockedProvider } from "@apollo/client/testing";
-import { F } from "ramda";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
+import { F } from "ramda";
+import React from "react";
+import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./__mocks__/favouriteCompetitionsSelectorQuery";
 import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";

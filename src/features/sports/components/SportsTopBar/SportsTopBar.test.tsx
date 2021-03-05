@@ -19,9 +19,7 @@ describe("<SportsTopBar />", () => {
   });
 
   test("renders the 'home' tab first", () => {
-    const homeTab = render()
-      .find(SportsTopBarTab)
-      .at(0);
+    const homeTab = render().find(SportsTopBarTab).at(0);
 
     expect(homeTab.props()).toMatchObject({
       isActive: true,
@@ -30,9 +28,7 @@ describe("<SportsTopBar />", () => {
   });
 
   test("renders the 'search' tab second", () => {
-    const searchTab = render()
-      .find(SportsTopBarTab)
-      .at(1);
+    const searchTab = render().find(SportsTopBarTab).at(1);
 
     expect(searchTab.props()).toMatchObject({
       className: "c-sports-top-bar--search",
@@ -42,9 +38,7 @@ describe("<SportsTopBar />", () => {
   });
 
   test("renders the 'bet history' tab last", () => {
-    const betHistoryTab = render()
-      .find(SportsTopBarTab)
-      .at(2);
+    const betHistoryTab = render().find(SportsTopBarTab).at(2);
 
     expect(betHistoryTab.props()).toMatchObject({
       className: "c-sports-top-bar--bet-history",

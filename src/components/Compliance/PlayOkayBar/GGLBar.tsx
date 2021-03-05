@@ -1,13 +1,12 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
+import React from "react";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
 import { PanicButton } from "./PanicButton";
 import "./PlayOkayBar.scss";
 
 type Props = {
-  className?: string,
+  className?: string;
 };
 
 export const GGLBar = ({ className = "" }: Props) => (

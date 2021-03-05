@@ -1,6 +1,6 @@
+import Scrollable from "@casumo/cmp-scrollable";
 import React from "react";
 import { shallow } from "enzyme";
-import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableList, {
   DEFAULT_SPACING,
 } from "Components/ScrollableList/ScrollableList";
@@ -36,19 +36,11 @@ describe("ScrollableList", () => {
     );
 
     expect(
-      rendered
-        .find(Scrollable)
-        .dive()
-        .find("SampleComponent")
+      rendered.find(Scrollable).dive().find("SampleComponent")
     ).toHaveLength(items.length);
 
     expect(
-      rendered
-        .find(Scrollable)
-        .dive()
-        .find("SampleComponent")
-        .first()
-        .props()
+      rendered.find(Scrollable).dive().find("SampleComponent").first().props()
     ).toMatchObject({
       id: items[0].id,
     });

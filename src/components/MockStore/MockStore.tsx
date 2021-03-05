@@ -1,18 +1,17 @@
-// @flow
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import React, { type ElementProps } from "react";
+import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import { mergeDeepRight } from "ramda";
 import { Provider } from "react-redux";
-import { MockedProvider } from "@apollo/client/testing";
 import { LocationProvider } from "@reach/router";
 import { createReduxStore } from "Services/reduxStore";
 import defaultState from "Models/__mocks__/state.mock";
 
 type Props = {
-  state?: Object,
-  queryMocks?: Array<Object>,
-  queryAddTypename?: boolean,
-} & ElementProps<any>;
+  state?: Object;
+  queryMocks?: Array<Object>;
+  queryAddTypename?: boolean;
+  children: React.ReactElement;
+};
 // ⚠️ This is a utility component that can be used to
 // write stories for connected components that depend
 // on the redux state.
@@ -34,6 +33,7 @@ const MockStore = ({
   return (
     <LocationProvider>
       <Provider store={store}>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'Object[]' is not assignable to type 'readonl... Remove this comment to see the full error message */}
         <MockedProvider mocks={queryMocks} addTypename={queryAddTypename}>
           {children}
         </MockedProvider>

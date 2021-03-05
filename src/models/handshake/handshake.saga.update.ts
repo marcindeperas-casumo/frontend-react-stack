@@ -1,5 +1,5 @@
-import { complement } from "ramda";
 import { put, select } from "redux-saga/effects";
+import { complement } from "ramda";
 import {
   updateHandshake,
   hasMadeFirstDepositSelector,

@@ -1,13 +1,12 @@
-// @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 
 import "./ProgressBar.scss";
 
-type OwnProps = {
-    progress: number;
-    fillerClassNames?: string;
-    trackClassNames?: string;
+type Props = {
+  progress: number;
+  fillerClassNames?: string;
+  trackClassNames?: string;
 };
 
 export const ProgressBarFiller = (props: Props) => {
@@ -22,10 +21,9 @@ export const ProgressBarFiller = (props: Props) => {
   );
 };
 
-// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
-type Props = OwnProps & typeof ProgressBar.defaultProps;
+type OptionalProps = Props & typeof ProgressBar.defaultProps;
 
-export class ProgressBar extends PureComponent<Props> {
+export class ProgressBar extends PureComponent<OptionalProps> {
   static defaultProps = {
     progress: 0,
     fillerClassNames: "t-background-purple-60",

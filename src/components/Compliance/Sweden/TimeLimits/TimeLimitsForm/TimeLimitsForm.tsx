@@ -1,22 +1,20 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-import { type LoginTimeLimitsFormData } from "Models/playOkay";
+import * as React from "react";
+import type { LoginTimeLimitsFormData } from "Models/playOkay";
 import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
 import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
 type Props = {
   t: {
-    form_cta: ?string,
-    form_hrs_per_day: ?string,
-    form_hrs_per_week: ?string,
-    form_hrs_per_month: ?string,
-    form_placeholder_enter_amount: ?string,
-  },
-  onClickCta: (limits: LoginTimeLimitsFormData) => void,
-  isFetching: boolean,
+    form_cta: string | undefined;
+    form_hrs_per_day: string | undefined;
+    form_hrs_per_week: string | undefined;
+    form_hrs_per_month: string | undefined;
+    form_placeholder_enter_amount: string | undefined;
+  };
+  onClickCta: (limits: LoginTimeLimitsFormData) => void;
+  isFetching: boolean;
 };
 
 export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
@@ -46,7 +44,6 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
       spacing="md"
       className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
     >
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ value: numbe... Remove this comment to see the full error message */}
       <TimeLimitsFormRow
         value={hrsPerDay}
         min={minHrsPerDay}
@@ -55,7 +52,6 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         errorMessage={dailyLimitErrorMessage}
         t={{ ...t, hrs_per_period: t.form_hrs_per_day }}
       />
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ value: numbe... Remove this comment to see the full error message */}
       <TimeLimitsFormRow
         value={hrsPerWeek}
         min={minHrsPerWeek}
@@ -64,7 +60,6 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
         errorMessage={weeklyLimitErrorMessage}
         t={{ ...t, hrs_per_period: t.form_hrs_per_week }}
       />
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ value: numbe... Remove this comment to see the full error message */}
       <TimeLimitsFormRow
         value={hrsPerMonth}
         min={minHrsPerMonth}

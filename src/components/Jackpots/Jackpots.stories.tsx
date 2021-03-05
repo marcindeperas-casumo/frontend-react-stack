@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import Jackpots from "./Jackpots";
 import jackpotsMock from "./__mocks__/response.games.mock";
 

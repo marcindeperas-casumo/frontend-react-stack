@@ -1,4 +1,1 @@
-// @flow
-export {
-  ResponsibleGamblingTestContainer,
-} from "./ResponsibleGamblingTestContainer";
+export { ResponsibleGamblingTestContainer } from "./ResponsibleGamblingTestContainer";

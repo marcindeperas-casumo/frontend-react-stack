@@ -1,23 +1,19 @@
-// @flow
 import * as R from "ramda";
 import { useFetch, useTranslations } from "Utils/hooks";
-import {
-  urls,
-  jackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotStatus,
+import { urls, jackpotWidgetContentPage } from "./blueRibbonConsts";
+import type {
+  JackpotWidgetContentPage,
+  JackpotStatus,
 } from "./blueRibbonConsts";
 import { usePotStateChangeEvent } from "./useBlueRibbonSDK";
 
 export type BlueRibbonJackpotEntry = {
-  value: number,
-  label: string,
-  status: JackpotStatus,
-  potId: string,
-  communityWinRatio: number,
-  mainWinRatio: number,
+  value: number;
+  label: string;
+  status: JackpotStatus;
+  potId: string;
+  communityWinRatio: number;
+  mainWinRatio: number;
 };
 
 export function useDataForBlueRibbonJackpotsWidget() {

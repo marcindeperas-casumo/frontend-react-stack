@@ -1,4 +1,1 @@
-// @flow
-export {
-  DepositLimitsOverviewContainer,
-} from "./DepositLimitsOverviewContainer";
+export { DepositLimitsOverviewContainer } from "./DepositLimitsOverviewContainer";

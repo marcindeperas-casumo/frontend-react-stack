@@ -55,11 +55,11 @@ export const KO_EVENTS = {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
     ITEM_EXPIRED: "VALUABLES/ITEM_EXPIRED",
   },
-};
+} as const;
 export const DEVICES = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
-};
+} as const;
 
 // todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
 export const APP_SUB_TYPES = {
@@ -67,12 +67,12 @@ export const APP_SUB_TYPES = {
   ANDROID_HYBRID: "android hybrid",
   ANDROID: "android-standalone",
   WEB: "web",
-};
+} as const;
 
 export const ENVIRONMENTS = {
   TEST: "test",
   PRODUCTION: "production",
-};
+} as const;
 
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
@@ -94,7 +94,7 @@ export const GAME_LIST_IDS = {
   SUGGESTED_GAMES: "suggestedGames",
   SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
   MY_LIST: "myList",
-};
+} as const;
 
 export const ROUTE_IDS = {
   LOGIN: "LOGIN",
@@ -131,7 +131,7 @@ export const ROUTE_IDS = {
   CASINO_GAMES: "CASINO_GAMES",
   MAHJONG_PAGE: "MAHJONG_PAGE",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
-};
+} as const;
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
 // adding is not present on casumo-frontend, the very route needs to be added here:
@@ -174,7 +174,7 @@ export const ROUTES = {
   [ROUTE_IDS.MAHJONG_PAGE]: "mahjong",
   [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
-};
+} as const;
 
 export const TRANSLATED_ROUTES = {
   GAMES: {
@@ -203,12 +203,12 @@ export const TRANSLATED_ROUTES = {
     es: "casino-juegos",
     DEFAULT: "games-information",
   },
-};
+} as const;
 
 export const COMPLIANCE_STATE_PROPERTY = {
   DGA: "DGA",
   AML: "AML",
-};
+} as const;
 
 export const MARKETS = {
   ___en: "___en",
@@ -224,16 +224,16 @@ export const MARKETS = {
   nz_en: "nz_en",
   jp_ja: "jp_ja",
   at_de: "at_de",
-};
+} as const;
 
-export const MARKETS_CONFIG = Object.freeze({
+export const MARKETS_CONFIG = {
   default: {
     reelRacesHidden: false,
   },
   [MARKETS.se_sv]: {
     reelRacesHidden: true,
   },
-});
+} as const;
 
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -249,7 +249,7 @@ export const LANGUAGES = {
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
-};
+} as const;
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 export const DEFAULT_MARKET = MARKETS.___en;
@@ -268,7 +268,7 @@ export const INTL_LOCALES = {
   [MARKETS.nz_en]: "en-NZ",
   [MARKETS.jp_ja]: "ja-JP",
   [MARKETS.at_de]: "de-AT",
-};
+} as const;
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "en-ca",
@@ -279,11 +279,11 @@ export const URL_PREFIXES = {
   [MARKETS.in_en]: "en-in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
-  [MARKETS.es_es]: "es",
+  [MARKETS.es_es]: "",
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
   [MARKETS.at_de]: "at",
-};
+} as const;
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £
@@ -293,9 +293,9 @@ export const CURRENCY_SYMBOLS = {
   NZD: "\u0024", // $
   INR: "\u20B9", // ₹
   USD: "\u0024", // $
-};
+} as const;
 
-export const CURRENCIES = Object.freeze({
+export const CURRENCIES = {
   EUR: "EUR",
   GBP: "GBP",
   DKK: "DKK",
@@ -304,12 +304,12 @@ export const CURRENCIES = Object.freeze({
   NZD: "NZD",
   INR: "INR",
   USD: "USD",
-});
+} as const;
 
 export const VERTICALS = {
   SPORTS: "SPORTS",
   CASINO: "CASINO",
-};
+} as const;
 
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
@@ -394,7 +394,7 @@ export const EVENTS = {
     "RETPAY - Close Exit Game Notification Clicked",
   MIXPANEL_MAKE_DEPOSIT_BUTTON_CLICKED: "RETPAY - Make Deposit Button Clicked",
   MIXPANEL_EXIT_GAME_STEP_COMPLETED: "RETPAY - Exit Game Step Completed",
-};
+} as const;
 
 export const EVENT_PROPS = {
   LOCATION: "location",
@@ -428,7 +428,7 @@ export const EVENT_PROPS = {
   CATEGORY: "category",
   BALANCE: "balance",
   BET_VALUE: "bet value",
-};
+} as const;
 
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
@@ -439,7 +439,7 @@ export const EVENT_LOCATIONS = {
   LIVE_CASINO: "Live Casino - Details Page",
   GAME_DETAILS: "Game details",
   GAME_SET: "Game Set: {{location}}",
-};
+} as const;
 
 // Those modals are implemented on react side. They can be spawned from knockout.
 // Event KO_APP_EVENT_MODAL_HIDDEN will contain ID and RETURN_CODE of closed modal
@@ -472,7 +472,7 @@ export const REACT_APP_MODAL = {
     CONTENT_HTML: "CONTENT_HTML",
     REEL_RACES_TAC: "REEL_RACES_TAC",
   },
-};
+} as const;
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
 
 export const MODALS = {
@@ -487,14 +487,14 @@ export const MODALS = {
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
   DEPOSIT: { SHOW_BONUS_TERMS: "DEPOSIT/SHOW_BONUS_TERMS" },
   ERROR: "ERROR",
-};
+} as const;
 
 // Make sure that any flags you have here are also listed here, otherwise they will not work:
 // https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
-};
+} as const;
 
 export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
 export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
@@ -506,14 +506,14 @@ export const JURISDICTIONS = {
   SGA: "SGA",
   UKGC: "UKGC",
   GGL: "GGL",
-};
+} as const;
 
 export const POLL_INTERVAL = {
   GAMES_LIST: 1800000, //30min
   JACKPOTS: 30000,
   JACKPOTS_MUST_DROP: 30000,
   REEL_RACES: 8000,
-};
+} as const;
 
 export const EMBEDDED_GAMES = {
   ACTIVE: false,
@@ -537,7 +537,7 @@ export const EMBEDDED_GAMES = {
     "peter.noer+THERKILD418@casumo.com",
     "theis.warmdahl+dk5@casumo.com",
   ],
-};
+} as const;
 
 export const topListWidgetWidth = 328;
 export const topListWidgetHeight = 304;

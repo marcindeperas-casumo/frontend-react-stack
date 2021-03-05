@@ -1,14 +1,13 @@
-// @flow
-import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
-  acceptModal: () => void,
+  acceptModal: () => void;
   config: {
-    content?: any,
-  },
+    content?: any;
+  };
 };
 
 export function PrePanicButtonModal({ acceptModal, config }: Props) {

@@ -1,4 +1,3 @@
-// @flow
 import { types } from "./sidebar.constants";
 
 export const sidebarOpenAction = () => ({

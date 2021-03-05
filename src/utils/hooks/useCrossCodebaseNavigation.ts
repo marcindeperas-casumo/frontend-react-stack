@@ -1,14 +1,12 @@
-// @flow
 import { useUrlPrefix, useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils";
 
 type RouteParamsType = {
-  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
-  [string]: string,
+  [s: string]: string;
 };
 
 type UseCrossCodebaseNavigationType = {
-  navigateToKO: (routeId: string, routeParams?: RouteParamsType) => void,
+  navigateToKO: (routeId: string, routeParams?: RouteParamsType) => void;
 };
 
 export function useCrossCodebaseNavigation(): UseCrossCodebaseNavigationType {

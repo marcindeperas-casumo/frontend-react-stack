@@ -1,5 +1,3 @@
-// @flow
-
 const callAdapters = (
   adapters: Array<Object>,
   methodName: string,

@@ -1,4 +1,3 @@
-// @flow
 import { storiesOf } from "@storybook/react";
 import { text, select } from "@storybook/addon-knobs/react";
 import React from "react";
@@ -6,15 +5,19 @@ import { CuratedCard } from "./CuratedCard";
 import { curatedGameMock, curatedPromotionMock } from "./__mocks__";
 
 const stories = storiesOf("CuratedCard", module);
+const props = {
+  market: "__en",
+  onLaunchGame: () => {},
+  navigateToSportsHash: () => {},
+  navigateById: () => {},
+};
 
 stories.add("Game", () => {
-  // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
-  return <CuratedCard curatedCard={curatedGameMock} />;
+  return <CuratedCard {...props} curatedCard={curatedGameMock} />;
 });
 
 stories.add("Promotion", () => {
-  // @ts-expect-error ts-migrate(2741) FIXME: Property 'sportsRoute' is missing in type '{ id: s... Remove this comment to see the full error message
-  return <CuratedCard curatedCard={curatedPromotionMock} />;
+  return <CuratedCard {...props} curatedCard={curatedPromotionMock} />;
 });
 
 stories.add(
@@ -51,6 +54,7 @@ stories.add(
     );
     const launchGameText = text("Play Button Text", "Play", "Game Info");
     const game = {
+      id: "a1",
       name: text("Game Name", "Tiki Tumble", "Game Info"),
       slug: "tiki-tumble",
       backgroundImage: text(
@@ -67,7 +71,9 @@ stories.add(
 
     return (
       <CuratedCard
+        {...props}
         curatedCard={{
+          id: "a1",
           slug,
           type,
           header,
@@ -79,7 +85,6 @@ stories.add(
           promotionSlug: null,
           promotionLegalText,
           launchGameText,
-          // @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ name: any; slu... Remove this comment to see the full error message
           game,
         }}
       />
@@ -116,6 +121,7 @@ stories.add(
     );
     const launchGameText = text("Play Button Text", "Play", "Game Info");
     const game = {
+      id: "a1",
       name: text("Game Name", "Tiki Tumble", "Game Info"),
       slug: "tiki-tumble",
       backgroundImage: text(
@@ -132,7 +138,9 @@ stories.add(
 
     return (
       <CuratedCard
+        {...props}
         curatedCard={{
+          id: "a1",
           slug,
           type,
           header,
@@ -144,7 +152,6 @@ stories.add(
           promotionSlug: null,
           promotionLegalText,
           launchGameText,
-          // @ts-expect-error ts-migrate(2741) FIXME: Property 'id' is missing in type '{ name: any; slu... Remove this comment to see the full error message
           game,
         }}
       />

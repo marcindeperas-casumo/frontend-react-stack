@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useTranslations, useDelayedCleanup } from "Utils/hooks";
 import { useSelectModal, useHideModal } from "Models/modal";
@@ -10,10 +9,9 @@ const CLOSING_ANIMATION_LENGTH_MS = 150;
 export function Modal() {
   const state = useSelectModal();
   const modalId = useDelayedCleanup(state.modalId, CLOSING_ANIMATION_LENGTH_MS);
-  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   const { slug, Content } = getModalData(modalId);
   const { closeModal, dismissModal, acceptModal } = useHideModal(modalId);
-  const t = useTranslations(slug);
+  const t = useTranslations<{}>(slug);
 
   return (
     <ModalBase
@@ -24,6 +22,7 @@ export function Modal() {
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
       <Content
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: {}; closeModal: (result?: any) => void;... Remove this comment to see the full error message
         t={t}
         closeModal={closeModal}
         dismissModal={dismissModal}

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { VirtualGridSkeleton } from "Components/VirtualGrid";
 import { gameTileHeight, gameTileWidth } from "./GamesVirtualGrid";

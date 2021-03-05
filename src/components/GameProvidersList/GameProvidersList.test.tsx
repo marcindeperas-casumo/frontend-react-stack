@@ -1,8 +1,7 @@
-// @flow
+import Scrollable from "@casumo/cmp-scrollable";
 import * as React from "react";
 import { mount } from "enzyme";
 import * as R from "ramda";
-import Scrollable from "@casumo/cmp-scrollable";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
@@ -60,10 +59,7 @@ describe("<GameProvidersList /> - Mobile and Tablet", () => {
     expect(rendered.find(ScrollableListTitle).prop("title")).toBe(title);
     expect(rendered.find(Scrollable).find(GameProviderAvatar)).toHaveLength(1);
 
-    const avatar = rendered
-      .find(Scrollable)
-      .find(GameProviderAvatar)
-      .first();
+    const avatar = rendered.find(Scrollable).find(GameProviderAvatar).first();
 
     expect(avatar.prop("url")).toBe(item.url);
     expect(avatar.prop("logo")).toBe(item.logo);

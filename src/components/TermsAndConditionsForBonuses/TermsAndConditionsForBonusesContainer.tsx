@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useDispatch } from "react-redux";
 import { ContentHtml } from "Components/ContentHtml";
@@ -10,7 +9,7 @@ import { showModal } from "Models/modal";
 export function TermsAndConditionsForBonusesContainer() {
   const dispatch = useDispatch();
   const t = useTranslations<{
-    terms_and_conditions_for_bonuses_and_rewards: string,
+    terms_and_conditions_for_bonuses_and_rewards: string;
   }>("mobile.footer");
 
   if (!t) {
@@ -25,7 +24,6 @@ export function TermsAndConditionsForBonusesContainer() {
 
   const onClickExpand = () =>
     dispatch(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.CONTENT_HTML, { input: { html: content } })
     );
 

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
@@ -7,32 +6,27 @@ import {
   usePlayerReceivedValuableEvent,
 } from "Utils/hooks";
 import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
-import {
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../models/adventure"' has no export... Remove this comment to see the full error message
-  type BeltType,
-  adventurerSelector,
-  initAdventurerSaga,
-} from "Models/adventure";
+import { adventurerSelector, initAdventurerSaga } from "Models/adventure";
+import type { BeltType } from "Models/adventure";
 import {
   subscribeToAdventureUpdates,
   unsubscribeFromAdventureUpdates,
 } from "Models/cometd";
 
 type TAdventurerContextProviderProps = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 type TAdventurerContext = {
-  level: number,
-  points: number,
-  pointsRequiredForNextLevel: number,
-  progressPercentage: number,
-  rawProgressPercentage: number,
-  inBonusMode: boolean,
-  belt: BeltType,
-  onLevelUp: LevelUpCallback,
-  recentValuable: ?string,
+  level: number;
+  points: number;
+  pointsRequiredForNextLevel: number;
+  progressPercentage: number;
+  rawProgressPercentage: number;
+  inBonusMode: boolean;
+  belt: BeltType;
+  onLevelUp: LevelUpCallback;
+  recentValuable: string | undefined;
 };
 
 export const AdventurerContext = React.createContext<TAdventurerContext>({
@@ -43,6 +37,7 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   rawProgressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '(callback: LevelUpCallback) => void' is not ... Remove this comment to see the full error message
   onLevelUp: usePlayerLevelUpEvent,
   recentValuable: null,
 });
@@ -93,6 +88,7 @@ export const AdventurerContextProvider = ({
         belt,
         progressPercentage,
         rawProgressPercentage,
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(callback: LevelUpCallback) => void' is not ... Remove this comment to see the full error message
         onLevelUp: usePlayerLevelUpEvent,
         recentValuable,
       }}

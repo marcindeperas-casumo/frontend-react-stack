@@ -1,4 +1,3 @@
-//@flow
 import { combineReducers } from "redux";
 import { reducer as router } from "Models/router";
 import { reducer as fetch } from "Models/fetch";

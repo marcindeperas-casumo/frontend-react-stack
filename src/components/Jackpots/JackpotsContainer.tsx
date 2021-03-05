@@ -1,7 +1,6 @@
-// @flow
+import { useQuery } from "@apollo/client";
 import React from "react";
 import { connect } from "react-redux";
-import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import {
   GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT,
@@ -9,13 +8,12 @@ import {
 } from "Src/constants";
 import { localeSelector } from "Models/handshake";
 import Jackpots from "./Jackpots";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './Jackpots.graphql' or its cor... Remove this comment to see the full error message
 import { JackpotsQuery } from "./Jackpots.graphql";
 
 type JackpotsQueryInjectProps = {
-  locale: string,
+  locale: string;
   /** The number of games to show */
-  numberOfGames: number,
+  numberOfGames: number;
 };
 
 export const JackpotsQueryInject = React.memo<JackpotsQueryInjectProps>(

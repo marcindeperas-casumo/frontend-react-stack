@@ -1,11 +1,10 @@
-// @flow
 import React, { PureComponent } from "react";
 import { PromotionTeaserRow } from "Components/PromotionTeaserRow";
 
 type Props = {
-  promotionsSlugs: Array<string>,
-  fetchCampaign: () => void,
-  fetchPromotions: () => void,
+  promotionsSlugs: Array<string>;
+  fetchCampaign: () => void;
+  fetchPromotions: () => void;
 };
 
 export class PromotionTeaserList extends PureComponent<Props> {

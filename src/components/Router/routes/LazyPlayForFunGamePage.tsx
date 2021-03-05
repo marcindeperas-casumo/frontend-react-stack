@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { getUrlSearchParam, decodedUrlParams } from "Utils";
 
@@ -9,10 +8,10 @@ const LazyComponent = React.lazy(() =>
 );
 
 type Props = {
-  slug: string,
+  slug: string;
   location: {
-    search: string,
-  },
+    search: string;
+  };
 };
 
 export const LazyPlayForFunGamePage = ({ slug, location }: Props) => {

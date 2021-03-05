@@ -1,29 +1,29 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { text, select, number } from "@storybook/addon-knobs/react";
+import * as React from "react";
 import { TextInput } from "./TextInput";
 
 const stories = storiesOf("TextInput", module);
 
 stories.add("Default", () => {
-  const inputProps = useInput();
-  return (
-    <TextInput
-      currencySign={select("Currency Sign", ["€", ""], "€")}
-      type={select("Type", ["text", "number"], "text")}
-      placeholder={text("Placeholder")}
-      min={number("Min", 0)}
-      max={number("Max", 10)}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ value: string; onChange: (event: any) => v... Remove this comment to see the full error message
-      label="Daily limit"
-      {...inputProps}
-    />
-  );
+  function TextInputStory() {
+    const inputProps = useInput();
+    return (
+      <TextInput
+        currencySign={select("Currency Sign", ["€", ""], "€")}
+        type={select("Type", ["text", "number"], "text")}
+        placeholder={text("Placeholder")}
+        min={number("Min", 0)}
+        max={number("Max", 10)}
+        {...inputProps}
+      />
+    );
+  }
+
+  return <TextInputStory />;
 });
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-function useInput(initialValue?: ?string) {
+function useInput(initialValue?: string | undefined) {
   const [value, setValue] = React.useState(initialValue);
 
   return {

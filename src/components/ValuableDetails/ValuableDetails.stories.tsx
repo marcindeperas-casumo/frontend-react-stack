@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, select } from "@storybook/addon-knobs/react";
+import React from "react";
 import { F } from "ramda";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock";
 import {
@@ -20,9 +19,7 @@ const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
   const valuableType =
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     VALUABLE_TYPES.CASH;
   const valuableDetailsMock = mockData(valuableType);
   const expiresWith24Hours = boolean("Expires within 24 hours", false);
@@ -54,7 +51,6 @@ stories.add("Default", () => {
 });
 
 stories.add("Default - With modal", () => {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
   const valuableDetailsMock = mockData(VALUABLE_TYPES.CASH);
 
   return (
@@ -69,7 +65,6 @@ stories.add("Default - With modal", () => {
         <div style={{ width: "160px" }}>
           {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           <ValuableCard
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
             {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
             className="t-elevation--30"
@@ -81,7 +76,6 @@ stories.add("Default - With modal", () => {
 });
 
 stories.add("Deposit - Locked", () => {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
   const valuableDetailsMock = mockData(VALUABLE_TYPES.DEPOSIT);
 
   return (
@@ -96,7 +90,6 @@ stories.add("Deposit - Locked", () => {
         <div style={{ width: "160px" }}>
           {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           <ValuableCard
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'DEPOSIT' does not exist on type '{}'.
             {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
             className="t-elevation--30"

@@ -1,25 +1,24 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Modal from "@casumo/cmp-modal";
+import * as React from "react";
 import TrackView from "Components/TrackView";
 import { EVENTS } from "Src/constants";
 import { stringToHTML, formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"./PaymentResult.types"' has no exported m... Remove this comment to see the full error message
-import { PAYMENT_RESULT_STATUS, type CmsContent } from "./PaymentResult.types";
+import type { CmsContent } from "./PaymentResult.types";
+import { PAYMENT_RESULT_STATUS } from "./PaymentResult.types";
 
 type Props = {
-  t: CmsContent,
-  locale: string,
-  currency: string,
-  amount: number,
-  closeModal: () => void,
-  status: string,
-  errorTitle?: string,
-  errorMessage?: string,
+  t: CmsContent;
+  locale: string;
+  currency: string;
+  amount: number;
+  closeModal: () => void;
+  status: string;
+  errorTitle?: string;
+  errorMessage?: string;
 };
 
 export const PaymentResult = ({

@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import { useIsTransitioning } from "Utils/hooks/useIsTransitioning";
@@ -8,8 +7,8 @@ import { getArcClassName } from "../ReelRaceBoosters.utils";
 import "../ReelRaceBooster.scss";
 
 type Props = {
-  className?: string,
-  winsInARow: number,
+  className?: string;
+  winsInARow: number;
 };
 
 const baseClassName = "c-rr-booster";

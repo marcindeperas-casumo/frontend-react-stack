@@ -1,14 +1,13 @@
-// @flow
 import React, { PureComponent } from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
   /** The source of the image */
-  src: string,
+  src: string;
   /** The alternate text for the image */
-  alt?: string,
+  alt?: string;
   /** The maximum width of the image used */
-  maxWidth?: number,
+  maxWidth?: number;
 };
 
 const MAX_CONTENT_WIDTH = 578;

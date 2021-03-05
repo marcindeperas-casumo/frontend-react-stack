@@ -1,5 +1,5 @@
-import React from "react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 
 export const PromotionCardContent = ({ title }) => {

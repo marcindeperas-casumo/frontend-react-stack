@@ -1,11 +1,10 @@
-// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
-  logoBackground: string,
-  logo: string,
-  name: string,
+  logoBackground: string;
+  logo: string;
+  name: string;
 };
 
 const GameTileImage = ({ logoBackground, logo, name, ...rest }: Props) => {

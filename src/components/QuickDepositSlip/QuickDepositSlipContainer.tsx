@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { playerCurrencySymbolSelector } from "Models/player";
@@ -7,13 +6,12 @@ import { useTranslationsGql } from "../../utils/hooks/useTranslationsGql";
 import { QuickDepositSlip } from "./QuickDepositSlip";
 
 type Props = {
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
-  requestStatus: DepositRequestStateType,
-  onDeposit: (amount: number, cvvEncoded: string) => void,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  paymentMethodDetails: () => React.Node,
+  minAmount: number;
+  maxAmount: number;
+  presetAmount?: number;
+  requestStatus: DepositRequestStateType;
+  onDeposit: (amount: number, cvvEncoded: string) => void;
+  paymentMethodDetails: () => React.ReactNode;
 };
 
 const cmsPrefix = "root:quick-deposit-slip:fields";
@@ -47,7 +45,6 @@ export function QuickDepositSlipContainer({
 
   return (
     <QuickDepositSlip
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'QuickDepositS... Remove this comment to see the full error message
       translations={t}
       currencySymbol={currencySymbol}
       minAmount={minAmount}

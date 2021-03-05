@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, shallowEqual } from "react-redux";
@@ -11,16 +10,13 @@ import { playerIdSelector } from "Models/handshake";
 export function useReelRaceLeaderboard(
   tournamentId: string,
   cometdChannels: Array<string>,
-  initialLeaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard> = []
-): Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard> {
+  initialLeaderboard: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"] = []
+): A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"] {
   const [leaderboard, setLeaderboard] = React.useState([]);
   const playerId = useSelector(playerIdSelector, shallowEqual);
 
   const getVisibleLeaderboard = list => {
-    const sorted = R.pipe(
-      R.values,
-      R.sortBy(R.prop("position"))
-    )(list);
+    const sorted = R.pipe(R.values, R.sortBy(R.prop("position")))(list);
     const playerPosition = R.findIndex(R.propEq("playerId", playerId), sorted);
     return R.uniqBy(
       R.prop("playerId"),

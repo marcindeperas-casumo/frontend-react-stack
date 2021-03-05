@@ -1,14 +1,13 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import "./SportsIcon.scss";
 
 export type Props = {
-  alt: string,
-  iconSrc: string,
-  activeIndicator: string,
-  isActive?: boolean,
-  width?: number,
+  alt: string;
+  iconSrc: string;
+  activeIndicator: string;
+  isActive?: boolean;
+  width?: number;
 };
 
 const SportsIcon = ({ iconSrc, width = 32 }: Props) => (

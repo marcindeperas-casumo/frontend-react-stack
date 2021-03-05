@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { connect } from "react-redux";
 import { isPageFetchedSelector, fetchPageBySlug, getField } from "Models/cms";
@@ -6,7 +5,7 @@ import PromotionCardTeaser from "./PromotionCardTeaser";
 
 type Props = {
   /** The slug of the page in the CMS which has the promotion info */
-  slug: string,
+  slug: string;
 };
 
 const promotionBadgeField = "badge";

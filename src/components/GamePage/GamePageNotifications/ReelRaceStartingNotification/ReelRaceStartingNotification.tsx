@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { ProgressCircle } from "Components/Progress";
 import { useTranslationsGql } from "Utils/hooks";
 
@@ -11,9 +10,9 @@ import "./ReelRaceStartingNotification.scss";
 const cmsPrefix = "root:iframe-solution:fields";
 
 type Props = {
-  secondsLeft: number,
-  secondsLeftWhenShown: number,
-  onClickDismiss: () => void,
+  secondsLeft: number;
+  secondsLeftWhenShown: number;
+  onClickDismiss: () => void;
 };
 
 export function ReelRaceStartingNotification({
@@ -54,11 +53,9 @@ export function ReelRaceStartingNotification({
       </Flex.Item>
       <Flex.Block>
         <Text tag="div" className="t-color-black u-font-weight-bold">
-          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'header' does not exist on type '{}'. */}
           {t.header}
         </Text>
         <Text tag="div" className="t-color-grey-50">
-          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'subheader' does not exist on type '{}'. */}
           {t.subheader}
         </Text>
       </Flex.Block>

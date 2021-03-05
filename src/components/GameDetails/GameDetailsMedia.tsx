@@ -1,16 +1,14 @@
-// @flow
 import * as React from "react";
 import * as A from "Types/apollo";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
-  media: Array<A.GameDetailsQuery_game_media>,
-  name: string,
+  media: A.GameDetailsQuery["game"]["media"];
+  name: string;
 };
 
 export const GameDetailsMedia = ({ media, name }: Props) => {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  return media.map<React.Node>(gameMedia => {
+  return media.map(gameMedia => {
     if (gameMedia.type !== "image") {
       return null;
     }

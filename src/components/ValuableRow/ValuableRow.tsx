@@ -1,73 +1,69 @@
-// @flow
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
+import React, { PureComponent } from "react";
 import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
 import {
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableType,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
   showStateBadge,
   getExpiryTimeLeft,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableThumbnailTranslations as Translations,
+} from "Models/valuables";
+import type {
+  ValuableType,
+  ValuableState,
+  ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import ValuableSelector from "./valuable-selector.svg";
 import "./ValuableRow.scss";
 
 type OwnProps = {
-    /** Unique id of the valuable */
-    id: string;
-    /** Title of the valuable */
-    title: string;
-    /** Description of the valuable. Ex: title of a game etc.*/
-    description?: string;
-    /** Valuable type of the valuable */
-    valuableType: ValuableType;
-    /** award type - applies when valuableType === Wagering Lock */
-    awardType?: A.WageringLockAwardType;
-    /** currency of the player */
-    currency: string;
-    /** The coin value of each spin. Applies when valuable is type spins */
-    coinValue?: number;
-    /** Market of the player */
-    market: string;
-    /** URL of background image to be displayed in the Card header */
-    backgroundImage: string;
-    /** Valuable caveats to be displayed */
-    caveat: ?string;
-    /** The state of the valuable */
-    valuableState: ValuableState;
-    /** Translations */
-    translations: Translations;
-    isSelected?: boolean;
-    expiryDate: number;
-    /** Function to be triggered on click of card */
-    onClick?: () => void;
-    /** Function to be triggered on click of the more icon */
-    onMoreInfo: ?() => void;
+  /** Unique id of the valuable */
+  id: string;
+  /** Title of the valuable */
+  title: string;
+  /** Description of the valuable. Ex: title of a game etc.*/
+  description?: string;
+  /** Valuable type of the valuable */
+  valuableType: ValuableType;
+  /** award type - applies when valuableType === Wagering Lock */
+  awardType?: A.WageringLockAwardType;
+  /** currency of the player */
+  currency: string;
+  /** The coin value of each spin. Applies when valuable is type spins */
+  coinValue?: number;
+  /** Market of the player */
+  market: string;
+  /** URL of background image to be displayed in the Card header */
+  backgroundImage: string;
+  /** Valuable caveats to be displayed */
+  caveat: string | undefined;
+  /** The state of the valuable */
+  valuableState: ValuableState;
+  /** Translations */
+  translations: Translations;
+  isSelected?: boolean;
+  expiryDate: number;
+  /** Function to be triggered on click of card */
+  onClick?: () => void;
+  /** Function to be triggered on click of the more icon */
+  onMoreInfo?: () => void;
 };
 
 type Props = OwnProps & typeof ValuableRow.defaultProps;
 
 export class ValuableRow extends PureComponent<Props> {
   static defaultProps = {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
     valuableState: VALUABLE_STATES.FRESH,
     caveat: null,
   };
 
   get isValuableTypeSpins() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'SPINS' does not exist on type '{}'.
     return this.props.valuableType === VALUABLE_TYPES.SPINS;
   }
 
@@ -95,8 +91,7 @@ export class ValuableRow extends PureComponent<Props> {
     return coinValueToSpinType(this.props.coinValue);
   }
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  onClick = (event: SyntheticEvent<HTMLElement>) => {
+  onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const linkClickEvent = event.currentTarget.tagName === "A";
 
     // Stop the bubbling and prevent the ValuableRow from opening a popup if an actual link was clicked
@@ -120,7 +115,6 @@ export class ValuableRow extends PureComponent<Props> {
       isSelected,
     } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'FRESH' does not exist on type '{}'.
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
     const stateBadgeVisible =
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;

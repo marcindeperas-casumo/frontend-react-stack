@@ -9,13 +9,13 @@ export const CURATED_TYPE = {
   WELCOME_OFFER: "welcome offer",
   JP_WELCOME_OFFER: "japan welcome offer",
   SPORTS: "sports",
-};
+} as const;
 
 export const CURATED_URL = {
   [CURATED_TYPE.PROMOTION]: "/promotions/#promotionSlug",
   [CURATED_TYPE.WELCOME_OFFER]: "/cash/deposit",
   [CURATED_TYPE.JP_WELCOME_OFFER]: "/promotions/welcome-offer",
-};
+} as const;
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
 export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;

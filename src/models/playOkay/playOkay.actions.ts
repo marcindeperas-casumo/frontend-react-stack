@@ -1,8 +1,6 @@
-// @flow
 import * as api from "Api/api.playOkay";
 import { types as fetchTypes } from "Models/fetch";
-// @ts-expect-error ts-migrate(2459) FIXME: Module '"./playOkay.types"' declares 'type' locall... Remove this comment to see the full error message
-import { type GetAllLimitsProps } from "./playOkay.types";
+import type { GetAllLimitsProps } from "./playOkay.types";
 
 export const types = {
   PLAYOK_FETCH_ALL_LIMITS_START: "PLAYOK_FETCH_ALL_LIMITS_START",

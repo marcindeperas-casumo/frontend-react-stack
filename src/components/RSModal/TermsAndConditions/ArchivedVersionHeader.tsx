@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 type Props = {
-  title: string,
-  onClick: () => void,
+  title: string;
+  onClick: () => void;
 };
 
 export function ArchivedVersionHeader(props: Props) {

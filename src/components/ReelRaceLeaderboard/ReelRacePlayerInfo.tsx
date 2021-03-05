@@ -1,16 +1,15 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import Timer from "Components/Timer";
 
 type Props = {
-  endTime: number,
-  spins: number,
+  endTime: number;
+  spins: number;
   t: {
-    spins: string,
-    ending_in: string,
-  },
+    spins: string;
+    ending_in: string;
+  };
 };
 
 export function ReelRacePlayerInfo(props: Props) {

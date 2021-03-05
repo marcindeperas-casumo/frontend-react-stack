@@ -1,6 +1,6 @@
+import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
 import { times } from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 import {
   leftPaddingClasses,
   topMarginClasses,
@@ -8,13 +8,13 @@ import {
 
 type Props = {
   /* Additional css classes to add to the component **/
-  className: string,
+  className: string;
   /* The number of tile components to show **/
-  numberOfItems: number,
+  numberOfItems: number;
   /* radius of tile **/
-  tileRadius: number,
+  tileRadius: number;
   /* gutter between each tile **/
-  tileGutter: number,
+  tileGutter: number;
 };
 
 export default class GameProvidersListSkeleton extends React.PureComponent<Props> {

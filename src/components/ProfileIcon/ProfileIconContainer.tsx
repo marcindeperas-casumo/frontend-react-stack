@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";
 import { ProfileIcon } from "./ProfileIcon";

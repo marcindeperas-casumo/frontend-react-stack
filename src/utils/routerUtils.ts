@@ -1,4 +1,3 @@
-// @flow
 import { navigate } from "@reach/router";
 import { interpolate, canBeInterpolated } from "Utils";
 import { ROUTES, TRANSLATED_ROUTES } from "Src/constants";
@@ -26,8 +25,7 @@ export const routeTranslator = (language: string) => {
 export const getUrlSearchParam = (
   searchString: string,
   paramName: string
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-): ?string => {
+): string | undefined => {
   const params = new URLSearchParams(searchString);
 
   return params.get(paramName);

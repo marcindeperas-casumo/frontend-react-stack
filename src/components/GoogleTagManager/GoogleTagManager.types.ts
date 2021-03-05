@@ -1,22 +1,20 @@
-// @flow
 export type GTMDataLayer = {
-  dataLayer: Object,
+  dataLayer: Object;
 };
 
 export type GTMScriptParams = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
-  dataLayer?: $PropertyType<GTMDataLayer, "dataLayer">,
-  containerId: string,
+  dataLayer?: GTMDataLayer["dataLayer"];
+  containerId: string;
 };
 
 export type GTMEventParams = {
-  event: string,
-  payload?: Object,
+  event: string;
+  payload?: Object;
 };
 
 export type TSharedEventConfig = {
-  userId: string,
-  testSubjectId?: string,
-  btag?: string, // todo: confirm if still needed
-  userStatus: "Logged-In" | "Logged-Out",
+  userId: string;
+  testSubjectId?: string;
+  btag?: string; // todo: confirm if still needed
+  userStatus: "Logged-In" | "Logged-Out";
 };

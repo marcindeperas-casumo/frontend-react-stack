@@ -1,7 +1,6 @@
-// @flow
+import { storiesOf } from "@storybook/react";
 import React from "react";
 import { F } from "ramda";
-import { storiesOf } from "@storybook/react";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
 const stories = storiesOf("TransactionsAnnualOverviewYearSelector", module);
@@ -25,6 +24,5 @@ const props = {
 };
 
 stories.add("Default", () => {
-  // @ts-expect-error ts-migrate(2739) FIXME: Type '{ selectorHtmlId: string; selectedYear: numb... Remove this comment to see the full error message
   return <TransactionsAnnualOverviewYearSelector {...props} />;
 });

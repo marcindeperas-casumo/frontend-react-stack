@@ -1,27 +1,26 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary } from "@casumo/cmp-button";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
+import * as R from "ramda";
+import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/depositLimits";
 import { formatCurrency } from "Utils";
 
 type Props = PendingDepositLimitsChangesSelected & {
-  currency: string,
-  locale: string,
-  limitCancel: () => void,
+  currency: string;
+  locale: string;
+  limitCancel: () => void;
   t: {
-    pending_remove_all: string,
-    pending_increase: string,
-    daily_short: string,
-    weekly_short: string,
-    monthly_short: string,
-    cancel_pending_increases: string,
-    cancel_pending_remove_all: string,
-  },
+    pending_remove_all: string;
+    pending_increase: string;
+    daily_short: string;
+    weekly_short: string;
+    monthly_short: string;
+    cancel_pending_increases: string;
+    cancel_pending_remove_all: string;
+  };
 };
 export function PendingChanges(props: Props) {
   const { t } = props;

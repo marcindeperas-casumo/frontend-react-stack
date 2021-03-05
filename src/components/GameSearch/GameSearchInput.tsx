@@ -1,21 +1,20 @@
-// @flow
-import React, { PureComponent } from "react";
 import debounce from "lodash/debounce";
+import React, { PureComponent } from "react";
 import SearchInput from "Components/SearchInput";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
 type OwnProps = {
-    onChange: (query: string) => {};
-    clearSearch: Function;
-    noResults: boolean;
-    placeholder: string;
-    trackHandler: Function;
-    colorBackgroundClass?: string;
+  onChange: (query: string) => void;
+  clearSearch: Function;
+  noResults: boolean;
+  placeholder: string;
+  trackHandler: Function;
+  colorBackgroundClass?: string;
 };
 
 type State = {
-  query: string,
+  query: string;
 };
 
 type Props = OwnProps & typeof GameSearchInput.defaultProps;
@@ -56,7 +55,9 @@ export class GameSearchInput extends PureComponent<Props, State> {
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
     const query = target.value.replace(/^\s+/g, "");
 
-    query && this.trackSearchInitiated(query);
+    if (query) {
+      this.trackSearchInitiated(query);
+    }
 
     this.setState({
       query,

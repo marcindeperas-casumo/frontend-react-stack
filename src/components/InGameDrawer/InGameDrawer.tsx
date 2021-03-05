@@ -1,14 +1,12 @@
-// @flow
 import React from "react";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { isNativeByUserAgent } from "GameProviders";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { QuickDeposit } from "Components/QuickDeposit";
 import { InGameDrawerLinksContainer as InGameDrawerLinks } from "./InGameDrawerLinksContainer";
 
 type Props = {
-  onLiveChatClick: Function,
-  onExitGameClick: Function,
+  onLiveChatClick: Function;
+  onExitGameClick: Function;
 };
 
 export const InGameDrawer = ({ onLiveChatClick, onExitGameClick }: Props) => {

@@ -1,4 +1,3 @@
-// @flow
 import { reject, isNil } from "ramda";
 import { NewSessionRequestType } from "Models/slotControlSystem";
 import { ConfigurationFormData } from "./ConfigurationForm";
@@ -11,13 +10,13 @@ export function isBudgetTooHigh({
   budget,
   balance,
 }: {
-  budget: number,
-  balance: number,
+  budget: number;
+  balance: number;
 }) {
   return budget > balance;
 }
 
-export function isBudgetInvalid(props: { budget: number, balance: number }) {
+export function isBudgetInvalid(props: { budget: number; balance: number }) {
   return isNaN(props.budget) || isBudgetTooLow(props) || isBudgetTooHigh(props);
 }
 

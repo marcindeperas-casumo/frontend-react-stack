@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react";
 import { shallow } from "enzyme";
 import CompetitionPillsList from "./CompetitionPillsList";
@@ -18,7 +16,6 @@ describe("<CompetitionPillsList />", () => {
 
   test("renders add button only when onAdd callback is provided", () => {
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onAdd={() => {}} />
     );
     const renderedNoOnAdd = shallow(
@@ -32,7 +29,6 @@ describe("<CompetitionPillsList />", () => {
   test("passes the onAdd callback to the add button", () => {
     const onAdd = jest.fn();
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onAdd={onAdd} />
     );
 
@@ -42,15 +38,11 @@ describe("<CompetitionPillsList />", () => {
   test("passes correct competition item to onClick callback", () => {
     const onClick = jest.fn();
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} onClick={onClick} />
     );
     const indexToTest = 2;
 
-    rendered
-      .find("GroupPill")
-      .at(indexToTest)
-      .simulate("click");
+    rendered.find("GroupPill").at(indexToTest).simulate("click");
 
     expect(onClick).toHaveBeenCalledWith(competitions[indexToTest]);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -62,7 +54,9 @@ describe("<CompetitionPillsList />", () => {
     );
     const pills = rendered.find("GroupPill");
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isActive' does not exist on type 'HTMLAt... Remove this comment to see the full error message
     expect(pills.first().props().isActive).toBe(true);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isActive' does not exist on type 'HTMLAt... Remove this comment to see the full error message
     expect(pills.at(1).props().isActive).toBeFalsy();
   });
 
@@ -71,7 +65,6 @@ describe("<CompetitionPillsList />", () => {
     shallow(
       <CompetitionPillsList
         competitions={[competitions[0]]}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
         isActive={isActive}
       />
     );
@@ -81,19 +74,17 @@ describe("<CompetitionPillsList />", () => {
   });
 
   test("calls isActive for each pill and passes result to pill", () => {
-    const isActive = jest
-      .fn()
-      .mockReturnValue(true)
-      .mockReturnValueOnce(false);
+    const isActive = jest.fn().mockReturnValue(true).mockReturnValueOnce(false);
 
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ competitions: { id: number; regionCode: st... Remove this comment to see the full error message
       <CompetitionPillsList competitions={competitions} isActive={isActive} />
     );
     const pills = rendered.find("GroupPill");
 
     expect(isActive).toHaveBeenCalledTimes(competitions.length);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isActive' does not exist on type 'HTMLAt... Remove this comment to see the full error message
     expect(pills.first().props().isActive).toBe(false);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isActive' does not exist on type 'HTMLAt... Remove this comment to see the full error message
     expect(pills.at(2).props().isActive).toBe(true);
   });
 });

@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { gql } from "@apollo/client";
+import React from "react";
 import * as A from "Types/apollo";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
@@ -8,28 +7,28 @@ import SportsIcon from "Features/sports/components/SportsIcon";
 
 type Props = {
   /** Sport group to render the favourite selector for, type comes from FavouriteSportsSelectorListItem.fragments.group */
-  group: A.FavouriteSportsSelectorListItem_Group,
+  group: A.FavouriteSportsSelectorListItem_GroupFragment;
   /** Whether this group should be favouritable */
-  isFavouritable?: boolean,
+  isFavouritable?: boolean;
   /** Whether we should show an intro to selecting competitions */
-  showCompetitionIntro: boolean,
+  showCompetitionIntro: boolean;
   /** What should happen with the sport data when the group is toggled */
-  onToggleFavouriteSport: (id: number) => void,
+  onToggleFavouriteSport: (id: number) => void;
   /** What should happen when the buttons to edit competitions for this group are clicked */
   onAddCompetition: (
     groupId: number,
     name: string,
     isOnboarding: boolean
-  ) => void,
+  ) => void;
   /** Whether this list item should be in its favourited state */
-  isFavourite: boolean,
+  isFavourite: boolean;
   /** What should happen when a competition is removed  */
   onRemoveFavouriteCompetition: (
     groupId: number,
-    competition: A.FavouriteSportsSelectorListItem_Group_favouriteCompetitions
-  ) => void,
+    competition: A.FavouriteSportsSelectorListItem_GroupFragment["favouriteCompetitions"]
+  ) => void;
   /** Is favorite list eq 0 **/
-  isOnboarding: boolean,
+  isOnboarding: boolean;
 };
 
 const FavouriteSportsSelectorListItem = ({

@@ -1,16 +1,15 @@
-// @flow
-import * as React from "react";
 import { useUpdateEffect } from "react-use";
+import * as React from "react";
 import { useTimeoutFn } from "Utils/hooks";
 
 type Props = {
-  enterPredicate: () => boolean,
-  tweenedValue: number,
-  duration: number,
+  enterPredicate: () => boolean;
+  tweenedValue: number;
+  duration: number;
 };
 
 type UseIsTransitioning = {
-  isTransitioning: boolean,
+  isTransitioning: boolean;
 };
 
 export function useIsTransitioning({

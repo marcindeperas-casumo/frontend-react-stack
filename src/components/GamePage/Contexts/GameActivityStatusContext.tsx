@@ -1,10 +1,8 @@
-// @flow
 import * as React from "react";
 import { useGameActivityStatus } from "../Hooks/useGameActivityStatus";
 
 type GameActivityStatusContextProviderProps = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 export const GameActivityStatusContext = React.createContext<boolean>(false);

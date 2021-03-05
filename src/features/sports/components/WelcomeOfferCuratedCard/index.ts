@@ -1,5 +1,1 @@
-// @flow
-
-export {
-  WelcomeOfferCuratedCardContainer as WelcomeOfferCuratedCard,
-} from "./WelcomeOfferCuratedCardContainer";
+export { WelcomeOfferCuratedCardContainer as WelcomeOfferCuratedCard } from "./WelcomeOfferCuratedCardContainer";

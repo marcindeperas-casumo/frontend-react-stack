@@ -1,9 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/GameListHorizontal/... Remove this comment to see the full error message
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
 import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
 import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";

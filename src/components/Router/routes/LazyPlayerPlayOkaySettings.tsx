@@ -1,8 +1,7 @@
-// @flow
 import * as React from "react";
 import LazyPortal from "Components/LazyPortal";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../models/playOkay"' has no exported membe... Remove this comment to see the full error message
-import { limitPeriod, type Period } from "Models/playOkay";
+import type { Period } from "Models/playOkay";
+import { limitPeriod } from "Models/playOkay";
 
 export function LazyPlayerPlayOkaySettings() {
   return (
@@ -26,8 +25,8 @@ export function LazyPlayerPlayOkaySettings() {
 }
 
 type TimeLimitsCardLazyPortalProps = {
-  period?: Period,
-  inReview?: boolean,
+  period?: Period;
+  inReview?: boolean;
 };
 
 function TimeLimitsCardLazyPortal({

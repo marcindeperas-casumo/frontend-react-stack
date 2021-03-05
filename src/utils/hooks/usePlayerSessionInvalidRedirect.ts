@@ -1,4 +1,3 @@
-// @flow
 import { useSelector, shallowEqual } from "react-redux";
 import { playerSessionIsValidSelector } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";

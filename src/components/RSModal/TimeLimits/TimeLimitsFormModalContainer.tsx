@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useTranslationsGql } from "Utils/hooks";
 import { loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix } from "Models/playOkay";
@@ -6,10 +5,10 @@ import { TimeLimitsFormView } from "Components/Compliance/Sweden/TimeLimits";
 import { ModalHeader } from "Components/RSModal";
 
 type Props = {
-  acceptModal: () => void,
+  acceptModal: () => void;
   config: {
-    mustAccept?: boolean,
-  },
+    mustAccept?: boolean;
+  };
 };
 
 export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
@@ -19,13 +18,11 @@ export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
   });
   const headerProps = !config.mustAccept
     ? {
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'form_top_header_edit' does not exist on ... Remove this comment to see the full error message
         title: t?.form_top_header_edit || "",
         showCloseButton: true,
         closeAction: acceptModal,
       }
     : {
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'form_top_header_initial' does not exist ... Remove this comment to see the full error message
         title: t?.form_top_header_initial || "",
       };
 
@@ -33,6 +30,7 @@ export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
     <TimeLimitsFormView
       initial={config.mustAccept}
       onClickOutroCta={acceptModal}
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ title: string; showCloseButton: boolean; c... Remove this comment to see the full error message
       formHeader={<ModalHeader {...headerProps} />}
     />
   );

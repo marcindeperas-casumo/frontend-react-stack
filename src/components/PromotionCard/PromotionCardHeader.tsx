@@ -1,6 +1,6 @@
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import classNames from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 

@@ -1,4 +1,3 @@
-// @flow
 import { useEffect } from "react";
 import { isEmpty } from "ramda";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +7,8 @@ import { KO_APP_EVENT_MODAL_HIDDEN, REACT_APP_MODAL } from "Src/constants";
 import { realityCheckSelector } from "Models/playOkay/realityCheck";
 
 type Props = {
-  pauseGame: () => Promise<void>,
-  resumeGame: () => void,
+  pauseGame: () => Promise<void>;
+  resumeGame: () => void;
 };
 
 export function useRealityCheckModal({ pauseGame, resumeGame }: Props) {
@@ -21,11 +20,9 @@ export function useRealityCheckModal({ pauseGame, resumeGame }: Props) {
     if (!isEmpty(realityCheck)) {
       if (pauseGame) {
         pauseGame().then(() => {
-          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
           dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
         });
       } else {
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
         dispatch(showModal(REACT_APP_MODAL.ID.REALITY_CHECK, config));
       }
     }
@@ -34,7 +31,9 @@ export function useRealityCheckModal({ pauseGame, resumeGame }: Props) {
 
   useEffect(() => {
     const resumeGameCommand = () => {
-      resumeGame && resumeGame();
+      if (resumeGame) {
+        resumeGame();
+      }
     };
 
     bridge.on(KO_APP_EVENT_MODAL_HIDDEN, resumeGameCommand);

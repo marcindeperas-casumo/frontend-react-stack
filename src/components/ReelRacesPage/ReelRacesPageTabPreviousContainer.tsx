@@ -1,12 +1,12 @@
-import React from "react";
 import { useQuery } from "@apollo/client";
+import React from "react";
 import * as A from "Types/apollo";
 import { ReelRacesPageTabPreviousQuery } from "./ReelRacesPageTabPreviousContainer.graphql";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabPrevious } from "./ReelRacesPageTabPrevious";
 
 type Props = {
-  t: TReelRacesContentPage | null,
+  t: TReelRacesContentPage | null;
 };
 
 export function ReelRacesPageTabPreviousContainer({ t }: Props) {

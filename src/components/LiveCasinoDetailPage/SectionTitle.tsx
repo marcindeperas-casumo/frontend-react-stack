@@ -1,6 +1,6 @@
+import Text from "@casumo/cmp-text";
 import React from "react";
 import classNames from "classnames";
-import Text from "@casumo/cmp-text";
 
 export default function SectionTitle({ title }) {
   return (

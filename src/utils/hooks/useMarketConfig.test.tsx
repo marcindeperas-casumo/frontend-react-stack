@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
@@ -23,7 +22,7 @@ const getState = market => ({
 });
 
 jest.mock("Src/constants", () => {
-  const constants = jest.requireActual("../../constants.js");
+  const constants = jest.requireActual("../../constants.ts");
 
   return {
     ...constants,

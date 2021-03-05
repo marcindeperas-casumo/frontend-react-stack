@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { useQuery, getApolloContext } from "@apollo/client";
 import { SportsNavigation } from "@casumo/sports-navigation";
+import * as React from "react";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
@@ -14,9 +13,9 @@ import { EVENT_PROPS, EVENTS } from "Src/constants";
 export type LiveState = [boolean, (boolean) => void];
 
 export type Labels = {
-  all: string,
-  edit: string,
-  live: string,
+  all: string;
+  edit: string;
+  live: string;
 };
 
 const renderSportsNav = (
@@ -45,6 +44,7 @@ const renderSportsNav = (
     <div className="u-padding-top--md">
       {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
+        {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
         {openChooseFavouritesModal => (
           <SportsNavigation
             data={data}
@@ -92,7 +92,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   if (error) {
-    // @ts-expect-error ts-migrate(2739) FIXME: Type '{ direction: "horizontal"; }' is missing the... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ direction: ... Remove this comment to see the full error message
     return <ErrorMessage direction="horizontal" />;
   }
 
@@ -105,7 +105,6 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     return (
       <ErrorMessage
         direction="horizontal"
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'void' is not assignable to type '() => void'... Remove this comment to see the full error message
         retry={() => clickRetryRefetchNavigation()}
       />
     );

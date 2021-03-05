@@ -1,7 +1,6 @@
-// @flow
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProvider } from "@apollo/client/testing";
 import { wait } from "Utils/apolloTestUtils";
 import { SettingsAccountDetails } from "./SettingsAccountDetails";
 import { SettingsAccountDetailsContainer } from "./SettingsAccountDetailsContainer";

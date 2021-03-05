@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime, Duration } from "luxon";
@@ -15,16 +14,13 @@ export const noop = () => {};
 
 export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
-// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
-export const isIosNative = (w: window = window) =>
+export const isIosNative = (w = window) =>
   R.pathOr(false, ["native", "ios"], w);
 
-// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
-export const isAndroidNative = (w: window = window) =>
+export const isAndroidNative = (w = window) =>
   R.pathOr(false, ["native", "android"], w);
 
-// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
-export const getAppVersion = (w: window = window) => {
+export const getAppVersion = (w = window) => {
   const appVersion = R.pathOr(undefined, ["native", "version"], w);
 
   if (isIosNative() && appVersion) {
@@ -35,8 +31,7 @@ export const getAppVersion = (w: window = window) => {
 };
 
 // todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
-// @ts-expect-error ts-migrate(2709) FIXME: Cannot use namespace 'window' as a type.
-export const getAppSubType = (w: window = window) => {
+export const getAppSubType = (w = window) => {
   if (isIosNative) {
     return APP_SUB_TYPES.IOS_HYBRID;
   }
@@ -57,6 +52,7 @@ export const isEmbeddedOn = (userEmail: string) => {
     return false;
   }
 
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   if (EMBEDDED_GAMES.TESTERS.includes(userEmail)) {
     return true;
   }
@@ -105,7 +101,7 @@ export const bridgeFactory = () => {
         }
       }
     },
-    emit: (ev: string, data: any) => {
+    emit: (ev: string, data?: any) => {
       if (__DEV__) {
         console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
       }
@@ -121,15 +117,13 @@ export const bridgeFactory = () => {
 
 const findOrUncurried = (
   defaultValue: any,
-  // @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
-  predicate: (*) => boolean,
+  predicate: (a: any) => boolean,
   items: any[]
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'predicate'.
 ) => R.find(predicate, items) || defaultValue;
 
 export const findOr = R.curry(findOrUncurried);
 
-export const composePromises = (...fns: Array<*>) => (iv: Promise<*>) =>
+export const composePromises = (...fns: Array<any>) => (iv: Promise<any>) =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
 export const convertHTMLToString = (s: string) =>
@@ -222,7 +216,9 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
+export const renderBets = (
+  bet: A.GameRow_GameFragment["lobby"]["bets"] | null
+) =>
   R.cond([
     [R.isNil, R.always(null)],
     [
@@ -271,12 +267,9 @@ export const injectScript = (src: string, elId?: string, inline?: boolean) =>
     }
   });
 
-export const commaSeparated = R.compose(
-  R.join(","),
-  R.filter(R.identity)
-);
+export const commaSeparated = R.compose(R.join(","), R.filter(R.identity));
 type Handlers<S> = {
-  [type: string]: (state: S, action: Object) => S,
+  [type: string]: (state: S, action: Object) => S;
 };
 
 // This can be used as suggested in the Redux docs:
@@ -286,7 +279,7 @@ export function createReducer<S>(
   handlers: Handlers<S>
 ): (state: S, action: any) => S {
   return function reducer(state = initialState, action) {
-    if (handlers.hasOwnProperty(action.type)) {
+    if (Object.prototype.hasOwnProperty.call(handlers, action.type)) {
       return handlers[action.type](state, action);
     } else {
       return state;
@@ -300,10 +293,10 @@ export function formatCurrency({
   value,
   minimumFractionDigits,
 }: {
-  locale: string,
-  currency: string,
-  value: ?number,
-  minimumFractionDigits?: number,
+  locale: string;
+  currency: string;
+  value: number | undefined;
+  minimumFractionDigits?: number;
 }): string {
   /**
    * Hack? if modulo 1 returns something other than 0 we have fractions and
@@ -326,15 +319,13 @@ export function getSymbolForCurrency({
   locale,
   currency,
 }: {
-  locale: string,
-  currency: string,
+  locale: string;
+  currency: string;
 }): string {
   /**
    * Safari doesn't contain formatToParts on Intl.NumberFormat object.
    * My idea here was to format any number and the replace all
    * numbers and separators so we get only symbol.
-   *
-   * fun fact - sometimes formatted currencies use " " instead of space.
    */
   return formatCurrency({
     locale,
@@ -353,8 +344,7 @@ export const canBeInterpolated = (target: string) =>
 
 export const interpolate = (
   target: string = defaultTranslation,
-  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-  replacements: { [string]: string | number }
+  replacements: { [s: string]: string | number }
 ) =>
   target
     // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
@@ -367,8 +357,7 @@ export const interpolate = (
     );
 
 export const interpolateWithJSX = R.curry(
-  // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-  (replacements: { [string]: React.Node }, target: string) =>
+  (replacements: { [s: string]: React.ReactNode }, target: string) =>
     R.pipe(
       R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
       R.addIndex(R.map)((x, i) => (
@@ -378,7 +367,7 @@ export const interpolateWithJSX = R.curry(
             // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
             R.prop(1),
             R.propOr(x, R.__, replacements)
-          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
           )(x)}
         </React.Fragment>
       ))
@@ -406,13 +395,13 @@ export const convertHoursToDaysRoundUp = (hours: number) => {
 };
 
 type InterpolateTimeIntervalType = {
-  seconds: number,
+  seconds: number;
   t: {
-    seconds: string,
-    minutes?: string,
-    hours?: string,
-    days?: string,
-  },
+    seconds: string;
+    minutes?: string;
+    hours?: string;
+    days?: string;
+  };
 };
 
 export const interpolateTimeInterval = ({
@@ -460,13 +449,10 @@ export const formatTime = (millis: number): string => {
 };
 
 export const timeRemainingBeforeStart = (time: number): number => {
-  return DateTime.fromMillis(time)
-    .diffNow()
-    .valueOf();
+  return DateTime.fromMillis(time).diffNow().valueOf();
 };
 
-// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
-export const isTLDMarketSpecific: string => boolean = R.pipe(
+export const isTLDMarketSpecific: (s: string) => boolean = R.pipe(
   R.anyPass([
     R.equals("com"),
     R.equals("dev"),
@@ -476,14 +462,13 @@ export const isTLDMarketSpecific: string => boolean = R.pipe(
   R.not
 );
 
-// @ts-expect-error ts-migrate(2693) FIXME: 'boolean' only refers to a type, but is being used... Remove this comment to see the full error message
-export const hasAlphaCharactersOnly: string => boolean = str => {
+export const hasAlphaCharactersOnly = (str: string): boolean => {
   return !/[a-z]+/i.test(str);
 };
 
 // Displays bonus balance with matching currency symbol to passed locale and followed by bonus string passed as argument
 export const bonusBalanceDisplay = (
-  value: ?number,
+  value: number | undefined,
   currency: string,
   bonusText: string,
   locale: string,
@@ -540,8 +525,8 @@ export const getOrdinalSuffix = ({
   locale = "en",
   amount,
 }: {
-  locale: string,
-  amount: number,
+  locale: string;
+  amount: number;
 }) => {
   if (!locale || !amount) {
     return "";

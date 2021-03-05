@@ -1,15 +1,13 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 
 type PinnedWidgetsContextType = {
-  pinnedWidgets: Array<string>,
-  togglePin: (drawer: string) => void,
+  pinnedWidgets: Array<string>;
+  togglePin: (drawer: string) => void;
 };
 
 type PinnedWidgetsContextProviderProps = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 export const PinnedWidgetsContext = React.createContext<PinnedWidgetsContextType>(
@@ -23,7 +21,7 @@ export const PinnedWidgetsContextProvider = ({
   children,
 }: PinnedWidgetsContextProviderProps) => {
   const [pinnedWidgets, setPinnedWidgets] = React.useState<Array<string>>([]);
-  const togglePin = React.useCallback((widget: string): void => {
+  const togglePin = React.useCallback((widget: string) => {
     setPinnedWidgets(prevValue => {
       if (prevValue.includes(widget)) {
         return R.reject(R.equals(widget), prevValue);

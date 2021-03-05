@@ -1,13 +1,12 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import * as A from "Types/apollo";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 
 type ProviderGamesListRowProps = {
-  style: string,
-  game: A.GameStudioQuery_gameStudio_games,
+  style: string;
+  game: A.GameStudioQuery["gameStudio"]["games"][number];
 };
 
 export const ProviderGamesListRow = ({
@@ -24,7 +23,7 @@ export const ProviderGamesListRow = ({
 );
 
 type ProviderGamesListRowSkeletonProps = {
-  style: string,
+  style: string;
 };
 
 export const ProviderGamesListRowSkeleton = ({

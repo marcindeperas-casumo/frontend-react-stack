@@ -1,17 +1,16 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { PillSelector } from "Components/PillSelector";
 
 type StatusAlertsEveryRowType = {
   t: {
-    get_status_alerts: string,
-  },
+    get_status_alerts: string;
+  };
   /* chosen period of time between alerts */
-  value: ?number,
-  options: Array<{ value: String, label: string }>,
-  onChange: number => void,
+  value: number | undefined;
+  options: Array<{ value: String; label: string }>;
+  onChange: (n: number) => void;
 };
 
 export function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
@@ -25,7 +24,6 @@ export function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.get_status_alerts}
       </Text>
-      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <PillSelector options={options} onChange={onChange} value={value} />
     </Flex>
   );

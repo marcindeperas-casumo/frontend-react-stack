@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
+import React from "react";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 
@@ -9,8 +8,8 @@ export const GameRowTrackMoreIcon = ({
   name,
   slug,
 }: {
-  name: string,
-  slug: string,
+  name: string;
+  slug: string;
 }) => (
   <Flex.Item
     onClick={e => e.stopPropagation()}

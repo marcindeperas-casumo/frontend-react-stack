@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
 import { ChevronRightIcon } from "@casumo/cmp-icons";
+import React from "react";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 import type { SupportRowProps } from "./SupportRow";
 import ChatIcon from "./chat-icon.svg";

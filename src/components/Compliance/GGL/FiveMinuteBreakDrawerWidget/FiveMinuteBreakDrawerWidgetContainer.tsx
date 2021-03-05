@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import { useTranslations, useJurisdiction } from "Utils/hooks";
@@ -6,7 +5,7 @@ import { fiveMinuteBreakSelector } from "Models/gglFiveMinuteBreak";
 import { FiveMinuteBreakDrawerWidget } from "./FiveMinuteBreakDrawerWidget";
 
 type Props = {
-  className?: string,
+  className?: string;
 };
 
 export const FiveMinuteBreakDrawerWidgetContainer = ({ className }: Props) => {

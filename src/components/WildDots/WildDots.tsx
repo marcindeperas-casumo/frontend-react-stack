@@ -1,25 +1,24 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
 
 type Props = {
   /** number of dots that should be rendered */
-  numberOfDots: number,
+  numberOfDots: number;
   /** zero-based index of active dot */
-  activeDotIndex: number,
+  activeDotIndex: number;
   /** optional classes for active dot */
-  activeDotClassNames?: string,
+  activeDotClassNames?: string;
   /** optional classes for inactive dot */
-  inactiveDotClassNames?: string,
+  inactiveDotClassNames?: string;
 };
 
 export const WildDots = ({
   activeDotClassNames = "t-background-purple-80",
   inactiveDotClassNames = "t-background-grey-5",
   ...props
-}: Props) =>
-  R.times(
+}: Props) => {
+  const dots = R.times(
     i => (
       <div
         key={i}
@@ -31,3 +30,6 @@ export const WildDots = ({
     ),
     props.numberOfDots
   );
+
+  return <>{dots}</>;
+};

@@ -1,9 +1,8 @@
-// @flow
 import { call, select } from "redux-saga/effects";
 import { commonContextSelector, playerIdSelector } from "Models/handshake";
 import { testSubjectIDSelector } from "Models/ABTesting";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../components/GoogleTagManager"' has n... Remove this comment to see the full error message
-import { init, type TSharedEventConfig } from "Components/GoogleTagManager";
+import { init } from "Components/GoogleTagManager";
+import type { TSharedEventConfig } from "Components/GoogleTagManager";
 import { waitForSelector, getAppSubType } from "Utils";
 
 export function* initializeTrackers(action: any): any {

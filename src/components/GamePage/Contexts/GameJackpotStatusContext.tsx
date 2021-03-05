@@ -1,14 +1,12 @@
-// @flow
 import * as React from "react";
 
 type GameJackpotStatusContextProviderProps = {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 type GameJackpotStatusContextType = {
-  blueRibbonNotificationNeedsAccepting: boolean,
-  setBlueRibbonNotificationNeedsAccepting: (arg: boolean) => void,
+  blueRibbonNotificationNeedsAccepting: boolean;
+  setBlueRibbonNotificationNeedsAccepting: (arg: boolean) => void;
 };
 
 const GameJackpotStatusContext = React.createContext<GameJackpotStatusContextType>(

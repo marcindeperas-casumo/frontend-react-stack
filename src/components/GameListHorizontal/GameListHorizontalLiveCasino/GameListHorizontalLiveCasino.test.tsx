@@ -15,7 +15,7 @@ describe("GameListHorizontalLiveCasino - Mobile and Tablet", () => {
     setMobileViewport();
     rendered = mount(
       <MockStore state={defaultState}>
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; name: string; games: { backgro... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'seeMoreText' is missing in type '{ list:... Remove this comment to see the full error message */}
         <GameListHorizontalLiveCasino list={gamesListMock} />
       </MockStore>
     );
@@ -38,7 +38,7 @@ describe("GameListHorizontalLiveCasino - Desktop", () => {
     setDesktopViewport();
     rendered = mount(
       <MockStore state={defaultState}>
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; name: string; games: { backgro... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'seeMoreText' is missing in type '{ list:... Remove this comment to see the full error message */}
         <GameListHorizontalLiveCasino list={gamesListMock} />
       </MockStore>
     );

@@ -1,4 +1,3 @@
-// @flow
 import React, { useEffect, useRef } from "react";
 import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";
 import { useSumoIcon } from "Components/SumoIcon/useSumoIconHook";

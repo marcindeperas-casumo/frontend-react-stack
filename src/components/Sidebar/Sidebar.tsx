@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import classNames from "classnames";
 import { ROUTE_IDS } from "Src/constants";
 import { ReelRaceWidget } from "Components/ReelRaceWidget";
@@ -16,22 +15,22 @@ import { SidebarIconClose } from "./SidebarIconClose";
 import "./Sidebar.scss";
 
 export type SidebarTranslations = {
-  game_browser_link_text: string,
-  settings_link_text: string,
-  play_okay_settings_link_text: string,
-  contact_us_link_text: string,
-  play_okay_link_text: string,
-  blog_menu_text: string,
-  faq_link_text: string,
-  about_us_link_text: string,
-  log_out_link_text: string,
+  game_browser_link_text: string;
+  settings_link_text: string;
+  play_okay_settings_link_text: string;
+  contact_us_link_text: string;
+  play_okay_link_text: string;
+  blog_menu_text: string;
+  faq_link_text: string;
+  about_us_link_text: string;
+  log_out_link_text: string;
 };
 
 type Props = {
-  username: string,
-  wallet: string,
-  bonus: string,
-  logout: () => void,
+  username: string;
+  wallet: string;
+  bonus: string;
+  logout: () => void;
 };
 
 export const Sidebar = (props: Props) => {

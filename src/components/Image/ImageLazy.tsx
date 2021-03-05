@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { useInView } from "react-intersection-observer";
 import type { Pictures } from "@casumo/cudl-react-prop-types";
+import React from "react";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import ImageResponsive from "Components/Image/ImageResponsive";
 
@@ -11,14 +10,14 @@ import ImageResponsive from "Components/Image/ImageResponsive";
 import "intersection-observer";
 
 type Props = {
-  alt?: string,
-  className?: string,
-  src?: string,
-  mark?: string,
-  images?: Pictures,
-  imgixOpts?: Object,
-  width?: number,
-  height?: number,
+  alt?: string;
+  className?: string;
+  src?: string;
+  mark?: string;
+  images?: Pictures;
+  imgixOpts?: Object;
+  width?: number;
+  height?: number;
 };
 
 const ImageLazy = ({ images, ...props }: Props) => {

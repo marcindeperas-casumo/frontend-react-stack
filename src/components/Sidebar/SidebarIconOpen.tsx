@@ -1,8 +1,6 @@
-// @flow
-
+import { MenuIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { MenuIcon } from "@casumo/cmp-icons";
 import { sidebarOpenAction } from "Models/sidebar";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 

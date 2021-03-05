@@ -1,9 +1,7 @@
-// @flow
 import * as R from "ramda";
 import * as React from "react";
 import { useSelector } from "react-redux";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../Compliance/PlayOkayBar/PlayOkayBarC... Remove this comment to see the full error message
-import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
+import type { PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
@@ -27,15 +25,15 @@ const jackpotWinNotificationTypes: Array<NotificationType> = [
 type CometdEvent = {
   data: {
     notificationAdded?: {
-      category: "win",
-      type: NotificationType,
+      category: "win";
+      type: NotificationType;
       parameters: {
-        amount: string, // ie. "100.01"
-        currency: string,
-        jackpotId: string,
-      },
-    },
-  },
+        amount: string; // ie. "100.01"
+        currency: string;
+        jackpotId: string;
+      };
+    };
+  };
 };
 
 export function useJackpotsSubscription({
@@ -46,7 +44,7 @@ export function useJackpotsSubscription({
   // TODO: replace with actual functions after #1194 is merged
   const [jackpotAmount, setJackpotAmount] = React.useState(null);
   const [jackpotAmountRaw, setJackpotAmountRaw] = React.useState(null);
-  const [type, setType] = React.useState<?NotificationType>(null);
+  const [type, setType] = React.useState<NotificationType | null>(null);
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
@@ -78,15 +76,11 @@ export function useJackpotsSubscription({
       await pauseGame();
 
       setIsFullScreen(
-        R.any(
-          R.equals(notificationData.type),
-          ([
-            "jackpot_win_mini",
-            "jackpot_win_major",
-            "jackpot_win_mega",
-          // @ts-expect-error ts-migrate(2554) FIXME: Expected 1-2 arguments, but got 3.
-          ]: Array<NotificationType>)
-        )
+        R.any(R.equals(notificationData.type), [
+          "jackpot_win_mini",
+          "jackpot_win_major",
+          "jackpot_win_mega",
+        ])
       );
       setJackpotAmount(
         formatCurrency({

@@ -1,4 +1,3 @@
-// @flow
 import { types } from "./transactionsBetsHistory.constants";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 

@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,8 +9,7 @@ import {
 
 export function useGameCategory(slug: string) {
   const dispatch = useDispatch();
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  const [gameCategory, setGameCategory] = React.useState<?string>();
+  const [gameCategory, setGameCategory] = React.useState<string | undefined>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const storedCategory = useSelector(slugToCategorySelector(slug), R.equals);
 

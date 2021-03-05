@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react";
 import { JURISDICTIONS } from "Src/constants";
 import { DGOJBar } from "./DGOJBar";
@@ -10,7 +8,7 @@ import { GGLBar } from "./GGLBar";
 import "./PlayOkayBar.scss";
 
 type Props = {
-  jurisdiction: string,
+  jurisdiction: string;
 };
 
 const jurisdictionBarMapping = {

@@ -1,7 +1,7 @@
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
-import { MockedProvider } from "@apollo/client/testing";
 import { wait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
 import {
@@ -153,10 +153,7 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       wait(1000).then(() => {
-        rendered
-          .find("Component")
-          .childAt(0)
-          .simulate("click");
+        rendered.find("Component").childAt(0).simulate("click");
         expect(
           rendered
             .find("SettingsRealityCheckContainer")
@@ -165,6 +162,7 @@ describe("SettingsRealityCheckContainer", () => {
 
         const promiseFn = rendered.find("Component").prop("onSave");
 
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         promiseFn().then(result => {
           expect(result).toBe(undefined);
         });
@@ -192,10 +190,7 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       wait(1000).then(async () => {
-        rendered
-          .find("Component")
-          .childAt(0)
-          .simulate("click");
+        rendered.find("Component").childAt(0).simulate("click");
         expect(
           rendered
             .find("SettingsRealityCheckContainer")
@@ -203,6 +198,7 @@ describe("SettingsRealityCheckContainer", () => {
         ).toBe(0);
 
         const promiseFn = rendered.find("Component").prop("onSave");
+        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         const result = await promiseFn();
 
         expect(result).toBe(undefined);
@@ -231,10 +227,7 @@ describe("SettingsRealityCheckContainer", () => {
 
       await waitAndUpdateWrapper(rendered);
       wait(1000).then(() => {
-        rendered
-          .find("Component")
-          .childAt(0)
-          .simulate("click");
+        rendered.find("Component").childAt(0).simulate("click");
       });
       await waitAndUpdateWrapper(rendered);
       wait(1000).then(async () => {
@@ -249,6 +242,7 @@ describe("SettingsRealityCheckContainer", () => {
         await act(async () => {
           const {
             data: { updateRealityCheckInterval },
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           } = await promiseFn();
           expect(updateRealityCheckInterval).toBe(10 * 60);
         });
@@ -276,12 +270,8 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       await waitAndUpdateWrapper(rendered);
-      // eslint-disable-next-line sonarjs/no-identical-functions
       wait(1000).then(() => {
-        rendered
-          .find("Component")
-          .childAt(0)
-          .simulate("click");
+        rendered.find("Component").childAt(0).simulate("click");
       });
       await waitAndUpdateWrapper(rendered);
       wait(1000).then(async () => {
@@ -297,6 +287,7 @@ describe("SettingsRealityCheckContainer", () => {
         await act(async () => {
           const {
             data: { updateRealityCheckInterval },
+            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           } = await promiseFn();
           expect(updateRealityCheckInterval).toBe(10 * 60);
         });
@@ -337,12 +328,8 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       await waitAndUpdateWrapper(rendered);
-      // eslint-disable-next-line sonarjs/no-identical-functions
       wait(1000).then(() => {
-        rendered
-          .find("Component")
-          .childAt(0)
-          .simulate("click");
+        rendered.find("Component").childAt(0).simulate("click");
       });
       await waitAndUpdateWrapper(rendered);
       wait(1000).then(async () => {
@@ -355,6 +342,7 @@ describe("SettingsRealityCheckContainer", () => {
         const promiseFn = rendered.find("Component").prop("onSave");
 
         await act(async () => {
+          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
           await promiseFn();
         });
       });

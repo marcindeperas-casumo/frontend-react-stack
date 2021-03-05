@@ -1,4 +1,3 @@
-//@flow
 import { createReducer } from "Utils";
 import { actionTypes, requestState } from "./payments.constants";
 import type { SetQuickDepositMethodReturnType } from "./payments.types";

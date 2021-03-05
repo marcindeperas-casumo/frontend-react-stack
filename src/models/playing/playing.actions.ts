@@ -1,4 +1,3 @@
-// @flow
 import { types } from "./playing.constants";
 import type { Playing } from "./playing.types";
 

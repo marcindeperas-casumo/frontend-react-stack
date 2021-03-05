@@ -1,12 +1,10 @@
-// @flow
 type TPiqError = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  key: ?string,
-  keys: Array<string>,
+  key: string | undefined;
+  keys: Array<string>;
 };
 
 type TPiqErrorResponse = {
-  errors: Array<TPiqError>,
+  errors: Array<TPiqError>;
 };
 
 export const extractErrorKeys = (

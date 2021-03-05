@@ -1,7 +1,6 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import classNames from "classnames";
-import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -13,12 +12,11 @@ import "./GameRow.scss";
 
 type Props = {
   /** The Game object */
-  game: A.GameRow_Game,
+  game: A.GameRow_GameFragment;
   /** Class name to apply to the game row */
-  className?: string,
+  className?: string;
   /** a function that renders some text */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  renderText: () => React.Node,
+  renderText: () => React.ReactNode;
 };
 
 export const GameRow = (props: Props) => {

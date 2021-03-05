@@ -1,32 +1,24 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
+import * as R from "ramda";
+import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import type {
   VersionDateFormatter,
   VersionFormatter,
 } from "./termsAndConditions.utils";
 
-type BaseProps = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'viewButtonText'.
-  viewButtonText: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setVersion'.
-  setVersion: number => void,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'formatVersion'.
-  formatVersion: VersionFormatter,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'formatVersionDate'.
-  formatVersionDate: VersionDateFormatter,
-|};
+type BaseProps = {
+  viewButtonText: string;
+  setVersion: (n: number) => void;
+  formatVersion: VersionFormatter;
+  formatVersionDate: VersionDateFormatter;
+};
 
-type PropsHistoryView = {|
-  // @ts-expect-error ts-migrate(2693) FIXME: 'BaseProps' only refers to a type, but is being us... Remove this comment to see the full error message
-  ...BaseProps,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'versions'.
-  versions: { [number]: string },
-|};
+type PropsHistoryView = BaseProps & {
+  versions: { [n: number]: string };
+};
 
 // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
 const versionsByNewestFirst = R.descend(R.prop(0));
@@ -38,6 +30,7 @@ export function HistoryView({ versions, ...props }: PropsHistoryView) {
         R.toPairs,
         R.sort(versionsByNewestFirst),
         R.map(([v, slug]) => (
+          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
           <HistoryRow key={v} slug={slug} version={parseInt(v)} {...props} />
         ))
       )(versions)}
@@ -45,14 +38,10 @@ export function HistoryView({ versions, ...props }: PropsHistoryView) {
   );
 }
 
-type PropsHistoryRow = {|
-  // @ts-expect-error ts-migrate(2693) FIXME: 'BaseProps' only refers to a type, but is being us... Remove this comment to see the full error message
-  ...BaseProps,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'slug'.
-  slug: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'version'.
-  version: number,
-|};
+type PropsHistoryRow = BaseProps & {
+  slug: string;
+  version: number;
+};
 
 const loaderVersion = (
   <Skeleton width="120" height={10}>

@@ -1,4 +1,3 @@
-// @flow
 import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
 import { EVOLUTION_LOBBY_TYPES as TYPES, COLORS } from "./constants";
 
@@ -129,8 +128,10 @@ const getBaccaratColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export const getBadgeColor = (type: ?string, liveCasinoResult: string) => {
+export const getBadgeColor = (
+  type: string | undefined,
+  liveCasinoResult: string
+) => {
   if (type === TYPES.MONEYWHEEL) {
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     return getMoneyWheelColor(liveCasinoResult);
@@ -155,8 +156,7 @@ export const getBadgeColor = (type: ?string, liveCasinoResult: string) => {
 };
 
 export const getBadgeBorderColor = (
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  type: ?string,
+  type: string | undefined,
   liveCasinoResult: string
 ) => {
   if (type === TYPES.MONOPOLY) {
@@ -167,8 +167,10 @@ export const getBadgeBorderColor = (
   return null;
 };
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export const getResultsDisplay = (type: ?string, liveCasinoResult: string) => {
+export const getResultsDisplay = (
+  type: string | undefined,
+  liveCasinoResult: string
+) => {
   if (type === TYPES.TOPCARD) {
     return propOr(liveCasinoResult, liveCasinoResult, topCardLettersDisplay);
   }

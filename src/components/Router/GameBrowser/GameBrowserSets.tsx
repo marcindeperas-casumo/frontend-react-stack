@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
-import { Link, useMatch } from "@reach/router";
 import { ChipNavigation } from "@casumo/cmp-chip";
 import Flex from "@casumo/cmp-flex";
 import * as Icons from "@casumo/cmp-icons";
+import * as React from "react";
+import classNames from "classnames";
+import { Link, useMatch } from "@reach/router";
 import { useTranslations } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
@@ -16,10 +15,9 @@ const GameSetChip = ({
   text,
   to,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Stateles... Remove this comment to see the full error message
-  Icon: React.StatelessFunctionalComponent<any>,
-  text: string,
-  to: string,
+  Icon: React.ReactNode;
+  text: string;
+  to: string;
 }) => {
   const match = useMatch(to);
   const active = Boolean(match);
@@ -37,18 +35,18 @@ const GameSetChip = ({
 
 type Props = {
   sets: Array<{
-    key: string,
-    title: string,
-    icon: string,
-    url: string,
-  }>,
+    key: string;
+    title: string;
+    icon: string;
+    url: string;
+  }>;
 };
 export const GameBrowserSets = (props: Props) => {
   const topActive = Boolean(useMatch("top"));
   const searchActive = Boolean(useMatch("search"));
   const detailsActive = Boolean(useMatch("details/:slug"));
   const t = useTranslations<{
-    top_lists: string,
+    top_lists: string;
   }>("new-game-browser.top-nav");
 
   if (searchActive || detailsActive || props.sets.length === 0) {

@@ -1,9 +1,3 @@
-// @flow
+export { BlueRibbonChristmasCampaignNotificationsContainer } from "./BlueRibbonChristmasCampaignNotificationsContainer";
 
-export {
-  BlueRibbonChristmasCampaignNotificationsContainer,
-} from "./BlueRibbonChristmasCampaignNotificationsContainer";
-
-export {
-  BlueRibbonChristmasCampaignAnimationContainer,
-} from "./BlueRibbonChristmasCampaignAnimationContainer";
+export { BlueRibbonChristmasCampaignAnimationContainer } from "./BlueRibbonChristmasCampaignAnimationContainer";

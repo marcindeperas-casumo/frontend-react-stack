@@ -9,8 +9,8 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
   test("should not render if group has no competitions", () => {
     const rendered = {
       emptyGroups: shallow(
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { groups: undefined[]; name: string... Remove this comment to see the full error message
         <FavouriteCompetitionsSelectorRegion
-          // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ groups... Remove this comment to see the full error message
           group={{ groups: [], name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -18,8 +18,8 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
         />
       ),
       nullGroups: shallow(
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { groups: null; name: string; }; is... Remove this comment to see the full error message
         <FavouriteCompetitionsSelectorRegion
-          // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ groups... Remove this comment to see the full error message
           group={{ groups: null, name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -27,8 +27,8 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
         />
       ),
       undefinedGroups: shallow(
+        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ group: { name: string; }; isExpanded: fals... Remove this comment to see the full error message
         <FavouriteCompetitionsSelectorRegion
-          // @ts-expect-error ts-migrate(2739) FIXME: Type '{ name: string; }' is missing the following ... Remove this comment to see the full error message
           group={{ name: "test" }}
           isExpanded={false}
           isSelected={F}
@@ -72,6 +72,7 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
       />
     );
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'competitions' does not exist on type 'HT... Remove this comment to see the full error message
     expect(rendered.find("CompetitionPillsList").props().competitions).toEqual(
       regionGroup.groups
     );
@@ -83,8 +84,9 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
       groups: [{ id: 1 }, { id: 2 }, { id: 3 }],
     };
     const rendered = mount(
+      // @ts-expect-error ts-migrate(2786) FIXME: 'FavouriteCompetitionsSelectorRegion' cannot be us... Remove this comment to see the full error message
       <FavouriteCompetitionsSelectorRegion
-        // @ts-expect-error ts-migrate(2741) FIXME: Property 'regionCode' is missing in type '{ name: ... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ name: string; groups: { id: number; }[]; }... Remove this comment to see the full error message
         group={regionGroup}
         isExpanded={true}
         isSelected={id => id % 2 !== 0}

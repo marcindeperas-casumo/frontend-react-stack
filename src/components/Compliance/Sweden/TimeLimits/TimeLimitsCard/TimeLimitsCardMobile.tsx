@@ -1,28 +1,26 @@
-// @flow
-import * as React from "react";
-import { Duration as LuxonDuration } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
+import { Duration as LuxonDuration } from "luxon";
 import { interpolateWithJSX } from "Utils";
-// @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-import { type LoginTimeLimit } from "Models/playOkay";
+import type { LoginTimeLimit } from "Models/playOkay";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 
 type Props = {
   t: {
-    mobile_title: ?string,
-    mobile_subtitle: ?string,
-    mobile_limit_daily: ?string,
-    mobile_limit_weekly: ?string,
-    mobile_limit_monthly: ?string,
-    time_left_daily: ?string,
-    coming_limit_note: ?string,
-  },
-  dailyLimit: ?LoginTimeLimit,
-  weeklyLimit: ?LoginTimeLimit,
-  monthlyLimit: ?LoginTimeLimit,
-  onClick: () => void,
+    mobile_title: string | undefined;
+    mobile_subtitle: string | undefined;
+    mobile_limit_daily: string | undefined;
+    mobile_limit_weekly: string | undefined;
+    mobile_limit_monthly: string | undefined;
+    time_left_daily: string | undefined;
+    coming_limit_note: string | undefined;
+  };
+  dailyLimit: LoginTimeLimit | undefined;
+  weeklyLimit: LoginTimeLimit | undefined;
+  monthlyLimit: LoginTimeLimit | undefined;
+  onClick: () => void;
 };
 
 export function TimeLimitsCardMobile({
@@ -84,10 +82,10 @@ export function TimeLimitsCardMobile({
 
 type LimitRowProps = {
   t: {
-    label: ?string,
-    coming_limit_note: ?string,
-  },
-  limit: ?LoginTimeLimit,
+    label: string | undefined;
+    coming_limit_note: string | undefined;
+  };
+  limit: LoginTimeLimit | undefined;
 };
 
 function LimitRow({ t, limit }: LimitRowProps) {

@@ -1,4 +1,3 @@
-// @flow
 import { ApolloClient, ApolloLink, HttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { InMemoryCache } from "@apollo/client/cache";
@@ -18,10 +17,9 @@ import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
 import { getAppVersion, isEmbeddedOn } from "Utils";
 import * as queries from "Models/apollo/queries.sports";
-import introspectionsData from "./introspections.json";
+import introspectionsData from "Types/introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
-// import { defaultState } from "./apollo.client.defaultState";
 
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
@@ -50,9 +48,7 @@ export async function getApolloClient(): Promise<ApolloClientType> {
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache({
-    possibleTypes: introspectionsData,
-  });
+  const cache = new InMemoryCache(introspectionsData);
 
   // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
   // write default state in cache, is the right place?

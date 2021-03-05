@@ -1,10 +1,9 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import { stringToHTML, addPointerEventStylesToLinkElements } from "Utils";
 
 export type CuratedCardFooterTextProps = {
-  text: string,
+  text: string;
 };
 
 export const CuratedCardFooterText = ({ text }: CuratedCardFooterTextProps) => {

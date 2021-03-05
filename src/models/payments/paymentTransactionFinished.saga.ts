@@ -9,8 +9,8 @@ export function* paymentTransactionFinishedSaga(action) {
 
   if (action.type === actionTypes.PAYMENT_USE_ERROR) {
     yield put(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.PAYMENT_RESULT, {
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ amount: any; errorKeys: any; s... Remove this comment to see the full error message
         amount,
         errorKeys,
         status: PAYMENT_RESULT_STATUS.fail,
@@ -20,8 +20,8 @@ export function* paymentTransactionFinishedSaga(action) {
 
   if (action.type === actionTypes.PAYMENT_USE_SUCCESS) {
     yield put(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       showModal(REACT_APP_MODAL.ID.PAYMENT_RESULT, {
+        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ amount: any; status: string; }... Remove this comment to see the full error message
         amount,
         status: PAYMENT_RESULT_STATUS.success,
       })

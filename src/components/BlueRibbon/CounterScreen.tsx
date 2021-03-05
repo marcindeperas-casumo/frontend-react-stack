@@ -1,6 +1,6 @@
-import React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { interpolate } from "Utils";
 import { ORIENTATION_VALUES } from "Components/ResponsiveLayout/ResponsiveLayout.types";

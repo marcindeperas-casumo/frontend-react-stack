@@ -1,7 +1,6 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as R from "ramda";
-import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
 import { BeltType, isMaxLevel } from "Models/adventure";
 import { beltToColorMap } from "./beltUtils";
@@ -11,11 +10,11 @@ import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
   /** Type of belt (rope, ..., sensei) */
-  belt?: BeltType,
-  inBonusMode?: boolean,
-  level?: number,
-  variant?: "sm" | "default",
-  className?: string,
+  belt?: BeltType;
+  inBonusMode?: boolean;
+  level?: number;
+  variant?: "sm" | "default";
+  className?: string;
 };
 
 const AVATAR_CLASS_NAMES = "u-height--full u-width--full";

@@ -1,13 +1,12 @@
-// @flow
-import React from "react";
 import "./LayoutPage.scss";
 import Flex from "@casumo/cmp-flex";
 import { isMobile } from "@casumo/is-mobile";
+import React from "react";
 import { FullscreenView } from "Components/FullscreenView";
 import Sidebar from "Components/Sidebar";
 
 type Props = {
-  children: string,
+  children: string;
 };
 
 export const LayoutPage = (props: Props) => {

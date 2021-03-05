@@ -6,22 +6,22 @@ import { ReelRacesPageTabPreviousContainer } from "Components/ReelRacesPage/Reel
 import { ReelRacesPageTabs } from "./ReelRacesPageTabs";
 
 export type TReelRacesContentPage = {
-  schedule_tab_title: string,
-  previous_winners_tab_title: string,
-  mobile_promoted_race_title_single: string,
-  mobile_race_title_single: string,
-  today: string,
-  tomorrow: string,
-  points_template: string,
-  right_now: string,
-  up_next: string,
-  later_today: string,
-  show_prizes_button: string,
-  hide_prizes_button: string,
-  hide_leaderboard_button: string,
-  show_leaderboard_button: string,
-  show_more_reel_races: string,
-  leaderboard_rank: string,
+  schedule_tab_title: string;
+  previous_winners_tab_title: string;
+  mobile_promoted_race_title_single: string;
+  mobile_race_title_single: string;
+  today: string;
+  tomorrow: string;
+  points_template: string;
+  right_now: string;
+  up_next: string;
+  later_today: string;
+  show_prizes_button: string;
+  hide_prizes_button: string;
+  hide_leaderboard_button: string;
+  show_leaderboard_button: string;
+  show_more_reel_races: string;
+  leaderboard_rank: string;
 };
 
 export type TReelRaceTabs = "SCHEDULE" | "PREVIOUS";

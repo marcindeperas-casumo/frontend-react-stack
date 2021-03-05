@@ -1,15 +1,11 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
 import lastEndedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import activeExclusionMock from "Models/slotControlSystem/__mocks__/activeExclusion.mock";
-import {
-  useSessionsState,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../models/slotControlSystem"' has n... Remove this comment to see the full error message
-  type UseSessionsStateType,
-} from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
+import type { UseSessionsStateType } from "Models/slotControlSystem";
 import {
   SessionDetailsForLimitsReached,
   SessionDetailsForLimitsReachedExcluded,

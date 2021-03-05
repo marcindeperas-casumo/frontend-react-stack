@@ -1,9 +1,8 @@
-// @flow
 import * as React from "react";
 
 export const usePin = () => {
   const [pinnedDrawers, setPinnedDrawer] = React.useState([]);
-  const togglePin = React.useCallback((drawer: string): void => {
+  const togglePin = React.useCallback(drawer => {
     setPinnedDrawer(prevValue => (prevValue.includes(drawer) ? [] : [drawer]));
   }, []);
 

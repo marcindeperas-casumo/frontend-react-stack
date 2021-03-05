@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations, useJurisdiction } from "Utils/hooks";
@@ -10,26 +9,25 @@ import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { RtpTable } from "./RtpTable/RtpTable";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GetGamesRTP.graphql' or its ... Remove this comment to see the full error message
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
 
 export const CasinoGames = () => {
   const t = useTranslations<{
-    meta_description: string,
-    meta_title: string,
-    rtp_description: string,
-    rtp_game_name: string,
-    rtp_game_provider: string,
-    rtp_loading: string,
-    rtp_value: string,
-    actual_rtp_past_6_months: string,
-    actual_rtp_past_year: string,
+    meta_description: string;
+    meta_title: string;
+    rtp_description: string;
+    rtp_game_name: string;
+    rtp_game_provider: string;
+    rtp_loading: string;
+    rtp_value: string;
+    actual_rtp_past_6_months: string;
+    actual_rtp_past_year: string;
   }>("game-categories");
   const categoriesContent = useTranslations("game-categories", true);
   const query = "categories=SLOT_MACHINE";
   const { data, loading, fetchMore } = useQuery<
-    A.GetGamesRTP,
-    A.GetGamesRTPVariables
+    A.GetGamesRtpQuery,
+    A.GetGamesRtpQueryVariables
   >(GetGamesRTP, {
     variables: {
       query,

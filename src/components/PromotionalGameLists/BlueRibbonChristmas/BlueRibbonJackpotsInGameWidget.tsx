@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
@@ -13,20 +12,20 @@ import type {
 } from "./blueRibbonConsts";
 
 type BlueRibbonJackpotEntry = {
-  value: number,
-  label: string,
-  status: JackpotStatus,
-  potId: string,
-  communityWinRatio: number,
-  mainWinRatio: number,
+  value: number;
+  label: string;
+  status: JackpotStatus;
+  potId: string;
+  communityWinRatio: number;
+  mainWinRatio: number;
 };
 
 export function BlueRibbonJackpotsInGameWidget({
   jackpots,
   t,
 }: {
-  jackpots: Array<BlueRibbonJackpotEntry>,
-  t: JackpotWidgetContentPage,
+  jackpots: Array<BlueRibbonJackpotEntry>;
+  t: JackpotWidgetContentPage;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
@@ -131,11 +130,11 @@ export function BlueRibbonJackpotsInGameWidget({
 }
 
 type JackpotRowProps = {
-  formattedValue: string,
-  label: string,
-  image: string,
-  explanation?: string,
-  className: string,
+  formattedValue: string;
+  label: string;
+  image: string;
+  explanation?: string;
+  className: string;
 };
 function JackpotRow({
   formattedValue,

@@ -14,9 +14,7 @@ jest.mock("Utils", () => ({
 
 describe("ValuableThumbnail", () => {
   let rendered;
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
   let mockCashValuable = mockData(VALUABLE_TYPES.CASH);
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
   let mockCashbackValuable = mockData(VALUABLE_TYPES.CASHBACK);
   let expiryTimeLeft = { hours: 10, minutes: 10 };
 

@@ -1,6 +1,6 @@
+import Scrollable from "@casumo/cmp-scrollable";
 import * as React from "react";
 import * as R from "ramda";
-import Scrollable from "@casumo/cmp-scrollable";
 import * as A from "Types/apollo";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
@@ -15,10 +15,10 @@ import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
 export type Props = {
-  games: Array<A.GameRow_Game>,
-  Widget: React.AbstractComponent<{}>,
-  name: ?string,
-  seeMore?: SeeMoreProps,
+  games: Array<A.GameRow_GameFragment>;
+  Widget: React.ComponentType;
+  name: string | undefined;
+  seeMore?: SeeMoreProps;
 };
 
 export const GameListHorizontalWithWidget = ({

@@ -1,19 +1,18 @@
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import * as R from "ramda";
+import * as React from "react";
 import { ProgressBar } from "Components/Progress";
 import type { TResponsibleGamblingTestTranslations } from "./ResponsibleGamblingTest.types";
 
 type Props = {
-  t?: TResponsibleGamblingTestTranslations,
-  fetchQuestions: () => void,
-  sendRGTestResult: boolean => void,
+  t?: TResponsibleGamblingTestTranslations;
+  fetchQuestions: () => void;
+  sendRGTestResult: (result: boolean) => void;
 };
 
 export function ResponsibleGamblingTest({ t, ...props }: Props) {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'answers' does not exist on type '((value... Remove this comment to see the full error message
   const [{ answers, page }, next] = usePaging();
   const numberOfQuestions = t?.questions.length ?? -1;
 
@@ -24,14 +23,13 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
   React.useEffect(() => {
     if (page === numberOfQuestions) {
       const allResponsesEqualNo = !R.find(R.equals(1), answers);
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
       props.sendRGTestResult(allResponsesEqualNo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers, page, numberOfQuestions]);
 
   if (!t || page === numberOfQuestions) {
-    return "Loading";
+    return <>Loading</>;
   }
 
   const progress = (page / (numberOfQuestions - 1)) * 100;
@@ -52,7 +50,6 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
             size="sm"
             className="u-width--full u-margin-right"
             data-test-id="buttonYes"
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             onClick={() => next(1)}
           >
             {t.yes}
@@ -63,7 +60,6 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
             size="sm"
             className="u-width--full u-margin-left"
             data-test-id="buttonNo"
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             onClick={() => next(0)}
           >
             {t.questions[page].answer}
@@ -74,7 +70,9 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
   );
 }
 
-function usePaging(initialPage: number = 0) {
+function usePaging(
+  initialPage: number = 0
+): [{ answers: number[]; page: number }, (n: 0 | 1) => void] {
   const [page, setPage] = React.useState<number>(initialPage);
   const [answers, setAnswers] = React.useState<number[]>([]);
 

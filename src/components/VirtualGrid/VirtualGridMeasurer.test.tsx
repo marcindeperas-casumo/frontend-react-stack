@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { VirtualGridMeasurer } from "./VirtualGridMeasurer";
@@ -12,7 +11,7 @@ const container = {
 describe("VirtualGridMeasurer", () => {
   beforeEach(() => {
     // @ts-expect-error ts-migrate(2322) FIXME: Type '() => { width: number; height: number; top: ... Remove this comment to see the full error message
-    window.HTMLElement.prototype.getBoundingClientRect = function() {
+    window.HTMLElement.prototype.getBoundingClientRect = function () {
       // https://github.com/jsdom/jsdom/issues/653#issuecomment-606323844
       return {
         width: parseFloat(this.style.width) || container.width,

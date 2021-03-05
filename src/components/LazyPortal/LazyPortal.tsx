@@ -1,7 +1,4 @@
-// @flow
 import React from "react";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import type { Node } from "react";
 import Lazy from "Components/Lazy";
 import Portal from "Components/Portal";
 import { WaitForHostElement } from "Components/WaitForHostElement";
@@ -10,15 +7,15 @@ const DefaultFallback = () => null;
 
 type Props = {
   /** A loader definition to lazy-import the component. E.g. () => import("Components/Foo") */
-  loader: Function,
+  loader: Function;
   /** The id of the HTML element that we should load the portal to. */
-  hostElementId: string,
-  /** A react node that will be rendered as a fallback until the bundle is loaded. */
-  fallback?: Node,
+  hostElementId: string;
+  /** A ReactNode that will be rendered as a fallback until the bundle is loaded. */
+  fallback?: React.ReactNode;
   /** The props to pass down to the lazy-loaded component. */
-  props?: Object,
+  props?: Object;
   /** Named export of the component to load */
-  namedExport: string,
+  namedExport: string;
 };
 
 export default class LazyPortal extends React.PureComponent<Props> {

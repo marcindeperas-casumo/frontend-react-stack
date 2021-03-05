@@ -1,19 +1,18 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
+import * as R from "ramda";
+import * as React from "react";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import type { DepositKinds } from "Models/playOkay/depositLimits";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
 import { TextInput } from "Components/Compliance/TextInput";
+import { limitTypes } from "..";
 import { useDepositLimitInputs } from "./DepositLimitsForm.hooks";
 import { validate } from "./DepositLimitsForm.utils";
 import type { FormPropsWithTranslations } from "./DepositLimitsForm.types";
-import { limitTypes } from "..";
 import "./styles.scss";
 
 // eslint-disable-next-line fp/no-mutation
@@ -44,7 +43,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
     if (invalid) {
       setVisible(invalid);
     } else {
-      // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+      // @ts-expect-error ts-migrate(2559) FIXME: Type 'never[]' has no properties in common with ty... Remove this comment to see the full error message
       props.applyLimitsChanges(R.pluck("value", limitInputs));
     }
   }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
@@ -57,7 +56,6 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       <Text className={`u-font-weight-bold t-color-grey-90 ${flexItemWidth}`}>
         {t[visible]}
       </Text>
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ value: numbe... Remove this comment to see the full error message */}
       <TextInput
         className={flexItemWidth}
         currencySign={getSymbolForCurrency({
@@ -123,7 +121,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
   );
 }
 
-function MainButton(props: { disabled: boolean, onClick: () => void }) {
+function MainButton(props: { disabled: boolean; onClick: () => void }) {
   return (
     <ButtonPrimary
       size="md"

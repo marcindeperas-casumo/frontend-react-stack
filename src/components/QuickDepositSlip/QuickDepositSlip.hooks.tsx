@@ -1,10 +1,8 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import logger from "Services/logger";
 import { interpolate } from "Utils";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/payments"' has no exported m... Remove this comment to see the full error message
-import { type CvvValidationEvent } from "Models/payments";
+import type { CvvValidationEvent } from "Models/payments";
 import type {
   QuickDepositSlipFormProps,
   QuickDepositSlipFormErrors,
@@ -36,7 +34,7 @@ export const useQuickDepositSlipForm = ({
     error_deposit_maximum,
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'error_deposit_amount_required' does not ... Remove this comment to see the full error message
     error_deposit_amount_required,
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipFormErrorTransla... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'QuickDepositSlipFormErrorTransla... Remove this comment to see the full error message
   } = R.map(v => v || "")(t);
 
   const cvvErrorTranslationKeys = CVV_TRANSLATIONS_MAP(cvvErrors(t));
@@ -53,9 +51,9 @@ export const useQuickDepositSlipForm = ({
   ] = React.useState<QuickDepositSlipFormErrors>({});
 
   const onAmountChange = React.useCallback(
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-    (e: SyntheticEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       if (!isNaN(value)) {
         setDepositValue(parseInt(value));
       }
@@ -72,7 +70,6 @@ export const useQuickDepositSlipForm = ({
       const validErrorKey = cvvErrorTranslationKeys[e.errorType];
 
       if (!validErrorKey) {
-        // $FlowFixMe
         logger.error(`Unknown error code from PIQ iframe: ${e.errorType}`);
         return;
       }

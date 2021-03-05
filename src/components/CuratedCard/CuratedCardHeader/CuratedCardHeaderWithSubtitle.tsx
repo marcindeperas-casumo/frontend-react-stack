@@ -1,11 +1,10 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import { CuratedCardHeaderSimple } from "./CuratedCardHeaderSimple";
 import type { CuratedCardHeaderSimpleProps } from "./CuratedCardHeaderSimple";
 
 type CuratedCardHeaderWithSubtitleProps = CuratedCardHeaderSimpleProps & {
-  subtitle: string,
+  subtitle: string;
 };
 
 export const CuratedCardHeaderWithSubtitle = ({

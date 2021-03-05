@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import classNames from "classnames";
 import { renderBets, formatCurrency } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
@@ -14,14 +13,11 @@ export const GameRowText = ({
   jackpot,
   locale,
 }: {
-  name: string,
-  description?: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  locale?: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  bets?: ?A.GameRow_Game_lobby_bets,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  jackpot?: ?A.Jackpots_Game_jackpot,
+  name: string;
+  description?: string;
+  locale?: string | undefined;
+  bets?: A.GameRow_GameFragment["lobby"]["bets"];
+  jackpot?: A.Jackpots_GameFragment["jackpot"] | undefined;
 }) => (
   <Flex direction="vertical" className="t-color-grey-90 u-width--full">
     <Text

@@ -1,4 +1,3 @@
-// @flow
 import { types as fetchTypes } from "Models/fetch";
 import {
   getAdventurerDetailsReq,

@@ -1,11 +1,9 @@
-/* @flow */
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-import React, { type Node } from "react";
-import { allPass, propIs } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { allPass, propIs } from "ramda";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
@@ -13,19 +11,17 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import { launchGame } from "Services/LaunchGameService";
 import {
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableDetailsTranslations as Translations,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableActionProps,
   VALUABLE_STATES,
   VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type ValuableRequirementType,
   getExpiryTimeLeft,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type DurationProps,
+} from "Models/valuables";
+import type {
+  ValuableDetailsTranslations as Translations,
+  ValuableActionProps,
+  ValuableRequirementType,
+  DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import DangerousHtml from "Components/DangerousHtml";
@@ -39,20 +35,20 @@ export const expirationBadgeClasses = {
 };
 
 type Game = {
-  slug: string,
+  slug: string;
 };
 
 type BadgeInfoType = {
-  key: string,
-  value: number,
+  key: string;
+  value: number;
 };
 
 export type Props = {
-  valuableDetails: A.ValuableDetails_PlayerValuable,
+  valuableDetails: A.ValuableDetails_PlayerValuableFragment;
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: (id: string) => Promise<void>,
-  translations: Translations,
-  children: Node,
+  onConsumeValuable: (id: string) => Promise<void>;
+  translations: Translations;
+  children: React.ReactChild;
 };
 
 const HeaderImgMask = () => (
@@ -74,7 +70,6 @@ const ActionButtonContent = ({ isLocked, text }) => {
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get expiryTimeLeft(): DurationProps {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'BigInt' is not assignable to par... Remove this comment to see the full error message
     return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
@@ -103,7 +98,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       : expirationBadgeClasses.expiresToday;
   }
 
-  get requirementType(): ?ValuableRequirementType {
+  get requirementType(): ValuableRequirementType | null {
     const { valuableDetails } = this.props;
 
     if (
@@ -124,7 +119,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     ])(this.props.valuableDetails);
   }
 
-  get game(): ?Game {
+  get game(): Game | null {
     const { valuableDetails } = this.props;
 
     if (valuableDetails.__typename === "PlayerValuableSpins") {
@@ -148,9 +143,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
       if ((this.props.valuableDetails.games || []).length) {
         return launchGame({
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'ValuableDetails_PlayerValuable' is not assig... Remove this comment to see the full error message
-          slug: (this.props.valuableDetails: any).games[0].slug,
-          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'playForFun'.
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+          slug: this.props.valuableDetails.games[0].slug,
           playForFun: false,
         });
       }
@@ -159,7 +153,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
         depositBonusSelected({ badgeId: id });
       }
 
-      url && navigate({ url });
+      if (url) {
+        navigate({ url });
+      }
     } catch (error) {
       const {
         extensions: { exception },
@@ -171,9 +167,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     }
   };
 
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'render'.
   render() {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const { translations, children, valuableDetails } = this.props;
     const {
       id,
@@ -193,13 +187,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
       termsAndConditionsContent,
       wageringStatus,
     } = translations;
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
       expirationInfo.key,
       expirationInfo.value
     );
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const requirementType = this.requirementType;
 
     const expirationValueText =
@@ -216,9 +208,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     });
 
     const actionButtonVisible =
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'USED' does not exist on type '{}'.
       valuableState !== VALUABLE_STATES.USED ||
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASHBACK' does not exist on type '{}'.
       valuableType === VALUABLE_TYPES.CASHBACK;
 
     return (
@@ -312,7 +302,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
               <ButtonPrimary
                 className="u-width--full"
-                // $FlowFixMe
                 onClick={() => this.handleAction(actionButtonProps)}
                 data-test="valuable-action-button"
               >

@@ -11,10 +11,7 @@ const ABTestsSelector = createSelector(
 );
 
 export const testSubjectIDSelector = () =>
-  createSelector(
-    ABTestsSelector,
-    prop("testSubjectId")
-  );
+  createSelector(ABTestsSelector, prop("testSubjectId"));
 
 export const featureSelector = feature =>
   createSelector(
@@ -28,13 +25,7 @@ export const featureSelector = feature =>
   );
 
 export const flavourSelector = feature =>
-  createSelector(
-    featureSelector(feature),
-    prop("flavour")
-  );
+  createSelector(featureSelector(feature), prop("flavour"));
 
 export const flavourMatchSelector = (feature, flavour) =>
-  createSelector(
-    featureSelector(feature),
-    propEq("flavour", flavour)
-  );
+  createSelector(featureSelector(feature), propEq("flavour", flavour));

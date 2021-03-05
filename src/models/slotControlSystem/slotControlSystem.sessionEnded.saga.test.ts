@@ -1,4 +1,3 @@
-// @flow
 import { cloneableGenerator } from "redux-saga/utils";
 import { REACT_APP_MODAL } from "Src/constants";
 import {
@@ -42,7 +41,7 @@ describe("Models/slotControlSystem/sessionEndedSaga", () => {
     test("then it gets endedSession from state", selectorTest(generator));
 
     test("then saga is done", () => {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[{ id: string; startedTime: numb... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '[EndedSessionType]' is not assig... Remove this comment to see the full error message
       expect(generator.next(endedSessionMock).done).toBe(true);
     });
   });

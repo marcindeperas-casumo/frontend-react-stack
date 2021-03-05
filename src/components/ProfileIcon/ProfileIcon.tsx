@@ -1,4 +1,3 @@
-// @flow
 import React, { useState, useEffect } from "react";
 import cx from "classnames";
 import { BeltType } from "Models/adventure";
@@ -7,25 +6,22 @@ import { CasumoAvatar } from "Components/CasumoAvatar";
 import "./ProfileIcon.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  onClick?: ?(event: SyntheticEvent<HTMLButtonElement>) => void,
-  className?: string,
-  level: number,
-  belt: BeltType,
-  inBonusMode?: boolean,
-  progressPercentage: number,
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  className?: string;
+  level: number;
+  belt: BeltType;
+  inBonusMode?: boolean;
+  progressPercentage: number;
 };
 
-// @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
 export const ProfileIcon = ({
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  onClick = (event: SyntheticEvent<HTMLButtonElement>) => {},
+  onClick = () => {},
   className = "",
   level,
   belt,
   inBonusMode = false,
   progressPercentage,
-}: Props = {}) => {
+}: Props) => {
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {

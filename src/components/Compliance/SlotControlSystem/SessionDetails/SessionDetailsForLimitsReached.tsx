@@ -1,35 +1,35 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/slotControlSystem"' ha... Remove this comment to see the full error message
-import { type EndedSessionType } from "Models/slotControlSystem";
+import type { EndedSessionType } from "Models/slotControlSystem";
 import { Header } from "./Header";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
 type Props = {
-  t: ?{
-    session_details_header: string,
-    money_wagered: string,
-    money_won: string,
-    money_left: string,
-    play_started: string,
-    play_ended: string,
-    limits_reached_button_label: string,
-    limits_reached_play_again_header: string,
-  },
-  locale: string,
-  playAgainGame: ?A.AfterLimitsReached_Game,
+  t:
+    | {
+        session_details_header: string;
+        money_wagered: string;
+        money_won: string;
+        money_left: string;
+        play_started: string;
+        play_ended: string;
+        limits_reached_button_label: string;
+        limits_reached_play_again_header: string;
+      }
+    | undefined;
+  locale: string;
+  playAgainGame: A.AfterLimitsReached_GameFragment | undefined;
   /**
    * This action is triggered instead of the default which
    * could not work in the game iframe.
    */
-  onClickPlayAgain: (e: MouseEvent) => void,
-  onClickButton: () => void,
-  lastEndedSession: EndedSessionType,
+  onClickPlayAgain: (e: MouseEvent) => void;
+  onClickButton: () => void;
+  lastEndedSession: EndedSessionType;
 };
 
 export function SessionDetailsForLimitsReached(props: Props) {
@@ -50,7 +50,7 @@ export function SessionDetailsForLimitsReached(props: Props) {
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow
             className="u-padding--md"
-            // @ts-expect-error ts-migrate(2739) FIXME: Type 'AfterLimitsReached_Game' is missing the foll... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2739) FIXME: Type 'AfterLimitsReached_GameFragment' is missing ... Remove this comment to see the full error message
             game={playAgainGame}
             renderText={() => <GameRowText name={playAgainGame.name} />}
           />

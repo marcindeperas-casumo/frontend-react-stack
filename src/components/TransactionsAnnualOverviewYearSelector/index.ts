@@ -1,6 +1,3 @@
-// @flow
 import { TransactionsAnnualOverviewYearSelectorContainer } from "./TransactionsAnnualOverviewYearSelectorContainer";
 
-export {
-  TransactionsAnnualOverviewYearSelectorContainer as TransactionsAnnualOverviewYearSelector,
-};
+export { TransactionsAnnualOverviewYearSelectorContainer as TransactionsAnnualOverviewYearSelector };

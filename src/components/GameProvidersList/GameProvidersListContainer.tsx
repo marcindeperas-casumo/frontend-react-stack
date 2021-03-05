@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import React from "react";
 import { propOr, isEmpty } from "ramda";
 import { GameProvidersList } from "./GameProvidersList";
 import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
@@ -19,7 +18,7 @@ const QUERY = gql`
 `;
 
 type Props = {
-  title: string,
+  title: string;
 };
 
 export const GameProvidersListContainer = ({ title }: Props) => {

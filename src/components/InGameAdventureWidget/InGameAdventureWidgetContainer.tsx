@@ -1,4 +1,3 @@
-// @flow
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "Utils/hooks";
 import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerContext";

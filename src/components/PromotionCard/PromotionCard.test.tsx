@@ -1,6 +1,6 @@
+import Card from "@casumo/cmp-card";
 import React from "react";
 import { shallow } from "enzyme";
-import Card from "@casumo/cmp-card";
 import { PromotionCard } from "Components/PromotionCard/PromotionCard";
 import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 const promotion = {
@@ -20,13 +20,9 @@ describe("PromotionCard", () => {
   });
 
   test("should render PromotionCardHeader component", () => {
-    expect(
-      rendered
-        .find(Card)
-        .dive()
-        .find(PromotionCardHeader)
-        .exists()
-    ).toBe(true);
+    expect(rendered.find(Card).dive().find(PromotionCardHeader).exists()).toBe(
+      true
+    );
 
     const renderedPromotionCardHeaderProps = rendered
       .find("Card")
@@ -39,21 +35,13 @@ describe("PromotionCard", () => {
 
   test("should render PromotionCardContent component", () => {
     expect(
-      rendered
-        .find("Card")
-        .dive()
-        .find("PromotionCardContent")
-        .exists()
+      rendered.find("Card").dive().find("PromotionCardContent").exists()
     ).toBe(true);
   });
 
   test("should render PromotionCardImage component", () => {
     expect(
-      rendered
-        .find("Card")
-        .dive()
-        .find("PromotionCardImage")
-        .exists()
+      rendered.find("Card").dive().find("PromotionCardImage").exists()
     ).toBe(true);
 
     const renderedPromotionCardImageProps = rendered

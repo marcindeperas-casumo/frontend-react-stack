@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
 import type { spacerSizes } from "@casumo/cudl-react-prop-types";
+import * as React from "react";
+import * as R from "ramda";
 import { VirtualGridMeasurer } from "./VirtualGridMeasurer";
 
 const numberOfRows = 4;
@@ -12,9 +11,9 @@ export const VirtualGridSkeleton = ({
   tileHeight,
   spacerSize,
 }: {
-  tileWidth: number,
-  tileHeight: number,
-  spacerSize: spacerSizes,
+  tileWidth: number;
+  tileHeight: number;
+  spacerSize: spacerSizes;
 }) => (
   <VirtualGridMeasurer
     spacerSize={spacerSize}

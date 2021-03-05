@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 
 const stories = storiesOf(

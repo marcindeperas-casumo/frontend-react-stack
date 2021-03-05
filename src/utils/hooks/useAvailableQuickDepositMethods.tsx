@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,7 +24,7 @@ const isAvailableInCountry = (cmsConfig: MethodConfigType, country: string) =>
 
 export const convertMethodTypesToMap = (
   methods: Array<AvailableMethod>
-// @ts-expect-error ts-migrate(1023) FIXME: An index signature parameter type must be either '... Remove this comment to see the full error message
+  // @ts-expect-error ts-migrate(1337) FIXME: An index signature parameter type cannot be a unio... Remove this comment to see the full error message
 ): { [key: LocalPaymentMethodTypeKeys]: AvailableMethod } =>
   methods.reduce((acc, cur) => {
     return {

@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
-import { mount } from "enzyme";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import React from "react";
+import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { QuitGameNotification } from "./QuitGameNotification";
 import { cms } from "./__mocks__/cms";

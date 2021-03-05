@@ -1,13 +1,11 @@
-// @flow
 import * as utils from "Utils";
 import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
 import { NetentGame } from "./NetentGame";
 import { NETENT_SCRIPT_URL } from "./netentConstants";
 
-jest.mock("../utils/utils.js", () => ({
-  ...jest.requireActual("../utils/utils.js"),
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
-  injectScript: jest.fn().mockResolvedValue(),
+jest.mock("../utils/utils", () => ({
+  ...jest.requireActual("../utils/utils"),
+  injectScript: jest.fn().mockResolvedValue(undefined),
 }));
 
 describe("NetentGame", () => {

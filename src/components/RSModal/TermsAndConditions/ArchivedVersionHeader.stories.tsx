@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import { ArchivedVersionHeader } from "./ArchivedVersionHeader";
 import cms from "./__mocks__/cms";
 

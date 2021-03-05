@@ -1,19 +1,18 @@
-// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
 import "./GameProviderAvatar.scss";
 
 type imgixOptsObject = {
-  w: number,
-  h: number,
+  w: number;
+  h: number;
 };
 
 type Props = {
-  url: string,
-  logo?: string,
-  background?: string,
-  imgixOpts?: imgixOptsObject,
+  url: string;
+  logo?: string;
+  background?: string;
+  imgixOpts?: imgixOptsObject;
 };
 
 const GameProviderAvatar = ({

@@ -1,13 +1,12 @@
-// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
-  src: string,
-  mark: string,
-  height?: number,
-  width?: number,
-  alt?: string | void,
+  src: string;
+  mark: string;
+  height?: number;
+  width?: number;
+  alt?: string | void;
 };
 
 export const GameThumb = ({

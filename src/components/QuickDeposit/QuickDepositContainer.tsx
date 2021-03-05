@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useThrottledGameBalance } from "Components/GamePage/Hooks/useThrottledGameBalance";
@@ -24,7 +23,7 @@ import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActi
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
-  className?: string,
+  className?: string;
 };
 
 const quickDepositDisabledMarkets = [];
@@ -71,7 +70,6 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
   const hasQuickDepositMethods =
     showQuickDeposit && savedQuickDepositMethods.length > 0;
   const navigateToCashier = () => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
   };
 
@@ -81,7 +79,6 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
 
   return (
     <QuickDeposit
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       t={t}
       walletBalance={formatCurrency({
         locale,

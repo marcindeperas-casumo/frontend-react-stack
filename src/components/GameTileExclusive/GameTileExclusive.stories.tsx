@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { GameTileExclusive } from "./GameTileExclusive";
 import exclusiveGame from "./__mocks__/ExclusiveGame.json";

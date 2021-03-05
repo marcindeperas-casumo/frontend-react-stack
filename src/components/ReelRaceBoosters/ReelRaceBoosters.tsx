@@ -1,15 +1,14 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { WinsInARowBooster } from "./WinsInARowBooster";
 import { BigWinsBooster } from "./BigWinsBooster";
 import { MegaWinsBooster } from "./MegaWinsBooster";
 
 type Props = {
-  winsInARow: number,
-  bigWins: number,
-  megaWins: number,
-  className?: string,
+  winsInARow: number;
+  bigWins: number;
+  megaWins: number;
+  className?: string;
 };
 
 export function ReelRaceBoosters({

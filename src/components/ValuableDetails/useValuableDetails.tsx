@@ -1,16 +1,13 @@
-// @flow
 import React, { useState } from "react";
 import { pick } from "ramda";
 import * as A from "Types/apollo";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableCard } from "Components/ValuableCard";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../models/valuables"' has no exported ... Remove this comment to see the full error message
-import { type ValuableThumbnailTranslations as Translations } from "Models/valuables";
+import type { ValuableThumbnailTranslations as Translations } from "Models/valuables";
 
 export const useValuableDetails = (
   translations: Translations,
-  // @ts-expect-error ts-migrate(2348) FIXME: Value of type 'PromiseConstructor' is not callable... Remove this comment to see the full error message
-  onConsumeValuable: string => Promise<void>
+  onConsumeValuable: (s: string) => Promise<void>
 ) => {
   const [selectedValuable, setSelectedValuable] = useState(null);
   const closeModal = () => {
@@ -18,7 +15,7 @@ export const useValuableDetails = (
   };
 
   const showValuableDetails = (
-    valuable: A.PlayerValuableList_PlayerValuable
+    valuable: A.PlayerValuableList_PlayerValuableFragment
   ) => {
     const valuableDetails = pick(
       [

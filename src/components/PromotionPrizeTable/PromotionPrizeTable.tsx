@@ -1,10 +1,9 @@
-// @flow
-import React, { PureComponent } from "react";
 import Table from "@casumo/cmp-table";
+import React, { PureComponent } from "react";
 import "./PromotionPrizeTable.scss";
 
 type Props = {
-  prizes: Array<Object>,
+  prizes: Array<Object>;
 };
 
 const Image = src => <img src={src} alt="" />;

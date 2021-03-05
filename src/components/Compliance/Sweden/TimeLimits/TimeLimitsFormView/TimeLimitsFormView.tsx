@@ -1,14 +1,12 @@
-// @flow
 import * as React from "react";
 import { TimeLimitsFormIntroContainer } from "../TimeLimitsFormIntro";
 import { TimeLimitsFormOutroContainer } from "../TimeLimitsFormOutro";
 import { TimeLimitsFormContainer } from "../TimeLimitsForm";
 
 type Props = {
-  initial?: boolean,
-  onClickOutroCta: () => void,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  formHeader?: React.Node,
+  initial?: boolean;
+  onClickOutroCta: () => void;
+  formHeader?: React.ReactNode;
 };
 
 const SCREENS = {

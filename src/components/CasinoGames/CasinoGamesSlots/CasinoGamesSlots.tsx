@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import Markdown from "markdown-to-jsx";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 
 const layoutSelectorCmsTypes = {

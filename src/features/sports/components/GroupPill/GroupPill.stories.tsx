@@ -1,18 +1,17 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import * as A from "Types/apollo";
 import GroupPill from "./GroupPill";
 
 const stories = storiesOf("Sports/GroupPill", module);
 
-const groupA: A.GroupPill_Group = {
+const groupA: A.GroupPill_GroupFragment = {
   name: "Group A",
   regionCode: "",
 };
 
-const groupB: A.GroupPill_Group = {
+const groupB: A.GroupPill_GroupFragment = {
   name: "Group B",
   regionCode: "SE",
 };

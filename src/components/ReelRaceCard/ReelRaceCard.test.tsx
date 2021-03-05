@@ -1,7 +1,6 @@
-// @flow
+import { ButtonPrimary } from "@casumo/cmp-button";
 import React from "react";
 import { shallow } from "enzyme";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
@@ -63,10 +62,7 @@ describe("ReelRaceCard", () => {
     });
     test('should show "Opt In" button', () => {
       expect(
-        rendered
-          .find("OptInButton")
-          .dive()
-          .contains(props.translations.optIn)
+        rendered.find("OptInButton").dive().contains(props.translations.optIn)
       ).toBe(true);
     });
 
@@ -78,10 +74,7 @@ describe("ReelRaceCard", () => {
         },
       });
       expect(
-        rendered
-          .find("OptInButton")
-          .dive()
-          .contains(props.translations.optedIn)
+        rendered.find("OptInButton").dive().contains(props.translations.optedIn)
       ).toBe(true);
     });
   });

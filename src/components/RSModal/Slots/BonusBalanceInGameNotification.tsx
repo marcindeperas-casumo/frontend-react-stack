@@ -1,23 +1,21 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import { WAGERING_NOTIFICATION_TYPES } from "Models/playing/playing.constants";
 import { ModalHeader } from "../RSModalHeader";
 
 export type CmsContent = {
-  modal_title: string,
-  modal_text_bonus: string,
-  modal_text_real: string,
-  cta_text: string,
+  modal_title: string;
+  modal_text_bonus: string;
+  modal_text_real: string;
+  cta_text: string;
 };
 
 type BonusBalanceInGameNotificationProps = {
-  acceptModal?: () => void,
-  config: any,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  t: ?CmsContent,
+  acceptModal?: () => void;
+  config: any;
+  t: CmsContent | undefined;
 };
 
 export const BonusBalanceInGameNotification = ({

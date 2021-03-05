@@ -1,55 +1,43 @@
-// @flow
 import * as React from "react";
 import type { DepositRequestStateType } from "Models/payments/payments.types";
 export type QuickDepositSlipFormErrorTranslations = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_deposit_minimum: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_deposit_maximum: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_deposit_amount_required: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_cvv_required: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_cvv_too_short: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  error_cvv_not_integer: ?string,
+  error_deposit_minimum: string | undefined;
+  error_deposit_maximum: string | undefined;
+  error_deposit_amount_required: string | undefined;
+  error_cvv_required: string | undefined;
+  error_cvv_too_short: string | undefined;
+  error_cvv_not_integer: string | undefined;
 };
 
 export type QuickDepositSlipTranslations = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  deposit_amount: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  deposit_cta_text: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  deposit_helper_text: ?string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  cvv_helper_text: ?string,
+  deposit_amount: string | undefined;
+  deposit_cta_text: string | undefined;
+  deposit_helper_text: string | undefined;
+  cvv_helper_text: string | undefined;
 } & QuickDepositSlipFormErrorTranslations;
 
 export type QuickDepositSlipForm = {
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
+  minAmount: number;
+  maxAmount: number;
+  presetAmount?: number;
 };
 
 export type QuickDepositSlipFormErrors = {
-  amountInput?: string,
-  cvv?: string,
+  amountInput?: string;
+  cvv?: string;
 };
 
 export type QuickDepositSlipFormProps = QuickDepositSlipForm & {
-  translations: QuickDepositSlipFormErrorTranslations,
+  translations: QuickDepositSlipFormErrorTranslations;
 };
 
 export type QuickDepositSlipProps = {
-  currencySymbol: string,
-  minAmount: number,
-  maxAmount: number,
-  presetAmount?: number,
-  requestStatus: DepositRequestStateType,
-  onDeposit: (depositValue: number, cvvValue: string) => void,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  renderPaymentMethodDetails: () => React.Node,
-  translations: QuickDepositSlipTranslations,
+  currencySymbol: string;
+  minAmount: number;
+  maxAmount: number;
+  presetAmount?: number;
+  requestStatus: DepositRequestStateType;
+  onDeposit: (depositValue: number, cvvValue: string) => void;
+  renderPaymentMethodDetails: () => React.ReactNode;
+  translations: QuickDepositSlipTranslations;
 };

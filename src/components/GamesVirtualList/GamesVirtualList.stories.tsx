@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
@@ -29,7 +28,7 @@ const props = {
 stories.add("Default", () => (
   <MockStore>
     <div className="u-height--screen">
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'Promise' is missing in type '{ games: { ... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ games: { isInMaintenance: boolean; backgro... Remove this comment to see the full error message */}
       <GamesVirtualList {...props} />
     </div>
   </MockStore>

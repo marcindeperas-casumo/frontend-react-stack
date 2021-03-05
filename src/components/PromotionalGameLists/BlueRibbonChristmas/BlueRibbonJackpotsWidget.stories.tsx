@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { t } from "./__mocks__/t";

@@ -1,8 +1,7 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { AdditionalConditions } from "./AdditionalConditions";
-import preadjust from "./__mocks__/preadjust.js";
+import preadjust from "./__mocks__/preadjust";
 
 const props = {
   ...preadjust,

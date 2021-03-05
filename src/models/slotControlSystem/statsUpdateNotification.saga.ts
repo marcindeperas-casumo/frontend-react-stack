@@ -1,6 +1,5 @@
-// @flow
-import * as R from "ramda";
 import { put } from "redux-saga/effects";
+import * as R from "ramda";
 import { MESSAGES as cometdMessages } from "Models/cometd";
 import { updateActiveSessionStats } from "Models/slotControlSystem";
 

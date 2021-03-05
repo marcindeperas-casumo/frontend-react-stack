@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsSuspendAccount } from "./DepositLimitsSuspendAccount";
@@ -17,7 +16,6 @@ describe("DepositLimitsSuspendAccount", () => {
     const rendered = shallow(
       <DepositLimitsSuspendAccount
         {...props}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<any, any>' is not assignable to type 'v... Remove this comment to see the full error message
         showOldSuspendAccountView={showOldSuspendAccountView}
       />
     );

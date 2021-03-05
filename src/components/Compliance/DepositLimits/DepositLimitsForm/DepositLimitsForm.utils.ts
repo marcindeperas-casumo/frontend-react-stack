@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { DateTime } from "luxon";
 import { formatCurrency, interpolate } from "Utils";
@@ -16,13 +15,9 @@ export function validate(
   limitInputs: LimitInputs,
   formProps: FormProps,
   t: Translations
-): ?string {
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '(b: DepositKinds) => boolean' is not assigna... Remove this comment to see the full error message
-  const currentLimitNotEqual: DepositKinds => Boolean = R.complement(
-    R.equals(currentLimit)
-  );
+): string | null {
+  const currentLimitNotEqual = R.complement(R.equals(currentLimit));
   const currentLimitValue = limitInputs[currentLimit].value || 0;
-  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   if (currentLimitNotEqual("daily")) {
     const i = limitTypes.indexOf(currentLimit) - 1;
     const previousLimitValue = limitInputs[limitTypes[i]].value || 0;
@@ -32,7 +27,6 @@ export function validate(
       });
     }
   }
-  // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
   if (currentLimitNotEqual("monthly")) {
     const i = limitTypes.indexOf(currentLimit) + 1;
     const nextLimitValue = limitInputs[limitTypes[i]].value || 0;

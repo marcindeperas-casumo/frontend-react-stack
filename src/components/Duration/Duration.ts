@@ -12,10 +12,10 @@ type Props = {
   /**
    * string is ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
    */
-  duration: string | LuxonDurationObject,
-  preferAbbreviated?: boolean,
-  preferShort?: boolean,
-  separator?: string,
+  duration: string | LuxonDurationObject;
+  preferAbbreviated?: boolean;
+  preferShort?: boolean;
+  separator?: string;
 };
 
 export function Duration(props: Props): string {

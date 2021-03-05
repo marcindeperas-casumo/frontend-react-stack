@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 
 export const getGamePage = R.path(["gameBrowser", "page"]);

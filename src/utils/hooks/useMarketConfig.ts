@@ -1,4 +1,3 @@
-// @flow
 import * as R from "ramda";
 import { useSelector } from "react-redux";
 import { marketSelector } from "Models/handshake";
@@ -7,9 +6,8 @@ import { MARKETS, MARKETS_CONFIG } from "Src/constants";
 type MarketConfigProp = "reelRacesHidden";
 
 type GetMarketConfigProps = {
-  prop: MarketConfigProp,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
-  market: $Keys<typeof MARKETS>,
+  prop: MarketConfigProp;
+  market: keyof typeof MARKETS;
 };
 
 export function useMarketConfig(
@@ -20,6 +18,7 @@ export function useMarketConfig(
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string |... Remove this comment to see the full error message
   return getMarketConfig({
     prop,
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type '"___en" ... Remove this comment to see the full error message
     market,
   });
 }

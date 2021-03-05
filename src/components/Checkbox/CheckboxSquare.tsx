@@ -1,12 +1,11 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { CheckIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 
 type Props = {
-  checked?: boolean,
-  onChange: (active: boolean) => void,
+  checked?: boolean;
+  onChange: (active: boolean) => void;
 };
 
 const CheckboxUnchecked = () => (

@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { mount } from "enzyme";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
@@ -26,6 +25,7 @@ describe("useTimeoutFn", () => {
   test("scheduleIn execute timeout fn", () => {
     const wrapper = mount(<HookWrapper hook={useTimeoutFn} args={[]} />);
     const fn = jest.fn();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const hook = wrapper.find("div").props().hook;
 
     hook.scheduleIn(fn, 100);
@@ -39,6 +39,7 @@ describe("useTimeoutFn", () => {
   test("scheduleIn cancel timeout", () => {
     const wrapper = mount(<HookWrapper hook={useTimeoutFn} args={[]} />);
     const fn = jest.fn();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const hook = wrapper.find("div").props().hook;
 
     hook.scheduleIn(fn, 100);
@@ -55,6 +56,7 @@ describe("useTimeoutFn", () => {
   test("scheduleAt execute timeout fn", () => {
     const wrapper = mount(<HookWrapper hook={useTimeoutFn} args={[]} />);
     const fn = jest.fn();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const hook = wrapper.find("div").props().hook;
 
     hook.scheduleAt(fn, Date.now() + 100);
@@ -68,6 +70,7 @@ describe("useTimeoutFn", () => {
   test("scheduleIn cancel timeout", () => {
     const wrapper = mount(<HookWrapper hook={useTimeoutFn} args={[]} />);
     const fn = jest.fn();
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const hook = wrapper.find("div").props().hook;
 
     hook.scheduleAt(fn, Date.now() + 100);

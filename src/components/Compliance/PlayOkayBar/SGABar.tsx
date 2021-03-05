@@ -1,8 +1,6 @@
-// @flow
-
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
+import React from "react";
 import { CurrentSessionTimer } from "Components/CurrentSessionTimer";
 import SpelPausIcon from "./icons/spelpaus.svg";
 import SpelGranserIcon from "./icons/spelgranser.svg";
@@ -16,7 +14,7 @@ const links = {
 };
 
 type Props = {
-  className?: string,
+  className?: string;
 };
 
 export const SGABar = ({ className = "" }: Props) => (

@@ -1,13 +1,12 @@
-/* @flow */
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import HashWatcher from "Components/HashWatcher";
 
 const stories = storiesOf("HashWatcher", module);
 
 type State = {
-  newHash: string,
+  newHash: string;
 };
 
 class HashWatcherDemo extends React.Component<{}, State> {
@@ -33,7 +32,6 @@ class HashWatcherDemo extends React.Component<{}, State> {
           set hash
         </button>
         <HashWatcher>
-          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
           {({ currentHash }) => (
             <div className="u-margin u-padding t-border-r--sm t-background-grey-0">
               <strong>window.location.hash:&nbsp;</strong>

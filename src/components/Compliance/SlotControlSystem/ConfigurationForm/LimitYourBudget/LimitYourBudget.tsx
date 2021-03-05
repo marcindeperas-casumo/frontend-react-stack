@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
+import classNames from "classnames";
+import * as React from "react";
 import { TextInput } from "Components/Compliance/TextInput";
 import { interpolate, formatCurrency, getSymbolForCurrency } from "Utils";
 import { isBudgetInvalid } from "../Utils";
@@ -15,16 +14,16 @@ const { useCallback, useState } = React;
 
 type Props = {
   t: {
-    limit_your_budget: string,
-    use_all_balance: string,
-    error_budget_too_low: string,
-    error_budget_too_high: string,
-  },
-  budget?: number,
-  balance: number,
-  currency: string,
-  locale: string,
-  onSubmit: (budget: number) => void,
+    limit_your_budget: string;
+    use_all_balance: string;
+    error_budget_too_low: string;
+    error_budget_too_high: string;
+  };
+  budget?: number;
+  balance: number;
+  currency: string;
+  locale: string;
+  onSubmit: (budget: number) => void;
 };
 
 export function LimitYourBudget(props: Props) {
@@ -59,7 +58,6 @@ export function LimitYourBudget(props: Props) {
         <strong>{t.limit_your_budget}</strong>
       </Text>
       <Flex align="center">
-        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ currencySign... Remove this comment to see the full error message */}
         <TextInput
           currencySign={getSymbolForCurrency({ locale, currency })}
           onChange={onChange}

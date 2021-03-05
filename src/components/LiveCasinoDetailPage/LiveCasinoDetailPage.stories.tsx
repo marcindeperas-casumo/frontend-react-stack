@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { groupedLiveCasinoGames } from "./__mocks__";
 import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";

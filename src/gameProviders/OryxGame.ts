@@ -1,4 +1,3 @@
-// @flow
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
@@ -19,9 +18,9 @@ const ORYX_EVENTS = {
 
 type OryxMessage = {
   data: {
-    wpgaction: string,
-  },
-  origin: string,
+    wpgaction: string;
+  };
+  origin: string;
 };
 
 export class OryxGame extends BaseIframeGame {

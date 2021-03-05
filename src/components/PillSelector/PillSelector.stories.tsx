@@ -1,7 +1,6 @@
-// @flow
-import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 import { select, boolean } from "@storybook/addon-knobs/react";
+import React, { Component } from "react";
 import { PillSelector } from "./PillSelector";
 import options from "./__mocks__/options.json";
 
@@ -9,17 +8,15 @@ const stories = storiesOf("PillSelector", module);
 const optionsForSelector = options.map(option => option.value);
 
 type Props = {
-  value: string,
-  disabled: boolean,
+  value: string;
+  disabled: boolean;
 };
 
 type State = {
-  value: any,
+  value: any;
 };
 
 class PillSelectorContainer extends Component<Props, State> {
-  onChange: Function;
-
   constructor(props: Props) {
     super(props);
 
@@ -29,8 +26,7 @@ class PillSelectorContainer extends Component<Props, State> {
     this.onChange = this.onChange.bind(this);
   }
 
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'onChange'.
-  onChange = value => {
+  onChange = (value: string) => {
     this.setState({ value });
   };
 
@@ -56,7 +52,6 @@ class PillSelectorContainer extends Component<Props, State> {
         <PillSelector
           options={options}
           value={value}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           onChange={this.onChange}
           disabled={this.props.disabled}
         />

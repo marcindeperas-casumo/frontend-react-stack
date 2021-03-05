@@ -16,10 +16,7 @@ describe("PromotionTeaserRow", () => {
       />
     );
     expect(
-      rendered
-        .find({ "data-test": "promotion-dates" })
-        .dive()
-        .text()
+      rendered.find({ "data-test": "promotion-dates" }).dive().text()
     ).toBe(promotion.fields.dates);
   });
 
@@ -33,10 +30,7 @@ describe("PromotionTeaserRow", () => {
       />
     );
     expect(
-      rendered
-        .find({ "data-test": "promotion-title" })
-        .dive()
-        .text()
+      rendered.find({ "data-test": "promotion-title" }).dive().text()
     ).toBe(promotion.fields.title);
   });
 });

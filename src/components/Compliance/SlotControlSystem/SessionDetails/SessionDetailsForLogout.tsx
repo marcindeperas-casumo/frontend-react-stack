@@ -1,28 +1,28 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/slotControlSystem"' ha... Remove this comment to see the full error message
-import { type ActiveSessionType } from "Models/slotControlSystem";
+import * as React from "react";
+import type { ActiveSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 import { LoginSessionDetailsSection } from "./LoginSessionDetailsSection";
 
 type Props = {
-  t: ?{
-    session_details_header: string,
-    money_wagered: string,
-    money_won: string,
-    money_left: string,
-    play_started: string,
-    play_ended: string,
-    logout_button_label: string,
-    logout_text: string,
-  },
-  onClickButton: () => void,
-  activeSession: ?ActiveSessionType,
-  locale: string,
-  playEndedTime: number,
+  t:
+    | {
+        session_details_header: string;
+        money_wagered: string;
+        money_won: string;
+        money_left: string;
+        play_started: string;
+        play_ended: string;
+        logout_button_label: string;
+        logout_text: string;
+      }
+    | undefined;
+  onClickButton: () => void;
+  activeSession: ActiveSessionType | undefined;
+  locale: string;
+  playEndedTime: number;
 };
 
 export function SessionDetailsForLogout(props: Props) {

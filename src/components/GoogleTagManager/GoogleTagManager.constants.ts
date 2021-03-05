@@ -1,4 +1,3 @@
-// @flow
 import type { GTMScriptParams } from "./GoogleTagManager.types";
 
 const CONTAINER_ID = "GTM-23P4";

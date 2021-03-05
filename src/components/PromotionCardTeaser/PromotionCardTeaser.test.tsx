@@ -17,13 +17,9 @@ describe("PromotionCardTeaser", () => {
         title={promotion.fields.title}
       />
     );
-    expect(
-      rendered
-        .find("Text")
-        .first()
-        .children()
-        .text()
-    ).toBe(promotion.fields.dates);
+    expect(rendered.find("Text").first().children().text()).toBe(
+      promotion.fields.dates
+    );
   });
 
   test("should render a title", () => {
@@ -37,13 +33,9 @@ describe("PromotionCardTeaser", () => {
         title={promotion.fields.title}
       />
     );
-    expect(
-      rendered
-        .find("Text")
-        .last()
-        .children()
-        .text()
-    ).toBe(promotion.fields.title);
+    expect(rendered.find("Text").last().children().text()).toBe(
+      promotion.fields.title
+    );
   });
 
   test("should render an image", () => {

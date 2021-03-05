@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MaskImage from "./MaskImage";
 
 const stories = storiesOf("MaskImage", module);

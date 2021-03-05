@@ -1,19 +1,18 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { navigateById } from "Services/NavigationService";
 
 type Props = {
   t: {
-    remember_to_play_within_limits: string,
-    remember_to_play_within_limits_subtext: string,
-    remember_to_play_within_limits_yes_label: string,
-    remember_to_play_within_limits_about_label: string,
-  },
-  onClickYes: () => void,
-  onClickAbout: () => void,
+    remember_to_play_within_limits: string;
+    remember_to_play_within_limits_subtext: string;
+    remember_to_play_within_limits_yes_label: string;
+    remember_to_play_within_limits_about_label: string;
+  };
+  onClickYes: () => void;
+  onClickAbout: () => void;
 };
 
 export function RememberToPlayWithinLimits(props: Props) {

@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import * as R from "ramda";
 import { fetchPageBySlug, getPage } from "Models/cms";
@@ -13,5 +12,5 @@ export const DepositLimitsConfirmationsContainer = connect(
   {
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }
-// @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ t, ...props }: Props) => Elem... Remove this comment to see the full error message
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ t, ...props }: Props) => Elem... Remove this comment to see the full error message
 )(DepositLimitsConfirmations);

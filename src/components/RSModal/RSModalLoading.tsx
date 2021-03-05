@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { ModalHeader } from "./RSModalHeader";
 import { ModalContentLoading } from "./RSModalContent";

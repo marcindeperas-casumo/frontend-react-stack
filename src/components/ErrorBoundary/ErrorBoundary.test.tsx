@@ -66,8 +66,7 @@ describe("<ErrorBoundary />", () => {
 
   test("calls the logError() function if there was an error thrown in the children", () => {
     const logError = logger.error;
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '(...a... Remove this comment to see the full error message
-    logError.mockClear();
+    (logError as jest.Mock).mockClear();
     const error = new Error("Random Error");
     const Component = () => {
       // eslint-disable-next-line fp/no-throw
@@ -82,8 +81,7 @@ describe("<ErrorBoundary />", () => {
       </MockStore>
     );
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mock' does not exist on type '(...args: ... Remove this comment to see the full error message
-    const firstArg = logError.mock.calls[0][0];
+    const firstArg = (logError as jest.Mock).mock.calls[0][0];
 
     expect(logError).toHaveBeenCalledTimes(1);
     expect(firstArg).toEqual(error);

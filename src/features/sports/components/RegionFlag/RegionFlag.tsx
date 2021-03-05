@@ -1,10 +1,9 @@
-// @flow
 import React from "react";
 
 type Props = {
-  regionCode: string,
-  size?: number,
-  className?: string,
+  regionCode: string;
+  size?: number;
+  className?: string;
 };
 
 export const RegionFlag = ({ regionCode, size = 16, className }: Props) => {

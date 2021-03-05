@@ -1,5 +1,2 @@
-// @flow
 export { GameTileContainer as GameTile } from "./GameTileContainer";
-export {
-  GameTileInMaintenanceContainer,
-} from "./GameTileInMaintenanceContainer";
+export { GameTileInMaintenanceContainer } from "./GameTileInMaintenanceContainer";

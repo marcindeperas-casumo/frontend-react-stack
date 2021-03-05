@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
+import React from "react";
 import { viewports } from "Storybook/viewports";
 import { GameDetails } from "./GameDetails";
 import {

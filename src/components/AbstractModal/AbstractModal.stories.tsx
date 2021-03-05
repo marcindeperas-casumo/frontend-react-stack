@@ -1,7 +1,6 @@
-// @flow
+import { storiesOf } from "@storybook/react";
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { storiesOf } from "@storybook/react";
 import { WaitForHostElement } from "Components/WaitForHostElement";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { ORIENTATION_VALUES } from "Components/ResponsiveLayout/ResponsiveLayout.types";
@@ -11,7 +10,8 @@ import "./AbstractModal.stories.scss";
 const hostElementId = "portal-host-element";
 const stories = storiesOf("AbstractModal", module);
 
-const getParent = () => document.querySelector(`#${hostElementId}`);
+const getParent = (): HTMLElement =>
+  document.querySelector(`#${hostElementId}`);
 
 function AbstractModalStory() {
   const [isOpen, setOpen] = useState(true);
@@ -21,7 +21,6 @@ function AbstractModalStory() {
     <AbstractModal
       isOpen={isOpen}
       hideModal={() => setOpen(false)}
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       parentSelector={getParent}
       closeTimeoutMS={100}
     >

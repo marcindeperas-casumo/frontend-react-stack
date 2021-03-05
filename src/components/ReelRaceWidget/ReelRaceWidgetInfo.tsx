@@ -1,13 +1,12 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import * as A from "Types/apollo";
 import Timer from "Components/Timer";
 import type { ReelRacesTranslations } from "Models/reelRaces";
 
-type Props = A.ReelRaceWidgetQuery_reelRaces & {
-  t: ReelRacesTranslations,
+type Props = A.ReelRaceWidgetQuery["reelRaces"][number] & {
+  t: ReelRacesTranslations;
 };
 export function ReelRaceWidgetInfo({ t, ...props }: Props) {
   return (
@@ -26,7 +25,6 @@ export function ReelRaceWidgetInfo({ t, ...props }: Props) {
           className="u-font-weight-bold t-color-purple-60"
         >
           <Timer
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'BigInt' is not assignable to type 'number'.
             endTime={props.startTime}
             render={o => `${o.minutes}:${o.seconds}`}
             onEnd={() => "00:00"}

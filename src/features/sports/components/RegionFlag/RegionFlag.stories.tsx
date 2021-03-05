@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs/react";
+import React from "react";
 import { RegionFlag } from "./RegionFlag";
 
 const stories = storiesOf("Sports/RegionFlag", module);

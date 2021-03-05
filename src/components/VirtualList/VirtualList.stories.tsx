@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Flex from "@casumo/cmp-flex";
+import React, { PureComponent } from "react";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
 import games from "./__mocks__/games";
@@ -45,7 +45,7 @@ class MyComponent extends PureComponent<{}, State> {
         }, 3000 + Math.round(Math.random() * 1000));
       }).then(gamesList => {
         this.setState({
-          // @ts-expect-error ts-migrate(2461) FIXME: Type 'unknown' is not an array type.
+          // @ts-expect-error ts-migrate(2548) FIXME: Type 'unknown' is not an array type or does not ha... Remove this comment to see the full error message
           list: [...this.state.list, ...gamesList],
         });
         return this.state.list;

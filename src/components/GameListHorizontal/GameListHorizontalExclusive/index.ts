@@ -1,3 +1,1 @@
-export {
-  GameListHorizontalExclusiveContainer as GameListHorizontalExclusive,
-} from "./GameListHorizontalExclusiveContainer";
+export { GameListHorizontalExclusiveContainer as GameListHorizontalExclusive } from "./GameListHorizontalExclusiveContainer";

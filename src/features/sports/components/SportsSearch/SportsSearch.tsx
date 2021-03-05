@@ -1,7 +1,6 @@
-/* @flow */
-import React from "react";
 import { getApolloContext } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import * as A from "Types/apollo";
 import SearchInput from "Components/SearchInput";
 import tracker from "Services/tracker";
@@ -12,8 +11,8 @@ import KambiSearchResults from "./KambiSearchResults";
 import "./SportsSearch.scss";
 
 type State = {
-  query: string,
-  hideSearchResults: boolean,
+  query: string;
+  hideSearchResults: boolean;
 };
 
 export default class SportsSearch extends React.Component<{}, State> {
@@ -75,10 +74,11 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   handleSearchResultClick = (
-    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches
+    resultOrEventGroup:
+      | A.SearchQuery["search"][number]
+      | A.TopSearchesQuery["topSearches"][number]
   ) => {
-    // $FlowIgnore: either type will have either prop
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'localizedName' does not exist on type 'S... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'localizedName' does not exist on type '{... Remove this comment to see the full error message
     const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
 
     this.setState({
@@ -95,6 +95,7 @@ export default class SportsSearch extends React.Component<{}, State> {
         <Flex.Block className="t-background-grey-0 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
+              {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
                   <SearchInput
@@ -115,7 +116,6 @@ export default class SportsSearch extends React.Component<{}, State> {
           <KambiSearchResults
             query={this.state.query}
             hideSearchResults={this.state.hideSearchResults}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '(resultOrEventGroup: A.SearchQuery_search | ... Remove this comment to see the full error message
             onResultClick={this.handleSearchResultClick}
           />
         </div>

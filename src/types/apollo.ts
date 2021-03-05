@@ -1,3825 +1,2941 @@
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GetGamesRTP
-// ====================================================
-
-export type GetGamesRTP_getGamesPaginated_games = {
-  id: string,
-  slug: string,
-  title: string,
-  actualRtpPast6Months: ?string,
-  actualRtpPastYear: ?string,
-  rtp: ?string,
+export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
 };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
+/** All built-in and custom scalars, mapped to their actual values */
+export interface Scalars {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  Long: number;
+  DateTime: any;
+  /** The `BigInt` scalar type represents non-fractional signed whole numeric values. BigInt can represent values between -(2^53) + 1 and 2^53 - 1.  */
+  BigInt: number;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
+}
 
-export type GetGamesRTP_getGamesPaginated = {
-  gamesCount: number,
-  offset: number,
-  games: Array<GetGamesRTP_getGamesPaginated_games>,
-};
+export interface GamesPaginated {
+  games: Array<Game>;
+  offset: Scalars["Int"];
+  gamesCount: Scalars["Int"];
+}
 
-export type GetGamesRTP = {
-  getGamesPaginated: GetGamesRTP_getGamesPaginated
-};
-
-export type GetGamesRTPVariables = {
-  query: string,
-  offset: number,
-  limit: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GetGamesRTPLight
-// ====================================================
-
-export type GetGamesRTPLight_getGamesPaginated_games = {
-  id: string,
-  slug: string,
-  title: string,
-  rtp: ?string,
-};
-
-export type GetGamesRTPLight_getGamesPaginated = {
-  gamesCount: number,
-  offset: number,
-  games: Array<GetGamesRTPLight_getGamesPaginated_games>,
-};
-
-export type GetGamesRTPLight = {
-  getGamesPaginated: GetGamesRTPLight_getGamesPaginated
-};
-
-export type GetGamesRTPLightVariables = {
-  query: string,
-  offset: number,
-  limit: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: componentBuilderQuery
-// ====================================================
-
-export type componentBuilderQuery = {
+export interface Query {
+  activeModals: Array<Modal>;
+  competitions: Array<EventGroup>;
+  curatedCard?: Maybe<CuratedCard>;
+  dictionaryTerm: Scalars["String"];
+  favouriteCompetitions: Array<EventGroup>;
+  game?: Maybe<Game>;
+  gameSetsList: Array<DetailedGameSet>;
+  gameStudio?: Maybe<GameStudio>;
+  gameStudios: Array<Maybe<GameStudio>>;
+  games: Array<Game>;
+  gamesBySlugs: Array<Game>;
+  gamesList?: Maybe<GamesList>;
+  gamesSearch: GamesSearchResults;
+  getCMSField?: Maybe<CmsText>;
   /**
    * "getCMSFieldAsJSON" is only needed for the component builder until we add type-definitions for all the
    * component properties that are available to be used for the component builder.
    * Task: https://jira.casumocave.com/browse/PRCA-308
    */
-  componentDefinitionJSON: string
-};
-
-export type componentBuilderQueryVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: CuratedCardQuery
-// ====================================================
-
-export type CuratedCardQuery_curatedCard_game = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-};
-
-export type CuratedCardQuery_curatedCard = {
-  id: string,
-  slug: string,
-  type: string,
-  image: ?string,
-  header: ?string,
-  subtitle: ?string,
-  promotionSlug: ?string,
-  promotionLegalText: ?string,
-  launchGameText: ?string,
-  smallImage: ?string,
-  mediumImage: ?string,
-  largeImage: ?string,
-  sportsRoute: ?string,
-  game: ?CuratedCardQuery_curatedCard_game,
-};
-
-export type CuratedCardQuery_session = {
-  market: string
-};
-
-export type CuratedCardQuery = {
-  curatedCard: ?CuratedCardQuery_curatedCard,
-  session: CuratedCardQuery_session,
-};
-
-export type CuratedCardQueryVariables = {
-  slug: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameDetailsQuery
-// ====================================================
-
-export type GameDetailsQuery_game_media = {
-  type: string,
-  path: string,
-  order: number,
-};
-
-export type GameDetailsQuery_game = {
-  id: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  slug: string,
-  description: ?string,
-  media: Array<GameDetailsQuery_game_media>,
-  hasPlayForFun: boolean,
-  isInMaintenance: boolean,
-};
-
-export type GameDetailsQuery = {
-  game: ?GameDetailsQuery_game
-};
-
-export type GameDetailsQueryVariables = {
-  slug: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameListQuery
-// ====================================================
-
-export type GameListQuery_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameListQuery_gamesList_games_lobby = {
-  bets: ?GameListQuery_gamesList_games_lobby_bets
-};
-
-export type GameListQuery_gamesList_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameListQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
-};
-
-export type GameListQuery_gamesList = {
-  id: ?string,
-  name: ?string,
-  games: Array<GameListQuery_gamesList_games>,
-};
-
-export type GameListQuery = {
-  gamesList: ?GameListQuery_gamesList
-};
-
-export type GameListQueryVariables = {
-  id: string,
-  numberOfGames: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameListExclusiveQuery
-// ====================================================
-
-export type GameListExclusiveQuery_gamesList_games = {
-  isInMaintenance: boolean,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  id: string,
-  liveCasinoId: ?string,
-  playBackground: string,
-  category: ?string,
-};
-
-export type GameListExclusiveQuery_gamesList = {
-  id: ?string,
-  name: ?string,
-  games: Array<GameListExclusiveQuery_gamesList_games>,
-};
-
-export type GameListExclusiveQuery = {
-  gamesList: ?GameListExclusiveQuery_gamesList
-};
-
-export type GameListExclusiveQueryVariables = {
-  id: string,
-  numberOfGames: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameListLiveCasinoQuery
-// ====================================================
-
-export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets,
-};
-
-export type GameListLiveCasinoQuery_gamesList_games = {
-  backgroundImage: string,
-  id: string,
-  isInMaintenance: boolean,
-  liveCasinoLobby: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-};
-
-export type GameListLiveCasinoQuery_gamesList = {
-  id: ?string,
-  name: ?string,
-  games: Array<GameListLiveCasinoQuery_gamesList_games>,
-};
-
-export type GameListLiveCasinoQuery = {
-  gamesList: ?GameListLiveCasinoQuery_gamesList
-};
-
-export type GameListLiveCasinoQueryVariables = {
-  id: string,
-  numberOfGames: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameListPageQuery
-// ====================================================
-
-export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type GameListPageQuery_getGamesPaginated_games_liveCasinoLobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby_bets,
-};
-
-export type GameListPageQuery_getGamesPaginated_games = {
-  isInMaintenance: boolean,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  id: string,
-  liveCasinoId: ?string,
-  playBackground: string,
-  category: ?string,
-  liveCasinoLobby: ?GameListPageQuery_getGamesPaginated_games_liveCasinoLobby,
-  gameStudio: string,
-};
-
-export type GameListPageQuery_getGamesPaginated = {
-  gamesCount: number,
-  offset: number,
-  games: Array<GameListPageQuery_getGamesPaginated_games>,
-};
-
-export type GameListPageQuery = {
-  getGamesPaginated: GameListPageQuery_getGamesPaginated
-};
-
-export type GameListPageQueryVariables = {
-  query: string,
-  offset: number,
-  limit: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameListVerticalQuery
-// ====================================================
-
-export type GameListVerticalQuery_gamesBySlugs_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameListVerticalQuery_gamesBySlugs_lobby = {
-  bets: ?GameListVerticalQuery_gamesBySlugs_lobby_bets
-};
-
-export type GameListVerticalQuery_gamesBySlugs = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
-  isInMaintenance: boolean,
-};
-
-export type GameListVerticalQuery = {
-  gamesBySlugs: Array<GameListVerticalQuery_gamesBySlugs>
-};
-
-export type GameListVerticalQueryVariables = {
-  slugs: Array<string>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameStudiosQuery
-// ====================================================
-
-export type GameStudiosQuery_gameStudios = {
-  id: string,
-  url: string,
-  background: string,
-  logo: string,
-  slug: string,
-  name: string,
-};
-
-export type GameStudiosQuery = {
-  gameStudios: Array<?GameStudiosQuery_gameStudios>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameSearchQuery
-// ====================================================
-
-export type GameSearchQuery_gamesSearch_results_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameSearchQuery_gamesSearch_results_lobby = {
-  bets: ?GameSearchQuery_gamesSearch_results_lobby_bets
-};
-
-export type GameSearchQuery_gamesSearch_results = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameSearchQuery_gamesSearch_results_lobby,
-  isInMaintenance: boolean,
-};
-
-export type GameSearchQuery_gamesSearch = {
-  resultsCount: number,
-  results: Array<?GameSearchQuery_gamesSearch_results>,
-};
-
-export type GameSearchQuery = {
-  gamesSearch: GameSearchQuery_gamesSearch
-};
-
-export type GameSearchQueryVariables = {
-  query: string,
-  page: number,
-  pageSize: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameSearchSuggestionsListContainerQuery
-// ====================================================
-
-export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby = {
-  bets: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets
-};
-
-export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
-};
-
-export type GameSearchSuggestionsListContainerQuery_gamesList = {
-  id: ?string,
-  games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
-};
-
-export type GameSearchSuggestionsListContainerQuery = {
-  gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList
-};
-
-export type GameSearchSuggestionsListContainerQueryVariables = {
-  listId: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameTileHeartQuery
-// ====================================================
-
-export type GameTileHeartQuery_gamesList_games = {
-  id: string
-};
-
-export type GameTileHeartQuery_gamesList = {
-  id: ?string,
-  games: Array<GameTileHeartQuery_gamesList_games>,
-};
-
-export type GameTileHeartQuery = {
-  gamesList: ?GameTileHeartQuery_gamesList
-};
-
-export type GameTileHeartQueryVariables = {
-  numberOfGames: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: AddGameToMyList
-// ====================================================
-
-export type AddGameToMyList_addGameToMyList = {
-  id: string
-};
-
-export type AddGameToMyList = {
-  addGameToMyList: ?AddGameToMyList_addGameToMyList
-};
-
-export type AddGameToMyListVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: RemoveGameFromMyList
-// ====================================================
-
-export type RemoveGameFromMyList_removeGameFromMyList = {
-  id: string
-};
-
-export type RemoveGameFromMyList = {
-  removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList
-};
-
-export type RemoveGameFromMyListVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: JackpotsQuery
-// ====================================================
-
-export type JackpotsQuery_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type JackpotsQuery_gamesList_games_lobby = {
-  bets: ?JackpotsQuery_gamesList_games_lobby_bets
-};
-
-export type JackpotsQuery_gamesList_games_jackpot_value = {
-  amount: number,
-  currency: Currency,
-};
-
-export type JackpotsQuery_gamesList_games_jackpot = {
-  id: string,
-  value: JackpotsQuery_gamesList_games_jackpot_value,
-};
-
-export type JackpotsQuery_gamesList_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?JackpotsQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
-  jackpot: ?JackpotsQuery_gamesList_games_jackpot,
-};
-
-export type JackpotsQuery_gamesList = {
-  name: ?string,
-  games: Array<JackpotsQuery_gamesList_games>,
-};
-
-export type JackpotsQuery = {
-  gamesList: ?JackpotsQuery_gamesList
-};
-
-export type JackpotsQueryVariables = {
-  numberOfGames: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: LiveCasinoCardSmallDataQuery
-// ====================================================
-
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours = {
-  type: OperationHoursType,
-  startTime: ?string,
-  endTime: ?string,
-};
-
-export type LiveCasinoCardSmallDataQuery_liveCasinoTablesById = {
-  id: ?string,
-  tableId: ?string,
-  state: TableState,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById_bets,
-  operationHours: LiveCasinoCardSmallDataQuery_liveCasinoTablesById_operationHours,
-};
-
-export type LiveCasinoCardSmallDataQuery = {
-  liveCasinoTablesById: ?LiveCasinoCardSmallDataQuery_liveCasinoTablesById
-};
-
-export type LiveCasinoCardSmallDataQueryVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: LiveCasinoDetailPageQuery
-// ====================================================
-
-export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby = {
-  bets: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby_bets
-};
-
-export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games_lobby,
-  isInMaintenance: boolean,
-};
-
-export type LiveCasinoDetailPageQuery_groupedLiveCasinoGames = {
-  title: string,
-  games: Array<LiveCasinoDetailPageQuery_groupedLiveCasinoGames_games>,
-};
-
-export type LiveCasinoDetailPageQuery = {
-  groupedLiveCasinoGames: Array<LiveCasinoDetailPageQuery_groupedLiveCasinoGames>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: LiveCasinoDetailPageDesktopQuery
-// ====================================================
-
-export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby_bets,
-};
-
-export type LiveCasinoDetailPageDesktopQuery_gamesList_games = {
-  backgroundImage: string,
-  id: string,
-  isInMaintenance: boolean,
-  liveCasinoLobby: ?LiveCasinoDetailPageDesktopQuery_gamesList_games_liveCasinoLobby,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-};
-
-export type LiveCasinoDetailPageDesktopQuery_gamesList = {
-  games: Array<LiveCasinoDetailPageDesktopQuery_gamesList_games>
-};
-
-export type LiveCasinoDetailPageDesktopQuery = {
-  gamesList: ?LiveCasinoDetailPageDesktopQuery_gamesList
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: MustDropJackpotsGamesListQuery
-// ====================================================
-
-export type MustDropJackpotsGamesListQuery_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type MustDropJackpotsGamesListQuery_gamesList_games_lobby = {
-  bets: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby_bets
-};
-
-export type MustDropJackpotsGamesListQuery_gamesList_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?MustDropJackpotsGamesListQuery_gamesList_games_lobby,
-  isInMaintenance: boolean,
-};
-
-export type MustDropJackpotsGamesListQuery_gamesList = {
-  name: ?string,
-  games: Array<MustDropJackpotsGamesListQuery_gamesList_games>,
-};
-
-export type MustDropJackpotsGamesListQuery = {
-  gamesList: ?MustDropJackpotsGamesListQuery_gamesList
-};
-
-export type MustDropJackpotsGamesListQueryVariables = {
-  id: string,
-  numberOfGames: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: MustDropJackpotsQuery
-// ====================================================
-
-export type MustDropJackpotsQuery_mustDropJackpots_amount = {
-  formattedAmount: string
-};
-
-export type MustDropJackpotsQuery_mustDropJackpots = {
-  label: string,
-  image: string,
-  id: string,
-  amount: MustDropJackpotsQuery_mustDropJackpots_amount,
-};
-
-export type MustDropJackpotsQuery = {
-  mustDropJackpots: Array<MustDropJackpotsQuery_mustDropJackpots>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PlayerValuablesQuery
-// ====================================================
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  slug: string
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games = {
-  title: string,
-  slug: string,
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames = {
-  title: string
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games = {
-  title: string
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames = {
-  title: string
-};
-
-export type PlayerValuablesQuery_player_valuables = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport" | "PlayerValuableFreeBet",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-} | {
-  __typename: "PlayerValuableSpins",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  description: string,
-  coinValue: number,
-  requirementType: ?RequirementType,
-  game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
-} | {
-  __typename: "PlayerValuableCash",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-} | {
-  __typename: "PlayerValuableCashback",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  description: string,
-  requirementType: ?RequirementType,
-  games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_games>,
-  excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableCashback_excludedGames>,
-  gameCategories: Array<?string>,
-} | {
-  __typename: "PlayerValuableWageringLock",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  awardType: WageringLockAwardType,
-  description: string,
-  games: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_games>,
-  excludedGames: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableWageringLock_excludedGames>,
-  gameCategories: Array<?string>,
-};
-
-export type PlayerValuablesQuery_player = {
-  valuables: Array<PlayerValuablesQuery_player_valuables>
-};
-
-export type PlayerValuablesQuery = {
-  listTitleLabel: string,
-  availableListTitleLabel: string,
-  usedListTitleLabel: string,
-  lockedListTitleLabel: string,
-  hoursLabel: string,
-  minutesLabel: string,
-  seeAllLabel: string,
-  noValuablesLabel: string,
-  dontUseValuableLabel: string,
-  player: PlayerValuablesQuery_player,
-};
-
-export type PlayerValuablesQueryVariables = {
-  valuableType?: ?ValuableType
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: UseValuable
-// ====================================================
-
-export type UseValuable = {
-  useValuable: ?boolean
-};
-
-export type UseValuableVariables = {
-  id: string,
-  source?: ?string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PromotionsListQuery
-// ====================================================
-
-export type PromotionsListQuery_promotionsList_promotions = {
-  id: string,
-  slug: string,
-  title: string,
-  subtitle: string,
-  image: string,
-  badge: ?string,
-};
-
-export type PromotionsListQuery_promotionsList = {
-  id: string,
-  name: string,
-  promotions: Array<PromotionsListQuery_promotionsList_promotions>,
-};
-
-export type PromotionsListQuery = {
-  promotionsList: ?PromotionsListQuery_promotionsList
-};
-
-export type PromotionsListQueryVariables = {
-  slug: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GameStudioQuery
-// ====================================================
-
-export type GameStudioQuery_gameStudio_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameStudioQuery_gameStudio_games_lobby = {
-  bets: ?GameStudioQuery_gameStudio_games_lobby_bets
-};
-
-export type GameStudioQuery_gameStudio_games = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameStudioQuery_gameStudio_games_lobby,
-  isInMaintenance: boolean,
-};
-
-export type GameStudioQuery_gameStudio = {
-  id: string,
-  name: string,
-  gamesCount: number,
-  games: Array<?GameStudioQuery_gameStudio_games>,
-};
-
-export type GameStudioQuery = {
-  gameStudio: ?GameStudioQuery_gameStudio
-};
-
-export type GameStudioQueryVariables = {
-  slug: string,
-  page: number,
-  pageSize: number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: OptInForReelRace
-// ====================================================
-
-export type OptInForReelRace_optInForReelRace = {
-  id: string,
-  optedIn: boolean,
-};
-
-export type OptInForReelRace = {
-  optInForReelRace: ?OptInForReelRace_optInForReelRace
-};
-
-export type OptInForReelRaceVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: ReelRaceOptInMutation
-// ====================================================
-
-export type ReelRaceOptInMutation_optInForReelRace = {
-  id: string,
-  optedIn: boolean,
-};
-
-export type ReelRaceOptInMutation = {
-  optInForReelRace: ?ReelRaceOptInMutation_optInForReelRace
-};
-
-export type ReelRaceOptInMutationVariables = {
-  id: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ReelRaceListQuery
-// ====================================================
-
-export type ReelRaceListQuery_reelRaces_game = {
-  id: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  slug: string,
-};
-
-export type ReelRaceListQuery_reelRaces_translations = {
-  optedInCtaSingleGameShort: string,
-  optIn: string,
-  optedIn: string,
-  endingIn: string,
-  startingIn: string,
-  competeFor: string,
-  spins: string,
-  duration: string,
-  durationTemplate: string,
-  caveatShort: string,
-  today: string,
-  tomorrow: string,
-};
-
-export type ReelRaceListQuery_reelRaces = {
-  id: string,
-  game: ReelRaceListQuery_reelRaces_game,
-  startTime: BigInt,
-  optedIn: boolean,
-  endTime: BigInt,
-  status: ?string,
-  spinLimit: number,
-  promoted: boolean,
-  formattedPrize: string,
-  remainingSpins: number,
-  translations: ReelRaceListQuery_reelRaces_translations,
-};
-
-export type ReelRaceListQuery = {
-  reelRaces: Array<ReelRaceListQuery_reelRaces>
-};
-
-export type ReelRaceListQueryVariables = {
-  limit: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ReelRacesPageTabPreviousQuery
-// ====================================================
-
-export type ReelRacesPageTabPreviousQuery_reelRaces_game = {
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-export type ReelRacesPageTabPreviousQuery_reelRaces_leaderboard = {
-  playerName: string,
-  position: number,
-  points: number,
-};
-
-export type ReelRacesPageTabPreviousQuery_reelRaces = {
-  id: string,
-  game: ReelRacesPageTabPreviousQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  formattedPrizes: Array<string>,
-  status: ?string,
-  leaderboard: Array<ReelRacesPageTabPreviousQuery_reelRaces_leaderboard>,
-};
-
-export type ReelRacesPageTabPreviousQuery = {
-  reelRaces: Array<ReelRacesPageTabPreviousQuery_reelRaces>
-};
-
-export type ReelRacesPageTabPreviousQueryVariables = {
-  limit: number,
-  previous?: ?boolean,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ReelRacesPageTabScheduleQuery
-// ====================================================
-
-export type ReelRacesPageTabScheduleQuery_reelRaces_game = {
-  id: string,
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-export type ReelRacesPageTabScheduleQuery_reelRaces_translations = {
-  optIn: string,
-  optedIn: string,
-  startingIn: string,
-  spins: string,
-  duration: string,
-  durationTemplate: string,
-  caveatShort: string,
-  today: string,
-  tomorrow: string,
-};
-
-export type ReelRacesPageTabScheduleQuery_reelRaces = {
-  id: string,
-  game: ReelRacesPageTabScheduleQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  optedIn: boolean,
-  status: ?string,
-  spinLimit: number,
-  promoted: boolean,
-  formattedPrize: string,
-  formattedPrizes: Array<string>,
-  translations: ReelRacesPageTabScheduleQuery_reelRaces_translations,
-};
-
-export type ReelRacesPageTabScheduleQuery = {
-  reelRaces: Array<ReelRacesPageTabScheduleQuery_reelRaces>
-};
-
-export type ReelRacesPageTabScheduleQueryVariables = {
-  limit: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ReelRaceWidgetQuery
-// ====================================================
-
-export type ReelRaceWidgetQuery_reelRaces_game = {
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-export type ReelRaceWidgetQuery_reelRaces_leaderboard_boosters = {
-  winsInARow: number,
-  triples: number,
-  wins: number,
-  bigWins: number,
-  megaWins: number,
-};
-
-export type ReelRaceWidgetQuery_reelRaces_leaderboard = {
-  playerId: string,
-  playerName: string,
-  position: number,
-  points: number,
-  remainingSpins: number,
-  boosters: ReelRaceWidgetQuery_reelRaces_leaderboard_boosters,
-};
-
-export type ReelRaceWidgetQuery_reelRaces = {
-  id: string,
-  game: ReelRaceWidgetQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  optedIn: boolean,
-  promoted: boolean,
-  spinLimit: number,
-  formattedPrize: string,
-  cometdChannels: Array<string>,
-  leaderboard: Array<ReelRaceWidgetQuery_reelRaces_leaderboard>,
-};
-
-export type ReelRaceWidgetQuery = {
-  reelRaces: Array<ReelRaceWidgetQuery_reelRaces>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GetGameSets
-// ====================================================
-
-export type GetGameSets_gameSetsList_additionalFilterGroups_values = {
-  key: string,
-  query: string,
-  title: ?string,
-};
-
-export type GetGameSets_gameSetsList_additionalFilterGroups = {
-  key: string,
-  type: string,
-  title: string,
-  description: string,
-  values: Array<GetGameSets_gameSetsList_additionalFilterGroups_values>,
-};
-
-export type GetGameSets_gameSetsList = {
-  id: string,
-  key: string,
-  title: string,
-  icon: string,
-  defaultSort: GamesSortOrder,
-  supportedSorts: Array<GamesSortOrder>,
-  baseQuery: string,
-  additionalFilterGroups: Array<GetGameSets_gameSetsList_additionalFilterGroups>,
-};
-
-export type GetGameSets = {
-  gameSetsList: Array<GetGameSets_gameSetsList>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PlayAgainGameBySlugQuery
-// ====================================================
-
-export type PlayAgainGameBySlugQuery_gamesBySlugs = {
-  __typename: "Game",
-  id: string,
-  slug: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-
-export type PlayAgainGameBySlugQuery = {
-  gamesBySlugs: Array<PlayAgainGameBySlugQuery_gamesBySlugs>
-};
-
-export type PlayAgainGameBySlugQueryVariables = {
-  slug: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PlayAgainLatestPlayedQuery
-// ====================================================
-
-export type PlayAgainLatestPlayedQuery_gamesList_games = {
-  __typename: "Game",
-  id: string,
-  slug: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-
-export type PlayAgainLatestPlayedQuery_gamesList = {
-  id: ?string,
-  games: Array<PlayAgainLatestPlayedQuery_gamesList_games>,
-};
-
-export type PlayAgainLatestPlayedQuery = {
-  gamesList: ?PlayAgainLatestPlayedQuery_gamesList
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PLAYER_SETTINGS_QUERY
-// ====================================================
-
-export type PLAYER_SETTINGS_QUERY_player_details_name = {
-  __typename: "PlayerName",
-  first: string,
-  last: string,
-};
-
-export type PLAYER_SETTINGS_QUERY_player_details_extentOfGambling = {
-  __typename: "PlayerExtentOfGambling",
-  canChange: boolean,
-  label: ?string,
-};
-
-export type PLAYER_SETTINGS_QUERY_player_details_phoneNumber = {
-  __typename: "PhoneNumber",
-  prefix: string,
-  number: string,
-  verified: boolean,
-};
-
-export type PLAYER_SETTINGS_QUERY_player_details_address_country = {
-  __typename: "Country",
-  code: string,
-  name: string,
-};
-
-export type PLAYER_SETTINGS_QUERY_player_details_address = {
-  __typename: "PlayerAddress",
-  city: string,
-  street: string,
-  postCode: string,
-  country: PLAYER_SETTINGS_QUERY_player_details_address_country,
-};
-
-export type PLAYER_SETTINGS_QUERY_player_details = {
-  __typename: "PlayerDetails",
-  name: PLAYER_SETTINGS_QUERY_player_details_name,
-  canChangePassword: boolean,
-  extentOfGambling: PLAYER_SETTINGS_QUERY_player_details_extentOfGambling,
-  phoneNumber: PLAYER_SETTINGS_QUERY_player_details_phoneNumber,
-  address: PLAYER_SETTINGS_QUERY_player_details_address,
-  email: string,
-};
-
-export type PLAYER_SETTINGS_QUERY_player = {
-  id: string,
-  __typename: "Player",
-  details: PLAYER_SETTINGS_QUERY_player_details,
-};
-
-export type PLAYER_SETTINGS_QUERY = {
-  player: PLAYER_SETTINGS_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsContactByPhoneQuery
-// ====================================================
-
-export type SettingsNotificationsContactByPhoneQuery_player_details_contactSettings = {
-  contactByPhone: boolean
-};
-
-export type SettingsNotificationsContactByPhoneQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPhoneQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsContactByPhoneQuery_player = {
-  id: string,
-  details: SettingsNotificationsContactByPhoneQuery_player_details,
-};
-
-export type SettingsNotificationsContactByPhoneQuery = {
-  player: SettingsNotificationsContactByPhoneQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsContactByPostQuery
-// ====================================================
-
-export type SettingsNotificationsContactByPostQuery_player_details_contactSettings = {
-  contactByPost: boolean
-};
-
-export type SettingsNotificationsContactByPostQuery_player_details = {
-  contactSettings: SettingsNotificationsContactByPostQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsContactByPostQuery_player = {
-  id: string,
-  details: SettingsNotificationsContactByPostQuery_player_details,
-};
-
-export type SettingsNotificationsContactByPostQuery = {
-  player: SettingsNotificationsContactByPostQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetAdventurerPublicity
-// ====================================================
-
-export type SetAdventurerPublicity = {
-  setAdventurerPublicity: ?boolean
-};
-
-export type SetAdventurerPublicityVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetWithdrawalNotifications
-// ====================================================
-
-export type SetWithdrawalNotifications = {
-  setWithdrawalNotifications: ?boolean
-};
-
-export type SetWithdrawalNotificationsVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetNewsletterSubscription
-// ====================================================
-
-export type SetNewsletterSubscription = {
-  setNewsletterSubscription: ?boolean
-};
-
-export type SetNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetSMSNewsletterSubscription
-// ====================================================
-
-export type SetSMSNewsletterSubscription = {
-  setSMSNewsletterSubscription: ?boolean
-};
-
-export type SetSMSNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetContactByPhone
-// ====================================================
-
-export type SetContactByPhone = {
-  setContactByPhone: ?boolean
-};
-
-export type SetContactByPhoneVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SetContactByPost
-// ====================================================
-
-export type SetContactByPost = {
-  setContactByPost: ?boolean
-};
-
-export type SetContactByPostVariables = {
-  input?: ?ContactSettingsInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsSubscribedToNewslettersQuery
-// ====================================================
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings = {
-  subscribedToNewsletters: boolean
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToNewslettersQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery_player = {
-  id: string,
-  details: SettingsNotificationsSubscribedToNewslettersQuery_player_details,
-};
-
-export type SettingsNotificationsSubscribedToNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToNewslettersQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
-// ====================================================
-
-export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
-  adventurerPublic: boolean
-};
-
-export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
-  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings
-};
-
-export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
-  __typename: "PlayerRealityCheckSettings",
-  canChangeInterval: boolean,
-  isZeroIntervalAllowed: boolean,
-  intervalInMinutes: number,
-};
-
-export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk = {
-  __typename: "PlayerPlayOkSettings",
-  realityCheck: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck,
-};
-
-export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
-  id: string,
-  __typename: "Player",
-  details: PLAYER_CONTACT_SETTINGS_QUERY_player_details,
-  playOk: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk,
-};
-
-export type PLAYER_CONTACT_SETTINGS_QUERY = {
-  player: PLAYER_CONTACT_SETTINGS_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsSubscribedToSmsNewslettersQuery
-// ====================================================
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings = {
-  subscribedToSMSNewsletters: boolean
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details = {
-  contactSettings: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery_player = {
-  id: string,
-  details: SettingsNotificationsSubscribedToSmsNewslettersQuery_player_details,
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
-  player: SettingsNotificationsSubscribedToSmsNewslettersQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SettingsNotificationsWithdrawalNotificationsQuery
-// ====================================================
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings = {
-  withdrawalNotifications: boolean
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player_details = {
-  contactSettings: SettingsNotificationsWithdrawalNotificationsQuery_player_details_contactSettings
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery_player = {
-  id: string,
-  details: SettingsNotificationsWithdrawalNotificationsQuery_player_details,
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQuery = {
-  player: SettingsNotificationsWithdrawalNotificationsQuery_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: UpdateRealityCheckInterval
-// ====================================================
-
-export type UpdateRealityCheckInterval = {
-  updateRealityCheckInterval: ?number
-};
-
-export type UpdateRealityCheckIntervalVariables = {
-  input?: ?UpdateRealityCheckIntervalInput
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: REALITY_CHECK_LABELS_QUERY
-// ====================================================
-
-export type REALITY_CHECK_LABELS_QUERY = {
-  inGameSessionUpdatesLabel: string,
-  inGameSessionUpdatesFrequencyLabel: string,
-  save: string,
-  cancel: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PLAYER_REALITY_CHECK_QUERY
-// ====================================================
-
-export type PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
-  __typename: "PlayerRealityCheckSettings",
-  canChangeInterval: boolean,
-  isZeroIntervalAllowed: boolean,
-  intervalInMinutes: number,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY_player_playOk = {
-  __typename: "PlayerPlayOkSettings",
-  realityCheck: PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY_player = {
-  id: string,
-  __typename: "Player",
-  playOk: PLAYER_REALITY_CHECK_QUERY_player_playOk,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY = {
-  player: PLAYER_REALITY_CHECK_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
-// ====================================================
-
-export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Long'.
-  loginTime: Long
-};
-
-export type PLAYER_LOGIN_HISTORY_QUERY_player = {
-  id: string,
-  loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
-};
-
-export type PLAYER_LOGIN_HISTORY_QUERY = {
-  player: PLAYER_LOGIN_HISTORY_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GlossaryQuery
-// ====================================================
-
-export type GlossaryQuery_glossary = {
-  id: string,
-  term: string,
-  aka: ?string,
-  definition: string,
-};
-
-export type GlossaryQuery = {
-  glossary: Array<GlossaryQuery_glossary>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: CmsImageQuery
-// ====================================================
-
-export type CmsImageQuery = {
-  sportsCmsImage: ?string
-};
-
-export type CmsImageQueryVariables = {
-  key: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: DictionaryTermQuery
-// ====================================================
-
-export type DictionaryTermQuery = {
-  dictionaryTerm: string
-};
-
-export type DictionaryTermQueryVariables = {
-  key: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PluralisableDictionaryTermQuery
-// ====================================================
-
-export type PluralisableDictionaryTermQuery = {
-  singularTerm: string,
-  pluralTerm: string,
-};
-
-export type PluralisableDictionaryTermQueryVariables = {
-  singularKey: string,
-  pluralKey: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: EditFavouriteCompetitions
-// ====================================================
-
-export type EditFavouriteCompetitions_favouriteCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number
-};
-
-export type EditFavouriteCompetitions = {
-  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>
-};
-
-export type EditFavouriteCompetitionsVariables = {
-  groupId: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: FavouriteCompetitionsSelectorQuery
-// ====================================================
-
-export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-  /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
-};
-
-export type FavouriteCompetitionsSelectorQuery_group_groups = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-  /**
-   * Array of subgroups in this event group
-   */
-  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,
-};
-
-export type FavouriteCompetitionsSelectorQuery_group = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Array of subgroups in this event group
-   */
-  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups>,
-};
-
-export type FavouriteCompetitionsSelectorQuery = {
-  /**
-   * Get list of sub-groups from a given group"
-   */
-  group: FavouriteCompetitionsSelectorQuery_group,
-  internationalGroupName: string,
-};
-
-export type FavouriteCompetitionsSelectorQueryVariables = {
-  groupId: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: FavouriteSportsSelectorContextCompetitionSuggestions
-// ====================================================
-
-export type FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-};
-
-export type FavouriteSportsSelectorContextCompetitionSuggestions = {
-  /**
-   * TopCompetitions returns the most popular subgroups of a group, currently based on number of events
-   */
-  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>
-};
-
-export type FavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
-  id: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: FavouriteSportsSelectorContext
-// ====================================================
-
-export type FavouriteSportsSelectorContext_groups_favouriteCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-
-export type FavouriteSportsSelectorContext_groups = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Whether to allow a custom selection of subgroups to be shown as sub-nav items
-   * instead of just popular ones
-   */
-  canSelectSubgroups: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * The active indicator for the sport group, used on the nav
-   */
-  activeIndicator: ?string,
-  /**
-   * The favourited competitions for this EventGroup
-   */
-  favouriteCompetitions: Array<FavouriteSportsSelectorContext_groups_favouriteCompetitions>,
-};
-
-export type FavouriteSportsSelectorContext = {
-  /**
-   * Get list of available event groups from the root level
-   */
-  groups: Array<FavouriteSportsSelectorContext_groups>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: PlayerVertical
-// ====================================================
-
-export type PlayerVertical_player = {
-  vertical: Vertical
-};
-
-export type PlayerVertical = {
-  player: PlayerVertical_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: FREEBET_QUERY
-// ====================================================
-
-export type FREEBET_QUERY_player_valuables = {
-  id: string,
-  backgroundImage: string,
-  currency: Currency,
-  expiryDate: BigInt,
-  created: BigInt,
-  market: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-};
-
-export type FREEBET_QUERY_player = {
-  valuables: Array<FREEBET_QUERY_player_valuables>
-};
-
-export type FREEBET_QUERY = {
-  player: FREEBET_QUERY_player
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SportsFirstBetQuery
-// ====================================================
-
-export type SportsFirstBetQuery = {
-  sportsFirstBet: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: UserNavigation
-// ====================================================
-
-export type UserNavigation_sportsNavigation_sport = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * The full path in the kambi client to navigate to this group
-   */
-  clientPath: string,
-  /**
-   * The full path in the kambi client to navigate to the in-play bets for this group
-   */
-  clientPathLive: string,
-  /**
-   * Normalized name of the group
-   */
-  termKey: string,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * The active indicator for the sport group, used on the nav
-   */
-  activeIndicator: ?string,
-  /**
-   * Whether to allow a custom selection of subgroups to be shown as sub-nav items
-   * instead of just popular ones
-   */
-  canSelectSubgroups: boolean,
-};
-
-export type UserNavigation_sportsNavigation_subNav_competition = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * The full path in the kambi client to navigate to this group
-   */
-  clientPath: string,
-  /**
-   * The full path in the kambi client to navigate to the in-play bets for this group
-   */
-  clientPathLive: string,
-  /**
-   * Normalized name of the group
-   */
-  termKey: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-
-export type UserNavigation_sportsNavigation_subNav = {
-  competition: UserNavigation_sportsNavigation_subNav_competition
-};
-
-export type UserNavigation_sportsNavigation = {
-  sport: UserNavigation_sportsNavigation_sport,
-  subNav: Array<UserNavigation_sportsNavigation_subNav>,
-};
-
-export type UserNavigation = {
-  allLabel: string,
-  editLabel: string,
-  liveLabel: string,
-  allSportsLabel: string,
-  sportsNavigation: Array<UserNavigation_sportsNavigation>,
-};
-
-export type UserNavigationVariables = {
-  live: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: TopSearches
-// ====================================================
-
-export type TopSearches_topSearches_parentGroups = {
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-};
-
-export type TopSearches_topSearches = {
-  /**
-   * Normalized name of the group
-   */
-  termKey: string,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The full path in the kambi client to navigate to this group
-   */
-  clientPath: string,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * Array of parents of this group in order, be careful with nesting!
-   */
-  parentGroups: Array<TopSearches_topSearches_parentGroups>,
-};
-
-export type TopSearches = {
-  /**
-   * Top searches returns the event groups for the groupIds marked as popular
-   */
-  topSearches: Array<TopSearches_topSearches>
-};
-
-export type TopSearchesVariables = {
-  count: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SearchQuery
-// ====================================================
-
-export type SearchQuery_search_sport = {
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-};
-
-export type SearchQuery_search = {
-  /**
-   * The type of search result, N.B Not overly reliable"
-   */
-  type: SearchResultType,
-  /**
-   * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)"
-   */
-  id: string,
-  /**
-   * Translated name of the search result
-   */
-  localizedName: string,
-  /**
-   * The country this search result is associated
-   */
-  country: ?string,
+  getCMSFieldAsJSON: Scalars["String"];
+  getGamesPaginated: GamesPaginated;
+  getText: Scalars["String"];
+  glossary: Array<GlossaryEntry>;
+  /** Get list of sub-groups from a given group" */
+  group: EventGroup;
+  groupedLiveCasinoGames: Array<GameGroup>;
+  /** Get list of available event groups from the root level */
+  groups: Array<EventGroup>;
+  hasSelectedFavourites: Scalars["Boolean"];
+  isBetslipVisible: Scalars["Boolean"];
+  isSearchVisible: Scalars["Boolean"];
+  jackpots: Array<Maybe<Jackpot>>;
+  kambiClientVisible: Scalars["Boolean"];
+  liveCasinoTablesById?: Maybe<LiveCasinoTable>;
+  mustDropJackpots: Array<MustDropJackpot>;
+  player: Player;
+  promotionsList?: Maybe<PromotionsList>;
+  reelRaces: Array<ReelRace>;
+  /** Search for events matching a given query, non english lang will search english results too" */
+  search: Array<SearchResult>;
+  session: Session;
+  sportsCmsImage?: Maybe<Scalars["String"]>;
+  sportsFirstBet: Scalars["Boolean"];
+  sportsNavigation: Array<NavigationItem>;
+  /** TopCompetitions returns the most popular subgroups of a group, currently based on number of events */
+  topCompetitions: Array<EventGroup>;
+  /** Top searches returns the event groups for the groupIds marked as popular */
+  topSearches: Array<EventGroup>;
+  translations: Translations;
+  userHomepage?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryCompetitionsArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+  groupId: Scalars["Int"];
+}
+
+export interface QueryCuratedCardArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryDictionaryTermArgs {
+  key: Scalars["String"];
+  lang?: Maybe<CmsLang>;
+}
+
+export interface QueryFavouriteCompetitionsArgs {
+  groupId: Scalars["Int"];
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryGameArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryGameStudioArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryGamesArgs {
+  ids: Array<Scalars["String"]>;
+}
+
+export interface QueryGamesBySlugsArgs {
+  slugs: Array<Scalars["String"]>;
+}
+
+export interface QueryGamesListArgs {
+  listId: Scalars["String"];
+  page?: Maybe<Scalars["Int"]>;
+  pageSize?: Maybe<Scalars["Int"]>;
+}
+
+export interface QueryGamesSearchArgs {
+  query: Scalars["String"];
+  page?: Maybe<Scalars["Int"]>;
+  pageSize?: Maybe<Scalars["Int"]>;
+}
+
+export interface QueryGetCmsFieldArgs {
+  id: Scalars["String"];
+  market?: Maybe<Scalars["String"]>;
+  country?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryGetCmsFieldAsJsonArgs {
+  id: Scalars["String"];
+  market?: Maybe<Scalars["String"]>;
+  country?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryGetGamesPaginatedArgs {
+  query: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
+}
+
+export interface QueryGetTextArgs {
+  id: Scalars["String"];
+  market?: Maybe<Scalars["String"]>;
+  country?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryGlossaryArgs {
+  lang?: Maybe<CmsLang>;
+}
+
+export interface QueryGroupArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+  groupId: Scalars["Int"];
+}
+
+export interface QueryGroupsArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryLiveCasinoTablesByIdArgs {
+  id: Scalars["String"];
+}
+
+export interface QueryPromotionsListArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryReelRacesArgs {
+  limit?: Maybe<Scalars["Int"]>;
+  prioritisePromoted?: Maybe<Scalars["Boolean"]>;
+  previous?: Maybe<Scalars["Boolean"]>;
+}
+
+export interface QuerySearchArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+  query: Scalars["String"];
+}
+
+export interface QuerySportsCmsImageArgs {
+  key: Scalars["String"];
+  lang?: Maybe<CmsLang>;
+}
+
+export interface QuerySportsNavigationArgs {
+  live?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryTopCompetitionsArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+  groupIds: Array<Scalars["Int"]>;
+  count: Scalars["Int"];
+}
+
+export interface QueryTopSearchesArgs {
+  lang?: Maybe<Scalars["String"]>;
+  market?: Maybe<Scalars["String"]>;
+  count: Scalars["Int"];
+}
+
+export interface UpdatePlayerEmailInput {
+  email: Scalars["String"];
+  plaintextPassword: Scalars["String"];
+}
+
+export interface ContactSettingsInput {
+  on: Scalars["Boolean"];
+}
+
+export interface UpdateRealityCheckIntervalInput {
+  intervalSeconds: Scalars["Int"];
+}
+
+export interface Mutation {
+  addGameToMyList?: Maybe<Game>;
+  closeAllModals?: Maybe<Scalars["Boolean"]>;
+  closeBetslip?: Maybe<Scalars["Boolean"]>;
+  closeModal?: Maybe<Scalars["Boolean"]>;
+  hideSearch?: Maybe<Scalars["Boolean"]>;
+  launchKambi?: Maybe<KambiSession>;
+  minimizeBetslip?: Maybe<Scalars["Boolean"]>;
+  navigateClient?: Maybe<Scalars["Boolean"]>;
+  openBetslip?: Maybe<Scalars["Boolean"]>;
+  openModal?: Maybe<Scalars["Boolean"]>;
+  optInForReelRace?: Maybe<ReelRace>;
+  removeGameFromMyList?: Maybe<Game>;
+  /** Pings the current session to keep it alive, requires the session cookie to be present in the headers */
+  sessionTouch?: Maybe<Scalars["Boolean"]>;
+  setAdventurerPublicity?: Maybe<Scalars["Boolean"]>;
+  setContactByPhone?: Maybe<Scalars["Boolean"]>;
+  setContactByPost?: Maybe<Scalars["Boolean"]>;
+  setFavouriteCompetitions: Array<EventGroup>;
+  setFavouriteGroups: Array<EventGroup>;
+  setMarketingCrossSellSubscription?: Maybe<Scalars["Boolean"]>;
+  setNewsletterSubscription?: Maybe<Scalars["Boolean"]>;
+  setSMSNewsletterSubscription?: Maybe<Scalars["Boolean"]>;
+  setWithdrawalNotifications?: Maybe<Scalars["Boolean"]>;
+  showSearch?: Maybe<Scalars["Boolean"]>;
+  toggleFavouriteGroup: EventGroup;
+  updateBetslipState?: Maybe<Scalars["Boolean"]>;
+  updateKambiClientState?: Maybe<Scalars["Boolean"]>;
+  updatePlayerEmail?: Maybe<Scalars["Boolean"]>;
+  updateRealityCheckInterval?: Maybe<Scalars["Int"]>;
+  useValuable?: Maybe<Scalars["Boolean"]>;
+}
+
+export interface MutationAddGameToMyListArgs {
+  id: Scalars["String"];
+}
+
+export interface MutationCloseModalArgs {
+  modal?: Maybe<Modal>;
+}
+
+export interface MutationLaunchKambiArgs {
+  playForFun?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+}
+
+export interface MutationNavigateClientArgs {
+  path: Scalars["String"];
+  trackingLocation: Scalars["String"];
+}
+
+export interface MutationOpenModalArgs {
+  modal?: Maybe<Modal>;
+}
+
+export interface MutationOptInForReelRaceArgs {
+  id: Scalars["String"];
+}
+
+export interface MutationRemoveGameFromMyListArgs {
+  id: Scalars["String"];
+}
+
+export interface MutationSetAdventurerPublicityArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetContactByPhoneArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetContactByPostArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetFavouriteCompetitionsArgs {
+  groupId: Scalars["Int"];
+  ids: Array<Scalars["Int"]>;
+}
+
+export interface MutationSetFavouriteGroupsArgs {
+  ids: Array<Scalars["Int"]>;
+}
+
+export interface MutationSetMarketingCrossSellSubscriptionArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetNewsletterSubscriptionArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetSmsNewsletterSubscriptionArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationSetWithdrawalNotificationsArgs {
+  input?: Maybe<ContactSettingsInput>;
+}
+
+export interface MutationToggleFavouriteGroupArgs {
+  id: Scalars["Int"];
+}
+
+export interface MutationUpdateBetslipStateArgs {
+  isVisible: Scalars["Boolean"];
+}
+
+export interface MutationUpdateKambiClientStateArgs {
+  isVisible: Scalars["Boolean"];
+}
+
+export interface MutationUpdatePlayerEmailArgs {
+  input?: Maybe<UpdatePlayerEmailInput>;
+}
+
+export interface MutationUpdateRealityCheckIntervalArgs {
+  input?: Maybe<UpdateRealityCheckIntervalInput>;
+}
+
+export interface MutationUseValuableArgs {
+  id: Scalars["String"];
+  source?: Maybe<Scalars["String"]>;
+}
+
+export type Currency =
+  | "INR"
+  | "EUR"
+  | "GBP"
+  | "CAD"
+  | "DKK"
+  | "NZD"
+  | "SEK"
+  | "USD";
+
+export type Platform = "desktop" | "mobile";
+
+export type CmsLang =
+  | "en"
+  | "sv"
+  | "no"
+  | "fi"
+  | "de"
+  | "gb"
+  | "dk"
+  | "ca"
+  | "nz"
+  | "in";
+
+export type SearchResultType =
+  /** Can be a team, player, and sometimes an event */
+  | "PARTICIPANT"
+  /** A sport result e.g. Boxing, Football */
+  | "SPORT"
+  /** Normally a location of where the event is taking place e.g. England, Paris */
+  | "REGION"
+  /** The league the event is in, e.g. Premier League */
+  | "LEAGUE";
+
+export type Vertical =
+  /** The player registered as a sports player (selected the sports welcome offer) */
+  | "SPORTS"
+  /** The player registered as a casino player (selected the casino welcome offer) */
+  | "CASINO";
+
+export interface Game {
+  id: Scalars["String"];
+  slug: Scalars["String"];
+  name: Scalars["String"];
+  description?: Maybe<Scalars["String"]>;
+  logo: Scalars["String"];
+  backgroundImage: Scalars["String"];
+  playBackground: Scalars["String"];
+  jackpot?: Maybe<Jackpot>;
+  gameStudio: Scalars["String"];
+  isInMaintenance: Scalars["Boolean"];
+  liveCasinoId?: Maybe<Scalars["String"]>;
+  liveCasinoLobby?: Maybe<LiveCasinoTable>;
+  category?: Maybe<Scalars["String"]>;
+  media: Array<GameMedia>;
+  actualRtpPast6Months?: Maybe<Scalars["String"]>;
+  actualRtpPastYear?: Maybe<Scalars["String"]>;
+  rtp?: Maybe<Scalars["String"]>;
+  realMoneyPlayRequired: Scalars["Boolean"];
+  /** @deprecated Please use name instead */
+  title: Scalars["String"];
+  /** @deprecated Please use backgroundImage instead */
+  logoBackground: Scalars["String"];
+  /** @deprecated Please use liveCasinoLobby instead */
+  lobby?: Maybe<LiveCasinoTable>;
+  /** @deprecated Please use isInMaintenance instead. */
+  inMaintenanceMode: Scalars["Boolean"];
+  /** @deprecated Will be removed soon. This will be solved with query parameters. */
+  hasPlayForFun: Scalars["Boolean"];
+  /** @deprecated Will be removed soon. Disabled games will not be in the response. */
+  disabledForLoggedOut: Scalars["Boolean"];
+  /** @deprecated Please use the property jackpot instead. */
+  jackpotInfo?: Maybe<Jackpot>;
+}
+
+export interface GameSet {
+  id: Scalars["String"];
+  key: Scalars["String"];
+  icon: Scalars["String"];
+  title: Scalars["String"];
+}
+
+export type GamesSortOrder =
+  | "A_TO_Z_BY_TITLE"
+  | "Z_TO_A_BY_TITLE"
+  | "NEWEST_TO_OLDEST_BY_RELEASE_DATE"
+  | "OLDEST_TO_NEWEST_BY_RELEASE_DATE"
+  | "MOST_TO_LEAST_POPULAR"
+  | "CURATED_SLOT_MACHINES"
+  | "CURATED_TABLE_GAMES"
+  | "CURATED_JACKPOTS"
+  | "CURATED_LIVE_CASINO"
+  | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
+  | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE";
+
+export interface GameSetFilter {
+  key: Scalars["String"];
+  title?: Maybe<Scalars["String"]>;
+  query: Scalars["String"];
+}
+
+export interface GameFilter {
+  key: Scalars["String"];
+  type: Scalars["String"];
+  title: Scalars["String"];
+  description: Scalars["String"];
+  values: Array<GameSetFilter>;
+}
+
+export interface DetailedGameSet {
+  id: Scalars["ID"];
+  key: Scalars["String"];
+  title: Scalars["String"];
+  icon: Scalars["String"];
+  defaultSort: GamesSortOrder;
+  supportedSorts: Array<GamesSortOrder>;
+  baseQuery: Scalars["String"];
+  additionalFilterGroups: Array<GameFilter>;
+}
+
+export interface GamesList {
+  id?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars["String"]>;
+  /** @deprecated Please use name instead. */
+  title?: Maybe<Scalars["String"]>;
+  gameIds: Array<Scalars["String"]>;
+  games: Array<Game>;
+}
+
+export interface GamesListGamesArgs {
+  numberOfGames?: Maybe<Scalars["Int"]>;
+}
+
+export interface GameStudio {
+  id: Scalars["String"];
+  background: Scalars["String"];
+  logo: Scalars["String"];
+  name: Scalars["String"];
+  slug: Scalars["String"];
+  url: Scalars["String"];
+  games: Array<Maybe<Game>>;
+  gamesCount: Scalars["Int"];
+}
+
+export interface GameStudioGamesArgs {
+  page?: Maybe<Scalars["Int"]>;
+  pageSize?: Maybe<Scalars["Int"]>;
+}
+
+export interface GameGroup {
+  title: Scalars["String"];
+  games: Array<Game>;
+}
+
+export interface GameMedia {
+  order: Scalars["Int"];
+  path: Scalars["String"];
+  type: Scalars["String"];
+}
+
+export interface GamesSearchResults {
+  results: Array<Maybe<Game>>;
+  resultsCount: Scalars["Int"];
+}
+
+export interface Jackpot {
+  id: Scalars["ID"];
+  gameProvider?: Maybe<Scalars["String"]>;
+  value: Money;
+  /** @deprecated Will be removed soon please use the value property instead */
+  formattedJackpotAmount?: Maybe<Scalars["String"]>;
+}
+
+export interface Money {
+  amount: Scalars["Float"];
+  currency: Currency;
+}
+
+export interface MustDropJackpot {
+  label: Scalars["String"];
+  image: Scalars["String"];
+  id: Scalars["ID"];
+  amount: MustDropJackpotAmount;
+}
+
+export interface MustDropJackpotAmount {
+  value: Scalars["Float"];
+  currency: Currency;
+  formattedAmount: Scalars["String"];
+}
+
+export interface LiveCasinoTable {
+  id?: Maybe<Scalars["String"]>;
+  tableId?: Maybe<Scalars["String"]>;
+  state: TableState;
+  image?: Maybe<Scalars["String"]>;
+  symbol?: Maybe<Scalars["String"]>;
+  numberOfPlayers?: Maybe<Scalars["Int"]>;
+  provider?: Maybe<Scalars["String"]>;
+  type?: Maybe<Scalars["String"]>;
+  results: Array<Scalars["String"]>;
+  betBehind?: Maybe<Scalars["Boolean"]>;
+  availableSeats?: Maybe<Scalars["Int"]>;
+  minBet?: Maybe<Scalars["Int"]>;
+  maxBet?: Maybe<Scalars["Int"]>;
+  operationHours: OperationHours;
+  /** @deprecated Please use the fields from the LiveCasinoTable instead */
+  bets?: Maybe<Bets>;
+  /** @deprecated Please use numberOfPlayers instead */
+  players?: Maybe<Scalars["Int"]>;
+  /** @deprecated Please use availableSeats instead */
+  seats?: Maybe<Scalars["Int"]>;
+}
+
+export type TableState = "OPEN" | "CLOSED" | "UNASSIGNED";
+
+export type OperationHoursType = "FULLTIME" | "BOUNDED";
+
+export interface OperationHours {
+  type: OperationHoursType;
+  startTime?: Maybe<Scalars["String"]>;
+  endTime?: Maybe<Scalars["String"]>;
+}
+
+export interface Bets {
+  symbol?: Maybe<Scalars["String"]>;
+  min?: Maybe<Scalars["Int"]>;
+  max?: Maybe<Scalars["Int"]>;
+}
+
+export interface ReelRace {
+  id: Scalars["ID"];
+  spinLimit: Scalars["Int"];
+  startTime: Scalars["BigInt"];
+  endTime: Scalars["BigInt"];
+  minBet?: Maybe<Scalars["String"]>;
+  promoted: Scalars["Boolean"];
+  optedIn: Scalars["Boolean"];
+  status?: Maybe<Scalars["String"]>;
+  game: Game;
+  formattedPrize: Scalars["String"];
+  remainingSpins: Scalars["Int"];
+  translations: ReelRaceTranslations;
+  leaderboard: Array<ReelRaceLeaderboard>;
+  cometdChannels: Array<Scalars["String"]>;
+  formattedPrizes: Array<Scalars["String"]>;
+}
+
+export interface ReelRaceLeaderboard {
+  playerId: Scalars["String"];
+  playerName: Scalars["String"];
+  position: Scalars["Int"];
+  points: Scalars["Int"];
+  remainingSpins: Scalars["Int"];
+  boosters: ReelRaceBoosters;
+}
+
+export interface ReelRaceBoosters {
+  winsInARow: Scalars["Int"];
+  triples: Scalars["Int"];
+  wins: Scalars["Int"];
+  bigWins: Scalars["Int"];
+  megaWins: Scalars["Int"];
+}
+
+export interface ReelRaceTranslations {
+  optedInCtaSingleGameShort: Scalars["String"];
+  optIn: Scalars["String"];
+  optedIn: Scalars["String"];
+  endingIn: Scalars["String"];
+  startingIn: Scalars["String"];
+  competeFor: Scalars["String"];
+  spins: Scalars["String"];
+  duration: Scalars["String"];
+  durationTemplate: Scalars["String"];
+  minBet: Scalars["String"];
+  caveatShort: Scalars["String"];
+  today: Scalars["String"];
+  tomorrow: Scalars["String"];
+}
+
+export interface Player {
+  id: Scalars["ID"];
+  valuables: Array<
+    | PlayerValuableCash
+    | PlayerValuableSpins
+    | PlayerValuableDeposit
+    | PlayerValuableSport
+    | PlayerValuableCashback
+    | PlayerValuableWageringLock
+    | PlayerValuableFreeBet
+  >;
+  username: Scalars["String"];
+  details: PlayerDetails;
+  loginHistory: Array<PlayerLoginHistoryRecord>;
+  playOk: PlayerPlayOkSettings;
+  vertical: Vertical;
+}
+
+export interface PlayerValuablesArgs {
+  valuableType?: Maybe<ValuableType>;
+}
+
+export interface Brand {
+  id: Scalars["ID"];
+}
+
+export interface PlayerPlayOkSettings {
+  realityCheck: PlayerRealityCheckSettings;
+}
+
+export interface PlayerRealityCheckSettings {
+  canChangeInterval: Scalars["Boolean"];
+  isZeroIntervalAllowed: Scalars["Boolean"];
+  intervalInMinutes: Scalars["Int"];
+}
+
+export interface PlayerDetails {
+  jurisdiction: PlayerJurisdiction;
+  canChangePassword: Scalars["Boolean"];
+  email: Scalars["String"];
+  phoneNumber: PhoneNumber;
+  name: PlayerName;
+  gender: Gender;
+  dateOfBirth: Scalars["String"];
+  extentOfGambling: PlayerExtentOfGambling;
+  address: PlayerAddress;
+  contactSettings: PlayerContactSettings;
+}
+
+export interface PlayerExtentOfGambling {
+  canChange: Scalars["Boolean"];
+  from?: Maybe<Scalars["Int"]>;
+  to?: Maybe<Scalars["Int"]>;
+  label?: Maybe<Scalars["String"]>;
+}
+
+export interface PlayerContactSettings {
+  adventurerPublic: Scalars["Boolean"];
+  subscribedToNewsletters: Scalars["Boolean"];
+  subscribedToSMSNewsletters: Scalars["Boolean"];
+  contactByPhone: Scalars["Boolean"];
+  contactByPost: Scalars["Boolean"];
+  withdrawalNotifications: Scalars["Boolean"];
+  subscribedToMarketingCrossSell: Scalars["Boolean"];
+}
+
+export interface PlayerLoginHistoryRecord {
+  loginTime: Scalars["Long"];
+  logoutTime?: Maybe<Scalars["Long"]>;
+  ipAddress?: Maybe<Scalars["String"]>;
+  device?: Maybe<Scalars["String"]>;
+}
+
+export interface PhoneNumber {
+  prefix: Scalars["String"];
+  number: Scalars["String"];
+  verified: Scalars["Boolean"];
+}
+
+export interface PlayerName {
+  first: Scalars["String"];
+  last: Scalars["String"];
+}
+
+export interface PlayerAddress {
+  city: Scalars["String"];
+  street: Scalars["String"];
+  postCode: Scalars["String"];
+  country: Country;
+}
+
+export interface Country {
+  code: Scalars["String"];
+  name: Scalars["String"];
+}
+
+export type Gender = "MALE" | "FEMALE";
+
+export type PlayerJurisdiction = "SGA" | "DGA" | "UKGC" | "MGA";
+
+export type PlayerValuableState =
+  | "Fresh"
+  | "Used"
+  | "Consumed"
+  | "Expired"
+  | "Locked";
+
+export type ValuableType =
+  | "spins"
+  | "deposit"
+  | "cash"
+  | "sport"
+  | "freeBet"
+  | "cashback"
+  | "wageringLock";
+
+export type RequirementType = "wager" | "deposit";
+
+export type WageringLockAwardType = "spins" | "freeMoney" | "bonusMoney";
+
+export interface PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  market: Scalars["String"];
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableCash extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  requirementType?: Maybe<RequirementType>;
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageredGame?: Maybe<Game>;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableSpins extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  coinValue: Scalars["Float"];
+  content: Scalars["String"];
+  currency: Currency;
+  description: Scalars["String"];
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  game?: Maybe<Game>;
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  requirementType?: Maybe<RequirementType>;
+  rule: PlayerValuableRule;
+  source?: Maybe<Platform>;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageredGame?: Maybe<Game>;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableDeposit extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  maxBonusValue: Scalars["Float"];
+  minDepositValue: Scalars["Float"];
+  minimumContributingOdds?: Maybe<Scalars["Float"]>;
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringFactor?: Maybe<Scalars["Float"]>;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableSport extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableCashback extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  created: Scalars["BigInt"];
+  currency: Currency;
+  description: Scalars["String"];
+  excludedGames: Array<Maybe<Game>>;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  gameCategories: Array<Maybe<Scalars["String"]>>;
+  games: Array<Maybe<Game>>;
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  requirementType?: Maybe<RequirementType>;
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableWageringLock extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  created: Scalars["BigInt"];
+  currency: Currency;
+  description: Scalars["String"];
+  excludedGames: Array<Maybe<Game>>;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  gameCategories: Array<Maybe<Scalars["String"]>>;
+  games: Array<Maybe<Game>>;
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  awardType: WageringLockAwardType;
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+/** Locked free-bets will have the valuableState="Locked" */
+export interface PlayerValuableFreeBet extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  rule: PlayerValuableRule;
+  title: Scalars["String"];
+  unlockMinOdds: Scalars["Float"];
+  unlockMinStake: Scalars["Float"];
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+export interface PlayerValuableRule {
+  id?: Maybe<Scalars["ID"]>;
+  name: Scalars["String"];
+}
+
+export interface Promotion {
+  id: Scalars["ID"];
+  slug: Scalars["String"];
+  title: Scalars["String"];
+  subtitle: Scalars["String"];
+  image: Scalars["String"];
+  teaser: Scalars["String"];
+  content: Scalars["String"];
+  badge?: Maybe<Scalars["String"]>;
+}
+
+export interface PromotionsList {
+  id: Scalars["String"];
+  name: Scalars["String"];
+  promotions: Array<Promotion>;
+}
+
+export interface Translations {
+  /** @deprecated This is soon deprecated. Do not repeat this */
+  playerValuableTranslations?: Maybe<PlayerValuableTranslations>;
+}
+
+export interface PlayerValuableTranslations {
+  hoursLabel: Scalars["String"];
+  listTitleLabel: Scalars["String"];
+  minutesLabel: Scalars["String"];
+}
+
+export interface UpdatedFavourite {
+  id: Scalars["Int"];
+  userFavourite: Scalars["Boolean"];
+}
+
+export interface KambiSession {
+  sessionId: Scalars["ID"];
+  clientBootstrapUrl: Scalars["String"];
+  providerPlayerId?: Maybe<Scalars["String"]>;
+  ticket?: Maybe<Scalars["String"]>;
+  currency?: Maybe<Scalars["String"]>;
+}
+
+export interface GlossaryEntry {
+  id: Scalars["String"];
+  term: Scalars["String"];
+  aka?: Maybe<Scalars["String"]>;
+  definition: Scalars["String"];
+}
+
+export interface NavigationItem {
+  sport: EventGroup;
+  subNav: Array<SubNavigationItem>;
+}
+
+export interface SubNavigationItem {
+  competition: EventGroup;
+}
+
+export interface SearchResult {
+  /** The type of search result, N.B Not overly reliable" */
+  type: SearchResultType;
+  /** ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)" */
+  id: Scalars["String"];
+  /** The matched term key for the query. (e.g. liverpool) */
+  termKey: Scalars["String"];
+  /** Translated name of the search result */
+  localizedName: Scalars["String"];
+  /** ListView resource context (route key) for present the parent group (e.g.  /football/all/all) */
+  parentId: Scalars["String"];
   /**
    * The sport that this search result is associated to is nullable as relies on
    * finding by Kambi controlled data.
    */
-  sport: ?SearchQuery_search_sport,
+  sport?: Maybe<EventGroup>;
+  /** The country this search result is associated */
+  country?: Maybe<Scalars["String"]>;
+}
+
+export interface EventGroup {
+  /** Unique identifier of the event group */
+  id: Scalars["Int"];
+  /** Name of the event group, localized according to the lang parameter */
+  name: Scalars["String"];
+  /** The number of active bet offers in the event group */
+  boCount: Scalars["Int"];
+  /** Array of subgroups in this event group */
+  groups?: Maybe<Array<EventGroup>>;
+  /** The sport of the event group */
+  sport: Scalars["String"];
+  /** Total events in this event group */
+  eventCount: Scalars["Int"];
+  /** Proper english name of the group */
+  englishName: Scalars["String"];
+  /** Normalized name of the group */
+  termKey: Scalars["String"];
+  /** Popular defines whether we consider the EventGroup to be popular */
+  popular: Scalars["Boolean"];
+  /**
+   * Whether to allow a custom selection of subgroups to be shown as sub-nav items
+   * instead of just popular ones
+   */
+  canSelectSubgroups: Scalars["Boolean"];
+  /** Whether this is one of the users, selected favourites */
+  userFavourite: Scalars["Boolean"];
+  /** The full path in the kambi client to navigate to this group */
+  clientPath: Scalars["String"];
+  /** The full path in the kambi client to navigate to the in-play bets for this group */
+  clientPathLive: Scalars["String"];
+  /** Array of parents of this group in order, be careful with nesting! */
+  parentGroups: Array<EventGroup>;
+  /** Emoji flag representing the country this event takes place in, if available */
+  flagEmoji?: Maybe<Scalars["String"]>;
+  /** The sub competitions of this group, based on the competition selection strategy that differs per group */
+  competitions: Array<EventGroup>;
+  /** The 'count' number of sub competitions of this group ordered by most popular */
+  topCompetitions: Array<EventGroup>;
+  /** The favourited competitions for this EventGroup */
+  favouriteCompetitions: Array<EventGroup>;
+  /** The country this group belongs to */
+  country?: Maybe<Scalars["String"]>;
+  /** The region code for the group, iso3166 code for most with some custom regions */
+  regionCode?: Maybe<Scalars["String"]>;
+  /** The icon for the sport group */
+  icon?: Maybe<Scalars["String"]>;
+  /** The active indicator for the sport group, used on the nav */
+  activeIndicator?: Maybe<Scalars["String"]>;
+}
+
+export interface EventGroupTopCompetitionsArgs {
+  count: Scalars["Int"];
+}
+
+export interface UserNavigationGroup {
+  /** Unique identifier of the event group */
+  id: Scalars["Int"];
+  /** Name of the event group, localized according to the lang parameter */
+  name: Scalars["String"];
+  /** The number of active bet offers in the event group */
+  boCount: Scalars["Int"];
+  /** Array of subgroups in this event group */
+  groups?: Maybe<Array<UserNavigationGroup>>;
+  /** The sport of the event group */
+  sport: Scalars["String"];
+  /** Total events in this event group */
+  eventCount: Scalars["Int"];
+  /** Proper english name of the group */
+  englishName: Scalars["String"];
+  /** Normalized name of the group */
+  termKey: Scalars["String"];
+  /** Popular defines whether we consider the EventGroup to be popular */
+  popular: Scalars["Boolean"];
+  /**
+   * Whether to allow a custom selection of subgroups to be shown as sub-nav items,
+   * instead of just popular ones
+   */
+  canSelectSubgroups: Scalars["Boolean"];
+  /** Whether this is one of the users, selected favourites */
+  userFavourite: Scalars["Boolean"];
+  /** The full path in the kambi client to navigate to this group */
+  clientPath: Scalars["String"];
+  /** The full path in the kambi client to navigate to the in-play bets for this group */
+  clientPathLive: Scalars["String"];
+  /** Array of parents of this group in order, be careful with nesting! */
+  parentGroups: Array<EventGroup>;
+  /** Emoji flag representing the country this event takes place in, if available */
+  flagEmoji?: Maybe<Scalars["String"]>;
+  /** The sub competitions of this group, based on the competition selection strategy that differs per group */
+  competitions: Array<EventGroup>;
+  /** The 'count' number of sub competitions of this group ordered by most popular */
+  topCompetitions: Array<EventGroup>;
+  /** The favourited competitions for this EventGroup */
+  favouriteCompetitions: Array<EventGroup>;
+  /** The country this group belongs to */
+  country?: Maybe<Scalars["String"]>;
+  /** The region code for the group, iso3166 code for most with some custom regions */
+  regionCode?: Maybe<Scalars["String"]>;
+  /** The icon for the sport group */
+  icon?: Maybe<Scalars["String"]>;
+  /** The active indicator for the sport group, used on the nav */
+  activeIndicator?: Maybe<Scalars["String"]>;
+}
+
+export interface UserNavigationGroupTopCompetitionsArgs {
+  count: Scalars["Int"];
+}
+
+export interface CuratedCard {
+  id: Scalars["String"];
+  slug: Scalars["String"];
+  type: Scalars["String"];
+  image?: Maybe<Scalars["String"]>;
+  header?: Maybe<Scalars["String"]>;
+  subtitle?: Maybe<Scalars["String"]>;
+  promotionSlug?: Maybe<Scalars["String"]>;
+  promotionLegalText?: Maybe<Scalars["String"]>;
+  launchGameText?: Maybe<Scalars["String"]>;
+  game?: Maybe<Game>;
+  sportsRoute?: Maybe<Scalars["String"]>;
+  /** @deprecated Please use the image field instead. */
+  smallImage?: Maybe<Scalars["String"]>;
+  /** @deprecated Please use the image field instead. */
+  mediumImage?: Maybe<Scalars["String"]>;
+  /** @deprecated Please use the image field instead. */
+  largeImage?: Maybe<Scalars["String"]>;
+}
+
+export interface Session {
+  country: Scalars["String"];
+  market: Scalars["String"];
+  currency: Scalars["String"];
+  device: Scalars["String"];
+  locale: Scalars["String"];
+}
+
+export interface CmsText {
+  id: Scalars["String"];
+  text: Scalars["String"];
+}
+
+export interface PlayerGameRound {
+  gameRoundId: Scalars["String"];
+  gameProviderId: Scalars["String"];
+  providerGameId: Scalars["String"];
+  device: Scalars["String"];
+  startDate: Scalars["Int"];
+  sequenceNumber: Scalars["Int"];
+  currency: Scalars["String"];
+  initialBalance: Scalars["Int"];
+  initialBonusBalance: Scalars["Int"];
+  betAmount: Scalars["Int"];
+  betBonusAmount: Scalars["Int"];
+  finalBalance: Scalars["Int"];
+  wageringAfterBet: Scalars["Int"];
+  rollbackDate: Scalars["Int"];
+}
+
+export type CacheControlScope = "PUBLIC" | "PRIVATE";
+
+export type Modal =
+  | "SEARCH"
+  | "BETTING_GLOSSARY"
+  | "CHOOSE_FAVOURITES"
+  | "CHOOSE_FAVOURITE_COMPETITIONS";
+
+export type GetGamesRtpQueryVariables = Exact<{
+  query: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
+}>;
+
+export type GetGamesRtpQuery = {
+  getGamesPaginated: {
+    gamesCount: number;
+    offset: number;
+    games: Array<{
+      id: string;
+      slug: string;
+      title: string;
+      actualRtpPast6Months?: Maybe<string>;
+      actualRtpPastYear?: Maybe<string>;
+      rtp?: Maybe<string>;
+    }>;
+  };
 };
+
+export type GetGamesRtpLightQueryVariables = Exact<{
+  query: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
+}>;
+
+export type GetGamesRtpLightQuery = {
+  getGamesPaginated: {
+    gamesCount: number;
+    offset: number;
+    games: Array<{
+      id: string;
+      slug: string;
+      title: string;
+      rtp?: Maybe<string>;
+    }>;
+  };
+};
+
+export type ComponentBuilderQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type ComponentBuilderQuery = { componentDefinitionJSON: string };
+
+export type CuratedCard_GameFragment = {
+  id: string;
+  backgroundImage: string;
+  logo: string;
+  name: string;
+  slug: string;
+};
+
+export type CuratedCardQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type CuratedCardQuery = {
+  curatedCard?: Maybe<{
+    id: string;
+    slug: string;
+    type: string;
+    image?: Maybe<string>;
+    header?: Maybe<string>;
+    subtitle?: Maybe<string>;
+    promotionSlug?: Maybe<string>;
+    promotionLegalText?: Maybe<string>;
+    launchGameText?: Maybe<string>;
+    smallImage?: Maybe<string>;
+    mediumImage?: Maybe<string>;
+    largeImage?: Maybe<string>;
+    sportsRoute?: Maybe<string>;
+    game?: Maybe<CuratedCard_GameFragment>;
+  }>;
+  session: { market: string };
+};
+
+export type GameDetailsQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type GameDetailsQuery = { game?: Maybe<GameDetails_GameFragment> };
+
+export type GameDetails_GameFragment = {
+  id: string;
+  name: string;
+  logo: string;
+  backgroundImage: string;
+  slug: string;
+  description?: Maybe<string>;
+  hasPlayForFun: boolean;
+  isInMaintenance: boolean;
+  media: Array<{ type: string; path: string; order: number }>;
+};
+
+export type GameListQueryVariables = Exact<{
+  id: Scalars["String"];
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type GameListQuery = {
+  gamesList?: Maybe<{
+    id?: Maybe<string>;
+    name?: Maybe<string>;
+    games: Array<GameRow_GameFragment>;
+  }>;
+};
+
+export type GameListExclusiveQueryVariables = Exact<{
+  id: Scalars["String"];
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type GameListExclusiveQuery = {
+  gamesList?: Maybe<{
+    id?: Maybe<string>;
+    name?: Maybe<string>;
+    games: Array<GameTile_GameFragment>;
+  }>;
+};
+
+export type GameListLiveCasinoQueryVariables = Exact<{
+  id: Scalars["String"];
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type GameListLiveCasinoQuery = {
+  gamesList?: Maybe<{
+    id?: Maybe<string>;
+    name?: Maybe<string>;
+    games: Array<LiveCasinoCardFragment>;
+  }>;
+};
+
+export type GameListPageQueryVariables = Exact<{
+  query: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
+}>;
+
+export type GameListPageQuery = {
+  getGamesPaginated: {
+    gamesCount: number;
+    offset: number;
+    games: Array<GameTile_GameFragment & LiveCasinoCardFragment>;
+  };
+};
+
+export type GameListVerticalQueryVariables = Exact<{
+  slugs: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type GameListVerticalQuery = {
+  gamesBySlugs: Array<GameRow_GameFragment>;
+};
+
+export type GameStudiosQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GameStudiosQuery = {
+  gameStudios: Array<
+    Maybe<{
+      id: string;
+      url: string;
+      background: string;
+      logo: string;
+      slug: string;
+      name: string;
+    }>
+  >;
+};
+
+export type GameRow_GameFragment = {
+  id: string;
+  backgroundImage: string;
+  logo: string;
+  name: string;
+  slug: string;
+  gameStudio: string;
+  category?: Maybe<string>;
+  playBackground: string;
+  liveCasinoId?: Maybe<string>;
+  isInMaintenance: boolean;
+  lobby?: Maybe<{
+    bets?: Maybe<{
+      min?: Maybe<number>;
+      max?: Maybe<number>;
+      symbol?: Maybe<string>;
+    }>;
+  }>;
+};
+
+export type GameSearch_GameFragment = GameRow_GameFragment;
+
+export type GameSearchQueryVariables = Exact<{
+  query: Scalars["String"];
+  page: Scalars["Int"];
+  pageSize: Scalars["Int"];
+}>;
+
+export type GameSearchQuery = {
+  gamesSearch: {
+    resultsCount: number;
+    results: Array<Maybe<{ id: string } & GameSearch_GameFragment>>;
+  };
+};
+
+export type GameSearchSuggestionsListContainerQueryVariables = Exact<{
+  listId: Scalars["String"];
+}>;
+
+export type GameSearchSuggestionsListContainerQuery = {
+  gamesList?: Maybe<{ id?: Maybe<string>; games: Array<GameRow_GameFragment> }>;
+};
+
+export type GameTile_GameFragment = {
+  isInMaintenance: boolean;
+  backgroundImage: string;
+  logo: string;
+  name: string;
+  slug: string;
+  id: string;
+  liveCasinoId?: Maybe<string>;
+  playBackground: string;
+  category?: Maybe<string>;
+} & GameTileInMaintenance_GameFragment;
+
+export type GameTileInMaintenance_GameFragment = {
+  backgroundImage: string;
+  logo: string;
+  name: string;
+};
+
+export type AddGameToMyListMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type AddGameToMyListMutation = {
+  addGameToMyList?: Maybe<{ id: string }>;
+};
+
+export type RemoveGameFromMyListMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type RemoveGameFromMyListMutation = {
+  removeGameFromMyList?: Maybe<{ id: string }>;
+};
+
+export type GameTileHeartQueryVariables = Exact<{
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type GameTileHeartQuery = {
+  gamesList?: Maybe<{ id?: Maybe<string>; games: Array<{ id: string }> }>;
+};
+
+export type JackpotsQueryVariables = Exact<{
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type JackpotsQuery = {
+  gamesList?: Maybe<{
+    name?: Maybe<string>;
+    games: Array<Jackpots_GameFragment>;
+  }>;
+};
+
+export type Jackpots_GameFragment = {
+  jackpot?: Maybe<{
+    id: string;
+    value: { amount: number; currency: Currency };
+  }>;
+} & GameRow_GameFragment;
+
+export type LiveCasinoCard_Lobby_BetsFragment = {
+  symbol?: Maybe<string>;
+  min?: Maybe<number>;
+  max?: Maybe<number>;
+};
+
+export type LiveCasinoCard_LobbyFragment = {
+  id?: Maybe<string>;
+  tableId?: Maybe<string>;
+  symbol?: Maybe<string>;
+  numberOfPlayers?: Maybe<number>;
+  seats?: Maybe<number>;
+  provider?: Maybe<string>;
+  results: Array<string>;
+  image?: Maybe<string>;
+  type?: Maybe<string>;
+  betBehind?: Maybe<boolean>;
+  bets?: Maybe<LiveCasinoCard_Lobby_BetsFragment>;
+};
+
+export type LiveCasinoCardFragment = {
+  backgroundImage: string;
+  id: string;
+  isInMaintenance: boolean;
+  logo: string;
+  name: string;
+  slug: string;
+  gameStudio: string;
+  liveCasinoLobby?: Maybe<LiveCasinoCard_LobbyFragment>;
+};
+
+export type LiveCasinoCardSmallDataQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type LiveCasinoCardSmallDataQuery = {
+  liveCasinoTablesById?: Maybe<{
+    id?: Maybe<string>;
+    tableId?: Maybe<string>;
+    state: TableState;
+    symbol?: Maybe<string>;
+    numberOfPlayers?: Maybe<number>;
+    seats?: Maybe<number>;
+    provider?: Maybe<string>;
+    results: Array<string>;
+    image?: Maybe<string>;
+    type?: Maybe<string>;
+    betBehind?: Maybe<boolean>;
+    bets?: Maybe<{
+      symbol?: Maybe<string>;
+      min?: Maybe<number>;
+      max?: Maybe<number>;
+    }>;
+    operationHours: {
+      type: OperationHoursType;
+      startTime?: Maybe<string>;
+      endTime?: Maybe<string>;
+    };
+  }>;
+};
+
+export type LiveCasinoDetailPageQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type LiveCasinoDetailPageQuery = {
+  groupedLiveCasinoGames: Array<{
+    title: string;
+    games: Array<GameRow_GameFragment>;
+  }>;
+};
+
+export type LiveCasinoDetailPageDesktopQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type LiveCasinoDetailPageDesktopQuery = {
+  gamesList?: Maybe<{ games: Array<LiveCasinoCardFragment> }>;
+};
+
+export type MustDropJackpot_MustDropJackpotFragment = {
+  label: string;
+  image: string;
+  id: string;
+  amount: { formattedAmount: string };
+};
+
+export type MustDropJackpotsGamesListQueryVariables = Exact<{
+  id: Scalars["String"];
+  numberOfGames: Scalars["Int"];
+}>;
+
+export type MustDropJackpotsGamesListQuery = {
+  gamesList?: Maybe<{
+    name?: Maybe<string>;
+    games: Array<GameRow_GameFragment>;
+  }>;
+};
+
+export type MustDropJackpotsWidget_MustDropJackpotFragment = MustDropJackpot_MustDropJackpotFragment;
+
+export type MustDropJackpotsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type MustDropJackpotsQuery = {
+  mustDropJackpots: Array<MustDropJackpotsWidget_MustDropJackpotFragment>;
+};
+
+export type PlayerValuablesQueryVariables = Exact<{
+  valuableType?: Maybe<ValuableType>;
+}>;
+
+export type PlayerValuablesQuery = {
+  listTitleLabel: string;
+  availableListTitleLabel: string;
+  usedListTitleLabel: string;
+  lockedListTitleLabel: string;
+  hoursLabel: string;
+  minutesLabel: string;
+  seeAllLabel: string;
+  noValuablesLabel: string;
+  dontUseValuableLabel: string;
+  player: {
+    valuables: Array<
+      | {
+          __typename: "PlayerValuableCash";
+          requirementType?: Maybe<RequirementType>;
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+        }
+      | {
+          __typename: "PlayerValuableSpins";
+          description: string;
+          coinValue: number;
+          requirementType?: Maybe<RequirementType>;
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+          game?: Maybe<{ slug: string }>;
+        }
+      | {
+          __typename: "PlayerValuableDeposit";
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+        }
+      | {
+          __typename: "PlayerValuableSport";
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+        }
+      | {
+          __typename: "PlayerValuableCashback";
+          description: string;
+          requirementType?: Maybe<RequirementType>;
+          gameCategories: Array<Maybe<string>>;
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+          games: Array<Maybe<{ title: string; slug: string }>>;
+          excludedGames: Array<Maybe<{ title: string }>>;
+        }
+      | {
+          __typename: "PlayerValuableWageringLock";
+          awardType: WageringLockAwardType;
+          description: string;
+          gameCategories: Array<Maybe<string>>;
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+          games: Array<Maybe<{ title: string }>>;
+          excludedGames: Array<Maybe<{ title: string }>>;
+        }
+      | {
+          __typename: "PlayerValuableFreeBet";
+          id: string;
+          valuableState: PlayerValuableState;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+        }
+    >;
+  };
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableCash_Fragment = {
+  __typename: "PlayerValuableCash";
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableSpins_Fragment = {
+  __typename: "PlayerValuableSpins";
+  description: string;
+  coinValue: number;
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  game?: Maybe<{ slug: string }>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableDeposit_Fragment = {
+  __typename: "PlayerValuableDeposit";
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableSport_Fragment = {
+  __typename: "PlayerValuableSport";
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableCashback_Fragment = {
+  __typename: "PlayerValuableCashback";
+  description: string;
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock_Fragment = {
+  __typename: "PlayerValuableWageringLock";
+  awardType: WageringLockAwardType;
+  description: string;
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment = {
+  __typename: "PlayerValuableFreeBet";
+  id: string;
+  valuableState: PlayerValuableState;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+export type PlayerValuableList_PlayerValuableFragment =
+  | PlayerValuableList_PlayerValuable_PlayerValuableCash_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableSpins_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableSport_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableCashback_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment;
+
+export type UseValuableMutationVariables = Exact<{
+  id: Scalars["String"];
+  source?: Maybe<Scalars["String"]>;
+}>;
+
+export type UseValuableMutation = { useValuable?: Maybe<boolean> };
+
+export type PromotionCard_PromotionFragment = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  badge?: Maybe<string>;
+};
+
+export type PromotionsListQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type PromotionsListQuery = {
+  promotionsList?: Maybe<{
+    id: string;
+    name: string;
+    promotions: Array<PromotionCard_PromotionFragment>;
+  }>;
+};
+
+export type GameStudioQueryVariables = Exact<{
+  slug: Scalars["String"];
+  page: Scalars["Int"];
+  pageSize: Scalars["Int"];
+}>;
+
+export type GameStudioQuery = {
+  gameStudio?: Maybe<{
+    id: string;
+    name: string;
+    gamesCount: number;
+    games: Array<Maybe<GameRow_GameFragment>>;
+  }>;
+};
+
+export type AfterLimitsReached_GameFragment = {
+  __typename: "Game";
+  id: string;
+  slug: string;
+  backgroundImage: string;
+  logo: string;
+  name: string;
+};
+
+export type PlayAgainGameBySlugQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type PlayAgainGameBySlugQuery = {
+  gamesBySlugs: Array<AfterLimitsReached_GameFragment>;
+};
+
+export type PlayAgainLatestPlayedQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type PlayAgainLatestPlayedQuery = {
+  gamesList?: Maybe<{
+    id?: Maybe<string>;
+    games: Array<AfterLimitsReached_GameFragment>;
+  }>;
+};
+
+export type ReelRaceCard_ReelRaceFragment = {
+  id: string;
+  startTime: number;
+  optedIn: boolean;
+  endTime: number;
+  status?: Maybe<string>;
+  spinLimit: number;
+  promoted: boolean;
+  formattedPrize: string;
+  remainingSpins: number;
+  game: {
+    id: string;
+    name: string;
+    logo: string;
+    backgroundImage: string;
+    slug: string;
+  };
+  translations: {
+    optedInCtaSingleGameShort: string;
+    optIn: string;
+    optedIn: string;
+    endingIn: string;
+    startingIn: string;
+    competeFor: string;
+    spins: string;
+    duration: string;
+    durationTemplate: string;
+    caveatShort: string;
+    today: string;
+    tomorrow: string;
+  };
+};
+
+export type OptInForReelRaceMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type OptInForReelRaceMutation = {
+  optInForReelRace?: Maybe<{ id: string; optedIn: boolean }>;
+};
+
+export type ReelRacePreviousCard_ReelRaceFragment = {
+  id: string;
+  startTime: number;
+  endTime: number;
+  formattedPrizes: Array<string>;
+  status?: Maybe<string>;
+  game: { name: string; logo: string; backgroundImage: string };
+  leaderboard: Array<{ playerName: string; position: number; points: number }>;
+};
+
+export type ReelRaceScheduleCard_ReelRaceFragment = {
+  id: string;
+  startTime: number;
+  endTime: number;
+  optedIn: boolean;
+  status?: Maybe<string>;
+  spinLimit: number;
+  promoted: boolean;
+  formattedPrize: string;
+  formattedPrizes: Array<string>;
+  game: {
+    id: string;
+    slug: string;
+    name: string;
+    logo: string;
+    backgroundImage: string;
+  };
+  translations: {
+    optIn: string;
+    optedIn: string;
+    startingIn: string;
+    spins: string;
+    duration: string;
+    durationTemplate: string;
+    caveatShort: string;
+    today: string;
+    tomorrow: string;
+  };
+};
+
+export type ReelRaceOptInMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type ReelRaceOptInMutation = {
+  optInForReelRace?: Maybe<{ id: string; optedIn: boolean }>;
+};
+
+export type ReelRaceWidgetQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ReelRaceWidgetQuery = {
+  reelRaces: Array<{
+    id: string;
+    startTime: number;
+    endTime: number;
+    optedIn: boolean;
+    promoted: boolean;
+    spinLimit: number;
+    formattedPrize: string;
+    cometdChannels: Array<string>;
+    game: { slug: string; name: string; logo: string; backgroundImage: string };
+    leaderboard: Array<{
+      playerId: string;
+      playerName: string;
+      position: number;
+      points: number;
+      remainingSpins: number;
+      boosters: {
+        winsInARow: number;
+        triples: number;
+        wins: number;
+        bigWins: number;
+        megaWins: number;
+      };
+    }>;
+  }>;
+};
+
+export type ReelRaceListQueryVariables = Exact<{
+  limit: Scalars["Int"];
+}>;
+
+export type ReelRaceListQuery = {
+  reelRaces: Array<{ id: string } & ReelRaceCard_ReelRaceFragment>;
+};
+
+export type ReelRacesPageTabPreviousQueryVariables = Exact<{
+  limit: Scalars["Int"];
+  previous?: Maybe<Scalars["Boolean"]>;
+}>;
+
+export type ReelRacesPageTabPreviousQuery = {
+  reelRaces: Array<{ id: string } & ReelRacePreviousCard_ReelRaceFragment>;
+};
+
+export type ReelRacesPageTabScheduleQueryVariables = Exact<{
+  limit: Scalars["Int"];
+}>;
+
+export type ReelRacesPageTabScheduleQuery = {
+  reelRaces: Array<{ id: string } & ReelRaceScheduleCard_ReelRaceFragment>;
+};
+
+export type GetGameSetsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetGameSetsQuery = {
+  gameSetsList: Array<{
+    id: string;
+    key: string;
+    title: string;
+    icon: string;
+    defaultSort: GamesSortOrder;
+    supportedSorts: Array<GamesSortOrder>;
+    baseQuery: string;
+    additionalFilterGroups: Array<{
+      key: string;
+      type: string;
+      title: string;
+      description: string;
+      values: Array<{ key: string; query: string; title?: Maybe<string> }>;
+    }>;
+  }>;
+};
+
+export type Player_Settings_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Player_Settings_Query = { player: Settings_PlayerFragment };
+
+export type Settings_PlayerFragment = {
+  __typename: "Player";
+  id: string;
+  details: {
+    __typename: "PlayerDetails";
+    canChangePassword: boolean;
+    email: string;
+    name: { __typename: "PlayerName"; first: string; last: string };
+    extentOfGambling: {
+      __typename: "PlayerExtentOfGambling";
+      canChange: boolean;
+      label?: Maybe<string>;
+    };
+    phoneNumber: {
+      __typename: "PhoneNumber";
+      prefix: string;
+      number: string;
+      verified: boolean;
+    };
+    address: {
+      __typename: "PlayerAddress";
+      city: string;
+      street: string;
+      postCode: string;
+      country: { __typename: "Country"; code: string; name: string };
+    };
+  };
+};
+
+export type SettingsNotificationsContactByPhoneQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SettingsNotificationsContactByPhoneQuery = {
+  player: {
+    id: string;
+    details: { contactSettings: { contactByPhone: boolean } };
+  };
+};
+
+export type SettingsNotificationsContactByPostQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SettingsNotificationsContactByPostQuery = {
+  player: {
+    id: string;
+    details: { contactSettings: { contactByPost: boolean } };
+  };
+};
+
+export type SetAdventurerPublicityMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetAdventurerPublicityMutation = {
+  setAdventurerPublicity?: Maybe<boolean>;
+};
+
+export type SetWithdrawalNotificationsMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetWithdrawalNotificationsMutation = {
+  setWithdrawalNotifications?: Maybe<boolean>;
+};
+
+export type SetNewsletterSubscriptionMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetNewsletterSubscriptionMutation = {
+  setNewsletterSubscription?: Maybe<boolean>;
+};
+
+export type SetSmsNewsletterSubscriptionMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetSmsNewsletterSubscriptionMutation = {
+  setSMSNewsletterSubscription?: Maybe<boolean>;
+};
+
+export type SetContactByPhoneMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetContactByPhoneMutation = { setContactByPhone?: Maybe<boolean> };
+
+export type SetContactByPostMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
+}>;
+
+export type SetContactByPostMutation = { setContactByPost?: Maybe<boolean> };
+
+export type SettingsNotificationsSubscribedToNewslettersQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SettingsNotificationsSubscribedToNewslettersQuery = {
+  player: {
+    id: string;
+    details: { contactSettings: { subscribedToNewsletters: boolean } };
+  };
+};
+
+export type Contact_Settings_Player_AdventurerPublicFragment = {
+  __typename: "Player";
+  details: { contactSettings: { adventurerPublic: boolean } };
+};
+
+export type Player_Contact_Settings_QueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type Player_Contact_Settings_Query = {
+  player: { id: string } & Contact_Settings_Player_AdventurerPublicFragment &
+    Contact_Settings_Player_RealityCheckFragment;
+};
+
+export type SettingsNotificationsSubscribedToSmsNewslettersQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
+  player: {
+    id: string;
+    details: { contactSettings: { subscribedToSMSNewsletters: boolean } };
+  };
+};
+
+export type SettingsNotificationsWithdrawalNotificationsQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SettingsNotificationsWithdrawalNotificationsQuery = {
+  player: {
+    id: string;
+    details: { contactSettings: { withdrawalNotifications: boolean } };
+  };
+};
+
+export type UpdateRealityCheckIntervalMutationVariables = Exact<{
+  input?: Maybe<UpdateRealityCheckIntervalInput>;
+}>;
+
+export type UpdateRealityCheckIntervalMutation = {
+  updateRealityCheckInterval?: Maybe<number>;
+};
+
+export type Reality_Check_Labels_QueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type Reality_Check_Labels_Query = {
+  inGameSessionUpdatesLabel: string;
+  inGameSessionUpdatesFrequencyLabel: string;
+  save: string;
+  cancel: string;
+};
+
+export type Contact_Settings_Player_RealityCheckFragment = {
+  __typename: "Player";
+  playOk: {
+    __typename: "PlayerPlayOkSettings";
+    realityCheck: {
+      __typename: "PlayerRealityCheckSettings";
+      canChangeInterval: boolean;
+      isZeroIntervalAllowed: boolean;
+      intervalInMinutes: number;
+    };
+  };
+};
+
+export type Player_Reality_Check_QueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type Player_Reality_Check_Query = {
+  player: { id: string } & Contact_Settings_Player_RealityCheckFragment;
+};
+
+export type Player_Login_History_QueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type Player_Login_History_Query = {
+  player: { id: string; loginHistory: Array<{ loginTime: number }> };
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableCash_Fragment = {
+  __typename: "PlayerValuableCash";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
+  __typename: "PlayerValuableSpins";
+  coinValue: number;
+  description: string;
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
+  __typename: "PlayerValuableDeposit";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
+  __typename: "PlayerValuableSport";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
+  __typename: "PlayerValuableCashback";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
+  __typename: "PlayerValuableWageringLock";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
+  __typename: "PlayerValuableFreeBet";
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+};
+
+export type ValuableCard_PlayerValuableFragment =
+  | ValuableCard_PlayerValuable_PlayerValuableCash_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableSport_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment;
+
+type ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment = {
+  __typename: "PlayerValuableCash";
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment = {
+  __typename: "PlayerValuableSpins";
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  game?: Maybe<{ slug: string }>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableDeposit_Fragment = {
+  __typename: "PlayerValuableDeposit";
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableSport_Fragment = {
+  __typename: "PlayerValuableSport";
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment = {
+  __typename: "PlayerValuableCashback";
+  requirementType?: Maybe<RequirementType>;
+  gameCategories: Array<Maybe<string>>;
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  games: Array<Maybe<{ title: string; slug: string }>>;
+  excludedGames: Array<Maybe<{ title: string }>>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment = {
+  __typename: "PlayerValuableWageringLock";
+  awardType: WageringLockAwardType;
+  gameCategories: Array<Maybe<string>>;
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  games: Array<Maybe<{ title: string }>>;
+  excludedGames: Array<Maybe<{ title: string }>>;
+};
+
+type ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment = {
+  __typename: "PlayerValuableFreeBet";
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+};
+
+export type ValuableDetails_PlayerValuableFragment =
+  | ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableDeposit_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableSport_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment;
+
+export type GlossaryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GlossaryQuery = {
+  glossary: Array<{
+    id: string;
+    term: string;
+    aka?: Maybe<string>;
+    definition: string;
+  }>;
+};
+
+export type CmsImageQueryVariables = Exact<{
+  key: Scalars["String"];
+}>;
+
+export type CmsImageQuery = { sportsCmsImage?: Maybe<string> };
+
+export type CompetitionPillsList_GroupFragment = {
+  id: number;
+  userFavourite: boolean;
+} & GroupPill_GroupFragment;
+
+export type DictionaryTermQueryVariables = Exact<{
+  key: Scalars["String"];
+}>;
+
+export type DictionaryTermQuery = { dictionaryTerm: string };
+
+export type PluralisableDictionaryTermQueryVariables = Exact<{
+  singularKey: Scalars["String"];
+  pluralKey: Scalars["String"];
+}>;
+
+export type PluralisableDictionaryTermQuery = {
+  singularTerm: string;
+  pluralTerm: string;
+};
+
+export type EditFavouriteCompetitionsQueryVariables = Exact<{
+  groupId: Scalars["Int"];
+}>;
+
+export type EditFavouriteCompetitionsQuery = {
+  favouriteCompetitions: Array<{ id: number }>;
+};
+
+export type FavouriteCompetitionsSelectorQueryVariables = Exact<{
+  groupId: Scalars["Int"];
+}>;
+
+export type FavouriteCompetitionsSelectorQuery = {
+  internationalGroupName: string;
+  group: {
+    name: string;
+    groups?: Maybe<
+      Array<
+        {
+          id: number;
+          popular: boolean;
+          groups?: Maybe<Array<{ id: number; popular: boolean }>>;
+        } & FavouriteCompetitionsSelectorRegion_GroupFragment
+      >
+    >;
+  } & FavouriteCompetitionsSelectorIntro_GroupFragment;
+};
+
+export type FavouriteCompetitionsSelectorIntro_GroupFragment = { name: string };
+
+export type FavouriteCompetitionsSelectorRegion_GroupFragment = {
+  name: string;
+  regionCode?: Maybe<string>;
+  groups?: Maybe<Array<{ id: number } & CompetitionPillsList_GroupFragment>>;
+};
+
+export type FavouriteCompetitionsSelectorModal_GroupFragment = { id: number };
+
+export type FavouriteSportsSelector_GroupFragment = {
+  id: number;
+  name: string;
+  popular: boolean;
+} & FavouriteSportsSelectorListItem_GroupFragment;
+
+export type FavouriteSportsSelectorListItem_GroupFragment = {
+  id: number;
+  name: string;
+  icon?: Maybe<string>;
+  activeIndicator?: Maybe<string>;
+  canSelectSubgroups: boolean;
+  favouriteCompetitions: Array<CompetitionPillsList_GroupFragment>;
+};
+
+export type FavouriteSportsSelectorContext_CompetitionFragment = {
+  id: number;
+  regionCode?: Maybe<string>;
+  name: string;
+} & FavouriteCompetitionsSelectorModal_GroupFragment;
+
+export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables = Exact<{
+  id: Scalars["Int"];
+}>;
+
+export type FavouriteSportsSelectorContextCompetitionSuggestionsQuery = {
+  topCompetitions: Array<FavouriteSportsSelectorContext_CompetitionFragment>;
+};
+
+export type FavouriteSportsSelectorContextQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type FavouriteSportsSelectorContextQuery = {
+  groups: Array<
+    {
+      id: number;
+      userFavourite: boolean;
+      canSelectSubgroups: boolean;
+      favouriteCompetitions: Array<FavouriteSportsSelectorContext_CompetitionFragment>;
+    } & FavouriteSportsSelector_GroupFragment
+  >;
+};
+
+export type PlayerVerticalQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PlayerVerticalQuery = { player: { vertical: Vertical } };
+
+export type Freebet_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Freebet_Query = {
+  player: {
+    valuables: Array<
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+        }
+    >;
+  };
+};
+
+export type GroupPill_GroupFragment = {
+  name: string;
+  regionCode?: Maybe<string>;
+};
+
+export type SportsFirstBetQueryVariables = Exact<{ [key: string]: never }>;
+
+export type SportsFirstBetQuery = { sportsFirstBet: boolean };
+
+export type UserNavigationQueryVariables = Exact<{
+  live: Scalars["Boolean"];
+}>;
+
+export type UserNavigationQuery = {
+  allLabel: string;
+  editLabel: string;
+  liveLabel: string;
+  allSportsLabel: string;
+  sportsNavigation: Array<{
+    sport: {
+      name: string;
+      id: number;
+      clientPath: string;
+      clientPathLive: string;
+      termKey: string;
+      icon?: Maybe<string>;
+      activeIndicator?: Maybe<string>;
+      canSelectSubgroups: boolean;
+    };
+    subNav: Array<{
+      competition: {
+        name: string;
+        id: number;
+        clientPath: string;
+        clientPathLive: string;
+        termKey: string;
+        regionCode?: Maybe<string>;
+      };
+    }>;
+  }>;
+};
+
+export type TopSearchesQueryVariables = Exact<{
+  count: Scalars["Int"];
+}>;
+
+export type TopSearchesQuery = {
+  topSearches: Array<{
+    termKey: string;
+    name: string;
+    clientPath: string;
+    icon?: Maybe<string>;
+    parentGroups: Array<{ icon?: Maybe<string>; name: string }>;
+  }>;
+};
+
+export type SearchQueryVariables = Exact<{
+  query: Scalars["String"];
+}>;
 
 export type SearchQuery = {
-  /**
-   * Search for events matching a given query, non english lang will search english results too"
-   */
-  search: Array<SearchQuery_search>
+  search: Array<{
+    type: SearchResultType;
+    id: string;
+    localizedName: string;
+    country?: Maybe<string>;
+    sport?: Maybe<{ icon?: Maybe<string>; name: string }>;
+  }>;
 };
 
-export type SearchQueryVariables = {
-  query: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type NavigateClientMutationVariables = Exact<{
+  path: Scalars["String"];
+  trackingLocation: Scalars["String"];
+}>;
 
-// ====================================================
-// GraphQL mutation operation: NavigateClient
-// ====================================================
+export type NavigateClientMutation = { navigateClient?: Maybe<boolean> };
 
-export type NavigateClient = {
-  navigateClient: ?boolean
-};
+export type OpenModalMutationVariables = Exact<{
+  modal: Modal;
+}>;
 
-export type NavigateClientVariables = {
-  path: string,
-  trackingLocation: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type OpenModalMutation = { openModal?: Maybe<boolean> };
 
-// ====================================================
-// GraphQL mutation operation: OpenModal
-// ====================================================
+export type CloseModalMutationVariables = Exact<{
+  modal: Modal;
+}>;
 
-export type OpenModal = {
-  openModal: ?boolean
+export type CloseModalMutation = { closeModal?: Maybe<boolean> };
+
+export type CloseAllModalsMutationVariables = Exact<{ [key: string]: never }>;
+
+export type CloseAllModalsMutation = { closeAllModals?: Maybe<boolean> };
+
+export type UpdateKambiClientStateMutationVariables = Exact<{
+  isVisible: Scalars["Boolean"];
+}>;
+
+export type UpdateKambiClientStateMutation = {
+  updateKambiClientState?: Maybe<boolean>;
 };
 
-export type OpenModalVariables = {
-  modal: Modal
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type UpdateBetslipStateMutationVariables = Exact<{
+  isVisible: Scalars["Boolean"];
+}>;
 
-// ====================================================
-// GraphQL mutation operation: CloseModal
-// ====================================================
-
-export type CloseModal = {
-  closeModal: ?boolean
+export type UpdateBetslipStateMutation = {
+  updateBetslipState?: Maybe<boolean>;
 };
 
-export type CloseModalVariables = {
-  modal: Modal
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type ShowSearchMutationVariables = Exact<{ [key: string]: never }>;
 
-// ====================================================
-// GraphQL mutation operation: CloseAllModals
-// ====================================================
+export type ShowSearchMutation = { showSearch?: Maybe<boolean> };
 
-export type CloseAllModals = {
-  closeAllModals: ?boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type HideSearchMutationVariables = Exact<{ [key: string]: never }>;
 
-// ====================================================
-// GraphQL mutation operation: UpdateKambiClientState
-// ====================================================
+export type HideSearchMutation = { hideSearch?: Maybe<boolean> };
 
-export type UpdateKambiClientState = {
-  updateKambiClientState: ?boolean
+export type ToggleFavouriteGroupMutationVariables = Exact<{
+  id: Scalars["Int"];
+}>;
+
+export type ToggleFavouriteGroupMutation = {
+  toggleFavouriteGroup: { id: number; userFavourite: boolean };
 };
 
-export type UpdateKambiClientStateVariables = {
-  isVisible: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type SetFavouritesMutationVariables = Exact<{
+  ids: Array<Scalars["Int"]> | Scalars["Int"];
+}>;
 
-// ====================================================
-// GraphQL mutation operation: UpdateBetslipState
-// ====================================================
-
-export type UpdateBetslipState = {
-  updateBetslipState: ?boolean
+export type SetFavouritesMutation = {
+  setFavouriteGroups: Array<{ id: number; userFavourite: boolean }>;
 };
 
-export type UpdateBetslipStateVariables = {
-  isVisible: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type SetFavouriteCompetitionsMutationVariables = Exact<{
+  groupId: Scalars["Int"];
+  ids: Array<Scalars["Int"]> | Scalars["Int"];
+}>;
 
-// ====================================================
-// GraphQL mutation operation: ShowSearch
-// ====================================================
-
-export type ShowSearch = {
-  showSearch: ?boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: HideSearch
-// ====================================================
-
-export type HideSearch = {
-  hideSearch: ?boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: ToggleFavouriteGroup
-// ====================================================
-
-export type ToggleFavouriteGroup_toggleFavouriteGroup = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
+export type SetFavouriteCompetitionsMutation = {
+  setFavouriteCompetitions: Array<{ id: number; userFavourite: boolean }>;
 };
 
-export type ToggleFavouriteGroup = {
-  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup
+export type SessionTouchMutationVariables = Exact<{ [key: string]: never }>;
+
+export type SessionTouchMutation = { sessionTouch?: Maybe<boolean> };
+
+export type LaunchKambiMutationVariables = Exact<{ [key: string]: never }>;
+
+export type LaunchKambiMutation = {
+  launchKambi?: Maybe<{
+    clientBootstrapUrl: string;
+    providerPlayerId?: Maybe<string>;
+    ticket?: Maybe<string>;
+  }>;
 };
 
-export type ToggleFavouriteGroupVariables = {
-  id: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type ActiveModalsQueryVariables = Exact<{ [key: string]: never }>;
 
-// ====================================================
-// GraphQL mutation operation: SetFavourites
-// ====================================================
+export type ActiveModalsQuery = { activeModals: Array<Modal> };
 
-export type SetFavourites_setFavouriteGroups = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-};
+export type BetslipVisibleQueryVariables = Exact<{ [key: string]: never }>;
 
-export type SetFavourites = {
-  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>
-};
+export type BetslipVisibleQuery = { isBetslipVisible: boolean };
 
-export type SetFavouritesVariables = {
-  ids: Array<number>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
+export type KambiClientVisibleQueryVariables = Exact<{ [key: string]: never }>;
 
-// ====================================================
-// GraphQL mutation operation: SetFavouriteCompetitions
-// ====================================================
+export type KambiClientVisibleQuery = { kambiClientVisible: boolean };
 
-export type SetFavouriteCompetitions_setFavouriteCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-};
+export type SearchVisibleQueryVariables = Exact<{ [key: string]: never }>;
 
-export type SetFavouriteCompetitions = {
-  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>
-};
+export type SearchVisibleQuery = { isSearchVisible: boolean };
 
-export type SetFavouriteCompetitionsVariables = {
-  groupId: number,
-  ids: Array<number>,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SessionTouch
-// ====================================================
-
-export type SessionTouch = {
-  /**
-   * Pings the current session to keep it alive, requires the session cookie to be present in the headers
-   */
-  sessionTouch: ?boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: LaunchKambi
-// ====================================================
-
-export type LaunchKambi_launchKambi = {
-  clientBootstrapUrl: string,
-  providerPlayerId: ?string,
-  ticket: ?string,
-};
-
-export type LaunchKambi = {
-  launchKambi: ?LaunchKambi_launchKambi
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ActiveModals
-// ====================================================
-
-export type ActiveModals = {
-  activeModals: Array<Modal>
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: BetslipVisible
-// ====================================================
-
-export type BetslipVisible = {
-  isBetslipVisible: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: KambiClientVisible
-// ====================================================
-
-export type KambiClientVisible = {
-  kambiClientVisible: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SearchVisible
-// ====================================================
-
-export type SearchVisible = {
-  isSearchVisible: boolean
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SportsShellQuery
-// ====================================================
+export type SportsShellQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SportsShellQuery = {
-  hasSelectedFavourites: boolean,
-  isSearchVisible: boolean,
+  hasSelectedFavourites: boolean;
+  isSearchVisible: boolean;
 };
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
 
-// ====================================================
-// GraphQL query operation: LaunchableKambiClientQuery
-// ====================================================
+export type LaunchableKambiClientQueryVariables = Exact<{
+  [key: string]: never;
+}>;
 
 export type LaunchableKambiClientQuery = {
-  userHomepage: ?string,
-  kambiClientVisible: boolean,
-  isBetslipVisible: boolean,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: CurrentReelRaceInfoQuery
-// ====================================================
-
-export type CurrentReelRaceInfoQuery_reelRaces_game = {
-  id: string,
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
+  userHomepage?: Maybe<string>;
+  kambiClientVisible: boolean;
+  isBetslipVisible: boolean;
 };
 
-export type CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters = {
-  winsInARow: number,
-  triples: number,
-  wins: number,
-  bigWins: number,
-  megaWins: number,
-};
-
-export type CurrentReelRaceInfoQuery_reelRaces_leaderboard = {
-  playerId: string,
-  playerName: string,
-  position: number,
-  points: number,
-  remainingSpins: number,
-  boosters: CurrentReelRaceInfoQuery_reelRaces_leaderboard_boosters,
-};
-
-export type CurrentReelRaceInfoQuery_reelRaces = {
-  id: string,
-  game: CurrentReelRaceInfoQuery_reelRaces_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  optedIn: boolean,
-  promoted: boolean,
-  spinLimit: number,
-  cometdChannels: Array<string>,
-  formattedPrizes: Array<string>,
-  leaderboard: Array<CurrentReelRaceInfoQuery_reelRaces_leaderboard>,
-};
+export type CurrentReelRaceInfoQueryVariables = Exact<{ [key: string]: never }>;
 
 export type CurrentReelRaceInfoQuery = {
-  reelRaces: Array<CurrentReelRaceInfoQuery_reelRaces>
+  reelRaces: Array<{
+    id: string;
+    startTime: number;
+    endTime: number;
+    optedIn: boolean;
+    promoted: boolean;
+    spinLimit: number;
+    cometdChannels: Array<string>;
+    formattedPrizes: Array<string>;
+    game: {
+      id: string;
+      slug: string;
+      name: string;
+      logo: string;
+      backgroundImage: string;
+    };
+    leaderboard: Array<{
+      playerId: string;
+      playerName: string;
+      position: number;
+      points: number;
+      remainingSpins: number;
+      boosters: {
+        winsInARow: number;
+        triples: number;
+        wins: number;
+        bigWins: number;
+        megaWins: number;
+      };
+    }>;
+  }>;
 };
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: CuratedCard_Game
-// ====================================================
-
-export type CuratedCard_Game = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GameDetails_Game
-// ====================================================
-
-export type GameDetails_Game_media = {
-  type: string,
-  path: string,
-  order: number,
-};
-
-export type GameDetails_Game = {
-  id: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  slug: string,
-  description: ?string,
-  media: Array<GameDetails_Game_media>,
-  hasPlayForFun: boolean,
-  isInMaintenance: boolean,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GameRow_Game
-// ====================================================
-
-export type GameRow_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameRow_Game_lobby = {
-  bets: ?GameRow_Game_lobby_bets
-};
-
-export type GameRow_Game = {
-  id: string,
-  backgroundImage: string,
-  gameStudio: string,
-  logo: string,
-  name: string,
-  slug: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameRow_Game_lobby,
-  isInMaintenance: boolean,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GameSearch_Game
-// ====================================================
-
-export type GameSearch_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type GameSearch_Game_lobby = {
-  bets: ?GameSearch_Game_lobby_bets
-};
-
-export type GameSearch_Game = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?GameSearch_Game_lobby,
-  isInMaintenance: boolean,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GameTile_Game
-// ====================================================
-
-export type GameTile_Game = {
-  isInMaintenance: boolean,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  id: string,
-  liveCasinoId: ?string,
-  playBackground: string,
-  category: ?string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GameTileInMaintenance_Game
-// ====================================================
-
-export type GameTileInMaintenance_Game = {
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Jackpots_Game
-// ====================================================
-
-export type Jackpots_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-
-export type Jackpots_Game_lobby = {
-  bets: ?Jackpots_Game_lobby_bets
-};
-
-export type Jackpots_Game_jackpot_value = {
-  amount: number,
-  currency: Currency,
-};
-
-export type Jackpots_Game_jackpot = {
-  id: string,
-  value: Jackpots_Game_jackpot_value,
-};
-
-export type Jackpots_Game = {
-  id: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-  category: ?string,
-  playBackground: string,
-  liveCasinoId: ?string,
-  lobby: ?Jackpots_Game_lobby,
-  isInMaintenance: boolean,
-  jackpot: ?Jackpots_Game_jackpot,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: LiveCasinoCard_Lobby_Bets
-// ====================================================
-
-export type LiveCasinoCard_Lobby_Bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: LiveCasinoCard_Lobby
-// ====================================================
-
-export type LiveCasinoCard_Lobby_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type LiveCasinoCard_Lobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?LiveCasinoCard_Lobby_bets,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: LiveCasinoCard
-// ====================================================
-
-export type LiveCasinoCard_liveCasinoLobby_bets = {
-  symbol: ?string,
-  min: ?number,
-  max: ?number,
-};
-
-export type LiveCasinoCard_liveCasinoLobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  numberOfPlayers: ?number,
-  seats: ?number,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?LiveCasinoCard_liveCasinoLobby_bets,
-};
-
-export type LiveCasinoCard = {
-  backgroundImage: string,
-  id: string,
-  isInMaintenance: boolean,
-  liveCasinoLobby: ?LiveCasinoCard_liveCasinoLobby,
-  logo: string,
-  name: string,
-  slug: string,
-  gameStudio: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: MustDropJackpot_MustDropJackpot
-// ====================================================
-
-export type MustDropJackpot_MustDropJackpot_amount = {
-  formattedAmount: string
-};
-
-export type MustDropJackpot_MustDropJackpot = {
-  label: string,
-  image: string,
-  id: string,
-  amount: MustDropJackpot_MustDropJackpot_amount,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: MustDropJackpotsWidget_MustDropJackpot
-// ====================================================
-
-export type MustDropJackpotsWidget_MustDropJackpot_amount = {
-  formattedAmount: string
-};
-
-export type MustDropJackpotsWidget_MustDropJackpot = {
-  label: string,
-  image: string,
-  id: string,
-  amount: MustDropJackpotsWidget_MustDropJackpot_amount,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: PlayerValuableList_PlayerValuable
-// ====================================================
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport" | "PlayerValuableFreeBet",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
-  __typename: "PlayerValuableSpins",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  description: string,
-  coinValue: number,
-  requirementType: ?RequirementType,
-  game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
-  __typename: "PlayerValuableCash",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableCashback = {
-  __typename: "PlayerValuableCashback",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  description: string,
-  requirementType: ?RequirementType,
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock = {
-  __typename: "PlayerValuableWageringLock",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  awardType: WageringLockAwardType,
-  description: string,
-};
-
-export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash | PlayerValuableList_PlayerValuable_PlayerValuableCashback | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock;
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: PromotionCard_Promotion
-// ====================================================
-
-export type PromotionCard_Promotion = {
-  id: string,
-  slug: string,
-  title: string,
-  subtitle: string,
-  image: string,
-  badge: ?string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: ReelRaceCard_ReelRace
-// ====================================================
-
-export type ReelRaceCard_ReelRace_game = {
-  id: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  slug: string,
-};
-
-export type ReelRaceCard_ReelRace_translations = {
-  optedInCtaSingleGameShort: string,
-  optIn: string,
-  optedIn: string,
-  endingIn: string,
-  startingIn: string,
-  competeFor: string,
-  spins: string,
-  duration: string,
-  durationTemplate: string,
-  caveatShort: string,
-  today: string,
-  tomorrow: string,
-};
-
-export type ReelRaceCard_ReelRace = {
-  id: string,
-  game: ReelRaceCard_ReelRace_game,
-  startTime: BigInt,
-  optedIn: boolean,
-  endTime: BigInt,
-  status: ?string,
-  spinLimit: number,
-  promoted: boolean,
-  formattedPrize: string,
-  remainingSpins: number,
-  translations: ReelRaceCard_ReelRace_translations,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: ReelRacePreviousCard_ReelRace
-// ====================================================
-
-export type ReelRacePreviousCard_ReelRace_game = {
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-export type ReelRacePreviousCard_ReelRace_leaderboard = {
-  playerName: string,
-  position: number,
-  points: number,
-};
-
-export type ReelRacePreviousCard_ReelRace = {
-  id: string,
-  game: ReelRacePreviousCard_ReelRace_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  formattedPrizes: Array<string>,
-  status: ?string,
-  leaderboard: Array<ReelRacePreviousCard_ReelRace_leaderboard>,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: ReelRaceScheduleCard_ReelRace
-// ====================================================
-
-export type ReelRaceScheduleCard_ReelRace_game = {
-  id: string,
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-};
-
-export type ReelRaceScheduleCard_ReelRace_translations = {
-  optIn: string,
-  optedIn: string,
-  startingIn: string,
-  spins: string,
-  duration: string,
-  durationTemplate: string,
-  caveatShort: string,
-  today: string,
-  tomorrow: string,
-};
-
-export type ReelRaceScheduleCard_ReelRace = {
-  id: string,
-  game: ReelRaceScheduleCard_ReelRace_game,
-  startTime: BigInt,
-  endTime: BigInt,
-  optedIn: boolean,
-  status: ?string,
-  spinLimit: number,
-  promoted: boolean,
-  formattedPrize: string,
-  formattedPrizes: Array<string>,
-  translations: ReelRaceScheduleCard_ReelRace_translations,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: AfterLimitsReached_Game
-// ====================================================
-
-export type AfterLimitsReached_Game = {
-  __typename: "Game",
-  id: string,
-  slug: string,
-  backgroundImage: string,
-  logo: string,
-  name: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: SETTINGS_PLAYER
-// ====================================================
-
-export type SETTINGS_PLAYER_details_name = {
-  __typename: "PlayerName",
-  first: string,
-  last: string,
-};
-
-export type SETTINGS_PLAYER_details_extentOfGambling = {
-  __typename: "PlayerExtentOfGambling",
-  canChange: boolean,
-  label: ?string,
-};
-
-export type SETTINGS_PLAYER_details_phoneNumber = {
-  __typename: "PhoneNumber",
-  prefix: string,
-  number: string,
-  verified: boolean,
-};
-
-export type SETTINGS_PLAYER_details_address_country = {
-  __typename: "Country",
-  code: string,
-  name: string,
-};
-
-export type SETTINGS_PLAYER_details_address = {
-  __typename: "PlayerAddress",
-  city: string,
-  street: string,
-  postCode: string,
-  country: SETTINGS_PLAYER_details_address_country,
-};
-
-export type SETTINGS_PLAYER_details = {
-  __typename: "PlayerDetails",
-  name: SETTINGS_PLAYER_details_name,
-  canChangePassword: boolean,
-  extentOfGambling: SETTINGS_PLAYER_details_extentOfGambling,
-  phoneNumber: SETTINGS_PLAYER_details_phoneNumber,
-  address: SETTINGS_PLAYER_details_address,
-  email: string,
-};
-
-export type SETTINGS_PLAYER = {
-  id: string,
-  __typename: "Player",
-  details: SETTINGS_PLAYER_details,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_adventurerPublic
-// ====================================================
-
-export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
-  adventurerPublic: boolean
-};
-
-export type Contact_Settings_Player_adventurerPublic_details = {
-  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings
-};
-
-export type Contact_Settings_Player_adventurerPublic = {
-  __typename: "Player",
-  details: Contact_Settings_Player_adventurerPublic_details,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Contact_Settings_Player_realityCheck
-// ====================================================
-
-export type Contact_Settings_Player_realityCheck_playOk_realityCheck = {
-  __typename: "PlayerRealityCheckSettings",
-  canChangeInterval: boolean,
-  isZeroIntervalAllowed: boolean,
-  intervalInMinutes: number,
-};
-
-export type Contact_Settings_Player_realityCheck_playOk = {
-  __typename: "PlayerPlayOkSettings",
-  realityCheck: Contact_Settings_Player_realityCheck_playOk_realityCheck,
-};
-
-export type Contact_Settings_Player_realityCheck = {
-  __typename: "Player",
-  playOk: Contact_Settings_Player_realityCheck_playOk,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: ValuableCard_PlayerValuable
-// ====================================================
-
-export type ValuableCard_PlayerValuable_PlayerValuableCash = {
-  __typename: "PlayerValuableCash" | "PlayerValuableDeposit" | "PlayerValuableSport" | "PlayerValuableCashback" | "PlayerValuableWageringLock" | "PlayerValuableFreeBet",
-  id: string,
-  title: string,
-  content: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  backgroundImage: string,
-};
-
-export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
-  __typename: "PlayerValuableSpins",
-  id: string,
-  title: string,
-  content: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  backgroundImage: string,
-  coinValue: number,
-  description: string,
-};
-
-export type ValuableCard_PlayerValuable = ValuableCard_PlayerValuable_PlayerValuableCash | ValuableCard_PlayerValuable_PlayerValuableSpins;
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: ValuableDetails_PlayerValuable
-// ====================================================
-
-export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport" | "PlayerValuableFreeBet",
-  id: string,
-  backgroundImage: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  valuableState: PlayerValuableState,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
-  __typename: "PlayerValuableSpins",
-  id: string,
-  backgroundImage: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  valuableState: PlayerValuableState,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-  game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
-  __typename: "PlayerValuableCash",
-  id: string,
-  backgroundImage: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  valuableState: PlayerValuableState,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableCashback_games = {
-  title: string,
-  slug: string,
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames = {
-  title: string
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableCashback = {
-  __typename: "PlayerValuableCashback",
-  id: string,
-  backgroundImage: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  valuableState: PlayerValuableState,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-  games: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_games>,
-  excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableCashback_excludedGames>,
-  gameCategories: Array<?string>,
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games = {
-  title: string
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames = {
-  title: string
-};
-
-export type ValuableDetails_PlayerValuable_PlayerValuableWageringLock = {
-  __typename: "PlayerValuableWageringLock",
-  id: string,
-  backgroundImage: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  valuableState: PlayerValuableState,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  awardType: WageringLockAwardType,
-  games: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_games>,
-  excludedGames: Array<?ValuableDetails_PlayerValuable_PlayerValuableWageringLock_excludedGames>,
-  gameCategories: Array<?string>,
-};
-
-export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableDeposit | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash | ValuableDetails_PlayerValuable_PlayerValuableCashback | ValuableDetails_PlayerValuable_PlayerValuableWageringLock;
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: CompetitionPillsList_Group
-// ====================================================
-
-export type CompetitionPillsList_Group = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteCompetitionsSelectorIntro_Group
-// ====================================================
-
-export type FavouriteCompetitionsSelectorIntro_Group = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteCompetitionsSelectorRegion_Group
-// ====================================================
-
-export type FavouriteCompetitionsSelectorRegion_Group_groups = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-
-export type FavouriteCompetitionsSelectorRegion_Group = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-  /**
-   * Array of subgroups in this event group
-   */
-  groups: ?Array<FavouriteCompetitionsSelectorRegion_Group_groups>,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
-// ====================================================
-
-export type FavouriteCompetitionsSelectorModal_Group = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteSportsSelector_Group
-// ====================================================
-
-export type FavouriteSportsSelector_Group_favouriteCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-
-export type FavouriteSportsSelector_Group = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * The active indicator for the sport group, used on the nav
-   */
-  activeIndicator: ?string,
-  /**
-   * Whether to allow a custom selection of subgroups to be shown as sub-nav items
-   * instead of just popular ones
-   */
-  canSelectSubgroups: boolean,
-  /**
-   * The favourited competitions for this EventGroup
-   */
-  favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteSportsSelectorListItem_Group
-// ====================================================
-
-export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Whether this is one of the users, selected favourites
-   */
-  userFavourite: boolean,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};
-
-export type FavouriteSportsSelectorListItem_Group = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
-  /**
-   * The active indicator for the sport group, used on the nav
-   */
-  activeIndicator: ?string,
-  /**
-   * Whether to allow a custom selection of subgroups to be shown as sub-nav items
-   * instead of just popular ones
-   */
-  canSelectSubgroups: boolean,
-  /**
-   * The favourited competitions for this EventGroup
-   */
-  favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: FavouriteSportsSelectorContext_Competition
-// ====================================================
-
-export type FavouriteSportsSelectorContext_Competition = {
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-};
-/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: GroupPill_Group
-// ====================================================
-
-export type GroupPill_Group = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * The region code for the group, iso3166 code for most with some custom regions
-   */
-  regionCode: ?string,
-};/* @flow */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-//==============================================================
-// START Enums and Input Objects
-//==============================================================
-
-/**
- * 
- */
-export type TableState = "CLOSED" | "OPEN" | "UNASSIGNED";
-
-/**
- * 
- */
-export type OperationHoursType = "BOUNDED" | "FULLTIME";
-
-/**
- * 
- */
-export type ValuableType = "cash" | "cashback" | "deposit" | "freeBet" | "spins" | "sport" | "wageringLock";
-
-/**
- * 
- */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
-
-/**
- * 
- */
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "INR" | "NZD" | "SEK" | "USD";
-
-/**
- * 
- */
-export type RequirementType = "deposit" | "wager";
-
-/**
- * 
- */
-export type WageringLockAwardType = "bonusMoney" | "freeMoney" | "spins";
-
-/**
- * 
- */
-export type GamesSortOrder = "A_TO_Z_BY_TITLE" | "CURATED_JACKPOTS" | "CURATED_LIVE_CASINO" | "CURATED_SLOT_MACHINES" | "CURATED_TABLE_GAMES" | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE" | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE" | "MOST_TO_LEAST_POPULAR" | "NEWEST_TO_OLDEST_BY_RELEASE_DATE" | "OLDEST_TO_NEWEST_BY_RELEASE_DATE" | "Z_TO_A_BY_TITLE";
-
-/**
- * 
- */
-export type Vertical = "CASINO" | "SPORTS";
-
-/**
- * 
- */
-export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
-
-/**
- * 
- */
-export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
-
-export type ContactSettingsInput = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'on'.
-  on: boolean
-|};
-
-export type UpdateRealityCheckIntervalInput = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'intervalSeconds'.
-  intervalSeconds: number
-|};
-
-//==============================================================
-// END Enums and Input Objects
-//==============================================================

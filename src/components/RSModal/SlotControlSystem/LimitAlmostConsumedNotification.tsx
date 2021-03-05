@@ -1,22 +1,18 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import type { ModalContentComponent } from "Components/RSModal";
 import { formatCurrency, interpolate } from "Utils";
 import { useLocale } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
 import { ModalSkin } from "./ModalSkin";
 
-type ContentType = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'modal_body'.
-  modal_body: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'modal_title'.
-  modal_title: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'continue_playing_button'.
-  continue_playing_button: string,
-|};
+type ContentType = {
+  modal_body: string;
+  modal_title: string;
+  continue_playing_button: string;
+};
 
 export function LimitAlmostConsumedNotification({
   t,

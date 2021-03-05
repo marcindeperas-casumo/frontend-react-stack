@@ -1,4 +1,1 @@
-// @flow
-export {
-  FreebetNotificationContainer as FreebetNotification,
-} from "./FreebetNotificationContainer";
+export { FreebetNotificationContainer as FreebetNotification } from "./FreebetNotificationContainer";

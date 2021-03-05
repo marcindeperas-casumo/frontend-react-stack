@@ -1,6 +1,6 @@
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
 import { slice, concat } from "ramda";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
@@ -8,9 +8,9 @@ import { ReelRacesPageTabScheduleTitle } from "./ReelRacesPageTabScheduleTitle";
 const PAGE_LIMIT = 10;
 
 type TProps = {
-  t: TReelRacesContentPage | null,
-  reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
-  cardComponent: Function,
+  t: TReelRacesContentPage | null;
+  reelRaces: Array<A.ReelRaceScheduleCard_ReelRaceFragment>;
+  cardComponent: Function;
 };
 
 export const ReelRacesPageTabSchedule = React.memo<TProps>(
@@ -18,7 +18,7 @@ export const ReelRacesPageTabSchedule = React.memo<TProps>(
     const [showMore, setShowMore] = React.useState(true);
     const [list, setList] = React.useState([]);
     const [index, setIndex] = React.useState(PAGE_LIMIT);
-    const [totalArrayData, setTotalArrayData] = React.useState();
+    const [totalArrayData, setTotalArrayData] = React.useState<Array<number>>();
 
     React.useEffect(() => {
       if (reelRaces.length && !totalArrayData) {

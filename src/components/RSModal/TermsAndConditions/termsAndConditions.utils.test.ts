@@ -1,4 +1,3 @@
-// @flow
 import {
   parseTableOfContents,
   groupSections,
@@ -23,13 +22,11 @@ describe("RSModal/T&C/parseTableOfContents", () => {
   });
 
   test("content doesn't contain p1 classes", () => {
-    // $FlowIgnoreError: we can assume that we always have body element
     document.body.innerHTML = content;
     expect(document.querySelectorAll(".p1")).toHaveLength(0);
   });
 
   test("content contains u-font classes", () => {
-    // $FlowIgnoreError: we can assume that we always have body element
     document.body.innerHTML = content;
     expect(document.querySelectorAll(".u-font")).toHaveLength(
       numberOfSectionHeaders
@@ -40,7 +37,6 @@ describe("RSModal/T&C/parseTableOfContents", () => {
 describe("RSModal/T&C/groupSections", () => {
   test("grouped content should contain as many groups as sections headers", () => {
     const groupedContent = groupSections(originalContent);
-    // $FlowIgnoreError: we can assume that we always have body element
     document.body.innerHTML = groupedContent;
     expect(document.body?.childElementCount).toEqual(numberOfSectionHeaders);
   });

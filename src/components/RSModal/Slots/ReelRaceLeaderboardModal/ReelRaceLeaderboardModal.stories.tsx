@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
+import * as R from "ramda";
 import MockStore from "Components/MockStore";
 import { leaderboard } from "Components/ReelRaceLeaderboard/__mocks__/leaderboard.mock";
 import { prizes } from "Components/ReelRaceLeaderboard/__mocks__/prizes.mock";
@@ -20,9 +19,8 @@ const Wrapper = ({
   children,
   playerId = "one",
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  playerId?: string,
+  children: React.ReactNode;
+  playerId?: string;
 }) => (
   <MockStore
     state={{
@@ -40,7 +38,7 @@ const Wrapper = ({
           R.sortBy(R.prop("position")),
           // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           R.pluck("playerId")
-        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+          // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(newLeaderboard),
       },
     }}

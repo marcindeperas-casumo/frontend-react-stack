@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";

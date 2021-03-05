@@ -1,5 +1,3 @@
-// @flow
-
 import { ENVIRONMENTS } from "Src/constants";
 import { injectScript } from "Utils";
 import { BaseIframeGame } from "./BaseIframeGame";
@@ -12,7 +10,7 @@ export const EVOLUTION_SCRIPT_URL = {
     "https://evo-livecasino.casumo.com/mobile/js/iframe.js",
 };
 
-declare var EvolutionGaming: { init: Function };
+declare const EvolutionGaming: { init: Function };
 
 export class EvolutionGame extends BaseIframeGame {
   get componentProps() {

@@ -1,21 +1,19 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import type { iconSizes } from "@casumo/cudl-react-prop-types";
+import cx from "classnames";
+import * as React from "react";
 import { NavLink } from "Components/NavLink";
 
 type TNavbarItemProps = {
-  icon: React.ComponentType<{ size: iconSizes }>,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  label: ?string,
-  to: string,
-  showLabel?: boolean,
+  icon: React.ComponentType<{ size: iconSizes }>;
+  label: string | undefined;
+  to: string;
+  showLabel?: boolean;
 };
 
 type TProps = {
-  items: Array<TNavbarItemProps>,
+  items: Array<TNavbarItemProps>;
 };
 
 const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {

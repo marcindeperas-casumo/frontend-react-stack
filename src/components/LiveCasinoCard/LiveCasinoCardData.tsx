@@ -1,9 +1,8 @@
-// @flow
+import Text from "@casumo/cmp-text";
+import Flex from "@casumo/cmp-flex";
 import React from "react";
 import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
-import Text from "@casumo/cmp-text";
-import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import {
   EVOLUTION_LOBBY_TYPES as TYPES,
@@ -12,21 +11,15 @@ import {
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
-type Props = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'liveCasinoLobby'.
-  liveCasinoLobby: A.GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
-  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 't'. Did you mean 'T'?
+type Props = {
+  liveCasinoLobby: A.GameListLiveCasinoQuery["gamesList"]["games"][number]["liveCasinoLobby"];
   t?: {
-    // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-    bet_behind: string,
-    // @ts-expect-error ts-migrate(2693) FIXME: 'string' only refers to a type, but is being used ... Remove this comment to see the full error message
-    open_seats: string,
-  },
-  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'className'. Did you mean 'classN... Remove this comment to see the full error message
-  className?: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'small'.
-  small?: boolean,
-|};
+    bet_behind: string;
+    open_seats: string;
+  };
+  className?: string;
+  small?: boolean;
+};
 
 const getTextColor = (color: string) =>
   contains(color, ["yellow-30", "grey-5"]) ? "grey-90" : "white";

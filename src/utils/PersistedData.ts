@@ -1,4 +1,3 @@
-/* @flow */
 import { get as getFromStorage, set as setInStorage } from "Lib/storage";
 
 export class PersistedData {

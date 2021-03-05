@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import React, { PureComponent } from "react";
 
 export default class PromotionPageSkeleton extends PureComponent {
   render() {

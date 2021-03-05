@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, number, boolean } from "@storybook/addon-knobs/react";
+import React from "react";
 import { CasumoAvatar } from "./CasumoAvatar";
 import { belts } from "./beltUtils";
 

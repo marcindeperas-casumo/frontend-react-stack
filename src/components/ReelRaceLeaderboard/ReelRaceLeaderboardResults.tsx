@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import * as A from "Types/apollo";
@@ -8,34 +7,33 @@ import { ReelRaceLeaderboardListEntry } from "./ReelRaceLeaderboardListEntry";
 import "./ReelRaceLeaderboardResults.scss";
 
 type Props = {
-  size?: number,
-  playerId: string,
-  prizes?: Array<string>,
-  forceLaurelPositions?: number,
-  className?: string,
-  inverted?: boolean,
-  fixedRows?: number,
-  rowClassName?: string,
-  style?: Object,
-  currentPositionRef?: React.Ref<any>,
-  scrollable?: boolean,
+  size?: number;
+  playerId: string;
+  prizes?: Array<string>;
+  forceLaurelPositions?: number;
+  className?: string;
+  inverted?: boolean;
+  fixedRows?: number;
+  rowClassName?: string;
+  style?: Object;
+  currentPositionRef?: React.Ref<any>;
+  scrollable?: boolean;
 };
 
 type ListProps = {
-  items: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
-  prizes?: Array<string>,
-  forceLaurelPositions?: number,
-  className?: string,
-  inverted?: boolean,
-  playerId: string,
-  rowClassName?: string,
-  currentPositionRef?: React.Ref<any>,
-  listRef?: React.Ref<any>,
-  scrollable?: boolean,
+  items: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"];
+  prizes?: Array<string>;
+  forceLaurelPositions?: number;
+  className?: string;
+  inverted?: boolean;
+  playerId: string;
+  rowClassName?: string;
+  currentPositionRef?: React.Ref<any>;
+  listRef?: React.Ref<any>;
+  scrollable?: boolean;
 };
 
-// @ts-expect-error ts-migrate(1015) FIXME: Parameter cannot have question mark and initialize... Remove this comment to see the full error message
-export const getPrize = (position: number, prizes?: Array<string> = []) =>
+export const getPrize = (position: number, prizes: Array<string> = []) =>
   prizes[position - 1] || null;
 
 const InnerList = ({
@@ -58,7 +56,6 @@ const InnerList = ({
         return (
           <ReelRaceLeaderboardListEntry
             key={position}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ key: number; points: number; position: num... Remove this comment to see the full error message
             points={points}
             position={position}
             text={playerName}
@@ -129,12 +126,10 @@ export function ReelRaceLeaderboardResults({
       >
         <InnerList
           className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown[]' is not assignable to type 'ReelRa... Remove this comment to see the full error message
           items={leaderboardSliced.slice(0, fixedRows)}
           {...commonProps}
         />
         <InnerList
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown[]' is not assignable to type 'ReelRa... Remove this comment to see the full error message
           items={leaderboardSliced.slice(fixedRows)}
           {...commonProps}
         />

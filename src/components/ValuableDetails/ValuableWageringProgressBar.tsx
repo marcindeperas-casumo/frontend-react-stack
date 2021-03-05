@@ -1,18 +1,16 @@
-/* @flow */
-
-import React from "react";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate, formatCurrency } from "Utils";
 import { INTL_LOCALES } from "Src/constants";
 import { ProgressBar } from "Components/Progress";
 
 type Props = {
-  leftToWager: number,
-  wageringThreshold: number,
-  label: string,
-  market: string,
-  currency: string,
+  leftToWager: number;
+  wageringThreshold: number;
+  label: string;
+  market: string;
+  currency: string;
 };
 
 export const ValuableWageringProgressBar = ({

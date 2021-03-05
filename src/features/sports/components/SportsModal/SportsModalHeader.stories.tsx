@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import React from "react";
 import { ModalsArea } from "Features/sports/components/Modals";
 import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";

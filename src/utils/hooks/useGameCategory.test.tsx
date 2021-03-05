@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { mount } from "enzyme";
 import { getGameCategory } from "Api/api.casinoPlayerGames";
@@ -15,9 +14,7 @@ jest.mock("Api/api.casinoPlayerGames", () => ({
   getGameCategory: jest.fn(),
 }));
 
-// $FlowIgnore
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReturnValue' does not exist on type ... Remove this comment to see the full error message
-getGameCategory.mockReturnValue(Promise.resolve(gameCategory));
+(getGameCategory as jest.Mock).mockReturnValue(Promise.resolve(gameCategory));
 
 const slug = "tiger-rush";
 const state = {
@@ -30,9 +27,7 @@ const state = {
 
 describe("useGameCategory", () => {
   beforeEach(() => {
-    // $FlowIgnore
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockClear' does not exist on type '(slug... Remove this comment to see the full error message
-    getGameCategory.mockClear();
+    (getGameCategory as jest.Mock).mockClear();
   });
 
   describe("no data in store", () => {

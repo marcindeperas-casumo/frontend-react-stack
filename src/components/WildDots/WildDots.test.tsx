@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import * as R from "ramda";
 import { shallow } from "enzyme";
@@ -9,11 +8,10 @@ describe("WildDots", () => {
     R.times(() => {
       const random = Math.round(Math.random() * 100);
       const render = shallow(
-        // @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component.
         <WildDots numberOfDots={random} activeDotIndex={0} />
       );
 
-      expect(render).toHaveLength(random);
+      expect(render.children()).toHaveLength(random);
     }, 13);
   });
 
@@ -21,7 +19,6 @@ describe("WildDots", () => {
     R.times(() => {
       const random = Math.round(Math.random() * 99);
       const render = shallow(
-        // @ts-expect-error ts-migrate(2786) FIXME: 'WildDots' cannot be used as a JSX component.
         <WildDots
           numberOfDots={100}
           activeDotIndex={random}
@@ -30,7 +27,9 @@ describe("WildDots", () => {
       );
 
       expect(render.find(".c-wild-dot--active")).toHaveLength(1); // only one dot is active
-      expect(render.at(random).find(".c-wild-dot--active")).toHaveLength(1); // and it's under our index
+      expect(
+        render.children().at(random).find(".c-wild-dot--active")
+      ).toHaveLength(1); // and it's under our index
     }, 13);
   });
 });

@@ -1,10 +1,8 @@
-// @flow
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Duration } from "luxon";
+import type { LoginTimeLimit } from "Models/playOkay";
 import {
-  // @ts-expect-error ts-migrate(2724) FIXME: '"../../../../../models/playOkay"' has no exported... Remove this comment to see the full error message
-  type LoginTimeLimit,
   dailyLoginTimeLimitSelector,
   weeklyLoginTimeLimitSelector,
   monthlyLoginTimeLimitSelector,
@@ -23,25 +21,22 @@ const DEFAULT = {
 };
 
 export type UseTimeLimitsFormStateType = {
-  hrsPerDay: number,
-  hrsPerWeek: number,
-  hrsPerMonth: number,
-  minHrsPerDay: number,
-  minHrsPerWeek: number,
-  minHrsPerMonth: number,
-  maxHrsPerDay: number,
-  maxHrsPerWeek: number,
-  maxHrsPerMonth: number,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
-  setHrsPerDay: number => void,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
-  setHrsPerWeek: number => void,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
-  setHrsPerMonth: number => void,
-  dailyLimitErrorMessage: string,
-  weeklyLimitErrorMessage: string,
-  monthlyLimitErrorMessage: string,
-  anyLimitChanged: boolean,
+  hrsPerDay: number;
+  hrsPerWeek: number;
+  hrsPerMonth: number;
+  minHrsPerDay: number;
+  minHrsPerWeek: number;
+  minHrsPerMonth: number;
+  maxHrsPerDay: number;
+  maxHrsPerWeek: number;
+  maxHrsPerMonth: number;
+  setHrsPerDay: (n: number) => void;
+  setHrsPerWeek: (n: number) => void;
+  setHrsPerMonth: (n: number) => void;
+  dailyLimitErrorMessage: string;
+  weeklyLimitErrorMessage: string;
+  monthlyLimitErrorMessage: string;
+  anyLimitChanged: boolean;
 };
 
 export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
@@ -84,21 +79,18 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     minHrsPerDay,
     maxHrsPerDay,
     hrsPerDay,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const weeklyLimitErrorMessage = limitErrorMessage(
     minHrsPerWeek,
     maxHrsPerWeek,
     hrsPerWeek,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const monthlyLimitErrorMessage = limitErrorMessage(
     minHrsPerMonth,
     maxHrsPerMonth,
     hrsPerMonth,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     t
   );
   const anyLimitChanged =
@@ -136,11 +128,8 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     maxHrsPerDay,
     maxHrsPerWeek,
     maxHrsPerMonth,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerDay,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerWeek,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<SetStateAction<number>>' is not ass... Remove this comment to see the full error message
     setHrsPerMonth,
     dailyLimitErrorMessage,
     weeklyLimitErrorMessage,
@@ -154,8 +143,8 @@ export function limitErrorMessage(
   maxValue: number,
   newValue: number,
   t: {
-    form_value_too_low: ?string,
-    form_value_too_high: ?string,
+    form_value_too_low: string | undefined;
+    form_value_too_high: string | undefined;
   }
 ): string {
   if (newValue < minValue) {
@@ -168,6 +157,6 @@ export function limitErrorMessage(
   return "";
 }
 
-function isoLimitAsHours(limit: ?LoginTimeLimit) {
+function isoLimitAsHours(limit: LoginTimeLimit | undefined) {
   return limit ? Duration.fromISO(limit.limit).as("hours") : 0;
 }

@@ -1,7 +1,7 @@
-import * as React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { MockedProvider } from "@apollo/client/testing";
 import gql from "graphql-tag";
+import * as React from "react";
 import { wait } from "Utils/apolloTestUtils";
 import { useTranslationsGql } from "../useTranslationsGql";
 

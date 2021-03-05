@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import { GameRowSearchTitle } from "Components/GameRow";
@@ -76,10 +75,7 @@ describe("<GameRowSearchTitle />", () => {
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
     expect(rendered.find("DangerousHtml").length).toBe(1);
     expect(
-      rendered
-        .find("DangerousHtml")
-        .last()
-        .hasClass("t-color-grey-5")
+      rendered.find("DangerousHtml").last().hasClass("t-color-grey-5")
     ).toBe(true);
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });
@@ -98,10 +94,7 @@ describe("<GameRowSearchTitle />", () => {
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
     expect(rendered.find("DangerousHtml").length).toBe(1);
     expect(
-      rendered
-        .find("DangerousHtml")
-        .last()
-        .hasClass("t-color-grey-70")
+      rendered.find("DangerousHtml").last().hasClass("t-color-grey-70")
     ).toBe(true);
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });

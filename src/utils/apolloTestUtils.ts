@@ -2,14 +2,12 @@
  * Copied from: https://github.com/airbnb/enzyme/issues/2073#issuecomment-531488981
  * You can investigate if it still is needed :)
  */
-
-// @flow
 import { gql } from "@apollo/client";
+import { InMemoryCache } from "@apollo/client/cache";
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
-import { InMemoryCache } from "@apollo/client/cache";
 import { generateQueries } from "Utils/hooks/useTranslationsGql.utils";
-import introspectionQueryResultData from "Models/apollo/introspections.json";
+import introspectionsData from "Types/introspections.json";
 
 // https://github.com/wesbos/waait/blob/master/index.js
 export function wait(amount: number = 0): Promise<void> {
@@ -35,14 +33,11 @@ export async function waitAndUpdateWrapper(
 }
 
 export function getCacheWithIntrospections() {
-  return new InMemoryCache({
-    possibleTypes: introspectionQueryResultData,
-  });
+  return new InMemoryCache(introspectionsData);
 }
 
 export function generateTranslationsQuery(translationKeyIdMap: {
-  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
-  [string]: string,
+  [s: string]: string;
 }) {
   return gql`
     query TranslationsTestQuery {
@@ -53,10 +48,8 @@ export function generateTranslationsQuery(translationKeyIdMap: {
 
 export function generateTranslationsQueryMock(
   query: any,
-  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
-  translationKeyIdMap: { [string]: string },
-  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
-  translationKeyValueMap: { [string]: string }
+  translationKeyIdMap: { [s: string]: string },
+  translationKeyValueMap: { [s: string]: string }
 ) {
   return {
     request: {

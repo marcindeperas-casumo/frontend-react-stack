@@ -1,8 +1,6 @@
-// @flow
-
-import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
+import * as React from "react";
 import logger from "Services/logger";
 
 export const CMS_IMAGE_QUERY = gql`
@@ -13,13 +11,15 @@ export const CMS_IMAGE_QUERY = gql`
 
 type Props = {
   /** The key of the image in the CMS. */
-  id: string,
+  id: string;
   /** Additional css classes to add to the component */
-  className?: string,
+  className?: string;
 };
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-export const CmsImageContainer = ({ id, className }: Props): React.Node => {
+export const CmsImageContainer = ({
+  id,
+  className,
+}: Props): React.ReactNode => {
   const variables = { key: id };
   const { data, loading } = useQuery(CMS_IMAGE_QUERY, { variables });
 

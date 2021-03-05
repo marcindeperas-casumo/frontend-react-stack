@@ -1,13 +1,11 @@
-// @flow
-import * as React from "react";
 import { ButtonSecondary } from "@casumo/cmp-button";
+import * as React from "react";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 
 export function LimitHeaderButton(props: {
-  onClick: () => void,
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  variesForDesktop?: boolean,
+  onClick: () => void;
+  children: React.ReactNode;
+  variesForDesktop?: boolean;
 }) {
   if (props.variesForDesktop) {
     return (
@@ -27,8 +25,10 @@ export function LimitHeaderButton(props: {
   return <NormalVariant {...props} />;
 }
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-function NormalVariant(props: { onClick: () => void, children: React.Node }) {
+function NormalVariant(props: {
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
   return (
     <ButtonSecondary size="sm" onClick={props.onClick}>
       <span className="t-color-black">{props.children}</span>

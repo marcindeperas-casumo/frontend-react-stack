@@ -1,4 +1,3 @@
-// @flow
 import { initFetchAnnualOverview } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
 

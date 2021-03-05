@@ -1,25 +1,23 @@
-// @flow
 import * as React from "react";
 import { omit } from "ramda";
 import { useLocale, useJurisdiction } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '".."' has no exported member 'type'.
-import { type ModalContentComponent } from "Components/RSModal";
+import type { ModalContentComponent } from "Components/RSModal";
 import { SessionDetailsForLogout } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
 
 type ContentType = {
-  session_details_header: string,
-  balance: string,
-  money_wagered: string,
-  money_won: string,
-  money_left: string,
-  play_started: string,
-  play_ended: string,
-  last_status_alert: string,
-  logout_button_label: string,
-  logout_text: string,
-  logout_modal_title: string,
+  session_details_header: string;
+  balance: string;
+  money_wagered: string;
+  money_won: string;
+  money_left: string;
+  play_started: string;
+  play_ended: string;
+  last_status_alert: string;
+  logout_button_label: string;
+  logout_text: string;
+  logout_modal_title: string;
 };
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
@@ -41,7 +39,6 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   }
 
   return (
-    // @ts-expect-error ts-migrate(2741) FIXME: Property 'dismissModal' is missing in type '{ chil... Remove this comment to see the full error message
     <ModalSkin
       {...omit(["t"], props)}
       t={tForModalSkin}

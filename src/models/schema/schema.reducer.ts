@@ -1,5 +1,5 @@
-import { mergeDeepRight, path } from "ramda";
 import { combineReducers } from "redux";
+import { mergeDeepRight, path } from "ramda";
 import { types, ENTITY_KEYS } from "./schema.constants";
 
 const DEFAULT_STATE = {};

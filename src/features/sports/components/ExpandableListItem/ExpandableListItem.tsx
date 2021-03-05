@@ -1,28 +1,25 @@
-/* @flow */
-import React, { PureComponent } from "react";
-import classNames from "classnames";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../../node_modules/@types/react"... Remove this comment to see the full error message
-import type { Node } from "react";
 import { ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import React, { PureComponent } from "react";
+import classNames from "classnames";
 import { EVENT_PROPS, EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
 
 type Props = {
-  label: Node,
-  children: Node,
-  isExpanded?: boolean,
+  label: React.ReactNode;
+  children: React.ReactNode;
+  isExpanded?: boolean;
   data?: {
-    isOnboarding?: boolean,
-    sportName?: string,
-    sportId?: number,
-    groupId?: number,
-    groupName?: string,
-  },
+    isOnboarding?: boolean;
+    sportName?: string;
+    sportId?: number;
+    groupId?: number;
+    groupName?: string;
+  };
 };
 
 type State = {
-  isExpanded: boolean,
+  isExpanded: boolean;
 };
 
 export default class ExpandableListItem extends PureComponent<Props, State> {

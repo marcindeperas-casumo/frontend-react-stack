@@ -1,22 +1,21 @@
-// @flow
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
   /** The boolean that states if the promotion page has been fetched */
-  isFetched: boolean,
+  isFetched: boolean;
   /** The function that fetches the promotion page if not fetched yet */
-  startFetch: () => void,
+  startFetch: () => void;
   /** The link to the right promotion detailed view */
-  link: string,
+  link: string;
   /** The badge image of the promotion */
-  badge: string,
+  badge: string;
   /** The date range the promotion will run for. */
-  dates: string,
+  dates: string;
   /** The title of the promotion. */
-  title: string,
+  title: string;
 };
 
 class PromotionCardTeaser extends PureComponent<Props> {

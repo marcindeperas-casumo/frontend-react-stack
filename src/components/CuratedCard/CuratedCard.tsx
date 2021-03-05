@@ -1,8 +1,7 @@
-// @flow
-import React from "react";
 import { getApolloContext } from "@apollo/client";
-import classNames from "classnames";
 import Card from "@casumo/cmp-card";
+import React from "react";
+import classNames from "classnames";
 import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
@@ -23,13 +22,12 @@ import { CuratedCardHeader } from "./CuratedCardHeader";
 import "./CuratedCard.scss";
 
 type Props = {
-  className?: string,
-  market: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  curatedCard: ?A.CuratedCardQuery_curatedCard,
-  onLaunchGame: () => void,
-  navigateToSportsHash: (args: NavigateToSportsHashType) => void,
-  navigateById: (args: NavigateByIdType) => void,
+  className?: string;
+  market: string;
+  curatedCard: A.CuratedCardQuery["curatedCard"];
+  onLaunchGame: () => void;
+  navigateToSportsHash: (args: NavigateToSportsHashType) => void;
+  navigateById: (args: NavigateByIdType) => void;
 };
 
 export const CuratedCard = ({
@@ -46,7 +44,11 @@ export const CuratedCard = ({
     return null;
   }
 
-  const link = getLink({ ...curatedCard, market });
+  const link = getLink({
+    market,
+    type: curatedCard.type,
+    promotionSlug: curatedCard.promotionSlug,
+  });
   const isGame = getIsGame(curatedCard);
   const isSports = getIsSports(curatedCard);
   const trackData = getTrackData(curatedCard);
@@ -78,6 +80,7 @@ export const CuratedCard = ({
         eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
         data={trackData}
       />
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <TrackClick
         eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
         data={trackData}

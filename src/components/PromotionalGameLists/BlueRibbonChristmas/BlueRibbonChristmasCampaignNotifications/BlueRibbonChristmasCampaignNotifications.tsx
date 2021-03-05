@@ -1,20 +1,15 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-import { type PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
+import type { PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
 import { useJackpotsSubscription } from "../useJackpotsSubscription";
-import {
-  jackpotWidgetContentPage,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'type'.
-  type JackpotWidgetContentPage,
-} from "../blueRibbonConsts";
+import { jackpotWidgetContentPage } from "../blueRibbonConsts";
+import type { JackpotWidgetContentPage } from "../blueRibbonConsts";
 import "./blueRibbonChristmasCampaignNotifications.scss";
 
 export function BlueRibbonChristmasCampaignNotifications({

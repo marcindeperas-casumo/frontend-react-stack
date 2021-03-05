@@ -1,4 +1,3 @@
-// @flow
 import { createSelector } from "reselect";
 import { propEq, find, pathOr, propOr } from "ramda";
 import { limitTypes } from "./constants";

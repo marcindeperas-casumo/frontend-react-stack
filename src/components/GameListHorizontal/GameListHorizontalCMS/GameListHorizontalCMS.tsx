@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { GAME_LIST_IDS, URL_PREFIXES } from "Src/constants";
 import { GameListHorizontalExclusive } from "../GameListHorizontalExclusive";
@@ -22,6 +21,5 @@ const GAMES_LISTS =
 export const GameListHorizontalCMS = ({ id }: { id: string }) => {
   const GameList = GAMES_LISTS[id] || GAMES_LISTS.default;
 
-  // @ts-expect-error ts-migrate(2741) FIXME: Property 'numberOfGames' is missing in type '{ id:... Remove this comment to see the full error message
   return <GameList id={id} />;
 };

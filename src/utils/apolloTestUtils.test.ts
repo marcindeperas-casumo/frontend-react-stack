@@ -1,4 +1,3 @@
-// @flow
 import { gql } from "@apollo/client";
 import {
   generateTranslationsQuery,

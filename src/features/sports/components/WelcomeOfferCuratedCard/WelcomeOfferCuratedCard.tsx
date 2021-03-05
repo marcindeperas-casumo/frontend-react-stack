@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 // __FIX__ Why can't it resolve "Components/CuratedCard"?
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
@@ -10,9 +9,9 @@ import "./WelcomeOfferCuratedCard.scss";
 export const CMS_SLUG = "welcome-offer-sports";
 
 type Props = {
-  vertical: string,
-  hasDeposited: boolean,
-  currentHash?: string,
+  vertical: string;
+  hasDeposited: boolean;
+  currentHash?: string;
 };
 
 export const WelcomeOfferCuratedCard = ({

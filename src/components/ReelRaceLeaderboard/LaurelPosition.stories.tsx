@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { LaurelPosition } from "./LaurelPosition";
 
 const stories = storiesOf("ReelRaceLeaderboard/LaurelPosition", module);

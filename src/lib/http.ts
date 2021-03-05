@@ -3,7 +3,7 @@ import { stringify } from "qs";
 export type FetchType = (
   url: string,
   data?: Object,
-  options?: Object,
+  options?: Object
 ) => Promise<any>;
 
 export const DEFAULT_FETCH_OPTIONS = {
@@ -64,7 +64,6 @@ const del: FetchType = (url, options) =>
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
   });
-
 
 export default {
   del,

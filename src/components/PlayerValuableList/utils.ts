@@ -1,14 +1,13 @@
-//@flow
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 
 type OnCallbackEvent = {
-  event: string,
-  data: { success: string },
+  event: string;
+  data: { success: string };
 };
 
 export type ItemStateChangeEventHandler = {
-  unsubscribe: () => void,
+  unsubscribe: () => void;
 };
 
 export const subscribeToItemCreatedEvent = (

@@ -1,24 +1,22 @@
-// @flow
-import * as React from "react";
 import { useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './GetGamesRTPLight.graphql' or... Remove this comment to see the full error message
 import { GetGamesRTPLight } from "./GetGamesRTPLight.graphql";
 import { RtpTable } from "./RtpTable/RtpTable";
 
 export const CasinoGamesRTPLight = () => {
   const t = useTranslations<{
-    rtp_game_name: string,
-    rtp_value: string,
+    rtp_game_name: string;
+    rtp_value: string;
   }>("game-categories");
 
   const categoriesContent = useTranslations("game-categories", true);
   const query = "categories=SLOT_MACHINE";
   const { data, loading, fetchMore } = useQuery<
-    A.GetGamesRTP,
-    A.GetGamesRTPVariables
+    A.GetGamesRtpQuery,
+    A.GetGamesRtpQueryVariables
   >(GetGamesRTPLight, {
     variables: {
       query,

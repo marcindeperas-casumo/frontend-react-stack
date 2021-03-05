@@ -1,23 +1,21 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
-import { append, contains, reduce, ifElse, identity } from "ramda";
 import { LaurelIcon, TournamentIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
+import cx from "classnames";
+import * as R from "ramda";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 
 type Props = {
-  formattedPrizes: Array<string>,
-  t: TReelRacesContentPage,
+  formattedPrizes: Array<string>;
+  t: TReelRacesContentPage;
 };
 
 export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
   const isNotMobile = useIsScreenMinimumTablet();
-  const prizes = reduce(
-    // eslint-disable-next-line ramda/if-else-simplification
-    (acc, v) => ifElse(contains(v), identity, append(v))(acc),
+  const prizes = R.reduce(
+    (acc, v) => R.unless(R.contains(v), R.append(v), acc),
     []
   )(formattedPrizes);
 

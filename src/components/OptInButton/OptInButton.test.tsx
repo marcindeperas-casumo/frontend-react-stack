@@ -1,7 +1,6 @@
-// @flow
+import { ButtonPrimary } from "@casumo/cmp-button";
 import React from "react";
 import { shallow } from "enzyme";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import OptInButton from "./OptInButton";
 
 const props = {

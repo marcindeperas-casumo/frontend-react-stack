@@ -1,4 +1,3 @@
-// @flow
 import {
   modalStateSelector,
   isModalHiddenSelector,

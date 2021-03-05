@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import MockDate from "mockdate";
+import * as React from "react";
 import { isChromatic } from "Storybook/isNotChromatic";
 import { FiveMinuteBreakDrawerWidget } from "./FiveMinuteBreakDrawerWidget";
 

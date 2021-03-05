@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import { withFavouritesResult } from "../StageFavouritesContext/__mocks__/favouriteSportsSelectorContextResult";
@@ -23,7 +22,9 @@ describe("<FavouriteSportsSelectorListItem />", () => {
     expect(rendered.find("FavouriteListItem").props().label).toBe(
       footballGroup.name
     );
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isFavourite' does not exist on type 'HTM... Remove this comment to see the full error message
     expect(rendered.find("FavouriteListItem").props().isFavourite).toBe(false);
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'isFavouritable' does not exist on type '... Remove this comment to see the full error message
     expect(rendered.find("FavouriteListItem").props().isFavouritable).toBe(
       rendered.props().isFavouritable
     );

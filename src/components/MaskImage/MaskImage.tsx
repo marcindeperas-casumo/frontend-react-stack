@@ -1,23 +1,21 @@
-// @flow
-import * as React from "react";
 import { getImgixUrl } from "@casumo/cudl-react-utils";
+import * as React from "react";
 
 type Props = {
   /** An id for the masked item. This should be unique all throughout the page */
-  id: string,
+  id: string;
   /** Total width of the masked element */
-  width: number,
+  width: number;
   /** Total height of the masked element */
-  height: number,
+  height: number;
   /** Class name to attach to the masked item */
-  className?: string,
+  className?: string;
   /** The mask shape/s to clip the image */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
   /** The url of the image to be nasked */
-  imageUrl: string,
+  imageUrl: string;
   /** The imgix options to apply to the image */
-  imgixOpts?: {},
+  imgixOpts?: {};
 };
 
 const MaskImage = ({

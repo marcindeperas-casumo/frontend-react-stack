@@ -1,10 +1,9 @@
-// @flow
 import { useSelector } from "react-redux";
 import { walletAmountSelector, currencySelector } from "Models/handshake";
 
 type UseWalletAmountType = {
-  amount: number,
-  currency: string,
+  amount: number;
+  currency: string;
 };
 
 export function useWalletAmount(): UseWalletAmountType {

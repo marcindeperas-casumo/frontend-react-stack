@@ -1,20 +1,19 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
-import { slice } from "ramda";
 import { LaurelIcon, TournamentIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { slice } from "ramda";
+import cx from "classnames";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
-import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils/utils";
+import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 
 type Props = {
-  reelRace: A.ReelRacePreviousCard_ReelRace,
-  t: TReelRacesContentPage,
-  expanded: boolean,
+  reelRace: A.ReelRacePreviousCard_ReelRaceFragment;
+  t: TReelRacesContentPage;
+  expanded: boolean;
 };
 
 export function ReelRacePreviousCardWinners({
@@ -39,7 +38,7 @@ export function ReelRacePreviousCardWinners({
   );
 
   const renderRow = (
-    p: A.ReelRacePreviousCard_ReelRace_leaderboard,
+    p: A.ReelRacePreviousCard_ReelRaceFragment["leaderboard"][number],
     i: number,
     length: number,
     showPrizes: boolean = false

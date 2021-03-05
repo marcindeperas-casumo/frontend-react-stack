@@ -1,7 +1,6 @@
-// @flow
+import { ChevronDownIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { shallow } from "enzyme";
-import { ChevronDownIcon } from "@casumo/cmp-icons";
 import ExpandableListItem from "./ExpandableListItem";
 
 describe("<ExpandableListItem />", () => {

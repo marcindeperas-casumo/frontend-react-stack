@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
-import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
+import { map } from "ramda";
+import * as React from "react";
 import {
   interpolateTimeInterval,
   convertLuxonDurationObjectToSeconds,
@@ -40,54 +39,49 @@ const WANT_BREAK_AFTER_YES_OPTS = [
 ].map(convertLuxonDurationObjectToSeconds);
 
 export type ConfigurationFormContent = {
-  limit_your_budget: string,
-  use_all_balance: string,
-  error_budget_too_low: string,
-  error_budget_too_high: string,
-  limit_your_time: string,
-  get_status_alerts: string,
-  want_break_after: string,
-  want_break_after_opts: Array<{ value: string, label: string }>,
-  for_how_long: string,
-  play: string,
-  minutes_abbreviated: string,
-  hours_abbreviated: string,
-  days_abbreviated: string,
+  limit_your_budget: string;
+  use_all_balance: string;
+  error_budget_too_low: string;
+  error_budget_too_high: string;
+  limit_your_time: string;
+  get_status_alerts: string;
+  want_break_after: string;
+  want_break_after_opts: Array<{ value: string; label: string }>;
+  for_how_long: string;
+  play: string;
+  minutes_abbreviated: string;
+  hours_abbreviated: string;
+  days_abbreviated: string;
 };
 
 export type ConfigurationFormData = {
-  budget: number,
-  currency: string,
+  budget: number;
+  currency: string;
   /** in seconds */
-  time: number,
+  time: number;
   /** in seconds */
-  alertsEvery: number,
+  alertsEvery: number;
   /** in seconds */
-  breakAfter?: number,
+  breakAfter?: number;
 };
 
 type ConfigurationFormProps = {
-  t: ConfigurationFormContent,
-  balance: number,
-  currency: string,
-  locale: string,
-  fetchContentIfNecessary: () => void,
-  createSession: (formData: ConfigurationFormData) => void,
-  isCreatingSession: boolean,
+  t: ConfigurationFormContent;
+  balance: number;
+  currency: string;
+  locale: string;
+  fetchContentIfNecessary: () => void;
+  createSession: (formData: ConfigurationFormData) => void;
+  isCreatingSession: boolean;
 };
 
 type IsPlayActiveType = {
-  balance: number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  budget: ?number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  time: ?number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  alertsEvery: ?number,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  wantsBreak: ?boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  breakAfter: ?number,
+  balance: number;
+  budget: number | undefined;
+  time: number | undefined;
+  alertsEvery: number | undefined;
+  wantsBreak: boolean | undefined;
+  breakAfter: number | undefined;
 };
 
 export function ConfigurationForm(props: ConfigurationFormProps) {

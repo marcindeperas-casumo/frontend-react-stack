@@ -1,10 +1,8 @@
-// @flow
 import * as R from "ramda";
 
 const playerOptedIn = R.propEq("optedIn", true);
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export function getCurrentReelRace<T>(reelRaces: Array<T>): ?T {
+export function getCurrentReelRace<T>(reelRaces: Array<T>): T | undefined {
   const isNotFinished = R.propSatisfies(R.lt(Date.now()), "endTime");
   const optedNotFinished = R.allPass([isNotFinished, playerOptedIn]);
 
@@ -17,8 +15,7 @@ export function getCurrentReelRace<T>(reelRaces: Array<T>): ?T {
   )(reelRaces);
 }
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-export function getClosestReelRace<T>(reelRaces: Array<T>): ?T {
+export function getClosestReelRace<T>(reelRaces: Array<T>): T | undefined {
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'T'.
   return R.pipe(
     R.sortBy(R.prop("startTime")),
@@ -28,10 +25,10 @@ export function getClosestReelRace<T>(reelRaces: Array<T>): ?T {
 }
 
 export const calculateProgress = (
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  startTime: ?number = null,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  endTime: ?number = null,
+  // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+  startTime: number = null | undefined,
+  // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+  endTime: number = null | undefined,
   now: number = Date.now()
 ) => {
   if (!startTime || !endTime || now < startTime) {

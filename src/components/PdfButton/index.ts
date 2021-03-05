@@ -1,6 +1,3 @@
-// @flow
-export {
-  TransactionsAnnualOverviewPdfButtonContainer as TransactionsAnnualOverviewPdfButton,
-} from "./TransactionsAnnualOverviewPdfButtonContainer";
+export { TransactionsAnnualOverviewPdfButtonContainer as TransactionsAnnualOverviewPdfButton } from "./TransactionsAnnualOverviewPdfButtonContainer";
 
 export { PdfButton } from "./PdfButton";

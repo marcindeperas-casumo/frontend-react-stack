@@ -1,10 +1,8 @@
-// @flow
 import * as React from "react";
 import cx from "classnames";
 import { useTranslations } from "Utils/hooks";
 import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../utils/hooks/useCurrentReelRaceInfo"... Remove this comment to see the full error message
-import { type CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
+import type { CurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
@@ -21,10 +19,9 @@ import { PointsView } from "./views/PointsView";
 import "./ReelRaceIcon.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void,
-  currentRace: ?CurrentReelRaceInfo,
-  className?: string,
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  currentRace: CurrentReelRaceInfo | undefined;
+  className?: string;
 };
 
 export const ReelRaceIcon = ({ onClick, currentRace, className }: Props) => {
@@ -106,7 +103,9 @@ function AnimatedReelRaceWidget() {
     const animationInClass = Array.from(activeViewClassList).find(
       x => x === animationClasses.in
     );
-    animationInClass && activeViewClassList.remove(animationInClass);
+    if (animationInClass) {
+      activeViewClassList.remove(animationInClass);
+    }
     activeViewClassList.add(animationClasses.out);
 
     // animate in next view
@@ -121,7 +120,7 @@ function AnimatedReelRaceWidget() {
     activeView.current = nextView;
 
     timer.scheduleIn(refreshProgress, VIEW_CHANGE_INTERVAL_MS);
-  }, [refs, timer]);
+  }, [timer]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     timer.scheduleIn(refreshProgress, INITIAL_VIEW_CHANGE_INTERVAL_MS);

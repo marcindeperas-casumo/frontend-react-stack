@@ -1,19 +1,18 @@
-// @flow
-import * as React from "react";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import { navigateById } from "Services/NavigationService";
 import NotEnoughFundsImage from "./NotEnoughFunds.svg";
 import "./NotEnoughFunds.scss";
 
 type Props = {
-  onClick: () => void,
+  onClick: () => void;
   t: {
-    not_enough_funds: string,
-    not_enough_funds_subtext: string,
-    not_enough_funds_button_label: string,
-  },
+    not_enough_funds: string;
+    not_enough_funds_subtext: string;
+    not_enough_funds_button_label: string;
+  };
 };
 
 export function NotEnoughFunds(props: Props) {

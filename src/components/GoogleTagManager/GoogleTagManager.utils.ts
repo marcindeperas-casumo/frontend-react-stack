@@ -1,19 +1,12 @@
-// @flow
 import type { GTMDataLayer, GTMScriptParams } from "./GoogleTagManager.types";
 
-export const getDataLayerSnippet = (
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
-  dataLayer?: $PropertyType<GTMDataLayer, "dataLayer">
-) => {
+export const getDataLayerSnippet = (dataLayer?: GTMDataLayer["dataLayer"]) => {
   return `window.dataLayer = window.dataLayer || []; if (dataLayer) { window.dataLayer.push(${JSON.stringify(
     dataLayer || {}
   )})}`;
 };
 
-export const getGTMScript = (
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$PropertyType'.
-  containerId: $PropertyType<GTMScriptParams, "containerId">
-) => {
+export const getGTMScript = (containerId: GTMScriptParams["containerId"]) => {
   return `
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

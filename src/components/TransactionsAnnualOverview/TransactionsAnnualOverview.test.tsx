@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
@@ -16,6 +15,7 @@ describe("TransactionsAnnualOverview", () => {
   };
 
   test("should display a list of rows with a label and a value with currency", () => {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ selectedYear: string; locale: string; t: {... Remove this comment to see the full error message
     const rendered = shallow(<TransactionsAnnualOverview {...props} />);
     const rows = rendered.find("ListItem");
 

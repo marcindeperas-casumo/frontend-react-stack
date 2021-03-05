@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { fetchPageBySlug, getFieldIfNotSuspicious } from "Models/cms";
 import { PromotionTeaserList } from "./PromotionTeaserList";

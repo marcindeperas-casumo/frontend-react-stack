@@ -20,14 +20,18 @@ export const URL = {
 export const gameSlugToId = (
   slug: string
 ): Promise<{
-  id: string,
-  name: string,
+  id: string;
+  name: string;
 }> => clientHttp.get(`${URL.GAME_SLUG_TO_ID}/${slug}`, {}, DEFAULT_HEADERS);
 
-export const gameById = (gameId: string): Promise<{ category: string | undefined }> =>
+export const gameById = (
+  gameId: string
+): Promise<{ category: string | undefined }> =>
   clientHttp.get(`${URL.GAMES}/${gameId}`, {}, DEFAULT_HEADERS);
 
-export async function getGameCategory(slug: string): Promise<string | undefined> {
+export async function getGameCategory(
+  slug: string
+): Promise<string | undefined> {
   if (!slug) {
     return;
   }

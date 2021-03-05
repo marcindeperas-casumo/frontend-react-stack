@@ -1,31 +1,27 @@
-// @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../node_modules/@types/react"' has ... Remove this comment to see the full error message
-import type { Node } from "react";
 
 const DefaultFallback = () => null;
 
 export type Props = {
   /** The id of the DOM element to render into */
-  hostElementId: string,
+  hostElementId: string;
   /** The children to render */
-  children: Node,
+  children: React.ReactChild;
   /** If true the DOM element will be cleared before rendering into it */
-  clearElement?: boolean,
+  clearElement?: boolean;
   /** The fallback component, e.g. <Foo />. Defaults to null. */
-  fallback?: Node,
+  fallback?: React.ReactNode;
   /** Whether to render the fallback component or not */
-  showFallback?: boolean,
+  showFallback?: boolean;
 };
 
-export default class Portal extends PureComponent<Props> {
+export default class Portal extends React.PureComponent<Props> {
   rootEl: HTMLElement | null;
   el: HTMLElement;
 
   constructor(props: Props) {
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    super((props: Props));
+    super(props);
 
     this.rootEl = document.getElementById(this.props.hostElementId);
     this.el = document.createElement("div");

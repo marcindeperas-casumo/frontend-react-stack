@@ -1,7 +1,7 @@
-import * as React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
+import * as React from "react";
 import { shallow, mount } from "enzyme";
-import { useComponentQueueState } from "../useComponentQueueState.js";
+import { useComponentQueueState } from "../useComponentQueueState";
 
 jest.useFakeTimers();
 
@@ -32,7 +32,7 @@ describe("useComponentQueueState Hook", () => {
       useComponentQueueState({ config: mockedConfig })
     );
 
-    act(() => result.current.show("component1"));
+    act(() => result.current.show("component1", {}));
     expect(result.current.queue.length).toBe(1);
 
     act(() => result.current.close());
@@ -46,8 +46,8 @@ describe("useComponentQueueState Hook", () => {
     const { queue, show } = result.current;
 
     expect(queue.length).toBe(0);
-    act(() => show("component1"));
-    act(() => show("component2"));
+    act(() => show("component1", {}));
+    act(() => show("component2", {}));
     expect(result.current.queue.length).toBe(2);
 
     const CurrentComponent = result.current.queue[0].component;
@@ -61,7 +61,7 @@ describe("useComponentQueueState Hook", () => {
       useComponentQueueState({ config: mockedConfig })
     );
 
-    act(() => result.current.show("component1"));
+    act(() => result.current.show("component1", {}));
     expect(result.current.queue.length).toBe(1);
 
     let CurrentComponent = result.current.queue[0].component;
@@ -70,7 +70,7 @@ describe("useComponentQueueState Hook", () => {
     expect(rendered.props()["data-test-id"]).toBe("component1");
 
     // component3 should replace current one (closeCurrent: true)
-    act(() => result.current.show("component3"));
+    act(() => result.current.show("component3", {}));
     CurrentComponent = result.current.queue[0].component;
     const rendered2 = shallow(<CurrentComponent />);
     expect(rendered2.props()["data-test-id"]).toBe("component3");
@@ -81,13 +81,13 @@ describe("useComponentQueueState Hook", () => {
       useComponentQueueState({ config: mockedConfig })
     );
 
-    act(() => result.current.show("component1"));
+    act(() => result.current.show("component1", {}));
 
     const CurrentComponent = result.current.queue[0].component;
     const wrapper = mount(<CurrentComponent />);
     const initInstance = wrapper.getDOMNode();
 
-    act(() => result.current.show("component2"));
+    act(() => result.current.show("component2", {}));
     wrapper.update();
 
     expect(initInstance).toBe(wrapper.getDOMNode());

@@ -1,6 +1,6 @@
+import Text from "@casumo/cmp-text";
 import React from "react";
 import { shallow } from "enzyme";
-import Text from "@casumo/cmp-text";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
 describe("ScrollableListTitleRow", () => {
@@ -17,12 +17,7 @@ describe("ScrollableListTitleRow", () => {
   });
 
   test("render seeMore.text and an seeMore.url on an <a> tag if seeMore is set", () => {
-    expect(
-      rendered
-        .find(Text)
-        .dive()
-        .text()
-    ).toMatch(seeMore.text);
+    expect(rendered.find(Text).dive().text()).toMatch(seeMore.text);
 
     expect(rendered.find("Link").prop("to")).toEqual(seeMore.url);
   });

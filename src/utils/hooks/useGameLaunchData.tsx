@@ -1,4 +1,3 @@
-// @flow
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import logger from "Services/logger";
@@ -13,10 +12,9 @@ import { useUrlPrefix } from "Utils/hooks";
 import { languageSelector } from "Models/handshake";
 
 type Props = {
-  slug: string,
-  playForFun: boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  remoteGameLaunchData: ?Object,
+  slug: string;
+  playForFun: boolean;
+  remoteGameLaunchData: Object | undefined;
 };
 
 /* eslint-disable sonarjs/cognitive-complexity */
@@ -79,7 +77,7 @@ export const useGameLaunchData = ({
   const determineWhichGameProviderModel = () => {
     return remoteGameLaunchData
       ? // @ts-expect-error ts-migrate(2554) FIXME: Expected 5 arguments, but got 4.
-               getGameModel(remoteGameLaunchData, gameRef, language, environment)
+        getGameModel(remoteGameLaunchData, gameRef, language, environment)
       : gameProviderModel;
   };
 

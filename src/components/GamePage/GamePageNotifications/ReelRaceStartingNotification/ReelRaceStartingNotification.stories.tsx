@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 
 const stories = storiesOf(

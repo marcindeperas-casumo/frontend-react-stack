@@ -1,6 +1,5 @@
-// @flow
-import { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
+import { useEffect, useState } from "react";
 
 // Can be used for any window resize events triggering rerender
 export const useResize = () => {

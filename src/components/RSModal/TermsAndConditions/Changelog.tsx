@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { CheckIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import {
   formatWithDateMedium,
@@ -12,12 +11,11 @@ import "./changelog.scss";
 
 type Props = {
   t: {
-    changelog_title: string,
-    date_changes_accepted: string,
-  },
-  changelog: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  ackTimestamp: ?number,
+    changelog_title: string;
+    date_changes_accepted: string;
+  };
+  changelog: string;
+  ackTimestamp: number | undefined;
 };
 
 export function Changelog({ t, ...props }: Props) {

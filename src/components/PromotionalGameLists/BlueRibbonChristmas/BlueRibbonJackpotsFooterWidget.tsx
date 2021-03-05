@@ -1,10 +1,9 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { useInterval } from "react-use";
+import * as React from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { useInterval } from "react-use";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
@@ -16,20 +15,20 @@ import type {
 import "./blueRibbonJackpotsFooterWidget.scss";
 
 type BlueRibbonJackpotEntry = {
-  value: number,
-  label: string,
-  status: JackpotStatus,
-  potId: string,
-  communityWinRatio: number,
-  mainWinRatio: number,
+  value: number;
+  label: string;
+  status: JackpotStatus;
+  potId: string;
+  communityWinRatio: number;
+  mainWinRatio: number;
 };
 
 export function BlueRibbonJackpotsFooterWidget({
   jackpots,
   t,
 }: {
-  jackpots: Array<BlueRibbonJackpotEntry>,
-  t: JackpotWidgetContentPage,
+  jackpots: Array<BlueRibbonJackpotEntry>;
+  t: JackpotWidgetContentPage;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
@@ -132,11 +131,11 @@ export function BlueRibbonJackpotsFooterWidget({
 }
 
 type JackpotRowProps = {
-  formattedValue: string,
-  label: string,
-  image: string,
-  explanation?: string,
-  className: string,
+  formattedValue: string;
+  label: string;
+  image: string;
+  explanation?: string;
+  className: string;
 };
 function JackpotRow({
   formattedValue,

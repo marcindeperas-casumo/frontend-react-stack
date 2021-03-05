@@ -1,14 +1,14 @@
-import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React, { PureComponent } from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { ProgressBar } from "Components/Progress";
 import { isMaxLevel } from "Models/adventure";
 import type { Adventurer, AdventureContent } from "Models/adventure";
 
 export type Props = {
-  adventurer: Adventurer,
-  content: AdventureContent,
+  adventurer: Adventurer;
+  content: AdventureContent;
 };
 
 export default class AdventureProgressBar extends PureComponent<Props> {

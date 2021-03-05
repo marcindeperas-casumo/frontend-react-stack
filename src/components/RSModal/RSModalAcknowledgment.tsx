@@ -1,11 +1,10 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 
 type Props = {
-  onPress: () => void,
-  title: string,
+  onPress: () => void;
+  title: string;
 };
 
 export function ModalAcknowledgment(props: Props) {

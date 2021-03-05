@@ -1,8 +1,7 @@
-//@flow
-import * as React from "react";
-import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/client/testing";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as React from "react";
+import { mount } from "enzyme";
 import { wait, getCacheWithIntrospections } from "Utils/apolloTestUtils";
 import { ValuableCard } from "Components/ValuableCard";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";

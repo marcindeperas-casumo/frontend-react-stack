@@ -1,9 +1,7 @@
-//@flow
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../node_modules/@types/react"' h... Remove this comment to see the full error message
-import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
+import * as React from "react";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { ContentReplacer } from "Components/ContentReplacer";
 
@@ -14,11 +12,11 @@ const RealityCheck = ({
   frequencyOffLabel,
   enabled,
 }: {
-  title: ?string,
-  interval: number,
-  frequencyLabel: ?string,
-  frequencyOffLabel: ?string,
-  enabled: boolean,
+  title: string | undefined;
+  interval: number;
+  frequencyLabel: string | undefined;
+  frequencyOffLabel: string | undefined;
+  enabled: boolean;
 }) => (
   <SettingsRow text={<Text className="t-color-grey-70">{title}</Text>}>
     <Flex justify="center">
@@ -44,10 +42,10 @@ const LinkOrNode = ({
   link,
   children,
 }: {
-  enabled: boolean,
-  link: string,
-  children: Node,
-}) => (enabled ? <a href={link}>{children}</a> : children);
+  enabled: boolean;
+  link: string;
+  children: React.ReactChild;
+}) => <>{enabled ? <a href={link}>{children}</a> : children}</>;
 
 export const RealityCheckField = ({
   link,
@@ -57,15 +55,12 @@ export const RealityCheckField = ({
   frequencyLabel,
   frequencyOffLabel,
 }: {
-  link: string,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'enabled'.
-  enabled: boolean,
-  title: ?string,
-  interval: number,
-  frequencyLabel: ?string,
-  frequencyOffLabel: ?string,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'enabled'.
-  enabled: boolean,
+  link: string;
+  enabled: boolean;
+  title: string | undefined;
+  interval: number;
+  frequencyLabel: string | undefined;
+  frequencyOffLabel: string | undefined;
 }) => (
   <LinkOrNode link={link} enabled={enabled}>
     <RealityCheck

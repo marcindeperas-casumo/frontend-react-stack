@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { useTimeoutFn } from "react-use";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { MegaWinsBooster } from "./MegaWinsBooster";
 
@@ -17,27 +16,35 @@ if (isNotChromatic) {
   });
 
   stories.add("mega win", () => {
-    const [megaWins, setMegaWins] = React.useState(0);
+    function MegaWinsBoosterStory() {
+      const [megaWins, setMegaWins] = React.useState(0);
 
-    useTimeoutFn(() => {
-      setMegaWins(1);
-    }, 500);
+      useTimeoutFn(() => {
+        setMegaWins(1);
+      }, 500);
 
-    return <MegaWinsBooster {...props} megaWins={megaWins} />;
+      return <MegaWinsBooster {...props} megaWins={megaWins} />;
+    }
+
+    return <MegaWinsBoosterStory />;
   });
 } else {
   stories.add("Chromatic", () => {
-    const [megaWins, setMegaWins] = React.useState(0);
+    function MegaWinsBoosterStory() {
+      const [megaWins, setMegaWins] = React.useState(0);
 
-    useTimeoutFn(() => {
-      setMegaWins(1);
-    }, 500);
+      useTimeoutFn(() => {
+        setMegaWins(1);
+      }, 500);
 
-    return (
-      <>
-        <MegaWinsBooster {...props} megaWins={0} />
-        <MegaWinsBooster {...props} megaWins={megaWins} />
-      </>
-    );
+      return (
+        <>
+          <MegaWinsBooster {...props} megaWins={0} />
+          <MegaWinsBooster {...props} megaWins={megaWins} />
+        </>
+      );
+    }
+
+    return <MegaWinsBoosterStory />;
   });
 }

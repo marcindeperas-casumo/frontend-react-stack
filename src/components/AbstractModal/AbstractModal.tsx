@@ -1,20 +1,20 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import classNames from "classnames";
 import ReactModal from "react-modal";
 import { CloseButton as CloseBtn } from "./CloseButton";
 import "./AbstractModal.scss";
 
 type OwnProps = {
-    children: React.ReactChild;
-    CloseButton: React.Component<any>;
-    hideModal: () => void;
-    isOpen: boolean;
-    className?: string;
+  children: React.ReactChild;
+  CloseButton: React.ComponentType<{ onClick: () => void }>;
+  hideModal: () => void;
+  isOpen: boolean;
+  className?: string;
 };
 
-type Props = OwnProps & typeof AbstractModal.defaultProps;
+type Props = OwnProps & ReactModal.Props;
 
-export class AbstractModal extends PureComponent<Props> {
+export class AbstractModal extends React.PureComponent<Props> {
   static defaultProps = {
     CloseButton: CloseBtn,
   };

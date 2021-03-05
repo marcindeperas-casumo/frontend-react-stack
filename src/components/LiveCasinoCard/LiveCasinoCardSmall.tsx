@@ -1,9 +1,8 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import { ButtonSecondary } from "@casumo/cmp-button";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import { convertHTMLToString, renderBets, interpolate } from "Utils";
@@ -12,15 +11,15 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardData } from "./LiveCasinoCardData";
 
 export type Props = {
-  game: A.GameTile_Game,
-  liveCasinoTable?: A.LiveCasinoCardSmallDataQuery_liveCasinoTablesById,
+  game: A.GameTile_GameFragment;
+  liveCasinoTable?: A.LiveCasinoCardSmallDataQuery["liveCasinoTablesById"];
   t?: {
-    bet_behind: string,
-    open_seats: string,
-    play_now: string,
-    opens_at: string,
-    table_closed: string,
-  },
+    bet_behind: string;
+    open_seats: string;
+    play_now: string;
+    opens_at: string;
+    table_closed: string;
+  };
 };
 
 const cardVerticalCenter = "48.19%";
@@ -91,7 +90,6 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
         {liveCasinoTable?.operationHours.startTime && (
           <ButtonSecondary size="xs" className="u-margin">
             {interpolate(t?.opens_at, {
-              // $FlowIgnore: Checked above
               time: liveCasinoTable?.operationHours.startTime,
             })}
           </ButtonSecondary>

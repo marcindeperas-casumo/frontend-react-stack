@@ -1,4 +1,3 @@
-//@flow
 import { createSelector } from "reselect";
 import { prop, propOr } from "ramda";
 import type { LocalPaymentMethodType } from "./piq.types";
@@ -11,10 +10,7 @@ export const getAllMethodsConfigsSelector = createSelector(
 );
 
 export const methodConfigSelector = (methodType: LocalPaymentMethodType) =>
-  createSelector(
-    getAllMethodsConfigsSelector,
-    propOr({}, methodType)
-  );
+  createSelector(getAllMethodsConfigsSelector, propOr({}, methodType));
 
 export const methodsConfigsSelector = (
   methodTypes: Array<LocalPaymentMethodType>

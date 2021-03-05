@@ -1,11 +1,10 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import {
   CasinoTabSelectedIcon,
   CasumoProfileIcon,
   FootballIcon,
 } from "@casumo/cmp-icons";
+import React from "react";
 import { Navbar } from "Components/Navbar";
 const stories = storiesOf("Navbar", module);
 const items = [

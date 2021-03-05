@@ -1,73 +1,73 @@
 import { injectScript } from "Utils";
 import logger from "Services/logger";
-// @ts-expect-error ts-migrate(1149) FIXME: File name '/Users/michalmokijewski/Projects/casumo... Remove this comment to see the full error message
 import { getUrlForEnv } from "./netentConstants";
 export async function getNetentGlobalObject(env) {
-    if (!(window as any).netent) {
-        await injectScript(getUrlForEnv(env));
-    }
-    return (window as any).netent;
+  if (!(window as any).netent) {
+    await injectScript(getUrlForEnv(env));
+  }
+  return (window as any).netent;
 }
 export async function tryLaunchGame(env, config, onSuccess, onError) {
-    const netent = await getNetentGlobalObject(env);
-    if (netent) {
-        if (config.liveCasinoHost) {
-            //eslint-disable-next-line fp/no-let
-            let tables;
-            try {
-                //eslint-disable-next-line fp/no-mutation
-                tables = await getLiveTablesForGames(env, {
-                    gameServerURL: `https://${config.liveCasinoHost}`,
-                    staticServer: config.staticServer,
-                    casinoId: config.casinoId,
-                });
-            }
-            catch (error) {
-                return onError(`no open tables for ${config.gameId}`);
-            }
-            return netent.launch({
-                ...config,
-                tableId: getFirstOpenTableForGame(config.gameId, tables),
-            }, onSuccess, onError);
-        }
-        else {
-            return netent.launch(config, onSuccess, onError);
-        }
+  const netent = await getNetentGlobalObject(env);
+  if (netent) {
+    if (config.liveCasinoHost) {
+      //eslint-disable-next-line fp/no-let
+      let tables;
+      try {
+        //eslint-disable-next-line fp/no-mutation
+        tables = await getLiveTablesForGames(env, {
+          gameServerURL: `https://${config.liveCasinoHost}`,
+          staticServer: config.staticServer,
+          casinoId: config.casinoId,
+        });
+      } catch (error) {
+        return onError(`no open tables for ${config.gameId}`);
+      }
+      return netent.launch(
+        {
+          ...config,
+          tableId: getFirstOpenTableForGame(config.gameId, tables),
+        },
+        onSuccess,
+        onError
+      );
+    } else {
+      return netent.launch(config, onSuccess, onError);
     }
-    return onError("global netent object not found");
+  }
+  return onError("global netent object not found");
 }
 export async function getLiveTablesForGames(env, config) {
-    const netent = await getNetentGlobalObject(env);
-    if (netent) {
-        return await new Promise((resolve, reject) => {
-            netent.getOpenTables(config, resolve, reject);
-        });
-    }
-    else {
-        logger.error("global netent object not found");
-    }
-    return null;
+  const netent = await getNetentGlobalObject(env);
+  if (netent) {
+    return await new Promise((resolve, reject) => {
+      netent.getOpenTables(config, resolve, reject);
+    });
+  } else {
+    logger.error("global netent object not found");
+  }
+  return null;
 }
 export const getOpenTablesByGame = tables => {
-    return Object.values(tables).reduce((mappedTables, table) => {
+  return Object.values(tables).reduce((mappedTables, table) => {
+    return {
+      // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
+      ...mappedTables,
+      ...table.games.reduce((games, game) => {
         return {
-            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
-            ...mappedTables,
-            ...table.games.reduce((games, game) => {
-                return {
-                    ...games,
-                    [game.gameId]: {
-                        ...games[game.gameId],
-                        openTables: [
-                            ...(mappedTables[game.gameId]?.openTables || []),
-                            ...[table.tableId],
-                        ],
-                    },
-                };
-            }, {}),
+          ...games,
+          [game.gameId]: {
+            ...games[game.gameId],
+            openTables: [
+              ...(mappedTables[game.gameId]?.openTables || []),
+              ...[table.tableId],
+            ],
+          },
         };
-    }, {});
+      }, {}),
+    };
+  }, {});
 };
 export const getFirstOpenTableForGame = (gameId, tables) => {
-    return getOpenTablesByGame(tables)[gameId]?.openTables[0];
+  return getOpenTablesByGame(tables)[gameId]?.openTables[0];
 };

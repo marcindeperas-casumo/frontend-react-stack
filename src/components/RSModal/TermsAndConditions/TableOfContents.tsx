@@ -1,13 +1,12 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 
 type Props = {
   tableOfContents: Array<{
-    href: string,
-    text: string,
-  }>,
+    href: string;
+    text: string;
+  }>;
 };
 
 export function TableOfContents(props: Props) {

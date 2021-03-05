@@ -1,10 +1,9 @@
-// @flow
 import React from "react";
 import { COMPONENT_MAPPING } from "Components/ComponentBuilder/ComponentBuilder.mapping";
 import logger from "Services/logger";
 
 type ContentDefinition = {
-  acf_fc_layout: string,
+  acf_fc_layout: string;
 };
 
 export const mapContentDefinitionToComponent = (

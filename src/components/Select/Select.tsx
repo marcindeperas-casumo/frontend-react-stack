@@ -1,20 +1,19 @@
-// @flow
-import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon, ChevronDownIcon, CheckIcon } from "@casumo/cmp-icons";
+import classNames from "classnames";
+import * as React from "react";
 import { isMobile } from "Components/ResponsiveLayout";
 import "./select.scss";
 
 type Props<T> = {
-  onChange: T => void,
-  value: ?T,
-  // @ts-expect-error ts-migrate(2693) FIXME: 'T' only refers to a type, but is being used as a ... Remove this comment to see the full error message
-  options: { [T]: string },
+  onChange: (t: T) => void;
+  value: T | undefined;
+  // @ts-expect-error ts-migrate(1170) FIXME: A computed property name in a type literal must re... Remove this comment to see the full error message
+  options: { [T]: string };
   /** value used when nothing is selected */
-  emptyState: string,
-  selectClassNames?: string,
+  emptyState: string;
+  selectClassNames?: string;
 };
 export function Select<T>(props: Props<T>) {
   const [width, setWidth] = React.useState(0);
@@ -75,8 +74,8 @@ export function Select<T>(props: Props<T>) {
             value={props.value || ""}
             className={pillClass}
             style={{ width }}
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-            onChange={event => props.onChange((event.target.value: T))}
+            // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
+            onChange={event => props.onChange(event.target.value)}
           >
             <option value="" disabled hidden>
               {props.emptyState}
@@ -116,7 +115,7 @@ export function Select<T>(props: Props<T>) {
                   className="t-border-bottom u-padding--md"
                   onClick={() => {
                     setDesktopSelect(false);
-                    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+                    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
                     props.onChange(key);
                   }}
                 >
@@ -154,7 +153,6 @@ export function Select<T>(props: Props<T>) {
           {props.value ? (
             <CloseIcon
               className="t-color-white c-chip__x-icon"
-              // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
               onClick={() => props.onChange(null)}
             />
           ) : (

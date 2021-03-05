@@ -1,21 +1,18 @@
-// @flow
-
-import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
+import * as React from "react";
 import * as A from "Types/apollo";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
 type Props = {
   /** The dictionary key for this translation, final key used will be `{key}.(singular/plural) depending on isPlural` */
-  termKey: string,
+  termKey: string;
   /** Whether the component should use the plural or singular version on the component */
-  isPlural?: boolean,
+  isPlural?: boolean;
   /** A replacements map, for variable replacements in the dictionary term string */
-  replacements?: Replacements,
+  replacements?: Replacements;
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children?: (dictionaryTerm: string) => React.Node,
+  children?: (dictionaryTerm: string) => React.ReactNode;
 };
 
 export const PLURALISABLE_DICTIONARY_TERM_QUERY = gql`
@@ -32,8 +29,7 @@ export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
 const getPluralisableDictionaryTerm = (
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  data: ?A.PluralisableDictionaryTermQuery,
+  data: A.PluralisableDictionaryTermQuery | undefined,
   loading: boolean,
   replacements?: Replacements,
   // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
@@ -62,8 +58,7 @@ export const PluralisableDictionaryTerm = ({
   replacements,
   isPlural = false,
   children,
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-}: Props): React.Node => {
+}: Props): React.ReactNode => {
   const variables = {
     singularKey: createSingularKey(termKey),
     pluralKey: createPluralKey(termKey),

@@ -1,5 +1,5 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
 import MockStore from "Components/MockStore";
@@ -19,6 +19,7 @@ const renderItem = game => (
 
 stories.add("Alphabetical", () => (
   <MockStore>
+    {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
     <SectionList sections={sections} renderItem={renderItem} />
   </MockStore>
 ));
@@ -26,6 +27,7 @@ stories.add("Alphabetical", () => (
 stories.add("Section with no games", () => (
   <MockStore>
     <SectionList
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       sections={[sections[0], { title: "I'm an empty section" }, sections[1]]}
       renderItem={renderItem}
     />

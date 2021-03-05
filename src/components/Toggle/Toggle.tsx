@@ -1,21 +1,20 @@
-// @flow
+import Text from "@casumo/cmp-text";
 import React from "react";
 import cx from "classnames";
-import Text from "@casumo/cmp-text";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import "./Toggle.scss";
 
 type Props = {
-  labelOn?: string,
-  labelOff?: string,
-  checked?: boolean,
-  onChange: (active: boolean) => void,
+  labelOn?: string;
+  labelOff?: string;
+  checked?: boolean;
+  onChange: (active: boolean) => void;
 };
 
 type InnerToggleProps = {
-  labelOn?: string,
-  labelOff?: string,
-  checked?: boolean,
+  labelOn?: string;
+  labelOff?: string;
+  checked?: boolean;
 };
 
 const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (

@@ -1,7 +1,6 @@
-// @flow
+import { gql, getApolloContext } from "@apollo/client";
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
-import { gql, getApolloContext } from "@apollo/client";
 import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import tracker from "Services/tracker";
@@ -10,11 +9,10 @@ import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsS
 import type { StageFavouritesAPI, Competition } from "./types";
 import StageFavouritesContext from "./StageFavouritesContext";
 type ProviderProps = {
-    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-    children: React.Node;
+  children: React.ReactNode;
 };
 type ProviderState = StageFavouritesAPI;
-export const FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT = gql `
+export const FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT = gql`
   fragment FavouriteSportsSelectorContext_Competition on EventGroup {
     id
     regionCode
@@ -23,7 +21,7 @@ export const FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT = gql
   }
   ${FavouriteCompetitionsSelectorModal.fragments.group}
 `;
-export const COMPETITION_SUGGESTIONS_QUERY = gql `
+export const COMPETITION_SUGGESTIONS_QUERY = gql`
   query FavouriteSportsSelectorContextCompetitionSuggestions($id: Int!) {
     topCompetitions(groupIds: [$id], count: 5) {
       ...FavouriteSportsSelectorContext_Competition
@@ -31,7 +29,7 @@ export const COMPETITION_SUGGESTIONS_QUERY = gql `
   }
   ${FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT}
 `;
-export const FAVOURITE_SPORTS_SELECTOR_CONTEXT = gql `
+export const FAVOURITE_SPORTS_SELECTOR_CONTEXT = gql`
   query FavouriteSportsSelectorContext {
     groups {
       id
@@ -48,208 +46,265 @@ export const FAVOURITE_SPORTS_SELECTOR_CONTEXT = gql `
   ${FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT}
   ${FavouriteSportsSelector.fragments.group}
 `;
-export const PLAYER_VERTICAL_QUERY = gql `
+export const PLAYER_VERTICAL_QUERY = gql`
   query PlayerVertical {
     player {
       vertical
     }
   }
 `;
-class StageFavouritesProvider extends React.Component<ProviderProps, ProviderState> {
-    static contextType = getApolloContext();
-    constructor(props: ProviderProps) {
-        super(props);
-        this.state = {
-            sports: [],
-            isFirstTimeSelectingFavourites: false,
-            isFirstTimeSelectingFavouriteCompetitions: false,
-            toggleFavouriteSport: this.toggleFavouriteSport,
-            toggleAllSports: this.toggleAllSports,
-            getSelectedSportsCount: this.getSelectedSportsCount,
-            setFavouriteCompetitions: this.setFavouriteCompetitions,
-            toggleFavouriteCompetition: this.toggleFavouriteCompetition,
-            getSelectedIds: this.getSelectedIds,
-            getSportNameById: this.getSportNameById,
-            isSelected: this.isSelected,
-            isSportsPlayer: false,
-            trackOnbordingSports: this.trackOnbordingSports,
-        };
-    }
-    componentDidMount() {
-        this.fetchSports();
-    }
-    async fetchSports() {
-        // fetch the initial data and store in state
-        const { data: { groups: sports }, }: {
-            data: A.FavouriteSportsSelectorContext;
-        } = await this.context.client.query({
-            query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
+class StageFavouritesProvider extends React.Component<
+  ProviderProps,
+  ProviderState
+> {
+  static contextType = getApolloContext();
+  constructor(props: ProviderProps) {
+    super(props);
+    this.state = {
+      sports: [],
+      isFirstTimeSelectingFavourites: false,
+      isFirstTimeSelectingFavouriteCompetitions: false,
+      toggleFavouriteSport: this.toggleFavouriteSport,
+      toggleAllSports: this.toggleAllSports,
+      getSelectedSportsCount: this.getSelectedSportsCount,
+      setFavouriteCompetitions: this.setFavouriteCompetitions,
+      toggleFavouriteCompetition: this.toggleFavouriteCompetition,
+      getSelectedIds: this.getSelectedIds,
+      getSportNameById: this.getSportNameById,
+      isSelected: this.isSelected,
+      isSportsPlayer: false,
+      trackOnbordingSports: this.trackOnbordingSports,
+    };
+  }
+  componentDidMount() {
+    this.fetchSports();
+  }
+  async fetchSports() {
+    // fetch the initial data and store in state
+    const {
+      data: { groups: sports },
+    }: {
+      data: A.FavouriteSportsSelectorContextQuery;
+    } = await this.context.client.query({
+      query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
+      fetchPolicy: "network-only",
+    });
+    const {
+      data: {
+        player: { vertical },
+      },
+    }: {
+      data: A.PlayerVerticalQuery;
+    } = await this.context.client.query({
+      query: PLAYER_VERTICAL_QUERY,
+      fetchPolicy: "network-only",
+    });
+    // determine if this is the first time selecting favourites and favourite competitions
+    // if all favourited competitions are empty
+    this.setState({
+      isFirstTimeSelectingFavourites:
+        sports.filter(g => g.userFavourite).length === 0,
+      isFirstTimeSelectingFavouriteCompetitions:
+        sports.filter(
+          g => g.favouriteCompetitions && g.favouriteCompetitions.length > 0
+        ).length === 0,
+      isSportsPlayer: vertical === "SPORTS",
+    });
+    // for all groups that allow subgroup selection, default the favourites
+    // list to the top 5 competitions in that sport
+    const promisesToCompetitionSuggestions = sports
+      .filter(g => g.canSelectSubgroups && g.favouriteCompetitions.length === 0)
+      .map(g => {
+        return this.context.client
+          .query({
+            query: COMPETITION_SUGGESTIONS_QUERY,
+            variables: { id: g.id },
             fetchPolicy: "network-only",
-        });
-        const { data: { player: { vertical }, }, }: {
-            data: A.PlayerVertical;
-        } = await this.context.client.query({
-            query: PLAYER_VERTICAL_QUERY,
-            fetchPolicy: "network-only",
-        });
-        // determine if this is the first time selecting favourites and favourite competitions
-        // if all favourited competitions are empty
-        this.setState({
-            isFirstTimeSelectingFavourites: sports.filter(g => g.userFavourite).length === 0,
-            isFirstTimeSelectingFavouriteCompetitions: sports.filter(g => g.favouriteCompetitions && g.favouriteCompetitions.length > 0).length === 0,
-            isSportsPlayer: vertical === "SPORTS",
-        });
-        // for all groups that allow subgroup selection, default the favourites
-        // list to the top 5 competitions in that sport
-        const promisesToCompetitionSuggestions = sports
-            .filter(g => g.canSelectSubgroups && g.favouriteCompetitions.length === 0)
-            .map(g => {
-            // @ts-expect-error ts-migrate(2347) FIXME: Untyped function calls may not accept type argumen... Remove this comment to see the full error message
-            return this.context.client
-                .query<A.FavouriteSportsSelectorContextCompetitionSuggestions>({
-                query: COMPETITION_SUGGESTIONS_QUERY,
-                variables: { id: g.id },
-                fetchPolicy: "network-only",
+          })
+          .then(
+            ({
+              data,
+            }: {
+              data: A.FavouriteSportsSelectorContextCompetitionSuggestionsQuery;
+            }) => ({
+              id: g.id,
+              favouriteCompetitions: data.topCompetitions,
             })
-                .then(({ data }) => ({
-                id: g.id,
-                favouriteCompetitions: data.topCompetitions,
-            }));
-        });
-        const trackOnboardingStart = () => {
-            if (this.state.isFirstTimeSelectingFavourites) {
-                tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_START, {});
-            }
-        };
-        Promise.all(promisesToCompetitionSuggestions).then(results => {
-            const newSportsList = [...sports];
-            results.forEach(result => {
-                const index = sports.findIndex(g => g.id === (result as any).id);
-                // eslint-disable-next-line fp/no-mutation
-                newSportsList[index] = {
-                    ...sports[index],
-                    favouriteCompetitions: (result as any).favouriteCompetitions,
-                };
-            });
-            this.setState({
-                sports: newSportsList,
-            }, trackOnboardingStart);
-        });
-    }
-    toggleFavouriteSport = (id: number) => {
-        const trackToggleFavouriteSport = () => {
-            if (this.state.isFirstTimeSelectingFavourites) {
-                const eventName = this.isSelected(id)
-                    ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED
-                    : EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED;
-                const data = {
-                    [EVENT_PROPS.SPORTS_ID]: id,
-                    [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(id),
-                };
-                tracker.track(eventName, data);
-            }
-        };
-        this.setState(state => ({
-            sports: state.sports.map(sport => ({
-                ...sport,
-                userFavourite: id === sport.id ? !sport.userFavourite : sport.userFavourite,
-            })),
-        }), trackToggleFavouriteSport);
+          );
+      });
+    const trackOnboardingStart = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_START, {});
+      }
     };
-    toggleAllSports = () => {
-        const trackToggleAllSports = () => {
-            if (this.state.isFirstTimeSelectingFavourites) {
-                tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL, {});
-            }
+    Promise.all(promisesToCompetitionSuggestions).then(results => {
+      const newSportsList = [...sports];
+      results.forEach(result => {
+        const index = sports.findIndex(g => g.id === (result as any).id);
+        // eslint-disable-next-line fp/no-mutation
+        newSportsList[index] = {
+          ...sports[index],
+          favouriteCompetitions: (result as any).favouriteCompetitions,
         };
-        this.setState(state => {
-            const areAllSelected = this.getSelectedSportsCount() === state.sports.length;
+      });
+      this.setState(
+        {
+          sports: newSportsList,
+        },
+        trackOnboardingStart
+      );
+    });
+  }
+  toggleFavouriteSport = (id: number) => {
+    const trackToggleFavouriteSport = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        const eventName = this.isSelected(id)
+          ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED
+          : EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: id,
+          [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(id),
+        };
+        tracker.track(eventName, data);
+      }
+    };
+    this.setState(
+      state => ({
+        sports: state.sports.map(sport => ({
+          ...sport,
+          userFavourite:
+            id === sport.id ? !sport.userFavourite : sport.userFavourite,
+        })),
+      }),
+      trackToggleFavouriteSport
+    );
+  };
+  toggleAllSports = () => {
+    const trackToggleAllSports = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(
+          EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL,
+          {}
+        );
+      }
+    };
+    this.setState(state => {
+      const areAllSelected =
+        this.getSelectedSportsCount() === state.sports.length;
+      return {
+        sports: state.sports.map(sport => ({
+          ...sport,
+          userFavourite: !areAllSelected,
+        })),
+      };
+    }, trackToggleAllSports);
+  };
+  getSelectedSportsCount = () => {
+    return this.state.sports.filter(g => g.userFavourite).length;
+  };
+  setFavouriteCompetitions = (
+    sportId: number,
+    competitions: Array<Competition>
+  ) => {
+    const trackSetFavouriteCompetitions = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES, {
+          [EVENT_PROPS.LEAGUES_SELECTED]: competitions,
+          [EVENT_PROPS.LEAGUES_SELECTED_NUMBER]: competitions.length,
+        });
+      }
+    };
+    this.setState(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(state: Readonly<StageFavourites... Remove this comment to see the full error message
+      state => ({
+        sports: state.sports.map(
+          when(
+            propEq("id", sportId),
+            assoc("favouriteCompetitions", competitions)
+          )
+        ),
+      }),
+      trackSetFavouriteCompetitions
+    );
+  };
+  toggleFavouriteCompetition = (sportId: number, competition: Competition) => {
+    const trackToggleFavouriteCompetition = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        const eventName = this.isSelected(competition.id)
+          ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED
+          : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: sportId,
+          [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),
+          [EVENT_PROPS.COMPETITION_ID]: competition.id,
+          [EVENT_PROPS.COMPETITION_NAME]: competition.name,
+        };
+        tracker.track(eventName, data);
+      }
+    };
+    // either add or remove competition from favourite competitions depending on whether its already in the list
+    this.setState(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(state: Readonly<StageFavourites... Remove this comment to see the full error message
+      state => ({
+        sports: state.sports.map(sport => {
+          if (sportId === sport.id) {
+            const existingCompetition = sport.favouriteCompetitions.find(
+              eqProps("id", competition)
+            );
             return {
-                sports: state.sports.map(sport => ({
-                    ...sport,
-                    userFavourite: !areAllSelected,
-                })),
+              ...sport,
+              favouriteCompetitions: existingCompetition
+                ? sport.favouriteCompetitions.filter(
+                    c => c.id !== existingCompetition.id
+                  )
+                : [...sport.favouriteCompetitions, competition],
             };
-        }, trackToggleAllSports);
-    };
-    getSelectedSportsCount = () => {
-        return this.state.sports.filter(g => g.userFavourite).length;
-    };
-    setFavouriteCompetitions = (sportId: number, competitions: Array<Competition>) => {
-        const trackSetFavouriteCompetitions = () => {
-            if (this.state.isFirstTimeSelectingFavourites) {
-                tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES, {
-                    [EVENT_PROPS.LEAGUES_SELECTED]: competitions,
-                    [EVENT_PROPS.LEAGUES_SELECTED_NUMBER]: competitions.length,
-                });
-            }
-        };
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(state: Readonly<StageFavourites... Remove this comment to see the full error message
-        this.setState(state => ({
-            sports: state.sports.map(when(propEq("id", sportId), assoc("favouriteCompetitions", competitions))),
-        }), trackSetFavouriteCompetitions);
-    };
-    toggleFavouriteCompetition = (sportId: number, competition: Competition) => {
-        const trackToggleFavouriteCompetition = () => {
-            if (this.state.isFirstTimeSelectingFavourites) {
-                const eventName = this.isSelected(competition.id)
-                    ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED
-                    : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE;
-                const data = {
-                    [EVENT_PROPS.SPORTS_ID]: sportId,
-                    [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),
-                    [EVENT_PROPS.COMPETITION_ID]: competition.id,
-                    [EVENT_PROPS.COMPETITION_NAME]: competition.name,
-                };
-                tracker.track(eventName, data);
-            }
-        };
-        // either add or remove competition from favourite competitions depending on whether its already in the list
-        this.setState(state => ({
-            sports: state.sports.map(sport => {
-                if (sportId === sport.id) {
-                    const existingCompetition = sport.favouriteCompetitions.find(eqProps("id", competition));
-                    return {
-                        ...sport,
-                        favouriteCompetitions: existingCompetition
-                            ? sport.favouriteCompetitions.filter(c => c.id !== existingCompetition.id)
-                            : [...sport.favouriteCompetitions, competition],
-                    };
-                }
-                return sport;
-            }),
-        }), trackToggleFavouriteCompetition);
-    };
-    trackOnbordingSports = (): void => {
-        if (this.state.isFirstTimeSelectingFavourites) {
-            const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS;
-            const data = {
-                [EVENT_PROPS.SPORTS_SELECTED]: this.state.sports.filter(g => g.userFavourite),
-                [EVENT_PROPS.SPORTS_SELECTED_NUMBER]: this.getSelectedSportsCount(),
-            };
-            tracker.track(eventName, data);
-        }
-    };
-    getSelectedIds = (): Array<number> => {
-        return this.state.sports.reduce((selectedIds, sport) => [
-            ...selectedIds,
-            // add sport if favourited
-            ...(sport.userFavourite ? [sport.id] : []),
-            // add favourite competitions for this sport
-            ...sport.favouriteCompetitions.map(prop("id")),
-        ], []);
-    };
-    getSportNameById = (sportId: number): string => {
-        const sport = this.state.sports.find(s => s.id === sportId);
-        return sport ? sport.name : "";
-    };
-    isSelected = (id: number): boolean => {
-        return this.getSelectedIds().includes(id);
-    };
-    render() {
-        return (<StageFavouritesContext.Provider value={this.state}>
-        {this.props.children}
-      </StageFavouritesContext.Provider>);
+          }
+          return sport;
+        }),
+      }),
+      trackToggleFavouriteCompetition
+    );
+  };
+
+  trackOnbordingSports = () => {
+    if (this.state.isFirstTimeSelectingFavourites) {
+      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS;
+      const data = {
+        [EVENT_PROPS.SPORTS_SELECTED]: this.state.sports.filter(
+          g => g.userFavourite
+        ),
+        [EVENT_PROPS.SPORTS_SELECTED_NUMBER]: this.getSelectedSportsCount(),
+      };
+      tracker.track(eventName, data);
     }
+  };
+
+  getSelectedIds = (): Array<number> => {
+    return this.state.sports.reduce(
+      (selectedIds, sport) => [
+        ...selectedIds,
+        // add sport if favourited
+        ...(sport.userFavourite ? [sport.id] : []),
+        // add favourite competitions for this sport
+        ...sport.favouriteCompetitions.map(prop("id")),
+      ],
+      []
+    );
+  };
+  getSportNameById = (sportId: number): string => {
+    const sport = this.state.sports.find(s => s.id === sportId);
+    return sport ? sport.name : "";
+  };
+  isSelected = (id: number): boolean => {
+    return this.getSelectedIds().includes(id);
+  };
+  render() {
+    return (
+      <StageFavouritesContext.Provider value={this.state}>
+        {this.props.children}
+      </StageFavouritesContext.Provider>
+    );
+  }
 }
 export default StageFavouritesProvider;

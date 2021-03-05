@@ -1,4 +1,1 @@
-// @flow
-export {
-  EditFavouriteCompetitionsModal,
-} from "./EditFavouriteCompetitionsModal";
+export { EditFavouriteCompetitionsModal } from "./EditFavouriteCompetitionsModal";

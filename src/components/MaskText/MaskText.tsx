@@ -1,13 +1,12 @@
-// @flow
 import React from "react";
 import { matchingGroups } from "Utils";
 import Matcher from "Components/Matcher";
 
 type Props = {
-  text: string,
-  search: string,
-  matchRender: Function,
-  unmatchedRender: Function,
+  text: string;
+  search: string;
+  matchRender: Function;
+  unmatchedRender: Function;
 };
 const MaskText = ({ text, search, matchRender, unmatchedRender }: Props) => {
   return (

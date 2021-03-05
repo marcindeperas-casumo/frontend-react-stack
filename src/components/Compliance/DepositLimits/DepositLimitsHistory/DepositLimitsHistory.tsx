@@ -1,75 +1,49 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
+import { ArrowRightIcon, CheckIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-import { ArrowRightIcon, CheckIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
-import type {
-  DepositLimitsHistoryType,
-  LimitChangeType,
-} from "Models/playOkay/depositLimits";
+import type { DepositLimitsHistoryType } from "Models/playOkay/depositLimits";
 import { SectionHeader } from "../DepositLimitsOverview/SectionHeader";
 import "./depositLimitsHistory.scss";
 
 type Props = {
   t: {
-    daily_adjusted: string,
-    weekly_adjusted: string,
-    monthly_adjusted: string,
-    history: string,
-
-    adjustment_status_success: string,
-    title_removed: string,
-    title_decreased: string,
-    title_increased: string,
-    title_set_on_registration: string,
-    all_limits_removed: string,
-  },
-  locale: string,
-  currency: string,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
-  getLimitsHistory: void => void,
-  // @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'void'.
-  fetchTranslations: void => void,
-  history: DepositLimitsHistoryType,
+    daily_adjusted: string;
+    weekly_adjusted: string;
+    monthly_adjusted: string;
+    history: string;
+    adjustment_status_success: string;
+    title_removed: string;
+    title_decreased: string;
+    title_increased: string;
+    title_set_on_registration: string;
+    all_limits_removed: string;
+  };
+  locale: string;
+  currency: string;
+  getLimitsHistory: () => void;
+  fetchTranslations: () => void;
+  history: Array<DepositLimitsHistoryType>;
 };
 
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '$Keys'.
-type TranslationKeys = $Keys<$PropertyType<Props, "t">>;
-// @ts-expect-error ts-migrate(2693) FIXME: 'TranslationKeys' only refers to a type, but is be... Remove this comment to see the full error message
-const alwaysWithTranslation: TranslationKeys => TranslationKeys = R.always;
-// @ts-expect-error ts-migrate(2693) FIXME: 'TranslationKeys' only refers to a type, but is be... Remove this comment to see the full error message
-const getTranslationKeyForHistoryEntry: any => TranslationKeys = R.cond([
-  [
-    R.propEq("setOnRegistration", true),
-    alwaysWithTranslation("title_set_on_registration"),
-  ],
-  [
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    R.propEq("type", ("increase": LimitChangeType)),
-    alwaysWithTranslation("title_increased"),
-  ],
-  // @ts-expect-error ts-migrate(2695) FIXME: Left side of comma operator is unused and has no s... Remove this comment to see the full error message
-  [
-    // @ts-expect-error ts-migrate(2693) FIXME: 'LimitChangeType' only refers to a type, but is be... Remove this comment to see the full error message
-    R.propEq("type", ("decrease": LimitChangeType)),
-    alwaysWithTranslation("title_decreased"),
-  ],
-  [
-    // @ts-expect-error ts-migrate(2693) FIXME: 'LimitChangeType' only refers to a type, but is be... Remove this comment to see the full error message
-    R.propEq("type", ("removed": LimitChangeType)),
-    alwaysWithTranslation("title_removed"),
-  ],
+type TranslationKeys = keyof Props["t"];
+
+const getTranslationKeyForHistoryEntry: (
+  historyItem: DepositLimitsHistoryType
+) => TranslationKeys = R.cond([
+  [R.propEq("setOnRegistration", true), R.always("title_set_on_registration")],
+  [R.propEq("type", "increase"), R.always("title_increased")],
+  [R.propEq("type", "decrease"), R.always("title_decreased")],
+  [R.propEq("type", "removed"), R.always("title_removed")],
 ]);
 
 export function DepositLimitsHistory({ t, ...props }: Props) {
   React.useEffect(() => {
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     props.getLimitsHistory();
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -143,7 +117,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                   <Text tag="span" className="t-color-grey-50">
                     {t[getTranslationKeyForHistoryEntry(historyItem)]}
                   </Text>
-                  {historyItem.type === ("removed": LimitChangeType) ? (
+                  {historyItem.type === "removed" ? (
                     <Text
                       tag="span"
                       className="u-padding-top u-font-weight-black"
@@ -154,20 +128,16 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                     historyItem.changes.map(x => (
                       <Text
                         tag="span"
-                        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'x'.
                         key={x.limitKind}
                         className="u-padding-top"
                       >
-                        {/* @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'x'. */}
                         {t[`${x.limitKind}_adjusted`]}{" "}
                         <Text tag="span" className="u-font-weight-black">
-                          {/* @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'x'. */}
                           {x.before ? (
                             <>
                               {formatCurrency({
                                 locale: props.locale,
                                 currency: props.currency,
-                                // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'x'.
                                 value: x.before,
                               })}
                               <ArrowRightIcon
@@ -179,7 +149,6 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                           {formatCurrency({
                             locale: props.locale,
                             currency: props.currency,
-                            // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'x'.
                             value: x.after,
                           })}
                         </Text>

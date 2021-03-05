@@ -1,4 +1,3 @@
-// @flow
 export const minFirstDepositLimit = 1;
 
 export const overlayContentCmsSlug =

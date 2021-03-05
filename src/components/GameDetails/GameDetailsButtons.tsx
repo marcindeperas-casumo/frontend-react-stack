@@ -1,20 +1,17 @@
-// @flow
-import React from "react";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import React from "react";
 import { launchGame } from "Services/LaunchGameService";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { isDesktop } from "Components/ResponsiveLayout";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
-  slug: string,
-  name: string,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  playButtonText: ?string,
-  hasPlayForFun: boolean,
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  practiceButtonText: ?string,
+  slug: string;
+  name: string;
+  playButtonText: string | undefined;
+  hasPlayForFun: boolean;
+  practiceButtonText: string | undefined;
 };
 
 const size = isDesktop() ? "lg" : "sm";

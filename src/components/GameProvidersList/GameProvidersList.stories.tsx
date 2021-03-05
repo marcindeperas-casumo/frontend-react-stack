@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import MockStore from "Components/MockStore";
 import { GameProvidersList } from "Components/GameProvidersList/GameProvidersList";
 import GameProvidersListSkeleton from "Components/GameProvidersList/GameProvidersListSkeleton";

@@ -1,19 +1,18 @@
-// @flow
-import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import React from "react";
 import classNames from "classnames";
 import "./SidebarRow.scss";
 
 type Props = {
-  text?: string,
-  label?: string,
-  Icon?: string,
-  selected?: boolean,
-  secondary?: boolean,
-  openNewTab?: boolean,
-  link?: string,
-  action?: Function,
+  text?: string;
+  label?: string;
+  Icon?: string;
+  selected?: boolean;
+  secondary?: boolean;
+  openNewTab?: boolean;
+  link?: string;
+  action?: Function;
 };
 
 export const SidebarRow = (props: Props) => {
@@ -51,7 +50,7 @@ export const SidebarRow = (props: Props) => {
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '(event:... Remove this comment to see the full error message
         onClick={action}
         href={link || "#"}
-        target={openNewTab ? "_blank" : "_self"}
+        arget={openNewTab ? "_blank" : "_self"}
       >
         <Flex
           align="center"

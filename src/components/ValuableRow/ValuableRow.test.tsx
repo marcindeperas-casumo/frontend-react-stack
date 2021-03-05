@@ -1,6 +1,6 @@
+import { MoreIcon } from "@casumo/cmp-icons";
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { MoreIcon } from "@casumo/cmp-icons";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import { VALUABLE_TYPES } from "Models/valuables";
 import ImageLazy from "Components/Image/ImageLazy";
@@ -16,7 +16,6 @@ describe("ValuableRow", () => {
   const onMoreInfo = jest.fn();
 
   beforeEach(() => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'CASH' does not exist on type '{}'.
     mockValuable = mockData(VALUABLE_TYPES.CASH);
     rendered = shallow(
       <ValuableRow

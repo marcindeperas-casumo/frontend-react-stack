@@ -4,8 +4,8 @@ import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "./ReelRacesPageContainer";
 
 type Props = {
-  t: TReelRacesContentPage | null,
-  reelRaces: Array<A.ReelRacesPageTabPreviousQuery_reelRaces>,
+  t: TReelRacesContentPage | null;
+  reelRaces: Array<A.ReelRacePreviousCard_ReelRaceFragment>;
 };
 
 export const ReelRacesPageTabPrevious = React.memo<Props>(

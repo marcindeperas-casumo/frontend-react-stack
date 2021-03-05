@@ -5,16 +5,10 @@ export const routerComponentsSelector = prop("router");
 
 export const activeComponents = createSelector(
   routerComponentsSelector,
-  compose(
-    defaultTo([]),
-    prop("activeComponents")
-  )
+  compose(defaultTo([]), prop("activeComponents"))
 );
 
 export const routeParamsSelector = createSelector(
   routerComponentsSelector,
-  compose(
-    defaultTo([]),
-    prop("routeParams")
-  )
+  compose(defaultTo([]), prop("routeParams"))
 );

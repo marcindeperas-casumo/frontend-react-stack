@@ -1,17 +1,16 @@
-// @flow
-import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 
 type Props = {
-  acceptModal: () => void,
+  acceptModal: () => void;
   config: {
-    content?: any,
-    timeMissed: number,
-    tournamentLength: number,
-  },
+    content?: any;
+    timeMissed: number;
+    tournamentLength: number;
+  };
 };
 
 export function FiveMinuteBreakReelRaceModal({ acceptModal, config }: Props) {

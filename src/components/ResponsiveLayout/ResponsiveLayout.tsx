@@ -1,6 +1,5 @@
-// @flow
-import * as React from "react";
 import useMedia from "react-use/lib/useMedia";
+import * as React from "react";
 import {
   mobileBreakpoint,
   tabletBreakpoint,
@@ -9,15 +8,13 @@ import {
   mobileAndTabletBreakpoint,
   getMediaQuery,
 } from "./ResponsiveLayout.utils";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"./ResponsiveLayout.types"' has no exporte... Remove this comment to see the full error message
-import { type ORIENTATION_TYPE } from "./ResponsiveLayout.types";
+import type { ORIENTATION_TYPE } from "./ResponsiveLayout.types";
 
 type Props = {
   /** The media queries object to fullfill to render the children */
-  breakpoint: Object,
+  breakpoint: Object;
   /** The children to render if viewport fullfills the provided breakpoint */
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 const RenderIfMatchBreakpoint = ({ breakpoint, children }: Props) => {
@@ -26,9 +23,9 @@ const RenderIfMatchBreakpoint = ({ breakpoint, children }: Props) => {
   return isBreakpointActive ? children : null;
 };
 
-// @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-export const Desktop = ({ children }: { children: React.Node }) => {
+export const Desktop = ({ children }: { children: React.ReactNode }) => {
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'RenderIfMatchBreakpoint' cannot be used as a JSX ... Remove this comment to see the full error message
     <RenderIfMatchBreakpoint breakpoint={desktopBreakpoint}>
       {children}
     </RenderIfMatchBreakpoint>
@@ -39,11 +36,11 @@ export const TabletAndDesktop = ({
   children,
   orientation,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  orientation?: ORIENTATION_TYPE,
+  children: React.ReactNode;
+  orientation?: ORIENTATION_TYPE;
 }) => {
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'RenderIfMatchBreakpoint' cannot be used as a JSX ... Remove this comment to see the full error message
     <RenderIfMatchBreakpoint
       breakpoint={
         orientation
@@ -60,11 +57,11 @@ export const Tablet = ({
   children,
   orientation,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  orientation?: ORIENTATION_TYPE,
+  children: React.ReactNode;
+  orientation?: ORIENTATION_TYPE;
 }) => {
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'RenderIfMatchBreakpoint' cannot be used as a JSX ... Remove this comment to see the full error message
     <RenderIfMatchBreakpoint
       breakpoint={
         orientation ? { ...tabletBreakpoint, orientation } : tabletBreakpoint
@@ -79,11 +76,11 @@ export const MobileAndTablet = ({
   children,
   orientation,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  orientation?: ORIENTATION_TYPE,
+  children: React.ReactNode;
+  orientation?: ORIENTATION_TYPE;
 }) => {
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'RenderIfMatchBreakpoint' cannot be used as a JSX ... Remove this comment to see the full error message
     <RenderIfMatchBreakpoint
       breakpoint={
         orientation
@@ -100,11 +97,11 @@ export const Mobile = ({
   children,
   orientation,
 }: {
-  // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-  children: React.Node,
-  orientation?: ORIENTATION_TYPE,
+  children: React.ReactNode;
+  orientation?: ORIENTATION_TYPE;
 }) => {
   return (
+    // @ts-expect-error ts-migrate(2786) FIXME: 'RenderIfMatchBreakpoint' cannot be used as a JSX ... Remove this comment to see the full error message
     <RenderIfMatchBreakpoint
       breakpoint={
         orientation ? { ...mobileBreakpoint, orientation } : mobileBreakpoint

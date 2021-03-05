@@ -1,7 +1,6 @@
-// @flow
+import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import { WAGERING_NOTIFICATION_TYPES } from "Models/playing/playing.constants";
 import { BonusBalanceInGameNotification } from "./BonusBalanceInGameNotification";
 
@@ -44,11 +43,6 @@ describe("Bonus Balance Notification", () => {
         config={realBalanceNotificationConfig}
       />
     );
-    expect(
-      wrapper
-        .find("p")
-        .text()
-        .includes(realMoneyMessage)
-    ).toBe(true);
+    expect(wrapper.find("p").text().includes(realMoneyMessage)).toBe(true);
   });
 });

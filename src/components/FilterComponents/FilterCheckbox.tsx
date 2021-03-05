@@ -1,14 +1,13 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as React from "react";
 import { isMobile } from "Components/ResponsiveLayout";
 import { CheckboxSquare } from "Components/Checkbox/CheckboxSquare";
 
 type Props = {
-  isActive: boolean,
-  title: string,
-  onChange: () => void,
+  isActive: boolean;
+  title: string;
+  onChange: () => void;
 };
 export function FilterCheckbox(props: Props) {
   if (isMobile()) {

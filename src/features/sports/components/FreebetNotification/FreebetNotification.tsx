@@ -1,32 +1,27 @@
-// @flow
-import React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { CloseIcon, LockIcon } from "@casumo/cmp-icons";
+import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
-import {
-  getExpiryTimeLeft,
-  // @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/valuables"' has no exp... Remove this comment to see the full error message
-  type ValuableThumbnailTranslations,
-  VALUABLE_STATES,
-} from "Models/valuables";
+import { getExpiryTimeLeft, VALUABLE_STATES } from "Models/valuables";
+import type { ValuableThumbnailTranslations } from "Models/valuables";
 import * as A from "Types/apollo";
 
 type Props = {
-  backgroundImage: string,
-  currency: string,
-  expiryDate: number,
-  market: string,
-  valuableState: A.PlayerValuableState,
-  valuableType: A.ValuableType,
-  title: string,
-  description: string,
-  translations: ValuableThumbnailTranslations,
-  caveat: string,
-  onClose: () => void,
+  backgroundImage: string;
+  currency: string;
+  expiryDate: number;
+  market: string;
+  valuableState: A.PlayerValuableState;
+  valuableType: A.ValuableType;
+  title: string;
+  description: string;
+  translations: ValuableThumbnailTranslations;
+  caveat: string;
+  onClose: () => void;
 };
 
 // The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
@@ -89,7 +84,6 @@ const renderValuableText = ({
         size="sm"
         tag="div"
       >
-        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'LOCKED' does not exist on type '{}'. */}
         {valuableState === VALUABLE_STATES.LOCKED && (
           <LockIcon size="sm" className="u-margin-right--sm" />
         )}

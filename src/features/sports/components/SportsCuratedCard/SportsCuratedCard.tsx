@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 import { MobileAndTablet } from "Components/ResponsiveLayout";
@@ -9,8 +8,8 @@ import "./SportsCuratedCard.scss";
 export const CMS_SLUG = "sports";
 
 type Props = {
-  hasDeposited: boolean,
-  currentHash?: string,
+  hasDeposited: boolean;
+  currentHash?: string;
 };
 
 export const SportsCuratedCard = ({

@@ -1,4 +1,3 @@
-//@flow
 import logger from "Services/logger";
 
 export const removeScriptTags = (content: string) =>

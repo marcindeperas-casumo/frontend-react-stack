@@ -1,7 +1,6 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
+import React from "react";
 import MockStore from "Components/MockStore";
 import stateMock from "Models/__mocks__/state.mock";
 import { errorMocks, loadingMocks } from "./__mocks__/kambiClientMocks";

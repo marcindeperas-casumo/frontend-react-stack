@@ -1,11 +1,10 @@
-// @flow
+import Text from "@casumo/cmp-text";
+import Flex from "@casumo/cmp-flex";
+import { TrophyIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import Text from "@casumo/cmp-text";
-import Flex from "@casumo/cmp-flex";
-import { TrophyIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { playerIdSelector } from "Models/handshake";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
@@ -14,14 +13,14 @@ import { useReelRaceLeaderboard } from "./useReelRaceLeaderboard";
 import "./ReelRaceLeaderboard.scss";
 
 type Props = {
-  id: string,
+  id: string;
   t: {
-    spins: string,
-    ending_in: string,
-  },
-  initialLeaderboard: Array<A.ReelRaceWidgetQuery_reelRaces_leaderboard>,
-  cometdChannels: Array<string>,
-  endTime: number,
+    spins: string;
+    ending_in: string;
+  };
+  initialLeaderboard: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"];
+  cometdChannels: Array<string>;
+  endTime: number;
 };
 
 export function ReelRaceLeaderboard(props: Props) {
@@ -31,10 +30,9 @@ export function ReelRaceLeaderboard(props: Props) {
     props.cometdChannels,
     props.initialLeaderboard
   );
-  // @ts-expect-error ts-migrate(2739) FIXME: Type 'Record<"playerId", any>' is missing the foll... Remove this comment to see the full error message
-  const player: A.ReelRaceWidgetQuery_reelRaces_leaderboard = R.find(
-    R.propEq("playerId", playerId)
-  )(board);
+  const player = R.find(R.propEq("playerId", playerId))(
+    board
+  ) as typeof board[number];
 
   return (
     <Flex direction="vertical">

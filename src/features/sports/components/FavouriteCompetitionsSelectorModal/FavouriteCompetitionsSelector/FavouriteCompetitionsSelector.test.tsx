@@ -1,6 +1,6 @@
+import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { all, equals, F } from "ramda";
-import { MockedProvider } from "@apollo/client/testing";
 import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import { isNilOrEmpty } from "Utils";
@@ -32,7 +32,7 @@ describe("isOrphanGroup", () => {
   });
 
   test("should return false for non-orphaned groups", () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Favourite... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type '{ id: num... Remove this comment to see the full error message
     const orphanGroup = isOrphanGroup({ groups: ["non-empty-array"] });
     expect(orphanGroup).toBe(false);
   });
@@ -41,7 +41,7 @@ describe("isOrphanGroup", () => {
 describe("isPopularGroup", () => {
   test("should return true for a popular group", () => {
     const popularGroup = isPopularGroup({
-      // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: true; }' is missing the following... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ popular: true; }' is not assignable to typ... Remove this comment to see the full error message
       groups: [{ popular: true }, { popular: false }],
     });
     expect(popularGroup).toBe(true);
@@ -52,9 +52,9 @@ describe("isPopularGroup", () => {
       groups: [
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'boolean'.
         { popular: "true" },
-        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: null; }' is missing the following... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ popular: null; }' is not assignable to typ... Remove this comment to see the full error message
         { popular: null },
-        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ popular: undefined; }' is missing the foll... Remove this comment to see the full error message
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ popular: undefined; }' is not assignable t... Remove this comment to see the full error message
         { popular: undefined },
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'boolean'.
         { popular: 42 },
@@ -137,10 +137,8 @@ describe("<FavouriteCompetitionsSelector />", () => {
 
     wait().then(() => {
       expect(
-        rendered
-          .find(FavouriteCompetitionsSelectorRegion)
-          .first()
-          .props().isExpanded
+        rendered.find(FavouriteCompetitionsSelectorRegion).first().props()
+          .isExpanded
       ).toBe(true);
     });
   });
@@ -161,29 +159,21 @@ describe("<FavouriteCompetitionsSelector />", () => {
 
     wait().then(() => {
       expect(
-        rendered
-          .find(FavouriteCompetitionsSelectorRegion)
-          .first()
-          .props().isSelected
+        rendered.find(FavouriteCompetitionsSelectorRegion).first().props()
+          .isSelected
       ).toBe(isCompetitionSelected);
       expect(
-        rendered
-          .find(FavouriteCompetitionsSelectorRegion)
-          .first()
-          .props().onClick
+        rendered.find(FavouriteCompetitionsSelectorRegion).first().props()
+          .onClick
       ).toBe(toggleCompetition);
 
       expect(
-        rendered
-          .find(FavouriteCompetitionsSelectorRegion)
-          .last()
-          .props().isSelected
+        rendered.find(FavouriteCompetitionsSelectorRegion).last().props()
+          .isSelected
       ).toBe(isCompetitionSelected);
       expect(
-        rendered
-          .find(FavouriteCompetitionsSelectorRegion)
-          .last()
-          .props().onClick
+        rendered.find(FavouriteCompetitionsSelectorRegion).last().props()
+          .onClick
       ).toBe(toggleCompetition);
     });
   });

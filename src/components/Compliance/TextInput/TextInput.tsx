@@ -1,22 +1,21 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as R from "ramda";
 import classNames from "classnames";
-import Flex from "@casumo/cmp-flex";
 import "./textInput.scss";
 
 type Props = {
-  currencySign: string,
-  value: ?(string | number),
-  onChange: any => void,
-  className?: string,
-  inputClassName?: string,
-  fontClassName?: string,
-  colorClassName?: string,
-  placeholder?: string,
-  type?: "text" | "number",
-  min?: number,
-  max?: number,
+  currencySign: string;
+  value: (string | number) | undefined;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  inputClassName?: string;
+  fontClassName?: string;
+  colorClassName?: string;
+  placeholder?: string;
+  type?: "text" | "number";
+  min?: number;
+  max?: number;
 };
 
 export function TextInput(props: Props) {

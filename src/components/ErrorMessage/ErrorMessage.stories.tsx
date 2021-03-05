@@ -1,9 +1,8 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
+import React from "react";
 import { ErrorMessage } from "Components/ErrorMessage";
 
 const stories = storiesOf("ErrorMessage", module);

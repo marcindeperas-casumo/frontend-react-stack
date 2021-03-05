@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { BlueRibbonJackpotsFooterWidget } from "./BlueRibbonJackpotsFooterWidget";
 import { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpotsWidget";

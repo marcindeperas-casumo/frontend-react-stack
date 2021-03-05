@@ -1,8 +1,8 @@
+import ResponsiveImage from "@casumo/cmp-responsive-image";
+import { getImgixUrl, getSrcSet } from "@casumo/cudl-react-utils";
 import React from "react";
 import { mount } from "enzyme";
 import { head } from "ramda";
-import ResponsiveImage from "@casumo/cmp-responsive-image";
-import { getImgixUrl, getSrcSet } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 import imageData from "./__mocks__/image.json";
@@ -35,10 +35,7 @@ describe("ImageAdaptive", () => {
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const img = getImgixUrl(head(images).src, null, defaultImgixOpts);
-      const expected = component
-        .find("img")
-        .at(1)
-        .prop("src");
+      const expected = component.find("img").at(1).prop("src");
       expect(img).toEqual(expected);
     });
 
@@ -47,10 +44,7 @@ describe("ImageAdaptive", () => {
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
-      const srcSet = component
-        .find("source")
-        .at(0)
-        .prop("srcSet");
+      const srcSet = component.find("source").at(0).prop("srcSet");
       const expected = getSrcSet(3, head(images).src, null, defaultImgixOpts);
       expect(srcSet).toEqual(expected);
     });
@@ -60,10 +54,7 @@ describe("ImageAdaptive", () => {
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
-      const srcSet = component
-        .find("source")
-        .at(1)
-        .prop("srcSet");
+      const srcSet = component.find("source").at(1).prop("srcSet");
       const expected =
         "https://images.casumo.com/2018/09/cc-medium-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1 1x, https://images.casumo.com/2018/09/cc-medium-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=2 2x, https://images.casumo.com/2018/09/cc-medium-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=3 3x";
       expect(srcSet).toEqual(expected);
@@ -74,10 +65,7 @@ describe("ImageAdaptive", () => {
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isIntersecting: boolean; images: { mediaQu... Remove this comment to see the full error message
         <ImageAdaptive isIntersecting={true} images={images} />
       );
-      const srcSet = component
-        .find("source")
-        .at(2)
-        .prop("srcSet");
+      const srcSet = component.find("source").at(2).prop("srcSet");
       const expected =
         "https://images.casumo.com/2018/09/cc-large-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1 1x, https://images.casumo.com/2018/09/cc-large-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=2 2x, https://images.casumo.com/2018/09/cc-large-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=3 3x";
       expect(srcSet).toEqual(expected);

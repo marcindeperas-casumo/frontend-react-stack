@@ -1,21 +1,20 @@
-/* @flow */
+import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
 import { times } from "ramda";
-import Skeleton from "@casumo/cmp-skeleton";
 import {
   leftPaddingClasses,
   topMarginClasses,
 } from "Components/GameListHorizontal/constants";
 
 type OwnProps = {
-    itemWidth: number;
-    items: number;
-    itemRatio: number;
-    itemGap: number;
-    cornerRadius: number;
-    display: string;
-    title: boolean;
-    className: string;
+  itemWidth: number;
+  items: number;
+  itemRatio: number;
+  itemGap: number;
+  cornerRadius: number;
+  display: string;
+  title: boolean;
+  className: string;
 };
 
 type Props = OwnProps & typeof GameListHorizontalSkeleton.defaultProps;
@@ -55,8 +54,7 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
   }
 
   get renderTiles() {
-    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-    return this.itemsPos.map<React.Node>((pos, i) => (
+    return this.itemsPos.map((pos, i) => (
       <rect
         key={i}
         x={pos}
@@ -72,8 +70,7 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
   get renderCards() {
     const { title, itemWidth } = this.props;
 
-    // @ts-expect-error ts-migrate(2694) FIXME: Namespace 'React' has no exported member 'Node'.
-    return this.itemsPos.map<React.Node>((pos, i) => (
+    return this.itemsPos.map((pos, i) => (
       <React.Fragment key={i}>
         <rect
           x={pos}

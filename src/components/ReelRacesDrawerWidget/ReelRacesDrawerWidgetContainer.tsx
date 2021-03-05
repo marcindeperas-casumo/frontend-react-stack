@@ -1,7 +1,6 @@
-// @flow
+import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { playingSelector } from "Models/playing";
@@ -16,8 +15,8 @@ import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelR
 import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 type Props = {
-  className?: string,
-  initialShowLeaderboard?: boolean,
+  className?: string;
+  initialShowLeaderboard?: boolean;
 };
 
 const LEADERBOARD_FIXED = 3;

@@ -1,12 +1,10 @@
-// @flow
 import * as R from "ramda";
 import * as api from "Api/api.depositLimits";
 import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
 import type { AllLimits } from "./depositLimits.types";
 
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'ThunkDispatch'.
-export const init = () => (dispatch: ThunkDispatch) => {
+export const init = () => dispatch => {
   dispatch(getAllLimits);
   dispatch(limitPreadjust);
   dispatch(getRemainingLimits);
@@ -41,8 +39,7 @@ export const getLimitsHistory = () => ({
 });
 
 export function limitAdjust(limitAdjustement: AllLimits) {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'ThunkDispatch'.
-  return (dispatch: ThunkDispatch) => {
+  return dispatch => {
     const shouldRemove = R.pipe(
       R.toPairs,
       R.find(([limit, value]) => R.equals(value, null))

@@ -1,17 +1,15 @@
-// @flow
-import * as React from "react";
-import cx from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { TournamentIcon } from "@casumo/cmp-icons";
+import cx from "classnames";
+import * as React from "react";
 
 import "./Prize.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-  prize?: ?string,
-  className?: string,
-  highlighted?: boolean,
+  prize?: string | undefined;
+  className?: string;
+  highlighted?: boolean;
 };
 
 const baseClassName = "c-prize";

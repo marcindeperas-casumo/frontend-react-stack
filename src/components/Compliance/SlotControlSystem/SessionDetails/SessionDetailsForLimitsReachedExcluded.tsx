@@ -1,32 +1,32 @@
-// @flow
-import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as R from "ramda";
+import * as React from "react";
 import { interpolateWithJSX } from "Utils";
 import Timer from "Components/Timer";
 import { Duration } from "Components/Duration";
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../../../models/slotControlSystem"' ha... Remove this comment to see the full error message
-import { type EndedSessionType } from "Models/slotControlSystem";
+import type { EndedSessionType } from "Models/slotControlSystem";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 
 type Props = {
-  t: ?{
-    session_details_header: string,
-    money_wagered: string,
-    money_won: string,
-    money_left: string,
-    play_started: string,
-    play_ended: string,
-    limits_reached_button_label: string,
-    limits_reached_play_again_header: string,
-    limits_reached_exclusion_text: string,
-  },
-  onClickButton: () => void,
-  endTime: number,
-  locale: string,
-  lastEndedSession: EndedSessionType,
+  t:
+    | {
+        session_details_header: string;
+        money_wagered: string;
+        money_won: string;
+        money_left: string;
+        play_started: string;
+        play_ended: string;
+        limits_reached_button_label: string;
+        limits_reached_play_again_header: string;
+        limits_reached_exclusion_text: string;
+      }
+    | undefined;
+  onClickButton: () => void;
+  endTime: number;
+  locale: string;
+  lastEndedSession: EndedSessionType;
 };
 
 export function SessionDetailsForLimitsReachedExcluded(props: Props) {

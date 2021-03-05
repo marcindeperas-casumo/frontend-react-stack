@@ -1,7 +1,6 @@
-//@flow
-import * as React from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import * as React from "react";
 import cx from "classnames";
 import { SumoIconContext } from "./SumoIconContext";
 import SumoIconConfetti from "./SumoIconConfettiContainer";
@@ -9,8 +8,8 @@ import SumoIconConfetti from "./SumoIconConfettiContainer";
 import "./SumoIcon.scss";
 
 export type SumoIconProps = {
-  onClick?: () => void,
-  openedState?: boolean,
+  onClick?: () => void;
+  openedState?: boolean;
 };
 
 const baseClassName = "c-sumo-icon";
@@ -55,7 +54,7 @@ export const SumoIcon = ({
                 }
               )}
             >
-              {/* $FlowIgnore */}
+              {/* @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'PrimaryIcon' does not have any c... Remove this comment to see the full error message */}
               <PrimaryIcon {...primaryIconProps} />
             </div>
           )}
@@ -69,7 +68,7 @@ export const SumoIcon = ({
                 }
               )}
             >
-              {/* $FlowIgnore */}
+              {/* @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'SecondaryIcon' does not have any... Remove this comment to see the full error message */}
               <SecondaryIcon {...secondaryIconProps} />
             </div>
           )}

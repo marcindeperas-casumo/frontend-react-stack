@@ -1,6 +1,5 @@
-// @flow
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { viewports } from "Storybook/viewports";
 import MockStore from "Components/MockStore";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
@@ -8,8 +7,7 @@ import { ReelRacesDrawerWidget } from "./ReelRacesDrawerWidget";
 
 const stories = storiesOf("ReelRaceDrawer", module);
 
-// @ts-expect-error ts-migrate(8020) FIXME: JSDoc types can only be used inside documentation ... Remove this comment to see the full error message
-const getCurrentRace = (value: ?number = null) => ({
+const getCurrentRace = (value: number = null) => ({
   position: value || 1,
   remainingSpins: value || 99,
   points: value || 42,

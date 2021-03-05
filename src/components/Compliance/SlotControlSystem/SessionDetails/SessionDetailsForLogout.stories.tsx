@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as React from "react";
 import MockStore from "Components/MockStore";
 import activeSessionMock from "Models/slotControlSystem/__mocks__/activeSession.mock";
 import { SessionDetailsForLogout } from "./SessionDetailsForLogout";
@@ -27,7 +26,6 @@ stories.add("Default", () => {
         t={t}
         locale="en-GB"
         playEndedTime={activeSessionMock.startedTime + 100 * 1000}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; expiringTime: number; startedT... Remove this comment to see the full error message
         activeSession={activeSessionMock}
         onClickButton={action("onClickButton")}
       />

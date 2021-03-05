@@ -1,7 +1,6 @@
-// @flow
-import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import * as React from "react";
 import type { ModalContentComponent } from "Components/RSModal";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
@@ -10,22 +9,15 @@ import Timer from "Components/Timer";
 import { Row } from "Components/Compliance/SlotControlSystem/SessionDetails/Row";
 import { ModalSkin } from "./ModalSkin";
 
-type ContentType = {|
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'time_played'.
-  time_played: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'session_loss_limit'.
-  session_loss_limit: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'remaining_session_loss_limit'.
-  remaining_session_loss_limit: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'money_wagered'.
-  money_wagered: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'money_won'.
-  money_won: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'modal_title'.
-  modal_title: string,
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'continue_playing_button'.
-  continue_playing_button: string,
-|};
+type ContentType = {
+  time_played: string;
+  session_loss_limit: string;
+  remaining_session_loss_limit: string;
+  money_wagered: string;
+  money_won: string;
+  modal_title: string;
+  continue_playing_button: string;
+};
 
 export function PeriodicReminderNotification({
   t,

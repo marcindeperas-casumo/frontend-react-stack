@@ -1,4 +1,1 @@
-// @flow
-export {
-  PromotionTeaserRowContainer as PromotionTeaserRow,
-} from "./PromotionTeaserRowContainer";
+export { PromotionTeaserRowContainer as PromotionTeaserRow } from "./PromotionTeaserRowContainer";

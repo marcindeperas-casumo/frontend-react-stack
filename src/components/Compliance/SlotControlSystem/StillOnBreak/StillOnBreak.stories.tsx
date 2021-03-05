@@ -1,8 +1,7 @@
-// @flow
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import MockDate from "mockdate";
+import * as React from "react";
 import { isChromatic } from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
 import durationTranslationsMock from "Components/Duration/__mocks__/translations";

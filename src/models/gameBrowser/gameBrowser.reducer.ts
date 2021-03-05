@@ -1,4 +1,3 @@
-// @flow
 import type { Action } from "./gameBrowser.actions";
 
 const DEFAULT_STATE = {
@@ -6,7 +5,7 @@ const DEFAULT_STATE = {
   scroll: 0,
   data: {},
 };
-type State = typeof DEFAULT_STATE;
+type State = typeof DEFAULT_STATE | null;
 
 export function gameBrowserReducer(
   state: State = DEFAULT_STATE,

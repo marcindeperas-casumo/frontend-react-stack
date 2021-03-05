@@ -1,7 +1,6 @@
-// @flow
+import { TimeLockedIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import cx from "classnames";
-import { TimeLockedIcon } from "@casumo/cmp-icons";
 import Timer from "Components/Timer";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
@@ -9,11 +8,10 @@ import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import "./FiveMinuteBreakIcon.scss";
 
 type Props = {
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'SyntheticEvent'.
-  onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void,
-  progressPercentage: number,
-  expiringTime: number,
-  className?: string,
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  progressPercentage: number;
+  expiringTime: number;
+  className?: string;
 };
 
 export const FiveMinuteBreakIcon = ({

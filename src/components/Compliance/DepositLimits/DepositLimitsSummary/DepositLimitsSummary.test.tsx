@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsSummary } from "./DepositLimitsSummary";
@@ -30,7 +29,6 @@ const props = {
 describe("DepositLimitsSummary", () => {
   test("daily, weekly, monthly limits can be edited", () => {
     const edit = jest.fn();
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'Mock<any, any>' is not assignable to type 'D... Remove this comment to see the full error message
     const rendered = shallow(<DepositLimitsSummary {...props} edit={edit} />);
 
     ["daily", "weekly", "monthly"].forEach(limit => {
@@ -42,7 +40,6 @@ describe("DepositLimitsSummary", () => {
   test("", () => {
     const confirmLimitsAdjust = jest.fn();
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'void' is missing in type '{ confirmLimit... Remove this comment to see the full error message
       <DepositLimitsSummary
         {...props}
         confirmLimitsAdjust={confirmLimitsAdjust}

@@ -1,9 +1,7 @@
-// @flow
 import { insertIntoArray } from "./gamesPaginated";
 
 describe("GameListPage/insertIntoArray", () => {
   test("should inject array starting from given index", () => {
-    // eslint-disable-next-line no-sparse-arrays
     expect(insertIntoArray([3, 4, 5], 2)(new Array(10))).toEqual([
       ,
       ,
