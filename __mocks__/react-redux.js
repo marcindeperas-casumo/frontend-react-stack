@@ -7,7 +7,7 @@ const reactRedux = jest.requireActual("react-redux");
 const { ReactReduxContext } = jest.requireActual("react-redux/lib/components/Context");
 const R = require("ramda");
 
-function noop() {
+function noop(a, b) {
   return {}
 }
 function defaultMergeProps(stateProps = {}, dispatchProps = {}, ownProps = {}) {

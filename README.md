@@ -105,7 +105,6 @@ Whilst developing CUDL components should generally be done within the storybook 
 - Run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
 - Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack.
 - In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
-- You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
 - Any changes you make to the component will now flow through to the React Stack
 
 ### How can I debug production via React Devtools ?

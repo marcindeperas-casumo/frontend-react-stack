@@ -7,8 +7,8 @@
 import { existsSync } from "fs";
 import { resolve } from "path";
 import requireContext from "require-context.macro";
-import ReactDOM from "react-dom";
 import initStoryshots, { renderOnly } from "@storybook/addon-storyshots";
+import ReactDOM from "react-dom";
 
 /**
  * This part here is to mimic storybook auto-mocking behaviour in jest env.
@@ -23,7 +23,7 @@ requireContext(relativeSrcPath, true, /__mocks__\/.*/)
   .filter(existsSync)
   .forEach(absoluteFilePath => jest.mock(absoluteFilePath));
 
-ReactDOM.createPortal = node => node;
+ReactDOM.createPortal = node => node; // eslint-disable-line fp/no-mutation
 
 jest.mock("./isNotChromatic", () => ({
   __esModule: true,

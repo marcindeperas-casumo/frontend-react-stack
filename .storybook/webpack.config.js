@@ -17,7 +17,7 @@ module.exports = ({ config, mode }) => {
         /applicationService\/logger/,
         path.resolve(__dirname, "fakeLogger.js")
       ),
-      new webpack.NormalModuleReplacementPlugin(/\.js$/, resource => {
+      new webpack.NormalModuleReplacementPlugin(/\.tsx?$/, resource => {
         if (/__mocks__/.test(resource.request)) {
           return;
         }

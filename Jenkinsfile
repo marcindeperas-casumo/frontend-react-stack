@@ -56,8 +56,8 @@ Started by: *${env.gitAuthor}* :eyes:
             "Tests": { it.customStepTask('Tests', {
                 shell("yarn test:ci")
             }) },
-            "Flow": { it.customStepTask('Flow', {
-                shell("yarn flow check")
+            "Typescript": { it.customStepTask('Typescript', {
+                shell("yarn tsc")
             }) },
             "Lint": { it.customStepTask('Lint', {
                 shell("yarn lint")
