@@ -11,7 +11,10 @@ module.exports = env => {
 
   return {
     mode: env.production ? "production" : "development",
-    entry: path.resolve(ROOT, brand ? `src/index.${brand}.js` : "src/index.js"),
+    entry: path.resolve(
+      ROOT,
+      brand ? `src/index.${brand}.tsx` : "src/index.tsx"
+    ),
     devtool: env.development ? "cheap-module-source-map" : false,
     resolve,
     output: {

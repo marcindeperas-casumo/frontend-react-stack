@@ -1,14 +1,19 @@
 import requireContext from "require-context.macro";
-import React from "react";
 import { configure, addDecorator, addParameters } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { withInfo } from "@storybook/addon-info";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import * as React from "react";
 import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
 
-const req = requireContext("../src", true, /.stories.js$/);
+const req = requireContext("../src", true, /.stories.tsx?$/);
+
+/* eslint-disable fp/no-mutation */
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => () => {};
+/* eslint-enable fp/no-mutation */
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

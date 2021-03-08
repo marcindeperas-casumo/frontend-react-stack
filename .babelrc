@@ -8,14 +8,13 @@
       }
     ],
     "@babel/preset-react",
-    "@babel/preset-flow"
+    "@babel/preset-typescript"
   ],
   "plugins": [
     "@babel/plugin-transform-flow-strip-types",
     "babel-plugin-macros",
     "@babel/transform-runtime",
     "@babel/plugin-proposal-class-properties",
-    "react-hot-loader/babel",
     [
       "module-resolver",
       {

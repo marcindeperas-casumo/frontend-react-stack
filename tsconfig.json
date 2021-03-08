@@ -1,0 +1,46 @@
+{
+  "exclude": [
+    "**/build/**/*",
+    "**/.history/**/*",
+    "**/pact/**/*",
+    "**/scripts/**/*",
+    "**/config/**/*"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": true,
+    "target": "es5",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "Containers/*": ["containers/*"],
+      "Components/*": ["components/*"],
+      "Pages/*": ["pages/*"],
+      "Pages": ["pages/index"],
+      "Layouts/*": ["layouts/*"],
+      "Layouts": ["layouts/index"],
+      "Features/*": ["features/*"],
+      "Models/*": ["models/*"],
+      "Services/*": ["applicationService/*"],
+      "Clients/*": ["serviceClients/*"],
+      "Utils/*": ["utils/*"],
+      "Utils": ["utils/index"],
+      "Lib/*": ["lib/*"],
+      "Src/*": ["*"],
+      "Storybook/*": ["../.storybook/*"],
+      "Types/*": ["types/*"],
+      "Api/*": ["api/*"],
+      "GameProviders/*": ["gameProviders/*"],
+      "GameProviders": ["gameProviders/index"]
+    },
+    "downlevelIteration": true, // this allows writing stuff like this: [...Array(3).keys()]
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

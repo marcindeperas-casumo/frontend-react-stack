@@ -1,0 +1,39 @@
+overwrite: true
+schema:
+  - http://graphql-server-games.at.casumotest.local:8080
+  - src/models/apollo/typedefs.*.ts
+documents:
+  - src/**/!(useTranslationsGql|apolloTestUtils|apollo|*.test|*.stories).{ts,tsx,graphql}
+generates:
+  src/types/apollo.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      skipTypename: true
+      declarationKind:
+        union: type
+        type: interface
+        input: interface
+        scalar: interface
+        arguments: interface
+        interface: interface
+      enumsAsTypes: true
+      preResolveTypes: true
+      dedupeOperationSuffix: true
+      useImplementingTypes: true
+      scalars:
+        Long: number
+        BigInt: number
+  src/types/graphqlFileModules.d.ts:
+    plugins:
+      - typescript-graphql-files-modules
+  src/types/introspections.json:
+    plugins:
+      - fragment-matcher
+pluckConfig:
+  globalGqlIdentifierName:
+    - gql
+hooks:
+  afterAllFileWrite:
+    - prettier --write
