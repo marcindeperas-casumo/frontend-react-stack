@@ -16,7 +16,7 @@ export function Modal() {
   return (
     <ModalBase
       isOpen={Boolean(state.modalId)}
-      mustAccept={!state.config.mustAccept}
+      mustAccept={!state.config?.mustAccept}
       onRequestClose={dismissModal}
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; isOpen: boolean; mustAc... Remove this comment to see the full error message
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
