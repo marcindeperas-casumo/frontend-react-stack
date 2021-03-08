@@ -142,6 +142,9 @@ export function DepositLimitsView(props: Props) {
         responsibleGamblingTestCanBeTaken={
           props.preadjust.responsibleGamblingTestCanBeTaken
         }
+        increasesOrRevocationsBlocked={
+          props.preadjust.increasesOrRevocationsBlocked
+        }
         limitChanges={limitChanges}
         limits={props.limits}
         initiallyVisible={depositKind}

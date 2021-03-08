@@ -31,6 +31,13 @@ const errorHandler = response => {
   return response;
 };
 
+const emptyResponseHandler = response =>
+  response
+    .text()
+    .then(responseText =>
+      responseText.length > 0 ? JSON.parse(responseText) : {}
+    );
+
 const get: FetchType = (url, data, options) =>
   fetch(createGetUrl(url, data), {
     ...DEFAULT_FETCH_OPTIONS,
@@ -47,7 +54,7 @@ const post: FetchType = (url, data, options) =>
     ...options,
   })
     .then(errorHandler)
-    .then(response => response.json());
+    .then(emptyResponseHandler);
 
 const del: FetchType = (url, options) =>
   fetch(url, {

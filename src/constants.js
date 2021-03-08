@@ -130,6 +130,7 @@ export const ROUTE_IDS = {
   FAQ: "FAQ",
   ABOUT_CASUMO: "ABOUT_CASUMO",
   CASINO_GAMES: "CASINO_GAMES",
+  MAHJONG_PAGE: "MAHJONG_PAGE",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
 };
 
@@ -171,6 +172,7 @@ export const ROUTES = {
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
   [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
+  [ROUTE_IDS.MAHJONG_PAGE]: "mahjong",
   [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
 };
