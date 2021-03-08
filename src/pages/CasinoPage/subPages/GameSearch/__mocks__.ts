@@ -1,4 +1,3 @@
-// @flow
 import { EVENT_LOCATIONS } from "Src/constants";
 
 export const mockedSearchResults = {

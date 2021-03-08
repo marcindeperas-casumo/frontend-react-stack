@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
 type TScrollToTopParams = {
-  triggerScrollProp: any,
-  scrollElementId?: string,
+  triggerScrollProp: any;
+  scrollElementId?: string;
 };
 
 export const useScrollToTop = ({

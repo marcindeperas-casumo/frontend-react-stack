@@ -1,12 +1,11 @@
-// @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 
-type TProps = {
-  games: Array<any>,
-  renderItem?: (game: A.GameRow_Game) => React.Node,
+type TProps<T = A.GameRow_GameFragment> = {
+  games: Array<T>;
+  renderItem?: (game: T) => React.ReactNode;
 };
 
 export const GameList = ({ games, renderItem }: TProps) => {

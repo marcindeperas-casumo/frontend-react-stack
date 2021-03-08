@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";

@@ -8,39 +8,39 @@ import { GameRow, GameRowSearchText } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 import { useScrollToTop } from "Utils/hooks";
-import { type TGameSearchSuggestions } from "./GameSearch.types";
+import type { TGameSearchSuggestions, TCmsContent } from "./GameSearch.types";
 import { GameSearchResults } from "./GameSearchResults";
 import { GameSearchSuggestions } from "./GameSearchSuggestions";
 
 import "./GameSearch.scss";
 
-type Props = {
-  query: string,
-  searchResults: Array<A.GameSearch_Game>,
-  searchResultsCount: number,
-  loading: boolean,
-  loadingSuggestions: boolean,
-  suggestions: TGameSearchSuggestions,
-  clearSearch: () => {},
-  fetchMoreRows: Function => Promise<any>,
-  queryChanged: (query: string) => {},
-  t: {
-    inputPromptPlaceholder: string,
-    gameInMaintenanceText: string,
-  },
+type TProps = {
+  query: string;
+  searchResults: Array<A.GameSearch_GameFragment>;
+  searchResultsCount: number;
+  loading: boolean;
+  loadingSuggestions: boolean;
+  suggestions: TGameSearchSuggestions;
+  clearSearch: () => {};
+  fetchMoreRows: (f: Function) => Promise<any>;
+  queryChanged: (query: string) => {};
+  t: TCmsContent;
 };
 
-const gameRowSecondaryText = (game, t) => () => {
+const gameRowSecondaryText = (
+  game: A.GameSearch_GameFragment,
+  t: TCmsContent
+) => () => {
   return game.isInMaintenance ? (
     <Text className="u-padding-top--sm t-color-grey-70" size="sm">
       {t.gameInMaintenanceText}
     </Text>
   ) : (
-    <div className="t-color-grey-20">{game.studioName}</div>
+    <div className="t-color-grey-20">{game.gameStudio}</div>
   );
 };
 
-const gameRowHighlightSearch = (query, t) => game => (
+const gameRowHighlightSearch = (query: string, t: TCmsContent) => game => (
   <GameRow
     game={game}
     renderText={() => (
@@ -65,7 +65,7 @@ export const GameSearch = ({
   queryChanged,
   clearSearch,
   t,
-}: Props) => {
+}: TProps) => {
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
 
   useScrollToTop(query);
