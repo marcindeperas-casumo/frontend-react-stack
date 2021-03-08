@@ -38,7 +38,7 @@ export const GameSearchContainer = () => {
       loading={false}
       loadingSuggestions={false}
       suggestions={mockedSuggestions}
-      fetchMoreRows={noop}
+      fetchMoreRows={() => Promise.resolve([])}
       queryChanged={setSearchQuery}
       query={searchQuery}
       clearSearch={clearSearch}

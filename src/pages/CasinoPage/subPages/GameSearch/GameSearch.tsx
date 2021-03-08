@@ -68,7 +68,7 @@ export const GameSearch = ({
 }: TProps) => {
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
 
-  useScrollToTop(query);
+  useScrollToTop({ triggerScrollProp: query });
 
   return (
     <div className={`o-wrapper ${xPaddingClasses}`}>

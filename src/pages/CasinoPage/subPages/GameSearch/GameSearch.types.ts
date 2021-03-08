@@ -14,7 +14,7 @@ export type TGameSearchSuggestions = {
 };
 
 export type TGameSearchResults = {
-  results: Array<A.GameSearchQuery_gamesSearch_results>;
+  results: Array<A.GameSearch_GameFragment>;
   resultsCount: number;
-  renderItem: (game: A.GameRow_Game) => React.Node;
+  renderItem: (game: A.GameSearch_GameFragment) => React.ReactNode;
 };
