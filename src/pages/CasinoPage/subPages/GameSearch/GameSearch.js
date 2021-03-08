@@ -8,6 +8,7 @@ import { GameRow, GameRowSearchText } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
 import { useScrollToTop } from "Utils/hooks";
+import { type TGameSearchSuggestions } from "./GameSearch.types";
 import { GameSearchResults } from "./GameSearchResults";
 import { GameSearchSuggestions } from "./GameSearchSuggestions";
 
@@ -19,12 +20,7 @@ type Props = {
   searchResultsCount: number,
   loading: boolean,
   loadingSuggestions: boolean,
-  suggestions: {
-    games: Array<A.GameSearchSuggestionsListContainerQuery_gamesList_games>,
-    location: string,
-    title: ?string,
-    type: string,
-  },
+  suggestions: TGameSearchSuggestions,
   clearSearch: () => {},
   fetchMoreRows: Function => Promise<any>,
   queryChanged: (query: string) => {},
