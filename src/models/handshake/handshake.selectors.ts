@@ -1,115 +1,116 @@
 import { createSelector } from "reselect";
-import {
-  compose,
-  prop,
-  path,
-  pathOr,
-  pipe,
-  includes,
-  isNil,
-  isEmpty,
-  complement,
-  anyPass,
-  propSatisfies,
-} from "ramda";
+import * as R from "ramda";
 import * as storage from "Lib/storage";
 import {
   INTL_LOCALES,
   LANGUAGES,
   VERTICALS,
   DEFAULT_LANGUAGE,
+  TCurrencyCode,
 } from "Src/constants";
+import type { TLanguage } from "Src/constants";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
-export const handshakeSelector = (state: Object) => (state as any).handshake;
+import type { Handshake } from "./handshake.types";
+
+export const handshakeSelector: (state: Object) => Handshake = state =>
+  (state as any).handshake;
 export const applicationHandshakeSelector = createSelector(
   handshakeSelector,
-  prop(APP_HANDSHAKE_KEY)
+  R.prop(APP_HANDSHAKE_KEY)
 );
 export const isApplicationHandshakeLoaded = createSelector(
   applicationHandshakeSelector,
-  complement(anyPass([isNil, isEmpty]))
+  R.complement(R.anyPass([R.isNil, R.isEmpty]))
 );
 export const session = createSelector(
   applicationHandshakeSelector,
-  prop("common/composition/session")
+  R.prop("common/composition/session")
 );
+
+type __playersSelector = ReturnType<
+  typeof applicationHandshakeSelector
+>["common/composition/players"]["players"];
 export const playersSelector = createSelector(
   applicationHandshakeSelector,
-  compose(prop("players"), prop("common/composition/players"))
+  R.path<__playersSelector>(["common/composition/players", "players"])
 );
 export const isAuthenticated = createSelector(
   session,
-  complement(anyPass([isNil, isEmpty]))
+  R.complement(R.anyPass([R.isNil, R.isEmpty]))
 );
-export const playerIdSelector = createSelector(session, prop("id"));
+export const playerIdSelector = createSelector(session, R.prop("id"));
 export const playerSelector = createSelector(
   playersSelector,
   playerIdSelector,
-  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-  (players, playerId) => prop(playerId)(players)
+  (players, playerId) => R.prop(playerId)(players)
 );
+type _PlayerSelectorRT = ReturnType<typeof playerSelector>;
 export const playerCasumoNameSelector = createSelector(
   playerSelector,
-  prop("casumoName")
+  R.prop("casumoName")
 );
 export const playerReferrerInfoSelector = createSelector(
   playerSelector,
-  prop("referrerInfo")
+  R.prop("referrerInfo")
 );
-export const sessionIdSelector = createSelector(session, prop("sessionId"));
+export const sessionIdSelector = createSelector(session, R.prop("sessionId"));
 export const adventureLevelsSelector = createSelector(
   applicationHandshakeSelector,
-  prop("common/composition/Adventure")
+  R.prop("common/composition/Adventure")
 );
 export const isSuspiciousAccount = createSelector(
   playerSelector,
-  prop("suspiciousAccount")
+  R.prop("suspiciousAccount")
 );
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
 export const countrySelector = createSelector(
   playerSelector,
-  compose(prop("country"), prop("primaryAddress"), prop("contactInfo"))
+  R.path<TLanguage>(["contactInfo", "primaryAddress", "country"])
 );
 export const currencySelector = createSelector(
   playerSelector,
-  compose(prop("iso4217CurrencyCode"), prop("balance"), prop("wallet"))
+  R.path<TCurrencyCode>(["wallet", "balance", "iso4217CurrencyCode"])
 );
 export const walletAmountSelector = createSelector(
   playerSelector,
-  path(["wallet", "balance", "amount"])
+  R.path<number>(["wallet", "balance", "amount"])
 );
 export const savedMethodsSelector = createSelector(
   playerSelector,
-  path(["paymentMethods"])
+  R.prop("paymentMethods")
 );
 export const bonusAmountSelector = createSelector(
   playerSelector,
-  pathOr(0, ["bonus", "balance", "amount"])
+  R.pathOr(0, ["bonus", "balance", "amount"])
 );
-export const marketSelector = createSelector(playerSelector, prop("market"));
+
+export const marketSelector = createSelector(playerSelector, R.prop("market"));
 export const hasMadeFirstDepositSelector = createSelector(
   playerSelector,
-  propSatisfies(complement(isNil), "firstDepositDate")
+  R.propSatisfies(R.complement(R.isNil), "firstDepositDate")
 );
 export const languageSelector = createSelector(
   marketSelector,
-  // @ts-expect-error ts-migrate(2538) FIXME: Type 'unknown' cannot be used as an index type.
   market => LANGUAGES[market] || DEFAULT_LANGUAGE
 );
+
+type __rootContentHashesSelector = ReturnType<
+  typeof applicationHandshakeSelector
+>["common/composition/wpInterface"]["rootContentHashes"];
+const rootContentHashesSelector = createSelector(
+  applicationHandshakeSelector,
+  R.path<__rootContentHashesSelector>([
+    "common/composition/wpInterface",
+    "rootContentHashes",
+  ])
+);
+
 export const getCmsHash = createSelector(
   languageSelector,
-  compose(
-    prop("rootContentHashes"),
-    prop("common/composition/wpInterface"),
-    prop("app"),
-    handshakeSelector
-  ),
-  (lang, rootContentHashes) => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
-    return prop(lang)(rootContentHashes);
-  }
+  rootContentHashesSelector,
+  (lang, rootContentHashes) => R.prop(lang, rootContentHashes)
 );
 /**
  * Inside player object in handshake we have info about reel races that player
@@ -118,44 +119,54 @@ export const getCmsHash = createSelector(
  */
 export const optedInReelRacesSelector = createSelector(
   playerSelector,
-  pathOr({}, ["playerTournamentCampaign", "tournaments"])
+  R.pathOr({}, ["playerTournamentCampaign", "tournaments"])
 );
+
 export const localeSelector = createSelector(
   marketSelector,
-  // @ts-expect-error ts-migrate(2538) FIXME: Type 'unknown' cannot be used as an index type.
   market => INTL_LOCALES[market]
 );
+
+type __tournamentChannelsSelector = _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
-  pathOr([], ["tournamentCampaign", "tournamentChannels"])
+  R.pathOr<__tournamentChannelsSelector>(
+    [],
+    ["tournamentCampaign", "tournamentChannels"]
+  )
 );
+
+type __walletIdSelector = _PlayerSelectorRT["wallet"]["id"];
 export const walletIdSelector = createSelector(
   playerSelector,
-  path(["wallet", "id"])
+  R.path<__walletIdSelector>(["wallet", "id"])
 );
-type PlayerNameSelector = {
-  firstName: string;
-  lastName: string;
-};
-// @ts-expect-error ts-migrate(2739) FIXME: Type 'OutputSelector<Object, unknown, (res: any) =... Remove this comment to see the full error message
-export const playerNameSelector: PlayerNameSelector = createSelector(
+
+type __playerNameSelector = _PlayerSelectorRT["contactInfo"]["name"];
+export const playerNameSelector = createSelector(
   playerSelector,
-  path(["contactInfo", "name"])
+  R.path<__playerNameSelector>(["contactInfo", "name"])
 );
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<Object, unknown, (res: any) =... Remove this comment to see the full error message
-export const emailSelector: string = createSelector(
+
+type __emailSelector = _PlayerSelectorRT["contactInfo"]["email"];
+export const emailSelector = createSelector(
   playerSelector,
-  path(["contactInfo", "email"])
+  R.path<__emailSelector>(["contactInfo", "email"])
 );
+
+type __socialSecurityNumberSelector = _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
-  path(["contactInfo", "socialSecurityNumber"])
+  R.path<__socialSecurityNumberSelector>([
+    "contactInfo",
+    "socialSecurityNumber",
+  ])
 );
 export const welcomeOfferIdSelector = createSelector(
   playerSelector,
-  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-  prop(["welcomeOfferId"])
+  R.prop("welcomeOfferId")
 );
+
 export const verticalSelector = createSelector(
   welcomeOfferIdSelector,
   welcomeOfferId => {
@@ -175,9 +186,9 @@ export const verticalSelector = createSelector(
  */
 export const featureFlagSelector = (featureFlag: string) =>
   createSelector(playerSelector, player => {
-    const backendFeatureFlags = pathOr([], ["featureFlags"], player);
+    const backendFeatureFlags = R.pathOr([], ["featureFlags"], player);
     const localContainer = storage.get("featureFlags", {});
-    const localFeatureFlags = pathOr([], ["features"], localContainer);
+    const localFeatureFlags = R.pathOr([], ["features"], localContainer);
     const hasFeatureFlag = x =>
       [...backendFeatureFlags, ...localFeatureFlags].includes(x);
     if (hasFeatureFlag(featureFlag)) {
@@ -187,23 +198,30 @@ export const featureFlagSelector = (featureFlag: string) =>
   });
 export const jurisdictionSelector = createSelector(
   playerSelector,
-  prop("jurisdiction")
+  R.prop("jurisdiction")
 );
 export const complianceStatePropertySelector = (complianceProperty: string) =>
-  createSelector(playerSelector, path(["complianceState", complianceProperty]));
+  createSelector(
+    playerSelector,
+    R.path(["complianceState", complianceProperty])
+  );
+
 export const registrationDateSelector = createSelector(
   playerSelector,
-  prop("registrationDate")
+  R.prop("registrationDate")
 );
 export const isProductionBackendSelector = createSelector(
   applicationHandshakeSelector,
-  pipe(path(["common/composition/context", "siteUrl"]), includes("casumo.com"))
+  R.pipe(
+    R.path(["common/composition/context", "siteUrl"]),
+    R.includes("casumo.com")
+  )
 );
 export const commonContextSelector = createSelector(
   applicationHandshakeSelector,
-  prop("common/composition/context")
+  R.prop("common/composition/context")
 );
 export const piqConfigSelector = createSelector(
   applicationHandshakeSelector,
-  prop("common/composition/piqConfig")
+  R.prop("common/composition/piqConfig")
 );
