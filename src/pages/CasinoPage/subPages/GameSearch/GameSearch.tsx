@@ -21,9 +21,9 @@ type TProps = {
   loading: boolean;
   loadingSuggestions: boolean;
   suggestions: TGameSearchSuggestions;
-  clearSearch: () => {};
+  clearSearch: () => void;
   fetchMoreRows: (f: Function) => Promise<any>;
-  queryChanged: (query: string) => {};
+  queryChanged: (query: string) => void;
   t: TCmsContent;
 };
 
@@ -77,7 +77,7 @@ export const GameSearch = ({
           onChange={queryChanged}
           clearSearch={clearSearch}
           noResults={noResults}
-          placeholder={t.inputPromptPlaceholder}
+          placeholder={t.searchSuggestionText}
         />
       </div>
       <div className="t-border-r--md t-border-r--none@mobile t-background-white">

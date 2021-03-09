@@ -1,5 +1,4 @@
 import React from "react";
-import { noop } from "Utils";
 import {
   mockedSearchResults,
   mockedSuggestions,

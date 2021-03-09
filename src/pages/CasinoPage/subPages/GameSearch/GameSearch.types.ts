@@ -2,12 +2,12 @@ import * as React from "react";
 import * as A from "Types/apollo";
 
 export type TCmsContent = {
-  inputPromptPlaceholder: string;
+  searchSuggestionText: string;
   gameInMaintenanceText: string;
 };
 
 export type TGameSearchSuggestions = {
-  games: Array<A.GameSearchSuggestionsListContainerQuery["gamesList"]["games"]>;
+  games: A.GameSearchSuggestionsListContainerQuery["gamesList"]["games"];
   location: string;
   title: string | undefined;
   type: string;
