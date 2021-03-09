@@ -2,15 +2,8 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";
-import * as A from "Types/apollo";
 import { GameList } from "./GameList";
-
-export type TProps = {
-  games: Array<A.GameSearchSuggestionsListContainerQuery_gamesList_games>;
-  location: string;
-  title: string;
-  type: string;
-};
+import type { TGameSearchSuggestions as TProps } from "./GameSearch.types";
 
 export const GameSearchSuggestions = ({ games, title }: TProps) => (
   <>

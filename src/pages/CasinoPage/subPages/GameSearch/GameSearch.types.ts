@@ -13,8 +13,8 @@ export type TGameSearchSuggestions = {
   type: string;
 };
 
-export type TGameSearchResults = {
-  results: Array<A.GameSearch_GameFragment>;
+export type TGameSearchResults<T = A.GameSearch_GameFragment> = {
+  results: Array<T>;
   resultsCount: number;
-  renderItem: (game: A.GameSearch_GameFragment) => React.ReactNode;
+  renderItem: (game: T) => React.ReactNode;
 };
