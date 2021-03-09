@@ -25,7 +25,6 @@ export const playerWalletAmountSelector = createSelector(
 
 export const playerCurrencySymbolSelector = createSelector(
   [currencySelector, localeSelector],
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
   (currency, locale) => getSymbolForCurrency({ locale, currency })
 );
 
@@ -76,7 +75,6 @@ export const playerBalanceAmountSelector = createSelector(
   walletAmountSelector,
   bonusAmountSelector,
   (walletAmount, handshakeWalletAmount, handshakeBonusAmount) => {
-    // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     return walletAmount || handshakeWalletAmount - handshakeBonusAmount;
   }
 );
