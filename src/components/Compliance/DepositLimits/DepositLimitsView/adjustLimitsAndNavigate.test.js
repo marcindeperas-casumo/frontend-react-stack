@@ -10,7 +10,7 @@ describe("adjustLimitsAndNavigate", () => {
     "DECREASE_EFFECTIVE_IMMEDIATELY",
   ];
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
-  test("delete/increase flow, APPROVAL_REQUIRED_FOR_INCREASE | RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
+  test("delete/increase flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props = {
