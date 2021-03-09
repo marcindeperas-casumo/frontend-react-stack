@@ -1,4 +1,6 @@
+import type { DepositLimitPreadjustRules } from "Models/playOkay/depositLimits";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
+import type { TAdjustLimitsAndNavigateProps } from "./adjustLimitsAndNavigate";
 
 describe("adjustLimitsAndNavigate", () => {
   // these flags are now always true
@@ -7,12 +9,12 @@ describe("adjustLimitsAndNavigate", () => {
     "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
     "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
     "DECREASE_EFFECTIVE_IMMEDIATELY",
-  ];
+  ] as DepositLimitPreadjustRules[];
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
   test("delete/increase flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: [],
@@ -30,7 +32,6 @@ describe("adjustLimitsAndNavigate", () => {
       rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -43,7 +44,7 @@ describe("adjustLimitsAndNavigate", () => {
   test("increase/decrease flow, RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: ["daily"],
@@ -61,7 +62,6 @@ describe("adjustLimitsAndNavigate", () => {
       rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -74,7 +74,7 @@ describe("adjustLimitsAndNavigate", () => {
   test("decrease flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: ["daily", "weekly"],
@@ -92,7 +92,6 @@ describe("adjustLimitsAndNavigate", () => {
       rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);

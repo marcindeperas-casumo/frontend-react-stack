@@ -6,7 +6,17 @@ import type {
   DepositLimitPreadjustRules,
 } from "Models/playOkay/depositLimits";
 import { getSpecificKinds } from "Models/playOkay/depositLimits";
+import type { ConfirmationPage } from "../DepositLimitsConfirmations";
 import type { Navigate } from "./DepositLimitsView";
+
+export type TAdjustLimitsAndNavigateProps = {
+  limitsDiff: LimitsDiff;
+  decreases: Array<DepositKinds>;
+  rules: Array<DepositLimitPreadjustRules>;
+  navigate: Navigate;
+  newLimits: AllLimits;
+  limitAdjust: (allLimits: AllLimits) => void;
+};
 
 export const adjustLimitsAndNavigate = ({
   limitsDiff,
@@ -15,14 +25,7 @@ export const adjustLimitsAndNavigate = ({
   navigate,
   newLimits,
   limitAdjust,
-}: {
-  limitsDiff: LimitsDiff;
-  decreases: Array<DepositKinds>;
-  rules: Array<DepositLimitPreadjustRules>;
-  navigate: Navigate;
-  newLimits: AllLimits;
-  limitAdjust: (allLimits: AllLimits) => void;
-}) => {
+}: TAdjustLimitsAndNavigateProps) => {
   const hasRemovedOrIncreased = !R.isEmpty([
     ...getSpecificKinds("increase", limitsDiff),
     ...getSpecificKinds("removed", limitsDiff),
@@ -32,10 +35,10 @@ export const adjustLimitsAndNavigate = ({
   if (hasRemovedOrIncreased) {
     navigate({
       route: "confirmations",
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'Confirm... Remove this comment to see the full error message
+
       pages: [hasDecreased && "SAVED_RIGHT_AWAY", "RG_REQUIRED"].filter(
         Boolean
-      ),
+      ) as ConfirmationPage[],
     });
   } else if (hasDecreased) {
     limitAdjust(newLimits);

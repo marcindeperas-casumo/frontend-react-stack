@@ -1,4 +1,4 @@
-import type { TDepositLimitsConfirmationsTranslations } from "../DepositLimitsConfirmations";
+import type { TDepositLimitsConfirmationsTranslations } from "../DepositLimitsConfirmations.types";
 
 export default {
   saved_right_away_title: "Lowering your limit is now active.",
