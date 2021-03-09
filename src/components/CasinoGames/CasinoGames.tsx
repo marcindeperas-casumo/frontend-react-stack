@@ -1,58 +1,100 @@
+
+// @flow
+import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import { useQuery } from "@apollo/client";
-import * as React from "react";
-import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
-import { useTranslations, useJurisdiction } from "Utils/hooks";
+import { useJurisdiction } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { RtpTable } from "./RtpTable/RtpTable";
-import { GetGamesRTP } from "./GetGamesRTP.graphql";
 
-export const CasinoGames = () => {
-  const t = useTranslations<{
-    meta_description: string;
-    meta_title: string;
-    rtp_description: string;
-    rtp_game_name: string;
-    rtp_game_provider: string;
-    rtp_loading: string;
-    rtp_value: string;
-    actual_rtp_past_6_months: string;
-    actual_rtp_past_year: string;
-  }>("game-categories");
-  const categoriesContent = useTranslations("game-categories", true);
-  const query = "categories=SLOT_MACHINE";
-  const { data, loading, fetchMore } = useQuery<
-    A.GetGamesRtpQuery,
-    A.GetGamesRtpQueryVariables
-  >(GetGamesRTP, {
-    variables: {
-      query,
-      offset: 0,
-      limit: 48,
-    },
-  });
+type TCasinoGamesTranslations = {
+  meta_description: string,
+  meta_title: string,
+  rtp_description: string,
+  rtp_game_name: string,
+  rtp_game_provider: string,
+  rtp_loading: string,
+  rtp_value: string,
+  actual_rtp_past_6_months: string,
+  actual_rtp_past_year: string,
+};
 
-  const { isMGA, isDGOJ } = useJurisdiction();
+type TCasinoGamesProps = {
+  t: TCasinoGamesTranslations,
+  categoriesContent: any,
+  gamesResponse: any,
+  loadMore: () => void,
+};
 
-  if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
+export const CasinoGames = ({
+  t,
+  categoriesContent,
+  data,
+  loading,
+  fetchMore,
+}: TCasinoGamesProps) => {
+  const [gamesData, setGamesData] = React.useState([]);
+  const [gamesIDs, setGamesIDs] = React.useState([]);
+  const [
+    gamesListPercentageReceived,
+    setGamesListPercentageReceived,
+  ] = React.useState([]);
+
+  // if (
+  //   gamesListPercentageReceived.indexOf(gamesResponse.dataBatchPercentage) ===
+  //   -1
+  // ) {
+  //   const gamesDataCombined = gamesResponse.data?.getGamesPaginated?.games
+  //     ? [...gamesData, ...gamesResponse.data?.getGamesPaginated?.games]
+  //     : [...gamesData];
+  //   setGamesData(gamesDataCombined);
+  //   setGamesListPercentageReceived([
+  //     ...gamesListPercentageReceived,
+  //     gamesResponse.dataBatchPercentage,
+  //   ]);
+  // }
+
+  React.useEffect(() => {
+    if (data && data?.getGamesPaginated?.games) {
+      // if received batch of games sample IDs are not yet part of already received IDs proceed with merging
+      if (
+        !gamesIDs.length ||
+        (gamesIDs.indexOf(data.getGamesPaginated.games[2].id) === -1 &&
+          gamesIDs.indexOf(data.getGamesPaginated.games[0].id) === -1)
+      ) {
+        gamesData.length
+          ? setGamesData([...gamesData, ...data.getGamesPaginated.games])
+          : setGamesData(data.getGamesPaginated.games);
+        // Store received IDs to avoid duplicated due to query retriggering
+        const gameIDs = data.getGamesPaginated.games.reduce(
+          (ids, { id }) => [...ids, id],
+          []
+        );
+        gamesIDs.length
+          ? setGamesIDs([...gameIDs, ...gamesIDs])
+          : setGamesIDs(gameIDs);
+      }
+    }
+  }, [data, gamesData, gamesIDs]);
+
+  const { isMGA } = useJurisdiction();
+
+  if (loading || !gamesData || !t || !categoriesContent) {
     return null;
   }
 
-  const { games = [], gamesCount } = data.getGamesPaginated;
-
   const renderRtpTable = () => {
     return (
-      !isMGA && (
+      !isMGA &&
+      gamesData.length && (
         <RtpTable
-          games={games}
+          games={gamesData}
           data={data}
           fetchMore={fetchMore}
-          query={query}
-          gamesCount={gamesCount}
+          gamesCount={gamesData.length}
           scrollElementId={ROOT_SCROLL_ELEMENT_ID}
           headerColumns={[
             t.rtp_game_name,
@@ -66,10 +108,10 @@ export const CasinoGames = () => {
     );
   };
 
-  if (isDGOJ || isMobile()) {
+  if (isMobile()) {
     return (
       <>
-        <div className="u-padding u-padding--2xlg@desktop">
+        <div className="u-padding">
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
             <ButtonPrimary
