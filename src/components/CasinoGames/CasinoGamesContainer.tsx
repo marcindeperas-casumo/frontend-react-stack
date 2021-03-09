@@ -1,5 +1,3 @@
-
-// @flow
 import React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
@@ -30,7 +28,7 @@ export const CasinoGamesContainer = () => {
     variables: {
       query,
       offset: 0,
-      limit: 48,
+      limit: 50,
     },
   });
 

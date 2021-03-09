@@ -1,5 +1,3 @@
-
-// @flow
 import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";

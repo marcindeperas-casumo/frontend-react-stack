@@ -7,7 +7,7 @@ import { isMobile } from "Components/ResponsiveLayout";
 import { loadMoreConstructor } from "Utils";
 import { RtpTableRow } from "./RtpTableRow";
 
-const formatRTPValue = (x: ?string) => {
+const formatRTPValue = (x: string) => {
   if (!x) {
     return "";
   }
@@ -41,7 +41,7 @@ export const RtpTable = ({
   query: string,
   gamesCount: number,
   scrollElementId: string,
-  headerColumns: Array<?string>,
+  headerColumns: Array<string>,
   valuesColumns: Array<string>,
 }) => {
   const rowContainerClasses =
