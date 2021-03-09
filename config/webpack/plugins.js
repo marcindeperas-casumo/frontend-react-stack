@@ -1,10 +1,11 @@
 const path = require("path");
-const { DefinePlugin } = require("webpack");
 const WebpackManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const WebpackBar = require("webpackbar");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const { DefinePlugin, HotModuleReplacementPlugin } = require("webpack");
 const { ROOT, STATIC_DIR } = require("./utils");
 
 module.exports = env => {
@@ -20,7 +21,11 @@ module.exports = env => {
             }].css`,
           }),
         ]
-      : [new WebpackBar()]),
+      : [
+          new WebpackBar(),
+          new ReactRefreshWebpackPlugin(),
+          new HotModuleReplacementPlugin(),
+        ]),
     new CleanWebpackPlugin(),
     new WebpackManifestPlugin({
       fileName: `${STATIC_DIR}/manifest.json`,
