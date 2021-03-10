@@ -22,3 +22,13 @@ stories.add("2 pages", () => (
     fetchTranslations={() => {}}
   />
 ));
+
+stories.add("Player has requested creating new limits", () => (
+  <DepositLimitsConfirmations
+    t={t}
+    pages={["SAVED_RIGHT_AWAY_CREATED"]}
+    lastButtonCaption="button_back_to_limits"
+    lastButtonAction={() => {}}
+    fetchTranslations={() => {}}
+  />
+));
