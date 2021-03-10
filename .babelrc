@@ -11,9 +11,7 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    "@babel/plugin-transform-flow-strip-types",
     "babel-plugin-macros",
-    "@babel/transform-runtime",
     "@babel/plugin-proposal-class-properties",
     [
       "module-resolver",
