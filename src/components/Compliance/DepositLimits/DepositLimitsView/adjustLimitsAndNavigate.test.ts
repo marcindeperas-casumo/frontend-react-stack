@@ -2,7 +2,7 @@ import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
 
 describe("adjustLimitsAndNavigate", () => {
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
-  test("delete/increase flow, APPROVAL_REQUIRED_FOR_INCREASE", () => {
+  test("delete/increase flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props = {
@@ -38,7 +38,7 @@ describe("adjustLimitsAndNavigate", () => {
     });
   });
 
-  test("delete/increase flow, RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
+  test("delete/increase flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props = {
@@ -74,7 +74,7 @@ describe("adjustLimitsAndNavigate", () => {
     });
   });
 
-  test("increase/decrease flow, RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
+  test("increase/decrease flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props = {
@@ -142,6 +142,42 @@ describe("adjustLimitsAndNavigate", () => {
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
     expect(navigate).toHaveBeenNthCalledWith(1, {
       pages: ["SAVED_RIGHT_AWAY"],
+      route: "confirmations",
+    });
+  });
+
+  test("create flow", () => {
+    const limitAdjust = jest.fn();
+    const navigate = jest.fn();
+    const props = {
+      limitAdjust,
+      navigate,
+      decreases: [],
+      limitsDiff: {
+        daily: "created",
+        monthly: "created",
+        weekly: "created",
+      },
+      newLimits: {
+        currency: "EUR",
+        daily: 600,
+        monthly: 3000,
+        weekly: 1000,
+      },
+      rules: [
+        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
+        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
+        "DECREASE_EFFECTIVE_IMMEDIATELY",
+        "REVOCATION_ALLOWED",
+      ],
+    };
+
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
+    adjustLimitsAndNavigate(props);
+
+    expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
+    expect(navigate).toHaveBeenNthCalledWith(1, {
+      pages: ["SAVED_RIGHT_AWAY_CREATED"],
       route: "confirmations",
     });
   });

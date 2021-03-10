@@ -43,8 +43,9 @@ export function validate(
     return t.input_validation.highest_limit;
   }
 
-  const limitBeforeChange = formProps.limits[currentLimit] || 0;
-  if (currentLimitValue > limitBeforeChange) {
+  const limitBeforeChange = formProps.limits[currentLimit];
+
+  if (!R.isNil(limitBeforeChange) && currentLimitValue > limitBeforeChange) {
     const replacements = {
       currentLimit: formatCurrency({
         locale: formProps.locale,

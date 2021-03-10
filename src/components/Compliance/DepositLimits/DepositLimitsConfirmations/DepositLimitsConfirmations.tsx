@@ -11,10 +11,12 @@ export type ConfirmationPage =
   | "RG_FAIL"
   | "RG_REQUIRED"
   | "SAVED_RIGHT_AWAY"
+  | "SAVED_RIGHT_AWAY_CREATED"
   | "BEING_REVIEWED";
 type Props = {
   t: {
     saved_right_away_title: string;
+    saved_right_away_created_title: string;
     being_reviewed_title: string;
     being_reviewed_content: string;
     rg_success_title: string;
@@ -53,6 +55,9 @@ const confirmationPageToTranslation: Record<
   },
   SAVED_RIGHT_AWAY: {
     title: "saved_right_away_title",
+  },
+  SAVED_RIGHT_AWAY_CREATED: {
+    title: "saved_right_away_created_title"
   },
   BEING_REVIEWED: {
     title: "being_reviewed_title",

@@ -1,6 +1,6 @@
 
 export default {
-  saved_right_away_title: "These limits are saved and apply:",
+  saved_right_away_title: "Lowering your limit is now active.",
   being_reviewed_title: "We’ll need to review the rest of your adjustments",
   being_reviewed_content:
     "This may take a few days. We’ll inform you once all is done.",
