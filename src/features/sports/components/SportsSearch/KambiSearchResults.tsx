@@ -78,7 +78,7 @@ const ResultRow = ({
 }): React.ReactNode => (
   <div
     className={classNames(
-      "u-padding-x--md u-cursor-pointer",
+      "u-padding-x--md u-cursor--pointer",
       className || "t-background-white"
     )}
     onClick={onClick}

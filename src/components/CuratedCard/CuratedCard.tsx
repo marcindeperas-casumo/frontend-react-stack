@@ -94,7 +94,7 @@ export const CuratedCard = ({
           largeImage={curatedCard.largeImage}
         />
         <Card
-          className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg u-padding-x--3xlg@desktop"
+          className="o-ratio__content u-pointer--none u-padding--md@mobile u-padding--md@phablet u-padding--lg u-padding-x--3xlg@desktop"
           justify="end"
           spacing={{
             mobile: "md",

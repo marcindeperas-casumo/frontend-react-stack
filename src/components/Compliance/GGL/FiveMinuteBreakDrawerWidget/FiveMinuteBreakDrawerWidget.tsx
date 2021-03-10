@@ -43,7 +43,7 @@ export const FiveMinuteBreakDrawerWidget = ({
           <Flex.Item>
             <TimeLockedIcon size="md" />
           </Flex.Item>
-          <Flex.Block className="u-margin-left--md u-line-height--15">
+          <Flex.Block className="u-margin-left--md u-line-height">
             <Text size="sm" tag="div">
               {interpolateWithJSX(
                 {
