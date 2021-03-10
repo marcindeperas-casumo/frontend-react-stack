@@ -16,7 +16,6 @@ export const SingleNotification = ({
 
   useTimeoutFn(() => {
     setShow(true);
-    // needed a value so it c
   }, 20);
 
   useTimeoutFn(() => {
