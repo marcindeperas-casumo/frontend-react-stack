@@ -32,8 +32,6 @@ describe("ValuablesVerticalList", () => {
       <ValuablesVerticalList valuables={[]} loading={true} translations={{}} />
     );
 
-    await actWait();
-
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
