@@ -23,7 +23,9 @@ module.exports = env => {
         ]
       : [
           new WebpackBar(),
-          new ReactRefreshWebpackPlugin(),
+          new ReactRefreshWebpackPlugin({
+            overlay: false,
+          }),
           new HotModuleReplacementPlugin(),
         ]),
     new CleanWebpackPlugin(),
