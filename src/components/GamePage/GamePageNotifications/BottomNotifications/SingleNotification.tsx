@@ -25,10 +25,6 @@ export const SingleNotification = ({
     afterHide();
   }, hideDelay + 1000);
 
-  React.useEffect(() => {
-    setShow(false);
-  }, [text]);
-
   return (
     <div
       className={classNames(
