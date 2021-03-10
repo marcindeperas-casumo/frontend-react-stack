@@ -11,7 +11,10 @@ stories.add("Bottom notification", () => {
   return (
     <div className="u-width--screen u-height--screen">
       <BottomNotifications
-        notifications={["First message", "Second message"]}
+        notifications={[
+          "This is a longer message which doesn't really fit into single line of text on smaller devices, yes that's correct",
+          "Second, shorter message",
+        ]}
       />
     </div>
   );
