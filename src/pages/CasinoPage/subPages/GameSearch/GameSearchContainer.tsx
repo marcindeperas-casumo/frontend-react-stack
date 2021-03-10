@@ -10,7 +10,7 @@ import { GameSearch } from "./GameSearch";
 const PAGE_SIZE = 50;
 // eslint-enable-next-line no-unused-vars
 
-export const GameSearchContainer = () => {
+export const GameSearchContainer: React.FC = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data } = mockedSearchResults;
 

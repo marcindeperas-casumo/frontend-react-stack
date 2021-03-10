@@ -4,7 +4,7 @@ import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";
 import { GameList } from "./GameList";
 import type { TGameSearchResults as TProps } from "./GameSearch.types";
 
-export const GameSearchResults = ({
+export const GameSearchResults: React.FC<TProps> = ({
   results,
   resultsCount,
   renderItem,

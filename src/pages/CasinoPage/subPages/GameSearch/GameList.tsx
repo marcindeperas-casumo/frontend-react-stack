@@ -8,7 +8,7 @@ type TProps<T = A.GameRow_GameFragment> = {
   renderItem?: (game: T) => React.ReactNode;
 };
 
-export const GameList = ({ games, renderItem }: TProps) => {
+export const GameList: React.FC<TProps> = ({ games, renderItem }: TProps) => {
   const isRowLoaded = (index: number) => Boolean(games[index]);
 
   return (

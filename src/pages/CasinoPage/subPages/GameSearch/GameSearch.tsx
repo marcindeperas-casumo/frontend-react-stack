@@ -54,7 +54,7 @@ const gameRowHighlightSearch = (query: string, t: TCmsContent) => game => (
   />
 );
 
-export const GameSearch = ({
+export const GameSearch: React.FC<TProps> = ({
   loading,
   loadingSuggestions,
   suggestions,

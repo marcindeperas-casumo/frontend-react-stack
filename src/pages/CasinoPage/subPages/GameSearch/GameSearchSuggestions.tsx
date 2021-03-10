@@ -5,7 +5,10 @@ import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";
 import { GameList } from "./GameList";
 import type { TGameSearchSuggestions as TProps } from "./GameSearch.types";
 
-export const GameSearchSuggestions = ({ games, title }: TProps) => (
+export const GameSearchSuggestions: React.FC<TProps> = ({
+  games,
+  title,
+}: TProps) => (
   <>
     <Text
       size="md"
