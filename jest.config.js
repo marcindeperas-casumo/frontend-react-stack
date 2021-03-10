@@ -22,6 +22,7 @@ module.exports = {
   coverageReporters: ["lcov", "html", "text"],
   setupFiles: [
     "react-app-polyfill/jsdom",
+    "regenerator-runtime",
     "<rootDir>/config/jest/localStorageMock.js",
   ],
   testMatch: ["**/*.test.ts", "**/*.test.tsx"],
