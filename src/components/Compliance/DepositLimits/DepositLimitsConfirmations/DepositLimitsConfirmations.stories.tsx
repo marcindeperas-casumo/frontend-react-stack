@@ -16,7 +16,7 @@ stories.add("1 page", () => (
 stories.add("2 pages", () => (
   <DepositLimitsConfirmations
     t={t}
-    pages={["SAVED_RIGHT_AWAY", "RG_REQUIRED"]}
+    pages={["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"]}
     lastButtonCaption="button_answer_questions"
     lastButtonAction={() => {}}
     fetchTranslations={() => {}}

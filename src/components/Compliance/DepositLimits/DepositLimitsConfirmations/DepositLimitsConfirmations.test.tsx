@@ -5,7 +5,7 @@ import t from "./__mocks__/cms";
 
 const props = {
   t,
-  pages: ["SAVED_RIGHT_AWAY", "RG_REQUIRED"],
+  pages: ["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"],
   lastButtonAction: () => {},
   fetchTranslations: () => {},
   lastButtonCaption: "button_answer_questions",
@@ -56,7 +56,7 @@ describe("DepositLimitsConfirmations", () => {
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ pages: "SAVED_RIGHT_AWAY"[]; lastButtonAct... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
-        pages={["SAVED_RIGHT_AWAY"]}
+        pages={["SAVED_RIGHT_AWAY_DECREASED"]}
         lastButtonAction={lastButtonAction2}
       />
     );

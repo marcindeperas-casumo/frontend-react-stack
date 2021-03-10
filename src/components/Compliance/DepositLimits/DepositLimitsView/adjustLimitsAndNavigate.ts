@@ -50,7 +50,9 @@ export const adjustLimitsAndNavigate = ({
     limitAdjust(newLimits);
     navigate({
       route: "confirmations",
-      pages: [hasCreated ? "SAVED_RIGHT_AWAY_CREATED" : "SAVED_RIGHT_AWAY"],
+      pages: [
+        hasCreated ? "SAVED_RIGHT_AWAY_CREATED" : "SAVED_RIGHT_AWAY_DECREASED",
+      ],
     });
   } else {
     // nothing changed

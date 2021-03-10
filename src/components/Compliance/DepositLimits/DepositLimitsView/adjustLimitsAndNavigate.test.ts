@@ -141,7 +141,7 @@ describe("adjustLimitsAndNavigate", () => {
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
     expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["SAVED_RIGHT_AWAY"],
+      pages: ["SAVED_RIGHT_AWAY_DECREASED"],
       route: "confirmations",
     });
   });

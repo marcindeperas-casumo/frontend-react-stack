@@ -1,6 +1,7 @@
 
 export default {
-  saved_right_away_title: "Lowering your limit is now active.",
+  saved_right_away_decreased_title: "Lowering your limit is now active.",
+  saved_right_away_created_title: "Your new limits are now active.",
   being_reviewed_title: "We’ll need to review the rest of your adjustments",
   being_reviewed_content:
     "This may take a few days. We’ll inform you once all is done.",
