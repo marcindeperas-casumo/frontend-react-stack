@@ -191,6 +191,7 @@ export const TRANSLATED_ROUTES = {
     no: "spill",
     de: "spielen",
     at: "spielen",
+    es: "jugar",
     DEFAULT: "play",
   },
   CASINO_GAMES: {
@@ -225,6 +226,7 @@ export const MARKETS = {
   jp_ja: "jp_ja",
   at_de: "at_de",
 } as const;
+export type TMarket = ValueOf<typeof MARKETS>;
 
 export const MARKETS_CONFIG = {
   default: {
@@ -250,6 +252,7 @@ export const LANGUAGES = {
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
 } as const;
+export type TLanguage = ValueOf<typeof LANGUAGES>;
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 export const DEFAULT_MARKET = MARKETS.___en;
@@ -279,7 +282,7 @@ export const URL_PREFIXES = {
   [MARKETS.in_en]: "en-in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
-  [MARKETS.es_es]: "",
+  [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
   [MARKETS.at_de]: "at",
@@ -305,6 +308,7 @@ export const CURRENCIES = {
   INR: "INR",
   USD: "USD",
 } as const;
+export type TCurrencyCode = ValueOf<typeof CURRENCIES>; // ISO 4217
 
 export const VERTICALS = {
   SPORTS: "SPORTS",
@@ -507,6 +511,7 @@ export const JURISDICTIONS = {
   UKGC: "UKGC",
   GGL: "GGL",
 } as const;
+export type TJurisdiction = ValueOf<typeof JURISDICTIONS>;
 
 export const POLL_INTERVAL = {
   GAMES_LIST: 1800000, //30min
