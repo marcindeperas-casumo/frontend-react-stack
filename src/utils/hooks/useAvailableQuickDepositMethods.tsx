@@ -52,14 +52,13 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
 
   const playerCountry = useSelector(countrySelector);
   const methodsConfigs = useSelector(
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type 'unknown'.
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
     methodsConfigsSelector(savedMethods.map(method => method.type))
   );
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'forEach' does not exist on type 'unknown... Remove this comment to see the full error message
     savedMethods.forEach(({ type }) => {
       if (R.includes(type, SUPPORTED_QUICKDEPOSIT_TYPES)) {
         dispatch(preparePaymentMethodConfig(type));
@@ -77,25 +76,26 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
   }, [loading, methodTypes]);
 
   React.useEffect(() => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'length' does not exist on type 'unknown'... Remove this comment to see the full error message
     if (methodTypes && savedMethods.length && playerCountry) {
       setAvailableMethods(
-        // @ts-expect-error ts-migrate(2339) FIXME: Property 'reduce' does not exist on type 'unknown'... Remove this comment to see the full error message
         savedMethods.reduce((quickDepositMethods, playerMethod) => {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
           const config = methodsConfigs[playerMethod.type];
 
           if (
             config &&
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'deleted' does not exist on type 'never'.
             !playerMethod.deleted &&
             isMethodAvailableForQuickDeposit(config) &&
-            // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
             isAvailableInCountry(config, playerCountry) &&
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
             !methodTypes[playerMethod.type].inMaintenanceMode
           ) {
             return quickDepositMethods.concat([
               prepareQuickDepositMethod(
                 playerMethod,
                 config,
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
                 methodTypes[playerMethod.type]
               ),
             ]);

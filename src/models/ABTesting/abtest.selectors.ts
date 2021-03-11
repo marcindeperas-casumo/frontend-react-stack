@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { prop, pipe, find, propEq, equals, defaultTo } from "ramda";
+import * as R from "ramda";
 import {
   applicationHandshakeSelector,
   APP_COMMON_KEYS,
@@ -7,25 +7,21 @@ import {
 
 const ABTestsSelector = createSelector(
   applicationHandshakeSelector,
-  prop(APP_COMMON_KEYS.AB_TESTING)
+  R.prop(APP_COMMON_KEYS.AB_TESTING)
 );
 
+const ABFeatures = createSelector(ABTestsSelector, R.prop("features"));
+
 export const testSubjectIDSelector = () =>
-  createSelector(ABTestsSelector, prop("testSubjectId"));
+  createSelector(ABTestsSelector, R.prop("testSubjectId"));
 
-export const featureSelector = feature =>
-  createSelector(
-    ABTestsSelector,
-    pipe(
-      prop("features"),
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'unknown'.
-      find(f => equals(f.name, feature)),
-      defaultTo({})
-    )
-  );
+export const featureSelector = (feature: string) =>
+  createSelector(ABFeatures, x => {
+    return R.find(R.propEq("name", feature), x) || {};
+  });
 
-export const flavourSelector = feature =>
-  createSelector(featureSelector(feature), prop("flavour"));
+export const flavourSelector = (feature: string) =>
+  createSelector(featureSelector(feature), R.prop("flavour"));
 
-export const flavourMatchSelector = (feature, flavour) =>
-  createSelector(featureSelector(feature), propEq("flavour", flavour));
+export const flavourMatchSelector = (feature: string, flavour: string) =>
+  createSelector(featureSelector(feature), R.propEq("flavour", flavour));

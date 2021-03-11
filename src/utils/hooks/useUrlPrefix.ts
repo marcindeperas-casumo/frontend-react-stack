@@ -11,7 +11,6 @@ export function useUrlPrefix(): string | null {
     }
 
     const market = marketSelector(state);
-    // @ts-expect-error ts-migrate(2538) FIXME: Type 'unknown' cannot be used as an index type.
     return URL_PREFIXES[market];
   }, shallowEqual);
 }

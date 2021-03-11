@@ -3,20 +3,22 @@ import * as React from "react";
 import { DepositLimitsConfirmations } from "./DepositLimitsConfirmations";
 import t from "./__mocks__/cms";
 
-const stories = storiesOf("DepositLimits/Confirmations", module);
-stories.add("1 page", () => (
+const stories = storiesOf("DepositLimits/DepositLimitsConfirmations", module);
+
+stories.add("Player has requested decrease(s) only", () => (
   <DepositLimitsConfirmations
     t={t}
-    pages={["BEING_REVIEWED"]}
-    lastButtonCaption="button_answer_questions"
+    pages={["SAVED_RIGHT_AWAY_DECREASED"]}
+    lastButtonCaption="button_back_to_limits"
     lastButtonAction={() => {}}
     fetchTranslations={() => {}}
   />
 ));
-stories.add("2 pages", () => (
+
+stories.add("Player has requested removal(s) and/or increases only", () => (
   <DepositLimitsConfirmations
     t={t}
-    pages={["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"]}
+    pages={["RG_REQUIRED"]}
     lastButtonCaption="button_answer_questions"
     lastButtonAction={() => {}}
     fetchTranslations={() => {}}
@@ -32,3 +34,16 @@ stories.add("Player has requested creating new limits", () => (
     fetchTranslations={() => {}}
   />
 ));
+
+stories.add(
+  "Player has requested decrease(s) and removal(s) and/or increases",
+  () => (
+    <DepositLimitsConfirmations
+      t={t}
+      pages={["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"]}
+      lastButtonCaption="button_answer_questions"
+      lastButtonAction={() => {}}
+      fetchTranslations={() => {}}
+    />
+  )
+);

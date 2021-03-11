@@ -1,11 +1,20 @@
+import type { DepositLimitPreadjustRules } from "Models/playOkay/depositLimits";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
+import type { TAdjustLimitsAndNavigateProps } from "./adjustLimitsAndNavigate";
 
 describe("adjustLimitsAndNavigate", () => {
+  // these flags are now always true
+  const rules = [
+    "APPROVAL_REQUIRED_FOR_INCREASE",
+    "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
+    "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
+    "DECREASE_EFFECTIVE_IMMEDIATELY",
+  ] as DepositLimitPreadjustRules[];
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
-  test("delete/increase flow", () => {
+  test("delete flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: [],
@@ -20,51 +29,9 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: null,
         weekly: null,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "APPROVAL_REQUIRED_FOR_INCREASE",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
-    adjustLimitsAndNavigate(props);
-
-    expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
-    expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["BEING_REVIEWED"],
-      route: "confirmations",
-    });
-  });
-
-  test("delete/increase flow", () => {
-    const limitAdjust = jest.fn();
-    const navigate = jest.fn();
-    const props = {
-      limitAdjust,
-      navigate,
-      decreases: [],
-      limitsDiff: {
-        daily: "removed",
-        monthly: "removed",
-        weekly: "removed",
-      },
-      newLimits: {
-        currency: "EUR",
-        daily: null,
-        monthly: null,
-        weekly: null,
-      },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
-    };
-
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
@@ -77,7 +44,7 @@ describe("adjustLimitsAndNavigate", () => {
   test("increase/decrease flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: ["daily"],
@@ -92,20 +59,14 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: 3333,
         weekly: 1500,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
     expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["RG_REQUIRED"],
+      pages: ["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"],
       route: "confirmations",
     });
   });
@@ -113,7 +74,7 @@ describe("adjustLimitsAndNavigate", () => {
   test("decrease flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: ["daily", "weekly"],
@@ -128,15 +89,9 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: 3000,
         weekly: 1000,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
@@ -149,7 +104,7 @@ describe("adjustLimitsAndNavigate", () => {
   test("create flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
-    const props = {
+    const props: TAdjustLimitsAndNavigateProps = {
       limitAdjust,
       navigate,
       decreases: [],
@@ -164,15 +119,9 @@ describe("adjustLimitsAndNavigate", () => {
         monthly: 3000,
         weekly: 1000,
       },
-      rules: [
-        "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
-        "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
-        "DECREASE_EFFECTIVE_IMMEDIATELY",
-        "REVOCATION_ALLOWED",
-      ],
+      rules,
     };
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ limitAdjust: jest.Mock<any, an... Remove this comment to see the full error message
     adjustLimitsAndNavigate(props);
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);

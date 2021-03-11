@@ -5,29 +5,13 @@ import { ArrowRightIcon } from "@casumo/cmp-icons";
 import * as R from "ramda";
 import * as React from "react";
 import { WildDots } from "Components/WildDots";
+import type {
+  TDepositLimitsConfirmationsTranslations,
+  ConfirmationPage,
+} from "./DepositLimitsConfirmations.types";
 
-export type ConfirmationPage =
-  | "RG_SUCCESS"
-  | "RG_FAIL"
-  | "RG_REQUIRED"
-  | "SAVED_RIGHT_AWAY_DECREASED"
-  | "SAVED_RIGHT_AWAY_CREATED"
-  | "BEING_REVIEWED";
 type Props = {
-  t: {
-    saved_right_away_decreased_title: string;
-    saved_right_away_created_title: string;
-    being_reviewed_title: string;
-    being_reviewed_content: string;
-    rg_success_title: string;
-    rg_success_content: string;
-    rg_fail_title: string;
-    rg_fail_content: string;
-    rg_required_title: string;
-    rg_required_content: string;
-    button_back_to_limits: string;
-    button_answer_questions: string;
-  };
+  t: TDepositLimitsConfirmationsTranslations;
   pages: Array<ConfirmationPage>;
   lastButtonAction: () => void;
   fetchTranslations: () => void;
@@ -58,10 +42,6 @@ const confirmationPageToTranslation: Record<
   },
   SAVED_RIGHT_AWAY_CREATED: {
     title: "saved_right_away_created_title"
-  },
-  BEING_REVIEWED: {
-    title: "being_reviewed_title",
-    content: "rg_required_content",
   },
 };
 
