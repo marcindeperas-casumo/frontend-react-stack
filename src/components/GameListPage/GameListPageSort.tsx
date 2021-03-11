@@ -45,7 +45,7 @@ export function GameListPageSort({ sort, setSort, supportedSorts }: Props) {
               ...acc,
               [curr]: t[curr],
             }),
-            {}
+            {} as Record<A.GamesSortOrder, string>
           )}
           value={sort}
           emptyState={t.title}
