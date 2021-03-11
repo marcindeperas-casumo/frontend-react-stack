@@ -16,7 +16,7 @@ export const BottomNotifications = ({
   const currentMessage = notifications[current];
 
   return (
-    <div className="o-position-fixed o-inset-bottom--none u-width--full">
+    <div className="o-position--fixed o-inset-bottom--none u-width--full">
       {currentMessage && (
         <SingleNotification
           key={current}
