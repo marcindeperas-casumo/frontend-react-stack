@@ -191,6 +191,7 @@ export const TRANSLATED_ROUTES = {
     no: "spill",
     de: "spielen",
     at: "spielen",
+    es: "jugar",
     DEFAULT: "play",
   },
   CASINO_GAMES: {
