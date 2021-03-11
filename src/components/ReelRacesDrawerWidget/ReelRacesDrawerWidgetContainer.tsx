@@ -76,7 +76,6 @@ export const ReelRacesDrawerWidgetContainer = ({
                 "t-border-r",
                 initialShowLeaderboard ? "u-height--full" : "u-height--auto"
               )}
-              // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
               playerId={playerId}
               forceLaurelPositions={LEADERBOARD_LAURELS}
               inverted

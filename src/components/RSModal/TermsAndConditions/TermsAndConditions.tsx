@@ -159,8 +159,6 @@ export function TermsAndConditions({ t, ...props }: Props) {
         {isLatestVersion && hasNewerVersions && visibleVersionData.changelog && (
           <Flex.Item>
             <Changelog
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ locale: any; t: { date_changes_accepted: s... Remove this comment to see the full error message
-              locale={locale}
               t={{
                 date_changes_accepted: t.date_changes_accepted,
                 changelog_title: t.changelog_title,
