@@ -4,7 +4,7 @@ import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
 export class MahjongGame extends BaseIframeGame {
-  onLaunchNotifications = ["game_not_under_mga_message"];
+  onLaunchNotifications: Array<string> = ["game_not_under_mga_message"];
 
   constructor(props: GameProviderModelProps) {
     super(props);

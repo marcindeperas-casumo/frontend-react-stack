@@ -7,11 +7,11 @@ export const BottomNotificationsGamePageContainer = () => {
   const { gameProviderModel } = useGameModelContext();
   const gameNotifications = gameProviderModel.onLaunchNotifications || [];
 
-  const translations = useTranslations(""); //need a page from Dave
+  const t = useTranslations("iframe-solution.game-page-notifications");
 
   const translatedNotifications = gameNotifications.map(key => key); //find in translations
 
-  if (gameNotifications.length && translations) {
+  if (gameNotifications.length && t) {
     return <BottomNotifications notifications={translatedNotifications} />;
   }
 
