@@ -28,7 +28,7 @@ export const SingleNotification = ({
   return (
     <div
       className={classNames(
-        "t-color-grey-20 u-font-xs u-text-align-center u-position-absolute c-game-page-bottom-notification u-width--full u-padding t-background-grey-80",
+        "t-color-grey-20 u-font-xs u-text-align-center o-position-absolute c-game-page-bottom-notification u-width--full u-padding t-background-grey-80",
         show && "o-inset-bottom--none"
       )}
     >
