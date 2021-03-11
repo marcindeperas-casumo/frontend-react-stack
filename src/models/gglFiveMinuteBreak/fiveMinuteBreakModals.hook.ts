@@ -20,7 +20,6 @@ export function useFiveMinuteBreakModals({
   const dispatch = useDispatch();
   const t = useTranslations("ggl-five-minute-break");
   const { navigateToKO } = useCrossCodebaseNavigation();
-  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   const {
     activeRCSession,
     activeRCBreak,
