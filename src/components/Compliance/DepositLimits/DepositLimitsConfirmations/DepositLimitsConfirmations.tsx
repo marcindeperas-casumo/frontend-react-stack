@@ -5,10 +5,13 @@ import { ArrowRightIcon } from "@casumo/cmp-icons";
 import * as R from "ramda";
 import * as React from "react";
 import { WildDots } from "Components/WildDots";
-import type { TDepositLimitsConfirmationsTranslations, ConfirmationPage } from "./DepositLimitsConfirmations.types";
+import type {
+  TDepositLimitsConfirmationsTranslations,
+  ConfirmationPage,
+} from "./DepositLimitsConfirmations.types";
 
 type Props = {
-  t: TDepositLimitsConfirmationsTranslations,
+  t: TDepositLimitsConfirmationsTranslations;
   pages: Array<ConfirmationPage>;
   lastButtonAction: () => void;
   fetchTranslations: () => void;
