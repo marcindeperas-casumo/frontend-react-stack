@@ -5,8 +5,11 @@ export type LoginSessionSummary = {
   winnings: number;
 };
 
-const BASE = "/casino-player/game-rounds/api/session-summary/aggregated";
-
-export function getLoginSessionSummary(): Promise<LoginSessionSummary> {
-  return http.get(BASE, { except: "SPORTS_BETTING" });
+export function getLoginSessionSummary(
+  sessionId: string
+): Promise<LoginSessionSummary> {
+  return http.get(
+    `/casino-player/game-rounds/api/session-summary/aggregated/${sessionId}`,
+    { except: "SPORTS_BETTING" }
+  );
 }
