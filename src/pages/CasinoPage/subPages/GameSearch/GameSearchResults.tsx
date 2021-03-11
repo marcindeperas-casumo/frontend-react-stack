@@ -2,13 +2,13 @@ import * as React from "react";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";
 import { GameList } from "./GameList";
-import type { TGameSearchResults as TProps } from "./GameSearch.types";
+import type { TGameSearchResults } from "./GameSearch.types";
 
-export const GameSearchResults: React.FC<TProps> = ({
+export const GameSearchResults: React.FC<TGameSearchResults> = ({
   results,
   resultsCount,
   renderItem,
-}: TProps) => (
+}: TGameSearchResults) => (
   <>
     {resultsCount > 0 && (
       <TrackProvider

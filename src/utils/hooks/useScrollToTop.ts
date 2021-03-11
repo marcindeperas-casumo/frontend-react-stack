@@ -1,4 +1,3 @@
-// @flow
 import { useEffect } from "react";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 

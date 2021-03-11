@@ -6,27 +6,12 @@ import {
 } from "./__mocks__";
 import { GameSearch } from "./GameSearch";
 
-// eslint-disable-next-line no-unused-vars
-const PAGE_SIZE = 50;
-// eslint-enable-next-line no-unused-vars
-
 export const GameSearchContainer: React.FC = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data } = mockedSearchResults;
 
   const searchResultsCount = data?.gamesSearch?.resultsCount || 0;
   const searchResults = data?.gamesSearch?.results || [];
-
-  // eslint-disable-next-line no-unused-vars
-  const [pageNumber, setPageNumber] = React.useState(0);
-  // eslint-enable-next-line no-unused-vars
-
-  // eslint-disable-next-line no-unused-vars
-  const fetchMoreRows = () => {
-    setPageNumber(currPageNumber => currPageNumber + 1);
-    // todo: implement later, likely causing current issues
-  };
-  // eslint-ensable-next-line no-unused-vars
 
   const clearSearch = () => setSearchQuery("");
 

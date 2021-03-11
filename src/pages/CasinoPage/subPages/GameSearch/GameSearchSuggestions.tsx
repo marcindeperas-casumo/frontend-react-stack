@@ -3,12 +3,12 @@ import Text from "@casumo/cmp-text";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_LOCATIONS, EVENT_PROPS } from "Src/constants";
 import { GameList } from "./GameList";
-import type { TGameSearchSuggestions as TProps } from "./GameSearch.types";
+import type { TGameSearchSuggestions } from "./GameSearch.types";
 
-export const GameSearchSuggestions: React.FC<TProps> = ({
+export const GameSearchSuggestions: React.FC<TGameSearchSuggestions> = ({
   games,
   title,
-}: TProps) => (
+}: TGameSearchSuggestions) => (
   <>
     <Text
       size="md"
