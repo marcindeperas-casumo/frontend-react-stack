@@ -25,8 +25,6 @@ export function AdditionalConditions(props: Props) {
         // @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component.
         <Duration duration={props.increaseProhibitedAfterwardsFor} />
       ),
-      // @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component.
-      revocationWindow: <Duration duration={props.increaseEffectiveAfter} />,
     })
   )(props.rules);
 

@@ -50,7 +50,6 @@ type ISO8601Duration = string; // ie. P7D, see: https://en.wikipedia.org/wiki/IS
 
 export type DepositLimitPreadjust = {
   schema: "MONETARY_AMOUNT_PERIODS_AND_INCREASED" | "MONETARY_AMOUNT"; // TODO: will we ever get monetary amount? it would require us to ask for DGOJ_UNVERIFIED_ACCOUNT_DEPOSIT_LIMIT
-  increaseEffectiveAfter: ISO8601Duration;
   increaseProhibitedAfterwardsFor: ISO8601Duration;
   increasesOrRevocationsBlocked: boolean;
   responsibleGamblingTestCanBeTaken: boolean;
