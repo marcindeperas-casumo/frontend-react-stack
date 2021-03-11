@@ -14,7 +14,6 @@ import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOver
 
 const CURRENT_YEAR = new Date().getFullYear();
 const getRegistrationYear = state => {
-  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   return new Date(registrationDateSelector(state)).getFullYear();
 };
 

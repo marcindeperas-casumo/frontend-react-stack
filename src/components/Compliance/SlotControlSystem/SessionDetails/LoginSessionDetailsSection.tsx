@@ -24,7 +24,6 @@ export function LoginSessionDetailsSection() {
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency,
       locale,
     });

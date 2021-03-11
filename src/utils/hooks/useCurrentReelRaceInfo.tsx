@@ -295,7 +295,6 @@ export function useCurrentReelRaceInfo(
 
       if (reelRaceApplies(localCurrentReelRace, gameSlug)) {
         setCurrentReelRaceData(
-          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
           createCurrentReelRaceData(playerId, {
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'startTime' does not exist on type '{ id:... Remove this comment to see the full error message
             startTime: localCurrentReelRace.startTime,
@@ -325,7 +324,6 @@ export function useCurrentReelRaceInfo(
             statusHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
-              // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
               playerId
             )
           );
@@ -335,7 +333,6 @@ export function useCurrentReelRaceInfo(
             finishedHandler(
               localCurrentReelRace,
               setCurrentReelRaceData,
-              // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
               playerId
             )
           );

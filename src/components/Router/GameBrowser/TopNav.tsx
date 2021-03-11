@@ -68,7 +68,7 @@ const NavLinkItem = ({
   );
 };
 
-export const TopNav = (props: { basepath: string }) => {
+export const TopNav = (props: { basepath: string | null }) => {
   const t = useTranslations<{
     search: string;
     games: string;
@@ -81,13 +81,17 @@ export const TopNav = (props: { basepath: string }) => {
   const language = useLanguage();
   const translateRoute = routeTranslator(language);
   const { pathname } = useLocation();
-  const gamesUrl = `/${props.basepath}/${translateRoute(ROUTE_IDS.GAMES)}`;
-  const reelRacesUrl = `/${props.basepath}/${translateRoute(
-    ROUTE_IDS.REEL_RACES
-  )}`;
-  const searchUrl = `/${props.basepath}/${translateRoute(
-    ROUTE_IDS.GAMES_SEARCH
-  )}`;
+
+  const buildUrl = (route: string) => {
+    if (props.basepath) {
+      return `/${props.basepath}/${route}`;
+    }
+
+    return `/${route}`;
+  };
+  const gamesUrl = buildUrl(translateRoute(ROUTE_IDS.GAMES));
+  const reelRacesUrl = buildUrl(translateRoute(ROUTE_IDS.REEL_RACES));
+  const searchUrl = buildUrl(translateRoute(ROUTE_IDS.GAMES_SEARCH));
   const reelRacesActive = pathname === reelRacesUrl;
   const searchActive = pathname === searchUrl;
   const gamesActive = !searchActive && !reelRacesActive;
@@ -99,15 +103,12 @@ export const TopNav = (props: { basepath: string }) => {
       to: gamesUrl,
       active: gamesActive,
     },
-    // writing it as "!reelRacesHidden && { ... }," upsets flow
-    !reelRacesHidden
-      ? {
-          Icon: TournamentIcon,
-          text: t?.reel_races,
-          to: reelRacesUrl,
-          active: reelRacesActive,
-        }
-      : null,
+    !reelRacesHidden && {
+      Icon: TournamentIcon,
+      text: t?.reel_races,
+      to: reelRacesUrl,
+      active: reelRacesActive,
+    },
     {
       Icon: SearchIcon,
       text: t?.search,
