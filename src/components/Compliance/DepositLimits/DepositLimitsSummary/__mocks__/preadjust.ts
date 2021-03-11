@@ -2,7 +2,6 @@ import type { DepositLimitPreadjust } from "Models/playOkay/depositLimits";
 
 const mock: DepositLimitPreadjust = {
   "schema": "MONETARY_AMOUNT_PERIODS_AND_INCREASED",
-  "increaseEffectiveAfter": "P7D",
   "increaseProhibitedAfterwardsFor": "P3M",
   "responsibleGamblingTestCanBeTaken": true,
   "increasesOrRevocationsBlocked": true,

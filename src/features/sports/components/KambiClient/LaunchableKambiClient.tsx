@@ -67,7 +67,6 @@ export function LaunchableKambiClient() {
     <>
       <KambiClient
         isBetslipVisible={kambiData.isBetslipVisible}
-        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         currency={currency}
         market={kambiMarket.toUpperCase()}
         locale={kambiLocale}

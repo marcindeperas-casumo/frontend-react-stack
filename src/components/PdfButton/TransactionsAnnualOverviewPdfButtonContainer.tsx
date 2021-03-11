@@ -18,7 +18,6 @@ export const TransactionsAnnualOverviewPdfButtonContainer = ({
     href: getSummaryUrl({
       asPdf: true,
       date: DateTime.utc(year),
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type '"EUR" | ... Remove this comment to see the full error message
       currency: currencySelector(state),
     }),
   }))(PdfButton);

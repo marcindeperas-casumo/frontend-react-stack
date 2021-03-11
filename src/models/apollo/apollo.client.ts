@@ -91,7 +91,6 @@ function getContextLink() {
         "X-Currency": currency,
         "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
         "X-Request-Device": device,
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
         ...(isEmbeddedOn(emailSelector(state))
           ? {
               "X-Request-Client-Details": getAppVersion(),
@@ -130,7 +129,6 @@ function getFetchExtendedWithMarketAndLocale() {
     const locale = languageSelector(state);
     const url = new URL(uri, window.location.origin);
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     url.searchParams.append("market", market);
     url.searchParams.append("locale", locale);
 

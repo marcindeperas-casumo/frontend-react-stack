@@ -396,7 +396,6 @@ describe("Handshake selectors", () => {
         },
       },
     };
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     expect(playerNameSelector(state)).toEqual(name);
   });
   test("socialSecurityNumberSelector", () => {
