@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
-git;
 import { useTranslations } from "Utils/hooks";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { useFetchMore } from "./hooks/useFetchMore";
