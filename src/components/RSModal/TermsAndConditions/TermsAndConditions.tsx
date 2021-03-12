@@ -81,7 +81,9 @@ export function TermsAndConditions({ t, ...props }: Props) {
   });
   const formatVersion = createVersionFormatter({ acks, t });
 
-  const headerProps = !props.config?.mustAccept
+  const mustAcceptTerms = props.config?.mustAccept
+
+  const headerProps = !mustAcceptTerms
     ? {
         showCloseButton: true,
         closeAction: props.closeModal,
@@ -138,7 +140,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
             onShowHistory={() => setHistoryView(true)}
             currentVersion={version}
             shouldAllowHistoryView={
-              hasNewerVersions && !props.config.mustAccept
+              hasNewerVersions && !mustAcceptTerms
             }
             formatVersionDate={formatVersionDate}
             formatVersion={formatVersion}
@@ -175,7 +177,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
           <TermsAndConditionsContent version={version} />
         </Flex.Item>
       </Flex>
-      {props.config.mustAccept && (
+      {mustAcceptTerms && (
         <Flex.Item>
           <ModalAcknowledgment
             title="Accept General terms"
