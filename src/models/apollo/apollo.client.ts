@@ -48,7 +48,63 @@ export async function getApolloClient(): Promise<ApolloClientType> {
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache(introspectionsData);
+  const cache = new InMemoryCache({
+    ...introspectionsData,
+    typePolicies: {
+      Query: {
+        fields: {
+          getGamesPaginated: {
+            read(
+              existing,
+              {
+                args: {
+                  // Default to returning the entire cached list,
+                  // if offset and limit are not provided.
+                  offset = 0,
+                  limit = existing?.length,
+                } = {},
+              }
+            ) {
+              // Clean duplicates
+              const uniqueArray = a =>
+                [...new Set(a.map(o => JSON.stringify(o)))].map(s =>
+                  JSON.parse(s)
+                );
+
+              const noDuplicatesArray =
+                existing && existing.games.length
+                  ? uniqueArray(existing.games)
+                  : existing?.games;
+              return (
+                existing && {
+                  ...existing,
+                  games: noDuplicatesArray,
+                }
+              );
+            },
+            merge(existing = { games: [] }, incoming) {
+              // Clean duplicates
+              if (existing.games.length && incoming.length) {
+                const mergedList = existing.games.concat(
+                  incoming.filter(game => existing.games.indexOf(game) < 0)
+                );
+                return {
+                  ...existing,
+                  ...incoming,
+                  games: mergedList,
+                };
+              }
+              return {
+                ...existing,
+                ...incoming,
+                games: [...existing.games, ...incoming.games],
+              };
+            },
+          },
+        },
+      },
+    },
+  });
 
   // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
   // write default state in cache, is the right place?

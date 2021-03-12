@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { useInView } from "react-intersection-observer";
 import * as A from "Types/apollo";
 import { isMobile } from "Components/ResponsiveLayout";
-import { loadMoreConstructor } from "Utils";
 import { RtpTableRow } from "./RtpTableRow";
 
 const formatRTPValue = (x: string) => {
@@ -28,21 +27,15 @@ const textClasses = isMobile()
 
 export const RtpTable = ({
   games,
-  data,
   fetchMore,
-  query,
-  gamesCount,
-  scrollElementId,
+  fullGamesCount,
   headerColumns,
 }: {
-  games: Array<A.GetGamesRTP_getGamesPaginated_games>,
-  data: any,
-  fetchMore: any,
-  query: string,
-  gamesCount: number,
-  scrollElementId: string,
-  headerColumns: Array<string>,
-  valuesColumns: Array<string>,
+  games: Array<A.GetGamesRTP_getGamesPaginated_games>;
+  fetchMore: () => void;
+  fullGamesCount: number;
+  headerColumns?: Array<string>;
+  valuesColumns: Array<string>;
 }) => {
   const rowContainerClasses =
     "t-border-bottom t-border-left t-border-grey-5 t-background-white";
@@ -51,14 +44,16 @@ export const RtpTable = ({
     height: 50,
     width: "100%",
   };
-  const loadMoreRows = loadMoreConstructor(
-    fetchMore,
-    data.getGamesPaginated.gamesCount
-  );
-  setTimeout(() => {
-    fetchMore({ offset: games.length });
-    // loadMoreRows({ offset: games.length });
-  }, 10000);
+
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      fetchMore();
+    }
+  }, [fetchMore, inView]);
 
   return (
     <Flex
@@ -76,23 +71,18 @@ export const RtpTable = ({
       </Flex>
 
       {games.map((game, index) => {
-        const lastGame = games.length - 1 === index;
-        const rowClass = lastGame
-          ? rowContainerClasses + "last-game-entry-row"
-          : rowContainerClasses;
-
-        // eslint-disable-next-line fp/no-mutation
-        const rowTopOffset = index === 0 ? 59 : index * 50;
-        const stylesInclTop = {
-          top: rowTopOffset,
-          ...rowStyles,
-        };
+        // Trigger on which row to fetch more data eg below fifth from last
+        const lastEntryInGamesBatch = games.length - 5 === index;
+        const fullListAvailable = games.length === fullGamesCount;
         return (
           <Flex
+            containerRef={
+              !fullListAvailable && lastEntryInGamesBatch ? ref : null
+            }
             align="stretch"
             key={game.id || index}
-            style={stylesInclTop}
-            className={rowClass}
+            style={rowStyles}
+            className={rowContainerClasses}
           >
             <RtpTableRow
               columns={[

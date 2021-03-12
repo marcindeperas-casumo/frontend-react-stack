@@ -2,56 +2,71 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
+import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
+import { useFetchMore } from "./hooks/useFetchMore";
 import { CasinoGames } from "./CasinoGames";
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
+import { gameListRTPLimit } from "./Constants";
 
 export const CasinoGamesContainer = () => {
-  const [retrievedRTPGames, setRetrievedRTPGames] = React.useState([]);
+  const [offset, setOffset] = React.useState(0);
+
   const t = useTranslations<{
-    meta_description: string,
-    meta_title: string,
-    rtp_description: string,
-    rtp_game_name: string,
-    rtp_game_provider: string,
-    rtp_loading: string,
-    rtp_value: string,
-    actual_rtp_past_6_months: string,
-    actual_rtp_past_year: string,
+    meta_description: string;
+    meta_title: string;
+    rtp_description: string;
+    rtp_game_name: string;
+    rtp_game_provider: string;
+    rtp_loading: string;
+    rtp_value: string;
+    actual_rtp_past_6_months: string;
+    actual_rtp_past_year: string;
   }>("game-categories");
   const categoriesContent = useTranslations("game-categories", true);
   const query = "categories=SLOT_MACHINE";
 
   const { data, loading, fetchMore } = useQuery<
-    A.GetGamesRTP,
-    A.GetGamesRTPVariables
+    A.GetGamesRtpQuery,
+    A.GetGamesRtpQueryVariables
   >(GetGamesRTP, {
     variables: {
       query,
-      offset: 0,
-      limit: 50,
+      offset,
+      limit: gameListRTPLimit,
     },
   });
 
-  const fetchMoreRows = ({ offset }) => {
-    return fetchMore<A.GetGamesRTPVariables>({
-      variables: {
-        query: "categories=SLOT_MACHINE",
-        offset: offset,
-        limit: 50,
-      },
-    });
-  };
+  const fetchMoreRows = useFetchMore({ fetchMore, setOffset, offset });
 
-  if (!data) {
+  if (loading) {
+    const styles = {
+      paddingTop: "100px",
+      minHeight: "200px",
+      textAlign: "center",
+    };
+
+    const rootElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+    rootElement.scrollTo(0, 0);
+
+    return (
+      <div style={styles}>
+        <h3>Cargando resultados</h3>
+      </div>
+    );
+  }
+
+  if (!data || !data?.getGamesPaginated) {
     return null;
   }
+
+  const { games, gamesCount } = data?.getGamesPaginated;
 
   return (
     <CasinoGames
       categoriesContent={categoriesContent}
       t={t}
-      data={data}
-      loading={loading}
+      games={games}
+      fullGamesCount={gamesCount}
       fetchMore={fetchMoreRows}
     />
   );
