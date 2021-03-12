@@ -1,10 +1,11 @@
-import type { GameProviderModelProps } from "./types";
+import type { GameProviderModelProps, IframeGameLaunchData } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
 export class MahjongGame extends BaseIframeGame {
   onLaunchNotifications: Array<string> = ["game_not_under_mga_message"];
+  scrolling: string = "auto";
 
   constructor(props: GameProviderModelProps) {
     super(props);
@@ -13,8 +14,7 @@ export class MahjongGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
-    const { url = null } = this.props.gameData;
+    const { url = null } = <IframeGameLaunchData>this.props.gameData;
     // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 

@@ -24,6 +24,7 @@ const DEFAULT_API = {
 };
 
 export class BaseIframeGame extends BaseGame {
+  scrolling: string = "no";
   targetDomain: string = window.location.origin || "*";
   api: IframeGameApi = DEFAULT_API;
 
@@ -52,7 +53,7 @@ export class BaseIframeGame extends BaseGame {
       // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
       ...super.componentProps,
       allow: "autoplay",
-      scrolling: "no",
+      scrolling: this.scrolling,
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
       src: this.props.gameData.url || null,
       title: IFRAME_ID,
