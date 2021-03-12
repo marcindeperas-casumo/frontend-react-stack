@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
+git;
 import { useTranslations } from "Utils/hooks";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { useFetchMore } from "./hooks/useFetchMore";
@@ -42,7 +43,6 @@ export const CasinoGamesContainer = () => {
     const styles = {
       paddingTop: "100px",
       minHeight: "200px",
-      textAlign: "center",
     };
 
     const rootElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
@@ -50,7 +50,7 @@ export const CasinoGamesContainer = () => {
 
     return (
       <div style={styles}>
-        <h3>Cargando resultados</h3>
+        <h3 className="u-text-align-center">Cargando resultados</h3>
       </div>
     );
   }
