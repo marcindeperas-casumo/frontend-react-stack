@@ -28,7 +28,7 @@ export function FiveMinuteBreakFinishedModal({ acceptModal, config }: Props) {
       <Text tag="h2" size="2xlg" className="u-font-weight-bold u-margin-bottom">
         {config.content?.break_finished_title}
       </Text>
-      <Text className="u-line-height--15">
+      <Text className="u-line-height">
         {config.content?.break_finished_message || ""}
       </Text>
     </CudlModal>

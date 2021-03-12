@@ -115,7 +115,7 @@ export const GamePageContainer = () => {
         gameProviderModel && (
           <div
             className={classNames(
-              "u-inset-0 u-position-absolute",
+              "o-inset--none o-position--absolute",
               gameProviderModel.gameWrapperClasses || []
             )}
           >

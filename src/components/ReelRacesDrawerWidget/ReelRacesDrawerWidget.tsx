@@ -90,7 +90,7 @@ export const ReelRacesDrawerWidget = ({
           </>
         </StatusElement>
       </Flex.Block>
-      <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position u-position-relative">
+      <Flex.Item className="c-reel-races-drawer-widget__elem c-reel-races-drawer-widget-position o-position--relative">
         <PositionView
           // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
           position={parseInt(userLeaderboard.position, 10)}

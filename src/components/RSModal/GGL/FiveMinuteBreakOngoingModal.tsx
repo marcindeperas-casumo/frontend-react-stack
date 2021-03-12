@@ -57,7 +57,7 @@ export function FiveMinuteBreakOngoingModal({ acceptModal, config }: Props) {
           config.content?.break_title
         )}
       </Text>
-      <Text className="u-line-height--15">
+      <Text className="u-line-height">
         {config.content?.break_message || ""}
       </Text>
     </CudlModal>

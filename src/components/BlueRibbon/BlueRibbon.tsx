@@ -45,7 +45,7 @@ export const BlueRibbonAnimation = ({ t, type = "major", amount, onClose }) => {
 
   return (
     <div className="c-blueribbon-animation-container u-width--full u-height--full">
-      <div className="c-background-scale-in-center u-width--full u-height--full u-position--absolute"></div>
+      <div className="c-background-scale-in-center u-width--full u-height--full o-position--absolute"></div>
       {coinsStaged && !showCounterScreen && <AnimatedJackpotLogo />}
       {!showCounterScreen && (
         <Coins

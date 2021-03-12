@@ -10,7 +10,7 @@ export const CuratedCardFooterText = ({ text }: CuratedCardFooterTextProps) => {
   return (
     <div className="o-wrapper">
       <Text
-        className="t-color-white u-margin-bottom u-opacity-75"
+        className="t-color-white u-margin-bottom t-opacity--75"
         size="xs"
         tag="div"
         dangerouslySetInnerHTML={stringToHTML(

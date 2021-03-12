@@ -75,7 +75,7 @@ export const GameTile = ({
       <Flex
         className={classNames(
           DEFAULT_CLASSES,
-          "u-cursor-pointer",
+          "u-cursor--pointer",
           `o-ratio--${ratio}`,
           className
         )}
@@ -101,7 +101,7 @@ export const GameTile = ({
               data-test="game-list-tile-launch-link"
             >
               <div className="u-display--flex">
-                <Text className="u-font u-font-weight-bold u-margin-right u-position--relative c-game-tile-container__button-text">
+                <Text className="u-font u-font-weight-bold u-margin-right o-position--relative c-game-tile-container__button-text">
                   {t?.play_button_text_game_tile}
                 </Text>
                 <PlayIcon size="default" />

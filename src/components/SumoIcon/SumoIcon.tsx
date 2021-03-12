@@ -33,14 +33,14 @@ export const SumoIcon = ({
         onClick={onClick}
         className={cx(
           baseClassName,
-          "u-position-relative u-height--3xlg u-width--3xlg",
+          "o-position--relative u-height--3xlg u-width--3xlg",
           "t-border-r--circle u-margin-right--md u-cursor--pointer",
-          "u-position-absolute@mobile u-zindex--header"
+          "o-position--absolute@mobile u-zindex--header"
         )}
       >
         <div
           className={cx(
-            "t-border-r--circle u-height--full u-position-relative",
+            "t-border-r--circle u-height--full o-position--relative",
             { "u-overflow--hidden": isTransitionRunning }
           )}
         >
@@ -48,7 +48,7 @@ export const SumoIcon = ({
             <div
               className={cx(
                 `${baseClassName}__content`,
-                "u-height--3xlg u-width--3xlg u-position-absolute",
+                "u-height--3xlg u-width--3xlg o-position--absolute",
                 {
                   [`${baseClassName}__content--old`]: isTransitionRunning,
                 }
@@ -62,7 +62,7 @@ export const SumoIcon = ({
             <div
               className={cx(
                 `${baseClassName}__content`,
-                "u-height--3xlg u-width--3xlg u-position-absolute",
+                "u-height--3xlg u-width--3xlg o-position--absolute",
                 {
                   [`${baseClassName}__content--next`]: isTransitionRunning,
                 }
@@ -77,7 +77,7 @@ export const SumoIcon = ({
           size="sm"
           className={cx(
             `${baseClassName}__chevron-icon`,
-            `t-color-black t-opacity-background--100 t-background-white u-position-absolute t-border-r--circle u-cursor--pointer`,
+            `t-color-black t-opacity-background--100 t-background-white o-position--absolute t-border-r--circle u-cursor--pointer`,
             {
               [`${baseClassName}__chevron-icon--visible`]: !openedState,
               [`${baseClassName}__chevron-icon--hidden`]: openedState,
@@ -87,9 +87,9 @@ export const SumoIcon = ({
         <Flex
           className={cx(
             `${baseClassName}__close-drawer`,
-            "u-position-absolute u-height--3xlg u-width--3xlg",
+            "o-position--absolute u-height--3xlg u-width--3xlg",
             "t-border-r--circle u-margin-right--md u-cursor--pointer",
-            "t-color-white u-position-absolute@mobile u-zindex--header",
+            "t-color-white o-position--absolute@mobile u-zindex--header",
             {
               [`${baseClassName}__close-drawer--visible`]: openedState,
               [`${baseClassName}__close-drawer--hidden`]: !openedState,

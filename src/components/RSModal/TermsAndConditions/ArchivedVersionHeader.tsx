@@ -20,7 +20,7 @@ export function ArchivedVersionHeader(props: Props) {
         <Text
           tag="span"
           size="sm"
-          className="u-font-weight-bold u-cursor-pointer"
+          className="u-font-weight-bold u-cursor--pointer"
           onClick={props.onClick}
         >
           {clickable}
