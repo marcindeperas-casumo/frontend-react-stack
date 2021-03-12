@@ -24,7 +24,7 @@ const DEFAULT_API = {
 };
 
 export class BaseIframeGame extends BaseGame {
-  scrolling: string = "no";
+  scrolling: "no" | "yes" | "auto" = "no";
   targetDomain: string = window.location.origin || "*";
   api: IframeGameApi = DEFAULT_API;
 
