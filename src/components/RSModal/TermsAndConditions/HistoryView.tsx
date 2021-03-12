@@ -87,7 +87,7 @@ function HistoryRow(props: PropsHistoryRow) {
       <Text
         tag="span"
         size="sm"
-        className="u-font-weight-bold t-color-teal-50 u-cursor--pointer"
+        className="u-font-weight-bold t-color-teal-50 u-cursor-pointer"
       >
         {props.viewButtonText}
       </Text>

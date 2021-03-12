@@ -115,12 +115,12 @@ export const Dropdown = ({
   const rootClasses = cx(
     "c-dropdown-container",
     "u-display--inline-flex",
-    "o-position--relative"
+    "u-position-relative"
   );
 
   const dropdownClasses = cx(
     "c-dropdown",
-    "o-position--absolute",
+    "u-position-absolute",
     "u-padding--none",
     "u-margin-top--sm",
     "t-elevation--30",

@@ -37,7 +37,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
             )}
           >
             <Flex className="o-flex--1">
-              <div className="o-position--relative u-width--3xlg">
+              <div className="u-position-relative u-width--3xlg">
                 <LaurelIcon
                   size="lg"
                   className={cx(
@@ -49,7 +49,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                 />
                 <Text
                   size="sm"
-                  className="o-position--absolute u-padding-y--md u-text-align-center u-width--3xlg o-inset-top--none u-font-weight-bold"
+                  className="u-position-absolute u-padding-y--md u-text-align-center u-width--3xlg o-inset-top--none u-font-weight-bold"
                 >
                   {position}
                 </Text>

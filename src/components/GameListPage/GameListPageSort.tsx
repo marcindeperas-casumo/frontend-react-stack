@@ -45,12 +45,12 @@ export function GameListPageSort({ sort, setSort, supportedSorts }: Props) {
               ...acc,
               [curr]: t[curr],
             }),
-            {} as Record<A.GamesSortOrder, string>
+            {}
           )}
           value={sort}
           emptyState={t.title}
           selectClassNames={
-            "c-games-list-filter-options o-position--relative o-inset-top--none u-cursor--pointer"
+            "c-games-list-filter-options u-position-relative o-inset-top--none u-cursor--pointer"
           }
         />
       ) : (

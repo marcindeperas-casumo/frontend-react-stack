@@ -14,7 +14,7 @@ export const SidebarIconOpen = () => {
         onClick={() => dispatch(sidebarOpenAction())}
         data-test-id="sidebar-open"
       >
-        <MenuIcon className="u-padding-x u-cursor--pointer" />
+        <MenuIcon className="u-padding-x u-cursor-pointer" />
       </div>
     )
   );

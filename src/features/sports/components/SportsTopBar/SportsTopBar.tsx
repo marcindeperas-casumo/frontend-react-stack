@@ -52,7 +52,7 @@ export const SportsTopBarTab = ({
   <Flex
     align="center"
     className={classNames(
-      "c-sports-top-bar-tab u-cursor--pointer",
+      "c-sports-top-bar-tab u-cursor-pointer",
       !isActive && "t-color-grey-50",
       className
     )}

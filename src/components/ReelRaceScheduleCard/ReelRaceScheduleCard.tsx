@@ -33,12 +33,12 @@ export function ReelRaceScheduleCard({
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
-    <div className="t-background-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
+    <div className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
         align={open && isNotMobile ? "center" : "normal"}
         onClick={toggle}
         className={cx(
-          "u-padding--md u-cursor--pointer",
+          "u-padding--md u-cursor-pointer",
           reelRace.promoted && "t-background-purple-80 t-color-white",
           open
             ? "t-border-r-top-left--md t-border-r-top-right--md"
@@ -47,7 +47,7 @@ export function ReelRaceScheduleCard({
       >
         <Flex.Item className="o-flex__item--no-shrink">
           {reelRace.promoted && (
-            <LaurelIcon className="o-position--absolute t-color-yellow-30 t-background-black t-border t-border-r-top-left--md t-border-r-bottom-right--md t-border-yellow-30 o-inset-top--none o-inset-left--none u-width--lg u-height--lg u-padding--sm" />
+            <LaurelIcon className="u-position-absolute t-color-yellow-30 t-background-black t-border t-border-r-top-left--md t-border-r-bottom-right--md t-border-yellow-30 o-inset-top--none o-inset-left--none u-width--lg u-height--lg u-padding--sm" />
           )}
           <GameThumb
             src={reelRace.game.backgroundImage}

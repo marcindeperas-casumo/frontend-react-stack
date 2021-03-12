@@ -77,24 +77,20 @@ export function SinglePeriodLimitOverview(props: Props) {
       <Desktop>
         <Flex
           onClick={props.onClick}
-          className="t-border-r--md u-padding--2xlg u-margin--md o-flex--1 o-position--relative t-background-white"
+          className="t-border-r--md u-padding--2xlg u-margin--md o-flex--1 u-position-relative t-background-white"
           align="center"
           justify="center"
           direction="vertical"
         >
-          <Flex
-            align="center"
-            justify="center"
-            className="o-position--relative"
-          >
+          <Flex align="center" justify="center" className="u-position-relative">
             <ProgressArc value={props.progressPercentage} />
             <Text
               size="2xs"
-              className="o-position--absolute u-text-transform-uppercase u-font-weight-black u-padding-top"
+              className="u-position-absolute u-text-transform-uppercase u-font-weight-black u-padding-top"
             >
               {t[`${props.limitKind}_short`]}
             </Text>
-            <Flex className="o-position--absolute u-padding--sm t-background-grey-0 t-border-r--circle c-single-limit__more-icon">
+            <Flex className="u-position-absolute u-padding--sm t-background-grey-0 t-border-r--circle c-single-limit__more-icon">
               <MoreIcon size="default" />
             </Flex>
           </Flex>
@@ -107,7 +103,7 @@ export function SinglePeriodLimitOverview(props: Props) {
           <Flex
             align="center"
             justify="center"
-            className="c-single-limit__hovered u-height--full u-width--full t-border-r o-position--absolute u-padding--lg"
+            className="c-single-limit__hovered u-height--full u-width--full t-border-r u-position-absolute u-padding--lg"
           >
             <ButtonText size="md" className="u-width--full">
               {t.adjust_limit}

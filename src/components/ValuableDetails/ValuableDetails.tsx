@@ -299,7 +299,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
           </Flex>
           {actionButtonVisible && (
-            <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
+            <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
               <ButtonPrimary
                 className="u-width--full"
                 onClick={() => this.handleAction(actionButtonProps)}

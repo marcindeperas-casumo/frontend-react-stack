@@ -31,9 +31,9 @@ export const SidebarRow = (props: Props) => {
     "u-font-weight-bold",
     "u-margin--none",
     "u-padding--none",
-    "o-position--relative",
+    "u-position-relative",
     "u-overflow--hidden",
-    "u-cursor--pointer",
+    "u-cursor-pointer",
     "t-color-white",
     {
       "c-sidebar__nav-item--active t-background-teal-50 t-color-white": selected,

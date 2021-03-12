@@ -25,7 +25,7 @@ const MaskItem = ({
 }: Props) => (
   <div className={className} style={{ width, height }}>
     <div
-      className="o-position--absolute o-mask-overlay"
+      className="u-position-absolute o-mask-overlay"
       style={{ clipPath: `url(#__mask-item-${id})` }}
     >
       {children}

@@ -34,7 +34,7 @@ export function ModalHeader(props: Props) {
     >
       {props.showBackButton ? (
         <ArrowLeftIcon
-          className="u-padding-x--lg t-color-black u-cursor--pointer"
+          className="u-padding-x--lg t-color-black u-cursor-pointer"
           onClick={props.backAction}
         />
       ) : (
@@ -48,7 +48,7 @@ export function ModalHeader(props: Props) {
       </Text>
       {props.showCloseButton ? (
         <CloseIcon
-          className="u-padding-x--lg t-color-black u-cursor--pointer"
+          className="u-padding-x--lg t-color-black u-cursor-pointer"
           onClick={props.closeAction}
         />
       ) : (
