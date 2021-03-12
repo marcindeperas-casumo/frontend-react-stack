@@ -10,6 +10,7 @@ export function getLoginSessionSummary(
 ): Promise<LoginSessionSummary> {
   return http.get(
     `/casino-player/game-rounds/api/session-summary/aggregated/${sessionId}`,
-    { except: "SPORTS_BETTING" }
+    { except: "SPORTS_BETTING" },
+    { credentials: "omit" }
   );
 }
