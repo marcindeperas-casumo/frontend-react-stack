@@ -81,7 +81,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
   });
   const formatVersion = createVersionFormatter({ acks, t });
 
-  const mustAcceptTerms = props.config?.mustAccept
+  const mustAcceptTerms = props.config?.mustAccept;
 
   const headerProps = !mustAcceptTerms
     ? {
@@ -139,9 +139,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
           <TermsAndConditionsVersionDetails
             onShowHistory={() => setHistoryView(true)}
             currentVersion={version}
-            shouldAllowHistoryView={
-              hasNewerVersions && !mustAcceptTerms
-            }
+            shouldAllowHistoryView={hasNewerVersions && !mustAcceptTerms}
             formatVersionDate={formatVersionDate}
             formatVersion={formatVersion}
             versionData={visibleVersionData}
