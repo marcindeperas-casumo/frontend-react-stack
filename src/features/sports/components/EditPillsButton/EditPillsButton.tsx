@@ -24,7 +24,7 @@ const EditPillsButton = ({
   <Flex
     direction="vertical"
     align="center"
-    className="u-cursor--pointer"
+    className="u-cursor-pointer"
     onClick={onClick}
   >
     <Flex.Item

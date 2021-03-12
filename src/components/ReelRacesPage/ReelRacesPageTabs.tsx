@@ -40,7 +40,7 @@ export function ReelRacesPageTabs({
               "t-border-bottom--lg",
               activeTab === "SCHEDULE"
                 ? "t-border-purple-60 t-color-purple-60"
-                : "t-border-grey-20 t-color-grey-20 u-cursor--pointer"
+                : "t-border-grey-20 t-color-grey-20 u-cursor-pointer"
             )}
           >
             <Text className="u-padding-y--md u-padding-x--lg" tag="div">
@@ -54,7 +54,7 @@ export function ReelRacesPageTabs({
               "t-border-bottom--lg",
               activeTab === "PREVIOUS"
                 ? "t-border-purple-60 t-color-purple-60"
-                : "t-border-grey-20 t-color-grey-20 u-cursor--pointer"
+                : "t-border-grey-20 t-color-grey-20 u-cursor-pointer"
             )}
           >
             <Text className="u-padding-y--md u-padding-x--lg" tag="div">

@@ -23,7 +23,7 @@ const commonProps = { pointsText: "pts" };
 
 const views = [PositionView, RemainingSpinsView, PointsView];
 const raceValues = [1, 2, 3, 4, 5, 6, 10, 11, 12, 20, 21, 50, 100, 101, 200];
-const centerClass = "c-reel-race-icon__content o-position--absolute";
+const centerClass = "c-reel-race-icon__content u-position-absolute";
 
 const Wrapper = ({ children, withBg = true }) => (
   <Flex
@@ -31,7 +31,7 @@ const Wrapper = ({ children, withBg = true }) => (
     align="center"
     justify="center"
     className={cx(
-      "u-height--2xlg u-width--2xlg t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-overflow--hidden o-position--relative",
+      "u-height--2xlg u-width--2xlg t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-overflow--hidden u-position-relative",
       {
         "t-background-grey-90": withBg,
       }

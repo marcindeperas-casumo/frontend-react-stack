@@ -38,7 +38,7 @@ export const FiveMinuteBreakIcon = ({
   return (
     <div
       className={cx(
-        "c-five-minute-break-icon o-position--relative u-height--3xlg u-width--3xlg t-border-r--circle",
+        "c-five-minute-break-icon u-position-relative u-height--3xlg u-width--3xlg t-border-r--circle",
         className
       )}
     >
@@ -47,12 +47,12 @@ export const FiveMinuteBreakIcon = ({
           <Timer
             endTime={expiringTime}
             onEnd={() => (
-              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md o-position--absolute u-font-weight-bold">
+              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md u-position-absolute u-font-weight-bold">
                 00
               </div>
             )}
             render={state => (
-              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md o-position--absolute u-font-weight-bold">
+              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md u-position-absolute u-font-weight-bold">
                 {state.seconds}
               </div>
             )}
@@ -60,7 +60,7 @@ export const FiveMinuteBreakIcon = ({
         ) : (
           <TimeLockedIcon
             variant="sm"
-            className="c-five-minute-break-icon__icon t-color-white o-position--absolute"
+            className="c-five-minute-break-icon__icon t-color-white u-position-absolute"
           />
         )}
       </div>
@@ -68,7 +68,7 @@ export const FiveMinuteBreakIcon = ({
         value={progressPercentage}
         fgColor="grey-20"
         bgColor="grey-50"
-        className="c-five-minute-break-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute"
+        className="c-five-minute-break-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute"
         width={4}
         radius={24}
       />

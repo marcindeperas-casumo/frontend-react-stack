@@ -47,7 +47,7 @@ export const CuratedCardFooterGameDesktop = ({
                   size="md"
                   id="gtm-curated-play"
                   onClick={onLaunchGame}
-                  className="u-pointer--initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--md@desktop"
+                  className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--md@desktop"
                 >
                   <PlayIcon />
                   <span className="u-margin-left">{launchButtonText}</span>
@@ -57,7 +57,7 @@ export const CuratedCardFooterGameDesktop = ({
                 size="md"
                 id="gtm-curated-more"
                 href={`/play/${game.slug}`}
-                className="u-pointer--initial u-margin-left--lg u-width--3xlg"
+                className="u-pointer-events-initial u-margin-left--lg u-width--3xlg"
               >
                 <MoreIcon />
               </ButtonInverted>

@@ -104,7 +104,7 @@ const renderValuableText = ({
     </div>
 
     <CloseIcon
-      className="u-cursor--pointer o-flex__item--no-shrink"
+      className="u-cursor-pointer o-flex__item--no-shrink"
       onClick={onClose}
     />
   </Flex>

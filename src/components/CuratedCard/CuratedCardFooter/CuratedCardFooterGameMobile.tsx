@@ -44,7 +44,7 @@ export const CuratedCardFooterGameMobile = ({
               size="md"
               id="gtm-curated-play"
               onClick={onLaunchGame}
-              className="u-pointer--initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
+              className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
             >
               <PlayIcon size="sm" />
               <span className="u-margin-left">{launchButtonText}</span>
@@ -54,7 +54,7 @@ export const CuratedCardFooterGameMobile = ({
             size="md"
             id="gtm-curated-more"
             href={`/play/${game.slug}`}
-            className="u-pointer--initial u-display--none@mobile u-margin-left--lg u-width--3xlg"
+            className="u-pointer-events-initial u-display--none@mobile u-margin-left--lg u-width--3xlg"
           >
             <MoreIcon />
           </ButtonInverted>

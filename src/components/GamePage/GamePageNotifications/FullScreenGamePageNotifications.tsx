@@ -6,7 +6,7 @@ import { BlueRibbonChristmasCampaignAnimationContainer } from "Components/Promot
 
 export const FullScreenGamePageNotifications = () => {
   return (
-    <div className="u-width--full u-height--full o-position--absolute">
+    <div className="u-width--full u-height--full u-position--absolute">
       <BlueRibbonChristmasCampaignAnimationContainer />
     </div>
   );

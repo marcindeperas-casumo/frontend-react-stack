@@ -26,7 +26,7 @@ export const SwipeUpPanel = ({
   const supportFullScreen = supportsTogglingFullscreen(fullScreenElement);
 
   return (
-    <div className="c-game-page__swipe-panel u-width--screen o-position--absolute">
+    <div className="c-game-page__swipe-panel u-width--screen u-position-absolute">
       <Flex
         justify="center"
         direction="vertical"
@@ -48,7 +48,7 @@ export const SwipeUpPanel = ({
               align="center"
               className="c-game-page__swipeup-details o-flex__item-align--center o-flex__block o-flex__item--no-shrink"
             >
-              <Flex.Item className="c-game-page__swipeup-icon-container o-position--relative">
+              <Flex.Item className="c-game-page__swipeup-icon-container u-position-relative">
                 <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
               </Flex.Item>
               <Flex.Item className="c-game-page__swipeup-text-container t-color-white">

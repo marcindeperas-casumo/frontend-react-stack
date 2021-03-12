@@ -105,7 +105,7 @@ export function ReelRaceLeaderboardResults({
 
   return (
     <div
-      className={cx(className, "u-overflow-x--hidden o-position--relative", {
+      className={cx(className, "u-overflow-x--hidden u-position-relative", {
         "u-padding-right--sm": scrollable,
         "t-opacity-background-100 t-background-grey-90": inverted,
       })}
@@ -125,7 +125,7 @@ export function ReelRaceLeaderboardResults({
         ref={listRef}
       >
         <InnerList
-          className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none o-position--sticky"
+          className="c-reel-race-leaderboard-results__sticky-list o-inset-top--none u-position-sticky--top"
           items={leaderboardSliced.slice(0, fixedRows)}
           {...commonProps}
         />

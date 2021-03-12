@@ -27,7 +27,7 @@ export const GamePageHeader = () => {
       </Flex.Item>
       <Flex.Block>
         <Flex
-          className="o-position--relative u-zindex--content-overlay t-background-grey-90 t-opacity-background--75 t-border-r@desktop u-padding-y@desktop u-padding-left--lg@desktop"
+          className="u-position-relative u-zindex--content-overlay t-background-grey-90 t-opacity-background--75 t-border-r@desktop u-padding-y@desktop u-padding-left--lg@desktop"
           align="center"
           spacing="none"
         >

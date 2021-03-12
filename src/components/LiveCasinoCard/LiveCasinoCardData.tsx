@@ -34,7 +34,7 @@ const renderResults = ({ results, type }, small = false) => {
       spacing={small ? "sm" : "default"}
       align="center"
       className={classNames(
-        "o-position--absolute u-width--full u-height--full u-padding-left--md",
+        "u-position-absolute u-width--full u-height--full u-padding-left--md",
         {
           "u-padding-bottom u-padding-top u-padding-vertical": !small,
           "u-padding-bottom--sm u-padding-top--sm": small,
@@ -130,10 +130,10 @@ export const LiveCasinoCardData = ({
         direction="vertical"
         align="center"
         justify="center"
-        className="u-width--full o-position--relative u-height--full"
+        className="u-width--full u-position-relative u-height--full"
       >
         <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} small={small} />
-        <div className="c-card-data__badges-mask u-width--full u-height--full o-position--absolute" />
+        <div className="c-card-data__badges-mask u-width--full u-height--full u-position-absolute" />
       </Flex>
     </Flex>
   );
