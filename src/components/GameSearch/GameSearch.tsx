@@ -162,7 +162,7 @@ export const GameSearch = (props: Props) => {
 
   return (
     <div className={`o-wrapper ${xPaddingClasses}`}>
-      <div className="c-game-search t-background-grey-0 c-game-search-bar u-position-sticky--top u-padding-y--md u-padding-y--lg@desktop">
+      <div className="c-game-search t-background-grey-0 c-game-search-bar o-position--sticky u-padding-y--md u-padding-y--lg@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}

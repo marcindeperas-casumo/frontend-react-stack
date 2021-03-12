@@ -66,7 +66,7 @@ export class BettingGlossaryEntry extends React.PureComponent<Props> {
   render() {
     return (
       <Flex.Item
-        className="c-betting-glossary-entry t-color-grey-90 u-font-weight-normal u-pointer-events-none"
+        className="c-betting-glossary-entry t-color-grey-90 u-font-weight-normal u-pointer--none"
         onClick={this.handleLinkedEntries}
         data-glossary-term={this.props.id}
       >

@@ -24,7 +24,7 @@ export function ReelRaceWidgetHeader({ t, ...props }: Props) {
   return (
     <Flex
       align="center"
-      className="u-padding--md u-cursor-pointer u-position-relative"
+      className="u-padding--md u-cursor--pointer o-position--relative"
       onClick={() => navigateToKO(ROUTE_IDS.PLAY, { slug: props.game.slug })}
     >
       <GameThumb

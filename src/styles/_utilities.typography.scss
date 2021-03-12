@@ -7,14 +7,6 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.u-text-transform-capitalize {
-  text-transform: capitalize;
-}
-
-.u-text-transform-uppercase {
-  text-transform: uppercase;
-}
-
 .u-text-clamp {
   /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
   /* autoprefixer: ignore next */
@@ -23,16 +15,4 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
-}
-
-.u-text-nowrap {
-  white-space: nowrap;
-}
-
-.u-line-height--1 {
-  line-height: 1;
-}
-
-.u-line-height--15 {
-  line-height: 1.5;
 }
