@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as R from "ramda";
 import { Duration } from "luxon";
-import { interpolate } from "Utils";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
+import { interpolate } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -116,6 +116,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
 
   React.useEffect(() => {
     fetchContentIfNecessary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (screen === SCREEN_TYPES.LIMIT_YOUR_BUDGET) {
@@ -190,28 +191,29 @@ export function isPlayActive(props: IsPlayActiveType): boolean {
   );
 }
 
-const mapDurationToPillOpts = (t: ConfigurationFormContent) => R.map(durationObject => {
-  const duration = Duration.fromObject(durationObject);
-  const pillOpts = {
-    value: duration.as("seconds")
-  };
+const mapDurationToPillOpts = (t: ConfigurationFormContent) =>
+  R.map(durationObject => {
+    const duration = Duration.fromObject(durationObject);
+    const pillOpts = {
+      value: duration.as("seconds"),
+    };
 
-  if (duration.days > 0) {
+    if (duration.days > 0) {
+      return {
+        ...pillOpts,
+        label: interpolate(t.days_abbreviated, { value: duration.days }),
+      };
+    }
+
+    if (duration.hours > 0) {
+      return {
+        ...pillOpts,
+        label: interpolate(t.hours_abbreviated, { value: duration.hours }),
+      };
+    }
+
     return {
       ...pillOpts,
-      label: interpolate(t.days_abbreviated, { value: duration.days })
+      label: interpolate(t.minutes_abbreviated, { value: duration.minutes }),
     };
-  }
-
-  if (duration.hours > 0) {
-    return {
-      ...pillOpts,
-      label: interpolate(t.hours_abbreviated, { value: duration.hours })
-    };
-  }
-
-  return {
-    ...pillOpts,
-    label: interpolate(t.minutes_abbreviated, { value: duration.minutes })
-  };
-});
+  });
