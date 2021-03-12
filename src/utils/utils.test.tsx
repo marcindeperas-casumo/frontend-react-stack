@@ -496,47 +496,59 @@ describe("convertHoursToDays()", () => {
   });
 
   describe("interpolateTimeInterval()", () => {
-    const t = {
-      seconds: "{{seconds}}secs",
-      minutes: "{{minutes}}mins",
-      hours: "{{hours}}hrs",
-      days: "{{days}}days",
-    };
+    const verbose = (props: any) => ({
+      ...props,
+      t: {
+        seconds: "{{seconds}}secs",
+        minutes: "{{minutes}}mins",
+        hours: "{{hours}}hrs",
+        days: "{{days}}days",
+      },
+    });
+    const generic = (props: any) => ({
+      ...props,
+      t: {
+        seconds: "{{value}}secs",
+        minutes: "{{value}}mins",
+        hours: "{{value}}hrs",
+        days: "{{value}}days",
+      },
+    });
 
     test("should return string for seconds if number of seconds is lower than in a minute", () => {
       const props = {
         seconds: 12,
-        t,
       };
 
-      expect(interpolateTimeInterval(props)).toEqual("12secs");
+      expect(interpolateTimeInterval(generic(props))).toEqual("12secs");
+      expect(interpolateTimeInterval(verbose(props))).toEqual("12secs");
     });
 
     test("should return string for minutes if number of seconds is lower than in an hour", () => {
       const props = {
         seconds: 77,
-        t,
       };
 
-      expect(interpolateTimeInterval(props)).toEqual("1mins");
+      expect(interpolateTimeInterval(generic(props))).toEqual("1mins");
+      expect(interpolateTimeInterval(verbose(props))).toEqual("1mins");
     });
 
     test("should return string for hours if number of seconds is lower than in a day", () => {
       const props = {
         seconds: 60 * 60 * 5,
-        t,
       };
 
-      expect(interpolateTimeInterval(props)).toEqual("5hrs");
+      expect(interpolateTimeInterval(generic(props))).toEqual("5hrs");
+      expect(interpolateTimeInterval(verbose(props))).toEqual("5hrs");
     });
 
     test("should return string for days if number of seconds is equal or greater than in a day", () => {
       const props = {
         seconds: 60 * 60 * 24 * 3,
-        t,
       };
 
-      expect(interpolateTimeInterval(props)).toEqual("3days");
+      expect(interpolateTimeInterval(generic(props))).toEqual("3days");
+      expect(interpolateTimeInterval(verbose(props))).toEqual("3days");
     });
   });
 

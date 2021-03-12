@@ -9,7 +9,7 @@ type LimitYourTimeRowType = {
   };
   /* chosen time limit */
   value: number | undefined;
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: number; label: string }>;
   onChange: (value: number) => void;
 };
 

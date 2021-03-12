@@ -30,7 +30,6 @@ export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
     <TimeLimitsFormView
       initial={config.mustAccept}
       onClickOutroCta={acceptModal}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ title: string; showCloseButton: boolean; c... Remove this comment to see the full error message
       formHeader={<ModalHeader {...headerProps} />}
     />
   );

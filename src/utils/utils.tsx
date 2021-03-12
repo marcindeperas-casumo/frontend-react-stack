@@ -413,16 +413,16 @@ export const interpolateTimeInterval = ({
   const days = Math.floor(hours / 24);
 
   if (t.days && days >= 1) {
-    return interpolate(t.days, { days });
+    return interpolate(t.days, { days, value: days });
   }
   if (t.hours && hours >= 1) {
-    return interpolate(t.hours, { hours });
+    return interpolate(t.hours, { hours, value: hours });
   }
   if (t.minutes && minutes >= 1) {
-    return interpolate(t.minutes, { minutes });
+    return interpolate(t.minutes, { minutes, value: minutes });
   }
 
-  return interpolate(t.seconds, { seconds });
+  return interpolate(t.seconds, { seconds, value: seconds });
 };
 
 export const convertTimestampToLuxonDate = (value: number) => {
