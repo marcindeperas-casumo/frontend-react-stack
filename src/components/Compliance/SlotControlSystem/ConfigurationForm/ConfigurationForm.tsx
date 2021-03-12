@@ -91,11 +91,11 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
     isCreatingSession,
   } = props;
   const [screen, setScreen] = React.useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
-  const [budget, setBudget] = React.useState();
-  const [time, setTime] = React.useState();
-  const [alertsEvery, setAlertsEvery] = React.useState();
-  const [wantsBreak, setWantsBreak] = React.useState();
-  const [breakAfter, setBreakAfter] = React.useState();
+  const [budget, setBudget] = React.useState<number>();
+  const [time, setTime] = React.useState<number>();
+  const [alertsEvery, setAlertsEvery] = React.useState<number>();
+  const [wantsBreak, setWantsBreak] = React.useState<boolean>();
+  const [breakAfter, setBreakAfter] = React.useState<number>();
   const formData: ConfigurationFormData = {
     currency,
     budget: budget || 0,
@@ -135,24 +135,20 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         t={t}
         value={time}
         options={mapDurationToPillOpts(t)(LIMIT_YOUR_TIME_OPTS)}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setTime}
       />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
         options={mapDurationToPillOpts(t)(STATUS_ALERTS_EVERY_OPTS)}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
         t={t}
         value={wantsBreak}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChange={setWantsBreak}
         breakValue={breakAfter}
         breakOptions={mapDurationToPillOpts(t)(WANT_BREAK_AFTER_YES_OPTS)}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Dispatch<(prevState: undefined) => undefined... Remove this comment to see the full error message
         onChangeBreak={setBreakAfter}
       />
       <ButtonPrimary
