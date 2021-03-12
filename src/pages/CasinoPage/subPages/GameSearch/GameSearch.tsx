@@ -1,5 +1,6 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
+import { ObservableQueryFields } from "@apollo/client";
 import * as A from "Types/apollo";
 import { SearchNotFoundContainer } from "Components/SearchNotFound";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
@@ -21,7 +22,10 @@ type TProps = {
   loadingSuggestions: boolean;
   suggestions: TGameSearchSuggestions;
   clearSearch: () => void;
-  fetchMoreRows: (f: Function) => Promise<any>;
+  fetchMoreRows: ObservableQueryFields<
+    A.GameSearchQuery,
+    A.GameSearchQueryVariables
+  >["fetchMore"];
   queryChanged: (query: string) => void;
   t: TCmsContent;
 };
