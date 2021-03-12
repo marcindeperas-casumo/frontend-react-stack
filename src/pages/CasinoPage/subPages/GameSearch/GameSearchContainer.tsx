@@ -22,7 +22,7 @@ export const GameSearchContainer: React.FC = () => {
       loading={false}
       loadingSuggestions={false}
       suggestions={mockedSuggestions}
-      fetchMoreRows={() => Promise.resolve([])}
+      fetchMoreRows={() => Promise.resolve(undefined)}
       queryChanged={setSearchQuery}
       query={searchQuery}
       clearSearch={clearSearch}
