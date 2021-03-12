@@ -15,13 +15,13 @@ export const BottomNotificationsGamePageContainer = () => {
     "iframe-solution.game-page-notifications"
   );
 
-  if (gameNotifications.length && t) {
-    const translatedNotifications = gameNotifications.map(
-      key => t.meta_properties.find(item => item.key === key).value
-    );
-
-    return <BottomNotifications notifications={translatedNotifications} />;
+  if (!gameNotifications.length || !t) {
+    return null;
   }
 
-  return null;
+  const translatedNotifications = gameNotifications.map(
+    key => t.meta_properties.find(item => item.key === key).value
+  );
+
+  return <BottomNotifications notifications={translatedNotifications} />;
 };
