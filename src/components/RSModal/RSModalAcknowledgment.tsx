@@ -9,7 +9,7 @@ type Props = {
 
 export function ModalAcknowledgment(props: Props) {
   return (
-    <Flex className="c-rsmodal__acknowledgment-button-position u-padding--md o-position--sticky t-background-white">
+    <Flex className="c-rsmodal__acknowledgment-button-position u-padding--md u-position-sticky--top t-background-white">
       <ButtonPrimary className="o-flex--1" onClick={props.onPress}>
         {props.title}
       </ButtonPrimary>

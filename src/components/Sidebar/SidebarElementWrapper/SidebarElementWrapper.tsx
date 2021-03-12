@@ -25,7 +25,7 @@ export const SidebarElementWrapper = ({
     <div
       className={cx(
         className,
-        `${baseClassName} o-position--relative u-width--full`,
+        `${baseClassName} u-position-relative u-width--full`,
         {
           "t-background-black": !children,
         }
@@ -34,7 +34,7 @@ export const SidebarElementWrapper = ({
     >
       {pinnable && (
         <WrapperPin
-          className={`${baseClassName}__pin o-position--absolute`}
+          className={`${baseClassName}__pin u-position-absolute`}
           onClick={onPinClick}
         />
       )}

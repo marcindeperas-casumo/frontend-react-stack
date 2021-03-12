@@ -14,7 +14,7 @@ export const SportsFooter = () => (
     spacing="xlg"
   >
     <Flex.Item>
-      <span className="u-cursor--pointer" onClick={showTerms}>
+      <span className="u-cursor-pointer" onClick={showTerms}>
         {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="footer.terms" />
       </span>
@@ -25,7 +25,7 @@ export const SportsFooter = () => (
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
         {openChooseFavouritesModal => (
           <span
-            className="u-cursor--pointer"
+            className="u-cursor-pointer"
             onClick={openChooseFavouritesModal}
           >
             {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}

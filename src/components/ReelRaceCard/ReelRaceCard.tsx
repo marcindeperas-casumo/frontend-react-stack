@@ -36,7 +36,7 @@ const Column = (props: {
       </Text>
     )}
     {props.bottom && (
-      <Text tag="span" size="xs" className="t-color-white t-opacity--75">
+      <Text tag="span" size="xs" className="t-color-white u-opacity-75">
         {props.bottom}
       </Text>
     )}
@@ -222,7 +222,7 @@ export class ReelRaceCard extends React.Component<Props> {
             >
               <Flex
                 align="center"
-                className="u-cursor--pointer"
+                className="u-cursor-pointer"
                 onClick={() => launchGame({ slug: game.slug })}
               >
                 <GameThumb
@@ -250,7 +250,7 @@ export class ReelRaceCard extends React.Component<Props> {
                   <Text
                     tag="span"
                     size="xs"
-                    className="t-color-white t-opacity--75"
+                    className="t-color-white u-opacity-75"
                   >
                     <DangerousHtml html={game.name} />
                   </Text>

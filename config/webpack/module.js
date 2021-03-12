@@ -57,21 +57,12 @@ module.exports = env => ({
                   includePaths: cudl,
                 },
                 sourceMap: env.production && shouldUseSourceMap,
-                additionalData: (content, loaderContext) => {
-                  const { resourcePath, rootContext } = loaderContext;
-                  const relativePath = path.relative(rootContext, resourcePath);
-
-                  if (/src\/styles/.test(relativePath)) {
-                    return null;
-                  } else if (/src/.test(relativePath)) {
-                    return `@import "${path.resolve(
-                      ROOT,
-                      "src/styles/_tools.cudl.scss"
-                    )}";\n${content}`;
-                  }
-
-                  return null;
-                },
+              },
+            },
+            {
+              loader: require.resolve("sass-resources-loader"),
+              options: {
+                resources: path.resolve(ROOT, "src/styles/_tools.cudl.scss"),
               },
             },
           ],

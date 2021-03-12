@@ -38,7 +38,7 @@ export function ReelRaceStartingNotification({
       className="u-padding u-padding-x--md t-background-white t-border-r"
       align="center"
     >
-      <Flex.Item className="o-position--relative">
+      <Flex.Item className="u-position-relative">
         <ProgressCircle
           className="u-width--3xlg c-rr-starting-notification__progress"
           bgColor="grey-0"
@@ -46,7 +46,7 @@ export function ReelRaceStartingNotification({
         />
         <Text
           size="md"
-          className="u-font-weight-bold o-position--absolute o-inset-x--none u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
+          className="u-font-weight-bold u-position-absolute u-inset-x u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
         >
           {secondsLeft}
         </Text>

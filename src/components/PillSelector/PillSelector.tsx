@@ -58,7 +58,7 @@ export class PillSelector extends PureComponent<Props<any>> {
             align="center"
             direction="vertical"
             className={classNames(
-              `c-input-pill u-cursor--pointer t-border-r--pill u-font-weight-bold`,
+              `c-input-pill u-cursor-pointer t-border-r--pill u-font-weight-bold`,
               this.getPillClassModifier(option)
             )}
             justify="center"

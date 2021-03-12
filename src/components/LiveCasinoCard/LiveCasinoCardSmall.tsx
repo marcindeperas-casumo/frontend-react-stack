@@ -119,7 +119,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
       >
         <Flex
           direction="vertical"
-          className="o-position--absolute u-padding--md"
+          className="u-position-absolute u-padding--md"
         >
           <Text
             tag="h3"
@@ -133,7 +133,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
           )}
         </Flex>
         <GameTileHeart
-          containerClassName="t-color-grey-70 o-position--absolute o-inset-right--none o-inset-bottom--none"
+          containerClassName="t-color-grey-70 u-position-absolute u-right-0 u-bottom-0"
           heartClassName="u-width--2xlg u-height--2xlg u-padding t-color-red-30"
           gameId={game.id}
           gameName={game.name}
