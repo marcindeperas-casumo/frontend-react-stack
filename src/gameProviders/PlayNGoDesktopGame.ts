@@ -26,7 +26,6 @@ export class PlayNGoDesktopGame extends BaseGame {
   engage: Engage;
   onMount() {
     super.onMount();
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = this.props.gameData;
     if (url) {
       injectScript(url).then(() => {

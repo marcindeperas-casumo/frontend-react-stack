@@ -3,7 +3,6 @@ import { appendToGameUrl } from "./utils";
 
 export class EmbeddedNetentGame extends BaseIframeGame {
   get componentProps() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url } = this.props.gameData;
     const urlData = new URL(url);
 

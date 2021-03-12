@@ -30,8 +30,6 @@ export class BaseIframeGame extends BaseGame {
 
   constructor(props: GameProviderModelProps) {
     super(props);
-
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = props.gameData;
 
     if (url) {
@@ -54,7 +52,6 @@ export class BaseIframeGame extends BaseGame {
       ...super.componentProps,
       allow: "autoplay",
       scrolling: this.scrolling,
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
       src: this.props.gameData.url || null,
       title: IFRAME_ID,
       id: IFRAME_ID,

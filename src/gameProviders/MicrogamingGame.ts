@@ -30,7 +30,6 @@ export class MicrogamingGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null, isEmbedded } = this.props.gameData;
     // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
