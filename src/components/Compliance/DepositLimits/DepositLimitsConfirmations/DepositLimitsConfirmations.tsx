@@ -41,7 +41,7 @@ const confirmationPageToTranslation: Record<
     title: "saved_right_away_decreased_title",
   },
   SAVED_RIGHT_AWAY_CREATED: {
-    title: "saved_right_away_created_title"
+    title: "saved_right_away_created_title",
   },
 };
 
