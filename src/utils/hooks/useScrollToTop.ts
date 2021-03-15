@@ -17,7 +17,8 @@ export const useScrollToTop = ({
       try {
         scrollElement.scroll({ top: 0 });
       } catch (error) {
-        scrollElement.scrollTo(0, 0);
+        // eslint-disable-next-line fp/no-mutation
+        scrollElement.scrollTop = 0;
       }
     }
   }, [scrollElementId, triggerScrollProp]);
