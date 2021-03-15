@@ -6,7 +6,7 @@ import {
 } from "./__mocks__";
 import { GameSearch } from "./GameSearch";
 
-export const GameSearchContainer: React.FC = () => {
+export const GameSearchContainer: React.FC<void> = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data } = mockedSearchResults;
 
