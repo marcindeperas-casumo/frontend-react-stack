@@ -8,7 +8,7 @@ import type { TGameSearchSuggestions } from "./GameSearch.types";
 export const GameSearchSuggestions: React.FC<TGameSearchSuggestions> = ({
   games,
   title,
-}: TGameSearchSuggestions) => (
+}) => (
   <>
     <Text
       size="md"

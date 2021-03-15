@@ -1,4 +1,5 @@
 import * as React from "react";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { ObservableQueryFields } from "@apollo/client";
 import * as A from "Types/apollo";
@@ -68,13 +69,13 @@ export const GameSearch: React.FC<TProps> = ({
   queryChanged,
   clearSearch,
   t,
-}: TProps) => {
+}) => {
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
 
   useScrollToTop({ triggerScrollProp: query });
 
   return (
-    <div className={`o-wrapper ${xPaddingClasses}`}>
+    <div className={cx("o-wrapper", xPaddingClasses)}>
       <div className="c-game-search t-background-grey-0 c-game-search-bar o-position--sticky o-inset-top--none u-padding-y--md u-padding-y--lg@desktop">
         <GameSearchInput
           onChange={queryChanged}
