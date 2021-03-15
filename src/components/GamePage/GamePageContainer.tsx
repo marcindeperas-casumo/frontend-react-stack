@@ -29,6 +29,7 @@ import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
+  BottomNotifications,
 } from "./GamePageNotifications";
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
@@ -148,6 +149,7 @@ export const GamePageContainer = () => {
         <React.Fragment>
           <GamePageNotifications />
           <FullScreenGamePageNotifications />
+          <BottomNotifications />
         </React.Fragment>
       }
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: Element; footer: Element; gameBackg... Remove this comment to see the full error message

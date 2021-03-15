@@ -9,7 +9,7 @@ type StatusAlertsEveryRowType = {
   };
   /* chosen period of time between alerts */
   value: number | undefined;
-  options: Array<{ value: String; label: string }>;
+  options: Array<{ value: number; label: string }>;
   onChange: (n: number) => void;
 };
 

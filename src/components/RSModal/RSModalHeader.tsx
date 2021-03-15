@@ -4,18 +4,14 @@ import { CloseIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import * as React from "react";
 
-type BackButton =
-  | {
-      showBackButton: true;
-      backAction: () => void;
-    }
-  | { showBackButton?: false };
-type CloseButton =
-  | {
-      showCloseButton: true;
-      closeAction: () => void;
-    }
-  | { showCloseButton?: false };
+type BackButton = {
+  showBackButton?: boolean;
+  backAction?: () => void;
+};
+type CloseButton = {
+  showCloseButton?: boolean;
+  closeAction?: () => void;
+};
 
 // those shenanigans are to make flow aware that `closeAction` is required when
 // `showCloseButton` is set to true, otherwise it shouldn't be present. Same thing

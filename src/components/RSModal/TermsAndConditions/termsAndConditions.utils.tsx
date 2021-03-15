@@ -33,7 +33,7 @@ export function useVersion(lastVersion: number) {
     }
   }, [lastVersion, setVersion]);
 
-  return [version, setVersion];
+  return [version, setVersion] as const;
 }
 
 export function formatWithDateMedium(text: string, timestamp: number) {
@@ -52,6 +52,7 @@ export function createVersionDateFormatter(data: {
       timestamp: number;
     };
   };
+  locale: string;
 }) {
   return (version: number, iso8601: string) => {
     if (version === data.acks.first.version) {
