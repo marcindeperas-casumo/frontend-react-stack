@@ -11,6 +11,9 @@ jest.mock("Api/api.esLoginSessionSummary");
 jest.mock("Utils/hooks/useJurisdiction", () => ({
   useJurisdiction: jest.fn(),
 }));
+jest.mock("react-redux", () => ({
+  useSelector: () => "user-session-id",
+}));
 
 const mockFn = (fn: any) => fn;
 
@@ -30,7 +33,7 @@ describe("useLoginSessionSummary", () => {
     jest.clearAllMocks();
   });
 
-  test("it calls Api function to retrieve login session summary when in DGOJ", async () => {
+  test("it calls API with session ID to retrieve login session summary when in DGOJ", async () => {
     const resp = { one: 1 };
 
     mockUseJurisdiction("DGOJ");
@@ -40,7 +43,7 @@ describe("useLoginSessionSummary", () => {
       <HookWrapper hook={useLoginSessionSummary} args={[]} />
     );
 
-    expect(getLoginSessionSummary).toHaveBeenCalled();
+    expect(getLoginSessionSummary).toHaveBeenCalledWith("user-session-id");
 
     await act(async () => {
       await jest.runAllTimers();
@@ -52,7 +55,7 @@ describe("useLoginSessionSummary", () => {
     });
   });
 
-  test("it does not call Api function when not in DGOJ", () => {
+  test("it does not call API when not in DGOJ", () => {
     mockUseJurisdiction("MGA");
     mockLoginSessionSummary({});
 
