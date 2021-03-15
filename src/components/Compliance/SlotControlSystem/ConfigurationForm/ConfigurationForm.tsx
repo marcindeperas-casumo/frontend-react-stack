@@ -1,12 +1,10 @@
+import * as React from "react";
+import * as R from "ramda";
+import { Duration } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
-import { map } from "ramda";
-import * as React from "react";
-import {
-  interpolateTimeInterval,
-  convertLuxonDurationObjectToSeconds,
-} from "Utils";
+import { interpolate } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -15,7 +13,6 @@ import { WantBreakAfterRow } from "./WantBreakAfterRow";
 import { isBudgetInvalid } from "./Utils";
 import "./ConfigurationForm.scss";
 
-const { useState, useCallback, useEffect } = React;
 const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
@@ -25,18 +22,18 @@ const LIMIT_YOUR_TIME_OPTS = [
   { minutes: 30 },
   { hours: 1 },
   { hours: 4 },
-].map(convertLuxonDurationObjectToSeconds);
+];
 const STATUS_ALERTS_EVERY_OPTS = [
   { minutes: 5 },
   { minutes: 10 },
   { minutes: 15 },
-].map(convertLuxonDurationObjectToSeconds);
+];
 const WANT_BREAK_AFTER_YES_OPTS = [
   { hours: 1 },
   { days: 1 },
   { days: 7 },
   { days: 30 },
-].map(convertLuxonDurationObjectToSeconds);
+];
 
 export type ConfigurationFormContent = {
   limit_your_budget: string;
@@ -93,12 +90,12 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
     createSession,
     isCreatingSession,
   } = props;
-  const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
-  const [budget, setBudget] = useState<number>();
-  const [time, setTime] = useState<number>();
-  const [alertsEvery, setAlertsEvery] = useState<number>();
-  const [wantsBreak, setWantsBreak] = useState<boolean>();
-  const [breakAfter, setBreakAfter] = useState<number>();
+  const [screen, setScreen] = React.useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
+  const [budget, setBudget] = React.useState<number>();
+  const [time, setTime] = React.useState<number>();
+  const [alertsEvery, setAlertsEvery] = React.useState<number>();
+  const [wantsBreak, setWantsBreak] = React.useState<boolean>();
+  const [breakAfter, setBreakAfter] = React.useState<number>();
   const formData: ConfigurationFormData = {
     currency,
     budget: budget || 0,
@@ -106,32 +103,21 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
     alertsEvery: alertsEvery || 0,
     breakAfter,
   };
-  const onClickEditBudget = useCallback(() => {
+  const onClickEditBudget = React.useCallback(() => {
     setScreen(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   }, [setScreen]);
-  const onSubmitBudget = useCallback(
+  const onSubmitBudget = React.useCallback(
     submittedBudget => {
       setBudget(submittedBudget);
       setScreen(SCREEN_TYPES.FORM);
     },
     [setBudget, setScreen]
   );
-  const mapSecondsToPillOpts = map((seconds: number) => ({
-    value: seconds,
-    label: interpolateTimeInterval({
-      seconds,
-      t: {
-        seconds: "unused",
-        minutes: t.minutes_abbreviated,
-        hours: t.hours_abbreviated,
-        days: t.days_abbreviated,
-      },
-    }),
-  }));
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchContentIfNecessary();
-  }, [fetchContentIfNecessary]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (screen === SCREEN_TYPES.LIMIT_YOUR_BUDGET) {
     return (
@@ -149,13 +135,13 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
       <LimitYourTimeRow
         t={t}
         value={time}
-        options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS)}
+        options={mapDurationToPillOpts(t)(LIMIT_YOUR_TIME_OPTS)}
         onChange={setTime}
       />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
-        options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS)}
+        options={mapDurationToPillOpts(t)(STATUS_ALERTS_EVERY_OPTS)}
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
@@ -163,7 +149,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         value={wantsBreak}
         onChange={setWantsBreak}
         breakValue={breakAfter}
-        breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS)}
+        breakOptions={mapDurationToPillOpts(t)(WANT_BREAK_AFTER_YES_OPTS)}
         onChangeBreak={setBreakAfter}
       />
       <ButtonPrimary
@@ -204,3 +190,30 @@ export function isPlayActive(props: IsPlayActiveType): boolean {
       ((wantsBreak && breakAfter) || wantsBreak === false)
   );
 }
+
+const mapDurationToPillOpts = (t: ConfigurationFormContent) =>
+  R.map(durationObject => {
+    const duration = Duration.fromObject(durationObject);
+    const pillOpts = {
+      value: duration.as("seconds"),
+    };
+
+    if (duration.days > 0) {
+      return {
+        ...pillOpts,
+        label: interpolate(t.days_abbreviated, { value: duration.days }),
+      };
+    }
+
+    if (duration.hours > 0) {
+      return {
+        ...pillOpts,
+        label: interpolate(t.hours_abbreviated, { value: duration.hours }),
+      };
+    }
+
+    return {
+      ...pillOpts,
+      label: interpolate(t.minutes_abbreviated, { value: duration.minutes }),
+    };
+  });
