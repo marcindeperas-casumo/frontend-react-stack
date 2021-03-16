@@ -20,11 +20,11 @@ export class YggdrasilGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null, isEmbedded } = this.props.gameData;
-    const encodedLobbyUrl = encodeURIComponent(this.lobbyUrl);
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
       return {
-        ...this.componentProps,
+        ...super.componentProps,
         src: !isEmbedded
           ? appendToGameUrl({
               url,
