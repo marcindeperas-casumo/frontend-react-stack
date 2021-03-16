@@ -5,10 +5,10 @@ import { appendToGameUrl } from "./utils";
 
 export class MahjongGame extends BaseIframeGame {
   onLaunchNotifications: Array<string> = ["game_not_under_mga_message"];
-  scrolling = "auto";
 
   constructor(props: GameProviderModelProps) {
     super(props);
+    this.scrolling = "auto";
     this.targetDomain = props.origin || window.location.origin;
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
