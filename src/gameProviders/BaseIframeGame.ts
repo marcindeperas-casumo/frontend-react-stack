@@ -48,7 +48,6 @@ export class BaseIframeGame extends BaseGame {
 
   get componentProps() {
     return {
-      // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
       ...super.componentProps,
       allow: "autoplay",
       scrolling: this.scrolling,

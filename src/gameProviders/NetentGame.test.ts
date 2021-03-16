@@ -24,6 +24,7 @@ describe("NetentGame", () => {
 
   const gameRef = { current: null };
   const model = new NetentGame({
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ casinoId: string; gameId: string; gameServ... Remove this comment to see the full error message
     gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,

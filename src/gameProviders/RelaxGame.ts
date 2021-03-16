@@ -37,7 +37,6 @@ export class RelaxGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null, isEmbedded } = this.props.gameData;
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
@@ -53,7 +52,6 @@ export class RelaxGame extends BaseIframeGame {
         });
       }
       return {
-        // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
         ...super.componentProps,
         src: !isEmbedded
           ? appendToGameUrl({
@@ -64,7 +62,6 @@ export class RelaxGame extends BaseIframeGame {
       };
     }
 
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     return super.componentProps;
   }
 

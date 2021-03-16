@@ -33,9 +33,7 @@ export class CasumoGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null, isEmbedded } = this.props.gameData;
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
     if (url) {
       const paramsToAdd = [
@@ -52,7 +50,6 @@ export class CasumoGame extends BaseIframeGame {
         });
       }
       return {
-        // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
         ...super.componentProps,
 
         src: !isEmbedded
@@ -64,7 +61,6 @@ export class CasumoGame extends BaseIframeGame {
       };
     }
 
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     return super.componentProps;
   }
 
