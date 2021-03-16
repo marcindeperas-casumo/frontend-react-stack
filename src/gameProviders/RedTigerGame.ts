@@ -9,8 +9,8 @@ export const COMMANDS = {
 };
 
 export const EVENTS = {
-  GAME_ROUND_START: { type: "playStart" },
-  GAME_ROUND_END: { type: "playEnd" },
+  GAME_ROUND_START: { type: "animations_start" },
+  GAME_ROUND_END: { type: "animations_end" },
 };
 
 // TODO:
