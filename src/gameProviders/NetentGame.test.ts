@@ -19,12 +19,12 @@ describe("NetentGame", () => {
     staticServer: "https://casumo-static.casinomodule.com",
     width: "123",
     height: "234",
+    url: null,
     lang: "en",
   };
 
   const gameRef = { current: null };
   const model = new NetentGame({
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ casinoId: string; gameId: string; gameServ... Remove this comment to see the full error message
     gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,
