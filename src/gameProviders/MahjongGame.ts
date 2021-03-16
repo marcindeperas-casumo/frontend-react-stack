@@ -1,4 +1,4 @@
-import type { GameProviderModelProps, IframeGameLaunchData } from "./types";
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
@@ -14,7 +14,7 @@ export class MahjongGame extends BaseIframeGame {
   }
 
   get componentProps() {
-    const { url = null } = <IframeGameLaunchData>this.props.gameData;
+    const { url = null } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
