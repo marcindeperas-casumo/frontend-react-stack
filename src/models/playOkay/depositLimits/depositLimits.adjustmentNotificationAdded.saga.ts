@@ -7,7 +7,7 @@ type TStoreAction =
   | typeof actions.limitPreadjust
   | typeof actions.getRemainingLimits
   | ReturnType<typeof actions.getLimitsHistory>;
-type TAction = {
+export type TAction = {
   data: {
     notificationAdded: {
       type:
@@ -30,7 +30,7 @@ export function* adjustmentNotificationAddedSaga(
     return;
   }
 
-  yield delay(1000);
+  yield delay(5000);
 
   yield put(actions.getAllLimits);
   yield put(actions.limitPreadjust);
