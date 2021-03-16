@@ -6,6 +6,7 @@ import { appendToGameUrl } from "./utils";
 export class LeapGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
+    this.scrolling = "auto";
     this.targetDomain = props.origin || window.location.origin;
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }

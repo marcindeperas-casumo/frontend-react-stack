@@ -5,7 +5,6 @@ import type {
   IframeGameApi,
   GameProviderModelProps,
   IframeMessageEvent,
-  IframeGameLaunchData,
 } from "./types";
 import { IFRAME_ID, GAME_IDLE_EVENT_NAME } from "./constants";
 import { EVENT_BUBBLER_PATH } from "./config";
@@ -31,7 +30,7 @@ export class BaseIframeGame extends BaseGame {
 
   constructor(props: GameProviderModelProps) {
     super(props);
-    const { url = null } = <IframeGameLaunchData>props.gameData;
+    const { url = null } = props.gameData;
 
     if (url) {
       const { origin } = new URL(url);
