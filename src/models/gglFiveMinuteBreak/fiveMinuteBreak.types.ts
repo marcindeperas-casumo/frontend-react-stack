@@ -4,8 +4,8 @@ export type GglRealityCheckInterval = {
 };
 
 export type GglRealityCheckSummary = {
-  activeRCSession: GglRealityCheckInterval | undefined;
-  activeRCBreak: GglRealityCheckInterval | undefined;
+  activeRCSession?: GglRealityCheckInterval;
+  activeRCBreak?: GglRealityCheckInterval;
 };
 
 export type PauseResumeGameSlugProps = {

@@ -21,6 +21,7 @@ export type NetentGameLaunchData = {
   providerName: string;
   providerType: string;
   height: string;
+  url: string;
   lang: string;
 };
 

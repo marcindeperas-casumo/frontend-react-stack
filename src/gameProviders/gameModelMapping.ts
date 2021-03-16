@@ -96,7 +96,7 @@ export const getGameModel = (
 ): GameProviderModel => {
   const GameModel = models[whichProviderType(gameData)] || BaseGame;
 
-  // @ts-expect-error ts-migrate(2739) FIXME: Type 'BaseGame' is missing the following propertie... Remove this comment to see the full error message
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'BaseGame | YggdrasilGame' is not assignable ... Remove this comment to see the full error message
   return new GameModel({
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'GameProps' is not assignable to type 'GameLa... Remove this comment to see the full error message
     gameData,

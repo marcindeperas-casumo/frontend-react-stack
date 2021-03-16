@@ -19,6 +19,7 @@ export class BaseGame {
   gameActivityStatusSource: string = GAME_ACTIVITY_STATUS_SOURCE.SIMULATED;
   urlPrefix: string;
   origin: string;
+  onLaunchNotifications: Array<string> = [];
 
   constructor(props: GameProviderModelProps) {
     this.props = props;

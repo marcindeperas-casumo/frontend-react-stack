@@ -10,7 +10,6 @@ describe("Models/fiveMinuteBreak/fiveMinuteBreakReducer", () => {
     const action = gglRealityCheckUpdateAction(rcData);
     const state = {};
 
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
     expect(fiveMinuteBreakReducer(state, action)).toEqual(rcData);
   });
 });
