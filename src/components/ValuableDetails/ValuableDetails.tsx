@@ -209,7 +209,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     const actionButtonVisible =
       valuableState !== VALUABLE_STATES.USED ||
-      valuableType === VALUABLE_TYPES.CASHBACK;
+      ([
+        VALUABLE_TYPES.CASHBACK,
+        VALUABLE_TYPES.WAGERING_LOCK,
+        VALUABLE_TYPES.FREE_BET
+      ] as Array<A.ValuableType>)
+        .includes(valuableType);
 
     return (
       <div>
