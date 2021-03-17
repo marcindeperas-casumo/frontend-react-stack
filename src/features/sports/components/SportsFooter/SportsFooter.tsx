@@ -4,6 +4,7 @@ import { showTerms } from "Services/ShowTermsService";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { MODAL } from "Features/sports/components/Modals";
+import DangerousHtml from "Components/DangerousHtml";
 
 export const SportsFooter = () => (
   <Flex
@@ -16,7 +17,9 @@ export const SportsFooter = () => (
     <Flex.Item>
       <span className="u-cursor-pointer" onClick={showTerms}>
         {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
-        <DictionaryTerm termKey="footer.terms" />
+        <DictionaryTerm termKey="footer.terms">
+          {footerTermsText => <DangerousHtml html={footerTermsText} />}
+        </DictionaryTerm>
       </span>
     </Flex.Item>
     <Flex.Item>
