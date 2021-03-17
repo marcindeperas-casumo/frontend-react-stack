@@ -37,8 +37,11 @@ const confirmationPageToTranslation: Record<
     title: "rg_required_title",
     content: "rg_required_content",
   },
-  SAVED_RIGHT_AWAY: {
-    title: "saved_right_away_title",
+  SAVED_RIGHT_AWAY_DECREASED: {
+    title: "saved_right_away_decreased_title",
+  },
+  SAVED_RIGHT_AWAY_CREATED: {
+    title: "saved_right_away_created_title",
   },
 };
 

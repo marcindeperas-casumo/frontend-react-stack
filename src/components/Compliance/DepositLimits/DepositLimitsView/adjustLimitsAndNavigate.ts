@@ -31,20 +31,24 @@ export const adjustLimitsAndNavigate = ({
     ...getSpecificKinds("removed", limitsDiff),
   ]);
   const hasDecreased = !R.isEmpty(decreases);
+  const hasCreated = !R.isEmpty(getSpecificKinds("created", limitsDiff));
 
   if (hasRemovedOrIncreased) {
     navigate({
       route: "confirmations",
 
-      pages: [hasDecreased && "SAVED_RIGHT_AWAY", "RG_REQUIRED"].filter(
-        Boolean
-      ) as ConfirmationPage[],
+      pages: [
+        hasDecreased && "SAVED_RIGHT_AWAY_DECREASED",
+        "RG_REQUIRED",
+      ].filter(Boolean) as ConfirmationPage[],
     });
-  } else if (hasDecreased) {
+  } else if (hasDecreased || hasCreated) {
     limitAdjust(newLimits);
     navigate({
       route: "confirmations",
-      pages: ["SAVED_RIGHT_AWAY"],
+      pages: [
+        hasCreated ? "SAVED_RIGHT_AWAY_CREATED" : "SAVED_RIGHT_AWAY_DECREASED",
+      ],
     });
   } else {
     // nothing changed

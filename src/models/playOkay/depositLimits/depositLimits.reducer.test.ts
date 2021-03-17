@@ -267,7 +267,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           setOnRegistration: false,
           id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
           timestamp: "2019-08-05T14:25:20Z",
-          type: "decrease",
+          type: "created",
         },
         {
           changes: [

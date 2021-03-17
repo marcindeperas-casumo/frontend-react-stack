@@ -20,24 +20,18 @@ export function diffLimits({
   before: AllLimitsOnlyValues;
   after: AllLimitsOnlyValues;
 }): LimitsDiff {
-  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
   return limitTypes.reduce(
     (acc, x) => ({
       ...acc,
       [x]: R.cond([
         [R.equals(before[x]), R.always("unchanged")],
         [R.isNil, R.always("removed")],
-        /**
-         * This one might be surprising at first. Think of nil in limit as of infinity.
-         * Every time you set new limit you are decreasing it from infinity so it
-         * falls into the flow of decreasing limits.
-         */
-        [R.always(R.isNil(before[x])), R.always("decrease")],
+        [R.always(R.isNil(before[x])), R.always("created")],
         [R.gt(before[x]), R.always("decrease")],
         [R.lt(before[x]), R.always("increase")],
       ])(after[x]),
     }),
-    {}
+    {} as LimitsDiff
   );
 }
 
