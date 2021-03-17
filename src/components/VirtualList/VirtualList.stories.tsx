@@ -45,7 +45,7 @@ class MyComponent extends PureComponent<{}, State> {
         }, 3000 + Math.round(Math.random() * 1000));
       }).then(gamesList => {
         this.setState({
-          // @ts-expect-error ts-migrate(2548) FIXME: Type 'unknown' is not an array type or does not ha... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2488) FIXME: Type 'unknown' must have a '[Symbol.iterator]()' m... Remove this comment to see the full error message
           list: [...this.state.list, ...gamesList],
         });
         return this.state.list;
