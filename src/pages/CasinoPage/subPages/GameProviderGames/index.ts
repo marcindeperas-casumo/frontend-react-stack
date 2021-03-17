@@ -1,0 +1,1 @@
+export { GameProviderGamesPage } from "./GameProviderGames";

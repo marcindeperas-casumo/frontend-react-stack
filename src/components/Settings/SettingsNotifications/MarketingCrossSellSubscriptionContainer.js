@@ -22,8 +22,7 @@ export function MarketingCrossSellSubscriptionContainer() {
     refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-    A.PLAYER_CONTACT_SETTINGS_QUERY,
-    _
+  A.Player_Contact_Settings_Query, A.Player_Contact_Settings_QueryVariables
   >(PLAYER_CONTACT_SETTINGS_QUERY);
 
   if ((loading && !data) || !t?.label) {

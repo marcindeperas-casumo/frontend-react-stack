@@ -1,0 +1,4 @@
+# Needed when using "flattenGeneratedTypes" on graphql codegen.
+# see: https://github.com/dotansimha/graphql-code-generator/issues/2736#issuecomment-541289380
+
+directive @client on FIELD
