@@ -1,0 +1,1 @@
+export { FiveMinuteBreakIcon } from "./FiveMinuteBreakIcon";

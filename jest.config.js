@@ -4,15 +4,18 @@ module.exports = {
   globals: {
     __DEV__: true,
   },
+  preset: "ts-jest",
   setupFilesAfterEnv: [
     "<rootDir>/config/jest/enzyme.js",
     "<rootDir>/config/jest/matchMedia.js",
     "<rootDir>/config/jest/mutationObserverMock.js",
   ],
   collectCoverageFrom: [
-    "src/**/*.js",
-    "!src/**/(index|types).js",
-    "!src/**/*.(stories|types).js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "!src/**/(index|types).ts",
+    "!src/**/*.(stories|types).ts",
+    "!src/**/*.(stories|types).tsx",
     "!src/**/types/**",
   ],
   coverageDirectory: "./coverage/",
@@ -21,16 +24,18 @@ module.exports = {
     "react-app-polyfill/jsdom",
     "<rootDir>/config/jest/localStorageMock.js",
   ],
-  testMatch: ["**/*.test.js"],
+  testMatch: ["**/*.test.ts", "**/*.test.tsx"],
   testEnvironment: "jsdom",
   testURL: "http://localhost",
   transform: {
-    "^.+\\.(js|jsx|mjs)$": "babel-jest",
+    "^.+\\.(js|jsx|ts|tsx|mjs)$": "babel-jest",
     "^.+\\.(gql|graphql)$": "jest-transform-graphql",
-    "^(?!.*\\.(js|jsx|mjs|json|gql|graphql)$)":
+    "^(?!.*\\.(js|jsx|ts|tsx|mjs|json|gql|graphql)$)":
       "<rootDir>/config/jest/fileTransform.js",
   },
-  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
+  transformIgnorePatterns: [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$",
+  ],
   moduleNameMapper: {
     "^react-native$": "react-native-web",
     "^.+\\.svg$": "<rootDir>/__mocks__/svgr.js",
@@ -43,6 +48,10 @@ module.exports = {
     "json",
     `${brand}.jsx`,
     "jsx",
+    `${brand}.ts`,
+    "ts",
+    `${brand}.tsx`,
+    "tsx",
     `${brand}.mjs`,
     "mjs",
   ],

@@ -1,4 +1,3 @@
-// @flow
 import { map, pipe, replace } from "ramda";
 import breakpointsWithPx from "Src/styles/_settings.breakpoints.scss";
 
@@ -19,7 +18,7 @@ export const devices = {
   [breakpoints.desktop]: "responsive",
 };
 
-const makeConfig = (size: number) => ({
+const makeConfig = size => ({
   chromatic: {
     viewports: [size],
   },
