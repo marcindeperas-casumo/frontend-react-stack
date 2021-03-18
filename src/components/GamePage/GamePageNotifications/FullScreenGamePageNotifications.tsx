@@ -5,9 +5,5 @@ import React from "react";
 import { BlueRibbonChristmasCampaignAnimationContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
 
 export const FullScreenGamePageNotifications = () => {
-  return (
-    <div className="u-width--full u-height--full u-position--absolute">
-      <BlueRibbonChristmasCampaignAnimationContainer />
-    </div>
-  );
+  return <BlueRibbonChristmasCampaignAnimationContainer />;
 };

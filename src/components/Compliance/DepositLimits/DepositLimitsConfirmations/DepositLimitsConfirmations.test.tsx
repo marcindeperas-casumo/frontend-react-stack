@@ -5,7 +5,7 @@ import t from "./__mocks__/cms";
 
 const props = {
   t,
-  pages: ["SAVED_RIGHT_AWAY", "RG_REQUIRED"],
+  pages: ["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"],
   lastButtonAction: () => {},
   fetchTranslations: () => {},
   lastButtonCaption: "button_answer_questions",
@@ -13,7 +13,7 @@ const props = {
 
 describe("DepositLimitsConfirmations", () => {
   test("clicking button causes page to change", () => {
-    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: { saved_right_away_title: string; being... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: TDepositLimitsConfirmationsTranslations... Remove this comment to see the full error message
     const rendered = shallow(<DepositLimitsConfirmations {...props} />);
     const getText = () =>
       rendered.find({ "data-test-id": "txt" }).dive().text();
@@ -26,7 +26,7 @@ describe("DepositLimitsConfirmations", () => {
   test("doesn't call lastButtonAction() if it is not the last page", () => {
     const lastButtonAction = jest.fn();
     const rendered = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: { sav... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: TDepo... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
         lastButtonAction={lastButtonAction}
@@ -40,7 +40,7 @@ describe("DepositLimitsConfirmations", () => {
   test("lastButtonAction() is only triggered once when finishing the flow", () => {
     const lastButtonAction1 = jest.fn();
     const rendered1 = shallow(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: { sav... Remove this comment to see the full error message
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ lastButtonAction: Mock<any, any>; t: TDepo... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
         lastButtonAction={lastButtonAction1}
@@ -56,7 +56,7 @@ describe("DepositLimitsConfirmations", () => {
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ pages: "SAVED_RIGHT_AWAY"[]; lastButtonAct... Remove this comment to see the full error message
       <DepositLimitsConfirmations
         {...props}
-        pages={["SAVED_RIGHT_AWAY"]}
+        pages={["SAVED_RIGHT_AWAY_DECREASED"]}
         lastButtonAction={lastButtonAction2}
       />
     );

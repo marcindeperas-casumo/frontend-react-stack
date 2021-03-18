@@ -24,5 +24,5 @@ export const DepositLimitsViewContainer = connect(
     limitCancel,
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(props: Props) => "loading" | El... Remove this comment to see the full error message
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(props: Props) => Element | "loa... Remove this comment to see the full error message
 )(DepositLimitsView);

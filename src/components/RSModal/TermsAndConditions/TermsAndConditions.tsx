@@ -66,7 +66,6 @@ export function TermsAndConditions({ t, ...props }: Props) {
   const relevantTACVersionsSlugs = useRelevantVersionsSlugs();
   const [version, setVersion] = useVersion(acks.last?.version);
   const visibleVersionData = useTranslations<TACVersionCMSData>(
-    // @ts-expect-error ts-migrate(2538) FIXME: Type 'Dispatch<SetStateAction<number>>' cannot be ... Remove this comment to see the full error message
     relevantTACVersionsSlugs[version]
   );
 
@@ -78,12 +77,13 @@ export function TermsAndConditions({ t, ...props }: Props) {
   const formatVersionDate = createVersionDateFormatter({
     acks,
     t,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ acks: { first: Acknowledgement... Remove this comment to see the full error message
     locale,
   });
   const formatVersion = createVersionFormatter({ acks, t });
 
-  const headerProps = !props.config.mustAccept
+  const mustAcceptTerms = props.config?.mustAccept;
+
+  const headerProps = !mustAcceptTerms
     ? {
         showCloseButton: true,
         closeAction: props.closeModal,
@@ -105,7 +105,6 @@ export function TermsAndConditions({ t, ...props }: Props) {
           formatVersionDate={formatVersionDate}
           formatVersion={formatVersion}
           setVersion={(v: number) => {
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             setVersion(v);
             setHistoryView(false);
           }}
@@ -122,7 +121,6 @@ export function TermsAndConditions({ t, ...props }: Props) {
 
   return (
     <>
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ showCloseButton: boolean; closeAction: (re... Remove this comment to see the full error message */}
       <ModalHeader
         title={t.terms_and_conditions_modal_title}
         {...headerProps}
@@ -130,7 +128,6 @@ export function TermsAndConditions({ t, ...props }: Props) {
       {!isLatestVersion && (
         <ArchivedVersionHeader
           onClick={() => {
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             setVersion(acks.last.version);
             setHistoryView(false);
           }}
@@ -141,11 +138,8 @@ export function TermsAndConditions({ t, ...props }: Props) {
         <Flex.Item>
           <TermsAndConditionsVersionDetails
             onShowHistory={() => setHistoryView(true)}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | Dispatch<SetStateAction<number>>' i... Remove this comment to see the full error message
             currentVersion={version}
-            shouldAllowHistoryView={
-              hasNewerVersions && !props.config.mustAccept
-            }
+            shouldAllowHistoryView={hasNewerVersions && !mustAcceptTerms}
             formatVersionDate={formatVersionDate}
             formatVersion={formatVersion}
             versionData={visibleVersionData}
@@ -178,11 +172,10 @@ export function TermsAndConditions({ t, ...props }: Props) {
           </Text>
         </Flex.Item>
         <Flex.Item>
-          {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'number | Dispatch<SetStateAction<number>>' i... Remove this comment to see the full error message */}
           <TermsAndConditionsContent version={version} />
         </Flex.Item>
       </Flex>
-      {props.config.mustAccept && (
+      {mustAcceptTerms && (
         <Flex.Item>
           <ModalAcknowledgment
             title="Accept General terms"
