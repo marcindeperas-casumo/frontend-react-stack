@@ -31,8 +31,7 @@ export const useFetchMore = ({
       },
     }).then(fetchMoreResult => {
       const gamesPaginatedData = fetchMoreResult?.data?.getGamesPaginated;
-      const returnedGames =
-        fetchMoreResult?.data?.getGamesPaginated?.games || [];
+      const returnedGames = gamesPaginatedData.games || [];
       // Limit offset to list length - limit (90)
       // Never set limit to 100+ as api throws server error
       const offsetToUse =

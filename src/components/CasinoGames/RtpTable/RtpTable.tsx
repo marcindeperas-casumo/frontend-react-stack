@@ -31,7 +31,7 @@ export const RtpTable = ({
   fullGamesCount,
   headerColumns,
 }: {
-  games: Array<A.GetGamesRTP_getGamesPaginated_games>;
+  games: A.GetGamesRtpQuery["getGamesPaginated"]["games"];
   fetchMore: () => void;
   fullGamesCount: number;
   headerColumns?: Array<string>;

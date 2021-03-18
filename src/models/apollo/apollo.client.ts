@@ -15,7 +15,7 @@ import {
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
-import { getAppVersion, isEmbeddedOn } from "Utils";
+import { getAppVersion, isEmbeddedOn, uniqueArray } from "Utils";
 import * as queries from "Models/apollo/queries.sports";
 import introspectionsData from "Types/introspections.json";
 import { clientResolvers } from "./clientResolvers";
@@ -66,14 +66,9 @@ export async function getCache() {
               }
             ) {
               // Clean duplicates
-              const uniqueArray = a =>
-                [...new Set(a.map(o => JSON.stringify(o)))].map(s =>
-                  JSON.parse(s)
-                );
-
               const noDuplicatesArray =
                 existing && existing.games.length
-                  ? uniqueArray(existing.games)
+                  ? uniqueArray({ list: existing.games, key: "__ref" })
                   : existing?.games;
               return (
                 existing && {
@@ -85,9 +80,10 @@ export async function getCache() {
             merge(existing = { games: [] }, incoming) {
               // Clean duplicates
               if (existing.games.length && incoming.length) {
-                const mergedList = existing.games.concat(
-                  incoming.filter(game => existing.games.indexOf(game) < 0)
-                );
+                const mergedList = uniqueArray({
+                  list: [...existing.games, ...incoming],
+                  key: "__ref",
+                });
                 return {
                   ...existing,
                   ...incoming,

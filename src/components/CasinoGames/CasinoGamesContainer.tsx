@@ -7,6 +7,7 @@ import { useFetchMore } from "./hooks/useFetchMore";
 import { CasinoGames } from "./CasinoGames";
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
 import { gameListRTPLimit } from "./Constants";
+import "./CasinoGames.scss";
 
 export const CasinoGamesContainer = () => {
   const [offset, setOffset] = React.useState(0);
@@ -39,16 +40,11 @@ export const CasinoGamesContainer = () => {
   const fetchMoreRows = useFetchMore({ fetchMore, setOffset, offset });
 
   if (loading) {
-    const styles = {
-      paddingTop: "100px",
-      minHeight: "200px",
-    };
-
     const rootElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
     rootElement.scrollTo(0, 0);
 
     return (
-      <div style={styles}>
+      <div className="c-casinogames-loader">
         <h3 className="u-text-align-center">Cargando resultados</h3>
       </div>
     );

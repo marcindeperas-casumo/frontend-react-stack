@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { useJurisdiction } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
@@ -22,7 +23,7 @@ type TCasinoGamesTranslations = {
 type TCasinoGamesProps = {
   t: TCasinoGamesTranslations;
   categoriesContent: any;
-  games: any;
+  games: A.GetGamesRtpQuery["getGamesPaginated"]["games"];
   fetchMore: () => void;
   fullGamesCount: number;
 };
@@ -42,7 +43,7 @@ export const CasinoGames = ({
     }
   }, [games]);
 
-  const { isMGA } = useJurisdiction();
+  const { isMGA, isDGOJ } = useJurisdiction();
 
   if (!gamesData || !t || !categoriesContent) {
     return null;
@@ -68,10 +69,10 @@ export const CasinoGames = ({
     );
   };
 
-  if (isMobile()) {
+  if (isDGOJ || isMobile()) {
     return (
       <>
-        <div className="u-padding">
+        <div className={`u-padding ${isDGOJ ? "u-padding--2xlg@desktop" : ""}`}>
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
             <ButtonPrimary

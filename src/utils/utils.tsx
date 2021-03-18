@@ -548,3 +548,10 @@ export const getOrdinalSuffix = ({
     ) || ""
   );
 };
+
+type TUniqueArrayProps = {
+  list: Array<{}>;
+  key: string;
+};
+export const uniqueArray = ({ list, key }: TUniqueArrayProps) =>
+  R.uniqBy(R.prop(key), list);
