@@ -23,7 +23,7 @@ export const useFetchMore = ({
   offset,
 }: TuseFetchMoreProps) => {
   return () =>
-    fetchMore<A.GetGamesRtpQueryVariables>({
+    fetchMore({
       variables: {
         query: "categories=SLOT_MACHINE",
         offset,
