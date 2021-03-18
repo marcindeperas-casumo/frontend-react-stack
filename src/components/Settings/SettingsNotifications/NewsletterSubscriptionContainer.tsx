@@ -11,20 +11,18 @@ import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function NewsletterSubscriptionContainer() {
   const { t } = useTranslationsGql({
-    label:
-      "root:player-settings-component:fields.subscriptions_email_label",
+    label: "root:player-settings-component:fields.subscriptions_email_label",
   });
   const [setNewsletterSubscription] = useMutation<
     A.SetNewsletterSubscriptionMutation,
     A.SetNewsletterSubscriptionMutationVariables
   >(SetNewsletterSubscription, {
     onError: onMutationError,
-    refetchQueries: [
-      { query: PLAYER_CONTACT_SETTINGS_QUERY },
-    ],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-  A.Player_Contact_Settings_Query, A.Player_Contact_Settings_QueryVariables
+    A.Player_Contact_Settings_Query,
+    A.Player_Contact_Settings_QueryVariables
   >(PLAYER_CONTACT_SETTINGS_QUERY);
 
   if ((loading && !data) || !t?.label) {

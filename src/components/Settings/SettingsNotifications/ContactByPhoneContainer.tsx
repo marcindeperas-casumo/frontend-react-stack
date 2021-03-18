@@ -5,15 +5,13 @@ import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/Setting
 import { ErrorMessage } from "Components/ErrorMessage";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SetContactByPhone } from "./Mutations.graphql";
-import { SettingsNotificationsContactByPhoneQuery } from "./ContactByPhone.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function ContactByPhoneContainer() {
   const { t } = useTranslationsGql({
-    label:
-      "root:player-settings-component:fields.subscriptions_phone_label",
+    label: "root:player-settings-component:fields.subscriptions_phone_label",
   });
   const [setContactByPhone] = useMutation<
     A.SetContactByPhoneMutation,

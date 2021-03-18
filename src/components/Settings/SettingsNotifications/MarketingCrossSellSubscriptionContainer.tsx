@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
@@ -15,8 +14,8 @@ export function MarketingCrossSellSubscriptionContainer() {
     label: "root:player-settings-component:fields.subscriptions_cross_sell",
   });
   const [setMarketingCrossSellSubscription] = useMutation<
-    A.SetMarketingCrossSellSubscription,
-    A.SetMarketingCrossSellSubscriptionVariables
+    A.SetMarketingCrossSellSubscriptionMutation,
+    A.SetMarketingCrossSellSubscriptionMutationVariables
   >(SetMarketingCrossSellSubscription, {
     onError: onMutationError,
     refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],

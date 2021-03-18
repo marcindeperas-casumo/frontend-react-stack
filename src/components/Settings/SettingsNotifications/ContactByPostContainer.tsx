@@ -11,8 +11,7 @@ import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
 export function ContactByPostContainer() {
   const { t } = useTranslationsGql({
-    label:
-      "root:player-settings-component:fields.subscriptions_post_label",
+    label: "root:player-settings-component:fields.subscriptions_post_label",
   });
   const [setContactByPost] = useMutation<
     A.SetContactByPostMutation,
@@ -22,8 +21,8 @@ export function ContactByPostContainer() {
     refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-  A.Player_Contact_Settings_Query,
-  A.Player_Contact_Settings_QueryVariables
+    A.Player_Contact_Settings_Query,
+    A.Player_Contact_Settings_QueryVariables
   >(PLAYER_CONTACT_SETTINGS_QUERY);
 
   if ((loading && !data) || !t?.label) {

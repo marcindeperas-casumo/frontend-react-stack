@@ -19,12 +19,11 @@ export function WithdrawalNotificationsContainer() {
     A.SetWithdrawalNotificationsMutationVariables
   >(SetWithdrawalNotifications, {
     onError: onMutationError,
-    refetchQueries: [
-      { query: PLAYER_CONTACT_SETTINGS_QUERY },
-    ],
+    refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
   const { data, error, loading, refetch } = useQuery<
-  A.Player_Contact_Settings_Query, A.Player_Contact_Settings_QueryVariables
+    A.Player_Contact_Settings_Query,
+    A.Player_Contact_Settings_QueryVariables
   >(PLAYER_CONTACT_SETTINGS_QUERY);
 
   if ((loading && !data) || !t?.label) {
