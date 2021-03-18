@@ -6,23 +6,14 @@ import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { useFetchMore } from "./hooks/useFetchMore";
 import { CasinoGames } from "./CasinoGames";
 import { GetGamesRTP } from "./GetGamesRTP.graphql";
+import type { TCasinoGamesTranslations } from "./Constants";
 import { gameListRTPLimit } from "./Constants";
 import "./CasinoGames.scss";
 
 export const CasinoGamesContainer = () => {
   const [offset, setOffset] = React.useState(0);
 
-  const t = useTranslations<{
-    meta_description: string;
-    meta_title: string;
-    rtp_description: string;
-    rtp_game_name: string;
-    rtp_game_provider: string;
-    rtp_loading: string;
-    rtp_value: string;
-    actual_rtp_past_6_months: string;
-    actual_rtp_past_year: string;
-  }>("game-categories");
+  const t = useTranslations<TCasinoGamesTranslations>("game-categories");
   const categoriesContent = useTranslations("game-categories", true);
   const query = "categories=SLOT_MACHINE";
 
@@ -50,11 +41,11 @@ export const CasinoGamesContainer = () => {
     );
   }
 
-  if (!data || !data?.getGamesPaginated) {
+  if (!data?.getGamesPaginated) {
     return null;
   }
 
-  const { games, gamesCount } = data?.getGamesPaginated;
+  const { games, gamesCount } = data.getGamesPaginated;
 
   return (
     <CasinoGames

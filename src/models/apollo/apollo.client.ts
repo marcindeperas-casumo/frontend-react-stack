@@ -68,7 +68,7 @@ export async function getCache() {
               // Clean duplicates
               const noDuplicatesArray =
                 existing && existing.games.length
-                  ? uniqueArray({ list: existing.games, key: "__ref" })
+                  ? uniqueArray("__ref", existing.games)
                   : existing?.games;
               return (
                 existing && {
@@ -80,10 +80,10 @@ export async function getCache() {
             merge(existing = { games: [] }, incoming) {
               // Clean duplicates
               if (existing.games.length && incoming.length) {
-                const mergedList = uniqueArray({
-                  list: [...existing.games, ...incoming],
-                  key: "__ref",
-                });
+                const mergedList = uniqueArray("__ref", [
+                  ...existing.games,
+                  ...incoming,
+                ]);
                 return {
                   ...existing,
                   ...incoming,

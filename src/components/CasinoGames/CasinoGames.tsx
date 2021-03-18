@@ -1,24 +1,15 @@
 import * as React from "react";
+import * as R from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import cx from "classnames";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { useJurisdiction } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
 import { RtpTable } from "./RtpTable/RtpTable";
-
-type TCasinoGamesTranslations = {
-  meta_description: string;
-  meta_title: string;
-  rtp_description: string;
-  rtp_game_name: string;
-  rtp_game_provider: string;
-  rtp_loading: string;
-  rtp_value: string;
-  actual_rtp_past_6_months: string;
-  actual_rtp_past_year: string;
-};
+import type { TCasinoGamesTranslations } from "./Constants";
 
 type TCasinoGamesProps = {
   t: TCasinoGamesTranslations;
@@ -45,14 +36,13 @@ export const CasinoGames = ({
 
   const { isMGA, isDGOJ } = useJurisdiction();
 
-  if (!gamesData || !t || !categoriesContent) {
+  if (R.isEmpty(gamesData) || !t || !categoriesContent) {
     return null;
   }
 
   const renderRtpTable = () => {
     return (
-      !isMGA &&
-      gamesData.length && (
+      !isMGA && (
         <RtpTable
           games={gamesData}
           fetchMore={fetchMore}
@@ -72,7 +62,7 @@ export const CasinoGames = ({
   if (isDGOJ || isMobile()) {
     return (
       <>
-        <div className={`u-padding ${isDGOJ ? "u-padding--2xlg@desktop" : ""}`}>
+        <div className={cx("u-padding", { "u-padding--2xlg@desktop": isDGOJ })}>
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
             <ButtonPrimary
