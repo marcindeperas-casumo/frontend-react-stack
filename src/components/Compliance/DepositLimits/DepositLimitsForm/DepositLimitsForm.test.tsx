@@ -148,4 +148,22 @@ describe("DepositLimitsForm", () => {
     });
     expect(validation).toBe("has_to_be_lower_while_not_risk_safe");
   });
+
+  test("does not warn if user wants to create new limits", () => {
+    const validation = setUpDepositLimitsForm({
+      limits: {
+        ...limitsDefault,
+        daily: null,
+        weekly: null,
+        monthly: null,
+      },
+      limitChanges: {
+        daily: 10,
+        weekly: 100,
+        monthly: 1000,
+      },
+      initiallyVisible: "daily",
+    });
+    expect(validation).toBeNull();
+  });
 });

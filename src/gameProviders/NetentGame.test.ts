@@ -19,6 +19,7 @@ describe("NetentGame", () => {
     staticServer: "https://casumo-static.casinomodule.com",
     width: "123",
     height: "234",
+    url: null,
     lang: "en",
   };
 

@@ -20,6 +20,7 @@ type Props = {
     title_removed: string;
     title_decreased: string;
     title_increased: string;
+    title_created: string;
     title_set_on_registration: string;
     all_limits_removed: string;
   };
@@ -39,6 +40,7 @@ const getTranslationKeyForHistoryEntry: (
   [R.propEq("type", "increase"), R.always("title_increased")],
   [R.propEq("type", "decrease"), R.always("title_decreased")],
   [R.propEq("type", "removed"), R.always("title_removed")],
+  [R.propEq("type", "created"), R.always("title_created")],
 ]);
 
 export function DepositLimitsHistory({ t, ...props }: Props) {

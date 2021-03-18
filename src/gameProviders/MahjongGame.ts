@@ -8,19 +8,17 @@ export class MahjongGame extends BaseIframeGame {
 
   constructor(props: GameProviderModelProps) {
     super(props);
+    this.scrolling = "auto";
     this.targetDomain = props.origin || window.location.origin;
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
   get componentProps() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = this.props.gameData;
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
       return {
-        // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
         ...super.componentProps,
         src: appendToGameUrl({
           url,
@@ -29,7 +27,6 @@ export class MahjongGame extends BaseIframeGame {
       };
     }
 
-    // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
     return super.componentProps;
   }
 }
