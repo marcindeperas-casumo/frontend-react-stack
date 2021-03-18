@@ -11,7 +11,7 @@ const props = {
     approval_required_for_subsequent_increases:
       "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
     decrease_effective_immediately: "DECREASE_EFFECTIVE_IMMEDIATELY",
-    revocation_allowed: "REVOCATION_ALLOWED",
+    cancellation_allowed: "CANCELLATION_ALLOWED",
   },
 };
 describe("AdditionalConditions", () => {
@@ -20,10 +20,9 @@ describe("AdditionalConditions", () => {
       "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
       "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
       "DECREASE_EFFECTIVE_IMMEDIATELY",
-      "REVOCATION_ALLOWED",
+      "CANCELLATION_ALLOWED",
     ];
     const text = mount(
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'Deposit... Remove this comment to see the full error message
       <AdditionalConditions {...props} rules={rules} />
     ).text();
 

@@ -36,7 +36,7 @@ type Props = {
     approval_required_for_increase: string;
     responsible_gambling_test_required: string;
     decrease_effective_immediately: string;
-    revocation_allowed: string;
+    cancellation_allowed: string;
   };
   newLimits: AllLimits;
   currentLimits: AllLimits;

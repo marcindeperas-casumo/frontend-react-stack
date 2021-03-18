@@ -49,7 +49,7 @@ export type DepositLimitPreadjustRules =
   | "APPROVAL_REQUIRED_FOR_INCREASE"
   | "RESPONSIBLE_GAMBLING_TEST_REQUIRED"
   | "DECREASE_EFFECTIVE_IMMEDIATELY"
-  | "REVOCATION_ALLOWED";
+  | "CANCELLATION_ALLOWED";
 
 type ISO8601Duration = string; // ie. P7D, see: https://en.wikipedia.org/wiki/ISO_8601#Durations
 

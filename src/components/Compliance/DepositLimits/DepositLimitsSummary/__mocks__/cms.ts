@@ -8,9 +8,9 @@ export default {
   "daily_removed": "No daily limit",
   "weekly_removed": "No weekly limit",
   "monthly_removed": "No monthly limit",
-  "responsible_gambling_test_required": "responsible_gambling_test_required",
-  "approval_required_for_increase": "approval_required_for_increase",
-  "approval_required_for_subsequent_increases": "approval_required_for_subsequent_increases",
-  "decrease_effective_immediately": "decrease_effective_immediately",
-  "revocation_allowed": "revocation_allowed"
+  "responsible_gambling_test_required": "You’ll need to answer 10 quick questions before you can increase or remove limits.",
+  "approval_required_for_increase": "We’ll need to review these adjustments before granting them.",
+  "approval_required_for_subsequent_increases": "After this you cannot increase or remove limits before {{postIncreaseWindow}} pass.",
+  "decrease_effective_immediately": "Any reduction of limits will be effective immediately.",
+  "cancellation_allowed": "You can cancel this adjustment anytime before it’s approved."
 }
