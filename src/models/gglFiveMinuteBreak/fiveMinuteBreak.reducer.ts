@@ -9,7 +9,7 @@ const DEFAULT_STATE: GglRealityCheckSummary = {
 
 const handlers = {
   [types.GGL_FIVE_MINUTE_BREAK_REALITY_CHECK_UPDATE]: (
-    prevState,
+    prevState: GglRealityCheckSummary,
     { activeRCSession, activeRCBreak }: GglRealityCheckSummary
   ) => ({
     ...prevState,

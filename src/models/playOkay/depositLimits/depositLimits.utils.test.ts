@@ -204,6 +204,9 @@ describe("diffLimits", () => {
       weekly: "decrease",
       monthly: "decrease",
     });
+  });
+
+  test("created", () => {
     expect(
       diffLimits({
         before: {
@@ -218,9 +221,9 @@ describe("diffLimits", () => {
         },
       })
     ).toMatchObject({
-      daily: "decrease",
-      weekly: "decrease",
-      monthly: "decrease",
+      daily: "created",
+      weekly: "created",
+      monthly: "created",
     });
   });
 });

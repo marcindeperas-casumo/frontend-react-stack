@@ -18,7 +18,6 @@ export class PlayNGoDesktopGame extends BaseGame {
   }
   get componentProps() {
     return {
-      // @ts-expect-error ts-migrate(2340) FIXME: Only public and protected methods of the base clas... Remove this comment to see the full error message
       ...super.componentProps,
       id: "pngCasinoGame",
     };
@@ -26,7 +25,6 @@ export class PlayNGoDesktopGame extends BaseGame {
   engage: Engage;
   onMount() {
     super.onMount();
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type 'GameLaunchD... Remove this comment to see the full error message
     const { url = null } = this.props.gameData;
     if (url) {
       injectScript(url).then(() => {
