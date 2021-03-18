@@ -1,8 +1,8 @@
+import * as React from "react";
+import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
 import type { CellRendererParams } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
-import classNames from "classnames";
-import * as React from "react";
 import spacerSizesMap from "Components/VirtualGrid/spacerSizesMap";
 import * as A from "Types/apollo";
 import ScrollableListTitle from "Components/ScrollableListTitle";
@@ -10,11 +10,13 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { generateColumns } from "Utils";
-import {
-  horizontalListsDevicePaddings,
-  topListWidgetWidth,
-} from "Src/constants";
-import { topMarginClasses } from "Components/GameListHorizontal/constants";
+import { topListWidgetWidth } from "Src/constants";
+
+const PADDING_PER_DEVICE = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "3xlg",
+};
 
 export type Props = {
   jackpots: Array<A.Jackpots_GameFragment>;
@@ -54,30 +56,21 @@ const JackpotsColumn = ({
   return <>{columns}</>;
 };
 
-export default class Jackpots extends React.PureComponent<Props> {
-  static defaultProps = {
-    jackpots: [],
-    title: "",
+export const Jackpots = (props: Props) => {
+  const getColumns = () => {
+    return generateColumns(props.jackpots);
   };
 
-  get columns(): Array<Array<A.Jackpots_GameFragment>> {
-    return generateColumns(this.props.jackpots);
-  }
-
-  keyGetter = (i: number) => this.columns[i][0].slug;
-
-  mobileJackpotColumnRenderer = (i: number) => {
-    return (
-      <JackpotsColumn column={this.columns[i]} locale={this.props.locale} />
-    );
+  const mobileJackpotColumnRenderer = (i: number) => {
+    return <JackpotsColumn column={getColumns()[i]} locale={props.locale} />;
   };
 
-  desktopJackpotColumnRenderer = ({
+  const desktopJackpotColumnRenderer = ({
     columnIndex,
     style,
     games,
   }: CellRendererParams) => {
-    const jackpotColumn = this.columns[columnIndex];
+    const jackpotColumn = getColumns()[columnIndex];
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames(
       "u-height--full",
@@ -89,37 +82,39 @@ export default class Jackpots extends React.PureComponent<Props> {
           <JackpotsColumn
             key={jackpotColumn[0].slug}
             column={jackpotColumn}
-            locale={this.props.locale}
+            locale={props.locale}
           />
         </Flex>
       </div>
     );
   };
 
-  render() {
-    return (
-      <div className={`o-wrapper ${topMarginClasses}`}>
+  const keyGetter = (i: number) => getColumns()[i][0].slug;
+
+  return (
+    <div className="u-margin-x--3xlg@desktop">
+      <div className="o-wrapper">
         <MobileAndTablet>
-          <div data-test="scrollable-jackpots">
-            <ScrollableListTitle paddingLeft title={this.props.title} />
+          <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
+            <ScrollableListTitle paddingLeft title={props.title} />
             <Scrollable
-              keyGetter={this.keyGetter}
-              itemRenderer={this.mobileJackpotColumnRenderer}
-              numberOfItems={this.columns.length}
+              keyGetter={keyGetter}
+              itemRenderer={mobileJackpotColumnRenderer}
+              numberOfItems={getColumns().length}
               itemClassName="c-jackpots-list-tile"
-              padding={horizontalListsDevicePaddings}
+              padding={PADDING_PER_DEVICE}
             />
           </div>
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            itemCount={this.columns.length}
-            title={this.props.title}
-            itemRenderer={this.desktopJackpotColumnRenderer}
+            itemCount={getColumns().length}
+            title={props.title}
+            itemRenderer={desktopJackpotColumnRenderer}
             tileHeight={GameRow.ROW_HEIGHT * 3 + spacerSizesMap.default * 2}
           />
         </Desktop>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

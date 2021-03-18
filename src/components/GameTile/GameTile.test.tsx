@@ -2,7 +2,8 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import MockStore from "Components/MockStore";
 import { launchGame } from "Services/LaunchGameService";
-import { GameTile } from "./GameTile";
+import { GameTile } from "Components/GameTile/GameTile";
+import { CURRENCIES } from "Src/constants";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "./GameTileInMaintenanceContainer";
 import gameInfo from "./__mocks__/Game.json";
 
@@ -64,5 +65,32 @@ describe("GameTile", () => {
     rendered.find("Flex").first().simulate("click");
 
     expect(launchGame).toHaveBeenCalledTimes(1);
+  });
+
+  test("should render GameTile showing jackpot amount", () => {
+    const gameJackpot = {
+      jackpot: {
+        id: "someID",
+        value: {
+          amount: 123456789,
+          currency: CURRENCIES.EUR,
+        },
+      },
+    };
+    const game = {
+      ...gameInfo,
+      jackpot: gameJackpot.jackpot,
+      id: "someCrappyString",
+      playBackground: "testbg",
+    };
+    const t = { play_button_text_game_tile: "Play" };
+    const rendered = mount(
+      <MockStore>
+        <GameTile game={game} t={t} />
+      </MockStore>
+    );
+    expect(
+      rendered.find(".c-game-tile-container__jackpot span").text()
+    ).toContain("€123,456,789");
   });
 });
