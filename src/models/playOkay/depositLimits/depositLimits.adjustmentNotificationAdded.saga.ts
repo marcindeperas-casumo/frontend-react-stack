@@ -1,6 +1,8 @@
 import { delay } from "redux-saga";
 import { put, PutEffect } from "redux-saga/effects";
 import * as actions from "./depositLimits.actions";
+import { cometdNotificationAddedTypes } from "./depositLimits.constants";
+import type { TCometdNotificationAddedType } from "./depositLimits.types";
 
 type TStoreAction =
   | typeof actions.getAllLimits
@@ -10,10 +12,7 @@ type TStoreAction =
 export type TAction = {
   data: {
     notificationAdded: {
-      type:
-        | "DGOJ_DEPOSIT_LIMIT_ADJUSTMENT_APPROVED"
-        | "DGOJ_DEPOSIT_LIMIT_ADJUSTMENT_REJECTED"
-        | string;
+      type: TCometdNotificationAddedType | string;
     };
   };
 };
@@ -22,10 +21,9 @@ export function* adjustmentNotificationAddedSaga(
   action: TAction
 ): Generator<PutEffect<TStoreAction> | Promise<boolean>> {
   if (
-    ![
-      "DGOJ_DEPOSIT_LIMIT_ADJUSTMENT_APPROVED",
-      "DGOJ_DEPOSIT_LIMIT_ADJUSTMENT_REJECTED",
-    ].includes(action.data.notificationAdded.type)
+    !Object.values(cometdNotificationAddedTypes).includes(
+      action.data.notificationAdded.type
+    )
   ) {
     return;
   }
