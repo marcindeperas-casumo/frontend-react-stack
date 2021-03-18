@@ -10,9 +10,9 @@ type TfetchMoreGamesPaginated = {
 };
 
 type TuseFetchMoreProps = {
-  fetchMore: (
-    variables: TfetchMoreVariables
-  ) => Promise<TfetchMoreGamesPaginated>;
+  fetchMore: ({
+    variables,
+  }: TfetchMoreVariables) => Promise<TfetchMoreGamesPaginated>;
   offset: number;
   setOffset: (x: number) => void;
 };
