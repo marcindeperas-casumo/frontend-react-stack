@@ -1,5 +1,10 @@
 export type DepositKinds = "daily" | "weekly" | "monthly";
-export type LimitChangeType = "unchanged" | "increase" | "decrease" | "removed";
+export type LimitChangeType =
+  | "unchanged"
+  | "increase"
+  | "decrease"
+  | "removed"
+  | "created";
 export type AllLimitsOnlyValues = {
   daily?: number | null;
   monthly?: number | null;
