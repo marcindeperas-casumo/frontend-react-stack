@@ -43,8 +43,9 @@ export function validate(
     return t.input_validation.highest_limit;
   }
 
-  const limitBeforeChange = formProps.limits[currentLimit] || 0;
-  if (currentLimitValue > limitBeforeChange) {
+  const limitBeforeChange = formProps.limits[currentLimit];
+
+  if (!R.isNil(limitBeforeChange) && currentLimitValue > limitBeforeChange) {
     const replacements = {
       currentLimit: formatCurrency({
         locale: formProps.locale,
@@ -79,9 +80,8 @@ export function validate(
   }
 
   if (formProps.pendingLimitChanges?.value) {
-    const pendingChange =
-      formProps.pendingLimitChanges?.value[currentLimit] || 0;
-    if (currentLimitValue > pendingChange) {
+    const pendingChange = formProps.pendingLimitChanges?.value[currentLimit];
+    if (pendingChange && currentLimitValue > pendingChange) {
       return interpolate(
         t.input_validation.has_to_be_lower_than_pending_adjustment,
         {

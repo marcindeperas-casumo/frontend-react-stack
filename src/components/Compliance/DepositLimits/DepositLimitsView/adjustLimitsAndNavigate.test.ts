@@ -11,7 +11,7 @@ describe("adjustLimitsAndNavigate", () => {
     "DECREASE_EFFECTIVE_IMMEDIATELY",
   ] as DepositLimitPreadjustRules[];
   // adjustLimitsAndNavigate takes `limitAdjust` and `navigate` and calls what's needed
-  test("delete/increase flow", () => {
+  test("delete flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props: TAdjustLimitsAndNavigateProps = {
@@ -41,7 +41,7 @@ describe("adjustLimitsAndNavigate", () => {
     });
   });
 
-  test("increase/decrease flow, RESPONSIBLE_GAMBLING_TEST_REQUIRED", () => {
+  test("increase/decrease flow", () => {
     const limitAdjust = jest.fn();
     const navigate = jest.fn();
     const props: TAdjustLimitsAndNavigateProps = {
@@ -66,7 +66,7 @@ describe("adjustLimitsAndNavigate", () => {
 
     expect(limitAdjust).toHaveBeenCalledTimes(0);
     expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["SAVED_RIGHT_AWAY", "RG_REQUIRED"],
+      pages: ["SAVED_RIGHT_AWAY_DECREASED", "RG_REQUIRED"],
       route: "confirmations",
     });
   });
@@ -96,7 +96,37 @@ describe("adjustLimitsAndNavigate", () => {
 
     expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
     expect(navigate).toHaveBeenNthCalledWith(1, {
-      pages: ["SAVED_RIGHT_AWAY"],
+      pages: ["SAVED_RIGHT_AWAY_DECREASED"],
+      route: "confirmations",
+    });
+  });
+
+  test("create flow", () => {
+    const limitAdjust = jest.fn();
+    const navigate = jest.fn();
+    const props: TAdjustLimitsAndNavigateProps = {
+      limitAdjust,
+      navigate,
+      decreases: [],
+      limitsDiff: {
+        daily: "created",
+        monthly: "created",
+        weekly: "created",
+      },
+      newLimits: {
+        currency: "EUR",
+        daily: 600,
+        monthly: 3000,
+        weekly: 1000,
+      },
+      rules,
+    };
+
+    adjustLimitsAndNavigate(props);
+
+    expect(limitAdjust).toHaveBeenNthCalledWith(1, props.newLimits);
+    expect(navigate).toHaveBeenNthCalledWith(1, {
+      pages: ["SAVED_RIGHT_AWAY_CREATED"],
       route: "confirmations",
     });
   });
