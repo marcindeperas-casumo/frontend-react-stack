@@ -88,7 +88,6 @@ export const getValuableDetailsAction = ({
     return {
       ...ACTION_PROPS_DEFAULT,
       text: translations.playToUnlockLabel,
-      // url: gameBrowserRouteId,
     };
   }
 
@@ -107,7 +106,6 @@ export const getValuableDetailsAction = ({
     return {
       ...ACTION_PROPS_DEFAULT,
       text,
-      // url: gameBrowserRouteId,
     };
   }
 
