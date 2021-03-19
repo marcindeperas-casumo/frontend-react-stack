@@ -1,5 +1,6 @@
 import * as React from "react";
 import { mount } from "enzyme";
+import type { DepositLimitPreadjustRules } from "Models/playOkay/depositLimits";
 import { AdditionalConditions } from "./AdditionalConditions";
 import preadjust from "./__mocks__/preadjust";
 
@@ -21,7 +22,7 @@ describe("AdditionalConditions", () => {
       "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
       "DECREASE_EFFECTIVE_IMMEDIATELY",
       "CANCELLATION_ALLOWED",
-    ];
+    ] as DepositLimitPreadjustRules[];
     const text = mount(
       <AdditionalConditions {...props} rules={rules} />
     ).text();
