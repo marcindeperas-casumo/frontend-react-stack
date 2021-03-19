@@ -37,7 +37,7 @@ type Props = PendingDepositLimitsChangesSelected & {
     more_limits_section_title: string;
     adjust_limit: string;
   };
-  revocationAllowed: boolean;
+  revocationAllowed?: boolean;
   limits: DepositLimitsSelected;
   edit: (depositKind: DepositKinds) => void;
   limitCancel: () => void;
