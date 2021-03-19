@@ -5,7 +5,7 @@ import {
   getDepositLimitsForOverviewScreenSelector,
   getCurrencyAndLocaleSelector,
   getPendingLimitChangesSelector,
-  canIncreaseLimitsSelector,
+  revocationAllowedSelector,
 } from "./depositLimits.selectors";
 
 describe("Models/playOkay/depositLimits/.selectors", () => {
@@ -179,41 +179,29 @@ describe("Models/playOkay/depositLimits/.selectors", () => {
     });
   });
 
-  test("canIncreaseLimitsSelector", () => {
+  test("revocationAllowedSelector", () => {
     expect(
-      canIncreaseLimitsSelector({
+      revocationAllowedSelector({
         playOkay: {
           depositLimits: {
-            pendingLimitChanges: {
-              approvalRequired: true,
-              reviewerApproved: false,
-              confirmationRequired: false,
-              value: {
-                daily: 1000,
-                monthly: 4000,
-                weekly: 2000,
-              },
+            preadjust: {
+              revocationAllowed: true,
             },
-            lock: null,
           },
-        },
-      })
-    ).toEqual(false);
-    expect(
-      canIncreaseLimitsSelector({
-        playOkay: {
-          depositLimits: {
-            lock: { expiresOn: "2019-07-31T20:04:23.048184+02:00" },
-          },
-        },
-      })
-    ).toEqual(false);
-    expect(
-      canIncreaseLimitsSelector({
-        playOkay: {
-          depositLimits: { lock: null },
         },
       })
     ).toEqual(true);
+
+    expect(
+      revocationAllowedSelector({
+        playOkay: {
+          depositLimits: {
+            preadjust: {
+              revocationAllowed: false,
+            },
+          },
+        },
+      })
+    ).toEqual(false);
   });
 });

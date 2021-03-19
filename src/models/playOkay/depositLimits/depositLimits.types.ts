@@ -58,6 +58,7 @@ export type DepositLimitPreadjust = {
   increaseProhibitedAfterwardsFor: ISO8601Duration;
   increasesOrRevocationsBlocked: boolean;
   responsibleGamblingTestCanBeTaken: boolean;
+  revocationAllowed: boolean;
   kind: DepositLimitKind;
   playerId: string;
   rules: Array<DepositLimitPreadjustRules>;
