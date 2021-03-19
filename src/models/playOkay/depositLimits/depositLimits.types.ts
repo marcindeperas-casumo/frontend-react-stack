@@ -1,3 +1,5 @@
+import { cometdNotificationAddedTypes } from "./depositLimits.constants";
+
 export type DepositKinds = "daily" | "weekly" | "monthly";
 export type LimitChangeType =
   | "unchanged"
@@ -140,3 +142,7 @@ export type PendingDepositLimitsChangesSelected = {
   }>;
   allRemoved: boolean;
 };
+
+export type TCometdNotificationAddedType = ValueOf<
+  typeof cometdNotificationAddedTypes
+>;
