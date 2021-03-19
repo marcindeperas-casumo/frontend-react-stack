@@ -41,6 +41,7 @@ export type ModalConfig = {
   input?: any;
   content?: any;
   gameRoundId?: any;
+  isWide?: boolean;
 };
 type ModalState = {
   modalId: ModalId | null;
