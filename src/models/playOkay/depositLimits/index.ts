@@ -2,6 +2,7 @@ export * from "./depositLimits.actions";
 export { depositLimitsTypes } from "./depositLimits.constants";
 export * from "./depositLimits.selectors";
 export * from "./depositLimits.utils";
+export * from "./depositLimits.adjustmentNotificationAdded.saga";
 export type {
   AllLimits,
   AllLimitsOnlyValues,
