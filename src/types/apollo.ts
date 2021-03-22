@@ -407,7 +407,7 @@ export interface Game {
   actualRtpPast6Months?: Maybe<Scalars["String"]>;
   actualRtpPastYear?: Maybe<Scalars["String"]>;
   rtp?: Maybe<Scalars["String"]>;
-  realMoneyPlayRequired: Scalars["Boolean"];
+  realMoneyPlayRequired?: Maybe<Scalars["Boolean"]>;
   /** @deprecated Please use name instead */
   title: Scalars["String"];
   /** @deprecated Please use backgroundImage instead */
@@ -1029,7 +1029,7 @@ export interface EventGroup {
   sport: Scalars["String"];
   /** Total events in this event group */
   eventCount: Scalars["Int"];
-  /** Proper english name of the group */
+  /** Proper english name ofthe group */
   englishName: Scalars["String"];
   /** Normalized name of the group */
   termKey: Scalars["String"];
@@ -1275,6 +1275,7 @@ export type GameDetails_GameFragment = {
   description?: Maybe<string>;
   hasPlayForFun: boolean;
   isInMaintenance: boolean;
+  realMoneyPlayRequired?: Maybe<boolean>;
   media: Array<{ type: string; path: string; order: number }>;
 };
 
