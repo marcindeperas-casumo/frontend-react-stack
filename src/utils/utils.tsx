@@ -517,10 +517,3 @@ export const getOrdinalSuffix = ({
     ) || ""
   );
 };
-
-// Format values in thousand or million or greater range with comma grouping
-export const numberCommarization = (value: string | number): string => {
-  return !R.isNil(value)
-    ? value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-    : "";
-};

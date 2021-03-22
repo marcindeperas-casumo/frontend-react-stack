@@ -1,10 +1,10 @@
 /* stylelint-disable xi/selector-pattern */
 @include cudl-breakpoint(desktop) {
-  .c-top-game:hover,
-  .c-game-tile-top-wrapper:hover,
-  .c-exclusive-game:hover,
-  .c-game-list-tile:hover {
-    .c-game-tile-container__jackpot {
+  .c-top-game,
+  .c-game-tile-top-wrapper,
+  .c-exclusive-game,
+  .c-game-list-tile {
+    &:hover .c-game-tile-container__jackpot {
       display: none;
     }
   }
