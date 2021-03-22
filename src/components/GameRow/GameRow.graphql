@@ -23,4 +23,7 @@ fragment GameRow_Game on Game {
     }
   }
   isInMaintenance
+  category
+  liveCasinoId
+  playBackground
 }

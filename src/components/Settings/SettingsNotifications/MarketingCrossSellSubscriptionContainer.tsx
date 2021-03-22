@@ -1,22 +1,22 @@
-import { useMutation, useQuery } from "@apollo/client";
 import React from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { SetContactByPost } from "./Mutations.graphql";
+import { SetMarketingCrossSellSubscription } from "./Mutations.graphql";
 import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
 import { onMutationError } from "./SettingsNotifications.utils";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 
-export function ContactByPostContainer() {
+export function MarketingCrossSellSubscriptionContainer() {
   const { t } = useTranslationsGql({
-    label: "root:player-settings-component:fields.subscriptions_post_label",
+    label: "root:player-settings-component:fields.subscriptions_cross_sell",
   });
-  const [setContactByPost] = useMutation<
-    A.SetContactByPostMutation,
-    A.SetContactByPostMutationVariables
-  >(SetContactByPost, {
+  const [setMarketingCrossSellSubscription] = useMutation<
+    A.SetMarketingCrossSellSubscriptionMutation,
+    A.SetMarketingCrossSellSubscriptionMutationVariables
+  >(SetMarketingCrossSellSubscription, {
     onError: onMutationError,
     refetchQueries: [{ query: PLAYER_CONTACT_SETTINGS_QUERY }],
   });
@@ -35,9 +35,11 @@ export function ContactByPostContainer() {
   return (
     <SubscriptionRow
       label={t.label}
-      isEnabled={data.player.details.contactSettings.contactByPost}
+      isEnabled={
+        data.player.details.contactSettings.subscribedToMarketingCrossSell
+      }
       onChange={value =>
-        setContactByPost({
+        setMarketingCrossSellSubscription({
           variables: { input: { on: value } },
         })
       }
