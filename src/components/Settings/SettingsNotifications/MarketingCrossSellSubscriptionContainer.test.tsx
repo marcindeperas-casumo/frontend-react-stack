@@ -2,13 +2,13 @@ import React from "react";
 import { mount } from "enzyme";
 import { wait } from "Utils/apolloTestUtils";
 import MockStore from "Components/MockStore";
-import { WithdrawalNotificationsContainer } from "./WithdrawalNotificationsContainer";
+import { MarketingCrossSellSubscriptionContainer } from "./MarketingCrossSellSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
-import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import {
-  withdrawalNotificationsMock,
-  withdrawalNotificationsErrorMock,
+  contactByPostMock,
+  contactByPostErrorMock,
 } from "./__mocks__/Mutations.mock";
 
 jest.useFakeTimers();
@@ -19,26 +19,26 @@ jest.mock("Utils/hooks/useTranslationsGql", () => ({
   }),
 }));
 
-describe("SettingsNotifications - Withdrawal Notifications", () => {
+describe("SettingsNotifications - Marketing CrossSell Subscription", () => {
   test("should toggle to false", () => {
     const queryMocks = [
-      ...withdrawalNotificationsMock,
+      ...contactByPostMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
         PLAYER_CONTACT_SETTINGS_QUERY,
-        "withdrawalNotifications",
+        "contactByPost",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
         PLAYER_CONTACT_SETTINGS_QUERY,
-        "withdrawalNotifications",
+        "contactByPost",
         false
       ),
     ];
     const rendered = mount(
       <MockStore queryMocks={queryMocks}>
-        <WithdrawalNotificationsContainer />
+        <MarketingCrossSellSubscriptionContainer />
       </MockStore>
     );
 
@@ -48,29 +48,30 @@ describe("SettingsNotifications - Withdrawal Notifications", () => {
       actWithClick(rendered);
       // optimisticResponse kicks in here
       expect(isCheckboxChecked(rendered)).toBe(false);
+      //actual response from the mutation
       expect(isCheckboxChecked(rendered)).toBe(false);
     });
   });
 
   test("should revert to initial value on error", () => {
     const queryMocks = [
-      ...withdrawalNotificationsErrorMock,
+      ...contactByPostErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
         PLAYER_CONTACT_SETTINGS_QUERY,
-        "withdrawalNotifications",
+        "contactByPost",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
         PLAYER_CONTACT_SETTINGS_QUERY,
-        "withdrawalNotifications",
+        "contactByPost",
         false
       ),
     ];
     const rendered = mount(
       <MockStore queryMocks={queryMocks}>
-        <WithdrawalNotificationsContainer />
+        <MarketingCrossSellSubscriptionContainer />
       </MockStore>
     );
 
