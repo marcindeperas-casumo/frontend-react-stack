@@ -9,7 +9,11 @@ import {
   REACT_APP_MODAL,
   KO_APP_EVENT_MODAL_HIDDEN,
 } from "Src/constants";
-import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
+import {
+  useCrossCodebaseNavigation,
+  useJurisdiction,
+  useCallOnce,
+} from "Utils/hooks";
 
 type UseBeforePlayingModalProps = {
   canLaunch: boolean;
@@ -25,8 +29,11 @@ export function useBeforePlayingModal({
   const { isDGOJ } = useJurisdiction();
   const logoutStarted = useSelector(playerLogoutStartedSelector);
   const navigateToHome = React.useCallback(
-    ({ returnCode }) => {
-      if (isModalDismissed(returnCode)) {
+    ({ returnCode, modalId }) => {
+      if (
+        modalId === REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION &&
+        isModalDismissed(returnCode)
+      ) {
         navigateToKO(ROUTE_IDS.TOP_LISTS);
       }
     },
@@ -34,16 +41,14 @@ export function useBeforePlayingModal({
   );
 
   React.useEffect(() => {
-    if (!isDGOJ || !canLaunch || logoutStarted) {
-      return;
-    }
-
     bridge.on(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
-
-    dispatch(showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION));
 
     return function unsubscribe() {
       bridge.off(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
     };
-  }, [dispatch, isDGOJ, canLaunch, navigateToHome, logoutStarted]);
+  }, [dispatch, navigateToHome]);
+
+  useCallOnce(isDGOJ && canLaunch && !logoutStarted, () => {
+    dispatch(showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION));
+  });
 }
