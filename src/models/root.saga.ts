@@ -37,6 +37,7 @@ import {
 import { danishOverlaySaga } from "Models/playOkay";
 import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
 import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
+import { adjustmentNotificationAddedSaga as dgojAdjustmentNotificationAddedSaga } from "Models/playOkay/depositLimits";
 import {
   methodConfigSaga as paymentMethodConfigSaga,
   makePaymentTransactionSaga,
@@ -115,6 +116,14 @@ export default function* rootSaga() {
       cometdMessages.REALITY_CHECK_PERIODIC_NOTIFICATION
     ),
     realityCheckPeriodicNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.NOTIFICATION_ADDED
+    ),
+    dgojAdjustmentNotificationAddedSaga
   );
   yield fork(
     takeEvery,

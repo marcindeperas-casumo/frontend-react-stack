@@ -5,7 +5,7 @@ import MockStore from "Components/MockStore";
 import { ContactByPostContainer } from "./ContactByPostContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
-import { SettingsNotificationsContactByPostQuery } from "./ContactByPost.graphql";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import {
   contactByPostMock,
   contactByPostErrorMock,
@@ -25,13 +25,13 @@ describe("SettingsNotifications - Contact By Post", () => {
       ...contactByPostMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPostQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPost",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPostQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPost",
         false
       ),
@@ -58,13 +58,13 @@ describe("SettingsNotifications - Contact By Post", () => {
       ...contactByPostErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPostQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPost",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsContactByPostQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "contactByPost",
         false
       ),
