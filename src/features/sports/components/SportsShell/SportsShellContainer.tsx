@@ -25,6 +25,7 @@ import {
 } from "Models/apollo/mutations";
 import { SportsShellQuery } from "Models/apollo/queries";
 import * as A from "Types/apollo";
+import { Virtuals } from "Features/sports/components/Virtuals/Virtuals";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 const bridgeEventHandlers = [
@@ -87,18 +88,21 @@ export const SportsShellContainer: React.FC<{}> = () => {
   return (
     <>
       <SportsHashWatcher>
-        {({ currentHash }) => (
-          <div className="t-background-grey-0">
-            <Deposit />
-            {data.isSearchVisible ? (
-              <SportsSearch />
-            ) : (
-              <SportsNav currentHash={currentHash} />
-            )}
-            <WelcomeOfferCuratedCard currentHash={currentHash} />
-            <SportsCuratedCard currentHash={currentHash} />
-          </div>
-        )}
+        {({ currentHash }) => {
+          return (
+            <div className="t-background-grey-0">
+              <Deposit />
+              {data.isSearchVisible ? (
+                <SportsSearch />
+              ) : (
+                <SportsNav currentHash={currentHash} />
+              )}
+              <WelcomeOfferCuratedCard currentHash={currentHash} />
+              <SportsCuratedCard currentHash={currentHash} />
+              {currentHash === "#virtuals" && <Virtuals />}
+            </div>
+          )
+        }}
       </SportsHashWatcher>
       <KambiClient />
       <Modals />
