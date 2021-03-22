@@ -21,3 +21,7 @@ mutation SetContactByPhone($input: ContactSettingsInput) {
 mutation SetContactByPost($input: ContactSettingsInput) {
   setContactByPost(input: $input)
 }
+
+mutation SetMarketingCrossSellSubscription($input: ContactSettingsInput) {
+  setMarketingCrossSellSubscription(input: $input)
+}

@@ -67,7 +67,7 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     expect(dispatchMock).toHaveBeenCalledTimes(0);
   });
 
-  test("if jurisdiction is DGOJ and canLaunch input prop is true, it dispatches a Redux action to show the modal", () => {
+  test("if jurisdiction is DGOJ and canLaunch input prop is true, it dispatches a Redux action to show the modal and it calls it just once", () => {
     const dispatchMock = jest.fn();
     const navigateToKO = jest.fn();
 
@@ -75,7 +75,7 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
     (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
     mockUseJurisdictionDGOJ();
 
-    mount(
+    const wrapper = mount(
       <HookWrapper hook={useBeforePlayingModal} args={[{ canLaunch: true }]} />
     );
 
@@ -83,6 +83,10 @@ describe("Components/RSModal/SlotControlSystem/useBeforePlayingModal", () => {
       type: "MODAL/SHOW",
       modalId: REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION,
     });
+
+    wrapper.update();
+
+    expect(dispatchMock).toHaveBeenCalledTimes(1);
   });
 
   test("if jurisdiction is DGOJ and canLaunch input prop is true and displayed modal is dismissed, it navigates to TOP_LISTS", () => {
