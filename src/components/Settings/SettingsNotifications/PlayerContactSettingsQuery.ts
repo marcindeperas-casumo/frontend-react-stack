@@ -9,6 +9,12 @@ export const ADVENTURER_PUBLIC_FRAGMENT = gql`
     details {
       contactSettings {
         adventurerPublic
+        contactByPhone
+        contactByPost
+        subscribedToMarketingCrossSell
+        subscribedToNewsletters
+        subscribedToSMSNewsletters
+        withdrawalNotifications
       }
     }
   }

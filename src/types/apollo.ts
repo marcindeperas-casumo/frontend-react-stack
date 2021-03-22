@@ -407,7 +407,6 @@ export interface Game {
   actualRtpPast6Months?: Maybe<Scalars["String"]>;
   actualRtpPastYear?: Maybe<Scalars["String"]>;
   rtp?: Maybe<Scalars["String"]>;
-  realMoneyPlayRequired: Scalars["Boolean"];
   /** @deprecated Please use name instead */
   title: Scalars["String"];
   /** @deprecated Please use backgroundImage instead */
@@ -2103,28 +2102,6 @@ export type Settings_PlayerFragment = {
   };
 };
 
-export type SettingsNotificationsContactByPhoneQueryVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type SettingsNotificationsContactByPhoneQuery = {
-  player: {
-    id: string;
-    details: { contactSettings: { contactByPhone: boolean } };
-  };
-};
-
-export type SettingsNotificationsContactByPostQueryVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type SettingsNotificationsContactByPostQuery = {
-  player: {
-    id: string;
-    details: { contactSettings: { contactByPost: boolean } };
-  };
-};
-
 export type SetAdventurerPublicityMutationVariables = Exact<{
   input?: Maybe<ContactSettingsInput>;
 }>;
@@ -2169,20 +2146,27 @@ export type SetContactByPostMutationVariables = Exact<{
 
 export type SetContactByPostMutation = { setContactByPost?: Maybe<boolean> };
 
-export type SettingsNotificationsSubscribedToNewslettersQueryVariables = Exact<{
-  [key: string]: never;
+export type SetMarketingCrossSellSubscriptionMutationVariables = Exact<{
+  input?: Maybe<ContactSettingsInput>;
 }>;
 
-export type SettingsNotificationsSubscribedToNewslettersQuery = {
-  player: {
-    id: string;
-    details: { contactSettings: { subscribedToNewsletters: boolean } };
-  };
+export type SetMarketingCrossSellSubscriptionMutation = {
+  setMarketingCrossSellSubscription?: Maybe<boolean>;
 };
 
 export type Contact_Settings_Player_AdventurerPublicFragment = {
   __typename: "Player";
-  details: { contactSettings: { adventurerPublic: boolean } };
+  details: {
+    contactSettings: {
+      adventurerPublic: boolean;
+      contactByPhone: boolean;
+      contactByPost: boolean;
+      subscribedToMarketingCrossSell: boolean;
+      subscribedToNewsletters: boolean;
+      subscribedToSMSNewsletters: boolean;
+      withdrawalNotifications: boolean;
+    };
+  };
 };
 
 export type Player_Contact_Settings_QueryVariables = Exact<{
@@ -2192,28 +2176,6 @@ export type Player_Contact_Settings_QueryVariables = Exact<{
 export type Player_Contact_Settings_Query = {
   player: { id: string } & Contact_Settings_Player_AdventurerPublicFragment &
     Contact_Settings_Player_RealityCheckFragment;
-};
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQueryVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type SettingsNotificationsSubscribedToSmsNewslettersQuery = {
-  player: {
-    id: string;
-    details: { contactSettings: { subscribedToSMSNewsletters: boolean } };
-  };
-};
-
-export type SettingsNotificationsWithdrawalNotificationsQueryVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type SettingsNotificationsWithdrawalNotificationsQuery = {
-  player: {
-    id: string;
-    details: { contactSettings: { withdrawalNotifications: boolean } };
-  };
 };
 
 export type UpdateRealityCheckIntervalMutationVariables = Exact<{

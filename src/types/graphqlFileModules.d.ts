@@ -340,22 +340,6 @@ declare module "*/PlayerSettingsQuery.graphql" {
   export default defaultDocument;
 }
 
-declare module "*/ContactByPhone.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const SettingsNotificationsContactByPhoneQuery: DocumentNode;
-
-  export default defaultDocument;
-}
-
-declare module "*/ContactByPost.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const SettingsNotificationsContactByPostQuery: DocumentNode;
-
-  export default defaultDocument;
-}
-
 declare module "*/Mutations.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
@@ -365,15 +349,8 @@ declare module "*/Mutations.graphql" {
   export const SetSMSNewsletterSubscription: DocumentNode;
   export const SetContactByPhone: DocumentNode;
   export const SetContactByPost: DocumentNode;
+  export const SetMarketingCrossSellSubscription: DocumentNode;
   export const UpdateRealityCheckInterval: DocumentNode;
-
-  export default defaultDocument;
-}
-
-declare module "*/NewsletterSubscription.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const SettingsNotificationsSubscribedToNewslettersQuery: DocumentNode;
 
   export default defaultDocument;
 }
@@ -383,22 +360,6 @@ declare module "*/PlayerContactSettingsQuery.ts" {
   const defaultDocument: DocumentNode;
   export const Contact_Settings_Player_adventurerPublic: DocumentNode;
   export const PLAYER_CONTACT_SETTINGS_QUERY: DocumentNode;
-
-  export default defaultDocument;
-}
-
-declare module "*/SmsSubscription.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const SettingsNotificationsSubscribedToSmsNewslettersQuery: DocumentNode;
-
-  export default defaultDocument;
-}
-
-declare module "*/WithdrawalNotifications.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const SettingsNotificationsWithdrawalNotificationsQuery: DocumentNode;
 
   export default defaultDocument;
 }
