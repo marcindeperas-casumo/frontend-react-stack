@@ -81,7 +81,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   }
 
   if (error) {
-    <ErrorMessage direction="horizontal" retry={refetch} />;
+    return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
   return (
