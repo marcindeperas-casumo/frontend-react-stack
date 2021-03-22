@@ -53,7 +53,7 @@ export async function getCache() {
   // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
   // write default state in cache, is the right place?
   await cache.writeQuery({
-    query: queries.SPORTS_SHELL_QUERY,
+    query: queries.SportsShellQuery,
     data: {
       isSearchVisible: false,
       hasSelectedFavourites: false,
