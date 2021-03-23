@@ -5,7 +5,7 @@ import MockStore from "Components/MockStore";
 import { NewsletterSubscriptionContainer } from "./NewsletterSubscriptionContainer";
 import { isCheckboxChecked, actWithClick } from "./MutationContainerTestUtils";
 import { getPlayerSettingQueryMock } from "./__mocks__/Queries.mock";
-import { SettingsNotificationsSubscribedToNewslettersQuery } from "./NewsletterSubscription.graphql";
+import { PLAYER_CONTACT_SETTINGS_QUERY } from "./PlayerContactSettingsQuery";
 import {
   newsletterSubscriptionMock,
   newsletterSubscriptionErrorMock,
@@ -25,13 +25,13 @@ describe("SettingsNotifications - Newsletter Subscription", () => {
       ...newsletterSubscriptionMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToNewsletters",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToNewsletters",
         false
       ),
@@ -58,13 +58,13 @@ describe("SettingsNotifications - Newsletter Subscription", () => {
       ...newsletterSubscriptionErrorMock,
       // first fetch before mutation
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToNewsletters",
         true
       ),
       // second fetch after mutation due to refetchQueries
       getPlayerSettingQueryMock(
-        SettingsNotificationsSubscribedToNewslettersQuery,
+        PLAYER_CONTACT_SETTINGS_QUERY,
         "subscribedToNewsletters",
         false
       ),
