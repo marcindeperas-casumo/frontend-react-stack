@@ -1,2 +1,2 @@
-export { CasinoGames } from "./CasinoGames";
+export { CasinoGamesContainer as CasinoGames } from "./CasinoGamesContainer";
 export { LazyCasinoGamesRTPLight } from "./LazyCasinoGamesRTPLight";
