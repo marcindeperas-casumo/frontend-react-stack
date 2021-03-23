@@ -10,12 +10,8 @@ export const RealMoneyPlayRequiredNotification = () => {
     return null;
   }
   return (
-    realMoneyPlayRequired && (
-      <ReusableNotification
-        translationSlug={
-          REUSABLE_NOTIFICATION_SLUGS.REAL_MONEY_ONLY_NOTIFICATION
-        }
-      />
-    )
+    <ReusableNotification
+      translationSlug={REUSABLE_NOTIFICATION_SLUGS.REAL_MONEY_ONLY_NOTIFICATION}
+    />
   );
 };

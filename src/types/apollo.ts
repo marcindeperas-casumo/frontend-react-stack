@@ -1029,7 +1029,7 @@ export interface EventGroup {
   sport: Scalars["String"];
   /** Total events in this event group */
   eventCount: Scalars["Int"];
-  /** Proper english name ofthe group */
+  /** Proper english name of the group */
   englishName: Scalars["String"];
   /** Normalized name of the group */
   termKey: Scalars["String"];

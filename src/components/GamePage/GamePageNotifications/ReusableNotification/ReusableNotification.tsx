@@ -9,10 +9,6 @@ export type TReusableNotificationProps = {
   t: TReusableNotificationTranslations;
 };
 
-/* Reuse this game notification by creating cms translation page and passing over the slug as a prop 
-   Props supported are translations with the following keys: notification_image and notification_content 
-*/
-
 export function ReusableNotification({ t }: TReusableNotificationProps) {
   const [acknowledged, setAcknowledged] = React.useState(false);
 
