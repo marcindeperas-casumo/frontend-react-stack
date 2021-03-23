@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { number } from "@storybook/addon-knobs";
 import * as React from "react";
+import MockStore from "Components/MockStore";
 import { DepositLimitsSummary } from "./DepositLimitsSummary";
 import t from "./__mocks__/cms";
 import preadjust from "./__mocks__/preadjust";
@@ -32,20 +33,22 @@ stories.add("Default", () => {
   };
 
   return (
-    <DepositLimitsSummary
-      locale="en-GB"
-      currency="EUR"
-      t={t}
-      newLimits={{
-        ...newLimits,
-        currency: "EUR",
-      }}
-      currentLimits={{
-        ...currentLimits,
-        currency: "EUR",
-      }}
-      preadjust={preadjust}
-      {...actions}
-    />
+    <MockStore>
+      <DepositLimitsSummary
+        locale="en-GB"
+        currency="EUR"
+        t={t}
+        newLimits={{
+          ...newLimits,
+          currency: "EUR",
+        }}
+        currentLimits={{
+          ...currentLimits,
+          currency: "EUR",
+        }}
+        preadjust={preadjust}
+        {...actions}
+      />
+    </MockStore>
   );
 });

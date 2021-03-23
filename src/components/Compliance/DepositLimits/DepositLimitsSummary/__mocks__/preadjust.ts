@@ -5,13 +5,14 @@ const mock: DepositLimitPreadjust = {
   "increaseProhibitedAfterwardsFor": "P3M",
   "responsibleGamblingTestCanBeTaken": true,
   "increasesOrRevocationsBlocked": true,
+  "revocationAllowed": true,
   "kind": "DGOJ_DEPOSIT_LIMIT",
   "playerId": "123",
   "rules": [
     "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
     "APPROVAL_REQUIRED_FOR_SUBSEQUENT_INCREASES",
     "DECREASE_EFFECTIVE_IMMEDIATELY",
-    "REVOCATION_ALLOWED"
+    "CANCELLATION_ALLOWED"
   ]
 };
 export default mock;

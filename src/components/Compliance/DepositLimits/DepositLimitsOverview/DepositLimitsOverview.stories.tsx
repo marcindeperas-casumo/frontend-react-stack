@@ -20,7 +20,7 @@ stories.add("Default", () => (
     <DepositLimitsOverview
       locale="en-GB"
       currency="EUR"
-      canIncreaseLimits={false}
+      revocationAllowed
       allRemoved={false}
       t={t}
       limits={[
@@ -57,7 +57,7 @@ stories.add("No limits", () => (
       locale="en-GB"
       currency="EUR"
       allRemoved={false}
-      canIncreaseLimits={true}
+      revocationAllowed={false}
       t={t}
       limits={[]}
       pendingChanges={[]}
@@ -73,7 +73,6 @@ stories.add("Removing all", () => (
       currency="EUR"
       t={t}
       allRemoved
-      canIncreaseLimits={false}
       limits={[
         {
           limitKind: "daily",
