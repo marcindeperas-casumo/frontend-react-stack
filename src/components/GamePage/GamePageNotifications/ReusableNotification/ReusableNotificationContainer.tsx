@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { useTranslations } from "Utils/hooks";
-import { playerWalletBonusSelector } from "Models/player";
 import type { TReusableNotificationTranslations } from "../GamePageNotificationsConstants";
 import { ReusableNotification } from "./ReusableNotification";
 
@@ -16,10 +14,9 @@ export type TReusableNotificationProps = {
 export function ReusableNotificationContainer({
   translationSlug,
 }: TReusableNotificationProps) {
-  const bonusAmount = useSelector(playerWalletBonusSelector);
   const t = useTranslations<TReusableNotificationTranslations>(translationSlug);
 
-  if (!t || !bonusAmount) {
+  if (!t) {
     return null;
   }
 
