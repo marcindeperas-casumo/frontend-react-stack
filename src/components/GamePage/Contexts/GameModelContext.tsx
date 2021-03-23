@@ -10,7 +10,7 @@ type GameModelContextType = {
   slug: string;
   playForFun: boolean;
   error: boolean;
-  game?: A.GameDetailsQuery_game;
+  game?: A.GameDetailsQuery["game"];
 };
 
 type GameModelContextProviderProps = {
