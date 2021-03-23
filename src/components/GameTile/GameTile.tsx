@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Link } from "@reach/router";
 import React from "react";
 import { formatCurrency } from "Utils";
-import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
+import { Mobile, TabletAndDesktop, Desktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -60,17 +60,22 @@ export const GameTile = ({
     const currency = jackpot?.value?.currency;
     const currentLocale = locale;
     const amount = jackpot?.value?.amount;
-    return jackpot ? (
-      <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
-        <span>
-          {formatCurrency({
-            locale: currentLocale || "en-en",
-            currency: currency || "EUR",
-            value: amount,
-          })}
-        </span>
-      </div>
-    ) : null;
+    if (!jackpot) {
+      return null;
+    }
+    return (
+      <Desktop>
+        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
+          <span>
+            {formatCurrency({
+              locale: currentLocale || "en-en",
+              currency: currency || "EUR",
+              value: amount,
+            })}
+          </span>
+        </div>
+      </Desktop>
+    );
   };
 
   if (isInMaintenance) {

@@ -57,12 +57,10 @@ const JackpotsColumn = ({
 };
 
 export const Jackpots = (props: Props) => {
-  const getColumns = () => {
-    return generateColumns(props.jackpots);
-  };
+  const getColumns = generateColumns(props.jackpots);
 
   const mobileJackpotColumnRenderer = (i: number) => {
-    return <JackpotsColumn column={getColumns()[i]} locale={props.locale} />;
+    return <JackpotsColumn column={getColumns[i]} locale={props.locale} />;
   };
 
   const desktopJackpotColumnRenderer = ({
@@ -70,7 +68,7 @@ export const Jackpots = (props: Props) => {
     style,
     games,
   }: CellRendererParams) => {
-    const jackpotColumn = getColumns()[columnIndex];
+    const jackpotColumn = getColumns[columnIndex];
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames(
       "u-height--full",
@@ -89,7 +87,7 @@ export const Jackpots = (props: Props) => {
     );
   };
 
-  const keyGetter = (i: number) => getColumns()[i][0].slug;
+  const keyGetter = (i: number) => getColumns[i][0].slug;
 
   return (
     <div className="u-margin-x--3xlg@desktop">
@@ -100,7 +98,7 @@ export const Jackpots = (props: Props) => {
             <Scrollable
               keyGetter={keyGetter}
               itemRenderer={mobileJackpotColumnRenderer}
-              numberOfItems={getColumns().length}
+              numberOfItems={getColumns.length}
               itemClassName="c-jackpots-list-tile"
               padding={PADDING_PER_DEVICE}
             />
@@ -108,7 +106,7 @@ export const Jackpots = (props: Props) => {
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            itemCount={getColumns().length}
+            itemCount={getColumns.length}
             title={props.title}
             itemRenderer={desktopJackpotColumnRenderer}
             tileHeight={GameRow.ROW_HEIGHT * 3 + spacerSizesMap.default * 2}
