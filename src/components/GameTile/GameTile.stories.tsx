@@ -5,20 +5,23 @@ import React from "react";
 import MockStore from "Components/MockStore";
 import { GameTile } from "Components/GameTile/GameTile";
 import { CURRENCIES } from "Src/constants";
-import game from "./__mocks__/Game.json";
+import { gameMock } from "./__mocks__/Game";
 
 const stories = storiesOf("GameTile", module);
 stories.addDecorator(withKnobs);
 
 stories.add("Default", () => {
-  const isInMaintenance = boolean("In maintenance mode", game.isInMaintenance);
+  const isInMaintenance = boolean(
+    "In maintenance mode",
+    gameMock.isInMaintenance
+  );
   return (
     <div className="c-top-game">
       <MockStore>
         <GameTile
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ isInMaintenance: any; name: string; slug: ... Remove this comment to see the full error message
-          game={{ ...game, isInMaintenance }}
-          onLaunchGame={action(game.name)}
+          game={{ ...gameMock, isInMaintenance }}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ game: { isInMaintenance: any; __typename: ... Remove this comment to see the full error message
+          onLaunchGame={action(gameMock.name)}
           onFavouriteGame={action("favourite game")}
         />
       </MockStore>
@@ -36,7 +39,7 @@ stories.add("Jackpot Game Tile", () => {
   };
 
   const gameInfo = {
-    ...game,
+    ...gameMock,
     jackpot: gameJackpot,
     id: "someCrappyString",
     playBackground: "testbg",
