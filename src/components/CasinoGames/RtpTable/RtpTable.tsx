@@ -1,13 +1,12 @@
-import Flex from "@casumo/cmp-flex";
 import React from "react";
+import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
+import { useInView } from "react-intersection-observer";
 import * as A from "Types/apollo";
-import VirtualList from "Components/VirtualList";
 import { isMobile } from "Components/ResponsiveLayout";
-import { loadMoreConstructor } from "Utils";
 import { RtpTableRow } from "./RtpTableRow";
 
-const formatRTPValue = (x?: string) => {
+const formatRTPValue = (x: string) => {
   if (!x) {
     return "";
   }
@@ -28,25 +27,33 @@ const textClasses = isMobile()
 
 export const RtpTable = ({
   games,
-  data,
   fetchMore,
-  query,
-  gamesCount,
-  scrollElementId,
+  fullGamesCount,
   headerColumns,
-  valuesColumns,
 }: {
   games: A.GetGamesRtpQuery["getGamesPaginated"]["games"];
-  data: any;
-  fetchMore: any;
-  query: string;
-  gamesCount: number;
-  scrollElementId: string;
-  headerColumns: Array<string>;
+  fetchMore: () => void;
+  fullGamesCount: number;
+  headerColumns?: Array<string>;
   valuesColumns: Array<string>;
 }) => {
   const rowContainerClasses =
     "t-border-bottom t-border-left t-border-grey-5 t-background-white";
+  const valuesColumns = ["rtp", "actualRtpPast6Months", "actualRtpPastYear"];
+  const rowStyles = {
+    height: 50,
+    width: "100%",
+  };
+
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      fetchMore();
+    }
+  }, [fetchMore, inView]);
 
   return (
     <Flex
@@ -63,46 +70,32 @@ export const RtpTable = ({
         <RtpTableRow columns={headerColumns} />
       </Flex>
 
-      <VirtualList
-        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-        games={games}
-        loadMoreRows={loadMoreConstructor(
-          fetchMore,
-          data.getGamesPaginated.gamesCount
-        )}
-        isRowLoaded={({ index }) => Boolean(games[index])}
-        rowHeight={rowHeight}
-        listHash={query}
-        pageSize={24}
-        totalNumberOfRows={gamesCount}
-        rowRenderer={({
-          key,
-          index,
-          style,
-        }: {
-          key: string;
-          index: number;
-          style: Object;
-        }) => (
+      {games.map((game, index) => {
+        // Trigger on which row to fetch more data eg below fifth from last
+        const lastEntryInGamesBatch = games.length - 5 === index;
+        const fullListAvailable = games.length === fullGamesCount;
+        return (
           <Flex
+            containerRef={
+              !fullListAvailable && lastEntryInGamesBatch ? ref : null
+            }
             align="stretch"
-            key={key}
-            style={style}
+            key={game.id || index}
+            style={rowStyles}
             className={rowContainerClasses}
           >
             <RtpTableRow
               columns={[
-                games[index]?.title,
+                game?.title,
                 ...valuesColumns.map(keyName =>
-                  games[index] ? formatRTPValue(games[index][keyName]) : null
+                  game ? formatRTPValue(game[keyName]) : null
                 ),
               ]}
               textProps={textClasses}
             />
           </Flex>
-        )}
-        scrollElement={document.getElementById(scrollElementId)}
-      />
+        );
+      })}
     </Flex>
   );
 };

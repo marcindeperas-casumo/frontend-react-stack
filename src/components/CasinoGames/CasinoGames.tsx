@@ -1,59 +1,52 @@
+import * as React from "react";
+import * as R from "ramda";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import { useQuery } from "@apollo/client";
-import * as React from "react";
+import cx from "classnames";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
-import { useTranslations, useJurisdiction } from "Utils/hooks";
+import { useJurisdiction } from "Utils/hooks";
 import { navigateById } from "Services/NavigationService";
 import { isMobile } from "Components/ResponsiveLayout";
-import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { RtpTable } from "./RtpTable/RtpTable";
-import { GetGamesRTP } from "./GetGamesRTP.graphql";
+import type { TCasinoGamesTranslations } from "./Constants";
 
-export const CasinoGames = () => {
-  const t = useTranslations<{
-    meta_description: string;
-    meta_title: string;
-    rtp_description: string;
-    rtp_game_name: string;
-    rtp_game_provider: string;
-    rtp_loading: string;
-    rtp_value: string;
-    actual_rtp_past_6_months: string;
-    actual_rtp_past_year: string;
-  }>("game-categories");
-  const categoriesContent = useTranslations("game-categories", true);
-  const query = "categories=SLOT_MACHINE";
-  const { data, loading, fetchMore } = useQuery<
-    A.GetGamesRtpQuery,
-    A.GetGamesRtpQueryVariables
-  >(GetGamesRTP, {
-    variables: {
-      query,
-      offset: 0,
-      limit: 48,
-    },
-  });
+type TCasinoGamesProps = {
+  t: TCasinoGamesTranslations;
+  categoriesContent: any;
+  games: A.GetGamesRtpQuery["getGamesPaginated"]["games"];
+  fetchMore: () => void;
+  fullGamesCount: number;
+};
+
+export const CasinoGames = ({
+  t,
+  categoriesContent,
+  fetchMore,
+  games,
+  fullGamesCount,
+}: TCasinoGamesProps) => {
+  const [gamesData, setGamesData] = React.useState([]);
+
+  React.useEffect(() => {
+    if (games.length) {
+      setGamesData(games);
+    }
+  }, [games]);
 
   const { isMGA, isDGOJ } = useJurisdiction();
 
-  if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
+  if (R.isEmpty(gamesData) || !t || !categoriesContent) {
     return null;
   }
-
-  const { games = [], gamesCount } = data.getGamesPaginated;
 
   const renderRtpTable = () => {
     return (
       !isMGA && (
         <RtpTable
-          games={games}
-          data={data}
+          games={gamesData}
           fetchMore={fetchMore}
-          query={query}
-          gamesCount={gamesCount}
-          scrollElementId={ROOT_SCROLL_ELEMENT_ID}
+          fullGamesCount={fullGamesCount}
           headerColumns={[
             t.rtp_game_name,
             t.rtp_value,
@@ -69,7 +62,7 @@ export const CasinoGames = () => {
   if (isDGOJ || isMobile()) {
     return (
       <>
-        <div className="u-padding u-padding--2xlg@desktop">
+        <div className={cx("u-padding", { "u-padding--2xlg@desktop": isDGOJ })}>
           <DangerousHtml html={categoriesContent} />
           <Flex className="u-padding-y--md">
             <ButtonPrimary

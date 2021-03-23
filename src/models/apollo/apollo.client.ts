@@ -15,7 +15,7 @@ import {
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
-import { getAppVersion, isEmbeddedOn } from "Utils";
+import { getAppVersion, isEmbeddedOn, uniqueArray } from "Utils";
 import * as queries from "Models/apollo/queries.sports";
 import introspectionsData from "Types/introspections.json";
 import { clientResolvers } from "./clientResolvers";
@@ -48,7 +48,59 @@ export async function getApolloClient(): Promise<ApolloClientType> {
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache(introspectionsData);
+  const cache = new InMemoryCache({
+    ...introspectionsData,
+    typePolicies: {
+      Query: {
+        fields: {
+          getGamesPaginated: {
+            read(
+              existing,
+              {
+                args: {
+                  // Default to returning the entire cached list,
+                  // if offset and limit are not provided.
+                  offset = 0,
+                  limit = existing?.length,
+                } = {},
+              }
+            ) {
+              // Clean duplicates
+              const noDuplicatesArray =
+                existing && existing.games.length
+                  ? uniqueArray("__ref", existing.games)
+                  : existing?.games;
+              return (
+                existing && {
+                  ...existing,
+                  games: noDuplicatesArray,
+                }
+              );
+            },
+            merge(existing = { games: [] }, incoming) {
+              // Clean duplicates
+              if (existing.games.length && incoming.length) {
+                const mergedList = uniqueArray("__ref", [
+                  ...existing.games,
+                  ...incoming,
+                ]);
+                return {
+                  ...existing,
+                  ...incoming,
+                  games: mergedList,
+                };
+              }
+              return {
+                ...existing,
+                ...incoming,
+                games: [...existing.games, ...incoming.games],
+              };
+            },
+          },
+        },
+      },
+    },
+  });
 
   // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
   // write default state in cache, is the right place?
