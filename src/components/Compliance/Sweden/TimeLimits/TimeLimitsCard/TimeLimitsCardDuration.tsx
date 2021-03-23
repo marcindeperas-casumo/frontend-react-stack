@@ -11,7 +11,6 @@ export function TimeLimitsCardDuration({ duration }: Props) {
 
   return (
     <span className="u-font-weight-bold">
-      {/* @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component. */}
       <Duration
         preferAbbreviated
         duration={durationInHours
