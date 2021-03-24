@@ -1,0 +1,11 @@
+import React from "react";
+import { Deposit } from "Components/Payments/Deposit";
+import { Mobile } from "Components/ResponsiveLayout";
+
+export const SportsShellDepositWrapper = () => (
+  <Mobile>
+    <div className="u-padding-top--md u-padding-x--md">
+      <Deposit />
+    </div>
+  </Mobile>
+);

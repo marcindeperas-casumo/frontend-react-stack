@@ -28,9 +28,9 @@ export const Deposit = ({
 }: Props) => {
   const t = useTranslations("iframe-solution");
 
-  if (!hasDeposited) {
-    return null;
-  }
+  // if (!hasDeposited) {
+  //   return null;
+  // }
 
   const balanceFormatted = formatCurrency({
     locale,
@@ -52,29 +52,25 @@ export const Deposit = ({
   };
 
   return (
-    <Mobile>
-      <div className="u-padding-top--md u-padding-x--md c-sport-deposit">
-        <div className="t-background-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin-bottom u-display--flex">
-          <div className="o-flex--vertical u-margin-right--lg">
-            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'balance_title' does not exist on type 'u... Remove this comment to see the full error message */}
-            <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
-            <div className="t-color-grey-90 u-font-md u-font-weight-bold">
-              {balanceFormatted}
-            </div>
-          </div>
-          {bonus > 0 && (
-            <div className="o-flex--vertical t-color-grey-50 c-sport-deposit__bonus">
-              {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'bonus_title' does not exist on type 'unk... Remove this comment to see the full error message */}
-              <div className="u-font-sm">{t?.bonus_title}</div>
-              <div className="u-font-md">{bonusFormatted}</div>
-            </div>
-          )}
-          <div className="u-display--flex c-sport-deposit__separator" />
-          <div className="o-flex-align--end">
-            <ButtonPrimary size="sm" icon={<AddIcon />} onClick={goToDeposit} />
-          </div>
+    <div className="t-background-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin-bottom u-display--flex">
+      <div className="o-flex--vertical u-margin-right--lg">
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'balance_title' does not exist on type 'u... Remove this comment to see the full error message */}
+        <div className="t-color-grey-50 u-font-sm">{t?.balance_title}</div>
+        <div className="t-color-grey-90 u-font-md u-font-weight-bold">
+          {balanceFormatted}
         </div>
       </div>
-    </Mobile>
+      {bonus > 0 && (
+        <div className="o-flex--vertical t-color-grey-50 c-sport-deposit__bonus">
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'bonus_title' does not exist on type 'unk... Remove this comment to see the full error message */}
+          <div className="u-font-sm">{t?.bonus_title}</div>
+          <div className="u-font-md">{bonusFormatted}</div>
+        </div>
+      )}
+      <div className="u-display--flex c-sport-deposit__separator" />
+      <div className="o-flex-align--end">
+        <ButtonPrimary size="sm" icon={<AddIcon />} onClick={goToDeposit} />
+      </div>
+    </div>
   );
 };
