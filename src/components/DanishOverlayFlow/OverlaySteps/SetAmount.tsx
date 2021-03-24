@@ -4,12 +4,13 @@ import React, { useCallback } from "react";
 import { TextInput } from "Components/Compliance/TextInput";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { limitPeriod, minFirstDepositLimit } from "Models/playOkay";
+import { TCurrencyCode } from "Src/constants";
 import type { CmsContent } from "../DanishEntryOverlay";
 
 type Props = {
   t: CmsContent;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
   confirmLimit: () => void;
   setAmount: (value: number) => void;
   amount: number;
@@ -57,7 +58,7 @@ export const SetAmount = (props: Props) => {
 
   const isLimitMaxed = (value: number): boolean => value >= depositLimit;
 
-  const currencySign: string = getSymbolForCurrency({ locale, currency });
+  const currencySign: string = getSymbolForCurrency({ currency });
 
   return (
     <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">

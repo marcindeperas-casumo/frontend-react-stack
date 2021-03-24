@@ -7,6 +7,9 @@ import {
   CURRENCY_SYMBOLS,
   EMBEDDED_GAMES,
   APP_SUB_TYPES,
+  INTL_LOCALES,
+  TCurrencyCode,
+  CURRENCIES,
 } from "Src/constants";
 import type { AppDevice } from "Src/types";
 
@@ -222,7 +225,7 @@ export const renderBets = (
   R.cond([
     [R.isNil, R.always(null)],
     [
-      R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) ||
+      R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) || // === CURRENCY_SYMBOLS.NOK
         R.pathEq(["symbol"], CURRENCY_SYMBOLS.DKK),
       o =>
         `${R.path(["min"])(o)} ${R.path(["symbol"])(o)} - ` +
@@ -287,6 +290,22 @@ export function createReducer<S>(
   };
 }
 
+const norwegianFormatFixer = ({
+  value,
+  fractionDigits,
+}: {
+  value?: number;
+  fractionDigits: number;
+}) => {
+  // Well, the format is conveniently the same so... Thanks Sweden!
+  return new Intl.NumberFormat(INTL_LOCALES.se_sv, {
+    style: "currency",
+    currency: CURRENCIES.SEK,
+    minimumFractionDigits: fractionDigits,
+    //currencyDisplay: "symbol",
+  }).format(value || 0);
+};
+
 export function formatCurrency({
   locale,
   currency,
@@ -294,8 +313,8 @@ export function formatCurrency({
   minimumFractionDigits,
 }: {
   locale: string;
-  currency: string;
-  value: number | undefined;
+  currency: TCurrencyCode;
+  value?: number;
   minimumFractionDigits?: number;
 }): string {
   /**
@@ -308,6 +327,14 @@ export function formatCurrency({
   const fractionDigitsFallback = (value || 0) % 1 === 0 ? 0 : 2;
   const fractionDigits = minimumFractionDigits || fractionDigitsFallback;
 
+  if (locale === INTL_LOCALES.no_no && currency === CURRENCIES.NOK) {
+    // https://stackoverflow.com/questions/60042971/intl-numberformat-to-format-price-in-norwegian-krone/60113041
+    return norwegianFormatFixer({
+      value,
+      fractionDigits,
+    });
+  }
+
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
@@ -316,22 +343,15 @@ export function formatCurrency({
 }
 
 export function getSymbolForCurrency({
-  locale,
   currency,
 }: {
-  locale: string;
-  currency: string;
+  currency: TCurrencyCode;
 }): string {
-  /**
-   * Safari doesn't contain formatToParts on Intl.NumberFormat object.
-   * My idea here was to format any number and the replace all
-   * numbers and separators so we get only symbol.
-   */
-  return formatCurrency({
-    locale,
-    currency,
-    value: 0,
-  }).replace(/\d|\s|\.|,/g, "");
+  // This used to use Intl.NumberFormat().formatToParts
+  // but since it's buggy in Chrome:
+  // https://stackoverflow.com/questions/60042971/intl-numberformat-to-format-price-in-norwegian-krone/60113041
+  // AND we have a dictionary anyways, let's use that!
+  return CURRENCY_SYMBOLS[currency];
 }
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
@@ -438,7 +458,7 @@ export const hasAlphaCharactersOnly = (str: string): boolean => {
 // Displays bonus balance with matching currency symbol to passed locale and followed by bonus string passed as argument
 export const bonusBalanceDisplay = (
   value: number | undefined,
-  currency: string,
+  currency: TCurrencyCode,
   bonusText: string,
   locale: string,
   trimmed?: boolean

@@ -501,6 +501,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [
@@ -931,6 +932,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [
@@ -1361,6 +1363,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [
