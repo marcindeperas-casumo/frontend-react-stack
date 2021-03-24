@@ -302,7 +302,6 @@ const norwegianFormatFixer = ({
     style: "currency",
     currency: CURRENCIES.SEK,
     minimumFractionDigits: fractionDigits,
-    //currencyDisplay: "symbol",
   }).format(value || 0);
 };
 
