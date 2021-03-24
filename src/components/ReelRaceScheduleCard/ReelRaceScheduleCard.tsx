@@ -57,47 +57,71 @@ export function ReelRaceScheduleCard({
             height={60}
           />
         </Flex.Item>
-        <Flex.Block direction="vertical" className="u-margin-left--md">
-          <Text tag="div" className="u-font-weight-bold u-margin-bottom">
-            {interpolate(
-              reelRace.promoted
-                ? t?.mobile_promoted_race_title_single
-                : t?.mobile_race_title_single,
-              {
-                name: reelRace.game.name,
-              }
-            )}
-          </Text>
-          {!open && (
-            <Flex spacing="none">
-              <TimeLockedIcon
+        <Flex.Block>
+          <Flex direction="vertical">
+            <Flex.Block className="u-margin-x--md">
+              <Text tag="div" className="u-font t-color-grey-70">
+                {interpolate(
+                  reelRace.promoted
+                    ? t?.mobile_promoted_race_title_single
+                    : t?.mobile_race_title_single,
+                  {
+                    name: reelRace.game.name,
+                  }
+                )}
+              </Text>
+            </Flex.Block>
+            <Flex.Block
+              className={cx(
+                "u-margin-left--md",
+                isNotMobile && "u-margin-right--lg"
+              )}
+              align={isNotMobile ? "center" : "normal"}
+            >
+              <TournamentIcon
                 size="sm"
                 className={cx(
-                  "u-margin-right",
-                  reelRace.promoted && "t-color-yellow-30"
+                  reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-90"
                 )}
               />
-              <Text tag="span" size="sm" className="u-font-weight-bold">
-                {`${
-                  isTomorrow ? translations.tomorrow : translations.today
-                } ${startTimeDate.toFormat("t")}`}
+              <Text
+                tag="span"
+                className="u-font-weight-bold t-color-grey-90 u-margin-left--sm"
+              >
+                {reelRace.formattedPrize}
               </Text>
+            </Flex.Block>
+          </Flex>
+        </Flex.Block>
+        <Flex.Item>
+          {!open && (
+            <Flex direction="vertical" align="end" spacing="none">
+              <Text
+                tag="p"
+                size="xs"
+                className="t-color-grey-50 u-margin-bottom--sm u-text-align-right"
+              >
+                {isTomorrow ? translations.tomorrow : translations.today}
+              </Text>
+              <Flex direction="horizontal" align="center">
+                <TimeLockedIcon
+                  size="sm"
+                  className={cx(
+                    "u-margin-right--sm",
+                    reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
+                  )}
+                />
+                <Text
+                  tag="p"
+                  size="xs"
+                  className="t-color-grey-50 u-margin--none u-text-align-right"
+                >
+                  {startTimeDate.toFormat("t")}
+                </Text>
+              </Flex>
             </Flex>
           )}
-        </Flex.Block>
-        <Flex
-          className={cx("u-margin-left", isNotMobile && "u-margin-right--lg")}
-          align={isNotMobile ? "center" : "normal"}
-        >
-          <TournamentIcon
-            className={cx(
-              reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
-            )}
-          />
-          <Text tag="span" className="u-font-weight-bold u-margin-left--sm">
-            {reelRace.formattedPrize}
-          </Text>
-        </Flex>
+        </Flex.Item>
       </Flex>
       {open && (
         <ReelRaceScheduleCardContent
