@@ -2,18 +2,17 @@ import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
-import { useFetchMore } from "./hooks/useFetchMore";
+import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import { GetGamesRTPLight } from "./GetGamesRTPLight.graphql";
 import { RtpTable } from "./RtpTable/RtpTable";
-import { gameListRTPLimit } from "./Constants";
 
 export const CasinoGamesRTPLight = () => {
-  const [offset, setOffset] = React.useState(0);
   const t = useTranslations<{
     rtp_game_name: string;
     rtp_value: string;
   }>("game-categories");
 
+  const categoriesContent = useTranslations("game-categories", true);
   const query = "categories=SLOT_MACHINE";
   const { data, loading, fetchMore } = useQuery<
     A.GetGamesRtpQuery,
@@ -21,14 +20,12 @@ export const CasinoGamesRTPLight = () => {
   >(GetGamesRTPLight, {
     variables: {
       query,
-      offset,
-      limit: gameListRTPLimit,
+      offset: 0,
+      limit: 48,
     },
   });
 
-  const fetchMoreRows = useFetchMore({ fetchMore, setOffset, offset });
-
-  if (loading || !data || !data.getGamesPaginated) {
+  if (loading || !data || !data.getGamesPaginated || !categoriesContent) {
     return null;
   }
 
@@ -38,8 +35,11 @@ export const CasinoGamesRTPLight = () => {
     t && (
       <RtpTable
         games={games}
-        fetchMore={fetchMoreRows}
-        fullGamesCount={gamesCount}
+        data={data}
+        fetchMore={fetchMore}
+        query={query}
+        gamesCount={gamesCount}
+        scrollElementId={ROOT_SCROLL_ELEMENT_ID}
         headerColumns={[t.rtp_game_name, t.rtp_value]}
         valuesColumns={["rtp"]}
       />

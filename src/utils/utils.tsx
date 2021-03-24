@@ -517,9 +517,3 @@ export const getOrdinalSuffix = ({
     ) || ""
   );
 };
-
-export const uniqueArray = R.curry(<T, K extends keyof T>(
-  key: K,
-  arr: Array<T>
-  // @ts-expect-error key overload issue, lets ignore it for now
-) => R.uniqBy(R.prop(key), arr));
