@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import Jackpots from "Components/Jackpots/Jackpots";
+import { Jackpots } from "Components/Jackpots/Jackpots";
 import jackpotsMock from "./__mocks__/response.games.mock";
 
 describe("<Jackpots />", () => {

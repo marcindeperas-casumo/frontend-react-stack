@@ -21,6 +21,7 @@ export const gameDetails: A.GameDetailsQuery["game"] = {
   ],
   hasPlayForFun: true,
   isInMaintenance: false,
+  realMoneyPlayRequired: false,
 };
 
 export const t = {
