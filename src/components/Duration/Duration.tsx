@@ -1,3 +1,4 @@
+import * as React from "react";
 import * as R from "ramda";
 import { Duration as LuxonDuration } from "luxon";
 import { useTranslations } from "Utils/hooks";
@@ -18,11 +19,11 @@ type Props = {
   separator?: string;
 };
 
-export function Duration(props: Props): string {
+export function Duration(props: Props) {
   const t = useTranslations<DurationTranslations>(CMS_SLUG);
 
   if (!t) {
-    return "";
+    return null;
   }
 
   const separator = props?.separator || t.separator;
@@ -31,10 +32,14 @@ export function Duration(props: Props): string {
       ? LuxonDuration.fromISO(props.duration).toObject()
       : props.duration;
 
-  return interpolateDurationObject({
-    ...R.pick(["preferShort", "preferAbbreviated"], props),
-    separator,
-    duration,
-    t,
-  });
+  return (
+    <>
+      {interpolateDurationObject({
+        ...R.pick(["preferShort", "preferAbbreviated"], props),
+        separator,
+        duration,
+        t,
+      })}
+    </>
+  );
 }

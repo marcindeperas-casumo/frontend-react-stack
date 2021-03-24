@@ -11,7 +11,7 @@ type Props = DepositLimitPreadjust & {
     approval_required_for_increase: string;
     responsible_gambling_test_required: string;
     decrease_effective_immediately: string;
-    revocation_allowed: string;
+    cancellation_allowed: string;
   };
 };
 
@@ -22,7 +22,6 @@ export function AdditionalConditions(props: Props) {
     R.join(" "),
     interpolateWithJSX({
       postIncreaseWindow: (
-        // @ts-expect-error ts-migrate(2786) FIXME: 'Duration' cannot be used as a JSX component.
         <Duration duration={props.increaseProhibitedAfterwardsFor} />
       ),
     })

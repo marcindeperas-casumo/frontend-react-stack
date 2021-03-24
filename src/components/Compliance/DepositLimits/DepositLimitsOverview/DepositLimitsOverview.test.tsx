@@ -25,7 +25,7 @@ const props = {
     },
   ],
   pendingChanges: [],
-  canIncreaseLimits: true,
+  revocationAllowed: true,
   allRemoved: false,
   edit: () => {},
   add: () => {},
