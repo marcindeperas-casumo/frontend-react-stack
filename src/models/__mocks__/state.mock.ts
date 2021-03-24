@@ -7,7 +7,8 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
     methods: {
       VISA_CARD: {
         profiles: {
-          default: {
+          default: "EUR",
+          EUR: {
             limits: {
               deposit: {
                 min: 10,
