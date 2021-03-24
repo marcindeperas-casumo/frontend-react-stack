@@ -10,5 +10,12 @@ fragment GameTile_Game on Game {
   liveCasinoId
   playBackground
   category
+  jackpot {
+    id
+    value {
+      amount
+      currency
+    }
+  }
   ...GameTileInMaintenance_Game
 }
