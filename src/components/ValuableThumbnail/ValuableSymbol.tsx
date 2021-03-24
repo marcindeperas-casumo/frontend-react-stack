@@ -23,6 +23,7 @@ const ALL_CURRENCIES_ICONS = {
   [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
   [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
   [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
+  [CURRENCIES.NOK]: WalletTabKroneUnselectedIcon,
   [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
   [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
   [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
@@ -59,8 +60,8 @@ type Props = {
   awardType?: A.WageringLockAwardType;
   currency: string;
   valuableType: A.ValuableType;
-  spinType: string;
-  size: string;
+  spinType?: string;
+  size?: string;
 };
 
 export const ValuableSymbol = ({
@@ -71,7 +72,10 @@ export const ValuableSymbol = ({
   size = "md",
 }: Props) => {
   const ValuableIcon = VALUABLE_ICON[valuableType];
-  const CASH_RELATED_VALUABLES = [VALUABLE_TYPES.CASH, VALUABLE_TYPES.CASHBACK];
+  const CASH_RELATED_VALUABLES = [
+    VALUABLE_TYPES.CASH,
+    VALUABLE_TYPES.CASHBACK,
+  ] as Array<A.ValuableType>;
 
   const CASH_RELATED_REWARDS = ["bonusMoney", "freeMoney"];
   const SPINS_RELATED_REWARDS = ["spins"];
@@ -86,7 +90,6 @@ export const ValuableSymbol = ({
     }
 
     const isCashRelated =
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'ValuableType' is not assignable ... Remove this comment to see the full error message
       CASH_RELATED_VALUABLES.includes(valuableType) ||
       CASH_RELATED_REWARDS.includes(awardType);
 

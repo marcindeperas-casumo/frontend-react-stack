@@ -352,14 +352,14 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3.14,
       })
-    ).toBe("€3.14");
+    ).toBe("3,14\u00A0€"); // \u00A0 === &nbsp;
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 3.1,
       })
-    ).toBe("€3.10");
+    ).toBe("3,10\u00A0€");
   });
 
   test("should render without fractions instead of 00", () => {
@@ -369,14 +369,45 @@ describe("formatCurrency()", () => {
         locale: "de-DE",
         value: 3,
       })
-    ).toBe("€3");
+    ).toBe("3\u00A0€");
     expect(
       formatCurrency({
         currency: "EUR",
         locale: "de-DE",
         value: 66.0,
       })
-    ).toBe("€66");
+    ).toBe("66\u00A0€");
+  });
+
+  test("should render correct localised values", () => {
+    expect(
+      formatCurrency({
+        currency: "EUR",
+        locale: "de-DE",
+        value: 12345,
+      })
+    ).toBe("12.345\u00A0€");
+    expect(
+      formatCurrency({
+        currency: "NOK",
+        locale: "no-NO",
+        value: 12345,
+      })
+    ).toBe("12\u00A0345\u00A0kr");
+    expect(
+      formatCurrency({
+        currency: "NOK",
+        locale: "no-NO",
+        value: -12345,
+      })
+    ).toBe("\u221212\u00A0345\u00A0kr"); // note "−" !== "-", &minus; is the proper typography
+    expect(
+      formatCurrency({
+        currency: "DKK",
+        locale: "da-DK",
+        value: 12345,
+      })
+    ).toBe("12.345\u00A0kr.");
   });
 });
 
@@ -385,21 +416,33 @@ describe("getSymbolForCurrency()", () => {
     expect(
       getSymbolForCurrency({
         currency: "EUR",
-        locale: "en-GB",
       })
     ).toBe("€");
     expect(
       getSymbolForCurrency({
-        currency: "JPY",
-        locale: "en-GB",
-      })
-    ).toBe("¥");
-    expect(
-      getSymbolForCurrency({
         currency: "USD",
-        locale: "en-GB",
       })
     ).toBe("$");
+    expect(
+      getSymbolForCurrency({
+        currency: "INR",
+      })
+    ).toBe("₹");
+    expect(
+      getSymbolForCurrency({
+        currency: "DKK",
+      })
+    ).toBe("kr.");
+    expect(
+      getSymbolForCurrency({
+        currency: "NOK",
+      })
+    ).toBe("kr");
+    expect(
+      getSymbolForCurrency({
+        currency: "SEK",
+      })
+    ).toBe("kr");
   });
 });
 describe("canBeInterpolated()", () => {

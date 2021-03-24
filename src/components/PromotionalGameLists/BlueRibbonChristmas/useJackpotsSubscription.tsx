@@ -8,6 +8,7 @@ import { playerIdSelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useLocale } from "Utils/hooks";
 import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
+import { TCurrencyCode } from "Src/constants";
 import { WALLET_BONUS_UNBLOCK_AFTER } from "../../../models/playing/playing.constants";
 
 export type NotificationType =
@@ -29,7 +30,7 @@ type CometdEvent = {
       type: NotificationType;
       parameters: {
         amount: string; // ie. "100.01"
-        currency: string;
+        currency: TCurrencyCode;
         jackpotId: string;
       };
     };

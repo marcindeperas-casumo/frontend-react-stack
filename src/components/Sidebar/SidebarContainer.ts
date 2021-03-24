@@ -15,7 +15,6 @@ const SidebarContainer = connect(
     username: playerCasumoNameSelector(state),
     wallet: formatCurrency({
       locale: localeSelector(state),
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency: playerCurrencySelector(state),
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
       value: playerBalanceAmountSelector(state),
