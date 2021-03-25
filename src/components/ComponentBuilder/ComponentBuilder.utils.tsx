@@ -23,3 +23,21 @@ export const mapContentDefinitionToComponent = (
 
   return <Component {...rest} />;
 };
+
+export const prefixCampaignPromotion = (
+  contentDefinition: ContentDefinition
+) => {
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '<T, V>(val: T) => V' is not assi... Remove this comment to see the full error message
+  const parsedJSON = JSON.parse(contentDefinition);
+  return Array.isArray(parsedJSON)
+    ? parsedJSON.map(comp => {
+        if (comp["acf_fc_layout"] === "PROMOTION_CARDS_HORIZONTAL") {
+          return {
+            ...comp,
+            slug_2: `campaigns.${comp.slug_2}`,
+          };
+        }
+        return comp;
+      })
+    : parsedJSON;
+};
