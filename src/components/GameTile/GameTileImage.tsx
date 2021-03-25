@@ -5,6 +5,7 @@ type Props = {
   logoBackground: string;
   logo: string;
   name: string;
+  imgixOpts?: Object;
 };
 
 const GameTileImage = ({ logoBackground, logo, name, ...rest }: Props) => {
