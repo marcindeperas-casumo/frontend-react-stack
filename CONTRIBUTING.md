@@ -20,7 +20,7 @@ Here are some high level recommendations on how to best contribute to the projec
 
 Before you create a component please consider the following steps:
 
-- Check [CUDL React](http://cudl-react.at.casumotest.local:8080) in case there is a component you can reuse.
+- Check [CUDL React](http://storybooks.k8s.casumotest.local/cudl/) in case there is a component you can reuse.
 - Check Storybook in this repo in case there is a component you can reuse.
 - Creating a new component should be done with `yarn generate-component <component_name>` to give a [good starting point](#folder-structure).
 - Components should use named exports.
