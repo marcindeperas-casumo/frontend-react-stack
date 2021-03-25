@@ -35,7 +35,7 @@ export function ReelRaceScheduleCard({
   return (
     <div className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
-        align={open && isNotMobile ? "center" : "normal"}
+        align="center"
         onClick={toggle}
         className={cx(
           "u-padding--md u-cursor-pointer",
@@ -60,7 +60,13 @@ export function ReelRaceScheduleCard({
         <Flex.Block>
           <Flex direction="vertical">
             <Flex.Block className="u-margin-x--md">
-              <Text tag="div" className="u-font t-color-grey-70">
+              <Text
+                tag="div"
+                className={cx(
+                  "u-font",
+                  !reelRace.promoted && "t-color-grey-70"
+                )}
+              >
                 {interpolate(
                   reelRace.promoted
                     ? t?.mobile_promoted_race_title_single
@@ -76,7 +82,6 @@ export function ReelRaceScheduleCard({
                 "u-margin-left--md",
                 isNotMobile && "u-margin-right--lg"
               )}
-              align={isNotMobile ? "center" : "normal"}
             >
               <TournamentIcon
                 size="sm"
@@ -86,7 +91,10 @@ export function ReelRaceScheduleCard({
               />
               <Text
                 tag="span"
-                className="u-font-weight-bold t-color-grey-90 u-margin-left--sm"
+                className={cx(
+                  "u-font-weight-bold u-margin-left--sm",
+                  reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-90"
+                )}
               >
                 {reelRace.formattedPrize}
               </Text>
@@ -99,7 +107,10 @@ export function ReelRaceScheduleCard({
               <Text
                 tag="p"
                 size="xs"
-                className="t-color-grey-50 u-margin-bottom--sm u-text-align-right"
+                className={cx(
+                  "u-margin-bottom--sm u-text-align-right",
+                  reelRace.promoted ? "t-color-white-30" : "t-color-grey-50"
+                )}
               >
                 {isTomorrow ? translations.tomorrow : translations.today}
               </Text>
@@ -114,7 +125,10 @@ export function ReelRaceScheduleCard({
                 <Text
                   tag="p"
                   size="xs"
-                  className="t-color-grey-50 u-margin--none u-text-align-right"
+                  className={cx(
+                    "u-font-weight-bold u-margin--none u-text-align-right",
+                    reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
+                  )}
                 >
                   {startTimeDate.toFormat("t")}
                 </Text>
