@@ -5,7 +5,6 @@ import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
-import { Mobile } from "Components/ResponsiveLayout";
 import { EVENTS, EVENT_PROPS, TCurrencyCode } from "Src/constants";
 import { navigateToDeposit } from "Features/sports/utils";
 
