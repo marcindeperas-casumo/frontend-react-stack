@@ -18,7 +18,10 @@ import type {
   DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import bridge from "Src/DurandalReactBridge";
-import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
+import {
+  REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED,
+  TCurrencyCode,
+} from "Src/constants";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
 import { GoBack } from "./GoBack";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
@@ -31,7 +34,7 @@ type Props = {
   undoable: boolean | null;
   remaining: AllLimitsOnlyValues;
   pendingLimitChanges?: DepositLimitsAdjustment;
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   t: {
     button_no: string;

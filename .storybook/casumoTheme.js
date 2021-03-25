@@ -126,6 +126,6 @@ export default create({
   inputBorderRadius: 4,
 
   // Brand logo/text
-  brandImage: "/images/casumo-logo.svg",
+  brandImage: "images/casumo-logo.svg",
   brandTitle: "Casumo",
 });

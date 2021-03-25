@@ -15,7 +15,7 @@ import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
-import { Deposit } from "Features/sports/components/Deposit";
+import { Deposit } from "Components/Payments/Deposit";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
 import {
   UPDATE_BETSLIP_STATE_MUTATION,
@@ -83,7 +83,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   }
 
   if (error) {
-    <ErrorMessage direction="horizontal" retry={refetch} />;
+    return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
   return (

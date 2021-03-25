@@ -1,6 +1,7 @@
 import { boolean } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { TCurrencyCode } from "Src/constants";
 import { DanishEntryOverlay } from "./DanishEntryOverlay";
 import { SetAmount } from "./OverlaySteps/SetAmount";
 
@@ -28,7 +29,7 @@ const props = {
 const setAmountProps = {
   t: mockDictionary,
   locale: "da-DK",
-  currency: "DKK",
+  currency: "DKK" as TCurrencyCode,
   confirmLimit: () => {},
   setAmount: () => {},
   amount: 10000,
