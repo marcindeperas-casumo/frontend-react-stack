@@ -25,7 +25,6 @@ export function ReelRaceScheduleCard({
   optInForReelRace = () => {},
 }: Props) {
   const [open, setOpen] = React.useState(expanded);
-  const isNotMobile = useIsScreenMinimumTablet();
   const { translations } = reelRace;
   const startTimeDate = DateTime.fromMillis(reelRace.startTime);
   const isTomorrow = startTimeDate.startOf("day").diffNow("days").valueOf() > 0;
@@ -57,9 +56,11 @@ export function ReelRaceScheduleCard({
             height={60}
           />
         </Flex.Item>
-        <Flex.Block>
-          <Flex direction="vertical">
-            <Flex.Block className="u-margin-x--md">
+        <Flex.Block className="u-margin-left--md">
+          <Flex
+            direction={open && reelRace.promoted ? "horizontal" : "vertical"}
+          >
+            <Flex.Block>
               <Text
                 tag="div"
                 className={cx(
@@ -77,12 +78,7 @@ export function ReelRaceScheduleCard({
                 )}
               </Text>
             </Flex.Block>
-            <Flex.Block
-              className={cx(
-                "u-margin-left--md",
-                isNotMobile && "u-margin-right--lg"
-              )}
-            >
+            <Flex.Item>
               <TournamentIcon
                 size="sm"
                 className={cx(
@@ -98,7 +94,7 @@ export function ReelRaceScheduleCard({
               >
                 {reelRace.formattedPrize}
               </Text>
-            </Flex.Block>
+            </Flex.Item>
           </Flex>
         </Flex.Block>
         <Flex.Item>
