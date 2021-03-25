@@ -5,9 +5,9 @@ import {
   walletAmountSelector,
   bonusAmountSelector,
   currencySelector,
-  localeSelector,
 } from "Models/handshake";
 import { getSymbolForCurrency } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 
 const player = state => state.player;
 
@@ -24,8 +24,8 @@ export const playerWalletAmountSelector = createSelector(
 );
 
 export const playerCurrencySymbolSelector = createSelector(
-  [currencySelector, localeSelector],
-  (currency, locale) => getSymbolForCurrency({ locale, currency })
+  [currencySelector],
+  currency => getSymbolForCurrency({ currency })
 );
 
 // Todo: Investigate https://jira.casumocave.com/browse/FC-91 Bonus balance deduction on staging when wagering
@@ -46,7 +46,7 @@ export const playerWalletCurrencySelector = createSelector(
 export const playerCurrencySelector = createSelector(
   playerWalletCurrencySelector,
   currencySelector,
-  (walletCurrency, handsakeCurrency) => {
+  (walletCurrency: TCurrencyCode, handsakeCurrency: TCurrencyCode) => {
     return walletCurrency || handsakeCurrency;
   }
 );

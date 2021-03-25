@@ -7,9 +7,10 @@ import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/depositLimits";
 import { formatCurrency } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 
 type Props = PendingDepositLimitsChangesSelected & {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   limitCancel: () => void;
   t: {

@@ -1,12 +1,13 @@
 import * as React from "react";
 import { shallow } from "enzyme";
+import { TCurrencyCode } from "Src/constants";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 import t from "./__mocks__/cms";
 
 const props = {
   t,
   locale: "en-GB",
-  currency: "EUR",
+  currency: "EUR" as TCurrencyCode,
   limits: [
     {
       limitKind: "daily",
@@ -25,7 +26,7 @@ const props = {
     },
   ],
   pendingChanges: [],
-  canIncreaseLimits: true,
+  revocationAllowed: true,
   allRemoved: false,
   edit: () => {},
   add: () => {},

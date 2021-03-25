@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { interpolate } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -65,7 +66,7 @@ export type ConfigurationFormData = {
 type ConfigurationFormProps = {
   t: ConfigurationFormContent;
   balance: number;
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   fetchContentIfNecessary: () => void;
   createSession: (formData: ConfigurationFormData) => void;

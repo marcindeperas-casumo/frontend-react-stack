@@ -59,7 +59,6 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       <TextInput
         className={flexItemWidth}
         currencySign={getSymbolForCurrency({
-          locale: props.locale,
           currency: props.currency,
         })}
         {...limitInputs[visible]}
@@ -98,8 +97,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
                   ? formatCurrency({
                       locale: props.locale,
                       currency: props.currency,
-                      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
-                      value: parseInt(limitInputs[limitName].value),
+                      value: limitInputs[limitName].value,
                     })
                   : "+"}
               </Text>

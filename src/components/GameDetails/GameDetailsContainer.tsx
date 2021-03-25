@@ -43,3 +43,18 @@ export const GameDetailsContainer = ({ slug }: { slug: string }) => {
 
   return null;
 };
+
+export const useGameDetails = ({ slug }: { slug: string }) => {
+  const { loading, data } = useQuery<
+    A.GameDetailsQuery,
+    A.GameDetailsQueryVariables
+  >(GameDetailsQuery, {
+    variables: { slug },
+  });
+
+  const game = data?.game;
+  return {
+    loading,
+    game,
+  };
+};

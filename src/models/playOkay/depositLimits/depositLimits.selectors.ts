@@ -16,17 +16,10 @@ const allLimitsRemoved = R.allPass([
   R.propEq("weekly", null),
   R.propEq("monthly", null),
 ]);
-export const canIncreaseLimitsSelector: (
-  state: any
-) => boolean = createSelector(
-  R.path([...basePath, "pendingLimitChanges"]),
-  R.path([...basePath, "lock"]),
-  (pendingLimitChanges, lock) => {
-    if (!pendingLimitChanges && !lock) {
-      return true;
-    }
-    return false;
-  }
+
+export const revocationAllowedSelector = createSelector<any, boolean, boolean>(
+  R.path([...basePath, "preadjust", "revocationAllowed"]),
+  revocationAllowed => revocationAllowed
 );
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, { pendingChanges: { limi... Remove this comment to see the full error message

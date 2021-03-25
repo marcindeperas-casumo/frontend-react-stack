@@ -356,6 +356,7 @@ export type Currency =
   | "CAD"
   | "DKK"
   | "NZD"
+  | "NOK"
   | "SEK"
   | "USD";
 
@@ -407,6 +408,7 @@ export interface Game {
   actualRtpPast6Months?: Maybe<Scalars["String"]>;
   actualRtpPastYear?: Maybe<Scalars["String"]>;
   rtp?: Maybe<Scalars["String"]>;
+  realMoneyPlayRequired?: Maybe<Scalars["Boolean"]>;
   /** @deprecated Please use name instead */
   title: Scalars["String"];
   /** @deprecated Please use backgroundImage instead */
@@ -1274,6 +1276,7 @@ export type GameDetails_GameFragment = {
   description?: Maybe<string>;
   hasPlayForFun: boolean;
   isInMaintenance: boolean;
+  realMoneyPlayRequired?: Maybe<boolean>;
   media: Array<{ type: string; path: string; order: number }>;
 };
 
@@ -1371,6 +1374,10 @@ export type GameRow_GameFragment = {
       symbol?: Maybe<string>;
     }>;
   }>;
+  jackpot?: Maybe<{
+    id: string;
+    value: { amount: number; currency: Currency };
+  }>;
 };
 
 export type GameSearch_GameFragment = GameRow_GameFragment;
@@ -1406,6 +1413,10 @@ export type GameTile_GameFragment = {
   liveCasinoId?: Maybe<string>;
   playBackground: string;
   category?: Maybe<string>;
+  jackpot?: Maybe<{
+    id: string;
+    value: { amount: number; currency: Currency };
+  }>;
 } & GameTileInMaintenance_GameFragment;
 
 export type GameTileInMaintenance_GameFragment = {

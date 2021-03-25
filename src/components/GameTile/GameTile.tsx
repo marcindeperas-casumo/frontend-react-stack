@@ -5,7 +5,8 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { Link } from "@reach/router";
 import React from "react";
-import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
+import { formatCurrency } from "Utils";
+import { Mobile, TabletAndDesktop, Desktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -26,6 +27,7 @@ export type Props = {
   imgixOpts?: Object;
   ratio?: string;
   t: GameTileTranslations;
+  locale?: string;
 };
 
 export const DEFAULT_CLASSES =
@@ -41,6 +43,7 @@ export const GameTile = ({
   },
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
+  locale,
 }: Props) => {
   const {
     isInMaintenance,
@@ -50,7 +53,30 @@ export const GameTile = ({
     slug,
     id,
     liveCasinoId,
+    jackpot,
   } = game;
+
+  const JackpotAmountButton = () => {
+    const currency = jackpot?.value?.currency;
+    const currentLocale = locale;
+    const amount = jackpot?.value?.amount;
+    if (!jackpot) {
+      return null;
+    }
+    return (
+      <Desktop>
+        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
+          <span>
+            {formatCurrency({
+              locale: currentLocale || "en-en",
+              currency: currency || "EUR",
+              value: amount,
+            })}
+          </span>
+        </div>
+      </Desktop>
+    );
+  };
 
   if (isInMaintenance) {
     return (
@@ -77,6 +103,7 @@ export const GameTile = ({
           DEFAULT_CLASSES,
           "u-cursor-pointer",
           `o-ratio--${ratio}`,
+          "c-game-tile-top-wrapper",
           className
         )}
         onClick={() => launchGame({ slug: game.slug })}
@@ -88,6 +115,7 @@ export const GameTile = ({
           // @ts-expect-error ts-migrate(2322) FIXME: Type '{ logoBackground: string; logo: string; name... Remove this comment to see the full error message
           imgixOpts={imgixOpts}
         />
+        {jackpot && <JackpotAmountButton />}
         <div className="o-ratio__content c-game-tile-container u-cursor--pointer o-position--absolute u-zindex--content-overlay">
           <Flex
             direction="horizontal"

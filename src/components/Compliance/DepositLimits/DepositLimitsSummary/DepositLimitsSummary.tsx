@@ -15,12 +15,13 @@ import type {
   DepositKinds,
   DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
+import { TCurrencyCode } from "Src/constants";
 import { limitTypes } from "..";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 import { AdditionalConditions } from "./AdditionalConditions";
 
 type Props = {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   t: {
     summary_title: string;
@@ -36,7 +37,7 @@ type Props = {
     approval_required_for_increase: string;
     responsible_gambling_test_required: string;
     decrease_effective_immediately: string;
-    revocation_allowed: string;
+    cancellation_allowed: string;
   };
   newLimits: AllLimits;
   currentLimits: AllLimits;

@@ -7,7 +7,8 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
     methods: {
       VISA_CARD: {
         profiles: {
-          default: {
+          default: "EUR",
+          EUR: {
             limits: {
               deposit: {
                 min: 10,
@@ -501,6 +502,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [
@@ -931,6 +933,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [
@@ -1361,6 +1364,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
                     GBP: 0.4,
                     CAD: 0.8,
                     DKK: 4,
+                    NOK: 4,
                     SEK: 4,
                   },
                   prizes: [

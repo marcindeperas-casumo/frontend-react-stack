@@ -7,7 +7,7 @@ import {
   POLL_INTERVAL,
 } from "Src/constants";
 import { localeSelector } from "Models/handshake";
-import Jackpots from "./Jackpots";
+import { Jackpots } from "./Jackpots";
 import { JackpotsQuery } from "./Jackpots.graphql";
 
 type JackpotsQueryInjectProps = {

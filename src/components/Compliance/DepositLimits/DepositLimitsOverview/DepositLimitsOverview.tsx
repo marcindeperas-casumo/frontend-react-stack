@@ -11,6 +11,7 @@ import {
   LimitHeader,
   LimitHeaderButton,
 } from "Components/Compliance/LimitHeader";
+import { TCurrencyCode } from "Src/constants";
 import { PendingChanges } from "./PendingChanges";
 import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
@@ -18,7 +19,7 @@ import { SectionHeader } from "./SectionHeader";
 import "./styles.scss";
 
 type Props = PendingDepositLimitsChangesSelected & {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   t: {
     daily_short: string;
@@ -37,7 +38,7 @@ type Props = PendingDepositLimitsChangesSelected & {
     more_limits_section_title: string;
     adjust_limit: string;
   };
-  canIncreaseLimits: boolean;
+  revocationAllowed?: boolean;
   limits: DepositLimitsSelected;
   edit: (depositKind: DepositKinds) => void;
   limitCancel: () => void;
@@ -50,7 +51,7 @@ export function DepositLimitsOverview(props: Props) {
   const { t } = props;
   const shouldShowAddButton = props.limits.length !== 3;
   const shouldShowRemoveButton =
-    !shouldShowAddButton && props.canIncreaseLimits;
+    !shouldShowAddButton && props.revocationAllowed;
 
   return (
     <Flex

@@ -5,6 +5,7 @@ import type {
   DepositKinds,
   DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
+import { TCurrencyCode } from "Src/constants";
 
 export type ValidationTranslations = {
   lock: string;
@@ -30,7 +31,7 @@ export type Translations = {
 };
 
 export type FormProps = {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   responsibleGamblingTestCanBeTaken: boolean;
   increasesOrRevocationsBlocked?: boolean;

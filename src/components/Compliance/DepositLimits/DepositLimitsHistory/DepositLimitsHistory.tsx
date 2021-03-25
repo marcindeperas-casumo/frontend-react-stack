@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 import cx from "classnames";
 import { formatCurrency } from "Utils";
 import type { DepositLimitsHistoryType } from "Models/playOkay/depositLimits";
+import { TCurrencyCode } from "Src/constants";
 import { SectionHeader } from "../DepositLimitsOverview/SectionHeader";
 import "./depositLimitsHistory.scss";
 
@@ -25,7 +26,7 @@ type Props = {
     all_limits_removed: string;
   };
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
   getLimitsHistory: () => void;
   fetchTranslations: () => void;
   history: Array<DepositLimitsHistoryType>;
