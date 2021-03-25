@@ -15,7 +15,7 @@ export const CuratedCardHeader = ({
   header,
   subtitle,
 }: CuratedCardHeaderProps) => {
-  if (isGame || isSports && header) {
+  if ((isGame || isSports) && header) {
     return <CuratedCardHeaderSimple header={header} />;
   }
 
