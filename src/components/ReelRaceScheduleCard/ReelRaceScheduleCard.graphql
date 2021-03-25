@@ -10,6 +10,7 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
     startTime
     endTime
     optedIn
+    minBet
     status
     spinLimit
     promoted
@@ -25,6 +26,7 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
         caveatShort
         today
         tomorrow
+        minBet
     }
 }
 

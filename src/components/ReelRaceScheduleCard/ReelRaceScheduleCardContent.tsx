@@ -67,70 +67,82 @@ export function ReelRaceScheduleCardContent({
 
   return (
     <>
-      <Flex
-        className={cx(
-          "u-padding-y--lg",
-          isNotMobile && "u-width--1/2 u-margin-left--4xlg"
-        )}
-      >
-        <Flex
-          direction="vertical"
-          align="center"
-          className="o-flex--1 u-text-align-center"
+      <Flex direction={isNotMobile ? "horizontal" : "vertical"}>
+        <Flex.Item
+          className={cx(
+            "o-flex--horizontal",
+            "u-padding-y--lg",
+            isNotMobile && "u-width--1/2 u-margin-left--4xlg"
+          )}
         >
-          <TimeLockedIcon className="t-color-grey-50" />
-          <Text
-            size="xs"
-            className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+          <Flex
+            direction="vertical"
+            align="center"
+            className="o-flex--1 u-text-align-center"
           >
-            {reelRace.translations.startingIn}
-          </Text>
-          <Text className="u-font-weight-bold">
-            {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
-          </Text>
-        </Flex>
-        <Flex
-          direction="vertical"
-          align="center"
-          className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
-        >
-          <SpinIcon className="t-color-grey-50" />
-          <Text
-            size="xs"
-            className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            <Text className="u-font-weight-bold">
+              {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
+            </Text>
+            <Text
+              size="xs"
+              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            >
+              {reelRace.translations.startingIn}
+            </Text>
+          </Flex>
+          <Flex
+            direction="vertical"
+            align="center"
+            className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
           >
-            {reelRace.translations.spins}
-          </Text>
-          <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
-        </Flex>
-        <Flex
-          direction="vertical"
-          align="center"
-          className="o-flex--1 u-text-align-center"
-        >
-          <AthleticsIcon className="t-color-grey-50" />
-          <Text
-            size="xs"
-            className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
+            <Text
+              size="xs"
+              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            >
+              {reelRace.translations.spins}
+            </Text>
+          </Flex>
+          <Flex
+            direction="vertical"
+            align="center"
+            className="o-flex--1 u-text-align-center"
           >
-            {reelRace.translations.duration}
-          </Text>
-          <Text className="u-font-weight-bold">
-            {reelRace.translations.durationTemplate &&
-              interpolate(reelRace.translations.durationTemplate, {
-                duration: getDuration(),
-              })}
-          </Text>
-        </Flex>
-      </Flex>
+            <Text className="u-font-weight-bold">
+              {reelRace.translations.durationTemplate &&
+                interpolate(reelRace.translations.durationTemplate, {
+                  duration: getDuration(),
+                })}
+            </Text>
+            <Text
+              size="xs"
+              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            >
+              {reelRace.translations.duration}
+            </Text>
+          </Flex>
+          <Flex
+            direction="vertical"
+            align="center"
+            className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
+          >
+            <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
+            <Text
+              size="xs"
+              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            >
+              {reelRace.translations.minBet}
+            </Text>
+          </Flex>
+        </Flex.Item>
 
-      <div
-        className={cx(
-          "o-flex-align--center@tablet o-flex-align--center@desktop o-flex--vertical@mobile",
-          isNotMobile && "u-margin-left--2xlg"
-        )}
-      >
-        <div className="u-width--1/2@tablet u-width--1/2@desktop">
+        <Flex.Block
+          className={cx(
+            "o-flex-justify--end",
+            "o-flex-align--center@tablet o-flex-align--center@desktop o-flex--vertical@mobile"
+            // isNotMobile && "u-margin-left--2xlg"
+          )}
+        >
           {reelRace.translations.caveatShort &&
             reelRace.translations.caveatShort !== "false" && (
               <Text
@@ -148,50 +160,57 @@ export function ReelRaceScheduleCardContent({
                 />
               </Text>
             )}
-        </div>
-        <Flex
-          className="u-width--1/2@tablet u-width--1/2@desktop u-margin-top--md u-padding-x--md u-margin-bottom--md"
-          spacing="3xlg"
-        >
-          <Button
-            size="md"
-            onClick={toggleExpandPrizes}
-            className="u-width--full"
+          <Flex
+            className="u-width--full@mobile u-width--1/2@tablet u-width--1/2@desktop u-margin-top--md u-padding-x--md u-margin-bottom--md"
+            spacing="3xlg"
           >
-            {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
-          </Button>
-          <div className="u-width--full u-padding-left--md">
-            {reelRace.optedIn ? (
-              <TrackClick eventName={disabled.eventName} data={disabled.data}>
-                <ButtonPrimary
-                  size="md"
-                  onClick={() =>
-                    disabled.onClick
-                      ? disabled.onClick(reelRace.game.slug)
-                      : noop()
-                  }
-                  className="u-width--full"
-                >
-                  <PlayIcon size="sm" />
-                  <Text tag="span" className="u-margin-left">
-                    {disabled.label}
-                  </Text>
-                </ButtonPrimary>
-              </TrackClick>
-            ) : (
-              <TrackClick eventName={active.eventName} data={active.data}>
-                <ButtonPrimary
-                  size="md"
-                  onClick={active.onClick || noop}
-                  className="u-width--full"
-                >
-                  <Text tag="span">{active.label}</Text>
-                </ButtonPrimary>
-              </TrackClick>
-            )}
-          </div>
-        </Flex>
-      </div>
+            <Flex.Block>
+              <Button
+                size="md"
+                onClick={toggleExpandPrizes}
+                className="u-width--full"
+              >
+                {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
+              </Button>
+            </Flex.Block>
+            <Flex.Block>
+              <div className="u-width--full u-padding-left--md">
+                {reelRace.optedIn ? (
+                  <TrackClick
+                    eventName={disabled.eventName}
+                    data={disabled.data}
+                  >
+                    <ButtonPrimary
+                      size="md"
+                      onClick={() =>
+                        disabled.onClick
+                          ? disabled.onClick(reelRace.game.slug)
+                          : noop()
+                      }
+                      className="u-width--full"
+                    >
+                      <PlayIcon size="sm" />
+                      <Text tag="span" className="u-margin-left">
+                        {disabled.label}
+                      </Text>
+                    </ButtonPrimary>
+                  </TrackClick>
+                ) : (
+                  <TrackClick eventName={active.eventName} data={active.data}>
+                    <ButtonPrimary
+                      size="md"
+                      onClick={active.onClick || noop}
+                      className="u-width--full"
+                    >
+                      <Text tag="span">{active.label}</Text>
+                    </ButtonPrimary>
+                  </TrackClick>
+                )}
+              </div>
+            </Flex.Block>
+          </Flex>
+        </Flex.Block>
+      </Flex>
       {expandPrizes && (
         <ReelRaceScheduleCardPrizes
           formattedPrizes={reelRace.formattedPrizes}
