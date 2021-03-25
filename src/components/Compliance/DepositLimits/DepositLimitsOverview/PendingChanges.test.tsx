@@ -1,12 +1,13 @@
 import * as React from "react";
 import { shallow } from "enzyme";
+import { TCurrencyCode } from "Src/constants";
 import { PendingChanges } from "./PendingChanges";
 import t from "./__mocks__/cms";
 
 const props = {
   t,
   locale: "en-GB",
-  currency: "EUR",
+  currency: "EUR" as TCurrencyCode,
   pendingChanges: [],
   allRemoved: false,
 };

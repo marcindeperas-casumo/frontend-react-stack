@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { TCurrencyCode } from "Src/constants";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
 
 describe("ValuableWageringProgressBar", () => {
@@ -7,7 +8,7 @@ describe("ValuableWageringProgressBar", () => {
   const props = {
     leftToWager: 90,
     wageringThreshold: 100,
-    currency: "EUR",
+    currency: "EUR" as TCurrencyCode,
     market: "en",
     label: "You have {{amount}} left to wager",
   };

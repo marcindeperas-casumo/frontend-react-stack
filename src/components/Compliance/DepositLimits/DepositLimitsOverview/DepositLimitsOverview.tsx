@@ -11,6 +11,7 @@ import {
   LimitHeader,
   LimitHeaderButton,
 } from "Components/Compliance/LimitHeader";
+import { TCurrencyCode } from "Src/constants";
 import { PendingChanges } from "./PendingChanges";
 import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
@@ -18,7 +19,7 @@ import { SectionHeader } from "./SectionHeader";
 import "./styles.scss";
 
 type Props = PendingDepositLimitsChangesSelected & {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   t: {
     daily_short: string;

@@ -2,7 +2,7 @@ import Text from "@casumo/cmp-text";
 import React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate, formatCurrency } from "Utils";
-import { INTL_LOCALES } from "Src/constants";
+import { INTL_LOCALES, TCurrencyCode } from "Src/constants";
 import { ProgressBar } from "Components/Progress";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   wageringThreshold: number;
   label: string;
   market: string;
-  currency: string;
+  currency: TCurrencyCode;
 };
 
 export const ValuableWageringProgressBar = ({
@@ -46,7 +46,7 @@ export const ValuableWageringProgressBar = ({
 };
 
 function formattedAmountLeftToWagerText(
-  currency: string,
+  currency: TCurrencyCode,
   label: string,
   leftToWager: number,
   market: string

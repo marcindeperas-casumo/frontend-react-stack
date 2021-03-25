@@ -6,7 +6,7 @@ import { DateTime } from "luxon";
 import { pathOr } from "ramda";
 import { useDispatch } from "react-redux";
 import type { RealityCheckType } from "Models/player";
-import { ROUTE_IDS } from "Src/constants";
+import { ROUTE_IDS, TCurrencyCode } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
 import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
 import { appManualLogoutInit } from "Models/app";
@@ -24,7 +24,7 @@ type RealityCheckProps = {
   onClickContinue: () => void;
   casumoName: string;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
   realityCheck: RealityCheckType;
 };
 

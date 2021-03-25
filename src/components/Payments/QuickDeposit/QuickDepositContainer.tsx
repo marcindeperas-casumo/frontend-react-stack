@@ -82,17 +82,14 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       t={t}
       walletBalance={formatCurrency({
         locale,
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
         currency,
         value: gameActivityAwarePlayerBalance,
       })}
       bonusBalance={formatCurrency({
         locale,
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
         currency,
         value: gameActivityAwareBonusBalance,
       })}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}
       onCashierLinkClick={navigateToCashier}
