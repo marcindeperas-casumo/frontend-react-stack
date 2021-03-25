@@ -1,6 +1,5 @@
-import { getApolloContext } from "@apollo/client";
-import { Query } from "@apollo/client/react/components";
-import React from "react";
+import { useQuery, useApolloClient, ApolloClient } from "@apollo/client";
+import React, { useEffect } from "react";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,
@@ -8,11 +7,11 @@ import {
   REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
+import { ErrorMessage } from "Components/ErrorMessage";
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
-import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
@@ -24,13 +23,14 @@ import {
   HIDE_SEARCH,
   CLOSE_ALL_MODALS_MUTATION,
 } from "Models/apollo/mutations";
-import { SPORTS_SHELL_QUERY } from "Models/apollo/queries";
+import { SportsShellQuery } from "Models/apollo/queries";
+import * as A from "Types/apollo";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 const bridgeEventHandlers = [
   [
     REACT_APP_EVENT_MENU_CLOSED,
-    client => data =>
+    client => () =>
       client.mutate({
         mutation: UPDATE_BETSLIP_STATE_MUTATION,
         variables: { isVisible: true },
@@ -38,7 +38,7 @@ const bridgeEventHandlers = [
   ],
   [
     REACT_APP_EVENT_MENU_OPENED,
-    client => data =>
+    client => () =>
       client.mutate({
         mutation: UPDATE_BETSLIP_STATE_MUTATION,
         variables: { isVisible: false },
@@ -61,56 +61,48 @@ const bridgeEventHandlers = [
   ],
 ];
 
-export class SportsShellContainer extends React.Component<{}> {
-  static contextType = getApolloContext();
+export const SportsShellContainer: React.FC<{}> = () => {
+  const { data, error, loading, refetch } = useQuery<
+    A.SportsShellQuery,
+    A.SportsShellQueryVariables
+  >(SportsShellQuery);
 
-  componentDidMount() {
-    bridgeEventHandlers.map(([event, handler]) =>
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | ((client: any) => (data... Remove this comment to see the full error message
-      bridge.on(event, handler(this.context.client))
+  const client = useApolloClient();
+
+  useEffect(() => {
+    bridgeEventHandlers.map(
+      ([event, handler]: [string, (c: ApolloClient<{}>) => () => void]) =>
+        bridge.on(event, handler(client))
     );
+  }, [client]);
+
+  if (loading) {
+    return <SportsShellSkeleton />;
   }
 
-  render() {
-    return (
-      <Query query={SPORTS_SHELL_QUERY}>
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '({ loading, data, error }: { loading: any; d... Remove this comment to see the full error message */}
-        {({ loading, data, error }) => {
-          if (loading || error) {
-            return <SportsShellSkeleton />;
-          }
-          return (
-            <>
-              <SportsHashWatcher>
-                {({ currentHash }) => (
-                  <div className="t-background-grey-0">
-                    <SportsTopBar
-                      currentHash={currentHash}
-                      isSearchVisible={data.isSearchVisible}
-                    />
-
-                    <Deposit />
-
-                    {/* Top Content Area */}
-
-                    {data.isSearchVisible ? (
-                      <SportsSearch />
-                    ) : (
-                      <SportsNav currentHash={currentHash} />
-                    )}
-
-                    <WelcomeOfferCuratedCard currentHash={currentHash} />
-                    <SportsCuratedCard currentHash={currentHash} />
-                  </div>
-                )}
-              </SportsHashWatcher>
-              <KambiClient />
-              <Modals />
-              <SportsFooter />
-            </>
-          );
-        }}
-      </Query>
-    );
+  if (error) {
+    return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
-}
+
+  return (
+    <>
+      <SportsHashWatcher>
+        {({ currentHash }) => (
+          <div className="t-background-grey-0">
+            <Deposit />
+            {data.isSearchVisible ? (
+              <SportsSearch />
+            ) : (
+              <SportsNav currentHash={currentHash} />
+            )}
+            <WelcomeOfferCuratedCard currentHash={currentHash} />
+            <SportsCuratedCard currentHash={currentHash} />
+          </div>
+        )}
+      </SportsHashWatcher>
+      <KambiClient />
+      <Modals />
+      <SportsFooter />
+    </>
+  );
+};

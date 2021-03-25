@@ -1,4 +1,4 @@
-import { SPORTS_SHELL_QUERY } from "Models/apollo/queries";
+import { SportsShellQuery } from "Models/apollo/queries";
 
 type MockData = {
   hasSelectedFavourites: boolean,
@@ -14,7 +14,7 @@ export type MockResult = {
 export const getQueryMocks = ({ data, loading, error }: MockResult) => [
   {
     request: {
-      query: SPORTS_SHELL_QUERY,
+      query: SportsShellQuery,
     },
     result: { data, loading, error },
   },
