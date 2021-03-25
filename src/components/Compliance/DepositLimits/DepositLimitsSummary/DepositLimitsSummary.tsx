@@ -15,12 +15,13 @@ import type {
   DepositKinds,
   DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
+import { TCurrencyCode } from "Src/constants";
 import { limitTypes } from "..";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 import { AdditionalConditions } from "./AdditionalConditions";
 
 type Props = {
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   t: {
     summary_title: string;

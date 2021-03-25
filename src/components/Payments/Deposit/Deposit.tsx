@@ -6,7 +6,7 @@ import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
 import { Mobile } from "Components/ResponsiveLayout";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { EVENTS, EVENT_PROPS, TCurrencyCode } from "Src/constants";
 import { navigateToDeposit } from "Features/sports/utils";
 
 export const CMS_SLUG = "welcome-offer-sports";
@@ -16,7 +16,7 @@ type Props = {
   balance: number;
   bonus: number;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
 };
 
 export const Deposit = ({

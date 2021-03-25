@@ -4,13 +4,14 @@ import { ButtonSecondary } from "@casumo/cmp-button";
 import { EditIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import { formatCurrency } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 
 type LimitYourBudgetRowType = {
   t: {
     limit_your_budget: string;
   };
   budget: number;
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   onClickEdit: () => void;
 };

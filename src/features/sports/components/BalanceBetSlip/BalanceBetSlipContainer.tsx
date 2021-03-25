@@ -27,7 +27,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   const balance = formatCurrency({
     locale,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: playerBalance,
@@ -35,7 +34,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   const bonus = formatCurrency({
     locale,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: bonusBalance,

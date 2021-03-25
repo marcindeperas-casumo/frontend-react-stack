@@ -5,6 +5,7 @@ import React from "react";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
+import type { TCurrencyCode } from "Src/constants";
 import "./QuickDeposit.scss";
 
 export type QuickDepositTranslations = {
@@ -17,7 +18,7 @@ export type QuickDepositProps = {
   hasSavedPaymentMethods: boolean;
   walletBalance: string;
   bonusBalance: string;
-  currency: string;
+  currency: TCurrencyCode;
   className?: string;
   onCashierLinkClick: () => void;
   onQuickDepositLinkClick: () => void;

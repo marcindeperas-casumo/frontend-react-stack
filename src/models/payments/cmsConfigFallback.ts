@@ -20,7 +20,8 @@ const DEFAULT_DEVICE_CONFIGURATION = {
 // Sane fallback if the CMS is down. Also a good example of how the configuration looks
 export const FALLBACK_CONFIGURATION = {
   profiles: {
-    default: {
+    default: "EUR",
+    EUR: {
       limits: {
         deposit: {
           min: 10,

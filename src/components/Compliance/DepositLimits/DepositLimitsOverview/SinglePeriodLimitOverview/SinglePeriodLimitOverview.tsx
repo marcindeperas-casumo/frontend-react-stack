@@ -9,6 +9,7 @@ import { formatCurrency, interpolate } from "Utils";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import type { DepositKinds } from "Models/playOkay/depositLimits";
 import "./singlePeriodLimitOverview.scss";
+import { TCurrencyCode } from "Src/constants";
 
 type Props = {
   t: {
@@ -18,7 +19,7 @@ type Props = {
     remaining_limit: string;
     adjust_limit: string;
   };
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   progressPercentage: number;
   shouldRenderSeparator: boolean;
