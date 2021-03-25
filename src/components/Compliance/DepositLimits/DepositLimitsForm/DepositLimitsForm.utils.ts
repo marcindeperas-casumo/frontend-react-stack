@@ -44,6 +44,7 @@ export function validate(
   }
 
   const limitBeforeChange = formProps.limits[currentLimit];
+  const pendingAdjustments = formProps.pendingLimitChanges?.value;
 
   if (!R.isNil(limitBeforeChange) && currentLimitValue > limitBeforeChange) {
     const replacements = {
@@ -77,10 +78,17 @@ export function validate(
         replacements
       );
     }
+
+    if (pendingAdjustments) {
+      return interpolate(
+        t.input_validation.cant_be_higher_while_any_adjustment_is_pending,
+        replacements
+      );
+    }
   }
 
-  if (formProps.pendingLimitChanges?.value) {
-    const pendingChange = formProps.pendingLimitChanges?.value[currentLimit];
+  if (pendingAdjustments) {
+    const pendingChange = pendingAdjustments[currentLimit];
     if (pendingChange && currentLimitValue > pendingChange) {
       return interpolate(
         t.input_validation.has_to_be_lower_than_pending_adjustment,
