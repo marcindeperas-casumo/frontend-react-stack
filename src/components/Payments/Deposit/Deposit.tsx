@@ -6,30 +6,17 @@ import { useTranslations } from "Utils/hooks";
 import { formatCurrency } from "Utils";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS, TCurrencyCode } from "Src/constants";
-import { navigateToDeposit } from "Features/sports/utils";
-
-export const CMS_SLUG = "welcome-offer-sports";
+import { navigateToDeposit } from "../utils";
 
 type Props = {
-  hasDeposited: boolean;
   balance: number;
   bonus: number;
   locale: string;
   currency: TCurrencyCode;
 };
 
-export const Deposit = ({
-  hasDeposited,
-  balance,
-  bonus,
-  locale,
-  currency,
-}: Props) => {
+export const Deposit = ({ balance, bonus, locale, currency }: Props) => {
   const t = useTranslations("iframe-solution");
-
-  // if (!hasDeposited) {
-  //   return null;
-  // }
 
   const balanceFormatted = formatCurrency({
     locale,
