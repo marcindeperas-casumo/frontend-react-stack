@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import React from "react";
 import { quickDepositMethod } from "Models/payments/__mocks__/quickDepositMethod.mock";
 import MockStore from "Components/MockStore";
-import { PaymentMethodDetails } from "../PaymentMethodDetails";
+import { PaymentMethodDetails } from "Components/PaymentMethodDetails";
 import { QuickDepositSlip } from "./QuickDepositSlip";
 import type { QuickDepositSlipProps } from "./QuickDepositSlip.types";
 import { translations } from "./__mocks__/cms";

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { playerCurrencySymbolSelector } from "Models/player";
 import type { DepositRequestStateType } from "Models/payments/payments.types";
-import { useTranslationsGql } from "../../utils/hooks/useTranslationsGql";
+import { useTranslationsGql } from "Utils/hooks";
 import { QuickDepositSlip } from "./QuickDepositSlip";
 
 type Props = {
