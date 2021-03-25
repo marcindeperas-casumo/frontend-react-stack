@@ -20,17 +20,33 @@ export const ComponentBuilderContainer = ({ slug }: Props) => {
   const id = `root:${slug}:fields.${cmsField}`;
   const variables = { id };
   const { data, loading } = useQuery(QUERY, { variables });
-  const componentDefinitionJSON = propOr(null, "componentDefinitionJSON", data);
+  const componentDefinitionJSONUnformatted = propOr(
+    null,
+    "componentDefinitionJSON",
+    data
+  );
 
-  if (loading && !componentDefinitionJSON) {
+  if (loading && !componentDefinitionJSONUnformatted) {
     return null;
   }
-
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '<T, V>(val: T) => V' is not assi... Remove this comment to see the full error message
+  const parsedJSON = JSON.parse(componentDefinitionJSONUnformatted);
+  const componentDefinitionJSON = Array.isArray(parsedJSON)
+    ? parsedJSON.map(comp => {
+        if (comp["acf_fc_layout"] === "PROMOTION_CARDS_HORIZONTAL") {
+          return {
+            ...comp,
+            slug_2: `campaigns.${comp.slug_2}`,
+          };
+        }
+        return comp;
+      })
+    : // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '<T, V>(val: T) => V' is not assi... Remove this comment to see the full error message
+      JSON.parse(componentDefinitionJSONUnformatted);
   try {
     return (
       <ComponentBuilderRenderer
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '<T, V>(val: T) => V' is not assi... Remove this comment to see the full error message
-        componentDefinitions={JSON.parse(componentDefinitionJSON)}
+        componentDefinitions={componentDefinitionJSON}
       />
     );
   } catch (e) {
