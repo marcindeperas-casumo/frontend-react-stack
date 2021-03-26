@@ -15,7 +15,7 @@ export const rightPaddingClasses = createModifierClasses(
 ).join(" ");
 
 export const xPaddingClasses = createModifierClasses(
-  "u-padding",
+  "u-padding-x",
   horizontalListsDevicePaddings
 ).join(" ");
 

@@ -12,7 +12,7 @@ import "./GameRow.scss";
 
 type Props = {
   /** The Game object */
-  game: A.GameRow_GameFragment;
+  game: A.GameRow_GameFragment | A.Jackpots_GameFragment;
   /** Class name to apply to the game row */
   className?: string;
   /** a function that renders some text */
@@ -47,7 +47,7 @@ export const GameRow = (props: Props) => {
     >
       <Flex
         className={classNames(
-          "u-width--full u-height--full u-padding--md",
+          "c-game-row u-width--full u-padding-top--md u-padding-x--md",
           props.className
         )}
         align="center"
@@ -55,10 +55,13 @@ export const GameRow = (props: Props) => {
         onClick={onLaunchGame}
       >
         <Flex
-          className={classNames("o-flex__item--no-shrink", {
-            "t-greyscale c-game-row__game-thumb--maintenance":
-              game.isInMaintenance,
-          })}
+          className={classNames(
+            "o-flex__item--no-shrink u-padding-bottom--md",
+            {
+              "t-greyscale c-game-row__game-thumb--maintenance":
+                game.isInMaintenance,
+            }
+          )}
         >
           <GameThumb
             src={game.backgroundImage}
@@ -68,11 +71,18 @@ export const GameRow = (props: Props) => {
             height={GameRow.ICON_SIZE}
           />
         </Flex>
-        <Flex className="u-padding-x--md o-flex--1 u-width">
+        <Flex
+          direction="vertical"
+          className="u-padding-x--md o-flex--1 u-width"
+        >
           {renderText()}
+          <div className="c-game-row__bottom-spacing" />
         </Flex>
         {rightSideComponent && (
-          <Flex className="o-flex__item--no-shrink">{rightSideComponent}</Flex>
+          <Flex className="o-flex__item--no-shrink" direction="vertical">
+            {rightSideComponent}
+            <div className="c-game-row__bottom-spacing" />
+          </Flex>
         )}
       </Flex>
     </TrackClick>

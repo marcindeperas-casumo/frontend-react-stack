@@ -15,7 +15,6 @@ import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
-import { Deposit } from "Components/Payments/Deposit";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
 import {
   UPDATE_BETSLIP_STATE_MUTATION,
@@ -27,7 +26,8 @@ import { SportsShellQuery } from "Models/apollo/queries";
 import * as A from "Types/apollo";
 import { VirtualsPage } from "Features/sports/components/Virtuals/VirtualsPage";
 import { PromotionDetailPage } from "Features/sports/components/Promotions/PromotionDetailPage";
-import SportsShellSkeleton from "./SportsShellSkeleton";
+import { SportsShellDepositWrapper } from "Features/sports/components/SportsShell/SportsShellDepositWrapper";
+import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 
 const bridgeEventHandlers = [
   [
@@ -92,22 +92,20 @@ export const SportsShellContainer: React.FC<{}> = () => {
   return (
     <>
       <SportsHashWatcher>
-        {({ currentHash }) => {
-          return (
-            <div className="t-background-grey-0">
-              <Deposit />
-              {data.isSearchVisible ? (
-                <SportsSearch />
-              ) : (
-                <SportsNav currentHash={currentHash} />
-              )}
-              <WelcomeOfferCuratedCard currentHash={currentHash} />
-              <SportsCuratedCard currentHash={currentHash} />
-              {currentHash === virtualsPrefixHash && <VirtualsPage />}
-              {currentHash.startsWith(promotionPrefixHash) && <PromotionDetailPage currentHash={currentHash} />}
-            </div>
-          )
-        }}
+        {({ currentHash }) => (
+          <div className="t-background-grey-0">
+            <SportsShellDepositWrapper />
+            {data.isSearchVisible ? (
+              <SportsSearch />
+            ) : (
+              <SportsNav currentHash={currentHash} />
+            )}
+            <WelcomeOfferCuratedCard currentHash={currentHash} />
+            <SportsCuratedCard currentHash={currentHash} />
+            {currentHash === virtualsPrefixHash && <VirtualsPage />}
+            {currentHash.startsWith(promotionPrefixHash) && <PromotionDetailPage currentHash={currentHash} />}
+          </div>
+        )}
       </SportsHashWatcher>
       <KambiClient />
       <Modals />

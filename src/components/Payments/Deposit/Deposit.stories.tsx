@@ -11,13 +11,7 @@ stories.add(
   "Deposit default",
   () => (
     <MockStore state={defaultState}>
-      <Deposit
-        hasDeposited={true}
-        balance={123456}
-        bonus={666}
-        locale="en-IN"
-        currency="INR"
-      />
+      <Deposit balance={123456} bonus={666} locale="en-IN" currency="INR" />
     </MockStore>
   ),
   viewports.mobile

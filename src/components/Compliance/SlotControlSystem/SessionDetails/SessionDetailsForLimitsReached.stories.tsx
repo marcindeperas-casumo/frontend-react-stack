@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import * as React from "react";
 import MockStore from "Components/MockStore";
-import gameMock from "Components/GameTile/__mocks__/Game.json";
+import { gameMock } from "Components/GameTile/__mocks__/Game";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import { SessionDetailsForLimitsReached } from "./SessionDetailsForLimitsReached";
 
@@ -27,7 +27,6 @@ stories.add("Default", () => {
       <SessionDetailsForLimitsReached
         t={t}
         locale="en-GB"
-        // @ts-expect-error ts-migrate(2739) FIXME: Type '{ name: string; slug: string; backgroundImag... Remove this comment to see the full error message
         playAgainGame={gameMock}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}

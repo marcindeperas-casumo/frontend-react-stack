@@ -1,3 +1,5 @@
+import { navigateById } from "Services/NavigationService";
+
 export const basicForm = (
   target: string,
   url: string,
@@ -37,4 +39,17 @@ export const basicForm = (
     submit,
     addParam,
   };
+};
+
+export const navigateToDeposit = () => {
+  const redirectUrl = window.location.href.substr(
+    window.location.origin.length + 1
+  );
+
+  navigateById({
+    routeId: "deposit",
+    queryParams: {
+      redirectionUrl: redirectUrl,
+    },
+  });
 };

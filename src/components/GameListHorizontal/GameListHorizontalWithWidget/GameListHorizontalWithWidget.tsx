@@ -15,7 +15,7 @@ import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
 export type Props = {
-  games: Array<A.GameRow_GameFragment>;
+  games: Array<A.GameRow_GameFragment | A.Jackpots_GameFragment>;
   Widget: React.ComponentType;
   name: string | undefined;
   seeMore?: SeeMoreProps;
@@ -42,7 +42,7 @@ export const GameListHorizontalWithWidget = ({
       >
         <GameRow
           game={game}
-          className="t-background-white u-padding--md t-border-r--md t-elevation--10"
+          className="t-background-white t-border-r--md t-elevation--10"
           renderText={() => (
             <GameRowText name={game.name} description={game.gameStudio} />
           )}
@@ -65,7 +65,7 @@ export const GameListHorizontalWithWidget = ({
             >
               <GameRow
                 game={game}
-                className="t-background-white u-padding--md t-border-r--md t-elevation--10"
+                className="t-background-white t-border-r--md t-elevation--10"
                 renderText={() => (
                   <GameRowText name={game.name} description={game.gameStudio} />
                 )}
