@@ -5,13 +5,12 @@ import {
   playerCurrencySelector,
   playerWalletBonusSelector,
 } from "Models/player";
+import { navigateToDeposit } from "Components/Payments/utils";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
-import { navigateToDeposit } from "Features/sports/utils";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { BalanceBetSlip } from "./BalanceBetSlip";
-
 import "./BalanceBetSlip.scss";
 
 type Props = {
