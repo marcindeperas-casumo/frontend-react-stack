@@ -1,5 +1,9 @@
 .c-game-row {
-  position: relative;
+  height: 96px;
+
+  &__bottom-spacing {
+    flex: 1 1 16px;
+  }
 
   &__game-thumb--maintenance {
     &::before {

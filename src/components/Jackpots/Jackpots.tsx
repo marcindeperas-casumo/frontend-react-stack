@@ -40,11 +40,12 @@ const JackpotsColumn = ({
     >
       <GameRow
         game={game}
-        className="t-background-white u-padding--md t-border-r--md t-elevation--10"
+        className="t-background-white t-border-r--md t-elevation--10"
         renderText={() => (
           <GameRowText
             locale={locale}
             name={game.name}
+            description={game.gameStudio}
             bets={game.lobby?.bets}
             jackpot={game.jackpot}
           />
