@@ -25,8 +25,8 @@ import {
 } from "Models/apollo/mutations";
 import { SportsShellQuery } from "Models/apollo/queries";
 import * as A from "Types/apollo";
-import { Virtuals } from "Features/sports/components/Virtuals/Virtuals";
-import { VirtualsPromo } from "Features/sports/components/Virtuals/VirtualsPromo";
+import { VirtualsPage } from "Features/sports/components/Virtuals/VirtualsPage";
+import { PromotionDetailPage } from "Features/sports/components/Promotions/PromotionDetailPage";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 const bridgeEventHandlers = [
@@ -86,6 +86,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
     return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
+  const virtualsPrefixHash = '#virtuals';
+  const promotionPrefixHash = '#promotions';
+
   return (
     <>
       <SportsHashWatcher>
@@ -100,8 +103,8 @@ export const SportsShellContainer: React.FC<{}> = () => {
               )}
               <WelcomeOfferCuratedCard currentHash={currentHash} />
               <SportsCuratedCard currentHash={currentHash} />
-              {currentHash === "#virtuals" && <Virtuals />}
-              {currentHash.startsWith("#virtuals-") && <VirtualsPromo />}
+              {currentHash === virtualsPrefixHash && <VirtualsPage />}
+              {currentHash.startsWith(promotionPrefixHash) && <PromotionDetailPage currentHash={currentHash} />}
             </div>
           )
         }}
