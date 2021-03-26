@@ -1,7 +1,9 @@
 import * as React from "react";
 import { formatCurrency, formatTime } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 import { Row } from "./Row";
 import { Header } from "./Header";
+
 type Props = {
   t:
     | {
@@ -14,13 +16,14 @@ type Props = {
       }
     | undefined;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
   moneyWagered: number;
   moneyWon: number;
   moneyLeft: number;
   playStartedTime: number;
   playEndedTime: number;
 };
+
 export function SessionDetailsBody(props: Props) {
   const {
     locale,

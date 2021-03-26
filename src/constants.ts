@@ -291,6 +291,7 @@ export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £
   DKK: "kr.",
+  NOK: "kr",
   SEK: "kr",
   CAD: "\u0024", // $
   NZD: "\u0024", // $
@@ -302,6 +303,7 @@ export const CURRENCIES = {
   EUR: "EUR",
   GBP: "GBP",
   DKK: "DKK",
+  NOK: "NOK",
   SEK: "SEK",
   CAD: "CAD",
   NZD: "NZD",
