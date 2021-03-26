@@ -15,7 +15,6 @@ import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
-import { Deposit } from "Components/Payments/Deposit";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
 import {
   UPDATE_BETSLIP_STATE_MUTATION,
@@ -25,6 +24,7 @@ import {
 } from "Models/apollo/mutations";
 import { SportsShellQuery } from "Models/apollo/queries";
 import * as A from "Types/apollo";
+import { SportsShellDepositWrapper } from "./SportsShellDepositWrapper";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 const bridgeEventHandlers = [
@@ -89,7 +89,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
       <SportsHashWatcher>
         {({ currentHash }) => (
           <div className="t-background-grey-0">
-            <Deposit />
+            <SportsShellDepositWrapper />
             {data.isSearchVisible ? (
               <SportsSearch />
             ) : (

@@ -28,6 +28,7 @@ import {
   BlueRibbonChristmasContainer,
   BlueRibbonJackpotsWidgetPromotionPage,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -38,6 +39,7 @@ export const COMPONENT_MAPPING = {
   CURATED_CARD_DEFAULT: DefaultCuratedCard,
   CURATED_CARD_TOPLIST: TopListCuratedCard,
   CURATED_CARD: TopListCuratedCard,
+  DEPOSIT_ROW: ComponentBuilderDeposit,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
