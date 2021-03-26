@@ -36,7 +36,7 @@ export function ReelRaceScheduleCardContent({
   showPrizes = false,
 }: Props) {
   const [expandPrizes, setExpandPrizes] = React.useState(showPrizes);
-  const isNotMobile = useIsScreenMinimumTablet();
+  const isMinTablet = useIsScreenMinimumTablet();
 
   const getDuration = () => {
     return DateTime.fromMillis(reelRace.endTime)
@@ -67,12 +67,12 @@ export function ReelRaceScheduleCardContent({
 
   return (
     <>
-      <Flex direction={isNotMobile ? "horizontal" : "vertical"}>
+      <Flex direction={isMinTablet ? "horizontal" : "vertical"}>
         <Flex.Item
           className={cx(
             "o-flex--horizontal",
             "u-padding-y--lg",
-            isNotMobile && "u-width--1/2 u-margin-left--4xlg"
+            isMinTablet && "u-width--1/2 u-margin-left--4xlg"
           )}
         >
           <Flex
@@ -140,7 +140,6 @@ export function ReelRaceScheduleCardContent({
           className={cx(
             "o-flex-justify--end",
             "o-flex-align--center@tablet o-flex-align--center@desktop o-flex--vertical@mobile"
-            // isNotMobile && "u-margin-left--2xlg"
           )}
         >
           {reelRace.translations.caveatShort &&
@@ -149,7 +148,7 @@ export function ReelRaceScheduleCardContent({
                 tag="div"
                 className={cx(
                   "t-color-grey-50",
-                  isNotMobile ? "u-margin-left--4xlg" : "u-padding--md"
+                  isMinTablet ? "u-margin-left--4xlg" : "u-padding--md"
                 )}
                 onClick={showCaveatsModal}
               >
@@ -161,10 +160,12 @@ export function ReelRaceScheduleCardContent({
               </Text>
             )}
           <Flex
-            className="u-width--full@mobile u-width--1/2@tablet u-width--1/2@desktop u-margin-top--md u-padding-x--md u-margin-bottom--md"
-            spacing="3xlg"
+            className={cx(
+              "u-margin-top--md u-padding-x--md u-margin-bottom--md",
+              !isMinTablet && "u-width--full"
+            )}
           >
-            <Flex.Block>
+            <Flex.Block className={cx(!isMinTablet && "o-flex--1")}>
               <Button
                 size="md"
                 onClick={toggleExpandPrizes}
@@ -173,7 +174,7 @@ export function ReelRaceScheduleCardContent({
                 {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
               </Button>
             </Flex.Block>
-            <Flex.Block>
+            <Flex.Block className={cx(!isMinTablet && "o-flex--1")}>
               <div className="u-width--full u-padding-left--md">
                 {reelRace.optedIn ? (
                   <TrackClick

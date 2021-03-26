@@ -165,6 +165,7 @@ export class ReelRaceCard extends React.Component<Props> {
       translations: t,
       game,
       spinLimit,
+      minBet,
       formattedPrize,
       promoted,
     } = this.props.reelRace;
@@ -269,6 +270,8 @@ export class ReelRaceCard extends React.Component<Props> {
                   bottom={t.duration}
                 />
               )}
+              <div className="c-reel-race__separator u-margin-x--md" />
+              {t.minBet && <Column top={minBet} bottom={t.minBet} />}
             </Flex>
 
             <Flex direction="horizontal" justify="space-between" align="end">
