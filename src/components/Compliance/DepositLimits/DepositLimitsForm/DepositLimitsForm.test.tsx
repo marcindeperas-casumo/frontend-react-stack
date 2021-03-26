@@ -180,12 +180,14 @@ describe("DepositLimitsForm", () => {
       },
       pendingLimitChanges: {
         value: {
-          daily: 20
-        }
+          daily: 20,
+        },
       },
       initiallyVisible: "weekly",
-      responsibleGamblingTestCanBeTaken: true
+      responsibleGamblingTestCanBeTaken: true,
     });
-    expect(validation).toEqual('cant_be_higher_while_any_adjustment_is_pending');
+    expect(validation).toEqual(
+      "cant_be_higher_while_any_adjustment_is_pending"
+    );
   });
 });
