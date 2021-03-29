@@ -5,16 +5,76 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import cx from "classnames";
 import * as A from "Types/apollo";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { GameThumb } from "Components/GameThumb";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 
-type Props = {
+type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
   t: TReelRacesContentPage;
   expanded: boolean;
   optInForReelRace: () => void;
+};
+
+type TReelRaceStartTimeProps = Pick<
+  A.ReelRaceScheduleCard_ReelRaceFragment,
+  "startTime" | "promoted" | "translations"
+>;
+
+const ReelRaceStartTime = ({
+  startTime,
+  promoted,
+  translations,
+}: TReelRaceStartTimeProps) => {
+  const isMobile = !useIsScreenMinimumTablet();
+  const startTimeDate = DateTime.fromMillis(startTime);
+  const isTomorrow = startTimeDate.startOf("day").diffNow("days").valueOf() > 0;
+
+  const getTomorrowOrTodayLabel = () => (
+    <Text
+      tag="p"
+      size="xs"
+      className={cx(
+        !isMobile && "u-margin-right--sm",
+        isMobile && "u-margin-bottom--sm u-text-align-right ",
+        promoted ? "t-color-white-30" : "t-color-grey-50"
+      )}
+    >
+      {isTomorrow ? translations.tomorrow : translations.today}
+    </Text>
+  );
+
+  return (
+    <Flex
+      direction={isMobile && "vertical"}
+      align={isMobile ? "end" : "center"}
+      spacing={isMobile && "none"}
+    >
+      {isMobile && getTomorrowOrTodayLabel()}
+      <Flex direction="horizontal" align="center">
+        <TimeLockedIcon
+          size="sm"
+          className={cx(
+            "u-margin-right--sm",
+            promoted ? "t-color-yellow-30" : "t-color-grey-50"
+          )}
+        />
+        {!isMobile && getTomorrowOrTodayLabel()}
+        <Text
+          tag="p"
+          size="xs"
+          className={cx(
+            "u-margin--none u-text-align-right",
+            promoted ? "t-color-yellow-30" : "t-color-grey-50"
+          )}
+        >
+          {startTimeDate.toFormat("t")}
+        </Text>
+      </Flex>
+    </Flex>
+  );
 };
 
 export function ReelRaceScheduleCard({
@@ -22,12 +82,10 @@ export function ReelRaceScheduleCard({
   t,
   expanded = false,
   optInForReelRace = () => {},
-}: Props) {
+}: TProps) {
   const [open, setOpen] = React.useState(expanded);
   const { translations } = reelRace;
-  const startTimeDate = DateTime.fromMillis(reelRace.startTime);
-  const isTomorrow = startTimeDate.startOf("day").diffNow("days").valueOf() > 0;
-
+  const isNotMobile = useIsScreenMinimumTablet();
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
@@ -56,28 +114,40 @@ export function ReelRaceScheduleCard({
           />
         </Flex.Item>
         <Flex.Block className="u-margin-left--md">
-          <Flex
-            direction={open && reelRace.promoted ? "horizontal" : "vertical"}
-          >
-            <Flex.Block>
-              <Text
-                tag="div"
-                className={cx(
-                  "u-font",
-                  !reelRace.promoted && "t-color-grey-70"
-                )}
-              >
-                {interpolate(
-                  reelRace.promoted
-                    ? t?.mobile_promoted_race_title_single
-                    : t?.mobile_race_title_single,
-                  {
-                    name: reelRace.game.name,
-                  }
-                )}
-              </Text>
-            </Flex.Block>
-            <Flex.Item>
+          <Flex direction={isNotMobile ? "horizontal" : "vertical"}>
+            <Flex
+              direction={isNotMobile ? "vertical" : "horizontal"}
+              className={cx(isNotMobile && "o-flex--1")}
+            >
+              <Flex.Block>
+                <Text
+                  tag="div"
+                  className={cx(
+                    "u-font",
+                    !reelRace.promoted && "t-color-grey-70"
+                  )}
+                >
+                  {interpolate(
+                    reelRace.promoted
+                      ? t?.mobile_promoted_race_title_single
+                      : t?.mobile_race_title_single,
+                    {
+                      name: reelRace.game.name,
+                    }
+                  )}
+                </Text>
+              </Flex.Block>
+              {!open && isNotMobile && (
+                <Flex.Item>
+                  <ReelRaceStartTime
+                    isPromoted={reelRace.promoted}
+                    startTime={reelRace.startTime}
+                    translations={translations}
+                  ></ReelRaceStartTime>
+                </Flex.Item>
+              )}
+            </Flex>
+            <Flex.Item className={cx(isNotMobile && "o-flex-align--center")}>
               <TournamentIcon
                 size="sm"
                 className={cx(
@@ -96,41 +166,15 @@ export function ReelRaceScheduleCard({
             </Flex.Item>
           </Flex>
         </Flex.Block>
-        <Flex.Item>
-          {!open && (
-            <Flex direction="vertical" align="end" spacing="none">
-              <Text
-                tag="p"
-                size="xs"
-                className={cx(
-                  "u-margin-bottom--sm u-text-align-right",
-                  reelRace.promoted ? "t-color-white-30" : "t-color-grey-50"
-                )}
-              >
-                {isTomorrow ? translations.tomorrow : translations.today}
-              </Text>
-              <Flex direction="horizontal" align="center">
-                <TimeLockedIcon
-                  size="sm"
-                  className={cx(
-                    "u-margin-right--sm",
-                    reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
-                  )}
-                />
-                <Text
-                  tag="p"
-                  size="xs"
-                  className={cx(
-                    "u-font-weight-bold u-margin--none u-text-align-right",
-                    reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-50"
-                  )}
-                >
-                  {startTimeDate.toFormat("t")}
-                </Text>
-              </Flex>
-            </Flex>
-          )}
-        </Flex.Item>
+        {!open && !isNotMobile && (
+          <Flex.Item>
+            <ReelRaceStartTime
+              isPromoted={reelRace.promoted}
+              startTime={reelRace.startTime}
+              translations={translations}
+            ></ReelRaceStartTime>
+          </Flex.Item>
+        )}
       </Flex>
       {open && (
         <ReelRaceScheduleCardContent
