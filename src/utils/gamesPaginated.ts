@@ -1,5 +1,6 @@
 import type { ObservableQueryFields } from "@apollo/client";
 import * as R from "ramda";
+import type { FieldMergeFunction } from "@apollo/client/cache";
 
 type GamesPaginatedQuery = {
   getGamesPaginated: {
@@ -14,7 +15,7 @@ type GamesPaginatedQueryVariables = {
   limit: number;
 };
 
-const gamesLense = R.lensPath(["getGamesPaginated", "games"]);
+export const gamesLense = R.lensPath(["games"]);
 export function insertIntoArray(newData: Array<any>, offset: number) {
   return R.pipe(R.remove(offset, newData.length), R.insertAll(offset, newData));
 }
@@ -22,8 +23,7 @@ export function loadMoreConstructor(
   fetchMore: ObservableQueryFields<
     GamesPaginatedQuery,
     GamesPaginatedQueryVariables
-  >["fetchMore"],
-  gamesCount: number
+  >["fetchMore"]
 ) {
   return ({
     startIndex,
@@ -38,31 +38,32 @@ export function loadMoreConstructor(
 
     return fetchMore({
       variables: { offset, limit },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return prev;
-        }
-
-        const insertNewGames = insertIntoArray(
-          fetchMoreResult.getGamesPaginated.games,
-          fetchMoreResult.getGamesPaginated.offset
-        );
-
-        return R.over(
-          gamesLense,
-          prevGames => {
-            if (prevGames.length !== gamesCount) {
-              return R.pipe(
-                insertIntoArray(prevGames, 0),
-                insertNewGames
-              )(new Array(gamesCount));
-            }
-
-            return insertNewGames(prevGames);
-          },
-          prev
-        );
-      },
     });
   };
 }
+
+export const mergeGetGamesPaginated: FieldMergeFunction<
+  GamesPaginatedQuery["getGamesPaginated"]
+> = (existing, incoming) => {
+  const insertNewGames = insertIntoArray(incoming.games, incoming.offset);
+
+  if (!existing) {
+    // To make merging incoming data easier we are crating array that can fit
+    // all results and insert incoming data at the returned offset.
+    // This gives us better synergy with virtualised lists where chunk of data
+    // doesn't have to be adjecent to previous chunks.
+    //
+    // Apollo client skipps holes when returning data, because of that
+    // we have to fill them null.
+    return {
+      ...incoming,
+      games: insertNewGames(new Array(incoming.gamesCount).fill(null)),
+    };
+  }
+
+  return {
+    ...existing,
+    ...incoming,
+    games: insertNewGames(existing.games),
+  };
+};
