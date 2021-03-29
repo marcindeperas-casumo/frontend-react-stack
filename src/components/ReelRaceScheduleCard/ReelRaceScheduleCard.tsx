@@ -8,7 +8,6 @@ import * as A from "Types/apollo";
 import { GameThumb } from "Components/GameThumb";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { interpolate } from "Utils";
-import { useIsScreenMinimumTablet } from "Utils/hooks";
 import { ReelRaceScheduleCardContent } from "./ReelRaceScheduleCardContent";
 
 type Props = {
