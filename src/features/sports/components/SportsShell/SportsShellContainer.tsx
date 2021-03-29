@@ -86,8 +86,8 @@ export const SportsShellContainer: React.FC<{}> = () => {
     return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
-  const virtualsPrefixHash = '#virtuals';
-  const promotionPrefixHash = '#promotions';
+  const virtualsPrefixHash = "#virtuals";
+  const promotionPrefixHash = "#promotions";
 
   return (
     <>
@@ -103,7 +103,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
             {currentHash === virtualsPrefixHash && <VirtualsPage />}
-            {currentHash.startsWith(promotionPrefixHash) && <PromotionDetailPage currentHash={currentHash} />}
+            {currentHash.startsWith(promotionPrefixHash) && (
+              <PromotionDetailPage currentHash={currentHash} />
+            )}
           </div>
         )}
       </SportsHashWatcher>

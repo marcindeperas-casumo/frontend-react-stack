@@ -1,12 +1,12 @@
-import { ComponentBuilder } from "Components/ComponentBuilder";
 import React from "react";
+import { ComponentBuilder } from "Components/ComponentBuilder";
 
 type Props = {
-  currentHash: string
-}
+  currentHash: string;
+};
 
 export const PromotionDetailPage: React.FC<Props> = ({ currentHash }) => {
-  const slug = currentHash.replace('#', '');
+  const slug = currentHash.replace("#", "");
 
   return <ComponentBuilder slug={`promotions.${slug}`} />;
 };
