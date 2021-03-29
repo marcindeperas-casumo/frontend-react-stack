@@ -3,13 +3,11 @@ import { Desktop } from "Components/ResponsiveLayout";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { usePinnedWidgetsContext } from "../Contexts";
 import { DRAWERS } from "../../Sidebar/SidebarElementWrapper/constants";
-import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 
 import "./GamePageSidebar.scss";
 
 export const GamePageSidebar = () => {
   const { pinnedWidgets } = usePinnedWidgetsContext();
-  const currentRace = useCurrentReelRaceInfo();
 
   if (pinnedWidgets.includes(DRAWERS.REEL_RACES)) {
     return (
