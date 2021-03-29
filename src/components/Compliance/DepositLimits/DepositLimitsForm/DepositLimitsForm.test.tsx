@@ -166,4 +166,28 @@ describe("DepositLimitsForm", () => {
     });
     expect(validation).toBeNull();
   });
+
+  test("warns if user wants to increase a limit while there is some pending adjustment", () => {
+    const validation = setUpDepositLimitsForm({
+      limits: {
+        ...limitsDefault,
+        daily: 10,
+        weekly: 30,
+        monthly: 100,
+      },
+      limitChanges: {
+        weekly: 40,
+      },
+      pendingLimitChanges: {
+        value: {
+          daily: 20,
+        },
+      },
+      initiallyVisible: "weekly",
+      responsibleGamblingTestCanBeTaken: true,
+    });
+    expect(validation).toEqual(
+      "cant_be_higher_while_any_adjustment_is_pending"
+    );
+  });
 });
