@@ -140,7 +140,7 @@ export function ReelRaceScheduleCard({
               {!open && isNotMobile && (
                 <Flex.Item>
                   <ReelRaceStartTime
-                    isPromoted={reelRace.promoted}
+                    promoted={reelRace.promoted}
                     startTime={reelRace.startTime}
                     translations={translations}
                   ></ReelRaceStartTime>
@@ -169,7 +169,7 @@ export function ReelRaceScheduleCard({
         {!open && !isNotMobile && (
           <Flex.Item>
             <ReelRaceStartTime
-              isPromoted={reelRace.promoted}
+              promoted={reelRace.promoted}
               startTime={reelRace.startTime}
               translations={translations}
             ></ReelRaceStartTime>
