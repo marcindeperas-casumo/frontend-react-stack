@@ -1,12 +1,7 @@
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { Button, ButtonPrimary } from "@casumo/cmp-button";
-import {
-  TimeLockedIcon,
-  SpinIcon,
-  AthleticsIcon,
-  PlayIcon,
-} from "@casumo/cmp-icons";
+import { PlayIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import cx from "classnames";
 import * as React from "react";
