@@ -96,7 +96,7 @@ export const GamePageContainer = () => {
           <GamePageError
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_title' does not exist on t... Remove this comment to see the full error message
             errorMessage={errorMessages?.general_error_title || ""}
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_title' does not exist on t... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_message_short' does not exist on t... Remove this comment to see the full error message
             retryMessage={errorMessages?.general_error_message_short}
             onRetry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
           />
