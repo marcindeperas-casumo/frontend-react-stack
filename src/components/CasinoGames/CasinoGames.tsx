@@ -38,7 +38,12 @@ export const CasinoGames = () => {
 
   const { isMGA, isDGOJ } = useJurisdiction();
 
-  if (loading || !data || !data.getGamesPaginated || !t || !categoriesContent) {
+  if (
+    (loading && !data) ||
+    !data?.getGamesPaginated ||
+    !t ||
+    !categoriesContent
+  ) {
     return null;
   }
 
