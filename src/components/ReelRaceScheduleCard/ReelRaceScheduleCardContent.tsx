@@ -116,19 +116,21 @@ export function ReelRaceScheduleCardContent({
               {reelRace.translations.duration}
             </Text>
           </Flex>
-          <Flex
-            direction="vertical"
-            align="center"
-            className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
-          >
-            <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
-            <Text
-              size="xs"
-              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+          {reelRace.minBet && (
+            <Flex
+              direction="vertical"
+              align="center"
+              className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
             >
-              {reelRace.translations.minBet}
-            </Text>
-          </Flex>
+              <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
+              <Text
+                size="xs"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              >
+                {reelRace.translations.minBet}
+              </Text>
+            </Flex>
+          )}
         </Flex.Item>
 
         <Flex.Block

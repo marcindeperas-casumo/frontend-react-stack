@@ -39,7 +39,7 @@ const ReelRaceStartTime = ({
       className={cx(
         !isMobile && "u-margin-right--sm",
         isMobile && "u-margin-bottom--sm u-text-align-right ",
-        promoted ? "t-color-white-30" : "t-color-grey-50"
+        promoted ? "t-color-yellow-30" : "t-color-grey-50"
       )}
     >
       {isTomorrow ? translations.tomorrow : translations.today}
@@ -53,7 +53,7 @@ const ReelRaceStartTime = ({
       spacing={isMobile && "none"}
     >
       {isMobile && getTomorrowOrTodayLabel()}
-      <Flex direction="horizontal" align="center">
+      <Flex align="center">
         <TimeLockedIcon
           size="sm"
           className={cx(
@@ -114,9 +114,9 @@ export function ReelRaceScheduleCard({
           />
         </Flex.Item>
         <Flex.Block className="u-margin-left--md">
-          <Flex direction={isNotMobile ? "horizontal" : "vertical"}>
+          <Flex direction={!isNotMobile && "vertical"}>
             <Flex
-              direction={isNotMobile ? "vertical" : "horizontal"}
+              direction={isNotMobile && "vertical"}
               className={cx(isNotMobile && "o-flex--1")}
             >
               <Flex.Block>
