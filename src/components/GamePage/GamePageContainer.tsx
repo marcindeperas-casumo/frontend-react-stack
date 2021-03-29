@@ -10,6 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
   useInGameBonusOrRealBalanceCheck,
+  useCurrentReelRaceInfo
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -65,6 +66,9 @@ export const GamePageContainer = () => {
   const quickDepositInProgress = Boolean(
     useSelector(getSelectedQuickDepositMethod)
   );
+
+  const currentRace = useCurrentReelRaceInfo();
+  const showRRSidebar = currentRace?.optedIn && currentRace?.game?.slug === slug;
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
@@ -155,7 +159,7 @@ export const GamePageContainer = () => {
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: Element; footer: Element; gameBackg... Remove this comment to see the full error message
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
-      sidebar={<GamePageSidebar />}
+      sidebar={showRRSidebar && <GamePageSidebar />}
     />
   );
 };
