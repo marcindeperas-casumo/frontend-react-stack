@@ -1,6 +1,5 @@
 import {
   equals,
-  anyPass,
   filter,
   sort,
   prop,
@@ -30,6 +29,7 @@ import {
 
 export const depositRouteId = "deposit";
 export const gameBrowserRouteId = "games-top";
+export const sportsRouteId = "sports";
 
 export const isAboutToExpire = (hours: number): boolean =>
   hours >= 0 && hours <= 24;
@@ -53,60 +53,79 @@ export const getValuableDetailsAction = ({
   requirementType?: ValuableRequirementType | undefined;
   translations: ValuableDetailsTranslations;
 }): ValuableActionProps => {
+  const ACTION_PROPS_DEFAULT: ValuableActionProps = {
+    text: translations.cashUnlockedActionLabel,
+    isDepositBonusSelected: false,
+    url: gameBrowserRouteId,
+  };
+
   const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
   const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
   const isCashback = equals(valuableType, VALUABLE_TYPES.CASHBACK);
-
-  const setActionProps = (
-    text = "",
-    isDepositBonusSelected = false,
-    url = ""
-  ) => ({
-    text,
-    isDepositBonusSelected,
-    url,
-  });
+  const isFreeBet = equals(valuableType, VALUABLE_TYPES.FREE_BET);
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
     // The redirection is being taken care of by the KO code, so url is not required
-    return setActionProps(translations.depositNowLabel, true);
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      url: "",
+      text: translations.depositNowLabel,
+      isDepositBonusSelected: true,
+    };
   }
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 3.
-  if (anyPass(isSpins, isCash, isCashback)) {
-    if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-      if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-        // The redirection is being taken care of by the KO code, so url is not required
-        return setActionProps(translations.depositToUnlockLabel, true);
-      }
-
-      return setActionProps(
-        translations.playToUnlockLabel,
-        false,
-        gameBrowserRouteId
-      );
+  if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
+    if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
+      // The redirection is being taken care of by the KO code, so url is not required
+      return {
+        ...ACTION_PROPS_DEFAULT,
+        url: "",
+        text: translations.depositToUnlockLabel,
+        isDepositBonusSelected: true,
+      };
     }
 
-    if (isCashback) {
-      return setActionProps(
-        equals(valuableState, VALUABLE_STATES.FRESH)
-          ? translations.activateCashbackActionLabel
-          : translations.playNowLabel,
-        false,
-        gameBrowserRouteId
-      );
-    }
-
-    return isSpins
-      ? setActionProps(translations.spinsUnlockedActionLabel)
-      : setActionProps(
-          translations.cashUnlockedActionLabel,
-          false,
-          gameBrowserRouteId
-        );
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text: translations.playToUnlockLabel,
+    };
   }
 
-  return setActionProps();
+  if (isCash) {
+    return {
+      text: translations.cashUnlockedActionLabel,
+      ...ACTION_PROPS_DEFAULT,
+    };
+  }
+
+  if (isCashback) {
+    const text = equals(valuableState, VALUABLE_STATES.FRESH)
+      ? translations.activateCashbackActionLabel
+      : translations.playNowLabel;
+
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text,
+    };
+  }
+
+  if (isFreeBet) {
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text: translations.cashUnlockedActionLabel,
+      url: sportsRouteId,
+    };
+  }
+
+  if (isSpins) {
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text: translations.spinsUnlockedActionLabel,
+      url: "",
+    };
+  }
+
+  return ACTION_PROPS_DEFAULT;
 };
 
 // TODO: either move this to somewhere more localised
