@@ -35,8 +35,9 @@ import {
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
-import { useGameModelContext, GamePageContextProvider } from "./Contexts";
+import { useGameModelContext, usePinnedWidgetsContext, GamePageContextProvider } from "./Contexts";
 import { useFitToParentSize } from "./Hooks/useFitToParentSize";
+import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import "./GamePage.scss";
 
 type Props = {
@@ -67,8 +68,12 @@ export const GamePageContainer = () => {
     useSelector(getSelectedQuickDepositMethod)
   );
 
+  const { pinnedWidgets } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
-  const showRRSidebar = currentRace?.optedIn && currentRace?.game?.slug === slug;
+
+  const showRRSidebar = currentRace?.optedIn &&
+    currentRace?.game?.slug === slug &&
+    pinnedWidgets.includes(DRAWERS.REEL_RACES);
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
@@ -161,7 +166,7 @@ export const GamePageContainer = () => {
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: Element; footer: Element; gameBackg... Remove this comment to see the full error message
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
-      sidebar={showRRSidebar && <GamePageSidebar />}
+      sidebar={showRRSidebar ? <GamePageSidebar /> : null}
     />
   );
 };
