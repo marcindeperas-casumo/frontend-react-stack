@@ -14,6 +14,7 @@ import { ArchivedVersionHeader } from "./ArchivedVersionHeader";
 import { TermsAndConditionsVersionDetails } from "./TermsAndConditionsVersionDetails";
 import { TermsAndConditionsContent } from "./TermsAndConditionsContent";
 import { Changelog } from "./Changelog";
+import type { TTranslations } from "./TermsAndConditions.types";
 import {
   createVersionDateFormatter,
   createVersionFormatter,
@@ -21,34 +22,7 @@ import {
 } from "./termsAndConditions.utils";
 import "./termsAndConditions.scss";
 
-type Props = ModalContentComponent<{
-  /** info that given version is outdated, text between "<#>" and "</#>" will be link to current version */
-  note_version_old: string;
-  /** user friendly presentation of current version number. Have to contain {version} that will be replaced */
-  version_label_current: string;
-  /** user friendly presentation of version number that was accepted during registration. Have to contain {version} that will be replaced */
-  version_label_original: string;
-  /** user friendly presentation of version number. Have to contain {version} that will be replaced */
-  version_label: string;
-  /** cta text to view specific version */
-  button_view_version: string;
-  /** user friendly presentation of date. Have to contain {date} that will be replaced */
-  date_published: string;
-  /** user friendly presentation of date when user registered. Have to contain {date} that will be replaced */
-  date_agreed: string;
-  /** user friendly presentation of date when user accepted given version. Have to contain {date} that will be replaced */
-  date_changes_accepted: string;
-  /** text that will be shown on download pdf button */
-  button_download_pdf: string;
-  /** text that will be shown on show history button */
-  button_version_history: string;
-  /** title before table of contents */
-  table_of_contents_title: string;
-  /** text that will be shown before changelog */
-  changelog_title: string;
-  /** title of modal component */
-  terms_and_conditions_modal_title: string;
-}>;
+type Props = ModalContentComponent<TTranslations>;
 
 type TACVersionCMSData = {
   iso_8601_published_date: string;
@@ -178,7 +152,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
       {mustAcceptTerms && (
         <Flex.Item>
           <ModalAcknowledgment
-            title="Accept General terms"
+            title={t.button_accept_terms}
             onPress={props.acceptModal}
           />
         </Flex.Item>
