@@ -104,6 +104,7 @@ export const CuratedCard = ({
           header={() => (
             <CuratedCardHeader
               isGame={isGame}
+              isSports={isSports}
               header={curatedCard.header}
               subtitle={curatedCard.subtitle}
             />
