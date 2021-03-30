@@ -33,11 +33,12 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
             key={`${prize}_${count}`}
             className={cx(
               count !== prizes.length && "t-border-bottom",
-              "t-border-grey-0 u-padding-y"
+              "t-border-grey-0 u-padding-y",
+              "o-flex--1"
             )}
           >
             <Flex className="o-flex--1">
-              <div className="u-position-relative u-width--3xlg">
+              <Flex.Item className="u-position-relative u-width--3xlg">
                 <LaurelIcon
                   size="lg"
                   className={cx(
@@ -53,19 +54,26 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                 >
                   {position}
                 </Text>
-              </div>
-              <Flex align="center" className="u-margin-left">
-                {t?.leaderboard_rank} #{position}
+              </Flex.Item>
+
+              <Flex
+                align={isNotMobile && "center"}
+                direction={!isNotMobile && "vertical"}
+                className={cx(
+                  "u-margin-left",
+                  isNotMobile && "u-margin-right o-flex--1"
+                )}
+              >
+                <Flex.Block>
+                  {t?.leaderboard_rank} #{position}
+                </Flex.Block>
+                <Flex>
+                  <TournamentIcon className="t-color-grey-50 u-margin-right" />
+                  <Text size="md" className="u-font-weight-bold">
+                    {prize}
+                  </Text>
+                </Flex>
               </Flex>
-            </Flex>
-            <Flex
-              align="center"
-              className={cx(isNotMobile && "u-margin-right")}
-            >
-              <TournamentIcon className="t-color-grey-50 u-margin-right" />
-              <Text size="md" className="u-font-weight-bold">
-                {prize}
-              </Text>
             </Flex>
           </Flex>
         );
