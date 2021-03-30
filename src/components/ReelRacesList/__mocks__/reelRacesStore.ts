@@ -15,6 +15,7 @@ const reelRaces = [
     startTime: 1585335600000,
     optedIn: false,
     endTime: 1585338600000,
+    minBet: "£0.4",
     status: "Scheduled",
     spinLimit: 500,
     promoted: true,
@@ -34,6 +35,7 @@ const reelRaces = [
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min Bet",
     },
   },
   {
@@ -50,6 +52,7 @@ const reelRaces = [
     startTime: 1585312200000,
     optedIn: false,
     endTime: 1585313700000,
+    minBet: "£0.4",
     status: "Started",
     spinLimit: 190,
     promoted: false,
@@ -69,6 +72,7 @@ const reelRaces = [
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min Bet",
     },
   },
   {
@@ -85,6 +89,7 @@ const reelRaces = [
     startTime: 1585314000000,
     optedIn: false,
     endTime: 1585315500000,
+    minBet: "£0.4",
     status: "Scheduled",
     spinLimit: 190,
     promoted: false,
@@ -104,6 +109,7 @@ const reelRaces = [
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min Bet",
     },
   },
 ];

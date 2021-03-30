@@ -10,6 +10,7 @@
   "startTime": 1605054600000,
   "optedIn": false,
   "endTime": 1605056100000,
+  "minBet": "£0.4",
   "status": "Scheduled",
   "spinLimit": 190,
   "promoted": false,
@@ -28,6 +29,7 @@
     "caveatShort": "Opt in. Spins/Games restrictions. <a href=\"#\" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>",
     "today": "Today",
     "tomorrow": "Tomorrow",
+    "minBet": "Min Bet",
     "__typename": "ReelRaceTranslations"
   },
   "leaderboard": [
