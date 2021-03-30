@@ -10,7 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
   useInGameBonusOrRealBalanceCheck,
-  useCurrentReelRaceInfo
+  useCurrentReelRaceInfo,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -27,6 +27,7 @@ import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/R
 import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
+import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -35,9 +36,12 @@ import {
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
-import { useGameModelContext, usePinnedWidgetsContext, GamePageContextProvider } from "./Contexts";
+import {
+  useGameModelContext,
+  usePinnedWidgetsContext,
+  GamePageContextProvider,
+} from "./Contexts";
 import { useFitToParentSize } from "./Hooks/useFitToParentSize";
-import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import "./GamePage.scss";
 
 type Props = {
@@ -71,7 +75,8 @@ export const GamePageContainer = () => {
   const { pinnedWidgets } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
 
-  const showRRSidebar = currentRace?.optedIn &&
+  const showRRSidebar =
+    currentRace?.optedIn &&
     currentRace?.game?.slug === slug &&
     pinnedWidgets.includes(DRAWERS.REEL_RACES);
 

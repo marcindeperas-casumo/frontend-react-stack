@@ -4,7 +4,7 @@ import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Compone
 
 import "./GamePageSidebar.scss";
 
-export const GamePageSidebar = () =>
+export const GamePageSidebar = () => (
   <Desktop>
     <div className="c-game-page-sidebar u-padding-right u-height--full">
       <ReelRacesDrawerWidget
@@ -12,4 +12,4 @@ export const GamePageSidebar = () =>
         className="u-height--full"
       />
     </div>
-  </Desktop>;
+  </Desktop>);
