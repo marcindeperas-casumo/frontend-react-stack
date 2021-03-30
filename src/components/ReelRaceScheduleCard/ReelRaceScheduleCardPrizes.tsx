@@ -55,7 +55,6 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                   {position}
                 </Text>
               </Flex.Item>
-
               <Flex
                 align={isNotMobile && "center"}
                 direction={!isNotMobile && "vertical"}
