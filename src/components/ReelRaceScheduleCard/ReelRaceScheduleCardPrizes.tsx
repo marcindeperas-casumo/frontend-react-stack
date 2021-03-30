@@ -68,9 +68,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                 </Flex.Block>
                 <Flex>
                   <TournamentIcon className="t-color-grey-50 u-margin-right" />
-                  <Text size="md" className="u-font-weight-bold">
-                    {prize}
-                  </Text>
+                  <Text className="u-font u-font-weight-bold">{prize}</Text>
                 </Flex>
               </Flex>
             </Flex>
