@@ -12,4 +12,5 @@ export const GamePageSidebar = () => (
         className="u-height--full"
       />
     </div>
-  </Desktop>);
+  </Desktop>
+);
