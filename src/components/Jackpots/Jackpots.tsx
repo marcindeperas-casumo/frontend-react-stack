@@ -10,13 +10,11 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow, GameRowText } from "Components/GameRow";
 import { generateColumns } from "Utils";
-import { topListWidgetWidth } from "Src/constants";
-
-const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
-};
+import {
+  horizontalListsDevicePaddings,
+  topListWidgetWidth,
+} from "Src/constants";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 
 export type Props = {
   jackpots: Array<A.Jackpots_GameFragment>;
@@ -91,29 +89,27 @@ export const Jackpots = (props: Props) => {
   const keyGetter = (i: number) => getColumns[i][0].slug;
 
   return (
-    <div className="u-margin-x--3xlg@desktop">
-      <div className="o-wrapper">
-        <MobileAndTablet>
-          <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
-            <ScrollableListTitle paddingLeft title={props.title} />
-            <Scrollable
-              keyGetter={keyGetter}
-              itemRenderer={mobileJackpotColumnRenderer}
-              numberOfItems={getColumns.length}
-              itemClassName="c-jackpots-list-tile"
-              padding={PADDING_PER_DEVICE}
-            />
-          </div>
-        </MobileAndTablet>
-        <Desktop>
-          <ScrollableListPaginated
-            itemCount={getColumns.length}
-            title={props.title}
-            itemRenderer={desktopJackpotColumnRenderer}
-            tileHeight={GameRow.ROW_HEIGHT * 3 + spacerSizesMap.default * 2}
+    <div className={`o-wrapper ${topMarginClasses}`}>
+      <MobileAndTablet>
+        <div data-test="scrollable-jackpots">
+          <ScrollableListTitle paddingLeft title={props.title} />
+          <Scrollable
+            keyGetter={keyGetter}
+            itemRenderer={mobileJackpotColumnRenderer}
+            numberOfItems={getColumns.length}
+            itemClassName="c-jackpots-list-tile"
+            padding={horizontalListsDevicePaddings}
           />
-        </Desktop>
-      </div>
+        </div>
+      </MobileAndTablet>
+      <Desktop>
+        <ScrollableListPaginated
+          itemCount={getColumns.length}
+          title={props.title}
+          itemRenderer={desktopJackpotColumnRenderer}
+          tileHeight={GameRow.ROW_HEIGHT * 3 + spacerSizesMap.default * 2}
+        />
+      </Desktop>
     </div>
   );
 };
