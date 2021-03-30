@@ -1,25 +1,33 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import React from "react";
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
-import { useTranslations } from "Utils/hooks";
+import { MARKETS, REACT_APP_MODAL } from "Src/constants";
+import { useTranslations, useMarket } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { showModal } from "Models/modal";
-import { REACT_APP_MODAL } from "Src/constants";
-import ReelRaceLogo from "./reel-race.svg";
+import ReelRaceLogoRow from "./reel-race.svg";
+import ReelRaceLogoEs from "./reel-race-es.svg";
 import "./ReelRacesBanner.scss";
 
 export type ReelRacesContentPage = {
   text: string;
   how_it_works_title: string;
   terms_and_conditions_title: string;
+  logo: string;
 };
 
 type BannerLinkProps = {
   children: any;
   onClick?: () => any;
 };
+
+function ReelRacesLogo() {
+  const market = useMarket();
+
+  return market === MARKETS.es_es ? <ReelRaceLogoEs /> : <ReelRaceLogoRow />;
+}
 
 function BannerLink({ children, onClick }: BannerLinkProps) {
   return (
@@ -65,7 +73,7 @@ export function ReelRacesBanner() {
             })}
             tag="div"
           >
-            <ReelRaceLogo />
+            <ReelRacesLogo />
           </Text>
         </Flex.Block>
 

@@ -22,6 +22,10 @@ body #react-host-sports-shell #KambiBC {
   display: block !important;
 }
 
+body #react-host-sports-shell #KambiBC.KambiBC-visuallyhidden {
+  display: none !important;
+}
+
 .c-kambi-client--hidden {
   height: 0;
   overflow: hidden;
