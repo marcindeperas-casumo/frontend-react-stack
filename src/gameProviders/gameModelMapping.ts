@@ -57,6 +57,7 @@ export const models = {
   [PROVIDERS.REDTIGER_MOBILE]: RedTigerGame,
   [PROVIDERS.RELAX_IFRAME]: RelaxGame,
   [PROVIDERS.RELAX_HTML5]: RelaxGame,
+  [PROVIDERS.QUICKSPIN]: RelaxGame,
   [PROVIDERS.CASUMO_HTML5]: CasumoGame,
   [PROVIDERS.RGS_HTML5]: BaseIframeGame,
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,

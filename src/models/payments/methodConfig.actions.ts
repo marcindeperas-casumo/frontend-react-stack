@@ -1,6 +1,6 @@
 import { actionTypes } from "./methodConfig.constants";
 import type { LocalPaymentMethodType } from "./piq.types";
-import type { MethodConfigType, ActionTypes } from "./methodConfig.types";
+import type { TMethodConfig, ActionTypes } from "./methodConfig.types";
 
 type PreparePaymentMethodConfigReturnType = {
   type: ActionTypes;
@@ -17,7 +17,7 @@ export const preparePaymentMethodConfig = (
 type SetPaymentMethodConfigReturnType = {
   type: ActionTypes;
   methodType: LocalPaymentMethodType;
-  config: MethodConfigType;
+  config: TMethodConfig;
 };
 
 export const setPaymentMethodConfig = (

@@ -1,4 +1,5 @@
 import { END_SESSION_REASONS } from "Models/slotControlSystem";
+import { TCurrencyCode } from "Src/constants";
 
 export type GameSessionStatsType = {
   consumedBalance: number;
@@ -7,7 +8,7 @@ export type GameSessionStatsType = {
   remainingBalance: number;
   totalBets: number;
   totalWins: number;
-  currency: string;
+  currency: TCurrencyCode;
 };
 
 export type ActiveSessionType = {

@@ -1,3 +1,4 @@
+import { TCurrencyCode } from "Src/constants";
 import {
   ACTION_TYPES,
   slotControlSystemReducer,
@@ -150,7 +151,7 @@ describe("Models/slotControlSystem/Reducer", () => {
             remainingBalance: 0,
             totalBets: 1,
             totalWins: 0,
-            currency: "EUR",
+            currency: "EUR" as TCurrencyCode,
           },
         },
       };

@@ -1,7 +1,7 @@
 import React from "react";
 import { isNativeByUserAgent } from "GameProviders";
 import { ErrorBoundary } from "Components/ErrorBoundary";
-import { QuickDeposit } from "Components/QuickDeposit";
+import { QuickDeposit } from "Components/Payments/QuickDeposit";
 import { InGameDrawerLinksContainer as InGameDrawerLinks } from "./InGameDrawerLinksContainer";
 
 type Props = {

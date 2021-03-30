@@ -7,7 +7,7 @@ import {
   setQuickDepositMethod,
   startQuickDeposit,
 } from "Models/payments/payments.actions";
-import { QuickDepositSlip } from "Components/QuickDepositSlip";
+import { QuickDepositSlip } from "Components/Payments/QuickDepositSlip";
 import { useTranslationsGql } from "Utils/hooks";
 import { playerCurrencySymbolSelector } from "Models/player";
 import { PaymentMethodDetails } from "Components/PaymentMethodDetails";

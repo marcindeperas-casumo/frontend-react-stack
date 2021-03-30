@@ -26,7 +26,7 @@ export type Props = {
   game: A.GameTile_GameFragment;
   imgixOpts?: Object;
   ratio?: string;
-  t: GameTileTranslations;
+  t?: GameTileTranslations;
   locale?: string;
 };
 
@@ -35,8 +35,7 @@ export const DEFAULT_CLASSES =
 
 export const GameTile = ({
   className,
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'GameTile_Game... Remove this comment to see the full error message
-  game = {},
+  game,
   imgixOpts = {
     w: 170,
     q: 70,
@@ -54,7 +53,7 @@ export const GameTile = ({
     id,
     liveCasinoId,
     jackpot,
-  } = game;
+  } = game || {};
 
   const JackpotAmountButton = () => {
     const currency = jackpot?.value?.currency;
@@ -112,7 +111,6 @@ export const GameTile = ({
           logoBackground={backgroundImage}
           logo={logo}
           name={name}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ logoBackground: string; logo: string; name... Remove this comment to see the full error message
           imgixOpts={imgixOpts}
         />
         {jackpot && <JackpotAmountButton />}

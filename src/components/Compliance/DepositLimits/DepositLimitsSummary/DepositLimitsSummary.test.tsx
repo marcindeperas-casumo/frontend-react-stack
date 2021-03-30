@@ -1,12 +1,13 @@
 import * as React from "react";
 import { shallow } from "enzyme";
+import { TCurrencyCode } from "Src/constants";
 import { DepositLimitsSummary } from "./DepositLimitsSummary";
 import t from "./__mocks__/cms";
 import preadjust from "./__mocks__/preadjust";
 
 const props = {
   locale: "en-GB",
-  currency: "EUR",
+  currency: "EUR" as TCurrencyCode,
   t,
   preadjust,
   newLimits: {

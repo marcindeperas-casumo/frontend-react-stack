@@ -11,7 +11,7 @@ import {
   PlayOkayBar,
   ProfileIconWithDrawer,
 } from "Components/Compliance/PlayOkayBar";
-import { QuickDeposit } from "Components/QuickDeposit";
+import { QuickDeposit } from "Components/Payments/QuickDeposit";
 import { InGameDrawerLinks } from "Components/InGameDrawer";
 import { openChatWindow } from "Features/chat/IntercomChatService";
 

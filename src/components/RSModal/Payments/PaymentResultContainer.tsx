@@ -69,7 +69,6 @@ export const PaymentResultContainer = ({ closeModal, config }: Props) => {
     <PaymentResult
       t={t}
       locale={locale}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
       currency={currency}
       amount={amount}
       closeModal={closeModal}

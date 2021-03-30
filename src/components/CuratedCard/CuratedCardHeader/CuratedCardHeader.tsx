@@ -6,14 +6,16 @@ export type CuratedCardHeaderProps = {
   header: string | undefined;
   subtitle: string | undefined;
   isGame: boolean;
+  isSports: boolean;
 };
 
 export const CuratedCardHeader = ({
   isGame,
+  isSports,
   header,
   subtitle,
 }: CuratedCardHeaderProps) => {
-  if (isGame && header) {
+  if ((isGame || isSports) && header) {
     return <CuratedCardHeaderSimple header={header} />;
   }
 

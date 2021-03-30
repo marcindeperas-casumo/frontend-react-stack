@@ -3,7 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import Modal from "@casumo/cmp-modal";
 import * as React from "react";
 import TrackView from "Components/TrackView";
-import { EVENTS } from "Src/constants";
+import { EVENTS, TCurrencyCode } from "Src/constants";
 import { stringToHTML, formatCurrency, interpolate } from "Utils";
 import PaymentResultFailIcon from "./paymentResultFail.svg";
 import PaymentResultSuccessIcon from "./paymentResultSuccess.svg";
@@ -13,7 +13,7 @@ import { PAYMENT_RESULT_STATUS } from "./PaymentResult.types";
 type Props = {
   t: CmsContent;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
   amount: number;
   closeModal: () => void;
   status: string;

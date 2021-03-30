@@ -21,7 +21,7 @@ import { isDesktop, Mobile } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
-import { QuickDepositSlipController } from "Components/QuickDepositSlip";
+import { QuickDepositSlipController } from "Components/Payments/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
@@ -96,6 +96,8 @@ export const GamePageContainer = () => {
           <GamePageError
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_title' does not exist on t... Remove this comment to see the full error message
             errorMessage={errorMessages?.general_error_title || ""}
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'general_error_message_short' does not exist on t... Remove this comment to see the full error message
+            retryMessage={errorMessages?.general_error_message_short}
             onRetry={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
           />
         ) : null
