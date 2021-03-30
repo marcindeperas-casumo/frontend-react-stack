@@ -356,7 +356,6 @@ export type Currency =
   | "CAD"
   | "DKK"
   | "NZD"
-  | "NOK"
   | "SEK"
   | "USD";
 
@@ -1920,6 +1919,7 @@ export type ReelRaceCard_ReelRaceFragment = {
   startTime: number;
   optedIn: boolean;
   endTime: number;
+  minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
@@ -1945,6 +1945,7 @@ export type ReelRaceCard_ReelRaceFragment = {
     caveatShort: string;
     today: string;
     tomorrow: string;
+    minBet: string;
   };
 };
 
