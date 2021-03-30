@@ -63,12 +63,12 @@ export function ReelRaceScheduleCardContent({
   return (
     <>
       <Flex direction={!isNotMobile && "vertical"}>
-        <Flex direction="vertical" spacing="none">
+        <Flex.Block className={cx("o-flex--vertical")}>
           <Flex.Item
             className={cx(
               "o-flex--horizontal",
               "u-padding-y--lg",
-              isNotMobile && "u-width--3/4 u-margin-left--sm"
+              isNotMobile && "u-width--1/2 u-margin-left--sm"
             )}
           >
             <Flex
@@ -117,19 +117,6 @@ export function ReelRaceScheduleCardContent({
                 {reelRace.translations.duration}
               </Text>
             </Flex>
-            <Flex
-              direction="vertical"
-              align="center"
-              className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
-            >
-              <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
-              <Text
-                size="xs"
-                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
-              >
-                {reelRace.translations.minBet}
-              </Text>
-            </Flex>
           </Flex.Item>
           <Flex.Item align={!isNotMobile && "center"}>
             {reelRace.translations.caveatShort &&
@@ -147,9 +134,9 @@ export function ReelRaceScheduleCardContent({
                 </Text>
               )}
           </Flex.Item>
-        </Flex>
+        </Flex.Block>
 
-        <Flex.Block
+        <Flex.Item
           className={cx(
             "o-flex--vertical",
             "o-flex-justify--end",
@@ -207,7 +194,7 @@ export function ReelRaceScheduleCardContent({
               </div>
             </Flex.Block>
           </Flex>
-        </Flex.Block>
+        </Flex.Item>
       </Flex>
       {expandPrizes && (
         <ReelRaceScheduleCardPrizes
