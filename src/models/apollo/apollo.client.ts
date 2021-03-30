@@ -15,7 +15,7 @@ import {
 import config from "Src/config";
 import reduxStore from "Services/reduxStore";
 import { getDeveloperOptions } from "Utils/developerOptions";
-import { getAppVersion, isEmbeddedOn } from "Utils";
+import { getAppVersion, isEmbeddedOn, mergeGetGamesPaginated } from "Utils";
 import * as queries from "Models/apollo/queries.sports";
 import introspectionsData from "Types/introspections.json";
 import { clientResolvers } from "./clientResolvers";
@@ -40,15 +40,35 @@ export async function getApolloClient(): Promise<ApolloClientType> {
         fetchPolicy: "cache-and-network",
       },
       query: {
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '"cache-and-network"' is not assignable to ty... Remove this comment to see the full error message
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: "cache-first",
       },
     },
+    connectToDevTools: __DEV__,
   });
 }
 
 export async function getCache() {
-  const cache = new InMemoryCache(introspectionsData);
+  const cache = new InMemoryCache({
+    ...introspectionsData,
+    typePolicies: {
+      Query: {
+        fields: {
+          getGamesPaginated: {
+            // In case of this query variable "query" contains filters and
+            // order. We have to create new cache entry for each "query",
+            // to ensure that different requests won't be joined together.
+            //
+            // "keyArgs" takes function that returns string, it is called for
+            // every response and it creates cache entity for each uniq value.
+            keyArgs: (_, { variables }) => variables.query,
+            // This function is called only with the content belonging to
+            // the same cache entity. You shouldn't need any additional checks.
+            merge: mergeGetGamesPaginated,
+          },
+        },
+      },
+    },
+  });
 
   // https://www.apollographql.com/docs/react/api/cache/InMemoryCache
   // write default state in cache, is the right place?
