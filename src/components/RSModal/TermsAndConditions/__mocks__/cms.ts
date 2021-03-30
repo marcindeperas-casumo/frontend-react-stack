@@ -1,3 +1,5 @@
+import type { TTranslations } from "../TermsAndConditions.types";
+
 export const content = `<h4>1. General</h4>
   <p>1.1. The Terms and Conditions defined in this text regulate the usage of the games provided through www.casumo.com, as well as other URLs licensed to or belonging to Casumo Services Limited (hereinafter referred to as “Website” or “Websites”). These Terms and Conditions, the Game Rules and any document expressly referred to in them, as well as any guidelines or rules posted on the Website constitute the agreement and understanding between the Parties and govern the contractual relationship between Casumo and the Account Holder. Please read these Terms and Conditions carefully and make sure you understand them. Should you not agree with their contents, please refrain from using this Website any further. These Terms and Conditions shall also apply to all gaming made via mobile devices, including downloadable applications. We also recommend that you familiarise yourself with our Privacy Notice. All references to the use of the Website shall be construed as references to the use of our betting facilities for mobile devices.</p>
   <p>1.2. Casumo Services Limited is a company incorporated under the laws of Malta with company registration number C55663, and having its registered address at The Unicorn Centre, Triq il-Uqija, Swieqi, SWQ 2335, Malta.</p>
@@ -318,6 +320,7 @@ export default {
   "button_download_pdf": "Download PDF",
   "button_version_history": "Version history",
   "button_view_version": "View",
+  "button_accept_terms": "Accept Terms",
   "note_version_old":
     "This is an archived version of our Terms & Conditions. View the <#>current version.</#>",
   "version_label": "Version {{version}}",
@@ -327,4 +330,4 @@ export default {
   "date_agreed": "Agreed on registration {{date}}",
   "date_changes_accepted": "<b>Changes Accepted</b> {{date}}",
   "terms_and_conditions_modal_title": "Terms and conditions",
-}
+} as TTranslations;
