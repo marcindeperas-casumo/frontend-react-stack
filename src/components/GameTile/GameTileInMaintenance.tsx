@@ -6,7 +6,7 @@ import GameTileImage from "Components/GameTile/GameTileImage";
 import * as A from "Types/apollo";
 
 export type Props = {
-  ratio: string;
+  ratio?: string;
   game: A.GameTileInMaintenance_GameFragment;
   className?: string;
   imgixOpts?: Object;
@@ -35,7 +35,6 @@ export const GameTileInMaintenance = ({
         logoBackground={backgroundImage}
         logo={logo}
         name={name}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ logoBackground: string; logo: string; name... Remove this comment to see the full error message
         imgixOpts={imgixOpts}
       />
       <Flex

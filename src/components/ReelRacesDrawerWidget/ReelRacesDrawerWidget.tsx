@@ -8,21 +8,37 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
 import { useGameActivityAwareWidgetLeaderboard } from "Models/reelRaces";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
-import { useTranslations } from "Utils/hooks/useTranslations";
+import { MARKETS } from "Src/constants";
+import { useTranslations, useMarket } from "Utils/hooks";
 import { CMS_SLUGS } from "Models/playing";
 import { ReelRaceBoosters } from "Components/ReelRaceBoosters";
 import { PositionView } from "./PositionView";
-import RRLogo from "./images/rrLogo.svg";
+import ReelRaceLogoRow from "./images/rrLogo.svg";
+import ReelRaceLogoEs from "./images/rrLogo-es.svg";
 
 import "./ReelRacesDrawerWidget.scss";
 
-type Props = {
+type TProps = {
   className?: string;
   currentRace: any;
   onShowLeaderboardClick?: () => void;
   showLeaderboardLink?: boolean;
   isLeaderboardOpen?: boolean;
 };
+
+type TLogoProps = {
+  className?: string;
+};
+
+function ReelRacesLogo({ className }: React.PropsWithChildren<TLogoProps>) {
+  const market = useMarket();
+
+  return market === MARKETS.es_es ? (
+    <ReelRaceLogoEs className={className} />
+  ) : (
+    <ReelRaceLogoRow className={className} />
+  );
+}
 
 const StatusElement = ({ children }) => (
   <Flex direction="vertical">
@@ -44,7 +60,7 @@ export const ReelRacesDrawerWidget = ({
   onShowLeaderboardClick = () => {},
   showLeaderboardLink = false,
   isLeaderboardOpen = false,
-}: Props) => {
+}: TProps) => {
   const t = useTranslations<{
     reel_races_drawer_pts: string;
     reel_races_drawer_points: string;
@@ -56,7 +72,7 @@ export const ReelRacesDrawerWidget = ({
   const raceLogo = (
     <Desktop>
       <div className="u-padding-bottom--xlg u-padding-top--lg">
-        <RRLogo className="u-width--1/3 u-margin-x--auto u-display--block" />
+        <ReelRacesLogo className="u-width--1/3 u-margin-x--auto u-display--block" />
       </div>
     </Desktop>
   );

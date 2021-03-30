@@ -19,4 +19,4 @@ export default [{
     currency: "EUR",
     amount: 234973.74
   }
-}];
+}] as const;
