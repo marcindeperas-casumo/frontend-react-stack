@@ -28,7 +28,9 @@ export const LiveCasinoGamesVirtualGrid = ({
   loadMore,
 }: Props) => {
   const newGames = games.filter(x => {
-    if (x.gameStudio === "Evolution" && !x.liveCasinoLobby) {
+    if (!x) {
+      return true;
+    } else if (x.gameStudio === "Evolution" && !x.liveCasinoLobby) {
       return false;
     }
 
