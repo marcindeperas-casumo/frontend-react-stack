@@ -49,7 +49,6 @@ export function SessionDetailsForLimitsReached(props: Props) {
         <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow
-            className="u-padding--md"
             // @ts-expect-error ts-migrate(2739) FIXME: Type 'AfterLimitsReached_GameFragment' is missing ... Remove this comment to see the full error message
             game={playAgainGame}
             renderText={() => <GameRowText name={playAgainGame.name} />}

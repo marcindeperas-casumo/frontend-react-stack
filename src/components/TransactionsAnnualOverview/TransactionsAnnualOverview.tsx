@@ -3,6 +3,7 @@ import Text from "@casumo/cmp-text";
 import * as React from "react";
 import { formatCurrency } from "Utils";
 import type { AnnualOverviewType } from "Models/transactionsBetsHistory";
+import { TCurrencyCode } from "Src/constants";
 type Content = {
   annual_transactions_list_heading: string;
   annual_transactions_starting_balance: string;
@@ -28,7 +29,7 @@ type Props = {
 type ListItemProps = {
   label: string;
   amount: number;
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
 };
 const { useCallback } = React;

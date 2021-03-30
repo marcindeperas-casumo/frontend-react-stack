@@ -6,6 +6,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { TextInput } from "Components/Compliance/TextInput";
 import { interpolate, formatCurrency, getSymbolForCurrency } from "Utils";
+import { TCurrencyCode } from "Src/constants";
 import { isBudgetInvalid } from "../Utils";
 import { ErrorMessage } from "./ErrorMessage";
 import "./LimitYourBudget.scss";
@@ -21,7 +22,7 @@ type Props = {
   };
   budget?: number;
   balance: number;
-  currency: string;
+  currency: TCurrencyCode;
   locale: string;
   onSubmit: (budget: number) => void;
 };
@@ -59,7 +60,7 @@ export function LimitYourBudget(props: Props) {
       </Text>
       <Flex align="center">
         <TextInput
-          currencySign={getSymbolForCurrency({ locale, currency })}
+          currencySign={getSymbolForCurrency({ currency })}
           onChange={onChange}
           value={budget}
           className="c-scs__limit-your-budget__field"

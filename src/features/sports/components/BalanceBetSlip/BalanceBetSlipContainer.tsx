@@ -5,13 +5,12 @@ import {
   playerCurrencySelector,
   playerWalletBonusSelector,
 } from "Models/player";
+import { navigateToDeposit } from "Components/Payments/utils";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
-import { navigateToDeposit } from "Features/sports/utils";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { BalanceBetSlip } from "./BalanceBetSlip";
-
 import "./BalanceBetSlip.scss";
 
 type Props = {
@@ -27,7 +26,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   const balance = formatCurrency({
     locale,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: playerBalance,
@@ -35,7 +33,6 @@ export const BalanceBetSlipContainer = ({ maximized = false }: Props) => {
 
   const bonus = formatCurrency({
     locale,
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
     currency,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
     value: bonusBalance,

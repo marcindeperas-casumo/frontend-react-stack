@@ -2,24 +2,31 @@ import * as React from "react";
 import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
 import { getPaymentMethodTypes } from "Api/api.payments";
-import { savedMethodsSelector, countrySelector } from "Models/handshake";
+import {
+  savedMethodsSelector,
+  countrySelector,
+  currencySelector,
+} from "Models/handshake";
 import {
   preparePaymentMethodConfig,
   methodsConfigsSelector,
+  TCurrencyProfiles,
+  TCurrencyProfile,
 } from "Models/payments";
 import { SUPPORTED_QUICKDEPOSIT_TYPES } from "Models/payments/methodConfig.constants";
 import type {
   SavedMethodType,
-  MethodConfigType,
+  TMethodConfig,
   AvailableMethod,
   QuickDepositMethod,
   LocalPaymentMethodTypeKeys,
 } from "Models/payments";
+import { TCurrencyCode } from "Src/constants";
 
-const isMethodAvailableForQuickDeposit = cmsConfig =>
+const isMethodAvailableForQuickDeposit = (cmsConfig: TMethodConfig) =>
   cmsConfig.mobile.deposit.quick;
 
-const isAvailableInCountry = (cmsConfig: MethodConfigType, country: string) =>
+const isAvailableInCountry = (cmsConfig: TMethodConfig, country: string) =>
   !R.includes(country, cmsConfig.mobile.deposit.disabledCountries);
 
 export const convertMethodTypesToMap = (
@@ -33,13 +40,28 @@ export const convertMethodTypesToMap = (
     };
   }, {});
 
+const getCurrencyProfile = R.memoizeWith(
+  (currency: TCurrencyCode) => currency as string,
+  (currency: TCurrencyCode, profiles: TCurrencyProfiles) => {
+    // Backwords compatibility with CMS. @mstrz: remove in due time.
+    const defaultCurrencyCode =
+      typeof profiles.default === "string" ? profiles.default : "default";
+
+    return (
+      (profiles[currency] as TCurrencyProfile) ||
+      (profiles[defaultCurrencyCode] as TCurrencyProfile)
+    );
+  }
+);
+
 export const prepareQuickDepositMethod = (
+  currency: TCurrencyCode,
   playerMethod: SavedMethodType,
-  cmsConfig: MethodConfigType,
+  cmsConfig: TMethodConfig,
   method: AvailableMethod
 ): QuickDepositMethod => ({
   ...playerMethod,
-  limits: cmsConfig.profiles.default.limits,
+  limits: getCurrencyProfile(currency, cmsConfig.profiles).limits,
   image: cmsConfig.image,
   displayName: method?.displayName,
 });
@@ -51,10 +73,11 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
   const savedMethods = useSelector(savedMethodsSelector);
 
   const playerCountry = useSelector(countrySelector);
+  const currency = useSelector(currencySelector);
   const methodsConfigs = useSelector(
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
     methodsConfigsSelector(savedMethods.map(method => method.type))
-  );
+  ) as { [key in LocalPaymentMethodTypeKeys]: TMethodConfig }; // eslint-disable-line no-unused-vars
 
   const dispatch = useDispatch();
 
@@ -79,8 +102,9 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
     if (methodTypes && savedMethods.length && playerCountry) {
       setAvailableMethods(
         savedMethods.reduce((quickDepositMethods, playerMethod) => {
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-          const config = methodsConfigs[playerMethod.type];
+          const config =
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
+            methodsConfigs[playerMethod.type as LocalPaymentMethodTypeKeys];
 
           if (
             config &&
@@ -93,6 +117,7 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
           ) {
             return quickDepositMethods.concat([
               prepareQuickDepositMethod(
+                currency,
                 playerMethod,
                 config,
                 // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
@@ -105,7 +130,7 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
         }, [])
       );
     }
-  }, [methodTypes, methodsConfigs, playerCountry, savedMethods]);
+  }, [methodTypes, methodsConfigs, playerCountry, savedMethods, currency]);
 
   return availableMethods;
 };

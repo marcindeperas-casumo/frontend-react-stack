@@ -1,5 +1,6 @@
 import Text from "@casumo/cmp-text";
 import * as React from "react";
+import { TCurrencyCode } from "Src/constants";
 import { interpolate, formatCurrency } from "Utils";
 import { isBudgetTooHigh, isBudgetTooLow, isBudgetInvalid } from "../Utils";
 
@@ -11,7 +12,7 @@ type ErrorMessageProps = {
   balance: number;
   budget: number;
   locale: string;
-  currency: string;
+  currency: TCurrencyCode;
 };
 
 export function ErrorMessage(props: ErrorMessageProps) {

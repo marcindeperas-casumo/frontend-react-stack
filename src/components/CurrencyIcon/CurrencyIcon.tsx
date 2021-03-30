@@ -32,6 +32,7 @@ const currencyIconMapper = (
     [CURRENCIES.NZD]: WalletTabDollarSelectedIcon,
     [CURRENCIES.CAD]: WalletTabDollarSelectedIcon,
     [CURRENCIES.DKK]: WalletTabKroneSelectedIcon,
+    [CURRENCIES.NOK]: WalletTabKroneSelectedIcon,
     [CURRENCIES.SEK]: WalletTabKroneSelectedIcon,
   };
 
@@ -43,6 +44,7 @@ const currencyIconMapper = (
     [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
     [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
     [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
+    [CURRENCIES.NOK]: WalletTabKroneUnselectedIcon,
     [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
   };
   const IconTagName = selected

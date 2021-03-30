@@ -27,6 +27,7 @@ const methodTypesMap = convertMethodTypesToMap(methodTypes);
 
 const expectedQuickDepositMethods = [
   prepareQuickDepositMethod(
+    "EUR",
     playerMethod,
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ profiles: { default: { limits:... Remove this comment to see the full error message
     mock.paymentMethodConfigs.methods.VISA_CARD,

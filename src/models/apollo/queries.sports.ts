@@ -24,7 +24,7 @@ export const SEARCH_VISIBLE_QUERY = gql`
   }
 `;
 
-export const SPORTS_SHELL_QUERY = gql`
+export const SportsShellQuery = gql`
   query SportsShellQuery {
     hasSelectedFavourites
     isSearchVisible @client
