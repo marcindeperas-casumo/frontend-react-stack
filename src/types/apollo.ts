@@ -356,6 +356,7 @@ export type Currency =
   | "CAD"
   | "DKK"
   | "NZD"
+  | "NOK"
   | "SEK"
   | "USD";
 
