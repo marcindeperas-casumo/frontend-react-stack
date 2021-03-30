@@ -31,7 +31,7 @@ export function ReelRaceScheduleCardContent({
   showPrizes = false,
 }: Props) {
   const [expandPrizes, setExpandPrizes] = React.useState(showPrizes);
-  const isMinTablet = useIsScreenMinimumTablet();
+  const isNotMobile = useIsScreenMinimumTablet();
 
   const getDuration = () => {
     return DateTime.fromMillis(reelRace.endTime)
@@ -62,105 +62,107 @@ export function ReelRaceScheduleCardContent({
 
   return (
     <>
-      <Flex direction={isMinTablet ? "horizontal" : "vertical"}>
-        <Flex.Item
-          className={cx(
-            "o-flex--horizontal",
-            "u-padding-y--lg",
-            isMinTablet && "u-width--1/2 u-margin-left--4xlg"
-          )}
-        >
-          <Flex
-            direction="vertical"
-            align="center"
-            className="o-flex--1 u-text-align-center"
+      <Flex direction={!isNotMobile && "vertical"}>
+        <Flex direction="vertical" spacing="none">
+          <Flex.Item
+            className={cx(
+              "o-flex--horizontal",
+              "u-padding-y--lg",
+              isNotMobile && "u-width--3/4 u-margin-left--sm"
+            )}
           >
-            <Text className="u-font-weight-bold">
-              {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
-            </Text>
-            <Text
-              size="xs"
-              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+            <Flex
+              direction="vertical"
+              align="center"
+              className="o-flex--1 u-text-align-center"
             >
-              {reelRace.translations.startingIn}
-            </Text>
-          </Flex>
-          <Flex
-            direction="vertical"
-            align="center"
-            className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
-          >
-            <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
-            <Text
-              size="xs"
-              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              <Text className="u-font-weight-bold">
+                {DateTime.fromMillis(reelRace.startTime).toFormat("t")}
+              </Text>
+              <Text
+                size="xs"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              >
+                {reelRace.translations.startingIn}
+              </Text>
+            </Flex>
+            <Flex
+              direction="vertical"
+              align="center"
+              className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
             >
-              {reelRace.translations.spins}
-            </Text>
-          </Flex>
-          <Flex
-            direction="vertical"
-            align="center"
-            className="o-flex--1 u-text-align-center"
-          >
-            <Text className="u-font-weight-bold">
-              {reelRace.translations.durationTemplate &&
-                interpolate(reelRace.translations.durationTemplate, {
-                  duration: getDuration(),
-                })}
-            </Text>
-            <Text
-              size="xs"
-              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
+              <Text
+                size="xs"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              >
+                {reelRace.translations.spins}
+              </Text>
+            </Flex>
+            <Flex
+              direction="vertical"
+              align="center"
+              className="o-flex--1 u-text-align-center"
             >
-              {reelRace.translations.duration}
-            </Text>
-          </Flex>
-          <Flex
-            direction="vertical"
-            align="center"
-            className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
-          >
-            <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
-            <Text
-              size="xs"
-              className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              <Text className="u-font-weight-bold">
+                {reelRace.translations.durationTemplate &&
+                  interpolate(reelRace.translations.durationTemplate, {
+                    duration: getDuration(),
+                  })}
+              </Text>
+              <Text
+                size="xs"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              >
+                {reelRace.translations.duration}
+              </Text>
+            </Flex>
+            <Flex
+              direction="vertical"
+              align="center"
+              className="o-flex--1 u-text-align-center t-border-left t-border-grey-5"
             >
-              {reelRace.translations.minBet}
-            </Text>
-          </Flex>
-        </Flex.Item>
+              <Text className="u-font-weight-bold">{reelRace.minBet}</Text>
+              <Text
+                size="xs"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+              >
+                {reelRace.translations.minBet}
+              </Text>
+            </Flex>
+          </Flex.Item>
+          <Flex.Item align={!isNotMobile && "center"}>
+            {reelRace.translations.caveatShort &&
+              reelRace.translations.caveatShort !== "false" && (
+                <Text
+                  tag="div"
+                  className={cx("t-color-grey-50 u-margin--lg")}
+                  onClick={showCaveatsModal}
+                >
+                  <DangerousHtml
+                    html={interpolate(reelRace.translations.caveatShort, {
+                      ctaTermsAndConditions: 'class="t-color-grey-50"',
+                    })}
+                  />
+                </Text>
+              )}
+          </Flex.Item>
+        </Flex>
 
         <Flex.Block
           className={cx(
+            "o-flex--vertical",
             "o-flex-justify--end",
             "o-flex-align--center@tablet o-flex-align--center@desktop o-flex--vertical@mobile"
           )}
         >
-          {reelRace.translations.caveatShort &&
-            reelRace.translations.caveatShort !== "false" && (
-              <Text
-                tag="div"
-                className={cx(
-                  "t-color-grey-50",
-                  isMinTablet ? "u-margin-left--4xlg" : "u-padding--md"
-                )}
-                onClick={showCaveatsModal}
-              >
-                <DangerousHtml
-                  html={interpolate(reelRace.translations.caveatShort, {
-                    ctaTermsAndConditions: 'class="t-color-grey-50"',
-                  })}
-                />
-              </Text>
-            )}
           <Flex
             className={cx(
               "u-margin-top--md u-padding-x--md u-margin-bottom--md",
-              !isMinTablet && "u-width--full"
+              !isNotMobile && "u-width--full"
             )}
           >
-            <Flex.Block className={cx(!isMinTablet && "o-flex--1")}>
+            <Flex.Block className={cx(!isNotMobile && "o-flex--1")}>
               <Button
                 size="md"
                 onClick={toggleExpandPrizes}
@@ -169,7 +171,7 @@ export function ReelRaceScheduleCardContent({
                 {expandPrizes ? t?.hide_prizes_button : t?.show_prizes_button}
               </Button>
             </Flex.Block>
-            <Flex.Block className={cx(!isMinTablet && "o-flex--1")}>
+            <Flex.Block className={cx(!isNotMobile && "o-flex--1")}>
               <div className="u-width--full u-padding-left--md">
                 {reelRace.optedIn ? (
                   <TrackClick
