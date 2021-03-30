@@ -1,5 +1,6 @@
 import Flex from "@casumo/cmp-flex";
 import { ChipFilterable } from "@casumo/cmp-chip";
+import { useQuery } from "@apollo/client";
 import * as React from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +11,7 @@ import { EVENTS, EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
 import TrackProvider from "Components/TrackProvider";
 import { loadMoreConstructor, interpolate } from "Utils";
-import { useCachedQuery, useTranslations } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import { isMobile } from "Components/ResponsiveLayout";
 import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
@@ -85,31 +86,25 @@ export function GameListPage({ set }: Props) {
     setFiltersVisibility(true);
   };
 
-  const { data, fetchMore, loading } = useCachedQuery<
+  const { data, fetchMore, loading } = useQuery<
     A.GameListPageQuery,
     A.GameListPageQueryVariables
-  >(
-    GameListPageQuery,
-    {
-      variables: {
-        query,
-        offset: 0,
-        limit: 48,
-      },
-      ...(!isMobile() && isLiveCasino ? { pollInterval: 5000 } : {}),
+  >(GameListPageQuery, {
+    variables: {
+      query,
+      offset: 0,
+      limit: 48,
     },
-    ["getGamesPaginated", "games"]
-  );
+    fetchPolicy: "cache-first",
+  });
+
   React.useEffect(() => {
     if (!loading) {
       setListHash(query);
     }
   }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const loadMore = loadMoreConstructor(
-    fetchMore,
-    data?.getGamesPaginated.gamesCount || 0
-  );
+  const loadMore = loadMoreConstructor(fetchMore);
   useSetScrollPosition(loading);
 
   const topSection = (
