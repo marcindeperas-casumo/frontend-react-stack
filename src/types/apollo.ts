@@ -1920,6 +1920,7 @@ export type ReelRaceCard_ReelRaceFragment = {
   startTime: number;
   optedIn: boolean;
   endTime: number;
+  minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
@@ -1945,6 +1946,7 @@ export type ReelRaceCard_ReelRaceFragment = {
     caveatShort: string;
     today: string;
     tomorrow: string;
+    minBet: string;
   };
 };
 
@@ -1971,6 +1973,7 @@ export type ReelRaceScheduleCard_ReelRaceFragment = {
   startTime: number;
   endTime: number;
   optedIn: boolean;
+  minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
@@ -1993,6 +1996,7 @@ export type ReelRaceScheduleCard_ReelRaceFragment = {
     caveatShort: string;
     today: string;
     tomorrow: string;
+    minBet: string;
   };
 };
 
