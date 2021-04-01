@@ -222,7 +222,7 @@ export class ReelRaceCard extends React.Component<Props> {
             >
               <Flex
                 align="center"
-                className="u-cursor-pointer"
+                className="u-cursor--pointer"
                 onClick={() => launchGame({ slug: game.slug })}
               >
                 <GameThumb

@@ -20,7 +20,7 @@ type InnerToggleProps = {
 const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
   <div
     className={cx(
-      "c-toggle u-position-relative t-border--md u-font-weight-bold u-cursor-pointer t-border-r--pill u-overflow--hidden",
+      "c-toggle u-position-relative t-border--md u-font-weight-bold u-cursor--pointer t-border-r--pill u-overflow--hidden",
       {
         "t-background-purple-60 t-color-white t-border-white": checked,
         "t-background-white t-color-grey-5 t-border-grey-5": !checked,

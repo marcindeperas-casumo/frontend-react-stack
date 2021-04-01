@@ -94,7 +94,7 @@ export function ReelRaceScheduleCard({
         align="center"
         onClick={toggle}
         className={cx(
-          "u-padding--md u-cursor-pointer",
+          "u-padding--md u-cursor--pointer",
           reelRace.promoted && "t-background-purple-80 t-color-white",
           open
             ? "t-border-r-top-left--md t-border-r-top-right--md"

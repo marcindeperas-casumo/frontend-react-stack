@@ -16,7 +16,7 @@ const WelcomeOfferDepositButton = ({ label }: { label: string }) => (
     size="md"
     id="gtm-curated-play"
     onClick={() => navigateById({ routeId: "deposit" })}
-    className="u-pointer-events-initial u-margin-y--md u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
+    className="u-pointer--initial u-margin-y--md u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
   >
     <span className="u-margin-left">{label}</span>
   </ButtonPrimary>
