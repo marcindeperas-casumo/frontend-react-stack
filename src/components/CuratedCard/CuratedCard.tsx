@@ -68,7 +68,7 @@ export const CuratedCard = ({
     }
 
     if (isExternalLink) {
-      window.open(link, '_blank');
+      window.open(link, "_blank");
       return false;
     }
   };
