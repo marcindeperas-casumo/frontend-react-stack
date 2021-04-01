@@ -6,8 +6,9 @@ import React from "react";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { convertHTMLToString } from "Utils";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
 import { CURATED_TYPE, prefixCuratedSlug } from "Models/curated";
+import { useTranslatedUrl } from "Utils/hooks";
 import type { CuratedCardFooterGameProps } from "./CuratedCardFooterGame";
 
 export const CuratedCardFooterGameDesktop = ({
@@ -19,6 +20,10 @@ export const CuratedCardFooterGameDesktop = ({
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
     [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game.slug),
   };
+
+  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
+    slug: game.slug,
+  });
 
   return (
     <div className="o-wrapper">
@@ -56,7 +61,7 @@ export const CuratedCardFooterGameDesktop = ({
               <ButtonInverted
                 size="md"
                 id="gtm-curated-more"
-                href={`/play/${game.slug}`}
+                href={`/${gameDetailsPath}`}
                 className="u-pointer-events-initial u-margin-left--lg u-width--3xlg"
               >
                 <MoreIcon />
