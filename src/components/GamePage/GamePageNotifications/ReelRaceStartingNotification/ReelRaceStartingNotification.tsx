@@ -46,7 +46,7 @@ export function ReelRaceStartingNotification({
         />
         <Text
           size="md"
-          className="u-font-weight-bold u-position-absolute u-inset-x u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
+          className="u-font-weight-bold u-position-absolute o-inset-x--none u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
         >
           {secondsLeft}
         </Text>

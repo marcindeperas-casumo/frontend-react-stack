@@ -144,7 +144,7 @@ export function Select<T>(props: Props<T>) {
           align="center"
           justify="end"
           className={classNames(
-            "u-position-absolute u-padding-right--sm u-right-0 u-top-0 u-height--xlg",
+            "u-position-absolute u-padding-right--sm o-inset-right--none o-inset-top--none u-height--xlg",
             {
               "u-pointer--none": !props.value,
             }

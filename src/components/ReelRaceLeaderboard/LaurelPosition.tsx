@@ -43,7 +43,7 @@ export const LaurelPosition = ({
     <Text
       tag="div"
       className={cx(
-        "c-laurel-position__text u-position-absolute u-font-weight-bold u-inset-0 u-text-align-center",
+        "c-laurel-position__text u-position-absolute u-font-weight-bold o-inset-x--none o-inset-y--none u-text-align-center",
         {
           "t-color-grey-90": !inverted,
           "t-color-white": inverted && !highlighted,

@@ -57,7 +57,7 @@ function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
       value={gameProgress}
       fgColor={getProgressColor(gameProgress)}
       bgColor="grey-50"
-      className="t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute u-top-0 u-left-0"
+      className="t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute o-inset-top--none o-inset-left--none"
       width={4}
       radius={24}
     />
@@ -78,7 +78,7 @@ const animationClasses = {
   out: "c-reel-race-icon__content--old",
 };
 const baseClasses =
-  "u-height--2xlg u-width--2xlg u-position-absolute u-top-0 u-left-0";
+  "u-height--2xlg u-width--2xlg u-position-absolute o-inset-top--none o-inset-left--none";
 const widgetEntryClasses =
   "o-flex--vertical o-flex-align--center o-flex-justify--center";
 function AnimatedReelRaceWidget() {
