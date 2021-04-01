@@ -11,7 +11,7 @@ export const SidebarIconClose = () => {
   return (
     !isSidebarFixed && (
       <div
-        className="u-position-absolute"
+        className="o-position--absolute"
         onClick={() => dispatch(sidebarCloseAction())}
         data-test-id="sidebar-close"
       >

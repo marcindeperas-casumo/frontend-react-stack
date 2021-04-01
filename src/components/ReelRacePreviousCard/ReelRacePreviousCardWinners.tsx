@@ -49,7 +49,7 @@ export function ReelRacePreviousCardWinners({
         className="t-border-bottom t-border-grey-0 u-padding-y"
       >
         <Flex className="o-flex--1">
-          <div className="u-position-relative u-width--3xlg">
+          <div className="o-position--relative u-width--3xlg">
             <LaurelIcon
               size="lg"
               className={cx(
@@ -61,7 +61,7 @@ export function ReelRacePreviousCardWinners({
             />
             <Text
               size="sm"
-              className="u-position-absolute u-padding-y--md u-text-align-center u-width--3xlg o-inset-top--none u-font-weight-bold"
+              className="o-position--absolute u-padding-y--md u-text-align-center u-width--3xlg o-inset-top--none u-font-weight-bold"
             >
               {p.position}
             </Text>

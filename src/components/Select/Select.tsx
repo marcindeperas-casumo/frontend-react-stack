@@ -54,14 +54,14 @@ export function Select<T>(props: Props<T>) {
       )}
       <div
         className={classNames(
-          "u-position-relative u-cursor--pointer",
+          "o-position--relative u-cursor--pointer",
           selectClassNames
         )}
       >
         <div
           ref={measuredRef}
           className={classNames(
-            "u-position-absolute u-visibility--hidden",
+            "o-position--absolute u-visibility--hidden",
             pillFontClass
           )}
         >
@@ -100,9 +100,9 @@ export function Select<T>(props: Props<T>) {
         {desktopSelect && (
           <Flex
             direction="vertical"
-            className="u-text-nowrap u-position-absolute c-select__options-list"
+            className="u-text-nowrap o-position--absolute c-select__options-list"
           >
-            <div className="u-position-absolute c-select__options-list-arrow" />
+            <div className="o-position--absolute c-select__options-list-arrow" />
             <Flex
               direction="vertical"
               className="t-background-white t-border-r--md u-overflow--hidden"
@@ -144,7 +144,7 @@ export function Select<T>(props: Props<T>) {
           align="center"
           justify="end"
           className={classNames(
-            "u-position-absolute u-padding-right--sm o-inset-right--none o-inset-top--none u-height--xlg",
+            "o-position--absolute u-padding-right--sm o-inset-right--none o-inset-top--none u-height--xlg",
             {
               "u-pointer--none": !props.value,
             }

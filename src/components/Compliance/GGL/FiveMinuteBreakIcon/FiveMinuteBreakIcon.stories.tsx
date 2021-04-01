@@ -23,7 +23,7 @@ const Wrapper = ({ children, withBg = true }) => (
         height: 48,
       }}
     >
-      <div className="u-color-white u-position-relative u-zindex--content-overlay o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left  u-height--3xlg u-width--3xlg">
+      <div className="u-color-white o-position--relative u-zindex--content-overlay o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left  u-height--3xlg u-width--3xlg">
         {children}
       </div>
     </div>

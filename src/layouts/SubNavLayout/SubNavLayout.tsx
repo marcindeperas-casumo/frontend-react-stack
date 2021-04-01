@@ -36,7 +36,7 @@ export const SubNavLayout = ({ children, links }: TProps) => {
                   <Flex.Item key={link.to} className="u-margin-x--md">
                     <NavLink
                       to={link.to}
-                      className="u-font-weight-bold u-position-relative t-color-grey-70"
+                      className="u-font-weight-bold o-position--relative t-color-grey-70"
                       activeClassName="c-sub-nav-item--active t-color-purple-60"
                     >
                       {link.text}

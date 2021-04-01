@@ -50,8 +50,8 @@ export const Sidebar = (props: Props) => {
       className={classNames(
         "c-sidebar o-flex__item--no-shrink u-height--screen u-overflow-y--auto t-color-white u-font u-font-weight-bold",
         isSidebarFixed
-          ? "c-sidebar--fixed u-position-relative"
-          : "u-width--full u-position-absolute"
+          ? "c-sidebar--fixed o-position--relative"
+          : "u-width--full o-position--absolute"
       )}
     >
       <SidebarIconClose />

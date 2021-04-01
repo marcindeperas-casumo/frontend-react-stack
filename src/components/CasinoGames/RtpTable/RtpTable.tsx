@@ -55,7 +55,7 @@ export const RtpTable = ({
     >
       <Flex
         className={classNames(
-          "u-position-sticky--top o-inset-top--none u-zindex--content-overlay",
+          "o-position--sticky o-inset-top--none u-zindex--content-overlay",
           rowContainerClasses
         )}
         style={{ minHeight: rowHeight }}

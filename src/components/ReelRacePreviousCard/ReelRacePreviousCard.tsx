@@ -25,7 +25,7 @@ export function ReelRacePreviousCard({ reelRace, t, expanded = false }: Props) {
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
-    <div className="t-background-white u-position-relative t-border-r--md u-margin--md t-elevation--10">
+    <div className="t-background-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
         align="center"
         onClick={toggle}

@@ -24,7 +24,7 @@ export function ReusableNotification({ t }: TReusableNotificationProps) {
         align="center"
       >
         {t.notification_image && (
-          <Flex.Item className="u-position-relative">
+          <Flex.Item className="o-position--relative">
             <img
               className="u-display--block t-border-r--circle"
               width={40}
