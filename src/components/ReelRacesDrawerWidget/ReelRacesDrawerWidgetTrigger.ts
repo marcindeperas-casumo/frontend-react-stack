@@ -9,7 +9,6 @@ import { useCurrentReelRaceInfo } from "../../utils/hooks/useCurrentReelRaceInfo
 
 export const ReelRacesDrawerWidgetTrigger = () => {
   const playing = useSelector(playingSelector);
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameId' does not exist on type 'unknown'... Remove this comment to see the full error message
   const currentReelRaceFromHook = useCurrentReelRaceInfo(playing?.gameId);
   const currentRace = isNativeByUserAgent() ? null : currentReelRaceFromHook;
   const { addIcon, removeIcon, hasIcon } = useSumoIcon({ currentRace });
