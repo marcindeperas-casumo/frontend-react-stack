@@ -33,3 +33,4 @@ export { useResize } from "./useResize";
 export { useCallOnce } from "./useCallOnce";
 export { useScrollToTop } from "./useScrollToTop";
 export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
+export { useTranslatedUrl } from "./useTranslatedUrl";
