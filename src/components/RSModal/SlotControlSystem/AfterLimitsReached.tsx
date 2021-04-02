@@ -1,14 +1,13 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { path } from "ramda";
 import * as A from "Types/apollo";
 import { ROUTE_IDS } from "Src/constants";
 import { navigateToRerender } from "Utils";
 import { useLocale, useCrossCodebaseNavigation } from "Utils/hooks";
-import {
-  useSessionsState,
-  getSlugFromGamePage,
-} from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
+import { playingSelector } from "Models/playing";
 import type { ModalContentComponent } from "Components/RSModal";
 import {
   SessionDetailsForLimitsReached,
@@ -39,7 +38,8 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const { activeExclusion, lastEndedSession } = useSessionsState();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const locale = useLocale();
-  const gameSlug = getSlugFromGamePage();
+  const playing = useSelector(playingSelector);
+  const gameSlug = playing?.gameId;
   const isPlayRouteActive = Boolean(gameSlug);
   const gameQueryProps = useQuery<
     A.PlayAgainGameBySlugQuery,
