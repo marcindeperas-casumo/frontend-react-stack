@@ -12,11 +12,10 @@ import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Compone
 import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 import { LiveCasinoCardSmallContainer } from "Components/LiveCasinoCard/LiveCasinoCardSmallContainer";
 import "./GameTile.scss";
-import { useTranslatedUrl } from "Utils/hooks";
 
 export type GameTileTranslations = {
   play_button_text_game_tile: string;
@@ -28,6 +27,7 @@ export type Props = {
   imgixOpts?: Object;
   ratio?: string;
   t?: GameTileTranslations;
+  gameDetailsPath?: string;
   locale?: string;
 };
 
@@ -43,6 +43,7 @@ export const GameTile = ({
   },
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
+  gameDetailsPath,
   locale,
 }: Props) => {
   const {
@@ -50,13 +51,10 @@ export const GameTile = ({
     backgroundImage,
     logo,
     name,
-    slug,
     id,
     liveCasinoId,
     jackpot,
   } = game || {};
-
-  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, { slug });
 
   const JackpotAmountButton = () => {
     const currency = jackpot?.value?.currency;
@@ -151,14 +149,14 @@ export const GameTile = ({
                 <Mobile>
                   <Link
                     className="u-padding u-display--block"
-                    to={`/${gameDetailsPath}`}
+                    to={`${gameDetailsPath}`}
                   >
                     <MoreIcon className="t-color-white" />
                   </Link>
                 </Mobile>
                 <TabletAndDesktop>
                   <Link
-                    to={`/${gameDetailsPath}`}
+                    to={`${gameDetailsPath}`}
                     className="u-padding u-display--block"
                   >
                     <MoreIcon className="t-color-white" />
