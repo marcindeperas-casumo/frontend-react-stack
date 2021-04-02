@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { path } from "ramda";
 import * as A from "Types/apollo";
 import { ROUTE_IDS } from "Src/constants";
@@ -38,7 +38,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const { activeExclusion, lastEndedSession } = useSessionsState();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const locale = useLocale();
-  const playing = useSelector(playingSelector);
+  const playing = useSelector(playingSelector, shallowEqual);
   const gameSlug = playing?.gameId;
   const isPlayRouteActive = Boolean(gameSlug);
   const gameQueryProps = useQuery<
