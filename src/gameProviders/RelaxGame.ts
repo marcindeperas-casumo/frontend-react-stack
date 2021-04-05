@@ -5,14 +5,10 @@ import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: {
-    method: "pauseGame",
-    params: {
-      callback: "gamePausedHandler",
-    },
+    rgMessage: "oprg_GamePause",
   },
   RESUME: {
-    method: "resumeGame",
-    params: {},
+    rgMessage: "oprg_GameResume",
   },
 };
 
