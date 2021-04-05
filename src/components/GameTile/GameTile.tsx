@@ -27,6 +27,7 @@ export type Props = {
   imgixOpts?: Object;
   ratio?: string;
   t?: GameTileTranslations;
+  gameDetailsPath?: string;
   locale?: string;
 };
 
@@ -42,6 +43,7 @@ export const GameTile = ({
   },
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
+  gameDetailsPath,
   locale,
 }: Props) => {
   const {
@@ -49,7 +51,6 @@ export const GameTile = ({
     backgroundImage,
     logo,
     name,
-    slug,
     id,
     liveCasinoId,
     jackpot,
@@ -146,16 +147,16 @@ export const GameTile = ({
                 data={{ [EVENT_PROPS.GAME_NAME]: name }}
               >
                 <Mobile>
-                  <a
+                  <Link
                     className="u-padding u-display--block"
-                    href={`/play/${slug}`}
+                    to={`${gameDetailsPath}`}
                   >
                     <MoreIcon className="t-color-white" />
-                  </a>
+                  </Link>
                 </Mobile>
                 <TabletAndDesktop>
                   <Link
-                    to={`/games/details/${slug}`}
+                    to={`${gameDetailsPath}`}
                     className="u-padding u-display--block"
                   >
                     <MoreIcon className="t-color-white" />

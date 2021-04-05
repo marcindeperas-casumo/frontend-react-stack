@@ -10,6 +10,7 @@ import {
   useGameCategory,
   useDispatchPlaying,
   useInGameBonusOrRealBalanceCheck,
+  useCurrentReelRaceInfo,
 } from "Utils/hooks";
 import { playerWalletBonusSelector } from "Models/player";
 import { getSelectedQuickDepositMethod } from "Models/payments/payments.selectors";
@@ -26,6 +27,7 @@ import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/R
 import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
 import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
+import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import {
   GamePageNotifications,
   FullScreenGamePageNotifications,
@@ -34,7 +36,11 @@ import {
 import { GamePageSidebar } from "./GamePageSidebar";
 import { GamePage } from "./GamePage";
 import { GamePageError } from "./GamePageError";
-import { useGameModelContext, GamePageContextProvider } from "./Contexts";
+import {
+  useGameModelContext,
+  usePinnedWidgetsContext,
+  GamePageContextProvider,
+} from "./Contexts";
 import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
@@ -65,6 +71,14 @@ export const GamePageContainer = () => {
   const quickDepositInProgress = Boolean(
     useSelector(getSelectedQuickDepositMethod)
   );
+
+  const { pinnedWidgets } = usePinnedWidgetsContext();
+  const currentRace = useCurrentReelRaceInfo();
+
+  const showRRSidebar =
+    currentRace?.optedIn &&
+    currentRace?.game?.slug === slug &&
+    pinnedWidgets.includes(DRAWERS.REEL_RACES);
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
@@ -157,7 +171,7 @@ export const GamePageContainer = () => {
       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: Element; footer: Element; gameBackg... Remove this comment to see the full error message
       shouldShowSlotControlSystem={shouldShowSlotControlSystem}
       quickDepositInProgress={quickDepositInProgress}
-      sidebar={<GamePageSidebar />}
+      sidebar={showRRSidebar ? <GamePageSidebar /> : null}
     />
   );
 };
