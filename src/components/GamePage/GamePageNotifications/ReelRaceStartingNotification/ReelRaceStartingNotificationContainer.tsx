@@ -18,7 +18,6 @@ export function ReelRaceStartingNotificationContainer() {
   const playing = useSelector(playingSelector);
   const [dismissed, setDismissed] = React.useState(false);
   const [secondsLeft, setSecondsLeft] = React.useState(0);
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'gameId' does not exist on type 'unknown'... Remove this comment to see the full error message
   const reelRaceInfo = useCurrentReelRaceInfo(playing?.gameId);
   const startTime = DateTime.fromMillis(R.propOr(0, "startTime", reelRaceInfo));
   const skipInterval = dismissed || secondsLeft < 0;

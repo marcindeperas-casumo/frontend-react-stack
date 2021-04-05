@@ -4,25 +4,6 @@ import { shouldShowSlotControlSystemSaga } from "./shouldShowSlotControlSystem.s
 
 const gameCategory = "SLOT_MACHINE";
 const slug = "tiger-rush";
-const state = {
-  slotControlSystem: {
-    slugToCategoryMap: {
-      [slug]: gameCategory,
-    },
-  },
-};
-const { location } = window;
-function setPathname(pathname) {
-  // eslint-disable-next-line fp/no-delete
-  delete window.location;
-
-  // @ts-expect-error ts-migrate(2740) FIXME: Type '{ href: string; origin: string; pathname: an... Remove this comment to see the full error message
-  window.location = {
-    href: `https://mydomain.com${pathname}`,
-    origin: "https://mydomain.com",
-    pathname,
-  };
-}
 
 // jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests here 🐛
 jest.mock("Api/api.casinoPlayerGames", () => ({
@@ -33,13 +14,18 @@ jest.mock("Api/api.casinoPlayerGames", () => ({
 describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
   beforeEach(() => {
     (getGameCategory as jest.Mock).mockClear();
-    window.location = location;
   });
 
   test("fetch data if nothing is saved in store", async () => {
-    setPathname("/play/tiger-rush/launch");
+    const state = {
+      playing: {
+        isPlaying: true,
+        gameId: slug,
+      },
+    };
     const { result } = await recordSaga({
       saga: shouldShowSlotControlSystemSaga,
+      state,
     });
 
     expect(getGameCategory).toHaveBeenCalledTimes(1);
@@ -47,7 +33,17 @@ describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
   });
 
   test("gets data from store if possible", async () => {
-    setPathname("/play/tiger-rush/launch");
+    const state = {
+      playing: {
+        isPlaying: true,
+        gameId: slug,
+      },
+      slotControlSystem: {
+        slugToCategoryMap: {
+          [slug]: gameCategory,
+        },
+      },
+    };
     const { result } = await recordSaga({
       saga: shouldShowSlotControlSystemSaga,
       state,
@@ -58,13 +54,24 @@ describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
   });
 
   test("returns false right away if not on game page", async () => {
-    setPathname("/not-game-page");
+    const state = {
+      playing: {
+        isPlaying: false,
+        gameId: null,
+      },
+    };
     const { result, effects } = await recordSaga({
       saga: shouldShowSlotControlSystemSaga,
       state,
     });
 
-    expect(effects).toStrictEqual({});
+    expect(effects).toMatchObject({
+      select: [
+        {
+          result: state.playing,
+        },
+      ],
+    });
     expect(result).toBe(false);
   });
 });

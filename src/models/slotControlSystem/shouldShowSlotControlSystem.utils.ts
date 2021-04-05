@@ -6,7 +6,3 @@ export function isSlotGame(category: string | undefined): boolean {
 
   return R.includes(category, slotCategories);
 }
-
-export function getSlugFromGamePage(): string | undefined {
-  return (window.location.pathname.match(/\/play\/(.*?)\/launch/) || [])[1];
-}
