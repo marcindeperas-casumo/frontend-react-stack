@@ -1921,6 +1921,7 @@ export type ReelRaceCard_ReelRaceFragment = {
   startTime: number;
   optedIn: boolean;
   endTime: number;
+  minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
@@ -1940,6 +1941,7 @@ export type ReelRaceCard_ReelRaceFragment = {
     endingIn: string;
     startingIn: string;
     competeFor: string;
+    minBet: string;
     spins: string;
     duration: string;
     durationTemplate: string;
