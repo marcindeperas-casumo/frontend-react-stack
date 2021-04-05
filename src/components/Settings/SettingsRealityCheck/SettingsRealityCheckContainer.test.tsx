@@ -10,7 +10,6 @@ import {
   playerRealityCheckQueryCantChangeIntervalMock,
   playerRealityCheckQueryNoZeroIntervalMock,
   playerRealityCheckQueryMock,
-  playerRealityCheckQueryErrorMock,
   realityCheckLabelsQueryMock,
   realityCheckLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
@@ -37,57 +36,6 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
-    });
-
-    test("should pass correct initial interval to child", () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
-        >
-          <SettingsRealityCheckContainer />
-        </MockedProvider>
-      );
-
-      wait(1000).then(() => {
-        expect(rendered.find("Component").prop("interval")).toStrictEqual(
-          playerRealityCheckQueryMock.result.data.player.playOk.realityCheck
-            .intervalInMinutes
-        );
-      });
-    });
-
-    test("should pass correct labels to children", () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
-        >
-          <SettingsRealityCheckContainer />
-        </MockedProvider>
-      );
-
-      wait(1000).then(() => {
-        expect(
-          JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
-        ).toStrictEqual(realityCheckLabelsQueryMock.result.data);
-      });
-    });
-
-    test("should show error when settings fail to load", () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
-            playerRealityCheckQueryErrorMock,
-            realityCheckLabelsQueryMock,
-          ]}
-        >
-          <SettingsRealityCheckContainer />
-        </MockedProvider>
-      );
-
-      wait(1000).then(() => {
-        expect(rendered.find("ErrorMessage")).toHaveLength(1);
-      });
     });
 
     test("should show error when labels fail to load", () => {
