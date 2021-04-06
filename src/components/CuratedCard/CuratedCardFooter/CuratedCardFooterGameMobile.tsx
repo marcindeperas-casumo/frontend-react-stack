@@ -16,13 +16,13 @@ export const CuratedCardFooterGameMobile = ({
   launchButtonText,
   onLaunchGame,
 }: CuratedCardFooterGameProps) => {
-  if (!game) {
-    return null;
-  }
-
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
     slug: game.slug,
   });
+
+  if (!game) {
+    return null;
+  }
 
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
