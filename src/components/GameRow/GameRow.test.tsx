@@ -1,17 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import { Provider } from "react-redux";
-import defaultState from "Models/__mocks__/state.mock";
-import { createReduxStore } from "Services/reduxStore";
 import { setMobileViewport } from "Utils/testUtils";
 import { GameThumb } from "Components/GameThumb";
 import { CURRENCIES } from "Src/constants";
+import { MockTestProvider } from "Utils";
 import { GameRow } from "./GameRow";
 import { GameRowText } from "./GameRowText";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
-
-const store = createReduxStore(defaultState);
 
 describe("<GameRow />", () => {
   let game;
@@ -35,12 +31,12 @@ describe("<GameRow />", () => {
 
   test("renders a GameThumb for the component", () => {
     const rendered = mount(
-      <Provider store={store}>
+      <MockTestProvider>
         <GameRow
           game={game}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </Provider>
+      </MockTestProvider>
     );
     const thumbnail = rendered.find(GameThumb);
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
@@ -57,9 +53,9 @@ describe("<GameRow />", () => {
   test("calls renderText render prop", () => {
     const renderText = jest.fn(() => <GameRowText name={game.name} />);
     const rendered = mount(
-      <Provider store={store}>
+      <MockTestProvider>
         <GameRow game={game} renderText={renderText} />
-      </Provider>
+      </MockTestProvider>
     );
 
     expect(renderText).toHaveBeenCalled();
@@ -68,12 +64,12 @@ describe("<GameRow />", () => {
 
   test("renders a play icon if jackpot game", () => {
     const rendered = mount(
-      <Provider store={store}>
+      <MockTestProvider>
         <GameRow
           game={{ ...game, lobby: "whatever" }}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </Provider>
+      </MockTestProvider>
     );
 
     expect(rendered.find(GameRowTrackPlayIcon).length).toBe(1);
@@ -82,12 +78,12 @@ describe("<GameRow />", () => {
 
   test("renders a More info icon if not a jackpot game", () => {
     const rendered = mount(
-      <Provider store={store}>
+      <MockTestProvider>
         <GameRow
           game={game}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </Provider>
+      </MockTestProvider>
     );
 
     expect(rendered.find(GameRowTrackMoreIcon).length).toBe(1);
