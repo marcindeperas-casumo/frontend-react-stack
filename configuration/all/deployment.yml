@@ -1,18 +1,7 @@
-deploy_as: on-site-docker-container
+deploy_as: on-site-kubernetes
+replicas: 2
 
-docker_image: "{{aws_docker_registry}}/{{service}}"
+k8s_migration: false
+service_namespace: service
 
-service_port: 8633
-
-register_with_consul:
-  - name: "{{ service }}"
-    healthcheck_path: "/ping"
-    port: "{{ service_port }}"
-
-port_mappings:
-- host_port: "{{service_port}}"
-  container_port: 80
-
-volumes:
-- "/var/log/{{service}}:/var/log/nginx"
-
+healthcheck_probe_path: /ping
