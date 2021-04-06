@@ -43,8 +43,6 @@ export const GameModelContextProvider = ({
       remoteGameLaunchData,
     }
   );
-  // eslint-disable-next-line fp/no-mutation
-  window.ianIlKing = () => pauseGame();
   const { game } = useGameDetails({ slug });
   const providerValues = {
     gameProviderModel,

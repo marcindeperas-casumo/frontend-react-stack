@@ -13,8 +13,8 @@ export const COMMANDS = {
 };
 
 export const EVENTS = {
-  GAME_ROUND_START: { method: "GameEvent_ROUND_STARTED" },
-  GAME_ROUND_END: { method: "GameEvent_ROUND_ENDED" },
+  GAME_ROUND_START: { rgMessage: "gprg_GameRoundStart" },
+  GAME_ROUND_END: { rgMessage: "gprg_GameRoundEnd" },
 };
 
 // TODO:
