@@ -62,6 +62,6 @@ export class RelaxGame extends BaseIframeGame {
   }
 
   extractEventId(data: any) {
-    return data.method;
+    return data;
   }
 }
