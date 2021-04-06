@@ -50,6 +50,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -82,6 +83,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -114,6 +116,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -146,6 +149,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -178,6 +182,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -210,6 +215,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -242,6 +248,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -274,6 +281,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -306,6 +314,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -338,6 +347,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -370,6 +380,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -413,6 +424,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -456,6 +468,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -499,6 +512,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -541,6 +555,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -584,6 +599,8 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+
+      minBet: "Min. Bet"
     },
   },
   {
@@ -616,6 +633,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -648,6 +666,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -680,6 +699,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -711,6 +731,8 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+
+      minBet: "Min. Bet"
     },
   },
   {
@@ -743,6 +765,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -775,6 +798,8 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+
+      minBet: "Min. Bet"
     },
   },
   {
@@ -807,6 +832,8 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+
+      minBet: "Min. Bet"
     },
   },
   {
@@ -839,6 +866,8 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+
+      minBet: "Min. Bet"
     },
   },
   {
@@ -871,6 +900,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -903,6 +933,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -935,6 +966,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -967,6 +999,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -999,6 +1032,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
   {
@@ -1031,6 +1065,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
+      minBet: "Min. Bet"
     },
   },
 ];

@@ -66,10 +66,7 @@ export const RtpTable = ({
       <VirtualList
         // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
         games={games}
-        loadMoreRows={loadMoreConstructor(
-          fetchMore,
-          data.getGamesPaginated.gamesCount
-        )}
+        loadMoreRows={loadMoreConstructor(fetchMore)}
         isRowLoaded={({ index }) => Boolean(games[index])}
         rowHeight={rowHeight}
         listHash={query}

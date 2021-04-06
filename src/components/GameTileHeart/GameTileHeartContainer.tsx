@@ -32,7 +32,11 @@ export const GameTileHeartContainer = React.memo<Props>(
     const { data, loading } = useQuery<
       A.GameTileHeartQuery,
       A.GameTileHeartQueryVariables
-    >(GameTileHeartQuery, { variables: { numberOfGames }, skip });
+    >(GameTileHeartQuery, {
+      variables: { numberOfGames },
+      skip,
+      fetchPolicy: "cache-first",
+    });
 
     useUnmount(() => setSkip(true));
 
