@@ -1,8 +1,9 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { setMobileViewport } from "Utils/testUtils";
 import { GameThumb } from "Components/GameThumb";
 import { CURRENCIES } from "Src/constants";
+import MockStore from "Components/MockStore";
 import { GameRow } from "./GameRow";
 import { GameRowText } from "./GameRowText";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
@@ -29,11 +30,13 @@ describe("<GameRow />", () => {
   });
 
   test("renders a GameThumb for the component", () => {
-    const rendered = shallow(
-      <GameRow
-        game={game}
-        renderText={() => <GameRowText name={game.name} />}
-      />
+    const rendered = mount(
+      <MockStore>
+        <GameRow
+          game={game}
+          renderText={() => <GameRowText name={game.name} />}
+        />
+      </MockStore>
     );
     const thumbnail = rendered.find(GameThumb);
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
@@ -49,18 +52,24 @@ describe("<GameRow />", () => {
 
   test("calls renderText render prop", () => {
     const renderText = jest.fn(() => <GameRowText name={game.name} />);
-    const rendered = shallow(<GameRow game={game} renderText={renderText} />);
+    const rendered = mount(
+      <MockStore>
+        <GameRow game={game} renderText={renderText} />
+      </MockStore>
+    );
 
     expect(renderText).toHaveBeenCalled();
     expect(rendered.find(GameRowText).length).toBe(1);
   });
 
   test("renders a play icon if jackpot game", () => {
-    const rendered = shallow(
-      <GameRow
-        game={{ ...game, lobby: "whatever" }}
-        renderText={() => <GameRowText name={game.name} />}
-      />
+    const rendered = mount(
+      <MockStore>
+        <GameRow
+          game={{ ...game, lobby: "whatever" }}
+          renderText={() => <GameRowText name={game.name} />}
+        />
+      </MockStore>
     );
 
     expect(rendered.find(GameRowTrackPlayIcon).length).toBe(1);
@@ -68,11 +77,13 @@ describe("<GameRow />", () => {
   });
 
   test("renders a More info icon if not a jackpot game", () => {
-    const rendered = shallow(
-      <GameRow
-        game={game}
-        renderText={() => <GameRowText name={game.name} />}
-      />
+    const rendered = mount(
+      <MockStore>
+        <GameRow
+          game={game}
+          renderText={() => <GameRowText name={game.name} />}
+        />
+      </MockStore>
     );
 
     expect(rendered.find(GameRowTrackMoreIcon).length).toBe(1);

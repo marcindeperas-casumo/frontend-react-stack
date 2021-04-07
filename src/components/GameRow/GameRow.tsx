@@ -3,8 +3,9 @@ import * as React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
+import { useTranslatedUrl } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
@@ -29,6 +30,10 @@ export const GameRow = (props: Props) => {
     launchGame({ slug: game.slug });
   };
 
+  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
+    slug: game.slug,
+  });
+
   const rightSideComponent = (() => {
     if (game.lobby) {
       return (
@@ -36,7 +41,7 @@ export const GameRow = (props: Props) => {
       );
     }
 
-    return <GameRowTrackMoreIcon name={game.name} slug={game.slug} />;
+    return <GameRowTrackMoreIcon name={game.name} path={gameDetailsPath} />;
   })();
 
   return (

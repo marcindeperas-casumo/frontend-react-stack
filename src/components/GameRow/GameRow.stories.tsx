@@ -8,6 +8,7 @@ import jackpots from "Components/Jackpots/__mocks__/response.jackpots.mock";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
+import MockStore from "Components/MockStore";
 
 const stories = storiesOf("GameRow", module);
 stories.addDecorator(withKnobs);
@@ -21,7 +22,11 @@ const propsDefault = {
     <GameRowText name={gameMock.name} description={gameMock.gameStudio} />
   ),
 };
-stories.add("Default", () => <GameRow {...propsDefault} />);
+stories.add("Default", () => (
+  <MockStore>
+    <GameRow {...propsDefault} />
+  </MockStore>
+));
 
 const propsShowingJackpot = {
   game: { ...gameMock, jackpot },
@@ -35,7 +40,11 @@ const propsShowingJackpot = {
   ),
   onLaunchGame: action(gonzosQuest),
 };
-stories.add("Showing a Jackpot", () => <GameRow {...propsShowingJackpot} />);
+stories.add("Showing a Jackpot", () => (
+  <MockStore>
+    <GameRow {...propsShowingJackpot} />
+  </MockStore>
+));
 
 const propsSearchWithMatch = {
   game: gameMock,
@@ -48,7 +57,11 @@ const propsSearchWithMatch = {
     />
   ),
 };
-stories.add("Search with match", () => <GameRow {...propsSearchWithMatch} />);
+stories.add("Search with match", () => (
+  <MockStore>
+    <GameRow {...propsSearchWithMatch} />
+  </MockStore>
+));
 
 const propsSearchWithNoMatch = {
   game: gameMock,
@@ -62,7 +75,9 @@ const propsSearchWithNoMatch = {
   ),
 };
 stories.add("Search with no match", () => (
-  <GameRow {...propsSearchWithNoMatch} />
+  <MockStore>
+    <GameRow {...propsSearchWithNoMatch} />
+  </MockStore>
 ));
 
 const isInMaintenance = boolean("In maintenance mode", true);
@@ -78,5 +93,7 @@ const propsGameInMaintenance = {
   ),
 };
 stories.add("Showing Games in maintenance mode", () => (
-  <GameRow {...propsGameInMaintenance} />
+  <MockStore>
+    <GameRow {...propsGameInMaintenance} />
+  </MockStore>
 ));
