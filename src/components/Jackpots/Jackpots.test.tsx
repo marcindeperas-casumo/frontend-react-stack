@@ -4,17 +4,17 @@ import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { Jackpots } from "Components/Jackpots/Jackpots";
-import { MockTestProvider } from "Utils/MockTestProvider";
+import MockStore from "Components/MockStore";
 import jackpotsMock from "./__mocks__/response.games.mock";
 
 describe("<Jackpots />", () => {
   test("Should render ScrollableListPaginated and a title on Desktop", () => {
     setDesktopViewport();
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <Jackpots jackpots={jackpotsMock} title="All them jackpots" />
-      </MockTestProvider>
+      </MockStore>
     );
 
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
@@ -24,10 +24,10 @@ describe("<Jackpots />", () => {
   test("Should not render ScrollableListPaginated on Mobile and Tablet", () => {
     setMobileViewport();
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <Jackpots jackpots={jackpotsMock} />
-      </MockTestProvider>
+      </MockStore>
     );
 
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);

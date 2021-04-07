@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { setMobileViewport } from "Utils/testUtils";
 import { GameThumb } from "Components/GameThumb";
 import { CURRENCIES } from "Src/constants";
-import { MockTestProvider } from "Utils";
+import MockStore from "Components/MockStore";
 import { GameRow } from "./GameRow";
 import { GameRowText } from "./GameRowText";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
@@ -31,12 +31,12 @@ describe("<GameRow />", () => {
 
   test("renders a GameThumb for the component", () => {
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         <GameRow
           game={game}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </MockTestProvider>
+      </MockStore>
     );
     const thumbnail = rendered.find(GameThumb);
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
@@ -53,9 +53,9 @@ describe("<GameRow />", () => {
   test("calls renderText render prop", () => {
     const renderText = jest.fn(() => <GameRowText name={game.name} />);
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         <GameRow game={game} renderText={renderText} />
-      </MockTestProvider>
+      </MockStore>
     );
 
     expect(renderText).toHaveBeenCalled();
@@ -64,12 +64,12 @@ describe("<GameRow />", () => {
 
   test("renders a play icon if jackpot game", () => {
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         <GameRow
           game={{ ...game, lobby: "whatever" }}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </MockTestProvider>
+      </MockStore>
     );
 
     expect(rendered.find(GameRowTrackPlayIcon).length).toBe(1);
@@ -78,12 +78,12 @@ describe("<GameRow />", () => {
 
   test("renders a More info icon if not a jackpot game", () => {
     const rendered = mount(
-      <MockTestProvider>
+      <MockStore>
         <GameRow
           game={game}
           renderText={() => <GameRowText name={game.name} />}
         />
-      </MockTestProvider>
+      </MockStore>
     );
 
     expect(rendered.find(GameRowTrackMoreIcon).length).toBe(1);
