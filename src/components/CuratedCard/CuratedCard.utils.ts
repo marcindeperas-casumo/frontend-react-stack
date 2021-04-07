@@ -1,4 +1,5 @@
 import * as R from "ramda";
+import * as A from "Types/apollo";
 import { EVENT_PROPS, MARKETS } from "Src/constants";
 
 export const CURATED_SLUG_PREFIX = "curated.";
@@ -9,6 +10,7 @@ export const CURATED_TYPE = {
   WELCOME_OFFER: "welcome offer",
   JP_WELCOME_OFFER: "japan welcome offer",
   SPORTS: "sports",
+  EXTERNAL_LINK: "external_link",
 } as const;
 
 export const CURATED_URL = {
@@ -19,8 +21,13 @@ export const CURATED_URL = {
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
 export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;
+export const getIsExternalLink = ({ type }) =>
+  type === CURATED_TYPE.EXTERNAL_LINK;
 
-export const getLink = ({ type, promotionSlug, market }) => {
+export const getLink = (
+  market: string,
+  { type, promotionSlug, externalLink }: A.CuratedCardQuery["curatedCard"]
+) => {
   const url = CURATED_URL[type] || null;
   const jpMarket = market === MARKETS.jp_ja;
 
@@ -30,6 +37,10 @@ export const getLink = ({ type, promotionSlug, market }) => {
 
   if (type === CURATED_TYPE.PROMOTION) {
     return R.replace("#promotionSlug", promotionSlug, url);
+  }
+
+  if (type === CURATED_TYPE.EXTERNAL_LINK) {
+    return externalLink;
   }
 
   return url;

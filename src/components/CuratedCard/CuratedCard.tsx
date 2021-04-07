@@ -15,6 +15,7 @@ import {
   getIsSports,
   getLink,
   getTrackData,
+  getIsExternalLink,
 } from "./CuratedCard.utils";
 import { CuratedCardBackground } from "./CuratedCardBackground";
 import { CuratedCardFooter } from "./CuratedCardFooter";
@@ -44,11 +45,8 @@ export const CuratedCard = ({
     return null;
   }
 
-  const link = getLink({
-    market,
-    type: curatedCard.type,
-    promotionSlug: curatedCard.promotionSlug,
-  });
+  const link = getLink(market, curatedCard);
+  const isExternalLink = getIsExternalLink(curatedCard);
   const isGame = getIsGame(curatedCard);
   const isSports = getIsSports(curatedCard);
   const trackData = getTrackData(curatedCard);
@@ -56,6 +54,7 @@ export const CuratedCard = ({
     if (isGame) {
       return onLaunchGame();
     }
+
     if (isSports) {
       if (curatedCard.sportsRoute === "deposit") {
         return navigateById({ routeId: curatedCard.sportsRoute });
@@ -66,6 +65,11 @@ export const CuratedCard = ({
         path: curatedCard.sportsRoute,
         trackingLocation: "CuratedCard",
       });
+    }
+
+    if (isExternalLink) {
+      window.open(link, "_blank");
+      return false;
     }
   };
 
@@ -86,7 +90,7 @@ export const CuratedCard = ({
         data={trackData}
       >
         <CuratedCardBackground
-          link={link}
+          link={isExternalLink ? null : link}
           onClick={getOnClickType}
           image={curatedCard.image}
           smallImage={curatedCard.smallImage}
