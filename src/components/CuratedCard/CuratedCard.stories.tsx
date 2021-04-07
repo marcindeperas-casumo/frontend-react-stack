@@ -3,7 +3,11 @@ import { text, select } from "@storybook/addon-knobs/react";
 import React from "react";
 import MockStore from "Components/MockStore";
 import { CuratedCard } from "./CuratedCard";
-import { curatedGameMock, curatedPromotionMock } from "./__mocks__";
+import {
+  curatedGameMock,
+  curatedPromotionMock,
+  curatedExternalLink,
+} from "./__mocks__";
 
 const stories = storiesOf("CuratedCard", module);
 const props = {
@@ -27,6 +31,10 @@ stories.add("Promotion", () => {
       <CuratedCard {...props} curatedCard={curatedPromotionMock} />
     </MockStore>
   );
+});
+
+stories.add("External link", () => {
+  return <CuratedCard {...props} curatedCard={curatedExternalLink} />;
 });
 
 stories.add(

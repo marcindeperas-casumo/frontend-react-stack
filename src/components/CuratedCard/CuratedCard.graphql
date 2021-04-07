@@ -21,6 +21,7 @@ query CuratedCardQuery($slug: String!) {
       mediumImage
       largeImage,
       sportsRoute,
+      externalLink,
       game {
         ...CuratedCard_Game
       }
