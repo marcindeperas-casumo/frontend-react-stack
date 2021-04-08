@@ -1,15 +1,20 @@
-import Text from "@casumo/cmp-text";
 import React from "react";
+import Text from "@casumo/cmp-text";
 import { CuratedCardHeaderSimple } from "./CuratedCardHeaderSimple";
 import type { CuratedCardHeaderSimpleProps } from "./CuratedCardHeaderSimple";
 
 type CuratedCardHeaderWithSubtitleProps = CuratedCardHeaderSimpleProps & {
+  header: string;
   subtitle: string;
+  launchButtonText: string | undefined;
+  isWelcomeOffer: boolean;
 };
 
 export const CuratedCardHeaderWithSubtitle = ({
   header,
   subtitle,
+  isWelcomeOffer,
+  launchButtonText,
 }: CuratedCardHeaderWithSubtitleProps) => (
   <div className="o-wrapper">
     <Text
@@ -19,6 +24,10 @@ export const CuratedCardHeaderWithSubtitle = ({
     >
       {subtitle}
     </Text>
-    <CuratedCardHeaderSimple header={header} />
+    <CuratedCardHeaderSimple
+      header={header}
+      isWelcomeOffer={isWelcomeOffer}
+      launchButtonText={launchButtonText}
+    />
   </div>
 );

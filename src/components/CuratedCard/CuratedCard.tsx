@@ -16,6 +16,7 @@ import {
   getLink,
   getTrackData,
   getIsExternalLink,
+  getIsWelcomeOffer,
 } from "./CuratedCard.utils";
 import { CuratedCardBackground } from "./CuratedCardBackground";
 import { CuratedCardFooter } from "./CuratedCardFooter";
@@ -49,6 +50,7 @@ export const CuratedCard = ({
   const isExternalLink = getIsExternalLink(curatedCard);
   const isGame = getIsGame(curatedCard);
   const isSports = getIsSports(curatedCard);
+  const isWelcomeOffer = getIsWelcomeOffer(curatedCard);
   const trackData = getTrackData(curatedCard);
   const getOnClickType = () => {
     if (isGame) {
@@ -109,8 +111,10 @@ export const CuratedCard = ({
             <CuratedCardHeader
               isGame={isGame}
               isSports={isSports}
+              isWelcomeOffer={isWelcomeOffer}
               header={curatedCard.header}
               subtitle={curatedCard.subtitle}
+              launchButtonText={curatedCard.launchGameText}
             />
           )}
           footer={() => (
