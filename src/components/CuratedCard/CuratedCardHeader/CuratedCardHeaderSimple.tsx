@@ -1,14 +1,30 @@
-import Text from "@casumo/cmp-text";
 import React from "react";
+import Text from "@casumo/cmp-text";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
+import { navigateById } from "Services/NavigationService";
 import { stringToHTML } from "Utils";
+import { ButtonPrimary } from "@casumo/cmp-button";
 
 export type CuratedCardHeaderSimpleProps = {
   header: string;
+  isWelcomeOffer: boolean;
+  launchButtonText: string;
 };
+
+const WelcomeOfferDepositButton = ({ label }: { label: string }) =>
+  <ButtonPrimary
+    size="md"
+    id="gtm-curated-play"
+    onClick={() => navigateById({ routeId: "deposit" })}
+    className="u-pointer-events-initial u-margin-y--md u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
+    >
+      <span className="u-margin-left">{label}</span>
+  </ButtonPrimary>;
 
 export const CuratedCardHeaderSimple = ({
   header,
+  isWelcomeOffer,
+  launchButtonText
 }: CuratedCardHeaderSimpleProps) => (
   <>
     <MobileAndTablet>
@@ -18,6 +34,7 @@ export const CuratedCardHeaderSimple = ({
         size="2xlg"
         dangerouslySetInnerHTML={stringToHTML(header)}
       />
+      {isWelcomeOffer && <WelcomeOfferDepositButton label={launchButtonText} />}
     </MobileAndTablet>
     <Desktop>
       <div className="o-wrapper">
@@ -27,6 +44,7 @@ export const CuratedCardHeaderSimple = ({
           size="3xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />
+        {isWelcomeOffer && <WelcomeOfferDepositButton label={launchButtonText} />}
       </div>
     </Desktop>
   </>

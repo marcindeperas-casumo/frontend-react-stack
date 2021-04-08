@@ -1,5 +1,8 @@
 import Card from "@casumo/cmp-card";
 import React from "react";
+import { setDesktopViewport } from "Utils/testUtils";
+import MockStore from "Components/MockStore/index";
+import defaultState from "Models/__mocks__/state.mock";
 import { mount } from "enzyme";
 import {
   CuratedCardFooterGame,
@@ -16,6 +19,7 @@ import {
   curatedPromotionMock,
   curatedSportsMock,
   curatedSportsDepositMock,
+  curatedWelcomeOfferMock
 } from "../__mocks__";
 
 describe("CuratedCard", () => {
@@ -159,5 +163,23 @@ describe("CuratedCard", () => {
     cardBackground.simulate("click");
 
     expect(navigateById).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call navigateById if curated type is WELCOME OFFER and deposit link", () => {
+    setDesktopViewport();
+    const component = mount(
+      <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'market' is missing in type '{ onLaunchGa... Remove this comment to see the full error message */}
+        <CuratedCard
+          onLaunchGame={onLaunchGame}
+          navigateToSportsHash={navigateToSportsHash}
+          navigateById={navigateById}
+          curatedCard={curatedWelcomeOfferMock}
+        />
+      </MockStore>
+    );
+
+    const ctaButton = component.find("button");
+    expect(ctaButton.text()).toEqual("Deposit now!");
   });
 });
