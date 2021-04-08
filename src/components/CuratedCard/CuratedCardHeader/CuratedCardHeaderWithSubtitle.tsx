@@ -14,7 +14,7 @@ export const CuratedCardHeaderWithSubtitle = ({
   header,
   subtitle,
   isWelcomeOffer,
-  launchButtonText
+  launchButtonText,
 }: CuratedCardHeaderWithSubtitleProps) => (
   <div className="o-wrapper">
     <Text

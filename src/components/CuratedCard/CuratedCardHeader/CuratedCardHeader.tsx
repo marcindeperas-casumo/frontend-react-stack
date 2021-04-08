@@ -17,14 +17,16 @@ export const CuratedCardHeader = ({
   header,
   subtitle,
   isWelcomeOffer,
-  launchButtonText
+  launchButtonText,
 }: CuratedCardHeaderProps) => {
   if ((isGame || isSports) && header) {
-    return <CuratedCardHeaderSimple
-      header={header}
-      launchButtonText={launchButtonText}
-      isWelcomeOffer={isWelcomeOffer}
-    />;
+    return (
+      <CuratedCardHeaderSimple
+        header={header}
+        launchButtonText={launchButtonText}
+        isWelcomeOffer={isWelcomeOffer}
+      />
+    );
   }
 
   if (header || subtitle) {

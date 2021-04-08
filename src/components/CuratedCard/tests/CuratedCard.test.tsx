@@ -1,9 +1,9 @@
 import Card from "@casumo/cmp-card";
 import React from "react";
+import { mount } from "enzyme";
 import { setDesktopViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
-import { mount } from "enzyme";
 import {
   CuratedCardFooterGame,
   CuratedCardFooterText,
@@ -19,7 +19,7 @@ import {
   curatedPromotionMock,
   curatedSportsMock,
   curatedSportsDepositMock,
-  curatedWelcomeOfferMock
+  curatedWelcomeOfferMock,
 } from "../__mocks__";
 
 describe("CuratedCard", () => {
