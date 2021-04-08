@@ -356,7 +356,6 @@ export type Currency =
   | "CAD"
   | "DKK"
   | "NZD"
-  | "NOK"
   | "SEK"
   | "USD";
 
@@ -1136,6 +1135,7 @@ export interface CuratedCard {
   promotionLegalText?: Maybe<Scalars["String"]>;
   launchGameText?: Maybe<Scalars["String"]>;
   game?: Maybe<Game>;
+  externalLink?: Maybe<Scalars["String"]>;
   sportsRoute?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
   smallImage?: Maybe<Scalars["String"]>;
@@ -1256,6 +1256,7 @@ export type CuratedCardQuery = {
     mediumImage?: Maybe<string>;
     largeImage?: Maybe<string>;
     sportsRoute?: Maybe<string>;
+    externalLink?: Maybe<string>;
     game?: Maybe<CuratedCard_GameFragment>;
   }>;
   session: { market: string };
@@ -1940,13 +1941,13 @@ export type ReelRaceCard_ReelRaceFragment = {
     endingIn: string;
     startingIn: string;
     competeFor: string;
+    minBet: string;
     spins: string;
     duration: string;
     durationTemplate: string;
     caveatShort: string;
     today: string;
     tomorrow: string;
-    minBet: string;
   };
 };
 

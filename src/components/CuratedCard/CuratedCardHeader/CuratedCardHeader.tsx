@@ -19,7 +19,7 @@ export const CuratedCardHeader = ({
     return <CuratedCardHeaderSimple header={header} />;
   }
 
-  if (header && subtitle) {
+  if (header || subtitle) {
     return (
       <CuratedCardHeaderWithSubtitle header={header} subtitle={subtitle} />
     );
