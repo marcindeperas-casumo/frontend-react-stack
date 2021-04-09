@@ -21,6 +21,8 @@ export const CURATED_URL = {
 
 export const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
 export const getIsSports = ({ type }) => type === CURATED_TYPE.SPORTS;
+export const getIsWelcomeOffer = ({ type }) =>
+  type === CURATED_TYPE.WELCOME_OFFER;
 export const getIsExternalLink = ({ type }) =>
   type === CURATED_TYPE.EXTERNAL_LINK;
 
