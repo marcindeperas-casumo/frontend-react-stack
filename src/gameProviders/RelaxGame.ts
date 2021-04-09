@@ -5,20 +5,16 @@ import { appendToGameUrl } from "./utils";
 
 export const COMMANDS = {
   PAUSE: {
-    method: "pauseGame",
-    params: {
-      callback: "gamePausedHandler",
-    },
+    rgMessage: "oprg_GamePause",
   },
   RESUME: {
-    method: "resumeGame",
-    params: {},
+    rgMessage: "oprg_GameResume",
   },
 };
 
 export const EVENTS = {
-  GAME_ROUND_START: { method: "GameEvent_ROUND_STARTED" },
-  GAME_ROUND_END: { method: "GameEvent_ROUND_ENDED" },
+  GAME_ROUND_START: { rgMessage: "gprg_GameRoundStart" },
+  GAME_ROUND_END: { rgMessage: "gprg_GameRoundEnd" },
 };
 
 // TODO:
@@ -66,6 +62,6 @@ export class RelaxGame extends BaseIframeGame {
   }
 
   extractEventId(data: any) {
-    return data.method;
+    return data.rgMessage;
   }
 }

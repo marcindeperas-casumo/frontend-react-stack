@@ -91,7 +91,7 @@ export class PragmaticGame extends BaseIframeGame {
   onMessageHandler(message: PragmaticGameMessage) {
     super.onMessageHandler(message);
 
-    if (message.data.name) {
+    if (!message.data.name) {
       return;
     }
 
