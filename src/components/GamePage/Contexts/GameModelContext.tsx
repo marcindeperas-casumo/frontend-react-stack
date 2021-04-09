@@ -43,6 +43,11 @@ export const GameModelContextProvider = ({
       remoteGameLaunchData,
     }
   );
+  /**
+   *  Pause / Resume Manual triggers for testing game pausing related features
+   *  window.manualPause = pauseGame;
+   *  window.manualResume = resumeGame;
+   */
   const { game } = useGameDetails({ slug });
   const providerValues = {
     gameProviderModel,
