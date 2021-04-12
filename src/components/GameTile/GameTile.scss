@@ -31,7 +31,9 @@
       opacity: 1;
     }
     #{$host}__play-button {
-      display: flex !important;
+      @media (pointer: fine) {
+        display: flex !important;
+      }
     }
     #{$host}__heart {
       transition: transform 0.2s;
