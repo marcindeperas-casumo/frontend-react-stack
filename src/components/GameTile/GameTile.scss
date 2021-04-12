@@ -11,12 +11,14 @@
 .c-game-tile-container {
   $host: &;
   &::before {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(76, 0, 194, 0.8) 51.62%
-    ) !important;
-    content: "";
+    @media (pointer: fine) {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(76, 0, 194, 0.8) 51.62%
+      ) !important;
+      content: "";
+    }
     height: 100%;
     left: 0;
     opacity: 0;
