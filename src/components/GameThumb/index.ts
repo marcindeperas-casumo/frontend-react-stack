@@ -1,0 +1,1 @@
+export { GameThumb } from "./GameThumb";

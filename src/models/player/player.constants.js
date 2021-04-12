@@ -1,5 +1,0 @@
-// @flow
-
-export const ACTION_TYPES = {
-  SET_LOGOUT_STARTED: "PLAYER/SET_LOGOUT_STARTED",
-};

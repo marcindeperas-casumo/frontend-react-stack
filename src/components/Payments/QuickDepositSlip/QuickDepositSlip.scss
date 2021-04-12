@@ -1,0 +1,19 @@
+@import "cudl-position";
+@import "cudl-inset";
+
+.c-quick-deposit-slip__cvv {
+  width: 150px;
+}
+
+.c-deposit-slip-container {
+  z-index: cudl-z("modal");
+}
+
+.c-quick-deposit-slip-positioning {
+  max-width: 500px;
+
+  @include cudl-breakpoint(desktop) {
+    top: 100px;
+    width: 500px;
+  }
+}

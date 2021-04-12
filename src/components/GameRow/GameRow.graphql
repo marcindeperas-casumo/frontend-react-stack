@@ -4,6 +4,10 @@ fragment GameRow_Game on Game {
   logo
   name
   slug
+  gameStudio
+  category
+  playBackground
+  liveCasinoId
   lobby {
     bets {
       min
@@ -11,5 +15,15 @@ fragment GameRow_Game on Game {
       symbol
     }
   }
+  jackpot {
+    id
+    value {
+      amount
+      currency
+    }
+  }
   isInMaintenance
+  category
+  liveCasinoId
+  playBackground
 }

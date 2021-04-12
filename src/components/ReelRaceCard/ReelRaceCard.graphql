@@ -10,6 +10,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
     startTime
     optedIn
     endTime
+    minBet
     startTime
     status
     spinLimit
@@ -23,6 +24,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
         endingIn
         startingIn
         competeFor
+        minBet
         spins
         duration
         durationTemplate

@@ -1,0 +1,13 @@
+{
+  "possibleTypes": {
+    "PlayerValuable": [
+      "PlayerValuableCash",
+      "PlayerValuableSpins",
+      "PlayerValuableDeposit",
+      "PlayerValuableSport",
+      "PlayerValuableCashback",
+      "PlayerValuableWageringLock",
+      "PlayerValuableFreeBet"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+export { GamePageLayout } from "./GamePageLayout";

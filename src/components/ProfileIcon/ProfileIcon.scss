@@ -17,6 +17,10 @@
     left: 0;
     margin-top: -50%;
     top: 0;
+
+    &--animating {
+      animation: profile-icon-progress 2s ease;
+    }
   }
 
   &__info {
@@ -25,3 +29,20 @@
     transform: translateY(-50%);
   }
 }
+
+/* stylelint-disable xi/selector-pattern */
+@keyframes profile-icon-progress {
+  0% {
+    stroke: currentColor;
+  }
+  30% {
+    stroke: cudl-palette(teal, "50");
+  }
+  70% {
+    stroke: cudl-palette(teal, "50");
+  }
+  100% {
+    stroke: currentColor;
+  }
+}
+/* stylelint-enable xi/selector-pattern */

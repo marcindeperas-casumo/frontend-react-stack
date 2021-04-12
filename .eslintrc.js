@@ -1,15 +1,15 @@
-// preset-react app requires you to have one of those set
+const restrictedGlobals = require("confusing-browser-globals");
+
 /* eslint-disable fp/no-mutation */
 process.env.BABEL_ENV = "test";
 process.env.NODE_ENV = "test";
 /* eslint-enable fp/no-mutation */
 
 module.exports = {
-  parser: "babel-eslint",
+  parser: "@typescript-eslint/parser",
   plugins: [
     "prettier",
     "import",
-    "flowtype",
     "fp",
     "ramda",
     "eslint-comments",
@@ -17,12 +17,13 @@ module.exports = {
     "sonarjs",
     "filenames",
     "no-switch-statements",
+    "react",
     "react-hooks",
   ],
   extends: [
-    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
     "prettier",
-    "plugin:flowtype/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:fp/recommended",
@@ -94,19 +95,27 @@ module.exports = {
     "no-unused-expressions": "error",
     "no-useless-catch": "error",
     "no-void": "error",
-    "no-unused-vars": "error",
     "prettier/prettier": "error",
     "require-await": "error",
     "sonarjs/no-duplicate-string": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
-    "flowtype/space-after-type-colon": "off",
-    "flowtype/generic-spacing": "off",
     "sonarjs/cognitive-complexity": ["error", 16],
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": ["error", { args: "none" }],
+    "react/display-name": "off",
+    "react/prop-types": "off", // TODO: enable this
+    "no-template-curly-in-string": "error",
+    "no-sparse-arrays": "off",
+    "no-undef": "off",
+    "no-useless-computed-key": "error",
+    "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+    "no-restricted-globals": ["error"].concat(restrictedGlobals),
+    eqeqeq: "error",
   },
   overrides: [
     {
-      files: ["*.test.js", "*.stories.js"],
+      files: ["*.test.{ts,tsx}", "*.stories.{ts,tsx}"],
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
@@ -127,23 +136,34 @@ module.exports = {
       },
     },
     {
-      files: ["src/types/apollo.js"],
+      files: ["src/types/apollo.ts"],
       rules: {
         "max-lines": "off",
         "no-use-before-define": "off",
+        "no-unused-vars": "off",
+        "no-shadow": "off",
+      },
+    },
+    {
+      files: ["src/types/graphqlFileModules.d.ts"],
+      rules: {
+        "import/order": "off",
+        "import/no-duplicates": "off",
       },
     },
   ],
   settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: false,
-    },
     "import/resolver": {
-      "babel-module": {},
+      typescript: {},
     },
     react: {
       version: "detect",
     },
+  },
+  env: {
+    browser: true,
+    node: true,
+    jest: true,
   },
   globals: {
     __DEV__: "readonly",

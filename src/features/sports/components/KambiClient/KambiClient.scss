@@ -14,6 +14,18 @@
   height: auto !important;
 }
 
+body > #KambiBC {
+  display: none;
+}
+
+body #react-host-sports-shell #KambiBC {
+  display: block !important;
+}
+
+body #react-host-sports-shell #KambiBC.KambiBC-visuallyhidden {
+  display: none !important;
+}
+
 .c-kambi-client--hidden {
   height: 0;
   overflow: hidden;
@@ -38,8 +50,10 @@
   display: none !important;
 }
 
-#mod-KambiBC-betslip-container .mod-KambiBC-betslip {
-  max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
+#mod-KambiBC-betslip-container.mod-KambiBC-betslip-container--maximized
+  .mod-KambiBC-betslip {
+  bottom: 48px !important;
+  max-height: calc(100% - var(--play-okay-bar-height, 0) - 48px) !important;
 }
 
 .mod-KambiBC-betslip__header-pin-btn {
@@ -50,17 +64,17 @@
   padding: 0 !important;
 }
 
-// move betslip on desktop only so chat icon does not overlap PRS-176
-#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
-  .mod-KambiBC-betslip,
-#mod-KambiBC-betslip-container:not(.mod-KambiBC-betslip-container--pinned).KambiBC-util-desktop
-  .mod-KambiBC-betslip__outer-wrapper {
-  right: 95px !important;
-}
-
 // https://jira.casumocave.com/browse/PRS-354 fast fix, should be send later to kambi css
 .KambiBC-betoffer-labels__label {
   margin: auto 0 !important;
+}
+
+#KambiBC-container
+  .KambiBC-sandwich-filter__event-list-info
+  .KambiBC-event-item__match-clock-container {
+  @media (max-width: 768px) {
+    min-width: 45px !important;
+  }
 }
 
 //LANDING PAGE START
@@ -109,21 +123,31 @@
   padding: 6px 16px !important;
 }
 
+.KambiBC-sandwich-filter-background--level-0 {
+  height: 40px !important;
+}
+
+.KambiBC-sandwich-filter-background--level-1 {
+  height: 40px !important;
+  margin-top: 8px !important;
+}
+
 .KambiBC-sandwich-filter-background--level-2 {
   background: #e5eaed !important;
   border-radius: 12px 12px 0 0 !important;
   box-shadow: inset 0px -1px 0px #e5eaed !important;
-  top: 88px !important;
+  height: 40px !important;
+  margin-top: 8px !important;
 }
 
 .KambiBC-sandwich-filter-foreground--level-2 {
   margin-top: 8px !important;
-  padding-top: 8px !important;
+  padding-top: 0px !important;
 }
 
 .KambiBC-sandwich-filter__event-detail-container {
-  align-items: flex-start !important;
-  flex-direction: column !important;
+  align-items: center !important;
+  flex-direction: row !important;
   height: 100% !important;
   justify-content: center !important;
   width: 100% !important;
@@ -156,20 +180,10 @@
 
 .KambiBC-sandwich-filter__list .KambiBC-event-item__match-clock-container {
   color: #798291 !important;
+  display: flex !important;
+  flex-direction: column !important;
   font-size: 10px !important;
-  justify-content: left !important;
   line-height: 12px !important;
-  padding: 0px !important;
-  text-align: left !important;
-
-  .KambiBC-event-item__start-time--date {
-    display: inline-block !important;
-  }
-
-  .KambiBC-event-item__start-time--time {
-    display: inline-block !important;
-    margin-left: 4px !important;
-  }
 }
 
 .KambiBC-sandwich-filter__list .KambiBC-event-participants__name {
@@ -391,6 +405,80 @@ KambiBC-event-countdown__circles-text {
   }
 }
 
+.KambiBC-promo-card .KambiBC-next-off-promo-card {
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  padding: 12px !important;
+
+  .KambiBC-next-off-promo-card__title {
+    @media (max-width: 768px) {
+      font-size: 18px !important;
+      line-height: 18px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 25px !important;
+      line-height: 28px !important;
+    }
+    margin-bottom: 8px !important;
+    text-align: left !important;
+  }
+
+  .KambiBC-next-off-promo-card__subtitle {
+    @media (max-width: 768px) {
+      font-size: 10px !important;
+      line-height: 10px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+    margin-top: 0 !important;
+    position: absolute !important;
+    top: 12px !important;
+  }
+
+  .KambiBC-next-off-promo-card__timer {
+    @media (max-width: 768px) {
+      font-size: 31px !important;
+      line-height: 34px !important;
+    }
+    @media (min-width: 768px) {
+      font-size: 39px !important;
+      line-height: 44px !important;
+    }
+
+    .KambiBC-next-off-promo-card__timer-digit {
+      border-radius: 4px !important;
+      margin-right: 2px !important;
+      padding: 0px !important;
+
+      @media (max-width: 768px) {
+        height: 32px !important;
+        line-height: 32px !important;
+        width: 21px !important;
+      }
+      @media (min-width: 768px) {
+        height: 40px !important;
+        line-height: 40px !important;
+        width: 29px !important;
+      }
+    }
+
+    .KambiBC-next-off-promo-card__timer-colon {
+      @media (max-width: 768px) {
+        height: 32px !important;
+        line-height: 32px !important;
+        margin: 0 2px !important;
+      }
+      @media (min-width: 768px) {
+        height: 40px !important;
+        line-height: 29px !important;
+        margin: 0 4px !important;
+      }
+    }
+  }
+}
+
 .KambiBC-promo-card .KambiBC-LRN-wrapper {
   align-items: flex-start !important;
   justify-content: flex-end !important;
@@ -547,7 +635,50 @@ KambiBC-event-countdown__circles-text {
 .KambiBC-promo-cards-wrapper {
   left: -8px !important;
 }
-// END: PROMO AREA
+
+.KambiBC-event-item__match-clock-container {
+  padding: 0 !important;
+
+  .KambiBC-event-item__time-separator {
+    display: none !important;
+  }
+}
+//END: PROMO AREA
+
+//A-Z page
+#KambiBC-container .KambiBC-sport-az {
+  margin: 0 16px !important;
+  max-width: none !important;
+  width: auto !important;
+
+  @media (max-width: 1024px) {
+    margin: 16px 64px !important;
+  }
+
+  @media (max-width: 768px) {
+    margin: 16px !important;
+  }
+
+  .KambiBC-react-collapsable-container__header,
+  .KambiBC-react-collapsable-container__header:hover {
+    background-color: initial !important;
+    border-bottom: 0 !important;
+    color: #1a212c !important;
+    font-size: 16px !important;
+    padding: 7px 24px !important;
+  }
+
+  .KambiBC-modularized__group-link,
+  .KambiBC-modularized__group-link:hover {
+    color: #1a212c !important;
+    font-size: 14px !important;
+    padding: 3px 24px !important;
+  }
+
+  .KambiBC-modularized__event-groups__list li:first-child {
+    border-radius: 8px 8px 0 0 !important;
+  }
+}
 
 //LANDING PAGE END
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important, selector-max-compound-selectors */

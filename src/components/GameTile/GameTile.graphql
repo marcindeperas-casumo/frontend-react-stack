@@ -9,7 +9,13 @@ fragment GameTile_Game on Game {
   id
   liveCasinoId
   playBackground
-  isInMyList
   category
+  jackpot {
+    id
+    value {
+      amount
+      currency
+    }
+  }
   ...GameTileInMaintenance_Game
 }

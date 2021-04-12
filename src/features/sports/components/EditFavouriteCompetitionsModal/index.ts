@@ -1,0 +1,1 @@
+export { EditFavouriteCompetitionsModal } from "./EditFavouriteCompetitionsModal";

@@ -1,0 +1,62 @@
+/* stylelint-disable xi/selector-pattern */
+.c-top-game,
+.c-game-tile-top-wrapper,
+.c-exclusive-game,
+.c-game-list-tile {
+  &:hover .c-game-tile-container__jackpot {
+    display: none;
+  }
+}
+
+.c-game-tile-container {
+  $host: &;
+  &::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(76, 0, 194, 0.8) 51.62%
+    ) !important;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.2s;
+    width: 100%;
+    z-index: -1;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+    #{$host}__play-button {
+      display: flex !important;
+    }
+    #{$host}__heart {
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__button-text {
+    top: 2px;
+  }
+
+  &__play-button {
+    top: 40%;
+  }
+
+  &__bottom-bar {
+    bottom: 0;
+    position: absolute;
+  }
+
+  &__jackpot {
+    line-height: 24px;
+    top: 50%;
+  }
+}
+/* stylelint-enable xi/selector-pattern */
