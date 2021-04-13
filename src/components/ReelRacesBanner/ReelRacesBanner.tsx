@@ -32,7 +32,7 @@ function ReelRacesLogo() {
 function BannerLink({ children, onClick }: BannerLinkProps) {
   return (
     <Text
-      className="u-cursor-pointer t-color-purple-60 u-font-weight-bold u-text-decoration-underline"
+      className="u-cursor--pointer t-color-purple-60 u-font-weight-bold u-text-decoration-underline"
       onClick={onClick}
     >
       {children}

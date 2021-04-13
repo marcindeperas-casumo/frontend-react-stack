@@ -44,8 +44,8 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     const {
       itemControlClass = "c-scrollable-list-paginated__button",
     } = this.props;
-    const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
-      c-scrollable-list-paginated__button u-pointer-events-initial`;
+    const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor--pointer
+      c-scrollable-list-paginated__button u-pointer--initial`;
     const previousClickHandler = () => scrollableClickHandler("previous");
     const nextClickHandler = () => scrollableClickHandler("next");
 
@@ -53,7 +53,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       <Flex
         justify="space-between"
         align="center"
-        className="c-scrollable-list-paginated__controls u-pointer-events-none"
+        className="c-scrollable-list-paginated__controls u-pointer--none"
       >
         <Flex.Item>
           {hasPreviousPage && (

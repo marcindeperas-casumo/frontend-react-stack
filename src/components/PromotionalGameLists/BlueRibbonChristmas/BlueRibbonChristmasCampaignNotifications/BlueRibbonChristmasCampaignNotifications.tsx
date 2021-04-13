@@ -36,7 +36,7 @@ export function BlueRibbonChristmasCampaignNotifications({
           className="u-padding--md t-background-white t-border-r u-margin-bottom--md"
           align="center"
         >
-          <Flex.Item className="u-position-relative">
+          <Flex.Item className="o-position--relative">
             <img
               className="u-display--block t-border-r--circle"
               width={40}
@@ -66,7 +66,7 @@ export function BlueRibbonChristmasCampaignNotifications({
           className="u-padding--md t-background-white t-border-r"
           align="center"
         >
-          <Flex.Item className="u-position-relative">
+          <Flex.Item className="o-position--relative">
             <img
               className="u-display--block t-border-r--circle"
               width={40}

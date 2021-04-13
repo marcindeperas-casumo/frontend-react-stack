@@ -101,7 +101,7 @@ export const GameTile = ({
       <Flex
         className={classNames(
           DEFAULT_CLASSES,
-          "u-cursor-pointer",
+          "u-cursor--pointer",
           `o-ratio--${ratio}`,
           "c-game-tile-top-wrapper",
           className

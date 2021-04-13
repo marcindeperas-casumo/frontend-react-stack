@@ -41,7 +41,7 @@ export const GameDetailsImageDesktop = ({
   className,
   children,
 }: Props) => (
-  <Flex className="u-position-relative t-border-r--md u-overflow--hidden u-width--1/3">
+  <Flex className="o-position--relative t-border-r--md u-overflow--hidden u-width--1/3">
     <ImageLazy
       className={className}
       src={image}
