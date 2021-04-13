@@ -80,7 +80,7 @@ export const QuickDeposit = ({
           <Flex
             align="center"
             justify="center"
-            className="t-background-white t-opacity-background--100 t-border-r--circle u-position-relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            className="t-background-white t-opacity-background--100 t-border-r--circle o-position--relative u-width--2xlg u-height--2xlg u-cursor--pointer"
             onClick={currencySymbolClickHandler}
           >
             <CurrencyIcon
@@ -88,7 +88,7 @@ export const QuickDeposit = ({
               selected
               classList="u-position--absolute o-inset-x--none t-color-purple-60"
             />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white u-position-absolute">
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white o-position--absolute">
               <AddIcon className="t-color-purple-60" size="md" />
             </div>
           </Flex>

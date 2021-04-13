@@ -11,11 +11,11 @@ export const SidebarIconClose = () => {
   return (
     !isSidebarFixed && (
       <div
-        className="u-position-absolute"
+        className="o-position--absolute"
         onClick={() => dispatch(sidebarCloseAction())}
         data-test-id="sidebar-close"
       >
-        <CloseIcon size="md" className="u-padding--sm u-cursor-pointer" />
+        <CloseIcon size="md" className="u-padding--sm u-cursor--pointer" />
       </div>
     )
   );
