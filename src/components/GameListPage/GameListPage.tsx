@@ -96,6 +96,7 @@ export function GameListPage({ set }: Props) {
       limit: 48,
     },
     fetchPolicy: "cache-first",
+    errorPolicy: "ignore",
   });
 
   React.useEffect(() => {
