@@ -9,6 +9,7 @@ export default function SumoIconConfettiContainer() {
   const [isConfettiVisible, showConfetti] = useState<boolean>(false);
   const timeoutIdRef = useRef<NodeJS.Timeout>();
   const hideConfetti = () => showConfetti(false);
+  const isFirstRun = useRef(true);
 
   // change of level could mean only level up
   // confetti animation starts if it is different than prev
@@ -20,10 +21,16 @@ export default function SumoIconConfettiContainer() {
   }, []);
 
   useEffect(() => {
+    if (isFirstRun.current) {
+      // eslint-disable-next-line fp/no-mutation
+      isFirstRun.current = false;
+      return;
+    }
+
     runAnimation();
     // in case game is closed before timeout execution
     return () => clearTimeout(timeoutIdRef.current);
-  }, [level, runAnimation]);
+  }, [level, runAnimation, isFirstRun]);
 
   return isConfettiVisible ? <SumoIconConfetti /> : null;
 }
