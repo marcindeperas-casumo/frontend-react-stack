@@ -1,4 +1,5 @@
 import React from "react";
+import Flex from "@casumo/cmp-flex";
 import { useSelector } from "react-redux";
 import { playerWalletBonusSelector } from "Models/player";
 import { REUSABLE_NOTIFICATION_SLUGS } from "../GamePageNotificationsConstants";
@@ -13,8 +14,12 @@ export const RealMoneyPlayRequiredNotification = () => {
     return null;
   }
   return (
-    <ReusableNotification
-      translationSlug={REUSABLE_NOTIFICATION_SLUGS.REAL_MONEY_ONLY_NOTIFICATION}
-    />
+    <Flex.Item>
+      <ReusableNotification
+        translationSlug={
+          REUSABLE_NOTIFICATION_SLUGS.REAL_MONEY_ONLY_NOTIFICATION
+        }
+      />
+    </Flex.Item>
   );
 };
