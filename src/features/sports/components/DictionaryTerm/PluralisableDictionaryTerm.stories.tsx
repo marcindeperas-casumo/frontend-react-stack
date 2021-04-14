@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { text, number, boolean } from "@storybook/addon-knobs/react";
+import { text, number, boolean } from "@storybook/addon-knobs";
 import React from "react";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { mocks, WORKING_TERM, REPLACEMENT_TERM } from "./__mocks__/termMocks";

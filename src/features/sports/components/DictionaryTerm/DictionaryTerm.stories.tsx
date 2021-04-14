@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { text, number } from "@storybook/addon-knobs/react";
+import { text, number } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { DictionaryTerm } from "./DictionaryTerm";

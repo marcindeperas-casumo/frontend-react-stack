@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { select, boolean } from "@storybook/addon-knobs/react";
+import { select, boolean } from "@storybook/addon-knobs";
 import MockDate from "mockdate";
 import React from "react";
 import { isChromatic } from "Storybook/isNotChromatic";

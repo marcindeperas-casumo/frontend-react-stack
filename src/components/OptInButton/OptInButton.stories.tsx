@@ -1,9 +1,9 @@
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import React from "react";
-import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
+import MockStore from "Components/MockStore";
 import optinData from "./__mocks__/optin.json";
 import OptInButton from "./OptInButton";
 import OptInButtonContainer from "./OptInButtonContainer";

@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { select, number } from "@storybook/addon-knobs/react";
+import { select, number } from "@storybook/addon-knobs";
 import * as React from "react";
 import { LimitYourBudget } from "./LimitYourBudget";
 

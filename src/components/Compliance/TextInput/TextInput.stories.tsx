@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { text, select, number } from "@storybook/addon-knobs/react";
+import { text, select, number } from "@storybook/addon-knobs";
 import * as React from "react";
 import { TextInput } from "./TextInput";
 
