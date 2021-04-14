@@ -5,7 +5,7 @@ import SumoIconConfetti from "./SumoIconConfetti";
 import { animation_duration } from "./SumoIconConfetti.scss";
 
 export default function SumoIconConfettiContainer() {
-  const { onLevelUp } = useAdventurerContext();
+  const { level } = useAdventurerContext();
   const [isConfettiVisible, showConfetti] = useState<boolean>(false);
   const timeoutIdRef = useRef<NodeJS.Timeout>();
   const hideConfetti = () => showConfetti(false);
@@ -19,13 +19,11 @@ export default function SumoIconConfettiContainer() {
     timeoutIdRef.current = timeoutId; // eslint-disable-line fp/no-mutation
   }, []);
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  onLevelUp(runAnimation);
-
   useEffect(() => {
+    runAnimation();
     // in case game is closed before timeout execution
     return () => clearTimeout(timeoutIdRef.current);
-  }, []);
+  }, [level, runAnimation]);
 
   return isConfettiVisible ? <SumoIconConfetti /> : null;
 }

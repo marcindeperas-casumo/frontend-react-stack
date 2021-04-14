@@ -57,6 +57,7 @@ export type AdventurerRaw = {
   pointsVersion: number;
   progression: number;
   spaceCrystals: Array<number>;
+  recentValuable: string;
 };
 
 export type AdventurerLevelProgress = {
