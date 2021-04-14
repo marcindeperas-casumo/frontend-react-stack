@@ -19,7 +19,7 @@ export const CuratedCardHeaderWithSubtitle = ({
   <div className="o-wrapper">
     <Text
       data-test="curated-card-header-subtitle"
-      className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
+      className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase t-opacity--75"
       size="2xs"
     >
       {subtitle}

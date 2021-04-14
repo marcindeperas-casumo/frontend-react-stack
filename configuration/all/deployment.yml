@@ -1,7 +1,6 @@
 deploy_as: on-site-kubernetes
 replicas: 2
 
-k8s_migration: false
 service_namespace: service
 
 healthcheck_probe_path: /ping

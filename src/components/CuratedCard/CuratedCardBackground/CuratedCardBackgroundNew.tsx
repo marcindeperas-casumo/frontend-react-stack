@@ -13,7 +13,7 @@ export const CuratedCardBackgroundNew = ({ image, onClick, link }: Props) => {
 
   return (
     <a
-      className="o-ratio__content u-cursor-pointer"
+      className="o-ratio__content u-cursor--pointer"
       href={link}
       // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '(event:... Remove this comment to see the full error message
       onClick={onClick}
