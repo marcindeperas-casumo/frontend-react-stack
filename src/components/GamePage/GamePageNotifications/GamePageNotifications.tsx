@@ -9,9 +9,12 @@ import "./GamePageNotifications.scss";
 
 export function GamePageNotifications() {
   if (
+    /* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */
     !ReactDOMServer.renderToStaticMarkup(ReelRaceStartingNotification) &&
+    /* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */
     !ReactDOMServer.renderToStaticMarkup(RealMoneyPlayRequiredNotification) &&
     !ReactDOMServer.renderToStaticMarkup(
+      /* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; }' is not assignable to type... Remove this comment to see the full error message */
       BlueRibbonChristmasCampaignNotificationsContainer
     )
   ) {
