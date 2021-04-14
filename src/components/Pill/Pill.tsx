@@ -28,7 +28,7 @@ export const Pill = ({
   inactiveClassNames = "t-background-grey-0 t-color-grey-50",
 }: Props) => {
   const className = classNames(
-    "c-pill t-border-r--pill u-font-weight-bold u-padding-x u-padding-y--sm u-cursor-pointer",
+    "c-pill t-border-r--pill u-font-weight-bold u-padding-x u-padding-y--sm u-cursor--pointer",
     isActive ? activeClassNames : inactiveClassNames
   );
 
