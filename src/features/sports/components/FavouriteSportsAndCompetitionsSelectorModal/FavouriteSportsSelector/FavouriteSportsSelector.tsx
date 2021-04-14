@@ -9,7 +9,7 @@ import { FavouriteSportsSelectorIntro } from "./FavouriteSportsSelectorIntro";
 import Heading from "./FavouriteSportsSelectorHeading";
 import ListItemSkeleton from "./FavouriteSportsSelectorListItemSkeleton";
 
-const newBadgeItemClientPaths = ['filter/virtuals'];
+const newBadgeItemClientPaths = ["filter/virtuals"];
 
 type Props = {
   /** Whether the introduction to how to favourite competitions should be shown */
@@ -104,7 +104,9 @@ const FavouriteSportsSelector = (props: Props) => (
                         key={group.id}
                         group={group}
                         isFavouritable={!isAllToggle}
-                        newLabel={newBadgeItemClientPaths.includes(group.clientPath)}
+                        newLabel={newBadgeItemClientPaths.includes(
+                          group.clientPath
+                        )}
                         showCompetitionIntro={props.showCompetitionIntro}
                         onAddCompetition={props.onAddCompetition}
                         onToggleFavouriteSport={toggleAction}
