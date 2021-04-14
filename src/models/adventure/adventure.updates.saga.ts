@@ -8,7 +8,6 @@ export function* adventureUpdatesSaga(action) {
   const currentProgression = yield select(adventurerRawSelector);
 
   if (data.setPoints) {
-    console.warn(">>> setPoints");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
@@ -20,7 +19,6 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.leveledUp) {
-    console.warn(">>> leveledUp");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
@@ -33,7 +31,6 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.worldEntered) {
-    console.warn(">>> arrivedOnPlanet");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
@@ -45,7 +42,6 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.arrivedOnPlanet) {
-    console.warn(">>> arrivedOnPlanet");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
@@ -58,7 +54,6 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.limboEntered) {
-    console.warn(">>> limboEntered");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
@@ -71,7 +66,6 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.limboGemReceived) {
-    console.warn(">>> limboGemReceived");
     yield put(
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
