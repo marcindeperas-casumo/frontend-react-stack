@@ -80,4 +80,5 @@ export type Adventurer = {
   name: string;
   points: number;
   pointsRequiredForNextLevel: number;
+  recentValuable: string;
 };
