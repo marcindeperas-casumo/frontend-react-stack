@@ -1,4 +1,3 @@
-import Flex from "@casumo/cmp-flex";
 import { useInterval } from "react-use";
 import * as React from "react";
 import { useSelector } from "react-redux";
@@ -45,12 +44,10 @@ export function ReelRaceStartingNotificationContainer() {
   }
 
   return (
-    <Flex.Item>
-      <ReelRaceStartingNotification
-        secondsLeft={secondsLeft}
-        secondsLeftWhenShown={SECONDS_LEFT_WHEN_SHOWN}
-        onClickDismiss={() => setDismissed(true)}
-      />
-    </Flex.Item>
+    <ReelRaceStartingNotification
+      secondsLeft={secondsLeft}
+      secondsLeftWhenShown={SECONDS_LEFT_WHEN_SHOWN}
+      onClickDismiss={() => setDismissed(true)}
+    />
   );
 }

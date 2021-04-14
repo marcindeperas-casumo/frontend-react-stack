@@ -1,4 +1,3 @@
-import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as R from "ramda";
 import { useFetch } from "Utils/hooks";
@@ -16,11 +15,9 @@ export function BlueRibbonChristmasCampaignNotificationsContainer() {
   }
 
   return (
-    <Flex.Item>
-      <BlueRibbonChristmasCampaignNotifications
-        pauseGame={pauseGame}
-        resumeGame={resumeGame}
-      />
-    </Flex.Item>
+    <BlueRibbonChristmasCampaignNotifications
+      pauseGame={pauseGame}
+      resumeGame={resumeGame}
+    />
   );
 }
