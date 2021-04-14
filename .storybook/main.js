@@ -7,8 +7,6 @@ module.exports = {
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
 
-    console.log("dave", config);
-
     const fileLoaderRule = config.module.rules.find(
       rule => rule.test && rule.test.test(".svg")
     );
