@@ -7,12 +7,12 @@ type Props = {
   children: React.ReactChild;
   valuableDetails: A.ValuableDetails_PlayerValuableFragment;
   onConsumeValuable: (id: string) => Promise<void>;
-}
+};
 
-const getTermsAndConditionSlug = (termsLink: string = '') => {
-  const fullSlug = /root:[a-zA-Z\-]+:content/;
+const getTermsAndConditionSlug = (termsLink: string = "") => {
+  const fullSlug = /root:[a-zA-Z-]+:content/;
   return fullSlug.test(termsLink) ? termsLink : `root:${termsLink}:content`;
-}
+};
 
 export const ValuableDetailsContainer = (props: Props) => {
   const { t, loading } = useTranslationsGql({
@@ -31,7 +31,9 @@ export const ValuableDetailsContainer = (props: Props) => {
     depositNowLabel: "root:valuable-details-component:fields.deposit_now",
     expirationTimeLabel:
       "root:valuable-details-component:fields.expirationTimeLabel",
-    termsAndConditionsContent: getTermsAndConditionSlug(props.valuableDetails.termsLink),
+    termsAndConditionsContent: getTermsAndConditionSlug(
+      props?.valuableDetails?.termsLink
+    ),
     wageringStatus: "root:valuable-details-component:fields.wagering_status",
     minute_singular: "root:units:fields.minute_singular",
     minute_plural: "root:units:fields.minutes",
@@ -41,10 +43,5 @@ export const ValuableDetailsContainer = (props: Props) => {
     day_plural: "root:units:fields.days",
   });
 
-  return loading ? null : (
-    <ValuableDetails
-      {...props}
-      translations={t}
-    />
-  );
+  return loading ? null : <ValuableDetails {...props} translations={t} />;
 };
