@@ -8,8 +8,6 @@ import { ModalContentComponent } from "Components/RSModal";
 import { isMobile } from "Components/ResponsiveLayout";
 import { ArticleQuery } from "./Article.graphql";
 
-import "./ArticleModal.scss";
-
 export const ArticleModal = ({
   closeModal,
   config,
@@ -46,7 +44,7 @@ export const ArticleModal = ({
 
   return (
     <CudlModal
-      className="c-modal-wide"
+      className="u-width--full"
       bigTitle={article.title}
       closeIcon={{
         action: closeModal,
