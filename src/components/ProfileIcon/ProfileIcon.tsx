@@ -36,14 +36,14 @@ export const ProfileIcon = ({
     <div
       onClick={onClick}
       className={cx(
-        "c-profile-icon u-position-relative u-height--3xlg u-width--3xlg t-border-r--circle",
+        "c-profile-icon o-position--relative u-height--3xlg u-width--3xlg t-border-r--circle",
         className
       )}
     >
       <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle t-background-grey-90 t-opacity-background--100">
         <CasumoAvatar
           variant="sm"
-          className="c-profile-icon__avatar u-position-absolute u-width--xlg"
+          className="c-profile-icon__avatar o-position--absolute u-width--xlg"
           belt={belt}
           level={level}
         />
@@ -53,7 +53,7 @@ export const ProfileIcon = ({
         fgColor="grey-20"
         bgColor="grey-50"
         fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
-        className="c-profile-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg u-position-absolute"
+        className="c-profile-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}
       />

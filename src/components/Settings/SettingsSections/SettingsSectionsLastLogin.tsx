@@ -88,7 +88,7 @@ export const SettingsSectionsLastLogin = ({
       )}
       <Text
         tag="div"
-        className="u-cursor-pointer u-font-weight-bold t-color-blue-60"
+        className="u-cursor--pointer u-font-weight-bold t-color-blue-60"
         onClick={openAccountActivity}
       >
         {accountActivityLabel}
