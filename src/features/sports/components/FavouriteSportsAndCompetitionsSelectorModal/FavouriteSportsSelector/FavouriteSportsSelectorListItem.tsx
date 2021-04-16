@@ -10,6 +10,8 @@ type Props = {
   group: A.FavouriteSportsSelectorListItem_GroupFragment;
   /** Whether this group should be favouritable */
   isFavouritable?: boolean;
+  /** Whether this group has the `NEW` badge */
+  newLabel?: boolean;
   /** Whether we should show an intro to selecting competitions */
   showCompetitionIntro: boolean;
   /** What should happen with the sport data when the group is toggled */
@@ -36,6 +38,7 @@ const FavouriteSportsSelectorListItem = ({
   isFavouritable,
   onToggleFavouriteSport,
   isFavourite,
+  newLabel,
 }: Props) => (
   <div>
     <FavouriteListItem
@@ -51,6 +54,7 @@ const FavouriteSportsSelectorListItem = ({
       onClick={() => onToggleFavouriteSport(group.id)}
       isFavourite={isFavourite}
       isFavouritable={isFavouritable}
+      newLabel={newLabel}
     />
   </div>
 );
@@ -60,6 +64,7 @@ FavouriteSportsSelectorListItem.fragments = {
     fragment FavouriteSportsSelectorListItem_Group on EventGroup {
       id
       name
+      clientPath
       icon
       activeIndicator
       canSelectSubgroups

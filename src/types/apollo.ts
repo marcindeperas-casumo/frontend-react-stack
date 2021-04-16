@@ -2554,6 +2554,7 @@ export type FavouriteSportsSelector_GroupFragment = {
 export type FavouriteSportsSelectorListItem_GroupFragment = {
   id: number;
   name: string;
+  clientPath: string;
   icon?: Maybe<string>;
   activeIndicator?: Maybe<string>;
   canSelectSubgroups: boolean;
