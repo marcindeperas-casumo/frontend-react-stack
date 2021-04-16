@@ -75,7 +75,7 @@ export default class KambiClient extends React.Component<Props, State> {
       enableFilterMenu: false,
       enableQuickBrowse: false,
       enableTermSearch: false,
-      reservedRoutes: ["virtuals", "promotions"],
+      reservedRoutes: ["filter/virtuals", "promotions"],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
