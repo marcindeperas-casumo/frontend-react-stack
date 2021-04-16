@@ -4,8 +4,6 @@ $grid-3-cols-min-width: 1200px;
 .c-articles-list {
   display: grid;
   grid-gap: 8px;
-  margin: 0 auto;
-  max-width: 1200px;
 }
 
 @media (min-width: $grid-2-cols-min-width) {
