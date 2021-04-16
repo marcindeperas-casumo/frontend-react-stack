@@ -11,17 +11,11 @@ export function GamePageNotifications() {
     <Flex
       direction="vertical"
       align="stretch"
-      className="c-game-page-notifications o-position--absolute o-inset-x--none u-margin--md u-width--1/2@desktop"
+      className="c-game-page-notifications o-position--absolute u-margin--md u-width--1/2@desktop"
     >
-      <Flex.Item>
-        <ReelRaceStartingNotification />
-      </Flex.Item>
-      <Flex.Item>
-        <BlueRibbonChristmasCampaignNotificationsContainer />
-      </Flex.Item>
-      <Flex.Item>
-        <RealMoneyPlayRequiredNotification />
-      </Flex.Item>
+      <ReelRaceStartingNotification />
+      <BlueRibbonChristmasCampaignNotificationsContainer />
+      <RealMoneyPlayRequiredNotification />
     </Flex>
   );
 }
