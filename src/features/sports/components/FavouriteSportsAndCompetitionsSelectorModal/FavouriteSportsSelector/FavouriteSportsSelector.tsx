@@ -3,11 +3,13 @@ import { gql } from "@apollo/client";
 import * as React from "react";
 import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import FavouriteSportsSelectorListItem from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/FavouriteSportsSelector/FavouriteSportsSelectorListItem";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 import { FavouriteSportsSelectorIntro } from "./FavouriteSportsSelectorIntro";
 import Heading from "./FavouriteSportsSelectorHeading";
-import ListItem from "./FavouriteSportsSelectorListItem";
 import ListItemSkeleton from "./FavouriteSportsSelectorListItemSkeleton";
+
+const newBadgeItemClientPaths = ["filter/virtuals"];
 
 type Props = {
   /** Whether the introduction to how to favourite competitions should be shown */
@@ -43,7 +45,7 @@ const FavouriteSportsSelector = (props: Props) => (
               itemSpacing="md"
               items={popularGroups}
               render={group => (
-                <ListItem
+                <FavouriteSportsSelectorListItem
                   data-test="favourite-sports-selector-popular"
                   key={group.id}
                   group={group}
@@ -97,11 +99,14 @@ const FavouriteSportsSelector = (props: Props) => (
                       : "favourite-sports-selector-other";
 
                     return (
-                      <ListItem
+                      <FavouriteSportsSelectorListItem
                         data-test={testIdentifier}
                         key={group.id}
                         group={group}
                         isFavouritable={!isAllToggle}
+                        newLabel={newBadgeItemClientPaths.includes(
+                          group.clientPath
+                        )}
                         showCompetitionIntro={props.showCompetitionIntro}
                         onAddCompetition={props.onAddCompetition}
                         onToggleFavouriteSport={toggleAction}
@@ -139,7 +144,7 @@ FavouriteSportsSelector.fragments = {
       ...FavouriteSportsSelectorListItem_Group
     }
 
-    ${ListItem.fragments.group}
+    ${FavouriteSportsSelectorListItem.fragments.group}
   `,
 };
 
