@@ -64,7 +64,10 @@ export default class FavouriteListItem extends PureComponent<Props> {
               </Text>
               {this.props.newLabel && (
                 <div className={classNames(
-                  "t-background-yellow-30 t-border-r--sm", "t-color-purple-80 c-sports-navigation-item--new", "u-padding--sm u-margin-left--lg u-font-weight-bold", "u-font-xs"
+                  "t-background-yellow-30 t-border-r--sm",
+                  "t-color-purple-80 c-sports-navigation-item--new",
+                  "u-padding--sm u-margin-left--lg u-font-weight-bold",
+                  "u-font-xs"
                 )}>
                   {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
                   <DictionaryTerm termKey="new">
