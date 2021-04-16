@@ -1,7 +1,7 @@
 import React from "react";
 import { Article } from "Src/types/apollo";
 
-const IMG_SIZE = "64px";
+const IMG_SIZE = 64;
 
 type TProps = Article;
 

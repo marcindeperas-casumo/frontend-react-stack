@@ -22,7 +22,7 @@ export const ArticleModal = ({
     }
   );
 
-  if (loading) {
+  if (loading && !data) {
     return null;
   }
 
@@ -35,8 +35,8 @@ export const ArticleModal = ({
       imgixOpts={{
         fit: "crop",
         h: 150,
-        q: "95",
-        w: isMobile() ? "200" : "400",
+        q: 95,
+        w: isMobile() ? 200 : 400,
       }}
       alt={article.title}
     />
