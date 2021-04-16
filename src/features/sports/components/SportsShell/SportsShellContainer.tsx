@@ -86,7 +86,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
     return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
-  const virtualsPrefixHash = "#virtuals";
+  const virtualsPrefixHash = "#filter/virtuals";
   const promotionPrefixHash = "#promotions";
 
   return (
