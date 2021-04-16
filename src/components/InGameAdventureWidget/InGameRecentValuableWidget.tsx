@@ -72,34 +72,22 @@ export const InGameRecentValuableWidget = ({
     valuable => valuable.id === recentValuable
   );
 
-  if (!latestValuable) {
-    return null;
-  }
-
   return (
     <Flex className="u-padding--md" spacing="none">
       <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
         <div className="c-ingame-recent-valuable__thumbnail t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
-          {loading ? (
-            <div className="t-background-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
-          ) : (
+          {!loading ? (
             <ValuableThumbnail
-              awardType={
-                latestValuable.__typename === "PlayerValuableWageringLock"
-                  ? latestValuable.awardType
-                  : null
-              }
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'awardType' does not exist on type '{ __t... Remove this comment to see the full error message
+              awardType={latestValuable.awardType}
               backgroundRenderer={
                 <ValuableThumbnailRenderer
                   backgroundImage={latestValuable.backgroundImage}
                   valuableType={latestValuable.valuableType}
                 />
               }
-              coinValue={
-                latestValuable.__typename === "PlayerValuableSpins"
-                  ? latestValuable.coinValue
-                  : null
-              }
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'coinValue' does not exist on type '{ __t... Remove this comment to see the full error message
+              coinValue={latestValuable.coinValue}
               currency={latestValuable.currency}
               expiryTimeLeft={getExpiryTimeLeft(latestValuable.expiryDate)}
               market={latestValuable.market}
@@ -108,6 +96,8 @@ export const InGameRecentValuableWidget = ({
               valuableType={latestValuable.valuableType}
               size="small"
             />
+          ) : (
+            <div className="t-background-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
           )}
         </div>
       </Flex.Item>
