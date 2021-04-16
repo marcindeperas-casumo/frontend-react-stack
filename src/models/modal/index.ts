@@ -30,7 +30,8 @@ export type ModalId =
   | "GGL_FIVE_MINUTE_BREAK_REEL_RACE"
   | "PAYMENT_RESULT"
   | "CONTENT_HTML"
-  | "REEL_RACES_TAC";
+  | "REEL_RACES_TAC"
+  | "ARTICLE_MODAL";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

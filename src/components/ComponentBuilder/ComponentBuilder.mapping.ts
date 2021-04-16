@@ -29,6 +29,7 @@ import {
   BlueRibbonJackpotsWidgetPromotionPage,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
+import { ArticlesListContainer } from "Components/ArticlesList";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -43,6 +44,7 @@ export const COMPONENT_MAPPING = {
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
+  ARTICLE_LIST_HORIZONTAL: ArticlesListContainer,
   CONTENT_SUBTITLE: ContentSubtitle,
   GAME_LINK: GameLinkButton,
   CTA: ContentButton,
