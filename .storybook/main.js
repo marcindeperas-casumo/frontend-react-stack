@@ -1,5 +1,6 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
+const { DefinePlugin } = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
@@ -78,6 +79,43 @@ module.exports = {
 
     // eslint-disable-next-line fp/no-mutation
     config.resolve.alias["Styles"] = path.resolve(__dirname, "../src/styles");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Components"] = path.resolve(
+      __dirname,
+      "../src/components"
+    );
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Services"] = path.resolve(
+      __dirname,
+      "../src/applicationService"
+    );
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Models"] = path.resolve(__dirname, "../src/models");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Lib"] = path.resolve(__dirname, "../src/lib");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Utils"] = path.resolve(__dirname, "../src/utils");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Types"] = path.resolve(__dirname, "../src/types");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Src"] = path.resolve(__dirname, "../src");
+
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Api"] = path.resolve(__dirname, "../src/api");
+
+    // eslint-disable-next-line fp/no-mutating-methods
+    config.plugins.push(
+      new DefinePlugin({
+        __DEV__: true,
+      })
+    );
 
     // Return the altered config
     return config;
