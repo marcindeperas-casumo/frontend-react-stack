@@ -110,6 +110,12 @@ module.exports = {
     // eslint-disable-next-line fp/no-mutation
     config.resolve.alias["Api"] = path.resolve(__dirname, "../src/api");
 
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Storybook"] = path.resolve(
+      __dirname,
+      "../src/.storybook"
+    );
+
     // eslint-disable-next-line fp/no-mutating-methods
     config.plugins.push(
       new DefinePlugin({
