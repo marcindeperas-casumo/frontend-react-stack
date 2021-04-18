@@ -1,6 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { viewports } from "Storybook/viewports";
+
+// import { viewports } from "Storybook/viewports";
+
+const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
 import { Header } from "./Header";
 
 const stories = storiesOf("AccountPage/Header", module);

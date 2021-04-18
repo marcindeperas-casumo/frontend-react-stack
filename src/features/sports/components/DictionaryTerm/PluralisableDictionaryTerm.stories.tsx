@@ -26,7 +26,7 @@ stories.add("Default", () => (
 
 stories.add("With replacements", () => {
   const teamName = text("Team name", "{teamName}");
-  const goalCount = number("Goal count", "{goalCount}");
+  const goalCount = number("Goal count", 0);
   return (
     // @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message
     <PluralisableDictionaryTerm

@@ -1,6 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { viewports } from "Storybook/viewports";
+// import { viewports } from "Storybook/viewports";
+
+const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
 import { Deposit } from "./Deposit";

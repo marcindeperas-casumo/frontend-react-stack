@@ -24,7 +24,7 @@ if (isNotChromatic) {
       termKey={REPLACEMENT_TERM.key}
       replacements={{
         teamName: text("Team name", "{teamName}"),
-        goalCount: number("Goal count", "{goalCount}"),
+        goalCount: number("Goal count", 0),
       }}
     />
   ));

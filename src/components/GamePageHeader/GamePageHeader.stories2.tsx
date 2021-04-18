@@ -1,6 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { viewports } from "Storybook/viewports";
+// import { viewports } from "Storybook/viewports";
+
+const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
 import MockStore from "Components/MockStore";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { GamePageHeader } from "./GamePageHeader";

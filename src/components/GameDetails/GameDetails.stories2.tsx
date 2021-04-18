@@ -1,7 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs";
 import React from "react";
-import { viewports } from "Storybook/viewports";
+// import { viewports } from "Storybook/viewports";
+
+const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
 import { GameDetails } from "./GameDetails";
 import {
   gameDetails,

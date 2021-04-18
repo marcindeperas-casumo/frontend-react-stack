@@ -2,7 +2,9 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
-import { viewports } from "Storybook/viewports";
+// import { viewports } from "Storybook/viewports";
+
+const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
 import { BettingGlossary } from "Features/sports/components/BettingGlossary";
 import { ModalsArea } from "Features/sports/components/Modals";
 import { mocks } from "./__mocks__/glossaryMocks";
