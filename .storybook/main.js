@@ -1,4 +1,5 @@
 const path = require("path");
+const cudl = require("@casumo/cudl");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
@@ -24,7 +25,34 @@ module.exports = {
     // eslint-disable-next-line fp/no-mutating-methods
     config.module.rules.push({
       test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
+      use: [
+        "style-loader",
+        "css-loader",
+        {
+          loader: require.resolve("sass-loader"),
+          options: {
+            sassOptions: {
+              includePaths: cudl,
+            },
+            sourceMap: false,
+            additionalData: (content, loaderContext) => {
+              const { resourcePath, rootContext } = loaderContext;
+              const relativePath = path.relative(rootContext, resourcePath);
+
+              if (/src\/styles/.test(relativePath)) {
+                return null;
+              } else if (/src/.test(relativePath)) {
+                return `@import "${path.resolve(
+                  path.resolve(__dirname, "../"),
+                  "src/styles/_tools.cudl.scss"
+                )}";\n${content}`;
+              }
+
+              return null;
+            },
+          },
+        },
+      ],
       include: path.resolve(__dirname, "../"),
     });
 
@@ -48,13 +76,13 @@ module.exports = {
     // eslint-disable-next-line fp/no-mutation
     config.resolve.plugins = [new TsconfigPathsPlugin()];
 
+    // eslint-disable-next-line fp/no-mutation
+    config.resolve.alias["Styles"] = path.resolve(__dirname, "../src/styles");
+
     // Return the altered config
     return config;
   },
-  stories: [
-    "../src/**/*.stories2.mdx",
-    "../src/**/*.stories2.@(js|jsx|ts|tsx)",
-  ],
+  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
