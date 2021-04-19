@@ -1,3 +1,19 @@
+declare module "*/Article.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const ArticleQuery: DocumentNode;
+
+  export default defaultDocument;
+}
+
+declare module "*/ArticlesList.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const ArticlesListQuery: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/GetGamesRTP.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;

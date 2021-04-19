@@ -5,10 +5,11 @@ import SumoIconConfetti from "./SumoIconConfetti";
 import { animation_duration } from "./SumoIconConfetti.scss";
 
 export default function SumoIconConfettiContainer() {
-  const { onLevelUp } = useAdventurerContext();
+  const { level } = useAdventurerContext();
   const [isConfettiVisible, showConfetti] = useState<boolean>(false);
   const timeoutIdRef = useRef<NodeJS.Timeout>();
   const hideConfetti = () => showConfetti(false);
+  const isFirstRun = useRef(true);
 
   // change of level could mean only level up
   // confetti animation starts if it is different than prev
@@ -19,13 +20,17 @@ export default function SumoIconConfettiContainer() {
     timeoutIdRef.current = timeoutId; // eslint-disable-line fp/no-mutation
   }, []);
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  onLevelUp(runAnimation);
-
   useEffect(() => {
+    if (isFirstRun.current) {
+      // eslint-disable-next-line fp/no-mutation
+      isFirstRun.current = false;
+      return;
+    }
+
+    runAnimation();
     // in case game is closed before timeout execution
     return () => clearTimeout(timeoutIdRef.current);
-  }, []);
+  }, [level, runAnimation, isFirstRun]);
 
   return isConfettiVisible ? <SumoIconConfetti /> : null;
 }

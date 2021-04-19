@@ -18,6 +18,7 @@ export const adventurerSelector = createSelector(
       points,
       pointsRequiredForNextSpaceCrystal,
       spaceCrystals,
+      recentValuable,
     } = adventurer;
 
     if (!name) {
@@ -37,6 +38,7 @@ export const adventurerSelector = createSelector(
       inBonusMode: inTravelMode,
       level: inTravelMode ? level - 1 : level,
       name,
+      recentValuable,
       points: progression.points,
       pointsRequiredForNextLevel: progression.pointsRequiredForNextLevel,
     };
