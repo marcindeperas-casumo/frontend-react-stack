@@ -12,8 +12,11 @@ export const parameters = {
       { name: "dark", value: "#444f4f" },
     ],
   },
-  options: {
-    theme: casumoTheme,
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
   },
   info: {
     disable: navigator.userAgent.match(/Chromatic/),
@@ -25,11 +28,9 @@ export const parameters = {
       },
     },
   },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
+  layout: "fullscreen",
+  options: {
+    theme: casumoTheme,
   },
 };
 
