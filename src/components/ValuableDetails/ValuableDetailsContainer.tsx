@@ -9,7 +9,7 @@ type Props = {
   onConsumeValuable: (id: string) => Promise<void>;
 };
 
-const getTermsAndConditionSlug = (termsLink: string = "") => {
+const getTermsAndConditionSlug = (termsLink = "") => {
   const fullSlug = /root:[a-zA-Z-]+:content/;
   return fullSlug.test(termsLink) ? termsLink : `root:${termsLink}:content`;
 };
