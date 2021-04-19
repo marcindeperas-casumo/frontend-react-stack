@@ -1,0 +1,13 @@
+query ArticlesListQuery($slugs: [String!]!) {
+  articlesList(slugs: $slugs) {
+    id
+    name
+    articles {
+      id
+      slug
+      title
+      subtitle
+      thumbnail
+    }
+  }
+}

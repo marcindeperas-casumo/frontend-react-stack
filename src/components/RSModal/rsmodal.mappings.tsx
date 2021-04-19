@@ -10,6 +10,7 @@ import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
+import { ArticleModal } from "Components/ArticlesList/ArticleModal";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -148,6 +149,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.REEL_RACES_TAC]: {
     slug: "",
     Content: ReelRacesTAC,
+  },
+  [REACT_APP_MODAL.ID.ARTICLE_MODAL]: {
+    slug: "",
+    Content: ArticleModal,
   },
 };
 

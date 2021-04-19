@@ -29,6 +29,7 @@ export interface GamesPaginated {
 
 export interface Query {
   activeModals: Array<Modal>;
+  articlesList?: Maybe<ArticlesList>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -78,6 +79,10 @@ export interface Query {
   topSearches: Array<EventGroup>;
   translations: Translations;
   userHomepage?: Maybe<Scalars["String"]>;
+}
+
+export interface QueryArticlesListArgs {
+  slugs: Array<Scalars["String"]>;
 }
 
 export interface QueryCompetitionsArgs {
@@ -1175,6 +1180,22 @@ export interface PlayerGameRound {
   rollbackDate: Scalars["Int"];
 }
 
+export interface Article {
+  id: Scalars["ID"];
+  slug: Scalars["String"];
+  title?: Maybe<Scalars["String"]>;
+  subtitle?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  thumbnail?: Maybe<Scalars["String"]>;
+  image?: Maybe<Scalars["String"]>;
+}
+
+export interface ArticlesList {
+  id: Scalars["String"];
+  name: Scalars["String"];
+  articles: Array<Article>;
+}
+
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export type Modal =
@@ -1182,6 +1203,40 @@ export type Modal =
   | "BETTING_GLOSSARY"
   | "CHOOSE_FAVOURITES"
   | "CHOOSE_FAVOURITE_COMPETITIONS";
+
+export type ArticleQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type ArticleQuery = {
+  articlesList?: Maybe<{
+    articles: Array<{
+      id: string;
+      title?: Maybe<string>;
+      subtitle?: Maybe<string>;
+      content?: Maybe<string>;
+      image?: Maybe<string>;
+    }>;
+  }>;
+};
+
+export type ArticlesListQueryVariables = Exact<{
+  slugs: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type ArticlesListQuery = {
+  articlesList?: Maybe<{
+    id: string;
+    name: string;
+    articles: Array<{
+      id: string;
+      slug: string;
+      title?: Maybe<string>;
+      subtitle?: Maybe<string>;
+      thumbnail?: Maybe<string>;
+    }>;
+  }>;
+};
 
 export type GetGamesRtpQueryVariables = Exact<{
   query: Scalars["String"];
@@ -2554,6 +2609,7 @@ export type FavouriteSportsSelector_GroupFragment = {
 export type FavouriteSportsSelectorListItem_GroupFragment = {
   id: number;
   name: string;
+  clientPath: string;
   icon?: Maybe<string>;
   activeIndicator?: Maybe<string>;
   canSelectSubgroups: boolean;

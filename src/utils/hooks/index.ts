@@ -27,8 +27,6 @@ export { usePin } from "./usePin";
 export { useMarketConfig } from "./useMarketConfig";
 export { useMemoCompare } from "./useMemoCompare";
 export { useMessaging } from "./useFirebaseSDK";
-export { usePlayerLevelUpEvent } from "./usePlayerLevelUpEvent";
-export { usePlayerReceivedValuableEvent } from "./usePlayerReceivedValuableEvent";
 export { useResize } from "./useResize";
 export { useCallOnce } from "./useCallOnce";
 export { useScrollToTop } from "./useScrollToTop";
