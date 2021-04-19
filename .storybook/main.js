@@ -1,6 +1,7 @@
 const path = require("path");
+const fs = require("fs");
 const cudl = require("@casumo/cudl");
-const { DefinePlugin } = require("webpack");
+const { DefinePlugin, NormalModuleReplacementPlugin } = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
@@ -120,6 +121,43 @@ module.exports = {
     config.plugins.push(
       new DefinePlugin({
         __DEV__: true,
+      })
+    );
+
+    // eslint-disable-next-line fp/no-mutating-methods
+    config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /applicationService\/logger/,
+        path.resolve(__dirname, "fakeLogger.js")
+      )
+    );
+
+    // eslint-disable-next-line fp/no-mutating-methods
+    config.plugins.push(
+      new NormalModuleReplacementPlugin(/\.tsx?$/, resource => {
+        if (/__mocks__/.test(resource.request)) {
+          return;
+        }
+
+        const resPath = resource.request.split("!")[1];
+        if (!resPath) {
+          return;
+        }
+
+        const dirname = path.dirname(resPath);
+        const basename = path.basename(resPath);
+        const folderMockPath = `${dirname}/__mocks__/${basename}`;
+
+        if (fs.existsSync(folderMockPath)) {
+          // eslint-disable-next-line fp/no-mutation
+          resource.request = folderMockPath;
+        } else {
+          return;
+        }
+        if (resource.resource) {
+          // eslint-disable-next-line fp/no-mutation
+          resource.resource = resource.request;
+        }
       })
     );
 
