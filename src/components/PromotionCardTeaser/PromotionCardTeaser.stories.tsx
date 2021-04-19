@@ -4,7 +4,6 @@ import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import PromotionCardTeaserPresentational from "Components/PromotionCardTeaser/PromotionCardTeaser";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
-import isNotChromatic from "Storybook/isNotChromatic";
 
 const state = {
   schema: {
@@ -14,7 +13,7 @@ const state = {
 
 const stories = storiesOf("PromotionCardTeaser", module);
 
-if (isNotChromatic) {
+if (!navigator.userAgent.match(/Chromatic/)) {
   stories.add(
     "PromotionCardTeaser (Connected)",
     () => (
