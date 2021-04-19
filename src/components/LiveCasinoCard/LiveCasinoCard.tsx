@@ -15,16 +15,12 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
 import * as A from "Types/apollo";
+import type { TLiveCasinoCardContent } from "./LiveCasinoCardContainer";
 import "./LiveCasinoCard.scss";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery["gamesList"]["games"][number];
-  t?: {
-    play_now: string;
-    bet_behind: string;
-    open_seats: string;
-    table_temporarily_unavailable: string;
-  };
+  t?: TLiveCasinoCardContent;
 };
 
 export class LiveCasinoCard extends PureComponent<Props> {
@@ -121,6 +117,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
       <LiveCasinoCardFooter
         players={this.liveCasinoLobby.numberOfPlayers}
         provider={this.liveCasinoLobby.provider}
+        providerLogos={this.props.t?.provider_logos}
       />
     );
   };
@@ -187,7 +184,10 @@ export class LiveCasinoCard extends PureComponent<Props> {
           spacing="md"
           header={this.renderHeaderNoLobby}
           footer={() => (
-            <LiveCasinoCardFooter provider={this.props.game.gameStudio} />
+            <LiveCasinoCardFooter
+              provider={this.props.game.gameStudio}
+              providerLogos={this.props.t?.provider_logos}
+            />
           )}
           content={this.renderContent}
         />
