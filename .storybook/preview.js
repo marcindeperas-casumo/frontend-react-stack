@@ -44,8 +44,8 @@ const globalDecorator = Story => (
 );
 
 export const decorators = [
-  (Story, anotherProp, other) => {
-    if (Story.parameters?.noGlobalDecorator) {
+  (Story, details) => {
+    if (details.parameters.noGlobalDecorator) {
       return <Story />;
     }
 
