@@ -2,9 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { repeat } from "ramda";
 import { ModalsArea } from "Features/sports/components/Modals";
-// import { viewports } from "Storybook/viewports";
-
-const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
+import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";
 
 const stories = storiesOf("Sports/SportsModal", module);

@@ -1,10 +1,14 @@
 import React from "react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import casumoTheme, { color } from "./casumoTheme";
 import "../src/styles/index.scss";
 import "./stories.scss";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
   backgrounds: {
     values: [
       { name: "light", value: "#ffffff", default: true },

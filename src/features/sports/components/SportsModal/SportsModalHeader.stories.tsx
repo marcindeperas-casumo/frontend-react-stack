@@ -2,9 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import React from "react";
 import { ModalsArea } from "Features/sports/components/Modals";
-// import { viewports } from "Storybook/viewports";
-
-const viewports = { mobile: null, desktop: null, tablet: null, phablet: null };
+import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";
 import { SportsModalHeader } from "./SportsModalHeader";
 
