@@ -12,7 +12,7 @@ stories.add("Default", () => {
       <TextInput
         currencySign={select("Currency Sign", ["€", ""], "€")}
         type={select("Type", ["text", "number"], "text")}
-        placeholder={text("Placeholder", "Placeholder")}
+        placeholder={text("Placeholder", "")}
         min={number("Min", 0)}
         max={number("Max", 10)}
         {...inputProps}
