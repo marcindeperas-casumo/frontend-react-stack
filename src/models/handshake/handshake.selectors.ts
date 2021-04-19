@@ -62,6 +62,11 @@ export const isSuspiciousAccount = createSelector(
   playerSelector,
   R.prop("suspiciousAccount")
 );
+// Temporary mocked selector for DGOJ - warm up phase
+export const isWarmUpPhaseSelector = createSelector(
+  playerSelector,
+  R.propOr(true, "isWarmUp")
+);
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
@@ -85,7 +90,6 @@ export const bonusAmountSelector = createSelector(
   playerSelector,
   R.pathOr(0, ["bonus", "balance", "amount"])
 );
-
 export const marketSelector = createSelector(playerSelector, R.prop("market"));
 export const hasMadeFirstDepositSelector = createSelector(
   playerSelector,
