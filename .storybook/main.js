@@ -1,8 +1,14 @@
 const path = require("path");
 const fs = require("fs");
-const cudl = require("@casumo/cudl");
-const { DefinePlugin, NormalModuleReplacementPlugin } = require("webpack");
+const { NormalModuleReplacementPlugin } = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const graphqlLoader = require("../config/webpack/module/graphql");
+const imagesLoader = require("../config/webpack/module/images");
+const sassLoader = require("../config/webpack/module/sass");
+const svgLoader = require("../config/webpack/module/svg");
+const defineDevModePlugin = require("../config/webpack/plugins/defineDevMode");
+
+const env = { development: true };
 
 module.exports = {
   webpackFinal: (config, { configType }) => {
@@ -17,63 +23,17 @@ module.exports = {
     fileLoaderRule.exclude = /\.svg$/;
 
     // eslint-disable-next-line fp/no-mutating-methods
-    config.module.rules.push({
-      test: /\.svg$/,
-      enforce: "pre",
-      loader: require.resolve("@svgr/webpack"),
-    });
+    config.module.rules.push(svgLoader);
 
     // Make whatever fine-grained changes you need
     // eslint-disable-next-line fp/no-mutating-methods
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-        "style-loader",
-        "css-loader",
-        {
-          loader: require.resolve("sass-loader"),
-          options: {
-            sassOptions: {
-              includePaths: cudl,
-            },
-            sourceMap: false,
-            additionalData: (content, loaderContext) => {
-              const { resourcePath, rootContext } = loaderContext;
-              const relativePath = path.relative(rootContext, resourcePath);
-
-              if (/src\/styles/.test(relativePath)) {
-                return null;
-              } else if (/src/.test(relativePath)) {
-                return `@import "${path.resolve(
-                  path.resolve(__dirname, "../"),
-                  "src/styles/_tools.cudl.scss"
-                )}";\n${content}`;
-              }
-
-              return null;
-            },
-          },
-        },
-      ],
-      include: path.resolve(__dirname, "../"),
-    });
+    config.module.rules.push(sassLoader(env));
 
     // eslint-disable-next-line fp/no-mutating-methods
-    config.module.rules.push({
-      test: /\.(graphql|gql)$/,
-      loader: require.resolve("graphql-tag/loader"),
-      include: path.resolve(__dirname, "../"),
-    });
+    config.module.rules.push(graphqlLoader);
 
     // eslint-disable-next-line fp/no-mutating-methods
-    config.module.rules.push({
-      test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-      loader: require.resolve("url-loader"),
-      options: {
-        limit: 10000,
-        name: `./media/[name].[hash:8].[ext]`,
-      },
-    });
+    config.module.rules.push(imagesLoader(env));
 
     // eslint-disable-next-line fp/no-mutation
     config.resolve.plugins = [new TsconfigPathsPlugin()];
@@ -82,11 +42,7 @@ module.exports = {
     config.resolve.alias["Styles"] = path.resolve(__dirname, "../src/styles");
 
     // eslint-disable-next-line fp/no-mutating-methods
-    config.plugins.push(
-      new DefinePlugin({
-        __DEV__: true,
-      })
-    );
+    config.plugins.push(defineDevModePlugin(env));
 
     // eslint-disable-next-line fp/no-mutating-methods
     config.plugins.push(
