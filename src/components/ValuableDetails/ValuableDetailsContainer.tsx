@@ -31,9 +31,11 @@ export const ValuableDetailsContainer = (props: Props) => {
     depositNowLabel: "root:valuable-details-component:fields.deposit_now",
     expirationTimeLabel:
       "root:valuable-details-component:fields.expirationTimeLabel",
-    termsAndConditionsContent: getTermsAndConditionSlug(
-      props?.valuableDetails?.termsLink
-    ),
+    ...(props?.valuableDetails?.termsLink && {
+      termsAndConditionsContent: getTermsAndConditionSlug(
+        props?.valuableDetails?.termsLink
+      ),
+    }),
     wageringStatus: "root:valuable-details-component:fields.wagering_status",
     minute_singular: "root:units:fields.minute_singular",
     minute_plural: "root:units:fields.minutes",
