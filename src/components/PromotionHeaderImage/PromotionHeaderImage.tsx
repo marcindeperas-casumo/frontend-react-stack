@@ -1,6 +1,8 @@
 import Flex from "@casumo/cmp-flex";
 import React, { PureComponent } from "react";
 import ImageLazy from "Components/Image/ImageLazy";
+import { promotionsHeaderImageSet } from "./utils";
+
 import "Components/PromotionHeaderImage/PromotionHeaderImage.scss";
 
 type Props = {
@@ -32,12 +34,13 @@ export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {
 class PromotionHeaderImage extends PureComponent<Props> {
   render() {
     const { image, badge = "" } = this.props;
+    const images = promotionsHeaderImageSet(image);
+
     return (
       <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg c-promotion-header-image">
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"
-          src={image}
-          imgixOpts={{ w: 546 }}
+          images={images}
         />
         {badge && <PromotionHeaderBadge badge={badge} />}
       </div>
