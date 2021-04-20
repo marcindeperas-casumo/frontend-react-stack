@@ -14,9 +14,48 @@ import {
 
 const stories = storiesOf("LiveCasinoCard", module);
 const t = {
-  play_now: "Play now 👻",
   bet_behind: "Bet behind",
-  open_seats: "Seats left",
+  closed: "Closed",
+  go_to_lobby: "Go to lobby",
+  open_seats: "Open seats",
+  opens_at: "Opens at {{time}}",
+  play_now: "Play",
+  recent_letters: "Recent letters",
+  recent_numbers: "Recent numbers",
+  recent_outcomes: "Recent outcomes",
+  table_full: "Table full",
+  table_temporarily_unavailable: "Game in maintenance",
+  table_unavailable: "Unavailable",
+  provider_logos: [
+    {
+      provider_name: "casumo",
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/casumo.png",
+    },
+    {
+      provider_name: "evolution",
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/evolution.png",
+    },
+    {
+      provider_name: "Ezugi",
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/ezugi.png",
+    },
+    {
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/netent.png",
+      provider_name: "Net Entertainment",
+    },
+    {
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/pragmatic.png",
+      provider_name: "Pragmatic Play",
+    },
+    {
+      provider_name: "pragmatic",
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/pragmatic.png",
+    },
+    {
+      provider_name: "Playtech",
+      logo: "https://cms.casumo.com/wp-content/uploads/2021/04/playtech.png",
+    },
+  ],
 };
 
 stories.add("Card MoneyWheel", () => (

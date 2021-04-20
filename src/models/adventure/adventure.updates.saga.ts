@@ -102,4 +102,15 @@ export function* adventureUpdatesSaga(action) {
       })
     );
   }
+
+  if (data.itemCreated) {
+    yield put(
+      updateEntity({
+        [ENTITY_KEYS.ADVENTURER]: {
+          ...currentProgression,
+          recentValuable: data.itemCreated.event.badgeId,
+        },
+      })
+    );
+  }
 }

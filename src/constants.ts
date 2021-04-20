@@ -477,6 +477,7 @@ export const REACT_APP_MODAL = {
     PAYMENT_RESULT: "PAYMENT_RESULT",
     CONTENT_HTML: "CONTENT_HTML",
     REEL_RACES_TAC: "REEL_RACES_TAC",
+    ARTICLE_MODAL: "ARTICLE_MODAL",
   },
 } as const;
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

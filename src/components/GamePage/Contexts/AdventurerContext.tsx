@@ -1,11 +1,6 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
-import {
-  usePlayerLevelUpEvent,
-  usePlayerReceivedValuableEvent,
-} from "Utils/hooks";
-import type { LevelUpCallback } from "Utils/hooks/usePlayerLevelUpEvent";
 import { adventurerSelector, initAdventurerSaga } from "Models/adventure";
 import type { BeltType } from "Models/adventure";
 import {
@@ -25,7 +20,6 @@ type TAdventurerContext = {
   rawProgressPercentage: number;
   inBonusMode: boolean;
   belt: BeltType;
-  onLevelUp: LevelUpCallback;
   recentValuable: string | undefined;
 };
 
@@ -37,8 +31,6 @@ export const AdventurerContext = React.createContext<TAdventurerContext>({
   rawProgressPercentage: 0,
   inBonusMode: false,
   belt: "rope",
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '(callback: LevelUpCallback) => void' is not ... Remove this comment to see the full error message
-  onLevelUp: usePlayerLevelUpEvent,
   recentValuable: null,
 });
 
@@ -46,7 +38,6 @@ export const AdventurerContextProvider = ({
   children,
 }: TAdventurerContextProviderProps) => {
   const dispatch = useDispatch();
-  const [recentValuable, setRecentValuable] = React.useState(null);
   const playerId = useSelector(playerIdSelector);
   const sessionId = useSelector(sessionIdSelector);
   const {
@@ -55,12 +46,8 @@ export const AdventurerContextProvider = ({
     pointsRequiredForNextLevel,
     inBonusMode,
     belt,
+    recentValuable,
   } = useSelector(adventurerSelector);
-  const onValuableReceived = data => {
-    setRecentValuable(data.itemCreated.event.badgeId);
-  };
-
-  usePlayerReceivedValuableEvent(onValuableReceived);
 
   const rawProgressPercentage = (points / pointsRequiredForNextLevel) * 100;
 
@@ -88,8 +75,6 @@ export const AdventurerContextProvider = ({
         belt,
         progressPercentage,
         rawProgressPercentage,
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '(callback: LevelUpCallback) => void' is not ... Remove this comment to see the full error message
-        onLevelUp: usePlayerLevelUpEvent,
         recentValuable,
       }}
     >
