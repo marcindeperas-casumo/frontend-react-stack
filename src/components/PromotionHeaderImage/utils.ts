@@ -1,6 +1,8 @@
+import breakpoints from "../../styles/_settings.breakpoints.scss";
+
 const promotionHeaderImageOptions = [
   {
-    mediaQuery: `(max-width: 460px)`,
+    mediaQuery: `(max-width: ${breakpoints.phablet})`,
     imgixOpts: {
       w: 460,
       q: 95,
@@ -12,9 +14,9 @@ const promotionHeaderImageOptions = [
     },
   },
   {
-    mediaQuery: `(max-width: 800px)`,
+    mediaQuery: `(max-width: ${breakpoints.tablet - 1})`,
     imgixOpts: {
-      w: 800,
+      w: 768,
       q: 95,
       "fp-y": 0.625,
       "fp-z": 1.3,
@@ -23,7 +25,7 @@ const promotionHeaderImageOptions = [
     },
   },
   {
-    mediaQuery: `(min-width: 801px)`,
+    mediaQuery: `(min-width: ${breakpoints.tablet})`,
     imgixOpts: {
       w: 1200,
       q: 95,
