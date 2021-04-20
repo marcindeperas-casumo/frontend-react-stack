@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { number, select } from "@storybook/addon-knobs/react";
+import { number, select } from "@storybook/addon-knobs";
 import React from "react";
 import { ProgressBar } from "./ProgressBar";
 

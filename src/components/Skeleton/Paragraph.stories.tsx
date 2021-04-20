@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { select } from "@storybook/addon-knobs";
 import React from "react";
 import { ParagraphSkeleton } from "./Paragraph";
 

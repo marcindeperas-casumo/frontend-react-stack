@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { select, boolean, text } from "@storybook/addon-knobs/react";
+import { select, boolean, text } from "@storybook/addon-knobs";
 import React from "react";
 import { CURRENCIES } from "Src/constants";
 import MockStore from "Components/MockStore";

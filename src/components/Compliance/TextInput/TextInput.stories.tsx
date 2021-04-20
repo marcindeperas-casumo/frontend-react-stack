@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { text, select, number } from "@storybook/addon-knobs/react";
+import { text, select, number } from "@storybook/addon-knobs";
 import * as React from "react";
 import { TextInput } from "./TextInput";
 
@@ -12,7 +12,7 @@ stories.add("Default", () => {
       <TextInput
         currencySign={select("Currency Sign", ["€", ""], "€")}
         type={select("Type", ["text", "number"], "text")}
-        placeholder={text("Placeholder")}
+        placeholder={text("Placeholder", "")}
         min={number("Min", 0)}
         max={number("Max", 10)}
         {...inputProps}
