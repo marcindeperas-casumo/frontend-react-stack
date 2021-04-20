@@ -1,3 +1,5 @@
+const colors = require("./config/tailwind/colors");
+
 module.exports = {
   mode: "jit",
   purge: [
@@ -7,17 +9,8 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      fontFamily: {
-        sans: [
-          '"Circular Pro"',
-          '"Helvetica Neue"',
-          "Helvetica",
-          "Arial",
-          "sans - serif",
-        ],
-      },
-    },
+    colors,
+    extend: {},
   },
   variants: {
     extend: {},
