@@ -15,7 +15,7 @@ module.exports = env => [
     ? [miniCssExtractPlugin(env)]
     : [webpackBarPlugin, reactRefreshPlugin, hotModuleReplacementPlugin]),
   cleanPlugin,
-  manifestPlugin,
+  manifestPlugin(env),
   htmlIndexPlugin,
   htmlEventBubblerPlugin(env),
   htmlNavigationBubblerPlugin(env),
