@@ -2,6 +2,7 @@ import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import casumoTheme, { color } from "./casumoTheme";
 import "../src/styles/index.scss";
+import "../src/styles/index.css";
 import "./stories.scss";
 
 export const parameters = {
