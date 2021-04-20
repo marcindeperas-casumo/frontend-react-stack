@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs/react";
+import { number } from "@storybook/addon-knobs";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import React from "react";

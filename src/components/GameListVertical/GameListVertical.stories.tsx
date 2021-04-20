@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import React from "react";
 import MockStore from "Components/MockStore";
 import { GameListVertical } from "./GameListVertical";

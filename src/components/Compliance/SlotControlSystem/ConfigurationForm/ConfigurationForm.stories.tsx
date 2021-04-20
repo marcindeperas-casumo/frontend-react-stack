@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { select, number, boolean } from "@storybook/addon-knobs/react";
+import { select, number, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import * as React from "react";
 import { ConfigurationForm } from "./ConfigurationForm";

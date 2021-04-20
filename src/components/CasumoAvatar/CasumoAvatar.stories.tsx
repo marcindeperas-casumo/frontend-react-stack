@@ -1,10 +1,12 @@
 import { storiesOf } from "@storybook/react";
-import { select, number, boolean } from "@storybook/addon-knobs/react";
+import { withKnobs, select, number, boolean } from "@storybook/addon-knobs";
 import React from "react";
+import type { BeltType } from "Models/adventure";
 import { CasumoAvatar } from "./CasumoAvatar";
 import { belts } from "./beltUtils";
 
 const stories = storiesOf("CasumoAvatar", module);
+stories.addDecorator(withKnobs);
 
 stories.add("Default", () => {
   const belt = select("Belt level", belts, belts[0]);
@@ -15,7 +17,7 @@ stories.add("Default", () => {
     step: 1,
   });
   const inBonusMode = boolean("In bonus mode", false);
-  const variant = select("Variant", ["default", "sm"]);
+  const variant = select("Variant", ["default", "sm"], "default");
 
   return (
     <div
@@ -24,7 +26,7 @@ stories.add("Default", () => {
     >
       <CasumoAvatar
         inBonusMode={inBonusMode}
-        belt={belt}
+        belt={belt as BeltType}
         level={level}
         variant={variant}
       />

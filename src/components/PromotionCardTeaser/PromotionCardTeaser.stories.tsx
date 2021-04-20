@@ -25,7 +25,9 @@ if (isNotChromatic) {
       </MockStore>
     ),
     {
-      backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
+      backgrounds: {
+        values: [{ name: "colorful", value: "#0085c1", default: true }],
+      },
     }
   );
 }
@@ -49,6 +51,8 @@ stories.add(
     </MockStore>
   ),
   {
-    backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
+    backgrounds: {
+      values: [{ name: "colorful", value: "#0085c1", default: true }],
+    },
   }
 );
