@@ -4,6 +4,7 @@ module.exports = {
   mode: "jit",
   purge: [
     "./src/components/**/*.{js,jsx,ts,tsx}",
+    "./src/features/**/*.{js,jsx,ts,tsx}",
     "./src/layouts/**/*.{js,jsx,ts,tsx}",
     "./src/pages/**/*.{js,jsx,ts,tsx}",
   ],

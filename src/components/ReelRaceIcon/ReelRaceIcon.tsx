@@ -57,7 +57,7 @@ function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
       value={gameProgress}
       fgColor={getProgressColor(gameProgress)}
       bgColor="grey-50"
-      className="t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute o-inset-top--none o-inset-left--none"
+      className="text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute o-inset-top--none o-inset-left--none"
       width={4}
       radius={24}
     />

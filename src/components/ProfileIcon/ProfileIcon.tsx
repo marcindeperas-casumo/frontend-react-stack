@@ -53,7 +53,7 @@ export const ProfileIcon = ({
         fgColor="grey-20"
         bgColor="grey-50"
         fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
-        className="c-profile-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute"
+        className="c-profile-icon__progress text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}
       />

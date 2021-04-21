@@ -152,7 +152,7 @@ export class ValuableCard extends PureComponent<Props> {
         {caveat && (
           <Text
             size="2xs"
-            className="text-grey-50 t-opacity-color--50 u-text-align-center u-margin-top u-padding-x"
+            className="text-grey-50 text-opacity-50 u-text-align-center u-margin-top u-padding-x"
             tag="div"
           >
             <DangerousHtml html={caveat} />

@@ -35,7 +35,7 @@ export const LaurelPosition = ({
             highlighted
           )}`,
           {
-            "t-opacity-color--25": highlighted && position === 1,
+            "text-opacity-25": highlighted && position === 1,
           }
         )}
       />

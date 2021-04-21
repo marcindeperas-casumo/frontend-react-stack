@@ -52,7 +52,7 @@ export function ProgressCircle({
         strokeWidth={width}
         strokeLinecap="round"
         className={cx(
-          "t-opacity-color--100",
+          "text-opacity-100",
           `t-color-${fgColor}`,
           fgClassName
         )}
