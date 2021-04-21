@@ -35,10 +35,11 @@ export const SidebarRow = (props: Props) => {
     "u-overflow--hidden",
     "u-cursor--pointer",
     "text-white",
+    "c-sidebar__nav-item",
     {
       "c-sidebar__nav-item--active bg-teal-50 text-white": selected,
       "c-sidebar__nav-item--white bg-white text-grey-50": secondary,
-      "c-sidebar__nav-item bg-purple-80": !secondary,
+      "bg-purple-80": !secondary && !selected,
     }
   );
 
