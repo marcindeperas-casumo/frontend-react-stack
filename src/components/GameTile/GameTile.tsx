@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Link } from "@reach/router";
 import React from "react";
 import { formatCurrency } from "Utils";
-import { Mobile, TabletAndDesktop, Desktop } from "Components/ResponsiveLayout";
+import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
