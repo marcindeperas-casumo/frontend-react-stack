@@ -89,7 +89,7 @@ describe("GameTile", () => {
     ).toContain("€123,456,789");
   });
 
-  test("should render GameTile as mobile but NOT showing jackpot amount since it's for desktop only", () => {
+  test("should render GameTile as mobile STILL showing jackpot amount since it's for both desktop and mobile", () => {
     const gameJackpot = {
       jackpot: {
         id: "someID",
