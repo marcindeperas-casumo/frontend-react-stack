@@ -28,7 +28,7 @@ export function ModalBase({
       // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       onRequestClose={onRequestClose}
       className={classNames(
-        "t-background-white o-flex--vertical c-rsmodal u-overflow--hidden",
+        "t-background-white o-flex--vertical c-rsmodal",
         {
           "t-border-r--md": !isMobile(),
           "c-rsmodal__wide": isWide,
