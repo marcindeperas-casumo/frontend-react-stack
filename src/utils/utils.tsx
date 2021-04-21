@@ -429,6 +429,20 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
   return R.pick(["hours", "minutes", "seconds"], duration);
 };
 
+// TODO: consolidate this and the above into one function.
+export const getActualDateTimeDifferenceFromNow = (
+  value: DateTime
+): Pick<Duration, "days" | "hours" | "minutes"> => {
+  const elapsed = value.diff(DateTime.utc(), [
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+  ]);
+
+  return R.pick(["days", "hours", "minutes"], elapsed);
+};
+
 /**
  * @link https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
  */
