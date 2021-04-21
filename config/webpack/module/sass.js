@@ -48,6 +48,7 @@ module.exports = env => ({
           } else if (/src/.test(relativePath)) {
             return `@import "${path
               .resolve(ROOT, "src/styles/_tools.cudl.scss")
+              // sass-loader now require to using '/' separator even on windows machines
               .replace(new RegExp("\\" + path.sep, "g"), "/")}";\n${content}`;
           }
 
