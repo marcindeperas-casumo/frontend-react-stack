@@ -22,12 +22,12 @@ export const GamePageHeader = () => {
 
   return (
     <Flex align="center" spacing="none" className="u-padding--md@desktop">
-      <Flex.Item className="c-game-page-header__sumoticon-container t-background-grey-90 t-opacity-background--75">
+      <Flex.Item className="c-game-page-header__sumoticon-container bg-grey-90 t-opacity-background--75">
         <ProfileIconWithDrawer />
       </Flex.Item>
       <Flex.Block>
         <Flex
-          className="o-position--relative u-zindex--content-overlay t-background-grey-90 t-opacity-background--75 t-border-r@desktop u-padding-y@desktop u-padding-left--lg@desktop"
+          className="o-position--relative u-zindex--content-overlay bg-grey-90 t-opacity-background--75 t-border-r@desktop u-padding-y@desktop u-padding-left--lg@desktop"
           align="center"
           spacing="none"
         >

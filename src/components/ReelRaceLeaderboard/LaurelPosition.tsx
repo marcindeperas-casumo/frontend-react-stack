@@ -45,8 +45,8 @@ export const LaurelPosition = ({
       className={cx(
         "c-laurel-position__text o-position--absolute u-font-weight-bold o-inset-x--none o-inset-y--none u-text-align-center",
         {
-          "t-color-grey-90": !inverted,
-          "t-color-white": inverted && !highlighted,
+          "text-grey-90": !inverted,
+          "text-white": inverted && !highlighted,
         }
       )}
       size={position >= 100 && showLaurel ? "xs" : "sm"}

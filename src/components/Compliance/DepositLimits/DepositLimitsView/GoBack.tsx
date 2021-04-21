@@ -20,9 +20,9 @@ export function GoBack({ t, ...props }: Props) {
       <Flex
         align="center"
         justify="center"
-        className="t-border-r--circle t-background-grey-90 u-padding--md u-margin-x--lg"
+        className="t-border-r--circle bg-grey-90 u-padding--md u-margin-x--lg"
       >
-        <ArrowLeftIcon size="sm" className="t-color-white" />
+        <ArrowLeftIcon size="sm" className="text-white" />
       </Flex>
       <Text
         size="md"

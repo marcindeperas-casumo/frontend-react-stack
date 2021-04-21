@@ -64,7 +64,7 @@ export class GamesVirtualList extends React.Component<Props> {
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
-          className="t-border-bottom t-color-grey-0 t-border-current"
+          className="t-border-bottom text-grey-0 t-border-current"
           key={key}
           index={index}
           style={style}
@@ -77,7 +77,7 @@ export class GamesVirtualList extends React.Component<Props> {
     const game = this.props.games[index];
     return (
       <Flex
-        className="t-border-bottom t-color-grey-0 t-background-grey-0:hover t-border-current c-game-virtual-list-row"
+        className="t-border-bottom text-grey-0 hover:bg-grey-0 t-border-current c-game-virtual-list-row"
         key={game.id}
         index={index}
         style={style}

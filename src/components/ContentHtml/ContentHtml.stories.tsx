@@ -11,11 +11,11 @@ const html = `
 stories.add("Default", () => <ContentHtml html={html} />);
 
 stories.add("Expandable", () => (
-  <div className="u-padding t-background-grey-0">
+  <div className="u-padding bg-grey-0">
     <ContentHtml
       html={html}
       expandable
-      className="t-background-white u-padding-y--lg t-border-r--md"
+      className="bg-white u-padding-y--lg t-border-r--md"
     />
   </div>
 ));

@@ -63,7 +63,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
         align="stretch"
         spacing="none"
         className={cx(
-          "t-background-white",
+          "bg-white",
           "t-border-r--none t-border-r--md@tablet t-border-r--md@desktop",
           "u-padding--md u-height--full u-margin-top u-overflow--hidden"
         )}
@@ -77,7 +77,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               align="stretch"
               className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
             >
-              <Flex className="t-color-green-30 u-margin-y" align="center">
+              <Flex className="text-green-30 u-margin-y" align="center">
                 <CheckIcon
                   size="sm"
                   className="t-border--md t-border-current t-border-r--circle u-margin-right--md"
@@ -89,7 +89,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                 >
                   {t.adjustment_status_success}
                 </Text>
-                <Text tag="span" size="sm" className="t-color-grey-50">
+                <Text tag="span" size="sm" className="text-grey-50">
                   {DateTime.fromISO(historyItem.timestamp).toLocaleString(
                     DateTime.DATETIME_SHORT
                   )}
@@ -102,7 +102,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                 <Flex
                   className={cx(
                     "c-deposit-limits-history__left-bar",
-                    "t-background-grey-0",
+                    "bg-grey-0",
                     "u-margin-left u-margin-right--lg",
                     i === props.history.length - 1 &&
                       "c-deposit-limits-history__left-bar--small"
@@ -112,12 +112,12 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                   direction="vertical"
                   spacing="none"
                   className={cx(
-                    "t-background-grey-0",
+                    "bg-grey-0",
                     "t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-r-top-right--md",
                     " u-padding--md o-flex--1"
                   )}
                 >
-                  <Text tag="span" className="t-color-grey-50">
+                  <Text tag="span" className="text-grey-50">
                     {t[getTranslationKeyForHistoryEntry(historyItem)]}
                   </Text>
                   {historyItem.type === "removed" ? (
@@ -145,7 +145,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                               })}
                               <ArrowRightIcon
                                 size="sm"
-                                className="t-color-grey-50 c-deposit-limits-history__change-icon"
+                                className="text-grey-50 c-deposit-limits-history__change-icon"
                               />
                             </>
                           ) : null}

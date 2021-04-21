@@ -13,7 +13,7 @@ export const InGameDrawer = ({ onLiveChatClick, onExitGameClick }: Props) => {
   const isQuickDepositDisabled = isNativeByUserAgent();
 
   return (
-    <div className="t-background-grey-90 t-border-r">
+    <div className="bg-grey-90 t-border-r">
       {!isQuickDepositDisabled && (
         <ErrorBoundary withoutUserFeedback>
           <QuickDeposit className="u-padding-left--lg u-padding-right--md u-padding-y--md" />

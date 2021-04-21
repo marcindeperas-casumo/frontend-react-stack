@@ -36,7 +36,7 @@ export const SwipeUpPanel = ({
         {supportFullScreen ? (
           <Flex.Item
             onClick={() => onSwipePanelClick(fullScreenElement)}
-            className="t-color-white"
+            className="text-white"
           >
             {!loading && t.tapToFullscreenText}
           </Flex.Item>
@@ -51,7 +51,7 @@ export const SwipeUpPanel = ({
               <Flex.Item className="c-game-page__swipeup-icon-container o-position--relative">
                 <HandSymbol className="c-game-page__swipe-hand-symbol u-width--5xlg u-height--5xlg" />
               </Flex.Item>
-              <Flex.Item className="c-game-page__swipeup-text-container t-color-white">
+              <Flex.Item className="c-game-page__swipeup-text-container text-white">
                 {!loading && t.swipeUpText}
               </Flex.Item>
             </Flex>

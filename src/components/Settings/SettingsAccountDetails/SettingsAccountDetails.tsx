@@ -95,7 +95,7 @@ const Email = ({ labels, details }) => (
     label={labels.email}
     value={details.email}
     action={
-      <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
+      <EditIcon className="bg-grey-0 text-grey-90 u-padding t-border-r--circle" />
     }
   />
 );
@@ -111,7 +111,7 @@ const ExtentOfGambling = ({ labels, details }) => {
         }
         label={labels.gamblingExtent}
         action={
-          <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
+          <EditIcon className="bg-grey-0 text-grey-90 u-padding t-border-r--circle" />
         }
         value={details.extentOfGambling.label}
       />
@@ -127,7 +127,7 @@ const Password = ({ labels }) => {
       label={labels.password}
       value={PASSWORD_PLACEHOLDER_VALUE}
       action={
-        <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
+        <EditIcon className="bg-grey-0 text-grey-90 u-padding t-border-r--circle" />
       }
     />
   );
@@ -141,7 +141,7 @@ const VerifiedMobileNumber = ({ labels, details }) => (
     label={labels.mobileNumber}
     value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
     action={
-      <EditIcon className="t-background-grey-0 t-color-grey-90 u-padding t-border-r--circle" />
+      <EditIcon className="bg-grey-0 text-grey-90 u-padding t-border-r--circle" />
     }
   />
 );
@@ -156,11 +156,11 @@ const UnverifiedMobileNumber = ({ labels, details }) => (
           <Flex.Item>
             <WarningIcon
               size="sm"
-              className="t-color-red-30 t-border-current t-border t-border-r--circle t-border--md"
+              className="text-red-30 t-border-current t-border t-border-r--circle t-border--md"
             />
           </Flex.Item>
           <Flex.Item>
-            <Text tag="strong" size="sm" className="t-color-red-30">
+            <Text tag="strong" size="sm" className="text-red-30">
               {labels.verify}
             </Text>
           </Flex.Item>

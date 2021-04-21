@@ -14,7 +14,7 @@ export const PromotionCardHeader = ({ badge, dates }) => {
       <Flex.Item>
         <Text
           tag="strong"
-          className="t-color-purple-60 u-text-transform-uppercase"
+          className="text-purple-60 u-text-transform-uppercase"
           size="2xs"
         >
           {dates}

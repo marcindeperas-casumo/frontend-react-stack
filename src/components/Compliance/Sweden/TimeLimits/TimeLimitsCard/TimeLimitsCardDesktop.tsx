@@ -40,13 +40,13 @@ export function TimeLimitsCardDesktop({ t, limit, onClick }: Props) {
       align="center"
       spacing="md"
       onClick={onClick}
-      className="t-background-grey-0 u-padding--md u-cursor--pointer"
+      className="bg-grey-0 u-padding--md u-cursor--pointer"
     >
       <Flex.Item>
         <Text tag="strong">{t.desktop_title}</Text>
       </Flex.Item>
       <Flex.Item>
-        <div className="o-ratio t-border-r--circle t-background-white u-text-align-center u-padding--3xlg">
+        <div className="o-ratio t-border-r--circle bg-white u-text-align-center u-padding--3xlg">
           <div className="o-ratio__content u-padding-y--lg">
             <Text tag="strong">
               <TimeLimitsCardDuration duration={limitDuration} />

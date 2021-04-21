@@ -17,7 +17,7 @@ export const PositionView = ({ position, className }: Props) => {
   return (
     <div
       className={cx(
-        "c-reel-races-drawer-widget-position-view u-line-height--1 o-position--relative u-text-align-center t-background-grey-90 t-border-r--circle t-opacity-background--100",
+        "c-reel-races-drawer-widget-position-view u-line-height--1 o-position--relative u-text-align-center bg-grey-90 t-border-r--circle t-opacity-background--100",
         className
       )}
     >

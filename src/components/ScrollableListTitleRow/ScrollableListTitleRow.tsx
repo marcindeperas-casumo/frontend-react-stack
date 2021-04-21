@@ -43,7 +43,7 @@ export class ScrollableListTitleRow extends PureComponent<Props> {
         {seeMore?.url && (
           <Flex.Item className={rightPaddingClasses}>
             <Link to={seeMore?.url} onClick={seeMore?.onClick}>
-              <Text tag="h3" className="t-color-blue-60">
+              <Text tag="h3" className="text-blue-60">
                 {seeMore?.text}
               </Text>
             </Link>

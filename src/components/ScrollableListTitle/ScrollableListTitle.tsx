@@ -30,7 +30,7 @@ export default function ScrollableListTitle({
         "u-padding-bottom--md",
         "u-padding-bottom--lg@tablet",
         "u-padding-bottom--lg@desktop",
-        "t-color-grey-90",
+        "text-grey-90",
         "u-font-weight-bold",
         { [paddingLeftClasses]: paddingLeft }
       )}

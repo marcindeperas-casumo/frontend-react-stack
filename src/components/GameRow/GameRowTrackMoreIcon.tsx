@@ -20,7 +20,7 @@ export const GameRowTrackMoreIcon = ({
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/${path}`}>
-        <MoreIcon className="t-background-grey-5 t-color-grey-70 t-border-r--circle u-padding--sm" />
+        <MoreIcon className="bg-grey-5 text-grey-70 t-border-r--circle u-padding--sm" />
       </a>
     </TrackClick>
   </Flex.Item>

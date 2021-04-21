@@ -18,7 +18,7 @@ const Wrapper = ({ children, withBg = true }) => (
     }}
   >
     <div
-      className="t-background-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
+      className="bg-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
       style={{
         height: 48,
       }}

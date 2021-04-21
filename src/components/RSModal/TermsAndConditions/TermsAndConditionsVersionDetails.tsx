@@ -31,12 +31,12 @@ type Props = {
 export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {
   return (
     <>
-      <Flex className="u-padding--sm t-background-grey-0" />
+      <Flex className="u-padding--sm bg-grey-0" />
       <Flex direction="vertical" className="u-padding-y--lg u-padding-x--md">
-        <Text tag="span" size="sm" className="u-font-weight-bold t-color-black">
+        <Text tag="span" size="sm" className="u-font-weight-bold text-black">
           {props.formatVersion(props.currentVersion, props.versionData.version)}
         </Text>
-        <Text tag="span" size="xs" className="t-color-grey-50 u-margin-top--sm">
+        <Text tag="span" size="xs" className="text-grey-50 u-margin-top--sm">
           {props.formatVersionDate(
             props.currentVersion,
             props.versionData.iso_8601_published_date
@@ -77,7 +77,7 @@ export function TermsAndConditionsVersionDetails({ t, ...props }: Props) {
           </ButtonSecondary>
         )}
       </Flex>
-      <Flex className="u-padding--sm t-background-grey-0" />
+      <Flex className="u-padding--sm bg-grey-0" />
     </>
   );
 }

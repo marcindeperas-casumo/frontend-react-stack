@@ -7,7 +7,7 @@ import { useTranslationsGql } from "Utils/hooks/useTranslationsGql";
 import { LiveCasinoDetailPageDesktopQuery } from "./LiveCasinoDetailPage.graphql";
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="t-background-white">
+  <div className="bg-white">
     <div className="o-wrapper u-padding-y--2xlg">{children}</div>
   </div>
 );

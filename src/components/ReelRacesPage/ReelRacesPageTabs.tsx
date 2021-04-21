@@ -22,13 +22,13 @@ export function ReelRacesPageTabs({
   const isNotMobile = useIsScreenMinimumTablet();
 
   return (
-    <div className="t-background-grey-0">
+    <div className="bg-grey-0">
       <div className="u-content-width--tablet-landscape u-padding-y--md">
         <Flex
           justify="center"
           spacing="none"
           className={cx(
-            "t-background-white u-font-weight-bold",
+            "bg-white u-font-weight-bold",
             isNotMobile &&
               "t-border-r-top-left--md t-border-r-top-right--md u-margin-x--md"
           )}
@@ -39,8 +39,8 @@ export function ReelRacesPageTabs({
             className={cx(
               "t-border-bottom--lg",
               activeTab === "SCHEDULE"
-                ? "t-border-purple-60 t-color-purple-60"
-                : "t-border-grey-20 t-color-grey-20 u-cursor--pointer"
+                ? "t-border-purple-60 text-purple-60"
+                : "t-border-grey-20 text-grey-20 u-cursor--pointer"
             )}
           >
             <Text className="u-padding-y--md u-padding-x--lg" tag="div">
@@ -53,8 +53,8 @@ export function ReelRacesPageTabs({
             className={cx(
               "t-border-bottom--lg",
               activeTab === "PREVIOUS"
-                ? "t-border-purple-60 t-color-purple-60"
-                : "t-border-grey-20 t-color-grey-20 u-cursor--pointer"
+                ? "t-border-purple-60 text-purple-60"
+                : "t-border-grey-20 text-grey-20 u-cursor--pointer"
             )}
           >
             <Text className="u-padding-y--md u-padding-x--lg" tag="div">

@@ -134,7 +134,7 @@ function AnimatedReelRaceWidget() {
     <div
       className={cx(
         baseClasses,
-        "u-margin--sm t-border-r--circle u-overflow--hidden t-opacity-background--100 t-background-grey-90"
+        "u-margin--sm t-border-r--circle u-overflow--hidden t-opacity-background--100 bg-grey-90"
       )}
     >
       <div ref={refs[0]} className={cx(baseClasses, widgetEntryClasses)}>

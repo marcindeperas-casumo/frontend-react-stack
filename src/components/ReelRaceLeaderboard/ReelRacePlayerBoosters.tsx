@@ -26,11 +26,11 @@ export function ReelRacePlayerBoosters(props: Props) {
     <Flex
       direction="horizontal"
       justify="space-between"
-      className="u-padding-x--md t-color-purple-60"
+      className="u-padding-x--md text-purple-60"
     >
       <Flex direction="vertical" align="center">
-        <div className="t-color-teal-50 t-border t-border-current t-border-r--circle u-padding">
-          <TripleWinIcon size="md" className="t-color-purple-60" />
+        <div className="text-teal-50 t-border t-border-current t-border-r--circle u-padding">
+          <TripleWinIcon size="md" className="text-purple-60" />
         </div>
         <Text
           tag="div"
@@ -41,8 +41,8 @@ export function ReelRacePlayerBoosters(props: Props) {
         </Text>
       </Flex>
       <Flex direction="vertical" align="center">
-        <div className="t-color-teal-50 t-border t-border-current t-border-r--circle u-padding">
-          <TripleBigWinIcon size="md" className="t-color-purple-60" />
+        <div className="text-teal-50 t-border t-border-current t-border-r--circle u-padding">
+          <TripleBigWinIcon size="md" className="text-purple-60" />
         </div>
         <Text
           tag="div"
@@ -53,8 +53,8 @@ export function ReelRacePlayerBoosters(props: Props) {
         </Text>
       </Flex>
       <Flex direction="vertical" align="center">
-        <div className="t-color-teal-50 t-border t-border-current t-border-r--circle u-padding">
-          <MegaWinIcon size="md" className="t-color-purple-60" />
+        <div className="text-teal-50 t-border t-border-current t-border-r--circle u-padding">
+          <MegaWinIcon size="md" className="text-purple-60" />
         </div>
         <Text
           tag="div"

@@ -84,10 +84,10 @@ export function BlueRibbonJackpotsFooterWidget({
   ];
 
   return (
-    <div className="u-overflow--hidden t-background-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
+    <div className="u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
       <Flex
         direction="vertical"
-        className="u-overflow--hidden t-background-grey-70 t-opacity-background--50 c-br-footer-widget__container-height c-br-footer-widget__container-width c-br-footer-widget__container-border-r"
+        className="u-overflow--hidden bg-grey-70 t-opacity-background--50 c-br-footer-widget__container-height c-br-footer-widget__container-width c-br-footer-widget__container-border-r"
       >
         <Flex
           direction="vertical"
@@ -119,7 +119,7 @@ export function BlueRibbonJackpotsFooterWidget({
       </Flex>
       <Text
         size="2xs"
-        className="u-margin--none t-color-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
+        className="u-margin--none text-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
       >
         {t.jackpot_split_explanation}
       </Text>
@@ -159,12 +159,12 @@ function JackpotRow({
       <Text
         size="xs"
         tag="span"
-        className="u-font-weight-bold u-line-height--1 t-color-white"
+        className="u-font-weight-bold u-line-height--1 text-white"
       >
         <Text
           size="2xs"
           tag="span"
-          className="u-text-transform-uppercase t-color-grey-50 u-margin-x--sm"
+          className="u-text-transform-uppercase text-grey-50 u-margin-x--sm"
         >
           {label}
         </Text>

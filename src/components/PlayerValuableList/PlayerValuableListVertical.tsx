@@ -65,7 +65,7 @@ export function PlayerValuableListVertical() {
   return (
     <Flex
       direction="vertical"
-      className="c-player-valuables-list u-padding-bottom--lg t-background-white"
+      className="c-player-valuables-list u-padding-bottom--lg bg-white"
     >
       {sections.map(section => (
         <ValuablesVerticalList

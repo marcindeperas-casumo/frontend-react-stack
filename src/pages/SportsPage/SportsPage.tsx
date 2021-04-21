@@ -19,7 +19,7 @@ export const SportsPage = () => {
   };
 
   return (
-    <div className="u-margin-top--lg t-background-grey-0">
+    <div className="u-margin-top--lg bg-grey-0">
       <SportsNavigation
         // @ts-expect-error ts-migrate(2741) FIXME: Property 'allSportsLabel' is missing in type '{ al... Remove this comment to see the full error message
         data={navData}

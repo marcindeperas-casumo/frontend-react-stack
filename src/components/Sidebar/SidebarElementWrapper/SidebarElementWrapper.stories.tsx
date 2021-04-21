@@ -6,7 +6,7 @@ import { SidebarElementWrapper } from "./SidebarElementWrapper";
 const stories = storiesOf("SidebarElementWrapper", module);
 
 const content = (
-  <Text className="t-color-white u-padding u-padding-top--xlg t-background-black">
+  <Text className="text-white u-padding u-padding-top--xlg bg-black">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet
     posuere sapien, quis consectetur tellus tincidunt ac. Morbi varius urna et
     rhoncus gravida. Phasellus id risus molestie, vehicula mi ut, pulvinar

@@ -26,10 +26,10 @@ export const MustDropJackpot = ({ jackpot }: Props) => {
       )}
       renderText={() => (
         <>
-          <Text className="u-margin-bottom--sm u-font-weight-bold t-color-yellow-30">
+          <Text className="u-margin-bottom--sm u-font-weight-bold text-yellow-30">
             {formattedAmount}
           </Text>
-          <Text size="xs" className="u-margin-bottom--none t-color-grey-20">
+          <Text size="xs" className="u-margin-bottom--none text-grey-20">
             {label}
           </Text>
         </>

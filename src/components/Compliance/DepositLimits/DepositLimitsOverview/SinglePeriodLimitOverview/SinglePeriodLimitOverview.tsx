@@ -51,7 +51,7 @@ export function SinglePeriodLimitOverview(props: Props) {
         <Flex
           onClick={props.onClick}
           spacing="none"
-          className="u-padding-x--md t-background-white"
+          className="u-padding-x--md bg-white"
           align="center"
         >
           <ProgressArc value={props.progressPercentage} />
@@ -67,18 +67,18 @@ export function SinglePeriodLimitOverview(props: Props) {
               <Text tag="span">
                 {currentLimitValue} {t[`${props.limitKind}_short`]}
               </Text>
-              <Text tag="span" size="sm" className="t-color-teal-50">
+              <Text tag="span" size="sm" className="text-teal-50">
                 {remainingLimitValue}
               </Text>
             </Flex>
-            <ArrowRightIcon className="t-color-grey-0" />
+            <ArrowRightIcon className="text-grey-0" />
           </Flex>
         </Flex>
       </MobileAndTablet>
       <Desktop>
         <Flex
           onClick={props.onClick}
-          className="t-border-r--md u-padding--2xlg u-margin--md o-flex--1 o-position--relative t-background-white"
+          className="t-border-r--md u-padding--2xlg u-margin--md o-flex--1 o-position--relative bg-white"
           align="center"
           justify="center"
           direction="vertical"
@@ -95,14 +95,14 @@ export function SinglePeriodLimitOverview(props: Props) {
             >
               {t[`${props.limitKind}_short`]}
             </Text>
-            <Flex className="o-position--absolute u-padding--sm t-background-grey-0 t-border-r--circle c-single-limit__more-icon">
+            <Flex className="o-position--absolute u-padding--sm bg-grey-0 t-border-r--circle c-single-limit__more-icon">
               <MoreIcon size="default" />
             </Flex>
           </Flex>
           <Text size="lg" className="u-font-weight-black">
             {currentLimitValue}
           </Text>
-          <Text size="sm" className="t-color-teal-50">
+          <Text size="sm" className="text-teal-50">
             {remainingLimitValue}
           </Text>
           <Flex

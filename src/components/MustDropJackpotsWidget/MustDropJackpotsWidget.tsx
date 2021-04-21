@@ -11,7 +11,7 @@ type Props = {
 export const MustDropJackpotsWidget = ({ jackpots }: Props) => (
   <Link
     to="../must-drop-jackpots"
-    className="o-flex--vertical t-border-r--md u-overflow--hidden t-background-grey-90 u-padding-y"
+    className="o-flex--vertical t-border-r--md u-overflow--hidden bg-grey-90 u-padding-y"
     style={{ width: topListWidgetWidth }}
   >
     {jackpots.map(jackpot => (

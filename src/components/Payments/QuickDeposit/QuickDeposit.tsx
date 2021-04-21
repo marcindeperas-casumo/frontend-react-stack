@@ -60,18 +60,18 @@ export const QuickDeposit = ({
   return (
     <Flex className={className} align="center">
       <Flex.Item className="u-margin-right--xlg">
-        <Text tag="div" className="t-color-grey-20" size="xs">
+        <Text tag="div" className="text-grey-20" size="xs">
           {t.balance_title}
         </Text>
-        <Text tag="div" className="t-color-white u-font-weight-bold">
+        <Text tag="div" className="text-white u-font-weight-bold">
           {walletBalance}
         </Text>
       </Flex.Item>
       <Flex.Item>
-        <Text tag="div" className="t-color-grey-20" size="xs">
+        <Text tag="div" className="text-grey-20" size="xs">
           {t.bonus_title}
         </Text>
-        <Text tag="div" className="t-color-grey-20 u-font-weight-bold">
+        <Text tag="div" className="text-grey-20 u-font-weight-bold">
           {bonusBalance}
         </Text>
       </Flex.Item>
@@ -80,22 +80,22 @@ export const QuickDeposit = ({
           <Flex
             align="center"
             justify="center"
-            className="t-background-white t-opacity-background--100 t-border-r--circle o-position--relative u-width--2xlg u-height--2xlg u-cursor--pointer"
+            className="bg-white t-opacity-background--100 t-border-r--circle o-position--relative u-width--2xlg u-height--2xlg u-cursor--pointer"
             onClick={currencySymbolClickHandler}
           >
             <CurrencyIcon
               currency={currency}
               selected
-              classList="u-position--absolute o-inset-x--none t-color-purple-60"
+              classList="u-position--absolute o-inset-x--none text-purple-60"
             />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle t-background-white o-position--absolute">
-              <AddIcon className="t-color-purple-60" size="md" />
+            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle bg-white o-position--absolute">
+              <AddIcon className="text-purple-60" size="md" />
             </div>
           </Flex>
         ) : (
           <Text
             tag="span"
-            className="t-color-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
+            className="text-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
             onClick={cashierLinkClickHandler}
           >
             {t.cashier_link_text}

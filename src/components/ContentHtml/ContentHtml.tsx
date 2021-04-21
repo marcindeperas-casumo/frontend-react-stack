@@ -47,7 +47,7 @@ export function ContentHtml({
               className={cx(
                 "o-position--absolute o-inset-bottom--none o-inset-right--none",
                 "u-margin--md u-padding--sm t-border-r",
-                "t-color-white t-background-grey-90 t-opacity-background--75",
+                "text-white bg-grey-90 t-opacity-background--75",
                 "u-cursor--pointer"
               )}
             />

@@ -32,7 +32,7 @@ export function LimitYourBudgetRow(props: LimitYourBudgetRowType) {
           {formatCurrency({ value: budget, currency, locale })}
         </Text>
         <ButtonSecondary size="sm" className="u-padding" onClick={onClickEdit}>
-          <EditIcon className="t-color-black" />
+          <EditIcon className="text-black" />
         </ButtonSecondary>
       </Flex>
     </Flex>

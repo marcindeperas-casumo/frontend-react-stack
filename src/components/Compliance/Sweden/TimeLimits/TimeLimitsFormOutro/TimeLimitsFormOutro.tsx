@@ -40,7 +40,7 @@ export function TimeLimitsFormOutro({
       className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
     >
       <Flex.Item className="u-text-align-center">
-        <CheckIcon size="lg" className="t-color-green-30" />
+        <CheckIcon size="lg" className="text-green-30" />
       </Flex.Item>
       <Flex.Item className="u-margin-bottom--5xlg">
         <Copy

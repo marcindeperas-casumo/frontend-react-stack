@@ -31,12 +31,12 @@ const Column = (props: {
 }) => (
   <Flex direction="vertical" spacing="none">
     {props.top && (
-      <Text tag="span" className="t-color-white u-font-weight-bold">
+      <Text tag="span" className="text-white u-font-weight-bold">
         {props.top}
       </Text>
     )}
     {props.bottom && (
-      <Text tag="span" size="xs" className="t-color-white t-opacity--75">
+      <Text tag="span" size="xs" className="text-white t-opacity--75">
         {props.bottom}
       </Text>
     )}
@@ -94,11 +94,7 @@ export class ReelRaceCard extends React.Component<Props> {
     if (status === RACE_STATE.STARTED) {
       return (
         <Flex direction="vertical" spacing="none">
-          <Text
-            tag="span"
-            size="xs"
-            className="t-color-white u-font-weight-bold"
-          >
+          <Text tag="span" size="xs" className="text-white u-font-weight-bold">
             {t.endingIn}
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
@@ -115,11 +111,7 @@ export class ReelRaceCard extends React.Component<Props> {
     if (timeRemainingBeforeStart(startTime) <= THIRTY_MINUTES) {
       return (
         <Flex direction="vertical" spacing="none">
-          <Text
-            tag="span"
-            size="xs"
-            className="t-color-white u-font-weight-bold"
-          >
+          <Text tag="span" size="xs" className="text-white u-font-weight-bold">
             {t.startingIn}
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
@@ -140,7 +132,7 @@ export class ReelRaceCard extends React.Component<Props> {
     return (
       <Flex spacing="none">
         <TimeLockedIcon className="u-margin-right" />
-        <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
+        <Text tag="span" size="sm" className="text-white u-font-weight-bold">
           {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
             "t"
           )}`}
@@ -189,7 +181,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "u-overflow--hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
-            "t-color-yellow-30",
+            "text-yellow-30",
             "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
@@ -250,7 +242,7 @@ export class ReelRaceCard extends React.Component<Props> {
                   <Text
                     tag="span"
                     size="xs"
-                    className="t-color-white t-opacity--75"
+                    className="text-white t-opacity--75"
                   >
                     <DangerousHtml html={game.name} />
                   </Text>
@@ -280,13 +272,13 @@ export class ReelRaceCard extends React.Component<Props> {
         {t.caveatShort && t.caveatShort !== "false" && (
           <Text
             size="xs"
-            className="c-reel-race__terms u-margin-top--md t-color-grey-90"
+            className="c-reel-race__terms u-margin-top--md text-grey-90"
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
               html={interpolate(t.caveatShort, {
                 ctaTermsAndConditions:
-                  'class="t-color-black u-font-weight-bold u-text-decoration-underline"',
+                  'class="text-black u-font-weight-bold u-text-decoration-underline"',
               })}
             />
           </Text>

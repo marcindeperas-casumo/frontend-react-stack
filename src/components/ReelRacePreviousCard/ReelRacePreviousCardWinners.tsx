@@ -53,10 +53,10 @@ export function ReelRacePreviousCardWinners({
             <LaurelIcon
               size="lg"
               className={cx(
-                p.position === 1 && "t-color-yellow-30",
-                p.position === 2 && "t-color-grey-20",
-                p.position === 3 && "t-color-orange-30",
-                p.position >= 3 && "t-color-grey-5"
+                p.position === 1 && "text-yellow-30",
+                p.position === 2 && "text-grey-20",
+                p.position === 3 && "text-orange-30",
+                p.position >= 3 && "text-grey-5"
               )}
             />
             <Text
@@ -71,7 +71,7 @@ export function ReelRacePreviousCardWinners({
           </Text>
           <Text
             size="sm"
-            className="u-padding-y--md u-margin-left u-font-weight-bold t-color-purple-50"
+            className="u-padding-y--md u-margin-left u-font-weight-bold text-purple-50"
           >
             {interpolate(t.points_template || "", {
               points: p.points,
@@ -83,7 +83,7 @@ export function ReelRacePreviousCardWinners({
             align="center"
             className={cx(isNotMobile && "u-margin-right--lg")}
           >
-            <TournamentIcon className="t-color-grey-50 u-margin-right" />
+            <TournamentIcon className="text-grey-50 u-margin-right" />
             <Text size="md" className="u-font-weight-bold">
               {reelRace.formattedPrizes[i]}
             </Text>

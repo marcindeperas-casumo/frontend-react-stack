@@ -33,7 +33,7 @@ const Wrapper = ({ children, withBg = true }) => (
     className={cx(
       "u-height--2xlg u-width--2xlg t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-overflow--hidden o-position--relative",
       {
-        "t-background-grey-90": withBg,
+        "bg-grey-90": withBg,
       }
     )}
   >
@@ -66,7 +66,7 @@ stories.add("Default", () => {
         }}
       >
         <div
-          className="t-background-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
+          className="bg-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
           style={{
             height: 48,
           }}

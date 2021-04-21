@@ -26,7 +26,7 @@ const noIcon = <div style={{ height: 72, width: 72 }} />;
 export function ModalHeader(props: Props) {
   return (
     <Flex
-      className="u-width--full t-border-bottom t-color-grey-5 o-flex__item--no-shrink"
+      className="u-width--full t-border-bottom text-grey-5 o-flex__item--no-shrink"
       direction="horizontal"
       align="center"
       spacing="md"
@@ -34,7 +34,7 @@ export function ModalHeader(props: Props) {
     >
       {props.showBackButton ? (
         <ArrowLeftIcon
-          className="u-padding-x--lg t-color-black u-cursor--pointer"
+          className="u-padding-x--lg text-black u-cursor--pointer"
           onClick={props.backAction}
         />
       ) : (
@@ -42,13 +42,13 @@ export function ModalHeader(props: Props) {
       )}
       <Text
         tag="span"
-        className="u-padding-y--lg u-font-weight-bold t-color-black o-flex__block u-text-align-center"
+        className="u-padding-y--lg u-font-weight-bold text-black o-flex__block u-text-align-center"
       >
         {props.title || <ModalTitleSkeleton />}
       </Text>
       {props.showCloseButton ? (
         <CloseIcon
-          className="u-padding-x--lg t-color-black u-cursor--pointer"
+          className="u-padding-x--lg text-black u-cursor--pointer"
           onClick={props.closeAction}
         />
       ) : (

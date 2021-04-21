@@ -36,14 +36,14 @@ export function PendingChanges(props: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding-x--md u-padding-y--lg t-border-top t-border-grey-5 t-background-white"
+      className="u-padding-x--md u-padding-y--lg t-border-top t-border-grey-5 bg-white"
     >
       <Flex align="center" justify="space-between" spacing="none">
-        <TimeLockedIcon size="sm" className="t-color-yellow-30" />
+        <TimeLockedIcon size="sm" className="text-yellow-30" />
         <Text
           tag="span"
           size="sm"
-          className="u-margin-left--md t-color-grey-50 o-flex--1"
+          className="u-margin-left--md text-grey-50 o-flex--1"
         >
           {props.allRemoved ? (
             <DangerousHtml html={t.pending_remove_all} />
@@ -52,7 +52,7 @@ export function PendingChanges(props: Props) {
               <Text
                 tag="span"
                 size="sm"
-                className="t-color-orange-30 u-font-weight-bold"
+                className="text-orange-30 u-font-weight-bold"
               >
                 {t.pending_increase}{" "}
               </Text>

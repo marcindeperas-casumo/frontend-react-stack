@@ -35,7 +35,7 @@ export class AbstractModal extends React.PureComponent<Props> {
           isOpen={isOpen}
           onRequestClose={hideModal}
           className={classNames(
-            " t-background-white o-position--relative",
+            " bg-white o-position--relative",
             className
               ? className
               : "c-abstract-modal--default u-height--full u-width--full"

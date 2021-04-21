@@ -27,7 +27,7 @@ export function RememberToPlayWithinLimits(props: Props) {
       <Text
         size="2xlg"
         tag="h3"
-        className="t-color-purple-80 u-padding u-margin-y--lg u-text-align-center"
+        className="text-purple-80 u-padding u-margin-y--lg u-text-align-center"
       >
         {t.remember_to_play_within_limits}
       </Text>

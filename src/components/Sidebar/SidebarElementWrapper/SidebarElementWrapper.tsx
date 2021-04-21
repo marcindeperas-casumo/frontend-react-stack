@@ -27,7 +27,7 @@ export const SidebarElementWrapper = ({
         className,
         `${baseClassName} o-position--relative u-width--full`,
         {
-          "t-background-black": !children,
+          "bg-black": !children,
         }
       )}
       style={style}
