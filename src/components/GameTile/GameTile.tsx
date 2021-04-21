@@ -65,7 +65,7 @@ export const GameTile = ({
     }
     return (
       <Desktop>
-        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
+        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white bg-opacity-75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
           <span>
             {formatCurrency({
               locale: currentLocale || "en-en",

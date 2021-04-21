@@ -87,7 +87,7 @@ export function BlueRibbonJackpotsFooterWidget({
     <div className="u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
       <Flex
         direction="vertical"
-        className="u-overflow--hidden bg-grey-70 t-opacity-background--50 c-br-footer-widget__container-height c-br-footer-widget__container-width c-br-footer-widget__container-border-r"
+        className="u-overflow--hidden bg-grey-70 bg-opacity-50 c-br-footer-widget__container-height c-br-footer-widget__container-width c-br-footer-widget__container-border-r"
       >
         <Flex
           direction="vertical"

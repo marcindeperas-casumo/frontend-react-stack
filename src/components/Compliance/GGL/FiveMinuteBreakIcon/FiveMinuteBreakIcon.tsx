@@ -42,7 +42,7 @@ export const FiveMinuteBreakIcon = ({
         className
       )}
     >
-      <div className="c-five-minute-break-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 t-opacity-background--100">
+      <div className="c-five-minute-break-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 bg-opacity-100">
         {isTimerVisible ? (
           <Timer
             endTime={expiringTime}

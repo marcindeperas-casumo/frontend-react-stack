@@ -77,7 +77,7 @@ export const SumoIcon = ({
           size="sm"
           className={cx(
             `${baseClassName}__chevron-icon`,
-            `text-black t-opacity-background--100 bg-white o-position--absolute t-border-r--circle u-cursor--pointer`,
+            `text-black bg-opacity-100 bg-white o-position--absolute t-border-r--circle u-cursor--pointer`,
             {
               [`${baseClassName}__chevron-icon--visible`]: !openedState,
               [`${baseClassName}__chevron-icon--hidden`]: openedState,

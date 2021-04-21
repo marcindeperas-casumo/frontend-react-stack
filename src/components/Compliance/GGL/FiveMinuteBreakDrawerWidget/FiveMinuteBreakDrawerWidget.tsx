@@ -65,7 +65,7 @@ export const FiveMinuteBreakDrawerWidget = ({
         </Flex>
       </Flex.Item>
       {shouldShowTimeLeft ? (
-        <Flex.Item className="u-padding--md u-margin bg-grey-70 t-opacity-background--25 t-border-r u-font-sm">
+        <Flex.Item className="u-padding--md u-margin bg-grey-70 bg-opacity-25 t-border-r u-font-sm">
           {interpolateWithJSX(
             {
               secondsLeft: (

@@ -24,7 +24,7 @@ export const ChatIconPlaceHolder = ({
       u-cursor--pointer
       u-display--inline-block
       u-padding
-      t-opacity-background--50
+      bg-opacity-50
       t-border-r--circle
       bg-grey-90
       hover:bg-purple-80:hover

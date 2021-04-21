@@ -5,7 +5,7 @@ import BonusValuableIcon from "Components/InGameAdventureWidget/bonusValuable.sv
 
 const ValuableReceivedIcon = () => {
   return (
-    <div className="u-height--3xlg u-width--3xlg u-overflow--hidden t-border-r--circle bg-grey-90 t-opacity-background--100 o-flex--horizontal o-flex-align--center o-flex-justify--center">
+    <div className="u-height--3xlg u-width--3xlg u-overflow--hidden t-border-r--circle bg-grey-90 bg-opacity-100 o-flex--horizontal o-flex-align--center o-flex-justify--center">
       <BonusValuableIcon />
     </div>
   );

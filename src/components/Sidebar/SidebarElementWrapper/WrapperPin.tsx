@@ -15,7 +15,7 @@ export const WrapperPin = ({ className, onClick = () => {} }: Props) => (
   <div
     className={cx(
       className,
-      `${baseClassName} t-opacity-background--75 bg-grey-70 t-border-r--circle o-flex-align--center o-flex-justify--center u-cursor--pointer`
+      `${baseClassName} bg-opacity-75 bg-grey-70 t-border-r--circle o-flex-align--center o-flex-justify--center u-cursor--pointer`
     )}
     onClick={onClick}
   >

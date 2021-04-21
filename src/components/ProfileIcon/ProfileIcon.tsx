@@ -40,7 +40,7 @@ export const ProfileIcon = ({
         className
       )}
     >
-      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 t-opacity-background--100">
+      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 bg-opacity-100">
         <CasumoAvatar
           variant="sm"
           className="c-profile-icon__avatar o-position--absolute u-width--xlg"
