@@ -26,7 +26,7 @@ export const SwipeUpPanel = ({
   const supportFullScreen = supportsTogglingFullscreen(fullScreenElement);
 
   return (
-    <div className="c-game-page__swipe-panel u-width--screen o-position--absolute">
+    <div className="c-game-page__swipe-panel u-zindex--modal u-width--screen o-position--absolute">
       <Flex
         justify="center"
         direction="vertical"
