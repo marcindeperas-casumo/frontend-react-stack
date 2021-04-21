@@ -27,7 +27,7 @@ export const ChatIconPlaceHolder = ({
       bg-opacity-50
       t-border-r--circle
       bg-grey-90
-      hover:bg-purple-80:hover
+      hover:bg-purple-80
       ${className}`}
     >
       <ChatIcon className="text-white hover:bg-purple-80" />
