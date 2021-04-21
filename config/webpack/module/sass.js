@@ -43,13 +43,15 @@ module.exports = env => ({
           const { resourcePath, rootContext } = loaderContext;
           const relativePath = path.relative(rootContext, resourcePath);
 
-          if (/src\/styles/.test(relativePath)) {
+          if (/src(\/|\\)styles/.test(relativePath)) {
             return null;
           } else if (/src/.test(relativePath)) {
-            return `@import "${path.resolve(
-              ROOT,
-              "src/styles/_tools.cudl.scss"
-            )}";\n${content}`;
+            const fullPath = path.resolve(ROOT, "src/styles/_tools.cudl.scss");
+            const importPath =
+              process.platform === "win32"
+                ? fullPath.replace(new RegExp("\\" + path.sep, "g"), "/")
+                : fullPath;
+            return `@import "${importPath}";\n${content}`;
           }
 
           return null;

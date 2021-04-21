@@ -103,6 +103,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
               </ButtonSecondary>
             ) : (
               <ButtonPrimary size="sm" className="u-text-transform-capitalize">
+                <PlayIcon size="sm" className="u-margin-right--sm" />
                 <span>{this.props.t?.play_now}</span>
               </ButtonPrimary>
             )}
