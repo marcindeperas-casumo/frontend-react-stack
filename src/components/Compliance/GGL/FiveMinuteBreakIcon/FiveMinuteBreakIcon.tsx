@@ -66,8 +66,8 @@ export const FiveMinuteBreakIcon = ({
       </div>
       <ProgressCircle
         value={progressPercentage}
-        fgColor="grey-20"
-        bgColor="grey-50"
+        fgClassName="text-grey-20"
+        bgClassName="text-grey-50"
         className="c-five-minute-break-icon__progress text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}

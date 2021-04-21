@@ -59,12 +59,22 @@ export const getLaurelClassName = (position: number, highlighted?: boolean) => {
   return position < pallete.length ? pallete[position] : pallete[0];
 };
 
-export const getProgressColor = (progress: number) => {
+export const getProgressTextClassName = (progress: number) => {
   if (progress >= 90) {
-    return "red-30";
+    return "text-red-30";
   }
   if (progress >= 75) {
-    return "yellow-30";
+    return "text-yellow-30";
   }
-  return "teal-50";
+  return "text-teal-50";
+};
+
+export const getProgressBgClassName = (progress: number) => {
+  if (progress >= 90) {
+    return "bg-red-30";
+  }
+  if (progress >= 75) {
+    return "bg-yellow-30";
+  }
+  return "bg-teal-50";
 };

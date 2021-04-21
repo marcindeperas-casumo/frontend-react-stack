@@ -50,9 +50,10 @@ export const ProfileIcon = ({
       </div>
       <ProgressCircle
         value={progressPercentage}
-        fgColor="grey-20"
-        bgColor="grey-50"
-        fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
+        bgClassName="text-grey-50"
+        fgClassName={cx("text-grey-20", {
+          "c-profile-icon__progress--animating": animating,
+        })}
         className="c-profile-icon__progress text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}

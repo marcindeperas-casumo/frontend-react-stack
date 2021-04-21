@@ -7,7 +7,7 @@ import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { useTimeoutFn } from "Utils/hooks/useTimeoutFn";
 import { ProgressCircle } from "Components/Progress/ProgressCircle";
 import {
-  getProgressColor,
+  getProgressTextClassName,
   useGameActivityAwareIconLeaderboard,
 } from "Models/reelRaces";
 import { ReelRaceBoosterPoints } from "Components/ReelRaceBoosterPoints";
@@ -55,8 +55,8 @@ function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
   return (
     <ProgressCircle
       value={gameProgress}
-      fgColor={getProgressColor(gameProgress)}
-      bgColor="grey-50"
+      fgClassName={getProgressTextClassName(gameProgress)}
+      bgClassName="text-grey-50"
       className="text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute o-inset-top--none o-inset-left--none"
       width={4}
       radius={24}

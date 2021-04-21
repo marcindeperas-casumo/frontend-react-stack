@@ -41,7 +41,7 @@ export function ReelRaceStartingNotification({
       <Flex.Item className="o-position--relative">
         <ProgressCircle
           className="u-width--3xlg c-rr-starting-notification__progress"
-          bgColor="grey-0"
+          bgClassName="text-grey-0"
           value={progressToStart}
         />
         <Text

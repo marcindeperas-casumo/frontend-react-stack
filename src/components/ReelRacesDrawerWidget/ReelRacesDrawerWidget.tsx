@@ -5,7 +5,7 @@ import cx from "classnames";
 import * as React from "react";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
-import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
+import { getProgressBgClassName } from "Models/reelRaces/reelRaces.utils";
 import { useGameActivityAwareWidgetLeaderboard } from "Models/reelRaces";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { MARKETS } from "Src/constants";
@@ -214,7 +214,7 @@ const RaceProgress = ({ currentRace }) => {
       >
         <Flex.Item className="c-progress-bar bg-grey-70 t-opacity-background-100 t-border-r u-height--sm u-width--full">
           <div
-            className={`c-highlighted-progress-bar t-background-${getProgressColor(
+            className={`c-highlighted-progress-bar ${getProgressBgClassName(
               gameProgress
             )}`}
             style={{ width: `${gameProgress}%` }}

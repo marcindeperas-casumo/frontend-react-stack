@@ -7,10 +7,7 @@ type Props = {
   /** from 0 to 100, represents current progress */
   value?: number;
   fgClassName?: string;
-  /** color class name without 't-color-' prefix */
-  fgColor?: string;
-  /** color class name without 't-color-' prefix */
-  bgColor?: string;
+  bgClassName?: string;
   className?: string;
   radius?: number;
   width?: number;
@@ -19,9 +16,8 @@ type Props = {
 export function ProgressCircle({
   value = 0,
   className = "",
-  fgColor = "teal-50",
-  fgClassName = "",
-  bgColor = "grey-90",
+  fgClassName = "text-teal-50",
+  bgClassName = "text-grey-90",
   radius = 25,
   width = 5,
 }: Props) {
@@ -42,7 +38,7 @@ export function ProgressCircle({
         stroke="currentColor"
         strokeWidth={width}
         strokeLinecap="round"
-        className={`t-color-${bgColor}`}
+        className={bgClassName}
         r={innerRadius}
       />
       <circle
@@ -51,11 +47,7 @@ export function ProgressCircle({
         stroke="currentColor"
         strokeWidth={width}
         strokeLinecap="round"
-        className={cx(
-          "text-opacity-100",
-          `t-color-${fgColor}`,
-          fgClassName
-        )}
+        className={cx("text-opacity-100", fgClassName)}
         r={innerRadius}
         strokeDasharray={circleC}
         strokeDashoffset={dashOffset}
