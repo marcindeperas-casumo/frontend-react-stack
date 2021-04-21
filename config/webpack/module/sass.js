@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { shouldUseSourceMap, ROOT } = require("../utils");
 
 module.exports = env => ({
-  test: /\.s[ac]ss$/i,
+  test: /\.scss$/i,
   use: [
     ...(env.production
       ? [MiniCssExtractPlugin.loader]
