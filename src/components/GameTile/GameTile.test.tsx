@@ -115,6 +115,6 @@ describe("GameTile", () => {
     );
     expect(
       rendered.find(".c-game-tile-container__jackpot span").length
-    ).toEqual(0);
+    ).toEqual(1);
   });
 });
