@@ -11,7 +11,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors,
-    extend: {},
+    extend: {
+      backgroundColor: ["active"],
+    },
   },
   variants: {
     extend: {},
