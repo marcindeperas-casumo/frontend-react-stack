@@ -2,7 +2,7 @@ import Text from "@casumo/cmp-text";
 import { LaurelIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import cx from "classnames";
-import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
+import { getLaurelClassName } from "Models/reelRaces/reelRaces.utils";
 
 import "./LaurelPosition.scss";
 
@@ -30,7 +30,7 @@ export const LaurelPosition = ({
     {showLaurel && (
       <LaurelIcon
         className={cx(
-          `u-width--2xlg u-height--2xlg t-color-${getLaurelColor(
+          `u-width--2xlg u-height--2xlg ${getLaurelClassName(
             position,
             highlighted
           )}`,

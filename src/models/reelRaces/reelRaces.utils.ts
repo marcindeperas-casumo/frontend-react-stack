@@ -40,9 +40,19 @@ export const calculateProgress = (
   return (now - startTime) / (endTime - startTime);
 };
 
-export const getLaurelColor = (position: number, highlighted?: boolean) => {
-  const colors = ["grey-70", "yellow-30", "grey-20", "brown-30"];
-  const colorsHighlighted = ["grey-70", "yellow-90", "grey-20", "brown-30"];
+export const getLaurelClassName = (position: number, highlighted?: boolean) => {
+  const colors = [
+    "text-grey-70",
+    "text-yellow-30",
+    "text-grey-20",
+    "text-brown-30",
+  ];
+  const colorsHighlighted = [
+    "text-grey-70",
+    "text-yellow-90",
+    "text-grey-20",
+    "text-brown-30",
+  ];
 
   const pallete = highlighted ? colorsHighlighted : colors;
 
