@@ -43,7 +43,7 @@ export function TermsAndConditionsForBonusesContainer() {
 
   const onClickExpand = () => {
     dispatch(
-      showModal(REACT_APP_MODAL.ID.CONTENT_HTML, { input: { html: isSport ? sportsTerms : t.terms_and_conditions_for_bonuses_and_rewards} })
+      showModal(REACT_APP_MODAL.ID.CONTENT_HTML, { input: { html: content } })
     );
   };
 
