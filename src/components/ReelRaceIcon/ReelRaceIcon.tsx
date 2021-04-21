@@ -56,8 +56,8 @@ function RRProgress({ currentRace }: { currentRace: CurrentReelRaceInfo }) {
     <ProgressCircle
       value={gameProgress}
       fgClassName={getProgressTextClassName(gameProgress)}
-      bgClassName="text-grey-50"
-      className="text-opacity-25 u-height--3xlg u-width--3xlg o-position--absolute o-inset-top--none o-inset-left--none"
+      bgClassName="text-grey-50 text-opacity-25"
+      className="u-height--3xlg u-width--3xlg o-position--absolute o-inset-top--none o-inset-left--none"
       width={4}
       radius={24}
     />
