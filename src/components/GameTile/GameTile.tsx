@@ -64,15 +64,15 @@ export const GameTile = ({
       return null;
     }
     return (
-        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-height--lg">
-          <span>
-            {formatCurrency({
-              locale: currentLocale || "en-en",
-              currency: currency || "EUR",
-              value: amount,
-            })}
-          </span>
-        </div>
+      <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-height--lg">
+        <span>
+          {formatCurrency({
+            locale: currentLocale || "en-en",
+            currency: currency || "EUR",
+            value: amount,
+          })}
+        </span>
+      </div>
     );
   };
 
