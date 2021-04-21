@@ -51,7 +51,7 @@ describe("PromotionCardTeaserList", () => {
       />
     );
 
-    expect(rendered.first().hasClass("bg-blue-50")).toBe(true);
+    expect(rendered.first().hasClass("t-background-blue-50")).toBe(true);
   });
 
   test("should not set a background color if backgroundColor is not coming down as a prop", () => {
