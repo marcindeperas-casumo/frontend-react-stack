@@ -41,11 +41,10 @@ export function TermsAndConditionsForBonusesContainer() {
     return null;
   }
 
-  const onClickExpand = () => {
+  const onClickExpand = () =>
     dispatch(
       showModal(REACT_APP_MODAL.ID.CONTENT_HTML, { input: { html: content } })
     );
-  };
 
   return (
     <>
