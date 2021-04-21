@@ -5,6 +5,7 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const graphqlLoader = require("../config/webpack/module/graphql");
 const imagesLoader = require("../config/webpack/module/images");
 const sassLoader = require("../config/webpack/module/sass");
+const cssLoader = require("../config/webpack/module/tailwind");
 const svgLoader = require("../config/webpack/module/svg");
 const defineDevModePlugin = require("../config/webpack/plugins/defineDevMode");
 
@@ -16,18 +17,28 @@ module.exports = {
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
 
+    // Removing default svg loader
     const fileLoaderRule = config.module.rules.find(
       rule => rule.test && rule.test.test(".svg")
     );
     // eslint-disable-next-line fp/no-mutation
     fileLoaderRule.exclude = /\.svg$/;
 
+    // Removing default css loader
+    const cssLoaderRule = config.module.rules.find(
+      rule => rule.test && rule.test.test(".css")
+    );
+    // eslint-disable-next-line fp/no-mutation
+    cssLoaderRule.exclude = /\.css$/;
+
     // eslint-disable-next-line fp/no-mutating-methods
     config.module.rules.push(svgLoader);
 
-    // Make whatever fine-grained changes you need
     // eslint-disable-next-line fp/no-mutating-methods
     config.module.rules.push(sassLoader(env));
+
+    // eslint-disable-next-line fp/no-mutating-methods
+    config.module.rules.push(cssLoader(env));
 
     // eslint-disable-next-line fp/no-mutating-methods
     config.module.rules.push(graphqlLoader);

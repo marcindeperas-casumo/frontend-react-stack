@@ -27,6 +27,21 @@
                 "state": ".(is-|has-)[a-z0-9-]+",
                 "pseudo": "::?[a-z-]+"
             }
-        }]
+        }],
+        "scss/at-rule-no-unknown": [
+            true,
+            {
+                ignoreAtRules: [
+                    "tailwind",
+                    "extends",
+                    "apply",
+                    "variants",
+                    "responsive",
+                    "screen",
+                ],
+            },
+        ],
+        "declaration-block-trailing-semicolon": null,
+        "no-descending-specificity": null,
     }
 }

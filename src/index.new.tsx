@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "Components/App";
 import "./styles/index.scss";
+import "./styles/index.css";
+
 const renderApp = AppComponent => {
   const root = document.getElementById("root");
   if (root) {
