@@ -17,7 +17,7 @@ describe("CasumoAvatar", () => {
       <CasumoAvatar belt="rope" level={level} inBonusMode={inBonusMode} />
     );
 
-    expect(rendered.find(`.bg-yellow-30`).length).toBe(1);
+    expect(rendered.find(`.t-background-yellow-30`).length).toBe(1);
   });
 
   test("Renders avatar with the purple background color when in bonus mode", () => {
@@ -27,6 +27,6 @@ describe("CasumoAvatar", () => {
       <CasumoAvatar belt="rope" level={level} inBonusMode={inBonusMode} />
     );
 
-    expect(rendered.find(`.bg-purple-5`).length).toBe(1);
+    expect(rendered.find(`.t-background-purple-5`).length).toBe(1);
   });
 });
