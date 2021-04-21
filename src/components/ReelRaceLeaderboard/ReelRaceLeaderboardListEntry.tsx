@@ -44,9 +44,9 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
         "t-opacity-background-100",
         {
           "bg-yellow-30 t-border-yellow-30": highlighted,
-          "bg-white t-border-grey-5": !inverted && !highlighted,
+          "bg-white border-grey-5": !inverted && !highlighted,
           "text-black": !inverted || highlighted,
-          "text-white bg-grey-90 t-border-grey-90": inverted && !highlighted,
+          "text-white bg-grey-90 border-grey-90": inverted && !highlighted,
         },
         className
       )}

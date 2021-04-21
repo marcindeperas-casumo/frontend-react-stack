@@ -103,7 +103,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
             align="center"
             justify="space-between"
             spacing="none"
-            className="o-flex--1 t-border-bottom t-border-grey-5 u-padding-y--lg"
+            className="o-flex--1 t-border-bottom border-grey-5 u-padding-y--lg"
           >
             <Flex direction="vertical">
               {props.newLimits[x] && (

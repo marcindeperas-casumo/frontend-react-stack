@@ -60,7 +60,7 @@ export function SinglePeriodLimitOverview(props: Props) {
             justify="space-between"
             className={classNames(
               "u-margin-left u-padding-y--md o-flex--1",
-              props.shouldRenderSeparator && "t-border-bottom t-border-grey-5"
+              props.shouldRenderSeparator && "t-border-bottom border-grey-5"
             )}
           >
             <Flex direction="vertical">

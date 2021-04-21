@@ -31,7 +31,7 @@ const Wrapper = ({ children, withBg = true }) => (
     align="center"
     justify="center"
     className={cx(
-      "u-height--2xlg u-width--2xlg t-border-r--circle t-border--none t-border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-overflow--hidden o-position--relative",
+      "u-height--2xlg u-width--2xlg t-border-r--circle t-border--none border-grey-90 t-opacity-border--25 o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left u-overflow--hidden o-position--relative",
       {
         "bg-grey-90": withBg,
       }

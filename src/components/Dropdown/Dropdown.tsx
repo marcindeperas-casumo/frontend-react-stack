@@ -87,7 +87,7 @@ export const DropdownItem = ({
     <li
       className={cx(
         "u-padding--md",
-        "t-border-grey-5",
+        "border-grey-5",
         { "t-border-bottom": withBottomBorder },
         className
       )}

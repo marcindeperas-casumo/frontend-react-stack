@@ -36,7 +36,7 @@ export function PendingChanges(props: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding-x--md u-padding-y--lg t-border-top t-border-grey-5 bg-white"
+      className="u-padding-x--md u-padding-y--lg t-border-top border-grey-5 bg-white"
     >
       <Flex align="center" justify="space-between" spacing="none">
         <TimeLockedIcon size="sm" className="text-yellow-30" />

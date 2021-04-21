@@ -33,7 +33,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
             key={`${prize}_${count}`}
             className={cx(
               count !== prizes.length && "t-border-bottom",
-              "t-border-grey-0 u-padding-y",
+              "border-grey-0 u-padding-y",
               "o-flex--1"
             )}
           >

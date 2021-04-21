@@ -156,7 +156,7 @@ const UnverifiedMobileNumber = ({ labels, details }) => (
           <Flex.Item>
             <WarningIcon
               size="sm"
-              className="text-red-30 t-border-current t-border t-border-r--circle t-border--md"
+              className="text-red-30 border-current t-border t-border-r--circle t-border--md"
             />
           </Flex.Item>
           <Flex.Item>

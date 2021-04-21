@@ -46,7 +46,7 @@ export function ReelRacePreviousCardWinners({
     return (
       <Flex
         key={`${p.playerName}`}
-        className="t-border-bottom t-border-grey-0 u-padding-y"
+        className="t-border-bottom border-grey-0 u-padding-y"
       >
         <Flex className="o-flex--1">
           <div className="o-position--relative u-width--3xlg">

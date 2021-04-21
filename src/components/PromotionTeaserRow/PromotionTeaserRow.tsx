@@ -20,7 +20,7 @@ export class PromotionTeaserRow extends PureComponent<Props> {
       <a href={link}>
         <Flex
           spacing="md"
-          className="u-padding-y--lg u-line-height--1 t-border-bottom text-grey-0 t-border-current"
+          className="u-padding-y--lg u-line-height--1 t-border-bottom text-grey-0 border-current"
         >
           <Flex.Block>
             <Text

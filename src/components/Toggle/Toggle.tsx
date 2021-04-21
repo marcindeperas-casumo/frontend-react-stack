@@ -23,7 +23,7 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
       "c-toggle o-position--relative t-border--md u-font-weight-bold u-cursor--pointer t-border-r--pill u-overflow--hidden",
       {
         "bg-purple-60 text-white t-border-white": checked,
-        "bg-white text-grey-5 t-border-grey-5": !checked,
+        "bg-white text-grey-5 border-grey-5": !checked,
       }
     )}
   >

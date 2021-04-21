@@ -38,7 +38,7 @@ export const InGameDrawerLinks = ({
       {!isChatDisabled && (
         <Flex.Block
           onClick={onLiveChatClick}
-          className="text-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-x--lg u-cursor--pointer"
+          className="text-white o-flex-justify--center o-flex-align--center border-grey-70 t-border-right u-padding-x--lg u-cursor--pointer"
         >
           <ChatIcon
             className={cx({
@@ -53,7 +53,7 @@ export const InGameDrawerLinks = ({
         </Flex.Block>
       )}
       <Desktop>
-        <Flex.Block className="text-white o-flex-justify--center o-flex-align--center t-border-grey-70 t-border-right u-padding-x--lg u-cursor--pointer">
+        <Flex.Block className="text-white o-flex-justify--center o-flex-align--center border-grey-70 t-border-right u-padding-x--lg u-cursor--pointer">
           <FullscreenToggle />
         </Flex.Block>
       </Desktop>

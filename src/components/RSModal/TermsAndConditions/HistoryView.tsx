@@ -60,7 +60,7 @@ function HistoryRow(props: PropsHistoryRow) {
     <Flex
       justify="space-between"
       align="center"
-      className="t-border-bottom t-border-grey-5 u-padding--md"
+      className="t-border-bottom border-grey-5 u-padding--md"
       onClick={() => props.setVersion(props.version)}
     >
       <Flex direction="vertical">

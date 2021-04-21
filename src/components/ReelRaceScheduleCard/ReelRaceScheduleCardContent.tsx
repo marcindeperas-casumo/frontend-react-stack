@@ -89,7 +89,7 @@ export function ReelRaceScheduleCardContent({
             <Flex
               direction="vertical"
               align="center"
-              className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
+              className="o-flex--1 u-text-align-center t-border-left t-border-right border-grey-5"
             >
               <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
               <Text

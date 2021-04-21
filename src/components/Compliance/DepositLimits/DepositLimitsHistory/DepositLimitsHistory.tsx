@@ -80,7 +80,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
               <Flex className="text-green-30 u-margin-y" align="center">
                 <CheckIcon
                   size="sm"
-                  className="t-border--md t-border-current t-border-r--circle u-margin-right--md"
+                  className="t-border--md border-current t-border-r--circle u-margin-right--md"
                 />
                 <Text
                   tag="span"

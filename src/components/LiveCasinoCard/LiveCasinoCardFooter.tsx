@@ -19,7 +19,7 @@ export function LiveCasinoCardFooter({
   )?.logo;
 
   return (
-    <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border-current text-grey-0">
+    <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top border-current text-grey-0">
       {is(Number, players) ? (
         <div className="o-flex-align--center">
           <UserIcon className="u-margin-y text-grey-20" />

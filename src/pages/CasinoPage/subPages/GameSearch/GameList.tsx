@@ -17,7 +17,7 @@ export const GameList: React.FC<TProps> = ({ games, renderItem }) => {
         if (!isRowLoaded(index)) {
           return (
             <Flex
-              className="t-border-bottom text-grey-0 t-border-current"
+              className="t-border-bottom text-grey-0 border-current"
               key={index}
               index={index}
             >
@@ -27,7 +27,7 @@ export const GameList: React.FC<TProps> = ({ games, renderItem }) => {
         }
         return (
           <Flex
-            className="t-border-bottom text-grey-0 hover:bg-grey-0 t-border-current c-game-list-row"
+            className="t-border-bottom text-grey-0 hover:bg-grey-0 border-current c-game-list-row"
             key={game.id}
             index={index}
             align="center"

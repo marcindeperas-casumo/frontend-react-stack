@@ -88,7 +88,7 @@ export const QuickDeposit = ({
               selected
               classList="u-position--absolute o-inset-x--none text-purple-60"
             />
-            <div className="c-quick-deposit-add-icon t-border-purple-60 t-border t-border-r--circle bg-white o-position--absolute">
+            <div className="c-quick-deposit-add-icon border-purple-60 t-border t-border-r--circle bg-white o-position--absolute">
               <AddIcon className="text-purple-60" size="md" />
             </div>
           </Flex>
