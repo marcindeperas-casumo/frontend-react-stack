@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { boolean, withKnobs } from "@storybook/addon-knobs/react";
+import { boolean, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import { GameTileHeart } from "./GameTileHeart";
 import styles from "./GameTileHeart.scss";

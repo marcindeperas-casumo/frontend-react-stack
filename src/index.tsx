@@ -19,6 +19,8 @@ import { bridgeToLaunchModalService } from "Services/LaunchModalService";
 import { BridgeToLogoutService } from "Services/BridgeToLogoutService";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
+import "./styles/index.css";
+
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 BridgeToNavigationService();

@@ -105,8 +105,6 @@ export const ValuableThumbnail = ({
               spinType={spinType}
               valuableType={valuableType}
               size={size === "small" ? "sm" : "md"}
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ awardType: WageringLockAwardType; currency... Remove this comment to see the full error message
-              className="u-width--full"
             />
           </Flex>
         </div>

@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs/react";
+import { number } from "@storybook/addon-knobs";
 import React from "react";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 

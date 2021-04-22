@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
 import { Panel } from "./Panel";
 

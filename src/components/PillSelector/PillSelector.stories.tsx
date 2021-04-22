@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { select, boolean } from "@storybook/addon-knobs/react";
+import { select, boolean } from "@storybook/addon-knobs";
 import React, { Component } from "react";
 import { PillSelector } from "./PillSelector";
 import options from "./__mocks__/options.json";
