@@ -17,10 +17,7 @@ export function TermsAndConditionsForBonusesContainer() {
   const t = useTranslations<{
     terms_and_conditions_for_bonuses_and_rewards: string;
   }>("mobile.footer");
-  const sportsTerms = useTranslations<string>(
-    "sports-terms-bonus-rewards",
-    true
-  );
+  const sportsTerms = useTranslations("sports-terms-bonus-rewards", true);
   const [isSport, setIsSport] = React.useState(
     window.location.pathname.split("/").includes(ROUTES[ROUTE_IDS.SPORTS])
   );
