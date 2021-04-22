@@ -16,10 +16,7 @@ type Props = {
   className?: string;
 };
 
-export const CmsImageContainer = ({
-  id,
-  className,
-}: Props): JSX.Element => {
+export const CmsImageContainer = ({ id, className }: Props): JSX.Element => {
   const variables = { key: id };
   const { data, loading } = useQuery(CMS_IMAGE_QUERY, { variables });
 

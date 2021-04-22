@@ -72,7 +72,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
                   )}
                 >
                   <DictionaryTerm termKey="new">
-                    {allLabel => (<>{allLabel || "NEW"}</>)}
+                    {allLabel => <>{allLabel || "NEW"}</>}
                   </DictionaryTerm>
                 </div>
               )}

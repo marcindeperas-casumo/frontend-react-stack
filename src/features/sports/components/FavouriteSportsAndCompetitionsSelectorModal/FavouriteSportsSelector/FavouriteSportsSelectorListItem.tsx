@@ -25,7 +25,17 @@ type Props = {
   /** Whether this list item should be in its favourited state */
   isFavourite: boolean;
   /** What should happen when a competition is removed  */
-  onRemoveFavouriteCompetition: (sportId: number, competition: { id: number; regionCode?: string; name: string; } & A.FavouriteCompetitionsSelectorModal_GroupFragment & { id: number; userFavourite: boolean; } & A.GroupPill_GroupFragment) => void
+  onRemoveFavouriteCompetition: (
+    sportId: number,
+    competition: {
+      id: number;
+      regionCode?: string;
+      name: string;
+    } & A.FavouriteCompetitionsSelectorModal_GroupFragment & {
+        id: number;
+        userFavourite: boolean;
+      } & A.GroupPill_GroupFragment
+  ) => void;
   /** Is favorite list eq 0 **/
   isOnboarding: boolean;
 };

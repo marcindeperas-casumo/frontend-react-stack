@@ -44,7 +44,7 @@ export const BettingGlossaryModalContent = () => {
   if (error) {
     return (
       <DictionaryTerm termKey="glossary.error">
-        {error => <ErrorMessage errorMessage={error} />}
+        {errorText => <ErrorMessage errorMessage={errorText} />}
       </DictionaryTerm>
     );
   }

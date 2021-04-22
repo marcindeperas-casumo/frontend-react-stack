@@ -75,7 +75,7 @@ const ResultRow = ({
   children: JSX.Element;
   onClick?: () => void;
   className?: string;
-  path?: string
+  path?: string;
 }): JSX.Element => (
   <div
     className={classNames(
