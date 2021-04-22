@@ -99,7 +99,7 @@ export const AccountWarmUp = ({
               justify="center"
               className={cx(
                 `${rootClassName}__time-remaining`,
-                "u-padding--md t-border-r--md t-background-grey-5"
+                "o-position--relative u-padding--md t-border-r--md t-background-grey-5"
               )}
             >
               <Flex.Item>
@@ -139,7 +139,7 @@ export const AccountWarmUp = ({
                 tag="div"
                 className={cx(
                   `${rootClassName}__days-left`,
-                  "u-padding--sm u-font-weight-bold t-background-grey-20 t-border-r--sm"
+                  "o-position--absolute u-padding--sm u-font-weight-bold t-background-grey-20 t-border-r--sm"
                 )}
               >
                 {config.content?.days_left_label}
