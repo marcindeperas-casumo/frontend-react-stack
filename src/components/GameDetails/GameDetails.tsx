@@ -36,7 +36,7 @@ export const GameDetails = ({ game, t }: Props) => {
         className={game.isInMaintenance ? "t-greyscale" : ""}
       >
         {game.isInMaintenance && (
-          <Text className="t-color-white o-ratio__content o-flex o-flex-justify--center o-flex-align--end u-padding-bottom">
+          <Text className="text-white o-ratio__content o-flex o-flex-justify--center o-flex-align--end u-padding-bottom">
             {t.gameInMaintenanceText}
           </Text>
         )}
@@ -45,7 +45,7 @@ export const GameDetails = ({ game, t }: Props) => {
         direction="vertical"
         justify="space-between"
         className={[
-          "t-background-white u-overflow--hidden u-margin-x--md@desktop",
+          "bg-white u-overflow--hidden u-margin-x--md@desktop",
           "t-border-r--md@desktop o-flex--1",
           "u-padding-x--xlg@desktop u-padding-y--2xlg@desktop",
         ].join(" ")}

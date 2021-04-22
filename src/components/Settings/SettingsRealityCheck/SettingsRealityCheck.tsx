@@ -48,7 +48,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           />
         )}
         <div className="u-padding--md">
-          <Text className="t-color-grey-70">
+          <Text className="text-grey-70">
             {labels.inGameSessionUpdatesFrequencyLabel}
           </Text>
           <PillSelector
@@ -68,7 +68,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           </ButtonPrimary>
           <div
             onClick={() => window.history.back()}
-            className="u-margin-top--lg u-text-align-center u-cursor--pointer t-color-blue-60 u-font-weight-bold"
+            className="u-margin-top--lg u-text-align-center u-cursor--pointer text-blue-60 u-font-weight-bold"
           >
             {labels.cancel}
           </div>

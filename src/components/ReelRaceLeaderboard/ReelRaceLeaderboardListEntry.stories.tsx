@@ -55,7 +55,7 @@ stories.add("Default", () => {
         points={2739}
       />
       <h2>Dark bg / inverted</h2>
-      <div className="t-background-grey-90">
+      <div className="bg-grey-90">
         <ReelRaceLeaderboardListEntry
           position={1}
           text="testme"

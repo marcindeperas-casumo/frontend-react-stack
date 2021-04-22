@@ -14,7 +14,7 @@ export const ProviderGamesListRow = ({
   game,
 }: ProviderGamesListRowProps) => (
   <div
-    className="t-border-bottom t-border-grey-5 t-background-white"
+    className="t-border-bottom border-grey-5 bg-white"
     // @ts-expect-error ts-migrate(2559) FIXME: Type 'string' has no properties in common with typ... Remove this comment to see the full error message
     style={style}
   >

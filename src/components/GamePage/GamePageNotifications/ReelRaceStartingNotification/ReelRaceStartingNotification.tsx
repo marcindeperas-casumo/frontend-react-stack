@@ -35,36 +35,36 @@ export function ReelRaceStartingNotification({
   return (
     <Flex
       direction="horizontal"
-      className="u-padding u-padding-x--md t-background-white t-border-r"
+      className="u-padding u-padding-x--md bg-white t-border-r"
       align="center"
     >
       <Flex.Item className="o-position--relative">
         <ProgressCircle
           className="u-width--3xlg c-rr-starting-notification__progress"
-          bgColor="grey-0"
+          bgClassName="text-grey-0"
           value={progressToStart}
         />
         <Text
           size="md"
-          className="u-font-weight-bold o-position--absolute o-inset-x--none u-text-align-center t-color-black u-margin-top--none c-rr-starting-notification__counter"
+          className="u-font-weight-bold o-position--absolute o-inset-x--none u-text-align-center text-black u-margin-top--none c-rr-starting-notification__counter"
         >
           {secondsLeft}
         </Text>
       </Flex.Item>
       <Flex.Block>
-        <Text tag="div" className="t-color-black u-font-weight-bold">
+        <Text tag="div" className="text-black u-font-weight-bold">
           {t.header}
         </Text>
-        <Text tag="div" className="t-color-grey-50">
+        <Text tag="div" className="text-grey-50">
           {t.subheader}
         </Text>
       </Flex.Block>
       <Flex.Item>
         <div
           onClick={onClickDismiss}
-          className="t-border-r--circle t-background-grey-0 u-padding u-cursor--pointer"
+          className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
         >
-          <CloseIcon className="t-color-black" />
+          <CloseIcon className="text-black" />
         </div>
       </Flex.Item>
     </Flex>

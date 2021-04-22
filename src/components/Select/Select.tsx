@@ -37,9 +37,7 @@ export function Select<T>(props: Props<T>) {
   const pillClass = classNames(
     "c-select t-border-r--pill u-padding-x u-height--xlg",
     pillFontClass,
-    props.value
-      ? "t-background-grey-70 t-color-white"
-      : "t-background-grey-5 t-color-grey-90"
+    props.value ? "bg-grey-70 text-white" : "bg-grey-5 text-grey-90"
   );
 
   const selectClassNames = props?.selectClassNames || "";
@@ -105,7 +103,7 @@ export function Select<T>(props: Props<T>) {
             <div className="o-position--absolute c-select__options-list-arrow" />
             <Flex
               direction="vertical"
-              className="t-background-white t-border-r--md u-overflow--hidden"
+              className="bg-white t-border-r--md u-overflow--hidden"
             >
               {Object.keys(props.options).map(key => (
                 <Flex
@@ -124,16 +122,14 @@ export function Select<T>(props: Props<T>) {
                     className={classNames(
                       "u-padding-right--5xlg",
                       // @ts-expect-error ts-migrate(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message
-                      key === props.value
-                        ? "t-color-grey-90"
-                        : "t-color-grey-50"
+                      key === props.value ? "text-grey-90" : "text-grey-50"
                     )}
                   >
                     {props.options[key]}
                   </Text>
                   {/* @ts-expect-error ts-migrate(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message */}
                   {key === props.value && (
-                    <CheckIcon className="t-color-purple-60 c-chip__x-icon" />
+                    <CheckIcon className="text-purple-60 c-chip__x-icon" />
                   )}
                 </Flex>
               ))}
@@ -152,7 +148,7 @@ export function Select<T>(props: Props<T>) {
         >
           {props.value ? (
             <CloseIcon
-              className="t-color-white c-chip__x-icon"
+              className="text-white c-chip__x-icon"
               onClick={() => props.onChange(null)}
             />
           ) : (

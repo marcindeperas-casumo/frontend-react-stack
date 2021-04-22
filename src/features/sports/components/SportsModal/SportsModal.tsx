@@ -23,7 +23,7 @@ export class SportsModal extends React.Component<Props> {
 
   render() {
     return (
-      <Modal className="c-sports-modal t-background-white">
+      <Modal className="c-sports-modal BG-white">
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'ReactNode' is not assignable to type 'ReactC... Remove this comment to see the full error message */}
         {this.props.children}
       </Modal>

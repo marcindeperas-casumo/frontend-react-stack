@@ -60,7 +60,7 @@ export class GameListSkeleton extends PureComponent<Props> {
         {times(identity, numberOfItems).map(i => (
           <div
             key={`gamelist-skeleton-${i}`}
-            className="t-border-bottom t-border-grey-0"
+            className="t-border-bottom border-grey-0"
             style={{ height: ROW_HEIGHT }}
           >
             <GameRowSkeleton />

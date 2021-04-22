@@ -121,7 +121,7 @@ export const GamePageContainer = () => {
           {shouldShowSlotControlSystem && <InfoBar />}
           <Mobile>
             <BlueRibbonJackpotsFooterWidgetContainer />
-            <div className="t-background-grey-90 u-safe-area-inset-padding-bottom" />
+            <div className="bg-grey-90 u-safe-area-inset-padding-bottom" />
           </Mobile>
         </React.Fragment>
       }

@@ -276,23 +276,23 @@ export class ValuableDetails extends React.PureComponent<Props> {
             )}
             {caveat && (
               <Flex.Item className="u-margin-top--lg">
-                <Text className="t-color-grey-20" size="sm">
+                <Text className="text-grey-20" size="sm">
                   <DangerousHtml html={caveat} />
                 </Text>
               </Flex.Item>
             )}
             <Flex.Item className="u-width--1/3 u-margin-y--md">
-              <hr className="c-valuable-details__separator t-border t-border-r--pill t-border-grey-0" />
+              <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey-70" size="xs">
+              <Text tag="strong" className="text-grey-70" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--full u-overflow-x--hidden">
               <Text
                 tag="div"
-                className="t-color-grey-70 u-text-align-left"
+                className="text-grey-70 u-text-align-left"
                 size="sm"
               >
                 <DangerousHtml

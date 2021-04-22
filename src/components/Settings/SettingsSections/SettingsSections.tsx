@@ -22,7 +22,7 @@ const SettingsSection = ({ title, description, href }) => (
     <SettingsRow
       text={<SettingsHeadline title={title} description={description} />}
     >
-      <ArrowRightIcon className="t-color-grey-5" />
+      <ArrowRightIcon className="text-grey-5" />
     </SettingsRow>
   </a>
 );

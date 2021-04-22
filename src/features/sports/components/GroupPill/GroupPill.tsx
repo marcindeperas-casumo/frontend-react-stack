@@ -21,8 +21,8 @@ const GroupPill = ({ onClick, onRemove, group, isActive = false }: Props) => (
     onClick={onClick}
     onRemove={onRemove}
     isActive={isActive}
-    activeClassNames="t-background-grey-50 t-color-white"
-    inactiveClassNames="t-background-grey-0 t-color-grey-50"
+    activeClassNames="bg-grey-50 text-white"
+    inactiveClassNames="bg-grey-0 text-grey-50"
   >
     {group.regionCode && (
       <RegionFlag regionCode={group.regionCode} className="u-margin-right" />

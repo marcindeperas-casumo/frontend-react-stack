@@ -21,7 +21,7 @@ export function ContentFader({ to }: Props) {
       <div
         className={cx(
           "u-height--5xlg u-width--full",
-          "t-color-white",
+          "text-white",
           `s-content-fader--${to}__child`
         )}
       />

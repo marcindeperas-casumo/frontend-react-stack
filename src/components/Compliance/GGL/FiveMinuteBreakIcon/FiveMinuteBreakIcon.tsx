@@ -42,17 +42,17 @@ export const FiveMinuteBreakIcon = ({
         className
       )}
     >
-      <div className="c-five-minute-break-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle t-background-grey-90 t-opacity-background--100">
+      <div className="c-five-minute-break-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 bg-opacity-100">
         {isTimerVisible ? (
           <Timer
             endTime={expiringTime}
             onEnd={() => (
-              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md o-position--absolute u-font-weight-bold">
+              <div className="c-five-minute-break-icon__timer u-line-height text-white u-font-md o-position--absolute u-font-weight-bold">
                 00
               </div>
             )}
             render={state => (
-              <div className="c-five-minute-break-icon__timer u-line-height t-color-white u-font-md o-position--absolute u-font-weight-bold">
+              <div className="c-five-minute-break-icon__timer u-line-height text-white u-font-md o-position--absolute u-font-weight-bold">
                 {state.seconds}
               </div>
             )}
@@ -60,15 +60,15 @@ export const FiveMinuteBreakIcon = ({
         ) : (
           <TimeLockedIcon
             variant="sm"
-            className="c-five-minute-break-icon__icon t-color-white o-position--absolute"
+            className="c-five-minute-break-icon__icon text-white o-position--absolute"
           />
         )}
       </div>
       <ProgressCircle
         value={progressPercentage}
-        fgColor="grey-20"
-        bgColor="grey-50"
-        className="c-five-minute-break-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute"
+        fgClassName="text-grey-20"
+        bgClassName="text-grey-50 text-opacity-25"
+        className="c-five-minute-break-icon__progress u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}
       />

@@ -34,11 +34,12 @@ export const SidebarRow = (props: Props) => {
     "o-position--relative",
     "u-overflow--hidden",
     "u-cursor--pointer",
-    "t-color-white",
+    "text-white",
     {
-      "c-sidebar__nav-item--active t-background-teal-50 t-color-white": selected,
-      "c-sidebar__nav-item--white t-background-white t-color-grey-50": secondary,
-      "c-sidebar__nav-item t-background-purple-80": !secondary,
+      "c-sidebar__nav-item--active bg-teal-50 text-white": selected,
+      "c-sidebar__nav-item--white bg-white text-grey-50": secondary,
+      "c-sidebar__nav-item": !secondary,
+      "bg-purple-80": !secondary && !selected,
     }
   );
 
@@ -46,7 +47,7 @@ export const SidebarRow = (props: Props) => {
     <li className={rowClasses}>
       <a
         data-test-id="sidebar-link"
-        className={secondary ? "t-color-grey-50" : "t-color-white"}
+        className={secondary ? "text-grey-50" : "text-white"}
         // @ts-expect-error ts-migrate(2322) FIXME: Type 'Function' is not assignable to type '(event:... Remove this comment to see the full error message
         onClick={action}
         href={link || "#"}
@@ -72,7 +73,7 @@ export const SidebarRow = (props: Props) => {
             <Text
               tag="span"
               size="sm"
-              className="t-color-teal-50"
+              className="text-teal-50"
               data-test-id="sidebar-text-small"
             >
               {label}

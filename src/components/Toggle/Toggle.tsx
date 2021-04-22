@@ -22,16 +22,16 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
     className={cx(
       "c-toggle o-position--relative t-border--md u-font-weight-bold u-cursor--pointer t-border-r--pill u-overflow--hidden",
       {
-        "t-background-purple-60 t-color-white t-border-white": checked,
-        "t-background-white t-color-grey-5 t-border-grey-5": !checked,
+        "bg-purple-60 text-white t-border-white": checked,
+        "bg-white text-grey-5 border-grey-5": !checked,
       }
     )}
   >
     <div
       className={cx("o-position--absolute o-inset-top--none", {
         "c-toggle__circle--active ": checked,
-        "c-toggle__circle--inactive t-color-grey-9": !checked,
-        "t-color-grey-5": !checked,
+        "c-toggle__circle--inactive text-grey-9": !checked,
+        "text-grey-5": !checked,
       })}
     >
       <svg width="28" viewBox="0 0 28 28">
@@ -42,7 +42,7 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
       className={cx(
         "c-toggle__label u-text-nowrap u-overflow--hidden u-text-overflow--ellipsis",
         {
-          "t-color-grey-90": !checked,
+          "text-grey-90": !checked,
         }
       )}
       size="xs"

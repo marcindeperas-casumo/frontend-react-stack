@@ -7,7 +7,7 @@ import SearchInput from "Components/SearchInput";
 const stories = storiesOf("SearchInput", module);
 
 const Wrapper = ({ children }) => (
-  <div className="story t-background-grey-5 u-padding--2xlg">{children}</div>
+  <div className="story bg-grey-5 u-padding--2xlg">{children}</div>
 );
 
 const props = {

@@ -10,9 +10,6 @@ const shape = () => (
 
 stories.add("Default", () => (
   <MaskItem id="123" width={144} height={80} shapeMask={shape}>
-    <div
-      className="t-background-yellow-30"
-      style={{ width: "200px", height: "200px" }}
-    />
+    <div className="bg-yellow-30" style={{ width: "200px", height: "200px" }} />
   </MaskItem>
 ));

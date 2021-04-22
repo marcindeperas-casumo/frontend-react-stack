@@ -20,18 +20,18 @@ export function DepositLimitsCancelAdjustment({ t, ...props }: Props) {
       direction="vertical"
       align="stretch"
       justify="space-between"
-      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
+      className="u-padding--md u-height--full bg-white c-deposit-limits-container"
     >
       <Flex.Block className="u-text-align-center">
         <Text
           size="xlg"
-          className="u-font-weight-black t-color-purple-80 u-margin-bottom--xlg"
+          className="u-font-weight-black text-purple-80 u-margin-bottom--xlg"
           data-test-id="txt"
           tag="h3"
         >
           {t.cancel_adjustment_title}
         </Text>
-        <Text className="t-color-grey-50 u-margin-bottom--none" tag="p">
+        <Text className="text-grey-50 u-margin-bottom--none" tag="p">
           {t.cancel_adjustment_content}
         </Text>
       </Flex.Block>

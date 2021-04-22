@@ -32,7 +32,7 @@ export const FiveMinuteBreakDrawerWidget = ({
   return (
     <Flex
       className={cx(
-        "c-five-minute-break-drawer-widget t-background-grey-90 t-color-white u-padding--md t-border-r u-margin-bottom--none@desktop",
+        "c-five-minute-break-drawer-widget bg-grey-90 text-white u-padding--md t-border-r u-margin-bottom--none@desktop",
         className
       )}
       direction="vertical"
@@ -58,14 +58,14 @@ export const FiveMinuteBreakDrawerWidget = ({
                 t?.tooltip_title
               )}
             </Text>
-            <Text size="sm" tag="div" className="t-color-grey-50">
+            <Text size="sm" tag="div" className="text-grey-50">
               {t?.tooltip_message}
             </Text>
           </Flex.Block>
         </Flex>
       </Flex.Item>
       {shouldShowTimeLeft ? (
-        <Flex.Item className="u-padding--md u-margin t-background-grey-70 t-opacity-background--25 t-border-r u-font-sm">
+        <Flex.Item className="u-padding--md u-margin bg-grey-70 bg-opacity-25 t-border-r u-font-sm">
           {interpolateWithJSX(
             {
               secondsLeft: (

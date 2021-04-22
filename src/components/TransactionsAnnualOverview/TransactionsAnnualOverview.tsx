@@ -76,7 +76,7 @@ export function TransactionsAnnualOverview({
   }
   const passedProps = { currency: data.currency, locale };
   return (
-    <div className="u-padding--md t-background-white">
+    <div className="u-padding--md bg-white">
       <Text tag="h3" size="md" className="u-margin-bottom--md">
         {t.annual_transactions_list_heading}
       </Text>

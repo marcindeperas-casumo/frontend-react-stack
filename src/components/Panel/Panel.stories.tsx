@@ -7,7 +7,7 @@ const stories = storiesOf("Panel", module).addParameters({
   noGlobalDecorator: true,
 });
 const Wrapper = ({ children }) => (
-  <div className="t-background-grey-0 u-padding--3xlg">{children}</div>
+  <div className="bg-grey-0 u-padding--3xlg">{children}</div>
 );
 
 stories.add("Default", () => (

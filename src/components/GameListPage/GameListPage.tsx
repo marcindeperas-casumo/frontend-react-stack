@@ -142,7 +142,7 @@ export function GameListPage({ set }: Props) {
         />
         <div
           className={classNames("u-padding--md@mobile", {
-            "t-background-white": isMobile(),
+            "bg-white": isMobile(),
           })}
         >
           {topSection}
@@ -155,7 +155,7 @@ export function GameListPage({ set }: Props) {
           const { games, gamesCount } = data.getGamesPaginated;
 
           return (
-            <div className="t-background-white">
+            <div className="bg-white">
               <GamesVirtualList
                 games={games}
                 fetchMoreRows={loadMore}

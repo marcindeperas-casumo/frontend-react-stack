@@ -8,7 +8,7 @@ import DangerousHtml from "Components/DangerousHtml";
 
 export const SportsFooter = () => (
   <Flex
-    className="c-sports-footer t-color-grey-50 u-font-weight-bold u-padding--xlg t-background-white"
+    className="c-sports-footer text-grey-50 u-font-weight-bold u-padding--xlg bg-white"
     align="center"
     justify="center"
     style={{ textDecoration: "underline" }}

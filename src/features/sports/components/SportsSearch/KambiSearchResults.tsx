@@ -62,7 +62,7 @@ const GroupTitle = ({
 }: {
   children: React.ReactNode;
 }): React.ReactNode => (
-  <Text className="t-color-grey-50 u-padding--md u-font-weight-bold">
+  <Text className="text-grey-50 u-padding--md u-font-weight-bold">
     {children}
   </Text>
 );
@@ -79,11 +79,11 @@ const ResultRow = ({
   <div
     className={classNames(
       "u-padding-x--md u-cursor--pointer",
-      className || "t-background-white"
+      className || "bg-white"
     )}
     onClick={onClick}
   >
-    <div className="u-padding-y--md t-border-bottom t-border-grey-5">
+    <div className="u-padding-y--md t-border-bottom border-grey-5">
       {children}
     </div>
   </div>
@@ -253,7 +253,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-grey-70 u-font-weight-bold"
+                  className="text-grey-70 u-font-weight-bold"
                 >
                   {eventGroup.name}
                 </Text>
@@ -278,7 +278,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         tag="span"
         className={classNames(
           "u-font-weight-bold",
-          isMatch ? "t-color-grey-90" : "t-color-grey-50"
+          isMatch ? "text-grey-90" : "text-grey-50"
         )}
       >
         {value}
@@ -331,7 +331,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-grey-20 u-text-nowrap"
+                  className="text-grey-20 u-text-nowrap"
                 >
                   {result.sport.name}
                 </Text>
@@ -340,7 +340,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-grey-20 u-text-nowrap"
+                  className="text-grey-20 u-text-nowrap"
                 >
                   {result.country}
                 </Text>
@@ -389,7 +389,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <div className="t-background-grey-0 t-color-grey-50 u-padding-x--xlg u-padding-y--lg">
+        <div className="bg-grey-0 text-grey-50 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
             <Flex.Item>
               <SadSumo width="32" height="36" />

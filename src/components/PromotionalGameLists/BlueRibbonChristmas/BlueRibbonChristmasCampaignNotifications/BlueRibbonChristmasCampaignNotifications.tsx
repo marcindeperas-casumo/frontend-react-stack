@@ -33,7 +33,7 @@ export function BlueRibbonChristmasCampaignNotifications({
       {!acknowledged && (
         <Flex
           direction="horizontal"
-          className="u-padding--md t-background-white t-border-r u-margin-bottom--md"
+          className="u-padding--md bg-white t-border-r u-margin-bottom--md"
           align="center"
         >
           <Flex.Item className="o-position--relative">
@@ -46,16 +46,16 @@ export function BlueRibbonChristmasCampaignNotifications({
             />
           </Flex.Item>
           <Flex.Block>
-            <Text size="sm" tag="span" className="t-color-black">
+            <Text size="sm" tag="span" className="text-black">
               <DangerousHtml html={t.blizzard_campaign_content} />
             </Text>
           </Flex.Block>
           <Flex.Item>
             <div
               onClick={() => setAcknowledged(true)}
-              className="t-border-r--circle t-background-grey-0 u-padding u-cursor--pointer"
+              className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
             >
-              <CloseIcon className="t-color-black" />
+              <CloseIcon className="text-black" />
             </div>
           </Flex.Item>
         </Flex>
@@ -63,7 +63,7 @@ export function BlueRibbonChristmasCampaignNotifications({
       {type === "community_jackpot_win" && jackpotAmount && (
         <Flex
           direction="horizontal"
-          className="u-padding--md t-background-white t-border-r"
+          className="u-padding--md bg-white t-border-r"
           align="center"
         >
           <Flex.Item className="o-position--relative">
@@ -79,7 +79,7 @@ export function BlueRibbonChristmasCampaignNotifications({
             <Text
               size="sm"
               tag="span"
-              className="t-color-grey-50 u-padding-bottom--sm"
+              className="text-grey-50 u-padding-bottom--sm"
             >
               {t.community_jackpot_win}
             </Text>
@@ -87,7 +87,7 @@ export function BlueRibbonChristmasCampaignNotifications({
             <Text
               size="sm"
               tag="span"
-              className="t-color-black u-font-weight-bold"
+              className="text-black u-font-weight-bold"
             >
               {interpolate(t.community_jackpot_win_amount, {
                 amount: jackpotAmount,
@@ -97,9 +97,9 @@ export function BlueRibbonChristmasCampaignNotifications({
           <Flex.Item>
             <div
               onClick={acknowledge}
-              className="t-border-r--circle t-background-grey-0 u-padding u-cursor--pointer"
+              className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
             >
-              <CloseIcon className="t-color-black" />
+              <CloseIcon className="text-black" />
             </div>
           </Flex.Item>
         </Flex>

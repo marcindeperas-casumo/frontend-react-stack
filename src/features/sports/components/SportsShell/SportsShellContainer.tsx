@@ -93,7 +93,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
     <>
       <SportsHashWatcher>
         {({ currentHash }) => (
-          <div className="t-background-grey-0">
+          <div className="bg-grey-0">
             <SportsShellDepositWrapper />
             {data.isSearchVisible ? (
               <SportsSearch />

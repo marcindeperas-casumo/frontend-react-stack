@@ -39,7 +39,7 @@ export const SGABar = ({ className = "" }: Props) => (
         <SjalvTestIcon className="c-playokay-bar__icon c-playokay-bar__icon--sjalvtest" />
       </a>
     </Flex.Item>
-    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
+    <Flex.Item className="c-playokay-bar__clock u-font-xs text-grey-5 u-display--flex">
       <TimeLockedIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>

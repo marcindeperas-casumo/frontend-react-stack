@@ -94,11 +94,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
             })}
           </ButtonSecondary>
         )}
-        <Text
-          tag="span"
-          size="2xs"
-          className="u-font-weight-black t-color-white"
-        >
+        <Text tag="span" size="2xs" className="u-font-weight-black text-white">
           {(t?.table_closed || "").toUpperCase()}
         </Text>
       </Flex>
@@ -124,7 +120,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
           <Text
             tag="h3"
             size="sm"
-            className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-90"
+            className="u-font-weight-black u-margin-bottom--sm u-text-clamp text-grey-90"
           >
             {convertHTMLToString(game.name)}
           </Text>
@@ -133,8 +129,8 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
           )}
         </Flex>
         <GameTileHeart
-          containerClassName="t-color-grey-70 o-position--absolute o-inset-right--none o-inset-bottom--none"
-          heartClassName="u-width--2xlg u-height--2xlg u-padding t-color-red-30"
+          containerClassName="text-grey-70 o-position--absolute o-inset-right--none o-inset-bottom--none"
+          heartClassName="u-width--2xlg u-height--2xlg u-padding text-red-30"
           gameId={game.id}
           gameName={game.name}
         />
@@ -148,7 +144,7 @@ export class LiveCasinoCardSmall extends React.PureComponent<Props> {
     return (
       <div className="u-padding-bottom--sm">
         <Card
-          className="o-ratio t-border-r--md u-overflow--hidden t-background-white t-elevation--10"
+          className="o-ratio t-border-r--md u-overflow--hidden bg-white t-elevation--10"
           spacing="md"
           onClick={() => launchGame({ slug })}
           header={this.renderHeader}

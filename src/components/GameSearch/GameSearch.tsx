@@ -45,14 +45,14 @@ const GameMaintenanceText = () => {
   });
 
   return (
-    <Text className="u-padding-top--sm t-color-grey-70" size="sm">
+    <Text className="u-padding-top--sm text-grey-70" size="sm">
       {t.gameInMaintenanceText}
     </Text>
   );
 };
 
 const GameStudioText = ({ studioName }) => (
-  <div className="t-color-grey-20">{studioName}</div>
+  <div className="text-grey-20">{studioName}</div>
 );
 
 const gameRowHighlightSearch = query => game => (
@@ -77,7 +77,7 @@ const gameRowHighlightSearch = query => game => (
 const SectionTitle = props => (
   <Text
     size="md"
-    className="u-font-weight-black t-color-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
+    className="u-font-weight-black text-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
   >
     {props.children}
   </Text>
@@ -162,7 +162,7 @@ export const GameSearch = (props: Props) => {
 
   return (
     <div className={`o-wrapper ${xPaddingClasses}`}>
-      <div className="c-game-search t-background-grey-0 c-game-search-bar o-position--sticky u-padding-y--md u-padding-y--lg@desktop">
+      <div className="c-game-search bg-grey-0 c-game-search-bar o-position--sticky u-padding-y--md u-padding-y--lg@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}
@@ -170,7 +170,7 @@ export const GameSearch = (props: Props) => {
           placeholder={inputPromptPlaceholder}
         />
       </div>
-      <div className="t-border-r--md t-border-r--none@mobile t-background-white">
+      <div className="t-border-r--md t-border-r--none@mobile bg-white">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
         {searchResults.length === 0 && loading ? (
           <GameListSkeleton hasTitle={false} />

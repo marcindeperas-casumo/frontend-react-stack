@@ -38,7 +38,7 @@ export const CuratedCardFooterGameDesktop = ({
             />
           </Flex.Item>
           <Flex.Block>
-            <Text tag="span" className="u-font-weight-bold t-color-white">
+            <Text tag="span" className="u-font-weight-bold text-white">
               {convertHTMLToString(game.name)}
             </Text>
           </Flex.Block>
