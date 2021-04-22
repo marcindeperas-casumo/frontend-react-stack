@@ -70,7 +70,7 @@ export const AccountWarmUp = ({
       <Flex
         direction="vertical"
         spacing="md"
-        className={cx(`${rootClassName}__content`, "u-padding-y-md")}
+        className={cx(`${rootClassName}__content`)}
       >
         <Text tag="h3" className="u-padding u-font-lg u-margin-top--lg">
           {config.content?.title}
@@ -79,10 +79,14 @@ export const AccountWarmUp = ({
           className="u-padding u-text-align-left"
           dangerouslySetInnerHTML={stringToHTML(config.content?.content)}
         ></Text>
-        <Flex direction="vertical" className="u-margin-left--3xlg">
+        <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
           <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
-            <div className="t-border-r--circle t-background-grey-5 u-height--xlg u-margin-top u-padding--sm">
-              <TimeLockedIcon className="t-color-grey-50" />
+            <div className="t-border-r--circle t-background-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
+              <TimeLockedIcon
+                size="sm"
+                style={{ width: "24px", height: "20px" }}
+                className="t-color-grey-50"
+              />
             </div>
             <Text className="u-padding u-text-align-left o-flex__block">
               {config.content?.days_left_title}
