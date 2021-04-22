@@ -3,20 +3,36 @@ import { useDispatch } from "react-redux";
 import { ContentHtml } from "Components/ContentHtml";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 import { useTranslations } from "Utils/hooks";
-import { REACT_APP_MODAL } from "Src/constants";
+import {
+  REACT_APP_EVENT_ROUTE_CHANGE,
+  REACT_APP_MODAL,
+  ROUTE_IDS,
+  ROUTES,
+} from "Src/constants";
 import { showModal } from "Models/modal";
+import bridge from "Src/DurandalReactBridge";
 
 export function TermsAndConditionsForBonusesContainer() {
   const dispatch = useDispatch();
   const t = useTranslations<{
     terms_and_conditions_for_bonuses_and_rewards: string;
   }>("mobile.footer");
+  const sportsTerms = useTranslations("sports-terms-bonus-rewards", true);
+  const [isSport, setIsSport] = React.useState(
+    window.location.pathname.split("/").includes(ROUTES[ROUTE_IDS.SPORTS])
+  );
+
+  bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, route => {
+    setIsSport(route.config.id === ROUTES[ROUTE_IDS.SPORTS]);
+  });
 
   if (!t) {
     return <ParagraphSkeleton size="sm" className="u-margin-y--2xlg" />;
   }
 
-  const content = t.terms_and_conditions_for_bonuses_and_rewards;
+  const content = isSport
+    ? sportsTerms
+    : t.terms_and_conditions_for_bonuses_and_rewards;
 
   if (content === "&nbsp;") {
     return null;
