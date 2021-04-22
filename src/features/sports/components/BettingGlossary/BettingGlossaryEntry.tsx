@@ -74,7 +74,6 @@ export class BettingGlossaryEntry extends React.PureComponent<Props> {
         {!isCmsEntryEmpty(this.props.aka) && (
           <span>
             <em>
-              {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
               <DictionaryTerm
                 data-test-glossary-entry-aka
                 termKey="glossary.aka"

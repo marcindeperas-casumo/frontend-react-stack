@@ -95,7 +95,6 @@ export default class SportsSearch extends React.Component<{}, State> {
         <Flex.Block className="bg-grey-0 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
-              {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
                   <SearchInput

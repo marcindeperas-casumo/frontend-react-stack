@@ -15,7 +15,6 @@ describe("<DictionaryTerm />", () => {
   test("renders the string for the dictionary key", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={WORKING_TERM.key} />
       </MockedProvider>
     );
@@ -29,7 +28,6 @@ describe("<DictionaryTerm />", () => {
   test("renders the LOADING_STRING when translation is loading", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={WORKING_TERM.key} />
       </MockedProvider>
     );
@@ -43,7 +41,6 @@ describe("<DictionaryTerm />", () => {
   test("renders the NOT_FOUND_STRING when not loading and no data returned", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey={ERROR_TERM.key} />
       </MockedProvider>
     );
@@ -57,7 +54,6 @@ describe("<DictionaryTerm />", () => {
   test("replaces any replacement keys in the translation before rendering", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm
           termKey={REPLACEMENT_TERM.key}
           replacements={REPLACEMENT_TERM.replacements1}
@@ -66,7 +62,6 @@ describe("<DictionaryTerm />", () => {
     );
     const rendered2 = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm
           termKey={REPLACEMENT_TERM.key}
           replacements={REPLACEMENT_TERM.replacements2}
@@ -85,7 +80,6 @@ describe("<DictionaryTerm />", () => {
   test("leaves undefined/null replacements untouched", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm
           termKey={REPLACEMENT_TERM.key}
           replacements={{
@@ -108,9 +102,7 @@ describe("<DictionaryTerm />", () => {
     mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <>
-          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey={WORKING_TERM.key}>{children}</DictionaryTerm>
-          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="not found key">{children2}</DictionaryTerm>
         </>
       </MockedProvider>

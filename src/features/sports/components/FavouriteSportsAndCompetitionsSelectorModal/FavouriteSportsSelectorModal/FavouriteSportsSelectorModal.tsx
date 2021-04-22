@@ -22,7 +22,6 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
       return (
         <SportsModal>
           <SportsModal.Header onClose={onClose}>
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
             <DictionaryTerm termKey="favourite-sports-selector.title" />
           </SportsModal.Header>
 

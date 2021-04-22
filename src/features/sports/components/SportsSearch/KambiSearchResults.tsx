@@ -186,7 +186,6 @@ class KambiSearchResults extends React.Component<Props, State> {
     <>
       {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
       <GroupTitle>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="search-results.heading.popular" />
       </GroupTitle>
       <Query query={TOP_SEARCHES_QUERY} variables={{ count }}>
@@ -206,7 +205,6 @@ class KambiSearchResults extends React.Component<Props, State> {
       <>
         {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
         <GroupTitle>
-          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
@@ -396,7 +394,6 @@ class KambiSearchResults extends React.Component<Props, State> {
             </Flex.Item>
             <Flex.Block>
               <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
-                {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>
