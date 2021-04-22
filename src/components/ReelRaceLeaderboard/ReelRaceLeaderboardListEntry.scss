@@ -1,3 +1,27 @@
 .c-reel-race-leaderboard-list-entry {
   box-sizing: border-box;
 }
+
+// stylelint-disable xi/selector-pattern
+.c-reel-race-leaderboard-list-entry:hover .c-reel-race__remaining-spins {
+  opacity: 1;
+}
+
+.c-reel-race__remaining-spins {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  display: flex;
+  opacity: 0;
+  padding: 4px 10px;
+  transition: 0.3s;
+  width: 74px;
+
+  &--warning {
+    fill: rgb(173, 24, 24) !important;
+  }
+
+  &--regular {
+    fill: #798291 !important;
+  }
+}

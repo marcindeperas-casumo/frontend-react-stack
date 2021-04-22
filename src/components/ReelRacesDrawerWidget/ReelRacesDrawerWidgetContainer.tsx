@@ -8,7 +8,7 @@ import { playerIdSelector } from "Models/handshake";
 import { isNativeByUserAgent } from "Src/gameProviders/utils";
 import { useReelRaceLeaderboardModal } from "Components/RSModal/Slots/ReelRaceLeaderboardModal/useReelRaceLeaderboardModal";
 import { SidebarElementWrapper } from "Components/Sidebar/SidebarElementWrapper/SidebarElementWrapper";
-import { Desktop, isDesktop } from "Components/ResponsiveLayout";
+import { Desktop, isDesktop, isMobile } from "Components/ResponsiveLayout";
 import { usePinnedWidgetsContext } from "Components/GamePage/Contexts";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { ReelRaceLeaderboardResults } from "Components/ReelRaceLeaderboard/ReelRaceLeaderboardResults";
@@ -56,12 +56,11 @@ export const ReelRacesDrawerWidgetContainer = ({
       >
         <ReelRacesDrawerWidget
           currentRace={currentRace}
-          showLeaderboardLink={!pinnedWidgets.includes(DRAWERS.REEL_RACES)}
+          showLeaderboardLink={!isDesktop() || isDesktop() && !pinnedWidgets.includes(DRAWERS.REEL_RACES)}
           onShowLeaderboardClick={() => setShowLeaderboard(prev => !prev)}
           isLeaderboardOpen={showLeaderboard}
         />
       </SidebarElementWrapper>
-      <Desktop>
         {showLeaderboard && (
           <SidebarElementWrapper
             className="u-margin-top"
@@ -75,6 +74,8 @@ export const ReelRacesDrawerWidgetContainer = ({
                 "t-border-r",
                 initialShowLeaderboard ? "u-height--full" : "u-height--auto"
               )}
+              spinLimit={currentReelRaceFromHook.spinLimit}
+              showSpins
               playerId={playerId}
               forceLaurelPositions={LEADERBOARD_LAURELS}
               inverted
@@ -83,7 +84,6 @@ export const ReelRacesDrawerWidgetContainer = ({
             />
           </SidebarElementWrapper>
         )}
-      </Desktop>
     </Flex>
   );
 };

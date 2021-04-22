@@ -88,6 +88,7 @@ export function ReelRaceLeaderboardModal({
         size={LEADERBOARD_SIZE}
         prizes={prizes}
         playerId={playerId}
+        showSpins={false}
       />
       {playerOutsideLeaderboard && (
         <ReelRaceLeaderboardListEntry
@@ -96,6 +97,7 @@ export function ReelRaceLeaderboardModal({
           position={position}
           text={playerName}
           highlighted
+          showSpins={false}
         />
       )}
     </CudlModal>

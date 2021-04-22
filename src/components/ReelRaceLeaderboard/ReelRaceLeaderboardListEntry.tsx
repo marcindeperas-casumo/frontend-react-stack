@@ -1,14 +1,19 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as React from "react";
+import { isMobile } from "Components/ResponsiveLayout";
 import cx from "classnames";
 import { LaurelPosition } from "./LaurelPosition";
 import { Prize } from "./Prize";
+import SpinSymbol from "./images/spin-symbol.svg";
 
 import "./ReelRaceLeaderboardListEntry.scss";
 
 type Props = {
   position: number;
+  remainingSpins?: number;
+  spinLimit?: number;
+  showSpins?: boolean;
   text: string;
   prize?: string | undefined;
   points: number;
@@ -18,6 +23,39 @@ type Props = {
   inverted?: boolean;
 };
 
+type RemainingSpinsProps = {
+  remainingSpins: number;
+  spinLimit: number;
+};
+
+function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
+  const SPINS_WARNING_THRESHOLD = 0.15;
+
+  const isRemainingSpinsRunOut = React.useCallback(
+    () => remainingSpins/spinLimit < SPINS_WARNING_THRESHOLD,
+    [remainingSpins, spinLimit]
+  );
+
+  return <Flex.Item
+    className={
+      cx("c-reel-race__remaining-spins", {
+        "t-opacity--100": isMobile(),
+        "t-color-red-30 t-opacity--100": isRemainingSpinsRunOut(),
+      })
+  }>
+    <SpinSymbol
+      className={cx({
+        "c-reel-race__remaining-spins--warning": isRemainingSpinsRunOut(),
+        "c-reel-race__remaining-spins--regular": !isRemainingSpinsRunOut(),
+      })}
+    />
+
+    <div className="u-margin-left--sm">
+      {remainingSpins}
+    </div>
+  </Flex.Item>;
+}
+
 export const ReelRaceLeaderboardListEntry = React.forwardRef<
   HTMLDivElement,
   Props
@@ -25,6 +63,9 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
   (
     {
       position,
+      remainingSpins,
+      spinLimit,
+      showSpins = false,
       text,
       prize,
       showLaurel,
@@ -73,10 +114,14 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex.Item>
         {prize && <Prize prize={prize} highlighted={highlighted} />}
       </Flex.Item>
+      {showSpins && <RemainingSpins
+        remainingSpins={remainingSpins}
+        spinLimit={spinLimit}
+      />}
       <Flex.Item>
         <Text
           tag="div"
-          className="u-font-weight-bold u-margin-left u-width--2xlg u-text-align-right"
+          className="u-font-weight-bold u-margin-right--md u-width--2xlg u-text-align-right"
         >
           {points}
         </Text>
