@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Duration } from "luxon";
+import { Duration, DateTime } from "luxon";
 import { useSelector } from "react-redux";
 import {
   convertTimestampToLuxonDate,
@@ -13,22 +13,35 @@ export const WARM_UP_DURATION = 30;
 export type DurationLiteralType = Pick<Duration, "days" | "hours" | "minutes">;
 
 export const useAccountWarmUp = () => {
-  const registrationTimestamp = 1618309199; //useSelector(registrationDateSelector);
+  const registrationSeconds = useSelector(registrationDateSelector);
 
-  const [timeRemaining, setTimeRemaining] = React.useState<
-    Pick<Duration, "days" | "hours" | "minutes">[]
-  >();
+  const elapsedDefault = Duration.fromObject({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  }).normalize();
+
+  const [timeRemaining, setTimeRemaining] = React.useState<DurationLiteralType>(
+    elapsedDefault
+  );
 
   const timer = useTimeoutFn();
 
   const refreshTimeRemaining = React.useCallback(() => {
-    const luxonDate = convertTimestampToLuxonDate(registrationTimestamp);
-    const warmUpExpiryTimestamp = luxonDate.plus({
+    const registratioDate = convertTimestampToLuxonDate(registrationSeconds);
+    const timeToElapse = registratioDate.plus({
       days: WARM_UP_DURATION,
     });
-    setTimeRemaining(getActualDateTimeDifferenceFromNow(warmUpExpiryTimestamp));
-    timer.scheduleIn(refreshTimeRemaining, 1000);
-  }, [registrationTimestamp, timer]);
+
+    const hasElapsed = timeToElapse > DateTime.utc();
+
+    if (!hasElapsed) {
+      setTimeRemaining(getActualDateTimeDifferenceFromNow(timeToElapse));
+
+      timer.scheduleIn(refreshTimeRemaining, 1000);
+    }
+  }, [registrationSeconds, timer]);
 
   React.useEffect(() => {
     refreshTimeRemaining();
