@@ -17,7 +17,7 @@ const props = {
   },
 };
 const Wrapper = ({ children }) => (
-  <Flex direction="vertical" className="t-background-grey-0 u-padding--3xlg">
+  <Flex direction="vertical" className="bg-grey-0 u-padding--3xlg">
     {children}
   </Flex>
 );

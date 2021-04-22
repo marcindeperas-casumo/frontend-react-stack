@@ -30,12 +30,12 @@ export function SessionDetailsForLogout(props: Props) {
 
   return (
     <Flex direction="vertical">
-      <div className="u-padding--sm t-background-grey-0" />
+      <div className="u-padding--sm bg-grey-0" />
       <LoginSessionDetailsSection />
       {activeSession && (
         <>
-          <div className="u-padding--sm u-margin-top--lg t-background-grey-0" />
-          <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+          <div className="u-padding--sm u-margin-top--lg bg-grey-0" />
+          <Text className="text-grey-50 u-padding--md u-padding-bottom--lg">
             {t?.logout_text}
           </Text>
           <SessionDetailsBody

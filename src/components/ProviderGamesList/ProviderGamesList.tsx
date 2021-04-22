@@ -47,7 +47,7 @@ export const ProviderGamesList = ({
     }
 
     return (
-      <div className="t-background-white">
+      <div className="bg-white">
         <div className="o-wrapper u-padding-y--2xlg">
           <GamesVirtualGridSkeleton />
         </div>

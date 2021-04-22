@@ -7,8 +7,8 @@ import MaskText from "Components/MaskText";
 const stories = storiesOf("MaskText", module);
 stories.addDecorator(withKnobs);
 
-const TextColor = value => <span className="t-color-black">{value}</span>;
-const TextGrey = value => <span className="t-color-grey-20">{value}</span>;
+const TextColor = value => <span className="text-black">{value}</span>;
+const TextGrey = value => <span className="text-grey-20">{value}</span>;
 
 const TextMaskColored = props => (
   <MaskText matchRender={TextColor} unmatchedRender={TextGrey} {...props} />

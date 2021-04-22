@@ -48,7 +48,7 @@ export const ArticleModal = ({
       bigTitle={article.title}
       closeIcon={{
         action: closeModal,
-        className: "t-background-grey-20 t-border-r--circle u-padding--sm",
+        className: "bg-grey-20 t-border-r--circle u-padding--sm",
       }}
       featuredImage={featuredImage}
     >

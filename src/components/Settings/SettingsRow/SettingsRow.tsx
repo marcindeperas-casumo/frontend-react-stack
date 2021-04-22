@@ -28,9 +28,9 @@ export class SettingsRow extends React.PureComponent<Props> {
           `u-padding-y--${padding}`,
           "u-padding-x--md",
           "t-border-bottom",
-          "t-border-current",
-          "t-color-grey-5",
-          "t-background-white",
+          "border-current",
+          "text-grey-5",
+          "bg-white",
           className
         )}
       >

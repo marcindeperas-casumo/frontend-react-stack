@@ -62,7 +62,7 @@ class MyComponent extends PureComponent<{}, State> {
           // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: any; index: any; s... Remove this comment to see the full error message
           index={index}
           style={style}
-          className="t-border-bottom t-border-grey-5"
+          className="t-border-bottom border-grey-5"
         >
           <GameRow
             game={this.state.list[index]}
@@ -81,7 +81,7 @@ class MyComponent extends PureComponent<{}, State> {
         key={key}
         index={index}
         style={style}
-        className="t-border-bottom t-border-grey-5"
+        className="t-border-bottom border-grey-5"
       >
         loading...
       </Flex>

@@ -32,10 +32,10 @@ export function TermsAndConditionsForBonusesContainer() {
       <ContentHtml
         expandable
         html={content}
-        className="u-font-xs t-background-white u-padding--lg t-border-r--md t-color-grey-50"
+        className="u-font-xs bg-white u-padding--lg t-border-r--md text-grey-50"
         onClickExpand={onClickExpand}
       />
-      <div className="u-height--sm t-background-grey-0 t-border-r u-margin-y--2xlg" />
+      <div className="u-height--sm bg-grey-0 t-border-r u-margin-y--2xlg" />
     </>
   );
 }

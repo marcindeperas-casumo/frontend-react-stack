@@ -25,7 +25,7 @@ export function ReelRacePreviousCard({ reelRace, t, expanded = false }: Props) {
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
-    <div className="t-background-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
+    <div className="bg-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
         align="center"
         onClick={toggle}
@@ -51,7 +51,7 @@ export function ReelRacePreviousCard({ reelRace, t, expanded = false }: Props) {
           className={cx("u-margin-left", isNotMobile && "u-margin-right--lg")}
           align={isNotMobile ? "center" : "normal"}
         >
-          <TimeLockedIcon className="t-color-grey-50" />
+          <TimeLockedIcon className="text-grey-50" />
           <Text tag="span" className="u-font-weight-bold u-margin-left--sm">
             {startTimeDate.toFormat("t")}
           </Text>

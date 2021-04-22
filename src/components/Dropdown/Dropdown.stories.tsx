@@ -26,7 +26,7 @@ const stories = storiesOf("Dropdown", module).addParameters({
 });
 
 const Wrapper = ({ children }) => (
-  <div className="t-background-grey-0 u-padding--3xlg">
+  <div className="bg-grey-0 u-padding--3xlg">
     <div className="o-wrapper">{children}</div>
   </div>
 );

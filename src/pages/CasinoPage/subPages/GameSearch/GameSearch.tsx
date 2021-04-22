@@ -36,11 +36,11 @@ const gameRowSecondaryText = (
   t: TCmsContent
 ) => () => {
   return game.isInMaintenance ? (
-    <Text className="u-padding-top--sm t-color-grey-70" size="sm">
+    <Text className="u-padding-top--sm text-grey-70" size="sm">
       {t.gameInMaintenanceText}
     </Text>
   ) : (
-    <div className="t-color-grey-20">{game.gameStudio}</div>
+    <div className="text-grey-20">{game.gameStudio}</div>
   );
 };
 
@@ -76,7 +76,7 @@ export const GameSearch: React.FC<TProps> = ({
 
   return (
     <div className={cx("o-wrapper", xPaddingClasses)}>
-      <div className="c-game-search t-background-grey-0 c-game-search-bar o-position--sticky o-inset-top--none u-padding-y--md u-padding-y--lg@desktop">
+      <div className="c-game-search bg-grey-0 c-game-search-bar o-position--sticky o-inset-top--none u-padding-y--md u-padding-y--lg@desktop">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}
@@ -84,7 +84,7 @@ export const GameSearch: React.FC<TProps> = ({
           placeholder={t.searchSuggestionText}
         />
       </div>
-      <div className="t-border-r--md t-border-r--none@mobile t-background-white">
+      <div className="t-border-r--md t-border-r--none@mobile bg-white">
         {noResults && <SearchNotFoundContainer type={suggestions?.type} />}
         {searchResults.length === 0 && loading ? (
           <GameListSkeleton hasTitle={false} />

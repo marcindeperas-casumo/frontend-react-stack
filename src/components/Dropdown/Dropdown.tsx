@@ -66,7 +66,7 @@ export const DropdownItemContent = ({
             {DescriptionIcon && <DescriptionIcon size="sm" />}
             <Text
               tag="span"
-              className="u-margin-left--sm u-font-sm t-color-grey-50"
+              className="u-margin-left--sm u-font-sm text-grey-50"
             >
               {description}
             </Text>
@@ -87,7 +87,7 @@ export const DropdownItem = ({
     <li
       className={cx(
         "u-padding--md",
-        "t-border-grey-5",
+        "border-grey-5",
         { "t-border-bottom": withBottomBorder },
         className
       )}
@@ -124,7 +124,7 @@ export const Dropdown = ({
     "u-padding--none",
     "u-margin-top--sm",
     "t-elevation--30",
-    "t-background-white",
+    "bg-white",
     `o-inset-${anchorPosition}--none`,
     {
       "t-border-r--sm": withRoundedCorners,

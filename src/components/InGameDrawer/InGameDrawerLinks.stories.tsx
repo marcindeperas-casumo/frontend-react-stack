@@ -16,7 +16,7 @@ const actions = {
 
 stories.add("default", () => {
   return (
-    <div className="t-background-grey-90 t-border-r u-padding-x--xlg u-padding-y--lg">
+    <div className="bg-grey-90 t-border-r u-padding-x--xlg u-padding-y--lg">
       <InGameDrawerLinks
         isChatDisabled={false}
         onLiveChatClick={actions.onLiveChatClick}

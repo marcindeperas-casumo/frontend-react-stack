@@ -5,7 +5,7 @@ import cx from "classnames";
 import * as React from "react";
 import { CheckeredFlagIcon } from "Components/CheckeredFlagIcon/CheckeredFlagIcon";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
-import { getProgressColor } from "Models/reelRaces/reelRaces.utils";
+import { getProgressBgClassName } from "Models/reelRaces/reelRaces.utils";
 import { useGameActivityAwareWidgetLeaderboard } from "Models/reelRaces";
 import { useReelRaceProgress } from "Utils/hooks/useReelRaceProgress";
 import { MARKETS } from "Src/constants";
@@ -89,18 +89,18 @@ export const ReelRacesDrawerWidget = ({
           <Text
             size="xs"
             tag="span"
-            className="t-color-grey-50 u-text-transform-uppercase"
+            className="text-grey-50 u-text-transform-uppercase"
           >
             {t?.reel_races_drawer_spins}
           </Text>
           <>
             <MobileAndTablet>
               <SpinIcon
-                className="t-color-grey-20 u-padding-bottom--sm u-padding-right--sm"
+                className="text-grey-20 u-padding-bottom--sm u-padding-right--sm"
                 size="sm"
               />
             </MobileAndTablet>
-            <Text tag="span" size="md" className="t-color-white">
+            <Text tag="span" size="md" className="text-white">
               {userLeaderboard.remainingSpins}
             </Text>
           </>
@@ -118,7 +118,7 @@ export const ReelRacesDrawerWidget = ({
           <Text
             size="xs"
             tag="span"
-            className="t-color-grey-50 u-text-transform-uppercase"
+            className="text-grey-50 u-text-transform-uppercase"
           >
             {t?.reel_races_drawer_points}
           </Text>
@@ -130,7 +130,7 @@ export const ReelRacesDrawerWidget = ({
               <Text
                 tag="span"
                 size="xs"
-                className="t-color-grey-20 u-margin-left--sm"
+                className="text-grey-20 u-margin-left--sm"
               >
                 {t?.reel_races_drawer_pts}
               </Text>
@@ -150,7 +150,7 @@ export const ReelRacesDrawerWidget = ({
         <Text
           tag="span"
           size="2xs"
-          className="t-color-white u-text-transform-uppercase u-font-weight-black"
+          className="text-white u-text-transform-uppercase u-font-weight-black"
         >
           {t?.reel_races_drawer_full_leaderboard}
         </Text>
@@ -165,7 +165,7 @@ export const ReelRacesDrawerWidget = ({
   return (
     <Flex
       className={cx(
-        "c-reel-races-drawer-widget t-color-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-color-white t-border-r o-flex--wrap u-margin-bottom--none@desktop",
+        "c-reel-races-drawer-widget text-white u-padding u-padding--md@desktop u-padding-top--none@desktop t-border-r o-flex--wrap u-margin-bottom--none@desktop",
         className
       )}
       direction="horizontal"
@@ -212,9 +212,9 @@ const RaceProgress = ({ currentRace }) => {
         direction="horizontal"
         className="o-flex--wrap u-width--full u-padding-left u-padding-right"
       >
-        <Flex.Item className="c-progress-bar t-background-grey-70 t-opacity-background-100 t-border-r u-height--sm u-width--full">
+        <Flex.Item className="c-progress-bar bg-grey-70 t-opacity-background-100 t-border-r u-height--sm u-width--full">
           <div
-            className={`c-highlighted-progress-bar t-background-${getProgressColor(
+            className={`c-highlighted-progress-bar ${getProgressBgClassName(
               gameProgress
             )}`}
             style={{ width: `${gameProgress}%` }}
@@ -222,11 +222,11 @@ const RaceProgress = ({ currentRace }) => {
         </Flex.Item>
         <Flex
           direction="horizontal"
-          className="u-width--full t-color-grey-20"
+          className="u-width--full text-grey-20"
           justify="space-between"
         >
           <Flex.Item className="u-font-2xs">{timeElapsedFormatted}</Flex.Item>
-          <Flex.Item className="u-font-2xs t-color-grey-50">
+          <Flex.Item className="u-font-2xs text-grey-50">
             {gameDurationFormatted}
           </Flex.Item>
         </Flex>

@@ -8,7 +8,7 @@ const stories = storiesOf("GameTileHeart", module);
 stories.addDecorator(withKnobs);
 
 stories.add("Default", () => (
-  <div className="t-color-red-30" style={{ width: 50, height: 50 }}>
+  <div className="text-red-30" style={{ width: 50, height: 50 }}>
     <GameTileHeart isActive={boolean("is active", false)} onClick={() => {}} />
   </div>
 ));
@@ -16,7 +16,7 @@ stories.add("Default", () => (
 stories.add(
   "Active",
   () => (
-    <div className="t-color-red-30" style={{ width: 50, height: 50 }}>
+    <div className="text-red-30" style={{ width: 50, height: 50 }}>
       <GameTileHeart isActive={true} onClick={() => {}} />
     </div>
   ),

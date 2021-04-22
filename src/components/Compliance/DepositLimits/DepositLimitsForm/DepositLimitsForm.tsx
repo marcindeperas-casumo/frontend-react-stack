@@ -51,9 +51,9 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
   return (
     <Flex
       direction="vertical"
-      className="o-flex-align--center@desktop u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full t-background-white"
+      className="o-flex-align--center@desktop u-padding--2xlg u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop u-height--full bg-white"
     >
-      <Text className={`u-font-weight-bold t-color-grey-90 ${flexItemWidth}`}>
+      <Text className={`u-font-weight-bold text-grey-90 ${flexItemWidth}`}>
         {t[visible]}
       </Text>
       <TextInput
@@ -66,7 +66,7 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
       <Text
         data-test-id="inputValidation"
         size="sm"
-        className={`t-color-red-30 ${flexItemWidth}`}
+        className={`text-red-30 ${flexItemWidth}`}
       >
         {inputError}
       </Text>
@@ -81,8 +81,8 @@ export function DepositLimitsForm({ t, ...props }: FormPropsWithTranslations) {
             key={limitName}
             onClick={() => setVisible(limitName)}
             isActive={visible === limitName}
-            inactiveClassNames="o-flex--1 t-background-grey-0 c-deposit-limits-form-pill__container"
-            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container t-background-purple-60 t-color-white"
+            inactiveClassNames="o-flex--1 bg-grey-0 c-deposit-limits-form-pill__container"
+            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container bg-purple-60 text-white"
           >
             <Flex
               align="center"
@@ -127,7 +127,7 @@ function MainButton(props: { disabled: boolean; onClick: () => void }) {
       isDisabled={props.disabled}
       onClick={props.onClick}
     >
-      <ArrowRightIcon size="md" className="t-color-white" />
+      <ArrowRightIcon size="md" className="text-white" />
     </ButtonPrimary>
   );
 }

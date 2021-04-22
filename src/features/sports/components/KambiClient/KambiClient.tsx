@@ -191,7 +191,7 @@ export default class KambiClient extends React.Component<Props, State> {
   render() {
     return (
       <div
-        className={classNames("t-background-grey-0", {
+        className={classNames("bg-grey-0", {
           "c-kambi-client--hidden": this.props.isHidden,
         })}
       >

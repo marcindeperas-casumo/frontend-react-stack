@@ -5,6 +5,6 @@ const baseClassName = "c-rr-booster";
 export function getArcClassName(isLit: boolean): string {
   return cx(
     `${baseClassName}__arc`,
-    !isLit ? "t-color-black t-opacity--25" : "t-color-teal-50"
+    !isLit ? "text-black t-opacity--25" : "text-teal-50"
   );
 }
