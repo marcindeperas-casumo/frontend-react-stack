@@ -55,7 +55,7 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
     return (
       <ChevronDownIcon
         className={classNames(
-          "t-color-purple-60",
+          "text-purple-60",
           this.state.isExpanded && "u-transform--flip-y"
         )}
       />

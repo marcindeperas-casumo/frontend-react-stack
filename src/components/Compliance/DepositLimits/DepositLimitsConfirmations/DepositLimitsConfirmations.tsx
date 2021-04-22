@@ -64,17 +64,17 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
       direction="vertical"
       align="stretch"
       spacing="none"
-      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
+      className="u-padding--md u-height--full bg-white c-deposit-limits-container"
     >
       <Text
         size="xlg"
-        className="u-font-weight-black t-color-purple-80"
+        className="u-font-weight-black text-purple-80"
         data-test-id="txt"
       >
         {t[translationKeys.title]}
       </Text>
       {typeof translationKeys.content === "string" && (
-        <Text className="t-color-grey-50">{t[translationKeys.content]}</Text>
+        <Text className="text-grey-50">{t[translationKeys.content]}</Text>
       )}
       <Flex.Block />
       <Flex direction="vertical">
@@ -101,7 +101,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
           {isLastPage ? (
             t[props.lastButtonCaption]
           ) : (
-            <ArrowRightIcon className="t-color-white" />
+            <ArrowRightIcon className="text-white" />
           )}
         </ButtonPrimary>
       </Flex>

@@ -14,7 +14,7 @@ export function ArchivedVersionHeader(props: Props) {
     props.title.match(/(.*)<#>(.*)<\/#>(.*)/) || []; // to silence flow
 
   return (
-    <div className="u-padding--md t-background-blue-50 t-color-white">
+    <div className="u-padding--md bg-blue-50 text-white">
       <Text tag="span" size="sm">
         {before}
         <Text

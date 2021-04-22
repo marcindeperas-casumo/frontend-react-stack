@@ -19,7 +19,7 @@ t-border-r--circle o-inset-top--none u-margin-top--md o-inset-left--none u-margi
 stories.add("Default", () => {
   return (
     <div
-      className="t-background-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
+      className="bg-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
       style={{
         height: 48,
         boxSizing: "content-box",

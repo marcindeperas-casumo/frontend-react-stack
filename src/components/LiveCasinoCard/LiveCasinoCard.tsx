@@ -50,7 +50,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
           className="o-ratio__content u-font-weight-bold"
         >
           <GameTileHeart
-            containerClassName="t-color-white"
+            containerClassName="text-white"
             heartClassName="u-width--4xlg u-height--4xlg u-padding--md"
             gameId={this.props.game.id}
             gameName={this.props.game.name}
@@ -61,7 +61,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
           />
         </Flex>
         {isInMaintenance && (
-          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold t-opacity--75 t-background-black">
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg text-white u-font-weight-bold t-opacity--75 bg-black">
             <span>{this.props.t?.table_temporarily_unavailable}</span>
           </div>
         )}
@@ -80,7 +80,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
         <Flex.Block>
           <Text
             tag="h3"
-            className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-70"
+            className="u-font-weight-black u-margin-bottom--sm u-text-clamp text-grey-70"
           >
             {convertHTMLToString(game.name)}
           </Text>
@@ -96,7 +96,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
             {isInMaintenance ? (
               <ButtonSecondary
                 size="sm"
-                className="u-text-transform-capitalize c-live-casino-card-maintenance__play-button t-color-white"
+                className="u-text-transform-capitalize c-live-casino-card-maintenance__play-button text-white"
               >
                 <PlayIcon size="sm" className="u-margin-right--sm" />
                 <span>{this.props.t?.play_now}</span>
@@ -157,14 +157,14 @@ export class LiveCasinoCard extends PureComponent<Props> {
           }}
         >
           <GameTileHeart
-            containerClassName="t-color-white"
+            containerClassName="text-white"
             heartClassName="u-width--4xlg u-height--4xlg u-padding--md"
             gameId={this.props.game.id}
             gameName={this.props.game.name}
           />
         </Flex>
         {isInMaintenance && (
-          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg t-color-white u-font-weight-bold t-opacity--75 t-background-black">
+          <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg text-white u-font-weight-bold t-opacity--75 bg-black">
             <span>{this.props.t?.table_temporarily_unavailable}</span>
           </div>
         )}
@@ -178,7 +178,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
       return (
         <Card
           className={cx(
-            "u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow--hidden",
+            "u-width--full u-height--full bg-white t-border-r--md t-box-shadow u-overflow--hidden",
             isInMaintenance &&
               "c-live-casino-card-maintenance u-pointer--none o-position--relative"
           )}
@@ -198,7 +198,7 @@ export class LiveCasinoCard extends PureComponent<Props> {
     return (
       <Card
         className={cx(
-          "u-width--full u-height--full t-background-white t-border-r--md t-elevation--10 u-overflow--hidden",
+          "u-width--full u-height--full bg-white t-border-r--md t-elevation--10 u-overflow--hidden",
           isInMaintenance &&
             "c-live-casino-card-maintenance o-position--relative u-pointer--none"
         )}

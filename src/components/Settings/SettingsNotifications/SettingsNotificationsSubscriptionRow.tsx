@@ -14,7 +14,7 @@ export const SettingsNotificationsSubscriptionRow = ({
 }) => (
   <SettingsRow
     padding="md"
-    text={<Text className="t-color-grey-70">{label}</Text>}
+    text={<Text className="text-grey-70">{label}</Text>}
   >
     <Checkbox checked={isEnabled} onChange={onChange} />
   </SettingsRow>

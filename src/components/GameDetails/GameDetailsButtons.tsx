@@ -22,7 +22,7 @@ export const GameDetailsButtons = ({
   hasPlayForFun,
   practiceButtonText,
 }: Props) => (
-  <div className="u-zindex--content-overlay o-position--fixed@mobile o-inset-bottom--none u-left-shell-offset o-inset-right--none t-background-white u-padding--md u-width--full@tablet u-width--2/3@desktop u-margin-x--auto">
+  <div className="u-zindex--content-overlay o-position--fixed@mobile o-inset-bottom--none u-left-shell-offset o-inset-right--none bg-white u-padding--md u-width--full@tablet u-width--2/3@desktop u-margin-x--auto">
     <TrackClick
       eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
       data={{

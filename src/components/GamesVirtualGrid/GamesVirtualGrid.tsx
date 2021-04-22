@@ -30,7 +30,7 @@ export const GamesVirtualGrid = ({ games, gamesCount, loadMore }: Props) => (
     tileHeight={gameTileHeight}
     TileComponent={OptimizedGameTile}
     tileLoadingElement={
-      <div className="t-border-r--md t-background-grey-5 u-height--full u-width--full" />
+      <div className="t-border-r--md bg-grey-5 u-height--full u-width--full" />
     }
   />
 );

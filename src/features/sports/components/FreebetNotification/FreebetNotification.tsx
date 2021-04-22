@@ -36,7 +36,7 @@ const MOCKED_TRANSLATIONS = {
 
 export const FreebetNotification = (props: Props) => (
   <Media
-    className="u-padding--md t-background-white"
+    className="u-padding--md bg-white"
     renderImage={() => renderValuableThumbnail(props)}
     renderText={() => renderValuableText(props)}
   />
@@ -50,7 +50,7 @@ const renderValuableThumbnail = ({
   valuableState,
   valuableType,
 }) => (
-  <div className="u-width--4xlg t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
+  <div className="u-width--4xlg bg-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
     <ValuableThumbnail
       backgroundRenderer={
         <ImageLazy
@@ -97,7 +97,7 @@ const renderValuableText = ({
       )}
 
       {caveat && (
-        <Text className="t-color-grey-5" size="2xs" tag="span">
+        <Text className="text-grey-5" size="2xs" tag="span">
           <DangerousHtml html={caveat} />
         </Text>
       )}

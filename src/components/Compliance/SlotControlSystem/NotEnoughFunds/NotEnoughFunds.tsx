@@ -28,7 +28,7 @@ export function NotEnoughFunds(props: Props) {
       <Text
         size="2xlg"
         tag="h3"
-        className="t-color-purple-80 u-padding u-margin-top--lg"
+        className="text-purple-80 u-padding u-margin-top--lg"
       >
         {t.not_enough_funds}
       </Text>

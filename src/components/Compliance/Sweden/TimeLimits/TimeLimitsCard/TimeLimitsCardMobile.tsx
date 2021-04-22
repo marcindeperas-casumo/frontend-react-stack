@@ -49,13 +49,13 @@ export function TimeLimitsCardMobile({
       <Flex.Item>
         <Text
           size="md"
-          className="u-font-weight-bold t-color-grey-50 u-margin-bottom--none"
+          className="u-font-weight-bold text-grey-50 u-margin-bottom--none"
         >
           {t.mobile_title}
         </Text>
       </Flex.Item>
       <Flex.Item>
-        <Text size="sm" className="t-color-grey-50 u-text-align-center">
+        <Text size="sm" className="text-grey-50 u-text-align-center">
           {t.mobile_subtitle}
         </Text>
       </Flex.Item>
@@ -69,7 +69,7 @@ export function TimeLimitsCardMobile({
         t={{ ...t, label: t.mobile_limit_monthly }}
       />
       <Flex.Item className="u-margin-top--lg">
-        <Text tag="em" className="t-color-grey-50">
+        <Text tag="em" className="text-grey-50">
           {interpolateWithJSX(
             { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
             t.time_left_daily
@@ -98,7 +98,7 @@ function LimitRow({ t, limit }: LimitRowProps) {
   return (
     <>
       <Flex.Item>
-        <Text tag="span" size="md" className="t-color-grey-50">
+        <Text tag="span" size="md" className="text-grey-50">
           {interpolateWithJSX(
             { time: <TimeLimitsCardDuration duration={limitDuration} /> },
             t.label

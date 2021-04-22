@@ -21,7 +21,7 @@ export const ArticleListRow = (props: Props) => {
       className={classNames(
         "u-cursor--pointer",
         "t-border-r--md",
-        "t-background-white",
+        "bg-white",
         "u-width--full u-padding--md",
         "t-elevation--10"
       )}
@@ -37,7 +37,7 @@ export const ArticleListRow = (props: Props) => {
         className="u-margin-left--md o-flex--1 u-width"
       >
         {article.subtitle && (
-          <div className="u-font-sm t-color-grey-50">{article.subtitle}</div>
+          <div className="u-font-sm text-grey-50">{article.subtitle}</div>
         )}
         <div className="u-font-weight-bold">{article.title}</div>
       </Flex>

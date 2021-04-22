@@ -105,7 +105,7 @@ export const QuickDepositSlip = ({
                   tag="span"
                   size="sm"
                   className={classNames(
-                    formErrors.cvv ? "t-color-red-30" : "t-color-grey-50"
+                    formErrors.cvv ? "text-red-30" : "text-grey-50"
                   )}
                 >
                   {formErrors.cvv || cvv_helper_text}

@@ -19,9 +19,9 @@ export const myButtonRenderer = (
       {hasPreviousPage && (
         <div
           onClick={e => scrollableClickHandler("previous")}
-          className="t-background-grey-90 t-border-r--circle u-padding--md u-cursor--pointer"
+          className="bg-grey-90 t-border-r--circle u-padding--md u-cursor--pointer"
         >
-          <ArrowLeftIcon className="t-color-grey-0" />
+          <ArrowLeftIcon className="text-grey-0" />
         </div>
       )}
     </Flex.Item>
@@ -29,9 +29,9 @@ export const myButtonRenderer = (
       {hasNextPage && (
         <div
           onClick={e => scrollableClickHandler("next")}
-          className="t-background-grey-90 t-border-r--circle u-padding--md u-cursor--pointer"
+          className="bg-grey-90 t-border-r--circle u-padding--md u-cursor--pointer"
         >
-          <ArrowRightIcon className="t-color-grey-0" />
+          <ArrowRightIcon className="text-grey-0" />
         </div>
       )}
     </Flex.Item>
@@ -53,7 +53,7 @@ stories.add("Default", () => {
         >
           <div
             style={{ height: "100%", width }}
-            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
+            className="text-white bg-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>
@@ -86,7 +86,7 @@ stories.add("Mixed width elements", () => {
         >
           <div
             style={{ height: "100%", width: width }}
-            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
+            className="text-white bg-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>

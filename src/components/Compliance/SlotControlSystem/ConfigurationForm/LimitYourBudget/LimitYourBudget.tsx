@@ -49,7 +49,7 @@ export function LimitYourBudget(props: Props) {
     <Flex
       direction="vertical"
       className={classNames(
-        "u-padding--md u-height--1/1 t-background-white c-scs__limit-your-budget",
+        "u-padding--md u-height--1/1 bg-white c-scs__limit-your-budget",
         budget &&
           isBudgetInvalid(budgetBalance) &&
           "c-scs__limit-your-budget--error"
@@ -85,7 +85,7 @@ export function LimitYourBudget(props: Props) {
         className="u-margin-top--xlg u-margin-top--3xlg@tablet"
         onClick={() => onSubmit(balance)}
       >
-        <span className="t-color-black">
+        <span className="text-black">
           {interpolate(t.use_all_balance, { balance: formattedBalance })}
         </span>
       </ButtonSecondary>
