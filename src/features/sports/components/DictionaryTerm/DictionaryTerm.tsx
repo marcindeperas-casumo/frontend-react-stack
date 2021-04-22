@@ -39,7 +39,7 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
-}: Props) => {
+}: Props): JSX.Element => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<
     A.DictionaryTermQuery,
