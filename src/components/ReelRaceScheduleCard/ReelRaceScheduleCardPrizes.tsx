@@ -33,7 +33,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
             key={`${prize}_${count}`}
             className={cx(
               count !== prizes.length && "t-border-bottom",
-              "t-border-grey-0 u-padding-y",
+              "border-grey-0 u-padding-y",
               "o-flex--1"
             )}
           >
@@ -42,10 +42,10 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                 <LaurelIcon
                   size="lg"
                   className={cx(
-                    count === 1 && "t-color-yellow-30",
-                    count === 2 && "t-color-grey-20",
-                    count === 3 && "t-color-orange-30",
-                    count >= 3 && "t-color-grey-5"
+                    count === 1 && "text-yellow-30",
+                    count === 2 && "text-grey-20",
+                    count === 3 && "text-orange-30",
+                    count >= 3 && "text-grey-5"
                   )}
                 />
                 <Text
@@ -67,7 +67,7 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                   {t?.leaderboard_rank} #{position}
                 </Flex.Block>
                 <Flex>
-                  <TournamentIcon className="t-color-grey-50 u-margin-right" />
+                  <TournamentIcon className="text-grey-50 u-margin-right" />
                   <Text className="u-font u-font-weight-bold">{prize}</Text>
                 </Flex>
               </Flex>

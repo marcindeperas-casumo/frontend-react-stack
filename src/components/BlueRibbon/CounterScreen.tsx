@@ -36,7 +36,7 @@ export const CounterScreen = ({
       </div>
       <div className="c-text-positioner">
         <Flex direction="vertical">
-          <div className="c-title-container c-title-typography t-color-yellow-30 u-font-weight-black u-text-align-center">
+          <div className="c-title-container c-title-typography text-yellow-30 u-font-weight-black u-text-align-center">
             {interpolate(t.jackpot_win_title, { type: type.toUpperCase() })}
           </div>
           <div className="c-money-container c-money-typography">

@@ -3,7 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import { LaurelIcon } from "@casumo/cmp-icons";
 import React from "react";
 import cx from "classnames";
-import { getLaurelColor } from "Models/reelRaces/reelRaces.utils";
+import { getLaurelClassName } from "Models/reelRaces/reelRaces.utils";
 
 import "../ReelRaceIcon.scss";
 
@@ -15,17 +15,17 @@ export const PositionView = ({
   className?: string;
 }) => (
   <Flex
-    className={cx("t-color-white u-line-height--1", className)}
+    className={cx("text-white u-line-height--1", className)}
     direction="vertical"
     spacing="none"
     align="center"
   >
     <Flex.Item>
-      <LaurelIcon size="sm" className={`t-color-${getLaurelColor(position)}`} />
+      <LaurelIcon size="sm" className={getLaurelClassName(position)} />
     </Flex.Item>
     <Flex.Item>
       <Text
-        className="t-color-white u-font-weight-bold"
+        className="text-white u-font-weight-bold"
         tag="div"
         size={position < 100 ? "sm" : "xs"}
       >

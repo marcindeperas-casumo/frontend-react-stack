@@ -27,13 +27,10 @@ export function ModalBase({
       isOpen={isOpen}
       // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       onRequestClose={onRequestClose}
-      className={classNames(
-        "t-background-white o-flex--vertical c-rsmodal u-overflow--hidden",
-        {
-          "t-border-r--md": !isMobile(),
-          "c-rsmodal__wide": isWide,
-        }
-      )}
+      className={classNames("bg-white o-flex--vertical c-rsmodal", {
+        "t-border-r--md": !isMobile(),
+        "c-rsmodal__wide": isWide,
+      })}
       overlayClassName={`c-rsmodal__overlay c-rsmodal__overlay--${jurisdiction}`}
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
       shouldCloseOnOverlayClick={!mustAccept}

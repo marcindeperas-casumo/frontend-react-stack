@@ -77,7 +77,7 @@ export const SumoIcon = ({
           size="sm"
           className={cx(
             `${baseClassName}__chevron-icon`,
-            `t-color-black t-opacity-background--100 t-background-white o-position--absolute t-border-r--circle u-cursor--pointer`,
+            `text-black bg-opacity-100 bg-white o-position--absolute t-border-r--circle u-cursor--pointer`,
             {
               [`${baseClassName}__chevron-icon--visible`]: !openedState,
               [`${baseClassName}__chevron-icon--hidden`]: openedState,
@@ -89,7 +89,7 @@ export const SumoIcon = ({
             `${baseClassName}__close-drawer`,
             "o-position--absolute u-height--3xlg u-width--3xlg",
             "t-border-r--circle u-margin-right--md u-cursor--pointer",
-            "t-color-white o-position--absolute@mobile u-zindex--header",
+            "text-white o-position--absolute@mobile u-zindex--header",
             {
               [`${baseClassName}__close-drawer--visible`]: openedState,
               [`${baseClassName}__close-drawer--hidden`]: !openedState,

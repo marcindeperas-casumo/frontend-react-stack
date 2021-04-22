@@ -3,6 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import React, { PureComponent } from "react";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 export type Props = {
   /** The text label for this list item */
@@ -13,6 +14,8 @@ export type Props = {
   isFavourite?: boolean;
   /** Should the list item be favouritable, false values disable toggle */
   isFavouritable?: boolean;
+  /** Should the list item be marked as NEW */
+  newLabel?: boolean;
   /** Callback for when the list item is clicked */
   onClick?: () => any;
 };
@@ -26,9 +29,9 @@ export default class FavouriteListItem extends PureComponent<Props> {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      "u-padding t-border-r--circle t-color-grey-20",
-      isFavourite && "t-background-purple-60",
-      !isFavourite && "t-background-grey-0"
+      "u-padding t-border-r--circle text-grey-20",
+      isFavourite && "bg-purple-60",
+      !isFavourite && "bg-grey-0"
     );
 
     return isFavouritable ? (
@@ -41,8 +44,8 @@ export default class FavouriteListItem extends PureComponent<Props> {
       >
         <CheckIcon
           className={classNames(
-            !isFavourite && "u-visibility--hidden t-color-grey-0",
-            "t-color-white"
+            !isFavourite && "u-visibility--hidden text-grey-0",
+            "text-white"
           )}
         />
       </Flex.Item>
@@ -55,9 +58,26 @@ export default class FavouriteListItem extends PureComponent<Props> {
         <Flex align="center">
           {this.icon}
           <Flex.Block>
-            <Text className="u-font-weight-bold u-margin--none" size="md">
-              {this.props.label}
-            </Text>
+            <Flex align="center">
+              <Text className="u-font-weight-bold u-margin--none" size="md">
+                {this.props.label}
+              </Text>
+              {this.props.newLabel && (
+                <div
+                  className={classNames(
+                    "bg-yellow-30 t-border-r--sm",
+                    "text-purple-80 c-sports-navigation-item--new",
+                    "u-padding--sm u-margin-left--lg u-font-weight-bold",
+                    "u-font-xs"
+                  )}
+                >
+                  {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
+                  <DictionaryTerm termKey="new">
+                    {allLabel => allLabel || "NEW"}
+                  </DictionaryTerm>
+                </div>
+              )}
+            </Flex>
           </Flex.Block>
           {this.favouriteIcon}
         </Flex>

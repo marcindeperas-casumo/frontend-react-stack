@@ -15,12 +15,12 @@ type Props = {
 };
 
 const TextMatch = value => (
-  <span className="t-color-grey-70">
+  <span className="text-grey-70">
     <DangerousHtml html={value} />
   </span>
 );
 const TextNotMatch = value => (
-  <span className="t-color-grey-20">
+  <span className="text-grey-20">
     <DangerousHtml html={value} />
   </span>
 );
@@ -39,7 +39,7 @@ export class GameRowSearchTitle extends PureComponent<Props> {
           <TextMaskColored text={name} search={query} />
         ) : (
           <DangerousHtml
-            className={`t-color-grey-${isInMaintenance ? "5" : "70"}`}
+            className={isInMaintenance ? "text-grey-5" : "text-grey-70"}
             html={name}
           />
         )}

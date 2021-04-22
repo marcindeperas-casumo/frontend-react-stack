@@ -20,8 +20,8 @@ export const Prize = ({ prize, highlighted, className }: Props) => (
       className={cx(
         `${baseClassName} t-border-r--md u-overflow--hidden u-padding-x`,
         {
-          "t-background-brown-30": highlighted,
-          "t-background-grey-0 ": !highlighted,
+          "bg-brown-30": highlighted,
+          "bg-grey-0 ": !highlighted,
         }
       )}
       align="center"
@@ -29,8 +29,8 @@ export const Prize = ({ prize, highlighted, className }: Props) => (
       <Flex.Item>
         <TournamentIcon
           className={cx({
-            "t-color-grey-50": !highlighted,
-            "t-color-white": highlighted,
+            "text-grey-50": !highlighted,
+            "text-white": highlighted,
           })}
         />
       </Flex.Item>
@@ -38,8 +38,8 @@ export const Prize = ({ prize, highlighted, className }: Props) => (
         <Text
           tag="div"
           className={cx("u-font-weight-bold", {
-            "t-color-grey-90": !highlighted,
-            "t-color-white": highlighted,
+            "text-grey-90": !highlighted,
+            "text-white": highlighted,
           })}
         >
           {prize}

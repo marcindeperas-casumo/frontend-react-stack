@@ -32,13 +32,13 @@ describe("ValuableStateIndicator", () => {
     const rendered = shallow(
       <ValuableStateIndicator state={VALUABLE_STATES.FRESH} />
     );
-    expect(rendered.hasClass("t-color-red-30"));
+    expect(rendered.hasClass("text-red-30"));
   });
 
   test("should have class to render text black if locked", () => {
     const rendered = shallow(
       <ValuableStateIndicator state={VALUABLE_STATES.LOCKED} />
     );
-    expect(rendered.hasClass("t-color-black"));
+    expect(rendered.hasClass("text-black"));
   });
 });

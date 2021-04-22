@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
 import DepositLimitsIcon from "Components/Compliance/DepositLimits/DepositLimitsOverview/depositLimits.svg";
 import { LimitHeader } from "./LimitHeader";

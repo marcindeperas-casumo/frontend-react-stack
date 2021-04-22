@@ -49,7 +49,7 @@ export function ReelRaceLeaderboardModal({
         ? interpolateWithJSX(
             {
               place: (
-                <span className="t-color-teal-50">
+                <span className="text-teal-50">
                   {position}
                   {placeSuffix}
                 </span>
@@ -59,7 +59,7 @@ export function ReelRaceLeaderboardModal({
           )
         : interpolateWithJSX(
             {
-              winnerName: <span className="t-color-teal-50">{winnerName}</span>,
+              winnerName: <span className="text-teal-50">{winnerName}</span>,
             },
             t.someoneWon
           )}

@@ -86,14 +86,14 @@ export const SportsShellContainer: React.FC<{}> = () => {
     return <ErrorMessage direction="horizontal" retry={refetch} />;
   }
 
-  const virtualsPrefixHash = "#virtuals";
+  const virtualsPrefixHash = "#filter/virtuals";
   const promotionPrefixHash = "#promotions";
 
   return (
     <>
       <SportsHashWatcher>
         {({ currentHash }) => (
-          <div className="t-background-grey-0">
+          <div className="bg-grey-0">
             <SportsShellDepositWrapper />
             {data.isSearchVisible ? (
               <SportsSearch />

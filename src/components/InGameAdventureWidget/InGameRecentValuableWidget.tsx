@@ -72,22 +72,34 @@ export const InGameRecentValuableWidget = ({
     valuable => valuable.id === recentValuable
   );
 
+  if (!latestValuable) {
+    return null;
+  }
+
   return (
     <Flex className="u-padding--md" spacing="none">
       <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
-        <div className="c-ingame-recent-valuable__thumbnail t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
-          {!loading ? (
+        <div className="c-ingame-recent-valuable__thumbnail bg-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
+          {loading ? (
+            <div className="bg-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
+          ) : (
             <ValuableThumbnail
-              // @ts-expect-error ts-migrate(2339) FIXME: Property 'awardType' does not exist on type '{ __t... Remove this comment to see the full error message
-              awardType={latestValuable.awardType}
+              awardType={
+                latestValuable.__typename === "PlayerValuableWageringLock"
+                  ? latestValuable.awardType
+                  : null
+              }
               backgroundRenderer={
                 <ValuableThumbnailRenderer
                   backgroundImage={latestValuable.backgroundImage}
                   valuableType={latestValuable.valuableType}
                 />
               }
-              // @ts-expect-error ts-migrate(2339) FIXME: Property 'coinValue' does not exist on type '{ __t... Remove this comment to see the full error message
-              coinValue={latestValuable.coinValue}
+              coinValue={
+                latestValuable.__typename === "PlayerValuableSpins"
+                  ? latestValuable.coinValue
+                  : null
+              }
               currency={latestValuable.currency}
               expiryTimeLeft={getExpiryTimeLeft(latestValuable.expiryDate)}
               market={latestValuable.market}
@@ -96,26 +108,24 @@ export const InGameRecentValuableWidget = ({
               valuableType={latestValuable.valuableType}
               size="small"
             />
-          ) : (
-            <div className="t-background-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
           )}
         </div>
       </Flex.Item>
       <Flex.Block className="u-padding-left--md">
-        <Text className="t-color-white u-font-weight-bold u-margin-top--none">
+        <Text className="text-white u-font-weight-bold u-margin-top--none">
           {loading ? (
             <div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text u-margin-bottom--sm"></div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text u-margin-bottom--sm"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text"></div>
             </div>
           ) : (
             latestValuable.content
           )}
         </Text>
-        <Text className="t-color-grey-20 u-margin-top--none">
+        <Text className="text-grey-20 u-margin-top--none">
           {loading ? (
             <div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text"></div>
             </div>
           ) : (
             latestValuable.caveat

@@ -30,7 +30,7 @@ export function ErrorMessage(props: ErrorMessageProps) {
   });
   const textProps = {
     size: "sm",
-    className: "t-color-red-30 u-margin-bottom--3xlg@tablet",
+    className: "text-red-30 u-margin-bottom--3xlg@tablet",
   };
 
   if (!isBudgetInvalid(props) || isNaN(budget)) {

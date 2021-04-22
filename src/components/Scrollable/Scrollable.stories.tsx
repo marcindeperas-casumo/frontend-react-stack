@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs/react";
+import { number } from "@storybook/addon-knobs";
 import React from "react";
 import { Scrollable } from "Components/Scrollable";
 
@@ -18,7 +18,7 @@ stories.add("Default", () => {
         >
           <div
             style={{ height: "100%" }}
-            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
+            className="text-white bg-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>
@@ -51,7 +51,7 @@ stories.add("Mixed width elements", () => {
         >
           <div
             style={{ height: "100%", width: width }}
-            className="t-color-white t-background-red-30 o-flex-justify--center o-flex-align--center"
+            className="text-white bg-red-30 o-flex-justify--center o-flex-align--center"
           >
             {columnIndex}
           </div>

@@ -81,7 +81,7 @@ export function ReelRaceScheduleCardContent({
               </Text>
               <Text
                 size="xs"
-                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm text-grey-50 u-text-transform-uppercase"
               >
                 {reelRace.translations.startingIn}
               </Text>
@@ -89,12 +89,12 @@ export function ReelRaceScheduleCardContent({
             <Flex
               direction="vertical"
               align="center"
-              className="o-flex--1 u-text-align-center t-border-left t-border-right t-border-grey-5"
+              className="o-flex--1 u-text-align-center t-border-left t-border-right border-grey-5"
             >
               <Text className="u-font-weight-bold">{reelRace.spinLimit}</Text>
               <Text
                 size="xs"
-                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm text-grey-50 u-text-transform-uppercase"
               >
                 {reelRace.translations.spins}
               </Text>
@@ -112,7 +112,7 @@ export function ReelRaceScheduleCardContent({
               </Text>
               <Text
                 size="xs"
-                className="u-font-weight-bold u-padding-top u-padding-bottom--sm t-color-grey-50 u-text-transform-uppercase"
+                className="u-font-weight-bold u-padding-top u-padding-bottom--sm text-grey-50 u-text-transform-uppercase"
               >
                 {reelRace.translations.duration}
               </Text>
@@ -123,12 +123,12 @@ export function ReelRaceScheduleCardContent({
               reelRace.translations.caveatShort !== "false" && (
                 <Text
                   tag="div"
-                  className={cx("t-color-grey-50 u-margin--lg")}
+                  className={cx("text-grey-50 u-margin--lg")}
                   onClick={showCaveatsModal}
                 >
                   <DangerousHtml
                     html={interpolate(reelRace.translations.caveatShort, {
-                      ctaTermsAndConditions: 'class="t-color-grey-50"',
+                      ctaTermsAndConditions: 'class="text-grey-50"',
                     })}
                   />
                 </Text>

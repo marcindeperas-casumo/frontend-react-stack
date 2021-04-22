@@ -75,7 +75,7 @@ export default class KambiClient extends React.Component<Props, State> {
       enableFilterMenu: false,
       enableQuickBrowse: false,
       enableTermSearch: false,
-      reservedRoutes: ["virtuals", "promotions"],
+      reservedRoutes: ["filter/virtuals", "promotions"],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
@@ -191,7 +191,7 @@ export default class KambiClient extends React.Component<Props, State> {
   render() {
     return (
       <div
-        className={classNames("t-background-grey-0", {
+        className={classNames("bg-grey-0", {
           "c-kambi-client--hidden": this.props.isHidden,
         })}
       >

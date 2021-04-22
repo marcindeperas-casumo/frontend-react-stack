@@ -12,13 +12,13 @@ export function LimitHeaderNormal(props: {
       align="center"
       justify="space-between"
       spacing="none"
-      className="u-padding--md t-background-white"
+      className="u-padding--md bg-white"
     >
       <Flex
         justify="center"
         align="center"
         spacing="none"
-        className="u-margin-right--md u-padding t-border-r--circle t-background-teal-50"
+        className="u-margin-right--md u-padding t-border-r--circle bg-teal-50"
       >
         {props.icon}
       </Flex>

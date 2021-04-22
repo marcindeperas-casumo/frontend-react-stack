@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { text, number } from "@storybook/addon-knobs/react";
+import { text, number } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { DictionaryTerm } from "./DictionaryTerm";
@@ -24,7 +24,7 @@ if (isNotChromatic) {
       termKey={REPLACEMENT_TERM.key}
       replacements={{
         teamName: text("Team name", "{teamName}"),
-        goalCount: number("Goal count", "{goalCount}"),
+        goalCount: number("Goal count", 0),
       }}
     />
   ));

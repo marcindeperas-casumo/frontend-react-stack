@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { number, select } from "@storybook/addon-knobs/react";
+import { number, select } from "@storybook/addon-knobs";
 import React from "react";
 import { ProgressBar } from "./ProgressBar";
 
@@ -18,13 +18,13 @@ stories.add("Playground", () => {
   });
   const fillerClassNames = select(
     "Background color",
-    ["t-background-grey-20", "t-background-grey-5"],
-    "t-background-grey-20"
+    ["bg-grey-20", "bg-grey-5"],
+    "bg-grey-20"
   );
   const trackClassNames = select(
     "Foreground color",
-    ["t-background-yellow-30", "t-background-green-30"],
-    "t-background-yellow-30"
+    ["bg-yellow-30", "bg-green-30"],
+    "bg-yellow-30"
   );
 
   return (

@@ -22,13 +22,13 @@ export const PointsView = ({
       align="center"
     >
       <Flex.Item>
-        <Text className="t-color-grey-50 " tag="div" size="xs">
+        <Text className="text-grey-50 " tag="div" size="xs">
           {pointsText}
         </Text>
       </Flex.Item>
       <Flex.Item>
         <Text
-          className="t-color-white u-font-weight-bold"
+          className="text-white u-font-weight-bold"
           tag="div"
           size={points < 100 ? "sm" : "xs"}
         >

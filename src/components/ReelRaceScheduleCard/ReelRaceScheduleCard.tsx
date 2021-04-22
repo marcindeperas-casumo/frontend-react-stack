@@ -39,7 +39,7 @@ const ReelRaceStartTime = ({
       className={cx(
         !isMobile && "u-margin-right--sm",
         isMobile && "u-margin-bottom--sm u-text-align-right ",
-        promoted ? "t-color-yellow-30" : "t-color-grey-50"
+        promoted ? "text-yellow-30" : "text-grey-50"
       )}
     >
       {isTomorrow ? translations.tomorrow : translations.today}
@@ -58,7 +58,7 @@ const ReelRaceStartTime = ({
           size="sm"
           className={cx(
             "u-margin-right--sm",
-            promoted ? "t-color-yellow-30" : "t-color-grey-50"
+            promoted ? "text-yellow-30" : "text-grey-50"
           )}
         />
         {!isMobile && getTomorrowOrTodayLabel()}
@@ -67,7 +67,7 @@ const ReelRaceStartTime = ({
           size="xs"
           className={cx(
             "u-margin--none u-text-align-right",
-            promoted ? "t-color-yellow-30" : "t-color-grey-50"
+            promoted ? "text-yellow-30" : "text-grey-50"
           )}
         >
           {startTimeDate.toFormat("t")}
@@ -89,13 +89,13 @@ export function ReelRaceScheduleCard({
   const toggle = React.useCallback(() => setOpen(state => !state), [setOpen]);
 
   return (
-    <div className="t-background-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
+    <div className="bg-white o-position--relative t-border-r--md u-margin--md t-elevation--10">
       <Flex
         align="center"
         onClick={toggle}
         className={cx(
           "u-padding--md u-cursor--pointer",
-          reelRace.promoted && "t-background-purple-80 t-color-white",
+          reelRace.promoted && "bg-purple-80 text-white",
           open
             ? "t-border-r-top-left--md t-border-r-top-right--md"
             : "t-border-r--md"
@@ -103,7 +103,7 @@ export function ReelRaceScheduleCard({
       >
         <Flex.Item className="o-flex__item--no-shrink">
           {reelRace.promoted && (
-            <LaurelIcon className="o-position--absolute t-color-yellow-30 t-background-black t-border t-border-r-top-left--md t-border-r-bottom-right--md t-border-yellow-30 o-inset-top--none o-inset-left--none u-width--lg u-height--lg u-padding--sm" />
+            <LaurelIcon className="o-position--absolute text-yellow-30 bg-black t-border t-border-r-top-left--md t-border-r-bottom-right--md t-border-yellow-30 o-inset-top--none o-inset-left--none u-width--lg u-height--lg u-padding--sm" />
           )}
           <GameThumb
             src={reelRace.game.backgroundImage}
@@ -122,10 +122,7 @@ export function ReelRaceScheduleCard({
               <Flex.Block>
                 <Text
                   tag="div"
-                  className={cx(
-                    "u-font",
-                    !reelRace.promoted && "t-color-grey-70"
-                  )}
+                  className={cx("u-font", !reelRace.promoted && "text-grey-70")}
                 >
                   {interpolate(
                     reelRace.promoted
@@ -151,14 +148,14 @@ export function ReelRaceScheduleCard({
               <TournamentIcon
                 size="sm"
                 className={cx(
-                  reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-90"
+                  reelRace.promoted ? "text-yellow-30" : "text-grey-90"
                 )}
               />
               <Text
                 tag="span"
                 className={cx(
                   "u-font-weight-bold u-margin-left--sm",
-                  reelRace.promoted ? "t-color-yellow-30" : "t-color-grey-90"
+                  reelRace.promoted ? "text-yellow-30" : "text-grey-90"
                 )}
               >
                 {reelRace.formattedPrize}

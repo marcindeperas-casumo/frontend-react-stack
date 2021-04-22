@@ -12,7 +12,7 @@ export const GameSearchSuggestions: React.FC<TGameSearchSuggestions> = ({
   <>
     <Text
       size="md"
-      className="u-font-weight-black t-color-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
+      className="u-font-weight-black text-grey-50 u-padding-left u-padding-top--xlg u-padding-bottom--md"
     >
       {title}
     </Text>

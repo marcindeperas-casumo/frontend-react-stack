@@ -1,8 +1,20 @@
 import React from "react";
-import { useLanguage, useUrlPrefix, useTranslationsGql } from "Utils/hooks";
+import * as A from "Types/apollo";
+import { useTranslationsGql } from "Utils/hooks";
 import { ValuableDetails } from "./ValuableDetails";
 
-export const ValuableDetailsContainer = props => {
+type Props = {
+  children: React.ReactChild;
+  valuableDetails: A.ValuableDetails_PlayerValuableFragment;
+  onConsumeValuable: (id: string) => Promise<void>;
+};
+
+const getTermsAndConditionSlug = (termsLink = "") => {
+  const fullSlug = /root:[a-zA-Z-]+:content/;
+  return fullSlug.test(termsLink) ? termsLink : `root:${termsLink}:content`;
+};
+
+export const ValuableDetailsContainer = (props: Props) => {
   const { t, loading } = useTranslationsGql({
     termsAndConditionLabel:
       "root:valuable-details-component:fields.terms_and_conditions_title",
@@ -19,7 +31,11 @@ export const ValuableDetailsContainer = props => {
     depositNowLabel: "root:valuable-details-component:fields.deposit_now",
     expirationTimeLabel:
       "root:valuable-details-component:fields.expirationTimeLabel",
-    termsAndConditionsContent: "root:uk-welcome-bonus-terms:content",
+    ...(props?.valuableDetails?.termsLink && {
+      termsAndConditionsContent: getTermsAndConditionSlug(
+        props?.valuableDetails?.termsLink
+      ),
+    }),
     wageringStatus: "root:valuable-details-component:fields.wagering_status",
     minute_singular: "root:units:fields.minute_singular",
     minute_plural: "root:units:fields.minutes",
@@ -28,15 +44,6 @@ export const ValuableDetailsContainer = props => {
     day_singular: "root:units:fields.day_singular",
     day_plural: "root:units:fields.days",
   });
-  const language = useLanguage();
-  const urlPrefix = useUrlPrefix();
 
-  return loading ? null : (
-    <ValuableDetails
-      {...props}
-      translations={t}
-      language={language}
-      urlPrefix={urlPrefix}
-    />
-  );
+  return loading ? null : <ValuableDetails {...props} translations={t} />;
 };
