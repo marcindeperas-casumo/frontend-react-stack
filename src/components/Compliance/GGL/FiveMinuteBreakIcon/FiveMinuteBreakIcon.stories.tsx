@@ -18,12 +18,12 @@ const Wrapper = ({ children, withBg = true }) => (
     }}
   >
     <div
-      className="t-background-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
+      className="bg-blue-50 o-flex--horizontal o-flex-align--center o-flex-justify--start u-padding-x"
       style={{
         height: 48,
       }}
     >
-      <div className="u-color-white o-position--relative u-zindex--content-overlay o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left  u-height--3xlg u-width--3xlg">
+      <div className="text-white o-position--relative u-zindex--content-overlay o-inset-top--none u-margin-top--md o-inset-left--none u-margin-left  u-height--3xlg u-width--3xlg">
         {children}
       </div>
     </div>

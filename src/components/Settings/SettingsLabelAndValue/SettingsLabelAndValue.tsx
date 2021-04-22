@@ -14,14 +14,14 @@ export class SettingsLabelAndValue extends React.PureComponent<Props> {
         <Text
           tag="p"
           size="sm"
-          className="t-color-grey-5 u-font-weight-light u-margin-bottom"
+          className="text-grey-5 u-font-weight-light u-margin-bottom"
         >
           {label}
         </Text>
         <Text
           tag="div"
           size="default"
-          className="t-color-grey-90 u-margin-top--sm u-font-weight-medium"
+          className="text-grey-90 u-margin-top--sm u-font-weight-medium"
         >
           {value}
         </Text>

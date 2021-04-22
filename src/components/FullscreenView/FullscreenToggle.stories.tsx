@@ -7,7 +7,7 @@ const stories = storiesOf("FullscreenToggle", module);
 
 stories.add("Default", () => {
   return (
-    <FullscreenView className="t-background-white">
+    <FullscreenView className="bg-white">
       <FullscreenToggle />
     </FullscreenView>
   );

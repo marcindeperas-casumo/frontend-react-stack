@@ -12,33 +12,33 @@ stories.add("Default", () => {
     firstDeposit: false,
     FirstDepositHeader: () => (
       <Text
-        className="t-color-grey-90 u-font-weight-bold u-margin-bottom--none"
+        className="text-grey-90 u-font-weight-bold u-margin-bottom--none"
         size="xlg"
       >
         Make your first deposit
       </Text>
     ),
     FirstDepositDesc: () => (
-      <Text className="t-color-grey-50 u-font-weight-bold u-margin-top">
+      <Text className="text-grey-50 u-font-weight-bold u-margin-top">
         Once you make your first deposit you'll be able to claim your welcome
         bonus.
       </Text>
     ),
     BalanceHeader: () => (
-      <Text className="t-color-grey-50 u-font-weight-bold u-margin-bottom">
+      <Text className="text-grey-50 u-font-weight-bold u-margin-bottom">
         Your balance
       </Text>
     ),
     Balance: () => (
       <Text
-        className="t-color-grey-90 u-font-weight-bold u-margin-bottom--none"
+        className="text-grey-90 u-font-weight-bold u-margin-bottom--none"
         size="xlg"
       >
         € 0,00
       </Text>
     ),
     Bonus: () => (
-      <Text className="t-color-grey-50 u-font-weight-bold u-margin-top">
+      <Text className="text-grey-50 u-font-weight-bold u-margin-top">
         + € 0,00
       </Text>
     ),
@@ -59,7 +59,7 @@ stories.add("Default", () => {
   };
 
   return (
-    <div className="t-background-grey-20 u-padding--lg">
+    <div className="bg-grey-20 u-padding--lg">
       <h2>Basic usage:</h2>
       <WalletCard {...props} />
 

@@ -32,7 +32,7 @@ function ReelRacesLogo() {
 function BannerLink({ children, onClick }: BannerLinkProps) {
   return (
     <Text
-      className="u-cursor--pointer t-color-purple-60 u-font-weight-bold u-text-decoration-underline"
+      className="u-cursor--pointer text-purple-60 u-font-weight-bold u-text-decoration-underline"
       onClick={onClick}
     >
       {children}
@@ -61,7 +61,7 @@ export function ReelRacesBanner() {
         direction={isNotMobile ? "horizontal" : "vertical"}
         justify="center"
         spacing="none"
-        className="u-text-align-left t-background-white u-margin--md t-border-r--md u-margin-x--md u-padding--lg"
+        className="u-text-align-left bg-white u-margin--md t-border-r--md u-margin-x--md u-padding--lg"
       >
         <Flex.Block
           align={isNotMobile ? "left" : "center"}
@@ -98,7 +98,7 @@ export function ReelRacesBanner() {
               direction="vertical"
               justify="start"
               spacing="lg"
-              className="u-text-align-left t-background-white t-color-purple-60 u-margin-y--lg"
+              className="u-text-align-left bg-white text-purple-60 u-margin-y--lg"
             >
               {/* TODO when designs come */}
               {/* {false && (

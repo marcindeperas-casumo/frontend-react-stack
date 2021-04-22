@@ -16,7 +16,7 @@ export function FlashingCircle({ isTransitioning = false }: Props) {
       r={29}
       fill="currentColor"
       className={cx(
-        "t-color-teal-50",
+        "text-teal-50",
         `${classNamePrefix}`,
         isTransitioning && `${classNamePrefix}--transitioning`
       )}

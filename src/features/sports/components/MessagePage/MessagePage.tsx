@@ -20,7 +20,7 @@ export const MessagePage = ({
     spacing="md"
     justify="center"
     align="center"
-    className="o-flex--1 t-background-grey-0 t-color-grey-90 t-border-r--sm u-padding--lg c-message-page"
+    className="o-flex--1 bg-grey-0 text-grey-90 t-border-r--sm u-padding--lg c-message-page"
   >
     <Flex.Item>{image}</Flex.Item>
     <Flex.Item>

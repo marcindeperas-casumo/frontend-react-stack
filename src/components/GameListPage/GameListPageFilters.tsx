@@ -50,11 +50,11 @@ export function GameListPageFilters(props: Props) {
                 key={key}
                 justify={isHorizontal ? "space-between" : "start"}
                 direction={isHorizontal ? "horizontal" : "vertical"}
-                className="u-padding-y--xlg t-border-bottom t-color-grey-5 o-flex__item--no-shrink"
+                className="u-padding-y--xlg t-border-bottom text-grey-5 o-flex__item--no-shrink"
               >
                 <Flex
                   direction="vertical"
-                  className={classNames("t-color-grey-90", {
+                  className={classNames("text-grey-90", {
                     "u-padding-bottom--md": type !== "toggle",
                   })}
                 >

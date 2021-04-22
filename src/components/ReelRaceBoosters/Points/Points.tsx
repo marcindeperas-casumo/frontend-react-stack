@@ -16,8 +16,8 @@ export function Points({ points, isTransitioning = false }: Props) {
       className={cx(
         baseClassName,
         isTransitioning
-          ? `t-color-white ${baseClassName}--transitioning`
-          : "t-color-grey-50",
+          ? `text-white ${baseClassName}--transitioning`
+          : "text-grey-50",
         "u-text-align-center u-font-weight-bold"
       )}
     >

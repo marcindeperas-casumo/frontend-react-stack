@@ -28,17 +28,17 @@ export const InGameAdventureWidget = ({
     <BonusValuableIcon />
   ) : (
     <>
-      <Text className="t-color-grey-20 u-line-height--1" tag="div">
+      <Text className="text-grey-20 u-line-height--1" tag="div">
         {level}
       </Text>
-      <Text className="t-color-grey-20" tag="div" size="2xs">
+      <Text className="text-grey-20" tag="div" size="2xs">
         LVL
       </Text>
     </>
   );
 
   return (
-    <div className="t-background-grey-90 t-border-r u-padding-x--md u-padding-y--md">
+    <div className="bg-grey-90 t-border-r u-padding-x--md u-padding-y--md">
       <Flex align="center">
         <Flex.Item className="u-width--xlg">
           <CasumoAvatar
@@ -51,17 +51,17 @@ export const InGameAdventureWidget = ({
         <Flex.Block>
           <ProgressBar
             progress={progressPercentage}
-            fillerClassNames="t-background-grey-70 u-padding--none"
-            trackClassNames="t-background-teal-50"
+            fillerClassNames="bg-grey-70 u-padding--none"
+            trackClassNames="bg-teal-50"
           />
           <Flex
             justify="space-between"
             className="u-width--full u-font-sm u-padding-top--sm"
           >
-            <Text className="t-color-grey-20" tag="div" size="xs">
+            <Text className="text-grey-20" tag="div" size="xs">
               {points}
             </Text>
-            <Text className="t-color-grey-50" tag="div" size="xs">
+            <Text className="text-grey-50" tag="div" size="xs">
               {pointsRequiredForNextLevel}
             </Text>
           </Flex>

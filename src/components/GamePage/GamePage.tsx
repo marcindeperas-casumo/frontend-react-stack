@@ -40,13 +40,13 @@ export const GamePage = ({
   }
 
   return (
-    <FullscreenView className="u-height--screen u-width--screen t-background-grey-90">
+    <FullscreenView className="u-height--screen u-width--screen bg-grey-90">
       <VerticalStretcher
         quickDepositInProgress={quickDepositInProgress}
         gameProviderModel={gameProviderModel}
       >
         <Flex
-          className="u-width--full u-height--full t-background-grey-90 t-color-white c-game-page"
+          className="u-width--full u-height--full bg-grey-90 text-white c-game-page"
           direction="vertical"
           spacing="none"
           style={{ backgroundImage: `url('${gameBackground || ""}')` }}

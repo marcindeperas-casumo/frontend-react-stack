@@ -51,8 +51,7 @@ export function ReelRaceLeaderboard(props: Props) {
           direction="horizontal"
           key={p.playerId}
           className={classNames({
-            "u-font-weight-bold t-background-teal-50 t-color-white":
-              playerId === p.playerId,
+            "u-font-weight-bold bg-teal-50 text-white": playerId === p.playerId,
           })}
         >
           <Text

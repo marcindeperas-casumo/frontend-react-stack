@@ -18,19 +18,19 @@ stories.add("Default", () => {
         Icon: () => <ChatIcon className="u-margin-y" />,
         linkHref: "chat",
         Header: () => (
-          <Text tag="h3" className="t-color-grey-90 u-font-weight-bold">
+          <Text tag="h3" className="text-grey-90 u-font-weight-bold">
             Live Chat
           </Text>
         ),
         Description: () => (
-          <Text size="sm" className="t-color-grey-50 u-margin-y">
+          <Text size="sm" className="text-grey-50 u-margin-y">
             Get live personal help with one of our ambassadors available 24/7!
           </Text>
         ),
         LinkElement: () => (
           <Text
             tag="h3"
-            className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
+            className="text-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Start Chat
             <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
@@ -41,12 +41,12 @@ stories.add("Default", () => {
         Icon: () => <EmailIcon className="u-margin-y" />,
         linkHref: "email",
         Header: () => (
-          <Text tag="h3" className="t-color-grey-90 u-font-weight-bold">
+          <Text tag="h3" className="text-grey-90 u-font-weight-bold">
             Email
           </Text>
         ),
         Description: () => (
-          <Text size="sm" className="t-color-grey-50 u-margin-y">
+          <Text size="sm" className="text-grey-50 u-margin-y">
             If you have any specific inquires you'd like to email us, feel free
             to reach out!
           </Text>
@@ -54,7 +54,7 @@ stories.add("Default", () => {
         LinkElement: () => (
           <Text
             tag="h3"
-            className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
+            className="text-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Send Email
             <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
@@ -65,19 +65,19 @@ stories.add("Default", () => {
         Icon: () => <FaqIcon className="u-margin-y" />,
         linkHref: "faq",
         Header: () => (
-          <Text tag="h3" className="t-color-grey-90 u-font-weight-bold">
+          <Text tag="h3" className="text-grey-90 u-font-weight-bold">
             FAQs,
           </Text>
         ),
         Description: () => (
-          <Text size="sm" className="t-color-grey-50 u-margin-y">
+          <Text size="sm" className="text-grey-50 u-margin-y">
             Have a question? We may have the answer to it in our question bank!
           </Text>
         ),
         LinkElement: () => (
           <Text
             tag="h3"
-            className="t-color-purple-60 u-font-weight-bold u-margin-y--2xlg"
+            className="text-purple-60 u-font-weight-bold u-margin-y--2xlg"
           >
             Go to FAQs
             <ChevronRightIcon className="u-margin-bottom--sm u-margin-left--sm" />
@@ -97,7 +97,7 @@ stories.add("Default", () => {
   }));
 
   return (
-    <div className="t-background-grey-20 u-padding--lg">
+    <div className="bg-grey-20 u-padding--lg">
       <h2>Loading state:</h2>
       <SupportRow cards={loadingProps.cards} />
 

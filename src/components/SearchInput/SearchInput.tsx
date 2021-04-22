@@ -36,7 +36,7 @@ class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
     onBlur: noop,
     onFocus: noop,
-    colorBackgroundClass: "t-background-white",
+    colorBackgroundClass: "bg-white",
   };
 
   state = { hasFocus: false };
@@ -91,11 +91,11 @@ class SearchInput extends React.Component<Props, State> {
       <Flex align="center" className={containerClassName}>
         <Flex.Block>
           <label className="u-width--full o-flex o-flex-align--center u-padding--md">
-            <SearchIcon className="t-color-grey-70" />
+            <SearchIcon className="text-grey-70" />
             <input
               ref={this.textInput}
               className={classNames(
-                "c-search-input o-flex--1 u-padding-left t-color-grey-90 u-font-weight-bold",
+                "c-search-input o-flex--1 u-padding-left text-grey-90 u-font-weight-bold",
                 this.props.colorBackgroundClass
               )}
               type="text"
@@ -112,7 +112,7 @@ class SearchInput extends React.Component<Props, State> {
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >
-            <div className="t-color-white u-padding--sm t-border-r--circle u-overflow--hidden t-background-grey-90">
+            <div className="text-white u-padding--sm t-border-r--circle u-overflow--hidden bg-grey-90">
               <CloseIcon size="sm" className="u-display--block" />
             </div>
           </div>

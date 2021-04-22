@@ -18,7 +18,7 @@ stories.add("Default", () => {
   return (
     <MockStore queryMocks={[playerSectionsQueryMock]}>
       <FullscreenView>
-        <div className="t-background-grey-90">
+        <div className="bg-grey-90">
           <PlayOkayBar
             jurisdiction={jurisdiction}
             // @ts-expect-error ts-migrate(2322) FIXME: Type '{ jurisdiction: any; pauseGame: () => Promis... Remove this comment to see the full error message

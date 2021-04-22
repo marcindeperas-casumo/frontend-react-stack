@@ -29,9 +29,9 @@ export default class FavouriteListItem extends PureComponent<Props> {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      "u-padding t-border-r--circle t-color-grey-20",
-      isFavourite && "t-background-purple-60",
-      !isFavourite && "t-background-grey-0"
+      "u-padding t-border-r--circle text-grey-20",
+      isFavourite && "bg-purple-60",
+      !isFavourite && "bg-grey-0"
     );
 
     return isFavouritable ? (
@@ -44,8 +44,8 @@ export default class FavouriteListItem extends PureComponent<Props> {
       >
         <CheckIcon
           className={classNames(
-            !isFavourite && "u-visibility--hidden t-color-grey-0",
-            "t-color-white"
+            !isFavourite && "u-visibility--hidden text-grey-0",
+            "text-white"
           )}
         />
       </Flex.Item>
@@ -65,8 +65,8 @@ export default class FavouriteListItem extends PureComponent<Props> {
               {this.props.newLabel && (
                 <div
                   className={classNames(
-                    "t-background-yellow-30 t-border-r--sm",
-                    "t-color-purple-80 c-sports-navigation-item--new",
+                    "bg-yellow-30 t-border-r--sm",
+                    "text-purple-80 c-sports-navigation-item--new",
                     "u-padding--sm u-margin-left--lg u-font-weight-bold",
                     "u-font-xs"
                   )}

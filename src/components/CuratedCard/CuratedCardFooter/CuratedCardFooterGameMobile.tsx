@@ -35,7 +35,7 @@ export const CuratedCardFooterGameMobile = ({
         <GameThumb src={game.backgroundImage} mark={game.logo} />
       </Flex.Item>
       <Flex.Block>
-        <Text tag="span" size="sm" className="u-font-weight-bold t-color-white">
+        <Text tag="span" size="sm" className="u-font-weight-bold text-white">
           {convertHTMLToString(game.name)}
         </Text>
       </Flex.Block>

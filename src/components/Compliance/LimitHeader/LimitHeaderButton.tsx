@@ -11,7 +11,7 @@ export function LimitHeaderButton(props: {
     return (
       <>
         <Desktop>
-          <a href="#" onClick={props.onClick} className="t-color-purple-60">
+          <a href="#" onClick={props.onClick} className="text-purple-60">
             {props.children}
           </a>
         </Desktop>
@@ -31,7 +31,7 @@ function NormalVariant(props: {
 }) {
   return (
     <ButtonSecondary size="sm" onClick={props.onClick}>
-      <span className="t-color-black">{props.children}</span>
+      <span className="text-black">{props.children}</span>
     </ButtonSecondary>
   );
 }

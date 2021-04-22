@@ -50,9 +50,7 @@ export const PanicButton = () => {
 
   return (
     <ButtonSecondary
-      className="t-background-grey-70 t-background-grey-70:hover t-background-grey-70:active
-        t-color-white u-text-transform-uppercase o-position--relative u-overflow--hidden
-        c-playokay-bar__panic-button"
+      className="bg-grey-70 hover:bg-grey-70 active:bg-grey-70 text-white u-text-transform-uppercase o-position--relative u-overflow--hidden c-playokay-bar__panic-button"
       size="xs"
       style={{ "--panic-btn-duration": `${INTERACTION_TIME_SECONDS}s` }}
       onTransitionEnd={selfExclude24h}

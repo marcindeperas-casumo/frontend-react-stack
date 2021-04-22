@@ -28,7 +28,7 @@ export function AdditionalConditions(props: Props) {
   )(props.rules);
 
   return (
-    <Text size="sm" tag="span" className="u-padding-bottom--lg t-color-grey-50">
+    <Text size="sm" tag="span" className="u-padding-bottom--lg text-grey-50">
       {rules}
     </Text>
   );

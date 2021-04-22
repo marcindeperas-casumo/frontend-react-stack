@@ -46,12 +46,12 @@ export const RtpTable = ({
   valuesColumns: Array<string>;
 }) => {
   const rowContainerClasses =
-    "t-border-bottom t-border-left t-border-grey-5 t-background-white";
+    "t-border-bottom t-border-left border-grey-5 bg-white";
 
   return (
     <Flex
       direction="vertical"
-      className="t-border-top t-border-grey-5 u-margin-top"
+      className="t-border-top border-grey-5 u-margin-top"
     >
       <Flex
         className={classNames(

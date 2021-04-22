@@ -20,7 +20,7 @@ export function ReusableNotification({ t }: TReusableNotificationProps) {
     <>
       <Flex
         direction="horizontal"
-        className="u-padding--md t-background-white t-border-r u-margin-bottom--md"
+        className="u-padding--md bg-white t-border-r u-margin-bottom--md"
         align="center"
       >
         {t.notification_image && (
@@ -36,7 +36,7 @@ export function ReusableNotification({ t }: TReusableNotificationProps) {
         )}
         {t.notification_content && (
           <Flex.Block>
-            <Text size="sm" tag="span" className="t-color-black">
+            <Text size="sm" tag="span" className="text-black">
               <DangerousHtml html={t.notification_content} />
             </Text>
           </Flex.Block>
@@ -44,9 +44,9 @@ export function ReusableNotification({ t }: TReusableNotificationProps) {
         <Flex.Item>
           <div
             onClick={() => setAcknowledged(true)}
-            className="t-border-r--circle t-background-grey-0 u-padding u-cursor--pointer"
+            className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
           >
-            <CloseIcon className="t-color-black" />
+            <CloseIcon className="text-black" />
           </div>
         </Flex.Item>
       </Flex>

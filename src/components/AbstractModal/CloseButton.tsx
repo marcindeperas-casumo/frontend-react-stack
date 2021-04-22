@@ -15,7 +15,7 @@ export const CloseButton = ({ className, onClick }: ButtonProps) => (
     justify="center"
     onClick={onClick}
     className={classNames(
-      "c-close-button t-background-grey-0 t-border-r--circle",
+      "c-close-button bg-grey-0 t-border-r--circle",
       className
     )}
   >

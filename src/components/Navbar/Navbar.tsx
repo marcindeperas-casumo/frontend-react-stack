@@ -23,8 +23,8 @@ const NavItem = ({ icon, label, to, showLabel = true }: TNavbarItemProps) => {
     <Flex.Block>
       <NavLink
         to={to}
-        className="t-color-grey-70"
-        activeClassName="t-color-purple-60"
+        className="text-grey-70"
+        activeClassName="text-purple-60"
       >
         <Flex
           align="center"

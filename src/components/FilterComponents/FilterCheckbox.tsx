@@ -16,10 +16,10 @@ export function FilterCheckbox(props: Props) {
       <Flex
         align="center"
         justify="space-between"
-        className="u-width--full u-padding-y--md t-border-bottom t-color-grey-5"
+        className="u-width--full u-padding-y--md t-border-bottom text-grey-5"
         onClick={props.onChange}
       >
-        <Text className="t-color-grey-90">{props.title}</Text>
+        <Text className="text-grey-90">{props.title}</Text>
         <CheckboxSquare checked={props.isActive} onChange={() => {}} />
       </Flex>
     );
@@ -32,7 +32,7 @@ export function FilterCheckbox(props: Props) {
       onClick={props.onChange}
     >
       <CheckboxSquare checked={props.isActive} onChange={() => {}} />
-      <Text className="u-padding-left--md t-color-grey-90">{props.title}</Text>
+      <Text className="u-padding-left--md text-grey-90">{props.title}</Text>
     </Flex>
   );
 }
