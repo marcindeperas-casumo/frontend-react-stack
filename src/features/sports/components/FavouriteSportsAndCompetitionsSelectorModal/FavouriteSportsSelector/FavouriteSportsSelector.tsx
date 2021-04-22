@@ -52,7 +52,6 @@ const FavouriteSportsSelector = (props: Props) => (
                   onAddCompetition={props.onAddCompetition}
                   onToggleFavouriteSport={api.toggleFavouriteSport}
                   isFavourite={api.isSelected(group.id)}
-                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(sportId: number, competition: { id: number;... Remove this comment to see the full error message
                   onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
                   isOnboarding={api.isFirstTimeSelectingFavourites}
                 />
@@ -108,7 +107,6 @@ const FavouriteSportsSelector = (props: Props) => (
                         onAddCompetition={props.onAddCompetition}
                         onToggleFavouriteSport={toggleAction}
                         isFavourite={api.isSelected(group.id)}
-                        // @ts-expect-error ts-migrate(2322) FIXME: Type '(sportId: number, competition: { id: number;... Remove this comment to see the full error message
                         onRemoveFavouriteCompetition={
                           api.toggleFavouriteCompetition
                         }

@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - http://graphql-server-games.at.casumotest.local:8080
+  - http://localhost:4000
   - src/models/apollo/typedefs.*.ts
 documents:
   - src/**/!(useTranslationsGql|apolloTestUtils|apollo|*.test|*.stories).{ts,tsx,graphql}

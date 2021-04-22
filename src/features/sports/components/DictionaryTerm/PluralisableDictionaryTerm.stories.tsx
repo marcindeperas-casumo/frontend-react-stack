@@ -17,7 +17,6 @@ stories.addDecorator(story => (
 ));
 
 stories.add("Default", () => (
-  // @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message
   <PluralisableDictionaryTerm
     termKey={WORKING_TERM.key}
     isPlural={boolean("Is plural", false)}
@@ -28,7 +27,6 @@ stories.add("With replacements", () => {
   const teamName = text("Team name", "{teamName}");
   const goalCount = number("Goal count", 0);
   return (
-    // @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message
     <PluralisableDictionaryTerm
       termKey={REPLACEMENT_TERM.key}
       replacements={{

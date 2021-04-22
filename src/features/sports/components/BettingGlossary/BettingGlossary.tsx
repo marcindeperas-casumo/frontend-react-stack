@@ -43,10 +43,9 @@ export const BettingGlossaryModalContent = () => {
 
   if (error) {
     return (
-      <ErrorMessage
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type 'string'.
-        errorMessage={<DictionaryTerm termKey="glossary.error" />}
-      />
+      <DictionaryTerm termKey="glossary.error">
+        {error => <ErrorMessage errorMessage={error} />}
+      </DictionaryTerm>
     );
   }
 

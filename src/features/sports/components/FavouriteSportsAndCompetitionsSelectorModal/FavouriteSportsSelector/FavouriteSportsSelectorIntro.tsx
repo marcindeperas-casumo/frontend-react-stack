@@ -9,7 +9,6 @@ const SportsPlayerIntro = () => (
     className="u-padding-top--lg"
     spacing="sm"
     renderImage={() => (
-      // @ts-expect-error ts-migrate(2786) FIXME: 'CmsImage' cannot be used as a JSX component.
       <CmsImage
         id="favourite-sports-selector.intro.sports"
         className="u-padding-right--md"

@@ -58,7 +58,6 @@ export const FreebetNotificationContainer = () => {
   }
 
   return (
-    // @ts-expect-error ts-migrate(2741) FIXME: Property 'translations' is missing in type '{ back... Remove this comment to see the full error message
     <FreebetNotification
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'backgroundImage' does not exist on type ... Remove this comment to see the full error message
       backgroundImage={latestLockedFreebet.backgroundImage}

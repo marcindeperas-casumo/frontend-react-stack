@@ -445,7 +445,7 @@ declare module "*/CompetitionPillsList.tsx" {
   export default defaultDocument;
 }
 
-declare module "*/DictionaryTerm.ts" {
+declare module "*/DictionaryTerm.tsx" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const DictionaryTermQuery: DocumentNode;
@@ -453,7 +453,7 @@ declare module "*/DictionaryTerm.ts" {
   export default defaultDocument;
 }
 
-declare module "*/PluralisableDictionaryTerm.ts" {
+declare module "*/PluralisableDictionaryTerm.tsx" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const PluralisableDictionaryTermQuery: DocumentNode;

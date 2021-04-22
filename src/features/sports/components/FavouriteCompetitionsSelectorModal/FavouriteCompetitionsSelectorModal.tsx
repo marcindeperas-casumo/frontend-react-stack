@@ -109,9 +109,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
 
         {selectedCompetitionsCount > 0 && (
           <SportsModal.Footer>
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'ModalButtonFooter' cannot be used as a JSX compon... Remove this comment to see the full error message */}
             <ModalButtonFooter onClick={this.onSave}>
-              {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
               <PluralisableDictionaryTerm
                 termKey="favourite-competitions-selector.button"
                 replacements={{ competitionsCount: selectedCompetitionsCount }}

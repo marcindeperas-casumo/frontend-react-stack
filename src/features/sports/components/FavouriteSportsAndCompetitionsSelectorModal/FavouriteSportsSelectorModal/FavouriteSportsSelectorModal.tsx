@@ -39,7 +39,6 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
               <SetFavouritesMutation variables={{ ids: api.getSelectedIds() }}>
                 {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(setFavouriteGroups: any) => Element' has no... Remove this comment to see the full error message */}
                 {setFavouriteGroups => (
-                  // @ts-expect-error ts-migrate(2786) FIXME: 'ModalButtonFooter' cannot be used as a JSX compon... Remove this comment to see the full error message
                   <ModalButtonFooter
                     onClick={() => {
                       setFavouriteGroups();
@@ -47,7 +46,6 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
                       onClose();
                     }}
                   >
-                    {/* @ts-expect-error ts-migrate(2786) FIXME: 'PluralisableDictionaryTerm' cannot be used as a J... Remove this comment to see the full error message */}
                     <PluralisableDictionaryTerm
                       termKey="favourite-sports-selector.button"
                       replacements={{ sportsCount: selectedSportsCount }}
