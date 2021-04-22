@@ -33,8 +33,10 @@ export const useReelRaceOptIn = (reelRace: A.ReelRaceCard_ReelRaceFragment) => {
   const showWarmUpModal = useCallback(
     () =>
       content &&
-      dispatch(showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, { content })),
-    [content, dispatch]
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, { content, reelRace })
+      ),
+    [reelRace, content, dispatch]
   );
 
   const optInAction =
