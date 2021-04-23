@@ -38,6 +38,7 @@ describe("<ReelRacesList /> - Mobile and Tablet", () => {
   mockUseJurisdictionDGOJ();
 
   beforeEach(() => {
+    jest.clearAllMocks();
     setMobileViewport();
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>
