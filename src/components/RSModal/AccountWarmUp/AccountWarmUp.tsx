@@ -32,7 +32,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
         <Text size="md" className="u-font-weight-bold">
           {timeValue}
         </Text>
-        <Text size="xs" className="t-color-grey-50">
+        <Text size="xs" className="text-grey-50">
           {unitTranslation}
         </Text>
       </Flex>
@@ -75,11 +75,11 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
         ></Text>
         <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
           <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
-            <div className="t-border-r--circle t-background-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
+            <div className="t-border-r--circle bg-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
               <TimeLockedIcon
                 size="sm"
                 style={{ width: "24px", height: "20px" }}
-                className="t-color-grey-50"
+                className="text-grey-50"
               />
             </div>
             <Text className="u-padding u-text-align-left o-flex__block">
@@ -93,7 +93,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
               justify="center"
               className={cx(
                 `${rootClassName}__time-remaining`,
-                "o-position--relative u-padding--md t-border-r--md t-background-grey-5"
+                "o-position--relative u-padding--md t-border-r--md bg-grey-5"
               )}
             >
               <Flex.Item>
@@ -101,7 +101,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                   <Text size="md" className="u-font-weight-bold">
                     {timeRemaining.days}
                   </Text>
-                  <Text size="xs" className="t-color-grey-50">
+                  <Text size="xs" className="text-grey-50">
                     Days
                   </Text>
                 </Flex>
@@ -112,7 +112,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                   <Text size="md" className="u-font-weight-bold">
                     {timeRemaining.hours}
                   </Text>
-                  <Text size="xs" className="t-color-grey-50">
+                  <Text size="xs" className="text-grey-50">
                     Hours
                   </Text>
                 </Flex>
@@ -123,7 +123,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                   <Text size="md" className="u-font-weight-bold">
                     {timeRemaining.minutes}
                   </Text>
-                  <Text size="xs" className="t-color-grey-50">
+                  <Text size="xs" className="text-grey-50">
                     Minutes
                   </Text>
                 </Flex>
@@ -133,7 +133,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                 tag="div"
                 className={cx(
                   `${rootClassName}__days-left`,
-                  "o-position--absolute u-padding--sm u-font-weight-bold t-background-grey-20 t-border-r--sm"
+                  "o-position--absolute u-padding--sm u-font-weight-bold bg-grey-20 t-border-r--sm"
                 )}
               >
                 {config.content?.days_left_label}
