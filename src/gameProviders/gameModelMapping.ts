@@ -92,31 +92,34 @@ export const getGameModel = (
   };
 
   const deconstructNetentURL = () => {
-      const params = new URLSearchParams(gameData.url);
-      const obj = {};
-
-      // iterate over all keys
-      for (const key of params.keys()) {
-          if (key in obj) {
-              continue;
-          }
-          const value = params.getAll(key);
-
-          obj[key] = value.length > 1 ? value : value[0];
-
-          if (key === 'gameServer') {
-              obj['width'] = '640';
-          } else if (key === 'staticServer') {
-              obj['providerName'] = gameData?.providerType;
-              obj['providerType'] = gameData?.providerType;
-              obj['height'] = '480';
-              obj['casinoBrand'] = 'casumo';
-          }
+    const params = new URLSearchParams(gameData.url);
+    const obj = {};
+    /* eslint-disable fp/no-mutation */
+    // iterate over all keys
+    // eslint-disable-next-line fp/no-loops
+    for (const key of params.keys()) {
+      if (key in obj) {
+        continue;
       }
-      return obj;
-  }
+      const value = params.getAll(key);
 
-    const netEntGameData = isNetent() && gameData?.url ? deconstructNetentURL() : null;
+      obj[key] = value.length > 1 ? value : value[0];
+
+      if (key === "gameServer") {
+        obj["width"] = "640";
+      } else if (key === "staticServer") {
+        obj["providerName"] = gameData?.providerType;
+        obj["providerType"] = gameData?.providerType;
+        obj["height"] = "480";
+        obj["casinoBrand"] = "casumo";
+        /* eslint-enable fp/no-mutation */
+      }
+    }
+    return obj;
+  };
+
+  const netEntGameData =
+    isNetent() && gameData?.url ? deconstructNetentURL() : null;
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'BaseGame | YggdrasilGame' is not assignable ... Remove this comment to see the full error message
   return new GameModel({
