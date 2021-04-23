@@ -1,4 +1,4 @@
-import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
+import { ENVIRONMENTS, DEFAULT_LANGUAGE, LANGUAGES } from "Src/constants";
 import { BaseGame } from "./BaseGame";
 
 describe("BaseGame", () => {
@@ -33,7 +33,25 @@ describe("BaseGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/gamelaunchers/navigation-bubbler.html?target=games/top"
+      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games/top"
+    );
+  });
+
+  test("should not have market prefix in the lobby url when run on TLD specific markets", () => {
+    const esLang = LANGUAGES.es_es;
+    const origin = "casumo.es";
+
+    const esModel = new BaseGame({
+      gameData,
+      gameRef,
+      language: esLang,
+      environment: ENVIRONMENTS.TEST,
+      urlPrefix: esLang,
+      origin,
+    });
+
+    expect(esModel.lobbyUrl).toBe(
+      `${origin}/gamelaunchers/navigation-bubbler.html?target=games/top`
     );
   });
 });

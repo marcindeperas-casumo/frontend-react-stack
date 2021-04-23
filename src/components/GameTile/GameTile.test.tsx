@@ -89,7 +89,7 @@ describe("GameTile", () => {
     ).toContain("€123,456,789");
   });
 
-  test("should render GameTile as mobile but NOT showing jackpot amount since it's for desktop only", () => {
+  test("Should render Jackpot ticker on Mobile Game Tile", () => {
     const gameJackpot = {
       jackpot: {
         id: "someID",
@@ -115,6 +115,6 @@ describe("GameTile", () => {
     );
     expect(
       rendered.find(".c-game-tile-container__jackpot span").length
-    ).toEqual(0);
+    ).toEqual(1);
   });
 });

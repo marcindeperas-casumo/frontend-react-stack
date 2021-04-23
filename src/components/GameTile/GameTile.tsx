@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Link } from "@reach/router";
 import React from "react";
 import { formatCurrency } from "Utils";
-import { Mobile, TabletAndDesktop, Desktop } from "Components/ResponsiveLayout";
+import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -64,17 +64,15 @@ export const GameTile = ({
       return null;
     }
     return (
-      <Desktop>
-        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white bg-opacity-75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
-          <span>
-            {formatCurrency({
-              locale: currentLocale || "en-en",
-              currency: currency || "EUR",
-              value: amount,
-            })}
-          </span>
-        </div>
-      </Desktop>
+      <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white bg-opacity-75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-top--lg u-height--lg">
+        <span>
+          {formatCurrency({
+            locale: currentLocale || "en-en",
+            currency: currency || "EUR",
+            value: amount,
+          })}
+        </span>
+      </div>
     );
   };
 

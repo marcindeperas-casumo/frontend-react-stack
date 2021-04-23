@@ -211,11 +211,21 @@ export function GameListPage({ set }: Props) {
             loadMore,
           };
 
-          if (isLiveCasino) {
-            return <LiveCasinoGamesVirtualGrid {...props} />;
-          }
-
-          return <GamesVirtualGrid {...props} />;
+          return (
+            <TrackProvider
+              data={{
+                [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
+                  location: set.key,
+                }),
+              }}
+            >
+              {isLiveCasino ? (
+                <LiveCasinoGamesVirtualGrid {...props} />
+              ) : (
+                <GamesVirtualGrid {...props} />
+              )}
+            </TrackProvider>
+          );
         })()}
       </div>
     </>
