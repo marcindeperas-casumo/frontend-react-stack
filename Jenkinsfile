@@ -62,7 +62,6 @@ Started by: *${env.gitAuthor}* :eyes:
             "Lint": { it.customStepTask('Lint', {
                 shell("yarn lint")
             }) },
-            "Visual Regression": { it.customStepTask('Visual Regression', { runChromatic() }) },
                 // uncomment after adding first pact test
                 // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
         ])
@@ -73,12 +72,6 @@ Started by: *${env.gitAuthor}* :eyes:
         .with(Release) { it.release() }
         .with(DeployService) { it.deployToTest('frontend-react-stack') }
         .build('nvm-ec2-builder')
-}
-
-def runChromatic () {
-    withCredentials([string(credentialsId: 'REACT_POC_CHROMATIC_APP_CODE', variable: 'REACT_POC_CHROMATIC_APP_CODE')]) {
-        shell("yarn chromatic")
-    }
 }
 
 def rollbarDeployTracking() {
