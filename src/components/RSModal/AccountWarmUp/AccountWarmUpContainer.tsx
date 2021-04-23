@@ -15,7 +15,10 @@ type TAccountWarmUpProps = {
   };
 };
 
-export function AccountWarmUpContainer(props: TAccountWarmUpProps) {
+export function AccountWarmUpContainer({
+  config,
+  ...rest
+}: TAccountWarmUpProps) {
   const { isDGOJ } = useJurisdiction();
   const isInWarmUpPhase = useSelector(isWarmUpPhaseSelector);
   const content = useTranslations<TAccountWarmUpPage>(CMS_SLUG);
@@ -24,5 +27,5 @@ export function AccountWarmUpContainer(props: TAccountWarmUpProps) {
     return null;
   }
 
-  return <AccountWarmUp {...props} {...{ config: { content } }} />;
+  return <AccountWarmUp config={{ ...config, content }} {...rest} />;
 }
