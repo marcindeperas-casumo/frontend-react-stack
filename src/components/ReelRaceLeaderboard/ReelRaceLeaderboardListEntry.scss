@@ -14,10 +14,15 @@
   width: 74px;
 
   &--warning {
-    fill: rgb(173, 24, 24) !important;
+    fill: #fc484c !important;
   }
 
   &--regular {
     fill: #798291 !important;
   }
+}
+
+.c-reel-race__nickname {
+  max-width: 100px;
+  overflow-wrap: break-word;
 }

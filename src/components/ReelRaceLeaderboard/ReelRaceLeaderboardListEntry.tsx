@@ -38,19 +38,19 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
 
   return <Flex.Item
     className={
-      cx("c-reel-race__remaining-spins o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-opacity-background--25 t-border-r--lg", {
-        "t-opacity--100": isMobile(),
-        "text-red-30 t-opacity--100": isRemainingSpinsRunOut(),
+      cx("c-reel-race__remaining-spins o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg", {
+        "text-opacity-100": isMobile(),
+        "text-red-30 text-opacity-100": isRemainingSpinsRunOut(),
       })
   }>
     <SpinSymbol
-      className={cx("text-red-30", {
+      className={cx({
         "c-reel-race__remaining-spins--warning": isRemainingSpinsRunOut(),
         "c-reel-race__remaining-spins--regular": !isRemainingSpinsRunOut(),
       })}
     />
 
-    <div className="u-margin-left--sm">
+    <div className="u-margin-left--sm font-bold">
       {remainingSpins}
     </div>
   </Flex.Item>;
@@ -82,7 +82,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       className={cx(
         "c-reel-race-leaderboard-list-entry",
         "u-width--full u-padding-y--sm u-padding-right--md u-padding-left",
-        "t-opacity-background-100",
+        "t-opacity-background-100 o-flex-space-between",
         {
           "bg-yellow-30 t-border-yellow-30": highlighted,
           "bg-white border-grey-5": !inverted && !highlighted,
@@ -100,7 +100,9 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
           inverted={inverted}
         />
       </Flex.Item>
-      <Flex.Block>
+      <Flex.Block
+        className="c-reel-race__nickname"
+      >
         <Text
           tag="div"
           className={cx({

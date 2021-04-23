@@ -179,16 +179,6 @@ export const ReelRacesDrawerWidget = ({
         bigWins={userLeaderboard.boosters.bigWins}
         megaWins={userLeaderboard.boosters.megaWins}
       />
-
-      {/* <MobileAndTablet>
-        <div
-          className="u-width--full u-text-align-center u-cursor--pointer"
-          onClick={onShowLeaderboardClick}
-        >
-          show leaderboard!
-        </div>
-      </MobileAndTablet> */}
-
       {leaderboard}
     </Flex>
   );
