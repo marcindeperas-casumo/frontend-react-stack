@@ -18,15 +18,9 @@ type TProps = {
     content?: TAccountWarmUpPage;
     reelRace?: A.ReelRaceCard_ReelRaceFragment;
   };
-  classNames?: string;
 };
 
-export const AccountWarmUp = ({
-  acceptModal,
-  closeModal,
-  config,
-  classNames,
-}: TProps) => {
+export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
   const { timeRemaining } = useAccountWarmUp();
   const rootClassName = "c-account-warm-up";
 
@@ -63,7 +57,7 @@ export const AccountWarmUp = ({
 
   return (
     <Modal
-      className={cx(rootClassName, classNames)}
+      className={cx(rootClassName)}
       closeIcon={{ action: closeModal }}
       primaryButton={config.reelRace ? playButtonConfig : dismissButtonConfig}
     >

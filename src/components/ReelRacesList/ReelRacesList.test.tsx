@@ -1,16 +1,43 @@
 import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
+import { useDispatch } from "react-redux";
 import ScrollableList from "Components/ScrollableList";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
+import { useJurisdiction } from "Utils/hooks";
 import { ReelRacesList } from "./ReelRacesList";
 import { reelRacesListQueryMock } from "./__mocks__/reelRacesStore";
 
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+jest.mock("Utils/hooks/useJurisdiction", () => ({
+  useJurisdiction: jest.fn(),
+}));
+
+jest.mock("Utils/hooks/useCrossCodebaseNavigation", () => ({
+  useCrossCodebaseNavigation: jest.fn(),
+}));
+
+const mockFn = (fn: any) => fn;
+
+function mockUseJurisdictionDGOJ() {
+  mockFn(useJurisdiction).mockReturnValue({
+    jurisdiction: "DGOJ",
+    isDGOJ: true,
+  });
+}
+
 describe("<ReelRacesList /> - Mobile and Tablet", () => {
   let rendered;
+  const dispatchMock = jest.fn();
+
+  (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
+  mockUseJurisdictionDGOJ();
 
   beforeEach(() => {
-    jest.clearAllMocks();
     setMobileViewport();
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>

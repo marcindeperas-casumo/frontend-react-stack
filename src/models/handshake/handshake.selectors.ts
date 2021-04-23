@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import * as R from "ramda";
+import { DateTime } from "luxon";
 import * as storage from "Lib/storage";
 import {
   INTL_LOCALES,
@@ -9,6 +10,7 @@ import {
   TCurrencyCode,
 } from "Src/constants";
 import type { TLanguage } from "Src/constants";
+import { convertTimestampToLuxonDate } from "Utils/utils";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 import type { Handshake } from "./handshake.types";
 
@@ -61,11 +63,6 @@ export const adventureLevelsSelector = createSelector(
 export const isSuspiciousAccount = createSelector(
   playerSelector,
   R.prop("suspiciousAccount")
-);
-// Temporary mocked selector for DGOJ - warm up phase
-export const isWarmUpPhaseSelector = createSelector(
-  playerSelector,
-  R.propOr(true, "isWarmUp")
 );
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
@@ -228,4 +225,13 @@ export const commonContextSelector = createSelector(
 export const piqConfigSelector = createSelector(
   applicationHandshakeSelector,
   R.prop("common/composition/piqConfig")
+);
+// Temporary mocked selector for DGOJ - warm up phase
+export const isWarmUpPhaseSelector = createSelector(
+  registrationDateSelector,
+  registrationDate => {
+    const registratioDate = convertTimestampToLuxonDate(registrationDate);
+    const timeToElapse = registratioDate.plus({ days: 30 });
+    return timeToElapse < DateTime.utc();
+  }
 );
