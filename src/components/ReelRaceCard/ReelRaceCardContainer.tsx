@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useCallback } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal } from "Models/modal";
 import * as A from "Types/apollo";
