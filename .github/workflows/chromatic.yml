@@ -1,0 +1,32 @@
+# Workflow name
+name: 'Visual Regression Test'
+
+# Event for the workflow
+on: push
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Getting Node Version
+        id: node
+        run: echo "::set-output name=version::$(cat .nvmrc)"
+
+      - uses: "actions/setup-node@v2"
+        with:
+          node-version: ${{steps.node.outputs.version}}
+
+      - name: Publish to Chromatic
+        run: |
+          echo "//npm.pkg.github.com/:_authToken='${{secrets.FRONTEND_PACKAGE_PUBLISHER_TOKEN}}'" >> .npmrc
+          yarn --frozen-lockfile
+          yarn chromatic
+        env:
+          REACT_POC_CHROMATIC_APP_CODE: ${{ secrets.REACT_POC_CHROMATIC_APP_CODE }} 

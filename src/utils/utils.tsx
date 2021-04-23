@@ -454,15 +454,10 @@ export const timeRemainingBeforeStart = (time: number): number => {
   return DateTime.fromMillis(time).diffNow().valueOf();
 };
 
-export const isTLDMarketSpecific: (s: string) => boolean = R.pipe(
-  R.anyPass([
-    R.equals("com"),
-    R.equals("dev"),
-    R.equals("tech"),
-    R.equals("localhost"),
-  ]),
-  R.not
-);
+/**
+ * returns true if current market has it's own TLD
+ */
+export const isTLDMarketSpecific: (s: string) => boolean = R.equals("es");
 
 export const hasAlphaCharactersOnly = (str: string): boolean => {
   return !/[a-z]+/i.test(str);
