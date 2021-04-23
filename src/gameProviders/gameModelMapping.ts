@@ -1,3 +1,4 @@
+import { includes } from "ramda";
 import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
@@ -80,10 +81,47 @@ export const getGameModel = (
 ): GameProviderModel => {
   const GameModel = models[gameData.providerType] || BaseGame;
 
+  // Reconstruct netent gamedata payload from QS to json
+  const isNetent = () => {
+    return includes(gameData?.providerType, [
+      PROVIDERS.NETENT_LIVE,
+      PROVIDERS.NETENT_GAME_INCLUSION,
+      PROVIDERS.NETENT_FLASH,
+      PROVIDERS.NETENT,
+    ]);
+  };
+
+  const deconstructNetentURL = () => {
+      const params = new URLSearchParams(gameData.url);
+      const obj = {};
+
+      // iterate over all keys
+      for (const key of params.keys()) {
+          if (key in obj) {
+              continue;
+          }
+          const value = params.getAll(key);
+
+          obj[key] = value.length > 1 ? value : value[0];
+
+          if (key === 'gameServer') {
+              obj['width'] = '640';
+          } else if (key === 'staticServer') {
+              obj['providerName'] = gameData?.providerType;
+              obj['providerType'] = gameData?.providerType;
+              obj['height'] = '480';
+              obj['casinoBrand'] = 'casumo';
+          }
+      }
+      return obj;
+  }
+
+    const netEntGameData = isNetent() && gameData?.url ? deconstructNetentURL() : null;
+
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'BaseGame | YggdrasilGame' is not assignable ... Remove this comment to see the full error message
   return new GameModel({
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'GameProps' is not assignable to type 'GameLa... Remove this comment to see the full error message
-    gameData,
+    gameData: netEntGameData || gameData,
     gameRef,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'AppLangua... Remove this comment to see the full error message
     language,
