@@ -1,4 +1,3 @@
-import { includes } from "ramda";
 import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
@@ -72,22 +71,6 @@ export const models = {
   [PROVIDERS.LEAP]: LeapGame,
 };
 
-const whichProviderType = gameData => {
-  if (
-    includes(gameData.providerType, [
-      PROVIDERS.NETENT_LIVE,
-      PROVIDERS.NETENT_GAME_INCLUSION,
-      PROVIDERS.NETENT_FLASH,
-      PROVIDERS.NETENT,
-    ]) &&
-    gameData.url
-  ) {
-    return PROVIDERS.NETENT_EMBEDDED;
-  }
-
-  return gameData.providerType;
-};
-
 export const getGameModel = (
   gameData: GameProps,
   gameRef: GameRef,
@@ -95,7 +78,7 @@ export const getGameModel = (
   environment: string,
   urlPrefix: string
 ): GameProviderModel => {
-  const GameModel = models[whichProviderType(gameData)] || BaseGame;
+  const GameModel = models[gameData.providerType] || BaseGame;
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'BaseGame | YggdrasilGame' is not assignable ... Remove this comment to see the full error message
   return new GameModel({
