@@ -38,16 +38,13 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
 
   return <Flex.Item
     className={
-      cx("c-reel-race__remaining-spins o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg", {
+      cx("c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg", {
         "text-opacity-100": isMobile(),
         "text-red-30 text-opacity-100": isRemainingSpinsRunOut(),
       })
   }>
     <SpinSymbol
-      className={cx({
-        "c-reel-race__remaining-spins--warning": isRemainingSpinsRunOut(),
-        "c-reel-race__remaining-spins--regular": !isRemainingSpinsRunOut(),
-      })}
+      className={"c-reel-race__spin-symbol"}
     />
 
     <div className="u-margin-left--sm font-bold">

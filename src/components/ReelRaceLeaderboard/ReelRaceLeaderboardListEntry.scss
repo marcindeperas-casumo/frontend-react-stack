@@ -12,14 +12,10 @@
   opacity: 0;
   transition: 0.3s;
   width: 74px;
+}
 
-  &--warning {
-    fill: #fc484c !important;
-  }
-
-  &--regular {
-    fill: #798291 !important;
-  }
+.c-reel-race__spin-symbol {
+  fill: currentColor !important;
 }
 
 .c-reel-race__nickname {
