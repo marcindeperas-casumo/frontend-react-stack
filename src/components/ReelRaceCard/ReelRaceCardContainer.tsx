@@ -1,10 +1,9 @@
 import { useMutation } from "@apollo/client";
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showModal } from "Models/modal";
 import * as A from "Types/apollo";
 import { useJurisdiction } from "Utils/hooks";
-import { isWarmUpPhaseSelector } from "Models/handshake";
 import { REACT_APP_MODAL } from "Src/constants";
 import { ReelRaceCard } from "./ReelRaceCard";
 import { OptInForReelRace } from "./ReelRaceCard.graphql";
@@ -17,7 +16,6 @@ export const ReelRaceCardContainer = ({ reelRace }: Props) => {
   const { id } = reelRace;
   const { isDGOJ } = useJurisdiction();
   const dispatch = useDispatch();
-  const isInWarmUpPhase = useSelector(isWarmUpPhaseSelector);
   const [optInForReelRace] = useMutation(OptInForReelRace, {
     variables: {
       id,
@@ -37,8 +35,7 @@ export const ReelRaceCardContainer = ({ reelRace }: Props) => {
     [reelRace, dispatch]
   );
 
-  const optInAction =
-    isDGOJ && isInWarmUpPhase ? showWarmUpModal : optInForReelRace;
+  const optInAction = isDGOJ ? showWarmUpModal : optInForReelRace;
 
   return <ReelRaceCard reelRace={reelRace} optIn={optInAction} />;
 };

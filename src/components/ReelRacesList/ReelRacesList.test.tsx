@@ -1,7 +1,7 @@
 import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { mount } from "enzyme";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ScrollableList from "Components/ScrollableList";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { useJurisdiction } from "Utils/hooks";
@@ -33,9 +33,7 @@ function mockUseJurisdictionDGOJ() {
 describe("<ReelRacesList /> - Mobile and Tablet", () => {
   let rendered;
   const dispatchMock = jest.fn();
-  const selectorMock = jest.fn();
 
-  (useSelector as jest.Mock).mockReturnValue(selectorMock);
   (useDispatch as jest.Mock).mockReturnValue(dispatchMock);
   mockUseJurisdictionDGOJ();
 
