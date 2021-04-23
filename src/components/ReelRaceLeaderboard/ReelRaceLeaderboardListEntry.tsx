@@ -1,8 +1,8 @@
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import * as React from "react";
-import { isMobile } from "Components/ResponsiveLayout";
 import cx from "classnames";
+import { isMobile } from "Components/ResponsiveLayout";
 import { LaurelPosition } from "./LaurelPosition";
 import { Prize } from "./Prize";
 import SpinSymbol from "./images/spin-symbol.svg";
@@ -32,25 +32,24 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
   const SPINS_WARNING_THRESHOLD = 0.15;
 
   const isRemainingSpinsRunOut = React.useCallback(
-    () => remainingSpins/spinLimit < SPINS_WARNING_THRESHOLD,
+    () => remainingSpins / spinLimit < SPINS_WARNING_THRESHOLD,
     [remainingSpins, spinLimit]
   );
 
-  return <Flex.Item
-    className={
-      cx("c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg", {
-        "text-opacity-100": isMobile(),
-        "text-red-30 text-opacity-100": isRemainingSpinsRunOut(),
-      })
-  }>
-    <SpinSymbol
-      className={"c-reel-race__spin-symbol"}
-    />
-
-    <div className="u-margin-left--sm font-bold">
-      {remainingSpins}
-    </div>
-  </Flex.Item>;
+  return (
+    <Flex.Item
+      className={cx(
+        "c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg",
+        {
+          "text-opacity-100": isMobile(),
+          "text-red-30 text-opacity-100": isRemainingSpinsRunOut(),
+        }
+      )}
+    >
+      <SpinSymbol className={"c-reel-race__spin-symbol"} />
+      <div className="u-margin-left--sm font-bold">{remainingSpins}</div>
+    </Flex.Item>
+  );
 }
 
 export const ReelRaceLeaderboardListEntry = React.forwardRef<
@@ -97,9 +96,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
           inverted={inverted}
         />
       </Flex.Item>
-      <Flex.Block
-        className="c-reel-race__nickname"
-      >
+      <Flex.Block className="c-reel-race__nickname">
         <Text
           tag="div"
           className={cx({
@@ -112,15 +109,11 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex.Item>
         {prize && <Prize prize={prize} highlighted={highlighted} />}
       </Flex.Item>
-      {showSpins && <RemainingSpins
-        remainingSpins={remainingSpins}
-        spinLimit={spinLimit}
-      />}
+      {showSpins && (
+        <RemainingSpins remainingSpins={remainingSpins} spinLimit={spinLimit} />
+      )}
       <Flex.Item>
-        <Text
-          tag="div"
-          className="u-font-weight-bold u-text-align-right"
-        >
+        <Text tag="div" className="u-font-weight-bold u-text-align-right">
           {points}
         </Text>
       </Flex.Item>

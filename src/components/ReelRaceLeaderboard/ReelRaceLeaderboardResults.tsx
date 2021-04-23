@@ -56,7 +56,13 @@ const InnerList = ({
 }: ListProps) => (
   <div className={className}>
     {items.map(
-      ({ points, position, playerName, playerId: playerIdFromLeaderboard, remainingSpins }) => {
+      ({
+        points,
+        position,
+        playerName,
+        playerId: playerIdFromLeaderboard,
+        remainingSpins,
+      }) => {
         const prize = getPrize(position, prizes);
         const isHighlighted = playerIdFromLeaderboard === playerId;
         return (
