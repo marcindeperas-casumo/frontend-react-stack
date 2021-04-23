@@ -79,9 +79,9 @@ export const InGameRecentValuableWidget = ({
   return (
     <Flex className="u-padding--md" spacing="none">
       <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
-        <div className="c-ingame-recent-valuable__thumbnail t-background-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
+        <div className="c-ingame-recent-valuable__thumbnail bg-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
           {loading ? (
-            <div className="t-background-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
+            <div className="bg-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
           ) : (
             <ValuableThumbnail
               awardType={
@@ -112,20 +112,20 @@ export const InGameRecentValuableWidget = ({
         </div>
       </Flex.Item>
       <Flex.Block className="u-padding-left--md">
-        <Text className="t-color-white u-font-weight-bold u-margin-top--none">
+        <Text className="text-white u-font-weight-bold u-margin-top--none">
           {loading ? (
             <div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text u-margin-bottom--sm"></div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text u-margin-bottom--sm"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text"></div>
             </div>
           ) : (
             latestValuable.content
           )}
         </Text>
-        <Text className="t-color-grey-20 u-margin-top--none">
+        <Text className="text-grey-20 u-margin-top--none">
           {loading ? (
             <div>
-              <div className="t-background-grey-70 c-ingame-recent-valuable__loading-text"></div>
+              <div className="bg-grey-70 c-ingame-recent-valuable__loading-text"></div>
             </div>
           ) : (
             latestValuable.caveat

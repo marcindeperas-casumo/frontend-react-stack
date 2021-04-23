@@ -31,7 +31,7 @@ const ButtonContainer = ({
 }: ButtonContainerProps) => (
   <Flex.Item
     onClick={onClick}
-    className={classNames("t-color-grey-50", className)}
+    className={classNames("text-grey-50", className)}
   >
     {children}
   </Flex.Item>
@@ -77,7 +77,7 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     justify="center"
     data-test-id="sports-modal-fixed-close-button"
     className={classNames(
-      "c-sports-modal-header__fixed-button u-cursor--pointer t-border-r--sm u-width--4xlg u-height--4xlg t-color-grey-0 t-background-grey-90 u-display--none@mobile u-display--none@phablet",
+      "c-sports-modal-header__fixed-button u-cursor--pointer t-border-r--sm u-width--4xlg u-height--4xlg text-grey-0 bg-grey-90 u-display--none@mobile u-display--none@phablet",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
@@ -90,7 +90,7 @@ export const SportsModalHeader = ({
   children,
   onBack = noop,
   onClose = noop,
-  className = "t-background-white t-color-grey-90 t-border-bottom t-border-grey-5",
+  className = "bg-white text-grey-90 t-border-bottom border-grey-5",
 }: HeaderProps) => (
   <Flex
     align="center"

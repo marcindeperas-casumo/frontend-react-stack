@@ -34,7 +34,7 @@ export function BlueRibbonJackpotsInGameWidget({
     <Flex
       direction="vertical"
       align="start"
-      className="u-padding--md t-border-r u-overflow--hidden t-background-grey-90"
+      className="u-padding--md t-border-r u-overflow--hidden bg-grey-90"
     >
       <img alt="campaign name" src={t.campaign_logo} />
       <Flex
@@ -97,7 +97,7 @@ export function BlueRibbonJackpotsInGameWidget({
               key={jackpot.potId}
               direction="vertical"
               justify="space-between"
-              className="t-border-r--md u-overflow--hidden u-width--full t-background-black u-padding-x"
+              className="t-border-r--md u-overflow--hidden u-width--full bg-black u-padding-x"
             >
               <Flex
                 key={jackpot.potId}
@@ -114,7 +114,7 @@ export function BlueRibbonJackpotsInGameWidget({
               </Flex>
               <Text
                 size="2xs"
-                className="u-margin--none u-font-weight-bold t-color-grey-50 u-padding-x--md u-padding-bottom--md"
+                className="u-margin--none u-font-weight-bold text-grey-50 u-padding-x--md u-padding-bottom--md"
               >
                 {t.jackpot_split_explanation}
               </Text>
@@ -157,18 +157,18 @@ function JackpotRow({
         <>
           <Text
             size="2xs"
-            className="u-margin--none u-font-weight-bold u-text-transform-uppercase t-color-grey-50"
+            className="u-margin--none u-font-weight-bold u-text-transform-uppercase text-grey-50"
           >
             {label}
           </Text>
           <Text
             size="xs"
-            className="u-margin--none u-font-weight-bold t-color-white"
+            className="u-margin--none u-font-weight-bold text-white"
           >
             {formattedValue}
           </Text>
           {explanation && (
-            <Text size="2xs" className="u-margin--none t-color-grey-50">
+            <Text size="2xs" className="u-margin--none text-grey-50">
               {explanation}
             </Text>
           )}

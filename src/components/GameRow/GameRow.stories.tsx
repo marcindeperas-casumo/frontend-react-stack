@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { boolean, withKnobs } from "@storybook/addon-knobs/react";
+import { boolean, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import * as A from "Types/apollo";
 import { gameMock } from "Components/GameTile/__mocks__/Game";

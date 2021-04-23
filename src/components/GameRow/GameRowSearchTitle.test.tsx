@@ -61,7 +61,7 @@ describe("<GameRowSearchTitle />", () => {
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 
-  test("should render classname `t-color-grey-5` if isInMaintenance is set to true and an empty query is passed down", () => {
+  test("should render classname `text-grey-5` if isInMaintenance is set to true and an empty query is passed down", () => {
     const query = "";
     isInMaintenance = true;
     const rendered = shallow(
@@ -74,13 +74,13 @@ describe("<GameRowSearchTitle />", () => {
 
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
     expect(rendered.find("DangerousHtml").length).toBe(1);
-    expect(
-      rendered.find("DangerousHtml").last().hasClass("t-color-grey-5")
-    ).toBe(true);
+    expect(rendered.find("DangerousHtml").last().hasClass("text-grey-5")).toBe(
+      true
+    );
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 
-  test("should render classname `t-color-grey-70` if isInMaintenance is set to false and an empty query is passed down", () => {
+  test("should render classname `text-grey-70` if isInMaintenance is set to false and an empty query is passed down", () => {
     const query = "";
     isInMaintenance = false;
     const rendered = shallow(
@@ -93,9 +93,9 @@ describe("<GameRowSearchTitle />", () => {
 
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
     expect(rendered.find("DangerousHtml").length).toBe(1);
-    expect(
-      rendered.find("DangerousHtml").last().hasClass("t-color-grey-70")
-    ).toBe(true);
+    expect(rendered.find("DangerousHtml").last().hasClass("text-grey-70")).toBe(
+      true
+    );
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 });

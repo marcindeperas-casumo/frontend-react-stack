@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { select, boolean, text } from "@storybook/addon-knobs/react";
+import { select, boolean, text } from "@storybook/addon-knobs";
 import React from "react";
 import { CURRENCIES } from "Src/constants";
 import MockStore from "Components/MockStore";
@@ -35,7 +35,7 @@ stories.add("default", () => {
         currency={currency}
         onCashierLinkClick={actions.cashierLinkClicked}
         onQuickDepositLinkClick={actions.quickDepositLinkClicked}
-        className="t-background-grey-90 t-border-r u-padding-left--lg u-padding-right--md u-padding-y"
+        className="bg-grey-90 t-border-r u-padding-left--lg u-padding-right--md u-padding-y"
       />
     </MockStore>
   );

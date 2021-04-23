@@ -13,9 +13,9 @@ export type Props = {
   onRemove?: () => void;
   /** Whether the Pill is active and therefore uses it's active styles, default is false */
   isActive?: boolean;
-  /** Optional overrides for the default active classes (t-background-grey-20 t-color-grey-70) */
+  /** Optional overrides for the default active classes (bg-grey-20 text-grey-70) */
   activeClassNames?: string;
-  /** Optional overrides for the default inactive classes (t-background-grey-0 t-color-grey-50) */
+  /** Optional overrides for the default inactive classes (bg-grey-0 text-grey-50) */
   inactiveClassNames?: string;
 };
 
@@ -24,8 +24,8 @@ export const Pill = ({
   isActive,
   onClick,
   onRemove,
-  activeClassNames = "t-background-grey-20 t-color-grey-70",
-  inactiveClassNames = "t-background-grey-0 t-color-grey-50",
+  activeClassNames = "bg-grey-20 text-grey-70",
+  inactiveClassNames = "bg-grey-0 text-grey-50",
 }: Props) => {
   const className = classNames(
     "c-pill t-border-r--pill u-font-weight-bold u-padding-x u-padding-y--sm u-cursor--pointer",

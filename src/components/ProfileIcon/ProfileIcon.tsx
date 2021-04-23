@@ -40,7 +40,7 @@ export const ProfileIcon = ({
         className
       )}
     >
-      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle t-background-grey-90 t-opacity-background--100">
+      <div className="c-profile-icon__info u-height--2xlg u-width--2xlg u-overflow--hidden t-border-r--circle bg-grey-90 bg-opacity-100">
         <CasumoAvatar
           variant="sm"
           className="c-profile-icon__avatar o-position--absolute u-width--xlg"
@@ -50,10 +50,11 @@ export const ProfileIcon = ({
       </div>
       <ProgressCircle
         value={progressPercentage}
-        fgColor="grey-20"
-        bgColor="grey-50"
-        fgClassName={cx({ "c-profile-icon__progress--animating": animating })}
-        className="c-profile-icon__progress t-opacity-color--25 u-height--3xlg u-width--3xlg o-position--absolute"
+        bgClassName="text-grey-50 text-opacity-25"
+        fgClassName={cx("text-grey-20", {
+          "c-profile-icon__progress--animating": animating,
+        })}
+        className="c-profile-icon__progress u-height--3xlg u-width--3xlg o-position--absolute"
         width={4}
         radius={24}
       />

@@ -20,7 +20,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
       bonus_mode_label,
     } = this.props.content;
 
-    const bonusModeIndicator = `<strong class="t-color-purple-5">${bonus_mode_label}</strong>`;
+    const bonusModeIndicator = `<strong class="text-purple-5">${bonus_mode_label}</strong>`;
     const maxLevelReached = isMaxLevel(level, inBonusMode);
     const label = maxLevelReached ? max_level_label : level_label;
     const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
@@ -46,12 +46,12 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
         <Flex.Item className="u-margin-left--md">
           <Text
             tag="div"
-            className="u-font-weight-bold t-color-grey-90 u-margin-bottom--sm"
+            className="u-font-weight-bold text-grey-90 u-margin-bottom--sm"
             size="md"
           >
             <DangerousHtml html={name} />
           </Text>
-          <Text tag="div" className="t-color-grey-50" size="sm">
+          <Text tag="div" className="text-grey-50" size="sm">
             <DangerousHtml
               html={levelLabel.replace("{{level}}", level.toString())}
             />

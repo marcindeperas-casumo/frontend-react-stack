@@ -16,6 +16,6 @@ stories.add("With Label", () => (
 stories.add("Custom className", () => (
   <EditPillsButton
     onClick={action("onClick")}
-    className="t-background-green-30 t-color-white"
+    className="bg-green-30 text-white"
   />
 ));

@@ -111,7 +111,7 @@ export const ValuableThumbnail = ({
       </Flex>
       {stateBadgeVisible && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
+          <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block bg-white u-padding-bottom u-padding-right">
             <ValuableStateIndicator
               state={valuableState}
               label={
@@ -157,24 +157,24 @@ function getCoinClassModifier(
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
-      return "t-color-yellow-30";
+      return "text-yellow-30";
     case VALUABLE_TYPES.WAGERING_LOCK:
       if (awardType === "spins") {
-        return "t-color-grey-90";
+        return "text-grey-90";
       }
 
       if (["freeMoney", "bonusMoney"].includes(awardType)) {
-        return "t-color-yellow-30";
+        return "text-yellow-30";
       }
 
-      return "t-color-yellow-30";
+      return "text-yellow-30";
     case VALUABLE_TYPES.DEPOSIT:
-      return "t-color-blue-50";
+      return "text-blue-50";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-      return "t-color-green-30";
+      return "text-green-30";
     case VALUABLE_TYPES.SPINS:
-      return "t-color-grey-90";
+      return "text-grey-90";
     default:
       return "";
   }
@@ -188,25 +188,25 @@ function getCoinTextClassModifier(
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
-      return "t-color-grey-70";
+      return "text-grey-70";
     case VALUABLE_TYPES.WAGERING_LOCK:
       if (awardType === "spins") {
-        return "t-color-yellow-30";
+        return "text-yellow-30";
       }
 
       if (["freeMoney", "bonusMoney"].includes(awardType)) {
-        return "t-color-grey-70";
+        return "text-grey-70";
       }
 
-      return "t-color-grey-70";
+      return "text-grey-70";
     case VALUABLE_TYPES.DEPOSIT:
-      return "t-color-grey-70";
+      return "text-grey-70";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-      return "t-color-grey-70";
+      return "text-grey-70";
     case VALUABLE_TYPES.SPINS:
-      return "t-color-yellow-30";
+      return "text-yellow-30";
     default:
-      return "t-color-grey-70";
+      return "text-grey-70";
   }
 }

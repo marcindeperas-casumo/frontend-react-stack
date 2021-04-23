@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
 import MockStore from "Components/MockStore";
 import stateMock from "./__mocks__/state";

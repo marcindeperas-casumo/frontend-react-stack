@@ -83,7 +83,7 @@ export const QuickDepositSlipController = ({
           "u-pointer--initial",
         ])}
       >
-        <div className={cx(borderClasses(), ["t-background-white"])}>
+        <div className={cx(borderClasses(), ["bg-white"])}>
           <div className="u-padding--md">
             <Flex
               className="u-margin-bottom--md"
@@ -94,7 +94,7 @@ export const QuickDepositSlipController = ({
               <Flex.Item>{!tLoading && t.quick_deposit_title}</Flex.Item>
               <Flex.Item
                 onClick={closeQuickDeposit}
-                className="t-color-black u-cursor--pointer"
+                className="text-black u-cursor--pointer"
               >
                 <CloseIcon />
               </Flex.Item>

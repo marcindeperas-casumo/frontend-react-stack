@@ -13,7 +13,7 @@ export function Row(props: Props) {
       <Text tag="span" className="u-font-weight-bold">
         {props.label}
       </Text>
-      <Text tag="span" className="t-color-grey-50">
+      <Text tag="span" className="text-grey-50">
         {props.value}
       </Text>
     </Flex>

@@ -26,5 +26,4 @@ const makeConfig = size => ({
     defaultViewport: devices[size],
   },
 });
-
 export const viewports = map(makeConfig, breakpoints);

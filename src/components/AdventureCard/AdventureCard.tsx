@@ -55,7 +55,7 @@ export default class AdventureCard extends PureComponent<Props> {
           align="center"
           className={cx(
             COMPONENT_CLASSNAME,
-            "t-border-r--md t-background-white",
+            "t-border-r--md bg-white",
             "u-padding-x--md u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--lg"
           )}
           direction="vertical"

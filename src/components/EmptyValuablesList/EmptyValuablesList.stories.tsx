@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs";
 import React from "react";
 import { EmptyValuablesList } from "./EmptyValuablesList";
 

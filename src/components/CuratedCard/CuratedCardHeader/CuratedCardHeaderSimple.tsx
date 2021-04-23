@@ -31,7 +31,7 @@ export const CuratedCardHeaderSimple = ({
     <MobileAndTablet>
       <Text
         data-test="curated-card-header"
-        className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+        className="u-margin-bottom--none u-line-height--1 u-font-weight-bold text-white"
         size="2xlg"
         dangerouslySetInnerHTML={stringToHTML(header)}
       />
@@ -41,7 +41,7 @@ export const CuratedCardHeaderSimple = ({
       <div className="o-wrapper">
         <Text
           data-test="curated-card-header"
-          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold text-white"
           size="3xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />

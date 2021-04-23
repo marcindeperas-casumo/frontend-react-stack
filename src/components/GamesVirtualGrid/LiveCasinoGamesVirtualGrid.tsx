@@ -48,7 +48,7 @@ export const LiveCasinoGamesVirtualGrid = ({
       tileHeight={liveCasinoTileHeight}
       TileComponent={OptimizedLiveCasinoCard}
       tileLoadingElement={
-        <div className="t-border-r--md t-background-grey-5 u-height--full u-width--full" />
+        <div className="t-border-r--md bg-grey-5 u-height--full u-width--full" />
       }
     />
   );

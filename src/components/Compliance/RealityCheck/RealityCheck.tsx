@@ -105,7 +105,7 @@ export function RealityCheck(props: RealityCheckProps) {
         <a
           role="button"
           tabIndex={0}
-          className="u-cursor--pointer t-color-purple-60"
+          className="u-cursor--pointer text-purple-60"
           onClick={onClickViewHistoryBets}
         >
           {t.reality_check_game_round_history_button_text}
