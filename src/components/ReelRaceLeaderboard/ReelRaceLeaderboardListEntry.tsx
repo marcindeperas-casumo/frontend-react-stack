@@ -40,11 +40,11 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
     className={
       cx("c-reel-race__remaining-spins", {
         "t-opacity--100": isMobile(),
-        "t-color-red-30 t-opacity--100": isRemainingSpinsRunOut(),
+        "text-red-30 t-opacity--100": isRemainingSpinsRunOut(),
       })
   }>
     <SpinSymbol
-      className={cx({
+      className={cx("text-red-30", {
         "c-reel-race__remaining-spins--warning": isRemainingSpinsRunOut(),
         "c-reel-race__remaining-spins--regular": !isRemainingSpinsRunOut(),
       })}
@@ -120,7 +120,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex.Item>
         <Text
           tag="div"
-          className="u-font-weight-bold u-margin-right--md u-width--2xlg u-text-align-right"
+          className="u-font-weight-bold u-text-align-right"
         >
           {points}
         </Text>
