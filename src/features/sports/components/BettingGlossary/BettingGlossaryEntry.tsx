@@ -55,11 +55,10 @@ export class BettingGlossaryEntry extends React.PureComponent<Props> {
       return;
     }
     const linkedTermId = linkNode.getAttribute(dataAttr.link) || "";
-    const linkedElement = document.querySelector(
+    const linkedElement: HTMLElement = document.querySelector(
       `[${dataAttr.term}="${linkedTermId}"]`
     );
     if (linkedElement) {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Element' is not assignable to pa... Remove this comment to see the full error message
       this.scrollToTerm(linkedElement);
     }
   };

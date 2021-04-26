@@ -31,9 +31,8 @@ export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 const getPluralisableDictionaryTerm = (
   data: A.PluralisableDictionaryTermQuery | undefined,
   loading: boolean,
+  isPlural: boolean,
   replacements?: Replacements,
-  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
-  isPlural: boolean
 ): string => {
   if (loading) {
     return LOADING_STRING;
@@ -72,10 +71,10 @@ export const PluralisableDictionaryTerm = ({
   const dictionaryTerm = getPluralisableDictionaryTerm(
     data,
     loading,
-    replacements,
-    isPlural
+    isPlural,
+    replacements
   );
 
   // if children provided this is a render prop component, if not return the translation
-  return children ? children(dictionaryTerm) : <>dictionaryTerm</>;
+  return children ? children(dictionaryTerm) : <>{dictionaryTerm}</>;
 };

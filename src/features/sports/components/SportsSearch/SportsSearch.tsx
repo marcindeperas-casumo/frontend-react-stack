@@ -98,7 +98,6 @@ export default class SportsSearch extends React.Component<{}, State> {
                   <SearchInput
                     autofocus
                     value={this.state.query}
-                    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
                     onChange={this.handleSearchInput}
                     onClear={this.handleClearSearchInput}
                     onFocus={this.handleFocusSearchInput}

@@ -12,7 +12,7 @@ type InputProps = {
   autofocus?: boolean;
   name?: string;
   placeholder?: string;
-  onChange: () => void;
+  onChange: (event: Event) => void;
   onFocus: () => void;
   onBlur?: () => void;
   colorBackgroundClass?: string;
