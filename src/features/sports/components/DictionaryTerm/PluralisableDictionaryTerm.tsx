@@ -32,7 +32,7 @@ const getPluralisableDictionaryTerm = (
   data: A.PluralisableDictionaryTermQuery | undefined,
   loading: boolean,
   isPlural: boolean,
-  replacements?: Replacements,
+  replacements?: Replacements
 ): string => {
   if (loading) {
     return LOADING_STRING;

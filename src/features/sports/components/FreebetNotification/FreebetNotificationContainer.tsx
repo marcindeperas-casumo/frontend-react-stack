@@ -7,8 +7,8 @@ import {
   getValuablesByState,
   getLatestValuable,
 } from "Models/valuables";
-import { FreebetNotification } from "./FreebetNotification";
 import type { PlayerValuableFreeBet } from "Src/types/apollo";
+import { FreebetNotification } from "./FreebetNotification";
 
 // We are persisting the users action of hiding the notification to localStorage.
 export const IS_HIDDEN_STORAGE_KEY = "isFreebetNotificationHidden";
@@ -43,11 +43,13 @@ export const FreebetNotificationContainer = () => {
   // Only display it for locked free bets.
   // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
   // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
-  const lockedFreebets: PlayerValuableFreeBet[] = getValuablesByState([VALUABLE_STATES.LOCKED])(
-    valuables
-  );
+  const lockedFreebets: PlayerValuableFreeBet[] = getValuablesByState([
+    VALUABLE_STATES.LOCKED,
+  ])(valuables);
   // @ts-expect-error  Type '{}' is missing the following properties from type 'PlayerValuableFreeBet': backgroundImage, content, currency, expirationTimeInHours, and 12 more.ts(2740)
-  const latestLockedFreebet: PlayerValuableFreeBet = getLatestValuable(lockedFreebets);
+  const latestLockedFreebet: PlayerValuableFreeBet = getLatestValuable(
+    lockedFreebets
+  );
 
   if (
     isHidden ||
