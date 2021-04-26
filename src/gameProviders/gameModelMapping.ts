@@ -105,13 +105,9 @@ export const getGameModel = (
 
       obj[key] = value.length > 1 ? value : value[0];
 
-      if (key === "gameServer") {
-        obj["width"] = "640";
-      } else if (key === "staticServer") {
+      if (key === "staticServer") {
         obj["providerName"] = gameData?.providerType;
         obj["providerType"] = gameData?.providerType;
-        obj["height"] = "480";
-        obj["casinoBrand"] = "casumo";
         /* eslint-enable fp/no-mutation */
       }
     }
