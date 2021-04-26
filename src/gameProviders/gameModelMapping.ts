@@ -104,12 +104,7 @@ export const getGameModel = (
       const value = params.getAll(key);
 
       obj[key] = value.length > 1 ? value : value[0];
-
-      if (key === "staticServer") {
-        obj["providerName"] = gameData?.providerType;
-        obj["providerType"] = gameData?.providerType;
-        /* eslint-enable fp/no-mutation */
-      }
+      /* eslint-enable fp/no-mutation */
     }
     return obj;
   };
