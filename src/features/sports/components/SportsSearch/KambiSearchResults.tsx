@@ -62,9 +62,7 @@ const GroupTitle = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => (
-  <Text className="text-grey-50 p-4 font-bold">
-    {children}
-  </Text>
+  <Text className="text-grey-50 p-4 font-bold">{children}</Text>
 );
 
 const ResultRow = ({
@@ -78,15 +76,10 @@ const ResultRow = ({
   path?: string;
 }): JSX.Element => (
   <div
-    className={classNames(
-      "px-4 cursor-pointer",
-      className || "bg-white"
-    )}
+    className={classNames("px-4 cursor-pointer", className || "bg-white")}
     onClick={onClick}
   >
-    <div className="py-4 border-b border-grey-5">
-      {children}
-    </div>
+    <div className="py-4 border-b border-grey-5">{children}</div>
   </div>
 );
 
@@ -245,11 +238,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             <Flex className="pl-4" spacing="md" align="center">
               <img src={sport.icon} alt={sport.name} height="24" width="24" />
               <Flex.Block>
-                <Text
-                  size="sm"
-                  tag="span"
-                  className="text-grey-70 font-bold"
-                >
+                <Text size="sm" tag="span" className="text-grey-70 font-bold">
                   {eventGroup.name}
                 </Text>
               </Flex.Block>

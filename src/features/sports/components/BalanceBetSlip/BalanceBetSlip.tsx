@@ -35,21 +35,13 @@ export const BalanceBetSlip = ({
       <AddIcon size="sm" />
     </div>
     <div className="px-4">
-      <div className="text-xs">
-        {t?.balance_title}
-      </div>
-      <div className="font-bold text-sm">
-        {balance}
-      </div>
+      <div className="text-xs">{t?.balance_title}</div>
+      <div className="font-bold text-sm">{balance}</div>
     </div>
     {bonus && (
       <div className="px-4">
-        <div className="text-xs">
-          {t?.bonus_title}
-        </div>
-        <div className="font-bold text-sm">
-          {bonus}
-        </div>
+        <div className="text-xs">{t?.bonus_title}</div>
+        <div className="font-bold text-sm">{bonus}</div>
       </div>
     )}
   </div>

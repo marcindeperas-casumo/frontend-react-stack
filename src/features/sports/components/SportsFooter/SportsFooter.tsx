@@ -16,10 +16,7 @@ export const SportsFooter = () => (
     <OpenModalMutation variables={{ modal: MODAL.BETTING_GLOSSARY }}>
       {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
       {openChooseFavouritesModal => (
-        <span
-          className="cursor-pointer"
-          onClick={openChooseFavouritesModal}
-        >
+        <span className="cursor-pointer" onClick={openChooseFavouritesModal}>
           <DictionaryTerm termKey="footer.glossary" />
         </span>
       )}
