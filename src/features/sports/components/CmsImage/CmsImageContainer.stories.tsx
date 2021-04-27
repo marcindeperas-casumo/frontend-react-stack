@@ -10,7 +10,6 @@ const stories = storiesOf("Sports/CmsImage", module);
 if (isNotChromatic) {
   stories.add("Default", () => (
     <MockedProvider mocks={cmsImageMocks} addTypename={false}>
-      {/* @ts-expect-error ts-migrate(2786) FIXME: 'CmsImage' cannot be used as a JSX component. */}
       <CmsImage id="favourite-sports-selector.intro.sports" />
     </MockedProvider>
   ));

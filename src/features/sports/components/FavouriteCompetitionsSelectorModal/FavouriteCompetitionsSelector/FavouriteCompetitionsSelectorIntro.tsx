@@ -11,7 +11,6 @@ const FavouriteCompetitionsSelectorIntro = ({
   group: A.FavouriteCompetitionsSelectorIntro_GroupFragment;
 }) => (
   <Text size="sm" className="u-margin-y--xlg">
-    {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
     <DictionaryTerm
       termKey="favourite-competitions-selector.intro"
       replacements={{

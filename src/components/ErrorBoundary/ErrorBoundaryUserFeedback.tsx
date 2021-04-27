@@ -13,6 +13,5 @@ export function ErrorBoundaryUserFeedback() {
     return <div>Something went wrong, we are working on it.</div>;
   }
 
-  // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ errorMessag... Remove this comment to see the full error message
   return <ErrorMessage errorMessage={t.errorText} />;
 }

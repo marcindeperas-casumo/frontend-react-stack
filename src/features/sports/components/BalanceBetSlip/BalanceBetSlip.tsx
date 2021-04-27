@@ -7,12 +7,10 @@ import React from "react";
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  t:
-    | {
-        balance_title: string;
-        bonus_title: string;
-      }
-    | undefined;
+  t?: {
+    balance_title?: string;
+    bonus_title?: string;
+  };
   maximized: boolean;
   balance: string;
   bonus?: string;
