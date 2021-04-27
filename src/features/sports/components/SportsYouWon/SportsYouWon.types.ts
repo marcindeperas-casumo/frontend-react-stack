@@ -5,13 +5,13 @@ export type SportsYouWonTranslations = {
   "background-image": string;
   animation1: string;
   animation2: string;
-  bet?: string;
-  text?: string;
-  single?: string;
-  double?: string;
-  tripple?: string;
-  four?: string;
-  multi?: string;
+  bet: string;
+  text: string;
+  single: string;
+  double: string;
+  tripple: string;
+  four: string;
+  multi: string;
 };
 
 export type BetCombinationRefOutcomes = {

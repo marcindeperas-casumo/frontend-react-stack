@@ -25,7 +25,7 @@ const getBetData = (betId: string) => {
   return BET_DATA;
 };
 
-export const legsDisplay = (data: any, t: any) => {
+export const legsDisplay = (data: any, t: SportsYouWonTranslations) => {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (data.legs.length) {
     case 1:
@@ -69,17 +69,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
     value: betData.payout,
   });
 
-  const d = {
-    bet: "Bet",
-    text: "{$username} won {$wonAmount} on sports",
-    single: "Single",
-    double: "Double",
-    tripple: "Tripple",
-    four: "FourFold",
-    multi: "MultiFold",
-  };
-
-  const content = d.text
+  const content = t.text
     .replace("{$username}", betData.username)
     .replace("{$wonAmount}", wonAmount);
 
@@ -132,7 +122,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
             <div className="u-font-2xlg u-font-weight-bold">{content}</div>
             <div className="flex flex-col justify-end flex-1 space-y-4">
               <div className="u-font-md u-font-weight-bold">
-                {d.bet}: {legsDisplay(betData, d)}
+                {t.bet}: {legsDisplay(betData, t)}
               </div>
               {betData.legs.map((leg, i) =>
                 leg.outcomes.map((outcome, j) => (
