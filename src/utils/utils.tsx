@@ -416,6 +416,9 @@ export const convertHoursToDaysRoundUp = (hours: number) => {
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromSeconds(value);
 };
+export const convertMillisTimestampToLuxonDate = (value: number) => {
+  return DateTime.fromMillis(value);
+};
 
 export const convertLuxonDurationObjectToSeconds = (
   duration: Object

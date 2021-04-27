@@ -10,7 +10,7 @@ import {
   TCurrencyCode,
 } from "Src/constants";
 import type { TLanguage } from "Src/constants";
-import { convertTimestampToLuxonDate } from "Utils/utils";
+import { convertMillisTimestampToLuxonDate } from "Utils/utils";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 import type { Handshake } from "./handshake.types";
 
@@ -230,8 +230,8 @@ export const piqConfigSelector = createSelector(
 export const isWarmUpPhaseSelector = createSelector(
   registrationDateSelector,
   registrationDate => {
-    const registratioDate = convertTimestampToLuxonDate(registrationDate);
-    const timeToElapse = registratioDate.plus({ days: 30 });
-    return timeToElapse < DateTime.utc();
+    const registratioDate = convertMillisTimestampToLuxonDate(registrationDate);
+    const timeToElapse = registratioDate.plus({ days: 30 }).toSeconds();
+    return timeToElapse > DateTime.utc().toSeconds();
   }
 );

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Duration, DateTime } from "luxon";
 import { useSelector } from "react-redux";
 import {
-  convertTimestampToLuxonDate,
+  convertMillisTimestampToLuxonDate,
   getActualDateTimeDifferenceFromNow,
 } from "Utils";
 import { registrationDateSelector } from "Models/handshake";
@@ -29,12 +29,14 @@ export const useAccountWarmUp = () => {
   const timer = useTimeoutFn();
 
   const refreshTimeRemaining = React.useCallback(() => {
-    const registratioDate = convertTimestampToLuxonDate(registrationSeconds);
+    const registratioDate = convertMillisTimestampToLuxonDate(
+      registrationSeconds
+    );
     const timeToElapse = registratioDate.plus({
       days: WARM_UP_DURATION,
     });
 
-    const hasElapsed = timeToElapse > DateTime.utc();
+    const hasElapsed = timeToElapse.toSeconds() < DateTime.utc().toSeconds();
 
     if (!hasElapsed) {
       setTimeRemaining(getActualDateTimeDifferenceFromNow(timeToElapse));
