@@ -23,7 +23,7 @@ export class SportsModal extends React.Component<Props> {
 
   render() {
     return (
-      <Modal className="c-sports-modal BG-white">
+      <Modal className="c-sports-modal bg-white">
         <>{this.props.children}</>
       </Modal>
     );
