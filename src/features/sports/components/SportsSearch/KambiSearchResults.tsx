@@ -61,7 +61,7 @@ const GroupTitle = ({
   children,
 }: {
   children: React.ReactNode;
-}): React.ReactNode => (
+}): JSX.Element => (
   <Text className="text-grey-50 u-padding--md u-font-weight-bold">
     {children}
   </Text>
@@ -72,10 +72,11 @@ const ResultRow = ({
   onClick = () => {},
   className,
 }: {
-  children: React.ReactNode;
+  children: JSX.Element;
   onClick?: () => void;
   className?: string;
-}): React.ReactNode => (
+  path?: string;
+}): JSX.Element => (
   <div
     className={classNames(
       "u-padding-x--md u-cursor--pointer",
@@ -184,9 +185,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   renderPopularSearches = (count: number) => (
     <>
-      {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
       <GroupTitle>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="search-results.heading.popular" />
       </GroupTitle>
       <Query query={TOP_SEARCHES_QUERY} variables={{ count }}>
@@ -204,9 +203,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderSearchHistory = (count: number) =>
     count > 0 ? (
       <>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'GroupTitle' cannot be used as a JSX component. */}
         <GroupTitle>
-          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
@@ -236,10 +233,8 @@ class KambiSearchResults extends React.Component<Props, State> {
       >
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(navigateClient: any) => Element' has no pro... Remove this comment to see the full error message */}
         {navigateClient => (
-          // @ts-expect-error ts-migrate(2786) FIXME: 'ResultRow' cannot be used as a JSX component.
           <ResultRow
             key={eventGroup.termKey}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: string; path: stri... Remove this comment to see the full error message
             path={eventGroup.termKey}
             onClick={() => {
               this.props.onResultClick(eventGroup);
@@ -295,10 +290,8 @@ class KambiSearchResults extends React.Component<Props, State> {
       >
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(navigateClient: any) => Element' has no pro... Remove this comment to see the full error message */}
         {navigateClient => (
-          // @ts-expect-error ts-migrate(2786) FIXME: 'ResultRow' cannot be used as a JSX component.
           <ResultRow
             key={result.id}
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; key: string; path: stri... Remove this comment to see the full error message
             path={result.id}
             onClick={() => {
               this.saveSearchHistory(result);
@@ -396,7 +389,6 @@ class KambiSearchResults extends React.Component<Props, State> {
             </Flex.Item>
             <Flex.Block>
               <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
-                {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>

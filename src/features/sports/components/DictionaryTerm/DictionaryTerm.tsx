@@ -10,7 +10,7 @@ type Props = {
   /** A replacements map, for variable replacements in the dictionary term string */
   replacements?: Replacements;
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
-  children?: (dictionaryTerm: string) => React.ReactNode;
+  children?: (dictionaryTerm: string) => JSX.Element;
 };
 
 export const DICTIONARY_TERM_QUERY = gql`
@@ -39,7 +39,7 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
-}: Props): React.ReactNode => {
+}: Props): JSX.Element => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<
     A.DictionaryTermQuery,
@@ -47,5 +47,5 @@ export const DictionaryTerm = ({
   >(DICTIONARY_TERM_QUERY, { variables });
   const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
 
-  return children ? children(dictionaryTerm) : dictionaryTerm;
+  return children ? children(dictionaryTerm) : <>{dictionaryTerm}</>;
 };

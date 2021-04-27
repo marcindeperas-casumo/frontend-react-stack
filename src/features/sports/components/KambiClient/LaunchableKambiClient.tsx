@@ -45,7 +45,6 @@ export function LaunchableKambiClient() {
     kambiData.kambiClientVisible && firstLoadCompleted;
 
   if (error) {
-    // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{}' but requi... Remove this comment to see the full error message
     return <ErrorMessage />;
   }
 

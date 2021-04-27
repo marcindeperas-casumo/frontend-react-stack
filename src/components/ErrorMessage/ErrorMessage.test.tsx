@@ -14,7 +14,6 @@ const findElements = container => ({
 describe("ErrorMessage", () => {
   describe("when given no props", () => {
     test("should render with defaults", () => {
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{}' but requi... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage />);
       const elements = findElements(rendered);
 
@@ -27,7 +26,6 @@ describe("ErrorMessage", () => {
 
   describe("when given the direction prop 'vertical'", () => {
     test("should render vertically", () => {
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ direction: ... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage direction="vertical" />);
       const elements = findElements(rendered);
 
@@ -40,7 +38,6 @@ describe("ErrorMessage", () => {
 
   describe("when given the direction prop 'horizontal'", () => {
     test("should render horizontally", () => {
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ direction: ... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage direction="horizontal" />);
       const elements = findElements(rendered);
 
@@ -54,7 +51,6 @@ describe("ErrorMessage", () => {
   describe("when given an error message", () => {
     test("should render the custom error message", () => {
       const errorMessage = "Loading === exploding";
-      // @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ errorMessag... Remove this comment to see the full error message
       const rendered = shallow(<ErrorMessage {...{ errorMessage }} />);
       const elements = findElements(rendered);
 
