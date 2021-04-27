@@ -1,12 +1,15 @@
-export const BET_DATA = {
+import type { BetCombinationRefType } from "../SportsYouWon.types";
+
+export const BET_DATA: BetCombinationRefType = {
   "combinationRef": 2883830063,
   "playerId": "658b03a8-984a-4370-a4d7-0cb1228fd697",
   "placedDate": "2021-04-27T15:38:20.371+02:00",
   "stake": 100,
-  "payout": 0,
+  "payout": 99.1,
   "currency": "INR",
   "odds": 19.64,
-  "status": "OPEN",
+  "status": "WON",
+  "username": "TestPlayer",
   "legs": [
     {
       "odds": 2.15,

@@ -1,15 +1,13 @@
 import * as React from "react";
 import "./SportsYouWon.scss";
 import { CloseIcon } from "@casumo/cmp-icons";
-import { useTranslations } from "Utils/hooks";
+import { formatCurrency } from "Utils";
+import { useLocale, useTranslations } from "Utils/hooks";
 import { BET_DATA } from "./__mocks__/mock";
 import type { SportsYouWonTranslations } from "./SportsYouWon.types";
 
 type Props = {
   currentHash: string;
-  loaded: boolean;
-  page: any;
-  fetchPage: () => void;
 };
 
 const PROP_NAME = "?youwon=";
@@ -27,23 +25,21 @@ const getBetData = (betId: string) => {
   return BET_DATA;
 };
 
-// export const legsDisplay = (props: any) => {
-//   if (props.numberOfLegs === 1 && props.singleLegDetails.outcomes.length > 1) {
-//     return "Bet builder";
-//   }
-//   switch (props.numberOfLegs) {
-//     case 1:
-//       return "Single";
-//     case 2:
-//       return "Double";
-//     case 3:
-//       return "Triple";
-//     case 4:
-//       return "FourFold";
-//     default:
-//       return "MultiFold";
-//   }
-// };
+export const legsDisplay = (data: any, t: any) => {
+  // eslint-disable-next-line no-switch-statements/no-switch
+  switch (data.legs.length) {
+    case 1:
+      return t.single;
+    case 2:
+      return t.double;
+    case 3:
+      return t.tripple;
+    case 4:
+      return t.four;
+    default:
+      return t.multi;
+  }
+};
 
 const removeYouWonParam = currentHash => {
   // eslint-disable-next-line fp/no-mutation
@@ -53,15 +49,39 @@ const removeYouWonParam = currentHash => {
   );
 };
 
+const getRndInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 export const SportsYouWonComponent = ({ currentHash }: Props) => {
   const t = useTranslations<SportsYouWonTranslations>(CMS_SLUG);
+  const locale = useLocale();
 
   if (!showModal(currentHash) || !t) {
     return null;
   }
 
   const betData = getBetData(getBetId(currentHash));
-  console.log("***", betData);
+
+  const wonAmount = formatCurrency({
+    locale,
+    currency: betData.currency,
+    value: betData.payout,
+  });
+
+  const d = {
+    bet: "Bet",
+    text: "{$username} won {$wonAmount} on sports",
+    single: "Single",
+    double: "Double",
+    tripple: "Tripple",
+    four: "FourFold",
+    multi: "MultiFold",
+  };
+
+  const content = d.text
+    .replace("{$username}", betData.username)
+    .replace("{$wonAmount}", wonAmount);
 
   return (
     <div
@@ -100,7 +120,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
         <div
           className="h-full relative top-0 left-0 bottom-0 right-0 bg-bottom bg-no-repeat"
           style={{
-            backgroundImage: `url('${t["animation1"]}'`,
+            backgroundImage: `url('${t[`animation${getRndInteger(1, 2)}`]}'`,
           }}
         >
           <CloseIcon
@@ -109,23 +129,21 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
           />
           <div className="u-padding-x--2xlg u-padding-top--4xlg u-padding-bottom--lg flex flex-col items-start space-y-4 h-full">
             <img src={t["logo-image"]} />
-            <div className="u-font-2xlg u-font-weight-bold">
-              ddurans won €125.20 on sports
-            </div>
+            <div className="u-font-2xlg u-font-weight-bold">{content}</div>
             <div className="flex flex-col justify-end flex-1 space-y-4">
-              <div className="u-font-md u-font-weight-bold">Bet: Double</div>
-              <div>
-                <div className="u-font-sm u-font-weight-bold">
-                  Full time: Juventus
-                </div>
-                <div className="u-font-xs">Juventus-Lyon</div>
+              <div className="u-font-md u-font-weight-bold">
+                {d.bet}: {legsDisplay(betData, d)}
               </div>
-              <div>
-                <div className="u-font-sm u-font-weight-bold">
-                  Full time: Manchester City
-                </div>
-                <div className="u-font-xs">Manchester City - Real Madrit</div>
-              </div>
+              {betData.legs.map((leg, i) =>
+                leg.outcomes.map((outcome, j) => (
+                  <div key={i}>
+                    <div className="u-font-sm u-font-weight-bold">
+                      {outcome.criterionName}: {outcome.outcomeLabel}
+                    </div>
+                    <div className="u-font-xs">{outcome.eventName}</div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
