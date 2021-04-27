@@ -15,13 +15,13 @@ const showModal = (currentHash: string) => {
   return currentHash.indexOf(PROP_NAME) > -1;
 };
 
-const getBetId = (currentHash: string) => {
-  return currentHash.substr(currentHash.indexOf(PROP_NAME) + PROP_NAME.length);
-};
-
-const getBetData = (betId: string) => {
-  return betId;
-};
+// const getBetId = (currentHash: string) => {
+//   return currentHash.substr(currentHash.indexOf(PROP_NAME) + PROP_NAME.length);
+// };
+//
+// const getBetData = (betId: string) => {
+//   return betId;
+// };
 
 const removeYouWonParam = currentHash => {
   // eslint-disable-next-line fp/no-mutation
@@ -46,42 +46,74 @@ export const SportsYouWonComponent = ({
     return null;
   }
 
-  const betData = getBetData(getBetId(currentHash));
+  // const betData = getBetData(getBetId(currentHash));
 
-  // @ts-ignore
   return (
     <div
       className="c-sports-youwon
-                t-background-grey-70
-                t-opacity-background--75
-                u-position-fixed
-                u-width--screen
-                u-height--screen,
-                u-top-0
-                u-bottom-0
-                u-left-0
-                u-right-0
-                u-zindex--modal
-                t-color-white,
-                u-flex-center"
+                bg-grey-70
+                bg-opacity-75
+                fixed
+                w-screen
+                h-screen,
+                top-0
+                bottom-0
+                left-0
+                right-0
+                z-20
+                flex
+                items-center
+                justify-center"
     >
       <div
         className="c-sports-youwon-content
-                  t-background-purple-50
-                  t-opacity-background--100
-                  t-color-white
-                  u-position-relative
-                  t-back"
+                    t-border-r--md
+                    t-border-r--none@mobile
+                    h-3/4
+                    sm:h-screen
+                    sm:w-screen
+                    bg-purple-50
+                    bg-opacity-100
+                    color-white
+                    relative
+                    bg-right-top
+                    bg-no-repeat"
         style={{
-          "background-image": `url('${page.fields["background-image"]}'`,
-          "background-position": "top right",
-          "background-repeat": "no-repeat",
+          backgroundImage: `url('${page.fields["background-image"]}'`,
         }}
       >
-        <div className="c-sports-youwon-close u-cursor-pointer">
-          <CloseIcon onClick={() => removeYouWonParam(currentHash)} />
+        <div
+          className="h-full relative top-0 left-0 bottom-0 right-0 bg-bottom bg-no-repeat"
+          style={{
+            backgroundImage: `url('${page.fields["animation1"]}'`,
+          }}
+        >
+          <CloseIcon
+            onClick={() => removeYouWonParam(currentHash)}
+            className="cursor-pointer absolute top-0 right-0 u-margin-top--md u-margin-right--md"
+          />
+          <div className="u-padding-x--2xlg u-padding-top--4xlg u-padding-bottom--lg flex flex-col items-start space-y-4 h-full">
+            <img src={page.fields["logo-image"]} />
+            <div className="u-font-2xlg u-font-weight-bold">
+              ddurans won €125.20 on sports
+            </div>
+            <div className="flex flex-col justify-end flex-1 space-y-4">
+              <div className="u-font-md u-font-weight-bold">Bet: Double</div>
+              <div>
+                <div className="u-font-sm u-font-weight-bold">
+                  Full time: Juventus
+                </div>
+                <div className="u-font-xs">Juventus-Lyon</div>
+              </div>
+              <div>
+                <div className="u-font-sm u-font-weight-bold">
+                  Full time: Manchester City
+                </div>
+                <div className="u-font-xs">Manchester City - Real Madrit</div>
+              </div>
+            </div>
+          </div>
         </div>
-        {betData}
       </div>
     </div>
   );
