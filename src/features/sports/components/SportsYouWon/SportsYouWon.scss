@@ -2,7 +2,9 @@
   z-index: 20;
 
   &-content {
-    max-height: 700px;
+    @media (min-width: 768px) {
+      max-height: 700px;
+    }
     width: 500px;
   }
 }
