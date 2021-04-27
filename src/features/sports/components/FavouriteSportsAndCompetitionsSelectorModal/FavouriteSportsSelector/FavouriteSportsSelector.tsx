@@ -36,7 +36,6 @@ const FavouriteSportsSelector = (props: Props) => (
           />
 
           <Heading>
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
             <DictionaryTerm termKey="favourite-sports-selector.heading.popular" />
           </Heading>
 
@@ -53,7 +52,6 @@ const FavouriteSportsSelector = (props: Props) => (
                   onAddCompetition={props.onAddCompetition}
                   onToggleFavouriteSport={api.toggleFavouriteSport}
                   isFavourite={api.isSelected(group.id)}
-                  // @ts-expect-error ts-migrate(2322) FIXME: Type '(sportId: number, competition: { id: number;... Remove this comment to see the full error message
                   onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
                   isOnboarding={api.isFirstTimeSelectingFavourites}
                 />
@@ -68,10 +66,8 @@ const FavouriteSportsSelector = (props: Props) => (
           )}
 
           <Heading>
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
             <DictionaryTerm termKey="favourite-sports-selector.heading.all" />
           </Heading>
-          {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
           <DictionaryTerm termKey="favourite-sports-selector.selectall">
             {allSportsGroupTitle => {
               const allSportsGroup: A.FavouriteSportsSelectorListItem_GroupFragment = {
@@ -111,7 +107,6 @@ const FavouriteSportsSelector = (props: Props) => (
                         onAddCompetition={props.onAddCompetition}
                         onToggleFavouriteSport={toggleAction}
                         isFavourite={api.isSelected(group.id)}
-                        // @ts-expect-error ts-migrate(2322) FIXME: Type '(sportId: number, competition: { id: number;... Remove this comment to see the full error message
                         onRemoveFavouriteCompetition={
                           api.toggleFavouriteCompetition
                         }

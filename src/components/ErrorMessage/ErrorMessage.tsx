@@ -16,7 +16,7 @@ type ComponentProps = {
 
 type RetryProps = {
   retryMessage?: string;
-  retry: () => any;
+  retry?: () => any;
 };
 
 type Props = RetryProps & ComponentProps;

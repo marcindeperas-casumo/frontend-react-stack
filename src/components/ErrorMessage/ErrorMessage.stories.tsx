@@ -18,7 +18,6 @@ const renderError = (props = {}) => () => {
 
   return (
     <Flex className="bg-grey-0 u-padding--3xlg" style={{ minHeight: 420 }}>
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ errorMessag... Remove this comment to see the full error message */}
       <ErrorMessage {...propsWithDefaults} />
     </Flex>
   );

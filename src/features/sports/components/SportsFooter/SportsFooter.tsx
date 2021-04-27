@@ -16,7 +16,6 @@ export const SportsFooter = () => (
   >
     <Flex.Item>
       <span className="u-cursor--pointer" onClick={showTerms}>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="footer.terms">
           {footerTermsText => <DangerousHtml html={footerTermsText} />}
         </DictionaryTerm>
@@ -31,7 +30,6 @@ export const SportsFooter = () => (
             className="u-cursor--pointer"
             onClick={openChooseFavouritesModal}
           >
-            {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
             <DictionaryTerm termKey="footer.glossary" />
           </span>
         )}

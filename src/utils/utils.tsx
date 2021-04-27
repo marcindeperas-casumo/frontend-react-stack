@@ -313,7 +313,7 @@ export function formatCurrency({
 }: {
   locale: string;
   currency: TCurrencyCode;
-  value?: number;
+  value?: any;
   minimumFractionDigits?: number;
 }): string {
   /**

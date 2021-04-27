@@ -7,7 +7,7 @@ import "./SportsModal.scss";
 
 type Props = {
   className?: string;
-  children: React.ReactNode;
+  children: JSX.Element[] | JSX.Element;
 };
 
 const Content = ({ children, className }: Props) => (
@@ -23,9 +23,8 @@ export class SportsModal extends React.Component<Props> {
 
   render() {
     return (
-      <Modal className="c-sports-modal BG-white">
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'ReactNode' is not assignable to type 'ReactC... Remove this comment to see the full error message */}
-        {this.props.children}
+      <Modal className="c-sports-modal bg-white">
+        <>{this.props.children}</>
       </Modal>
     );
   }
