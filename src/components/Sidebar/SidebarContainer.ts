@@ -16,7 +16,6 @@ const SidebarContainer = connect(
     wallet: formatCurrency({
       locale: localeSelector(state),
       currency: playerCurrencySelector(state),
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
       value: playerBalanceAmountSelector(state),
     }),
     bonus: bonusBalanceDisplay(

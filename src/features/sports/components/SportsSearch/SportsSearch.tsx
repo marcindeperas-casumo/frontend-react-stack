@@ -24,8 +24,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
-    tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INTENT);
+    tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INTENT, null);
   }
 
   resetHash = () => {
@@ -35,8 +34,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   setClientVisible = (visible: boolean) => {
-    // @ts-expect-error ts-migrate(2347) FIXME: Untyped function calls may not accept type argumen... Remove this comment to see the full error message
-    this.context.client.mutate<A.UpdateKambiClientState>({
+    this.context.client.mutate({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {
         isVisible: visible,
@@ -95,7 +93,6 @@ export default class SportsSearch extends React.Component<{}, State> {
         <Flex.Block className="bg-grey-0 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
-              {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
                   <SearchInput

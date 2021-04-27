@@ -19,7 +19,7 @@ type Props = {
   valuableType: A.ValuableType;
   title: string;
   description: string;
-  translations: ValuableThumbnailTranslations;
+  translations?: ValuableThumbnailTranslations;
   caveat: string;
   onClose: () => void;
 };

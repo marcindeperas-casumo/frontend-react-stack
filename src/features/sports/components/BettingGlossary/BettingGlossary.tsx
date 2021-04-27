@@ -29,7 +29,6 @@ export const BettingGlossary = ({ onClose }: Props) => (
       onClose={onClose}
       className="c-sports-modal-header--left-align bg-white text-grey-90 t-border-bottom border-grey-20"
     >
-      {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
     <BettingGlossaryModalContent />
@@ -44,10 +43,9 @@ export const BettingGlossaryModalContent = () => {
 
   if (error) {
     return (
-      <ErrorMessage
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'Element' is not assignable to type 'string'.
-        errorMessage={<DictionaryTerm termKey="glossary.error" />}
-      />
+      <DictionaryTerm termKey="glossary.error">
+        {errorText => <ErrorMessage errorMessage={errorText} />}
+      </DictionaryTerm>
     );
   }
 

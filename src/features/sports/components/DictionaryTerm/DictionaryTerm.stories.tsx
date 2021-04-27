@@ -15,11 +15,9 @@ if (isNotChromatic) {
     </MockedProvider>
   ));
 
-  // @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message
   stories.add("Default", () => <DictionaryTerm termKey={WORKING_TERM.key} />);
 
   stories.add("With replacements", () => (
-    // @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message
     <DictionaryTerm
       termKey={REPLACEMENT_TERM.key}
       replacements={{
