@@ -12,7 +12,7 @@ type Props = {
   /** A replacements map, for variable replacements in the dictionary term string */
   replacements?: Replacements;
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
-  children?: (dictionaryTerm: string) => React.ReactNode;
+  children?: (dictionaryTerm: string) => JSX.Element;
 };
 
 export const PLURALISABLE_DICTIONARY_TERM_QUERY = gql`
@@ -31,9 +31,8 @@ export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 const getPluralisableDictionaryTerm = (
   data: A.PluralisableDictionaryTermQuery | undefined,
   loading: boolean,
-  replacements?: Replacements,
-  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
-  isPlural: boolean
+  isPlural: boolean,
+  replacements?: Replacements
 ): string => {
   if (loading) {
     return LOADING_STRING;
@@ -58,7 +57,7 @@ export const PluralisableDictionaryTerm = ({
   replacements,
   isPlural = false,
   children,
-}: Props): React.ReactNode => {
+}: Props): JSX.Element => {
   const variables = {
     singularKey: createSingularKey(termKey),
     pluralKey: createPluralKey(termKey),
@@ -72,10 +71,10 @@ export const PluralisableDictionaryTerm = ({
   const dictionaryTerm = getPluralisableDictionaryTerm(
     data,
     loading,
-    replacements,
-    isPlural
+    isPlural,
+    replacements
   );
 
   // if children provided this is a render prop component, if not return the translation
-  return children ? children(dictionaryTerm) : dictionaryTerm;
+  return children ? children(dictionaryTerm) : <>{dictionaryTerm}</>;
 };
