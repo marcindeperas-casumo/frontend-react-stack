@@ -27,7 +27,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
       onClose={onClose}
-      className="c-sports-modal-header--left-align bg-white text-grey-90 t-border-bottom border-grey-20"
+      className="c-sports-modal-header--left-align bg-white text-grey-90 border-b border-grey-20"
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>

@@ -62,7 +62,7 @@ const GroupTitle = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => (
-  <Text className="text-grey-50 u-padding--md u-font-weight-bold">
+  <Text className="text-grey-50 p-4 font-bold">
     {children}
   </Text>
 );
@@ -79,12 +79,12 @@ const ResultRow = ({
 }): JSX.Element => (
   <div
     className={classNames(
-      "u-padding-x--md u-cursor--pointer",
+      "px-4 cursor-pointer",
       className || "bg-white"
     )}
     onClick={onClick}
   >
-    <div className="u-padding-y--md t-border-bottom border-grey-5">
+    <div className="py-4 border-b border-grey-5">
       {children}
     </div>
   </div>
@@ -242,13 +242,13 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex className="u-padding-left" spacing="md" align="center">
+            <Flex className="pl-4" spacing="md" align="center">
               <img src={sport.icon} alt={sport.name} height="24" width="24" />
               <Flex.Block>
                 <Text
                   size="sm"
                   tag="span"
-                  className="text-grey-70 u-font-weight-bold"
+                  className="text-grey-70 font-bold"
                 >
                   {eventGroup.name}
                 </Text>
@@ -272,7 +272,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         size="sm"
         tag="span"
         className={classNames(
-          "u-font-weight-bold",
+          "font-bold",
           isMatch ? "text-grey-90" : "text-grey-50"
         )}
       >
@@ -300,7 +300,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex className="u-padding-left" spacing="md" align="end">
+            <Flex className="pl-4" spacing="md" align="end">
               {result.sport && (
                 <img
                   src={result.sport.icon}
@@ -310,7 +310,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <div className="u-margin-x u-text-overflow--ellipsis">
+              <div className="mx-4 overflow-ellipsis overflow-hidden whitespace-nowrap">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -324,7 +324,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="text-grey-20 u-text-nowrap"
+                  className="text-grey-20 whitespace-nowrap"
                 >
                   {result.sport.name}
                 </Text>
@@ -333,7 +333,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <Text
                   size="sm"
                   tag="span"
-                  className="text-grey-20 u-text-nowrap"
+                  className="text-grey-20 whitespace-nowrap"
                 >
                   {result.country}
                 </Text>
@@ -359,7 +359,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
           if (res.loading || !res.data || !res.data.search) {
             return (
-              <div className="u-margin-x--md">
+              <div className="mx-4">
                 <KambiSearchResultsSkeleton />
               </div>
             );
@@ -382,13 +382,13 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <div className="bg-grey-0 text-grey-50 u-padding-x--xlg u-padding-y--lg">
+        <div className="bg-grey-0 text-grey-50 px-8 py-6">
           <Flex align="center">
             <Flex.Item>
               <SadSumo width="32" height="36" />
             </Flex.Item>
             <Flex.Block>
-              <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
+              <Text className="ml-4 mb-0 font-bold">
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>

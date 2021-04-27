@@ -41,7 +41,7 @@ const renderSportsNav = (
   };
 
   return (
-    <div className="u-padding-top--md">
+    <div className="pt-4">
       {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}

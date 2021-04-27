@@ -1,6 +1,4 @@
 import { AddIcon } from "@casumo/cmp-icons";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import cx from "classnames";
 import React from "react";
 
@@ -24,36 +22,35 @@ export const BalanceBetSlip = ({
   bonus,
   goToDeposit = () => {},
 }: Props) => (
-  <Flex
-    align="center"
+  <div
     className={cx(
-      "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full text-white u-padding u-overflow--hidden u-height--3xlg bg-purple-100",
-      maximized && "c-sports-balance-bet-slip--maximized o-inset-bottom--none"
+      "c-sports-balance-bet-slip flex fixed z-10 w-full text-white p-2 overflow-hidden h-12 bg-purple-100",
+      maximized && "c-sports-balance-bet-slip--maximized"
     )}
   >
-    <Flex.Item
+    <div
       onClick={goToDeposit}
-      className="o-flex u-padding t-border-r--circle bg-purple-80"
+      className="rounded-full h-8 w-8 flex items-center justify-center bg-purple-80"
     >
       <AddIcon size="sm" />
-    </Flex.Item>
-    <Flex direction="vertical" className="u-padding-x--md">
-      <Text tag="div" size="xs">
+    </div>
+    <div className="px-4">
+      <div className="text-xs">
         {t?.balance_title}
-      </Text>
-      <Text tag="div" className="u-font-weight-bold">
+      </div>
+      <div className="font-bold text-sm">
         {balance}
-      </Text>
-    </Flex>
+      </div>
+    </div>
     {bonus && (
-      <Flex direction="vertical">
-        <Text tag="div" size="xs">
+      <div className="px-4">
+        <div className="text-xs">
           {t?.bonus_title}
-        </Text>
-        <Text tag="div" className="u-font-weight-bold">
+        </div>
+        <div className="font-bold text-sm">
           {bonus}
-        </Text>
-      </Flex>
+        </div>
+      </div>
     )}
-  </Flex>
+  </div>
 );
