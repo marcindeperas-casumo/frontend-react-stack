@@ -1,6 +1,9 @@
 import * as React from "react";
 import "./SportsYouWon.scss";
 import { CloseIcon } from "@casumo/cmp-icons";
+import { useTranslations } from "Utils/hooks";
+import { BET_DATA } from "./__mocks__/mock";
+import type { SportsYouWonTranslations } from "./SportsYouWon.types";
 
 type Props = {
   currentHash: string;
@@ -10,17 +13,36 @@ type Props = {
 };
 
 const PROP_NAME = "?youwon=";
+const CMS_SLUG = "sports.sports-you-won-modal";
 
 const showModal = (currentHash: string) => {
   return currentHash.indexOf(PROP_NAME) > -1;
 };
 
-// const getBetId = (currentHash: string) => {
-//   return currentHash.substr(currentHash.indexOf(PROP_NAME) + PROP_NAME.length);
-// };
-//
-// const getBetData = (betId: string) => {
-//   return betId;
+const getBetId = (currentHash: string) => {
+  return currentHash.substr(currentHash.indexOf(PROP_NAME) + PROP_NAME.length);
+};
+
+const getBetData = (betId: string) => {
+  return BET_DATA;
+};
+
+// export const legsDisplay = (props: any) => {
+//   if (props.numberOfLegs === 1 && props.singleLegDetails.outcomes.length > 1) {
+//     return "Bet builder";
+//   }
+//   switch (props.numberOfLegs) {
+//     case 1:
+//       return "Single";
+//     case 2:
+//       return "Double";
+//     case 3:
+//       return "Triple";
+//     case 4:
+//       return "FourFold";
+//     default:
+//       return "MultiFold";
+//   }
 // };
 
 const removeYouWonParam = currentHash => {
@@ -31,22 +53,15 @@ const removeYouWonParam = currentHash => {
   );
 };
 
-export const SportsYouWonComponent = ({
-  loaded,
-  page,
-  currentHash,
-  fetchPage,
-}: Props) => {
-  if (!showModal(currentHash)) {
+export const SportsYouWonComponent = ({ currentHash }: Props) => {
+  const t = useTranslations<SportsYouWonTranslations>(CMS_SLUG);
+
+  if (!showModal(currentHash) || !t) {
     return null;
   }
 
-  if (!loaded) {
-    fetchPage();
-    return null;
-  }
-
-  // const betData = getBetData(getBetId(currentHash));
+  const betData = getBetData(getBetId(currentHash));
+  console.log("***", betData);
 
   return (
     <div
@@ -79,13 +94,13 @@ export const SportsYouWonComponent = ({
                     bg-right-top
                     bg-no-repeat"
         style={{
-          backgroundImage: `url('${page.fields["background-image"]}'`,
+          backgroundImage: `url('${t["background-image"]}'`,
         }}
       >
         <div
           className="h-full relative top-0 left-0 bottom-0 right-0 bg-bottom bg-no-repeat"
           style={{
-            backgroundImage: `url('${page.fields["animation1"]}'`,
+            backgroundImage: `url('${t["animation1"]}'`,
           }}
         >
           <CloseIcon
@@ -93,7 +108,7 @@ export const SportsYouWonComponent = ({
             className="cursor-pointer absolute top-0 right-0 u-margin-top--md u-margin-right--md"
           />
           <div className="u-padding-x--2xlg u-padding-top--4xlg u-padding-bottom--lg flex flex-col items-start space-y-4 h-full">
-            <img src={page.fields["logo-image"]} />
+            <img src={t["logo-image"]} />
             <div className="u-font-2xlg u-font-weight-bold">
               ddurans won €125.20 on sports
             </div>
