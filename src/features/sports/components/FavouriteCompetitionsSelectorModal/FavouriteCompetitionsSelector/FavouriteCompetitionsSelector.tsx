@@ -109,7 +109,6 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       {data.group && <Intro group={data.group} />}
 
       <Heading>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="favourite-competitions-selector.heading.popular" />
       </Heading>
       <List
@@ -131,7 +130,6 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       />
 
       <Heading>
-        {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
         <DictionaryTerm termKey="favourite-competitions-selector.heading.all" />
       </Heading>
       <List

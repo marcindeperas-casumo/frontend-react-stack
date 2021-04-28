@@ -71,9 +71,8 @@ export default class FavouriteListItem extends PureComponent<Props> {
                     "u-font-xs"
                   )}
                 >
-                  {/* @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message */}
                   <DictionaryTerm termKey="new">
-                    {allLabel => allLabel || "NEW"}
+                    {allLabel => <>{allLabel || "NEW"}</>}
                   </DictionaryTerm>
                 </div>
               )}

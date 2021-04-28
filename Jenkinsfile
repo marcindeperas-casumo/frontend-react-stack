@@ -46,6 +46,9 @@ Started by: *${env.gitAuthor}* :eyes:
     .customStep('Install node version', {
         shell("set +x; nvm install")
     })
+    .customStep('Switch nvm to use correct version', {
+        shell("nvm use")
+    })
     .customStep('Install yarn', {
         shell("npm install --global yarn")
     })

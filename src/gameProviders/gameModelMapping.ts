@@ -72,22 +72,6 @@ export const models = {
   [PROVIDERS.LEAP]: LeapGame,
 };
 
-const whichProviderType = gameData => {
-  if (
-    includes(gameData.providerType, [
-      PROVIDERS.NETENT_LIVE,
-      PROVIDERS.NETENT_GAME_INCLUSION,
-      PROVIDERS.NETENT_FLASH,
-      PROVIDERS.NETENT,
-    ]) &&
-    gameData.url
-  ) {
-    return PROVIDERS.NETENT_EMBEDDED;
-  }
-
-  return gameData.providerType;
-};
-
 export const getGameModel = (
   gameData: GameProps,
   gameRef: GameRef,
@@ -95,12 +79,43 @@ export const getGameModel = (
   environment: string,
   urlPrefix: string
 ): GameProviderModel => {
-  const GameModel = models[whichProviderType(gameData)] || BaseGame;
+  const GameModel = models[gameData.providerType] || BaseGame;
+
+  // Reconstruct netent gamedata payload from QS to json
+  const isNetent = () => {
+    return includes(gameData?.providerType, [
+      PROVIDERS.NETENT_LIVE,
+      PROVIDERS.NETENT_GAME_INCLUSION,
+      PROVIDERS.NETENT_FLASH,
+      PROVIDERS.NETENT,
+    ]);
+  };
+
+  const deconstructNetentURL = () => {
+    const params = new URLSearchParams(gameData.url);
+    const obj = {};
+    /* eslint-disable fp/no-mutation */
+    // iterate over all keys
+    // eslint-disable-next-line fp/no-loops
+    for (const key of params.keys()) {
+      if (key in obj) {
+        continue;
+      }
+      const value = params.getAll(key);
+
+      obj[key] = value.length > 1 ? value : value[0];
+      /* eslint-enable fp/no-mutation */
+    }
+    return obj;
+  };
+
+  const netEntGameData =
+    isNetent() && gameData?.url ? deconstructNetentURL() : null;
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'BaseGame | YggdrasilGame' is not assignable ... Remove this comment to see the full error message
   return new GameModel({
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'GameProps' is not assignable to type 'GameLa... Remove this comment to see the full error message
-    gameData,
+    gameData: netEntGameData || gameData,
     gameRef,
     // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'AppLangua... Remove this comment to see the full error message
     language,

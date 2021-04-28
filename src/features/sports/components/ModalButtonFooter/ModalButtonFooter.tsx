@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const ModalButtonFooter = ({ onClick, children }: Props): React.ReactNode => (
+const ModalButtonFooter = ({ onClick, children }: Props): JSX.Element => (
   <Flex align="stretch" justify="center" className="u-padding--md bg-white">
     <ButtonPrimary size="md" onClick={onClick} className="u-width--full">
       {children}
