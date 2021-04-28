@@ -232,6 +232,6 @@ export const isWarmUpPhaseSelector = createSelector(
   registrationDate => {
     const registratioDate = convertMillisTimestampToLuxonDate(registrationDate);
     const timeToElapse = registratioDate.plus({ days: 30 }).toSeconds();
-    return timeToElapse > DateTime.utc().toSeconds();
+    return timeToElapse < DateTime.utc().toSeconds(); // revert logic, only for testing
   }
 );

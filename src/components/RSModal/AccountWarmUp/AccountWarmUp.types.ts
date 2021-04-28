@@ -1,6 +1,9 @@
 export type TAccountWarmUpPage = {
   title: string;
   content: string;
+  days: string;
+  hours: string;
+  minutes: string;
   days_left_title: string;
   days_left_label: string;
   verification_status_title: string;
@@ -8,6 +11,10 @@ export type TAccountWarmUpPage = {
   verification_status_review_message: string;
   verification_status_verified_message: string;
   verification_status_unverified_message: string;
+  verification_status_review: string;
+  verification_status_verified: string;
+  verification_status_unverified: string;
+  verify_button_text: string;
   play_button_text: string;
   dismiss_button_text: string;
 };
