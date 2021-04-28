@@ -432,7 +432,6 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
   return R.pick(["hours", "minutes", "seconds"], duration);
 };
 
-// TODO: consolidate this and the above into one function.
 export const getActualDateTimeDifferenceFromNow = (
   value: DateTime
 ): Pick<Duration, "days" | "hours" | "minutes"> => {

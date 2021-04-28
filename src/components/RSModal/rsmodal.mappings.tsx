@@ -155,10 +155,6 @@ export const mappings: Mapping = {
     slug: "",
     Content: ArticleModal,
   },
-  [REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON]: {
-    slug: "",
-    Content: PrePanicButtonModal,
-  },
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",
     Content: AccountWarmUp,
