@@ -5,14 +5,13 @@ import { PlayIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { noop } from "Utils";
 import { launchGame } from "Services/LaunchGameService";
-import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { EVENTS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
-  t: TReelRacesContentPage;
+  t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
   optIn: () => void;
 };
 

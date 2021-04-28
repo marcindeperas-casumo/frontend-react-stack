@@ -1,13 +1,12 @@
 import * as React from "react";
-import { useMutation } from "@apollo/client";
 import * as A from "Types/apollo";
-import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import { useMutation } from "@apollo/client";
 import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 import { ReelRaceOptInMutation } from "./../ReelRaceScheduleCard/ReelRaceScheduleCard.graphql";
 
 type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
-  t: TReelRacesContentPage | null;
+  t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
 };
 
 export function ReelRaceOptInPlayButtonContainer({
