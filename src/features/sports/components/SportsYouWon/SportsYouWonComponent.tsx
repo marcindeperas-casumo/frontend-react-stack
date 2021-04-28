@@ -62,7 +62,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
     variables: { combinationRef: getBetId(currentHash) },
   });
 
-  if (!showModal(currentHash) || !t) {
+  if (!showModal(currentHash) || !t || betData2) {
     return null;
   }
 
