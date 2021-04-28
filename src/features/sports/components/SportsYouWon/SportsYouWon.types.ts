@@ -36,5 +36,4 @@ export type BetCombinationRefType = {
   odds: number;
   status: string;
   legs: Array<BetCombinationRefLeg>;
-  username: string;
 };

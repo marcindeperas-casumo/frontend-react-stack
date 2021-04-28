@@ -4,27 +4,24 @@ import { CloseIcon } from "@casumo/cmp-icons";
 import { useQuery } from "@apollo/client";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
-import { BET_DATA } from "./__mocks__/mock";
 import type { SportsYouWonTranslations } from "./SportsYouWon.types";
 import { BET_DETAILS_QUERY } from "./SportsYouWonQuery";
 
 type Props = {
   currentHash: string;
+  playerId: string;
+  username: string;
 };
 
 const PROP_NAME = "?youwon=";
 const CMS_SLUG = "sports.sports-you-won-modal";
 
-const showModal = (currentHash: string) => {
+export const showModal = (currentHash: string) => {
   return currentHash.indexOf(PROP_NAME) > -1;
 };
 
 const getBetId = (currentHash: string) => {
   return currentHash.substr(currentHash.indexOf(PROP_NAME) + PROP_NAME.length);
-};
-
-const getBetData = (betId: string) => {
-  return BET_DATA;
 };
 
 export const legsDisplay = (data: any, t: SportsYouWonTranslations) => {
@@ -55,18 +52,22 @@ const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const SportsYouWonComponent = ({ currentHash }: Props) => {
+export const SportsYouWonComponent = ({
+  currentHash,
+  playerId,
+  username,
+}: Props) => {
   const t = useTranslations<SportsYouWonTranslations>(CMS_SLUG);
   const locale = useLocale();
-  const betData2 = useQuery(BET_DETAILS_QUERY, {
-    variables: { combinationRef: getBetId(currentHash) },
+  const backendData = useQuery(BET_DETAILS_QUERY, {
+    variables: { combinationRef: getBetId(currentHash), playerId: playerId },
   });
 
-  if (!showModal(currentHash) || !t || betData2) {
+  if (!showModal(currentHash) || !t || !backendData?.data?.betDetails) {
     return null;
   }
 
-  const betData = getBetData(getBetId(currentHash));
+  const betData = backendData.data.betDetails;
 
   const wonAmount = formatCurrency({
     locale,
@@ -75,7 +76,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
   });
 
   const content = t.text
-    .replace("{$username}", betData.username)
+    .replace("{$username}", username)
     .replace("{$wonAmount}", wonAmount);
 
   return (

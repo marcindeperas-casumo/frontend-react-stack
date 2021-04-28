@@ -9,7 +9,6 @@ export const BET_DATA: BetCombinationRefType = {
   "currency": "INR",
   "odds": 19.64,
   "status": "WON",
-  "username": "TestPlayer",
   "legs": [
     {
       "odds": 2.15,

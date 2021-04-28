@@ -28,6 +28,7 @@ import { VirtualsPage } from "Features/sports/components/Virtuals/VirtualsPage";
 import { PromotionDetailPage } from "Features/sports/components/Promotions/PromotionDetailPage";
 import { SportsShellDepositWrapper } from "Features/sports/components/SportsShell/SportsShellDepositWrapper";
 import SportsYouWonContainer from "Features/sports/components/SportsYouWon";
+import { showModal } from "Features/sports/components/SportsYouWon/SportsYouWonComponent";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 
 const bridgeEventHandlers = [
@@ -103,7 +104,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
             )}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
-            <SportsYouWonContainer currentHash={currentHash} />
+            {showModal(currentHash) && (
+              <SportsYouWonContainer currentHash={currentHash} />
+            )}
             {currentHash === virtualsPrefixHash && <VirtualsPage />}
             {currentHash.startsWith(promotionPrefixHash) && (
               <PromotionDetailPage currentHash={currentHash} />

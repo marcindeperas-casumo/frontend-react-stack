@@ -1,16 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const BET_DETAILS_QUERY = gql`
-  query BetDetailsQuery($combinationRef: BigInt!) {
-    betDetails(combinationRef: $combinationRef) {
-      combinationRef
-      playerId
-      placedDate
-      stake
+  query BetDetailsQuery($combinationRef: BigInt!, $playerId: String!) {
+    betDetails(combinationRef: $combinationRef, playerId: $playerId) {
       payout
       currency
-      odds
       status
+      legs {
+        outcomes {
+          eventName
+          criterionName
+          outcomeLabel
+        }
+      }
     }
   }
 `;
