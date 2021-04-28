@@ -154,7 +154,7 @@ export function ReelRaceOptInWidget({
             tag="div"
             className="u-font-weight-bold"
           >
-            #1 - {prizesCounter + 1}
+            #1 - {prizesCounter}
           </Text>
         </Flex>
       </Flex>
@@ -169,7 +169,7 @@ export function ReelRaceOptInWidget({
             tag="div"
             className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
-            {rrInProgress ? "Ending in" : "Starting in"}
+            {rrInProgress ? t.endingIn : t.startingIn}
           </Text>
           <Text
             size="md"

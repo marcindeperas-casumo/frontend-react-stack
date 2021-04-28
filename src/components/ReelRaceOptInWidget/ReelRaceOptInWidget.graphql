@@ -24,6 +24,7 @@ query ReelRaceOptInWidgetQuery($limit: Int!, $prioritisePromoted: Boolean) {
             optIn
             optedIn
             startingIn
+            endingIn
             spins
             duration
             durationTemplate

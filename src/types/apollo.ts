@@ -2058,6 +2058,7 @@ export type ReelRaceOptInWidgetQuery = {
       optIn: string;
       optedIn: string;
       startingIn: string;
+      endingIn: string;
       spins: string;
       duration: string;
       durationTemplate: string;
