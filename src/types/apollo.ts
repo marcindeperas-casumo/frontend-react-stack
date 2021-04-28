@@ -1959,6 +1959,46 @@ export type OptInForReelRaceMutation = {
   optInForReelRace?: Maybe<{ id: string; optedIn: boolean }>;
 };
 
+export type ReelRaceOptInWidgetQueryVariables = Exact<{
+  limit: Scalars["Int"];
+  prioritisePromoted?: Maybe<Scalars["Boolean"]>;
+}>;
+
+export type ReelRaceOptInWidgetQuery = {
+  reelRaces: Array<{
+    id: string;
+    startTime: number;
+    endTime: number;
+    optedIn: boolean;
+    minBet?: Maybe<string>;
+    status?: Maybe<string>;
+    spinLimit: number;
+    promoted: boolean;
+    formattedPrize: string;
+    formattedPrizes: Array<string>;
+    game: {
+      id: string;
+      slug: string;
+      name: string;
+      gameStudio: string;
+      logo: string;
+      backgroundImage: string;
+    };
+    translations: {
+      optIn: string;
+      optedIn: string;
+      startingIn: string;
+      spins: string;
+      duration: string;
+      durationTemplate: string;
+      caveatShort: string;
+      today: string;
+      tomorrow: string;
+      minBet: string;
+    };
+  }>;
+};
+
 export type ReelRacePreviousCard_ReelRaceFragment = {
   id: string;
   startTime: number;

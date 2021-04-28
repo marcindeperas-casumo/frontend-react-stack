@@ -274,6 +274,14 @@ declare module "*/ReelRaceCard.graphql" {
   export default defaultDocument;
 }
 
+declare module "*/ReelRaceOptInWidget.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const ReelRaceOptInWidgetQuery: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/ReelRacePreviousCard.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;

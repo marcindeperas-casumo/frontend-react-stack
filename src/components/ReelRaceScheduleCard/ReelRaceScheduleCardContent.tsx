@@ -1,33 +1,28 @@
+import * as React from "react";
+import * as A from "Types/apollo";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import { Button, ButtonPrimary } from "@casumo/cmp-button";
-import { PlayIcon } from "@casumo/cmp-icons";
+import { Button } from "@casumo/cmp-button";
 import { DateTime } from "luxon";
-import cx from "classnames";
-import * as React from "react";
-import { interpolate, noop } from "Utils";
+import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
-import { launchGame } from "Services/LaunchGameService";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import DangerousHtml from "Components/DangerousHtml";
-import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
-import { EVENTS, MODALS } from "Src/constants";
-import { BUTTON_STATE } from "Models/reelRaces";
-import TrackClick from "Components/TrackClick";
+import { MODALS } from "Src/constants";
 import { ReelRaceScheduleCardPrizes } from "./ReelRaceScheduleCardPrizes";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
   t: TReelRacesContentPage;
-  optIn: () => void;
   showPrizes: boolean;
 };
 
 export function ReelRaceScheduleCardContent({
   reelRace,
   t,
-  optIn,
   showPrizes = false,
 }: Props) {
   const [expandPrizes, setExpandPrizes] = React.useState(showPrizes);
@@ -42,19 +37,6 @@ export function ReelRaceScheduleCardContent({
     () => setExpandPrizes(state => !state),
     [setExpandPrizes]
   );
-
-  const active = {
-    label: reelRace.translations.optIn || "",
-    eventName: EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED,
-    data: { state: BUTTON_STATE.OPT_IN },
-    onClick: optIn,
-  };
-  const disabled = {
-    label: "Play",
-    eventName: EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED,
-    data: { state: BUTTON_STATE.PLAY },
-    onClick: (slug: string) => launchGame({ slug }),
-  };
 
   const showCaveatsModal = () => {
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
@@ -159,39 +141,10 @@ export function ReelRaceScheduleCardContent({
               </Button>
             </Flex.Block>
             <Flex.Block className={cx(!isNotMobile && "o-flex--1")}>
-              <div className="u-width--full u-padding-left--md">
-                {reelRace.optedIn ? (
-                  <TrackClick
-                    eventName={disabled.eventName}
-                    data={disabled.data}
-                  >
-                    <ButtonPrimary
-                      size="md"
-                      onClick={() =>
-                        disabled.onClick
-                          ? disabled.onClick(reelRace.game.slug)
-                          : noop()
-                      }
-                      className="u-width--full"
-                    >
-                      <PlayIcon size="sm" />
-                      <Text tag="span" className="u-margin-left">
-                        {disabled.label}
-                      </Text>
-                    </ButtonPrimary>
-                  </TrackClick>
-                ) : (
-                  <TrackClick eventName={active.eventName} data={active.data}>
-                    <ButtonPrimary
-                      size="md"
-                      onClick={active.onClick || noop}
-                      className="u-width--full"
-                    >
-                      <Text tag="span">{active.label}</Text>
-                    </ButtonPrimary>
-                  </TrackClick>
-                )}
-              </div>
+              <ReelRaceOptInPlayButton
+                reelRace={reelRace}
+                t={t}
+              />
             </Flex.Block>
           </Flex>
         </Flex.Item>

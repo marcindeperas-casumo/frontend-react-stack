@@ -39,6 +39,7 @@ export const InGameAdventureWidgetContainer = () => {
         pointsRequiredForNextLevel={pointsRequiredForNextLevel}
         progressPercentage={progressPercentage}
       />
+
       {showRecentValuable && (
         <InGameRecentValuableWidget
           onValuableConsumed={onValuableConsumed}

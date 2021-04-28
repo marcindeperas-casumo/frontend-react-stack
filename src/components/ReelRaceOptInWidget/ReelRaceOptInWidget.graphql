@@ -1,0 +1,36 @@
+#import "../ReelRaceScheduleCard/ReelRaceScheduleCard.graphql"
+
+query ReelRaceOptInWidgetQuery($limit: Int!, $prioritisePromoted: Boolean) {
+    reelRaces(limit: $limit, prioritisePromoted: $prioritisePromoted) {
+        id
+        game {
+            id
+            slug
+            name
+            gameStudio
+            logo
+            backgroundImage
+        }
+        startTime
+        endTime
+        optedIn
+        minBet
+        status
+        spinLimit
+        promoted
+        formattedPrize
+        formattedPrizes
+        translations {
+            optIn
+            optedIn
+            startingIn
+            spins
+            duration
+            durationTemplate
+            caveatShort
+            today
+            tomorrow
+            minBet
+        }
+    }
+}
