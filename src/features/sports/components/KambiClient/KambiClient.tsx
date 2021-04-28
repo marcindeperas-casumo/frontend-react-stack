@@ -54,7 +54,6 @@ export default class KambiClient extends React.Component<Props, State> {
     onLoginCompleted: () => {},
   };
   componentDidMount() {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     this.redirectToUserHomeRoute();
     this.initIsFirstBet();
     /* eslint-disable fp/no-mutation */
@@ -75,7 +74,7 @@ export default class KambiClient extends React.Component<Props, State> {
       enableFilterMenu: false,
       enableQuickBrowse: false,
       enableTermSearch: false,
-      reservedRoutes: ["virtuals", "promotions"],
+      reservedRoutes: ["filter/virtuals", "promotions"],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
@@ -152,7 +151,7 @@ export default class KambiClient extends React.Component<Props, State> {
     }
     window.removeEventListener("hashchange", this.handleHashChange);
   }
-  redirectToUserHomeRoute = (prevHomeRoute: string | undefined) => {
+  redirectToUserHomeRoute = (prevHomeRoute?: string | undefined) => {
     // allows kambi client to be hidden if search doesn't have a #filter (i.e. initial search view)
     if (this.props.searchMode) {
       return;
@@ -174,7 +173,6 @@ export default class KambiClient extends React.Component<Props, State> {
     }
   };
   handleHashChange = () => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     this.redirectToUserHomeRoute();
     this.replaceSportsHub();
     this.props.onNavigate(window.location.hash);
@@ -191,7 +189,7 @@ export default class KambiClient extends React.Component<Props, State> {
   render() {
     return (
       <div
-        className={classNames("t-background-grey-0", {
+        className={classNames("bg-grey-0", {
           "c-kambi-client--hidden": this.props.isHidden,
         })}
       >

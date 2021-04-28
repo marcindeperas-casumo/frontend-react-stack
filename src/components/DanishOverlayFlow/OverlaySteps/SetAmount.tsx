@@ -73,7 +73,7 @@ export const SetAmount = (props: Props) => {
           inputClassName="u-padding-left--md"
         />
         {limitInRange(amount) && isLimitMaxed(amount) && (
-          <div data-test-id="warning-message" className="t-color-red-30">
+          <div data-test-id="warning-message" className="text-red-30">
             {minFirstDepositLimit} -{" "}
             {formatCurrency({
               locale,

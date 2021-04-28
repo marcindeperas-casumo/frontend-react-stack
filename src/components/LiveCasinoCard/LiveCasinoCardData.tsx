@@ -81,7 +81,7 @@ const renderSeats = ({ liveCasinoLobby, t }, small = false) => {
     <Text
       size="sm"
       tag="span"
-      className="t-color-white u-font-weight-bold u-text-transform-capitalize u-line-height--1"
+      className="text-white u-font-weight-bold u-text-transform-capitalize u-line-height--1"
     >
       {liveCasinoLobby.seats || t?.bet_behind}{" "}
       {liveCasinoLobby.seats ? t?.open_seats : ""}

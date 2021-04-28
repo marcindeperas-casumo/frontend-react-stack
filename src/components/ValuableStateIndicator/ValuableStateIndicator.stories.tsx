@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { select, text } from "@storybook/addon-knobs/react";
+import { select, text } from "@storybook/addon-knobs";
 import Text from "@casumo/cmp-text";
 import React from "react";
 import { VALUABLE_STATES } from "Models/valuables";

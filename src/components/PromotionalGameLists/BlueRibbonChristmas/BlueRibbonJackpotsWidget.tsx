@@ -136,18 +136,18 @@ function JackpotRow({
         <>
           <Text
             size="2xs"
-            className="u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase t-color-white"
+            className="u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase text-white"
           >
             {label}
           </Text>
           <Text
             size="md"
-            className="u-margin-bottom--none u-font-weight-bold t-color-white"
+            className="u-margin-bottom--none u-font-weight-bold text-white"
           >
             {formattedValue}
           </Text>
           {explanation && (
-            <Text size="2xs" className="u-margin-bottom--none t-color-purple-5">
+            <Text size="2xs" className="u-margin-bottom--none text-purple-5">
               {explanation}
             </Text>
           )}

@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { text, number } from "@storybook/addon-knobs/react";
+import { text, number } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { DictionaryTerm } from "./DictionaryTerm";
@@ -15,16 +15,14 @@ if (isNotChromatic) {
     </MockedProvider>
   ));
 
-  // @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message
   stories.add("Default", () => <DictionaryTerm termKey={WORKING_TERM.key} />);
 
   stories.add("With replacements", () => (
-    // @ts-expect-error ts-migrate(2786) FIXME: 'DictionaryTerm' cannot be used as a JSX component... Remove this comment to see the full error message
     <DictionaryTerm
       termKey={REPLACEMENT_TERM.key}
       replacements={{
         teamName: text("Team name", "{teamName}"),
-        goalCount: number("Goal count", "{goalCount}"),
+        goalCount: number("Goal count", 0),
       }}
     />
   ));

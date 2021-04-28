@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Link } from "@reach/router";
 import React from "react";
 import { formatCurrency } from "Utils";
-import { Mobile, TabletAndDesktop, Desktop } from "Components/ResponsiveLayout";
+import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
@@ -32,7 +32,7 @@ export type Props = {
 };
 
 export const DEFAULT_CLASSES =
-  "o-ratio t-color-white t-border-r--md t-background-grey-5 u-overflow--hidden";
+  "o-ratio text-white t-border-r--md bg-grey-5 u-overflow--hidden";
 
 export const GameTile = ({
   className,
@@ -64,17 +64,15 @@ export const GameTile = ({
       return null;
     }
     return (
-      <Desktop>
-        <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none t-background-grey-90 u-text-align-center t-border-r--md t-color-white t-opacity-background--75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-y--auto u-height--lg">
-          <span>
-            {formatCurrency({
-              locale: currentLocale || "en-en",
-              currency: currency || "EUR",
-              value: amount,
-            })}
-          </span>
-        </div>
-      </Desktop>
+      <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white bg-opacity-75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-top--lg u-height--lg">
+        <span>
+          {formatCurrency({
+            locale: currentLocale || "en-en",
+            currency: currency || "EUR",
+            value: amount,
+          })}
+        </span>
+      </div>
     );
   };
 
@@ -124,7 +122,7 @@ export const GameTile = ({
           >
             <Button
               size="sm"
-              className="u-width--3/4 t-background-white t-background-white:hover t-color-purple-60"
+              className="u-width--3/4 bg-white hover:bg-white text-purple-60"
               data-test="game-list-tile-launch-link"
             >
               <div className="u-display--flex">
@@ -151,7 +149,7 @@ export const GameTile = ({
                     className="u-padding u-display--block"
                     to={`${gameDetailsPath}`}
                   >
-                    <MoreIcon className="t-color-white" />
+                    <MoreIcon className="text-white" />
                   </Link>
                 </Mobile>
                 <TabletAndDesktop>
@@ -159,7 +157,7 @@ export const GameTile = ({
                     to={`${gameDetailsPath}`}
                     className="u-padding u-display--block"
                   >
-                    <MoreIcon className="t-color-white" />
+                    <MoreIcon className="text-white" />
                   </Link>
                 </TabletAndDesktop>
               </TrackClick>

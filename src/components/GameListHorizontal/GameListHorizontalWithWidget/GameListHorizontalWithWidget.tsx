@@ -42,7 +42,7 @@ export const GameListHorizontalWithWidget = ({
       >
         <GameRow
           game={game}
-          className="t-background-white t-border-r--md t-elevation--10"
+          className="bg-white t-border-r--md t-elevation--10"
           renderText={() => (
             <GameRowText name={game.name} description={game.gameStudio} />
           )}
@@ -65,7 +65,7 @@ export const GameListHorizontalWithWidget = ({
             >
               <GameRow
                 game={game}
-                className="t-background-white t-border-r--md t-elevation--10"
+                className="bg-white t-border-r--md t-elevation--10"
                 renderText={() => (
                   <GameRowText name={game.name} description={game.gameStudio} />
                 )}

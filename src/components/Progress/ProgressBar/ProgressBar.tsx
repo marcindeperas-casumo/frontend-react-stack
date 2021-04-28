@@ -26,8 +26,8 @@ type OptionalProps = Props & typeof ProgressBar.defaultProps;
 export class ProgressBar extends PureComponent<OptionalProps> {
   static defaultProps = {
     progress: 0,
-    fillerClassNames: "t-background-purple-60",
-    trackClassNames: "t-background-grey-0",
+    fillerClassNames: "bg-purple-60",
+    trackClassNames: "bg-grey-0",
   };
 
   render() {

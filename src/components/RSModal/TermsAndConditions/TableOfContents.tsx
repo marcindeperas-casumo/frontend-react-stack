@@ -25,11 +25,7 @@ export function TableOfContents(props: Props) {
               >
                 {number}
               </Text>
-              <Text
-                tag="div"
-                size="sm"
-                className="u-width--full t-color-blue-60"
-              >
+              <Text tag="div" size="sm" className="u-width--full text-blue-60">
                 {rest.join(" ")}
               </Text>
             </Flex>

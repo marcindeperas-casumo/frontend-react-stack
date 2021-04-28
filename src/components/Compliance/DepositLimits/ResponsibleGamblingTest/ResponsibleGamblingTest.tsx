@@ -38,7 +38,7 @@ export function ResponsibleGamblingTest({ t, ...props }: Props) {
     <Flex
       direction="vertical"
       justify="space-between"
-      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
+      className="u-padding--md u-height--full bg-white c-deposit-limits-container"
     >
       <ProgressBar progress={progress} />
       <Text size="xlg" data-test-id="txt">

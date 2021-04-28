@@ -13,7 +13,7 @@ export const RemainingSpinsView = ({
   remainingSpins: number;
 }) => (
   <Flex
-    className={cx("t-color-white ", className)}
+    className={cx("text-white ", className)}
     direction="vertical"
     spacing="none"
     align="center"
@@ -23,7 +23,7 @@ export const RemainingSpinsView = ({
     </Flex.Item>
     <Flex.Item>
       <Text
-        className="t-color-white u-font-weight-bold"
+        className="text-white u-font-weight-bold"
         tag="div"
         size={remainingSpins < 100 ? "sm" : "xs"}
       >

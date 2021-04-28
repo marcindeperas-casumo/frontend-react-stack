@@ -23,7 +23,7 @@ export const DGABar = ({ className = "" }: Props) => (
     <Flex.Item>
       <Text tag="span" size="2xs">
         <a
-          className="t-color-grey-5 u-display--flex"
+          className="text-grey-5 u-display--flex"
           href={links.rofus}
           rel="noopener noreferrer"
           target="_blank"
@@ -46,7 +46,7 @@ export const DGABar = ({ className = "" }: Props) => (
         <DanishLicenseIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
-    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
+    <Flex.Item className="c-playokay-bar__clock u-font-xs text-grey-5 u-display--flex">
       <TimeLockedIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>

@@ -24,14 +24,14 @@ const PreviousLoginTime = ({
   const dateObject = DateTime.fromMillis(time);
 
   return (
-    <Text size="sm" className="t-color-grey-50 u-margin-bottom">
+    <Text size="sm" className="text-grey-50 u-margin-bottom">
       <ContentReplacer
         value={label || ""}
         replacements={{
-          lastLoginDate: `<span class="t-color-grey-70">${dateObject.toLocaleString(
+          lastLoginDate: `<span class="text-grey-70">${dateObject.toLocaleString(
             DateTime.DATE_FULL
           )}</span>`,
-          lastLoginTime: `<span class="t-color-grey-70">${dateObject.toLocaleString(
+          lastLoginTime: `<span class="text-grey-70">${dateObject.toLocaleString(
             DateTime.TIME_24_SIMPLE
           )}</span>`,
         }}
@@ -47,12 +47,12 @@ const CurrentLoginTime = ({
   time: number;
   label: string | undefined;
 }) => (
-  <Text size="sm" className="t-color-grey-50">
+  <Text size="sm" className="text-grey-50">
     {label}&nbsp;
     <Timer
       startTime={time}
       render={({ hours, minutes, seconds }) => (
-        <strong className="t-color-grey-70">
+        <strong className="text-grey-70">
           {hours}:{minutes}:{seconds}
         </strong>
       )}
@@ -88,7 +88,7 @@ export const SettingsSectionsLastLogin = ({
       )}
       <Text
         tag="div"
-        className="u-cursor--pointer u-font-weight-bold t-color-blue-60"
+        className="u-cursor--pointer u-font-weight-bold text-blue-60"
         onClick={openAccountActivity}
       >
         {accountActivityLabel}

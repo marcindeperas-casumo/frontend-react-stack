@@ -48,8 +48,8 @@ const NavLinkItem = ({
           align="center"
           justify="center"
           className={cx("c-top-nav--item", navItemSpacing, {
-            "t-color-grey-90": active,
-            "t-color-grey-70": !active,
+            "text-grey-90": active,
+            "text-grey-70": !active,
           })}
         >
           <Icon size={navItemIconSize} className={navItemIconClass} />
@@ -60,7 +60,7 @@ const NavLinkItem = ({
         <Flex
           style={{ height: 3 }}
           className={cx("t-border-r", {
-            "t-background-purple-60": active,
+            "bg-purple-60": active,
           })}
         />
       </Link>

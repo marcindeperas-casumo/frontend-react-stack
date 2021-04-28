@@ -1,13 +1,13 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs";
 import React from "react";
 import SearchInput from "Components/SearchInput";
 
 const stories = storiesOf("SearchInput", module);
 
 const Wrapper = ({ children }) => (
-  <div className="story t-background-grey-5 u-padding--2xlg">{children}</div>
+  <div className="story bg-grey-5 u-padding--2xlg">{children}</div>
 );
 
 const props = {

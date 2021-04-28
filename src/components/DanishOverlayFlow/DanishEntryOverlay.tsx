@@ -46,7 +46,7 @@ type HeaderProps =
 const Header = (props: HeaderProps) => (
   <>
     <ModalHeader {...props} />
-    <div className="t-border-bottom t-border-grey-5"></div>
+    <div className="t-border-bottom border-grey-5"></div>
   </>
 );
 

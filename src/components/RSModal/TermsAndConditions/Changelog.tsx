@@ -22,7 +22,7 @@ export function Changelog({ t, ...props }: Props) {
   return (
     <Flex
       direction="vertical"
-      className="u-margin--md u-padding-x--md u-padding-y--lg t-border-r t-background-grey-0"
+      className="u-margin--md u-padding-x--md u-padding-y--lg t-border-r bg-grey-0"
     >
       <Text
         tag="span"
@@ -46,7 +46,7 @@ export function Changelog({ t, ...props }: Props) {
         </Flex>
       ))}
       {props.ackTimestamp && (
-        <Flex className="t-color-green-30 u-margin-top--md" align="center">
+        <Flex className="text-green-30 u-margin-top--md" align="center">
           <CheckIcon
             className="c-tac-changelog-approved u-margin-right"
             size="sm"

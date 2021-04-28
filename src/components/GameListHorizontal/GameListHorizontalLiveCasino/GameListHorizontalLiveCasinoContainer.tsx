@@ -1,9 +1,14 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
+import cx from "classnames";
 import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import * as A from "Types/apollo";
 import TrackProvider from "Components/TrackProvider";
 import { useTranslations } from "Utils/hooks";
+import {
+  leftPaddingClasses,
+  topMarginClasses,
+} from "Components/GameListHorizontal/constants";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
@@ -26,10 +31,23 @@ export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
       "built-pages.top-lists-translations"
     );
 
-    if (loading) {
+    if (loading && !data) {
       return (
-        <div className="o-wrapper">
-          <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+        <div
+          className={cx(
+            "o-wrapper u-overflow--hidden u-padding-bottom--sm",
+            leftPaddingClasses,
+            topMarginClasses
+          )}
+        >
+          <GameListHorizontalSkeleton
+            key={`game-list-skeleton-${id}`}
+            itemWidth={328}
+            itemRatio={297.5 / 328}
+            items={4}
+            cornerRadius={16}
+            className=""
+          />
         </div>
       );
     }

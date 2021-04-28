@@ -31,14 +31,14 @@ export function InfoBar() {
     <Flex
       align="center"
       justify="center"
-      className="u-width--full t-background-black u-padding-y--md"
+      className="u-width--full bg-black u-padding-y--md"
     >
-      <Text className="u-font-weight-black t-color-white" size="xs" tag="div">
+      <Text className="u-font-weight-black text-white" size="xs" tag="div">
         <Flex>
           <Flex align="center" className="u-margin-right">
             <TimeLockedIcon
               size="sm"
-              className="u-margin-right--sm t-color-grey-50"
+              className="u-margin-right--sm text-grey-50"
             />
             <Timer
               startTime={activeSession.startedTime}
@@ -50,29 +50,23 @@ export function InfoBar() {
           <Flex align="center" className="u-margin-right">
             <CreditCardIcon
               size="sm"
-              className="u-margin-right--sm t-color-grey-50"
+              className="u-margin-right--sm text-grey-50"
             />
             {currencyFormatter(activeSession.stats.remainingBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
             <CreditCardIcon
               size="sm"
-              className="u-margin-right--sm t-color-grey-50"
+              className="u-margin-right--sm text-grey-50"
             />
             {currencyFormatter(activeSession.stats.consumedBalance)}
           </Flex>
           <Flex align="center" className="u-margin-right">
-            <SpinIcon
-              size="sm"
-              className="u-margin-right--sm t-color-grey-50"
-            />
+            <SpinIcon size="sm" className="u-margin-right--sm text-grey-50" />
             {currencyFormatter(activeSession.stats.totalBets)}
           </Flex>
           <Flex align="center" className="u-margin-right">
-            <TrophyIcon
-              size="sm"
-              className="u-margin-right--sm t-color-grey-50"
-            />
+            <TrophyIcon size="sm" className="u-margin-right--sm text-grey-50" />
             {currencyFormatter(activeSession.stats.totalWins)}
           </Flex>
         </Flex>

@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
-import { number, boolean } from "@storybook/addon-knobs/react";
+import { number, boolean } from "@storybook/addon-knobs";
 import React from "react";
-import { EitherOr } from "Components/EitherOr";
 import isNotChromatic from "Storybook/isNotChromatic";
+import { EitherOr } from "Components/EitherOr";
 
 const stories = storiesOf("EitherOr", module);
 

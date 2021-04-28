@@ -85,7 +85,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       direction="vertical"
       justify="space-between"
       spacing="none"
-      className="o-flex-align--center@desktop u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full t-background-white c-deposit-limits-container"
+      className="o-flex-align--center@desktop u-padding--md u-padding--2xlg@tablet u-padding--2xlg@desktop u-height--full bg-white c-deposit-limits-container"
     >
       <Text className={`u-font-weight-bold ${flexChildWidth}`}>
         {t.summary_title}
@@ -103,7 +103,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
             align="center"
             justify="space-between"
             spacing="none"
-            className="o-flex--1 t-border-bottom t-border-grey-5 u-padding-y--lg"
+            className="o-flex--1 t-border-bottom border-grey-5 u-padding-y--lg"
           >
             <Flex direction="vertical">
               {props.newLimits[x] && (
@@ -119,7 +119,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
                 {props.newLimits[x] ? t[x] : t[`${x}_removed`]}
               </Text>
             </Flex>
-            <MoreIcon className="t-color-grey-5" />
+            <MoreIcon className="text-grey-5" />
           </Flex>
         </Flex>
       ))}
@@ -127,7 +127,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"
-          className={`t-border-r t-background-grey-0 u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
+          className={`t-border-r bg-grey-0 u-padding-y--lg u-padding-x--md ${flexChildWidth}`}
         >
           <AdditionalConditions {...props.preadjust} t={t} />
           {SubmitButton}

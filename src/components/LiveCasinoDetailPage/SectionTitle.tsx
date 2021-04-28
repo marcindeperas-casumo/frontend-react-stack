@@ -9,7 +9,7 @@ export default function SectionTitle({ title }) {
         "u-padding-bottom--lg",
         "u-padding-top--lg",
         "u-font-weight-bold",
-        "t-color-grey-50"
+        "text-grey-50"
       )}
       size="md"
       tag="h3"

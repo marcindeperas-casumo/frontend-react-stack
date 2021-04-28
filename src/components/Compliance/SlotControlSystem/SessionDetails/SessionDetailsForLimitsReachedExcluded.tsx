@@ -34,8 +34,8 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
 
   return (
     <Flex direction="vertical">
-      <div className="u-padding--sm t-background-grey-0" />
-      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+      <div className="u-padding--sm bg-grey-0" />
+      <Text className="text-grey-50 u-padding--md u-padding-bottom--lg">
         {interpolateWithJSX(
           {
             time: (

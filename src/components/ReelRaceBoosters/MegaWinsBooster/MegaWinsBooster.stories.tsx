@@ -5,7 +5,7 @@ import isNotChromatic from "Storybook/isNotChromatic";
 import { MegaWinsBooster } from "./MegaWinsBooster";
 
 const stories = storiesOf("ReelRaceBoosters/MegaWinsBooster", module);
-const className = "t-background-grey-90 u-width--5xlg";
+const className = "bg-grey-90 u-width--5xlg";
 const props = {
   className,
 };

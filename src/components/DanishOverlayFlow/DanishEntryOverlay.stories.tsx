@@ -1,4 +1,4 @@
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { TCurrencyCode } from "Src/constants";
@@ -42,7 +42,7 @@ const setAmountProps = {
 
 const OverlayDecorator = ({ depositLimitSet }) => {
   return (
-    <div className="t-background-white o-flex--vertical t-border-r@tablet c-rsmodal">
+    <div className="bg-white o-flex--vertical t-border-r@tablet c-rsmodal">
       <DanishEntryOverlay
         {...props}
         playerId={""}

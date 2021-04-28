@@ -30,7 +30,7 @@ export const PaymentMethodDetails = ({ method }: PaymentMethodDetailsProps) => {
         >
           <Text
             size="sm"
-            className="u-margin-bottom--sm u-font-weight-bold t-color-black"
+            className="u-margin-bottom--sm u-font-weight-bold text-black"
           >
             {identifier}
           </Text>

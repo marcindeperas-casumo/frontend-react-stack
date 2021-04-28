@@ -10,7 +10,7 @@ type Props = {
 
 export const MGABar = ({ className = "" }: Props) => (
   <Flex justify="end" align="center" className={className}>
-    <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-5 u-display--flex">
+    <Flex.Item className="c-playokay-bar__clock u-font-xs text-grey-5 u-display--flex">
       <TimeLockedIcon size="sm" className="u-margin-right" />
       <CurrentSessionTimer />
     </Flex.Item>

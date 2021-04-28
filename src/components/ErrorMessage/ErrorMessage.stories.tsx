@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { text } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs";
 import Flex from "@casumo/cmp-flex";
 import React from "react";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -17,11 +17,7 @@ const renderError = (props = {}) => () => {
   };
 
   return (
-    <Flex
-      className="t-background-grey-0 u-padding--3xlg"
-      style={{ minHeight: 420 }}
-    >
-      {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'retry' is missing in type '{ errorMessag... Remove this comment to see the full error message */}
+    <Flex className="bg-grey-0 u-padding--3xlg" style={{ minHeight: 420 }}>
       <ErrorMessage {...propsWithDefaults} />
     </Flex>
   );

@@ -30,7 +30,7 @@ export const InGameAdventureWidgetContainer = () => {
   }, [recentValuable]);
 
   return (
-    <div className="t-background-grey-80 t-border-r">
+    <div className="bg-grey-80 t-border-r">
       <InGameAdventureWidget
         belt={belt}
         level={level}

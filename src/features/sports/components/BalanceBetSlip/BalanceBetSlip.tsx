@@ -7,12 +7,10 @@ import React from "react";
 import "./BalanceBetSlip.scss";
 
 type Props = {
-  t:
-    | {
-        balance_title: string;
-        bonus_title: string;
-      }
-    | undefined;
+  t?: {
+    balance_title?: string;
+    bonus_title?: string;
+  };
   maximized: boolean;
   balance: string;
   bonus?: string;
@@ -29,13 +27,13 @@ export const BalanceBetSlip = ({
   <Flex
     align="center"
     className={cx(
-      "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full t-color-white u-padding u-overflow--hidden u-height--3xlg t-background-purple-100",
+      "c-sports-balance-bet-slip o-position--fixed u-zindex--content-overlay u-width--full text-white u-padding u-overflow--hidden u-height--3xlg bg-purple-100",
       maximized && "c-sports-balance-bet-slip--maximized o-inset-bottom--none"
     )}
   >
     <Flex.Item
       onClick={goToDeposit}
-      className="o-flex u-padding t-border-r--circle t-background-purple-80"
+      className="o-flex u-padding t-border-r--circle bg-purple-80"
     >
       <AddIcon size="sm" />
     </Flex.Item>

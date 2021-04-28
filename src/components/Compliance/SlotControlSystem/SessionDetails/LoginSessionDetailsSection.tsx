@@ -34,7 +34,7 @@ export function LoginSessionDetailsSection() {
 
   return (
     <>
-      <Text className="t-color-grey-50 u-padding--md u-padding-bottom--lg">
+      <Text className="text-grey-50 u-padding--md u-padding-bottom--lg">
         {t.header}
       </Text>
       <Row

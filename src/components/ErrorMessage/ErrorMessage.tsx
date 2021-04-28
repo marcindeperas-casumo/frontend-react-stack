@@ -16,7 +16,7 @@ type ComponentProps = {
 
 type RetryProps = {
   retryMessage?: string;
-  retry: () => any;
+  retry?: () => any;
 };
 
 type Props = RetryProps & ComponentProps;
@@ -52,7 +52,7 @@ export const ErrorMessage = ({
 
   const errorClassName = classNames(
     "u-font-weight-bold",
-    "t-color-grey-50",
+    "text-grey-50",
     !isVertical && "u-margin-y--none"
   );
 
@@ -61,7 +61,7 @@ export const ErrorMessage = ({
       direction={direction}
       align="center"
       justify={isVertical ? "center" : "space-between"}
-      className="o-flex--1 u-padding--md t-background-grey-0"
+      className="o-flex--1 u-padding--md bg-grey-0"
       spacing="lg"
       data-test="error-message-container"
     >

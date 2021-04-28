@@ -84,7 +84,7 @@ export function TransactionsAnnualOverviewYearSelector({
   }, [fetchContent, isContentFetched]);
 
   return (
-    <div className="u-padding-y--lg u-padding-x--md t-background-white">
+    <div className="u-padding-y--lg u-padding-x--md bg-white">
       <Text tag="h3" size="sm">
         {content.annual_overview_year_selector_heading}
       </Text>

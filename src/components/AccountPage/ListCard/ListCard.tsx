@@ -28,7 +28,7 @@ export function ListCard({
   return (
     <Panel {...panelProps}>
       <MobileAndTablet>
-        <Link to={action.url} className="t-color-grey-90">
+        <Link to={action.url} className="text-grey-90">
           <Flex
             direction="horizontal"
             justify="space-between"
@@ -55,10 +55,7 @@ export function ListCard({
       <Desktop>
         <Flex direction="horizontal" justify="space-between">
           <Text className="u-font-weight-bold">{title}</Text>
-          <Link
-            className="u-font-weight-bold t-color-purple-60"
-            to={action.url}
-          >
+          <Link className="u-font-weight-bold text-purple-60" to={action.url}>
             {action.label}
           </Link>
         </Flex>

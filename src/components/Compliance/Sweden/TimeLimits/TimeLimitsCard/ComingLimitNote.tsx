@@ -21,7 +21,7 @@ export function ComingLimitNote({ t, limit }: Props) {
   const activationDate = DateTime.fromMillis(limit.comingLimit?.activationTime);
 
   return (
-    <Text tag="div" size="sm" className="t-color-yellow-30">
+    <Text tag="div" size="sm" className="text-yellow-30">
       {interpolateWithJSX(
         {
           time: <TimeLimitsCardDuration duration={limitDuration} />,

@@ -30,10 +30,10 @@ export function ReelRacesPageTabScheduleTitle({ t, startTime, status }: Props) {
   );
 
   if (status === RACE_STATE.STARTED) {
-    return renderTitle(t?.right_now, "t-background-green-30");
+    return renderTitle(t?.right_now, "bg-green-30");
   } else {
     if (timeRemainingBeforeStart(startTime) <= THIRTY_MINUTES) {
-      return renderTitle(t?.up_next, "t-background-yellow-30");
+      return renderTitle(t?.up_next, "bg-yellow-30");
     } else if (timeRemainingBeforeStart(startTime) <= ONE_HOUR) {
       // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
       return renderTitle(t?.later_today);

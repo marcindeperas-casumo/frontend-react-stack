@@ -31,14 +31,14 @@ export class PillSelector extends PureComponent<Props<any>> {
 
   getPillClassModifier(option: PillSelectorOption) {
     if (this.props.disabled) {
-      return "t-background-grey-0 t-color-grey-20";
+      return "bg-grey-0 text-grey-20";
     }
 
     if (option.value === this.props.value) {
-      return "t-background-purple-60 t-color-white";
+      return "bg-purple-60 text-white";
     }
 
-    return "t-background-grey-0 t-color-grey-90";
+    return "bg-grey-0 text-grey-90";
   }
 
   onChange(value: any) {

@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
+import { text, select } from "@storybook/addon-knobs";
 import React from "react";
 import MockStore from "Components/MockStore";
 import { CuratedCard } from "./CuratedCard";

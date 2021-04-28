@@ -19,7 +19,7 @@ export const GameRowText = ({
   bets?: A.GameRow_GameFragment["lobby"]["bets"];
   jackpot?: A.Jackpots_GameFragment["jackpot"] | undefined;
 }) => (
-  <Flex direction="vertical" className="t-color-grey-90 u-width--full">
+  <Flex direction="vertical" className="text-grey-90 u-width--full">
     <Text
       tag="span"
       size="sm"
@@ -30,7 +30,7 @@ export const GameRowText = ({
       <DangerousHtml html={name} />
     </Text>
     {description && (
-      <Text tag="span" className="t-color-grey-50 u-margin-top" size="sm">
+      <Text tag="span" className="text-grey-50 u-margin-top" size="sm">
         {description}
       </Text>
     )}
@@ -42,7 +42,7 @@ export const GameRowText = ({
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="span" size="sm" className="t-color-grey-50 u-margin-top">
+      <Text tag="span" size="sm" className="text-grey-50 u-margin-top">
         {bets}
       </Text>
     );
@@ -62,7 +62,7 @@ function JackpotAmount({ value, locale }) {
     <Text
       tag="span"
       size="sm"
-      className="u-font-weight-bold t-color-red-30  u-margin-top"
+      className="u-font-weight-bold text-red-30  u-margin-top"
     >
       {formatCurrency({ currency, locale, value: amount })}
     </Text>

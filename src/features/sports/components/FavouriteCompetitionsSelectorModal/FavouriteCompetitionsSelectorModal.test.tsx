@@ -17,8 +17,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={() => {}}
         />
       </MockedProvider>
@@ -28,8 +27,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[{ id: 1 }]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={() => {}}
         />
       </MockedProvider>
@@ -85,8 +83,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         groupId={1}
         initiallySelectedCompetitions={[{ id: 1 }]}
         onSave={() => {}}
-        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-        onCancel={() => {}}
+        onClose={() => {}}
       />
     );
 
@@ -113,8 +110,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[{ id: 1 }]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={onSave}
         />
       );
@@ -144,8 +140,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[{ id: 2 }, { id: 3 }]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={() => {}}
         />
       );
@@ -167,8 +162,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={() => {}}
         />
       );
@@ -191,8 +185,7 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
         <FavouriteCompetitionsSelectorModal
           groupId={1}
           initiallySelectedCompetitions={[{ id: 1 }]}
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-          onCancel={() => {}}
+          onClose={() => {}}
           onSave={() => {}}
         />
       );

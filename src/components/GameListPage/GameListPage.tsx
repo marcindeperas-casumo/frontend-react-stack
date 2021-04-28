@@ -142,7 +142,7 @@ export function GameListPage({ set }: Props) {
         />
         <div
           className={classNames("u-padding--md@mobile", {
-            "t-background-white": isMobile(),
+            "bg-white": isMobile(),
           })}
         >
           {topSection}
@@ -155,7 +155,7 @@ export function GameListPage({ set }: Props) {
           const { games, gamesCount } = data.getGamesPaginated;
 
           return (
-            <div className="t-background-white">
+            <div className="bg-white">
               <GamesVirtualList
                 games={games}
                 fetchMoreRows={loadMore}
@@ -211,11 +211,21 @@ export function GameListPage({ set }: Props) {
             loadMore,
           };
 
-          if (isLiveCasino) {
-            return <LiveCasinoGamesVirtualGrid {...props} />;
-          }
-
-          return <GamesVirtualGrid {...props} />;
+          return (
+            <TrackProvider
+              data={{
+                [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
+                  location: set.key,
+                }),
+              }}
+            >
+              {isLiveCasino ? (
+                <LiveCasinoGamesVirtualGrid {...props} />
+              ) : (
+                <GamesVirtualGrid {...props} />
+              )}
+            </TrackProvider>
+          );
         })()}
       </div>
     </>

@@ -24,7 +24,7 @@ export const SubNavLayout = ({ children, links }: TProps) => {
 
   return (
     <>
-      <div className="t-background-white">
+      <div className="bg-white">
         <ContentWrapper>
           <Flex spacing="xlg" align="center" className="c-sub-nav-layout">
             <Mobile>
@@ -36,8 +36,8 @@ export const SubNavLayout = ({ children, links }: TProps) => {
                   <Flex.Item key={link.to} className="u-margin-x--md">
                     <NavLink
                       to={link.to}
-                      className="u-font-weight-bold o-position--relative t-color-grey-70"
-                      activeClassName="c-sub-nav-item--active t-color-purple-60"
+                      className="u-font-weight-bold o-position--relative text-grey-70"
+                      activeClassName="c-sub-nav-item--active text-purple-60"
                     >
                       {link.text}
                     </NavLink>
@@ -67,7 +67,7 @@ export const SubNavLayout = ({ children, links }: TProps) => {
             </Mobile>
             <TabletAndDesktop>
               <Flex.Block className="o-flex-justify--end">
-                <div className="u-display--inline-block u-padding-x--lg t-color-white t-background-grey-5 u-padding-y--md">
+                <div className="u-display--inline-block u-padding-x--lg text-white bg-grey-5 u-padding-y--md">
                   Balance Component
                 </div>
               </Flex.Block>

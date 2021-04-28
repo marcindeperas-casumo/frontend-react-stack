@@ -11,7 +11,7 @@ type Props = {
 export const ValuableStateIndicator = ({ state, label }: Props) => {
   if (state === VALUABLE_STATES.LOCKED) {
     return (
-      <div className="u-display--inline-block t-color-black">
+      <div className="u-display--inline-block text-black">
         <LockIcon
           size="sm"
           className="u-margin-right--sm"
@@ -22,7 +22,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
     );
   } else if (state === VALUABLE_STATES.USED) {
     return (
-      <div className="u-display--inline-block t-color-green-30">
+      <div className="u-display--inline-block text-green-30">
         <ActiveIcon
           size="sm"
           className="u-margin-right--sm"
@@ -34,7 +34,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
   }
 
   return (
-    <div className="u-display--inline-block t-color-red-30">
+    <div className="u-display--inline-block text-red-30">
       <TimeLockedIcon
         size="sm"
         className="u-margin-right--sm"
