@@ -1,10 +1,12 @@
 import * as React from "react";
 import "./SportsYouWon.scss";
 import { CloseIcon } from "@casumo/cmp-icons";
+import { useQuery } from "@apollo/client";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
 import { BET_DATA } from "./__mocks__/mock";
 import type { SportsYouWonTranslations } from "./SportsYouWon.types";
+import { BET_DETAILS_QUERY } from "./SportsYouWonQuery";
 
 type Props = {
   currentHash: string;
@@ -56,9 +58,16 @@ const getRndInteger = (min, max) => {
 export const SportsYouWonComponent = ({ currentHash }: Props) => {
   const t = useTranslations<SportsYouWonTranslations>(CMS_SLUG);
   const locale = useLocale();
+  const betData2 = useQuery(BET_DETAILS_QUERY, {
+    variables: { combinationRef: getBetId(currentHash) },
+  });
 
   if (!showModal(currentHash) || !t) {
     return null;
+  }
+
+  if (betData2) {
+    console.log("***", betData2);
   }
 
   const betData = getBetData(getBetId(currentHash));
@@ -80,7 +89,7 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
                 bg-opacity-75
                 fixed
                 w-screen
-                h-screen,
+                h-screen
                 top-0
                 bottom-0
                 left-0
