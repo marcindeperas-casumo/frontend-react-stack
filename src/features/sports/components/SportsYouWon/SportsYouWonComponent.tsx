@@ -66,10 +66,6 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
     return null;
   }
 
-  if (betData2) {
-    console.log("***", betData2);
-  }
-
   const betData = getBetData(getBetId(currentHash));
 
   const wonAmount = formatCurrency({
