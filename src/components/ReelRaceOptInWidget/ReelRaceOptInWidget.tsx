@@ -1,18 +1,17 @@
 import * as React from "react";
+import * as A from "Types/apollo";
 import { useInterval } from "react-use";
 import { DateTime } from "luxon";
-import * as A from "Types/apollo";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { interpolate } from "Utils";
-import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
 
 type Props = {
   reelRace: A.ReelRaceOptInWidgetQuery["reelRaces"][0];
-  t: TReelRacesContentPage;
+  t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
 };
 
 const DEFAULT_REMAINING = "--:--";

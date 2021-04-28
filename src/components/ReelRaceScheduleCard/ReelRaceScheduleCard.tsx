@@ -15,7 +15,6 @@ type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
   t: TReelRacesContentPage;
   expanded: boolean;
-  optInForReelRace: () => void;
 };
 
 type TReelRaceStartTimeProps = Pick<
@@ -81,7 +80,6 @@ export function ReelRaceScheduleCard({
   reelRace,
   t,
   expanded = false,
-  optInForReelRace = () => {},
 }: TProps) {
   const [open, setOpen] = React.useState(expanded);
   const { translations } = reelRace;
@@ -177,7 +175,6 @@ export function ReelRaceScheduleCard({
         <ReelRaceScheduleCardContent
           reelRace={reelRace}
           t={t}
-          optIn={optInForReelRace}
           showPrizes={expanded}
         />
       )}

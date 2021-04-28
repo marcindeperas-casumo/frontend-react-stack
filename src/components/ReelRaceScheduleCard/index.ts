@@ -1,1 +1,1 @@
-export { ReelRaceScheduleCardContainer as ReelRaceScheduleCard } from "./ReelRaceScheduleCardContainer";
+export { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
