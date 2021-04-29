@@ -449,6 +449,8 @@ export type GamesSortOrder =
   | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
   | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE";
 
+export type GameDisplayMode = "LIVE_CASINO" | "STANDARD";
+
 export interface GameSetFilter {
   key: Scalars["String"];
   title?: Maybe<Scalars["String"]>;
@@ -472,6 +474,7 @@ export interface DetailedGameSet {
   supportedSorts: Array<GamesSortOrder>;
   baseQuery: Scalars["String"];
   additionalFilterGroups: Array<GameFilter>;
+  gameDisplayMode: GameDisplayMode;
 }
 
 export interface GamesList {
@@ -2145,6 +2148,7 @@ export type GetGameSetsQuery = {
     defaultSort: GamesSortOrder;
     supportedSorts: Array<GamesSortOrder>;
     baseQuery: string;
+    gameDisplayMode: GameDisplayMode;
     additionalFilterGroups: Array<{
       key: string;
       type: string;
