@@ -6,8 +6,8 @@ import { MODAL } from "Features/sports/components/Modals";
 import DangerousHtml from "Components/DangerousHtml";
 
 export const SportsFooter = () => (
-  <div className="c-sports-footer text-grey-50 font-bold p-6 bg-white underline justify-center flex">
-    <span className="cursor-pointer mr-4" onClick={showTerms}>
+  <div className="c-sports-footer text-grey-50 font-bold p-md bg-white underline justify-center flex">
+    <span className="cursor-pointer mr-sm" onClick={showTerms}>
       <DictionaryTerm termKey="footer.terms">
         {footerTermsText => <DangerousHtml html={footerTermsText} />}
       </DictionaryTerm>

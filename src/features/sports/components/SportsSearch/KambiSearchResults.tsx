@@ -62,7 +62,7 @@ const GroupTitle = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => (
-  <Text className="text-grey-50 p-4 font-bold">{children}</Text>
+  <Text className="text-grey-50 p-sm font-bold">{children}</Text>
 );
 
 const ResultRow = ({
@@ -76,7 +76,7 @@ const ResultRow = ({
   path?: string;
 }): JSX.Element => (
   <div
-    className={classNames("px-4 cursor-pointer", className || "bg-white")}
+    className={classNames("px-sm cursor-pointer", className || "bg-white")}
     onClick={onClick}
   >
     <div className="py-sm border-b border-grey-5">{children}</div>

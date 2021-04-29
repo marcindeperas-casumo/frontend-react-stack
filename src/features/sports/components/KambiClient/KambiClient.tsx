@@ -193,7 +193,7 @@ export default class KambiClient extends React.Component<Props, State> {
           "c-kambi-client--hidden": this.props.isHidden,
         })}
       >
-        <div id="KambiBC" className="pt-10" />
+        <div id="KambiBC" className="pt-lg" />
 
         {this.props.isBetslipVisible ? null : (
           <style
