@@ -27,7 +27,7 @@ import * as A from "Types/apollo";
 import { VirtualsPage } from "Features/sports/components/Virtuals/VirtualsPage";
 import { PromotionDetailPage } from "Features/sports/components/Promotions/PromotionDetailPage";
 import { SportsShellDepositWrapper } from "Features/sports/components/SportsShell/SportsShellDepositWrapper";
-import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
+import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
 
 const bridgeEventHandlers = [
   [
@@ -79,7 +79,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   }, [client]);
 
   if (loading) {
-    return <SportsShellSkeleton />;
+    return <KambiClientSkeleton />;
   }
 
   if (error) {
