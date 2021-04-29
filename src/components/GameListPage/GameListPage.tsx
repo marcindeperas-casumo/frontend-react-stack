@@ -46,7 +46,7 @@ export function GameListPage({ set }: Props) {
   const page = useCurrentGamePage();
   const { filters: defaultFilters, sort: defaultSort } = useSelector(getData);
   const dispatch = useDispatch();
-  const isLiveCasino = set.key === "LIVE_CASINO";
+  const isLiveCasino = set.gameDisplayMode === "LIVE_CASINO";
   const [sort, setSortRaw] = React.useState<A.GamesSortOrder | null>(
     defaultSort
   );
