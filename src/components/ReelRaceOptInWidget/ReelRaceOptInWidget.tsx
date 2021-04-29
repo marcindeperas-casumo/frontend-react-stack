@@ -8,6 +8,7 @@ import Flex from "@casumo/cmp-flex";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
+import "./reelRaceOptInWidget.scss"
 
 type Props = {
   reelRace: A.ReelRaceOptInWidgetQuery["reelRaces"][0];
@@ -50,8 +51,6 @@ export function ReelRaceOptInWidget({
   reelRace,
   t,
 }: Props) {
-
-
   const [remaining, setRemainig] = React.useState<string>(DEFAULT_REMAINING);
   const [rrInProgress, setRRInProgress] = React.useState<boolean>(false);
 
@@ -67,7 +66,13 @@ export function ReelRaceOptInWidget({
   const prizesCounter = reelRace.formattedPrizes.length
 
   return (
-    <div className="bg-grey-90 t-border-r u-padding-x--md u-padding-y--md">
+    <div className="c-reel-race-opt-in-widget bg-grey-90 t-border-r u-padding-x--md u-padding-y--md">
+      <Text
+        size="sm"
+        className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md">
+        Next Race coming up
+      </Text>
+
       <Flex
         align="center"
       >
@@ -82,10 +87,10 @@ export function ReelRaceOptInWidget({
         </Flex.Item>
         <Flex.Item>
           <Text className="text-yellow-30 font-bold u-margin-bottom--sm u-margin-top--none">
-            {reelRace.game.name}
+            {reelRace.formattedPrize} Reel Race
           </Text>
           <span className="text-grey-50">
-            {reelRace.game.gameStudio}
+            {reelRace.game.name}
           </span>
         </Flex.Item>
       </Flex>
@@ -148,7 +153,7 @@ export function ReelRaceOptInWidget({
             tag="div"
             className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
-            PRIZES
+            Prizes
           </Text>
           <Text
             tag="div"
@@ -167,12 +172,12 @@ export function ReelRaceOptInWidget({
           <Text
             size="xs"
             tag="div"
-            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+            className="u-font-weight-bold text-white text-grey-50"
           >
             {rrInProgress ? t.endingIn : t.startingIn}
           </Text>
           <Text
-            size="md"
+            size="lg"
             tag="div"
             className="u-font-weight-bold text-yellow-30"
           >
@@ -182,7 +187,7 @@ export function ReelRaceOptInWidget({
 
         <Flex>
           <ReelRaceOptInPlayButton
-            reelRace={reelRace as any}
+            reelRace={reelRace}
             t={t}
           />
         </Flex>
