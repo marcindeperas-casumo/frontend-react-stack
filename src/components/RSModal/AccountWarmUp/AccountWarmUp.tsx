@@ -122,7 +122,6 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
               >
                 {/* TODO: currently hardcoded to unverified. hook to api once available */}
                 {config.content?.verification_status_unverified}
-                Unverified
               </Text>
             </Flex>
             <Flex.Block>
