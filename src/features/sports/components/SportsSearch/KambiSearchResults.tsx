@@ -79,7 +79,7 @@ const ResultRow = ({
     className={classNames("px-4 cursor-pointer", className || "bg-white")}
     onClick={onClick}
   >
-    <div className="py-4 border-b border-grey-5">{children}</div>
+    <div className="py-sm border-b border-grey-5">{children}</div>
   </div>
 );
 
@@ -235,7 +235,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex className="pl-4" spacing="md" align="center">
+            <Flex className="pl-sm" spacing="md" align="center">
               <img src={sport.icon} alt={sport.name} height="24" width="24" />
               <Flex.Block>
                 <Text size="sm" tag="span" className="text-grey-70 font-bold">
@@ -289,7 +289,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex className="pl-4" spacing="md" align="end">
+            <Flex className="pl-sm" spacing="md" align="end">
               {result.sport && (
                 <img
                   src={result.sport.icon}
@@ -299,7 +299,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <div className="mx-4 overflow-ellipsis overflow-hidden whitespace-nowrap">
+              <div className="mx-sm overflow-ellipsis overflow-hidden whitespace-nowrap">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -348,7 +348,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
           if (res.loading || !res.data || !res.data.search) {
             return (
-              <div className="mx-4">
+              <div className="mx-sm">
                 <KambiSearchResultsSkeleton />
               </div>
             );
@@ -371,13 +371,13 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <div className="bg-grey-0 text-grey-50 px-8 py-6">
+        <div className="bg-grey-0 text-grey-50 px-md py-sm">
           <Flex align="center">
             <Flex.Item>
               <SadSumo width="32" height="36" />
             </Flex.Item>
             <Flex.Block>
-              <Text className="ml-4 mb-0 font-bold">
+              <Text className="ml-sm mb-none font-bold">
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>

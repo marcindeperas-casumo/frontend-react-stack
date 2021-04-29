@@ -91,7 +91,7 @@ export default class SportsSearch extends React.Component<{}, State> {
     return (
       <>
         <Flex.Block className="bg-grey-0 u-content-width--tablet c-sports-search__search-bar">
-          <Flex className="p-4" align="stretch">
+          <Flex className="p-sm" align="stretch">
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (

@@ -29,10 +29,10 @@ export const WelcomeOfferCuratedCard = ({
   return (
     <MobileAndTablet>
       <div className="overflow-hidden">
-        <div className="m-4 rounded-lg overflow-hidden">
+        <div className="m-sm rounded-lg overflow-hidden">
           <CuratedCard
             slug={CMS_SLUG}
-            className="c-sports-welcome-offer-card pt-4"
+            className="c-sports-welcome-offer-card pt-sm"
           />
         </div>
       </div>
