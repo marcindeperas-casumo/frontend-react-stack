@@ -1,1 +1,1 @@
-export { default } from "./SportsYouWonContainer";
+export { SportsYouWonComponent } from "./SportsYouWonComponent";

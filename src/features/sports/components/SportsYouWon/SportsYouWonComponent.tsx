@@ -4,13 +4,14 @@ import { CloseIcon } from "@casumo/cmp-icons";
 import { useQuery } from "@apollo/client";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
-import type { SportsYouWonTranslations } from "./SportsYouWon.types";
+import type {
+  BetCombinationRefType,
+  SportsYouWonTranslations,
+} from "./SportsYouWon.types";
 import { BET_DETAILS_QUERY } from "./SportsYouWonQuery";
 
 type Props = {
   currentHash: string;
-  playerId: string;
-  username: string;
 };
 
 const PROP_NAME = "?youwon=";
@@ -52,22 +53,22 @@ const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const SportsYouWonComponent = ({
-  currentHash,
-  playerId,
-  username,
-}: Props) => {
+export const SportsYouWonComponent = ({ currentHash }: Props) => {
   const t = useTranslations<SportsYouWonTranslations>(CMS_SLUG);
   const locale = useLocale();
-  const backendData = useQuery(BET_DETAILS_QUERY, {
-    variables: { combinationRef: getBetId(currentHash), playerId: playerId },
+  const { data: betDetails } = useQuery(BET_DETAILS_QUERY, {
+    variables: { combinationRef: getBetId(currentHash) },
   });
 
-  if (!showModal(currentHash) || !t || !backendData?.data?.betDetails) {
+  if (!showModal(currentHash) || !t || !betDetails) {
     return null;
   }
 
-  const betData = backendData.data.betDetails;
+  const betData: BetCombinationRefType = betDetails.betDetails;
+
+  if (betData.status !== "WON") {
+    return null;
+  }
 
   const wonAmount = formatCurrency({
     locale,
@@ -76,7 +77,7 @@ export const SportsYouWonComponent = ({
   });
 
   const content = t.text
-    .replace("{$username}", username)
+    .replace("{$username}", betData.username)
     .replace("{$wonAmount}", wonAmount);
 
   return (

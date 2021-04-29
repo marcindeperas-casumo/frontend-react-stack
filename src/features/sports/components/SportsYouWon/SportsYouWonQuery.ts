@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const BET_DETAILS_QUERY = gql`
-  query BetDetailsQuery($combinationRef: BigInt!, $playerId: String!) {
-    betDetails(combinationRef: $combinationRef, playerId: $playerId) {
+  query BetDetailsQuery($combinationRef: BigInt!) {
+    betDetails(combinationRef: $combinationRef) {
       payout
       currency
       status

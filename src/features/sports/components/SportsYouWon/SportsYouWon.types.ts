@@ -27,13 +27,9 @@ export type BetCombinationRefLeg = {
 };
 
 export type BetCombinationRefType = {
-  combinationRef: number;
-  playerId: string;
-  placedDate: string;
-  stake: number;
+  username: string;
   payout: number;
   currency: TCurrencyCode;
-  odds: number;
   status: string;
   legs: Array<BetCombinationRefLeg>;
 };
