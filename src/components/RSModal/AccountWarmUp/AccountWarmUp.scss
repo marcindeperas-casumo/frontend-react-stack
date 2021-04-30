@@ -1,0 +1,30 @@
+.c-account-warm-up {
+  --verification-status-status-label-height: 18px;
+
+  &__time-remaining-title,
+  &__verification-status-title {
+    margin-left: -50px;
+  }
+  /* stylelint-disable xi/selector-pattern */
+  &__verification-status {
+    &::before {
+      background: cudl-palette(grey, "5");
+      content: "";
+      height: 100%;
+      left: -35px;
+      position: absolute;
+      top: 5px;
+      width: 2px;
+    }
+
+    &__status-label {
+      height: var(--verification-status-status-label-height);
+      line-height: var(--verification-status-status-label-height);
+    }
+  }
+  /* stylelint-enable xi/selector-pattern */
+
+  &__days-left {
+    bottom: -12px;
+  }
+}

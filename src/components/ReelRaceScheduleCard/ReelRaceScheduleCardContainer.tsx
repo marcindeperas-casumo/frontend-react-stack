@@ -1,9 +1,14 @@
 import { useMutation } from "@apollo/client";
 import * as React from "react";
-import * as A from "Types/apollo";
+import { useDispatch, useSelector } from "react-redux";
+import { useJurisdiction } from "Utils/hooks";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
-import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
+import * as A from "Types/apollo";
+import { showModal } from "Models/modal";
+import { isWarmUpPhaseSelector } from "Models/handshake";
+import { REACT_APP_MODAL } from "Src/constants";
 import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
+import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
 
 type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
@@ -30,10 +35,22 @@ export function ReelRaceScheduleCardContainer({
     },
   });
 
+  const { isDGOJ } = useJurisdiction();
+  const dispatch = useDispatch();
+  const isInWarmUpPhase = useSelector(isWarmUpPhaseSelector);
+
+  const showWarmUpModal = () =>
+    dispatch(
+      showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, { input: reelRace })
+    );
+
+  const optInAction =
+    isDGOJ && isInWarmUpPhase ? showWarmUpModal : optInForReelRace;
+
   return (
     <ReelRaceScheduleCard
       expanded={expanded}
-      optInForReelRace={optInForReelRace}
+      optInForReelRace={optInAction}
       reelRace={reelRace}
       t={t}
     />
