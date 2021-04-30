@@ -43,7 +43,6 @@ export type ModalConfig = {
   input?: any;
   content?: any;
   gameRoundId?: any;
-  reelRace?: any; // todo: remove
   isWide?: boolean;
 };
 type ModalState = {

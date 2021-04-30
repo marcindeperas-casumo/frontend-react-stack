@@ -11,7 +11,7 @@ type TAccountWarmUpProps = {
   acceptModal: () => void;
   closeModal: () => void;
   config: {
-    reelRace?: A.ReelRaceCard_ReelRaceFragment;
+    input?: A.ReelRaceCard_ReelRaceFragment;
   };
 };
 

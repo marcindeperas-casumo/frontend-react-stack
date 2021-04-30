@@ -33,7 +33,9 @@ export const ReelRaceCardContainer = ({ reelRace }: Props) => {
   });
 
   const showWarmUpModal = () =>
-    dispatch(showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, { reelRace }));
+    dispatch(
+      showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, { input: reelRace })
+    );
 
   const optInAction =
     isDGOJ && isInWarmUpPhase ? showWarmUpModal : optInForReelRace;

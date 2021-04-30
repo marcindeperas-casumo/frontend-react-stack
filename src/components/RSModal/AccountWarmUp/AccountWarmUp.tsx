@@ -25,7 +25,7 @@ type TProps = {
   closeModal: () => void;
   config: {
     content?: TAccountWarmUpPage;
-    reelRace?: A.ReelRaceCard_ReelRaceFragment;
+    input?: A.ReelRaceCard_ReelRaceFragment;
   };
 };
 
@@ -55,7 +55,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     icon: PlayIcon,
     action: () => {
       acceptModal();
-      launchGame({ slug: config.reelRace.game.slug });
+      launchGame({ slug: config.input.game.slug });
     },
   };
 
@@ -70,7 +70,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     <Modal
       className={cx(rootClassName)}
       closeIcon={{ action: closeModal }}
-      primaryButton={config.reelRace ? playButtonConfig : dismissButtonConfig}
+      primaryButton={config.input ? playButtonConfig : dismissButtonConfig}
     >
       <Flex
         direction="vertical"
