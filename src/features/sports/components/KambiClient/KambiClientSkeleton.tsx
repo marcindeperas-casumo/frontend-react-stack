@@ -14,7 +14,7 @@ const KambiClientSkeleton = () => (
             <div className="h-2xlg bg-grey-20 rounded w-5/6"></div>
           </div>
         </div>
-      )
+      );
     })}
   </div>
 );
