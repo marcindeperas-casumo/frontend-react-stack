@@ -62,7 +62,7 @@ const GroupTitle = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => (
-  <Text className="text-grey-50 p-sm font-bold">{children}</Text>
+  <Text className="text-grey-50 p-md font-bold">{children}</Text>
 );
 
 const ResultRow = ({
@@ -76,10 +76,10 @@ const ResultRow = ({
   path?: string;
 }): JSX.Element => (
   <div
-    className={classNames("px-sm cursor-pointer", className || "bg-white")}
+    className={classNames("px-lg cursor-pointer", className || "bg-white")}
     onClick={onClick}
   >
-    <div className="py-sm border-b border-grey-5">{children}</div>
+    <div className="py-md border-b border-grey-5">{children}</div>
   </div>
 );
 
@@ -299,7 +299,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <div className="mx-sm overflow-ellipsis overflow-hidden whitespace-nowrap">
+              <div className="ml-md mr-sm overflow-ellipsis overflow-hidden whitespace-nowrap">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
