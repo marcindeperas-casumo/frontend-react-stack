@@ -229,9 +229,13 @@ export const piqConfigSelector = createSelector(
 // Temporary mocked selector for DGOJ - warm up phase
 export const isWarmUpPhaseSelector = createSelector(
   registrationDateSelector,
-  registrationDate => {
-    const registratioDate = convertMillisTimestampToLuxonDate(registrationDate);
-    const timeToElapse = registratioDate.plus({ days: 30 }).toSeconds();
-    return timeToElapse > DateTime.utc().toSeconds();
+  registrationMillis => {
+    const firstOfMay = convertMillisTimestampToLuxonDate(1619820000000);
+    const registrationDate = convertMillisTimestampToLuxonDate(
+      registrationMillis
+    );
+    const afterFirstOfMay = DateTime.utc() > firstOfMay;
+    const timeToElapse = registrationDate.plus({ days: 30 }).toSeconds();
+    return afterFirstOfMay && timeToElapse > DateTime.utc().toSeconds();
   }
 );
