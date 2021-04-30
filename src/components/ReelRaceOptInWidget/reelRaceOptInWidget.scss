@@ -4,4 +4,20 @@
     margin-right: -16px !important;
     margin-top: -16px !important;
   }
+
+  &__tournament-icon {
+    border-radius: 0 0 0 16px;
+    height: 32px;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 32px;
+
+    // stylelint-disable xi/selector-pattern
+    svg {
+      display: inline-block;
+      width: 13px;
+    }
+    // stylelint-enable xi/selector-pattern
+  }
 }

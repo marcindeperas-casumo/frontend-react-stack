@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import { TournamentIcon } from "@casumo/cmp-icons";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
@@ -64,15 +65,18 @@ export function ReelRaceOptInWidget({
   }, 1000)
 
   const prizesCounter = reelRace.formattedPrizes.length
+  const isPromoted = reelRace.promoted;
 
   return (
-    <div className="c-reel-race-opt-in-widget bg-grey-90 t-border-r u-padding-x--md u-padding-y--md">
+    <div className={cx("c-reel-race-opt-in-widget o-position--relative bg-grey-90 t-border-r u-padding-x--md u-padding-y--md", {
+      "t-border--md t-border-yellow-30": isPromoted,
+    })}>
       <Text
         size="sm"
         className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md">
         Next Race coming up
       </Text>
-
+      {isPromoted && <TournamentIcon className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black" />}
       <Flex
         align="center"
       >
