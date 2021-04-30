@@ -5,6 +5,15 @@
     margin-top: -16px !important;
   }
 
+  &__info-header {
+    font-size: 10px !important;
+  }
+
+  &__info-block {
+    margin-left: -16px;
+    width: 200px;
+  }
+
   &__tournament-icon {
     border-radius: 0 0 0 16px;
     height: 32px;

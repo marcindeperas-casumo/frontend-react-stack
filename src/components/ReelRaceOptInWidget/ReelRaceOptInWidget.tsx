@@ -101,6 +101,7 @@ export function ReelRaceOptInWidget({
 
       <Flex
         className={cx(
+          "c-reel-race-opt-in-widget__info-block",
           "o-flex--horizontal",
           "u-padding-y--lg"
         )}
@@ -114,7 +115,7 @@ export function ReelRaceOptInWidget({
           <Text
             tag="div"
             size="xs"
-            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
             {reelRace.translations.spins}
           </Text>
@@ -133,7 +134,7 @@ export function ReelRaceOptInWidget({
           <Text
             size="xs"
             tag="div"
-            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
             {reelRace.translations.duration}
           </Text>
@@ -155,7 +156,7 @@ export function ReelRaceOptInWidget({
           <Text
             size="xs"
             tag="div"
-            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
             Prizes
           </Text>
