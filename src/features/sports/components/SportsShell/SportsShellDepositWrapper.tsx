@@ -9,7 +9,7 @@ export const SportsShellDepositWrapper = () => {
 
   return hasMadeFirstDeposit ? (
     <Mobile>
-      <div className="u-padding-top--md u-padding-x--md">
+      <div className="pt-sm px-sm">
         <Deposit />
       </div>
     </Mobile>
