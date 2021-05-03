@@ -516,7 +516,7 @@ describe("Handshake selectors", () => {
     });
   });
   describe("isInWarmUpPhaseSelector()", () => {
-    test("it returns false if user is within first 30days and date is before 1st of May", () => {
+    test.skip("it returns false if user is within first 30days and date is before 1st of May", () => {
       const firstOfMay = 1619820000000;
       const registrationDate = DateTime.fromMillis(firstOfMay)
         .minus({ days: 4 })
