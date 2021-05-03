@@ -32,3 +32,4 @@ export { useCallOnce } from "./useCallOnce";
 export { useScrollToTop } from "./useScrollToTop";
 export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export { useTranslatedUrl } from "./useTranslatedUrl";
+export { usePlayerWarmUpDetails } from "./usePlayerWarmUpDetails";

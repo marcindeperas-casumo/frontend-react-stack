@@ -16,21 +16,28 @@ import { REACT_APP_MODAL } from "Src/constants";
 import { useHideModal } from "Models/modal";
 import { launchGame } from "Services/LaunchGameService";
 import { navigateById } from "Services/NavigationService";
+import type { TPlayerWarmUpDetailsResponse } from "Models/accountWarmUp";
 import { useAccountWarmUp } from "./useAccountWarmUp";
 import { TAccountWarmUpPage } from "./AccountWarmUp.types";
 import "./AccountWarmUp.scss";
 
+// TODO: create union type for input with reelRace and warmupdetails
 type TProps = {
   acceptModal: () => void;
   closeModal: () => void;
   config: {
     content?: TAccountWarmUpPage;
-    input?: A.ReelRaceCard_ReelRaceFragment;
+    input?: A.ReelRaceCard_ReelRaceFragment &
+      Partial<TPlayerWarmUpDetailsResponse>;
   };
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
-  const { timeRemaining } = useAccountWarmUp();
+  const { timeRemaining } = useAccountWarmUp(
+    config.input.inWarmupPhase,
+    config.input.warmupTimeEnd
+  );
   const modalHide = useHideModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP);
 
   const rootClassName = "c-account-warm-up";
@@ -70,7 +77,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     <Modal
       className={cx(rootClassName)}
       closeIcon={{ action: closeModal }}
-      primaryButton={config.input ? playButtonConfig : dismissButtonConfig}
+      primaryButton={config.input.game ? playButtonConfig : dismissButtonConfig}
     >
       <Flex
         direction="vertical"
@@ -117,30 +124,37 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                 size="xs"
                 className={cx(
                   `${rootClassName}__verification-status__status-label`,
-                  "t-border-r--sm u-padding-x--sm u-font-weight-bold u-text-transform-uppercase text-white bg-orange-30"
+                  "t-border-r--sm u-padding-x--sm u-font-weight-bold u-text-transform-uppercase text-white",
+                  { "bg-green-30": config.input?.verified },
+                  { "bg-orange-30": !config.input?.verified }
                 )}
               >
-                {/* TODO: currently hardcoded to unverified. hook to api once available */}
-                {config.content?.verification_status_unverified}
+                {config.input?.verified
+                  ? config.content?.verification_status_verified
+                  : config.content?.verification_status_unverified}
               </Text>
             </Flex>
             <Flex.Block>
               <Text size="sm" className="text-grey-50">
-                {config.content?.verification_status_unverified_message}
+                {config.input?.verified
+                  ? config.content?.verification_status_verified_message
+                  : config.content?.verification_status_unverified_message}
               </Text>
             </Flex.Block>
-            <Flex.Block>
-              <ButtonPrimary
-                size="sm"
-                className="u-width--full u-padding-y--md u-padding-x--lg"
-                onClick={() => {
-                  modalHide.closeModal();
-                  navigateById({ routeId: "documents-verification" });
-                }}
-              >
-                {config.content?.verify_button_text}
-              </ButtonPrimary>
-            </Flex.Block>
+            {!config.input?.verified && (
+              <Flex.Block>
+                <ButtonPrimary
+                  size="sm"
+                  className="u-width--full u-padding-y--md u-padding-x--lg"
+                  onClick={() => {
+                    modalHide.closeModal();
+                    navigateById({ routeId: "documents-verification" });
+                  }}
+                >
+                  {config.content?.verify_button_text}
+                </ButtonPrimary>
+              </Flex.Block>
+            )}
           </Flex>
         </Flex>
 
