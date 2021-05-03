@@ -6,25 +6,26 @@ import type { TPlayerWarmUpDetailsResponse } from "Models/accountWarmUp";
 import { useJurisdiction } from "./useJurisdiction";
 
 export function usePlayerWarmUpDetails() {
-  const isDGOJ = useJurisdiction();
+  const { isDGOJ } = useJurisdiction();
   const [details, setDetails] = React.useState<TPlayerWarmUpDetailsResponse>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const playerId = useSelector(playerIdSelector);
 
   React.useEffect(() => {
-    if (isDGOJ && playerId) {
-      getDetails({ playerId }).then(
-        (response: TPlayerWarmUpDetailsResponse) => {
-          if (!response) {
-            setLoading(false);
-            return;
-          }
-
-          setDetails(response);
+    async function fetchDetails() {
+      if (isDGOJ && playerId) {
+        const response = await getDetails({ playerId });
+        if (!response) {
           setLoading(false);
+          return;
         }
-      );
+
+        setDetails(response);
+        setLoading(false);
+      }
     }
+
+    fetchDetails();
   }, [isDGOJ, playerId]);
 
   return {

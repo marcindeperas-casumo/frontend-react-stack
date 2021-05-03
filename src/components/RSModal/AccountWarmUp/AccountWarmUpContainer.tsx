@@ -10,7 +10,7 @@ type TAccountWarmUpProps = {
   acceptModal: () => void;
   closeModal: () => void;
   config: {
-    input?: A.ReelRaceCard_ReelRaceFragment &
+    input: A.ReelRaceCard_ReelRaceFragment &
       Partial<TPlayerWarmUpDetailsResponse>;
   };
 };

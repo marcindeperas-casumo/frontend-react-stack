@@ -27,7 +27,7 @@ type TProps = {
   closeModal: () => void;
   config: {
     content?: TAccountWarmUpPage;
-    input?: A.ReelRaceCard_ReelRaceFragment &
+    input: A.ReelRaceCard_ReelRaceFragment &
       Partial<TPlayerWarmUpDetailsResponse>;
   };
 };
@@ -35,9 +35,10 @@ type TProps = {
 // eslint-disable-next-line max-lines-per-function
 export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
   const { timeRemaining } = useAccountWarmUp(
-    config.input.inWarmupPhase,
-    config.input.warmupTimeEnd
+    config.input?.inWarmupPhase,
+    config.input?.warmupTimeEnd
   );
+
   const modalHide = useHideModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP);
 
   const rootClassName = "c-account-warm-up";
@@ -77,7 +78,9 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     <Modal
       className={cx(rootClassName)}
       closeIcon={{ action: closeModal }}
-      primaryButton={config.input.game ? playButtonConfig : dismissButtonConfig}
+      primaryButton={
+        config.input?.game ? playButtonConfig : dismissButtonConfig
+      }
     >
       <Flex
         direction="vertical"
