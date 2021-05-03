@@ -21,13 +21,12 @@ import { useAccountWarmUp } from "./useAccountWarmUp";
 import { TAccountWarmUpPage } from "./AccountWarmUp.types";
 import "./AccountWarmUp.scss";
 
-// TODO: create union type for input with reelRace and warmupdetails
 type TProps = {
   acceptModal: () => void;
   closeModal: () => void;
   config: {
     content?: TAccountWarmUpPage;
-    input: A.ReelRaceCard_ReelRaceFragment &
+    input?: A.ReelRaceCard_ReelRaceFragment &
       Partial<TPlayerWarmUpDetailsResponse>;
   };
 };
