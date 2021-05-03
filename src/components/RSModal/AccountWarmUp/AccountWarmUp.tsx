@@ -35,7 +35,7 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
 
   const rootClassName = "c-account-warm-up";
 
-  // Todo: use DRY component
+  // Todo: use DRY components
   // eslint-disable-next-line no-unused-vars
   const TimeItem = (timeValue, unitTranslation) => (
     <Flex.Item>

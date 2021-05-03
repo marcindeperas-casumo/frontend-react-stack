@@ -231,11 +231,6 @@ export const isWarmUpPhaseSelector = createSelector(
   registrationDateSelector,
   registrationMillis => {
     const firstOfMay = convertMillisTimestampToLuxonDate(1619820000000);
-    const registrationDate = convertMillisTimestampToLuxonDate(
-      registrationMillis
-    );
-    const afterFirstOfMay = DateTime.utc() > firstOfMay;
-    const timeToElapse = registrationDate.plus({ days: 30 }).toSeconds();
-    return afterFirstOfMay && timeToElapse > DateTime.utc().toSeconds();
+    return DateTime.utc() > firstOfMay;
   }
 );
