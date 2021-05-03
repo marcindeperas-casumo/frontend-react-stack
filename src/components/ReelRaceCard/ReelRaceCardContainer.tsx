@@ -40,7 +40,8 @@ export const ReelRaceCardContainer = ({ reelRace }: Props) => {
       })
     );
 
-  const optInAction = inWarmupPhase ? showWarmUpModal : optInForReelRace;
+  const optInAction =
+    isDGOJ && inWarmupPhase ? showWarmUpModal : optInForReelRace;
 
   return <ReelRaceCard reelRace={reelRace} optIn={optInAction} />;
 };
