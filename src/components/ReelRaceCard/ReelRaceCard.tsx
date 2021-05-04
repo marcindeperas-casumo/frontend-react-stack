@@ -36,7 +36,12 @@ const Column = (props: {
       </Text>
     )}
     {props.bottom && (
-      <Text tag="span" size="xs" className="text-white t-opacity--75">
+      <Text
+        tag="span"
+        size="xs"
+        className="text-white t-opacity--75
+      "
+      >
         {props.bottom}
       </Text>
     )}

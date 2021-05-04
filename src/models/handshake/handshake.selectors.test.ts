@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
 import { VERTICALS, COMPLIANCE_STATE_PROPERTY } from "Src/constants";
 import * as storage from "Lib/storage";
@@ -36,7 +35,6 @@ import {
   complianceStatePropertySelector,
   isProductionBackendSelector,
   piqConfigSelector,
-  isWarmUpPhaseSelector,
 } from "./handshake.selectors";
 describe("Handshake selectors", () => {
   test("handshakeSelector", () => {
@@ -513,25 +511,6 @@ describe("Handshake selectors", () => {
         },
       };
       expect(registrationDateSelector(state)).toEqual(registrationDate);
-    });
-  });
-  describe("isInWarmUpPhaseSelector()", () => {
-    test.skip("it returns false if user is within first 30days and date is before 1st of May", () => {
-      const firstOfMay = 1619820000000;
-      const registrationDate = DateTime.fromMillis(firstOfMay)
-        .minus({ days: 4 })
-        .toMillis();
-      const state = {
-        handshake: {
-          app: {
-            "common/composition/session": { id: "p1" },
-            "common/composition/players": {
-              players: { p1: { id: "p1", registrationDate } },
-            },
-          },
-        },
-      };
-      expect(isWarmUpPhaseSelector(state)).toEqual(false);
     });
   });
   describe("complianceStatePropertySelector()", () => {

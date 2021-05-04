@@ -10,12 +10,14 @@ import {
   LiveChatIcon,
 } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { stringToHTML } from "Utils";
 import { REACT_APP_MODAL } from "Src/constants";
 import { useHideModal } from "Models/modal";
 import { launchGame } from "Services/LaunchGameService";
 import { navigateById } from "Services/NavigationService";
+import type { TPlayerWarmUpDetailsResponse } from "Models/accountWarmUp";
 import { useAccountWarmUp } from "./useAccountWarmUp";
 import { TAccountWarmUpPage } from "./AccountWarmUp.types";
 import "./AccountWarmUp.scss";
@@ -25,12 +27,22 @@ type TProps = {
   closeModal: () => void;
   config: {
     content?: TAccountWarmUpPage;
-    input?: A.ReelRaceCard_ReelRaceFragment;
+    input?: A.ReelRaceCard_ReelRaceFragment &
+      Partial<TPlayerWarmUpDetailsResponse>;
   };
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
-  const { timeRemaining } = useAccountWarmUp();
+  const { timeRemaining } = useAccountWarmUp(
+    config.input?.inWarmupPhase,
+    config.input?.warmupTimeEnd
+  );
+
+  const shouldShowTimeRemaining = () => {
+    return DateTime.fromISO(config.input?.warmupTimeEnd) > DateTime.utc();
+  };
+
   const modalHide = useHideModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP);
 
   const rootClassName = "c-account-warm-up";
@@ -70,7 +82,9 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     <Modal
       className={cx(rootClassName)}
       closeIcon={{ action: closeModal }}
-      primaryButton={config.input ? playButtonConfig : dismissButtonConfig}
+      primaryButton={
+        config.input?.game ? playButtonConfig : dismissButtonConfig
+      }
     >
       <Flex
         direction="vertical"
@@ -117,106 +131,115 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
                 size="xs"
                 className={cx(
                   `${rootClassName}__verification-status__status-label`,
-                  "t-border-r--sm u-padding-x--sm u-font-weight-bold u-text-transform-uppercase text-white bg-orange-30"
+                  "t-border-r--sm u-padding-x--sm u-font-weight-bold u-text-transform-uppercase text-white",
+                  { "bg-green-30": config.input?.verified },
+                  { "bg-orange-30": !config.input?.verified }
                 )}
               >
-                {/* TODO: currently hardcoded to unverified. hook to api once available */}
-                {config.content?.verification_status_unverified}
+                {config.input?.verified
+                  ? config.content?.verification_status_verified
+                  : config.content?.verification_status_unverified}
               </Text>
             </Flex>
             <Flex.Block>
               <Text size="sm" className="text-grey-50">
-                {config.content?.verification_status_unverified_message}
+                {config.input?.verified
+                  ? config.content?.verification_status_verified_message
+                  : config.content?.verification_status_unverified_message}
               </Text>
             </Flex.Block>
-            <Flex.Block>
-              <ButtonPrimary
-                size="sm"
-                className="u-width--full u-padding-y--md u-padding-x--lg"
-                onClick={() => {
-                  modalHide.closeModal();
-                  navigateById({ routeId: "documents-verification" });
-                }}
-              >
-                {config.content?.verify_button_text}
-              </ButtonPrimary>
-            </Flex.Block>
+            {!config.input?.verified && (
+              <Flex.Block>
+                <ButtonPrimary
+                  size="sm"
+                  className="u-width--full u-padding-y--md u-padding-x--lg"
+                  onClick={() => {
+                    modalHide.closeModal();
+                    navigateById({ routeId: "documents-verification" });
+                  }}
+                >
+                  {config.content?.verify_button_text}
+                </ButtonPrimary>
+              </Flex.Block>
+            )}
           </Flex>
         </Flex>
 
-        <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
-          <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
-            <div className="t-border-r--circle bg-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
-              <TimeLockedIcon
-                size="sm"
-                style={{ width: "24px", height: "20px" }}
-                className="text-grey-50"
-              />
-            </div>
-            <Text className="u-padding u-text-align-left o-flex__block">
-              {config.content?.days_left_title}
-            </Text>
-          </Flex>
-
-          {timeRemaining && (
-            <Flex
-              spacing="md"
-              justify="center"
-              className={cx(
-                `${rootClassName}__time-remaining`,
-                "o-position--relative u-padding--md t-border-r--md bg-grey-5"
-              )}
-            >
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.days}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.days}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Flex.Item>:</Flex.Item>
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.hours}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.hours}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Flex.Item>:</Flex.Item>
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.minutes}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.minutes}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Text
-                size="xs"
-                tag="div"
-                className={cx(
-                  `${rootClassName}__days-left`,
-                  "o-position--absolute u-padding--sm u-font-weight-bold bg-grey-20 t-border-r--sm"
-                )}
-              >
-                {config.content?.days_left_label}
-                <LockIcon
+        {shouldShowTimeRemaining() && (
+          <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
+            <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
+              <div className="t-border-r--circle bg-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
+                <TimeLockedIcon
                   size="sm"
-                  className="u-margin-left--sm"
-                  style={{ width: "10px", height: "11px" }}
+                  style={{ width: "24px", height: "20px" }}
+                  className="text-grey-50"
                 />
+              </div>
+              <Text className="u-padding u-text-align-left o-flex__block">
+                {config.content?.days_left_title}
               </Text>
             </Flex>
-          )}
-        </Flex>
+
+            {timeRemaining && (
+              <Flex
+                spacing="md"
+                justify="center"
+                className={cx(
+                  `${rootClassName}__time-remaining`,
+                  "o-position--relative u-padding--md t-border-r--md bg-grey-5"
+                )}
+              >
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.days}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.days}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Flex.Item>:</Flex.Item>
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.hours}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.hours}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Flex.Item>:</Flex.Item>
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.minutes}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.minutes}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Text
+                  size="xs"
+                  tag="div"
+                  className={cx(
+                    `${rootClassName}__days-left`,
+                    "o-position--absolute u-padding--sm u-font-weight-bold bg-grey-20 t-border-r--sm"
+                  )}
+                >
+                  {config.content?.days_left_label}
+                  <LockIcon
+                    size="sm"
+                    className="u-margin-left--sm"
+                    style={{ width: "10px", height: "11px" }}
+                  />
+                </Text>
+              </Flex>
+            )}
+          </Flex>
+        )}
       </Flex>
     </Modal>
   );
