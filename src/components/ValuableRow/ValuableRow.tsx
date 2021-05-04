@@ -19,6 +19,7 @@ import type {
   ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
+import { withWarmupPopup } from "Components/ValuableCard/ValuableCardContainer";
 import ValuableSelector from "./valuable-selector.svg";
 import "./ValuableRow.scss";
 
@@ -187,3 +188,7 @@ export class ValuableRow extends PureComponent<Props> {
     );
   }
 }
+
+export const ValuableRowContainer = (props: Props) => {
+  return withWarmupPopup<Props>(ValuableRow, props, "onClick");
+};
