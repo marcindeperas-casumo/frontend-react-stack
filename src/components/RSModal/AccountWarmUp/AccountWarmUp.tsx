@@ -10,6 +10,7 @@ import {
   LiveChatIcon,
 } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { stringToHTML } from "Utils";
 import { REACT_APP_MODAL } from "Src/constants";
@@ -37,6 +38,10 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
     config.input?.inWarmupPhase,
     config.input?.warmupTimeEnd
   );
+
+  const shouldShowTimeRemaining = () => {
+    return DateTime.fromISO(config.input?.warmupTimeEnd) > DateTime.utc();
+  };
 
   const modalHide = useHideModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP);
 
@@ -160,79 +165,81 @@ export const AccountWarmUp = ({ acceptModal, closeModal, config }: TProps) => {
           </Flex>
         </Flex>
 
-        <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
-          <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
-            <div className="t-border-r--circle bg-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
-              <TimeLockedIcon
-                size="sm"
-                style={{ width: "24px", height: "20px" }}
-                className="text-grey-50"
-              />
-            </div>
-            <Text className="u-padding u-text-align-left o-flex__block">
-              {config.content?.days_left_title}
-            </Text>
-          </Flex>
-
-          {timeRemaining && (
-            <Flex
-              spacing="md"
-              justify="center"
-              className={cx(
-                `${rootClassName}__time-remaining`,
-                "o-position--relative u-padding--md t-border-r--md bg-grey-5"
-              )}
-            >
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.days}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.days}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Flex.Item>:</Flex.Item>
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.hours}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.hours}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Flex.Item>:</Flex.Item>
-              <Flex.Item>
-                <Flex direction="vertical" align="center" justify="center">
-                  <Text size="md" className="u-font-weight-bold">
-                    {timeRemaining.minutes}
-                  </Text>
-                  <Text size="xs" className="text-grey-50">
-                    {config.content?.minutes}
-                  </Text>
-                </Flex>
-              </Flex.Item>
-              <Text
-                size="xs"
-                tag="div"
-                className={cx(
-                  `${rootClassName}__days-left`,
-                  "o-position--absolute u-padding--sm u-font-weight-bold bg-grey-20 t-border-r--sm"
-                )}
-              >
-                {config.content?.days_left_label}
-                <LockIcon
+        {shouldShowTimeRemaining() && (
+          <Flex direction="vertical" className="u-padding u-margin-left--3xlg">
+            <Flex className={cx(`${rootClassName}__time-remaining-title`)}>
+              <div className="t-border-r--circle bg-grey-5 u-height--xlg u-width--xlg u-margin-top u-margin-right u-padding--sm">
+                <TimeLockedIcon
                   size="sm"
-                  className="u-margin-left--sm"
-                  style={{ width: "10px", height: "11px" }}
+                  style={{ width: "24px", height: "20px" }}
+                  className="text-grey-50"
                 />
+              </div>
+              <Text className="u-padding u-text-align-left o-flex__block">
+                {config.content?.days_left_title}
               </Text>
             </Flex>
-          )}
-        </Flex>
+
+            {timeRemaining && (
+              <Flex
+                spacing="md"
+                justify="center"
+                className={cx(
+                  `${rootClassName}__time-remaining`,
+                  "o-position--relative u-padding--md t-border-r--md bg-grey-5"
+                )}
+              >
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.days}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.days}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Flex.Item>:</Flex.Item>
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.hours}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.hours}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Flex.Item>:</Flex.Item>
+                <Flex.Item>
+                  <Flex direction="vertical" align="center" justify="center">
+                    <Text size="md" className="u-font-weight-bold">
+                      {timeRemaining.minutes}
+                    </Text>
+                    <Text size="xs" className="text-grey-50">
+                      {config.content?.minutes}
+                    </Text>
+                  </Flex>
+                </Flex.Item>
+                <Text
+                  size="xs"
+                  tag="div"
+                  className={cx(
+                    `${rootClassName}__days-left`,
+                    "o-position--absolute u-padding--sm u-font-weight-bold bg-grey-20 t-border-r--sm"
+                  )}
+                >
+                  {config.content?.days_left_label}
+                  <LockIcon
+                    size="sm"
+                    className="u-margin-left--sm"
+                    style={{ width: "10px", height: "11px" }}
+                  />
+                </Text>
+              </Flex>
+            )}
+          </Flex>
+        )}
       </Flex>
     </Modal>
   );

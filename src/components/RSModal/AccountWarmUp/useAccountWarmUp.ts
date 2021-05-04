@@ -26,13 +26,14 @@ export const useAccountWarmUp = (
 
   const refreshTimeRemaining = React.useCallback(() => {
     const timeToElapse = DateTime.fromISO(warmUpTimeEnd);
+    const hasEnded = timeToElapse < DateTime.utc();
 
-    if (inWarmupPhase) {
+    if (!hasEnded) {
       setTimeRemaining(getActualDateTimeDifferenceFromNow(timeToElapse));
 
       timer.scheduleIn(refreshTimeRemaining, 1000);
     }
-  }, [warmUpTimeEnd, inWarmupPhase, timer]);
+  }, [warmUpTimeEnd, timer]);
 
   React.useEffect(() => {
     refreshTimeRemaining();
