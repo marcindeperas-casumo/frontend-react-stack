@@ -8,5 +8,3 @@ export type TPlayerWarmUpDetailsResponse = {
   warmupTimeEnd: string;
   verified: boolean;
 };
-
-export type TAccountWarmUp = Partial<TPlayerWarmUpDetailsResponse>;
