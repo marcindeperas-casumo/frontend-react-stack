@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-
 import MockStore from "Components/MockStore";
 import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";

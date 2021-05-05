@@ -10,9 +10,9 @@ const stories = storiesOf("PlayerDepositValuables", module);
 
 stories.add("Default", () => (
   <MockStore>
-  <MockedProvider mocks={mocks.mockedDepositValuables}>
-    <PlayerDepositValuables />
-  </MockedProvider>
+    <MockedProvider mocks={mocks.mockedDepositValuables}>
+      <PlayerDepositValuables />
+    </MockedProvider>
   </MockStore>
 ));
 
