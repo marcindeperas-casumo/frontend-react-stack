@@ -1,20 +1,23 @@
 export type Action =
   | {
       type: "SET_SCROLL_POSITION";
+      path: string;
       scroll: number;
     }
   | {
       type: "SET_DATA";
+      path: string;
       page: string;
       data: {};
     };
 
-export const setScroll = (scroll: number): Action => ({
+export const setScroll = (path: string) => (scroll: number): Action => ({
   type: "SET_SCROLL_POSITION",
+  path,
   scroll,
 });
 
-export const setData = ({
+export const setData = (path: string) => ({
   page,
   ...data
 }: {
@@ -22,6 +25,7 @@ export const setData = ({
   filters?: { [s: string]: boolean | any };
 }): Action => ({
   type: "SET_DATA",
+  path,
   page,
   data,
 });

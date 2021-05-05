@@ -4,6 +4,7 @@ import {
   getGamePageScrollPosition,
 } from "./gameBrowser.selectors";
 
+const parentPath = "live-casino/*";
 describe("Models/GameBrowser/Reducer", () => {
   describe("getData", () => {
     test("data present", () => {
@@ -15,21 +16,21 @@ describe("Models/GameBrowser/Reducer", () => {
       };
       const store = {
         gameBrowser: {
-          data,
+          [parentPath]: { data },
         },
       };
 
-      expect(getData(store)).toEqual(data);
+      expect(getData(parentPath)(store)).toEqual(data);
     });
 
     test("no data", () => {
       const store = {
         gameBrowser: {
-          data: {},
+          [parentPath]: { data: {} },
         },
       };
 
-      expect(getData(store)).toEqual({ sort: null, filters: {} });
+      expect(getData(parentPath)(store)).toEqual({ sort: null, filters: {} });
     });
   });
 
@@ -38,15 +39,15 @@ describe("Models/GameBrowser/Reducer", () => {
       const page = "top";
       const store = {
         gameBrowser: {
-          page,
+          [parentPath]: { page },
         },
       };
 
-      expect(getGamePage(store)).toEqual(page);
+      expect(getGamePage(parentPath)(store)).toEqual(page);
     });
 
     test("no data", () => {
-      expect(getGamePage({})).toEqual(undefined);
+      expect(getGamePage(parentPath)({})).toEqual(undefined);
     });
   });
 
@@ -55,15 +56,15 @@ describe("Models/GameBrowser/Reducer", () => {
       const scroll = 666;
       const store = {
         gameBrowser: {
-          scroll,
+          [parentPath]: { scroll },
         },
       };
 
-      expect(getGamePageScrollPosition(store)).toEqual(scroll);
+      expect(getGamePageScrollPosition(parentPath)(store)).toEqual(scroll);
     });
 
     test("no data", () => {
-      expect(getGamePageScrollPosition({})).toEqual(0);
+      expect(getGamePageScrollPosition(parentPath)({})).toEqual(0);
     });
   });
 });
