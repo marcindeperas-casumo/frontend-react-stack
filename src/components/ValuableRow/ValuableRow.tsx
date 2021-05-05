@@ -122,7 +122,7 @@ export class ValuableRow extends PureComponent<Props> {
 
     return (
       <Flex>
-        <Flex.Item className="u-width">
+        <Flex.Item data-test="valuable-selector-svg" className="u-width">
           {isSelected && <ValuableSelector />}
         </Flex.Item>
         <Flex.Item className="u-padding-right--md o-flex--1">
