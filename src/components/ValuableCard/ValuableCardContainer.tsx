@@ -17,14 +17,14 @@ export function withWarmupPopup<TProps>(
 ) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isDGOJ } = useJurisdiction();
-  if (!isDGOJ) {
-    return <Component {...props} />;
-  }
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { loading, details } = usePlayerWarmUpDetails();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const dispatch = useDispatch();
+
+  if (!isDGOJ) {
+    return <Component {...props} />;
+  }
 
   if (loading) {
     return null;
