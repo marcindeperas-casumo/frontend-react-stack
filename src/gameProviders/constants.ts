@@ -42,6 +42,7 @@ export const PROVIDERS = Object.freeze({
   MAHJONG_DESKTOP: "MAHJONGLOGIC",
   MAHJONG_MOBILE: "MAHJONGLOGIC",
   LEAP: "LEAP",
+  SKYWIND: "SKYWIND",
 });
 
 export const GAME_ACTIVE_EVENT_NAME = "gameActive";
