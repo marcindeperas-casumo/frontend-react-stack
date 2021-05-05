@@ -1,6 +1,5 @@
 import { createSelector } from "reselect";
 import * as R from "ramda";
-import { DateTime } from "luxon";
 import * as storage from "Lib/storage";
 import {
   INTL_LOCALES,
@@ -10,7 +9,6 @@ import {
   TCurrencyCode,
 } from "Src/constants";
 import type { TLanguage } from "Src/constants";
-import { convertMillisTimestampToLuxonDate } from "Utils/utils";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 import type { Handshake } from "./handshake.types";
 
@@ -225,12 +223,4 @@ export const commonContextSelector = createSelector(
 export const piqConfigSelector = createSelector(
   applicationHandshakeSelector,
   R.prop("common/composition/piqConfig")
-);
-// Temporary mocked selector for DGOJ - warm up phase
-export const isWarmUpPhaseSelector = createSelector(
-  registrationDateSelector,
-  registrationMillis => {
-    const firstOfMay = convertMillisTimestampToLuxonDate(1619820000000);
-    return DateTime.utc() > firstOfMay;
-  }
 );

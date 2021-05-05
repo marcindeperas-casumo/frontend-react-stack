@@ -6,6 +6,7 @@ import * as A from "Types/apollo";
 import { tournamentChannelsSelector } from "Models/handshake";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslations } from "Utils/hooks";
+import { AccountWarmUpContextProvider } from "../RSModal/AccountWarmUp/AccountWarmUpContext";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
@@ -69,11 +70,13 @@ export const ReelRacesListContainer = () => {
 
   if (data && reelRaces && reelRaces.length && t && t2) {
     return (
-      <ReelRacesList
-        reelRaces={reelRaces}
-        title={t.title}
-        seeMore={t2.more_link}
-      />
+      <AccountWarmUpContextProvider>
+        <ReelRacesList
+          reelRaces={reelRaces}
+          title={t.title}
+          seeMore={t2.more_link}
+        />
+      </AccountWarmUpContextProvider>
     );
   }
 

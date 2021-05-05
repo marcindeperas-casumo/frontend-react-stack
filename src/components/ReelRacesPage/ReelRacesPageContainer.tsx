@@ -3,6 +3,7 @@ import { useTranslations } from "Utils/hooks";
 import ReelRacesBanner from "Components/ReelRacesBanner";
 import { ReelRacesPageTabScheduleContainer } from "Components/ReelRacesPage/ReelRacesPageTabScheduleContainer";
 import { ReelRacesPageTabPreviousContainer } from "Components/ReelRacesPage/ReelRacesPageTabPreviousContainer";
+import { AccountWarmUpContextProvider } from "Components/RSModal/AccountWarmUp";
 import { ReelRacesPageTabs } from "./ReelRacesPageTabs";
 
 export type TReelRacesContentPage = {
@@ -33,7 +34,7 @@ export function ReelRacesPageContainer() {
   const [activeTab, setActiveTab] = React.useState<TReelRaceTabs>("SCHEDULE");
 
   return (
-    <>
+    <AccountWarmUpContextProvider>
       <ReelRacesBanner />
       <ReelRacesPageTabs
         t={t}
@@ -49,6 +50,6 @@ export function ReelRacesPageContainer() {
           <ReelRacesPageTabPreviousContainer t={t} />
         )}
       </div>
-    </>
+    </AccountWarmUpContextProvider>
   );
 }
