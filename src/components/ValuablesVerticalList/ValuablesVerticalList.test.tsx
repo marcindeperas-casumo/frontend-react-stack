@@ -36,7 +36,7 @@ describe("ValuablesVerticalList", () => {
         <ValuablesVerticalList
           valuables={[]}
           loading={true}
-          translations={{}}
+          translations={{} as any}
         />
       </MockStore>
     );
