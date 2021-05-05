@@ -23,6 +23,7 @@ import {
   LazyCasinoGamesPage,
   LazyCasinoGamesSlotsPage,
   LazyReelRacesPage,
+  LazyLiveCasinoPage,
   LazyTopNav,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
@@ -54,9 +55,9 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.CASINO_GAMES_SLOTS)}
         />
         {Object.values(TRANSLATED_ROUTES.GAMES).map(x => (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ key: "spel" | "pelit" | "spillvelger" | "s... Remove this comment to see the full error message
           <GameBrowser key={x} path={`${x}/*`} />
         ))}
+        <LazyLiveCasinoPage path={translateRoute(ROUTE_IDS.LIVE_CASINO)} />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <MahjongPage path={translateRoute(ROUTE_IDS.MAHJONG_PAGE)} />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}

@@ -23,6 +23,7 @@ import { NyxGame } from "./NyxGame";
 import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
 import { LeapGame } from "./LeapGame";
+import { SkyWindGame } from "./SkyWindGame";
 
 export type GameProps = {
   providerType: GameProviderType;
@@ -70,6 +71,7 @@ export const models = {
   [PROVIDERS.MAHJONG_DESKTOP]: MahjongGame,
   [PROVIDERS.MAHJONG_MOBILE]: MahjongGame,
   [PROVIDERS.LEAP]: LeapGame,
+  [PROVIDERS.SKYWIND]: SkyWindGame,
 };
 
 export const getGameModel = (

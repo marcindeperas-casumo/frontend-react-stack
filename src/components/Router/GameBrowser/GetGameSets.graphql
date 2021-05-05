@@ -1,5 +1,5 @@
-query GetGameSets {
-  gameSetsList {
+query GetGameSets($verticalId: String) {
+  gameSetsList(verticalId: $verticalId) {
     id
     key
     title

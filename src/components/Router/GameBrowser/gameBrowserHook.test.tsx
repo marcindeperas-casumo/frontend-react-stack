@@ -3,9 +3,13 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper } from "Utils/HookWrapper";
 import { useSetScrollPosition } from "./gameBrowserHooks";
+
+const parentPath = "live-casino/*";
 const state = {
   gameBrowser: {
-    scroll: 666,
+    [parentPath]: {
+      scroll: 666,
+    },
   },
 };
 describe("useSetScrollPosition", () => {
@@ -19,11 +23,15 @@ describe("useSetScrollPosition", () => {
   };
   const wrapper = mount(
     <MockStore state={state}>
-      <HookWrapper hook={useSetScrollPosition} args={[]} />
+      <HookWrapper hook={useSetScrollPosition} args={[parentPath]} />
     </MockStore>
   );
   test("scrollTo is called with proper arg", () => {
-    expect(scrollTo).toHaveBeenNthCalledWith(1, 0, state.gameBrowser.scroll);
+    expect(scrollTo).toHaveBeenNthCalledWith(
+      1,
+      0,
+      state.gameBrowser[parentPath].scroll
+    );
   });
   test("scrollTo is called only once, no matter how many updates will be trigerred", () => {
     wrapper.update();
