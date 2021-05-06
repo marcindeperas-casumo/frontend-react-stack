@@ -10,7 +10,11 @@ import {
   INTL_LOCALES,
   TCurrencyCode,
   CURRENCIES,
+  ROUTE_IDS,
+  ROUTES,
 } from "Src/constants";
+import { set as setInStorage } from "Lib/storage";
+import { routeTranslator } from "Utils";
 import type { AppDevice } from "Src/types";
 
 export const noop = () => {};
@@ -547,3 +551,33 @@ export const getOrdinalSuffix = ({
     ) || ""
   );
 };
+
+/**
+ * Returns corresponding casumo product from current url - used for redirection when exiting a game to point to previous product
+ * @param {String} url
+ * @param {String} language
+ * @returns {String}
+ **/
+export const urlToProductMapper = ({
+  url,
+  language
+}: { url: string, language: string}) => {
+  const translateRoute = routeTranslator(language);
+  const productUrl = url.split('/')[2];
+  switch (productUrl) {
+    case translateRoute(ROUTE_IDS.SPORTS).split("/")[0]:
+      setInStorage('casumo-lastAccessedProduct', ROUTE_IDS.SPORTS);
+      return ROUTE_IDS.SPORTS;
+    case translateRoute(ROUTE_IDS.MAHJONG_PAGE).split("/")[0]:
+      setInStorage('casumo-lastAccessedProduct', ROUTE_IDS.MAHJONG_PAGE);
+      return ROUTE_IDS.MAHJONG_PAGE;
+    // TODO tbc exact url path to be used on live vertical below
+    case translateRoute(ROUTE_IDS.LIVE_CASINO).split("/")[0]:
+      setInStorage('casumo-lastAccessedProduct', ROUTE_IDS.LIVE_CASINO);
+      return ROUTE_IDS.LIVE_CASINO;
+    case translateRoute(ROUTE_IDS.GAMES).split("/")[0]:
+    default:
+      setInStorage('casumo-lastAccessedProduct', ROUTE_IDS.GAMES);
+      return ROUTE_IDS.GAMES;
+  }
+}

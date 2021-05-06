@@ -1,5 +1,5 @@
-import { CSSTransition } from "react-transition-group";
 import * as React from "react";
+import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
 import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
@@ -28,6 +28,7 @@ import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { get as getFromStorage } from "Lib/storage";
 // @ts-expect-error ts-migrate(2614) FIXME: Module '"*.scss"' has no exported member 'animatio... Remove this comment to see the full error message
 // eslint-disable-next-line import/no-duplicates
 import { animation_duration } from "./ProfileIconWithDrawer.scss";
@@ -141,7 +142,7 @@ export const ProfileIconWithDrawer = ({
                 }}
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  navigateToKO(getFromStorage('casumo-lastAccessedProduct') || ROUTE_IDS.TOP_LISTS);
                   setDrawerOpen(false);
                 }}
               />

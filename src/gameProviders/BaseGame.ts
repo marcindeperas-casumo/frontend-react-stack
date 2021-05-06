@@ -1,5 +1,6 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
+import { get as getFromStorage } from "Lib/storage";
 import type { GameProviderModelProps } from "./types";
 import { expandElementHeightToMatchItsParent } from "./utils";
 import {
@@ -33,7 +34,9 @@ export class BaseGame {
   get lobbyUrl() {
     const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
-    const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
+    const encodedTranslatedRoute = getRoute(
+      getFromStorage("casumo-lastAccessedProduct") || ROUTE_IDS.TOP_LISTS
+    );
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
     if (isTLDMarketSpecific(tld)) {

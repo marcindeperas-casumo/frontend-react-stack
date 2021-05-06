@@ -14,7 +14,7 @@ import {
 import { QuickDeposit } from "Components/Payments/QuickDeposit";
 import { InGameDrawerLinks } from "Components/InGameDrawer";
 import { openChatWindow } from "Features/chat/IntercomChatService";
-
+import { get as getFromStorage } from "Lib/storage";
 import "./GamePageHeader.scss";
 
 export const GamePageHeader = () => {
@@ -48,7 +48,7 @@ export const GamePageHeader = () => {
                 }}
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  navigateToKO(getFromStorage('casumo-lastAccessedProduct') || ROUTE_IDS.TOP_LISTS);
                 }}
                 showLabels={false}
               />
