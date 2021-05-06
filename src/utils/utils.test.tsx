@@ -644,17 +644,26 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
 
 describe("Map url path to casumo products", () => {
   test("should return SPORTS product currently in use for a /fi URL", () => {
-    const whichProduct = urlToProductMapper({url: "/fi/sports" , language: "fi"})
+    const whichProduct = urlToProductMapper({
+      url: "/fi/sports",
+      language: "fi",
+    });
     expect(whichProduct).toMatch("SPORTS");
   });
 
   test("should return GAMES product currently in use for a /en-ca URL", () => {
-    const whichProduct = urlToProductMapper({url: "/en-ca/games/top" , language: "en"})
+    const whichProduct = urlToProductMapper({
+      url: "/en-ca/games/top",
+      language: "en",
+    });
     expect(whichProduct).toMatch("GAMES");
   });
 
   test("should return MAHJONG product currently in use for a /jp URL", () => {
-    const whichProduct = urlToProductMapper({url: "/ja/mahjong" , language: "jp"})
+    const whichProduct = urlToProductMapper({
+      url: "/ja/mahjong",
+      language: "jp",
+    });
     expect(whichProduct).toMatch("MAHJONG");
   });
-})
+});

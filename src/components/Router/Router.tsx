@@ -40,9 +40,9 @@ export const Router = () => {
     const pathNameProduct = pathName.split("/")[2];
     const translatedPlayUrlTerm = translateRoute(ROUTE_IDS.PLAY).split("/")[0];
     if (pathNameProduct !== translatedPlayUrlTerm) {
-      urlToProductMapper({url: pathName, language});
+      urlToProductMapper({ url: pathName, language });
     }
- });
+  });
 
   return (
     <>
