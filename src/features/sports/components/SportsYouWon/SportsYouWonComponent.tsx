@@ -2,8 +2,10 @@ import * as React from "react";
 import "./SportsYouWon.scss";
 import { CloseIcon } from "@casumo/cmp-icons";
 import { useQuery } from "@apollo/client";
+import TrackView from "Components/TrackView";
 import { formatCurrency } from "Utils";
 import { useLocale, useTranslations } from "Utils/hooks";
+import { EVENTS } from "Src/constants";
 import type {
   BetCombinationRefType,
   SportsYouWonTranslations,
@@ -93,6 +95,10 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
                 o-flex-align--center
                 o-flex-justify--center"
     >
+      <TrackView
+        eventName={EVENTS.MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN}
+        data={{ username: betData.username, payout: betData.payout }}
+      />
       <div
         className="c-sports-youwon-content
                     t-border-r--md
