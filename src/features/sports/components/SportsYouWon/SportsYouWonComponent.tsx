@@ -85,29 +85,23 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
       className="c-sports-youwon
                 bg-grey-70
                 bg-opacity-75
-                fixed
-                w-screen
-                h-screen
-                top-0
-                bottom-0
-                left-0
-                right-0
-                z-20
-                flex
-                items-center
-                justify-center"
+                o-position--fixed
+                o-inset--none
+                u-width-screen
+                u-height-screen
+                z-modal
+                o-flex-align--center
+                o-flex-justify--center"
     >
       <div
         className="c-sports-youwon-content
                     t-border-r--md
+                    t-border-r--none@phablet
                     t-border-r--none@mobile
-                    h-3/4
-                    sm:h-screen
-                    sm:w-screen
                     bg-purple-50
                     bg-opacity-100
                     color-white
-                    relative
+                    o-position--relative
                     bg-right-top
                     bg-no-repeat"
         style={{
@@ -115,25 +109,27 @@ export const SportsYouWonComponent = ({ currentHash }: Props) => {
         }}
       >
         <div
-          className="h-full relative top-0 left-0 bottom-0 right-0 bg-bottom bg-no-repeat"
+          className="u-height--full o-position--relative o-inset--none bg-bottom bg-no-repeat"
           style={{
             backgroundImage: `url('${t[`animation${getRndInteger(1, 2)}`]}'`,
           }}
         >
           <CloseIcon
             onClick={() => removeYouWonParam(currentHash)}
-            className="cursor-pointer absolute top-0 right-0 u-margin-top--md u-margin-right--md"
+            className="u-cursor--pointer o-position--absolute o-inset-top--none o-inset-right--none u-margin-top--md u-margin-right--md"
           />
-          <div className="u-padding-x--2xlg u-padding-top--4xlg u-padding-bottom--lg flex flex-col items-start space-y-4 h-full">
-            <img src={t["logo-image"]} />
-            <div className="u-font-2xlg u-font-weight-bold">{content}</div>
-            <div className="flex flex-col justify-end flex-1 space-y-4">
-              <div className="u-font-md u-font-weight-bold">
+          <div className="u-padding-x--2xlg u-padding-top--4xlg u-padding-bottom--lg o-flex--vertical o-flex-align--start u-height--full">
+            <img src={t["logo-image"]} className="u-margin-bottom" />
+            <div className="u-font-2xlg u-font-weight-bold u-margin-bottom">
+              {content}
+            </div>
+            <div className="o-flex--vertical o-flex-justify--end o-flex--1 u-margin-bottom">
+              <div className="u-font-md u-font-weight-bold u-margin-bottom">
                 {t.bet}: {legsDisplay(betData, t)}
               </div>
               {betData.legs.map((leg, i) =>
                 leg.outcomes.map((outcome, j) => (
-                  <div key={i}>
+                  <div key={i} className="u-margin-bottom">
                     <div className="u-font-sm u-font-weight-bold">
                       {outcome.criterionName}: {outcome.outcomeLabel}
                     </div>
