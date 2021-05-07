@@ -7,10 +7,10 @@ import { appendToGameUrl } from "./utils";
 //op2swProperties
 // msgId: "op2swPauseGame",
 export const COMMANDS = {
-  PAUSE: {
+  PAUSE: JSON.stringify({
     msgId: "op2swProperties",
     autoPlay: false,
-  },
+  }),
   RESUME: JSON.stringify({
     msgId: "op2swResumeGame",
   }),
