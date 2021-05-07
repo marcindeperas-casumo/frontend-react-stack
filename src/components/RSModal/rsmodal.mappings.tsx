@@ -36,6 +36,7 @@ import {
 } from "./GGL";
 import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
+import { AccountWarmUp } from "./AccountWarmUp";
 
 export type ModalContentComponent<T> = {
   /** object with translations for provided slug, null if still fetching */
@@ -153,6 +154,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.ARTICLE_MODAL]: {
     slug: "",
     Content: ArticleModal,
+  },
+  [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
+    slug: "",
+    Content: AccountWarmUp,
   },
 };
 

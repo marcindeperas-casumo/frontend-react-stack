@@ -26,12 +26,12 @@ export const MustDropJackpotsListContainer = React.memo<null>(() => {
 
   const onSeeMoreClickHandler = () => {
     dispatch(
-      setData({
+      setData("casino/*")({
         page: "jackpots",
         filters: { "gameFeatures=mustDropJackpot": true },
       })
     );
-    dispatch(setScroll(0));
+    dispatch(setScroll("casino/*")(0));
   };
 
   const t = useTranslations<{ more_link: string }>(

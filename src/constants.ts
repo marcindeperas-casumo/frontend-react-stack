@@ -150,7 +150,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
+  [ROUTE_IDS.LIVE_CASINO]: "live-casino/*",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -478,6 +478,7 @@ export const REACT_APP_MODAL = {
     CONTENT_HTML: "CONTENT_HTML",
     REEL_RACES_TAC: "REEL_RACES_TAC",
     ARTICLE_MODAL: "ARTICLE_MODAL",
+    ACCOUNT_WARM_UP: "ACCOUNT_WARM_UP",
   },
 } as const;
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

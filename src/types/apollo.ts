@@ -110,6 +110,10 @@ export interface QueryGameArgs {
   slug: Scalars["String"];
 }
 
+export interface QueryGameSetsListArgs {
+  verticalId?: Maybe<Scalars["String"]>;
+}
+
 export interface QueryGameStudioArgs {
   slug: Scalars["String"];
 }
@@ -2137,7 +2141,9 @@ export type ReelRacesPageTabScheduleQuery = {
   reelRaces: Array<{ id: string } & ReelRaceScheduleCard_ReelRaceFragment>;
 };
 
-export type GetGameSetsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetGameSetsQueryVariables = Exact<{
+  verticalId?: Maybe<Scalars["String"]>;
+}>;
 
 export type GetGameSetsQuery = {
   gameSetsList: Array<{

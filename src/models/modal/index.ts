@@ -31,6 +31,7 @@ export type ModalId =
   | "PAYMENT_RESULT"
   | "CONTENT_HTML"
   | "REEL_RACES_TAC"
+  | "ACCOUNT_WARM_UP"
   | "ARTICLE_MODAL";
 type ModalReturnCode =
   | "CLOSED" // click on "x"

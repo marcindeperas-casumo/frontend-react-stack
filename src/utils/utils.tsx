@@ -416,6 +416,9 @@ export const convertHoursToDaysRoundUp = (hours: number) => {
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromSeconds(value);
 };
+export const convertMillisTimestampToLuxonDate = (value: number) => {
+  return DateTime.fromMillis(value);
+};
 
 export const convertLuxonDurationObjectToSeconds = (
   duration: Object
@@ -427,6 +430,19 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
   const duration = value.diff(DateTime.utc(), ["hours", "minutes", "seconds"]);
 
   return R.pick(["hours", "minutes", "seconds"], duration);
+};
+
+export const getActualDateTimeDifferenceFromNow = (
+  value: DateTime
+): Pick<Duration, "days" | "hours" | "minutes"> => {
+  const elapsed = value.diff(DateTime.utc(), [
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+  ]);
+
+  return R.pick(["days", "hours", "minutes"], elapsed);
 };
 
 /**

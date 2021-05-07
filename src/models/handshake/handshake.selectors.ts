@@ -85,7 +85,6 @@ export const bonusAmountSelector = createSelector(
   playerSelector,
   R.pathOr(0, ["bonus", "balance", "amount"])
 );
-
 export const marketSelector = createSelector(playerSelector, R.prop("market"));
 export const hasMadeFirstDepositSelector = createSelector(
   playerSelector,

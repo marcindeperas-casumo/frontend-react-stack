@@ -28,7 +28,11 @@ export const curatedCardQueryMock = {
         launchGameText: "Get your Welcome Bonus",
         game: null,
         sportsRoute: null,
+        externalLink: null
       },
+      session: {
+        market: "__en"
+      }
     },
   },
 };
