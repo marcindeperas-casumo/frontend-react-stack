@@ -98,6 +98,7 @@ class SearchInput extends React.Component<Props, State> {
                 "c-search-input o-flex--1 u-padding-left text-grey-90 u-font-weight-bold",
                 this.props.colorBackgroundClass
               )}
+              spellCheck="false"
               type="text"
               onBlur={this.onBlur}
               onFocus={this.onFocus}
