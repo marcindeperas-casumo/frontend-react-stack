@@ -48,6 +48,8 @@ export const GameModelContextProvider = ({
    *  window.manualPause = pauseGame;
    *  window.manualResume = resumeGame;
    */
+   window.manualPause = pauseGame;
+   window.manualResume = resumeGame;
   const { game } = useGameDetails({ slug });
   const providerValues = {
     gameProviderModel,
