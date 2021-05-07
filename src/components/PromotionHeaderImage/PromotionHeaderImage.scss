@@ -16,10 +16,3 @@ $promotion-image-ratios: (
   height: 75%;
   max-height: 135px;
 }
-
-@include cudl-breakpoint(tablet) {
-  .c-promotion-header-image {
-    margin-top: map-get($cudl-spacer-sizes, lg);
-    overflow: hidden;
-  }
-}
