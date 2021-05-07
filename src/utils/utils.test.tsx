@@ -29,7 +29,7 @@ import {
   decodedUrlParams,
   bonusBalanceDisplay,
   hasAlphaCharactersOnly,
-  urlToProductMapper,
+  urlToVerticalMapper,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -644,7 +644,7 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
 
 describe("Map url path to casumo products", () => {
   test("should return SPORTS product currently in use for a /fi URL", () => {
-    const whichProduct = urlToProductMapper({
+    const whichProduct = urlToVerticalMapper({
       url: "/fi/sports",
       language: "fi",
     });
@@ -652,7 +652,7 @@ describe("Map url path to casumo products", () => {
   });
 
   test("should return GAMES product currently in use for a /en-ca URL", () => {
-    const whichProduct = urlToProductMapper({
+    const whichProduct = urlToVerticalMapper({
       url: "/en-ca/games/top",
       language: "en",
     });
@@ -660,7 +660,7 @@ describe("Map url path to casumo products", () => {
   });
 
   test("should return MAHJONG product currently in use for a /jp URL", () => {
-    const whichProduct = urlToProductMapper({
+    const whichProduct = urlToVerticalMapper({
       url: "/ja/mahjong",
       language: "jp",
     });

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
-import { routeTranslator, urlToProductMapper } from "Utils";
+import { routeTranslator, urlToVerticalMapper } from "Utils";
 import { ROUTE_IDS, TRANSLATED_ROUTES } from "Src/constants";
 import { MahjongPage } from "Components/MahjongPage/MahjongPage";
 import {
@@ -40,7 +40,7 @@ export const Router = () => {
     const pathNameProduct = pathName.split("/")[2];
     const translatedPlayUrlTerm = translateRoute(ROUTE_IDS.PLAY).split("/")[0];
     if (pathNameProduct !== translatedPlayUrlTerm) {
-      urlToProductMapper({ url: pathName, language });
+      urlToVerticalMapper({ url: pathName, language });
     }
   });
 

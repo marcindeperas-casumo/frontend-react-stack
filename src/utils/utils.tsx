@@ -552,12 +552,12 @@ export const getOrdinalSuffix = ({
 };
 
 /**
- * Returns corresponding casumo product from current url - used for redirection when exiting a game to point to previous product
+ * Returns corresponding casumo vertical from current url - used for redirection when exiting a game to point to previous vertical
  * @param {String} url
  * @param {String} language
  * @returns {String}
  **/
-export const urlToProductMapper = ({
+export const urlToVerticalMapper = ({
   url,
   language,
 }: {

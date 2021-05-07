@@ -35,7 +35,7 @@ export class BaseGame {
     const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
     const encodedTranslatedRoute = getRoute(
-      getFromStorage("casumo-lastAccessedProduct") || ROUTE_IDS.TOP_LISTS
+      getFromStorage("casumo-lastAccessedProduct") || ROUTE_IDS.GAMES
     );
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
