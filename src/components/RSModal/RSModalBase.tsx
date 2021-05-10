@@ -28,7 +28,7 @@ export function ModalBase({
       // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       onRequestClose={onRequestClose}
       className={classNames("bg-white o-flex--vertical c-rsmodal", {
-        "t-border-r--md": !isMobile(),
+        "t-border-r--md u-overflow--hidden": !isMobile(),
         "c-rsmodal__wide": isWide,
       })}
       overlayClassName={`c-rsmodal__overlay c-rsmodal__overlay--${jurisdiction}`}

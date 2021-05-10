@@ -5,24 +5,29 @@ const DEFAULT_STATE = {
   scroll: 0,
   data: {},
 };
-type State = typeof DEFAULT_STATE | null;
+type State = { [k: string]: typeof DEFAULT_STATE };
 
-export function gameBrowserReducer(
-  state: State = DEFAULT_STATE,
-  action: Action
-): State {
+export function gameBrowserReducer(state: State = {}, action: Action): State {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (action.type) {
     case "SET_SCROLL_POSITION":
       return {
         ...state,
-        scroll: action.scroll,
+        [action.path]: {
+          ...DEFAULT_STATE,
+          ...((state || {})[action.path] || {}),
+          scroll: action.scroll,
+        },
       };
     case "SET_DATA":
       return {
         ...state,
-        page: action.page,
-        data: action.data,
+        [action.path]: {
+          ...DEFAULT_STATE,
+          ...((state || {})[action.path] || {}),
+          page: action.page,
+          data: action.data,
+        },
       };
     default:
       return state;
