@@ -86,7 +86,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered, 10);
 
       expect(
         JSON.parse(
@@ -249,7 +249,7 @@ describe("SettingsRealityCheckContainer", () => {
       act(() => {
         rendered.find(ButtonPrimary).simulate("click");
       });
-      await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered, 10);
 
       expect(updateRealityCheckIntervalMock[1].result).toHaveBeenCalled();
       expect(playerRealityCheckQueryResultFn).toHaveBeenCalled();
