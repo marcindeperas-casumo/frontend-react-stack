@@ -34,17 +34,20 @@ import { findQueryTranslation, getAppliedFilters } from "./GameListPage.utils";
 
 type Props = {
   path?: string;
+  parent: string;
   set: A.GetGameSetsQuery["gameSetsList"][number];
 };
 
 /* eslint-disable-next-line sonarjs/cognitive-complexity */
-export function GameListPage({ set }: Props) {
+export function GameListPage({ set, parent }: Props) {
   const t = useTranslations<{
     title: string;
     modal_button: string;
   }>("new-game-browser.filtering");
-  const page = useCurrentGamePage();
-  const { filters: defaultFilters, sort: defaultSort } = useSelector(getData);
+  const page = useCurrentGamePage(parent);
+  const { filters: defaultFilters, sort: defaultSort } = useSelector(
+    getData(parent)
+  );
   const dispatch = useDispatch();
   const isLiveCasino = set.gameDisplayMode === "LIVE_CASINO";
   const [sort, setSortRaw] = React.useState<A.GamesSortOrder | null>(
@@ -70,14 +73,14 @@ export function GameListPage({ set }: Props) {
   const f = getAppliedFilters(filters);
   React.useEffect(() => {
     dispatch(
-      setData({
+      setData(parent)({
         page,
         // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ page: string; sort: A.GamesSor... Remove this comment to see the full error message
         sort,
         filters,
       })
     );
-  }, [sort, filters, dispatch, page]);
+  }, [sort, filters, dispatch, page, parent]);
 
   const query = [set.baseQuery, sortOrder, ...f].join("&");
   const [listHash, setListHash] = React.useState("");
@@ -106,7 +109,7 @@ export function GameListPage({ set }: Props) {
   }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = loadMoreConstructor(fetchMore);
-  useSetScrollPosition(loading);
+  useSetScrollPosition(parent, loading);
 
   const topSection = (
     <SortAndFilterSection

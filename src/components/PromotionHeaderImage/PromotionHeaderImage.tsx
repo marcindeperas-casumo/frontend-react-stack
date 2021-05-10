@@ -37,7 +37,7 @@ class PromotionHeaderImage extends PureComponent<Props> {
     const images = promotionsHeaderImageSet(image);
 
     return (
-      <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg c-promotion-header-image">
+      <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg u-overflow--hidden">
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"
           images={images}

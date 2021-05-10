@@ -1,0 +1,1 @@
+export { SportsYouWonComponent } from "./SportsYouWonComponent";
