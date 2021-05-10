@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { UpdateRealityCheckInterval } from "../Mutations.graphql";
 
 export const updateRealityCheckIntervalMock = [0, 600, 900].map(
@@ -6,17 +7,17 @@ export const updateRealityCheckIntervalMock = [0, 600, 900].map(
       query: UpdateRealityCheckInterval,
       variables: { input: { intervalSeconds } },
     },
-    result: {
+    result: jest.fn(() => ({
       data: { updateRealityCheckInterval: intervalSeconds },
-    },
+    })),
   })
 );
 
 export const updateRealityCheckIntervalErrorMock = updateRealityCheckIntervalMock.map(
   payload => ({
     ...payload,
-    result: {
-      errors: [{ foo: "bar" }],
-    },
+    result: jest.fn(() => ({
+      errors: [new GraphQLError("bar")],
+    })),
   })
 );

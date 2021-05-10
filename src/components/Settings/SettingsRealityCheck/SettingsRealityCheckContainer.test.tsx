@@ -1,11 +1,13 @@
-import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 import { act } from "react-dom/test-utils";
-import { wait, waitAndUpdateWrapper } from "Utils/apolloTestUtils";
-import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
+import { ButtonPrimary } from "@casumo/cmp-button";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
+import { PillSelector } from "Components/PillSelector";
+import MockStore from "Components/MockStore";
+import { SettingsRealityCheckContainer } from "./SettingsRealityCheckContainer";
+import { SettingsRealityCheck } from "./SettingsRealityCheck";
 import {
-  withMockQueries,
   playerRealityCheckQueryWithInterval,
   playerRealityCheckQueryCantChangeIntervalMock,
   playerRealityCheckQueryNoZeroIntervalMock,
@@ -19,341 +21,276 @@ import {
   updateRealityCheckIntervalErrorMock,
 } from "./__mocks__/Mutations.mock";
 
-let Component, SettingsRealityCheckContainer;
+function actWithClickOnIntervalOption(rendered: ReactWrapper, index: number) {
+  act(() => {
+    rendered
+      .find(PillSelector)
+      .find(".c-input-pill")
+      .at(index)
+      .simulate("click");
+  });
+}
+
 describe("SettingsRealityCheckContainer", () => {
   describe("Component", () => {
     beforeEach(() => {
-      Component = props => <div />;
-      SettingsRealityCheckContainer = withContainer(Component);
+      jest.clearAllMocks();
     });
 
     test("should render loader", () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
+        <MockStore
+          queryMocks={[
+            playerRealityCheckQueryMock,
+            realityCheckLabelsQueryMock,
+          ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
-    test("should pass correct initial interval to child", () => {
+    test("should pass correct initial interval to child", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
+        <MockStore
+          queryMocks={[
+            playerRealityCheckQueryMock,
+            realityCheckLabelsQueryMock,
+          ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(() => {
-        expect(rendered.find("Component").prop("interval")).toStrictEqual(
-          playerRealityCheckQueryMock.result.data.player.playOk.realityCheck
-            .intervalInMinutes
-        );
-      });
+      await waitAndUpdateWrapper(rendered);
+
+      expect(
+        rendered.find(SettingsRealityCheck).prop("interval")
+      ).toStrictEqual(
+        playerRealityCheckQueryMock.result.data.player.playOk.realityCheck
+          .intervalInMinutes
+      );
     });
 
-    test("should pass correct labels to children", () => {
+    test("should pass correct labels to children", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
+        <MockStore
+          queryMocks={[
+            playerRealityCheckQueryMock,
+            realityCheckLabelsQueryMock,
+          ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(() => {
-        expect(
-          JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
-        ).toStrictEqual(realityCheckLabelsQueryMock.result.data);
-      });
+      await waitAndUpdateWrapper(rendered);
+
+      expect(
+        JSON.parse(
+          JSON.stringify(rendered.find(SettingsRealityCheck).prop("labels"))
+        )
+      ).toStrictEqual(realityCheckLabelsQueryMock.result.data);
     });
 
-    test("should show error when settings fail to load", () => {
+    test("should show error when settings fail to load", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
+        <MockStore
+          queryMocks={[
             playerRealityCheckQueryErrorMock,
             realityCheckLabelsQueryMock,
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(() => {
-        expect(rendered.find("ErrorMessage")).toHaveLength(1);
-      });
+      await waitAndUpdateWrapper(rendered);
+
+      expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should show error when labels fail to load", () => {
+    test("should show error when labels fail to load", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryMocks={[
             playerRealityCheckQueryMock,
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
             realityCheckLabelsQueryErrorMock,
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(() => {
-        expect(rendered.find("ErrorMessage")).toHaveLength(1);
-      });
+      await waitAndUpdateWrapper(rendered);
+
+      expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
   });
 
   describe("Actions", () => {
-    test("should change interval when onChange is triggered in child", () => {
-      Component = props => (
-        <input type="button" onClick={() => props.onChange(30)} />
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
-      const rendered = mount(
-        <MockedProvider mocks={withMockQueries(updateRealityCheckIntervalMock)}>
-          <SettingsRealityCheckContainer />
-        </MockedProvider>
-      );
-
-      wait(1000).then(() => {
-        rendered.find("Component").simulate("click");
-
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(30);
-      });
+    beforeEach(() => {
+      jest.clearAllMocks();
     });
 
-    test("shouldn't call mutation when canChangeInterval is false", () => {
-      Component = props => (
-        <>
-          <input type="button" onClick={() => props.onChange(10)} />
-          <input type="button" onClick={() => props.onSave()} />
-        </>
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
+    test("shouldn't call mutation when canChangeInterval is false", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryMocks={[
             ...updateRealityCheckIntervalMock,
             playerRealityCheckQueryCantChangeIntervalMock,
             realityCheckLabelsQueryMock,
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(() => {
-        rendered.find("Component").childAt(0).simulate("click");
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(10);
+      await waitAndUpdateWrapper(rendered);
 
-        const promiseFn = rendered.find("Component").prop("onSave");
-
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-        promiseFn().then(result => {
-          expect(result).toBe(undefined);
-        });
+      act(() => {
+        rendered.find(PillSelector).childAt(0).simulate("click");
+        rendered.find(ButtonPrimary).simulate("click");
       });
+
+      await waitAndUpdateWrapper(rendered);
+
+      expect(updateRealityCheckIntervalMock[0].result).toHaveBeenCalledTimes(0);
     });
 
-    test("shouldn't call mutation when interval is 0 and isZeroIntervalAllowed is false", () => {
-      Component = props => (
-        <>
-          <input type="button" onClick={() => props.onChange(0)} />
-          <input type="button" onClick={() => props.onSave()} />
-        </>
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
+    test("shouldn't call mutation when interval is 0 and isZeroIntervalAllowed is false", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryMocks={[
             ...updateRealityCheckIntervalMock,
+            playerRealityCheckQueryNoZeroIntervalMock,
             playerRealityCheckQueryNoZeroIntervalMock,
             realityCheckLabelsQueryMock,
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
-      wait(1000).then(async () => {
-        rendered.find("Component").childAt(0).simulate("click");
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(0);
+      await waitAndUpdateWrapper(rendered);
 
-        const promiseFn = rendered.find("Component").prop("onSave");
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-        const result = await promiseFn();
-
-        expect(result).toBe(undefined);
+      act(() => {
+        rendered.find(PillSelector).childAt(0).simulate("click");
+        rendered.find(ButtonPrimary).simulate("click");
       });
+
+      await waitAndUpdateWrapper(rendered);
+
+      expect(updateRealityCheckIntervalMock[0].result).toHaveBeenCalledTimes(0);
     });
 
     test("should call mutation when onSave is triggered in child", async () => {
-      //eslint-disable-next-line sonarjs/no-identical-functions
-      Component = props => (
-        <>
-          <input type="button" onClick={() => props.onChange(10)} />
-          <input type="button" onClick={() => props.onSave()} />
-        </>
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
+      // SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
-        <MockedProvider
-          mocks={[
-            ...withMockQueries(updateRealityCheckIntervalMock),
+        <MockStore
+          queryMocks={[
+            playerRealityCheckQueryMock,
+            realityCheckLabelsQueryMock,
+            ...updateRealityCheckIntervalMock,
             playerRealityCheckQueryMock,
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(() => {
-        rendered.find("Component").childAt(0).simulate("click");
+
+      act(() => {
+        rendered
+          .find(PillSelector)
+          .find(".c-input-pill")
+          .at(0)
+          .simulate("click");
       });
+
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(async () => {
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(10);
 
-        const promiseFn = rendered.find("Component").prop("onSave");
-
-        await act(async () => {
-          const {
-            data: { updateRealityCheckInterval },
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-          } = await promiseFn();
-          expect(updateRealityCheckInterval).toBe(10 * 60);
-        });
+      act(() => {
+        rendered.find(ButtonPrimary).simulate("click");
       });
+
+      await waitAndUpdateWrapper(rendered);
+
+      expect(updateRealityCheckIntervalMock[1].result).toHaveBeenCalled();
     });
 
     test("after successful mutation, state should be refetched", async () => {
-      //eslint-disable-next-line sonarjs/no-identical-functions
-      Component = props => (
-        <>
-          <input type="button" onClick={() => props.onChange(10)} />
-          <input type="button" onClick={() => props.onSave()} />
-        </>
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
+      const playerRealityCheckQueryResultFn = jest.fn();
       const rendered = mount(
-        <MockedProvider
-          mocks={[
-            ...withMockQueries(updateRealityCheckIntervalMock),
-            playerRealityCheckQueryWithInterval(45),
+        <MockStore
+          queryMocks={[
+            playerRealityCheckQueryMock,
+            realityCheckLabelsQueryMock,
+            ...updateRealityCheckIntervalMock,
+            playerRealityCheckQueryWithInterval(
+              10,
+              playerRealityCheckQueryResultFn
+            ),
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(() => {
-        rendered.find("Component").childAt(0).simulate("click");
+
+      actWithClickOnIntervalOption(rendered, 0);
+
+      await waitAndUpdateWrapper(rendered);
+
+      act(() => {
+        rendered.find(ButtonPrimary).simulate("click");
       });
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(async () => {
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(10);
 
-        const promiseFn = rendered.find("Component").prop("onSave");
-
-        // eslint-disable-next-line sonarjs/no-identical-functions
-        await act(async () => {
-          const {
-            data: { updateRealityCheckInterval },
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-          } = await promiseFn();
-          expect(updateRealityCheckInterval).toBe(10 * 60);
-        });
-
-        await waitAndUpdateWrapper(rendered, 10);
-
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(45);
-      });
+      expect(updateRealityCheckIntervalMock[1].result).toHaveBeenCalled();
+      expect(playerRealityCheckQueryResultFn).toHaveBeenCalled();
     });
 
     // TODO: this test is skipped due to it failing randomly in CI.
     test("after unsuccessful mutation, state should be refetched", async () => {
-      //eslint-disable-next-line sonarjs/no-identical-functions
-      Component = props => (
-        <>
-          <input type="button" onClick={() => props.onChange(10)} />
-          <input type="button" onClick={() => props.onSave()} />
-        </>
-      );
-      SettingsRealityCheckContainer = withContainer(Component);
+      const playerRealityCheckQueryResultFn = jest.fn();
       const rendered = mount(
-        <MockedProvider
-          mocks={[
+        <MockStore
+          queryMocks={[
             playerRealityCheckQueryMock,
             realityCheckLabelsQueryMock,
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ result: { errors: { foo: string; }[]; }; r... Remove this comment to see the full error message
             ...updateRealityCheckIntervalErrorMock,
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ request: { query: DocumentNode; }; result:... Remove this comment to see the full error message
-            playerRealityCheckQueryWithInterval(45),
+            playerRealityCheckQueryWithInterval(
+              45,
+              playerRealityCheckQueryResultFn
+            ),
           ]}
         >
           <SettingsRealityCheckContainer />
-        </MockedProvider>
+        </MockStore>
       );
 
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(() => {
-        rendered.find("Component").childAt(0).simulate("click");
-      });
-      await waitAndUpdateWrapper(rendered);
-      wait(1000).then(async () => {
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(10);
 
-        const promiseFn = rendered.find("Component").prop("onSave");
+      actWithClickOnIntervalOption(rendered, 0);
 
-        await act(async () => {
-          // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
-          await promiseFn();
-        });
-      });
       await waitAndUpdateWrapper(rendered);
-      wait(1000).then(() => {
-        expect(
-          rendered
-            .find("SettingsRealityCheckContainer")
-            .state("intervalMinutes")
-        ).toBe(45);
+
+      act(() => {
+        rendered.find(ButtonPrimary).simulate("click");
       });
+
+      await waitAndUpdateWrapper(rendered);
+
+      expect(updateRealityCheckIntervalErrorMock[1].result).toHaveBeenCalled();
+
+      await waitAndUpdateWrapper(rendered);
+
+      expect(playerRealityCheckQueryResultFn).toHaveBeenCalled();
     });
   });
 });
