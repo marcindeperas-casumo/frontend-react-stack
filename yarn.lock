@@ -3438,10 +3438,10 @@
   dependencies:
     "@casumo/cmp-skeleton" "^1.2.7"
 
-"@casumo/sports-navigation@^3.4.0":
-  version "3.4.0"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.4.0/5b1f5c2467cfd2d1ba5d5ca846682e9749221984d0b182edae67edf65a4a0075#313d71a475bcd83620105be65f14d55d225bce08"
-  integrity sha512-D720wtyq5EfTYJjRVKaUuV76YmFagudRVbtvm6Z8pbqokhxLljgkwF8rxEqGJqu/PsnSNALHoOHHIvY8MhAzLQ==
+"@casumo/sports-navigation@^3.4.1":
+  version "3.4.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.4.1/3bfd6b2f404a4022771d8c9e8b87695494bd7087387675fce159ed613a41dc8f#7844e76c68028502f9767cf9d16bb414f468d165"
+  integrity sha512-1Y9E1eeuMCInBZgvJ9t8zg44RIFpumvGxhAxx0YRTEsJhSlCnhy9TyKnOADa0+OKi8Jv/cTrGVilQ4CeVhqApA==
   dependencies:
     "@casumo/cmp-chip" "^2.0.8"
     "@casumo/cmp-flex" "^4.1.0"
