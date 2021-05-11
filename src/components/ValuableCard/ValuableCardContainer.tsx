@@ -22,6 +22,7 @@ export function withWarmupPopup<TProps>(
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useEffect(() => {
     fetchDetails()
   }, [fetchDetails]);
