@@ -38,6 +38,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("should render loader", () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -53,6 +55,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("should pass correct initial interval to child", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -65,6 +69,7 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find(SettingsRealityCheck).prop("interval")
@@ -75,6 +80,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("should pass correct labels to children", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -86,7 +93,8 @@ describe("SettingsRealityCheckContainer", () => {
         </MockStore>
       );
 
-      await waitAndUpdateWrapper(rendered, 10);
+      await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(
@@ -96,6 +104,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("should show error when settings fail to load", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -109,10 +119,14 @@ describe("SettingsRealityCheckContainer", () => {
 
       await waitAndUpdateWrapper(rendered);
 
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
     test("should show error when labels fail to load", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -126,6 +140,8 @@ describe("SettingsRealityCheckContainer", () => {
 
       await waitAndUpdateWrapper(rendered);
 
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
   });
@@ -136,6 +152,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("shouldn't call mutation when canChangeInterval is false", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -149,6 +167,7 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       act(() => {
         rendered.find(PillSelector).childAt(0).simulate("click");
@@ -161,6 +180,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("shouldn't call mutation when interval is 0 and isZeroIntervalAllowed is false", async () => {
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -174,6 +195,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockStore>
       );
 
+      await waitAndUpdateWrapper(rendered);
       await waitAndUpdateWrapper(rendered);
 
       act(() => {
@@ -187,7 +209,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("should call mutation when onSave is triggered in child", async () => {
-      // SettingsRealityCheckContainer = withContainer(Component);
+      expect.assertions(1);
+
       const rendered = mount(
         <MockStore
           queryMocks={[
@@ -201,6 +224,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockStore>
       );
 
+      await waitAndUpdateWrapper(rendered);
       await waitAndUpdateWrapper(rendered);
 
       act(() => {
@@ -223,6 +247,8 @@ describe("SettingsRealityCheckContainer", () => {
     });
 
     test("after successful mutation, state should be refetched", async () => {
+      expect.assertions(2);
+
       const playerRealityCheckQueryResultFn = jest.fn();
       const rendered = mount(
         <MockStore
@@ -241,6 +267,7 @@ describe("SettingsRealityCheckContainer", () => {
       );
 
       await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       actWithClickOnIntervalOption(rendered, 0);
 
@@ -249,7 +276,7 @@ describe("SettingsRealityCheckContainer", () => {
       act(() => {
         rendered.find(ButtonPrimary).simulate("click");
       });
-      await waitAndUpdateWrapper(rendered, 10);
+      await waitAndUpdateWrapper(rendered);
 
       expect(updateRealityCheckIntervalMock[1].result).toHaveBeenCalled();
       expect(playerRealityCheckQueryResultFn).toHaveBeenCalled();
@@ -257,6 +284,8 @@ describe("SettingsRealityCheckContainer", () => {
 
     // TODO: this test is skipped due to it failing randomly in CI.
     test("after unsuccessful mutation, state should be refetched", async () => {
+      expect.assertions(2);
+
       const playerRealityCheckQueryResultFn = jest.fn();
       const rendered = mount(
         <MockStore
@@ -274,6 +303,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockStore>
       );
 
+      await waitAndUpdateWrapper(rendered);
       await waitAndUpdateWrapper(rendered);
 
       actWithClickOnIntervalOption(rendered, 0);

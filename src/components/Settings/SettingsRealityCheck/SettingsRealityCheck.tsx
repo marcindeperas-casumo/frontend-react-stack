@@ -32,7 +32,8 @@ export class SettingsRealityCheck extends PureComponent<OwnProps> {
     const enabled = interval !== OFF;
     const optionsByJurisdiction = options[jurisdiction] ?? options.default;
 
-    const change = value => onChange(value ? optionsByJurisdiction[0].value : OFF);
+    const change = value =>
+      onChange(value ? optionsByJurisdiction[0].value : OFF);
 
     return (
       <>
