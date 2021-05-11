@@ -15,7 +15,7 @@ export const useReelRaceOptIn = (reelRace: TReelRace) => {
   const { id } = reelRace;
   const { isDGOJ } = useJurisdiction();
   const dispatch = useDispatch();
-  const { fetchDetails, loading, details } = usePlayerWarmUpDetails();
+  const { fetchDetailsAsync } = usePlayerWarmUpDetails();
 
   const [optInForReelRace] = useMutation(OptInForReelRace, {
     variables: {
@@ -31,23 +31,19 @@ export const useReelRaceOptIn = (reelRace: TReelRace) => {
     },
   });
 
-  const optIn = useCallback(() => {
+  const optIn = useCallback(async () => {
     if (!isDGOJ) {
       return optInForReelRace();
     }
 
-    fetchDetails();
-
-    if (loading) {
-      return;
-    }
+    const details = await fetchDetailsAsync();
 
     if (details.inWarmupPhase) {
       return dispatch(showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP));
     }
 
     return optInForReelRace();
-  }, [fetchDetails, loading, details, dispatch, isDGOJ, optInForReelRace]);
+  }, [fetchDetailsAsync, dispatch, isDGOJ, optInForReelRace]);
 
   return {
     optInAction: optIn,
