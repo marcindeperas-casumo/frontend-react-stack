@@ -39,11 +39,15 @@ export const useReelRaceOptIn = (reelRace: TReelRace) => {
     const details = await fetchDetailsAsync();
 
     if (details.inWarmupPhase) {
-      return dispatch(showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP));
+      return dispatch(
+        showModal(REACT_APP_MODAL.ID.ACCOUNT_WARM_UP, {
+          input: { ...reelRace, ...details },
+        })
+      );
     }
 
     return optInForReelRace();
-  }, [fetchDetailsAsync, dispatch, isDGOJ, optInForReelRace]);
+  }, [reelRace, fetchDetailsAsync, dispatch, isDGOJ, optInForReelRace]);
 
   return {
     optInAction: optIn,
