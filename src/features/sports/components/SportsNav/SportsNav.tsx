@@ -1,4 +1,4 @@
-import { useQuery, getApolloContext } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { SportsNavigation } from "@casumo/sports-navigation";
 import * as React from "react";
 import { insert, assoc } from "ramda";
@@ -7,9 +7,9 @@ import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
-import { useIsAuthenticated, useMarket } from "Utils/hooks";
+import { useIsAuthenticated } from "Utils/hooks";
 import tracker from "Services/tracker";
-import { EVENT_PROPS, EVENTS } from "Src/constants";
+import { EVENT_PROPS, EVENTS, TMarket } from "Src/constants";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -20,10 +20,8 @@ export type Labels = {
 };
 
 const renderSportsNav = (
-  currentHash: string,
   liveState: LiveState,
   data,
-  client,
   isAuthenticated: boolean
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
@@ -62,9 +60,14 @@ const renderSportsNav = (
   );
 };
 
-export const SportsNav = ({ currentHash }: { currentHash: string }) => {
+export const SportsNav = ({
+  currentHash,
+  market,
+}: {
+  currentHash: string;
+  market?: TMarket;
+}) => {
   const isAuthenticated = useIsAuthenticated();
-  const { client } = React.useContext(getApolloContext());
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );
@@ -75,7 +78,6 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   });
   const [refetchCount, setRefetchCount] = React.useState(0);
   const [navData, setNavData] = React.useState();
-  const market = useMarket();
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
@@ -147,10 +149,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   return renderSportsNav(
-    currentHash,
     [isLiveActive, setIsLiveActive],
     navData,
-    client,
     isAuthenticated
   );
 };
