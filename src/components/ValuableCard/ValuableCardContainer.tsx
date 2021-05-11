@@ -24,7 +24,7 @@ export function withWarmupPopup<TProps>(
 
   React.useEffect(() => {
     fetchDetails()
-  }, []);
+  }, [fetchDetails]);
 
   if (!isDGOJ) {
     return <Component {...props} />;
