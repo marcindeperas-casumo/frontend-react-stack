@@ -1,7 +1,7 @@
 import { useQuery, getApolloContext } from "@apollo/client";
 import { SportsNavigation } from "@casumo/sports-navigation";
 import * as React from "react";
-import { insert, set, lensProp } from "ramda";
+import { insert, assoc } from "ramda";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
@@ -27,7 +27,6 @@ const renderSportsNav = (
   isAuthenticated: boolean
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
-  const [navData, setNavData] = React.useState();
 
   const trackOnClickLive = state => {
     tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
@@ -42,24 +41,6 @@ const renderSportsNav = (
     });
   };
 
-  // Virtuals button item TSPO-904, to be deleted when Kambi fixes KSD-246938
-  const virtualsItem = {
-    sport: {
-        name: "Virtuals",
-        id: "virtuals-item",
-        clientPath: "filter/virtuals",
-        clientPathLive: "filter/virtuals",
-        termKey: "virtuals",
-    },
-    subNav: []
-  }
-
-  React.useEffect(() => {
-    if (data?.sportsNavigation.length) {
-      setNavData(set(lensProp("sportsNavigation"), insert(2, virtualsItem, data.sportsNavigation), data))
-    }
-  }, [data?.sportsNavigation])
-
   return (
     <div className="pt-sm">
       {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
@@ -67,7 +48,7 @@ const renderSportsNav = (
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
         {openChooseFavouritesModal => (
           <SportsNavigation
-            data={navData}
+            data={data}
             onSelected={trackOnSportsNavigationSelected}
             onClickLive={trackOnClickLive}
             isLiveActive={isLiveActive}
@@ -93,6 +74,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     fetchPolicy: "cache-and-network",
   });
   const [refetchCount, setRefetchCount] = React.useState(0);
+  const [navData, setNavData] = React.useState();
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
@@ -104,6 +86,30 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
       window.location.reload(true);
     }
   }, [refetchCount]);
+
+  // Virtuals button item TSPO-904, to be deleted when Kambi fixes KSD-246938
+  React.useEffect(() => {
+    if (data?.sportsNavigation.length) {
+      const virtualsItem = {
+        sport: {
+          name: "Virtuals",
+          id: "virtuals-item",
+          clientPath: "filter/virtuals",
+          clientPathLive: "filter/virtuals",
+          termKey: "virtuals",
+        },
+        subNav: [],
+      };
+
+      setNavData(
+        assoc(
+          "sportsNavigation",
+          insert(2, virtualsItem, data.sportsNavigation),
+          data
+        )
+      );
+    }
+  }, [data]);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -132,7 +138,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   return renderSportsNav(
     currentHash,
     [isLiveActive, setIsLiveActive],
-    data,
+    navData,
     client,
     isAuthenticated
   );
