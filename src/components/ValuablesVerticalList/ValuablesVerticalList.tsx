@@ -2,7 +2,7 @@ import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
 import React from "react";
 import classNames from "classnames";
-import { ValuableRow } from "Components/ValuableRow";
+import { ValuableRowContainer as ValuableRow } from "Components/ValuableRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import type { ValuableListProps } from "Models/valuables";
 import { VALUABLE_STATES } from "Models/valuables";
