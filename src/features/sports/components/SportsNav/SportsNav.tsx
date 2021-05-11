@@ -7,7 +7,7 @@ import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 import { MODAL } from "Features/sports/components/Modals";
-import { useIsAuthenticated } from "Utils/hooks";
+import { useIsAuthenticated, useMarket } from "Utils/hooks";
 import tracker from "Services/tracker";
 import { EVENT_PROPS, EVENTS } from "Src/constants";
 
@@ -75,6 +75,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   });
   const [refetchCount, setRefetchCount] = React.useState(0);
   const [navData, setNavData] = React.useState();
+  const market = useMarket();
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
@@ -89,7 +90,15 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
 
   // Virtuals button item TSPO-904, to be deleted when Kambi fixes KSD-246938
   React.useEffect(() => {
-    if (data?.sportsNavigation.length) {
+    if (data?.sportsNavigation.length && market) {
+      const virtualsMarkets = [
+        "ca_en",
+        "in_en",
+        "fi_fi",
+        "no_no",
+        "se_sv",
+        "at_de",
+      ];
       const virtualsItem = {
         sport: {
           name: "Virtuals",
@@ -102,14 +111,16 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
       };
 
       setNavData(
-        assoc(
-          "sportsNavigation",
-          insert(2, virtualsItem, data.sportsNavigation),
-          data
-        )
+        virtualsMarkets.includes(market)
+          ? assoc(
+              "sportsNavigation",
+              insert(2, virtualsItem, data.sportsNavigation),
+              data
+            )
+          : data
       );
     }
-  }, [data]);
+  }, [data, market]);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
