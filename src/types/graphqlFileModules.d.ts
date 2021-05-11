@@ -569,6 +569,14 @@ declare module "*/KambiSearchResults.tsx" {
   export default defaultDocument;
 }
 
+declare module "*/SportsYouWonQuery.ts" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const BetDetailsQuery: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/mutations.sports.ts" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
