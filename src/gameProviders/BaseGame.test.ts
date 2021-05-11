@@ -51,7 +51,7 @@ describe("BaseGame", () => {
     });
 
     expect(esModel.lobbyUrl).toBe(
-      `${origin}/gamelaunchers/navigation-bubbler.html?target=games/top`
+      `${origin}/gamelaunchers/navigation-bubbler.html?target=games`
     );
   });
 });
