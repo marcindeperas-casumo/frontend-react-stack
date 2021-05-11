@@ -11,24 +11,21 @@ export function usePlayerWarmUpDetails() {
   const [loading, setLoading] = React.useState<boolean>(true);
   const playerId = useSelector(playerIdSelector);
 
-  React.useEffect(() => {
-    async function fetchDetails() {
-      if (isDGOJ && playerId) {
-        const response = await getDetails({ playerId });
-        if (!response) {
-          setLoading(false);
-          return;
-        }
-
-        setDetails(response);
+  const fetchDetails = React.useCallback(async () => {
+    if (isDGOJ && playerId) {
+      const response = await getDetails({ playerId });
+      if (!response) {
         setLoading(false);
+        return;
       }
-    }
 
-    fetchDetails();
+      setDetails(response);
+      setLoading(false);
+    }
   }, [isDGOJ, playerId]);
 
   return {
+    fetchDetails,
     loading,
     details,
   };
