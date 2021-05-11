@@ -103,7 +103,7 @@ export const SportsNav = ({
       ];
       const virtualsItem = {
         sport: {
-          name: "Virtuals",
+          name: data.virtualsSportsLabel,
           id: "virtuals-item",
           clientPath: "filter/virtuals",
           clientPathLive: "filter/virtuals",
