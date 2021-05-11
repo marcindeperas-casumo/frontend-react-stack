@@ -31,7 +31,7 @@ function actWithClickOnIntervalOption(rendered: ReactWrapper, index: number) {
   });
 }
 
-describe("SettingsRealityCheckContainer", () => {
+describe.skip("SettingsRealityCheckContainer", () => {
   describe("Component", () => {
     beforeEach(() => {
       jest.clearAllMocks();

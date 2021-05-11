@@ -12,6 +12,9 @@ describe("SettingsRealityCheck", () => {
         labels={labels}
         interval={60}
         isLoading={false}
+        jurisdiction="MGA"
+        onChange={() => {}}
+        onSave={() => {}}
       />
     );
     expect(rendered.find(ToggleRow)).toHaveLength(0);
@@ -24,6 +27,9 @@ describe("SettingsRealityCheck", () => {
         labels={labels}
         interval={60}
         isLoading={false}
+        jurisdiction="MGA"
+        onChange={() => {}}
+        onSave={() => {}}
       />
     );
     expect(rendered.find(ToggleRow)).toHaveLength(1);
