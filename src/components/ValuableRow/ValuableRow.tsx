@@ -19,6 +19,7 @@ import type {
   ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
+import { withWarmupPopup } from "Components/ValuableCard/ValuableCardContainer";
 import ValuableSelector from "./valuable-selector.svg";
 import "./ValuableRow.scss";
 
@@ -121,7 +122,7 @@ export class ValuableRow extends PureComponent<Props> {
 
     return (
       <Flex>
-        <Flex.Item className="u-width">
+        <Flex.Item data-test="valuable-selector-svg" className="u-width">
           {isSelected && <ValuableSelector />}
         </Flex.Item>
         <Flex.Item className="u-padding-right--md o-flex--1">
@@ -187,3 +188,7 @@ export class ValuableRow extends PureComponent<Props> {
     );
   }
 }
+
+export const ValuableRowContainer = (props: Props) => {
+  return withWarmupPopup<Props>(ValuableRow, props, "onClick");
+};
