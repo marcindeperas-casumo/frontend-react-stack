@@ -6,7 +6,7 @@ import type { TPlayerWarmUpDetailsResponse } from "Models/accountWarmUp";
 import { useJurisdiction } from "./useJurisdiction";
 
 export function usePlayerWarmUpDetails() {
-  const isDGOJ = useJurisdiction();
+  const { isDGOJ } = useJurisdiction();
   const [details, setDetails] = React.useState<TPlayerWarmUpDetailsResponse>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const playerId = useSelector(playerIdSelector);
