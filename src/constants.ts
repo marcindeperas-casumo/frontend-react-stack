@@ -400,6 +400,7 @@ export const EVENTS = {
     "RETPAY - Close Exit Game Notification Clicked",
   MIXPANEL_MAKE_DEPOSIT_BUTTON_CLICKED: "RETPAY - Make Deposit Button Clicked",
   MIXPANEL_EXIT_GAME_STEP_COMPLETED: "RETPAY - Exit Game Step Completed",
+  MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN: "SPORTS - celebration modal open",
 } as const;
 
 export const EVENT_PROPS = {
