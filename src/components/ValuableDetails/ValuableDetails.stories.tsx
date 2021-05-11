@@ -27,25 +27,27 @@ stories.add("Default", () => {
 
   return (
     <div style={{ width: "420px" }}>
-      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
-      <ValuableDetails
-        valuableDetails={{
-          ...valuableDetailsMock,
-          expiryDate,
-        }}
-        translations={translations}
-        onConsumeValuable={F}
-        onLaunchGame={() => {}}
-      >
-        <div style={{ width: "160px" }}>
-          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
-          <ValuableCard
-            {...mockValuableCard(valuableType)}
-            caveat={null}
-            className="t-elevation--30"
-          />
-        </div>
-      </ValuableDetails>
+      <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+        <ValuableDetails
+          valuableDetails={{
+            ...valuableDetailsMock,
+            expiryDate,
+          }}
+          translations={translations}
+          onConsumeValuable={F}
+          onLaunchGame={() => {}}
+        >
+          <div style={{ width: "160px" }}>
+            {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+            <ValuableCard
+              {...mockValuableCard(valuableType)}
+              caveat={null}
+              className="t-elevation--30"
+            />
+          </div>
+        </ValuableDetails>
+      </MockStore>
     </div>
   );
 });
@@ -80,22 +82,24 @@ stories.add("Deposit - Locked", () => {
 
   return (
     <div style={{ width: "420px" }}>
-      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
-      <ValuableDetails
-        valuableDetails={valuableDetailsMock}
-        translations={translations}
-        onConsumeValuable={F}
-        onLaunchGame={() => {}}
-      >
-        <div style={{ width: "160px" }}>
-          {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
-          <ValuableCard
-            {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
-            caveat={null}
-            className="t-elevation--30"
-          />
-        </div>
-      </ValuableDetails>
+      <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+        <ValuableDetails
+          valuableDetails={valuableDetailsMock}
+          translations={translations}
+          onConsumeValuable={F}
+          onLaunchGame={() => {}}
+        >
+          <div style={{ width: "160px" }}>
+            {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+            <ValuableCard
+              {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
+              caveat={null}
+              className="t-elevation--30"
+            />
+          </div>
+        </ValuableDetails>
+      </MockStore>
     </div>
   );
 });

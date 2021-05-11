@@ -1,1 +1,1 @@
-export { ValuableCard } from "./ValuableCard";
+export { ValuableCardContainer as ValuableCard } from "./ValuableCardContainer";
