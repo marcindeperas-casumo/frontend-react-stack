@@ -1,12 +1,12 @@
 import React from "react";
 import LazyPortal from "Components/LazyPortal";
-import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
+import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
 export const LazySports = React.memo(
   props => (
     <LazyPortal
       hostElementId="react-host-sports-shell"
       loader={() => import("Features/sports/components/SportsShell")}
-      fallback={<SportsShellSkeleton />}
+      fallback={<KambiClientSkeleton />}
       namedExport="SportsShellContainer"
       props={props}
     />

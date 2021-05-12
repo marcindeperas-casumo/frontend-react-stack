@@ -17,7 +17,7 @@ import type {
   ValuableThumbnailTranslations,
 } from "Models/valuables";
 
-type Props = {
+export type Props = {
   /** Unique id of the valuable */
   id: string;
   /** Title of the valuable */

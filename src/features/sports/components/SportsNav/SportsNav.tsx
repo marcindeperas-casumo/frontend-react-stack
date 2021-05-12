@@ -1,6 +1,7 @@
-import { useQuery, getApolloContext } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { SportsNavigation } from "@casumo/sports-navigation";
 import * as React from "react";
+import { insert, assoc } from "ramda";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
@@ -8,7 +9,7 @@ import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUti
 import { MODAL } from "Features/sports/components/Modals";
 import { useIsAuthenticated } from "Utils/hooks";
 import tracker from "Services/tracker";
-import { EVENT_PROPS, EVENTS } from "Src/constants";
+import { EVENT_PROPS, EVENTS, TMarket } from "Src/constants";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -19,10 +20,8 @@ export type Labels = {
 };
 
 const renderSportsNav = (
-  currentHash: string,
   liveState: LiveState,
   data,
-  client,
   isAuthenticated: boolean
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
@@ -61,9 +60,14 @@ const renderSportsNav = (
   );
 };
 
-export const SportsNav = ({ currentHash }: { currentHash: string }) => {
+export const SportsNav = ({
+  currentHash,
+  market,
+}: {
+  currentHash: string;
+  market?: TMarket;
+}) => {
   const isAuthenticated = useIsAuthenticated();
-  const { client } = React.useContext(getApolloContext());
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );
@@ -73,6 +77,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     fetchPolicy: "cache-and-network",
   });
   const [refetchCount, setRefetchCount] = React.useState(0);
+  const [navData, setNavData] = React.useState();
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
   React.useEffect(() => {
@@ -84,6 +89,40 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
       window.location.reload(true);
     }
   }, [refetchCount]);
+
+  // Virtuals button item TSPO-904, to be deleted when Kambi fixes KSD-246938
+  React.useEffect(() => {
+    if (data?.sportsNavigation.length && market) {
+      const virtualsMarkets = [
+        "ca_en",
+        "in_en",
+        "fi_fi",
+        "no_no",
+        "se_sv",
+        "at_de",
+      ];
+      const virtualsItem = {
+        sport: {
+          name: data.virtualsSportsLabel,
+          id: "virtuals-item",
+          clientPath: "filter/virtuals",
+          clientPathLive: "filter/virtuals",
+          termKey: "virtuals",
+        },
+        subNav: [],
+      };
+
+      setNavData(
+        virtualsMarkets.includes(market)
+          ? assoc(
+              "sportsNavigation",
+              insert(2, virtualsItem, data.sportsNavigation),
+              data
+            )
+          : data
+      );
+    }
+  }, [data, market]);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -110,10 +149,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   return renderSportsNav(
-    currentHash,
     [isLiveActive, setIsLiveActive],
-    data,
-    client,
+    navData,
     isAuthenticated
   );
 };

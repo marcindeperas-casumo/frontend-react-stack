@@ -225,6 +225,7 @@ export const MARKETS = {
   nz_en: "nz_en",
   jp_ja: "jp_ja",
   at_de: "at_de",
+  ie_en: "ie_en",
 } as const;
 export type TMarket = ValueOf<typeof MARKETS>;
 
@@ -251,6 +252,7 @@ export const LANGUAGES = {
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
+  [MARKETS.ie_en]: "ie",
 } as const;
 export type TLanguage = ValueOf<typeof LANGUAGES>;
 
@@ -271,6 +273,7 @@ export const INTL_LOCALES = {
   [MARKETS.nz_en]: "en-NZ",
   [MARKETS.jp_ja]: "ja-JP",
   [MARKETS.at_de]: "de-AT",
+  [MARKETS.ie_en]: "en-IE",
 } as const;
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
@@ -286,6 +289,7 @@ export const URL_PREFIXES = {
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
   [MARKETS.at_de]: "at",
+  [MARKETS.ie_en]: "ie",
 } as const;
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
