@@ -29,7 +29,6 @@ export class SkyWindGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.scrolling = "auto";
-    this.targetDomain = props.origin || window.location.origin;
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
