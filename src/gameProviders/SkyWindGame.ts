@@ -7,12 +7,17 @@ import { appendToGameUrl } from "./utils";
 //op2swProperties
 // msgId: "op2swPauseGame",
 export const COMMANDS = {
+  // The below command is to stop autoplay not pause - but since we use pausing to halt auto play it makes sense to have it live underneath pause command
   PAUSE: JSON.stringify({
     msgId: "op2swProperties",
     autoPlay: false,
   }),
   RESUME: JSON.stringify({
     msgId: "op2swResumeGame",
+  }),
+  // Below command blocks game ui from any interactions - unfortunately no visible ui changes to inform users of actual pause state - just nothing clickable until resume command
+  FREEZE: JSON.stringify({
+    msgId: "op2swPauseGame",
   }),
 };
 
