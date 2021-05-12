@@ -21,21 +21,21 @@ function getPage() {
   );
 }
 
-export function useCurrentGamePage() {
+export function useCurrentGamePage(path: string) {
   const dispatch = useDispatch();
   const page = getPage();
-  const savedPage = useSelector(getGamePage, R.equals);
+  const savedPage = useSelector(getGamePage(path), R.equals);
   if (page !== savedPage) {
-    dispatch(setData({ page }));
-    dispatch(setScroll(0));
+    dispatch(setData(path)({ page }));
+    dispatch(setScroll(path)(0));
   }
 
   return page;
 }
 
-export function useScrollPositionPersistor() {
+export function useScrollPositionPersistor(path: string) {
   const dispatch = useDispatch();
-  const scrollPos = useSelector(getGamePageScrollPosition, R.equals);
+  const scrollPos = useSelector(getGamePageScrollPosition(path), R.equals);
 
   React.useEffect(() => {
     const scrollEl = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
@@ -47,7 +47,7 @@ export function useScrollPositionPersistor() {
     const debouncedScrollHandler = debounce(() => {
       const val = scrollEl.scrollTop;
       if (val && val !== scrollPos) {
-        dispatch(setScroll(scrollEl.scrollTop));
+        dispatch(setScroll(path)(scrollEl.scrollTop));
       }
     }, 75);
 
@@ -56,11 +56,11 @@ export function useScrollPositionPersistor() {
     return () => {
       scrollEl.removeEventListener("scroll", debouncedScrollHandler);
     };
-  }, [dispatch, scrollPos]);
+  }, [dispatch, scrollPos, path]);
 }
 
-export function useSetScrollPosition(loading: boolean) {
-  const scrollPos = useSelector(getGamePageScrollPosition, R.equals);
+export function useSetScrollPosition(path: string, loading: boolean) {
+  const scrollPos = useSelector(getGamePageScrollPosition(path), R.equals);
   const initialized = React.useRef(false);
 
   React.useEffect(() => {

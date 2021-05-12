@@ -45,8 +45,8 @@ const keyToUrl = {
 };
 const hostElementId = "react-host-games-lists";
 
-export const GameBrowser = () => {
-  useScrollPositionPersistor();
+export const GameBrowser = (props: { path: string }) => {
+  useScrollPositionPersistor(props.path);
   const { data } = useQuery<A.GetGameSetsQuery, A.GetGameSetsQueryVariables>(
     GetGameSets
   );
@@ -56,7 +56,8 @@ export const GameBrowser = () => {
     key,
     url: keyToUrl[key] || key.toLowerCase(),
   }));
-  const redirectTarget = useSelector(getGamePage) as string;
+  const redirectTarget =
+    (useSelector(getGamePage(props.path)) as string) || "top";
 
   return (
     <WaitForHostElement hostElementId={hostElementId}>
@@ -77,6 +78,7 @@ export const GameBrowser = () => {
                     key={x.key}
                     path={gameBrowserSetsData[i].url}
                     set={x}
+                    parent={props.path}
                   />
                 ))}
             </>

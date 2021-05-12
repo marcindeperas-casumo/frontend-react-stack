@@ -1,5 +1,5 @@
-query GetGameSets {
-  gameSetsList {
+query GetGameSets($verticalId: String) {
+  gameSetsList(verticalId: $verticalId) {
     id
     key
     title
@@ -7,6 +7,7 @@ query GetGameSets {
     defaultSort
     supportedSorts
     baseQuery
+    gameDisplayMode
     additionalFilterGroups {
       key
       type

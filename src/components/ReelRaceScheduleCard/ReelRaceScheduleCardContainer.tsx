@@ -1,10 +1,8 @@
-import { useMutation } from "@apollo/client";
 import * as React from "react";
-import * as A from "Types/apollo";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
+import * as A from "Types/apollo";
+import { useReelRaceOptIn } from "Utils/hooks/useReelRaceOptIn";
 import { ReelRaceScheduleCard } from "./ReelRaceScheduleCard";
-import { ReelRaceOptInMutation } from "./ReelRaceScheduleCard.graphql";
-
 type TProps = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
   t: TReelRacesContentPage | null;
@@ -16,24 +14,11 @@ export function ReelRaceScheduleCardContainer({
   t,
   expanded = false,
 }: TProps) {
-  const [optInForReelRace] = useMutation(ReelRaceOptInMutation, {
-    variables: {
-      id: reelRace.id,
-    },
-    optimisticResponse: {
-      __typename: "Mutation",
-      optInForReelRace: {
-        __typename: "ReelRace",
-        id: reelRace.id,
-        optedIn: true,
-      },
-    },
-  });
-
+  const { optInAction } = useReelRaceOptIn(reelRace);
   return (
     <ReelRaceScheduleCard
       expanded={expanded}
-      optInForReelRace={optInForReelRace}
+      optInForReelRace={optInAction}
       reelRace={reelRace}
       t={t}
     />

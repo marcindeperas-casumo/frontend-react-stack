@@ -150,7 +150,7 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO]: "{{games}}/live-casino",
+  [ROUTE_IDS.LIVE_CASINO]: "live-casino/*",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -225,6 +225,7 @@ export const MARKETS = {
   nz_en: "nz_en",
   jp_ja: "jp_ja",
   at_de: "at_de",
+  ie_en: "ie_en",
 } as const;
 export type TMarket = ValueOf<typeof MARKETS>;
 
@@ -251,6 +252,7 @@ export const LANGUAGES = {
   [MARKETS.nz_en]: "nz",
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
+  [MARKETS.ie_en]: "ie",
 } as const;
 export type TLanguage = ValueOf<typeof LANGUAGES>;
 
@@ -271,6 +273,7 @@ export const INTL_LOCALES = {
   [MARKETS.nz_en]: "en-NZ",
   [MARKETS.jp_ja]: "ja-JP",
   [MARKETS.at_de]: "de-AT",
+  [MARKETS.ie_en]: "en-IE",
 } as const;
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
@@ -286,6 +289,7 @@ export const URL_PREFIXES = {
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
   [MARKETS.at_de]: "at",
+  [MARKETS.ie_en]: "ie",
 } as const;
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
@@ -400,6 +404,7 @@ export const EVENTS = {
     "RETPAY - Close Exit Game Notification Clicked",
   MIXPANEL_MAKE_DEPOSIT_BUTTON_CLICKED: "RETPAY - Make Deposit Button Clicked",
   MIXPANEL_EXIT_GAME_STEP_COMPLETED: "RETPAY - Exit Game Step Completed",
+  MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN: "SPORTS - celebration modal open",
 } as const;
 
 export const EVENT_PROPS = {
@@ -478,6 +483,7 @@ export const REACT_APP_MODAL = {
     CONTENT_HTML: "CONTENT_HTML",
     REEL_RACES_TAC: "REEL_RACES_TAC",
     ARTICLE_MODAL: "ARTICLE_MODAL",
+    ACCOUNT_WARM_UP: "ACCOUNT_WARM_UP",
   },
 } as const;
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
