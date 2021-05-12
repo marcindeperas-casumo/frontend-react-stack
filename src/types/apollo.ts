@@ -30,6 +30,7 @@ export interface GamesPaginated {
 export interface Query {
   activeModals: Array<Modal>;
   articlesList?: Maybe<ArticlesList>;
+  betDetails?: Maybe<BetDetails>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -83,6 +84,10 @@ export interface Query {
 
 export interface QueryArticlesListArgs {
   slugs: Array<Scalars["String"]>;
+}
+
+export interface QueryBetDetailsArgs {
+  combinationRef?: Maybe<Scalars["BigInt"]>;
 }
 
 export interface QueryCompetitionsArgs {
@@ -1209,6 +1214,32 @@ export interface ArticlesList {
   id: Scalars["String"];
   name: Scalars["String"];
   articles: Array<Article>;
+}
+
+export interface BetDetails {
+  combinationRef?: Maybe<Scalars["BigInt"]>;
+  playerId?: Maybe<Scalars["String"]>;
+  placedDate?: Maybe<Scalars["String"]>;
+  stake?: Maybe<Scalars["Int"]>;
+  payout?: Maybe<Scalars["Float"]>;
+  currency?: Maybe<Scalars["String"]>;
+  odds?: Maybe<Scalars["Float"]>;
+  status?: Maybe<Scalars["String"]>;
+  betDetails?: Maybe<Scalars["String"]>;
+  legs?: Maybe<Array<Maybe<BetProjectionsLegs>>>;
+  username?: Maybe<Scalars["String"]>;
+}
+
+export interface BetProjectionsLegs {
+  odds?: Maybe<Scalars["Float"]>;
+  outcomes?: Maybe<Array<Maybe<BetProjectionsOutcomes>>>;
+}
+
+export interface BetProjectionsOutcomes {
+  eventGroupPath?: Maybe<Scalars["String"]>;
+  eventName?: Maybe<Scalars["String"]>;
+  criterionName?: Maybe<Scalars["String"]>;
+  outcomeLabel?: Maybe<Scalars["String"]>;
 }
 
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
@@ -2799,6 +2830,7 @@ export type UserNavigationQuery = {
   editLabel: string;
   liveLabel: string;
   allSportsLabel: string;
+  virtualsSportsLabel: string;
   sportsNavigation: Array<{
     sport: {
       name: string;
@@ -2848,6 +2880,34 @@ export type SearchQuery = {
     localizedName: string;
     country?: Maybe<string>;
     sport?: Maybe<{ icon?: Maybe<string>; name: string }>;
+  }>;
+};
+
+export type BetDetailsQueryVariables = Exact<{
+  combinationRef: Scalars["BigInt"];
+}>;
+
+export type BetDetailsQuery = {
+  betDetails?: Maybe<{
+    username?: Maybe<string>;
+    payout?: Maybe<number>;
+    currency?: Maybe<string>;
+    status?: Maybe<string>;
+    legs?: Maybe<
+      Array<
+        Maybe<{
+          outcomes?: Maybe<
+            Array<
+              Maybe<{
+                eventName?: Maybe<string>;
+                criterionName?: Maybe<string>;
+                outcomeLabel?: Maybe<string>;
+              }>
+            >
+          >;
+        }>
+      >
+    >;
   }>;
 };
 

@@ -24,7 +24,10 @@ export function usePlayerWarmUpDetails() {
     }
   }, [isDGOJ, playerId]);
 
+  const fetchDetailsAsync = () => getDetails({ playerId });
+
   return {
+    fetchDetailsAsync,
     fetchDetails,
     loading,
     details,
