@@ -12,17 +12,11 @@ type OwnProps = {
   isLoading: boolean;
   onSave: () => void;
   interval: number;
-  canToggleInterval: boolean;
+  canToggleInterval?: boolean;
+  jurisdiction: string;
 };
 
-type Props = OwnProps & typeof SettingsRealityCheck.defaultProps;
-
-export class SettingsRealityCheck extends PureComponent<Props> {
-  static defaultProps = {
-    onChange: () => {},
-    onSave: () => {},
-  };
-
+export class SettingsRealityCheck extends PureComponent<OwnProps> {
   render() {
     const {
       onChange,
@@ -31,12 +25,15 @@ export class SettingsRealityCheck extends PureComponent<Props> {
       interval,
       labels,
       canToggleInterval,
+      jurisdiction,
     } = this.props;
 
     const OFF = 0;
     const enabled = interval !== OFF;
+    const optionsByJurisdiction = options[jurisdiction] ?? options.default;
 
-    const change = value => onChange(value ? options[0].value : OFF);
+    const change = value =>
+      onChange(value ? optionsByJurisdiction[0].value : OFF);
 
     return (
       <>
@@ -54,7 +51,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           <PillSelector
             disabled={!enabled}
             className="u-margin-top--xlg"
-            options={options}
+            options={optionsByJurisdiction}
             value={interval}
             onChange={onChange}
           />

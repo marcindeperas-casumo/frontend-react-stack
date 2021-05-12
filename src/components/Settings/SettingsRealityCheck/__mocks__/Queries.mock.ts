@@ -101,11 +101,11 @@ export const realityCheckLabelsQueryErrorMock = {
   },
 };
 
-export const playerRealityCheckQueryWithInterval = intervalInMinutes => ({
+export const playerRealityCheckQueryWithInterval = (intervalInMinutes, resultJestFn) => ({
   request: {
     query: PLAYER_REALITY_CHECK_QUERY,
   },
-  result: {
+  result: resultJestFn.mockReturnValue({
     data: {
       player: {
         __typename: "Player",
@@ -121,11 +121,5 @@ export const playerRealityCheckQueryWithInterval = intervalInMinutes => ({
         },
       },
     },
-  },
+  }),
 });
-
-export const withMockQueries = mock => [
-  ...mock,
-  playerRealityCheckQueryMock,
-  realityCheckLabelsQueryMock,
-];
