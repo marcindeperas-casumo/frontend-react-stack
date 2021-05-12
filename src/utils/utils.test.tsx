@@ -29,7 +29,6 @@ import {
   decodedUrlParams,
   bonusBalanceDisplay,
   hasAlphaCharactersOnly,
-  urlToVerticalMapper,
 } from "./utils";
 
 describe("bridgeFactory()", () => {

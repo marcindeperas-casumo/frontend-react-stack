@@ -36,7 +36,7 @@ export const Router = () => {
 
   // Triggers Event on pg reload to updated last accessed vertical in local storage
   window.addEventListener("beforeunload", function () {
-    persistVerticalToLocalStorage({ language });
+    persistVerticalToLocalStorage();
   });
 
   return (

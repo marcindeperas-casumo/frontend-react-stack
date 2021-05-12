@@ -558,11 +558,7 @@ export const getOrdinalSuffix = ({
  * @param {String} language
  * @returns {String}
  **/
-export const persistVerticalToLocalStorage = ({
-  language,
-}: {
-  language: string;
-}) => {
+export const persistVerticalToLocalStorage = () => {
   // Check for .es TLD as it hostname doesn't contain lang
   const pathName = window.location.pathname;
   const hash = window.location.hash;
