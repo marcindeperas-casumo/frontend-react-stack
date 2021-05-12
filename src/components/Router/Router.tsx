@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
-import { routeTranslator, urlToVerticalMapper } from "Utils";
+import { routeTranslator, persistVerticalToLocalStorage } from "Utils";
 import { ROUTE_IDS, TRANSLATED_ROUTES } from "Src/constants";
 import { MahjongPage } from "Components/MahjongPage/MahjongPage";
 import {
@@ -34,14 +34,9 @@ export const Router = () => {
   const translateRoute = routeTranslator(language);
   const reachRouterProps = basepath ? { basepath } : {};
 
-  // Triggers Event on pg reload to updated last accessed product in local storage
+  // Triggers Event on pg reload to updated last accessed vertical in local storage
   window.addEventListener("beforeunload", function () {
-    const pathName = window.location.pathname;
-    const pathNameProduct = pathName.split("/")[2];
-    const translatedPlayUrlTerm = translateRoute(ROUTE_IDS.PLAY).split("/")[0];
-    if (pathNameProduct !== translatedPlayUrlTerm) {
-      urlToVerticalMapper({ url: pathName, language });
-    }
+    persistVerticalToLocalStorage({ language });
   });
 
   return (

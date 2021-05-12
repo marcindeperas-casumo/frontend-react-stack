@@ -566,3 +566,6 @@ export const horizontalListDeviceTopMargin = {
   tablet: "xlg",
   desktop: "xlg",
 };
+
+export const LOCAL_STORAGE_LAST_ACCESSED_VERTICAL =
+  "casumo-lastAccessedProduct";
