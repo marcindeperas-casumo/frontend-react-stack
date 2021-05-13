@@ -3,9 +3,6 @@ import { BaseIframeGame } from "./BaseIframeGame";
 import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
-// msgId: `sw2op${name}`
-//op2swProperties
-// msgId: "op2swPauseGame",
 export const COMMANDS = {
   // The below command is to stop autoplay not pause - but since we use pausing to halt auto play it makes sense to have it live underneath pause command
   PAUSE: JSON.stringify({
