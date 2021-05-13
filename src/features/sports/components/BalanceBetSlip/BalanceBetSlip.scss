@@ -16,6 +16,7 @@
   }
 
   &--maximized {
+    bottom: 0 !important;
     transition: bottom 100ms ease-out 0ms;
   }
 }

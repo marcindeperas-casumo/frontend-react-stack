@@ -11,7 +11,6 @@ import TrackClick from "Components/TrackClick";
 
 type Props = {
   reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
-  t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
   optIn: () => void;
 };
 

@@ -193,7 +193,6 @@ export function ReelRaceOptInWidget({
         <Flex>
           <ReelRaceOptInPlayButton
             reelRace={reelRace}
-            t={t}
           />
         </Flex>
       </Flex>

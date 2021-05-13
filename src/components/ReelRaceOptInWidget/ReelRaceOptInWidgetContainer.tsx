@@ -27,7 +27,7 @@ export function ReelRaceOptInWidgetContainer() {
 
   return (
     <ReelRaceOptInWidget
-      reelRace={closestReelRace.reelRaces[0]}
+      reelRace={reelRaceGame}
       t={closestReelRace.reelRaces[0].translations}
     />
   );

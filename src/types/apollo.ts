@@ -30,6 +30,7 @@ export interface GamesPaginated {
 export interface Query {
   activeModals: Array<Modal>;
   articlesList?: Maybe<ArticlesList>;
+  betDetails?: Maybe<BetDetails>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -85,6 +86,10 @@ export interface QueryArticlesListArgs {
   slugs: Array<Scalars["String"]>;
 }
 
+export interface QueryBetDetailsArgs {
+  combinationRef?: Maybe<Scalars["BigInt"]>;
+}
+
 export interface QueryCompetitionsArgs {
   lang?: Maybe<Scalars["String"]>;
   market?: Maybe<Scalars["String"]>;
@@ -108,6 +113,10 @@ export interface QueryFavouriteCompetitionsArgs {
 
 export interface QueryGameArgs {
   slug: Scalars["String"];
+}
+
+export interface QueryGameSetsListArgs {
+  verticalId?: Maybe<Scalars["String"]>;
 }
 
 export interface QueryGameStudioArgs {
@@ -449,6 +458,8 @@ export type GamesSortOrder =
   | "HIGHEST_TO_LOWEST_BY_JACKPOT_VALUE"
   | "LOWEST_TO_HIGHEST_BY_JACKPOT_VALUE";
 
+export type GameDisplayMode = "LIVE_CASINO" | "STANDARD";
+
 export interface GameSetFilter {
   key: Scalars["String"];
   title?: Maybe<Scalars["String"]>;
@@ -472,6 +483,7 @@ export interface DetailedGameSet {
   supportedSorts: Array<GamesSortOrder>;
   baseQuery: Scalars["String"];
   additionalFilterGroups: Array<GameFilter>;
+  gameDisplayMode: GameDisplayMode;
 }
 
 export interface GamesList {
@@ -1202,6 +1214,32 @@ export interface ArticlesList {
   id: Scalars["String"];
   name: Scalars["String"];
   articles: Array<Article>;
+}
+
+export interface BetDetails {
+  combinationRef?: Maybe<Scalars["BigInt"]>;
+  playerId?: Maybe<Scalars["String"]>;
+  placedDate?: Maybe<Scalars["String"]>;
+  stake?: Maybe<Scalars["Int"]>;
+  payout?: Maybe<Scalars["Float"]>;
+  currency?: Maybe<Scalars["String"]>;
+  odds?: Maybe<Scalars["Float"]>;
+  status?: Maybe<Scalars["String"]>;
+  betDetails?: Maybe<Scalars["String"]>;
+  legs?: Maybe<Array<Maybe<BetProjectionsLegs>>>;
+  username?: Maybe<Scalars["String"]>;
+}
+
+export interface BetProjectionsLegs {
+  odds?: Maybe<Scalars["Float"]>;
+  outcomes?: Maybe<Array<Maybe<BetProjectionsOutcomes>>>;
+}
+
+export interface BetProjectionsOutcomes {
+  eventGroupPath?: Maybe<Scalars["String"]>;
+  eventName?: Maybe<Scalars["String"]>;
+  criterionName?: Maybe<Scalars["String"]>;
+  outcomeLabel?: Maybe<Scalars["String"]>;
 }
 
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
@@ -2175,7 +2213,9 @@ export type ReelRacesPageTabScheduleQuery = {
   reelRaces: Array<{ id: string } & ReelRaceScheduleCard_ReelRaceFragment>;
 };
 
-export type GetGameSetsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetGameSetsQueryVariables = Exact<{
+  verticalId?: Maybe<Scalars["String"]>;
+}>;
 
 export type GetGameSetsQuery = {
   gameSetsList: Array<{
@@ -2186,6 +2226,7 @@ export type GetGameSetsQuery = {
     defaultSort: GamesSortOrder;
     supportedSorts: Array<GamesSortOrder>;
     baseQuery: string;
+    gameDisplayMode: GameDisplayMode;
     additionalFilterGroups: Array<{
       key: string;
       type: string;
@@ -2830,6 +2871,7 @@ export type UserNavigationQuery = {
   editLabel: string;
   liveLabel: string;
   allSportsLabel: string;
+  virtualsSportsLabel: string;
   sportsNavigation: Array<{
     sport: {
       name: string;
@@ -2879,6 +2921,34 @@ export type SearchQuery = {
     localizedName: string;
     country?: Maybe<string>;
     sport?: Maybe<{ icon?: Maybe<string>; name: string }>;
+  }>;
+};
+
+export type BetDetailsQueryVariables = Exact<{
+  combinationRef: Scalars["BigInt"];
+}>;
+
+export type BetDetailsQuery = {
+  betDetails?: Maybe<{
+    username?: Maybe<string>;
+    payout?: Maybe<number>;
+    currency?: Maybe<string>;
+    status?: Maybe<string>;
+    legs?: Maybe<
+      Array<
+        Maybe<{
+          outcomes?: Maybe<
+            Array<
+              Maybe<{
+                eventName?: Maybe<string>;
+                criterionName?: Maybe<string>;
+                outcomeLabel?: Maybe<string>;
+              }>
+            >
+          >;
+        }>
+      >
+    >;
   }>;
 };
 
