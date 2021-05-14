@@ -36,13 +36,16 @@ export class SkyWindGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null } = this.props.gameData;
-
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     if (url) {
       return {
         ...super.componentProps,
         src: appendToGameUrl({
           url,
-          paramsToAdd: [{ key: "modules", value: "swmp" }],
+          paramsToAdd: [
+            { key: "modules", value: "swmp" },
+            { key: "lobbyUrl", value: encodedLobbyUrl },
+          ],
         }),
       };
     }
