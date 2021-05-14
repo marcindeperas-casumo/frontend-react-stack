@@ -2034,6 +2034,7 @@ export type ReelRaceCard_ReelRaceFragment = {
   spinLimit: number;
   promoted: boolean;
   formattedPrize: string;
+  formattedPrizes: Array<string>;
   remainingSpins: number;
   game: {
     id: string;
@@ -2041,6 +2042,7 @@ export type ReelRaceCard_ReelRaceFragment = {
     logo: string;
     backgroundImage: string;
     slug: string;
+    gameStudio: string;
   };
   translations: {
     optedInCtaSingleGameShort: string;
@@ -2095,6 +2097,7 @@ export type ReelRaceOptInWidgetQuery = {
     translations: {
       optIn: string;
       optedIn: string;
+      optedInCtaSingleGameShort: string;
       startingIn: string;
       endingIn: string;
       spins: string;
@@ -2121,32 +2124,37 @@ export type ReelRacePreviousCard_ReelRaceFragment = {
 export type ReelRaceScheduleCard_ReelRaceFragment = {
   id: string;
   startTime: number;
-  endTime: number;
   optedIn: boolean;
+  endTime: number;
   minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
   formattedPrize: string;
   formattedPrizes: Array<string>;
+  remainingSpins: number;
   game: {
     id: string;
-    slug: string;
     name: string;
     logo: string;
     backgroundImage: string;
+    slug: string;
+    gameStudio: string;
   };
   translations: {
+    optedInCtaSingleGameShort: string;
     optIn: string;
     optedIn: string;
+    endingIn: string;
     startingIn: string;
+    competeFor: string;
+    minBet: string;
     spins: string;
     duration: string;
     durationTemplate: string;
     caveatShort: string;
     today: string;
     tomorrow: string;
-    minBet: string;
   };
 };
 

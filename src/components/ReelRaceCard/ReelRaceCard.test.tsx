@@ -1,17 +1,18 @@
-import { ButtonPrimary } from "@casumo/cmp-button";
+import MockStore from "Components/MockStore";
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
   id: "edc71c70-56d6-11e9-8587-0242ac11000b",
-  startTime: 1580882400000,
+  startTime: +new Date() - 3000,
   optedIn: false,
-  endTime: 1580883600000,
+  endTime: + new Date() + 10000,
   spinLimit: 140,
   minBet: null,
   promoted: false,
   formattedPrize: "€20",
+  formattedPrizes: ["1", "2"],
   remainingSpins: 99,
   status: "Scheduled",
   game: {
@@ -22,6 +23,7 @@ const props = {
     backgroundImage:
       "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
     slug: "jack-the-beanstalk",
+    gameStudio: "game-studio",
   },
   translations: {
     optedInCtaSingleGameShort: "Play",
@@ -35,6 +37,8 @@ const props = {
     durationTemplate: "{{{duration}}} min",
     minBet: "Min Bet",
     caveatShort: "false",
+    today: "sss",
+    tomorrow: "xx"
   },
   optIn: () => {},
 };
@@ -54,27 +58,40 @@ describe("ReelRaceCard", () => {
       endTime: now + 60 * minute,
     };
 
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
+    const rendered = mount(
+      <MockStore>
+        {/* // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+        <ReelRaceCard reelRace={reelRace} optIn={() => undefined} />
+      </MockStore>
+    );
 
     test('should show "Starting In" text', () => {
-      expect(rendered.contains(props.translations.startingIn)).toBe(true);
+      expect(rendered.html().includes(props.translations.startingIn)).toBe(true);
     });
     test('should show "Opt In" button', () => {
       expect(
-        rendered.find("OptInButton").dive().contains(props.translations.optIn)
+        rendered.html().includes(props.translations.optIn)
       ).toBe(true);
     });
 
     test('should show "Opted In" button if user opted for race', () => {
-      rendered.setProps({
-        reelRace: {
-          ...reelRace,
-          optedIn: true,
-        },
-      });
+      const reelRaceOptedIn = {
+        ...reelRace,
+        optedIn: true,
+      };
+
+      const renderedOptedIn = mount(
+        <MockStore>
+          {/* // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+          <ReelRaceCard reelRace={reelRaceOptedIn} optIn={() => undefined} />
+        </MockStore>
+      );
+
+      console.log('renderedOptedIn');
+      console.log(renderedOptedIn.html());
+
       expect(
-        rendered.find("OptInButton").dive().contains(props.translations.optedIn)
+        renderedOptedIn.html().includes(props.translations.optedIn)
       ).toBe(true);
     });
   });
@@ -89,24 +106,26 @@ describe("ReelRaceCard", () => {
       endTime: now + 30 * minute,
       launchGame: launchGame,
     };
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
+
+    const rendered = mount(
+      <MockStore>
+        {/* // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+        <ReelRaceCard reelRace={reelRace} optIn={() => undefined} />
+      </MockStore>
+    );
 
     test('should show "Ending In" text', () => {
-      expect(rendered.contains(props.translations.endingIn)).toBe(true);
+      expect(rendered.html().includes(props.translations.endingIn)).toBe(true);
     });
 
     test('should show "Play" button', () => {
       expect(
-        rendered
-          .find(ButtonPrimary)
-          .children()
-          .contains(props.translations.optedInCtaSingleGameShort)
+        rendered.html().includes(props.translations.optedInCtaSingleGameShort)
       ).toBe(true);
     });
 
     test("shouldn't contain promoted badge", () => {
-      expect(rendered.find(".c-reel-race__badge")).toHaveLength(0);
+      expect(rendered.html().includes(".c-reel-race__badge")).toBe(false);
     });
   });
 
@@ -120,9 +139,13 @@ describe("ReelRaceCard", () => {
       startTime: now,
       endTime: now + 30 * minute,
     };
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    const rendered = shallow(<ReelRaceCard reelRace={reelRace} />);
 
-    expect(rendered.find(".c-reel-race__badge")).toHaveLength(1);
+    const rendered = mount(
+      <MockStore>
+        {/* // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
+        <ReelRaceCard reelRace={reelRace} optIn={() => undefined} />
+      </MockStore>
+    );
+    expect(rendered.html().includes(".c-reel-race__badge")).toBe(false);
   });
 });

@@ -1,85 +1,76 @@
 import * as React from "react";
-import * as A from "Types/apollo";
 import { useInterval } from "react-use";
 import { DateTime } from "luxon";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon } from "@casumo/cmp-icons";
+import * as A from "Types/apollo";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
-import "./reelRaceOptInWidget.scss"
+import "./reelRaceOptInWidget.scss";
 
 type Props = {
-  reelRace: A.ReelRaceOptInWidgetQuery["reelRaces"][0];
+  reelRace: A.ReelRaceCard_ReelRaceFragment;
   t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
 };
 
 const DEFAULT_REMAINING = "--:--";
 
-function getRemainingTime (
-  start: number,
-  end: number,
-  inProgress: boolean
-) {
-
+function getRemainingTime(start: number, end: number, inProgress: boolean) {
   const init = inProgress ? end : start;
 
   // for case when user keeps the widget opened
   // after RR has ended
-  if (init - +new Date() < 0){
+  if (init - Number(new Date()) < 0) {
     return DEFAULT_REMAINING;
-  };
+  }
 
-  return DateTime
-    .fromMillis(init)
-    .diff(DateTime.fromMillis(+new Date()))
+  return DateTime.fromMillis(init)
+    .diff(DateTime.fromMillis(Number(new Date())))
     .toFormat("mm:ss");
-};
+}
 
-function getDuration(
-  start: number,
-  end: number
-) {
-  return DateTime
-    .fromMillis(end)
+function getDuration(start: number, end: number) {
+  return DateTime.fromMillis(end)
     .diff(DateTime.fromMillis(start))
     .toFormat("mm");
-};
+}
 
-export function ReelRaceOptInWidget({
-  reelRace,
-  t,
-}: Props) {
+export function ReelRaceOptInWidget({ reelRace, t }: Props) {
   const [remaining, setRemainig] = React.useState<string>(DEFAULT_REMAINING);
   const [rrInProgress, setRRInProgress] = React.useState<boolean>(false);
 
   useInterval(() => {
-    setRRInProgress(reelRace.startTime < +new Date());
-    setRemainig(getRemainingTime(
-      reelRace.startTime,
-      reelRace.endTime,
-      rrInProgress)
+    setRRInProgress(reelRace.startTime < Number(new Date()));
+    setRemainig(
+      getRemainingTime(reelRace.startTime, reelRace.endTime, rrInProgress)
     );
-  }, 1000)
+  }, 1000);
 
-  const prizesCounter = reelRace.formattedPrizes.length
+  const prizesCounter = reelRace.formattedPrizes.length;
   const isPromoted = reelRace.promoted;
 
   return (
-    <div className={cx("c-reel-race-opt-in-widget o-position--relative bg-grey-90 t-border-r u-padding-x--md u-padding-y--md", {
-      "t-border--md t-border-yellow-30": isPromoted,
-    })}>
+    <div
+      className={cx(
+        "c-reel-race-opt-in-widget o-position--relative bg-grey-90 t-border-r u-padding-x--md u-padding-y--md",
+        {
+          "t-border--md t-border-yellow-30": isPromoted,
+        }
+      )}
+    >
       <Text
         size="sm"
-        className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md">
+        className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md"
+      >
         Next Race coming up
       </Text>
-      {isPromoted && <TournamentIcon className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black" />}
-      <Flex
-        align="center"
-      >
+      {isPromoted && (
+        <TournamentIcon className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black" />
+      )}
+      <Flex align="center">
         <Flex.Item>
           <GameThumb
             src={reelRace.game.backgroundImage}
@@ -93,9 +84,7 @@ export function ReelRaceOptInWidget({
           <Text className="text-yellow-30 font-bold u-margin-bottom--sm u-margin-top--none">
             {reelRace.formattedPrize} Reel Race
           </Text>
-          <span className="text-grey-50">
-            {reelRace.game.name}
-          </span>
+          <span className="text-grey-50">{reelRace.game.name}</span>
         </Flex.Item>
       </Flex>
 
@@ -119,10 +108,7 @@ export function ReelRaceOptInWidget({
           >
             {reelRace.translations.spins}
           </Text>
-          <Text
-            tag="div"
-            className="u-font-weight-bold"
-          >
+          <Text tag="div" className="u-font-weight-bold">
             {reelRace.spinLimit}
           </Text>
         </Flex>
@@ -138,10 +124,7 @@ export function ReelRaceOptInWidget({
           >
             {reelRace.translations.duration}
           </Text>
-          <Text
-            className="u-font-weight-bold"
-            tag="div"
-          >
+          <Text className="u-font-weight-bold" tag="div">
             {reelRace.translations.durationTemplate &&
               interpolate(reelRace.translations.durationTemplate, {
                 duration: getDuration(reelRace.startTime, reelRace.endTime),
@@ -160,19 +143,13 @@ export function ReelRaceOptInWidget({
           >
             Prizes
           </Text>
-          <Text
-            tag="div"
-            className="u-font-weight-bold"
-          >
+          <Text tag="div" className="u-font-weight-bold">
             #1 - {prizesCounter}
           </Text>
         </Flex>
       </Flex>
 
-      <Flex
-        className="o-flex--1"
-        justify="space-between"
-      >
+      <Flex className="o-flex--1" justify="space-between">
         <Flex direction="vertical">
           <Text
             size="xs"
@@ -192,6 +169,8 @@ export function ReelRaceOptInWidget({
 
         <Flex>
           <ReelRaceOptInPlayButton
+            showOptedIn
+            variant="secondary"
             reelRace={reelRace}
           />
         </Flex>

@@ -4,18 +4,13 @@ import { useReelRaceOptIn } from "Utils/hooks/useReelRaceOptIn";
 import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 
 type TProps = {
-  reelRace: A.ReelRaceScheduleCard_ReelRaceFragment;
+  reelRace: A.ReelRaceCard_ReelRaceFragment;
+  variant?: "primary" | "secondary";
+  showOptedIn?: boolean;
 };
 
-export function ReelRaceOptInPlayButtonContainer({
-  reelRace,
-}: TProps) {
-  const { optInAction } = useReelRaceOptIn(reelRace);
-  return (
-    <ReelRaceOptInPlayButton
-      // expanded={expanded}
-      optIn={optInAction}
-      reelRace={reelRace}
-    />
-  );
+export function ReelRaceOptInPlayButtonContainer(props: TProps) {
+  const { optInAction } = useReelRaceOptIn(props.reelRace);
+
+  return <ReelRaceOptInPlayButton {...props} optIn={optInAction} />;
 }

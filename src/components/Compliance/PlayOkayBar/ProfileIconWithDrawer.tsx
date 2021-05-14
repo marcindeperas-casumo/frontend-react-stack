@@ -152,7 +152,7 @@ export const ProfileIconWithDrawer = ({
             className={`${baseClassName}__item u-padding-bottom`}
           />
 
-          <ReelRaceOptInWidget />
+          {!isNativeByUserAgent() && <ReelRaceOptInWidget />}
         </div>
       </CSSTransition>
     </React.Fragment>

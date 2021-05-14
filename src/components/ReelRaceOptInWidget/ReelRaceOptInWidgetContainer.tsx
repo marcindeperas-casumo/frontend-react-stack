@@ -1,9 +1,9 @@
 import * as React from "react";
-import * as A from "Types/apollo";
 import { useQuery } from "@apollo/client";
+import * as A from "Types/apollo";
+import { useGameModelContext } from "Components/GamePage/Contexts";
 import { ReelRaceOptInWidget } from "./ReelRaceOptInWidget";
 import { ReelRaceOptInWidgetQuery } from "./ReelRaceOptInWidget.graphql";
-import { useGameModelContext } from "Components/GamePage/Contexts";
 
 export function ReelRaceOptInWidgetContainer() {
   const { slug: currentGameSlug } = useGameModelContext();
@@ -19,7 +19,8 @@ export function ReelRaceOptInWidgetContainer() {
   });
 
   const reelRaceGame = closestReelRace?.reelRaces[0];
-  const currentGameIsClosestRROptedIn = reelRaceGame?.game?.slug === currentGameSlug && reelRaceGame?.optedIn;
+  const currentGameIsClosestRROptedIn =
+    reelRaceGame?.game?.slug === currentGameSlug && reelRaceGame?.optedIn;
 
   if (closestRRLoading || currentGameIsClosestRROptedIn) {
     return null;
@@ -27,7 +28,7 @@ export function ReelRaceOptInWidgetContainer() {
 
   return (
     <ReelRaceOptInWidget
-      reelRace={reelRaceGame}
+      reelRace={reelRaceGame as A.ReelRaceCard_ReelRaceFragment}
       t={closestReelRace.reelRaces[0].translations}
     />
   );

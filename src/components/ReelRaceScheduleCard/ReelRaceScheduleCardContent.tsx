@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as A from "Types/apollo";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { Button } from "@casumo/cmp-button";
 import { DateTime } from "luxon";
+import * as A from "Types/apollo";
 import { interpolate } from "Utils";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 import type { TReelRacesContentPage } from "Components/ReelRacesPage/ReelRacesPageContainer";
@@ -141,10 +141,7 @@ export function ReelRaceScheduleCardContent({
               </Button>
             </Flex.Block>
             <Flex.Block className={cx(!isNotMobile && "o-flex--1")}>
-              <ReelRaceOptInPlayButton
-                reelRace={reelRace}
-                t={t}
-              />
+              <ReelRaceOptInPlayButton reelRace={reelRace} />
             </Flex.Block>
           </Flex>
         </Flex.Item>

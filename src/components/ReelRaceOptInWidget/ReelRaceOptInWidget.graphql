@@ -23,6 +23,7 @@ query ReelRaceOptInWidgetQuery($limit: Int!, $prioritisePromoted: Boolean) {
         translations {
             optIn
             optedIn
+            optedInCtaSingleGameShort
             startingIn
             endingIn
             spins
