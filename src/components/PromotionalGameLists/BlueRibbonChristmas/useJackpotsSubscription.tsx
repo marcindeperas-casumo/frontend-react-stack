@@ -55,6 +55,11 @@ export function useJackpotsSubscription({
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
+      // eslint-disable-next-line no-constant-condition
+      if (true) {
+        return;
+      }
+
       if (!event.data.notificationAdded) {
         return;
       }
