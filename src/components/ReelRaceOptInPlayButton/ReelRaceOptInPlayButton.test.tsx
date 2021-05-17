@@ -6,9 +6,9 @@ import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 // currently in progress
 const reelRace = {
   id: "edc71c70-56d6-11e9-8587-0242ac11000b",
-  startTime: + new Date() - 3000,
+  startTime: Number(new Date()) - 3000,
   optedIn: false,
-  endTime: + new Date() + 10000,
+  endTime: Number(new Date()) + 10000,
   spinLimit: 140,
   minBet: null,
   promoted: false,
@@ -20,9 +20,9 @@ const reelRace = {
     id: "fa9aa550-6be1-11e4-a1d6-005056a03af2",
     name: "Jack and the Beanstalk",
     logo:
-    "https://cms.casumo.com/wp-content/uploads/2014/02/JackOfTheBeanstalk_Logo.png",
+      "https://cms.casumo.com/wp-content/uploads/2014/02/JackOfTheBeanstalk_Logo.png",
     backgroundImage:
-    "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
+      "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
     slug: "jack-the-beanstalk",
     gameStudio: "game-studio",
   },
@@ -39,14 +39,16 @@ const reelRace = {
     minBet: "Min Bet",
     caveatShort: "false",
     today: "sss",
-    tomorrow: "xx"
+    tomorrow: "xx",
   },
 };
 
 describe("ReelRaceOptInPlayButton", () => {
   test("should call optIn callback", () => {
     const onOptIn = jest.fn();
-    const rendered = mount(<ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} />);
+    const rendered = mount(
+      <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} />
+    );
 
     expect(onOptIn).toHaveBeenCalledTimes(0);
     rendered.find(ButtonPrimary).simulate("click");
@@ -59,7 +61,8 @@ describe("ReelRaceOptInPlayButton", () => {
       <ReelRaceOptInPlayButton
         reelRace={reelRace}
         optIn={onOptIn}
-        variant="secondary" />
+        variant="secondary"
+      />
     );
 
     expect(rendered.find(ButtonSecondary)).toHaveLength(1);

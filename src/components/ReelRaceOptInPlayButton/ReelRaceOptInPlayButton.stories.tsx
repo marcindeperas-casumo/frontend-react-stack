@@ -40,7 +40,7 @@ const props: TProps = {
       today: "string",
       tomorrow: "string",
     },
-  }
+  },
 };
 
 stories.add("Default", () => {
@@ -57,10 +57,10 @@ stories.add("Opted-In - no play button", () => {
     reelRace: {
       ...props.reelRace,
       // didnt start yet
-      startTime: + new Date() + 1000,
+      startTime: Number(new Date()) + 1000,
       optedIn: true,
     },
-    showOptedIn: true
+    showOptedIn: true,
   };
 
   return <ReelRaceOptInPlayButton {...optedInProps} />;

@@ -70,16 +70,19 @@ export function ReelRaceOptInPlayButton({
     </TrackClick>
   );
 
+  const getActionButton = () => {
+    if (!reelRace.optedIn) {
+      return <OptInButton />;
+    }
+
+    if (inProgress) {
+      return <PlayButton />;
+    }
+
+    return showOptedIn ? <OptedInButton /> : <PlayButton />;
+  };
+
   return (
-    <div className="u-width--full u-padding-left--md">
-      {reelRace.optedIn ? (
-        inProgress ? <PlayButton /> : (
-          showOptedIn ? <OptedInButton /> : <PlayButton />
-        )
-        // <PlayButton />
-      ) : (
-        <OptInButton />
-      )}
-    </div>
+    <div className="u-width--full u-padding-left--md">{getActionButton()}</div>
   );
 }

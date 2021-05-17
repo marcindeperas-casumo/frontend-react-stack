@@ -68,7 +68,10 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
         Next Race coming up
       </Text>
       {isPromoted && (
-        <TournamentIcon className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black" />
+        <TournamentIcon
+          size="md"
+          className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black"
+        />
       )}
       <Flex align="center">
         <Flex.Item>

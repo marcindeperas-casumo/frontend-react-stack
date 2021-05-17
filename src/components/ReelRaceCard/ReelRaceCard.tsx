@@ -15,9 +15,9 @@ import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import { interpolate, timeRemainingBeforeStart } from "Utils";
+import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
-import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 
 type Props = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -222,7 +222,10 @@ export class ReelRaceCard extends React.Component<Props> {
 
             <Flex direction="horizontal" justify="space-between" align="end">
               {this.countdown}
-              <ReelRaceOptInPlayButton reelRace={this.props.reelRace} showOptedIn />
+              <ReelRaceOptInPlayButton
+                reelRace={this.props.reelRace}
+                showOptedIn
+              />
             </Flex>
           </Flex>
         </Flex>

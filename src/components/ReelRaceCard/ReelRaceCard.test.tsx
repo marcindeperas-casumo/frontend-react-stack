@@ -1,13 +1,13 @@
-import MockStore from "Components/MockStore";
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
+import MockStore from "Components/MockStore";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
   id: "edc71c70-56d6-11e9-8587-0242ac11000b",
-  startTime: +new Date() - 3000,
+  startTime: Number(new Date()) - 3000,
   optedIn: false,
-  endTime: + new Date() + 10000,
+  endTime: Number(new Date()) + 10000,
   spinLimit: 140,
   minBet: null,
   promoted: false,
@@ -38,7 +38,7 @@ const props = {
     minBet: "Min Bet",
     caveatShort: "false",
     today: "sss",
-    tomorrow: "xx"
+    tomorrow: "xx",
   },
   optIn: () => {},
 };
@@ -66,12 +66,12 @@ describe("ReelRaceCard", () => {
     );
 
     test('should show "Starting In" text', () => {
-      expect(rendered.html().includes(props.translations.startingIn)).toBe(true);
+      expect(rendered.html().includes(props.translations.startingIn)).toBe(
+        true
+      );
     });
     test('should show "Opt In" button', () => {
-      expect(
-        rendered.html().includes(props.translations.optIn)
-      ).toBe(true);
+      expect(rendered.html().includes(props.translations.optIn)).toBe(true);
     });
 
     test('should show "Opted In" button if user opted for race', () => {
@@ -87,12 +87,9 @@ describe("ReelRaceCard", () => {
         </MockStore>
       );
 
-      console.log('renderedOptedIn');
-      console.log(renderedOptedIn.html());
-
-      expect(
-        renderedOptedIn.html().includes(props.translations.optedIn)
-      ).toBe(true);
+      expect(renderedOptedIn.html().includes(props.translations.optedIn)).toBe(
+        true
+      );
     });
   });
 
