@@ -66,7 +66,7 @@ export const playerPaymentsTextsSelector = createSelector(
   mapPaymentTranslations
 );
 
-export const playerBonusTextSelector = createSelector(
+export const playerBonusTextSelector = createSelector<any, any, string>(
   playerPaymentsTextsSelector,
   prop("textBonus")
 );
