@@ -44,9 +44,9 @@ const Column = (props: {
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
-export class ReelRaceCard extends React.Component<Props> {
-  get countdown() {
-    const { translations: t, endTime, startTime, status } = this.props.reelRace;
+export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
+  const countdown = () => {
+    const { translations: t, endTime, startTime, status } = reelRace;
 
     if (status === RACE_STATE.STARTED) {
       return (
@@ -98,152 +98,150 @@ export class ReelRaceCard extends React.Component<Props> {
     );
   }
 
-  get duration() {
-    const { endTime, startTime } = this.props.reelRace;
+  const duration = () => {
+    const { endTime, startTime } = reelRace;
     return DateTime.fromMillis(endTime)
       .diff(DateTime.fromMillis(startTime))
       .toFormat("mm");
   }
 
-  showCaveatsModal = () => {
+  const showCaveatsModal = () => {
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
-  render() {
-    const {
-      translations: t,
-      game,
-      spinLimit,
-      formattedPrize,
-      promoted,
-    } = this.props.reelRace;
+  const {
+    translations: t,
+    game,
+    spinLimit,
+    formattedPrize,
+    promoted,
+  } = reelRace;
 
-    const trackData = {
-      [EVENT_PROPS.LOCATION]: "Reel Race",
-      spinLimit,
-      timeLimit: this.duration,
-      mainPrize: formattedPrize,
-      name: game.name,
-      isPromoted: promoted,
-    };
+  const trackData = {
+    [EVENT_PROPS.LOCATION]: "Reel Race",
+    spinLimit,
+    timeLimit: duration(),
+    mainPrize: formattedPrize,
+    name: game.name,
+    isPromoted: promoted,
+  };
 
-    return (
-      // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
-      <TrackProvider data={trackData}>
+  return (
+    // @ts-expect-error ts-migrate(2746) FIXME: This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message
+    <TrackProvider data={trackData}>
+      <Flex
+        className={[
+          "o-flex__item",
+          "o-flex__item-fixed-size",
+          "t-border-r--md",
+          "u-overflow--hidden",
+          "o-ratio",
+          "o-ratio--reel-race-card",
+          "text-yellow-30",
+          "c-reel-race-card",
+        ].join(" ")}
+        direction="vertical"
+        justify="space-between"
+        spacing="none"
+      >
+        <ImageLazy
+          className="o-ratio__content"
+          src={game?.backgroundImage}
+          alt={game?.name}
+          imgixOpts={{
+            w: 348,
+            h: 232,
+            high: -70,
+            fit: "crop",
+            blendAlpha: 55,
+            blendColor: "000000",
+          }}
+        />
+
         <Flex
-          className={[
-            "o-flex__item",
-            "o-flex__item-fixed-size",
-            "t-border-r--md",
-            "u-overflow--hidden",
-            "o-ratio",
-            "o-ratio--reel-race-card",
-            "text-yellow-30",
-            "c-reel-race-card",
-          ].join(" ")}
+          className="u-padding--md o-ratio__content"
           direction="vertical"
-          justify="space-between"
           spacing="none"
+          justify="space-between"
         >
-          <ImageLazy
-            className="o-ratio__content"
-            src={game?.backgroundImage}
-            alt={game?.name}
-            imgixOpts={{
-              w: 348,
-              h: 232,
-              high: -70,
-              fit: "crop",
-              blendAlpha: 55,
-              blendColor: "000000",
-            }}
-          />
-
-          <Flex
-            className="u-padding--md o-ratio__content"
-            direction="vertical"
-            spacing="none"
-            justify="space-between"
+          <TrackClick
+            eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
+            data={{ state: BUTTON_STATE.PLAY }}
           >
-            <TrackClick
-              eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
-              data={{ state: BUTTON_STATE.PLAY }}
+            <Flex
+              align="center"
+              className="u-cursor--pointer"
+              onClick={() => launchGame({ slug: game.slug })}
             >
-              <Flex
-                align="center"
-                className="u-cursor--pointer"
-                onClick={() => launchGame({ slug: game.slug })}
-              >
-                <GameThumb
-                  src={game.backgroundImage}
-                  alt={game.name}
-                  mark={game.logo}
-                />
-                {promoted && (
-                  <GrandReelRaceBadge className="c-reel-race__badge" />
-                )}
-                <Flex
-                  direction="vertical"
-                  spacing="sm"
-                  className="u-margin-left--md"
-                >
-                  <Text
-                    tag="span"
-                    className="u-margin-bottom--sm u-font-weight-bold"
-                  >
-                    {t.competeFor &&
-                      interpolate(t.competeFor, {
-                        prize: formattedPrize,
-                      })}
-                  </Text>
-                  <Text
-                    tag="span"
-                    size="xs"
-                    className="text-white t-opacity--75"
-                  >
-                    <DangerousHtml html={game.name} />
-                  </Text>
-                </Flex>
-              </Flex>
-            </TrackClick>
-
-            <Flex align="center">
-              {t.spins && <Column top={spinLimit} bottom={t.spins} />}
-              <div className="c-reel-race__separator u-margin-x--md" />
-              {t.durationTemplate && (
-                <Column
-                  top={interpolate(t.durationTemplate, {
-                    duration: this.duration,
-                  })}
-                  bottom={t.duration}
-                />
-              )}
-            </Flex>
-
-            <Flex direction="horizontal" justify="space-between" align="end">
-              {this.countdown}
-              <ReelRaceOptInPlayButton
-                reelRace={this.props.reelRace}
-                showOptedIn
+              <GameThumb
+                src={game.backgroundImage}
+                alt={game.name}
+                mark={game.logo}
               />
+              {promoted && (
+                <GrandReelRaceBadge className="c-reel-race__badge" />
+              )}
+              <Flex
+                direction="vertical"
+                spacing="sm"
+                className="u-margin-left--md"
+              >
+                <Text
+                  tag="span"
+                  className="u-margin-bottom--sm u-font-weight-bold"
+                >
+                  {t.competeFor &&
+                    interpolate(t.competeFor, {
+                      prize: formattedPrize,
+                    })}
+                </Text>
+                <Text
+                  tag="span"
+                  size="xs"
+                  className="text-white t-opacity--75"
+                >
+                  <DangerousHtml html={game.name} />
+                </Text>
+              </Flex>
             </Flex>
+          </TrackClick>
+
+          <Flex align="center">
+            {t.spins && <Column top={spinLimit} bottom={t.spins} />}
+            <div className="c-reel-race__separator u-margin-x--md" />
+            {t.durationTemplate && (
+              <Column
+                top={interpolate(t.durationTemplate, {
+                  duration: duration(),
+                })}
+                bottom={t.duration}
+              />
+            )}
+          </Flex>
+
+          <Flex direction="horizontal" justify="space-between" align="end">
+            {countdown()}
+            <ReelRaceOptInPlayButton
+              reelRace={reelRace}
+              showOptedIn
+            />
           </Flex>
         </Flex>
-        {t.caveatShort && t.caveatShort !== "false" && (
-          <Text
-            size="xs"
-            className="c-reel-race__terms u-margin-top--md text-grey-90"
-            onClick={this.showCaveatsModal}
-          >
-            <DangerousHtml
-              html={interpolate(t.caveatShort, {
-                ctaTermsAndConditions:
-                  'class="text-black u-font-weight-bold u-text-decoration-underline"',
-              })}
-            />
-          </Text>
-        )}
-      </TrackProvider>
-    );
-  }
+      </Flex>
+      {t.caveatShort && t.caveatShort !== "false" && (
+        <Text
+          size="xs"
+          className="c-reel-race__terms u-margin-top--md text-grey-90"
+          onClick={showCaveatsModal}
+        >
+          <DangerousHtml
+            html={interpolate(t.caveatShort, {
+              ctaTermsAndConditions:
+                'class="text-black u-font-weight-bold u-text-decoration-underline"',
+            })}
+          />
+        </Text>
+      )}
+    </TrackProvider>
+  );
 }
