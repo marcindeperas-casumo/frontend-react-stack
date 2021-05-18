@@ -1,13 +1,14 @@
 import * as React from "react";
+import { useTranslatedUrl } from "Utils/hooks";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import * as A from "Types/apollo";
 import { noop } from "Utils";
-import { launchGame } from "Services/LaunchGameService";
 import { EVENTS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
+import { ROUTE_IDS } from "Src/constants";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -24,6 +25,10 @@ export function ReelRaceOptInPlayButton({
 }: TProps) {
   const inProgress = reelRace.startTime < Number(new Date());
   const ButtonVariant = variant === "primary" ? ButtonPrimary : ButtonSecondary;
+
+  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.PLAY, {
+    slug: reelRace.game.slug,
+  });
 
   const OptInButton = () => (
     <TrackClick
@@ -59,7 +64,7 @@ export function ReelRaceOptInPlayButton({
     >
       <ButtonVariant
         size="md"
-        onClick={() => launchGame({ slug: reelRace.game.slug })}
+        onClick={() => window.location.pathname = gameDetailsPath}
         className="u-width--full"
       >
         <PlayIcon size="sm" />

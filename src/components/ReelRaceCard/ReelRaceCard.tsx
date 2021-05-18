@@ -44,7 +44,7 @@ const Column = (props: {
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
-export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
+export const ReelRaceCard = ({ reelRace, optIn }: Props) => {
   const countdown = () => {
     const { translations: t, endTime, startTime, status } = reelRace;
 
@@ -96,14 +96,14 @@ export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
         </Text>
       </Flex>
     );
-  }
+  };
 
   const duration = () => {
     const { endTime, startTime } = reelRace;
     return DateTime.fromMillis(endTime)
       .diff(DateTime.fromMillis(startTime))
       .toFormat("mm");
-  }
+  };
 
   const showCaveatsModal = () => {
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
@@ -195,11 +195,7 @@ export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
                       prize: formattedPrize,
                     })}
                 </Text>
-                <Text
-                  tag="span"
-                  size="xs"
-                  className="text-white t-opacity--75"
-                >
+                <Text tag="span" size="xs" className="text-white t-opacity--75">
                   <DangerousHtml html={game.name} />
                 </Text>
               </Flex>
@@ -221,10 +217,7 @@ export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
 
           <Flex direction="horizontal" justify="space-between" align="end">
             {countdown()}
-            <ReelRaceOptInPlayButton
-              reelRace={reelRace}
-              showOptedIn
-            />
+            <ReelRaceOptInPlayButton reelRace={reelRace} showOptedIn />
           </Flex>
         </Flex>
       </Flex>
@@ -244,4 +237,4 @@ export const ReelRaceCard = ({ reelRace, optIn}: Props) => {
       )}
     </TrackProvider>
   );
-}
+};
