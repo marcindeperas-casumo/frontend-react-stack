@@ -9,7 +9,6 @@ query GetJackpotConfigForWidget($slug: String!) {
       potKey
       name
       shortName
-      isSharedPot
       mainWinRatio
       sharedPot { 
         name

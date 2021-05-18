@@ -1263,9 +1263,9 @@ export interface SharedPot {
   winText: Scalars["String"];
   winTextAmount: Scalars["String"];
   restartText: Scalars["String"];
-  winNotificationIcon?: Maybe<Scalars["String"]>;
-  winNotificationTitle?: Maybe<Scalars["String"]>;
-  winNotificationContent?: Maybe<Scalars["String"]>;
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
 }
 
 export interface Pot {
@@ -1277,12 +1277,10 @@ export interface Pot {
   winText: Scalars["String"];
   mainWinRatio: Scalars["Int"];
   communityWinRatio: Scalars["Int"];
-  value: number;
   maxWinAmount: Scalars["Int"];
-  winNotificationIcon?: Maybe<Scalars["String"]>;
-  winNotificationTitle?: Maybe<Scalars["String"]>;
-  winNotificationContent?: Maybe<Scalars["String"]>;
-  isSharedPot?: Maybe<Scalars["Boolean"]>;
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -2040,7 +2038,6 @@ export type GetJackpotConfigForWidgetQuery = {
       potKey: string;
       name: string;
       shortName: string;
-      isSharedPot?: Maybe<boolean>;
       mainWinRatio: number;
       sharedPot?: Maybe<{ name: string; shortName: string; icon: string }>;
     }>;
