@@ -29,7 +29,6 @@ export function ReelRaceOptInWidgetContainer() {
   return (
     <ReelRaceOptInWidget
       reelRace={reelRaceGame as A.ReelRaceCard_ReelRaceFragment}
-      t={closestReelRace.reelRaces[0].translations}
     />
   );
 }

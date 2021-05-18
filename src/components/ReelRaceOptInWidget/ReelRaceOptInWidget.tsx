@@ -1,56 +1,44 @@
 import * as React from "react";
 import { useInterval } from "react-use";
-import { DateTime } from "luxon";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
+import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
+import { DEFAULT_REMAINING, getRemainingTime, getDuration } from "./reelRaceOptInWidget.utils";
 import "./reelRaceOptInWidget.scss";
 
 type Props = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
-  t: A.ReelRaceOptInWidgetQuery["reelRaces"][0]["translations"];
 };
 
-const DEFAULT_REMAINING = "--:--";
+type TState = {
+  remaining: string;
+  rrInProgress: boolean;
+};
 
-function getRemainingTime(start: number, end: number, inProgress: boolean) {
-  const init = inProgress ? end : start;
-
-  // for case when user keeps the widget opened
-  // after RR has ended
-  if (init - Number(new Date()) < 0) {
-    return DEFAULT_REMAINING;
-  }
-
-  return DateTime.fromMillis(init)
-    .diff(DateTime.fromMillis(Number(new Date())))
-    .toFormat("mm:ss");
-}
-
-function getDuration(start: number, end: number) {
-  return DateTime.fromMillis(end)
-    .diff(DateTime.fromMillis(start))
-    .toFormat("mm");
-}
-
-export function ReelRaceOptInWidget({ reelRace, t }: Props) {
-  const [remaining, setRemainig] = React.useState<string>(DEFAULT_REMAINING);
-  const [rrInProgress, setRRInProgress] = React.useState<boolean>(false);
+export function ReelRaceOptInWidget({ reelRace }: Props) {
+  const [state, setState] = React.useState<TState>({
+    remaining: DEFAULT_REMAINING,
+    rrInProgress: false,
+  });
 
   useInterval(() => {
-    setRRInProgress(reelRace.startTime < Number(new Date()));
-    setRemainig(
-      getRemainingTime(reelRace.startTime, reelRace.endTime, rrInProgress)
-    );
+    setState((curr) => ({
+      rrInProgress: reelRace.startTime < Number(new Date()),
+      remaining: getRemainingTime(reelRace.startTime, reelRace.endTime, curr.rrInProgress),
+    }));
   }, 1000);
 
   const prizesCounter = reelRace.formattedPrizes.length;
   const isPromoted = reelRace.promoted;
+
+  const t = reelRace.translations;
+  const extraTranslations = useTranslations<{ schedule_next_text: string }>("mobile.tournament-campaigns");
 
   return (
     <div
@@ -65,7 +53,7 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
         size="sm"
         className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md"
       >
-        Next Race coming up
+        {extraTranslations.schedule_next_text}
       </Text>
       {isPromoted && (
         <TournamentIcon
@@ -85,7 +73,10 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
         </Flex.Item>
         <Flex.Item>
           <Text className="text-yellow-30 font-bold u-margin-bottom--sm u-margin-top--none">
-            {reelRace.formattedPrize} Reel Race
+            {t.competeFor &&
+              interpolate(t.competeFor, {
+                prize: reelRace.formattedPrize,
+            })}
           </Text>
           <span className="text-grey-50">{reelRace.game.name}</span>
         </Flex.Item>
@@ -109,7 +100,7 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
             size="xs"
             className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
-            {reelRace.translations.spins}
+            {t.spins}
           </Text>
           <Text tag="div" className="u-font-weight-bold">
             {reelRace.spinLimit}
@@ -125,11 +116,11 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
             tag="div"
             className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
-            {reelRace.translations.duration}
+            {t.duration}
           </Text>
           <Text className="u-font-weight-bold" tag="div">
-            {reelRace.translations.durationTemplate &&
-              interpolate(reelRace.translations.durationTemplate, {
+            {t.durationTemplate &&
+              interpolate(t.durationTemplate, {
                 duration: getDuration(reelRace.startTime, reelRace.endTime),
               })}
           </Text>
@@ -159,14 +150,14 @@ export function ReelRaceOptInWidget({ reelRace, t }: Props) {
             tag="div"
             className="u-font-weight-bold text-white text-grey-50"
           >
-            {rrInProgress ? t.endingIn : t.startingIn}
+            {state.rrInProgress ? t.endingIn : t.startingIn}
           </Text>
           <Text
             size="lg"
             tag="div"
             className="u-font-weight-bold text-yellow-30"
           >
-            {remaining}
+            {state.remaining}
           </Text>
         </Flex>
 

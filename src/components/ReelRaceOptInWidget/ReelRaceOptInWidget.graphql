@@ -21,6 +21,7 @@ query ReelRaceOptInWidgetQuery($limit: Int!, $prioritisePromoted: Boolean) {
         formattedPrize
         formattedPrizes
         translations {
+            competeFor
             optIn
             optedIn
             optedInCtaSingleGameShort

@@ -44,7 +44,7 @@ const Column = (props: {
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
-export const ReelRaceCard = ({ reelRace, optIn }: Props) => {
+export const ReelRaceCard = ({ reelRace }: Props) => {
   const countdown = () => {
     const { translations: t, endTime, startTime, status } = reelRace;
 
