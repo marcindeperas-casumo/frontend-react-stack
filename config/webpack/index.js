@@ -15,7 +15,7 @@ module.exports = env => {
       ROOT,
       brand ? `src/index.${brand}.tsx` : "src/index.tsx"
     ),
-    devtool: env.development ? "cheap-module-source-map" : false,
+    devtool: env.development ? "cheap-module-source-map" : "hidden-source-map",
     resolve,
     output: {
       path: env.production ? path.resolve(ROOT, "build") : undefined,

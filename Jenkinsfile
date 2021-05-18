@@ -27,6 +27,7 @@ if (env.BRANCH_NAME == "master") {
         .with(Release) { it.release() }
         .with(DeployService) { it.deployToProduction('frontend-react-stack') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
+        .customStep('Rollbar send source maps', { rollbarSendSourceMaps() })
                 .build('nvm-ec2-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
@@ -93,6 +94,21 @@ def rollbarDeployTracking() {
             --header 'content-type: application/json' \
             --data '${data}'")
         }
+}
+
+def rollbarSendSourceMaps() {
+    sh """#!/bin/bash
+    cd ./build/react-stack/js
+    for source_map_file in \$(find . -name '*.map'); do
+        minified_file=\$(sed 's/.{4}\$/' <<< "${source_map_file}")
+
+        curl https://api.rollbar.com/api/1/sourcemap \
+            -F access_token="${ROLLBAR_REACT_STACK}" \
+            -F version="${GIT_COMMIT}" \
+            -F minified_url="${minified_file}" \
+            -F source_map=@"${source_map_file}"
+    done
+    """
 }
 
 def shell(cmd) {
