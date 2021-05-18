@@ -17,4 +17,4 @@ query GetJackpotConfigForWidget($slug: String!) {
       }
     }
   }
-}	
+}
