@@ -3,6 +3,7 @@ const brand = process.env.APP_BRAND;
 module.exports = {
   globals: {
     __DEV__: true,
+    __CODE_VERSION__: "0.0.0",
   },
   preset: "ts-jest",
   setupFilesAfterEnv: [

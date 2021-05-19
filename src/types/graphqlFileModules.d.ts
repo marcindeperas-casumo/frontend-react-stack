@@ -263,6 +263,14 @@ declare module "*/PromotionCardListContainer.graphql" {
   export default defaultDocument;
 }
 
+declare module "*/GetJackpotConfigForWidget.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const GetJackpotConfigForWidget: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/ProviderGamesList.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
