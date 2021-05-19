@@ -1,7 +1,7 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { ROOT } = require("../utils");
+const { shouldUseSourceMap, ROOT } = require("../utils");
 
 module.exports = env => ({
   test: /\.scss$/i,
@@ -13,7 +13,7 @@ module.exports = env => ({
       loader: require.resolve("css-loader"),
       options: {
         importLoaders: 2,
-        sourceMap: true,
+        sourceMap: env.production && shouldUseSourceMap,
       },
     },
     {
@@ -29,7 +29,7 @@ module.exports = env => ({
             stage: 3,
           }),
         ],
-        sourceMap: true,
+        sourceMap: env.production && shouldUseSourceMap,
       },
     },
     {
@@ -38,7 +38,7 @@ module.exports = env => ({
         sassOptions: {
           includePaths: cudl,
         },
-        sourceMap: true,
+        sourceMap: env.production && shouldUseSourceMap,
         additionalData: (content, loaderContext) => {
           const { resourcePath, rootContext } = loaderContext;
           const relativePath = path.relative(rootContext, resourcePath);
