@@ -1,3 +1,24 @@
 .c-reel-race-leaderboard-list-entry {
   box-sizing: border-box;
 }
+
+// stylelint-disable xi/selector-pattern
+.c-reel-race-leaderboard-list-entry:hover .c-reel-race__remaining-spins {
+  opacity: 1;
+}
+
+.c-reel-race__remaining-spins {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: 0.3s;
+  width: 74px;
+}
+
+.c-reel-race__spin-symbol {
+  fill: currentColor !important;
+}
+
+.c-reel-race__nickname {
+  max-width: 100px;
+  overflow-wrap: break-word;
+}
