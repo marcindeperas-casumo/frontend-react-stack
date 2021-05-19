@@ -7,8 +7,8 @@ import "./PlayOkayBar.scss";
 
 const links = {
   jugarbien: "http://www.jugarbien.es/",
-  playokay: "/play-okay",
-  rgiaj: "http://www.ordenacionjuego.es/es/rgiaj",
+  playokay: "/play-okay-settings",
+  rgiaj: "https://www.ordenacionjuego.es/es/rgiaj",
 };
 
 type Props = {
