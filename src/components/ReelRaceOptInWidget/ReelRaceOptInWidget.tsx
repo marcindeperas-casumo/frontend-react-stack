@@ -9,7 +9,11 @@ import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
-import { DEFAULT_REMAINING, getRemainingTime, getDuration } from "./reelRaceOptInWidget.utils";
+import {
+  DEFAULT_REMAINING,
+  getRemainingTime,
+  getDuration,
+} from "./reelRaceOptInWidget.utils";
 import "./reelRaceOptInWidget.scss";
 
 type Props = {
@@ -28,9 +32,13 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
   });
 
   useInterval(() => {
-    setState((curr) => ({
+    setState(curr => ({
       rrInProgress: reelRace.startTime < Number(new Date()),
-      remaining: getRemainingTime(reelRace.startTime, reelRace.endTime, curr.rrInProgress),
+      remaining: getRemainingTime(
+        reelRace.startTime,
+        reelRace.endTime,
+        curr.rrInProgress
+      ),
     }));
   }, 1000);
 
@@ -38,7 +46,9 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
   const isPromoted = reelRace.promoted;
 
   const t = reelRace.translations;
-  const extraTranslations = useTranslations<{ schedule_next_text: string }>("mobile.tournament-campaigns");
+  const extraTranslations = useTranslations<{ schedule_next_text: string, leaderboard_prize: string }>(
+    "mobile.tournament-campaigns"
+  );
 
   return (
     <div
@@ -76,7 +86,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
             {t.competeFor &&
               interpolate(t.competeFor, {
                 prize: reelRace.formattedPrize,
-            })}
+              })}
           </Text>
           <span className="text-grey-50">{reelRace.game.name}</span>
         </Flex.Item>
@@ -130,13 +140,11 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           align="center"
           className="o-flex--1 u-text-align-center t-border-left border-grey-5"
         >
-          <Text
-            size="xs"
-            tag="div"
-            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+          <div
+            className="c-reel-race-opt-in-widget__info-header text-xs u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
-            Prizes
-          </Text>
+            {extraTranslations.leaderboard_prize}
+          </div>
           <Text tag="div" className="u-font-weight-bold">
             #1 - {prizesCounter}
           </Text>

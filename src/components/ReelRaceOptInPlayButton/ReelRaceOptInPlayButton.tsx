@@ -1,14 +1,13 @@
 import * as React from "react";
-import { useTranslatedUrl } from "Utils/hooks";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
 import { noop } from "Utils";
-import { EVENTS } from "Src/constants";
+import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
-import { ROUTE_IDS } from "Src/constants";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -64,7 +63,8 @@ export function ReelRaceOptInPlayButton({
     >
       <ButtonVariant
         size="md"
-        onClick={() => window.location.pathname = gameDetailsPath}
+        // eslint-disable-next-line fp/no-mutation
+        onClick={() => (window.location.pathname = gameDetailsPath)}
         className="u-width--full"
       >
         <PlayIcon size="sm" />
