@@ -31,6 +31,7 @@ export interface Query {
   activeModals: Array<Modal>;
   articlesList?: Maybe<ArticlesList>;
   betDetails?: Maybe<BetDetails>;
+  blueribbonJackpot?: Maybe<BlueribbonJackpotConfig>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -88,6 +89,10 @@ export interface QueryArticlesListArgs {
 
 export interface QueryBetDetailsArgs {
   combinationRef?: Maybe<Scalars["BigInt"]>;
+}
+
+export interface QueryBlueribbonJackpotArgs {
+  slug: Scalars["String"];
 }
 
 export interface QueryCompetitionsArgs {
@@ -1242,6 +1247,43 @@ export interface BetProjectionsOutcomes {
   outcomeLabel?: Maybe<Scalars["String"]>;
 }
 
+export interface BlueribbonJackpotConfig {
+  externalId: Scalars["ID"];
+  slug: Scalars["String"];
+  title: Scalars["String"];
+  image: Scalars["String"];
+  pots: Array<Pot>;
+}
+
+export interface SharedPot {
+  name: Scalars["String"];
+  shortName: Scalars["String"];
+  icon: Scalars["String"];
+  splitExplanation: Scalars["String"];
+  winText: Scalars["String"];
+  winTextAmount: Scalars["String"];
+  restartText: Scalars["String"];
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
+}
+
+export interface Pot {
+  potKey: Scalars["String"];
+  externalId: Scalars["String"];
+  icon: Scalars["String"];
+  name: Scalars["String"];
+  shortName: Scalars["String"];
+  winText: Scalars["String"];
+  mainWinRatio: Scalars["Int"];
+  communityWinRatio: Scalars["Int"];
+  maxWinAmount: Scalars["Int"];
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
+  sharedPot?: Maybe<SharedPot>;
+}
+
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export type Modal =
@@ -1978,6 +2020,27 @@ export type PromotionsListQuery = {
     id: string;
     name: string;
     promotions: Array<PromotionCard_PromotionFragment>;
+  }>;
+};
+
+export type GetJackpotConfigForWidgetQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type GetJackpotConfigForWidgetQuery = {
+  blueribbonJackpot?: Maybe<{
+    externalId: string;
+    title: string;
+    image: string;
+    slug: string;
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      sharedPot?: Maybe<{ name: string; shortName: string; icon: string }>;
+    }>;
   }>;
 };
 
