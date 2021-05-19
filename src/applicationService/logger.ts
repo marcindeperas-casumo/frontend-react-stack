@@ -33,18 +33,11 @@ function checkIgnore(
   return false;
 }
 
-declare const __CODE_VERSION__: string;
 const logger = new Rollbar({
   accessToken: "2a7d7f810245499e9250ee718205429a",
   captureUncaught: true,
   captureUnhandledRejections: true,
   payload: {
-    client: {
-      javascript: {
-        code_version: __CODE_VERSION__,
-        source_map_enabled: true,
-      },
-    },
     environment: process.env.NODE_ENV,
     context: "react-stack",
   },
