@@ -1,8 +1,8 @@
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import React from "react";
 import { mount } from "enzyme";
-import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 import MockStore from "Components/MockStore";
+import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 
 // currently in progress
 const reelRace = {
