@@ -190,5 +190,5 @@ export class ValuableRow extends PureComponent<Props> {
 }
 
 export const ValuableRowContainer = (props: Props) => {
-  return withWarmupPopup<Props>(ValuableRow, props, "onClick");
+  return withWarmupPopup<Props>(ValuableRow, props, "onClick", "onMoreInfo");
 };
