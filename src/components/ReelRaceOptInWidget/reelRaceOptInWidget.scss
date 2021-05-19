@@ -1,32 +1,8 @@
 .c-reel-race-opt-in-widget {
-  &__header {
-    margin-left: -16px !important;
-    margin-right: -16px !important;
-    margin-top: -16px !important;
+  // stylelint-disable xi/selector-pattern
+  svg {
+    display: inline-block;
+    width: 13px;
   }
-
-  &__info-header {
-    font-size: 10px !important;
-  }
-
-  &__info-block {
-    margin-left: -16px;
-    width: 200px;
-  }
-
-  &__tournament-icon {
-    border-radius: 0 0 0 16px;
-    height: 32px;
-    right: 0;
-    text-align: center;
-    top: 0;
-    width: 32px;
-
-    // stylelint-disable xi/selector-pattern
-    svg {
-      display: inline-block;
-      width: 13px;
-    }
-    // stylelint-enable xi/selector-pattern
-  }
+  // stylelint-enable xi/selector-pattern
 }

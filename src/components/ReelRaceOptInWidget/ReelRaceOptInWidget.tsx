@@ -46,9 +46,10 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
   const isPromoted = reelRace.promoted;
 
   const t = reelRace.translations;
-  const extraTranslations = useTranslations<{ schedule_next_text: string, leaderboard_prize: string }>(
-    "mobile.tournament-campaigns"
-  );
+  const extraTranslations = useTranslations<{
+    schedule_next_text: string;
+    leaderboard_prize: string;
+  }>("mobile.tournament-campaigns");
 
   return (
     <div
@@ -61,14 +62,14 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
     >
       <Text
         size="sm"
-        className="c-reel-race-opt-in-widget__header font-bold bg-black t-border-r-top-left t-border-r-top-right u-margin--none u-padding-y--md u-padding-x--md u-margin-bottom--md"
+        className="mb-md mt-[-16px] mx-[-16px] font-bold bg-black t-border-r-top-left t-border-r-top-right u-padding-y--md u-padding-x--md"
       >
-        {extraTranslations.schedule_next_text}
+        {extraTranslations?.schedule_next_text}
       </Text>
       {isPromoted && (
         <TournamentIcon
           size="md"
-          className="c-reel-race-opt-in-widget__tournament-icon o-position--absolute bg-yellow-30 text-black"
+          className="rounded-tr-sm rounded-bl-xl text-center w-xlg h-xlg top-none right-none o-position--absolute bg-yellow-30 text-black"
         />
       )}
       <Flex align="center">
@@ -94,7 +95,8 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
 
       <Flex
         className={cx(
-          "c-reel-race-opt-in-widget__info-block",
+          "-ml-md",
+          "w-[200px]",
           "o-flex--horizontal",
           "u-padding-y--lg"
         )}
@@ -108,7 +110,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           <Text
             tag="div"
             size="xs"
-            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
+            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
           >
             {t.spins}
           </Text>
@@ -121,13 +123,9 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           align="center"
           className="o-flex--1 u-text-align-center"
         >
-          <Text
-            size="xs"
-            tag="div"
-            className="c-reel-race-opt-in-widget__info-header u-font-weight-bold text-grey-50 u-text-transform-uppercase"
-          >
+          <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
             {t.duration}
-          </Text>
+          </div>
           <Text className="u-font-weight-bold" tag="div">
             {t.durationTemplate &&
               interpolate(t.durationTemplate, {
@@ -140,10 +138,8 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           align="center"
           className="o-flex--1 u-text-align-center t-border-left border-grey-5"
         >
-          <div
-            className="c-reel-race-opt-in-widget__info-header text-xs u-font-weight-bold text-grey-50 u-text-transform-uppercase"
-          >
-            {extraTranslations.leaderboard_prize}
+          <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
+            {extraTranslations?.leaderboard_prize}
           </div>
           <Text tag="div" className="u-font-weight-bold">
             #1 - {prizesCounter}
@@ -153,13 +149,9 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
 
       <Flex className="o-flex--1" justify="space-between">
         <Flex direction="vertical">
-          <Text
-            size="xs"
-            tag="div"
-            className="u-font-weight-bold text-white text-grey-50"
-          >
+          <div className="text-[10px] u-font-weight-bold text-white text-grey-50">
             {state.rrInProgress ? t.endingIn : t.startingIn}
-          </Text>
+          </div>
           <Text
             size="lg"
             tag="div"

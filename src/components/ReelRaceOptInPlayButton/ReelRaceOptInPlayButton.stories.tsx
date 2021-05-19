@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import MockStore from "Components/MockStore";
 import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
 import type { TProps } from "./ReelRaceOptInPlayButton";
 
@@ -44,11 +45,19 @@ const props: TProps = {
 };
 
 stories.add("Default", () => {
-  return <ReelRaceOptInPlayButton {...props} />;
+  return (
+    <MockStore>
+      <ReelRaceOptInPlayButton {...props} />
+    </MockStore>
+  );
 });
 
 stories.add("Alternative colors schema", () => {
-  return <ReelRaceOptInPlayButton {...props} variant="secondary" />;
+  return (
+    <MockStore>
+      <ReelRaceOptInPlayButton {...props} variant="secondary" />
+    </MockStore>
+  );
 });
 
 stories.add("Opted-In - no play button", () => {
@@ -63,5 +72,9 @@ stories.add("Opted-In - no play button", () => {
     showOptedIn: true,
   };
 
-  return <ReelRaceOptInPlayButton {...optedInProps} />;
+  return (
+    <MockStore>
+      <ReelRaceOptInPlayButton {...optedInProps} />
+    </MockStore>
+  );
 });
