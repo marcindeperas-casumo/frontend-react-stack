@@ -48,6 +48,7 @@ export function withWarmupPopup<TProps>(
     );
 
   const shouldShowWarmUpPopup = details.inWarmupPhase || !details.verified;
+
   const onCardClick = shouldShowWarmUpPopup
     ? showWarmUpModal
     : props[onClickProp];
