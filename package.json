@@ -59,7 +59,7 @@
     "redux-saga": "^0.16.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "rollbar": "^2.21.1",
+    "rollbar": "^2.15.0",
     "store": "^2.0.12",
     "uuid": "^8.3.1"
   },
