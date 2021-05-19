@@ -7,7 +7,6 @@ query ReelRaceOptInWidgetQuery($limit: Int!, $prioritisePromoted: Boolean) {
             id
             slug
             name
-            gameStudio
             logo
             backgroundImage
         }

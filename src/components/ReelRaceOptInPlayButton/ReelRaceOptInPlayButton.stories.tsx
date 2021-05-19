@@ -24,7 +24,6 @@ const props: TProps = {
       logo: "string",
       backgroundImage: "string",
       slug: "string",
-      gameStudio: "string",
     },
     translations: {
       optedInCtaSingleGameShort: "Play",

@@ -6,7 +6,6 @@ fragment ReelRaceCard_ReelRace on ReelRace {
         logo
         backgroundImage
         slug
-        gameStudio
     }
     startTime
     optedIn

@@ -25,7 +25,6 @@ const reelRace = {
     backgroundImage:
       "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
     slug: "jack-the-beanstalk",
-    gameStudio: "game-studio",
   },
   translations: {
     optedInCtaSingleGameShort: "Play",

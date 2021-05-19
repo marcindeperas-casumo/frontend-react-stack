@@ -2105,7 +2105,6 @@ export type ReelRaceCard_ReelRaceFragment = {
     logo: string;
     backgroundImage: string;
     slug: string;
-    gameStudio: string;
   };
   translations: {
     optedInCtaSingleGameShort: string;
@@ -2153,11 +2152,11 @@ export type ReelRaceOptInWidgetQuery = {
       id: string;
       slug: string;
       name: string;
-      gameStudio: string;
       logo: string;
       backgroundImage: string;
     };
     translations: {
+      competeFor: string;
       optIn: string;
       optedIn: string;
       optedInCtaSingleGameShort: string;
@@ -2202,7 +2201,6 @@ export type ReelRaceScheduleCard_ReelRaceFragment = {
     logo: string;
     backgroundImage: string;
     slug: string;
-    gameStudio: string;
   };
   translations: {
     optedInCtaSingleGameShort: string;
