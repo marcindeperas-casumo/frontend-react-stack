@@ -2,6 +2,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { useParams } from "@reach/router";
 import { useSelector } from "react-redux";
+import { useQuery } from "@apollo/client";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
 import {
@@ -9,8 +10,10 @@ import {
   playerIdSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
+import * as A from "Types/apollo";
 import { urls, baseConfig } from "./blueRibbonConsts";
-import type { JackpotStatus } from "./blueRibbonConsts";
+import type { JackpotStatus, ComposedJackpot } from "./blueRibbonConsts";
+import { GetJackpotConfigForWidget } from "./GetJackpotConfigForWidget.graphql";
 
 declare const BlueRibbon: any;
 let sdkMutable; // eslint-disable-line fp/no-let
@@ -182,3 +185,43 @@ export function usePotStateChangeEvent() {
   }, [sdk]);
   return pots;
 }
+
+export const useComposedJackpotConfigData = ({
+  jackpotSlug,
+}: {
+  jackpotSlug: string;
+}) => {
+  const [
+    composedJackpot,
+    setComposedJackpot,
+  ] = React.useState<ComposedJackpot>();
+  useBlueRibbonSDKAnonymous();
+  const sdkPots = usePotStateChangeEvent();
+
+  const { data, loading } = useQuery<
+    A.GetJackpotConfigForWidgetQuery,
+    A.GetJackpotConfigForWidgetQueryVariables
+  >(GetJackpotConfigForWidget, {
+    variables: {
+      slug: jackpotSlug,
+    },
+  });
+
+  React.useEffect(() => {
+    if (!loading && data) {
+      const jackpot = data.blueribbonJackpot;
+      setComposedJackpot({
+        ...jackpot,
+        pots: jackpot.pots.map(pot => ({
+          ...pot,
+          value: sdkPots[pot.externalId]?.progressive,
+          status: sdkPots[pot.externalId]?.potStatus,
+        })),
+      });
+    }
+  }, [sdkPots, data, loading]);
+
+  return {
+    composedJackpot,
+  };
+};
