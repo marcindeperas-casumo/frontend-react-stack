@@ -18,7 +18,7 @@ const keyPayments = {
 
 export const playerWalletSelector = createSelector(player, prop("wallet"));
 
-export const playerWalletAmountSelector = createSelector(
+export const playerWalletAmountSelector = createSelector<any, any, number>(
   playerWalletSelector,
   propOr(0, "amount")
 );
@@ -29,14 +29,15 @@ export const playerCurrencySymbolSelector = createSelector(
 );
 
 // Todo: Investigate https://jira.casumocave.com/browse/FC-91 Bonus balance deduction on staging when wagering
-export const playerWalletBonusSelector = createSelector(
-  playerWalletSelector,
-  bonusAmountSelector,
-  (wallet, handshakeBonusAmount) => {
-    const validateBonusBalanceToReturn = propOr(handshakeBonusAmount, "bonus");
-    return validateBonusBalanceToReturn(wallet);
-  }
-);
+export const playerWalletBonusSelector = createSelector<
+  any,
+  any,
+  number,
+  number
+>(playerWalletSelector, bonusAmountSelector, (wallet, handshakeBonusAmount) => {
+  const validateBonusBalanceToReturn = propOr(handshakeBonusAmount, "bonus");
+  return validateBonusBalanceToReturn(wallet);
+});
 
 export const playerWalletCurrencySelector = createSelector(
   playerWalletSelector,
@@ -65,12 +66,18 @@ export const playerPaymentsTextsSelector = createSelector(
   mapPaymentTranslations
 );
 
-export const playerBonusTextSelector = createSelector(
+export const playerBonusTextSelector = createSelector<any, any, string>(
   playerPaymentsTextsSelector,
   prop("textBonus")
 );
 
-export const playerBalanceAmountSelector = createSelector(
+export const playerBalanceAmountSelector = createSelector<
+  any,
+  number,
+  number,
+  number,
+  number
+>(
   playerWalletAmountSelector,
   walletAmountSelector,
   bonusAmountSelector,
