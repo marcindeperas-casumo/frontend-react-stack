@@ -1,0 +1,20 @@
+query GetJackpotConfigForWidget($slug: String!) {
+  blueribbonJackpot(slug: $slug) {
+    externalId
+    title
+    image
+    slug
+    pots {
+      externalId
+      potKey
+      name
+      shortName
+      mainWinRatio
+      sharedPot { 
+        name
+        shortName
+        icon
+      }
+    }
+  }
+}
