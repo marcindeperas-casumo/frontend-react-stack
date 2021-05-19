@@ -2,6 +2,7 @@ import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import React from "react";
 import { mount } from "enzyme";
 import { ReelRaceOptInPlayButton } from "./ReelRaceOptInPlayButton";
+import MockStore from "Components/MockStore";
 
 // currently in progress
 const reelRace = {
@@ -47,7 +48,9 @@ describe("ReelRaceOptInPlayButton", () => {
   test("should call optIn callback", () => {
     const onOptIn = jest.fn();
     const rendered = mount(
-      <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} />
+      <MockStore>
+        <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} />
+      </MockStore>
     );
 
     expect(onOptIn).toHaveBeenCalledTimes(0);
@@ -58,11 +61,13 @@ describe("ReelRaceOptInPlayButton", () => {
   test("should render button using secondary theme", () => {
     const onOptIn = jest.fn();
     const rendered = mount(
-      <ReelRaceOptInPlayButton
-        reelRace={reelRace}
-        optIn={onOptIn}
-        variant="secondary"
-      />
+      <MockStore>
+        <ReelRaceOptInPlayButton
+          reelRace={reelRace}
+          optIn={onOptIn}
+          variant="secondary"
+        />
+      </MockStore>
     );
 
     expect(rendered.find(ButtonSecondary)).toHaveLength(1);
