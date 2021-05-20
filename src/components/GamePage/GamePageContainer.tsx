@@ -120,7 +120,6 @@ export const GamePageContainer = () => {
           {shouldShowSlotControlSystem && <InfoBar />}
           <Mobile>
             <BlueRibbonJackpotsFooterWidgetContainer />
-            <div className="bg-grey-90 u-safe-area-inset-padding-bottom" />
           </Mobile>
         </React.Fragment>
       }
@@ -129,17 +128,10 @@ export const GamePageContainer = () => {
       gameProviderModel={gameProviderModel}
       gameWindow={
         gameProviderModel && (
-          <div
-            className={classNames(
-              "o-inset-x--none o-inset-y--none o-position--absolute",
-              gameProviderModel.gameWrapperClasses || []
-            )}
-          >
-            <GameLauncher
-              gameProviderModel={gameProviderModel}
-              className="c-game-page__game-launcher"
-            />
-          </div>
+          <GameLauncher
+            gameProviderModel={gameProviderModel}
+            className="u-padding-bottom--lg o-position--absolute c-game-page__game-launcher"
+          />
         )
       }
       header={<GamePageHeader />}

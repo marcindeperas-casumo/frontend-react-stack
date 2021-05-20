@@ -52,10 +52,10 @@ export const VerticalStretcher = ({
   const debounceResizeGame = debounce(() => {
     (gameProviderModel as any).fitToParentSize();
   }, 500);
-  const desktopResizeGame = () => {
-    matchContainerHeight();
-    (gameProviderModel as any).fitToParentSize();
-  };
+  // const desktopResizeGame = () => {
+  //   matchContainerHeight();
+  //   (gameProviderModel as any).fitToParentSize();
+  // };
   const matchContainerHeight = () => {
     if (quickDepositInProgress) {
       return;
@@ -115,15 +115,11 @@ export const VerticalStretcher = ({
      */
     window.addEventListener("scroll", debouncedScrollToTop);
     window.addEventListener("orientationchange", debounceResizeGame);
-    if (!isMobile) {
-      window.addEventListener("resize", desktopResizeGame);
-    }
+
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("orientationchange", desktopResizeGame);
-      if (!isMobile) {
-        window.removeEventListener("resize", debounceResizeGame);
-      }
+      window.removeEventListener("orientationchange", debounceResizeGame);
+
       clearInterval(interval);
     };
   });
