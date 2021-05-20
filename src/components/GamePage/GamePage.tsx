@@ -63,7 +63,10 @@ export const GamePage = ({
               {overScreenNotifications}
             </Flex.Block>
           </Flex>
-          <Flex.Item>{footer}</Flex.Item>
+          <Flex.Item>
+            {footer}
+            <div className="u-safe-area-inset-padding-bottom"></div>
+          </Flex.Item>
         </Flex>
         {offscreenElements}
       </VerticalStretcher>
