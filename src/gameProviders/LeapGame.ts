@@ -4,6 +4,8 @@ import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
 export class LeapGame extends BaseIframeGame {
+  gameWrapperClasses = ["u-padding-bottom--5xlg"];
+
   constructor(props: GameProviderModelProps) {
     super(props);
     this.scrolling = "auto";

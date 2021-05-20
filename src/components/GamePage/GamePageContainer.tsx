@@ -1,6 +1,7 @@
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import * as React from "react";
 import { useSelector } from "react-redux";
+import classNames from "classnames";
 import { useCurrentReelRaceLeaderboard } from "Utils/hooks/useCurrentReelRaceLeaderboard";
 import {
   useCrossCodebaseNavigation,
@@ -127,10 +128,17 @@ export const GamePageContainer = () => {
       gameProviderModel={gameProviderModel}
       gameWindow={
         gameProviderModel && (
-          <GameLauncher
-            gameProviderModel={gameProviderModel}
-            className="u-padding-bottom--lg o-position--absolute c-game-page__game-launcher"
-          />
+          <div
+            className={classNames(
+              "bg-grey-90 o-inset-x--none o-inset-y--none o-position--absolute",
+              gameProviderModel.gameWrapperClasses || []
+            )}
+          >
+            <GameLauncher
+              gameProviderModel={gameProviderModel}
+              className="c-game-page__game-launcher"
+            />
+          </div>
         )
       }
       header={<GamePageHeader />}
