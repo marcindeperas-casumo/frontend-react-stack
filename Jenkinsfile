@@ -103,14 +103,22 @@ def rollbarSendSourceMaps() {
         set +x
         set -e
         cd ./build/react-stack/js
-        for source_map_file in \$(find . -name '*.map'); do
+        for i in \$(find . -name '*.map'); do
+            source_map_file=\$(echo \$i | sed 's/^.\\///')
             minified_file=\$(echo \$source_map_file | sed 's/.map//')
 
             curl https://api.rollbar.com/api/1/sourcemap \
                 -s \
                 -F access_token="${ROLLBAR_REACT_STACK}" \
                 -F version="${GIT_COMMIT}" \
-                -F minified_url="\$minified_file" \
+                -F minified_url="//www.casumo.com/react-stack/js/\$minified_file" \
+                -F source_map=@"\$source_map_file"
+            
+            curl https://api.rollbar.com/api/1/sourcemap \
+                -s \
+                -F access_token="${ROLLBAR_REACT_STACK}" \
+                -F version="${GIT_COMMIT}" \
+                -F minified_url="//www.casumo.es/react-stack/js/\$minified_file" \
                 -F source_map=@"\$source_map_file"
         done
         """
