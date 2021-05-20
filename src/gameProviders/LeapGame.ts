@@ -4,7 +4,7 @@ import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
 export class LeapGame extends BaseIframeGame {
-  gameWrapperClasses = ["u-safe-area-inset-padding-bottom--3x"];
+  gameWrapperClasses = ["u-safe-area-inset-padding-bottom--2x"];
 
   constructor(props: GameProviderModelProps) {
     super(props);

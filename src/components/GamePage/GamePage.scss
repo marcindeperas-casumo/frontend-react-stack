@@ -13,8 +13,8 @@ $directions: (top, left, bottom, right);
   }
 
   /* stylelint-disable-next-line xi/selector-pattern */
-  .u-safe-area-inset-padding-#{$direction}--3x {
-    padding-#{$direction}: calc(3 * env(safe-area-inset-#{$direction}));
+  .u-safe-area-inset-padding-#{$direction}--2x {
+    padding-#{$direction}: calc(2 * env(safe-area-inset-#{$direction}));
   }
 }
 

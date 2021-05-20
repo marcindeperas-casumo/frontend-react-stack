@@ -65,7 +65,7 @@ export const GamePage = ({
           </Flex>
           <Flex.Item>
             {footer}
-            <div className="u-safe-area-inset-padding-bottom"></div>
+            <div className="bg-grey-90 u-safe-area-inset-padding-bottom"></div>
           </Flex.Item>
         </Flex>
         {offscreenElements}
