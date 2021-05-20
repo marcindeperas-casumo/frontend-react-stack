@@ -40,7 +40,6 @@ export const VerticalStretcher = ({
   const heightContainer = useRef(null);
   const [isDismissed, setIsDismissed] = useState(false);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
-  const [staticHeight, setStaticHeight] = useState(false);
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
   const isMobile = isMobileByPlatform();
@@ -61,15 +60,6 @@ export const VerticalStretcher = ({
       return;
     }
     debouncedScrollToTop();
-    if (heightContainer.current) {
-      /**
-       * So far this is the only way i've found which solves the problem
-       * of browser toolbars overlaying game content when they appear.
-       */
-      /* eslint-disable-next-line fp/no-mutation */
-      heightContainer.current.style.height = `${window.innerHeight}px`;
-      setStaticHeight(true);
-    }
   };
   const onDismiss = () => {
     setIsDismissed(true);
@@ -134,7 +124,7 @@ export const VerticalStretcher = ({
   return (
     <div
       ref={heightContainer}
-      className={classNames("u-width--full", !staticHeight && "u-height--full")}
+      className={classNames("u-width--full", "u-height--full")}
     >
       <SwipeUpPanelContainer
         {...{ shouldShowSwipePanel, fullScreenElement, onDismiss }}
