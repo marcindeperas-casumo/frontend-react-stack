@@ -1,7 +1,6 @@
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import classNames from "classnames";
 import { useCurrentReelRaceLeaderboard } from "Utils/hooks/useCurrentReelRaceLeaderboard";
 import {
   useCrossCodebaseNavigation,
