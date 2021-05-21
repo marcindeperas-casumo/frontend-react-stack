@@ -82,8 +82,8 @@ export const GamePage = ({
               <div className="bg-grey-90 u-safe-area-inset-padding-bottom"></div>
             </Flex.Item>
           </Flex>
+          {offscreenElements}
         </WindowHeightMatcher>
-        {offscreenElements}
       </VerticalStretcher>
     </FullscreenView>
   );
