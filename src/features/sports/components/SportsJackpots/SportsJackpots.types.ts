@@ -68,6 +68,8 @@ export type SportsJackpotsTranslations = {
   modal_footer: string;
   modal_title: string;
   more_info: string;
+  potid_match: string;
+  potid_mega: string;
   title: string;
   view_odds: string;
   won: string;
