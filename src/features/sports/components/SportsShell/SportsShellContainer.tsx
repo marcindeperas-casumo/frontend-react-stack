@@ -93,6 +93,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
 
   const virtualsPrefixHash = "#filter/virtuals";
   const promotionPrefixHash = "#promotions";
+  const homeHash = "#home";
 
   return (
     <>
@@ -105,7 +106,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
             ) : (
               <SportsNav currentHash={currentHash} market={market} />
             )}
-            <SportsJackpots />
+            {currentHash === homeHash && <SportsJackpots />}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
             {showModal(currentHash) && (

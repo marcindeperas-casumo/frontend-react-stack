@@ -59,6 +59,8 @@ export type SportsJackpotsTranslations = {
   description: string;
   enable_for_prod: boolean;
   enable_for_test: boolean;
+  footer_tc_link: string;
+  footer_tc_text: string;
   footer_text: string;
   match_drop: string;
   mega_drop: string;
@@ -72,5 +74,6 @@ export type SportsJackpotsTranslations = {
   potid_mega: string;
   title: string;
   view_odds: string;
+  view_odds_link: string;
   won: string;
 };
