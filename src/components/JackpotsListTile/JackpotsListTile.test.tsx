@@ -17,7 +17,6 @@ describe("<JackpotsListTile />", () => {
         isInMaintenance: false,
         category: "string",
         liveCasinoId: "string",
-        playBackground: "string",
       },
       {
         id: "2",
@@ -30,7 +29,6 @@ describe("<JackpotsListTile />", () => {
         isInMaintenance: false,
         category: "string",
         liveCasinoId: "string",
-        playBackground: "string",
       },
       {
         id: "3",
@@ -43,7 +41,6 @@ describe("<JackpotsListTile />", () => {
         isInMaintenance: false,
         category: "string",
         liveCasinoId: "string",
-        playBackground: "string",
       },
     ];
     // @ts-expect-error ts-migrate(2786) FIXME: 'JackpotsListTile' cannot be used as a JSX compone... Remove this comment to see the full error message

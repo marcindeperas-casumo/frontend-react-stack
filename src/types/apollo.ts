@@ -1508,7 +1508,6 @@ export type GameRow_GameFragment = {
   slug: string;
   gameStudio: string;
   category?: Maybe<string>;
-  playBackground: string;
   liveCasinoId?: Maybe<string>;
   isInMaintenance: boolean;
   lobby?: Maybe<{

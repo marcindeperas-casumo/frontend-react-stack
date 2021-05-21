@@ -11,7 +11,6 @@ const ScrollableListPaginatedStory = () => {
   const itemRenderer = ({ style, columnIndex }) => (
     <div style={style}>
       <div style={{ width: "160px" }} className="u-margin-left--sm">
-        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ __typename: string; isInMaintenance: boole... Remove this comment to see the full error message */}
         <GameTile game={gamesListMock.games[columnIndex]} />
       </div>
     </div>
