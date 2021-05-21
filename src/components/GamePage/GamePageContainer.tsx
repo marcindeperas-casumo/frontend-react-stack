@@ -41,7 +41,6 @@ import {
   usePinnedWidgetsContext,
   GamePageContextProvider,
 } from "./Contexts";
-import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
@@ -98,8 +97,6 @@ export const GamePageContainer = () => {
         shouldShowSlotControlSystem
     ),
   });
-
-  useFitToParentSize();
 
   return (
     // @ts-expect-error ts-migrate(2786) FIXME: 'GamePage' cannot be used as a JSX component.

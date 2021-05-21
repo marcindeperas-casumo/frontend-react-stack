@@ -76,12 +76,6 @@ export class BaseGame {
     }
   }
 
-  fitToParentSize = () => {
-    // if (this.props.gameRef) {
-    //   expandElementHeightToMatchItsParent(this.props.gameRef);
-    // }
-  };
-
   onMount() {
     const { current: gameElement } = this.props.gameRef;
 

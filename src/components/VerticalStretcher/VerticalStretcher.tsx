@@ -48,31 +48,13 @@ export const VerticalStretcher = ({
       window.scrollTo(0, 0);
     }
   }, 100);
-  const debounceResizeGame = debounce(() => {
-    (gameProviderModel as any).fitToParentSize();
-  }, 500);
-  // const desktopResizeGame = () => {
-  //   matchContainerHeight();
-  //   (gameProviderModel as any).fitToParentSize();
-  // };
-  const matchContainerHeight = () => {
-    if (quickDepositInProgress) {
-      return;
-    }
-    debouncedScrollToTop();
-  };
+
   const onDismiss = () => {
     setIsDismissed(true);
-    matchContainerHeight();
-    debounceResizeGame();
     // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_IN_GAME_SWIPEUP_DISMISSED);
   };
   useEffect(() => {
-    if (isMobile) {
-      (gameProviderModel as any).fitToParentSize();
-      debouncedScrollToTop();
-    }
     const interval = setInterval(() => {
       /**
        * 1px diff is acceptable, this is a fix for zommed in
@@ -104,11 +86,8 @@ export const VerticalStretcher = ({
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    window.addEventListener("orientationchange", debounceResizeGame);
-
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("orientationchange", debounceResizeGame);
 
       clearInterval(interval);
     };
