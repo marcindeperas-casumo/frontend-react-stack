@@ -1,5 +1,6 @@
 import Flex from "@casumo/cmp-flex";
 import * as React from "react";
+import { useInterval } from "react-use";
 import { FullscreenView } from "Components/FullscreenView";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
@@ -16,6 +17,18 @@ type Props = {
   offscreenElements: React.ReactChild;
   overScreenNotifications: React.ReactNode;
   sidebar?: React.ReactNode;
+};
+
+const WindowHeightMatcher = ({ children }) => {
+  const [height, setHeight] = React.useState(Math.round(window.innerHeight));
+
+  const resizeToMatchAvailableScreenHeight = () => {
+    setHeight(Math.round(window.innerHeight));
+  };
+
+  useInterval(resizeToMatchAvailableScreenHeight, 100);
+
+  return <div style={{ height: height }}>{children}</div>;
 };
 
 export const GamePage = ({
@@ -45,29 +58,31 @@ export const GamePage = ({
         quickDepositInProgress={quickDepositInProgress}
         gameProviderModel={gameProviderModel}
       >
-        <Flex
-          className="u-width--full u-height--full bg-grey-90 text-white c-game-page"
-          direction="vertical"
-          spacing="none"
-          style={{ backgroundImage: `url('${gameBackground || ""}')` }}
-        >
-          <Flex.Item>{header}</Flex.Item>
+        <WindowHeightMatcher>
           <Flex
-            direction="horizontal"
+            className="u-width--full u-height--full bg-grey-90 text-white c-game-page"
+            direction="vertical"
             spacing="none"
-            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            style={{ backgroundImage: `url('${gameBackground || ""}')` }}
           >
-            <Flex.Item>{sidebar}</Flex.Item>
-            <Flex.Block className="o-position--relative o-flex c-game-page__flexible-game-container">
-              {gameWindow}
-              {overScreenNotifications}
-            </Flex.Block>
+            <Flex.Item>{header}</Flex.Item>
+            <Flex
+              direction="horizontal"
+              spacing="none"
+              className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            >
+              <Flex.Item>{sidebar}</Flex.Item>
+              <Flex.Block className="o-position--relative o-flex c-game-page__flexible-game-container">
+                {gameWindow}
+                {overScreenNotifications}
+              </Flex.Block>
+            </Flex>
+            <Flex.Item>
+              {footer}
+              <div className="bg-grey-90 u-safe-area-inset-padding-bottom"></div>
+            </Flex.Item>
           </Flex>
-          <Flex.Item>
-            {footer}
-            <div className="bg-grey-90 u-safe-area-inset-padding-bottom"></div>
-          </Flex.Item>
-        </Flex>
+        </WindowHeightMatcher>
         {offscreenElements}
       </VerticalStretcher>
     </FullscreenView>
