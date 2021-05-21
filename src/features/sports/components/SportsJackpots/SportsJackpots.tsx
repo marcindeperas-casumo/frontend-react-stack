@@ -1,11 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import {
-  useTranslations,
-  useLocale,
-  useCrossCodebaseNavigation,
-} from "Utils/hooks";
+import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
@@ -27,7 +23,6 @@ export const SportsJackpots = () => {
   });
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  const { navigateToKO } = useCrossCodebaseNavigation();
 
   if (
     !composedJackpot ||
@@ -59,7 +54,11 @@ export const SportsJackpots = () => {
         className="c-sports-jackpots-content bg-no-repeat bg-cover t-border-r-top-left--md t-border-r-top-right--md"
         style={{ backgroundImage: `url('${backgroundImage()}'` }}
       >
-        <div className="c-sports-jackpots-gradient bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg">
+        <div
+          className={`c-sports-jackpots-gradient${
+            isMobile() ? "mobile" : ""
+          } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
+        >
           <div className="u-font-lg u-font-weight-bold">{t.title}</div>
           <div className="u-margin-top--md">{t.description}</div>
           <div className="u-margin-top--md">

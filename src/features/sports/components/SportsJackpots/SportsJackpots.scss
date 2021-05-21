@@ -1,17 +1,13 @@
 .c-sports-jackpots {
-  @media (min-width: 768px) {
-    height: 300px;
-  }
-
   &-gradient {
-    @media (min-width: 768px) {
-      height: 208px;
-    }
+    height: 208px;
   }
 
   &-footer {
-    @media (min-width: 768px) {
-      height: 68px;
-    }
+    height: 68px;
   }
+}
+
+.c-sports-jackpots-gradientmobile {
+  height: 252px;
 }
