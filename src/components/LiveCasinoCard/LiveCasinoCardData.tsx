@@ -17,29 +17,21 @@ type Props = {
     bet_behind: string;
     open_seats: string;
   };
-  className?: string;
-  small?: boolean;
 };
 
 const getTextColor = (color: string) =>
   contains(color, ["yellow-30", "grey-5"]) ? "grey-90" : "white";
 
-const renderResults = ({ results, type }, small = false) => {
+const renderResults = ({ results, type }) => {
   if (!results || !type) {
     return null;
   }
 
   return (
     <Flex
-      spacing={small ? "sm" : "default"}
+      spacing="sm"
       align="center"
-      className={classNames(
-        "o-position--absolute u-width--full u-height--full u-padding-left--md",
-        {
-          "u-padding-bottom u-padding-top u-padding-vertical": !small,
-          "u-padding-bottom--sm u-padding-top--sm": small,
-        }
-      )}
+      className="o-position--absolute u-width--full u-height--full u-padding-left--md u-padding-bottom u-padding-top u-padding-vertical"
     >
       {results.slice(0, RESULT_BADGES_COUNT).map((result, i) => {
         const color = getBadgeColor(type, result);
@@ -53,11 +45,9 @@ const renderResults = ({ results, type }, small = false) => {
                 "t-border-r--circle",
                 `t-background-${color}`,
                 borderColor && `t-border--md t-border-${borderColor}`,
+                "u-width--lg u-height--lg",
                 {
-                  "u-width--lg u-height--lg": !small,
-                  "u-width--md u-height--md": small,
                   "c-card-data__badge": i === 0,
-                  "c-card-data__badge--small": small,
                 }
               )}
             >
@@ -76,7 +66,7 @@ const renderResults = ({ results, type }, small = false) => {
   );
 };
 
-const renderSeats = ({ liveCasinoLobby, t }, small = false) => {
+const renderSeats = ({ liveCasinoLobby, t }) => {
   return (
     <Text
       size="sm"
@@ -99,19 +89,14 @@ const liveCasinoTypes = [
   TYPES.BACCARAT,
 ];
 
-const LobbyType = ({ liveCasinoLobby, t, small }) =>
+const LobbyType = ({ liveCasinoLobby, t }) =>
   cond([
-    [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby, small)],
-    [equals(TYPES.BLACKJACK), () => renderSeats({ liveCasinoLobby, t }, small)],
+    [isIn(liveCasinoTypes), () => renderResults(liveCasinoLobby)],
+    [equals(TYPES.BLACKJACK), () => renderSeats({ liveCasinoLobby, t })],
     [T, () => null],
   ])(liveCasinoLobby.type);
 
-export const LiveCasinoCardData = ({
-  liveCasinoLobby,
-  t,
-  className,
-  small = false,
-}: Props) => {
+export const LiveCasinoCardData = ({ liveCasinoLobby, t }: Props) => {
   return (
     <Flex
       align="center"
@@ -119,11 +104,7 @@ export const LiveCasinoCardData = ({
       className={classNames(
         (contains(liveCasinoLobby.type, liveCasinoTypes) ||
           liveCasinoLobby.betBehind) &&
-          "c-card-data__badges-background u-width--full",
-        {
-          "c-card-data__badges-background--small": small,
-        },
-        className
+          "c-card-data__badges-background u-width--full"
       )}
     >
       <Flex
@@ -132,7 +113,7 @@ export const LiveCasinoCardData = ({
         justify="center"
         className="u-width--full o-position--relative u-height--full"
       >
-        <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} small={small} />
+        <LobbyType liveCasinoLobby={liveCasinoLobby} t={t} />
         <div className="c-card-data__badges-mask u-width--full u-height--full o-position--absolute" />
       </Flex>
     </Flex>

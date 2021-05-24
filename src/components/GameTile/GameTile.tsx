@@ -14,7 +14,6 @@ import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
-import { LiveCasinoCardSmallContainer } from "Components/LiveCasinoCard/LiveCasinoCardSmallContainer";
 import "./GameTile.scss";
 
 export type GameTileTranslations = {
@@ -46,15 +45,8 @@ export const GameTile = ({
   gameDetailsPath,
   locale,
 }: Props) => {
-  const {
-    isInMaintenance,
-    backgroundImage,
-    logo,
-    name,
-    id,
-    liveCasinoId,
-    jackpot,
-  } = game || {};
+  const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =
+    game || {};
 
   const JackpotAmountButton = () => {
     const currency = jackpot?.value?.currency;
@@ -85,10 +77,6 @@ export const GameTile = ({
         imgixOpts={imgixOpts}
       />
     );
-  }
-
-  if (liveCasinoId) {
-    return <LiveCasinoCardSmallContainer game={game} />;
   }
 
   return (

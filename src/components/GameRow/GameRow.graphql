@@ -6,7 +6,6 @@ fragment GameRow_Game on Game {
   slug
   gameStudio
   category
-  playBackground
   liveCasinoId
   lobby {
     bets {
@@ -25,5 +24,4 @@ fragment GameRow_Game on Game {
   isInMaintenance
   category
   liveCasinoId
-  playBackground
 }
