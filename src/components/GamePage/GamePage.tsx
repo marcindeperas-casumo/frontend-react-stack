@@ -1,9 +1,9 @@
 import Flex from "@casumo/cmp-flex";
 import * as React from "react";
-import { useInterval } from "react-use";
 import { FullscreenView } from "Components/FullscreenView";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
+import { WindowHeightMatcher } from "./WindowHeightMatcher";
 
 type Props = {
   error: React.ReactNode;
@@ -17,18 +17,6 @@ type Props = {
   offscreenElements: React.ReactChild;
   overScreenNotifications: React.ReactNode;
   sidebar?: React.ReactNode;
-};
-
-const WindowHeightMatcher = ({ children }) => {
-  const [height, setHeight] = React.useState(Math.round(window.innerHeight));
-
-  const resizeToMatchAvailableScreenHeight = () => {
-    setHeight(Math.round(window.innerHeight));
-  };
-
-  useInterval(resizeToMatchAvailableScreenHeight, 100);
-
-  return <div style={{ height: height }}>{children}</div>;
 };
 
 export const GamePage = ({
