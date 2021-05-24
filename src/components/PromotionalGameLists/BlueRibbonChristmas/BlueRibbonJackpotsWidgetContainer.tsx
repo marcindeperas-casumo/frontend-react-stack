@@ -44,7 +44,7 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
       R.map(({ communityWinRatio, mainWinRatio, potId, potName }) => ({
         value: pots[potId]?.progressive,
         label: potName,
-        status: pots[potId]?.potStatus,
+        status: pots[potId]?.potStatus as JackpotStatus,
         potId,
         communityWinRatio,
         mainWinRatio,
