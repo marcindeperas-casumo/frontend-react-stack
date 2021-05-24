@@ -1508,7 +1508,6 @@ export type GameRow_GameFragment = {
   slug: string;
   gameStudio: string;
   category?: Maybe<string>;
-  playBackground: string;
   liveCasinoId?: Maybe<string>;
   isInMaintenance: boolean;
   lobby?: Maybe<{
@@ -1554,9 +1553,6 @@ export type GameTile_GameFragment = {
   name: string;
   slug: string;
   id: string;
-  liveCasinoId?: Maybe<string>;
-  playBackground: string;
-  category?: Maybe<string>;
   jackpot?: Maybe<{
     id: string;
     value: { amount: number; currency: Currency };
@@ -1640,36 +1636,6 @@ export type LiveCasinoCardFragment = {
   slug: string;
   gameStudio: string;
   liveCasinoLobby?: Maybe<LiveCasinoCard_LobbyFragment>;
-};
-
-export type LiveCasinoCardSmallDataQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type LiveCasinoCardSmallDataQuery = {
-  liveCasinoTablesById?: Maybe<{
-    id?: Maybe<string>;
-    tableId?: Maybe<string>;
-    state: TableState;
-    symbol?: Maybe<string>;
-    numberOfPlayers?: Maybe<number>;
-    seats?: Maybe<number>;
-    provider?: Maybe<string>;
-    results: Array<string>;
-    image?: Maybe<string>;
-    type?: Maybe<string>;
-    betBehind?: Maybe<boolean>;
-    bets?: Maybe<{
-      symbol?: Maybe<string>;
-      min?: Maybe<number>;
-      max?: Maybe<number>;
-    }>;
-    operationHours: {
-      type: OperationHoursType;
-      startTime?: Maybe<string>;
-      endTime?: Maybe<string>;
-    };
-  }>;
 };
 
 export type LiveCasinoDetailPageQueryVariables = Exact<{

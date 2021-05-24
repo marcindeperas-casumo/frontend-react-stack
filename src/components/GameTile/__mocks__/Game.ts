@@ -12,6 +12,5 @@ export const gameMock = {
   lobby: null,
   gameStudio: "Net Entertainment",
   category: "SLOT_MACHINE",
-  playBackground: "https://cms.casumo.com/wp-content/uploads/2012/04/bg1.jpg",
   realMoneyPlayRequired: false,
 } as const;
