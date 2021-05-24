@@ -113,7 +113,10 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
         <RemainingSpins remainingSpins={remainingSpins} spinLimit={spinLimit} />
       )}
       <Flex.Item>
-        <Text tag="div" className="u-font-weight-bold u-text-align-right w-[50px]">
+        <Text
+          tag="div"
+          className="u-font-weight-bold u-text-align-right w-[50px]"
+        >
           {points}
         </Text>
       </Flex.Item>
