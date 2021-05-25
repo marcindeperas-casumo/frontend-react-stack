@@ -205,7 +205,7 @@ export const useComposedJackpotConfigData = ({
   });
 
   React.useEffect(() => {
-    if (!loading && data) {
+    if (!loading && data && data.blueribbonJackpot) {
       const jackpot = data.blueribbonJackpot;
       setComposedJackpot({
         ...jackpot,
