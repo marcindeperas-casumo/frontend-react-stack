@@ -10,7 +10,7 @@ import com.casumo.jenkins.pipeline.features.release.Release
 if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
-            .checkout()
+        .checkout()
         .customStep('Install node version', {
             shell("set +x; nvm install")
         })
@@ -27,6 +27,7 @@ if (env.BRANCH_NAME == "master") {
         .with(Release) { it.release() }
         .with(DeployService) { it.deployToProduction('frontend-react-stack') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
+        .customStep('Rollbar send source maps', { rollbarSendSourceMaps() })
                 .build('nvm-ec2-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
@@ -42,7 +43,7 @@ Started by: *${env.gitAuthor}* :eyes:
     }
 } else {
     new PluggablePipelineBuilder(this)
-            .checkout()
+    .checkout()
     .customStep('Install node version', {
         shell("set +x; nvm install")
     })
@@ -93,6 +94,35 @@ def rollbarDeployTracking() {
             --header 'content-type: application/json' \
             --data '${data}'")
         }
+}
+
+def rollbarSendSourceMaps() {
+    withCredentials([string(credentialsId: 'ROLLBAR_REACT_STACK', variable: 'ROLLBAR_REACT_STACK')]) {
+        sh """
+        #!/bin/bash
+        set +x
+        set -e
+        cd ./build/react-stack/js
+        for i in \$(find . -name '*.map'); do
+            source_map_file=\$(echo \$i | sed 's/^.\\///')
+            minified_file=\$(echo \$source_map_file | sed 's/.map//')
+
+            curl https://api.rollbar.com/api/1/sourcemap \
+                -s \
+                -F access_token="${ROLLBAR_REACT_STACK}" \
+                -F version="${GIT_COMMIT}" \
+                -F minified_url="//www.casumo.com/react-stack/js/\$minified_file" \
+                -F source_map=@"\$source_map_file"
+            
+            curl https://api.rollbar.com/api/1/sourcemap \
+                -s \
+                -F access_token="${ROLLBAR_REACT_STACK}" \
+                -F version="${GIT_COMMIT}" \
+                -F minified_url="//www.casumo.es/react-stack/js/\$minified_file" \
+                -F source_map=@"\$source_map_file"
+        done
+        """
+    }
 }
 
 def shell(cmd) {

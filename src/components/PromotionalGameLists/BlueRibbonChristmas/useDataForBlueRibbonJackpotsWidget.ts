@@ -27,7 +27,7 @@ export function useDataForBlueRibbonJackpotsWidget() {
     R.map(({ communityWinRatio, mainWinRatio, potId, potName }) => ({
       value: pots[potId]?.progressive,
       label: potName,
-      status: pots[potId]?.potStatus,
+      status: pots[potId]?.potStatus as JackpotStatus,
       potId,
       communityWinRatio,
       mainWinRatio,

@@ -12,7 +12,7 @@ type GetSummaryUrlProps = {
   asPdf?: boolean;
 };
 
-// http://player-transactions.at.casumotest.local:8080/swagger-ui.html#/summaries-public-controller/getSummaryReportFileUsingGET
+// http://player-transactions.k8s.casumotest.local:80/swagger-ui.html#/summaries-public-controller/getSummaryReportFileUsingGET
 export const getSummaryUrl = ({
   periodicity = "ANNUAL",
   date,

@@ -8,22 +8,21 @@ import { injectScript } from "Utils";
 import {
   currencySelector,
   playerIdSelector,
+  marketSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
 import * as A from "Types/apollo";
+import type {
+  SDKInterface,
+  BlueRibbonConfig,
+  JackpotState,
+} from "Types/blueRibbonSDK";
+import { LogLevel } from "Types/blueRibbonSDK";
 import { urls, baseConfig } from "./blueRibbonConsts";
 import type { JackpotStatus, ComposedJackpot } from "./blueRibbonConsts";
 import { GetJackpotConfigForWidget } from "./GetJackpotConfigForWidget.graphql";
 
-declare const BlueRibbon: any;
-let sdkMutable; // eslint-disable-line fp/no-let
-
-type BlueRibbonSDK = {
-  connect: (o: Object) => Promise<any>;
-  startGamesFeed: (o: Object) => void;
-  reset: any;
-  ticker: any;
-};
+let sdkMutable: SDKInterface | null; // eslint-disable-line fp/no-let
 
 function useBlueRibbonConfig() {
   const isProductionBackend = useSelector(isProductionBackendSelector);
@@ -35,10 +34,12 @@ function useBlueRibbonConfig() {
   return baseConfig.development;
 }
 export function useBlueRibbonSDK() {
-  const [sdk, setSdk] = React.useState<BlueRibbonSDK>();
+  const [sdk, setSdk] = React.useState<SDKInterface>();
   const config = useBlueRibbonConfig();
-  const blueRibbonConfig = {
+  const blueRibbonConfig: BlueRibbonConfig = {
     ...config,
+    logLevel: LogLevel.debug,
+    withOverlays: false,
     loginAnonymousPlayer: () => {
       return fetch(urls.loginAnonymous, { method: "POST" }).then(raw =>
         raw.json()
@@ -51,14 +52,14 @@ export function useBlueRibbonSDK() {
     },
   };
   React.useEffect(function fetchBlueRibbonSDK() {
-    if ((window as any).BlueRibbon) {
+    if (window.BlueRibbon) {
       // SDK already loaded
       setSdk(sdkMutable);
       return;
     }
     injectScript(urls.sdkBundle, "blue-ribbon-sdk")
       .then(() => {
-        sdkMutable = new BlueRibbon.SdkCoreManager(blueRibbonConfig); // eslint-disable-line fp/no-mutation
+        sdkMutable = new window.BlueRibbon.SdkCoreManager(blueRibbonConfig); // eslint-disable-line fp/no-mutation
         setSdk(sdkMutable);
       })
       .catch(err => {
@@ -70,7 +71,7 @@ export function useBlueRibbonSDK() {
 export function useBlueRibbonSDKAnonymous() {
   const sdk = useBlueRibbonSDK();
   const currency = useSelector(currencySelector);
-  const [connectedSDK, setConnectedSDK] = React.useState<BlueRibbonSDK>();
+  const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
   React.useEffect(
     function connectBlueRibbonSDK() {
       if (!sdk) {
@@ -82,7 +83,7 @@ export function useBlueRibbonSDKAnonymous() {
           setConnectedSDK(sdk);
           return sdk.startGamesFeed({
             games: null,
-            gamesMode: BlueRibbon.constants.gamesMode.LOBBY,
+            gamesMode: window.BlueRibbon.constants.gamesMode.LOBBY,
           });
         })
         .catch(err => {
@@ -98,35 +99,43 @@ export function useBlueRibbonAutoOptIn() {
   const [isJackpotGame, setIsJackpotGame] = React.useState(false);
   const currency = useSelector(currencySelector);
   const playerId = useSelector(playerIdSelector);
+  const market = useSelector(marketSelector);
   const urlParams = useParams();
   const slug = urlParams?.slug;
   const sdk = useBlueRibbonSDK();
-  const [connectedSDK, setConnectedSDK] = React.useState<BlueRibbonSDK>();
+  const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
   React.useEffect(() => {
     if (!sdk || !slug) {
       return;
     }
-    const gameObj = { gameId: slug };
+    const gameObj = [
+      {
+        gameId: slug,
+        segments: [market],
+      },
+    ];
+
     fetch(urls.handshake)
       .then(raw => raw.json())
       .then(({ externalPlayerReference }) =>
         sdk.connect({ currency, playerId: externalPlayerReference })
       )
       .then(async () => {
-        const res: {
-          gamesDetails: Array<{
-            gameId: string;
-            jackpotGameId: string;
-          }>;
-        } = await sdk.ticker.getGameDetailsByGameIds([gameObj]);
-        const jackpotGameId = R.path(["gamesDetails", 0, "jackpotGameId"], res);
+        const res = await sdk.operatorGames.getOperatorGamesMatchDetailsByGameIds(
+          gameObj
+        );
+        const jackpotGameId = R.path(
+          ["matchedOperatorGames", 0, "jackpotGameId"],
+          res
+        );
         if (!jackpotGameId) {
           return;
         }
         setIsJackpotGame(true);
-        return await sdk.startGamesFeed({
-          games: [gameObj],
-          gamesMode: BlueRibbon.constants.gamesMode.IN_GAME,
+
+        return sdk.startGamesFeed({
+          games: gameObj,
+          gamesMode: window.BlueRibbon.constants.gamesMode.IN_GAME,
         });
       })
       .then(() => setConnectedSDK(sdk))
@@ -134,28 +143,16 @@ export function useBlueRibbonAutoOptIn() {
         logger.error("Blue ribbon sdk could not opt in to jackpot", err);
       });
     return sdk.reset;
-  }, [currency, playerId, sdk, slug]);
+  }, [currency, market, playerId, sdk, slug]);
   return {
     sdk: connectedSDK,
     isJackpotGame,
   };
 }
-type PotState = {
-  gameId: string;
-  segments?: Array<string>;
-  potId: string;
-  progressive: number;
-  currency: string;
-  potStatus: JackpotStatus;
-  updateTimestamp: number;
-};
-type PotStateChangeEvent = {
-  jackpotPotState: PotState;
-};
 export function usePotStateChangeEvent() {
   const [sdk, setSdk] = React.useState(sdkMutable);
   const [pots, setPots] = React.useState<{
-    [s: string]: PotState;
+    [s: string]: JackpotState;
   }>({});
   React.useEffect(() => {
     if (sdk) {
@@ -174,11 +171,11 @@ export function usePotStateChangeEvent() {
       return;
     }
     sdk.events.on(
-      BlueRibbon.constants.events.POT_STATE_CHANGED_EVENT,
-      (x: PotStateChangeEvent) => {
+      window.BlueRibbon.constants.events.POT_STATE_CHANGED_EVENT,
+      eventDetails => {
         setPots(oldPots => ({
           ...oldPots,
-          [x.jackpotPotState.potId]: x.jackpotPotState,
+          [eventDetails.jackpotPotState.potId]: eventDetails.jackpotPotState,
         }));
       }
     );
@@ -215,7 +212,7 @@ export const useComposedJackpotConfigData = ({
         pots: jackpot.pots.map(pot => ({
           ...pot,
           value: sdkPots[pot.externalId]?.progressive,
-          status: sdkPots[pot.externalId]?.potStatus,
+          status: sdkPots[pot.externalId]?.potStatus as JackpotStatus,
         })),
       });
     }
