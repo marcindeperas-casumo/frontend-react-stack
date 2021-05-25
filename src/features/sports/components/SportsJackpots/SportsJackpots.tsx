@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
-import { useComposedJackpotConfigData } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
+import { useComposedJackpotConfigData, useBlueRibbonAutoOptIn } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
 import { navigateById } from "Services/NavigationService";
@@ -23,6 +23,7 @@ export const SportsJackpots = () => {
   });
   const locale = useLocale();
   const currency = useSelector(currencySelector);
+  useBlueRibbonAutoOptIn(composedJackpot?.slug);
 
   if (
     !composedJackpot ||
