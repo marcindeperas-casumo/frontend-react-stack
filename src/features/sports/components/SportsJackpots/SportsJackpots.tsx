@@ -5,7 +5,10 @@ import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
-import { useComposedJackpotConfigData, useBlueRibbonAutoOptIn } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
+import {
+  useComposedJackpotConfigData,
+  useBlueRibbonAutoOptIn,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
 import { navigateById } from "Services/NavigationService";
