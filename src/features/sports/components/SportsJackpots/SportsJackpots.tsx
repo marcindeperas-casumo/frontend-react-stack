@@ -26,7 +26,7 @@ export const SportsJackpots = () => {
   });
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  useBlueRibbonAutoOptIn(composedJackpot?.slug);
+  useBlueRibbonAutoOptIn(CMS_SLUG_JACKPOTS);
 
   if (
     !composedJackpot ||
