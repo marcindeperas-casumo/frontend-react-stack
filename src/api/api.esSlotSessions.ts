@@ -4,7 +4,7 @@ import type {
   SessionStateResponseType,
 } from "Models/slotControlSystem";
 
-// see http://es-slot-sessions.at.casumotest.local:8080/swagger-ui.html
+// see http://es-slot-sessions.k8s.casumotest.local:80/swagger-ui.html
 const BASE = "/casino-player/es-slot-sessions/api/sessions";
 
 export function getSessionState(): Promise<SessionStateResponseType> {

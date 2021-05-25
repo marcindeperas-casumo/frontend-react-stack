@@ -36,14 +36,13 @@ stories.add("Jackpot Game Tile", () => {
     ...gameMock,
     jackpot: gameJackpot,
     id: "someCrappyString",
-    playBackground: "testbg",
   };
   const t = { play_button_text_game_tile: "Play" };
 
   return (
     <div className="c-top-game">
       <MockStore>
-        <GameTile game={{ ...gameInfo }} t={t} />
+        <GameTile game={gameInfo} t={t} />
       </MockStore>
     </div>
   );
