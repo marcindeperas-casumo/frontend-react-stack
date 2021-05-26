@@ -100,7 +100,6 @@ export const SportsNav = ({
         "no_no",
         "se_sv",
         "at_de",
-        "ie_en",
       ];
       const virtualsItem = {
         sport: {
