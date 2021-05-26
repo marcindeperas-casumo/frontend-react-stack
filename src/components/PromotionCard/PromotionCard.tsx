@@ -1,5 +1,6 @@
 import Card from "@casumo/cmp-card";
 import React from "react";
+import Text from "@casumo/cmp-text";
 import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
 import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
@@ -16,31 +17,38 @@ type Props = {
 export const PromotionCard = ({ promotion }: Props) => {
   const link = `promotions/${promotion.slug}`;
   return (
-    <a
-      href={link}
-      className="o-ratio o-ratio--promotion-card u-margin-bottom--sm"
-    >
-      <TrackView
-        eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
-        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
-      />
-      <TrackClick
-        eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
-        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
+    <div>
+      <a
+        className="o-ratio o-ratio--promotion-card u-margin-bottom--sm"
+        href={link}
       >
-        <Card
-          className="o-ratio__content t-border-r--md bg-white t-elevation--10"
-          spacing="none"
-          header={() => (
-            <PromotionCardHeader
-              badge={promotion.badge}
-              dates={promotion.subtitle}
-            />
-          )}
-          content={() => <PromotionCardContent title={promotion.title} />}
-          footer={() => <PromotionCardImage image={promotion.image} />}
+        <TrackView
+          eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
+          data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
         />
-      </TrackClick>
-    </a>
+        <TrackClick
+          eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
+          data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
+        >
+          <Card
+            className="o-ratio__content rounded-2xl bg-white t-elevation--10"
+            spacing="none"
+            header={() => <PromotionCardImage image={promotion.image} />}
+            content={() => (
+              <PromotionCardContent
+                title={promotion.title}
+                badge={promotion.badge}
+                dates={promotion.subtitle}
+              />
+            )}
+          />
+        </TrackClick>
+      </a>
+      <a>
+        <Text className="text-grey-50 italic" size="xs">
+          TO REPLACE - 18+, deposit required, qualifying games only, T&C apply
+        </Text>
+      </a>
+    </div>
   );
 };
