@@ -15,7 +15,7 @@ const QUERY = gql`
   }
 `;
 
-export const ComponentBuilderContainer = ({ slug }: Props) => {
+export const ComponentBuilderContainer = ({ slug, ...rest }: Props) => {
   const cmsField = "content_builder";
   const id = `root:${slug}:fields.${cmsField}`;
   const variables = { id };

@@ -80,8 +80,6 @@ export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
 export const DEVICE_PIXEL_RATIO = Math.ceil(window.devicePixelRatio);
 export const GAME_LIST_IDS = {
   POPULAR_GAMES: "popularGames",
-  LIVE_CASINO_GAMES: "liveCasinoGames", // TODO: remove this by using unique ids everywhere in the CMS
-  LIVE_CASINO_GAMES_ALIAS: "liveCasino",
   NEW_GAMES: "newGames",
   EXCLUSIVE_GAMES: "exclusiveGames",
   CASUMO_FAVOURITE_GAMES: "casumoFavouriteGames",
