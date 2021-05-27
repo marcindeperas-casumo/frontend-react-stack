@@ -177,6 +177,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       currency,
       leftToWager,
       market,
+      specificTerms,
       valuableType,
       valuableState,
       wageringThreshold,
@@ -284,6 +285,20 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <Flex.Item className="u-width--1/3 u-margin-y--md">
               <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
             </Flex.Item>
+            {specificTerms && (
+              <Flex.Item className="u-width--full u-overflow-x--hidden">
+                <Text
+                  tag="div"
+                  className="text-grey-70 u-text-align-left"
+                  size="sm"
+                >
+                  <DangerousHtml
+                    data-test="valuable-card-title"
+                    html={specificTerms}
+                  />
+                </Text>
+              </Flex.Item>
+            )}
             <Flex.Item>
               <Text tag="strong" className="text-grey-70" size="xs">
                 {termsAndConditionLabel}
