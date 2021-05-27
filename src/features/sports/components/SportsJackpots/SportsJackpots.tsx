@@ -14,6 +14,7 @@ import "./SportsJackpots.scss";
 import { navigateById } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
+import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 
 const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 const CMS_SLUG_JACKPOTS = "sports-jackpot";
@@ -21,6 +22,14 @@ const CMS_SLUG_JACKPOTS = "sports-jackpot";
 // eslint-disable-next-line fp/no-mutation
 const goToHash = (hash: string) => (window.location.hash = hash);
 
+const potWonInLastDay = (pot: PotsObjects, last_day: number) => {
+  if (!pot || !pot.lastWinTs || !last_day) {
+    return false;
+  }
+  return last_day <= pot.lastWinTs;
+};
+
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SportsJackpots = () => {
   const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);
   const { composedJackpot } = useComposedJackpotConfigData({
@@ -77,9 +86,8 @@ export const SportsJackpots = () => {
             >
               {t.view_odds}
             </ButtonPrimary>
-            {/* @ts-expect-error */}
             <OpenModalMutation variables={{ modal: MODAL.JACKPOTS }}>
-              {/* @ts-expect-error*/}
+              {/* @ts-expect-error */}
               {openMoreInfoModal => (
                 <ButtonSecondary
                   size="md"
@@ -94,7 +102,13 @@ export const SportsJackpots = () => {
         </div>
       </div>
       <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
-        <div className="u-width--1/2 u-display--inline-block u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70">
+        <div
+          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 ${
+            potWonInLastDay(potMatch, t.last_day)
+              ? "u-display--none"
+              : "u-display--inline-block"
+          }`}
+        >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
           <div
             className={`u-font-md u-font-weight-bold ${
@@ -106,7 +120,13 @@ export const SportsJackpots = () => {
             {formatCurrency({ locale, currency, value: potMatch.value })}
           </div>
         </div>
-        <div className="u-width--1/2 u-display--inline-block u-height--full u-padding-x--lg u-padding-y--md">
+        <div
+          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${
+            potWonInLastDay(potMega, t.last_day)
+              ? "u-display--none"
+              : "u-display--inline-block"
+          }`}
+        >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
           <div
             className={`u-font-md u-font-weight-bold ${

@@ -213,6 +213,7 @@ export const useComposedJackpotConfigData = ({
           ...pot,
           value: sdkPots[pot.externalId]?.progressive,
           status: sdkPots[pot.externalId]?.potStatus as JackpotStatus,
+          lastWinTs: sdkPots[pot.externalId]?.lastWinTs,
         })),
       });
     }

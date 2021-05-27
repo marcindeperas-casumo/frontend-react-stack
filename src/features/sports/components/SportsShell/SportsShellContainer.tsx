@@ -32,6 +32,7 @@ import { SportsYouWonComponent } from "Features/sports/components/SportsYouWon";
 import { showModal } from "Features/sports/components/SportsYouWon/SportsYouWonComponent";
 import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
 import { useMarket } from "Utils/hooks";
+import { useBlueRibbonSDK } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 
 const bridgeEventHandlers = [
   [
@@ -82,6 +83,8 @@ export const SportsShellContainer: React.FC<{}> = () => {
         bridge.on(event, handler(client))
     );
   }, [client]);
+
+  useBlueRibbonSDK();
 
   if (loading) {
     return <KambiClientSkeleton />;

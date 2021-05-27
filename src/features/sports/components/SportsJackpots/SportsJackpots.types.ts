@@ -62,6 +62,7 @@ export type SportsJackpotsTranslations = {
   footer_tc_link: string;
   footer_tc_text: string;
   footer_text: string;
+  last_day: string;
   match_drop: string;
   mega_drop: string;
   modal_conditions: string;
