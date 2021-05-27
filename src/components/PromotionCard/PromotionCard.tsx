@@ -18,10 +18,7 @@ export const PromotionCard = ({ promotion }: Props) => {
   const link = `promotions/${promotion.slug}`;
   return (
     <div>
-      <a
-        className="o-ratio o-ratio--promotion-card u-margin-bottom--sm"
-        href={link}
-      >
+      <a className="o-ratio u-margin-bottom--sm" href={link}>
         <TrackView
           eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
           data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
