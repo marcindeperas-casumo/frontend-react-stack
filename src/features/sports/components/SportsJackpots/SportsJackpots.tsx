@@ -22,11 +22,11 @@ const CMS_SLUG_JACKPOTS = "sports-jackpot";
 // eslint-disable-next-line fp/no-mutation
 const goToHash = (hash: string) => (window.location.hash = hash);
 
-const potWonInLastDay = (pot: PotsObjects, last_day: number) => {
+const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
     return false;
   }
-  return last_day <= pot.lastWinTs;
+  return parseInt(last_day) <= pot.lastWinTs;
 };
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
