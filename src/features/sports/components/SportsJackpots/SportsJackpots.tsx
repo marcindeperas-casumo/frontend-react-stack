@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
@@ -12,8 +12,8 @@ import {
 import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
 import { navigateById } from "Services/NavigationService";
-import { showModal } from "Models/modal";
-import { REACT_APP_MODAL } from "Src/constants";
+import { MODAL } from "Features/sports/components/Modals";
+import { OpenModalMutation } from "Features/sports/components/GraphQL";
 
 const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 const CMS_SLUG_JACKPOTS = "sports-jackpot";
@@ -26,7 +26,6 @@ export const SportsJackpots = () => {
   const { composedJackpot } = useComposedJackpotConfigData({
     jackpotSlug: CMS_SLUG_JACKPOTS,
   });
-  const dispatch = useDispatch();
   const locale = useLocale();
   const currency = useSelector(currencySelector);
   useBlueRibbonAutoOptIn(composedJackpot?.slug);
@@ -49,13 +48,6 @@ export const SportsJackpots = () => {
     }
     return t.background_desktop.url;
   };
-
-  const showMoreInfo = () =>
-    dispatch(
-      showModal(REACT_APP_MODAL.ID.SPORTS_JACKPOTS, {
-        input: { potMega, potMatch, t },
-      })
-    );
 
   const potMatch = composedJackpot.pots.find(
     pot => pot.potKey === t.potid_match
@@ -85,13 +77,19 @@ export const SportsJackpots = () => {
             >
               {t.view_odds}
             </ButtonPrimary>
-            <ButtonSecondary
-              size="md"
-              className="u-margin-right"
-              onClick={() => showMoreInfo()}
-            >
-              {t.more_info}
-            </ButtonSecondary>
+            {/* @ts-expect-error */}
+            <OpenModalMutation variables={{ modal: MODAL.JACKPOTS }}>
+              {/* @ts-expect-error*/}
+              {openMoreInfoModal => (
+                <ButtonSecondary
+                  size="md"
+                  className="u-margin-right"
+                  onClick={() => openMoreInfoModal()}
+                >
+                  {t.more_info}
+                </ButtonSecondary>
+              )}
+            </OpenModalMutation>
           </div>
         </div>
       </div>

@@ -37,7 +37,6 @@ import {
 import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
 import { AccountWarmUp } from "./AccountWarmUp";
-import { SportsJackpots } from "./SportsJackpots";
 
 export type ModalContentComponent<T> = {
   /** object with translations for provided slug, null if still fetching */
@@ -159,10 +158,6 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",
     Content: AccountWarmUp,
-  },
-  [REACT_APP_MODAL.ID.SPORTS_JACKPOTS]: {
-    slug: "",
-    Content: SportsJackpots,
   },
 };
 
