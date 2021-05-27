@@ -28,6 +28,7 @@ export const useValuableDetails = (
         "currency",
         "market",
         "expiryDate",
+        "specificTerms",
         "valuableType",
         "valuableState",
         "wageringThreshold",
