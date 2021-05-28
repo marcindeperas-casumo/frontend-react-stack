@@ -1,5 +1,4 @@
 import React from "react";
-import * as _ from "lodash";
 import { useLocation } from "@reach/router";
 import { useLocalStorage } from "react-use";
 import { getUrlSearchParam } from "Utils";

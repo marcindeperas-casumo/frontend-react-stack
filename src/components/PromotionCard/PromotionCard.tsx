@@ -1,7 +1,6 @@
 import Card from "@casumo/cmp-card";
 import React from "react";
 import Text from "@casumo/cmp-text";
-import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
 import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
 import "./PromotionCard.scss";
