@@ -101,7 +101,7 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
   const playerId = useSelector(playerIdSelector);
   const market = useSelector(marketSelector);
   const urlParams = useParams();
-  const slug = jackpotSlug ? jackpotSlug : urlParams?.slug;
+  const slug = jackpotSlug || urlParams?.slug;
   const sdk = useBlueRibbonSDK();
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
   React.useEffect(() => {

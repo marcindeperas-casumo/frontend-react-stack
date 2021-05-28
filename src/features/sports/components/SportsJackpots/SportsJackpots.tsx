@@ -42,8 +42,8 @@ export const SportsJackpots = () => {
   if (
     !composedJackpot ||
     !t ||
-    (t && isTestEnv() && t.enable_for_test === false) ||
-    (t && !isTestEnv() && t.enable_for_prod === false)
+    (isTestEnv() && t.enable_for_test === false) ||
+    (!isTestEnv() && t.enable_for_prod === false)
   ) {
     return null;
   }
