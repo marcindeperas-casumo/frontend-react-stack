@@ -57,8 +57,8 @@ export type SportsJackpotsTranslations = {
   background_mobile: CmsImage;
   background_tablet: CmsImage;
   description: string;
-  enable_for_prod: boolean;
-  enable_for_test: boolean;
+  enable_for_prod: string;
+  enable_for_test: string;
   footer_tc_link: string;
   footer_tc_text: string;
   footer_text: string;
