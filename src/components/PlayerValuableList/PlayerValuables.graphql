@@ -42,6 +42,7 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
       wageringThreshold
       leftToWager
       termsLink
+      specificTerms
       ... on PlayerValuableSpins {
         description
         coinValue
