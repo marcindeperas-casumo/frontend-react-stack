@@ -20,7 +20,7 @@ export class LeapGame extends BaseIframeGame {
         ...super.componentProps,
         src: appendToGameUrl({
           url,
-          paramsToAdd: [{ key: "lobbyUrl", value: encodedLobbyUrl }],
+          paramsToAdd: [{ key: "lobby_URL", value: encodedLobbyUrl }],
         }),
       };
     }
