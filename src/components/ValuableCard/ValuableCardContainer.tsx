@@ -13,7 +13,8 @@ export const ValuableCardContainer = (props: ValuableProps) => {
 export function withWarmupPopup<TProps>(
   Component: typeof React.Component,
   props: TProps,
-  onClickProp: string
+  onClickProp: string,
+  onMoreInfoProp?: string
 ) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isDGOJ } = useJurisdiction();
@@ -47,9 +48,27 @@ export function withWarmupPopup<TProps>(
     );
 
   const shouldShowWarmUpPopup = details.inWarmupPhase || !details.verified;
+
   const onCardClick = shouldShowWarmUpPopup
     ? showWarmUpModal
     : props[onClickProp];
 
-  return <Component {...{ ...props, [onClickProp]: onCardClick }} />;
+  const onMoreInfoClick = shouldShowWarmUpPopup
+    ? showWarmUpModal
+    : props[onMoreInfoProp];
+
+  const onMoreInfoClickHandler =
+    typeof onMoreInfoProp !== "undefined"
+      ? { [onMoreInfoProp]: onMoreInfoClick }
+      : {};
+
+  return (
+    <Component
+      {...{
+        ...props,
+        ...onMoreInfoClickHandler,
+        [onClickProp]: onCardClick,
+      }}
+    />
+  );
 }

@@ -17,6 +17,8 @@ type Props = {
   rowClassName?: string;
   style?: Object;
   currentPositionRef?: React.Ref<any>;
+  spinLimit?: number;
+  showSpins?: boolean;
   scrollable?: boolean;
 };
 
@@ -31,6 +33,8 @@ type ListProps = {
   currentPositionRef?: React.Ref<any>;
   listRef?: React.Ref<any>;
   scrollable?: boolean;
+  showSpins?: boolean;
+  spinLimit: number;
 };
 
 export const getPrize = (position: number, prizes: Array<string> = []) =>
@@ -45,12 +49,20 @@ const InnerList = ({
   inverted = false,
   rowClassName = "",
   currentPositionRef = null,
+  spinLimit,
+  showSpins,
   listRef = null,
   scrollable = false,
 }: ListProps) => (
   <div className={className}>
     {items.map(
-      ({ points, position, playerName, playerId: playerIdFromLeaderboard }) => {
+      ({
+        points,
+        position,
+        playerName,
+        playerId: playerIdFromLeaderboard,
+        remainingSpins,
+      }) => {
         const prize = getPrize(position, prizes);
         const isHighlighted = playerIdFromLeaderboard === playerId;
         return (
@@ -58,6 +70,9 @@ const InnerList = ({
             key={position}
             points={points}
             position={position}
+            remainingSpins={remainingSpins}
+            spinLimit={spinLimit}
+            showSpins={showSpins}
             text={playerName}
             prize={prize}
             showLaurel={position <= forceLaurelPositions || Boolean(prize)}
@@ -83,6 +98,8 @@ export function ReelRaceLeaderboardResults({
   className,
   rowClassName = "",
   scrollable = false,
+  spinLimit,
+  showSpins,
   style = {},
   ...props
 }: Props) {
@@ -101,6 +118,8 @@ export function ReelRaceLeaderboardResults({
     listRef,
     scrollable,
     currentPositionRef,
+    spinLimit,
+    showSpins,
   };
 
   return (

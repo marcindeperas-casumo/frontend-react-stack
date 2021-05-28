@@ -142,26 +142,25 @@ export const ReelRacesDrawerWidget = ({
   );
 
   const leaderboard = showLeaderboardLink ? (
-    <Desktop>
-      <div
-        className="u-width--full u-text-align-center u-cursor--pointer u-padding-top"
-        onClick={onShowLeaderboardClick}
+    <div
+      className="u-width--full u-text-align-center u-cursor--pointer u-padding-top"
+      onClick={onShowLeaderboardClick}
+    >
+      <Text
+        tag="span"
+        size="2xs"
+        className="text-white u-text-transform-uppercase u-font-weight-black"
       >
-        <Text
-          tag="span"
-          size="2xs"
-          className="text-white u-text-transform-uppercase u-font-weight-black"
-        >
-          {t?.reel_races_drawer_full_leaderboard}
-        </Text>
-        {isLeaderboardOpen ? (
-          <ChevronUpIcon size="sm" />
-        ) : (
-          <ChevronDownIcon size="sm" />
-        )}
-      </div>
-    </Desktop>
+        {t?.reel_races_drawer_full_leaderboard}
+      </Text>
+      {isLeaderboardOpen ? (
+        <ChevronUpIcon size="sm" />
+      ) : (
+        <ChevronDownIcon size="sm" />
+      )}
+    </div>
   ) : null;
+
   return (
     <Flex
       className={cx(

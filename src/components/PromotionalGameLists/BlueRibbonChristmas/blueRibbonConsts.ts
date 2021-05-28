@@ -1,5 +1,7 @@
+import * as A from "Types/apollo";
+
 export const urls = {
-  sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.2.61.js",
+  sdkBundle: "https://sdk.bluerbn.com/br-sdk-1.3.2.js",
   loginAnonymous:
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/anonymous",
   loginAuthenticated:
@@ -49,6 +51,22 @@ export type JackpotWidgetContentPage = {
   eligible_games_cta_label: string;
   jackpot_split_explanation: string;
 };
+
+export type PotValues = {
+  status: JackpotStatus;
+  value: number;
+};
+
+export type ComposedJackpot = Omit<
+  A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"],
+  "pots"
+> & {
+  pots: Array<
+    A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
+      PotValues
+  >;
+};
+
 export const jackpotWidgetInGameWidth = 359;
 export const colors = {
   jackpotWidgetPurpleDark: "#0A0449",

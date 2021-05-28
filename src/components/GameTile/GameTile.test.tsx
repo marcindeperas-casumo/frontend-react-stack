@@ -75,7 +75,6 @@ describe("GameTile", () => {
       ...gameMock,
       jackpot: gameJackpot.jackpot,
       id: "someCrappyString",
-      playBackground: "testbg",
     };
     const t = { play_button_text_game_tile: "Play" };
     setDesktopViewport();
@@ -104,7 +103,6 @@ describe("GameTile", () => {
       ...gameMock,
       jackpot: gameJackpot.jackpot,
       id: "someCrappyString",
-      playBackground: "testbg",
     };
     const t = { play_button_text_game_tile: "Play" };
     setMobileViewport();

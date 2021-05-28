@@ -13,7 +13,7 @@
     "@casumo/cmp-card": "^4.0.0",
     "@casumo/cmp-chip": "^2.0.8",
     "@casumo/cmp-flex": "^4.1.0",
-    "@casumo/cmp-icons": "^4.2.0",
+    "@casumo/cmp-icons": "^5.0.1",
     "@casumo/cmp-input-field": "^2.1.0",
     "@casumo/cmp-list": "^2.0.0",
     "@casumo/cmp-loader-global": "^1.0.3",
@@ -59,7 +59,7 @@
     "redux-saga": "^0.16.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "rollbar": "^2.15.0",
+    "rollbar": "^2.21.1",
     "store": "^2.0.12",
     "uuid": "^8.3.1"
   },

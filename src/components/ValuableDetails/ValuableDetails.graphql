@@ -12,6 +12,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   wageringThreshold
   leftToWager
   termsLink
+  specificTerms
   ... on PlayerValuableSpins {
     requirementType
     game {

@@ -82,7 +82,6 @@ export const GamePageContainer = () => {
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   useDispatchPlaying({

@@ -25,6 +25,7 @@ export type CurrentReelRaceInfo = {
   position: number;
   points: number;
   remainingSpins: number;
+  spinLimit: number;
   isInProgress: boolean;
   optedIn: boolean;
   hasEnded: boolean;
@@ -43,6 +44,7 @@ type CreateCurrentReelRaceDataType = {
   formattedPrizes?: Array<string>;
   game?: A.CurrentReelRaceInfoQuery["reelRaces"][number]["game"] | undefined;
   cometdChannels?: Array<string>;
+  spinLimit: number;
 };
 
 type CometdReelRaceEnteredType = {
@@ -70,6 +72,7 @@ const defaultReelRaceInfo: CurrentReelRaceInfo = {
   tournamentId: null,
   formattedPrizes: [],
   leaderboard: [],
+  spinLimit: undefined,
   boosters: {
     winsInARow: 0,
     triples: 0,
@@ -108,6 +111,7 @@ export const createCurrentReelRaceData = (
     game,
     optedIn,
     cometdChannels,
+    spinLimit,
   }: CreateCurrentReelRaceDataType = {
     startTime: UNSET_VALUE,
     endTime: UNSET_VALUE,
@@ -117,6 +121,7 @@ export const createCurrentReelRaceData = (
     optedIn: false,
     id: null,
     cometdChannels: [],
+    spinLimit: undefined,
   }
 ): CurrentReelRaceInfo => {
   const currentPlayerEntry = leaderboard ? leaderboard[playerId || ""] : null;
@@ -157,6 +162,7 @@ export const createCurrentReelRaceData = (
       "boosters",
       currentPlayerEntry
     ),
+    spinLimit,
   };
 };
 
@@ -314,6 +320,8 @@ export function useCurrentReelRaceInfo(
             cometdChannels: localCurrentReelRace.cometdChannels,
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'optedIn' does not exist on type '{ id: s... Remove this comment to see the full error message
             optedIn: localCurrentReelRace.optedIn,
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'spinLimit' does not exist on type '{ id: s... Remove this comment to see the full error message
+            spinLimit: localCurrentReelRace.spinLimit,
           })
         );
 

@@ -31,6 +31,7 @@ export interface Query {
   activeModals: Array<Modal>;
   articlesList?: Maybe<ArticlesList>;
   betDetails?: Maybe<BetDetails>;
+  blueribbonJackpot?: Maybe<BlueribbonJackpotConfig>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -88,6 +89,10 @@ export interface QueryArticlesListArgs {
 
 export interface QueryBetDetailsArgs {
   combinationRef?: Maybe<Scalars["BigInt"]>;
+}
+
+export interface QueryBlueribbonJackpotArgs {
+  slug: Scalars["String"];
 }
 
 export interface QueryCompetitionsArgs {
@@ -782,6 +787,7 @@ export interface PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -804,6 +810,7 @@ export interface PlayerValuableCash extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageredGame?: Maybe<Game>;
@@ -831,6 +838,7 @@ export interface PlayerValuableSpins extends PlayerValuable {
   source?: Maybe<Platform>;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageredGame?: Maybe<Game>;
@@ -856,6 +864,7 @@ export interface PlayerValuableDeposit extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringFactor?: Maybe<Scalars["Float"]>;
@@ -878,6 +887,7 @@ export interface PlayerValuableSport extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -904,6 +914,7 @@ export interface PlayerValuableCashback extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -930,6 +941,7 @@ export interface PlayerValuableWageringLock extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -952,6 +964,7 @@ export interface PlayerValuableFreeBet extends PlayerValuable {
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   unlockMinOdds: Scalars["Float"];
   unlockMinStake: Scalars["Float"];
   valuableState: PlayerValuableState;
@@ -1242,6 +1255,43 @@ export interface BetProjectionsOutcomes {
   outcomeLabel?: Maybe<Scalars["String"]>;
 }
 
+export interface BlueribbonJackpotConfig {
+  externalId: Scalars["ID"];
+  slug: Scalars["String"];
+  title: Scalars["String"];
+  image: Scalars["String"];
+  pots: Array<Pot>;
+}
+
+export interface SharedPot {
+  name: Scalars["String"];
+  shortName: Scalars["String"];
+  icon: Scalars["String"];
+  splitExplanation: Scalars["String"];
+  winText: Scalars["String"];
+  winTextAmount: Scalars["String"];
+  restartText: Scalars["String"];
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
+}
+
+export interface Pot {
+  potKey: Scalars["String"];
+  externalId: Scalars["String"];
+  icon: Scalars["String"];
+  name: Scalars["String"];
+  shortName: Scalars["String"];
+  winText: Scalars["String"];
+  mainWinRatio: Scalars["Int"];
+  communityWinRatio: Scalars["Int"];
+  maxWinAmount: Scalars["Int"];
+  winNotificationIcon: Scalars["String"];
+  winNotificationTitle: Scalars["String"];
+  winNotificationContent: Scalars["String"];
+  sharedPot?: Maybe<SharedPot>;
+}
+
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export type Modal =
@@ -1466,7 +1516,6 @@ export type GameRow_GameFragment = {
   slug: string;
   gameStudio: string;
   category?: Maybe<string>;
-  playBackground: string;
   liveCasinoId?: Maybe<string>;
   isInMaintenance: boolean;
   lobby?: Maybe<{
@@ -1512,9 +1561,6 @@ export type GameTile_GameFragment = {
   name: string;
   slug: string;
   id: string;
-  liveCasinoId?: Maybe<string>;
-  playBackground: string;
-  category?: Maybe<string>;
   jackpot?: Maybe<{
     id: string;
     value: { amount: number; currency: Currency };
@@ -1600,36 +1646,6 @@ export type LiveCasinoCardFragment = {
   liveCasinoLobby?: Maybe<LiveCasinoCard_LobbyFragment>;
 };
 
-export type LiveCasinoCardSmallDataQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type LiveCasinoCardSmallDataQuery = {
-  liveCasinoTablesById?: Maybe<{
-    id?: Maybe<string>;
-    tableId?: Maybe<string>;
-    state: TableState;
-    symbol?: Maybe<string>;
-    numberOfPlayers?: Maybe<number>;
-    seats?: Maybe<number>;
-    provider?: Maybe<string>;
-    results: Array<string>;
-    image?: Maybe<string>;
-    type?: Maybe<string>;
-    betBehind?: Maybe<boolean>;
-    bets?: Maybe<{
-      symbol?: Maybe<string>;
-      min?: Maybe<number>;
-      max?: Maybe<number>;
-    }>;
-    operationHours: {
-      type: OperationHoursType;
-      startTime?: Maybe<string>;
-      endTime?: Maybe<string>;
-    };
-  }>;
-};
-
 export type LiveCasinoDetailPageQueryVariables = Exact<{
   [key: string]: never;
 }>;
@@ -1708,6 +1724,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
         }
       | {
           __typename: "PlayerValuableSpins";
@@ -1727,6 +1744,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
           game?: Maybe<{ slug: string }>;
         }
       | {
@@ -1744,6 +1762,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
         }
       | {
           __typename: "PlayerValuableSport";
@@ -1760,6 +1779,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
         }
       | {
           __typename: "PlayerValuableCashback";
@@ -1779,6 +1799,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
           games: Array<Maybe<{ title: string; slug: string }>>;
           excludedGames: Array<Maybe<{ title: string }>>;
         }
@@ -1800,6 +1821,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
           games: Array<Maybe<{ title: string }>>;
           excludedGames: Array<Maybe<{ title: string }>>;
         }
@@ -1818,6 +1840,7 @@ export type PlayerValuablesQuery = {
           wageringThreshold?: Maybe<number>;
           leftToWager?: Maybe<number>;
           termsLink: string;
+          specificTerms?: Maybe<string>;
         }
     >;
   };
@@ -1978,6 +2001,27 @@ export type PromotionsListQuery = {
     id: string;
     name: string;
     promotions: Array<PromotionCard_PromotionFragment>;
+  }>;
+};
+
+export type GetJackpotConfigForWidgetQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type GetJackpotConfigForWidgetQuery = {
+  blueribbonJackpot?: Maybe<{
+    externalId: string;
+    title: string;
+    image: string;
+    slug: string;
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      sharedPot?: Maybe<{ name: string; shortName: string; icon: string }>;
+    }>;
   }>;
 };
 
@@ -2364,6 +2408,8 @@ type ValuableCard_PlayerValuable_PlayerValuableCash_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
@@ -2379,6 +2425,8 @@ type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
@@ -2392,6 +2440,8 @@ type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
@@ -2405,6 +2455,8 @@ type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
@@ -2418,6 +2470,8 @@ type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
@@ -2431,6 +2485,8 @@ type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
@@ -2444,6 +2500,8 @@ type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
+  termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 export type ValuableCard_PlayerValuableFragment =
@@ -2470,6 +2528,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment = {
@@ -2487,6 +2546,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
   game?: Maybe<{ slug: string }>;
 };
 
@@ -2504,6 +2564,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableDeposit_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableDetails_PlayerValuable_PlayerValuableSport_Fragment = {
@@ -2520,6 +2581,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableSport_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 type ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment = {
@@ -2538,6 +2600,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
   games: Array<Maybe<{ title: string; slug: string }>>;
   excludedGames: Array<Maybe<{ title: string }>>;
 };
@@ -2558,6 +2621,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
   games: Array<Maybe<{ title: string }>>;
   excludedGames: Array<Maybe<{ title: string }>>;
 };
@@ -2576,6 +2640,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  specificTerms?: Maybe<string>;
 };
 
 export type ValuableDetails_PlayerValuableFragment =
