@@ -1,8 +1,6 @@
-import Card from "@casumo/cmp-card";
 import React from "react";
 import { shallow } from "enzyme";
 import { PromotionCard } from "Components/PromotionCard/PromotionCard";
-import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 const promotion = {
   id: "promotion",
   slug: "/promotion-1",
