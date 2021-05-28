@@ -1,5 +1,6 @@
 import * as React from "react";
 import cx from "classnames";
+import { DateTime } from "luxon";
 import { CuratedCardContainer as CuratedCard } from "Components/CuratedCard/CuratedCardContainer";
 import { MARKETS } from "Src/constants";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
@@ -30,6 +31,7 @@ type TProps = {
   welcomeOfferId: string;
   /** Will enforce showing the curated content specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
   enforceOriginalSlug?: boolean;
+  registrationDate?: number;
 };
 
 // We cannot name the property to "slug" easily here, we have to keep it as "card" as it getting
@@ -40,9 +42,12 @@ export const TopListCuratedCard = ({
   market,
   welcomeOfferId,
   enforceOriginalSlug = false,
+  registrationDate
 }: TProps) => {
   const normalizedSlug = Array.isArray(card) ? card[0] : card;
-  const shouldShowWelcomeOffer = !hasDeposited && !enforceOriginalSlug;
+  const irishPlayerRegisteredBeforeJune2021 = market === MARKETS.ie_en &&
+    registrationDate < DateTime.fromFormat('31/05/2021', 'dd/MM/yyyy').toMillis();
+  const shouldShowWelcomeOffer = !hasDeposited && !enforceOriginalSlug && !irishPlayerRegisteredBeforeJune2021;
   const computedSlug = shouldShowWelcomeOffer
     ? getWelcomeOfferSlug(welcomeOfferId, market)
     : normalizedSlug;
