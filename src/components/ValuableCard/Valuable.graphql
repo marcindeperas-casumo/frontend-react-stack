@@ -9,6 +9,7 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   market
   caveat
   backgroundImage
+  specificTerms
   ... on PlayerValuableSpins {
     coinValue
     description
