@@ -42,12 +42,17 @@ export const TopListCuratedCard = ({
   market,
   welcomeOfferId,
   enforceOriginalSlug = false,
-  registrationDate
+  registrationDate,
 }: TProps) => {
   const normalizedSlug = Array.isArray(card) ? card[0] : card;
-  const irishPlayerRegisteredBeforeJune2021 = market === MARKETS.ie_en &&
-    registrationDate < DateTime.fromFormat('31/05/2021', 'dd/MM/yyyy').toMillis();
-  const shouldShowWelcomeOffer = !hasDeposited && !enforceOriginalSlug && !irishPlayerRegisteredBeforeJune2021;
+  const irishPlayerRegisteredBeforeJune2021 =
+    market === MARKETS.ie_en &&
+    registrationDate <
+      DateTime.fromFormat("31/05/2021", "dd/MM/yyyy").toMillis();
+  const shouldShowWelcomeOffer =
+    !hasDeposited &&
+    !enforceOriginalSlug &&
+    !irishPlayerRegisteredBeforeJune2021;
   const computedSlug = shouldShowWelcomeOffer
     ? getWelcomeOfferSlug(welcomeOfferId, market)
     : normalizedSlug;

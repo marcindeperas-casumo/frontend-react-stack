@@ -17,7 +17,7 @@ export const CuratedCardFooterGameMobile = ({
   onLaunchGame,
 }: CuratedCardFooterGameProps) => {
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
-    slug: game?.slug || '',
+    slug: game?.slug || "",
   });
 
   if (!game) {
