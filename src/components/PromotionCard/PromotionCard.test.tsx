@@ -19,20 +19,6 @@ describe("PromotionCard", () => {
     rendered = shallow(<PromotionCard promotion={promotion} />);
   });
 
-  test("should render PromotionCardHeader component", () => {
-    expect(rendered.find(Card).dive().find(PromotionCardHeader).exists()).toBe(
-      true
-    );
-
-    const renderedPromotionCardHeaderProps = rendered
-      .find("Card")
-      .dive()
-      .find("PromotionCardHeader")
-      .props();
-
-    expect(renderedPromotionCardHeaderProps.badge).toBe(promotion.badge);
-  });
-
   test("should render PromotionCardContent component", () => {
     expect(
       rendered.find("Card").dive().find("PromotionCardContent").exists()
