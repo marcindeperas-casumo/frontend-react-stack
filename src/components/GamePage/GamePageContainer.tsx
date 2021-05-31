@@ -41,7 +41,6 @@ import {
   usePinnedWidgetsContext,
   GamePageContextProvider,
 } from "./Contexts";
-import { useFitToParentSize } from "./Hooks/useFitToParentSize";
 import "./GamePage.scss";
 
 type Props = {
@@ -82,7 +81,6 @@ export const GamePageContainer = () => {
 
   useRealityCheckModal({ pauseGame, resumeGame });
 
-  // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'number'.
   useInGameBonusOrRealBalanceCheck({ bonusAmount });
 
   useDispatchPlaying({
@@ -99,8 +97,6 @@ export const GamePageContainer = () => {
         shouldShowSlotControlSystem
     ),
   });
-
-  useFitToParentSize();
 
   return (
     // @ts-expect-error ts-migrate(2786) FIXME: 'GamePage' cannot be used as a JSX component.
@@ -121,7 +117,6 @@ export const GamePageContainer = () => {
           {shouldShowSlotControlSystem && <InfoBar />}
           <Mobile>
             <BlueRibbonJackpotsFooterWidgetContainer />
-            <div className="bg-grey-90 u-safe-area-inset-padding-bottom" />
           </Mobile>
         </React.Fragment>
       }
@@ -132,7 +127,7 @@ export const GamePageContainer = () => {
         gameProviderModel && (
           <div
             className={classNames(
-              "o-inset-x--none o-inset-y--none o-position--absolute",
+              "bg-grey-90 o-inset-x--none o-inset-y--none o-position--absolute",
               gameProviderModel.gameWrapperClasses || []
             )}
           >

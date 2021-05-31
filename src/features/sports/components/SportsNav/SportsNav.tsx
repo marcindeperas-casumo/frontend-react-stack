@@ -41,7 +41,6 @@ const renderSportsNav = (
 
   return (
     <div className="pt-sm">
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
       <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
         {openChooseFavouritesModal => (
@@ -100,6 +99,7 @@ export const SportsNav = ({
         "no_no",
         "se_sv",
         "at_de",
+        "ie_en",
       ];
       const virtualsItem = {
         sport: {

@@ -1,7 +1,10 @@
 import { connect } from "react-redux";
 import { fetchPageBySlug } from "Models/cms";
 import { localeSelector, currencySelector } from "Models/handshake";
-import { playerBalanceAmountSelector } from "Models/player";
+import {
+  playerBalanceAmountSelector,
+  playerWalletBonusSelector,
+} from "Models/player";
 import {
   configurationFormContentSelector,
   activeSessionSelector,
@@ -18,7 +21,8 @@ export const ConfigurationFormContainer = connect(
     t: configurationFormContentSelector(state),
     locale: localeSelector(state),
     currency: currencySelector(state),
-    balance: playerBalanceAmountSelector(state),
+    balance:
+      playerBalanceAmountSelector(state) + playerWalletBonusSelector(state),
     isCreatingSession: isCreatingSessionSelector(state),
     activeSession: activeSessionSelector(state),
   }),

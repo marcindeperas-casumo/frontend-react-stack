@@ -26,7 +26,6 @@ const mocks = [
 stories.add("Default", () => (
   <MockedProvider mocks={mocks}>
     <MockStore>
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: string; name: string; games: { isInMai... Remove this comment to see the full error message */}
       <GameListHorizontalExclusive list={mocks[0].result.data.gamesList} />
     </MockStore>
   </MockedProvider>

@@ -188,14 +188,6 @@ declare module "*/LiveCasinoCard.graphql" {
   export default defaultDocument;
 }
 
-declare module "*/LiveCasinoCardSmall.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const LiveCasinoCardSmallDataQuery: DocumentNode;
-
-  export default defaultDocument;
-}
-
 declare module "*/LiveCasinoDetailPage.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
@@ -259,6 +251,14 @@ declare module "*/PromotionCardListContainer.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const PromotionsListQuery: DocumentNode;
+
+  export default defaultDocument;
+}
+
+declare module "*/GetJackpotConfigForWidget.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const GetJackpotConfigForWidget: DocumentNode;
 
   export default defaultDocument;
 }
