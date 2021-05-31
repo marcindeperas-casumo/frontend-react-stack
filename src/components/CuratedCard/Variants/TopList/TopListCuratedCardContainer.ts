@@ -6,6 +6,7 @@ import {
   verticalSelector,
   marketSelector,
   welcomeOfferIdSelector,
+  registrationDateSelector,
 } from "Models/handshake";
 import { TopListCuratedCard } from "./TopListCuratedCard";
 
@@ -21,6 +22,7 @@ const enforceOriginalSlugSelector = state =>
 
 export const TopListCuratedCardContainer = connect(state => ({
   market: marketSelector(state),
+  registrationDate: registrationDateSelector(state),
   welcomeOfferId: welcomeOfferIdSelector(state),
   hasDeposited: hasMadeFirstDepositSelector(state),
   enforceOriginalSlug: enforceOriginalSlugSelector(state),

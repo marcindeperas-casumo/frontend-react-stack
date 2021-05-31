@@ -3,6 +3,7 @@ import * as React from "react";
 import { FullscreenView } from "Components/FullscreenView";
 import { VerticalStretcher } from "Components/VerticalStretcher";
 import type { GameProviderModel } from "GameProviders";
+import { WindowHeightMatcher } from "./WindowHeightMatcher";
 
 type Props = {
   error: React.ReactNode;
@@ -45,27 +46,32 @@ export const GamePage = ({
         quickDepositInProgress={quickDepositInProgress}
         gameProviderModel={gameProviderModel}
       >
-        <Flex
-          className="u-width--full u-height--full bg-grey-90 text-white c-game-page"
-          direction="vertical"
-          spacing="none"
-          style={{ backgroundImage: `url('${gameBackground || ""}')` }}
-        >
-          <Flex.Item>{header}</Flex.Item>
+        <WindowHeightMatcher>
           <Flex
-            direction="horizontal"
+            className="u-width--full u-height--full bg-grey-90 text-white c-game-page"
+            direction="vertical"
             spacing="none"
-            className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            style={{ backgroundImage: `url('${gameBackground || ""}')` }}
           >
-            <Flex.Item>{sidebar}</Flex.Item>
-            <Flex.Block className="o-position--relative o-flex c-game-page__flexible-game-container">
-              {gameWindow}
-              {overScreenNotifications}
-            </Flex.Block>
+            <Flex.Item>{header}</Flex.Item>
+            <Flex
+              direction="horizontal"
+              spacing="none"
+              className="u-padding-x--md@desktop u-padding-bottom--md@desktop u-height--full"
+            >
+              <Flex.Item>{sidebar}</Flex.Item>
+              <Flex.Block className="o-position--relative o-flex c-game-page__flexible-game-container">
+                {gameWindow}
+                {overScreenNotifications}
+              </Flex.Block>
+            </Flex>
+            <Flex.Item>
+              {footer}
+              <div className="bg-grey-90 u-safe-area-inset-padding-bottom"></div>
+            </Flex.Item>
           </Flex>
-          <Flex.Item>{footer}</Flex.Item>
-        </Flex>
-        {offscreenElements}
+          {offscreenElements}
+        </WindowHeightMatcher>
       </VerticalStretcher>
     </FullscreenView>
   );
