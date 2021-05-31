@@ -43,7 +43,7 @@ export const PromotionCard = ({ promotion }: Props) => {
         </TrackClick>
       </div>
       {promotion.teaserCaveats && (
-        <a>
+        <a href={link}>
           <Text className="text-grey-50 italic px-sm" size="2xs">
             {promotion.teaserCaveats}
           </Text>
