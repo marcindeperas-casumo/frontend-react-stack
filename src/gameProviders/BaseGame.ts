@@ -1,7 +1,6 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
-import { expandElementHeightToMatchItsParent } from "./utils";
 import {
   GAME_ACTIVE_EVENT_NAME,
   GAME_IDLE_EVENT_NAME,
@@ -76,12 +75,6 @@ export class BaseGame {
       gameElement.dispatchEvent(this.onGameIdle);
     }
   }
-
-  fitToParentSize = () => {
-    if (this.props.gameRef) {
-      expandElementHeightToMatchItsParent(this.props.gameRef);
-    }
-  };
 
   onMount() {
     const { current: gameElement } = this.props.gameRef;

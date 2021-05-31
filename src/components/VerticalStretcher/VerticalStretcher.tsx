@@ -40,7 +40,6 @@ export const VerticalStretcher = ({
   const heightContainer = useRef(null);
   const [isDismissed, setIsDismissed] = useState(false);
   const [showSwipePanel, setShowSwipePanel] = useState(false);
-  const [staticHeight, setStaticHeight] = useState(false);
   const measure = document.getElementById("height-measure");
   const isNative = isNativeByUserAgent();
   const isMobile = isMobileByPlatform();
@@ -49,40 +48,13 @@ export const VerticalStretcher = ({
       window.scrollTo(0, 0);
     }
   }, 100);
-  const debounceResizeGame = debounce(() => {
-    (gameProviderModel as any).fitToParentSize();
-  }, 500);
-  const desktopResizeGame = () => {
-    matchContainerHeight();
-    (gameProviderModel as any).fitToParentSize();
-  };
-  const matchContainerHeight = () => {
-    if (quickDepositInProgress) {
-      return;
-    }
-    debouncedScrollToTop();
-    if (heightContainer.current) {
-      /**
-       * So far this is the only way i've found which solves the problem
-       * of browser toolbars overlaying game content when they appear.
-       */
-      /* eslint-disable-next-line fp/no-mutation */
-      heightContainer.current.style.height = `${window.innerHeight}px`;
-      setStaticHeight(true);
-    }
-  };
+
   const onDismiss = () => {
     setIsDismissed(true);
-    matchContainerHeight();
-    debounceResizeGame();
     // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     tracker.track(EVENTS.MIXPANEL_IN_GAME_SWIPEUP_DISMISSED);
   };
   useEffect(() => {
-    if (isMobile) {
-      (gameProviderModel as any).fitToParentSize();
-      debouncedScrollToTop();
-    }
     const interval = setInterval(() => {
       /**
        * 1px diff is acceptable, this is a fix for zommed in
@@ -114,16 +86,9 @@ export const VerticalStretcher = ({
      * scroll behavior, thus you can't scroll down anymore, because now you only see the game content
      */
     window.addEventListener("scroll", debouncedScrollToTop);
-    window.addEventListener("orientationchange", debounceResizeGame);
-    if (!isMobile) {
-      window.addEventListener("resize", desktopResizeGame);
-    }
     return () => {
       window.removeEventListener("scroll", debouncedScrollToTop);
-      window.removeEventListener("orientationchange", desktopResizeGame);
-      if (!isMobile) {
-        window.removeEventListener("resize", debounceResizeGame);
-      }
+
       clearInterval(interval);
     };
   });
@@ -138,7 +103,7 @@ export const VerticalStretcher = ({
   return (
     <div
       ref={heightContainer}
-      className={classNames("u-width--full", !staticHeight && "u-height--full")}
+      className={classNames("u-width--full", "u-height--full")}
     >
       <SwipeUpPanelContainer
         {...{ shouldShowSwipePanel, fullScreenElement, onDismiss }}
