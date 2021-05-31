@@ -6,7 +6,7 @@ import { PromotionPage } from "./PromotionPage";
 
 export const verticalCampaigns = [
   { origin: "casino", slug: "campaigns.winter-games" },
-  { origin: "sports", slug: "campaigns.coutdown-to-2020" },
+  { origin: "sports", slug: "campaigns.countdown-to-2020" },
 ];
 
 export const PromotionPageContainer = () => {
