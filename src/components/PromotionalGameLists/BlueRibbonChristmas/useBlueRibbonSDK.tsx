@@ -95,13 +95,13 @@ export function useBlueRibbonSDKAnonymous() {
   );
   return connectedSDK;
 }
-export function useBlueRibbonAutoOptIn() {
+export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
   const [isJackpotGame, setIsJackpotGame] = React.useState(false);
   const currency = useSelector(currencySelector);
   const playerId = useSelector(playerIdSelector);
   const market = useSelector(marketSelector);
   const urlParams = useParams();
-  const slug = urlParams?.slug;
+  const slug = jackpotSlug || urlParams?.slug;
   const sdk = useBlueRibbonSDK();
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
   React.useEffect(() => {
@@ -205,7 +205,7 @@ export const useComposedJackpotConfigData = ({
   });
 
   React.useEffect(() => {
-    if (!loading && data) {
+    if (!loading && data && data.blueribbonJackpot) {
       const jackpot = data.blueribbonJackpot;
       setComposedJackpot({
         ...jackpot,
@@ -213,6 +213,7 @@ export const useComposedJackpotConfigData = ({
           ...pot,
           value: sdkPots[pot.externalId]?.progressive,
           status: sdkPots[pot.externalId]?.potStatus as JackpotStatus,
+          lastWinTs: sdkPots[pot.externalId]?.lastWinTs,
         })),
       });
     }

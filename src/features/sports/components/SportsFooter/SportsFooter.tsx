@@ -12,7 +12,6 @@ export const SportsFooter = () => (
         {footerTermsText => <DangerousHtml html={footerTermsText} />}
       </DictionaryTerm>
     </span>
-    {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'. */}
     <OpenModalMutation variables={{ modal: MODAL.BETTING_GLOSSARY }}>
       {/* @ts-expect-error ts-migrate(2559) FIXME: Type '(openChooseFavouritesModal: any) => Element'... Remove this comment to see the full error message */}
       {openChooseFavouritesModal => (
