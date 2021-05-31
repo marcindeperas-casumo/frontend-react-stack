@@ -52,9 +52,7 @@ const createClientWithState = (state: {
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'ApolloClient<NormalizedCacheObject>' is not ... Remove this comment to see the full error message
   return client;
 };
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'.
 const modal1: A.Modal = MODAL.CHOOSE_FAVOURITES;
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Modal'.
 const modal2: A.Modal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
 describe("Client state resolvers", () => {
   describe("Default state", () => {

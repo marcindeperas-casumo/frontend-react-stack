@@ -1301,7 +1301,8 @@ export type Modal =
   | "SEARCH"
   | "BETTING_GLOSSARY"
   | "CHOOSE_FAVOURITES"
-  | "CHOOSE_FAVOURITE_COMPETITIONS";
+  | "CHOOSE_FAVOURITE_COMPETITIONS"
+  | "JACKPOTS";
 
 export type ArticleQueryVariables = Exact<{
   slug: Scalars["String"];
