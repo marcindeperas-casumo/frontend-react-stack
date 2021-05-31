@@ -13,6 +13,7 @@ import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";
+import { SportsJackpots } from "Features/sports/components/SportsJackpots";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
 import { SportsCuratedCard } from "Features/sports/components/SportsCuratedCard";
@@ -31,6 +32,7 @@ import { SportsYouWonComponent } from "Features/sports/components/SportsYouWon";
 import { showModal } from "Features/sports/components/SportsYouWon/SportsYouWonComponent";
 import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
 import { useMarket } from "Utils/hooks";
+import { useBlueRibbonSDK } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 
 const bridgeEventHandlers = [
   [
@@ -82,6 +84,8 @@ export const SportsShellContainer: React.FC<{}> = () => {
     );
   }, [client]);
 
+  useBlueRibbonSDK();
+
   if (loading) {
     return <KambiClientSkeleton />;
   }
@@ -92,6 +96,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
 
   const virtualsPrefixHash = "#filter/virtuals";
   const promotionPrefixHash = "#promotions";
+  const homeHash = "#home";
 
   return (
     <>
@@ -104,6 +109,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
             ) : (
               <SportsNav currentHash={currentHash} market={market} />
             )}
+            {currentHash === homeHash && <SportsJackpots />}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
             {showModal(currentHash) && (
