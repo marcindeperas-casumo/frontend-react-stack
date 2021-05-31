@@ -16,8 +16,8 @@ type Props = {
 export const PromotionCard = ({ promotion }: Props) => {
   const link = `promotions/${promotion.slug}`;
   return (
-    <div>
-      <a className="o-ratio u-margin-bottom--sm" href={link}>
+    <>
+      <div className="o-ratio u-margin-bottom--sm">
         <TrackView
           eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
           data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
@@ -35,16 +35,19 @@ export const PromotionCard = ({ promotion }: Props) => {
                 title={promotion.title}
                 badge={promotion.badge}
                 dates={promotion.subtitle}
+                ctaText={promotion.ctaText}
               />
             )}
           />
         </TrackClick>
-      </a>
-      <a>
-        <Text className="text-grey-50 italic" size="xs">
-          TO REPLACE - 18+, deposit required, qualifying games only, T&C apply
-        </Text>
-      </a>
-    </div>
+      </div>
+      {promotion.teaserCaveats && (
+        <a>
+          <Text className="text-grey-50 italic px-sm" size="2xs">
+            {promotion.teaserCaveats}
+          </Text>
+        </a>
+      )}
+    </>
   );
 };
