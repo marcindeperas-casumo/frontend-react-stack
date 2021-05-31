@@ -6,7 +6,13 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 
-export const PromotionCardContent = ({ title, badge, dates, ctaText }) => {
+export const PromotionCardContent = ({
+  link,
+  title,
+  badge,
+  dates,
+  ctaText,
+}) => {
   return (
     <>
       <Flex
@@ -40,11 +46,12 @@ export const PromotionCardContent = ({ title, badge, dates, ctaText }) => {
             </Text>
           </Flex.Block>
           <Flex.Item>
-            {ctaText && (
+            {ctaText && link && (
               <ButtonPrimary
                 className="u-padding-x--sm"
                 size="xs"
                 variant="primary"
+                href={link}
               >
                 <span className="text-2xs">{ctaText}</span>
               </ButtonPrimary>

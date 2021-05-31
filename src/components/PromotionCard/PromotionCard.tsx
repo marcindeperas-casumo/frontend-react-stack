@@ -32,6 +32,7 @@ export const PromotionCard = ({ promotion }: Props) => {
             header={() => <PromotionCardImage image={promotion.image} />}
             content={() => (
               <PromotionCardContent
+                link={link}
                 title={promotion.title}
                 badge={promotion.badge}
                 dates={promotion.subtitle}
