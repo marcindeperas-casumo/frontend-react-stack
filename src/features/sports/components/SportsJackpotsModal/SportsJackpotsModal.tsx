@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { useComposedJackpotConfigData } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
+import { goToHash } from "Services/NavigationService";
 import { formatCurrency, stringToHTML } from "Utils";
 
 const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
@@ -15,9 +16,6 @@ const CMS_SLUG_JACKPOTS = "sports-jackpot";
 type Props = {
   onClose: (e: any) => void;
 };
-
-// eslint-disable-next-line fp/no-mutation
-const goToHash = (hash: string) => (window.location.hash = hash);
 
 export const SportsJackpotsModal = ({ onClose }: Props) => {
   const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);

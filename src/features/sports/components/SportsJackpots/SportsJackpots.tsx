@@ -11,16 +11,13 @@ import {
 } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
-import { navigateById } from "Services/NavigationService";
+import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 
 const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 const CMS_SLUG_JACKPOTS = "sports-jackpot";
-
-// eslint-disable-next-line fp/no-mutation
-const goToHash = (hash: string) => (window.location.hash = hash);
 
 const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
