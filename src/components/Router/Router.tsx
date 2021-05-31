@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
-import { routeTranslator, persistVerticalToLocalStorage } from "Utils";
+import { routeTranslator } from "Utils";
 import { ROUTE_IDS, TRANSLATED_ROUTES } from "Src/constants";
 import { MahjongPage } from "Components/MahjongPage/MahjongPage";
 import {
@@ -33,11 +33,6 @@ export const Router = () => {
   const basepath = useUrlPrefix();
   const translateRoute = routeTranslator(language);
   const reachRouterProps = basepath ? { basepath } : {};
-
-  // Triggers Event on pg reload to updated last accessed vertical in local storage
-  window.addEventListener("beforeunload", function () {
-    persistVerticalToLocalStorage();
-  });
 
   return (
     <>

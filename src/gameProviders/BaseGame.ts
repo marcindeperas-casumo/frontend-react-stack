@@ -33,9 +33,14 @@ export class BaseGame {
   get lobbyUrl() {
     const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
-    const encodedTranslatedRoute = getRoute(
-      getFromStorage("casumo-lastAccessedProduct") || ROUTE_IDS.GAMES
-    );
+    const previouslyAccessedVertical =
+      getFromStorage("casumo-lastAccessedProduct") || null;
+    const prevVerticalLink = previouslyAccessedVertical
+      ? window.location.hostname + previouslyAccessedVertical
+      : null;
+    const encodedTranslatedRoute = prevVerticalLink
+      ? prevVerticalLink
+      : getRoute(ROUTE_IDS.GAMES);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
     if (isTLDMarketSpecific(tld)) {

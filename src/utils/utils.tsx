@@ -559,31 +559,6 @@ export const getOrdinalSuffix = ({
  * @returns {String}
  **/
 export const persistVerticalToLocalStorage = () => {
-  // Check for .es TLD as it hostname doesn't contain lang
-  const pathName = window.location.pathname;
-  const hash = window.location.hash;
-  const translatedPlayTermsList = Object.values(TRANSLATED_ROUTES.PLAY);
-  const isDotEs =
-    window.location.hostname.match("[^.]+$")[0] === URL_PREFIXES[MARKETS.es_es];
-  // Extract path name from hostname depending is .es or .com
-  const previousPathNameToStore = isDotEs
-    ? pathName.substr(1)
-    : pathName.match(/^.*?\/.*?\/(.*)$/)[1];
-  // Extract vertical to compare if it's a play "launch game" link - we're after storing verticals only
-  const verticalFromHostName = previousPathNameToStore.split("/")[0];
-  const isGameLaunchUrl =
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-    translatedPlayTermsList.indexOf(verticalFromHostName) > -1;
-
-  if (!isGameLaunchUrl) {
-    // Sports game sets uses hash fragment, if present add it as it's not part of the hostname
-    const previousPathNameWithHash = hash
-      ? previousPathNameToStore + hash
-      : previousPathNameToStore;
-    setInStorage(
-      LOCAL_STORAGE_LAST_ACCESSED_VERTICAL,
-      previousPathNameWithHash
-    );
-  }
-  return previousPathNameToStore;
+  setInStorage(LOCAL_STORAGE_LAST_ACCESSED_VERTICAL, window.location.pathname);
+  return window.location.pathname;
 };

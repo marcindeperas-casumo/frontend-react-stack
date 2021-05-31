@@ -142,11 +142,16 @@ export const ProfileIconWithDrawer = ({
                 }}
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
-                  navigateToKO(
-                    getFromStorage("casumo-lastAccessedProduct") ||
-                      ROUTE_IDS.GAMES
+                  const storedPreviousLocation = getFromStorage(
+                    "casumo-lastAccessedProduct"
                   );
-                  setDrawerOpen(false);
+                  if (storedPreviousLocation) {
+                    //eslint-disable-next-line fp/no-mutation, no-restricted-globals
+                    location.pathname = storedPreviousLocation;
+                  } else {
+                    navigateToKO(ROUTE_IDS.GAMES);
+                    setDrawerOpen(false);
+                  }
                 }}
               />
             </div>
