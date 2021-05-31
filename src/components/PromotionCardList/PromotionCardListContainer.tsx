@@ -31,7 +31,7 @@ const PromotionCardListContainer = React.memo<Props>(
       return <PromotionCardListSkeleton />;
     }
 
-    if (data && data.promotionsList && data.promotionsList.promotions.length) {
+    if (data?.promotionsList?.promotions?.length) {
       return (
         <PromotionCardList
           seeMoreText={showSeeMoreLink && t.more_link}
