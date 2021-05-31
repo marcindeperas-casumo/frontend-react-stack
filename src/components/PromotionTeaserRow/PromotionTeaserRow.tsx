@@ -10,13 +10,11 @@ type Props = {
   dates: string;
   /** The title of the promotion. */
   title: string;
-  /** The text to show as tag such as new, special offer, featured, etc */
-  tag?: string;
 };
 
 export class PromotionTeaserRow extends PureComponent<Props> {
   render() {
-    const { dates, title, link, tag } = this.props;
+    const { dates, title, link } = this.props;
 
     return (
       <a href={link}>
@@ -25,7 +23,6 @@ export class PromotionTeaserRow extends PureComponent<Props> {
           className="u-padding-y--lg u-line-height--1 t-border-bottom text-grey-0 border-current"
         >
           <Flex.Block>
-            <Text>{tag}</Text>
             <Text
               data-test="promotion-dates"
               size="2xs"
