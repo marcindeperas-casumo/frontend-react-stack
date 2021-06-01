@@ -1,5 +1,5 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
-import { ROUTE_IDS } from "Src/constants";
+import { ROUTE_IDS, LOCAL_STORAGE_GAME_LAUNCH_LOCATION } from "Src/constants";
 import { get as getFromStorage } from "Lib/storage";
 import type { GameProviderModelProps } from "./types";
 import {
@@ -7,7 +7,6 @@ import {
   GAME_IDLE_EVENT_NAME,
   GAME_ACTIVITY_STATUS_SOURCE,
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
-  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
 } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
