@@ -10,10 +10,7 @@ import {
   INTL_LOCALES,
   TCurrencyCode,
   CURRENCIES,
-  TRANSLATED_ROUTES,
-  MARKETS,
-  URL_PREFIXES,
-  LOCAL_STORAGE_LAST_ACCESSED_VERTICAL,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
 } from "Src/constants";
 import { set as setInStorage } from "Lib/storage";
 import type { AppDevice } from "Src/types";
@@ -559,6 +556,5 @@ export const getOrdinalSuffix = ({
  * @returns {String}
  **/
 export const persistVerticalToLocalStorage = () => {
-  setInStorage(LOCAL_STORAGE_LAST_ACCESSED_VERTICAL, window.location.pathname);
-  return window.location.pathname;
+  setInStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION, window.location.pathname);
 };

@@ -571,5 +571,4 @@ export const horizontalListDeviceTopMargin = {
   desktop: "xlg",
 };
 
-export const LOCAL_STORAGE_LAST_ACCESSED_VERTICAL =
-  "casumo-lastAccessedProduct";
+export const LOCAL_STORAGE_GAME_LAUNCH_LOCATION = "lastGameLaunchLocation";

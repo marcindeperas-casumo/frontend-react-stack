@@ -7,6 +7,7 @@ import {
   GAME_IDLE_EVENT_NAME,
   GAME_ACTIVITY_STATUS_SOURCE,
   GAME_ELEMENT_ACTIVITY_STATUS_SOURCE_ATTRIBUTE,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
 } from "./constants";
 import { NAVIGATION_BUBBLER_PATH } from "./config";
 
@@ -33,13 +34,13 @@ export class BaseGame {
   get lobbyUrl() {
     const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
-    const previouslyAccessedVertical =
-      getFromStorage("casumo-lastAccessedProduct") || null;
-    const prevVerticalLink = previouslyAccessedVertical
-      ? window.location.hostname + previouslyAccessedVertical
+    const storedGameLaunchLocation =
+      getFromStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION) || null;
+    const storedGameLaunchLocationLink = storedGameLaunchLocation
+      ? window.location.hostname + storedGameLaunchLocation
       : null;
-    const encodedTranslatedRoute = prevVerticalLink
-      ? prevVerticalLink
+    const encodedTranslatedRoute = storedGameLaunchLocationLink
+      ? storedGameLaunchLocationLink
       : getRoute(ROUTE_IDS.GAMES);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
