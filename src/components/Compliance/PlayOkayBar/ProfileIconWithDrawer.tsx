@@ -7,7 +7,11 @@ import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { isNativeByUserAgent } from "GameProviders";
-import { ROUTE_IDS, EVENTS } from "Src/constants";
+import {
+  ROUTE_IDS,
+  EVENTS,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
+} from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
 import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
@@ -143,7 +147,7 @@ export const ProfileIconWithDrawer = ({
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
                   const storedPreviousLocation = getFromStorage(
-                    "casumo-lastAccessedProduct"
+                    LOCAL_STORAGE_GAME_LAUNCH_LOCATION
                   );
                   if (storedPreviousLocation) {
                     //eslint-disable-next-line fp/no-mutation, no-restricted-globals

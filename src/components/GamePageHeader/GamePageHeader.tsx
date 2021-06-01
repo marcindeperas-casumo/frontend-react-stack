@@ -2,7 +2,11 @@
 
 import Flex from "@casumo/cmp-flex";
 import React from "react";
-import { EVENTS, ROUTE_IDS } from "Src/constants";
+import {
+  EVENTS,
+  ROUTE_IDS,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
+} from "Src/constants";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { Desktop } from "Components/ResponsiveLayout";
 import tracker from "Services/tracker";
@@ -49,7 +53,7 @@ export const GamePageHeader = () => {
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
                   const storedPreviousLocation = getFromStorage(
-                    "casumo-lastAccessedProduct"
+                    LOCAL_STORAGE_GAME_LAUNCH_LOCATION
                   );
                   if (storedPreviousLocation) {
                     //eslint-disable-next-line fp/no-mutation, no-restricted-globals
