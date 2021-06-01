@@ -33,7 +33,7 @@ describe("BaseGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games/top"
+      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games"
     );
   });
 
@@ -51,7 +51,7 @@ describe("BaseGame", () => {
     });
 
     expect(esModel.lobbyUrl).toBe(
-      `${origin}/gamelaunchers/navigation-bubbler.html?target=games/top`
+      `${origin}/gamelaunchers/navigation-bubbler.html?target=games`
     );
   });
 });

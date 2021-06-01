@@ -1,5 +1,5 @@
-import { CSSTransition } from "react-transition-group";
 import * as React from "react";
+import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
 import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
@@ -7,7 +7,11 @@ import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
 import { ReelRacesDrawerWidgetContainer as ReelRacesDrawerWidget } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetContainer";
 import { isNativeByUserAgent } from "GameProviders";
-import { ROUTE_IDS, EVENTS } from "Src/constants";
+import {
+  ROUTE_IDS,
+  EVENTS,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
+} from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
 import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
 import {
@@ -28,6 +32,7 @@ import {
   BlueRibbonJackpotsInGameWidgetContainer,
   useDataForBlueRibbonJackpotsWidget,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { get as getFromStorage } from "Lib/storage";
 // @ts-expect-error ts-migrate(2614) FIXME: Module '"*.scss"' has no exported member 'animatio... Remove this comment to see the full error message
 // eslint-disable-next-line import/no-duplicates
 import { animation_duration } from "./ProfileIconWithDrawer.scss";
@@ -141,8 +146,16 @@ export const ProfileIconWithDrawer = ({
                 }}
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
-                  setDrawerOpen(false);
+                  const storedPreviousLocation = getFromStorage(
+                    LOCAL_STORAGE_GAME_LAUNCH_LOCATION
+                  );
+                  if (storedPreviousLocation) {
+                    //eslint-disable-next-line fp/no-mutation, no-restricted-globals
+                    location.pathname = storedPreviousLocation;
+                  } else {
+                    navigateToKO(ROUTE_IDS.GAMES);
+                    setDrawerOpen(false);
+                  }
                 }}
               />
             </div>
