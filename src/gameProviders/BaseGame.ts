@@ -1,5 +1,6 @@
 import { routeTranslator, isTLDMarketSpecific } from "Utils";
-import { ROUTE_IDS } from "Src/constants";
+import { ROUTE_IDS, LOCAL_STORAGE_GAME_LAUNCH_LOCATION } from "Src/constants";
+import { get as getFromStorage } from "Lib/storage";
 import type { GameProviderModelProps } from "./types";
 import {
   GAME_ACTIVE_EVENT_NAME,
@@ -32,7 +33,14 @@ export class BaseGame {
   get lobbyUrl() {
     const { urlPrefix } = this.props;
     const getRoute = routeTranslator(this.props.language);
-    const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
+    const storedGameLaunchLocation =
+      getFromStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION) || null;
+    const storedGameLaunchLocationLink = storedGameLaunchLocation
+      ? window.location.hostname + storedGameLaunchLocation
+      : null;
+    const encodedTranslatedRoute = storedGameLaunchLocationLink
+      ? storedGameLaunchLocationLink
+      : getRoute(ROUTE_IDS.GAMES);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
     if (isTLDMarketSpecific(tld)) {

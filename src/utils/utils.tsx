@@ -10,7 +10,9 @@ import {
   INTL_LOCALES,
   TCurrencyCode,
   CURRENCIES,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
 } from "Src/constants";
+import { set as setInStorage } from "Lib/storage";
 import type { AppDevice } from "Src/types";
 
 export const noop = () => {};
@@ -546,4 +548,13 @@ export const getOrdinalSuffix = ({
       lastDigitInAmount
     ) || ""
   );
+};
+
+/**
+ * Returns corresponding casumo vertical from current url - used for redirection when exiting a game to point to previous vertical
+ * @param {String} language
+ * @returns {String}
+ **/
+export const persistVerticalToLocalStorage = () => {
+  setInStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION, window.location.pathname);
 };

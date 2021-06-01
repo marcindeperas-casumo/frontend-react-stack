@@ -2,7 +2,11 @@
 
 import Flex from "@casumo/cmp-flex";
 import React from "react";
-import { EVENTS, ROUTE_IDS } from "Src/constants";
+import {
+  EVENTS,
+  ROUTE_IDS,
+  LOCAL_STORAGE_GAME_LAUNCH_LOCATION,
+} from "Src/constants";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import { Desktop } from "Components/ResponsiveLayout";
 import tracker from "Services/tracker";
@@ -14,7 +18,7 @@ import {
 import { QuickDeposit } from "Components/Payments/QuickDeposit";
 import { InGameDrawerLinks } from "Components/InGameDrawer";
 import { openChatWindow } from "Features/chat/IntercomChatService";
-
+import { get as getFromStorage } from "Lib/storage";
 import "./GamePageHeader.scss";
 
 export const GamePageHeader = () => {
@@ -48,7 +52,15 @@ export const GamePageHeader = () => {
                 }}
                 onExitGameClick={() => {
                   tracker.track(EVENTS.MIXPANEL_IN_GAME_EXIT_GAME_CLICKED, {});
-                  navigateToKO(ROUTE_IDS.TOP_LISTS);
+                  const storedPreviousLocation = getFromStorage(
+                    LOCAL_STORAGE_GAME_LAUNCH_LOCATION
+                  );
+                  if (storedPreviousLocation) {
+                    //eslint-disable-next-line fp/no-mutation, no-restricted-globals
+                    location.pathname = storedPreviousLocation;
+                  } else {
+                    navigateToKO(ROUTE_IDS.GAMES);
+                  }
                 }}
                 showLabels={false}
               />
