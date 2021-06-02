@@ -34,7 +34,7 @@ export const SportsJackpots = () => {
   });
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  useBlueRibbonAutoOptIn(composedJackpot?.slug);
+  useBlueRibbonAutoOptIn("kambi-sports");
 
   if (
     !composedJackpot ||
