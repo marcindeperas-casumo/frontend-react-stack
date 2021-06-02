@@ -63,9 +63,6 @@ export function ReelRaceScheduleCardPrizes({ formattedPrizes, t }: Props) {
                   isNotMobile && "u-margin-right o-flex--1"
                 )}
               >
-                {/* <Flex.Block>
-                  {t?.leaderboard_rank} #{position}
-                </Flex.Block> */}
                 <Flex align="center">
                   <TournamentIcon className="text-grey-50 u-margin-right" />
                   <Text className="u-font u-font-weight-bold">{prize}</Text>
