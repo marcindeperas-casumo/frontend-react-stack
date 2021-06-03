@@ -12,9 +12,11 @@ import {
 import { currencySelector } from "Models/handshake";
 import { goToHash } from "Services/NavigationService";
 import { formatCurrency, stringToHTML } from "Utils";
-
-const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
-const CMS_SLUG_JACKPOTS = "sports-jackpot";
+import {
+  CMS_SLUG_CONFIG,
+  CMS_SLUG_JACKPOTS,
+  JACKPOTS_GAME_SLUG,
+} from "../SportsJackpots";
 
 type Props = {
   onClose: (e: any) => void;
@@ -25,7 +27,7 @@ export const SportsJackpotsModal = ({ onClose }: Props) => {
   const { composedJackpot } = useComposedJackpotConfigData({
     jackpotSlug: CMS_SLUG_JACKPOTS,
   });
-  useBlueRibbonAutoOptIn("kambi-sports");
+  useBlueRibbonAutoOptIn(JACKPOTS_GAME_SLUG);
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 

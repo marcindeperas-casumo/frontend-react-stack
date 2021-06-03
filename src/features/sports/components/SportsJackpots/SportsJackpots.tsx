@@ -16,8 +16,9 @@ import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 
-const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
-const CMS_SLUG_JACKPOTS = "sports-jackpot";
+export const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
+export const CMS_SLUG_JACKPOTS = "sports-jackpot";
+export const JACKPOTS_GAME_SLUG = "kambi-sports";
 
 const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
@@ -34,7 +35,7 @@ export const SportsJackpots = () => {
   });
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  useBlueRibbonAutoOptIn("kambi-sports");
+  useBlueRibbonAutoOptIn(JACKPOTS_GAME_SLUG);
 
   if (
     !composedJackpot ||
