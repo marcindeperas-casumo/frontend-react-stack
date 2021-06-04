@@ -1,7 +1,7 @@
 import * as React from "react";
 import LazyPortal from "Components/LazyPortal";
 
-export const LazyTopNav = (props: { basepath: string }) => (
+export const LazyTopNav = (props: { basepath: string; path: string }) => (
   <LazyPortal
     hostElementId="react-host-top-nav"
     loader={() => import("Components/Router/GameBrowser/TopNav")}

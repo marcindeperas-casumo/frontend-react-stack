@@ -9,6 +9,11 @@ import { GameListPage } from "Components/GameListPage";
 import { GetGameSets } from "../GameBrowser/GetGameSets.graphql";
 import { LiveCasinoSets } from "./LiveCasinoSets";
 
+const GameSearch = React.lazy(() =>
+  import("Components/GameSearch").then(module => ({
+    default: module.GameSearch,
+  }))
+);
 export const LiveCasinoGames = (props: { path: string }) => {
   const { data } = useQuery<A.GetGameSetsQuery, A.GetGameSetsQueryVariables>(
     GetGameSets,
@@ -52,6 +57,7 @@ export const LiveCasinoGames = (props: { path: string }) => {
           path="top"
           slug="built-pages.live-casino-{{market}}"
         />
+        <GameSearch path="search" />
       </Router>
     </div>
   );
