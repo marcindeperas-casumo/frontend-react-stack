@@ -14,7 +14,7 @@ import {
 import { routeTranslator } from "Utils";
 import { ROUTE_IDS } from "Src/constants";
 
-const NavLinkItem = ({
+export const NavLinkItem = ({
   Icon,
   text,
   to,

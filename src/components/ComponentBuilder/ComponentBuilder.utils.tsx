@@ -4,6 +4,7 @@ import logger from "Services/logger";
 
 type ContentDefinition = {
   acf_fc_layout: string;
+  type?: "gameTile" | "liveCasinoCard";
 };
 
 export const mapContentDefinitionToComponent = (

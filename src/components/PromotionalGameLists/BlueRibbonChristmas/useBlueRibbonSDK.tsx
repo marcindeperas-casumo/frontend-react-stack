@@ -192,7 +192,6 @@ export const useComposedJackpotConfigData = ({
     composedJackpot,
     setComposedJackpot,
   ] = React.useState<ComposedJackpot>();
-  useBlueRibbonSDKAnonymous();
   const sdkPots = usePotStateChangeEvent();
 
   const { data, loading } = useQuery<
