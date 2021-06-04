@@ -17,7 +17,7 @@ type Props = {
   /** The id of the game list. */
   id: string;
   /** The number of games to show */
-  numberOfGames: number;
+  numberOfGames?: number;
 };
 
 export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
