@@ -60,7 +60,9 @@ export const Router = () => {
         {Object.values(TRANSLATED_ROUTES.GAMES).map(x => (
           <GameBrowser key={x} path={`${x}/*`} />
         ))}
-        <LazyLiveCasinoPage path={translateRoute(ROUTE_IDS.LIVE_CASINO)} />
+        <LazyLiveCasinoPage
+          path={`${translateRoute(ROUTE_IDS.LIVE_CASINO)}/*`}
+        />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <MahjongPage path={translateRoute(ROUTE_IDS.MAHJONG_PAGE)} />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}

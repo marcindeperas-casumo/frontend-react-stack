@@ -12,14 +12,13 @@ export const routeTranslator = (language: string) => {
   };
 
   return (key: string) => {
-    const isPersistedLocalStoragePathWithSet = key.includes("/");
     const path = ROUTES[key];
 
-    if (!isPersistedLocalStoragePathWithSet && canBeInterpolated(path)) {
+    if (canBeInterpolated(path)) {
       return interpolate(path, translatedRoutes);
     }
 
-    return isPersistedLocalStoragePathWithSet ? key : path;
+    return path;
   };
 };
 
