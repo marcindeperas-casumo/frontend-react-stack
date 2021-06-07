@@ -13,7 +13,7 @@ export const AnimationStep = ({ definition, onAnimationEnd }: TProps) => {
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       onAnimationEnd();
-    }, definition.time + 500);
+    }, definition.time);
 
     return () => {
       clearTimeout(timeout);
