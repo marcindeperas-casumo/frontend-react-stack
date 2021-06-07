@@ -12,6 +12,7 @@ import {
 import { currencySelector } from "Models/handshake";
 import { goToHash } from "Services/NavigationService";
 import { formatCurrency, stringToHTML } from "Utils";
+import { SportsLoading } from "Features/sports/components/SportsLoading";
 import {
   CMS_SLUG_CONFIG,
   CMS_SLUG_JACKPOTS,
@@ -51,17 +52,29 @@ export const SportsJackpotsModal = ({ onClose }: Props) => {
               <Text tag="div" size="2xs">
                 {t.match_drop}
               </Text>
-              <Text tag="div" size="md" className="u-font-weight-bold">
-                {formatCurrency({ locale, currency, value: potMatch.value })}
-              </Text>
+              {!potMatch || (potMatch && !potMatch.value) ? (
+                <div className="u-margin-top--sm">
+                  <SportsLoading />
+                </div>
+              ) : (
+                <Text tag="div" size="md" className="u-font-weight-bold">
+                  {formatCurrency({ locale, currency, value: potMatch.value })}
+                </Text>
+              )}
             </div>
             <div className="u-width--1/2 u-display--inline-block u-height--full u-padding-x--lg u-padding-y--md ">
               <Text tag="div" size="2xs">
                 {t.mega_drop}
               </Text>
-              <Text tag="div" size="md" className="u-font-weight-bold">
-                {formatCurrency({ locale, currency, value: potMega.value })}
-              </Text>
+              {!potMega || (potMega && !potMega.value) ? (
+                <div className="u-margin-top--sm">
+                  <SportsLoading />
+                </div>
+              ) : (
+                <Text tag="div" size="md" className="u-font-weight-bold">
+                  {formatCurrency({ locale, currency, value: potMega.value })}
+                </Text>
+              )}
             </div>
           </div>
           <Text size="xs" tag="div" className="text-grey-50">

@@ -15,6 +15,7 @@ import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { SportsLoading } from "Features/sports/components/SportsLoading";
 
 export const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 export const CMS_SLUG_JACKPOTS = "sports-jackpot";
@@ -39,9 +40,9 @@ export const SportsJackpots = () => {
 
   if (
     !composedJackpot ||
-    !t ||
-    (isTestEnv() && t.enable_for_test === "false") ||
-    (!isTestEnv() && t.enable_for_prod === "false")
+    !t
+    // (isTestEnv() && t.enable_for_test === "false") ||
+    // (!isTestEnv() && t.enable_for_prod === "false")
   ) {
     return null;
   }
@@ -108,15 +109,15 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
-          <div
-            className={`u-font-md u-font-weight-bold ${
-              !potMatch || (potMatch && !potMatch.value)
-                ? "color-grey-dark"
-                : ""
-            }`}
-          >
-            {formatCurrency({ locale, currency, value: potMatch.value })}
-          </div>
+          {!potMatch || (potMatch && !potMatch.value) ? (
+            <div className="u-margin-top--sm">
+              <SportsLoading />
+            </div>
+          ) : (
+            <div className="u-font-md u-font-weight-bold">
+              {formatCurrency({ locale, currency, value: potMatch.value })}
+            </div>
+          )}
         </div>
         <div
           className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${
@@ -126,13 +127,15 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
-          <div
-            className={`u-font-md u-font-weight-bold ${
-              !potMega || (potMega && !potMega.value) ? "color-grey-dark" : ""
-            }`}
-          >
-            {formatCurrency({ locale, currency, value: potMega.value })}
-          </div>
+          {!potMega || (potMega && !potMega.value) ? (
+            <div className="u-margin-top--sm">
+              <SportsLoading />
+            </div>
+          ) : (
+            <div className="u-font-md u-font-weight-bold">
+              {formatCurrency({ locale, currency, value: potMega.value })}
+            </div>
+          )}
         </div>
       </div>
       <div className="c-sports-jackpots-tc color-grey-dark u-margin-top u-font-xs">

@@ -1,0 +1,29 @@
+.c-sports-loading {
+  width: 114px;
+}
+
+.c-sports-loading-gradient {
+  animation: loading 1s ease infinite;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0) 0%,
+    #262626 33.96%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background-size: 300% 300%;
+  width: 114px;
+}
+
+// stylelint-disable xi/selector-pattern
+@keyframes loading {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+// stylelint-enable xi/selector-pattern
