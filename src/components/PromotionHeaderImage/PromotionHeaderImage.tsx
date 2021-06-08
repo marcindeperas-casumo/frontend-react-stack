@@ -1,23 +1,25 @@
 import Flex from "@casumo/cmp-flex";
-import React, { PureComponent } from "react";
+import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 import { promotionsHeaderImageSet } from "./utils";
 
 import "Components/PromotionHeaderImage/PromotionHeaderImage.scss";
 
-type Props = {
+type TProps = {
   /** Promotion badge image url */
   badge: string;
   /** Promotion image url */
   image: string;
 };
 
-type BadgeProps = {
+type TBadgeProps = {
   /** Promotion badge image url */
   badge: string;
 };
 
-export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {
+export const PromotionHeaderBadge: React.FC<TBadgeProps> = ({
+  badge,
+}: TBadgeProps) => {
   const ImageComponent = badge.match(/\.svg$/) ? "img" : "ImageLazy";
   return (
     <Flex
@@ -31,21 +33,19 @@ export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {
   );
 };
 
-class PromotionHeaderImage extends PureComponent<Props> {
-  render() {
-    const { image, badge = "" } = this.props;
-    const images = promotionsHeaderImageSet(image);
+const PromotionHeaderImage: React.FC<TProps> = ({
+  image,
+  badge = "",
+}: TProps) => {
+  const images = promotionsHeaderImageSet(image);
 
-    return (
-      <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg u-overflow--hidden">
-        <ImageLazy
-          className="o-ratio__content u-object-fit-cover"
-          images={images}
-        />
-        {badge && <PromotionHeaderBadge badge={badge} />}
-      </div>
-    );
-  }
-}
+  //o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg u-overflow--hidden
+  return (
+    <div className="col-span-1">
+      <ImageLazy images={images} />
+      {badge && <PromotionHeaderBadge badge={badge} />}
+    </div>
+  );
+};
 
 export default PromotionHeaderImage;

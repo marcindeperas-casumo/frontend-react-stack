@@ -1,11 +1,11 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import PromotionTitle from "Components/PromotionTitle";
+import PromotionHeader from "Components/PromotionHeader";
 
-const stories = storiesOf("PromotionTitle", module);
+const stories = storiesOf("PromotionHeader", module);
 
 stories.add("Default", () => (
-  <PromotionTitle
+  <PromotionHeader
     title="Christmas Countdown"
     dates="17 Dec  - 30 Dec 2018"
     badge="https://cms.casumo.com/wp-content/uploads/2018/11/promotions-jackpot.svg"
@@ -13,5 +13,5 @@ stories.add("Default", () => (
 ));
 
 stories.add("Without Badge", () => (
-  <PromotionTitle title="Christmas Countdown" dates="17 Dec  - 30 Dec 2018" />
+  <PromotionHeader title="Christmas Countdown" dates="17 Dec  - 30 Dec 2018" />
 ));
