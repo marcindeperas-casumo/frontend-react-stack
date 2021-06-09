@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import Skeleton from "@casumo/cmp-skeleton";
 import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
@@ -15,7 +16,6 @@ import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
-import { SportsLoading } from "Features/sports/components/SportsLoading";
 
 export const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 export const CMS_SLUG_JACKPOTS = "sports-jackpot";
@@ -28,7 +28,6 @@ const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   return parseInt(last_day) <= pot.lastWinTs;
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SportsJackpots = () => {
   const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);
   const { composedJackpot } = useComposedJackpotConfigData({
@@ -109,9 +108,17 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
-          {!potMatch || (potMatch && !potMatch.value) ? (
+          {!potMatch?.value ? (
             <div className="u-margin-top--sm">
-              <SportsLoading />
+              <Skeleton
+                width="114"
+                height="22"
+                colorLow="#444E5D"
+                colorHi="#262626"
+                className="rounded"
+              >
+                <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+              </Skeleton>
             </div>
           ) : (
             <div className="u-font-md u-font-weight-bold">
@@ -127,9 +134,17 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
-          {!potMega || (potMega && !potMega.value) ? (
+          {!potMega?.value ? (
             <div className="u-margin-top--sm">
-              <SportsLoading />
+              <Skeleton
+                width="114"
+                height="22"
+                colorLow="#444E5D"
+                colorHi="#262626"
+                className="rounded"
+              >
+                <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+              </Skeleton>
             </div>
           ) : (
             <div className="u-font-md u-font-weight-bold">
