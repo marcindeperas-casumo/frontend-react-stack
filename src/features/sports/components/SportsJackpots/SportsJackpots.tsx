@@ -109,17 +109,15 @@ export const SportsJackpots = () => {
         >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
           {!potMatch?.value ? (
-            <div className="u-margin-top--sm">
-              <Skeleton
-                width="114"
-                height="22"
-                colorLow="#444E5D"
-                colorHi="#262626"
-                className="rounded"
-              >
-                <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
-              </Skeleton>
-            </div>
+            <Skeleton
+              width="114"
+              height="22"
+              colorLow="#444E5D"
+              colorHi="#262626"
+              className="rounded u-margin-top--sm"
+            >
+              <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+            </Skeleton>
           ) : (
             <div className="u-font-md u-font-weight-bold">
               {formatCurrency({ locale, currency, value: potMatch.value })}
@@ -135,17 +133,15 @@ export const SportsJackpots = () => {
         >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
           {!potMega?.value ? (
-            <div className="u-margin-top--sm">
-              <Skeleton
-                width="114"
-                height="22"
-                colorLow="#444E5D"
-                colorHi="#262626"
-                className="rounded"
-              >
-                <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
-              </Skeleton>
-            </div>
+            <Skeleton
+              width="114"
+              height="22"
+              colorLow="#444E5D"
+              colorHi="#262626"
+              className="rounded u-margin-top--sm"
+            >
+              <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+            </Skeleton>
           ) : (
             <div className="u-font-md u-font-weight-bold">
               {formatCurrency({ locale, currency, value: potMega.value })}
