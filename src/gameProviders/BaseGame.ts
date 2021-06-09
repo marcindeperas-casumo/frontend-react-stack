@@ -36,7 +36,7 @@ export class BaseGame {
     const storedGameLaunchLocation =
       getFromStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION) || null;
     const encodedTranslatedRoute = storedGameLaunchLocation
-      ? storedGameLaunchLocation
+      ? storedGameLaunchLocation.replace("/", "")
       : getRoute(ROUTE_IDS.GAMES);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
