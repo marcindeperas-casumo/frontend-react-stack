@@ -35,11 +35,8 @@ export class BaseGame {
     const getRoute = routeTranslator(this.props.language);
     const storedGameLaunchLocation =
       getFromStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION) || null;
-    const storedGameLaunchLocationLink = storedGameLaunchLocation
-      ? window.location.hostname + storedGameLaunchLocation
-      : null;
-    const encodedTranslatedRoute = storedGameLaunchLocationLink
-      ? storedGameLaunchLocationLink
+    const encodedTranslatedRoute = storedGameLaunchLocation
+      ? storedGameLaunchLocation
       : getRoute(ROUTE_IDS.GAMES);
     const tld = this.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
 
@@ -47,7 +44,7 @@ export class BaseGame {
       return `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }
 
-    return storedGameLaunchLocationLink
+    return storedGameLaunchLocation
       ? `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`
       : `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${urlPrefix}/${encodedTranslatedRoute}`;
   }
