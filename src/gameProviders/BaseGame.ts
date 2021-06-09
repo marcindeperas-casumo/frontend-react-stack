@@ -47,7 +47,9 @@ export class BaseGame {
       return `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`;
     }
 
-    return `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${urlPrefix}/${encodedTranslatedRoute}`;
+    return storedGameLaunchLocationLink
+      ? `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${encodedTranslatedRoute}`
+      : `${this.origin}/${NAVIGATION_BUBBLER_PATH}?target=${urlPrefix}/${encodedTranslatedRoute}`;
   }
 
   goToLobby() {
