@@ -80,8 +80,6 @@ export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
 export const DEVICE_PIXEL_RATIO = Math.ceil(window.devicePixelRatio);
 export const GAME_LIST_IDS = {
   POPULAR_GAMES: "popularGames",
-  LIVE_CASINO_GAMES: "liveCasinoGames", // TODO: remove this by using unique ids everywhere in the CMS
-  LIVE_CASINO_GAMES_ALIAS: "liveCasino",
   NEW_GAMES: "newGames",
   EXCLUSIVE_GAMES: "exclusiveGames",
   CASUMO_FAVOURITE_GAMES: "casumoFavouriteGames",
@@ -111,6 +109,7 @@ export const ROUTE_IDS = {
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
   LIVE_CASINO: "LIVE_CASINO",
+  LIVE_CASINO_SEARCH: "LIVE_CASINO_SEARCH",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
@@ -150,7 +149,8 @@ export const ROUTES = {
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
-  [ROUTE_IDS.LIVE_CASINO]: "live-casino/*",
+  [ROUTE_IDS.LIVE_CASINO]: "live-casino",
+  [ROUTE_IDS.LIVE_CASINO_SEARCH]: "live-casino/search",
   [ROUTE_IDS.PROMOTIONS]: "promotions",
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
@@ -570,3 +570,5 @@ export const horizontalListDeviceTopMargin = {
   tablet: "xlg",
   desktop: "xlg",
 };
+
+export const LOCAL_STORAGE_GAME_LAUNCH_LOCATION = "lastGameLaunchLocation";

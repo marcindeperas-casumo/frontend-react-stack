@@ -16,3 +16,5 @@ export const navigateById = ({
     params,
     queryParams,
   });
+// eslint-disable-next-line fp/no-mutation
+export const goToHash = (hash: string) => (window.location.hash = hash);

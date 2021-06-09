@@ -25,6 +25,7 @@ import {
   LazyReelRacesPage,
   LazyLiveCasinoPage,
   LazyTopNav,
+  LazyLiveCasinoTopNav,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -38,13 +39,15 @@ export const Router = () => {
     <>
       <ReachRouter {...reachRouterProps} primary={false}>
         <LazyTopNav
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; basepath: string; }' is not ... Remove this comment to see the full error message
           path={`${translateRoute(ROUTE_IDS.GAMES)}/*`}
           basepath={basepath}
         />
         <LazyTopNav
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; basepath: string; }' is not ass... Remove this comment to see the full error message
           path={translateRoute(ROUTE_IDS.REEL_RACES)}
+          basepath={basepath}
+        />
+        <LazyLiveCasinoTopNav
+          path={`${translateRoute(ROUTE_IDS.LIVE_CASINO)}/*`}
           basepath={basepath}
         />
       </ReachRouter>
@@ -57,7 +60,9 @@ export const Router = () => {
         {Object.values(TRANSLATED_ROUTES.GAMES).map(x => (
           <GameBrowser key={x} path={`${x}/*`} />
         ))}
-        <LazyLiveCasinoPage path={translateRoute(ROUTE_IDS.LIVE_CASINO)} />
+        <LazyLiveCasinoPage
+          path={`${translateRoute(ROUTE_IDS.LIVE_CASINO)}/*`}
+        />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
         <MahjongPage path={translateRoute(ROUTE_IDS.MAHJONG_PAGE)} />
         {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}

@@ -11,6 +11,11 @@ $directions: (top, left, bottom, right);
       padding-#{$direction}: env(safe-area-inset-#{$direction});
     }
   }
+
+  /* stylelint-disable-next-line xi/selector-pattern */
+  .u-safe-area-inset-padding-#{$direction}--2x {
+    padding-#{$direction}: calc(2 * env(safe-area-inset-#{$direction}));
+  }
 }
 
 .c-game-page {

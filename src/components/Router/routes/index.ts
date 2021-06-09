@@ -18,4 +18,5 @@ export * from "./LazyCasinoGamesSlotsPage";
 export * from "./LazyReelRacesPage";
 export * from "./LazyFooterTermsAndConditionsForBonuses";
 export * from "./LazyTopNav";
+export * from "./LazyLiveCasinoTopNav";
 export * from "./LazyLiveCasinoPage";
