@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import Text from "@casumo/cmp-text";
+import Skeleton from "@casumo/cmp-skeleton";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { useLocale, useTranslations } from "Utils/hooks";
@@ -51,17 +52,41 @@ export const SportsJackpotsModal = ({ onClose }: Props) => {
               <Text tag="div" size="2xs">
                 {t.match_drop}
               </Text>
-              <Text tag="div" size="md" className="u-font-weight-bold">
-                {formatCurrency({ locale, currency, value: potMatch.value })}
-              </Text>
+              {!potMatch?.value ? (
+                <Skeleton
+                  width="114"
+                  height="22"
+                  colorLow="#444E5D"
+                  colorHi="#262626"
+                  className="rounded u-margin-top--sm"
+                >
+                  <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+                </Skeleton>
+              ) : (
+                <Text tag="div" size="md" className="u-font-weight-bold">
+                  {formatCurrency({ locale, currency, value: potMatch.value })}
+                </Text>
+              )}
             </div>
             <div className="u-width--1/2 u-display--inline-block u-height--full u-padding-x--lg u-padding-y--md ">
               <Text tag="div" size="2xs">
                 {t.mega_drop}
               </Text>
-              <Text tag="div" size="md" className="u-font-weight-bold">
-                {formatCurrency({ locale, currency, value: potMega.value })}
-              </Text>
+              {!potMega?.value ? (
+                <Skeleton
+                  width="114"
+                  height="22"
+                  colorLow="#444E5D"
+                  colorHi="#262626"
+                  className="rounded u-margin-top--sm"
+                >
+                  <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+                </Skeleton>
+              ) : (
+                <Text tag="div" size="md" className="u-font-weight-bold">
+                  {formatCurrency({ locale, currency, value: potMega.value })}
+                </Text>
+              )}
             </div>
           </div>
           <Text size="xs" tag="div" className="text-grey-50">
