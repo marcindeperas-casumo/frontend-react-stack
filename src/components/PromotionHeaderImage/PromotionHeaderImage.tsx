@@ -1,5 +1,6 @@
 import Flex from "@casumo/cmp-flex";
 import React from "react";
+import cx from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 import { promotionsHeaderImageSet } from "./utils";
 
@@ -10,12 +11,16 @@ type TProps = {
   badge: string;
   /** Promotion image url */
   image: string;
+  /** The Column width this item should span in the grid layout, currently supporting 2 columns  */
+  gridColumnWidth?: string;
 };
 
 type TBadgeProps = {
   /** Promotion badge image url */
   badge: string;
 };
+
+const ROOT_CLASSNAME = "c-promotion-header-image";
 
 export const PromotionHeaderBadge: React.FC<TBadgeProps> = ({
   badge,
@@ -36,14 +41,21 @@ export const PromotionHeaderBadge: React.FC<TBadgeProps> = ({
 const PromotionHeaderImage: React.FC<TProps> = ({
   image,
   badge = "",
+  gridColumnWidth,
 }: TProps) => {
   const images = promotionsHeaderImageSet(image);
 
-  //o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg u-overflow--hidden
   return (
-    <div className="col-span-1">
-      <ImageLazy images={images} />
-      {badge && <PromotionHeaderBadge badge={badge} />}
+    <div
+      className={cx(
+        ROOT_CLASSNAME,
+        "px-lg",
+        gridColumnWidth && `col-span-${gridColumnWidth}`
+      )}
+    >
+      <ImageLazy className="overflow-hidden rounded-3xl" images={images} />
+      {/** TODO: check if we can remove badge from impl. not in designs */}
+      {/* {badge && <PromotionHeaderBadge badge={badge} />} */}
     </div>
   );
 };

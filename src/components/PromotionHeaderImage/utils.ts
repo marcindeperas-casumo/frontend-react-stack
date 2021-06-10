@@ -14,7 +14,7 @@ const promotionHeaderImageOptions = [
     },
   },
   {
-    mediaQuery: `(max-width: ${parseInt(breakpoints.tablet) - 1}px)`,
+    mediaQuery: `(max-width: ${parseInt(breakpoints.tablet) - 1})`,
     imgixOpts: {
       w: 768,
       q: 95,

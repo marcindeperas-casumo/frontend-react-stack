@@ -22,13 +22,7 @@ type TProps = {
 
 const ROOT_CLASSNAME = "c-promotion-header";
 
-const PromotionTitleText = ({
-  title,
-  dates,
-  tag,
-  summary,
-  gridColumnWidth,
-}: TProps) => (
+const PromotionTitleText = ({ title, dates }: TProps) => (
   <>
     <Text tag="h1" size="lg" className="u-margin-bottom--sm u-font-weight-bold">
       <DangerousHtml html={title} />
@@ -39,18 +33,10 @@ const PromotionTitleText = ({
     >
       {dates}
     </Text>
-    {summary && <ContentHtml html={summary}></ContentHtml>}
   </>
 );
 
-const PromotionTitleTextWithBadge = ({
-  title,
-  dates,
-  badge,
-  tag,
-  summary,
-  gridColumnWidth,
-}: TProps) => (
+const PromotionTitleTextWithBadge = ({ title, dates, badge }: TProps) => (
   <Media
     className="u-padding-x--lg u-margin-bottom--lg"
     renderText={() => <PromotionTitleText title={title} dates={dates} />}

@@ -8,8 +8,13 @@ $promotion-image-ratios: (
 );
 
 // stylelint-disable-next-line
-.o-ratio--promotion-header-image.o-ratio--promotion-header-image::before {
+.c-promotion-header-image::before {
   @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
+}
+
+// stylelint-disable-next-line
+.c-promotion-header-image > img {
+  height: 0;
 }
 
 .c-promotion-header-badge {
