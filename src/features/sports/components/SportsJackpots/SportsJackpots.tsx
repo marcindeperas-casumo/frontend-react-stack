@@ -1,14 +1,9 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Skeleton from "@casumo/cmp-skeleton";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
-import {
-  useComposedJackpotConfigData,
-  useBlueRibbonAutoOptIn,
-} from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
 import { navigateById, goToHash } from "Services/NavigationService";
@@ -41,13 +36,12 @@ export const SportsJackpots = ({
   locale,
   currency
 }: Props) => {
-  useBlueRibbonAutoOptIn(JACKPOTS_GAME_SLUG);
 
   if (
-    !composedJackpot ||
-    !t ||
-    (isTestEnv() && t.enable_for_test === "false") ||
-    (!isTestEnv() && t.enable_for_prod === "false")
+    !composedJackpot || 
+    !t
+    //|| (isTestEnv() && t.enable_for_test === "false") ||
+    // (!isTestEnv() && t.enable_for_prod === "false")
   ) {
     return null;
   }
