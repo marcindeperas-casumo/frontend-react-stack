@@ -2,7 +2,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Skeleton from "@casumo/cmp-skeleton";
-import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
@@ -15,7 +14,8 @@ import "./SportsJackpots.scss";
 import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import { PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { ComposedJackpot, PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { TCurrencyCode } from "Src/constants";
 
 export const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
 export const CMS_SLUG_JACKPOTS = "sports-jackpot";
@@ -28,13 +28,19 @@ const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   return parseInt(last_day) <= pot.lastWinTs;
 };
 
-export const SportsJackpots = () => {
-  const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);
-  const { composedJackpot } = useComposedJackpotConfigData({
-    jackpotSlug: CMS_SLUG_JACKPOTS,
-  });
-  const locale = useLocale();
-  const currency = useSelector(currencySelector);
+type Props = {
+  t: SportsJackpotsTranslations;
+  composedJackpot: ComposedJackpot;
+  locale: string;
+  currency: TCurrencyCode;
+};
+
+export const SportsJackpots = ({
+  t,
+  composedJackpot,
+  locale,
+  currency
+}: Props) => {
   useBlueRibbonAutoOptIn(JACKPOTS_GAME_SLUG);
 
   if (
@@ -68,9 +74,8 @@ export const SportsJackpots = () => {
         style={{ backgroundImage: `url('${backgroundImage()}'` }}
       >
         <div
-          className={`c-sports-jackpots-gradient${
-            isMobile() ? "mobile" : ""
-          } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
+          className={`c-sports-jackpots-gradient${isMobile() ? "mobile" : ""
+            } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
         >
           <div className="u-font-lg u-font-weight-bold">{t.title}</div>
           <div className="u-margin-top--md">{t.description}</div>
@@ -101,11 +106,10 @@ export const SportsJackpots = () => {
       </div>
       <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
         <div
-          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 ${
-            potWonInLastDay(potMatch, t.last_day)
-              ? "u-display--none"
-              : "u-display--inline-block"
-          }`}
+          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 ${potWonInLastDay(potMatch, t.last_day)
+            ? "u-display--none"
+            : "u-display--inline-block"
+            }`}
         >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
           {!potMatch?.value ? (
@@ -125,11 +129,10 @@ export const SportsJackpots = () => {
           )}
         </div>
         <div
-          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${
-            potWonInLastDay(potMega, t.last_day)
-              ? "u-display--none"
-              : "u-display--inline-block"
-          }`}
+          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${potWonInLastDay(potMega, t.last_day)
+            ? "u-display--none"
+            : "u-display--inline-block"
+            }`}
         >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
           {!potMega?.value ? (
