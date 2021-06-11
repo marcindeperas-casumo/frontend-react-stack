@@ -8,9 +8,9 @@ $promotion-image-ratios: (
 );
 
 // stylelint-disable-next-line
-.c-promotion-header-image::before {
-  @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
-}
+// .c-promotion-header-image::before {
+//   @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
+// }
 
 // stylelint-disable-next-line
 .c-promotion-header-image > img {

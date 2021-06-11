@@ -24,12 +24,13 @@ const ROOT_CLASSNAME = "c-promotion-header";
 
 const PromotionTitleText = ({ title, dates }: TProps) => (
   <>
-    <Text tag="h1" size="lg" className="u-margin-bottom--sm u-font-weight-bold">
+    <Text tag="h1" size="lg" className="u-margin-bottom--sm font-bold">
       <DangerousHtml html={title} />
     </Text>
     <Text
+      data-test="promotion-dates"
       size="2xs"
-      className="text-grey-50 u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase"
+      className="text-purple-60 mb uppercase font-bold"
     >
       {dates}
     </Text>
@@ -67,6 +68,11 @@ const PromotionHeader: React.FC<TProps> = ({
         gridColumnWidth && `col-span-${gridColumnWidth}`
       )}
     >
+      {tag && (
+        <Text tag="p" className="bg-purple-60 text-white uppercase">
+          {tag}
+        </Text>
+      )}
       {badge ? (
         <PromotionTitleTextWithBadge
           title={title}

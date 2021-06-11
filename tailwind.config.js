@@ -14,7 +14,7 @@ module.exports = {
       "./src/models/**/*.{js,jsx,ts,tsx}",
       "./src/pages/**/*.{js,jsx,ts,tsx}",
     ],
-    enabled: false,
+    whitelist: ["mobile", "tablet", "phablet", "desktop"], // fix attempt at purged classes?
   },
   darkMode: false, // or 'media' or 'class'
   theme: {

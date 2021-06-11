@@ -6,7 +6,7 @@ type TProps = {
   /** The Subtitle text to render */
   subtitle: string;
   /* Additional css classes to add to the component **/
-  className: string;
+  className?: string;
 };
 
 export const ContentSubtitle: React.FC<TProps> = ({
