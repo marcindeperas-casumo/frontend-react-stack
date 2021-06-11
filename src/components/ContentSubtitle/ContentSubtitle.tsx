@@ -1,19 +1,22 @@
 import Text from "@casumo/cmp-text";
-import React, { PureComponent } from "react";
+import React from "react";
+import cx from "classnames";
 
-type Props = {
+type TProps = {
   /** The Subtitle text to render */
   subtitle: string;
+  /* Additional css classes to add to the component **/
+  className: string;
 };
 
-export class ContentSubtitle extends PureComponent<Props> {
-  render() {
-    const { subtitle } = this.props;
-
-    return (
-      <Text className="col-span-1 u-padding-x--lg u-margin-bottom--lg" tag="h2">
-        {subtitle}
-      </Text>
-    );
-  }
-}
+export const ContentSubtitle: React.FC<TProps> = ({
+  subtitle,
+  className,
+}: TProps) => (
+  <Text
+    className={cx(className, "col-span-1 u-padding-x--lg u-margin-bottom--lg")}
+    tag="h2"
+  >
+    {subtitle}
+  </Text>
+);

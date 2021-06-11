@@ -35,7 +35,12 @@ export function ContentHtml({
         gridColumnWidth && `col-span-${gridColumnWidth}`
       )}
     >
-      {blockTitle && <ContentSubtitle subtitle={blockTitle}></ContentSubtitle>}
+      {blockTitle && (
+        <ContentSubtitle
+          className="font-bold"
+          subtitle={blockTitle}
+        ></ContentSubtitle>
+      )}
       <div
         className={cx(
           defaultClasses,

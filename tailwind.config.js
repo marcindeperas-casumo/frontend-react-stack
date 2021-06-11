@@ -6,13 +6,16 @@ const fontSize = require("./config/tailwind/fontSize");
 
 module.exports = {
   mode: "jit",
-  purge: [
-    "./src/components/**/*.{js,jsx,ts,tsx}",
-    "./src/features/**/*.{js,jsx,ts,tsx}",
-    "./src/layouts/**/*.{js,jsx,ts,tsx}",
-    "./src/models/**/*.{js,jsx,ts,tsx}",
-    "./src/pages/**/*.{js,jsx,ts,tsx}",
-  ],
+  purge: {
+    content: [
+      "./src/components/**/*.{js,jsx,ts,tsx}",
+      "./src/features/**/*.{js,jsx,ts,tsx}",
+      "./src/layouts/**/*.{js,jsx,ts,tsx}",
+      "./src/models/**/*.{js,jsx,ts,tsx}",
+      "./src/pages/**/*.{js,jsx,ts,tsx}",
+    ],
+    enabled: false,
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors,
