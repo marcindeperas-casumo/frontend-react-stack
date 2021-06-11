@@ -7,6 +7,8 @@ export const urls = {
   loginAuthenticated:
     "/casino-player/blueribbon-jackpot-integration/api/v1/login/player",
   handshake: "/casino-player/blueribbon-jackpot-integration/api/v1/handshake",
+  optIn: "/casino-player/blueribbon-jackpot-integration/api/v1/optin",
+  optOut: "/casino-player/blueribbon-jackpot-integration/api/v1/optout",
 };
 export const blueRibbonGamesListId = "blueRibbonChristmas";
 export const baseConfig = {
@@ -50,6 +52,25 @@ export type JackpotWidgetContentPage = {
   campaign_logo: string;
   eligible_games_cta_label: string;
   jackpot_split_explanation: string;
+};
+
+export type HandshakeResponse = {
+  available: boolean;
+  externalPlayerReference: string;
+  jackpots: Array<{
+    jackpotId: string;
+    jackpotSlug: string;
+    matchedGameIds: Array<string>;
+    optedIn: boolean;
+    requiresManualOptIn: boolean;
+    pots: Array<{
+      potId: string;
+      potKey: string;
+      mainWinRatio: number;
+      communityWinRatio: number;
+      maxWinAmount: number | null;
+    }>;
+  }>;
 };
 
 export type PotValues = {
