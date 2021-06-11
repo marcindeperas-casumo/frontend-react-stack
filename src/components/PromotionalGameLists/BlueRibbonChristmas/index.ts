@@ -7,3 +7,4 @@ export { BlueRibbonJackpotsInGameWidgetContainer } from "./BlueRibbonJackpotsInG
 export { BlueRibbonJackpotsFooterWidgetContainer } from "./BlueRibbonJackpotsFooterWidgetContainer";
 export { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpotsWidget";
 export { BlueRibbonManualOptInAndOptOut } from "./BlueRibbonManualOptInAndOptOut";
+export { BlueRibbonOptInNotification } from "./BlueRibbonOptInNotification";
