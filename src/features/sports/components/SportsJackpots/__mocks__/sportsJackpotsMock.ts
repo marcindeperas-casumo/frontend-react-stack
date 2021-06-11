@@ -182,7 +182,8 @@ export const tranlsations: SportsJackpotsTranslations = {
     view_odds_link: "filter/football/euro_2020",
     footer_tc_text: "T&Cs Apply",
     footer_tc_link: "bonus-terms-and-conditions",
-    last_day: "1628640000000"
+    last_day: "1628640000000",
+    dropped: "DROPPED"
 };
 
 export const composedJackpot: ComposedJackpot = {
@@ -217,39 +218,3 @@ export const composedJackpot: ComposedJackpot = {
 export const localEn = "en-IN";
 
 export const currency = "INR";
-
-// const searchResultsMock = {
-//   request: {
-//     query: SEARCH_QUERY,
-//     variables: {
-//       query: "arse",
-//     },
-//   },
-//   result: {
-//     data: searchResults.hasResults,
-//   },
-// };
-
-// const noSearchResultsMock = {
-//   request: {
-//     query: SEARCH_QUERY,
-//     variables: {
-//       query: "nothingtofind",
-//     },
-//   },
-//   result: {
-//     data: searchResults.noResults,
-//   },
-// };
-
-// const notSearchingMock = {
-//   request: {
-//     query: SEARCH_QUERY,
-//     variables: {
-//       query: "",
-//     },
-//   },
-//   result: {
-//     data: searchResults.noResults,
-//   },
-// };

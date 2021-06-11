@@ -16,3 +16,38 @@ stories.add("Default View", () => (
     />
   </MockedProvider>
 ));
+
+stories.add("Match Pot Dropped View", () => (
+  <MockedProvider>
+    <SportsJackpots
+      composedJackpot={composedJackpot}
+      currency={currency}
+      locale={localEn}
+      t={tranlsations}
+    />
+  </MockedProvider>
+));
+
+stories.add("Mega Pot Dropped View", () => (
+  <MockedProvider>
+    <SportsJackpots
+      composedJackpot={composedJackpot}
+      currency={currency}
+      locale={localEn}
+      t={tranlsations}
+    />
+  </MockedProvider>
+));
+
+stories.add("Match and Match Pot Dropped View", () => (
+  <MockedProvider>
+    <SportsJackpots
+      composedJackpot={composedJackpot}
+      currency={currency}
+      locale={localEn}
+      t={tranlsations}
+    />
+  </MockedProvider>
+));
+
+

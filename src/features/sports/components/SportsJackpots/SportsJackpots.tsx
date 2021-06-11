@@ -4,17 +4,12 @@ import Skeleton from "@casumo/cmp-skeleton";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
 import { isMobile, isTablet } from "Components/ResponsiveLayout";
-import { currencySelector } from "Models/handshake";
 import "./SportsJackpots.scss";
 import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { ComposedJackpot, PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { TCurrencyCode } from "Src/constants";
-
-export const CMS_SLUG_CONFIG = "sports.sports-jackpots-component-config-page";
-export const CMS_SLUG_JACKPOTS = "sports-jackpot";
-export const JACKPOTS_GAME_SLUG = "kambi-sports";
 
 const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
@@ -38,7 +33,7 @@ export const SportsJackpots = ({
 }: Props) => {
 
   if (
-    !composedJackpot || 
+    !composedJackpot ||
     !t
     //|| (isTestEnv() && t.enable_for_test === "false") ||
     // (!isTestEnv() && t.enable_for_prod === "false")
@@ -61,7 +56,7 @@ export const SportsJackpots = ({
   );
   const potMega = composedJackpot.pots.find(pot => pot.potKey === t.potid_mega);
 
-  return (
+  return (!potWonInLastDay(potMatch, t.last_day) || !potWonInLastDay(potMega, t.last_day)) ? (
     <div className="c-sports-jackpots u-margin--md color-white u-margin-bottom--sm">
       <div
         className="c-sports-jackpots-content bg-no-repeat bg-cover t-border-r-top-left--md t-border-r-top-right--md"
@@ -99,13 +94,17 @@ export const SportsJackpots = ({
         </div>
       </div>
       <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
-        <div
-          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 ${potWonInLastDay(potMatch, t.last_day)
-            ? "u-display--none"
-            : "u-display--inline-block"
-            }`}
-        >
-          <div className="capitalize u-font-xs">{t.match_drop}</div>
+        <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 u-display--inline-block">
+          <div className="capitalize u-font-xs">
+            <span>{t.match_drop}</span>
+            {potWonInLastDay(potMatch, t.last_day) ? (
+              <div className="u-display--inline-block">
+                <span className="u-margin-right u-margin-left">-</span>
+                <span className="capitalize u-font-xs t-color-yellow-30">{t.dropped}</span>
+              </div>
+            ) : null
+            }
+          </div>
           {!potMatch?.value ? (
             <Skeleton
               width="114"
@@ -117,18 +116,23 @@ export const SportsJackpots = ({
               <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
             </Skeleton>
           ) : (
-            <div className="u-font-md u-font-weight-bold">
+            <div className="u-font-md u-font-weight-bold u-margin-right">
               {formatCurrency({ locale, currency, value: potMatch.value })}
             </div>
           )}
         </div>
         <div
-          className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${potWonInLastDay(potMega, t.last_day)
-            ? "u-display--none"
-            : "u-display--inline-block"
-            }`}
-        >
-          <div className="capitalize u-font-xs">{t.mega_drop}</div>
+          className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md u-display--inline-block">
+          <div className="capitalize u-font-xs">
+            <span>{t.mega_drop}</span>
+            {potWonInLastDay(potMega, t.last_day) ? (
+              <div className="u-display--inline-block">
+                <span className="u-margin-right u-margin-left">-</span>
+                <span className="capitalize u-font-xs t-color-yellow-30">{t.dropped}</span>
+              </div>
+            ) : null
+            }
+          </div>
           {!potMega?.value ? (
             <Skeleton
               width="114"
@@ -150,11 +154,10 @@ export const SportsJackpots = ({
         {t.footer_text}
         <div
           className="u-margin-left--sm u-display--inline-block cursor-pointer underline"
-          onClick={() => navigateById({ routeId: t.footer_tc_link })}
-        >
+          onClick={() => navigateById({ routeId: t.footer_tc_link })}>
           {t.footer_tc_text}
         </div>
       </div>
-    </div>
-  );
+    </div >
+  ) : null;
 };
