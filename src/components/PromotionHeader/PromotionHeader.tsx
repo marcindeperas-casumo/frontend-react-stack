@@ -69,7 +69,11 @@ const PromotionHeader: React.FC<TProps> = ({
       )}
     >
       {tag && (
-        <Text tag="p" className="bg-purple-60 text-white uppercase">
+        <Text
+          tag="div"
+          size="xs"
+          className="rounded inline-block mb-sm mx-lg p-sm px-md bg-purple-60 text-white uppercase"
+        >
           {tag}
         </Text>
       )}

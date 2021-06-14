@@ -7,12 +7,14 @@ import { promotionsHeaderImageSet } from "./utils";
 import "Components/PromotionHeaderImage/PromotionHeaderImage.scss";
 
 type TProps = {
-  /** Promotion badge image url */
-  badge: string;
   /** Promotion image url */
   image: string;
+  /** Promotion badge image url */
+  badge?: string;
   /** The Column width this item should span in the grid layout, currently supporting 2 columns  */
   gridColumnWidth?: string;
+  /** Additional css classes */
+  className?: string;
 };
 
 type TBadgeProps = {
@@ -40,8 +42,9 @@ export const PromotionHeaderBadge: React.FC<TBadgeProps> = ({
 
 const PromotionHeaderImage: React.FC<TProps> = ({
   image,
-  badge = "",
-  gridColumnWidth,
+  badge,
+  gridColumnWidth = "1",
+  className,
 }: TProps) => {
   const images = promotionsHeaderImageSet(image);
 
@@ -50,10 +53,11 @@ const PromotionHeaderImage: React.FC<TProps> = ({
       className={cx(
         ROOT_CLASSNAME,
         "px-lg",
-        gridColumnWidth && `col-span-${gridColumnWidth}`
+        gridColumnWidth && `col-span-${gridColumnWidth}`,
+        className
       )}
     >
-      <ImageLazy className="overflow-hidden rounded-3xl" images={images} />
+      <ImageLazy className="rounded-3xl" images={images} />
       {/** TODO: check if we can remove badge from impl. not in designs */}
       {/* {badge && <PromotionHeaderBadge badge={badge} />} */}
     </div>

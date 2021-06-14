@@ -1,6 +1,7 @@
 import React from "react";
 import cx from "classnames";
 import { ComponentBuilder } from "Components/ComponentBuilder";
+import { isDesktop } from "Components/ResponsiveLayout";
 
 type TProps = {
   slug: string;
@@ -15,7 +16,9 @@ export const PromotionDetailPage: React.FC<TProps> = ({ slug }: TProps) => {
       <div
         className={cx(
           `${ROOT_CLASSNAME}__content`,
-          "tablet:grid tablet:grid-cols-2 pt-3xlg p-xlg"
+          "pt-xlg",
+          isDesktop() &&
+            "desktop:grid desktop:grid-cols-2 desktop:pt-3xlg desktop:p-xlg"
         )}
       >
         <ComponentBuilder slug={slug} />
