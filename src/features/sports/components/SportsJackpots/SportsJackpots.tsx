@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import Skeleton from "@casumo/cmp-skeleton";
 import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
@@ -27,7 +28,6 @@ const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   return parseInt(last_day) <= pot.lastWinTs;
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SportsJackpots = () => {
   const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);
   const { composedJackpot } = useComposedJackpotConfigData({
@@ -70,7 +70,7 @@ export const SportsJackpots = () => {
         <div
           className={`c-sports-jackpots-gradient${
             isMobile() ? "mobile" : ""
-          } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
+          } bg-gradient-to-b from-transparent to-grey-90 u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
         >
           <div className="u-font-lg u-font-weight-bold">{t.title}</div>
           <div className="u-margin-top--md">{t.description}</div>
@@ -99,7 +99,7 @@ export const SportsJackpots = () => {
           </div>
         </div>
       </div>
-      <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
+      <div className="c-sports-jackpots-footer bg-grey-90 t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
         <div
           className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 ${
             potWonInLastDay(potMatch, t.last_day)
@@ -108,15 +108,21 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.match_drop}</div>
-          <div
-            className={`u-font-md u-font-weight-bold ${
-              !potMatch || (potMatch && !potMatch.value)
-                ? "color-grey-dark"
-                : ""
-            }`}
-          >
-            {formatCurrency({ locale, currency, value: potMatch.value })}
-          </div>
+          {!potMatch?.value ? (
+            <Skeleton
+              width="114"
+              height="22"
+              colorLow="#444E5D"
+              colorHi="#262626"
+              className="rounded u-margin-top--sm"
+            >
+              <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+            </Skeleton>
+          ) : (
+            <div className="u-font-md u-font-weight-bold">
+              {formatCurrency({ locale, currency, value: potMatch.value })}
+            </div>
+          )}
         </div>
         <div
           className={`u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md ${
@@ -126,13 +132,21 @@ export const SportsJackpots = () => {
           }`}
         >
           <div className="capitalize u-font-xs">{t.mega_drop}</div>
-          <div
-            className={`u-font-md u-font-weight-bold ${
-              !potMega || (potMega && !potMega.value) ? "color-grey-dark" : ""
-            }`}
-          >
-            {formatCurrency({ locale, currency, value: potMega.value })}
-          </div>
+          {!potMega?.value ? (
+            <Skeleton
+              width="114"
+              height="22"
+              colorLow="#444E5D"
+              colorHi="#262626"
+              className="rounded u-margin-top--sm"
+            >
+              <rect x="0" y="0" rx="0" ry="0" width="114" height="22" />
+            </Skeleton>
+          ) : (
+            <div className="u-font-md u-font-weight-bold">
+              {formatCurrency({ locale, currency, value: potMega.value })}
+            </div>
+          )}
         </div>
       </div>
       <div className="c-sports-jackpots-tc color-grey-dark u-margin-top u-font-xs">
