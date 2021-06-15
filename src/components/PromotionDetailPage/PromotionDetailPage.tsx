@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 import { ComponentBuilder } from "Components/ComponentBuilder";
-import { isDesktop } from "Components/ResponsiveLayout";
+import { isTablet, isDesktop } from "Components/ResponsiveLayout";
 
 type TProps = {
   slug: string;
@@ -9,16 +9,17 @@ type TProps = {
 
 const ROOT_CLASSNAME = "c-promotion-detail";
 
-// TODO: check why grid is being applied across all screen sizes and not respecting breakpoints
+// TODO: check why tailwinds responsive variants are not working
+// e.g. "tablet:grid tablet:grid-cols-2 tablet:pt-3xlg tablet:p-xlg"
 export const PromotionDetailPage: React.FC<TProps> = ({ slug }: TProps) => {
+  const isTabletOrDesktop = isTablet() || isDesktop();
   return (
     <div className={cx(ROOT_CLASSNAME)}>
       <div
         className={cx(
           `${ROOT_CLASSNAME}__content`,
-          "pt-xlg",
-          isDesktop() &&
-            "desktop:grid desktop:grid-cols-2 desktop:pt-3xlg desktop:p-xlg"
+          isTabletOrDesktop &&
+            "tablet:grid tablet:grid-cols-2 tablet:pt-3xlg tablet:p-xlg"
         )}
       >
         <ComponentBuilder slug={slug} />
