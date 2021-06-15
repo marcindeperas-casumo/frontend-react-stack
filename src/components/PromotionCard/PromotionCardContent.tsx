@@ -21,7 +21,11 @@ export const PromotionCardContent = ({
         align="start"
       >
         <Flex.Item className="w-3/5">
-          <Text tag="div" className="text-grey-90 u-font-weight-bold" size="sm">
+          <Text
+            tag="div"
+            className="text-grey-90 u-font-weight-bold line-clamp-5"
+            size="sm"
+          >
             <DangerousHtml html={title} />
           </Text>
         </Flex.Item>
@@ -36,16 +40,16 @@ export const PromotionCardContent = ({
           )}
         ></Flex.Item>
         <Flex className="w-2/5 h-full" direction="vertical" spacing="sm">
-          <Flex.Block>
+          <Flex.Block className="h-3/5">
             <Text
               tag="strong"
-              className="text-purple-60 u-text-transform-uppercase"
+              className="text-purple-60 u-text-transform-uppercase line-clamp-4"
               size="2xs"
             >
               {dates}
             </Text>
           </Flex.Block>
-          <Flex.Item>
+          <Flex.Item className="h-2/5">
             {ctaText && link && (
               <ButtonPrimary
                 className="u-padding-x--sm"
