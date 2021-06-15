@@ -17,7 +17,7 @@ export const PromotionCard = ({ promotion }: Props) => {
   const link = `promotions/${promotion.slug}`;
   return (
     <>
-      <div className="o-ratio u-margin-bottom--sm">
+      <a className="o-ratio u-margin-bottom--sm cursor-pointer" href={link}>
         <TrackView
           eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
           data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
@@ -41,7 +41,7 @@ export const PromotionCard = ({ promotion }: Props) => {
             )}
           />
         </TrackClick>
-      </div>
+      </a>
       {promotion.teaserCaveats && (
         <a href={link}>
           <Text className="text-grey-50 italic px-sm" size="2xs">

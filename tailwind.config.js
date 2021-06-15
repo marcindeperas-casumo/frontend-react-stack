@@ -1,3 +1,4 @@
+const lineClamp = require("@tailwindcss/line-clamp");
 const colors = require("./config/tailwind/colors");
 const spacing = require("./config/tailwind/spacing");
 const screens = require("./config/tailwind/screens");
@@ -27,5 +28,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [lineClamp],
 };
