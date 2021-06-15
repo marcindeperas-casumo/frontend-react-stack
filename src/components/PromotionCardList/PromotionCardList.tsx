@@ -10,14 +10,10 @@ import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import { promotionsTileHeight } from "Src/constants";
 
 type Props = A.PromotionsListQuery["promotionsList"] & {
-  seeMoreText: string;
+  seeMoreText?: string;
 };
 
-export const PromotionCardList = ({
-  name = "",
-  promotions,
-  seeMoreText,
-}: Props) => {
+export const PromotionCardList = ({ name, promotions, seeMoreText }: Props) => {
   const seeMoreUrl = "/promotions";
 
   const itemRenderer = ({ columnIndex, style }) => (
