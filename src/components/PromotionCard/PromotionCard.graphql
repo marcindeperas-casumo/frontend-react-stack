@@ -5,7 +5,4 @@ fragment PromotionCard_Promotion on Promotion {
   subtitle
   image
   badge
-  tag
-  teaserCaveats
-  ctaText
 }

@@ -1,6 +1,8 @@
+import Card from "@casumo/cmp-card";
 import React from "react";
 import { shallow } from "enzyme";
 import { PromotionCard } from "Components/PromotionCard/PromotionCard";
+import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
 const promotion = {
   id: "promotion",
   slug: "/promotion-1",
@@ -15,6 +17,20 @@ describe("PromotionCard", () => {
 
   beforeEach(() => {
     rendered = shallow(<PromotionCard promotion={promotion} />);
+  });
+
+  test("should render PromotionCardHeader component", () => {
+    expect(rendered.find(Card).dive().find(PromotionCardHeader).exists()).toBe(
+      true
+    );
+
+    const renderedPromotionCardHeaderProps = rendered
+      .find("Card")
+      .dive()
+      .find("PromotionCardHeader")
+      .props();
+
+    expect(renderedPromotionCardHeaderProps.badge).toBe(promotion.badge);
   });
 
   test("should render PromotionCardContent component", () => {
