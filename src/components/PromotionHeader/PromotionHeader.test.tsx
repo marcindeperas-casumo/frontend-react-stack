@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import PromotionHeader from "Components/PromotionHeader";
 
 describe("PromotionHeader", () => {
@@ -14,18 +14,14 @@ describe("PromotionHeader", () => {
   };
 
   test("render a Media component if there is a badge", () => {
-    const rendered = mount(<PromotionHeader {...mockPromotionWithBadge} />);
-    expect(
-      rendered.children().find("PromotionHeaderTextWithBadge").length
-    ).toBe(1);
-    expect(rendered.children().find("PromotionHeaderText").length).toBe(0);
+    const rendered = shallow(<PromotionHeader {...mockPromotionWithBadge} />);
+    expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(1);
+    expect(rendered.find("PromotionTitleText").length).toBe(0);
   });
 
   test("render a div if there isn't a badge", () => {
-    const rendered = mount(<PromotionHeader {...mockPromotion} />);
-    expect(
-      rendered.children().find("PromotionHeaderTextWithBadge").length
-    ).toBe(0);
-    expect(rendered.children().find("PromotionHeaderText").length).toBe(1);
+    const rendered = shallow(<PromotionHeader {...mockPromotion} />);
+    expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(0);
+    expect(rendered.find("PromotionTitleText").length).toBe(1);
   });
 });
