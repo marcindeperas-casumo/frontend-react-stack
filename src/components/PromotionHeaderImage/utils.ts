@@ -29,8 +29,12 @@ const promotionHeaderImageOptions = [
   {
     mediaQuery: `(min-width: ${breakpoints.tablet})`,
     imgixOpts: {
-      w: 1200,
+      w: 1250,
       q: 100,
+      "fp-x": 0.5,
+      "fp-y": 0.6,
+      fit: "fit",
+      crop: "focalpoint",
     },
   },
 ];

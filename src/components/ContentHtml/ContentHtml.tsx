@@ -16,12 +16,12 @@ type Props = {
   style?: string;
 };
 
-const defaultClasses = "s-content-html u-padding-x--lg";
+const defaultClasses = "s-content-html px-lg";
 
 export function ContentHtml({
   html,
   blockTitle,
-  gridColumnWidth,
+  gridColumnWidth = "2",
   expandable = false,
   className,
   style = "",
@@ -30,8 +30,8 @@ export function ContentHtml({
   return (
     <div
       className={cx(
-        "u-margin-bottom--2xlg",
-        expandable && "o-position--relative",
+        "mb-2xlg",
+        expandable && "relative",
         gridColumnWidth && `col-span-${gridColumnWidth}`
       )}
     >
@@ -39,6 +39,7 @@ export function ContentHtml({
         <ContentSubtitle
           className="font-bold"
           subtitle={blockTitle}
+          gridColumnWidth={gridColumnWidth}
         ></ContentSubtitle>
       )}
       <div

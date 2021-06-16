@@ -7,14 +7,21 @@ type TProps = {
   subtitle: string;
   /* Additional css classes to add to the component **/
   className?: string;
+  /** The Column width this item should span in the grid layout, currently supporting 2 columns  */
+  gridColumnWidth?: string;
 };
 
 export const ContentSubtitle: React.FC<TProps> = ({
   subtitle,
   className,
+  gridColumnWidth = "2",
 }: TProps) => (
   <Text
-    className={cx(className, "col-span-1 u-padding-x--lg u-margin-bottom--lg")}
+    className={cx(
+      className,
+      gridColumnWidth && `col-span-${gridColumnWidth}`,
+      "px-lg mb-lg"
+    )}
     tag="h2"
   >
     {subtitle}

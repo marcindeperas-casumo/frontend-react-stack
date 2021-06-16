@@ -29,7 +29,7 @@ const PromotionHeaderImage: React.FC<TProps> = ({
     <div
       className={cx(
         ROOT_CLASSNAME,
-        isTabletOrDesktop && "px-lg",
+        isTabletOrDesktop && "px-lg pb-lg",
         gridColumnWidth && `col-span-${gridColumnWidth}`,
         className
       )}
