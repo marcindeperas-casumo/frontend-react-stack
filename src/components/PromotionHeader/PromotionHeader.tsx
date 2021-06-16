@@ -24,7 +24,7 @@ const ROOT_CLASSNAME = "c-promotion-header";
 
 const PromotionTitleText = ({ title, dates }: TProps) => (
   <>
-    <Text tag="h1" size="lg" className="u-margin-bottom--sm font-bold">
+    <Text tag="h1" size="lg" className="mb-sm font-bold">
       <DangerousHtml html={title} />
     </Text>
     <Text
@@ -39,16 +39,10 @@ const PromotionTitleText = ({ title, dates }: TProps) => (
 
 const PromotionTitleTextWithBadge = ({ title, dates, badge }: TProps) => (
   <Media
-    className="u-padding-x--lg u-margin-bottom--lg"
+    className="px-lg mb-lg"
     renderText={() => <PromotionTitleText title={title} dates={dates} />}
     renderImage={() => (
-      <img
-        className="u-display--block"
-        width={56}
-        height={56}
-        alt=""
-        src={badge}
-      />
+      <img className="block" width={56} height={56} alt="" src={badge} />
     )}
   />
 );
@@ -72,7 +66,7 @@ const PromotionHeader: React.FC<TProps> = ({
         <Text
           tag="div"
           size="xs"
-          className="rounded inline-block mb-sm mx-lg p-sm px-md bg-purple-60 text-white uppercase"
+          className="mb-sm mx-lg p-sm px-md rounded inline-block bg-purple-60 text-white uppercase"
         >
           {tag}
         </Text>
@@ -84,7 +78,7 @@ const PromotionHeader: React.FC<TProps> = ({
           badge={badge}
         />
       ) : (
-        <div className="u-padding-x--lg u-margin-bottom--lg">
+        <div className="px-lg mb-lg">
           <PromotionTitleText title={title} dates={dates} />
         </div>
       )}
