@@ -16,12 +16,17 @@ import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql"
 type Props = {
   /** The id of the game list. */
   id: string;
+  seeMoreLink?: string;
   /** The number of games to show */
   numberOfGames?: number;
 };
 
 export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
-  ({ id, numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT }: Props) => {
+  ({
+    id,
+    seeMoreLink,
+    numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+  }: Props) => {
     const { data, loading } = useQuery<
       A.GameListLiveCasinoQuery,
       A.GameListLiveCasinoQueryVariables
@@ -62,6 +67,7 @@ export const GameListHorizontalLiveCasinoContainer = React.memo<Props>(
         <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
           <GameListHorizontalLiveCasino
             seeMoreText={translationsBuiltPages.more_link}
+            seeMoreLink={seeMoreLink}
             list={data.gamesList}
           />
         </TrackProvider>
