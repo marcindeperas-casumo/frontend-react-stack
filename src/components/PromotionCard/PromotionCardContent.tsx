@@ -52,7 +52,7 @@ export const PromotionCardContent = ({
           <Flex.Item className="h-2/5">
             {ctaText && link && (
               <ButtonPrimary
-                className="u-padding-x--sm"
+                className="px-sm pb-sm"
                 size="xs"
                 variant="primary"
                 href={link}
