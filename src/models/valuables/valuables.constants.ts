@@ -24,6 +24,7 @@ export const VALUABLE_SPIN_TYPES = {
 export const VALUABLE_REQUIREMENT_TYPES = {
   WAGER: "wager",
   DEPOSIT: "deposit",
+  KAMBI_SPORTS_BET: "kambiSportsBet",
 } as const;
 
 export const VALUABLE_LOCKED_URL = "/player/valuables";

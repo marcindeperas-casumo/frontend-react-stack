@@ -768,7 +768,7 @@ export type ValuableType =
   | "cashback"
   | "wageringLock";
 
-export type RequirementType = "wager" | "deposit";
+export type RequirementType = "wager" | "deposit" | "kambiSportsBet";
 
 export type WageringLockAwardType = "spins" | "freeMoney" | "bonusMoney";
 
@@ -961,6 +961,7 @@ export interface PlayerValuableFreeBet extends PlayerValuable {
   leftToWager?: Maybe<Scalars["Float"]>;
   magnitude: Scalars["Float"];
   market: Scalars["String"];
+  requirementType?: Maybe<RequirementType>;
   rule: PlayerValuableRule;
   title: Scalars["String"];
   termsLink: Scalars["String"];
@@ -986,6 +987,9 @@ export interface Promotion {
   teaser: Scalars["String"];
   content: Scalars["String"];
   badge?: Maybe<Scalars["String"]>;
+  tag?: Maybe<Scalars["String"]>;
+  teaserCaveats?: Maybe<Scalars["String"]>;
+  ctaText?: Maybe<Scalars["String"]>;
 }
 
 export interface PromotionsList {
@@ -1298,8 +1302,7 @@ export type Modal =
   | "SEARCH"
   | "BETTING_GLOSSARY"
   | "CHOOSE_FAVOURITES"
-  | "CHOOSE_FAVOURITE_COMPETITIONS"
-  | "JACKPOTS";
+  | "CHOOSE_FAVOURITE_COMPETITIONS";
 
 export type ArticleQueryVariables = Exact<{
   slug: Scalars["String"];
@@ -1828,6 +1831,7 @@ export type PlayerValuablesQuery = {
         }
       | {
           __typename: "PlayerValuableFreeBet";
+          requirementType?: Maybe<RequirementType>;
           id: string;
           valuableState: PlayerValuableState;
           expiryDate: number;
@@ -1954,6 +1958,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock_Fragment = {
 
 type PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   __typename: "PlayerValuableFreeBet";
+  requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
   expiryDate: number;
@@ -2409,7 +2414,6 @@ type ValuableCard_PlayerValuable_PlayerValuableCash_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2426,7 +2430,6 @@ type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2441,7 +2444,6 @@ type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2456,7 +2458,6 @@ type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2471,7 +2472,6 @@ type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2486,7 +2486,6 @@ type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2501,7 +2500,6 @@ type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   market: string;
   caveat?: Maybe<string>;
   backgroundImage: string;
-  termsLink: string;
   specificTerms?: Maybe<string>;
 };
 
