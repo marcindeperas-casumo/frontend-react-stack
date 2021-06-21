@@ -4,16 +4,23 @@ query GetJackpotConfigForWidget($slug: String!) {
     title
     image
     slug
+    widgetColor {
+      dark
+      light
+    }
     pots {
       externalId
       potKey
       name
       shortName
       mainWinRatio
+      icon
+      potExplanation
       sharedPot { 
         name
         shortName
         icon
+        splitExplanation
       }
     }
   }
