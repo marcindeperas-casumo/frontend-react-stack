@@ -31,7 +31,7 @@ const PromotionCardListContainer = React.memo<Props>(
 
     const promoListData = useTranslations<{
       list_title: string;
-      promotions: [object];
+      promotions: Array<A.PromotionCard_PromotionFragment>;
     }>(slug);
 
     if (loading || !t) {
@@ -42,7 +42,10 @@ const PromotionCardListContainer = React.memo<Props>(
       promoListData?.promotions.length ||
       data?.promotionsList?.promotions?.length
     ) {
-      const promotionsListToUse = !data?.promotionsList?.promotions.length && promoListData.promotions ? promoListData.promotions : data.promotionsList.promotions
+      const promotionsListToUse =
+        !data?.promotionsList?.promotions.length && promoListData.promotions
+          ? promoListData.promotions
+          : data.promotionsList.promotions;
       return (
         <PromotionCardList
           seeMoreText={showSeeMoreLink && t.more_link}
