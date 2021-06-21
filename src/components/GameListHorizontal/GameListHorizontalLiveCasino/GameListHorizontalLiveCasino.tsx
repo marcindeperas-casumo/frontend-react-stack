@@ -12,12 +12,16 @@ import "./GameListHorizontalLiveCasino.scss";
 export type Props = {
   list: A.GameListLiveCasinoQuery["gamesList"];
   seeMoreText: string;
+  seeMoreLink?: string;
 };
 
-export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
+export const GameListHorizontalLiveCasino = ({
+  list,
+  seeMoreText,
+  seeMoreLink,
+}: Props) => {
   const { name } = list;
   const games = list.games;
-  const seeMoreUrl = "../live-casino";
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const isNotFirstElement = columnIndex > 0;
@@ -44,7 +48,7 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
           itemRenderer={i => <LiveCasinoCard game={games[i]} />}
           items={games}
           seeMoreText={seeMoreText}
-          seeMoreUrl={seeMoreUrl}
+          seeMoreUrl={seeMoreLink}
           title={name}
         />
       </MobileAndTablet>
@@ -57,7 +61,7 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
           tileHeight={305}
           seeMore={{
             text: seeMoreText,
-            url: seeMoreUrl,
+            url: seeMoreLink,
           }}
         />
       </Desktop>

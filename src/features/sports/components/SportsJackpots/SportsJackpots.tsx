@@ -71,7 +71,7 @@ Props) => {
         <div
           className={`c-sports-jackpots-gradient${
             isMobile() ? "mobile" : ""
-          } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
+          } bg-gradient-to-b from-transparent to-grey-90 u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
         >
           <div className="u-font-lg u-font-weight-bold">{t.title}</div>
           <div className="u-margin-top--md">{t.description}</div>
@@ -100,7 +100,7 @@ Props) => {
           </div>
         </div>
       </div>
-      <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
+      <div className="bg-grey-90 t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
         <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 u-display--inline-block">
           <div className="capitalize u-font-xs">
             <Text tag="span">{t.match_drop}</Text>
