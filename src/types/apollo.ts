@@ -2492,6 +2492,7 @@ type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
 
 type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   __typename: "PlayerValuableFreeBet";
+  requirementType?: Maybe<RequirementType>;
   id: string;
   title: string;
   content: string;
@@ -2628,6 +2629,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment = {
 
 type ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   __typename: "PlayerValuableFreeBet";
+  requirementType?: Maybe<RequirementType>;
   id: string;
   backgroundImage: string;
   content: string;
