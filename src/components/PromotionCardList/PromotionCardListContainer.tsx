@@ -10,10 +10,11 @@ type Props = {
   slug: string;
   name?: string;
   showSeeMoreLink?: boolean;
+  skipGql?: boolean;
 };
 
 const PromotionCardListContainer = React.memo<Props>(
-  ({ slug, name, showSeeMoreLink }: Props) => {
+  ({ slug, name, showSeeMoreLink, skipGql }: Props) => {
     const { data, loading } = useQuery<
       A.PromotionsListQuery,
       A.PromotionsListQueryVariables
@@ -21,23 +22,33 @@ const PromotionCardListContainer = React.memo<Props>(
       variables: {
         slug,
       },
+      skip: skipGql === true,
     });
 
     const t = useTranslations<{ more_link: string }>(
       "built-pages.top-lists-translations"
     );
 
+    const promoListData = useTranslations<{
+      list_title: string;
+      promotions: [object];
+    }>(slug);
+
     if (loading || !t) {
       return <PromotionCardListSkeleton />;
     }
 
-    if (data?.promotionsList?.promotions?.length) {
+    if (
+      promoListData?.promotions.length ||
+      data?.promotionsList?.promotions?.length
+    ) {
+      const promotionsListToUse = !data?.promotionsList?.promotions.length && promoListData.promotions ? promoListData.promotions : data.promotionsList.promotions
       return (
         <PromotionCardList
           seeMoreText={showSeeMoreLink && t.more_link}
-          id={data.promotionsList.id}
-          name={name || data.promotionsList.name}
-          promotions={data.promotionsList.promotions}
+          id={promoListData?.list_title || data?.promotionsList?.id}
+          name={name || promoListData.list_title || data.promotionsList.name}
+          promotions={promotionsListToUse}
         />
       );
     }

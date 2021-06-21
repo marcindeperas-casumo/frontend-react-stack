@@ -5,8 +5,8 @@ import { getUrlSearchParam } from "Utils";
 import { PromotionPage } from "./PromotionPage";
 
 export const verticalCampaigns = [
-  { origin: "casino", slug: "campaigns.winter-games" },
-  { origin: "sports", slug: "campaigns.countdown-to-2020" },
+  { origin: "casino", slug: "promotion-lists.lis-casino-promos" },
+  { origin: "sports", slug: "promotion-lists.lis-sports-promos" },
 ];
 
 export const PromotionPageContainer = () => {

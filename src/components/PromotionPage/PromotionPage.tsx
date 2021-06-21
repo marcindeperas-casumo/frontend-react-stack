@@ -1,5 +1,6 @@
 import React from "react";
-import ComponentBuilder from "Components/ComponentBuilder";
+// import ComponentBuilder from "Components/ComponentBuilder";
+import PromotionCardListContainer from "Components/PromotionCardList/PromotionCardListContainer";
 import { TPromotionVerticalCampaigns } from "./PromotionPage.types";
 
 type TProps = {
@@ -10,12 +11,17 @@ export const PromotionPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
       {promotionLists.map(promo => (
-        <ComponentBuilder
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; slug: string; }' is not assi... Remove this comment to see the full error message
-          path="top"
+        <PromotionCardListContainer
           key={promo.origin}
           slug={promo.slug}
+          skipGql
         />
+        // <ComponentBuilder
+        //   // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; slug: string; }' is not assi... Remove this comment to see the full error message
+        //   path="top"
+        //   key={promo.origin}
+        //   slug={promo.slug}
+        // />
       ))}
     </div>
   );

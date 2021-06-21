@@ -15,6 +15,7 @@ type Props = {
 
 export const PromotionCard = ({ promotion }: Props) => {
   const link = `promotions/${promotion.slug}`;
+  const promotionFields = promotion?.fields ? promotion.fields : promotion;
   return (
     <>
       <a className="o-ratio u-margin-bottom--sm cursor-pointer" href={link}>
@@ -29,23 +30,23 @@ export const PromotionCard = ({ promotion }: Props) => {
           <Card
             className="o-ratio__content rounded-2xl bg-white t-elevation--10"
             spacing="none"
-            header={() => <PromotionCardImage image={promotion.image} />}
+            header={() => <PromotionCardImage image={promotionFields.image} />}
             content={() => (
               <PromotionCardContent
                 link={link}
-                title={promotion.title}
-                badge={promotion.badge}
-                dates={promotion.subtitle}
-                ctaText={promotion.ctaText}
+                title={promotionFields.title}
+                badge={promotionFields.badge}
+                dates={promotionFields.subtitle || promotionFields.dates}
+                ctaText={promotionFields.ctaText || promotionFields.cta_text}
               />
             )}
           />
         </TrackClick>
       </a>
-      {promotion.teaserCaveats && (
+      {(promotionFields.teaserCaveats || promotionFields.teaser_caveats) && (
         <a href={link}>
           <Text className="text-grey-50 italic px-sm" size="2xs">
-            {promotion.teaserCaveats}
+            {promotionFields.teaserCaveats || promotionFields.teaser_caveats}
           </Text>
         </a>
       )}
