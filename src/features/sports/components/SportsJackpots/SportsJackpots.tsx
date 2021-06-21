@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
+import { Text } from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
@@ -8,8 +9,12 @@ import "./SportsJackpots.scss";
 import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import { ComposedJackpot, PotsObjects } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import {
+  ComposedJackpot,
+  PotsObjects,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { TCurrencyCode } from "Src/constants";
+import { CasumoAvatar } from "Components/CasumoAvatar";
 
 const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
@@ -29,9 +34,8 @@ export const SportsJackpots = ({
   t,
   composedJackpot,
   locale,
-  currency
+  currency,
 }: Props) => {
-
   if (
     !composedJackpot ||
     !t
@@ -56,15 +60,17 @@ export const SportsJackpots = ({
   );
   const potMega = composedJackpot.pots.find(pot => pot.potKey === t.potid_mega);
 
-  return (!potWonInLastDay(potMatch, t.last_day) || !potWonInLastDay(potMega, t.last_day)) ? (
-    <div className="c-sports-jackpots u-margin--md color-white u-margin-bottom--sm">
+  return !potWonInLastDay(potMatch, t.last_day) ||
+    !potWonInLastDay(potMega, t.last_day) ? (
+    <div className="c-sports-jackpots u-margin--md text-white u-margin-bottom--sm">
       <div
         className="c-sports-jackpots-content bg-no-repeat bg-cover t-border-r-top-left--md t-border-r-top-right--md"
         style={{ backgroundImage: `url('${backgroundImage()}'` }}
       >
         <div
-          className={`c-sports-jackpots-gradient${isMobile() ? "mobile" : ""
-            } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
+          className={`c-sports-jackpots-gradient${
+            isMobile() ? "mobile" : ""
+          } bg-gradient-to-b from-transparent to-black u-padding-x--lg o-flex--vertical o-flex-justify--end u-padding-bottom--lg`}
         >
           <div className="u-font-lg u-font-weight-bold">{t.title}</div>
           <div className="u-margin-top--md">{t.description}</div>
@@ -100,10 +106,11 @@ export const SportsJackpots = ({
             {potWonInLastDay(potMatch, t.last_day) ? (
               <div className="u-display--inline-block">
                 <span className="u-margin-right u-margin-left">-</span>
-                <span className="capitalize u-font-xs t-color-yellow-30">{t.dropped}</span>
+                <span className="capitalize u-font-xs text-yellow-30">
+                  {t.dropped}
+                </span>
               </div>
-            ) : null
-            }
+            ) : null}
           </div>
           {!potMatch?.value ? (
             <Skeleton
@@ -121,17 +128,17 @@ export const SportsJackpots = ({
             </div>
           )}
         </div>
-        <div
-          className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md u-display--inline-block">
+        <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md u-display--inline-block">
           <div className="capitalize u-font-xs">
             <span>{t.mega_drop}</span>
             {potWonInLastDay(potMega, t.last_day) ? (
               <div className="u-display--inline-block">
                 <span className="u-margin-right u-margin-left">-</span>
-                <span className="capitalize u-font-xs t-color-yellow-30">{t.dropped}</span>
+                <span className="capitalize u-font-xs text-yellow-30">
+                  {t.dropped}
+                </span>
               </div>
-            ) : null
-            }
+            ) : null}
           </div>
           {!potMega?.value ? (
             <Skeleton
@@ -154,10 +161,11 @@ export const SportsJackpots = ({
         {t.footer_text}
         <div
           className="u-margin-left--sm u-display--inline-block cursor-pointer underline"
-          onClick={() => navigateById({ routeId: t.footer_tc_link })}>
+          onClick={() => navigateById({ routeId: t.footer_tc_link })}
+        >
           {t.footer_tc_text}
         </div>
       </div>
-    </div >
+    </div>
   ) : null;
 };

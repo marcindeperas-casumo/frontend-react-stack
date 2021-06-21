@@ -39,7 +39,7 @@ stories.add("Mega Pot Dropped View", () => (
   </MockedProvider>
 ));
 
-stories.add("Match and Match Pot Dropped View", () => (
+stories.add("Match and Mega Pot Dropped View", () => (
   <MockedProvider>
     <SportsJackpots
       composedJackpot={composedJackpot}
