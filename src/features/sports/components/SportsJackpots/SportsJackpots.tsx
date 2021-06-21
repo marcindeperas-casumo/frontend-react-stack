@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import { Text } from "@casumo/cmp-text";
+import Text from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
 import { isTestEnv, formatCurrency } from "Utils";
@@ -14,7 +14,6 @@ import {
   PotsObjects,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { TCurrencyCode } from "Src/constants";
-import { CasumoAvatar } from "Components/CasumoAvatar";
 
 const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
@@ -35,12 +34,13 @@ export const SportsJackpots = ({
   composedJackpot,
   locale,
   currency,
-}: Props) => {
+}: // eslint-disable-next-line sonarjs/cognitive-complexity
+Props) => {
   if (
     !composedJackpot ||
-    !t
-    //|| (isTestEnv() && t.enable_for_test === "false") ||
-    // (!isTestEnv() && t.enable_for_prod === "false")
+    !t ||
+    (isTestEnv() && t.enable_for_test === "false") ||
+    (!isTestEnv() && t.enable_for_prod === "false")
   ) {
     return null;
   }
@@ -58,6 +58,7 @@ export const SportsJackpots = ({
   const potMatch = composedJackpot.pots.find(
     pot => pot.potKey === t.potid_match
   );
+
   const potMega = composedJackpot.pots.find(pot => pot.potKey === t.potid_mega);
 
   return !potWonInLastDay(potMatch, t.last_day) ||
@@ -102,13 +103,18 @@ export const SportsJackpots = ({
       <div className="c-sports-jackpots-footer bg-black t-border-r-bottom-left--md t-border-r-bottom-right--md t-border-top t-border-grey-70">
         <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 u-display--inline-block">
           <div className="capitalize u-font-xs">
-            <span>{t.match_drop}</span>
+            <Text tag="span">{t.match_drop}</Text>
             {potWonInLastDay(potMatch, t.last_day) ? (
               <div className="u-display--inline-block">
-                <span className="u-margin-right u-margin-left">-</span>
-                <span className="capitalize u-font-xs text-yellow-30">
+                <Text tag="span" className="u-margin-right u-margin-left">
+                  -
+                </Text>
+                <Text
+                  tag="span"
+                  className="capitalize u-font-xs text-yellow-30"
+                >
                   {t.dropped}
-                </span>
+                </Text>
               </div>
             ) : null}
           </div>
@@ -130,13 +136,18 @@ export const SportsJackpots = ({
         </div>
         <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md u-display--inline-block">
           <div className="capitalize u-font-xs">
-            <span>{t.mega_drop}</span>
+            <Text tag="span">{t.mega_drop}</Text>
             {potWonInLastDay(potMega, t.last_day) ? (
               <div className="u-display--inline-block">
-                <span className="u-margin-right u-margin-left">-</span>
-                <span className="capitalize u-font-xs text-yellow-30">
+                <Text tag="span" className="u-margin-right u-margin-left">
+                  -
+                </Text>
+                <Text
+                  tag="span"
+                  className="capitalize u-font-xs text-yellow-30"
+                >
                   {t.dropped}
-                </span>
+                </Text>
               </div>
             ) : null}
           </div>

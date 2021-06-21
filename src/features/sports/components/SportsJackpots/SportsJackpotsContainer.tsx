@@ -2,7 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useTranslations, useLocale } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
-import { useBlueRibbonAutoOptIn, useComposedJackpotConfigData } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
+import {
+  useBlueRibbonAutoOptIn,
+  useComposedJackpotConfigData,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import { SportsJackpots } from "./SportsJackpots";
 
@@ -26,6 +29,5 @@ export const SportsJackpotsContainer = () => {
       locale={locale}
       t={t}
     />
-  )
-
+  );
 };

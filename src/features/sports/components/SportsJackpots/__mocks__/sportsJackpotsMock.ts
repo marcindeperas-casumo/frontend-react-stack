@@ -182,35 +182,130 @@ export const tranlsations: SportsJackpotsTranslations = {
     view_odds_link: "filter/football/euro_2020",
     footer_tc_text: "T&Cs Apply",
     footer_tc_link: "bonus-terms-and-conditions",
-    last_day: "1628640000000",
+    last_day: "1908263169",
     dropped: "DROPPED"
 };
 
-export const composedJackpot: ComposedJackpot = {
-    __typename: "BlueribbonJackpotConfig",
+export const composedJackpotFull: ComposedJackpot = {
     externalId: "zFOUh1620287234976",
     title: "Sports jackpot",
     image: "false",
     slug: "sports-jackpot",
     pots: [
         {
-            __typename: "Pot",
+            status: "CHILLY",
             externalId: "iMVgB1620287235005",
             potKey: "pot1",
             name: "Match Day",
             shortName: "Match Day Drops",
             mainWinRatio: 100,
             sharedPot: null,
-            value:1000
+            value: 1000,
+            lastWinTs: 1592733025
         },
         {
-            __typename: "Pot",
+            status: "CHILLY",
             externalId: "oXbVf1620287235008",
             potKey: "pot2",
             name: "Big",
             shortName: "Big Drops",
             mainWinRatio: 100,
-            sharedPot: null
+            sharedPot: null,
+            value: 9000,
+            lastWinTs: 1592733025
+        }
+    ]
+};
+
+export const composedJackpotMatchLastDayWin: ComposedJackpot = {
+    externalId: "zFOUh1620287234976",
+    title: "Sports jackpot",
+    image: "false",
+    slug: "sports-jackpot",
+    pots: [
+        {
+            status: "CHILLY",
+            externalId: "iMVgB1620287235005",
+            potKey: "pot1",
+            name: "Match Day",
+            shortName: "Match Day Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 1000,
+            lastWinTs: 1908263169
+        },
+        {
+            status: "CHILLY",
+            externalId: "oXbVf1620287235008",
+            potKey: "pot2",
+            name: "Big",
+            shortName: "Big Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 9000,
+            lastWinTs: 1592733025
+        }
+    ]
+};
+
+export const composedJackpotMegaLastDayWin: ComposedJackpot = {
+    externalId: "zFOUh1620287234976",
+    title: "Sports jackpot",
+    image: "false",
+    slug: "sports-jackpot",
+    pots: [
+        {
+            status: "CHILLY",
+            externalId: "iMVgB1620287235005",
+            potKey: "pot1",
+            name: "Match Day",
+            shortName: "Match Day Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 1000,
+            lastWinTs: 1592733025
+        },
+        {
+            status: "CHILLY",
+            externalId: "oXbVf1620287235008",
+            potKey: "pot2",
+            name: "Big",
+            shortName: "Big Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 9000,
+            lastWinTs: 1908263169
+        }
+    ]
+};
+
+export const composedJackpotAllLastDayWin: ComposedJackpot = {
+    externalId: "zFOUh1620287234976",
+    title: "Sports jackpot",
+    image: "false",
+    slug: "sports-jackpot",
+    pots: [
+        {
+            status: "CHILLY",
+            externalId: "iMVgB1620287235005",
+            potKey: "pot1",
+            name: "Match Day",
+            shortName: "Match Day Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 1000,
+            lastWinTs: 1908263169
+        },
+        {
+            status: "CHILLY",
+            externalId: "oXbVf1620287235008",
+            potKey: "pot2",
+            name: "Big",
+            shortName: "Big Drops",
+            mainWinRatio: 100,
+            sharedPot: null,
+            value: 9000,
+            lastWinTs: 1908263169
         }
     ]
 };

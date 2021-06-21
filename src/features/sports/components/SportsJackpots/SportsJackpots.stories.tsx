@@ -2,14 +2,22 @@ import { MockedProvider } from "@apollo/client/testing";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { SportsJackpots } from "./SportsJackpots";
-import { tranlsations, composedJackpot, localEn, currency } from "./__mocks__/sportsJackpotsMock";
+import {
+  tranlsations,
+  composedJackpotFull,
+  composedJackpotMatchLastDayWin,
+  composedJackpotMegaLastDayWin,
+  composedJackpotAllLastDayWin,
+  localEn,
+  currency,
+} from "./__mocks__/sportsJackpotsMock";
 
 const stories = storiesOf("Sports/Jackpots", module);
 
 stories.add("Default View", () => (
   <MockedProvider>
     <SportsJackpots
-      composedJackpot={composedJackpot}
+      composedJackpot={composedJackpotFull}
       currency={currency}
       locale={localEn}
       t={tranlsations}
@@ -20,7 +28,7 @@ stories.add("Default View", () => (
 stories.add("Match Pot Dropped View", () => (
   <MockedProvider>
     <SportsJackpots
-      composedJackpot={composedJackpot}
+      composedJackpot={composedJackpotMatchLastDayWin}
       currency={currency}
       locale={localEn}
       t={tranlsations}
@@ -31,7 +39,7 @@ stories.add("Match Pot Dropped View", () => (
 stories.add("Mega Pot Dropped View", () => (
   <MockedProvider>
     <SportsJackpots
-      composedJackpot={composedJackpot}
+      composedJackpot={composedJackpotMegaLastDayWin}
       currency={currency}
       locale={localEn}
       t={tranlsations}
@@ -42,12 +50,10 @@ stories.add("Mega Pot Dropped View", () => (
 stories.add("Match and Mega Pot Dropped View", () => (
   <MockedProvider>
     <SportsJackpots
-      composedJackpot={composedJackpot}
+      composedJackpot={composedJackpotAllLastDayWin}
       currency={currency}
       locale={localEn}
       t={tranlsations}
     />
   </MockedProvider>
 ));
-
-
