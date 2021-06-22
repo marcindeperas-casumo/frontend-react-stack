@@ -14,4 +14,7 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
     coinValue
     description
   }
+  ... on PlayerValuableFreeBet {
+    requirementType
+  }
 }
