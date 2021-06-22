@@ -2,6 +2,11 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import * as A from "Types/apollo";
 import { useTranslations } from "Utils/hooks";
+import type {
+  TFlattenedPromotion,
+  TPromotionTranslations,
+  TPromotion,
+} from "../../models/promotions/promotions.types";
 import { PromotionCardList } from "./PromotionCardList";
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
@@ -11,6 +16,10 @@ type Props = {
   name?: string;
   showSeeMoreLink?: boolean;
   skipGql?: boolean;
+};
+
+const flattenPromotions = (promotions: TPromotion[]): TFlattenedPromotion[] => {
+  return promotions.map(promo => ({ slug: promo.slug, ...promo.fields }));
 };
 
 const PromotionCardListContainer = React.memo<Props>(
@@ -29,28 +38,28 @@ const PromotionCardListContainer = React.memo<Props>(
       "built-pages.top-lists-translations"
     );
 
-    const promoListData = useTranslations<{
-      list_title: string;
-      promotions: Array<A.PromotionCard_PromotionFragment>;
-    }>(slug);
+    const promotionsList = useTranslations<TPromotionTranslations>(slug);
 
-    if (loading || !t) {
+    if (loading || !promotionsList || !t) {
       return <PromotionCardListSkeleton />;
     }
 
+    const flattenedPromotionsList = flattenPromotions(
+      promotionsList.promotions
+    );
+
     if (
-      promoListData?.promotions.length ||
+      promotionsList?.promotions.length ||
       data?.promotionsList?.promotions?.length
     ) {
       const promotionsListToUse =
-        !data?.promotionsList?.promotions.length && promoListData.promotions
-          ? promoListData.promotions
+        !data?.promotionsList?.promotions.length && promotionsList.promotions
+          ? flattenedPromotionsList
           : data.promotionsList.promotions;
       return (
         <PromotionCardList
           seeMoreText={showSeeMoreLink && t.more_link}
-          id={promoListData?.list_title || data?.promotionsList?.id}
-          name={name || promoListData.list_title || data.promotionsList.name}
+          name={name || promotionsList.list_title || data.promotionsList.name}
           promotions={promotionsListToUse}
         />
       );

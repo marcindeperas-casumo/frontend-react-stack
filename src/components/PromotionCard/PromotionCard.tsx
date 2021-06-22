@@ -7,15 +7,18 @@ import "./PromotionCard.scss";
 import TrackClick from "Components/TrackClick";
 import TrackView from "Components/TrackView";
 import * as A from "Types/apollo";
+import { TFlattenedPromotion } from "Models/promotions/promotions.types";
 import { EVENT_PROPS, EVENTS } from "../../constants";
 
-type Props = {
-  promotion: A.PromotionCard_PromotionFragment;
+type TProps = {
+  promotion: A.PromotionCard_PromotionFragment | TFlattenedPromotion;
 };
 
-export const PromotionCard = ({ promotion }: Props) => {
-  const link = `promotions/${promotion.slug}`;
-  const promotionFields = promotion?.fields ? promotion.fields : promotion;
+export const PromotionCard = ({ promotion }: TProps) => {
+  const promo = promotion as A.PromotionCard_PromotionFragment;
+  const promoTranslations = promotion as TFlattenedPromotion;
+
+  const link = `promotions/${promotion.slug || promoTranslations.slug}`;
   return (
     <>
       <a className="o-ratio u-margin-bottom--sm cursor-pointer" href={link}>
@@ -30,23 +33,27 @@ export const PromotionCard = ({ promotion }: Props) => {
           <Card
             className="o-ratio__content rounded-2xl bg-white t-elevation--10"
             spacing="none"
-            header={() => <PromotionCardImage image={promotionFields.image} />}
+            header={() => (
+              <PromotionCardImage
+                image={promo.image || promoTranslations.image}
+              />
+            )}
             content={() => (
               <PromotionCardContent
                 link={link}
-                title={promotionFields.title}
-                badge={promotionFields.badge}
-                dates={promotionFields.subtitle || promotionFields.dates}
-                ctaText={promotionFields.ctaText || promotionFields.cta_text}
+                title={promo.title || promoTranslations.title}
+                badge={promo.badge || promoTranslations.badge}
+                dates={promo.subtitle || promoTranslations.dates}
+                ctaText={promo.ctaText || promoTranslations.cta_text}
               />
             )}
           />
         </TrackClick>
       </a>
-      {(promotionFields.teaserCaveats || promotionFields.teaser_caveats) && (
+      {(promo.teaserCaveats || promoTranslations.teaser_caveats) && (
         <a href={link}>
           <Text className="text-grey-50 italic px-sm" size="2xs">
-            {promotionFields.teaserCaveats || promotionFields.teaser_caveats}
+            {promo.teaserCaveats || promoTranslations.teaser_caveats}
           </Text>
         </a>
       )}
