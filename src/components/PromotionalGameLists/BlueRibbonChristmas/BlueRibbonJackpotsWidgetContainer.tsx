@@ -1,58 +1,34 @@
 import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
-import * as R from "ramda";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
-import { useFetch, useTranslations } from "Utils/hooks";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
-import { urls, jackpotWidgetContentPage } from "./blueRibbonConsts";
-import type {
-  JackpotWidgetContentPage,
-  JackpotStatus,
-} from "./blueRibbonConsts";
 import {
-  usePotStateChangeEvent,
+  useComposedJackpotConfigData,
   useBlueRibbonSDKAnonymous,
 } from "./useBlueRibbonSDK";
 
-type BlueRibbonJackpotEntry = {
-  value: number;
-  label: string;
-  status: JackpotStatus;
-  potId: string;
-  communityWinRatio: number;
-  mainWinRatio: number;
-};
-
-export const BlueRibbonJackpotsWidgetPromotionPage = () => (
+export const BlueRibbonJackpotsWidgetPromotionPage = (props: {
+  jackpot_slug: string;
+}) => (
   <div className="u-margin-x--md u-margin-bottom--lg">
-    <BlueRibbonJackpotsWidgetContainer className="u-width--full" />
+    <BlueRibbonJackpotsWidgetContainer className="u-width--full" {...props} />
   </div>
 );
 
 export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
-  ({ className = "" }: { className?: string }) => {
-    const { response } = useFetch(urls.handshake);
-    const t = useTranslations<JackpotWidgetContentPage>(
-      jackpotWidgetContentPage
-    );
+  ({
+    className = "",
+    jackpot_slug,
+  }: {
+    className?: string;
+    jackpot_slug: string;
+  }) => {
+    const { composedJackpot } = useComposedJackpotConfigData({
+      jackpotSlug: jackpot_slug,
+    });
     useBlueRibbonSDKAnonymous();
-    const pots = usePotStateChangeEvent();
 
-    const available = R.propOr(false, "available", response);
-    const jackpots: Array<BlueRibbonJackpotEntry> = R.pipe(
-      R.pathOr([], ["jackpots", 0, "pots"]),
-      R.map(({ communityWinRatio, mainWinRatio, potId, potName }) => ({
-        value: pots[potId]?.progressive,
-        label: potName,
-        status: pots[potId]?.potStatus as JackpotStatus,
-        potId,
-        communityWinRatio,
-        mainWinRatio,
-      })),
-      R.filter(R.prop("value"))
-    )(response);
-
-    if (!t || !available || !jackpots || jackpots.length === 0) {
+    if (!composedJackpot?.pots) {
       return (
         <Skeleton
           colorHi="#d3d8e1"
@@ -69,8 +45,8 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
     return (
       <BlueRibbonJackpotsWidget
         className={className}
-        jackpots={jackpots}
-        t={t}
+        composedPots={composedJackpot.pots}
+        widgetColor={composedJackpot.widgetColor}
       />
     );
   }
