@@ -9,7 +9,7 @@ import "./SportsJackpots.scss";
 import { navigateById, goToHash } from "Services/NavigationService";
 import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import {
+import type {
   ComposedJackpot,
   PotsObjects,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
@@ -109,10 +109,7 @@ Props) => {
                 <Text tag="span" className="u-margin-right u-margin-left">
                   -
                 </Text>
-                <Text
-                  tag="span"
-                  className="capitalize u-font-xs text-yellow-30"
-                >
+                <Text tag="span" className="capitalize text-yellow-30">
                   {t.dropped}
                 </Text>
               </div>
@@ -142,10 +139,7 @@ Props) => {
                 <Text tag="span" className="u-margin-right u-margin-left">
                   -
                 </Text>
-                <Text
-                  tag="span"
-                  className="capitalize u-font-xs text-yellow-30"
-                >
+                <Text tag="span" className="capitalize text-yellow-30">
                   {t.dropped}
                 </Text>
               </div>
