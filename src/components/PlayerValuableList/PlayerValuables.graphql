@@ -54,6 +54,9 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
       ... on PlayerValuableCash {
         requirementType
       }
+      ... on PlayerValuableFreeBet {
+        requirementType
+      }
       ... on PlayerValuableCashback {
         description
         requirementType
@@ -113,6 +116,9 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     ... on PlayerValuableWageringLock {
       awardType
       description
+    }
+    ... on PlayerValuableFreeBet {
+      requirementType
     }
 }
 

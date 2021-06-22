@@ -85,6 +85,14 @@ export const getValuableDetailsAction = ({
       };
     }
 
+    if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.KAMBI_SPORTS_BET)) {
+      return {
+        ...ACTION_PROPS_DEFAULT,
+        url: sportsRouteId,
+        text: translations.playToUnlockLabel,
+      };
+    }
+
     return {
       ...ACTION_PROPS_DEFAULT,
       text: translations.playToUnlockLabel,
