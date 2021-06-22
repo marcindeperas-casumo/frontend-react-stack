@@ -137,7 +137,7 @@ Props) => {
         <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md u-display--inline-block">
           <div className="capitalize u-font-xs">
             <Text tag="span">{t.mega_drop}</Text>
-            {potWonInLastDay(potMega, t.last_day) ? (
+            {potWonInLastDay(potMega, t.last_day) && (
               <div className="u-display--inline-block">
                 <Text tag="span" className="u-margin-right u-margin-left">
                   -
@@ -149,7 +149,7 @@ Props) => {
                   {t.dropped}
                 </Text>
               </div>
-            ) : null}
+            )}
           </div>
           {!potMega?.value ? (
             <Skeleton
