@@ -2416,6 +2416,7 @@ type ValuableCard_PlayerValuable_PlayerValuableCash_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
@@ -2432,6 +2433,7 @@ type ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
@@ -2446,6 +2448,7 @@ type ValuableCard_PlayerValuable_PlayerValuableDeposit_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
@@ -2460,6 +2463,7 @@ type ValuableCard_PlayerValuable_PlayerValuableSport_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
@@ -2474,6 +2478,7 @@ type ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
@@ -2488,6 +2493,7 @@ type ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
@@ -2503,6 +2509,7 @@ type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   caveat?: Maybe<string>;
   backgroundImage: string;
   specificTerms?: Maybe<string>;
+  termsLink: string;
 };
 
 export type ValuableCard_PlayerValuableFragment =
