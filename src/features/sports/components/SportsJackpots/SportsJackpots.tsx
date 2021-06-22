@@ -104,7 +104,7 @@ Props) => {
         <div className="u-width--1/2 u-height--full u-padding-x--lg u-padding-y--md t-border-right t-border-grey-70 u-display--inline-block">
           <div className="capitalize u-font-xs">
             <Text tag="span">{t.match_drop}</Text>
-            {potWonInLastDay(potMatch, t.last_day) ? (
+            {potWonInLastDay(potMatch, t.last_day) && (
               <div className="u-display--inline-block">
                 <Text tag="span" className="u-margin-right u-margin-left">
                   -
@@ -116,7 +116,7 @@ Props) => {
                   {t.dropped}
                 </Text>
               </div>
-            ) : null}
+            )}
           </div>
           {!potMatch?.value ? (
             <Skeleton
