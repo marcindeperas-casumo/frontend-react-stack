@@ -7,39 +7,36 @@ import { AnimationStep } from "./AnimationStep";
 
 type TProps = {
   animation: Array<AnimationClipProps<AvailableAnimationClipsProps>>;
-  onNextStep?: (step: AnimationClipProps<AvailableAnimationClipsProps>) => void;
+  onNextStep?: (step: number) => void;
+  onAnimationDone?: () => void;
   start?: boolean;
 };
 
 export const AnimationRunner = ({
   animation,
-  onNextStep,
+  onNextStep = () => {},
+  onAnimationDone = () => {},
   start = true,
 }: TProps) => {
-  const [currentStep, setCurrentStep] = React.useState<number>();
+  const [currentStep, setCurrentStep] = React.useState(0);
 
-  React.useEffect(() => {
-    if (start && isNaN(currentStep)) {
-      setCurrentStep(0);
-    }
-  }, [start, currentStep]);
-
-  const onAnimationEnd = () => {
-    if (currentStep < animation.length - 1) {
+  const showNext = () => {
+    if (animation.length > currentStep + 1) {
+      onNextStep(currentStep);
       setCurrentStep(currentStep + 1);
-      if (onNextStep) {
-        onNextStep(animation[currentStep]);
-      }
+    } else {
+      onAnimationDone();
     }
   };
 
   return (
-    currentStep >= 0 && (
-      <AnimationStep
-        key={currentStep}
-        definition={animation[currentStep]}
-        onAnimationEnd={onAnimationEnd}
-      />
-    )
+    <>
+      {start &&
+        animation.map((step, idx) =>
+          idx <= currentStep ? (
+            <AnimationStep key={idx} config={step} onShowNext={showNext} />
+          ) : null
+        )}
+    </>
   );
 };

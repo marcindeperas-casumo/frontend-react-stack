@@ -1,4 +1,5 @@
 import React from "react";
+import type { AnimationClipProps } from "../../constants";
 
 export type TClipTestSettings = {
   name: string;
@@ -6,8 +7,8 @@ export type TClipTestSettings = {
 };
 
 type TProps = {
-  time: number;
-  settings: TClipTestSettings;
+  config: AnimationClipProps<TClipTestSettings>;
+  onShowNext: () => void;
 };
 
 /**
@@ -17,12 +18,12 @@ type TProps = {
  * settings - specific animation clip data
  */
 
-export const ClipTest = ({ time, settings }: TProps) => {
+export const ClipTest = ({ config, onShowNext }: TProps) => {
   return (
     <div>
-      <div>This is a test "animation clip" which does nothing</div>
-      <div>Name: {settings.name}</div>
-      <div>Value: {settings.value}</div>
+      <div>
+        Value: {config.settings.value} {config.settings.name}
+      </div>
     </div>
   );
 };

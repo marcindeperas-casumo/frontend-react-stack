@@ -9,5 +9,12 @@ const animationClipsMap = {
 export const stepResolver = (
   animationStepDefinition: AnimationClipProps<AvailableAnimationClipsProps>
 ) => {
-  return animationClipsMap[animationStepDefinition.type];
+  const clip = animationClipsMap[animationStepDefinition.animationId];
+  if (!clip) {
+    // eslint-disable-next-line fp/no-throw
+    throw new Error(
+      `No animation clip found for: ${animationStepDefinition.animationId}`
+    );
+  }
+  return animationClipsMap[animationStepDefinition.animationId];
 };

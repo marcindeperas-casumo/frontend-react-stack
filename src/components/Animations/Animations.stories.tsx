@@ -8,7 +8,7 @@ const stories = storiesOf("Animations/AnimationWizzard", module).addParameters({
 
 const mock = [
   {
-    type: "test",
+    animationId: "test",
     time: 2000,
     settings: {
       name: "step 1",
@@ -16,8 +16,16 @@ const mock = [
     },
   },
   {
-    type: "test",
+    animationId: "test",
     time: 2000,
+    transitionPoint: 0.5,
+    settings: {
+      name: "transition step",
+    },
+  },
+  {
+    animationId: "test",
+    time: 3000,
     settings: {
       name: "step 2",
       value: 2,
