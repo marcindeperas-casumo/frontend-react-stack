@@ -1997,6 +1997,9 @@ export type PromotionCard_PromotionFragment = {
   subtitle: string;
   image: string;
   badge?: Maybe<string>;
+  tag?: Maybe<string>;
+  teaserCaveats?: Maybe<string>;
+  ctaText?: Maybe<string>;
 };
 
 export type PromotionsListQueryVariables = Exact<{
