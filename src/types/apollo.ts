@@ -1265,6 +1265,12 @@ export interface BlueribbonJackpotConfig {
   title: Scalars["String"];
   image: Scalars["String"];
   pots: Array<Pot>;
+  widgetColor: WidgetColor;
+}
+
+export interface WidgetColor {
+  dark?: Maybe<Scalars["String"]>;
+  light?: Maybe<Scalars["String"]>;
 }
 
 export interface SharedPot {
@@ -1293,6 +1299,7 @@ export interface Pot {
   winNotificationIcon: Scalars["String"];
   winNotificationTitle: Scalars["String"];
   winNotificationContent: Scalars["String"];
+  potExplanation: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -1997,6 +2004,9 @@ export type PromotionCard_PromotionFragment = {
   subtitle: string;
   image: string;
   badge?: Maybe<string>;
+  tag?: Maybe<string>;
+  teaserCaveats?: Maybe<string>;
+  ctaText?: Maybe<string>;
 };
 
 export type PromotionsListQueryVariables = Exact<{
@@ -2021,13 +2031,21 @@ export type GetJackpotConfigForWidgetQuery = {
     title: string;
     image: string;
     slug: string;
+    widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
     pots: Array<{
       externalId: string;
       potKey: string;
       name: string;
       shortName: string;
       mainWinRatio: number;
-      sharedPot?: Maybe<{ name: string; shortName: string; icon: string }>;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
     }>;
   }>;
 };

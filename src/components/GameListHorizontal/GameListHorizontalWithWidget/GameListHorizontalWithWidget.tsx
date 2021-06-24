@@ -9,6 +9,7 @@ import { GameRow, GameRowText } from "Components/GameRow";
 import {
   topListWidgetWidth,
   topListWidgetHeight,
+  topListWidgetHeightTwoRows,
   horizontalListsDevicePaddings,
 } from "Src/constants";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
@@ -19,6 +20,7 @@ export type Props = {
   Widget: React.ComponentType;
   name: string | undefined;
   seeMore?: SeeMoreProps;
+  gamesInColumn?: number;
 };
 
 export const GameListHorizontalWithWidget = ({
@@ -26,8 +28,9 @@ export const GameListHorizontalWithWidget = ({
   seeMore,
   games,
   Widget,
+  gamesInColumn = 3,
 }: Props) => {
-  const columns = R.splitEvery(3, games);
+  const columns = R.splitEvery(gamesInColumn, games);
 
   const mobileItemRenderer = (i: number) => {
     if (i === 0) {
@@ -94,7 +97,9 @@ export const GameListHorizontalWithWidget = ({
           title={name}
           itemCount={columns.length}
           itemRenderer={desktopItemRenderer}
-          tileHeight={topListWidgetHeight}
+          tileHeight={
+            gamesInColumn < 3 ? topListWidgetHeightTwoRows : topListWidgetHeight
+          }
           seeMore={seeMore}
         />
       </Desktop>

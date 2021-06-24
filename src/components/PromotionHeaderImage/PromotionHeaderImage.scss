@@ -1,18 +1,4 @@
-@import "cudl-breakpoints";
-@import "~Styles/settings.breakpoints";
-
-$promotion-image-ratios: (
-  mobile: percentage(179/377),
-  phablet: percentage(188/546),
-  tablet: percentage(562/1180),
-);
-
 // stylelint-disable-next-line
-.o-ratio--promotion-header-image.o-ratio--promotion-header-image::before {
-  @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
-}
-
-.c-promotion-header-badge {
-  height: 75%;
-  max-height: 135px;
+.c-promotion-header-image > img {
+  height: 0;
 }

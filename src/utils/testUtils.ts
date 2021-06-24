@@ -44,3 +44,21 @@ export const setMobileViewport = () =>
     };
   }));
 /* eslint-enable fp/no-mutation */
+
+export function genMocksForUseTranslations(
+  slug: string,
+  fields: Object,
+  content: string = ""
+) {
+  return {
+    schema: {
+      cms: {
+        [slug]: {
+          slug,
+          fields,
+          content,
+        },
+      },
+    },
+  };
+}

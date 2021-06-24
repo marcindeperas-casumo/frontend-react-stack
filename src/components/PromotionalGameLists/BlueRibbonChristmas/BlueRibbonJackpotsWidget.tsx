@@ -6,30 +6,24 @@ import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
-import { topListWidgetWidth } from "Src/constants";
-import { colors } from "./blueRibbonConsts";
-import type {
-  JackpotWidgetContentPage,
-  JackpotStatus,
-} from "./blueRibbonConsts";
-
-type BlueRibbonJackpotEntry = {
-  value: number;
-  label: string;
-  status: JackpotStatus;
-  potId: string;
-  communityWinRatio: number;
-  mainWinRatio: number;
-};
+import {
+  topListWidgetWidth,
+  topListWidgetHeight,
+  topListWidgetHeightTwoRows,
+} from "Src/constants";
+import type { PotsObjects } from "./blueRibbonConsts";
 
 export function BlueRibbonJackpotsWidget({
   className = "",
-  jackpots,
-  t,
+  composedPots,
+  widgetColor,
 }: {
   className?: string;
-  jackpots: Array<BlueRibbonJackpotEntry>;
-  t: JackpotWidgetContentPage;
+  composedPots: Array<PotsObjects>;
+  widgetColor: {
+    dark?: string;
+    light?: string;
+  };
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
@@ -37,26 +31,30 @@ export function BlueRibbonJackpotsWidget({
   return (
     <Flex
       direction="vertical"
+      justify="center"
       className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
       style={{
-        backgroundColor: colors.jackpotWidgetPurpleLight,
+        backgroundColor: widgetColor.light,
         width: topListWidgetWidth,
+        height:
+          composedPots.length < 3
+            ? topListWidgetHeightTwoRows
+            : topListWidgetHeight,
       }}
     >
-      {jackpots.map(jackpot => {
-        if (jackpot.communityWinRatio === 0 || jackpot.mainWinRatio === 0) {
-          const cmsKey = jackpot.label.toLowerCase();
-
+      {composedPots.map(composedPot => {
+        if (!composedPot.sharedPot) {
           return (
             <JackpotRow
-              key={jackpot.potId}
+              key={composedPot.potKey}
               formattedValue={formatCurrency({
                 locale,
                 currency,
-                value: jackpot.value,
+                value:
+                  composedPot.value * (composedPot.mainWinRatio / 100) || 0,
               })}
-              label={t[cmsKey]}
-              image={t[`${cmsKey}_icon`]}
+              label={composedPot.name}
+              image={composedPot.icon}
             />
           );
         }
@@ -72,31 +70,32 @@ export function BlueRibbonJackpotsWidget({
             formattedValue: formatCurrency({
               locale,
               currency,
-              value: jackpot.value * (jackpot.mainWinRatio / 100),
+              value: composedPot.value * (composedPot.mainWinRatio / 100) || 0,
             }),
-            label: t.mega_single_winner,
-            image: t.mega_single_winner_icon,
-            explanation: t.mega_single_winner_explanation,
+            label: composedPot.name,
+            image: composedPot.icon,
+            explanation: composedPot.potExplanation,
           },
           {
             id: "community",
             formattedValue: formatCurrency({
               locale,
               currency,
-              value: jackpot.value * (jackpot.communityWinRatio / 100),
+              value:
+                composedPot.value * (1 - composedPot.mainWinRatio / 100) || 0,
             }),
-            label: t.mega_community,
-            image: t.mega_community_icon,
-            explanation: t.mega_community_explanation,
+            label: composedPot.sharedPot.name,
+            image: composedPot.sharedPot.icon,
+            explanation: composedPot.sharedPot.splitExplanation,
           },
         ];
 
         return (
           <Flex
-            key={jackpot.potId}
+            key={composedPot.potKey}
             direction="vertical"
             className="t-border-r--md u-overflow--hidden"
-            style={{ backgroundColor: colors.jackpotWidgetPurpleDark }}
+            style={{ backgroundColor: widgetColor.dark }}
           >
             {splittedPot.map(({ id, ...x }) => (
               <JackpotRow key={id} {...x} />

@@ -1,22 +1,27 @@
 import { MaximizeIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import cx from "classnames";
+import { ContentSubtitle } from "Components/ContentSubtitle";
 import DangerousHtml from "Components/DangerousHtml";
 import { ContentFader } from "./ContentFader";
 import "./ContentHtml.scss";
 
 type Props = {
   html: string;
+  gridColumnWidth?: string;
+  blockTitle?: string;
   expandable?: boolean;
   onClickExpand?: () => void;
   className?: string;
   style?: string;
 };
 
-const defaultClasses = "s-content-html u-padding-x--lg";
+const defaultClasses = "s-content-html px-lg";
 
 export function ContentHtml({
   html,
+  blockTitle,
+  gridColumnWidth = "2",
   expandable = false,
   className,
   style = "",
@@ -25,10 +30,18 @@ export function ContentHtml({
   return (
     <div
       className={cx(
-        "u-margin-bottom--2xlg",
-        expandable && "o-position--relative"
+        "mb-2xlg",
+        expandable && "relative",
+        gridColumnWidth && `col-span-${gridColumnWidth}`
       )}
     >
+      {blockTitle && (
+        <ContentSubtitle
+          className="font-bold"
+          subtitle={blockTitle}
+          gridColumnWidth={gridColumnWidth}
+        ></ContentSubtitle>
+      )}
       <div
         className={cx(
           defaultClasses,

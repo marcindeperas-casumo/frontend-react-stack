@@ -1,11 +1,14 @@
+import React, { PureComponent } from "react";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import List from "@casumo/cmp-list";
 import Media from "@casumo/cmp-media";
-import React, { PureComponent } from "react";
 
 type Props = {
   /** The items to render as a list */
   items: Array<Object>;
+  /** The Column width this item should span in the grid layout, currently supporting 2 columns  */
+  gridColumnWidth?: string;
 };
 
 type ContentMediaListItemProps = {
@@ -47,9 +50,14 @@ const ContentMediaListItem = ({
 
 export class ContentMediaList extends PureComponent<Props> {
   render() {
-    const { items } = this.props;
+    const { items, gridColumnWidth = "2" } = this.props;
     return (
-      <div className="u-margin-bottom--lg u-padding-x--lg">
+      <div
+        className={cx(
+          "mb-lg px-lg",
+          gridColumnWidth && `col-span-${gridColumnWidth}`
+        )}
+      >
         <List
           itemSpacing="md"
           items={items}
