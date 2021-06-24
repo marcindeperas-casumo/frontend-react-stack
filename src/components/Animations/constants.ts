@@ -1,14 +1,10 @@
-import { TClipTestSettings } from "./AnimationClips/ClipTest/ClipTest";
+import { TSpringTestSettings } from "./AnimationClips/SpringAnimationTest";
 
-export type AvailableAnimationClipsProps = TClipTestSettings | {};
+export type AvailableAnimationClipsProps = TSpringTestSettings | {};
 
 export type AnimationClipProps<ClipPropsType> = {
   animationId: string;
-  time: number;
-  transitionPoint?: number; // from 0 to 1
+  time?: number;
+  isTransition?: boolean; // from 0 to 1
   settings: ClipPropsType;
 };
-
-export type TStepCallback = (
-  step: AnimationClipProps<AvailableAnimationClipsProps>
-) => void;
