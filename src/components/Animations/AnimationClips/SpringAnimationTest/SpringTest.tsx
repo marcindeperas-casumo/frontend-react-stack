@@ -11,7 +11,7 @@ type TSpringTestProps = {
   onShowNext: () => void;
 };
 
-export const SpringTest = ({ config, onShowNext, order }: TSpringTestProps) => {
+export const SpringTest = ({ config, onShowNext }: TSpringTestProps) => {
   const styles1 = useSpring({
     from: { backgroundColor: "#000" },
     to: { backgroundColor: config.settings.destinationColor },
@@ -19,5 +19,5 @@ export const SpringTest = ({ config, onShowNext, order }: TSpringTestProps) => {
       onShowNext();
     },
   });
-  return <animated.div style={styles1}>{order} hey</animated.div>;
+  return <animated.div style={styles1}>hey</animated.div>;
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, useChain, useSpringRef, animated, to } from "react-spring";
+import { useSpring, useChain, useSpringRef } from "react-spring";
 import type { AnimationClipProps } from "../../constants";
 
 type TSpringTransitionTestProps = {
@@ -15,7 +15,6 @@ const slide = {
 };
 
 export const SpringTransitionTest = ({
-  config,
   onShowNext,
   onTransition,
 }: TSpringTransitionTestProps) => {
