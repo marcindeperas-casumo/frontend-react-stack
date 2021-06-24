@@ -10,8 +10,12 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   caveat
   backgroundImage
   specificTerms
+  termsLink
   ... on PlayerValuableSpins {
     coinValue
     description
+  }
+  ... on PlayerValuableFreeBet {
+    requirementType
   }
 }

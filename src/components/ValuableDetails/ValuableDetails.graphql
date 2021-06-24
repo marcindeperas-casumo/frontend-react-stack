@@ -22,6 +22,9 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   ... on PlayerValuableCash {
     requirementType
   }
+  ... on PlayerValuableFreeBet {
+    requirementType
+  }
   ... on PlayerValuableCashback {
     requirementType
     games {

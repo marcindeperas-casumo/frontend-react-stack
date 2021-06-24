@@ -6,6 +6,7 @@ export const ContentSeparator = () => {
       border-grey-5
       u-margin-y--xlg
       u-margin-x--lg
+      col-span-2
     `;
 
   return <div className={className} />;

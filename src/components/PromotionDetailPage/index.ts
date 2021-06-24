@@ -1,0 +1,1 @@
+export { PromotionDetailPage } from "./PromotionDetailPage";
