@@ -261,7 +261,7 @@ export function useManualJackpotOptInAndOptOut(jackpotSlug: string) {
   });
 
   React.useEffect(() => {
-    if (handshake) {
+    if (handshake?.jackpots) {
       const chosenJackpot = handshake.jackpots.find(
         x => jackpotSlug === x.jackpotSlug
       );
