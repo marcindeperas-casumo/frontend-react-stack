@@ -6,5 +6,6 @@ export const TypeDefsSports = gql`
     BETTING_GLOSSARY
     CHOOSE_FAVOURITES
     CHOOSE_FAVOURITE_COMPETITIONS
+    JACKPOTS
   }
 `;

@@ -10,9 +10,9 @@ export const LazyPromotionDetail = props => {
   return (
     <LazyPortal
       hostElementId="react-host-promotion-detail"
-      loader={() => import("Components/ComponentBuilder")}
+      loader={() => import("Components/PromotionDetailPage")}
       fallback={<PromotionPageSkeleton />}
-      namedExport="ComponentBuilder"
+      namedExport="PromotionDetailPage"
       props={augmentedProps}
     />
   );

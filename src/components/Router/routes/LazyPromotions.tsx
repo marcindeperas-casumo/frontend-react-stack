@@ -5,9 +5,8 @@ import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPa
 export const LazyPromotions = props => (
   <LazyPortal
     hostElementId="react-host-promotions"
-    loader={() => import("Components/ComponentBuilder")}
+    loader={() => import("Components/PromotionPage")}
     fallback={<PromotionPageSkeleton />}
-    namedExport="ComponentBuilder"
-    props={{ slug: "campaigns.winter-games" }}
+    namedExport="PromotionPage"
   />
 );
