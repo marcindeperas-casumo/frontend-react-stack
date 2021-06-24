@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PromotionTitle from "Components/PromotionTitle";
+import PromotionHeader from "Components/PromotionHeader";
 
-describe("PromotionTitle", () => {
+describe("PromotionHeader", () => {
   const mockPromotion = {
     dates: "Ends on 6th january 2019",
     title: "Winter Games",
@@ -14,13 +14,13 @@ describe("PromotionTitle", () => {
   };
 
   test("render a Media component if there is a badge", () => {
-    const rendered = shallow(<PromotionTitle {...mockPromotionWithBadge} />);
+    const rendered = shallow(<PromotionHeader {...mockPromotionWithBadge} />);
     expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(1);
     expect(rendered.find("PromotionTitleText").length).toBe(0);
   });
 
   test("render a div if there isn't a badge", () => {
-    const rendered = shallow(<PromotionTitle {...mockPromotion} />);
+    const rendered = shallow(<PromotionHeader {...mockPromotion} />);
     expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(0);
     expect(rendered.find("PromotionTitleText").length).toBe(1);
   });
