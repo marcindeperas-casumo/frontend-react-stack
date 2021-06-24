@@ -39,6 +39,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -50,7 +51,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -72,6 +76,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -83,7 +88,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -105,6 +113,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -113,10 +122,13 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       duration: "Duration",
       durationTemplate: "{{{duration}}} min",
       caveatShort:
-        'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
+      'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -138,6 +150,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -149,7 +162,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -171,6 +187,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -182,7 +199,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -204,6 +224,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -215,7 +236,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -237,6 +261,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -248,7 +273,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -270,6 +298,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -281,7 +310,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -303,6 +335,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -314,7 +347,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -336,6 +372,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -347,7 +384,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -369,6 +409,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -380,7 +421,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -413,6 +457,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       "£5",
       "£5",
     ],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -424,7 +469,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -457,6 +505,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       "£5",
       "£5",
     ],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -468,7 +517,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -501,6 +553,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       "£10",
       "£10",
     ],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -512,7 +565,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -544,6 +600,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       "£10",
       "£10",
     ],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -555,7 +612,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -588,6 +648,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       "£5",
       "£5",
     ],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -600,7 +661,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       today: "Today",
       tomorrow: "Tomorrow",
 
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -622,6 +686,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -633,7 +698,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -655,6 +723,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -666,7 +735,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -688,6 +760,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -699,7 +772,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -720,6 +796,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -732,7 +809,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       today: "Today",
       tomorrow: "Tomorrow",
 
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -754,6 +834,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -765,7 +846,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -787,6 +871,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -799,7 +884,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       today: "Today",
       tomorrow: "Tomorrow",
 
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -821,6 +909,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -833,7 +922,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       today: "Today",
       tomorrow: "Tomorrow",
 
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -855,6 +947,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -867,7 +960,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
       today: "Today",
       tomorrow: "Tomorrow",
 
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -889,6 +985,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -900,7 +997,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -922,6 +1022,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -933,7 +1034,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -955,6 +1059,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -966,7 +1071,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -988,6 +1096,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -999,7 +1108,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -1021,6 +1133,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -1032,7 +1145,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
   {
@@ -1054,6 +1170,7 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
     promoted: false,
     formattedPrize: "£20",
     formattedPrizes: ["£20", "£10", "£5"],
+    remainingSpins: 2,
     translations: {
       optIn: "Opt in",
       optedIn: "Opted in",
@@ -1065,7 +1182,10 @@ export const reelRacesSchedule: Array<A.ReelRaceScheduleCard_ReelRaceFragment> =
         'Opt in. Spins/Games restrictions. <a href="#" {{{ ctaTermsAndConditions }}}><strong>T&C’s apply.</strong></a>',
       today: "Today",
       tomorrow: "Tomorrow",
-      minBet: "Min. Bet"
+      minBet: "Min. Bet",
+      optedInCtaSingleGameShort: "Play",
+      competeFor: "asdasd",
+      endingIn: "123",
     },
   },
 ];

@@ -14,6 +14,7 @@ import {
 } from "Src/constants";
 import { InGameDrawer } from "Components/InGameDrawer";
 import { InGameAdventureWidget } from "Components/InGameAdventureWidget";
+import { ReelRaceOptInWidget } from "Components/ReelRaceOptInWidget";
 import {
   useGameModelContext,
   usePinnedWidgetsContext,
@@ -163,6 +164,8 @@ export const ProfileIconWithDrawer = ({
           <FiveMinuteBreakDrawerWidget
             className={`${baseClassName}__item u-padding-bottom`}
           />
+
+          {!isNativeByUserAgent() && <ReelRaceOptInWidget />}
         </div>
       </CSSTransition>
     </React.Fragment>
