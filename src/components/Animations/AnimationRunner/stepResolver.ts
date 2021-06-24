@@ -1,9 +1,13 @@
-import { ClipTest } from "../AnimationClips/ClipTest/ClipTest";
+import {
+  SpringTest,
+  SpringTransitionTest,
+} from "../AnimationClips/SpringAnimationTest";
 import { AnimationClipProps, AvailableAnimationClipsProps } from "../constants";
 
 // Map all new clips here so they will be avaliable to compose into animation
 const animationClipsMap = {
-  test: ClipTest,
+  springTest: SpringTest,
+  springTransitionTest: SpringTransitionTest,
 };
 
 export const stepResolver = (
