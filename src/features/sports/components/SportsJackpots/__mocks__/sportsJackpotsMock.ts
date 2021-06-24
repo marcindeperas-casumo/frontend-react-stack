@@ -191,6 +191,7 @@ export const composedJackpotFull: ComposedJackpot = {
     title: "Sports jackpot",
     image: "false",
     slug: "sports-jackpot",
+    widgetColor: {},
     pots: [
         {
             status: "CHILLY",
@@ -201,7 +202,9 @@ export const composedJackpotFull: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 1000,
-            lastWinTs: 1592733025
+            lastWinTs: 1592733025,
+            icon:"",
+            potExplanation:""
         },
         {
             status: "CHILLY",
@@ -212,7 +215,9 @@ export const composedJackpotFull: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 9000,
-            lastWinTs: 1592733025
+            lastWinTs: 1592733025,
+            icon:"",
+            potExplanation:""
         }
     ]
 };
@@ -222,6 +227,7 @@ export const composedJackpotMatchLastDayWin: ComposedJackpot = {
     title: "Sports jackpot",
     image: "false",
     slug: "sports-jackpot",
+    widgetColor: {},
     pots: [
         {
             status: "CHILLY",
@@ -232,7 +238,9 @@ export const composedJackpotMatchLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 1000,
-            lastWinTs: 1908263169
+            lastWinTs: 1908263169,
+            icon:"",
+            potExplanation:""
         },
         {
             status: "CHILLY",
@@ -243,7 +251,9 @@ export const composedJackpotMatchLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 9000,
-            lastWinTs: 1592733025
+            lastWinTs: 1592733025,
+            icon:"",
+            potExplanation:""
         }
     ]
 };
@@ -253,6 +263,7 @@ export const composedJackpotMegaLastDayWin: ComposedJackpot = {
     title: "Sports jackpot",
     image: "false",
     slug: "sports-jackpot",
+    widgetColor: {},
     pots: [
         {
             status: "CHILLY",
@@ -263,7 +274,9 @@ export const composedJackpotMegaLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 1000,
-            lastWinTs: 1592733025
+            lastWinTs: 1592733025,
+            icon:"",
+            potExplanation:""
         },
         {
             status: "CHILLY",
@@ -274,7 +287,9 @@ export const composedJackpotMegaLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 9000,
-            lastWinTs: 1908263169
+            lastWinTs: 1908263169,
+            icon:"",
+            potExplanation:""
         }
     ]
 };
@@ -284,6 +299,7 @@ export const composedJackpotAllLastDayWin: ComposedJackpot = {
     title: "Sports jackpot",
     image: "false",
     slug: "sports-jackpot",
+    widgetColor: {},
     pots: [
         {
             status: "CHILLY",
@@ -294,7 +310,9 @@ export const composedJackpotAllLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 1000,
-            lastWinTs: 1908263169
+            lastWinTs: 1908263169,
+            icon:"",
+            potExplanation:""
         },
         {
             status: "CHILLY",
@@ -305,7 +323,9 @@ export const composedJackpotAllLastDayWin: ComposedJackpot = {
             mainWinRatio: 100,
             sharedPot: null,
             value: 9000,
-            lastWinTs: 1908263169
+            lastWinTs: 1908263169,
+            icon:"",
+            potExplanation:""
         }
     ]
 };
