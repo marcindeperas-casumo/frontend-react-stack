@@ -6,31 +6,34 @@ const stories = storiesOf("Animations/AnimationWizzard", module).addParameters({
   noGlobalDecorator: true,
 });
 
-const mock = [
+const springMock = [
   {
-    animationId: "test",
-    time: 2000,
+    animationId: "springTest",
     settings: {
-      name: "step 1",
-      value: 1,
+      destinationColor: `#f00`,
     },
   },
   {
-    animationId: "test",
-    time: 2000,
-    transitionPoint: 0.5,
+    animationId: "springTest",
     settings: {
-      name: "transition step",
+      destinationColor: `#00f`,
     },
   },
   {
-    animationId: "test",
-    time: 3000,
+    animationId: "springTransitionTest",
+    isTransition: true,
     settings: {
-      name: "step 2",
-      value: 2,
+      destinationColor: `#ff0`,
+    },
+  },
+  {
+    animationId: "springTest",
+    settings: {
+      destinationColor: `#0f0`,
     },
   },
 ];
 
-stories.add("Animation Runner", () => <AnimationRunner animation={mock} />);
+stories.add("Spring Clips Animation Runner", () => (
+  <AnimationRunner animation={springMock} />
+));
