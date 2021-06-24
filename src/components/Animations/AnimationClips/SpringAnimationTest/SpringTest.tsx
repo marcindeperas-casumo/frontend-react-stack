@@ -11,13 +11,6 @@ type TSpringTestProps = {
   onShowNext: () => void;
 };
 
-/**
- * This is an example of an animation clip which can later be composed into full
- * animation, it takes params specific for the clip and performs an animation.
- * time - total allowed time for the animation
- * settings - specific animation clip data
- */
-
 export const SpringTest = ({ config, onShowNext, order }: TSpringTestProps) => {
   const styles1 = useSpring({
     from: { backgroundColor: "#000" },

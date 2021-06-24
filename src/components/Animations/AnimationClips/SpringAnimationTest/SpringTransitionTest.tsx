@@ -8,13 +8,6 @@ type TSpringTransitionTestProps = {
   onTransition: () => void;
 };
 
-/**
- * This is an example of an animation clip which can later be composed into full
- * animation, it takes params specific for the clip and performs an animation.
- * time - total allowed time for the animation
- * settings - specific animation clip data
- */
-
 const slide = {
   friction: 100,
   mass: 10,
@@ -47,7 +40,5 @@ export const SpringTransitionTest = ({
 
   useChain([ref1, ref2], [0, 0.5]);
 
-  return (
-    <div>am a overlaying transition step</div>
-  );
+  return <div>am a overlaying transition step</div>;
 };
