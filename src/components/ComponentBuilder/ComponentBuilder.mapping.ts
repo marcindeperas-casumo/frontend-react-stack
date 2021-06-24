@@ -27,6 +27,7 @@ import PromotionOptInButton from "Components/PromotionOptInButton";
 import {
   BlueRibbonChristmasContainer,
   BlueRibbonJackpotsWidgetPromotionPage,
+  BlueRibbonJackpotsGameLists,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
 import { ArticlesListContainer } from "Components/ArticlesList";
@@ -63,4 +64,5 @@ export const COMPONENT_MAPPING = {
   REEL_RACES: ReelRacesList,
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,
   CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetPromotionPage,
+  BLUE_RIBBON_JACKPOTS_GAME_LIST: BlueRibbonJackpotsGameLists,
 };
