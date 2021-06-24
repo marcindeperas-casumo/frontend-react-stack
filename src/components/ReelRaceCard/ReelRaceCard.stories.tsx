@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { select, boolean } from "@storybook/addon-knobs";
 import MockDate from "mockdate";
 import React from "react";
+import MockStore from "Components/MockStore";
 import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceCard } from "./ReelRaceCard";
 import { reelRaceMock } from "./__mocks__";
@@ -30,14 +31,16 @@ stories.add("Default", () => {
   };
 
   return (
-    <div className="c-reel-race-card">
-      <ReelRaceCard
-        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-        reelRace={reelRace}
-        optIn={() => {}}
-        locale="en"
-        loading={boolean("Loading", false)}
-      />
-    </div>
+    <MockStore>
+      <div className="c-reel-race-card">
+        <ReelRaceCard
+          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
+          reelRace={reelRace}
+          optIn={() => {}}
+          locale="en"
+          loading={boolean("Loading", false)}
+        />
+      </div>
+    </MockStore>
   );
 });
