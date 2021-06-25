@@ -2,6 +2,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
 import React, { PureComponent } from "react";
+import { classNames } from "classnames";
 import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import ImageLazy from "Components/Image/ImageLazy";
@@ -121,7 +122,7 @@ export class ValuableRow extends PureComponent<Props> {
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
-      <Flex>
+      <Flex className="cursor-pointer">
         <Flex.Item data-test="valuable-selector-svg" className="u-width">
           {isSelected && <ValuableSelector />}
         </Flex.Item>
