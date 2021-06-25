@@ -2,7 +2,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
 import React, { PureComponent } from "react";
-import { classNames } from "classnames";
 import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import ImageLazy from "Components/Image/ImageLazy";
