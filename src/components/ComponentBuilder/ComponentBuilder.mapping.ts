@@ -18,7 +18,7 @@ import { PromotionTeaserList } from "Components/PromotionTeaserList";
 import { PromotionCardListPrefixContainer } from "Components/PromotionCardList/PromotionCardListPrefixContainer";
 import { ContentMediaList } from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
-import PromotionTitle from "Components/PromotionTitle";
+import PromotionHeader from "Components/PromotionHeader";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
 import { GameProvidersList } from "Components/GameProvidersList";
@@ -27,6 +27,7 @@ import PromotionOptInButton from "Components/PromotionOptInButton";
 import {
   BlueRibbonChristmasContainer,
   BlueRibbonJackpotsWidgetPromotionPage,
+  BlueRibbonJackpotsGameLists,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
 import { ArticlesListContainer } from "Components/ArticlesList";
@@ -55,7 +56,7 @@ export const COMPONENT_MAPPING = {
   PROMOTION_LIST_VERTICAL: PromotionTeaserList,
   THUMBNAIL_LIST: ContentMediaList,
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
-  PROMOTION_TITLE: PromotionTitle,
+  PROMOTION_HEADER: PromotionHeader,
   PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
   MUST_DROP_JACKPOTS: ContentMustDropJackpotsWidget,
   MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsListContainer,
@@ -63,4 +64,5 @@ export const COMPONENT_MAPPING = {
   REEL_RACES: ReelRacesList,
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,
   CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetPromotionPage,
+  BLUE_RIBBON_JACKPOTS_GAME_LIST: BlueRibbonJackpotsGameLists,
 };

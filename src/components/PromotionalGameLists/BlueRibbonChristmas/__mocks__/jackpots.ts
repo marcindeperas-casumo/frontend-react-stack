@@ -1,3 +1,4 @@
+import { JackpotStatus } from "../blueRibbonConsts"
 
 export const jackpots = [
   {
@@ -22,4 +23,51 @@ export const jackpots = [
     status: "CHILLY",
     value: 1000000,
   }
+];
+
+export const composedPots = [
+  {
+    externalId: "OItzF1620896705196",
+    potKey: "pot1",
+    name: "Mini Jackpot",
+    shortName: "Mini",
+    mainWinRatio: 100,
+    icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mini.svg",
+    potExplanation: "",
+    sharedPot: null,
+    value: 10,
+    status: "COLD" as JackpotStatus,
+    lastWinTs: 1623840522309,
+  },
+  {
+    externalId: "VYfZq1620896705199",
+    potKey: "pot2",
+    name: "Major Jackpot",
+    shortName: "Major",
+    mainWinRatio: 100,
+    icon: "https://cms.casumo.com/wp-content/uploads/2020/10/major.svg",
+    potExplanation: "",
+    sharedPot: null,
+    value: 63.2,
+    status: "WARM" as JackpotStatus,
+    lastWinTs: 1622464889432,
+  },
+  {
+    externalId: "zpqdZ1620896705200",
+    potKey: "pot3",
+    name: "Mega Jackpot",
+    shortName: "Mega",
+    mainWinRatio: 50,
+    icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mega.svg",
+    potExplanation: "Goes to 1 winner",
+    sharedPot: {
+      name: "Community pot",
+      shortName: "Community",
+      icon: "https://cms.casumo.com/wp-content/uploads/2020/10/community.svg",
+      splitExplanation: "Shared pot",
+    },
+    value: 106.6,
+    status: "COLD" as JackpotStatus,
+    lastWinTs: 1623840504722,
+  },
 ];

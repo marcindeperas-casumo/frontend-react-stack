@@ -43,7 +43,7 @@ describe("<ReelRacesList /> - Mobile and Tablet", () => {
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>
         <ReelRacesList
-          reelRaces={reelRacesListQueryMock.result.data.reelRaces}
+          reelRaces={reelRacesListQueryMock.result.data.reelRaces as any}
           title={reelRacesListQueryMock.result.data.title}
           seeMore={reelRacesListQueryMock.result.data.seeMore}
         />
@@ -80,7 +80,7 @@ describe("<ReelRacesList /> - Desktop", () => {
     rendered = mount(
       <MockedProvider mocks={[reelRacesListQueryMock]}>
         <ReelRacesList
-          reelRaces={reelRacesListQueryMock.result.data.reelRaces}
+          reelRaces={reelRacesListQueryMock.result.data.reelRaces as any}
           title={reelRacesListQueryMock.result.data.title}
           seeMore={reelRacesListQueryMock.result.data.seeMore}
         />

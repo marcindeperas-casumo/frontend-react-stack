@@ -1,15 +1,16 @@
-<!--i.e. Related task: https://jira.casumocave.com/browse/PRCA-107-->
-Related task: https://jira.casumocave.com/browse/TASK_CODE
+Related task: https://casumo.atlassian.net/browse/TASK_CODE
 
 <!--A short description about the initial problem and how this solution will solve it. -->
 
 **What changed**
-<!-- Significant changes made by this PR. Useful to let reviewers know what to look out for -->
-- 
 
-**Notes**
+<!-- Significant changes made by this PR. Useful to let reviewers know what to look out for -->
+
+- **Notes**
+
 <!-- Other remarks you would like to make -->
-- 
+
+-
 
 <!--
 REMINDERS!! 🦉 If this is your first PR please READ! 🦉
@@ -19,4 +20,4 @@ REMINDERS!! 🦉 If this is your first PR please READ! 🦉
 - 🏓 Tag anyone who you would like to participate in this PR
 -->
 
-<!-- Pull Request Guidelines: https://confluence.casumocave.com/display/XFE/Casumo+Frontend+Culture#CasumoFrontendCulture-PullRequests -->
+<!-- Pull Request Guidelines: https://casumo.atlassian.net/wiki/spaces/XFE/pages/17279353508/Casumo+Frontend+Culture -->

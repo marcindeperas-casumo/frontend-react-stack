@@ -16,6 +16,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
     spinLimit
     promoted
     formattedPrize
+    formattedPrizes
     remainingSpins
     translations {
         optedInCtaSingleGameShort

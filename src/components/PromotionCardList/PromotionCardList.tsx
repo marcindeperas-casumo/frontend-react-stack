@@ -8,16 +8,19 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import { promotionsTileHeight } from "Src/constants";
+import type { TFlattenedPromotion } from "../../models/promotions/promotions.types";
 
-type Props = A.PromotionsListQuery["promotionsList"] & {
-  seeMoreText: string;
+type TProps = {
+  name: string;
+  promotions: A.PromotionCard_PromotionFragment[] | TFlattenedPromotion[];
+  seeMoreText?: string;
 };
 
 export const PromotionCardList = ({
-  name = "",
+  name,
   promotions,
   seeMoreText,
-}: Props) => {
+}: TProps) => {
   const seeMoreUrl = "/promotions";
 
   const itemRenderer = ({ columnIndex, style }) => (
