@@ -1,6 +1,7 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
@@ -35,7 +36,7 @@ export function ReelRaceOptInPlayButton({
       data={{ state: BUTTON_STATE.OPT_IN }}
     >
       <ButtonVariant
-        size="md"
+        size="sm"
         onClick={optIn || noop}
         className="u-width--full"
       >
@@ -46,7 +47,7 @@ export function ReelRaceOptInPlayButton({
 
   const OptedInButton = () => (
     <ButtonVariant
-      size="md"
+      size="sm"
       isDisabled
       onClick={noop}
       className="u-width--full bg-grey-80 u-padding-top--sm"
@@ -62,7 +63,7 @@ export function ReelRaceOptInPlayButton({
       data={{ state: BUTTON_STATE.PLAY }}
     >
       <ButtonVariant
-        size="md"
+        size="sm"
         // eslint-disable-next-line fp/no-mutation
         onClick={() => (window.location.pathname = gameDetailsPath)}
         className="u-width--full"
@@ -88,6 +89,8 @@ export function ReelRaceOptInPlayButton({
   };
 
   return (
-    <div className="u-width--full u-padding-left--md">{getActionButton()}</div>
+    <Flex justify="end" className="u-padding-left--md">
+      {getActionButton()}
+    </Flex>
   );
 }
