@@ -2039,6 +2039,7 @@ export type GetJackpotConfigForWidgetQuery = {
       name: string;
       shortName: string;
       mainWinRatio: number;
+      communityWinRatio: number;
       icon: string;
       potExplanation: string;
       sharedPot?: Maybe<{
