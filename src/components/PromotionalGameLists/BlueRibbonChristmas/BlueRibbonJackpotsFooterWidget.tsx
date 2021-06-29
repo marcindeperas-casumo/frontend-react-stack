@@ -8,31 +8,26 @@ import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import { useGameModelContext } from "Components/GamePage/Contexts";
-import type {
-  JackpotWidgetContentPage,
-  JackpotStatus,
-} from "./blueRibbonConsts";
+import type { PotObject } from "./blueRibbonConsts";
 import "./blueRibbonJackpotsFooterWidget.scss";
 
-type BlueRibbonJackpotEntry = {
-  value: number;
-  label: string;
-  status: JackpotStatus;
-  potId: string;
-  communityWinRatio: number;
-  mainWinRatio: number;
-};
-
 export function BlueRibbonJackpotsFooterWidget({
-  jackpots,
-  t,
+  normalizedPots,
 }: {
-  jackpots: Array<BlueRibbonJackpotEntry>;
-  t: JackpotWidgetContentPage;
+  normalizedPots: Array<PotObject>;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
   const [visibleSection, setVisibleSection] = React.useState(0);
+
+  const formatttedPotValue = pot => {
+    return formatCurrency({
+      currency,
+      locale,
+      value: pot.value,
+    });
+  };
+
   useInterval(() => {
     setVisibleSection(x => 1 - x);
   }, 5000);
@@ -44,44 +39,9 @@ export function BlueRibbonJackpotsFooterWidget({
     });
   }, [gameProviderModel]);
 
-  const jackpotsSplit = [
-    [jackpots[0], jackpots[1]].map(jackpot => {
-      const cmsKey = jackpot.label.toLowerCase();
-
-      return {
-        key: jackpot.potId,
-        formattedValue: formatCurrency({
-          locale,
-          currency,
-          value: jackpot.value,
-        }),
-        label: t[`${cmsKey}_short`],
-        image: t[`${cmsKey}_icon`],
-      };
-    }),
-    [
-      {
-        key: "main",
-        formattedValue: formatCurrency({
-          locale,
-          currency,
-          value: jackpots[2].value * (jackpots[2].mainWinRatio / 100),
-        }),
-        label: t.mega_single_winner_short,
-        image: t.mega_single_winner_icon,
-      },
-      {
-        key: "community",
-        formattedValue: formatCurrency({
-          locale,
-          currency,
-          value: jackpots[2].value * (jackpots[2].communityWinRatio / 100),
-        }),
-        label: t.mega_community_short,
-        image: t.mega_community_icon,
-      },
-    ],
-  ];
+  const jackpotsRows = [normalizedPots.slice(0, 2), normalizedPots.slice(2, 4)];
+  const splitExplanation = normalizedPots.find(pot => pot.sharedPot)?.sharedPot
+    ?.splitExplanation;
 
   return (
     <div className="u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
@@ -96,7 +56,7 @@ export function BlueRibbonJackpotsFooterWidget({
             "c-br-footer-widget__transform-animation": visibleSection,
           })}
         >
-          {jackpotsSplit.map((section, i) => (
+          {jackpotsRows.map((row, i) => (
             <Flex
               key={i}
               direction="horizontal"
@@ -108,9 +68,13 @@ export function BlueRibbonJackpotsFooterWidget({
                 visibleSection === i ? "t-opacity--100" : "t-opacity--0"
               )}
             >
-              {section.map(jackpot => (
-                <Flex.Item key={jackpot.key}>
-                  <JackpotRow className="o-flex--1" {...jackpot} />
+              {row.map((pot, idx) => (
+                <Flex.Item key={idx}>
+                  <PotItem
+                    className="o-flex--1"
+                    pot={pot}
+                    formattedValue={formatttedPotValue(pot)}
+                  />
                 </Flex.Item>
               ))}
             </Flex>
@@ -121,26 +85,20 @@ export function BlueRibbonJackpotsFooterWidget({
         size="2xs"
         className="u-margin--none text-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
       >
-        {t.jackpot_split_explanation}
+        {splitExplanation}
       </Text>
     </div>
   );
 }
 
-type JackpotRowProps = {
+type TPotItemProps = {
   formattedValue: string;
-  label: string;
-  image: string;
-  explanation?: string;
+  pot: PotObject;
   className: string;
 };
-function JackpotRow({
-  formattedValue,
-  label,
-  image,
-  explanation,
-  className,
-}: JackpotRowProps) {
+
+const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
+  const { icon, shortName } = pot;
   return (
     <Flex
       direction="horizontal"
@@ -153,8 +111,8 @@ function JackpotRow({
         className="t-border-r--circle"
         width={16}
         height={16}
-        alt={`${label} icon`}
-        src={image}
+        alt={`${shortName} icon`}
+        src={icon}
       />
       <Text
         size="xs"
@@ -166,10 +124,10 @@ function JackpotRow({
           tag="span"
           className="u-text-transform-uppercase text-grey-50 u-margin-x--sm"
         >
-          {label}
+          {shortName}
         </Text>
         {formattedValue}
       </Text>
     </Flex>
   );
-}
+};

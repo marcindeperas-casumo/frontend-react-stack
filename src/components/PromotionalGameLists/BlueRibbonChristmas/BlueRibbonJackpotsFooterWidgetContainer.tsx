@@ -1,13 +1,17 @@
 import * as React from "react";
 import { BlueRibbonJackpotsFooterWidget } from "./BlueRibbonJackpotsFooterWidget";
-import { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpotsWidget";
+import { useComposedJackpotConfigData } from "./useBlueRibbonSDK";
 
 export function BlueRibbonJackpotsFooterWidgetContainer() {
-  const { jackpots, t, available } = useDataForBlueRibbonJackpotsWidget();
+  const { composedJackpot } = useComposedJackpotConfigData({
+    jackpotSlug: "slug",
+  });
 
-  if (!t || !available || !jackpots || jackpots.length < 3) {
+  if (composedJackpot.pots.length < 3) {
     return null;
   }
 
-  return <BlueRibbonJackpotsFooterWidget jackpots={jackpots} t={t} />;
+  return (
+    <BlueRibbonJackpotsFooterWidget normalizedPots={composedJackpot.pots} />
+  );
 }
