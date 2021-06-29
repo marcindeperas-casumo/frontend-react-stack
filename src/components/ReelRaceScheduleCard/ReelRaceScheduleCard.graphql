@@ -2,31 +2,36 @@ fragment ReelRaceScheduleCard_ReelRace on ReelRace {
     id
     game {
         id
-        slug
         name
         logo
         backgroundImage
+        slug
     }
     startTime
-    endTime
     optedIn
+    endTime
     minBet
+    startTime
     status
     spinLimit
     promoted
     formattedPrize
     formattedPrizes
+    remainingSpins
     translations {
+        optedInCtaSingleGameShort
         optIn
         optedIn
+        endingIn
         startingIn
+        competeFor
+        minBet
         spins
         duration
         durationTemplate
         caveatShort
         today
         tomorrow
-        minBet
     }
 }
 

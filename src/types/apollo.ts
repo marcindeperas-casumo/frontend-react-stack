@@ -1265,6 +1265,12 @@ export interface BlueribbonJackpotConfig {
   title: Scalars["String"];
   image: Scalars["String"];
   pots: Array<Pot>;
+  widgetColor: WidgetColor;
+}
+
+export interface WidgetColor {
+  dark?: Maybe<Scalars["String"]>;
+  light?: Maybe<Scalars["String"]>;
 }
 
 export interface SharedPot {
@@ -1293,6 +1299,7 @@ export interface Pot {
   winNotificationIcon: Scalars["String"];
   winNotificationTitle: Scalars["String"];
   winNotificationContent: Scalars["String"];
+  potExplanation: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -2024,13 +2031,21 @@ export type GetJackpotConfigForWidgetQuery = {
     title: string;
     image: string;
     slug: string;
+    widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
     pots: Array<{
       externalId: string;
       potKey: string;
       name: string;
       shortName: string;
       mainWinRatio: number;
-      sharedPot?: Maybe<{ name: string; shortName: string; icon: string }>;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
     }>;
   }>;
 };
@@ -2088,6 +2103,7 @@ export type ReelRaceCard_ReelRaceFragment = {
   spinLimit: number;
   promoted: boolean;
   formattedPrize: string;
+  formattedPrizes: Array<string>;
   remainingSpins: number;
   game: {
     id: string;
@@ -2121,6 +2137,48 @@ export type OptInForReelRaceMutation = {
   optInForReelRace?: Maybe<{ id: string; optedIn: boolean }>;
 };
 
+export type ReelRaceOptInWidgetQueryVariables = Exact<{
+  limit: Scalars["Int"];
+  prioritisePromoted?: Maybe<Scalars["Boolean"]>;
+}>;
+
+export type ReelRaceOptInWidgetQuery = {
+  reelRaces: Array<{
+    id: string;
+    startTime: number;
+    endTime: number;
+    optedIn: boolean;
+    minBet?: Maybe<string>;
+    status?: Maybe<string>;
+    spinLimit: number;
+    promoted: boolean;
+    formattedPrize: string;
+    formattedPrizes: Array<string>;
+    game: {
+      id: string;
+      slug: string;
+      name: string;
+      logo: string;
+      backgroundImage: string;
+    };
+    translations: {
+      competeFor: string;
+      optIn: string;
+      optedIn: string;
+      optedInCtaSingleGameShort: string;
+      startingIn: string;
+      endingIn: string;
+      spins: string;
+      duration: string;
+      durationTemplate: string;
+      caveatShort: string;
+      today: string;
+      tomorrow: string;
+      minBet: string;
+    };
+  }>;
+};
+
 export type ReelRacePreviousCard_ReelRaceFragment = {
   id: string;
   startTime: number;
@@ -2134,32 +2192,36 @@ export type ReelRacePreviousCard_ReelRaceFragment = {
 export type ReelRaceScheduleCard_ReelRaceFragment = {
   id: string;
   startTime: number;
-  endTime: number;
   optedIn: boolean;
+  endTime: number;
   minBet?: Maybe<string>;
   status?: Maybe<string>;
   spinLimit: number;
   promoted: boolean;
   formattedPrize: string;
   formattedPrizes: Array<string>;
+  remainingSpins: number;
   game: {
     id: string;
-    slug: string;
     name: string;
     logo: string;
     backgroundImage: string;
+    slug: string;
   };
   translations: {
+    optedInCtaSingleGameShort: string;
     optIn: string;
     optedIn: string;
+    endingIn: string;
     startingIn: string;
+    competeFor: string;
+    minBet: string;
     spins: string;
     duration: string;
     durationTemplate: string;
     caveatShort: string;
     today: string;
     tomorrow: string;
-    minBet: string;
   };
 };
 

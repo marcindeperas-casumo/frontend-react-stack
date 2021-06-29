@@ -17,9 +17,14 @@ import type {
   BlueRibbonConfig,
   JackpotState,
 } from "Types/blueRibbonSDK";
+import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
 import { urls, baseConfig } from "./blueRibbonConsts";
-import type { JackpotStatus, ComposedJackpot } from "./blueRibbonConsts";
+import type {
+  JackpotStatus,
+  ComposedJackpot,
+  HandshakeResponse,
+} from "./blueRibbonConsts";
 import { GetJackpotConfigForWidget } from "./GetJackpotConfigForWidget.graphql";
 
 let sdkMutable: SDKInterface | null; // eslint-disable-line fp/no-let
@@ -103,9 +108,11 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
   const urlParams = useParams();
   const slug = jackpotSlug || urlParams?.slug;
   const sdk = useBlueRibbonSDK();
+  const handshake = useHandshake();
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
+
   React.useEffect(() => {
-    if (!sdk || !slug) {
+    if (!sdk || !slug || !handshake) {
       return;
     }
     const gameObj = [
@@ -115,11 +122,8 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
       },
     ];
 
-    fetch(urls.handshake)
-      .then(raw => raw.json())
-      .then(({ externalPlayerReference }) =>
-        sdk.connect({ currency, playerId: externalPlayerReference })
-      )
+    sdk
+      .connect({ currency, playerId: handshake.externalPlayerReference })
       .then(async () => {
         const res = await sdk.operatorGames.getOperatorGamesMatchDetailsByGameIds(
           gameObj
@@ -143,7 +147,8 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
         logger.error("Blue ribbon sdk could not opt in to jackpot", err);
       });
     return sdk.reset;
-  }, [currency, market, playerId, sdk, slug]);
+  }, [currency, market, playerId, sdk, slug, handshake]);
+
   return {
     sdk: connectedSDK,
     isJackpotGame,
@@ -222,3 +227,54 @@ export const useComposedJackpotConfigData = ({
     composedJackpot,
   };
 };
+
+export function useHandshake() {
+  const [handshake, setHandshake] = React.useState<HandshakeResponse | null>(
+    null
+  );
+  React.useEffect(() => {
+    fetch(urls.handshake)
+      .then(raw => raw.json())
+      .then(setHandshake);
+  }, []);
+
+  return handshake;
+}
+
+export function useManualJackpotOptInAndOptOut(jackpotSlug: string) {
+  const handshake = useHandshake();
+
+  const optIn = (jackpotId: string) => () => {
+    return http.post(urls.optIn, { jackpotId }).then(({ optedIn }) => {
+      setRes(curr => ({ ...curr, status: optedIn }));
+    });
+  };
+  const optOut = (jackpotId: string) => () => {
+    return http.post(urls.optOut, { jackpotId }).then(({ optedOut }) => {
+      setRes(curr => ({ ...curr, status: !optedOut })); // "optedOut: true" means you opted out
+    });
+  };
+  const [res, setRes] = React.useState({
+    optIn: () => {},
+    optOut: () => {},
+    status: undefined,
+  });
+
+  React.useEffect(() => {
+    if (handshake?.jackpots) {
+      const chosenJackpot = handshake.jackpots.find(
+        x => jackpotSlug === x.jackpotSlug
+      );
+
+      if (chosenJackpot) {
+        setRes({
+          optIn: optIn(chosenJackpot.jackpotId),
+          optOut: optOut(chosenJackpot.jackpotId),
+          status: chosenJackpot.optedIn,
+        });
+      }
+    }
+  }, [handshake, jackpotSlug]);
+
+  return res;
+}
