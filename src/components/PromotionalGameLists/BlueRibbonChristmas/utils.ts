@@ -5,12 +5,10 @@ export const normalizePotSplit = (pot: PotObject) => {
     ? [
         {
           ...pot,
-          sharedPot: null,
           value: pot.value * (pot.mainWinRatio / 100),
         },
         {
           ...pot,
-          sharedPot: null,
           name: pot.sharedPot.name,
           shortName: pot.sharedPot.shortName,
           icon: pot.sharedPot.icon,
