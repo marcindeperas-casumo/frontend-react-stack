@@ -81,12 +81,15 @@ export function BlueRibbonJackpotsFooterWidget({
           ))}
         </Flex>
       </Flex>
-      <Text
-        size="2xs"
-        className="u-margin--none text-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
-      >
-        {splitExplanation}
-      </Text>
+
+      {splitExplanation && (
+        <Text
+          size="2xs"
+          className="u-margin--none text-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
+        >
+          {splitExplanation}
+        </Text>
+      )}
     </div>
   );
 }
