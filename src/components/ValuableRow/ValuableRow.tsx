@@ -121,7 +121,7 @@ export class ValuableRow extends PureComponent<Props> {
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
-      <Flex>
+      <Flex className="cursor-pointer">
         <Flex.Item data-test="valuable-selector-svg" className="u-width">
           {isSelected && <ValuableSelector />}
         </Flex.Item>
