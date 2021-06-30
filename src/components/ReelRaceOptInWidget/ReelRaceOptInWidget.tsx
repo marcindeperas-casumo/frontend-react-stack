@@ -54,7 +54,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
   return (
     <div
       className={cx(
-        "c-reel-race-opt-in-widget o-position--relative bg-grey-90 t-border-r u-padding-x--md u-padding-y--md",
+        "c-reel-race-opt-in-widget c-profile-icon-with-drawer__item o-position--relative bg-grey-90 t-border-r u-padding-x--md u-padding-y--md",
         {
           "t-border--md t-border-yellow-30": isPromoted,
         }
