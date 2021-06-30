@@ -77,4 +77,5 @@ export type SportsJackpotsTranslations = {
   view_odds: string;
   view_odds_link: string;
   won: string;
+  dropped: string;
 };
