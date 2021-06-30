@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
   useGameModelContext,
-  useGameJackpotStatusContext,
+  useGameJackpotContext,
 } from "Components/GamePage/Contexts";
 import { useTranslations } from "Utils/hooks";
 import { BlueRibbonAnimation } from "Components/BlueRibbon";
@@ -27,9 +27,7 @@ export const BlueRibbonChristmasCampaignAnimationContainer = () => {
     resumeGame,
   });
 
-  const {
-    setBlueRibbonNotificationNeedsAccepting,
-  } = useGameJackpotStatusContext();
+  const { setBlueRibbonNotificationNeedsAccepting } = useGameJackpotContext();
 
   const t = useTranslations("blue-ribbon-christmas.jackpot-animation-screen");
 

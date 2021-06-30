@@ -5,14 +5,12 @@ import * as A from "Types/apollo";
 import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/GameListHorizontalWithWidget";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
-import {
-  useComposedJackpotConfigData,
-  useBlueRibbonSDKAnonymous,
-} from "./useBlueRibbonSDK";
+import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
+import { useComposedJackpotConfigBySlug } from "./useComposedJackpot";
 
 export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
-  const { composedJackpot } = useComposedJackpotConfigData({
-    jackpotSlug: props.jackpot_slug,
+  const { composedJackpot } = useComposedJackpotConfigBySlug({
+    slug: props.jackpot_slug,
   });
   useBlueRibbonSDKAnonymous();
   const { data } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
