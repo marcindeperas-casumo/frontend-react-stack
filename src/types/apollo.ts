@@ -32,6 +32,8 @@ export interface Query {
   articlesList?: Maybe<ArticlesList>;
   betDetails?: Maybe<BetDetails>;
   blueribbonJackpot?: Maybe<BlueribbonJackpotConfig>;
+  blueribbonJackpotByGameSlug?: Maybe<BlueribbonJackpotConfig>;
+  blueribbonJackpotBySlug?: Maybe<BlueribbonJackpotConfig>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -92,6 +94,14 @@ export interface QueryBetDetailsArgs {
 }
 
 export interface QueryBlueribbonJackpotArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryBlueribbonJackpotByGameSlugArgs {
+  gameSlug: Scalars["String"];
+}
+
+export interface QueryBlueribbonJackpotBySlugArgs {
   slug: Scalars["String"];
 }
 
@@ -2019,6 +2029,64 @@ export type PromotionsListQuery = {
     id: string;
     name: string;
     promotions: Array<PromotionCard_PromotionFragment>;
+  }>;
+};
+
+export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
+  gameSlug: Scalars["String"];
+}>;
+
+export type GetBlueribbonJackpotConfigByGameSlugQuery = {
+  blueribbonJackpotByGameSlug?: Maybe<{
+    externalId: string;
+    title: string;
+    image: string;
+    slug: string;
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      communityWinRatio: number;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
+    }>;
+  }>;
+};
+
+export type GetBlueribbonJackpotConfigBySlugQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type GetBlueribbonJackpotConfigBySlugQuery = {
+  blueribbonJackpotBySlug?: Maybe<{
+    externalId: string;
+    title: string;
+    image: string;
+    slug: string;
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      communityWinRatio: number;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
+    }>;
   }>;
 };
 
