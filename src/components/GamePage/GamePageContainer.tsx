@@ -115,7 +115,9 @@ export const GamePageContainer = () => {
       footer={
         <React.Fragment>
           {shouldShowSlotControlSystem && <InfoBar />}
-          <BlueRibbonJackpotsFooterWidgetContainer />
+          <Mobile>
+            <BlueRibbonJackpotsFooterWidgetContainer />
+          </Mobile>
         </React.Fragment>
       }
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'play_background' does not exist on type ... Remove this comment to see the full error message
