@@ -7,11 +7,11 @@ import { hasMadeFirstDepositSelector } from "Models/handshake";
 export const SportsShellDepositWrapper = () => {
   const hasMadeFirstDeposit = useSelector(hasMadeFirstDepositSelector);
 
-  return hasMadeFirstDeposit ? (
+  return (
     <Mobile>
       <div className="pt-sm px-sm">
         <Deposit />
       </div>
     </Mobile>
-  ) : null;
+  );
 };
