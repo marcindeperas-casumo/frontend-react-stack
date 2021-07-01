@@ -29,7 +29,9 @@ export function BlueRibbonJackpotsFooterWidget({
   };
 
   useInterval(() => {
-    setVisibleSection(x => 1 - x);
+    if (normalizedPots.length > 2) {
+      setVisibleSection(x => 1 - x);
+    }
   }, 5000);
 
   const { gameProviderModel } = useGameModelContext();
@@ -39,9 +41,10 @@ export function BlueRibbonJackpotsFooterWidget({
     });
   }, [gameProviderModel]);
 
-  const jackpotsRows = [normalizedPots.slice(0, 2), normalizedPots.slice(2, 4)];
-  const splitExplanation = normalizedPots.find(pot => pot.sharedPot)?.sharedPot
-    ?.splitExplanation;
+  const jackpotsRows =
+    normalizedPots.length > 2
+      ? [normalizedPots.slice(0, 2), normalizedPots.slice(2, 4)]
+      : [normalizedPots];
 
   return (
     <div className="u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
@@ -81,15 +84,6 @@ export function BlueRibbonJackpotsFooterWidget({
           ))}
         </Flex>
       </Flex>
-
-      {splitExplanation && (
-        <Text
-          size="2xs"
-          className="u-margin--none text-grey-5 u-padding-x--md u-padding-y--sm u-text-align-center c-br-footer-widget__container-width"
-        >
-          {splitExplanation}
-        </Text>
-      )}
     </div>
   );
 }
