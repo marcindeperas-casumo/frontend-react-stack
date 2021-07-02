@@ -87,7 +87,10 @@ export const GameListHorizontalWithWidget = ({
           <ScrollableListTitleRow paddingLeft title={name} seeMore={seeMore} />
         )}
         <Scrollable
-          numberOfItems={columns.length}
+          numberOfItems={
+            /* +1 because widget takes up one column, and is not inside columns array */
+            columns.length + 1
+          }
           itemRenderer={mobileItemRenderer}
           padding={horizontalListsDevicePaddings}
         />
@@ -95,7 +98,10 @@ export const GameListHorizontalWithWidget = ({
       <Desktop>
         <ScrollableListPaginated
           title={name}
-          itemCount={columns.length}
+          itemCount={
+            /* +1 because widget takes up one column, and is not inside columns array */
+            columns.length + 1
+          }
           itemRenderer={desktopItemRenderer}
           tileHeight={
             gamesInColumn < 3 ? topListWidgetHeightTwoRows : topListWidgetHeight
