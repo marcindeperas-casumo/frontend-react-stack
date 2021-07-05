@@ -25,8 +25,10 @@ export function withWarmupPopup<TProps>(
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useEffect(() => {
-    fetchDetails();
-  }, [fetchDetails]);
+    if (isDGOJ) {
+      fetchDetails();
+    }
+  }, [fetchDetails, isDGOJ]);
 
   if (!isDGOJ) {
     return <Component {...props} />;
