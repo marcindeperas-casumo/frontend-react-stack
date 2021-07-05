@@ -34,7 +34,13 @@ type Props = {
   };
   inputPromptPlaceholder: string;
   clearSearch: () => void;
-  fetchMoreRows: (f: Function) => Promise<any>;
+  fetchMoreRows: ({
+    startIndex,
+    stopIndex,
+  }: {
+    startIndex: number;
+    stopIndex: number;
+  }) => Promise<any>;
   queryChanged: (query: string) => void;
 };
 
@@ -84,6 +90,7 @@ const SectionTitle = props => (
 );
 const RenderResults = ({ query, ...rest }) => (
   <GamesVirtualList
+    pageSize={24}
     renderItem={gameRowHighlightSearch(query)}
     // @ts-expect-error ts-migrate(2322) FIXME: Type '{ renderItem: (game: any) => Element; render... Remove this comment to see the full error message
     renderTitle={title => <GamesVirtualListTitle title={title} />}
@@ -140,6 +147,7 @@ export const GameSearch = (props: Props) => {
             }}
           >
             <RenderResults
+              fetchMoreRows={fetchMoreRows}
               games={suggestions.games}
               rowCount={suggestions.games.length}
               query=""
