@@ -43,7 +43,7 @@ export interface Query {
   games: Array<Game>;
   gamesBySlugs: Array<Game>;
   gamesList?: Maybe<GamesList>;
-  gamesSearch: GamesSearchResults;
+  gamesSearch: GamesPaginated;
   getCMSField?: Maybe<CmsText>;
   /**
    * "getCMSFieldAsJSON" is only needed for the component builder until we add type-definitions for all the
@@ -144,8 +144,8 @@ export interface QueryGamesListArgs {
 
 export interface QueryGamesSearchArgs {
   query: Scalars["String"];
-  page?: Maybe<Scalars["Int"]>;
-  pageSize?: Maybe<Scalars["Int"]>;
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
 }
 
 export interface QueryGetCmsFieldArgs {
@@ -1547,14 +1547,15 @@ export type GameSearch_GameFragment = GameRow_GameFragment;
 
 export type GameSearchQueryVariables = Exact<{
   query: Scalars["String"];
-  page: Scalars["Int"];
-  pageSize: Scalars["Int"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
 }>;
 
 export type GameSearchQuery = {
   gamesSearch: {
-    resultsCount: number;
-    results: Array<Maybe<{ id: string } & GameSearch_GameFragment>>;
+    gamesCount: number;
+    offset: number;
+    games: Array<{ id: string } & GameSearch_GameFragment>;
   };
 };
 
