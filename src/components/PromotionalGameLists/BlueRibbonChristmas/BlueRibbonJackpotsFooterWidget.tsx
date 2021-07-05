@@ -20,7 +20,7 @@ export function BlueRibbonJackpotsFooterWidget({
   const currency = useSelector(currencySelector);
   const [visibleSection, setVisibleSection] = React.useState(0);
 
-  const formatttedPotValue = pot => {
+  const formattedPotValue = pot => {
     return formatCurrency({
       currency,
       locale,
@@ -76,7 +76,7 @@ export function BlueRibbonJackpotsFooterWidget({
                   <PotItem
                     className="o-flex--1"
                     pot={pot}
-                    formattedValue={formatttedPotValue(pot)}
+                    formattedValue={formattedPotValue(pot)}
                   />
                 </Flex.Item>
               ))}
