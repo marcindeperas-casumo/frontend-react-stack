@@ -1,34 +1,25 @@
 import logger from "Services/logger";
 import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
-import { MicrogamingGame, COMMANDS, TARGET_DOMAINS } from "./MicrogamingGame";
+import { SkyWindGame } from "./SkyWindGame";
 
-describe("MicrogamingGame", () => {
-  const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
-    providerType: "MICROGAMING_MOBILE",
-    providerName: "MICROGAMING",
-  };
-  const gameRef = { current: null };
-  const model = new MicrogamingGame({
-    gameData,
-    gameRef,
-    language: DEFAULT_LANGUAGE,
-    environment: ENVIRONMENTS.TEST,
-    urlPrefix: DEFAULT_LANGUAGE,
-  });
+describe("SkyWindGame", () => {
+  let model;
 
-  test("should return the element as iframe", () => {
-    expect(model.componentTag).toBe("iframe");
-  });
-
-  test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(false);
-    expect(model.api.commands.pause).toBe(COMMANDS.PAUSE);
-  });
-
-  test("should set target domain", () => {
-    expect(model.targetDomain).toBe(TARGET_DOMAINS[ENVIRONMENTS.TEST]);
+  beforeAll(() => {
+    const gameData = {
+      url:
+        "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
+      providerType: "SKYWIND",
+      providerName: "SKYWIND",
+    };
+    const gameRef = { current: null };
+    model = new SkyWindGame({
+      gameData,
+      gameRef,
+      language: DEFAULT_LANGUAGE,
+      environment: ENVIRONMENTS.TEST,
+      urlPrefix: DEFAULT_LANGUAGE,
+    });
   });
 
   describe("onMessageHandler", () => {
@@ -71,7 +62,7 @@ describe("MicrogamingGame", () => {
       expect(spy).toHaveBeenCalledWith(event.data);
       expect(catcherSpy).toHaveReturnedWith(event.data);
       expect(loggerSpy).toHaveBeenCalledWith(
-        'MicrogamingGame.onMessageHandler threw while parsing {"test":true}'
+        'SkyWindGame.onMessageHandler threw while parsing {"test":true}'
       );
 
       spy.mockRestore();
