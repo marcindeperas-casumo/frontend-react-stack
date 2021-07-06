@@ -15,7 +15,6 @@ type TProps = {
 };
 
 export const PromotionCard = ({ promotion }: TProps) => {
-  const promo = promotion as A.PromotionCard_PromotionFragment;
   const promoTranslations = promotion as TFlattenedPromotion;
 
   const link = `promotions/${promotion.slug || promoTranslations.slug}`;
@@ -34,26 +33,24 @@ export const PromotionCard = ({ promotion }: TProps) => {
             className="o-ratio__content rounded-2xl bg-white t-elevation--10"
             spacing="none"
             header={() => (
-              <PromotionCardImage
-                image={promo.image || promoTranslations.image}
-              />
+              <PromotionCardImage image={promoTranslations.image} />
             )}
             content={() => (
               <PromotionCardContent
                 link={link}
-                title={promo.title || promoTranslations.title}
-                badge={promo.badge || promoTranslations.badge}
-                dates={promo.subtitle || promoTranslations.dates}
-                ctaText={promo.ctaText || promoTranslations.cta_text}
+                title={promoTranslations.title}
+                badge={promoTranslations.badge}
+                dates={promoTranslations.dates}
+                ctaText={promoTranslations.cta_text}
               />
             )}
           />
         </TrackClick>
       </a>
-      {(promo.teaserCaveats || promoTranslations.teaser_caveats) && (
+      {promoTranslations.teaser_caveats && (
         <a href={link}>
           <Text className="text-grey-50 italic px-sm" size="2xs">
-            {promo.teaserCaveats || promoTranslations.teaser_caveats}
+            {promoTranslations.teaser_caveats}
           </Text>
         </a>
       )}

@@ -11,17 +11,7 @@ export const PromotionPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
       {promotionLists.map(promo => (
-        <PromotionCardListContainer
-          key={promo.origin}
-          slug={promo.slug}
-          skipGql
-        />
-        // <ComponentBuilder
-        //   // @ts-expect-error ts-migrate(2322) FIXME: Type '{ path: string; slug: string; }' is not assi... Remove this comment to see the full error message
-        //   path="top"
-        //   key={promo.origin}
-        //   slug={promo.slug}
-        // />
+        <PromotionCardListContainer key={promo.origin} slug={promo.slug} />
       ))}
     </div>
   );

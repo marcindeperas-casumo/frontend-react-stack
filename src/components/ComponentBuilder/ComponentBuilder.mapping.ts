@@ -15,7 +15,7 @@ import { ContentSubtitle } from "Components/ContentSubtitle";
 import { ContentButton } from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import { PromotionTeaserList } from "Components/PromotionTeaserList";
-import { PromotionCardListPrefixContainer } from "Components/PromotionCardList/PromotionCardListPrefixContainer";
+import PromotionCardListContainer from "Components/PromotionCardList/PromotionCardListContainer";
 import { ContentMediaList } from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
@@ -49,7 +49,7 @@ export const COMPONENT_MAPPING = {
   GAME_LINK: GameLinkButton,
   CTA: ContentButton,
   PROMOTION_OPT_IN_BUTTON: PromotionOptInButton,
-  PROMOTION_CARDS_HORIZONTAL: PromotionCardListPrefixContainer,
+  PROMOTIONS_LIST: PromotionCardListContainer,
   // PROMOTION_CARDS_VERTICAL is getting deprecated; use PROMOTION_LIST_VERTICAL instead
   PROMOTION_CARDS_VERTICAL: PromotionTeaserList,
   PROMOTION_LIST_VERTICAL: PromotionTeaserList,
