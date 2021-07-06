@@ -49,7 +49,7 @@ export const PromotionCard = ({ promotion }: TProps) => {
       </a>
       {promoTranslations.teaser_caveats && (
         <a href={link}>
-          <Text className="text-grey-50 italic px-sm" size="2xs">
+          <Text className="text-grey-50 italic px-sm line-clamp-1" size="2xs">
             {promoTranslations.teaser_caveats}
           </Text>
         </a>

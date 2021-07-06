@@ -46,7 +46,7 @@ export class AbstractModal extends React.PureComponent<Props> {
           <div className="u-height--full u-overflow--auto u-scrollbar-regular u-overflow-scrolling--touch">
             {children}
           </div>
-          <div className="c-abstract-modal__close u-padding o-position--absolute">
+          <div className="c-abstract-modal__close u-padding o-position--absolute cursor-pointer">
             <CloseButton data-test="modal-close-button" onClick={hideModal} />
           </div>
         </ReactModal>

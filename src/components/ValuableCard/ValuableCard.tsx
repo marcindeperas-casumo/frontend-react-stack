@@ -1,7 +1,7 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import React, { PureComponent } from "react";
-import classNames from "classnames";
+import cx from "classnames";
 import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
@@ -110,13 +110,15 @@ export class ValuableCard extends PureComponent<Props> {
     return (
       <>
         <div
-          className={classNames(
+          className={cx(
             "o-ratio o-ratio--valuable-card bg-white t-border-r--md",
             className
           )}
         >
           <Flex
-            className="c-valuable-card o-ratio__content u-padding"
+            className={cx("c-valuable-card o-ratio__content u-padding", {
+              "cursor-pointer": Boolean(this.props.onCardClick),
+            })}
             data-test="valuable-card"
             direction="vertical"
             onClick={this.props.onCardClick}

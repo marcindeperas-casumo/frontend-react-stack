@@ -11,7 +11,11 @@ export const PromotionPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
       {promotionLists.map(promo => (
-        <PromotionCardListContainer key={promo.origin} slug={promo.slug} />
+        <PromotionCardListContainer
+          key={promo.origin}
+          slug={promo.slug}
+          hideViewMore
+        />
       ))}
     </div>
   );
