@@ -36,9 +36,7 @@ const PromotionCardListContainer = React.memo<Props>(
     if (promotionsList?.promotions.length) {
       return (
         <PromotionCardList
-          seeMoreText={
-            !hideViewMore && flattenedPromotionsList.length > 3 && t.more_link
-          }
+          seeMoreText={!hideViewMore && t.more_link}
           name={promotionsList.list_title}
           promotions={flattenedPromotionsList}
         />
