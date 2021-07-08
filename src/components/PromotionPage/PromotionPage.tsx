@@ -1,6 +1,5 @@
 import React from "react";
-// import ComponentBuilder from "Components/ComponentBuilder";
-import PromotionCardListContainer from "Components/PromotionCardList/PromotionCardListContainer";
+import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
 import { TPromotionVerticalCampaigns } from "./PromotionPage.types";
 
 type TProps = {
@@ -10,13 +9,19 @@ type TProps = {
 export const PromotionPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
-      {promotionLists.map(promo => (
+      <div className="u-padding-top--3xlg@desktop u-margin-bottom--3xlg">
+        <ComponentBuilderRenderer
+          componentDefinitions={promotionLists}
+          hideShowMoreLink
+        />
+      </div>
+      {/* {promotionLists.map(promo => (
         <PromotionCardListContainer
           key={promo.origin}
           slug={promo.slug}
           hideViewMore
         />
-      ))}
+      ))} */}
     </div>
   );
 };
