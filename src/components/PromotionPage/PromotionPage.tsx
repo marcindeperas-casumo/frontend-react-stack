@@ -15,13 +15,6 @@ export const PromotionPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
           hideShowMoreLink
         />
       </div>
-      {/* {promotionLists.map(promo => (
-        <PromotionCardListContainer
-          key={promo.origin}
-          slug={promo.slug}
-          hideViewMore
-        />
-      ))} */}
     </div>
   );
 };
