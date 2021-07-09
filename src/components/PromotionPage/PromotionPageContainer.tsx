@@ -14,12 +14,16 @@ export const verticalCampaigns = [
 
 export const PromotionPageContainer = () => {
   const { search } = useLocation();
-  const [verticalOriginInStorage] = useLocalStorage("promotionsVerticalOrigin");
-  const promotionListsTranslations = useTranslations(
-    "built-pages.promotion-lists-page"
+  const [verticalOriginInStorage]: any = useLocalStorage(
+    "promotionsVerticalOrigin"
   );
+  const promotionListsTranslations = useTranslations<{
+    content_builder: Array<Object>;
+    more_link?: string;
+  }>("built-pages.promotion-lists-page");
+
   const verticalOriginParam = getUrlSearchParam(search, "origin");
-  const verticalOrigin = verticalOriginParam || verticalOriginInStorage;
+  const verticalOrigin: string = verticalOriginParam || verticalOriginInStorage;
 
   const prioritizeByVerticalFn = obj => obj.slug !== mappedVerticalSlug;
   const mappedVerticalSlug = verticalSlugMapping[verticalOrigin];
