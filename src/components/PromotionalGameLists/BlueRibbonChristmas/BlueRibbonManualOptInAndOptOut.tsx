@@ -22,12 +22,16 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
   );
   const textColor = props.isLight ? "text-black" : "text-white";
 
+  if (!t) {
+    return null;
+  }
+
   return (
     <Flex
       direction="horizontal"
       justify="space-between"
       align="center"
-      className={classNames("u-padding-x u-padding-y--md", {
+      className={classNames("u-padding", {
         "bg-grey-90": !props.isLight,
         "bg-white": props.isLight,
       })}

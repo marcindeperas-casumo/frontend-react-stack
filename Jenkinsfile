@@ -3,7 +3,7 @@
 @Library('casumo-jenkins-libraries') _
 
 import com.casumo.jenkins.PluggablePipelineBuilder
-import com.casumo.jenkins.pipeline.features.DeployService
+import com.casumo.jenkins.pipeline.features.DeployHelmService
 import com.casumo.jenkins.pipeline.features.Docker
 import com.casumo.jenkins.pipeline.features.release.Release
 
@@ -25,7 +25,7 @@ if (env.BRANCH_NAME == "master") {
         })
         .with(Docker) { it.publishDockerImage() }
         .with(Release) { it.release() }
-        .with(DeployService) { it.deployToProduction('frontend-react-stack') }
+        .with(DeployHelmService) { it.deploy('live') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
         .customStep('Rollbar send source maps', { rollbarSendSourceMaps() })
                 .build('nvm-ec2-builder')
@@ -74,7 +74,7 @@ Started by: *${env.gitAuthor}* :eyes:
     })
         .with(Docker) { it.publishDockerImage() }
         .with(Release) { it.release() }
-        .with(DeployService) { it.deployToTest('frontend-react-stack') }
+        .with(DeployHelmService) { it.deploy('test') }
         .build('nvm-ec2-builder')
 }
 

@@ -11,11 +11,11 @@ import { MODAL } from "Features/sports/components/Modals";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import type {
   ComposedJackpot,
-  PotsObjects,
+  PotObject,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { TCurrencyCode } from "Src/constants";
 
-const potWonInLastDay = (pot: PotsObjects, last_day: string) => {
+const potWonInLastDay = (pot: PotObject, last_day: string) => {
   if (!pot || !pot.lastWinTs || !last_day) {
     return false;
   }

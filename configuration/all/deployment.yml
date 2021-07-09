@@ -1,6 +1,11 @@
-deploy_as: on-site-kubernetes
+namespace: service
+helmChart:
+  name: backend-service
+
 replicas: 2
 
-service_namespace: service
+healthcheckProbe:
+  path: /ping
 
-healthcheck_probe_path: /ping
+serviceMonitor:
+  enabled: false

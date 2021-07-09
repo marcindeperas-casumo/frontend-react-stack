@@ -3,16 +3,14 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { WALLET_BALANCE_DELAY_DURATION } from "Models/playing/playing.constants";
 import { useGameJackpotActivity } from "Components/GamePage/Hooks/useGameJackpotActivity";
-import { useGameJackpotStatusContext } from "Components/GamePage/Contexts";
+import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { playerBalanceAmountSelector } from "Models/player";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 
 export const useThrottledGameBalance = (
   compareFn: (prev: number, next: number, isGameActive: boolean) => boolean
 ) => {
-  const {
-    blueRibbonNotificationNeedsAccepting,
-  } = useGameJackpotStatusContext();
+  const { blueRibbonNotificationNeedsAccepting } = useGameJackpotContext();
   const [throttledBalance, setThrottledBalance] = useState(0);
   const playerBalance = useSelector(playerBalanceAmountSelector);
   const playerBalanceRef = useRef(playerBalance);

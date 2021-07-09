@@ -11,6 +11,6 @@ export {
 export { GamePageContextProvider } from "./GamePageContext";
 export { useGameActivityStatusContext } from "./GameActivityStatusContext";
 export {
-  GameJackpotStatusContextProvider,
-  useGameJackpotStatusContext,
-} from "./GameJackpotStatusContext";
+  GameJackpotContextProvider,
+  useGameJackpotContext,
+} from "./GameJackpotContext";

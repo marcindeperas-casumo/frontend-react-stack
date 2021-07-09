@@ -3,7 +3,7 @@ import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
 import { GameModelContextProvider } from "./GameModelContext";
 import { PinnedWidgetsContextProvider } from "./PinnedWidgetsContext";
 import { GameActivityStatusContextProvider } from "./GameActivityStatusContext";
-import { GameJackpotStatusContextProvider } from "./GameJackpotStatusContext";
+import { GameJackpotContextProvider } from "./GameJackpotContext";
 import { AdventurerContextProvider } from "./AdventurerContext";
 
 type GamePageContextProps = {
@@ -25,7 +25,7 @@ export const GamePageContextProvider = ({
       playForFun={playForFun}
       remoteGameLaunchData={remoteGameLaunchData}
     >
-      <GameJackpotStatusContextProvider>
+      <GameJackpotContextProvider slug={slug}>
         <GameActivityStatusContextProvider>
           <PinnedWidgetsContextProvider>
             <SumoIconContextProvider>
@@ -33,7 +33,7 @@ export const GamePageContextProvider = ({
             </SumoIconContextProvider>
           </PinnedWidgetsContextProvider>
         </GameActivityStatusContextProvider>
-      </GameJackpotStatusContextProvider>
+      </GameJackpotContextProvider>
     </GameModelContextProvider>
   );
 };
