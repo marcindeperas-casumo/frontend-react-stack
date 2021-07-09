@@ -1,5 +1,6 @@
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetMandatoryMessagesQuery } from "Models/mandatoryMessages";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 export * from "./modal.selectors";
@@ -45,7 +46,6 @@ export type ModalConfig = {
   content?: any;
   gameRoundId?: any;
   isWide?: boolean;
-  slug?: string;
 };
 type ModalState = {
   modalId: ModalId | null;
@@ -59,9 +59,41 @@ export function showModal(modalId: ModalId, config?: ModalConfig) {
     config,
   };
 }
+
+export const isMandatoryMessageModalId: (
+  modalId: ModalId | null
+) => boolean = R.both(R.is(String), R.startsWith("mandatory-messages."));
+
 export function useSelectModal(): ModalState {
-  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
-  return useSelector(R.prop("modal"), R.eqProps("modalId"));
+  const {
+    data: mandatoryMessages,
+    isLoading: isLoadingMandatoryMessages,
+  } = useGetMandatoryMessagesQuery();
+  const modalState = useSelector(R.prop("modal"), R.eqProps("modalId"));
+
+  if (isLoadingMandatoryMessages) {
+    return {
+      modalId: null,
+      config: null,
+    };
+  }
+
+  if (R.isNil(mandatoryMessages) || R.isEmpty(mandatoryMessages)) {
+    // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
+    return modalState;
+  }
+
+  const messageModalId = `mandatory-messages.${mandatoryMessages[0].reason.toLowerCase()}` as ModalId;
+
+  return {
+    modalId: messageModalId,
+    config: {
+      mustAccept: true,
+      input: {
+        slug: messageModalId,
+      },
+    },
+  };
 }
 export function hideModal() {
   return {

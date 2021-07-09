@@ -4,6 +4,7 @@ import { REACT_APP_MODAL } from "Src/constants";
 import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
 import { overlayContentCmsSlug } from "Models/playOkay";
 import type { ModalId, ModalConfig } from "Models/modal";
+import { isMandatoryMessageModalId } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as MODAL_CMS_SLUGS } from "Models/playing/playing.constants";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
@@ -38,6 +39,7 @@ import {
 import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
 import { AccountWarmUp } from "./AccountWarmUp";
+import { MandatoryMessageModal } from "Components/Compliance/MandatoryMessages";
 
 export type ModalContentComponent<T> = {
   /** object with translations for provided slug, null if still fetching */
@@ -166,9 +168,17 @@ export const mappings: Mapping = {
   },
 };
 
+export const getMandatoryMessageModalData: (modalId: ModalId) => ModalProps = R.ifElse(
+  R.has(R.__, mappings),
+  R.prop(R.__, mappings),
+  R.assoc("slug", R.__, { Content: MandatoryMessageModal })
+)
+
 export const getModalData: (
   modalId: ModalId | null
-) => {
-  slug: string;
-  Content: React.ComponentType;
-} = R.propOr({ Content: ModalLoadingState }, R.__, mappings);
+) => ModalProps = R.ifElse(
+  isMandatoryMessageModalId,
+  getMandatoryMessageModalData,
+  R.propOr({ Content: ModalLoadingState }, R.__, mappings)
+);
+
