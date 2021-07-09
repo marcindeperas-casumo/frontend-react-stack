@@ -1,0 +1,59 @@
+# This file is needed to disable one of the plugins (removeUnknownsAndDefaults) for svgo, 
+# which is used by svgr (loader for svg files in webpack). This plugins caused some of the 
+# optimised files to not show anything (blank image) @lukKowalski
+
+plugins:
+
+  # - name
+  #
+  # or:
+  # - name: false
+  # - name: true
+  #
+  # or:
+  # - name:
+  #     param1: 1
+  #     param2: 2
+
+  - removeDoctype
+  - removeXMLProcInst
+  - removeComments
+  - removeMetadata
+  - removeXMLNS
+  - removeEditorsNSData
+  - cleanupAttrs
+  - minifyStyles
+  - convertStyleToAttrs
+  - cleanupIDs
+  - removeRasterImages
+  - removeUselessDefs
+  - cleanupNumericValues
+  - cleanupListOfValues
+  - convertColors
+  - removeUnknownsAndDefaults: false
+  - removeNonInheritableGroupAttrs
+  - removeUselessStrokeAndFill
+  - removeViewBox
+  - cleanupEnableBackground
+  - removeHiddenElems
+  - removeEmptyText
+  - convertShapeToPath
+  - moveElemsAttrsToGroup
+  - moveGroupAttrsToElems
+  - collapseGroups
+  - convertPathData
+  - convertTransform
+  - removeEmptyAttrs
+  - removeEmptyContainers
+  - mergePaths
+  - removeUnusedNS
+  - transformsWithOnePath
+  - sortAttrs
+  - removeTitle
+  - removeDesc
+  - removeDimensions
+  - removeAttrs
+  - removeElementsByAttr
+  - addClassesToSVGElement
+  - removeStyleElement
+  - addAttributesToSVGElement
