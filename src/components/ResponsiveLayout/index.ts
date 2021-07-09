@@ -7,6 +7,8 @@ export {
   isMobile,
   isDesktop,
   isTablet,
+  isLandscapeMode,
+  isPortraitMode,
 } from "./ResponsiveLayout";
 export {
   getMediaQuery,

@@ -5,6 +5,7 @@ import CoinMega from "./assets/coin-mega.svg";
 import CoinMajor from "./assets/coin-major.svg";
 import CoinMini from "./assets/coin-mini.svg";
 import { coinsDefinitions } from "./coinsDefinitions";
+import { useScreenOrientation } from '../../utils/hooks/useScreenOrientation';
 
 const CoinType = props => {
   const { group } = props.coinDefinition;
@@ -54,31 +55,12 @@ const triggerCoinsAfterStage = 6;
 export const Coins = ({ type = "landscape", onCoinsStaged, selected }) => {
   const [coinIndex, setCoinIndex] = React.useState(0);
   const [animationStage, setAnimationStage] = React.useState(0);
-  const [orientation, setOrientation] = React.useState<
-    "landscape" | "portrait" | undefined
-  >();
-
-  const setScreenOrientation = () => {
-    setOrientation(
-      window.matchMedia("(orientation: landscape)").matches
-        ? "landscape"
-        : "portrait"
-    );
-  };
+  const { isLandscapeOriented } = useScreenOrientation();
 
   const coinSet =
-    orientation === "landscape"
+    isLandscapeOriented()
       ? coinsDefinitions.landscape
       : coinsDefinitions.portrait;
-
-  React.useEffect(() => {
-    setScreenOrientation();
-    window.addEventListener("resize", setScreenOrientation);
-
-    return () => {
-      window.removeEventListener("resize", setScreenOrientation);
-    };
-  }, []);
 
   React.useEffect(() => {
     if (!selected) {
