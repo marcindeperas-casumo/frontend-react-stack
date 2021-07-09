@@ -1,13 +1,9 @@
-query GetJackpotConfigForWidget($slug: String!) {
-  blueribbonJackpot(slug: $slug) {
+query GetBlueribbonJackpotConfigBySlug($slug: String!) {
+  blueribbonJackpotBySlug(slug: $slug) {
     externalId
     title
     image
     slug
-    widgetColor {
-      dark
-      light
-    }
     pots {
       externalId
       potKey

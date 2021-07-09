@@ -1,3 +1,8 @@
+/**
+ * DEPRECATED, TO BE REMOVED AFTER ALL
+ * DEPENDENCIES ARE REPLACED WITH NEW DATA
+ */
+
 import * as R from "ramda";
 import { useFetch, useTranslations } from "Utils/hooks";
 import { urls, jackpotWidgetContentPage } from "./blueRibbonConsts";
