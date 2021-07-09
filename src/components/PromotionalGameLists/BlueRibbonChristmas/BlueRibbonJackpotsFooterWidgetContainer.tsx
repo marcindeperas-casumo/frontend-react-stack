@@ -1,13 +1,24 @@
 import * as React from "react";
+import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { BlueRibbonJackpotsFooterWidget } from "./BlueRibbonJackpotsFooterWidget";
-import { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpotsWidget";
+import { BlueRibbonManualOptInAndOptOut } from "./BlueRibbonManualOptInAndOptOut";
+import { normalizePots } from "./utils";
 
 export function BlueRibbonJackpotsFooterWidgetContainer() {
-  const { jackpots, t, available } = useDataForBlueRibbonJackpotsWidget();
+  const {
+    blueribbonJackpotForCurrentGame: composedJackpot,
+  } = useGameJackpotContext();
 
-  if (!t || !available || !jackpots || jackpots.length < 3) {
+  if (!composedJackpot) {
     return null;
   }
 
-  return <BlueRibbonJackpotsFooterWidget jackpots={jackpots} t={t} />;
+  return (
+    <React.Fragment>
+      <BlueRibbonJackpotsFooterWidget
+        normalizedPots={normalizePots(composedJackpot.pots)}
+      />
+      <BlueRibbonManualOptInAndOptOut jackpotSlug={composedJackpot.slug} />
+    </React.Fragment>
+  );
 }
