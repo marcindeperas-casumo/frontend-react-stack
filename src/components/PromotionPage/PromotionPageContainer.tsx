@@ -32,7 +32,7 @@ export const PromotionPageContainer = () => {
   if (promotionListsSlugs) {
     const alteredList = promotionListsSlugs.map(obj => ({
       ...obj,
-      hideViewMore: true,
+      hideShowMoreLink: true,
     }));
     const prioritizedLists = sortBy(alteredList, prioritizeByVerticalFn);
     return <PromotionPage promotionLists={prioritizedLists} />;

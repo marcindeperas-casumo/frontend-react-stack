@@ -10,7 +10,7 @@ import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 
 type Props = {
   slug: string;
-  hideViewMore?: boolean;
+  hideShowMoreLink?: boolean;
 };
 
 const flattenPromotions = (promotions: TPromotion[]): TFlattenedPromotion[] => {
@@ -18,7 +18,7 @@ const flattenPromotions = (promotions: TPromotion[]): TFlattenedPromotion[] => {
 };
 
 const PromotionCardListContainer = React.memo<Props>(
-  ({ slug, hideViewMore }: Props) => {
+  ({ slug, hideShowMoreLink }: Props) => {
     const t = useTranslations<{ more_link: string }>(
       "built-pages.top-lists-translations"
     );
@@ -36,7 +36,7 @@ const PromotionCardListContainer = React.memo<Props>(
     if (promotionsList?.promotions.length) {
       return (
         <PromotionCardList
-          seeMoreText={!hideViewMore && t.more_link}
+          seeMoreText={!hideShowMoreLink && t.more_link}
           name={promotionsList.list_title}
           promotions={flattenedPromotionsList}
         />
