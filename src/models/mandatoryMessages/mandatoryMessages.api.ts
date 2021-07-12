@@ -1,14 +1,23 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import logger from "Services/logger";
 import {
   isApplicationHandshakeLoaded,
   mandatoryMessagesSelector,
+  playerIdSelector,
 } from "Models/handshake";
-import { TMandatoryMessage } from "./mandatoryMessages.types";
+import cometd from "Models/cometd/cometd.service";
+import { CHANNELS } from "Models/cometd";
+import {
+  TMandatoryMessage,
+  TCometdMandatoryMessageReceived,
+} from "./mandatoryMessages.types";
+
+const reducerPath = "mandatoryMessagesApi";
 
 export const mandatoryMessagesApi = createApi({
-  reducerPath: "mandatoryMessagesApi",
+  reducerPath,
   baseQuery: fetchBaseQuery({
     baseUrl: "/player/mandatory-messages/api",
     prepareHeaders: headers => {
@@ -23,6 +32,44 @@ export const mandatoryMessagesApi = createApi({
       queryFn: (arg, api, extraOptions) => ({
         data: mandatoryMessagesSelector(api.getState()),
       }),
+      onCacheEntryAdded: async (
+        arg,
+        { cacheDataLoaded, updateCachedData, cacheEntryRemoved, getState }
+      ) => {
+        const playerId = playerIdSelector(getState());
+        const channel = `${CHANNELS.PLAYER}/${playerId}`;
+        const listener = (event: TCometdMandatoryMessageReceived) => {
+          if (!event.data?.mandatoryMessageReceived) {
+            return;
+          }
+
+          const {
+            data: {
+              mandatoryMessageReceived: { message },
+            },
+          } = event;
+
+          updateCachedData(draft => {
+            if (draft.find(draftMessage => draftMessage.id === message.id)) {
+              return;
+            }
+
+            draft.push(message); // eslint-disable-line fp/no-mutating-methods
+          });
+        };
+
+        try {
+          await cacheDataLoaded;
+
+          cometd.subscribe(channel, listener);
+        } catch (e) {
+          logger.warning(`${reducerPath}: ${e}`);
+        }
+
+        await cacheEntryRemoved;
+
+        cometd.unsubscribe(channel, listener);
+      },
     }),
     markAsRead: builder.mutation<void, string>({
       query: messageId => ({
