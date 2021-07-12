@@ -42,7 +42,7 @@ describe("useScreenOrientation", () => {
 
       expect(hook.isLandscapeOriented()).toEqual(false);
       expect(hook.isPortraitOriented()).toEqual(true);
-      expect(hook.orientation).toEqual("landscape");
+      expect(hook.orientation).toEqual("portrait");
     });
   });
 });
