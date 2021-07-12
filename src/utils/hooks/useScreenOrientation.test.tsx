@@ -16,7 +16,7 @@ describe("useScreenOrientation", () => {
       const wrapper = mount(
         <HookWrapper hook={useScreenOrientation} args={[]} />
       );
-      const hook = wrapper.find("div").props().hook;
+      const hook = (wrapper.find("div").props() as any).hook;
       expectHook(wrapper).not.toBeNull();
 
       expect(hook.isLandscapeOriented()).toEqual(true);
@@ -37,7 +37,7 @@ describe("useScreenOrientation", () => {
       const wrapper = mount(
         <HookWrapper hook={useScreenOrientation} args={[]} />
       );
-      const hook = wrapper.find("div").props().hook;
+      const hook = (wrapper.find("div").props() as any).hook;
       expectHook(wrapper).not.toBeNull();
 
       expect(hook.isLandscapeOriented()).toEqual(false);
