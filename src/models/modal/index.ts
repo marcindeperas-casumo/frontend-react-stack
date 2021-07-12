@@ -64,26 +64,22 @@ export const isMandatoryMessageModalId: (
   modalId: ModalId | null
 ) => boolean = R.both(R.is(String), R.startsWith("mandatory-messages."));
 
-export function useSelectModal(): ModalState {
-  const {
-    data: mandatoryMessages,
-    isLoading: isLoadingMandatoryMessages,
-  } = useGetMandatoryMessagesQuery();
-  const modalState = useSelector(R.prop("modal"), R.eqProps("modalId"));
+function useSelectMandatoryMessageModal(): ModalState {
+  const { data, isLoading } = useGetMandatoryMessagesQuery();
 
-  if (isLoadingMandatoryMessages) {
+  if (isLoading) {
     return {
       modalId: null,
       config: null,
     };
   }
 
-  if (R.isNil(mandatoryMessages) || R.isEmpty(mandatoryMessages)) {
-    // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
-    return modalState;
+  if (R.isNil(data) || R.isEmpty(data)) {
+    return null;
   }
 
-  const messageModalId = `mandatory-messages.${mandatoryMessages[0].reason.toLowerCase()}` as ModalId;
+  const [firstMandatoryMessage] = data;
+  const messageModalId = `mandatory-messages.${firstMandatoryMessage.reason.toLowerCase()}` as ModalId;
 
   return {
     modalId: messageModalId,
@@ -91,10 +87,26 @@ export function useSelectModal(): ModalState {
       mustAccept: true,
       input: {
         slug: messageModalId,
+        messageId: firstMandatoryMessage.id,
       },
     },
   };
 }
+
+export function useSelectModal(): ModalState {
+  const mandatoryMessageModalState = useSelectMandatoryMessageModal();
+  const modalState = useSelector<any, ModalState>(
+    R.prop("modal"),
+    R.eqProps("modalId")
+  );
+
+  if (mandatoryMessageModalState) {
+    return mandatoryMessageModalState;
+  }
+
+  return modalState;
+}
+
 export function hideModal() {
   return {
     type: type.hide,
