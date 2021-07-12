@@ -22,7 +22,7 @@ export function MandatoryMessageModalContainer({
   t,
   config
 }: Props) {
-  const content = useTranslations(config?.input.slug, true);
+  const content = useTranslations(config?.input?.slug, true);
   const [markAsRead, { isLoading }] = useMarkAsReadMutation();
 
   return (
