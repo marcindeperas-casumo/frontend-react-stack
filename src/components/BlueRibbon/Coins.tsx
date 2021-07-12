@@ -1,11 +1,11 @@
 import React from "react";
 import "./Coins.scss";
 import classNames from "classnames";
+import { useScreenOrientation } from "../../utils/hooks/useScreenOrientation";
 import CoinMega from "./assets/coin-mega.svg";
 import CoinMajor from "./assets/coin-major.svg";
 import CoinMini from "./assets/coin-mini.svg";
 import { coinsDefinitions } from "./coinsDefinitions";
-import { useScreenOrientation } from '../../utils/hooks/useScreenOrientation';
 
 const CoinType = props => {
   const { group } = props.coinDefinition;
@@ -57,10 +57,9 @@ export const Coins = ({ type = "landscape", onCoinsStaged, selected }) => {
   const [animationStage, setAnimationStage] = React.useState(0);
   const { isLandscapeOriented } = useScreenOrientation();
 
-  const coinSet =
-    isLandscapeOriented()
-      ? coinsDefinitions.landscape
-      : coinsDefinitions.portrait;
+  const coinSet = isLandscapeOriented()
+    ? coinsDefinitions.landscape
+    : coinsDefinitions.portrait;
 
   React.useEffect(() => {
     if (!selected) {

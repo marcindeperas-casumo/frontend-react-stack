@@ -1,7 +1,11 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
-import { useCallOnce, useCrossCodebaseNavigation, useScreenOrientation } from "Utils/hooks";
+import {
+  useCallOnce,
+  useCrossCodebaseNavigation,
+  useScreenOrientation,
+} from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
@@ -26,7 +30,7 @@ import {
 } from "Features/chat/IntercomChatService";
 import type { IntercomPlayerDetailsProps } from "Features/chat/IntercomChatService";
 import tracker from "Services/tracker";
-import { MobileAndTablet, isDesktop, isMobile } from "Components/ResponsiveLayout";
+import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import {
@@ -118,8 +122,8 @@ export const ProfileIconWithDrawer = ({
           "u-padding-left u-padding-left--md@desktop u-padding-right",
           {
             "overflow-hidden": !isLandscapeOriented(),
-            "overflow-auto": isLandscapeOriented()
-          },
+            "overflow-auto": isLandscapeOriented(),
+          }
         )}
       >
         <div

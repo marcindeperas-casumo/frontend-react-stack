@@ -4,16 +4,18 @@ import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import { useScreenOrientation } from "./useScreenOrientation";
 
 describe("useScreenOrientation", () => {
-
   describe("equals landscape", () => {
     beforeEach(() => {
-      window.matchMedia = (query) => ({
-        matches: query.includes('landscape'),
-      }) as any;
+      window.matchMedia = query =>
+        ({
+          matches: query.includes("landscape"),
+        } as any);
     });
 
-    test("initial data from hook", () => {
-      const wrapper = mount(<HookWrapper hook={useScreenOrientation} args={[]} />);
+    test("Initial data from hook to equal landscape", () => {
+      const wrapper = mount(
+        <HookWrapper hook={useScreenOrientation} args={[]} />
+      );
       const hook = wrapper.find("div").props().hook;
       expectHook(wrapper).not.toBeNull();
 
@@ -25,13 +27,16 @@ describe("useScreenOrientation", () => {
 
   describe("equals portrait", () => {
     beforeEach(() => {
-      window.matchMedia = (query) => ({
-        matches: query.includes('portrait'),
-      }) as any;
+      window.matchMedia = query =>
+        ({
+          matches: query.includes("portrait"),
+        } as any);
     });
 
-    test("initial data from hook", () => {
-      const wrapper = mount(<HookWrapper hook={useScreenOrientation} args={[]} />);
+    test("Initial data from hook to equal portrait", () => {
+      const wrapper = mount(
+        <HookWrapper hook={useScreenOrientation} args={[]} />
+      );
       const hook = wrapper.find("div").props().hook;
       expectHook(wrapper).not.toBeNull();
 

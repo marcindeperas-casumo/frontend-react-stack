@@ -120,5 +120,7 @@ export const isDesktop = (): boolean =>
   window.matchMedia(getMediaQuery(desktopBreakpoint)).matches;
 export const isTablet = (): boolean =>
   window.matchMedia(getMediaQuery(tabletBreakpoint)).matches;
-export const isLandscapeMode = (): boolean => window.matchMedia(orientationLandscapeQuery).matches;
-export const isPortraitMode = (): boolean => window.matchMedia(orientationPortraitQuery).matches;
+export const isLandscapeMode = (): boolean =>
+  window.matchMedia(orientationLandscapeQuery).matches;
+export const isPortraitMode = (): boolean =>
+  window.matchMedia(orientationPortraitQuery).matches;
