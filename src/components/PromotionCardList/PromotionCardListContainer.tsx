@@ -41,8 +41,8 @@ const PromotionCardListContainer = React.memo<Props>(
     if (promotionsList?.promotions.length) {
       return (
         <PromotionCardList
-          seeMoreText={!hideShowMoreLink && t.more_link}
-          name={promotionsList.list_title}
+          seeMoreText={!hideShowMoreLink && t?.more_link}
+          name={promotionsList?.list_title}
           promotions={flattenedPromotionsList}
         />
       );
