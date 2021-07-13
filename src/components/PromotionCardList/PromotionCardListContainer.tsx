@@ -1,4 +1,5 @@
 import React from "react";
+import * as R from "ramda";
 import { useTranslations } from "Utils/hooks";
 import type {
   TPromotion,
@@ -27,6 +28,10 @@ const PromotionCardListContainer = React.memo<Props>(
 
     if (!promotionsList || !t) {
       return <PromotionCardListSkeleton />;
+    }
+
+    if (R.isEmpty(promotionsList.promotions)) {
+      return null;
     }
 
     const flattenedPromotionsList = flattenPromotions(
