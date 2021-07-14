@@ -1,7 +1,11 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
-import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
+import {
+  useCallOnce,
+  useCrossCodebaseNavigation,
+  useScreenOrientation,
+} from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
@@ -54,6 +58,7 @@ export const ProfileIconWithDrawer = ({
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
+  const { isLandscapeOriented } = useScreenOrientation();
   useCallOnce(currentRace?.isInProgress && currentRace?.optedIn, () => {
     togglePin(DRAWERS.REEL_RACES);
   });
@@ -115,7 +120,10 @@ export const ProfileIconWithDrawer = ({
           `o-position--absolute u-zindex--content-overlay bg-opacity-100`,
           "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
           "u-padding-left u-padding-left--md@desktop u-padding-right",
-          "u-overflow--hidden"
+          {
+            "overflow-hidden": !isLandscapeOriented(),
+            "overflow-auto": isLandscapeOriented(),
+          }
         )}
       >
         <div
