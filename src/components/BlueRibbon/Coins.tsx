@@ -1,6 +1,7 @@
 import React from "react";
 import "./Coins.scss";
 import classNames from "classnames";
+import { useScreenOrientation } from "../../utils/hooks/useScreenOrientation";
 import CoinMega from "./assets/coin-mega.svg";
 import CoinMajor from "./assets/coin-major.svg";
 import CoinMini from "./assets/coin-mini.svg";
@@ -54,31 +55,11 @@ const triggerCoinsAfterStage = 6;
 export const Coins = ({ type = "landscape", onCoinsStaged, selected }) => {
   const [coinIndex, setCoinIndex] = React.useState(0);
   const [animationStage, setAnimationStage] = React.useState(0);
-  const [orientation, setOrientation] = React.useState<
-    "landscape" | "portrait" | undefined
-  >();
+  const { isLandscapeOriented } = useScreenOrientation();
 
-  const setScreenOrientation = () => {
-    setOrientation(
-      window.matchMedia("(orientation: landscape)").matches
-        ? "landscape"
-        : "portrait"
-    );
-  };
-
-  const coinSet =
-    orientation === "landscape"
-      ? coinsDefinitions.landscape
-      : coinsDefinitions.portrait;
-
-  React.useEffect(() => {
-    setScreenOrientation();
-    window.addEventListener("resize", setScreenOrientation);
-
-    return () => {
-      window.removeEventListener("resize", setScreenOrientation);
-    };
-  }, []);
+  const coinSet = isLandscapeOriented()
+    ? coinsDefinitions.landscape
+    : coinsDefinitions.portrait;
 
   React.useEffect(() => {
     if (!selected) {

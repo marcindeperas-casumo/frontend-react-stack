@@ -21,6 +21,9 @@ export const desktopBreakpoint = {
   "min-width": breakpoints.desktop,
 };
 
+export const orientationLandscapeQuery = "(orientation: landscape)";
+export const orientationPortraitQuery = "(orientation: portrait)";
+
 export const getMediaQuery = mediaMap =>
   Object.keys(mediaMap)
     .reduce((acc, prop) => [...acc, `(${prop}: ${mediaMap[prop]})`], ["screen"])
