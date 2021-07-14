@@ -106,27 +106,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return durationToTranslationKey(expirationInfo.key, expirationInfo.value);
   }
 
-  // get expirationValueText(): string | null {
-  //   const translations = this.props;
-  //   const expirationInfo = this.expirationBadgeInfo;
-
-  //   if (!translations || !expirationInfo) {
-  //     return null;
-  //   }
-
-  //   const durationKey = durationToTranslationKey(
-  //     expirationInfo.key,
-  //     expirationInfo.value
-  //   );
-
-  //   return (
-  //     translations[durationKey] &&
-  //     interpolate(translations[durationKey], {
-  //       value: expirationInfo.value,
-  //     })
-  //   );
-  // }
-
   get expirationBadgeColour(): string | null {
     if (!this.expiryTimeLeft) {
       return null;
