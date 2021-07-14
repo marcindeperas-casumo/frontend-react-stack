@@ -6,7 +6,10 @@ import "./TransitionStep.scss";
 const duration = 1200;
 
 export const TransitionStep = ({ onShowNext, onTransition }) => {
-  const [size, setSize] = React.useState({ width: 0, height: 0 });
+  const [size, setSize] = React.useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -23,8 +26,6 @@ export const TransitionStep = ({ onShowNext, onTransition }) => {
   };
 
   React.useEffect(() => {
-    updateSize();
-
     window.addEventListener("resize", updateSize);
 
     return () => {
