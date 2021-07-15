@@ -13,20 +13,11 @@ const springMock = [
     animationId: "casumoJackpotIntro",
     settings: { t },
   },
-  // {
-  //   animationId: "casumoJackpotTransition",
-  //   isTransition: true,
-  //   settings: {},
-  // },
   {
-    animationId: "casumoJackpotIntro",
-    settings: { t },
+    animationId: "casumoJackpotTransition",
+    isTransition: true,
+    settings: {},
   },
-  // {
-  //   animationId: "casumoJackpotTransition",
-  //   isTransition: true,
-  //   settings: {},
-  // },
   {
     animationId: "casumoJackpotIntro",
     settings: { t },
