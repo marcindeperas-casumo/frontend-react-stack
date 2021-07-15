@@ -18,14 +18,21 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop, Mobile } from "Components/ResponsiveLayout";
+import {
+  isDesktop,
+  Mobile,
+  TabletAndDesktop,
+} from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 import { QuickDepositSlipController } from "Components/Payments/QuickDepositSlip";
 import { ReelRacesDrawerWidgetTrigger } from "Components/ReelRacesDrawerWidget/ReelRacesDrawerWidgetTrigger";
 import { FiveMinuteBreakIconTrigger } from "Components/Compliance/GGL/FiveMinuteBreakIconTrigger";
-import { BlueRibbonJackpotsFooterWidgetContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import {
+  BlueRibbonJackpotsFooterWidgetContainer,
+  BlueRibbonJackpotsFooterWidgetContainerDesktop,
+} from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { InGameAdventureTrigger } from "Components/InGameAdventureTrigger";
 import { DRAWERS } from "../Sidebar/SidebarElementWrapper/constants";
 import {
@@ -118,6 +125,9 @@ export const GamePageContainer = () => {
           <Mobile>
             <BlueRibbonJackpotsFooterWidgetContainer />
           </Mobile>
+          <TabletAndDesktop>
+            <BlueRibbonJackpotsFooterWidgetContainerDesktop />
+          </TabletAndDesktop>
         </React.Fragment>
       }
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'play_background' does not exist on type ... Remove this comment to see the full error message

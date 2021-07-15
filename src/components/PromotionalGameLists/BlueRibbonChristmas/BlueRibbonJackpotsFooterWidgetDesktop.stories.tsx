@@ -1,12 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import MockStore from "Components/MockStore";
-import { BlueRibbonJackpotsFooterWidget } from "./BlueRibbonJackpotsFooterWidget";
+import { BlueRibbonJackpotsFooterWidgetDesktop } from "./BlueRibbonJackpotsFooterWidgetDesktop";
 import { normalizedPots } from "./__mocks__/jackpots";
 
 const stories = storiesOf("BlueRibbon", module);
+
 stories.add("JackpotsFooterWidgetDesktop", () => (
   <MockStore>
-    <BlueRibbonJackpotsFooterWidget normalizedPots={normalizedPots} />
+    <BlueRibbonJackpotsFooterWidgetDesktop normalizedPots={normalizedPots} />
   </MockStore>
 ));

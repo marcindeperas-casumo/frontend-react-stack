@@ -1,6 +1,5 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { useInterval } from "react-use";
 import * as React from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
@@ -11,14 +10,13 @@ import { useGameModelContext } from "Components/GamePage/Contexts";
 import type { PotObject } from "./blueRibbonConsts";
 import "./blueRibbonJackpotsFooterWidget.scss";
 
-export function BlueRibbonJackpotsFooterWidget({
+export function BlueRibbonJackpotsFooterWidgetDesktop({
   normalizedPots,
 }: {
   normalizedPots: Array<PotObject>;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  const [visibleSection, setVisibleSection] = React.useState(0);
 
   const formattedPotValue = pot => {
     return formatCurrency({
@@ -28,12 +26,6 @@ export function BlueRibbonJackpotsFooterWidget({
     });
   };
 
-  useInterval(() => {
-    if (normalizedPots.length > 2) {
-      setVisibleSection(x => 1 - x);
-    }
-  }, 5000);
-
   const { gameProviderModel } = useGameModelContext();
   React.useEffect(() => {
     setTimeout(() => {
@@ -41,49 +33,32 @@ export function BlueRibbonJackpotsFooterWidget({
     });
   }, [gameProviderModel]);
 
-  const jackpotsRows =
-    normalizedPots.length > 2
-      ? [normalizedPots.slice(0, 2), normalizedPots.slice(2, 4)]
-      : [normalizedPots];
+  const jackpotsRows = [normalizedPots];
 
   return (
-    <div className="u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
-      <Flex
-        direction="vertical"
-        className="u-overflow--hidden bg-grey-70 bg-opacity-50 c-br-footer-widget__container-height c-br-footer-widget__container-width c-br-footer-widget__container-border-r"
-      >
+    <div className="test-bogdan u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
+      {jackpotsRows.map((row, i) => (
         <Flex
-          direction="vertical"
-          className={classNames("c-br-footer-widget__animation-transition", {
-            "c-br-footer-widget__transform-animation--reset": !visibleSection,
-            "c-br-footer-widget__transform-animation": visibleSection,
-          })}
+          key={i}
+          direction="horizontal"
+          align="center"
+          justify="center"
+          spacing="lg"
+          className={classNames(
+            "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition c-br-footer-widget__jackpot-padding"
+          )}
         >
-          {jackpotsRows.map((row, i) => (
-            <Flex
-              key={i}
-              direction="horizontal"
-              align="center"
-              justify="center"
-              spacing="lg"
-              className={classNames(
-                "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition c-br-footer-widget__jackpot-padding",
-                visibleSection === i ? "t-opacity--100" : "t-opacity--0"
-              )}
-            >
-              {row.map((pot, idx) => (
-                <Flex.Item key={idx}>
-                  <PotItem
-                    className="o-flex--1"
-                    pot={pot}
-                    formattedValue={formattedPotValue(pot)}
-                  />
-                </Flex.Item>
-              ))}
-            </Flex>
+          {row.map((pot, idx) => (
+            <Flex.Item key={idx}>
+              <PotItem
+                className="o-flex--1"
+                pot={pot}
+                formattedValue={formattedPotValue(pot)}
+              />
+            </Flex.Item>
           ))}
         </Flex>
-      </Flex>
+      ))}
     </div>
   );
 }
