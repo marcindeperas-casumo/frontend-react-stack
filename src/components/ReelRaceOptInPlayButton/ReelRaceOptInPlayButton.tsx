@@ -31,10 +31,11 @@ export function ReelRaceOptInPlayButton({
     slug: reelRace.game.slug,
   });
 
-  const playCallback = (isIosNative() || isAndroidNative())
-    ? () => launchGame({ slug: reelRace.game.slug })
-    : // eslint-disable-next-line fp/no-mutation
-      () => (window.location.pathname = gameDetailsPath);
+  const playCallback =
+    isIosNative() || isAndroidNative()
+      ? () => launchGame({ slug: reelRace.game.slug })
+      : // eslint-disable-next-line fp/no-mutation
+        () => (window.location.pathname = gameDetailsPath);
 
   const OptInButton = () => (
     <TrackClick
