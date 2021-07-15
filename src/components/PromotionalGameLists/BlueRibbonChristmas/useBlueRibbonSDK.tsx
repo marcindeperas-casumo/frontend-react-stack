@@ -2,7 +2,6 @@ import * as React from "react";
 import * as R from "ramda";
 import { useParams } from "@reach/router";
 import { useSelector } from "react-redux";
-import { useQuery } from "@apollo/client";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
 import {
@@ -11,7 +10,6 @@ import {
   marketSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
-import * as A from "Types/apollo";
 import type {
   SDKInterface,
   BlueRibbonConfig,
@@ -20,12 +18,7 @@ import type {
 import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
 import { urls, baseConfig } from "./blueRibbonConsts";
-import type {
-  JackpotStatus,
-  ComposedJackpot,
-  HandshakeResponse,
-} from "./blueRibbonConsts";
-import { GetJackpotConfigForWidget } from "./GetJackpotConfigForWidget.graphql";
+import type { HandshakeResponse } from "./blueRibbonConsts";
 
 let sdkMutable: SDKInterface | null; // eslint-disable-line fp/no-let
 
@@ -187,46 +180,6 @@ export function usePotStateChangeEvent() {
   }, [sdk]);
   return pots;
 }
-
-export const useComposedJackpotConfigData = ({
-  jackpotSlug,
-}: {
-  jackpotSlug: string;
-}) => {
-  const [
-    composedJackpot,
-    setComposedJackpot,
-  ] = React.useState<ComposedJackpot>();
-  const sdkPots = usePotStateChangeEvent();
-
-  const { data, loading } = useQuery<
-    A.GetJackpotConfigForWidgetQuery,
-    A.GetJackpotConfigForWidgetQueryVariables
-  >(GetJackpotConfigForWidget, {
-    variables: {
-      slug: jackpotSlug,
-    },
-  });
-
-  React.useEffect(() => {
-    if (!loading && data && data.blueribbonJackpot) {
-      const jackpot = data.blueribbonJackpot;
-      setComposedJackpot({
-        ...jackpot,
-        pots: jackpot.pots.map(pot => ({
-          ...pot,
-          value: sdkPots[pot.externalId]?.progressive,
-          status: sdkPots[pot.externalId]?.potStatus as JackpotStatus,
-          lastWinTs: sdkPots[pot.externalId]?.lastWinTs,
-        })),
-      });
-    }
-  }, [sdkPots, data, loading]);
-
-  return {
-    composedJackpot,
-  };
-};
 
 export function useHandshake() {
   const [handshake, setHandshake] = React.useState<HandshakeResponse | null>(

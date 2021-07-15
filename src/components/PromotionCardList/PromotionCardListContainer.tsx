@@ -59,7 +59,7 @@ const PromotionCardListContainer = React.memo<Props>(
       return (
         <PromotionCardList
           seeMoreText={showSeeMoreLink && t.more_link}
-          name={name || promotionsList.list_title || data.promotionsList.name}
+          name={name || promotionsList?.list_title || data?.promotionsList.name}
           promotions={promotionsListToUse}
         />
       );
