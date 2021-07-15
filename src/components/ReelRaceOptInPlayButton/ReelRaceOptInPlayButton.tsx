@@ -9,6 +9,8 @@ import { noop } from "Utils";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
+import { isIosNative, isAndroidNative } from "Utils";
+import { launchGame } from "Services/LaunchGameService";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -29,6 +31,10 @@ export function ReelRaceOptInPlayButton({
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.PLAY, {
     slug: reelRace.game.slug,
   });
+
+  const playCallback = isIosNative()
+    ? () => launchGame({ slug: reelRace.game.slug })
+    : () => (window.location.pathname = gameDetailsPath);
 
   const OptInButton = () => (
     <TrackClick
@@ -65,7 +71,7 @@ export function ReelRaceOptInPlayButton({
       <ButtonVariant
         size="sm"
         // eslint-disable-next-line fp/no-mutation
-        onClick={() => (window.location.pathname = gameDetailsPath)}
+        onClick={playCallback}
         className="u-width--full"
       >
         <PlayIcon size="sm" />
