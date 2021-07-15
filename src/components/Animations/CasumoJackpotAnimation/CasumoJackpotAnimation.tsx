@@ -18,10 +18,6 @@ const springMock = [
     isTransition: true,
     settings: {},
   },
-  {
-    animationId: "casumoJackpotIntro",
-    settings: { t },
-  },
 ];
 
 export const CasumoJackpotAnimation = () => {
