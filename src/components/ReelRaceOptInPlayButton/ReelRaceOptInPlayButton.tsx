@@ -5,11 +5,10 @@ import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
-import { noop } from "Utils";
+import { noop, isIosNative } from "Utils";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
-import { isIosNative, isAndroidNative } from "Utils";
 import { launchGame } from "Services/LaunchGameService";
 
 export type TProps = {
@@ -34,7 +33,8 @@ export function ReelRaceOptInPlayButton({
 
   const playCallback = isIosNative()
     ? () => launchGame({ slug: reelRace.game.slug })
-    : () => (window.location.pathname = gameDetailsPath);
+    : // eslint-disable-next-line fp/no-mutation
+      () => (window.location.pathname = gameDetailsPath);
 
   const OptInButton = () => (
     <TrackClick
@@ -68,12 +68,7 @@ export function ReelRaceOptInPlayButton({
       eventName={EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED}
       data={{ state: BUTTON_STATE.PLAY }}
     >
-      <ButtonVariant
-        size="sm"
-        // eslint-disable-next-line fp/no-mutation
-        onClick={playCallback}
-        className="u-width--full"
-      >
+      <ButtonVariant size="sm" onClick={playCallback} className="u-width--full">
         <PlayIcon size="sm" />
         <Text tag="span" className="u-margin-left">
           {reelRace.translations.optedInCtaSingleGameShort}
