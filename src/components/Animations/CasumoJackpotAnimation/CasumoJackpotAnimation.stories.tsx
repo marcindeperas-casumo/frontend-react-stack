@@ -7,6 +7,26 @@ const stories = storiesOf("Animations", module).addParameters({
   noGlobalDecorator: true,
 });
 
+const t = {
+  buttonText: "Reveal",
+  findOutText: "Find out which Jackpot you won",
+  winText: "YOU WON A JACKPOT!",
+};
+
+const animationConfigMock = [
+  {
+    animationId: "casumoJackpotIntro",
+    settings: { t },
+  },
+  {
+    animationId: "casumoJackpotTransition",
+    isTransition: true,
+    settings: {},
+  },
+];
+
 if (!isChromatic) {
-  stories.add("Casumo Jackpot animation", () => <CasumoJackpotAnimation />);
+  stories.add("Casumo Jackpot animation", () => (
+    <CasumoJackpotAnimation animationConfig={animationConfigMock} />
+  ));
 }
