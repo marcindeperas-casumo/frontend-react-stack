@@ -1,0 +1,28 @@
+// stylelint-disable xi/selector-pattern
+
+.c-intro-step__rotating-rays {
+  animation: scaleIn 0.7s ease-in-out, infinite-rotation 5s infinite linear;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (orientation: landscape) {
+  .c-rotating-rays__positioner {
+    left: -50vw;
+    top: -50vw;
+  }
+}
+
+@media (orientation: portrait) {
+  .c-rotating-rays__positioner {
+    left: -50vh;
+    top: -50vh;
+  }
+}
