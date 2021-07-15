@@ -17,7 +17,7 @@ export type TPromotion = {
 
 export type TFlattenedPromotion = TPromotionFields & Pick<TPromotion, "slug">;
 
-export type TPromotionTranslations = {
+export type TPromotionListContents = {
   list_title: string;
   promotions: TPromotion[];
 };
