@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
-import { noop, isIosNative } from "Utils";
+import { noop, isIosNative, isAndroidNative } from "Utils";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
@@ -31,10 +31,11 @@ export function ReelRaceOptInPlayButton({
     slug: reelRace.game.slug,
   });
 
-  const playCallback = isIosNative()
-    ? () => launchGame({ slug: reelRace.game.slug })
-    : // eslint-disable-next-line fp/no-mutation
-      () => (window.location.pathname = gameDetailsPath);
+  const playCallback =
+    isIosNative() || isAndroidNative()
+      ? () => launchGame({ slug: reelRace.game.slug })
+      : // eslint-disable-next-line fp/no-mutation
+        () => (window.location.pathname = gameDetailsPath);
 
   const OptInButton = () => (
     <TrackClick
