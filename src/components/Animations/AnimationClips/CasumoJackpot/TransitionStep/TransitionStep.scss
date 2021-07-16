@@ -1,0 +1,14 @@
+// stylelint-disable xi/selector-pattern
+
+@keyframes rotation360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.c-rotate-layer {
+  animation: rotation360 ease-in-out;
+}
