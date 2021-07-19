@@ -4,6 +4,10 @@ query GetBlueribbonJackpotConfigBySlug($slug: String!) {
     title
     image
     slug
+    widgetColor {
+      dark
+      light
+    }
     pots {
       externalId
       potKey
