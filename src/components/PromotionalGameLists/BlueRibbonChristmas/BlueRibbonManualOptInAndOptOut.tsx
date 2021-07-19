@@ -5,10 +5,12 @@ import Flex from "@casumo/cmp-flex";
 import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { Toggle } from "Components/Toggle/Toggle";
 import { useTranslations } from "Utils/hooks";
+import { isDesktop } from "Components/ResponsiveLayout";
 
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
   isLight?: boolean;
+  isDesktop: boolean;
 }) => {
   const t = useTranslations<{
     opt_in_contribution_value: string;
@@ -31,9 +33,13 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
       direction="horizontal"
       justify="space-between"
       align="center"
-      className={classNames("u-padding", {
+      className={classNames("u-padding c-br-footer-widget__optin-margin", {
         "bg-grey-90": !props.isLight,
         "bg-white": props.isLight,
+        "t-border-r-top-left--md": props.isDesktop,
+        "t-border-r-top-right--md": props.isDesktop,
+        "u-padding-left--lg": props.isDesktop,
+        "u-padding-right--lg": props.isDesktop,
       })}
     >
       <Flex direction="vertical">
@@ -68,12 +74,14 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
           {t.opt_in_contribution_value}
         </Text>
       </Flex>
-      <Toggle
-        labelOn="ON"
-        labelOff="OFF"
-        checked={status}
-        onChange={status ? optOut : optIn}
-      />
+      <Flex className={classNames("u-margin-left--md", isDesktop)}>
+        <Toggle
+          labelOn="ON"
+          labelOff="OFF"
+          checked={status}
+          onChange={status ? optOut : optIn}
+        />
+      </Flex>
     </Flex>
   );
 };

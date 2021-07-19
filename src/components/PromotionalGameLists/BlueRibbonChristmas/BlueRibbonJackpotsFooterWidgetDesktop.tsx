@@ -36,7 +36,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const jackpotsRows = [normalizedPots];
 
   return (
-    <div className="test-bogdan u-overflow--hidden bg-grey-90 o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
+    <div className="bg-grey-70 t-border-r-top-left u-overflow--hidden o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
       {jackpotsRows.map((row, i) => (
         <Flex
           key={i}
@@ -45,16 +45,12 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
           justify="center"
           spacing="lg"
           className={classNames(
-            "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition c-br-footer-widget__jackpot-padding"
+            "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition u-padding-left--lg u-padding-right--lg u-padding-bottom u-padding-top u-margin-right--md"
           )}
         >
           {row.map((pot, idx) => (
             <Flex.Item key={idx}>
-              <PotItem
-                className="o-flex--1"
-                pot={pot}
-                formattedValue={formattedPotValue(pot)}
-              />
+              <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
             </Flex.Item>
           ))}
         </Flex>
@@ -66,40 +62,39 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
 type TPotItemProps = {
   formattedValue: string;
   pot: PotObject;
-  className: string;
 };
 
-const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
+const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
   const { icon, shortName } = pot;
   return (
-    <Flex
-      direction="horizontal"
-      align="center"
-      justify="center"
-      spacing="sm"
-      className={className}
-    >
-      <img
-        className="t-border-r--circle"
-        width={16}
-        height={16}
-        alt={`${shortName} icon`}
-        src={icon}
-      />
-      <Text
-        size="xs"
-        tag="span"
-        className="u-font-weight-bold u-line-height--1 text-white"
-      >
-        <Text
-          size="2xs"
-          tag="span"
-          className="u-text-transform-uppercase text-grey-50 u-margin-x--sm"
-        >
-          {shortName}
-        </Text>
-        {formattedValue}
-      </Text>
+    <Flex direction="horizontal" align="center" justify="center" spacing="sm">
+      <Flex.Item className="u-height--xlg">
+        <img
+          className="t-border-r--circle"
+          width={32}
+          height={32}
+          alt={`${shortName} icon`}
+          src={icon}
+        />
+      </Flex.Item>
+      <Flex.Item>
+        <Flex direction="vertical">
+          <Text
+            size="xs"
+            tag="span"
+            className="u-text-transform-uppercase text-grey-50"
+          >
+            {shortName}
+          </Text>
+          <Text
+            size="xs"
+            tag="span"
+            className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white"
+          >
+            {formattedValue}
+          </Text>
+        </Flex>
+      </Flex.Item>
     </Flex>
   );
 };

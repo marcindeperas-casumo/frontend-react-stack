@@ -20,7 +20,10 @@ export function BlueRibbonJackpotsFooterWidgetContainerDesktop() {
         <BlueRibbonJackpotsFooterWidgetDesktop
           normalizedPots={normalizePots(composedJackpot.pots)}
         />
-        <BlueRibbonManualOptInAndOptOut jackpotSlug={composedJackpot.slug} />
+        <BlueRibbonManualOptInAndOptOut
+          jackpotSlug={composedJackpot.slug}
+          isDesktop
+        />
       </Flex>
     </React.Fragment>
   );
