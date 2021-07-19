@@ -10,7 +10,7 @@ import { isDesktop } from "Components/ResponsiveLayout";
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
   isLight?: boolean;
-  isDesktop: boolean;
+  isDesktop?: boolean;
 }) => {
   const t = useTranslations<{
     opt_in_contribution_value: string;
