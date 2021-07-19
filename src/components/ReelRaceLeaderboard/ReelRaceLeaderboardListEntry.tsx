@@ -39,7 +39,7 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
   return (
     <Flex.Item
       className={cx(
-        "c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg",
+        "mx-0	 c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg",
         {
           "opacity-100": isMobile(),
           "text-red-30 opacity-100": isRemainingSpinsRunOut(),
@@ -99,7 +99,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex.Block className="c-reel-race__nickname min-w-[90px]">
         <Text
           tag="div"
-          className={cx({
+          className={cx("u-text-overflow--ellipsis u-overflow--hidden", {
             "u-font-weight-bold": highlighted,
           })}
         >
@@ -115,7 +115,7 @@ export const ReelRaceLeaderboardListEntry = React.forwardRef<
       <Flex.Item>
         <Text
           tag="div"
-          className="u-font-weight-bold u-text-align-right w-[50px]"
+          className="u-font-weight-bold u-text-align-center w-[35px] pr-1"
         >
           {points}
         </Text>
