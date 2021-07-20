@@ -6,6 +6,9 @@ export const routeTranslator = (language: string) => {
   const translatedRoutes = {
     games: TRANSLATED_ROUTES.GAMES[language] || TRANSLATED_ROUTES.GAMES.DEFAULT,
     play: TRANSLATED_ROUTES.PLAY[language] || TRANSLATED_ROUTES.PLAY.DEFAULT,
+    promotions:
+      TRANSLATED_ROUTES.PROMOTIONS[language] ||
+      TRANSLATED_ROUTES.PROMOTIONS.DEFAULT,
     casinoGames:
       TRANSLATED_ROUTES.CASINO_GAMES[language] ||
       TRANSLATED_ROUTES.CASINO_GAMES.DEFAULT,
