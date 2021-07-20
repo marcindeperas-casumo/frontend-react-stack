@@ -1,3 +1,5 @@
+import { IntroStep as CasumoJackpotIntro } from "../AnimationClips/CasumoJackpot/IntroStep/IntroStep";
+import { TransitionStep as CasumoJackpotTransition } from "../AnimationClips/CasumoJackpot/TransitionStep/TransitionStep";
 import {
   SpringTest,
   SpringTransitionTest,
@@ -8,6 +10,8 @@ import { AnimationClipProps, AvailableAnimationClipsProps } from "../constants";
 const animationClipsMap = {
   springTest: SpringTest,
   springTransitionTest: SpringTransitionTest,
+  casumoJackpotIntro: CasumoJackpotIntro,
+  casumoJackpotTransition: CasumoJackpotTransition,
 };
 
 export const stepResolver = (

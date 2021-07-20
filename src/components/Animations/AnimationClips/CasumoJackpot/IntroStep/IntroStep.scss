@@ -1,0 +1,16 @@
+// stylelint-disable xi/selector-pattern
+
+@keyframes infinite-rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.c-intro_step__position-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
