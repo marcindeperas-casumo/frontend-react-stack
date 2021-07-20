@@ -15,7 +15,12 @@ type Props = {
 const baseClassName = "c-prize";
 
 export const Prize = ({ prize, highlighted, className }: Props) => (
-  <div className={cx("u-display--inline-block u-text-overflow--ellipsis u-overflow--hidden", className)}>
+  <div
+    className={cx(
+      "u-display--inline-block u-text-overflow--ellipsis u-overflow--hidden",
+      className
+    )}
+  >
     <Flex
       className={cx(
         `${baseClassName} t-border-r--md u-overflow--hidden u-padding-x`,
