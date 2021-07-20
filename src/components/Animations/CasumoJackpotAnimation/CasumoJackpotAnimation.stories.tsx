@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { isChromatic } from "Storybook/isNotChromatic";
+import isNotChromatic from "Storybook/isNotChromatic";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
 const stories = storiesOf("Animations", module).addParameters({
@@ -25,7 +25,7 @@ const animationConfigMock = [
   },
 ];
 
-if (!isChromatic) {
+if (isNotChromatic) {
   stories.add("Casumo Jackpot animation", () => (
     <CasumoJackpotAnimation animationConfig={animationConfigMock} />
   ));

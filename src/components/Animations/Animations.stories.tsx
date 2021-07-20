@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { isChromatic } from "Storybook/isNotChromatic";
+import isNotChromatic from "Storybook/isNotChromatic";
 import { AnimationRunner } from "./AnimationRunner/AnimationRunner";
 
 const stories = storiesOf("Animations/AnimationWizzard", module).addParameters({
@@ -35,7 +35,7 @@ const springMock = [
   },
 ];
 
-if (!isChromatic) {
+if (isNotChromatic) {
   stories.add("Spring Clips Animation Runner", () => (
     <AnimationRunner animation={springMock} />
   ));
