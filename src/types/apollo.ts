@@ -386,7 +386,8 @@ export type Currency =
   | "DKK"
   | "NZD"
   | "SEK"
-  | "USD";
+  | "USD"
+  | "NOK";
 
 export type Platform = "desktop" | "mobile";
 
@@ -539,11 +540,6 @@ export interface GameMedia {
   order: Scalars["Int"];
   path: Scalars["String"];
   type: Scalars["String"];
-}
-
-export interface GamesSearchResults {
-  results: Array<Maybe<Game>>;
-  resultsCount: Scalars["Int"];
 }
 
 export interface Jackpot {
@@ -2020,18 +2016,6 @@ export type PromotionCard_PromotionFragment = {
   ctaText?: Maybe<string>;
 };
 
-export type PromotionsListQueryVariables = Exact<{
-  slug: Scalars["String"];
-}>;
-
-export type PromotionsListQuery = {
-  promotionsList?: Maybe<{
-    id: string;
-    name: string;
-    promotions: Array<PromotionCard_PromotionFragment>;
-  }>;
-};
-
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
   gameSlug: Scalars["String"];
 }>;
@@ -2071,6 +2055,7 @@ export type GetBlueribbonJackpotConfigBySlugQuery = {
     title: string;
     image: string;
     slug: string;
+    widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
     pots: Array<{
       externalId: string;
       potKey: string;

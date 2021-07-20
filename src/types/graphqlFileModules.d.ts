@@ -247,14 +247,6 @@ declare module "*/PromotionCard.graphql" {
   export default defaultDocument;
 }
 
-declare module "*/PromotionCardListContainer.graphql" {
-  import { DocumentNode } from "graphql";
-  const defaultDocument: DocumentNode;
-  export const PromotionsListQuery: DocumentNode;
-
-  export default defaultDocument;
-}
-
 declare module "*/GetBlueribbonJackpotConfigByGameSlug.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
