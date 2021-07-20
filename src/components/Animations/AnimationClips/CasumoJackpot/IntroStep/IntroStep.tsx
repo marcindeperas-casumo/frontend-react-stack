@@ -8,6 +8,7 @@ import { RotatingRays } from "./RotatingRays";
 import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
 
 import "./IntroStep.scss";
+import { useWindowSize } from "react-use";
 
 type TIntroStepSettings = {
   t: {
@@ -37,29 +38,13 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
   const ref1 = useSpringRef(); //bounce in 1st box
   const ref2 = useSpringRef(); //slide up/down 2nd box
   const ref3 = useSpringRef(); //slide up/down 2nd box
-
+  
   const { isLandscapeOriented } = useScreenOrientation();
+  const { width: windowWidth } = useWindowSize();
   const isLandscape = isLandscapeOriented();
 
   const [columnVisible, setColumnVisible] = React.useState(false);
   const [potsSectionVisible, setPotsSectionVisible] = React.useState(false);
-
-  /**
-   * TO REMOVE
-   */
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-
-  const updateWindowWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("resize", updateWindowWidth);
-
-    return () => {
-      window.removeEventListener("resize", updateWindowWidth);
-    };
-  }, []);
 
   const small =
     (isLandscape && windowWidth < 1100) || (!isLandscape && windowWidth < 600);
@@ -120,10 +105,10 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
   };
 
   const fourthBoxStyles = {
-    transform: to([styles3.move], move =>
+    transform: styles3.move.to(move =>
       orientationBasedTranslate(move * (isLandscape ? 2 : 2.5))
     ),
-    opacity: to([styles3.opacity], opacity => opacity),
+    opacity: styles3.opacity,
   };
 
   return (
@@ -142,8 +127,8 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
                     style={{
                       height: 2 * height,
                       width,
-                      top: `-${height / 2}px`,
-                      left: `-${width / 2}px`,
+                      top: -height / 2,
+                      left: -width / 2,
                     }}
                     className="o-position--absolute"
                   >
@@ -178,11 +163,11 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
                 width,
                 height,
                 lineHeight: `${height}px`,
-                top: `-${height / 2}px`,
-                left: `-${width / 2}px`,
+                top: -height / 2,
+                left: -width / 2,
                 letterSpacing,
               }}
-              className={`o-position--absolute ${letterSpacing} ${fontSize} u-font-weight-bold t-background-yellow-30 t-color-purple-50 u-text-align-center`}
+              className={`o-position--absolute ${fontSize} u-font-weight-bold t-background-yellow-30 t-color-purple-50 u-text-align-center`}
             >
               {config.settings.t.winText}
             </div>
