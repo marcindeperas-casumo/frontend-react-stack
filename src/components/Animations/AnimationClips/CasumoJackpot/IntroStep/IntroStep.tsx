@@ -6,9 +6,9 @@ import { AnimationClipProps } from "Components/Animations/constants";
 import { useScreenOrientation } from "Utils/hooks";
 import { RotatingRays } from "./RotatingRays";
 import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
-
-import "./IntroStep.scss";
 import { useWindowSize } from "react-use";
+import "./IntroStep.scss";
+
 
 type TIntroStepSettings = {
   t: {
@@ -38,7 +38,7 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
   const ref1 = useSpringRef(); //bounce in 1st box
   const ref2 = useSpringRef(); //slide up/down 2nd box
   const ref3 = useSpringRef(); //slide up/down 2nd box
-  
+
   const { isLandscapeOriented } = useScreenOrientation();
   const { width: windowWidth } = useWindowSize();
   const isLandscape = isLandscapeOriented();
