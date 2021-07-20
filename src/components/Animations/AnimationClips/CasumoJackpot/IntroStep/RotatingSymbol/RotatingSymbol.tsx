@@ -1,6 +1,6 @@
 import React from "react";
 import Backplate from "./Backplate.svg";
-import J from "./J.svg";
+import JCharacter from "./J.svg";
 import "./RotatingSymbol.scss";
 
 const jToPlateWidthRatio = 0.473;
@@ -21,7 +21,7 @@ export const RotatingSymbol = ({ size }) => {
         }}
         className="o-position--absolute"
       >
-        <J />
+        <JCharacter />
       </div>
     </div>
   );
