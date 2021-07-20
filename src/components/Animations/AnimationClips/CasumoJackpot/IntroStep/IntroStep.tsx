@@ -2,13 +2,12 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { useSpring, useChain, useSpringRef, animated, to } from "react-spring";
 import { ButtonInverted } from "@casumo/cmp-button";
+import { useWindowSize } from "react-use";
 import { AnimationClipProps } from "Components/Animations/constants";
 import { useScreenOrientation } from "Utils/hooks";
 import { RotatingRays } from "./RotatingRays";
 import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
-import { useWindowSize } from "react-use";
 import "./IntroStep.scss";
-
 
 type TIntroStepSettings = {
   t: {
