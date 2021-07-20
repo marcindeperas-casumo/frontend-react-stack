@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
+import { wheelProps } from "../AnimationClips/CasumoJackpot/WheelStep/constants";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
 const stories = storiesOf("Animations", module).addParameters({
@@ -31,6 +32,18 @@ const animationConfigMock = [
     settings: {},
   },
   {
+    animationId: "casumoJackpotWheel",
+    settings: {
+      wonPotKey: "pot1",
+      ...wheelProps,
+    },
+  },
+  {
+    animationId: "casumoJackpotTransition",
+    isTransition: true,
+    settings: {},
+  },
+  {
     animationId: "casumoJackpotAmount",
     settings: {
       t: amountTranslations,
@@ -40,6 +53,11 @@ const animationConfigMock = [
       potName: "Mini",
       locale: "en",
     },
+  },
+  {
+    animationId: "casumoJackpotTransition",
+    isTransition: true,
+    settings: {},
   },
 ];
 
