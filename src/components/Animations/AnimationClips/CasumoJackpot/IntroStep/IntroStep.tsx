@@ -101,7 +101,7 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
     isLandscape ? `translate(${value}px, 0)` : `translate(0, ${value}px)`;
 
   const thirdBoxStyles = {
-    transform: to([styles3.move], move => orientationBasedTranslate(-move)),
+    transform: styles3.move.to(move => orientationBasedTranslate(-move)),
   };
 
   const fourthBoxStyles = {
