@@ -1,4 +1,4 @@
-import { equals } from "ramda";
+import { equals, tryCatch, identity } from "ramda";
 import logger from "Services/logger";
 import { BaseGame } from "./BaseGame";
 import type {
@@ -109,13 +109,27 @@ export class BaseIframeGame extends BaseGame {
     return data;
   }
 
+  parseMessageDataCatcher(e: Error, data: any) {
+    logger.error(
+      `${this.constructor.name}.onMessageHandler threw while parsing ${tryCatch(
+        JSON.stringify.bind(JSON),
+        identity
+      )(data)}`
+    );
+
+    return data;
+  }
+
   extractEventId(data: any) {
     return data;
   }
 
   onMessageHandler(event: IframeMessageEvent) {
     const { onGameRoundStart, onGameRoundEnd } = this.api.events;
-    const parsedData = this.parseMessageData(event.data);
+    const parsedData = tryCatch(
+      this.parseMessageData.bind(this),
+      this.parseMessageDataCatcher.bind(this)
+    )(event.data);
     const eventId = this.extractEventId(parsedData);
 
     if (!onGameRoundStart || !onGameRoundEnd) {

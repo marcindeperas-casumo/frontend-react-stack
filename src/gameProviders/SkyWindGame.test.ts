@@ -1,31 +1,25 @@
 import logger from "Services/logger";
 import { ENVIRONMENTS, DEFAULT_LANGUAGE } from "Src/constants";
-import { ThunderkickGame, COMMANDS } from "./ThunderkickGame";
+import { SkyWindGame } from "./SkyWindGame";
 
-describe("ThunderkickGame", () => {
-  const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
-    providerType: "THUNDERKICK_MOBILE",
-    providerName: "THUNDERKICK",
-  };
-  const gameRef = { current: null };
-  const model = new ThunderkickGame({
-    gameData,
-    gameRef,
-    language: DEFAULT_LANGUAGE,
-    environment: ENVIRONMENTS.TEST,
-    urlPrefix: DEFAULT_LANGUAGE,
-  });
+describe("SkyWindGame", () => {
+  let model;
 
-  test("should return the element as iframe", () => {
-    expect(model.componentTag).toBe("iframe");
-  });
-
-  test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(true);
-    expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
-    expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
+  beforeAll(() => {
+    const gameData = {
+      url:
+        "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
+      providerType: "SKYWIND",
+      providerName: "SKYWIND",
+    };
+    const gameRef = { current: null };
+    model = new SkyWindGame({
+      gameData,
+      gameRef,
+      language: DEFAULT_LANGUAGE,
+      environment: ENVIRONMENTS.TEST,
+      urlPrefix: DEFAULT_LANGUAGE,
+    });
   });
 
   describe("onMessageHandler", () => {
@@ -74,7 +68,7 @@ describe("ThunderkickGame", () => {
       expect(spy).toHaveBeenCalledWith(event.data);
       expect(catcherSpy).toHaveReturnedWith(event.data);
       expect(loggerSpy).toHaveBeenCalledWith(
-        'ThunderkickGame.onMessageHandler threw while parsing {"test":true}'
+        'SkyWindGame.onMessageHandler threw while parsing {"test":true}'
       );
     });
   });
