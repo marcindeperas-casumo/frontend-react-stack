@@ -5,7 +5,7 @@ import { ButtonInverted } from "@casumo/cmp-button";
 import { useWindowSize } from "react-use";
 import { AnimationClipProps } from "Components/Animations/constants";
 import { useScreenOrientation } from "Utils/hooks";
-import { RotatingRays } from "./RotatingRays";
+import { RotatingRays } from "../RotatingRays/RotatingRays";
 import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
 import "./IntroStep.scss";
 
@@ -112,7 +112,7 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
 
   return (
     <div className="o-position--absolute u-width--full u-height--full">
-      <div className="c-intro_step__position-center">
+      <div className="c-casumo-jackpot-animation__position-center">
         <animated.div style={thirdBoxStyles}>
           <animated.div className="o-position--absolute" style={firstBoxStyles}>
             <animated.div
