@@ -20,7 +20,7 @@ export const SymbolWithPots = ({ height, width, isSmall }) => {
         top: `-${height / 2}px`,
         left: `-${width / 2}px`,
       }}
-      className="o-position--absolute c-jackpot-win-element u-font-lg u-font-weight-bold t-background-purple-50 t-color-yellow-30 u-text-align-center"
+      className="o-position--absolute u-font-lg u-font-weight-bold t-background-purple-50 t-color-yellow-30 u-text-align-center"
     >
       <Flex
         className={`u-height--full ${padding}`}
