@@ -32,10 +32,23 @@ describe("MicrogamingGame", () => {
   });
 
   describe("onMessageHandler", () => {
-    test("it properly parses event data and does not log anything", () => {
-      const spy = jest.spyOn(model, "parseMessageData");
-      const loggerSpy = jest.spyOn(logger, "error");
+    let spy;
+    let catcherSpy;
+    let loggerSpy;
 
+    beforeEach(() => {
+      spy = jest.spyOn(model, "parseMessageData");
+      catcherSpy = jest.spyOn(model, "parseMessageDataCatcher");
+      loggerSpy = jest.spyOn(logger, "error");
+    });
+
+    afterEach(() => {
+      spy.mockRestore();
+      loggerSpy.mockRestore();
+      catcherSpy.mockRestore();
+    });
+
+    test("it properly parses event data and does not log anything", () => {
       const eventData = {
         test: true,
       };
@@ -48,16 +61,9 @@ describe("MicrogamingGame", () => {
 
       expect(spy).toHaveBeenCalledWith(event.data);
       expect(loggerSpy).not.toHaveBeenCalled();
-
-      spy.mockRestore();
-      loggerSpy.mockRestore();
     });
 
     test("it logs error and returns event data as is if parseMessageData throws", () => {
-      const spy = jest.spyOn(model, "parseMessageData");
-      const catcherSpy = jest.spyOn(model, "parseMessageDataCatcher");
-      const loggerSpy = jest.spyOn(logger, "error");
-
       const eventData = {
         test: true,
       };
@@ -73,10 +79,6 @@ describe("MicrogamingGame", () => {
       expect(loggerSpy).toHaveBeenCalledWith(
         'MicrogamingGame.onMessageHandler threw while parsing {"test":true}'
       );
-
-      spy.mockRestore();
-      catcherSpy.mockRestore();
-      loggerSpy.mockRestore();
     });
   });
 });
