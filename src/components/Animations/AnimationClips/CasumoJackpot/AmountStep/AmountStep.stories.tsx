@@ -17,8 +17,8 @@ const t = {
 };
 
 const mockConfig = {
+  animationId: "mock",
   settings: {
-    animationId: "casumoJackpotAmount",
     t,
     amount: 12413,
     currency: "EUR",
@@ -32,7 +32,7 @@ if (isNotChromatic) {
   stories.add("Amount Step", () => (
     <div className="o-position--absolute u-width--full u-height--full u-overflow--hidden">
       <div className="c-casumo-animation__fading-in-background-layer t-background-purple-80 o-position--absolute u-width--full u-height--full" />
-      <AmountStep config={mockConfig} />
+      <AmountStep onShowNext={() => {}} config={mockConfig} />
     </div>
   ));
 }
