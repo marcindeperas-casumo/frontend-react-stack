@@ -7,26 +7,29 @@ import { playerIdSelector } from "Models/handshake";
 import { useLocale } from "Utils/hooks";
 import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { TCurrencyCode } from "Src/constants";
+import { WALLET_BONUS_UNBLOCK_AFTER } from "Models/playing/playing.constants";
 
-export type NotificationType =
-  | "jackpot_win_mini"
-  | "jackpot_win_major"
-  | "jackpot_win_mega"
-  | "community_jackpot_win";
+type JackpotWinParameters = {
+  amount: string; // ie. "100.01"
+  currency: TCurrencyCode;
+  jackpotId: string;
+  is_main_winner: boolean;
+  jackpot_id: string;
+  jackpot_slug: string;
+  pot_key: string;
+};
 
 type CometdEvent = {
   data: {
     notificationAdded?: {
       category: "win";
-      type: NotificationType;
-      parameters: {
-        amount: string; // ie. "100.01"
-        currency: TCurrencyCode;
-        jackpotId: string;
-      };
+      type: string;
+      parameters: JackpotWinParameters;
     };
   };
 };
+
+const acceptedNotificationType = "jackpot_win";
 
 export function useJackpotsSubscription({
   pauseGame,
@@ -34,21 +37,36 @@ export function useJackpotsSubscription({
 }: PauseResumeProps) {
   const locale = useLocale();
   // TODO: replace with actual functions after #1194 is merged
-  const [jackpotAmount, setJackpotAmount] = React.useState(null);
-  const [jackpotAmountRaw] = React.useState(null);
-  const [type, setType] = React.useState<NotificationType | null>(null);
-  const [isFullScreen] = React.useState(false);
+  const [
+    jackpotWinParams,
+    setJackpotWinParams,
+  ] = React.useState<JackpotWinParameters>(null);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
   const { setBlueRibbonNotificationNeedsAccepting } = useGameJackpotContext();
 
   const subscriptionHandler = React.useCallback(
-    // eslint-disable-next-line require-await
     async (event: CometdEvent) => {
-      // eslint-disable-next-line no-constant-condition
-      if (true) {
-        return;
+      console.log(event);
+
+      const notificationData = event.data.notificationAdded;
+
+      if (
+        !(
+          event.data.notificationAdded &&
+          notificationData.type === acceptedNotificationType
+        )
+      ) {
+        return null;
       }
+
+      setJackpotWinParams(notificationData.parameters);
+
+      setTimeout(() => {
+        setBlueRibbonNotificationNeedsAccepting(false);
+      }, WALLET_BONUS_UNBLOCK_AFTER);
+
+      await pauseGame();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [locale, pauseGame, setBlueRibbonNotificationNeedsAccepting]
@@ -56,23 +74,18 @@ export function useJackpotsSubscription({
 
   React.useEffect(() => {
     cometd.subscribe(channel, subscriptionHandler);
-
     return function cleanup() {
       cometd.unsubscribe(channel, subscriptionHandler);
     };
   }, [channel, subscriptionHandler]);
 
   const acknowledge = () => {
-    setJackpotAmount(null);
-    setType(null);
+    setJackpotWinParams(null);
     resumeGame();
   };
 
   return {
-    jackpotAmount,
-    jackpotAmountRaw,
+    params: jackpotWinParams,
     acknowledge,
-    type,
-    isFullScreen,
   };
 }
