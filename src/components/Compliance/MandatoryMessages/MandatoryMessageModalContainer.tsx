@@ -1,7 +1,7 @@
 import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
-import { useTranslations } from "Utils/hooks";
+import { useTranslations, useTranslationsVoca } from "Utils/hooks";
 import { useMarkAsReadMutation } from "Models/mandatoryMessages";
 
 type Props = {
@@ -24,6 +24,7 @@ export function MandatoryMessageModalContainer({
 }: Props) {
   const content = useTranslations(config?.input?.slug, true);
   const [markAsRead, { isLoading }] = useMarkAsReadMutation();
+  const voca = useTranslationsVoca();
 
   return (
    <CudlModal
@@ -33,7 +34,7 @@ export function MandatoryMessageModalContainer({
       action: () => {
         markAsRead(config?.input.messageId);
       },
-      text: t?.call_to_action_button_text
+      text: t?.call_to_action_button_text || voca?.BUTTON_CLOSE
     }}
    >
      <Text>
