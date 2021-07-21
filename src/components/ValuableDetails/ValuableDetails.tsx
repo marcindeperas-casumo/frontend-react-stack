@@ -69,11 +69,18 @@ const ActionButtonContent = ({ isLocked, text }) => {
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get expiryTimeLeft(): DurationProps {
+  get expiryTimeLeft(): DurationProps | null {
+    if (!this.props.valuableDetails.expiryDate) {
+      return null;
+    }
     return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
-  get expirationBadgeInfo(): BadgeInfoType {
+  get expirationBadgeInfo(): BadgeInfoType | null {
+    if (!this.expiryTimeLeft) {
+      return null;
+    }
+
     const { hours, minutes } = this.expiryTimeLeft;
     const expiresWithin24Hours = hours < 24;
     const expiresInLessThanAnHour = hours < 1;
@@ -90,7 +97,20 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return { key: "days", value: convertHoursToDaysRoundUp(hours) };
   }
 
-  get expirationBadgeColour(): string {
+  get durationKey(): string | null {
+    const expirationInfo = this.expirationBadgeInfo;
+
+    if (!expirationInfo) {
+      return null;
+    }
+    return durationToTranslationKey(expirationInfo.key, expirationInfo.value);
+  }
+
+  get expirationBadgeColour(): string | null {
+    if (!this.expiryTimeLeft) {
+      return null;
+    }
+
     const { hours } = this.expiryTimeLeft;
 
     return hours > 24
@@ -189,17 +209,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
       termsAndConditionsContent,
       wageringStatus,
     } = translations;
-    const expirationInfo = this.expirationBadgeInfo;
-    const durationKey = durationToTranslationKey(
-      expirationInfo.key,
-      expirationInfo.value
-    );
-    const requirementType = this.requirementType;
 
+    const requirementType = this.requirementType;
     const expirationValueText =
-      translations[durationKey] &&
-      interpolate(translations[durationKey], {
-        value: expirationInfo.value,
+      translations[this.durationKey] &&
+      interpolate(translations[this.durationKey], {
+        value: this.expirationBadgeInfo.value,
       });
 
     const actionButtonProps = getValuableDetailsAction({
@@ -262,7 +277,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 />
               </Flex.Item>
             )}
-            {expirationTimeLabel && (
+            {expirationTimeLabel && expirationValueText && (
               <Flex.Item className="u-margin-top--lg">
                 <Badge
                   tag="p"
