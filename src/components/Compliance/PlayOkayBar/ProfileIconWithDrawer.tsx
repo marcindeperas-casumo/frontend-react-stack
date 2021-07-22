@@ -1,11 +1,7 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
-import {
-  useCallOnce,
-  useCrossCodebaseNavigation,
-  useScreenOrientation,
-} from "Utils/hooks";
+import { useCallOnce, useCrossCodebaseNavigation } from "Utils/hooks";
 import { useCurrentReelRaceInfo } from "Utils/hooks/useCurrentReelRaceInfo";
 import { DRAWERS } from "Components/Sidebar/SidebarElementWrapper/constants";
 import { FiveMinuteBreakDrawerWidgetContainer as FiveMinuteBreakDrawerWidget } from "Components/Compliance/GGL/FiveMinuteBreakDrawerWidget/FiveMinuteBreakDrawerWidgetContainer";
