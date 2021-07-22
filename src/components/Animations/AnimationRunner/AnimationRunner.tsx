@@ -5,6 +5,8 @@ import type {
 } from "../constants";
 import { AnimationStep } from "./AnimationStep";
 
+import "./AnimationRunner.scss";
+
 type TProps = {
   animation: Array<AnimationClipProps<AvailableAnimationClipsProps>>;
   onNextStep?: (step: number) => void;

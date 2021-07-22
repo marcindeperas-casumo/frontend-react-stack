@@ -1,0 +1,14 @@
+// stylelint-disable xi/selector-pattern
+
+.c-casumo-animation__fading-in-background-layer {
+  animation: fade-in 0.7s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
