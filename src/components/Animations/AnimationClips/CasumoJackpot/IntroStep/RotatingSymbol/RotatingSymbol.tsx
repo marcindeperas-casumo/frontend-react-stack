@@ -1,7 +1,6 @@
 import React from "react";
 import Backplate from "./Backplate.svg";
 import JCharacter from "./J.svg";
-import "./RotatingSymbol.scss";
 
 const jToPlateWidthRatio = 0.473;
 const jToPlateHeightRatio = 0.604;

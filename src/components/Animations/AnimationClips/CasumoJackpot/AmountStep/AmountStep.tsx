@@ -5,16 +5,23 @@ import { ButtonInverted } from "@casumo/cmp-button";
 import { useWindowSize } from "react-use";
 import { AnimationClipProps } from "Components/Animations/constants";
 import { useScreenOrientation } from "Utils/hooks";
+import { MoneyAmountCounter } from "Components/BlueRibbon/MoneyAmountCounter";
 import { RotatingRays } from "../RotatingRays/RotatingRays";
-import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
-import "./IntroStep.scss";
+import { TopBox } from "./TopBox";
+import { PotSymbol } from "./PotSymbol/PotSymbol";
 
 type TIntroStepSettings = {
   t: {
-    winText: string;
     buttonText: string;
-    findOutText: string;
+    continueText: string;
+    jackpotWinTextRow: string;
+    jackpotTypeTextRow: string;
   };
+  amount: number;
+  potKey: string;
+  potName: string;
+  locale: string;
+  currency: string;
 };
 
 type TIntroStepProps = {
@@ -33,7 +40,7 @@ const slide = {
   tension: 700,
 };
 
-export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
+export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
   const ref1 = useSpringRef(); //bounce in 1st box
   const ref2 = useSpringRef(); //slide up/down 2nd box
   const ref3 = useSpringRef(); //slide up/down 2nd box
@@ -52,9 +59,11 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
   const width = 500 * screenSizeBasedRatio;
   const height = 100 * screenSizeBasedRatio;
 
-  const letterSpacing = small ? "3px" : "6px";
   const fontSize = small ? "" : "u-font-lg";
+  const amountFontSize = small ? "u-font-xlg" : "u-font-3xlg";
   const buttonSize = small ? "md" : "lg";
+
+  const { t, amount, currency, potName, potKey, locale } = config.settings;
 
   const styles1 = useSpring({
     from: { scale: 0 },
@@ -83,7 +92,7 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
     },
   });
 
-  useChain([ref1, ref2, ref3], [0, 0.5, 1.2]);
+  useChain([ref1, ref2, ref3], [0, 3, 4]);
 
   const firstBoxStyles = {
     transform: to(
@@ -119,7 +128,12 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
               className="o-position--absolute"
               style={secondBoxStyles}
             >
-              <RotatingRays />
+              <div
+                className="o-position--absolute"
+                style={{ top: -height, left: "50%" }}
+              >
+                <RotatingRays />
+              </div>
               {columnVisible && (
                 <animated.div style={fourthBoxStyles}>
                   <div
@@ -143,18 +157,24 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
                           size={buttonSize}
                           onClick={onShowNext}
                         >
-                          {config.settings.t.buttonText}
+                          {t.buttonText}
                         </ButtonInverted>
                       </Flex.Item>
                       <Flex.Item className="t-color-white u-text-align-center">
-                        {config.settings.t.findOutText}
+                        {t.continueText}
                       </Flex.Item>
                     </Flex>
                   </div>
                 </animated.div>
               )}
               {potsSectionVisible && (
-                <SymbolWithPots isSmall={small} width={width} height={height} />
+                <TopBox
+                  t={t}
+                  potName={potName}
+                  isSmall={small}
+                  width={width}
+                  height={height}
+                />
               )}
             </animated.div>
             <div
@@ -164,11 +184,25 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
                 lineHeight: `${height}px`,
                 top: -height / 2,
                 left: -width / 2,
-                letterSpacing,
               }}
-              className={`o-position--absolute ${fontSize} u-font-weight-bold t-background-yellow-30 t-color-purple-50 u-text-align-center`}
+              className={`o-position--absolute ${amountFontSize} u-font-weight-bold t-background-purple-50 t-color-yellow-30 u-text-align-center`}
             >
-              {config.settings.t.winText}
+              <MoneyAmountCounter
+                amount={amount}
+                locale={locale}
+                currency={currency}
+              />
+              <div
+                className="o-position--absolute"
+                style={{ top: "-120%", left: "50%" }}
+              >
+                <animated.div
+                  className="o-position--absolute"
+                  style={secondBoxStyles}
+                >
+                  <PotSymbol size={height} potKey={potKey} />
+                </animated.div>
+              </div>
             </div>
           </animated.div>
         </animated.div>
