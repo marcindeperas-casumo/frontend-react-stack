@@ -58,7 +58,6 @@ export const ProfileIconWithDrawer = ({
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
-  const { isLandscapeOriented } = useScreenOrientation();
   useCallOnce(currentRace?.isInProgress && currentRace?.optedIn, () => {
     togglePin(DRAWERS.REEL_RACES);
   });
