@@ -33,28 +33,25 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
     });
   }, [gameProviderModel]);
 
-  const jackpotsRows = [normalizedPots];
+  const jackpotsRows = normalizedPots;
 
   return (
     <div className="bg-grey-70 t-border-r-top-left u-overflow--hidden o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
-      {jackpotsRows.map((row, i) => (
-        <Flex
-          key={i}
-          direction="horizontal"
-          align="center"
-          justify="center"
-          spacing="lg"
-          className={classNames(
-            "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition u-padding-left--lg u-padding-right--lg u-padding-bottom u-padding-top u-margin-right--md"
-          )}
-        >
-          {row.map((pot, idx) => (
-            <Flex.Item key={idx}>
-              <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
-            </Flex.Item>
-          ))}
-        </Flex>
-      ))}
+      <Flex
+        direction="horizontal"
+        align="center"
+        justify="center"
+        spacing="lg"
+        className={classNames(
+          "o-flex__item--no-shrink o-flex--wrap c-br-footer-widget__animation-transition u-padding-left--lg u-padding-right--lg u-padding-bottom u-padding-top u-margin-right--md"
+        )}
+      >
+        {jackpotsRows.map((pot, idx) => (
+          <Flex.Item key={idx}>
+            <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
+          </Flex.Item>
+        ))}
+      </Flex>
     </div>
   );
 }

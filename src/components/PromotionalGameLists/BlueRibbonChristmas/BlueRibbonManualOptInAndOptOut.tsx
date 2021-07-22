@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { Toggle } from "Components/Toggle/Toggle";
 import { useTranslations } from "Utils/hooks";
-import { isDesktop } from "Components/ResponsiveLayout";
 
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
@@ -23,7 +22,9 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
     props.jackpotSlug
   );
   const textColor = props.isLight ? "text-black" : "text-white";
-
+  const { isDesktop } = props;
+  const desktopClassesComposition =
+    "t-border-r-top-left--md t-border-r-top-right--md u-padding-left--lg u-padding-right--lg c-br-footer-widget__optin-margin";
   if (!t) {
     return null;
   }
@@ -33,14 +34,14 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
       direction="horizontal"
       justify="space-between"
       align="center"
-      className={classNames("u-padding c-br-footer-widget__optin-margin", {
-        "bg-grey-90": !props.isLight,
-        "bg-white": props.isLight,
-        "t-border-r-top-left--md": props.isDesktop,
-        "t-border-r-top-right--md": props.isDesktop,
-        "u-padding-left--lg": props.isDesktop,
-        "u-padding-right--lg": props.isDesktop,
-      })}
+      className={classNames(
+        isDesktop ? desktopClassesComposition : "",
+        "u-padding",
+        {
+          "bg-grey-90": !props.isLight,
+          "bg-white": props.isLight,
+        }
+      )}
     >
       <Flex direction="vertical">
         <Flex direction="horizontal">
