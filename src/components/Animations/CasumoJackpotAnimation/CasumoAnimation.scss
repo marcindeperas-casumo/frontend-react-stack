@@ -1,7 +1,26 @@
 // stylelint-disable xi/selector-pattern
 
+.c-rotating-symbol__backplate {
+  animation: infinite-rotation 2s infinite linear;
+}
+
 .c-casumo-animation__fading-in-background-layer {
   animation: fade-in 0.7s ease-in-out;
+}
+
+.c-casumo-jackpot-animation__position-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+
+@keyframes infinite-rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 @keyframes fade-in {

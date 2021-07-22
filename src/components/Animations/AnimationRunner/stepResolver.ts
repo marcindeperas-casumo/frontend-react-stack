@@ -1,3 +1,4 @@
+import { AmountStep as CasumoJackpotAmount } from "../AnimationClips/CasumoJackpot/AmountStep/AmountStep";
 import { IntroStep as CasumoJackpotIntro } from "../AnimationClips/CasumoJackpot/IntroStep/IntroStep";
 import { TransitionStep as CasumoJackpotTransition } from "../AnimationClips/CasumoJackpot/TransitionStep/TransitionStep";
 import {
@@ -11,6 +12,7 @@ const animationClipsMap = {
   springTest: SpringTest,
   springTransitionTest: SpringTransitionTest,
   casumoJackpotIntro: CasumoJackpotIntro,
+  casumoJackpotAmount: CasumoJackpotAmount,
   casumoJackpotTransition: CasumoJackpotTransition,
 };
 
