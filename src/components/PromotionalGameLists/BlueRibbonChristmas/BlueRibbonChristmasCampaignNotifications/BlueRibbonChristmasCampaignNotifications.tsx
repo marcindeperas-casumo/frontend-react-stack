@@ -4,23 +4,13 @@ import { CloseIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import DangerousHtml from "Components/DangerousHtml";
-import { interpolate } from "Utils";
-import type { PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import { useBlueRibbonAutoOptIn } from "../useBlueRibbonSDK";
-import { useJackpotsSubscription } from "../useJackpotsSubscription";
 import { jackpotWidgetContentPage } from "../blueRibbonConsts";
 import type { JackpotWidgetContentPage } from "../blueRibbonConsts";
 import "./blueRibbonChristmasCampaignNotifications.scss";
 
-export function BlueRibbonChristmasCampaignNotifications({
-  pauseGame,
-  resumeGame,
-}: PauseResumeProps) {
+export function BlueRibbonChristmasCampaignNotifications() {
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  const { jackpotAmount, acknowledge, type } = useJackpotsSubscription({
-    pauseGame,
-    resumeGame,
-  });
   const { isJackpotGame } = useBlueRibbonAutoOptIn();
   const [acknowledged, setAcknowledged] = React.useState(false);
 
@@ -53,50 +43,6 @@ export function BlueRibbonChristmasCampaignNotifications({
           <Flex.Item>
             <div
               onClick={() => setAcknowledged(true)}
-              className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
-            >
-              <CloseIcon className="text-black" />
-            </div>
-          </Flex.Item>
-        </Flex>
-      )}
-      {type === "community_jackpot_win" && jackpotAmount && (
-        <Flex
-          direction="horizontal"
-          className="u-padding--md bg-white t-border-r"
-          align="center"
-        >
-          <Flex.Item className="o-position--relative">
-            <img
-              className="u-display--block t-border-r--circle"
-              width={40}
-              height={40}
-              alt=""
-              src={t.community_jackpot_win_icon}
-            />
-          </Flex.Item>
-          <Flex.Block>
-            <Text
-              size="sm"
-              tag="span"
-              className="text-grey-50 u-padding-bottom--sm"
-            >
-              {t.community_jackpot_win}
-            </Text>
-            <br />
-            <Text
-              size="sm"
-              tag="span"
-              className="text-black u-font-weight-bold"
-            >
-              {interpolate(t.community_jackpot_win_amount, {
-                amount: jackpotAmount,
-              })}
-            </Text>
-          </Flex.Block>
-          <Flex.Item>
-            <div
-              onClick={acknowledge}
               className="t-border-r--circle bg-grey-0 u-padding u-cursor--pointer"
             >
               <CloseIcon className="text-black" />
