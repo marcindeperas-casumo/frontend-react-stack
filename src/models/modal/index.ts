@@ -46,8 +46,6 @@ export type ModalConfig = {
   content?: any;
   gameRoundId?: any;
   isWide?: boolean;
-  /** dynamically provided slug for content */
-  slug?: string;
 };
 type ModalState = {
   modalId: ModalId | null;
