@@ -6,6 +6,7 @@
 
 .c-casumo-animation__fading-in-background-layer {
   animation: fade-in 0.7s ease-in-out;
+  opacity: 0.8;
 }
 
 .c-casumo-jackpot-animation__position-center {
@@ -28,6 +29,6 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
