@@ -29,8 +29,8 @@ export function MandatoryMessageModalContainer({
   return (
    <CudlModal
     topTitle={t?.headline}
-    isLoading={isLoading}
     primaryButton={{
+      isLoading,
       action: () => {
         markAsRead(config?.input.messageId);
       },
