@@ -1,25 +1,42 @@
 import React from "react";
+import { useTranslations } from "Utils/hooks";
+import { useLocale } from "Utils/hooks/__mocks__/useLocale";
+import { animationAssetsCmsUrl } from "../constants";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
-
-const introTranslations = {
-  buttonText: "Reveal",
-  findOutText: "Find out which Jackpot you won",
-  winText: "YOU WON A JACKPOT!",
-};
-
-const amountTranslations = {
-  buttonText: "Continue playing",
-  continueText: "The money will be added to your account",
-  jackpotWinTextRow: "YOU WON A",
-  jackpotTypeTextRow: "{{ potName }}",
-};
 
 export const CasumoJackpotAnimationContainer = ({
   params,
   jackpotConfig,
   acknowledge,
 }) => {
-  const animationConfigMock = [
+  const locale = useLocale();
+  const t = useTranslations(animationAssetsCmsUrl(params.jackpot_slug));
+
+  if (!t) {
+    return null;
+  }
+
+  const fields = t["text_fields"].reduce((acc, pair) => {
+    return {
+      ...acc,
+      [pair.key]: pair.value,
+    };
+  }, {});
+
+  const introTranslations = {
+    buttonText: fields.buttonReveal,
+    findOutText: fields.revealText,
+    winText: fields.winText,
+  };
+
+  const amountTranslations = {
+    buttonText: fields.continueButton,
+    continueText: fields.continueText,
+    jackpotWinTextRow: fields.continueWinTextRow,
+    jackpotTypeTextRow: fields.continueTypeTextRow,
+  };
+
+  const animationConfig = [
     {
       animationId: "casumoJackpotIntro",
       settings: { t: introTranslations },
@@ -38,13 +55,15 @@ export const CasumoJackpotAnimationContainer = ({
         potKey: params.pot_key,
         potName: jackpotConfig.pots.find(pot => pot.potKey === params.pot_key)
           .name,
-        locale: "en",
+        locale: locale,
       },
     },
   ];
 
-  <CasumoJackpotAnimation
-    animationConfig={animationConfigMock}
-    onAnimationDone={acknowledge}
-  />;
+  return (
+    <CasumoJackpotAnimation
+      animationConfig={animationConfig}
+      onAnimationDone={acknowledge}
+    />
+  );
 };
