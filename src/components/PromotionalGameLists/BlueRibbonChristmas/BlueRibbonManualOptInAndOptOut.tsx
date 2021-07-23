@@ -24,7 +24,7 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
   const textColor = props.isLight ? "text-black" : "text-white";
   const { isDesktop } = props;
   const desktopClassesComposition =
-    "t-border-r-top-left--md t-border-r-top-right--md u-padding-left--lg u-padding-right--lg c-br-footer-widget__optin-margin";
+    "t-border-r-top-left--md t-border-r-top-right--md u-padding-left--lg u-padding-right--lg";
   if (!t) {
     return null;
   }

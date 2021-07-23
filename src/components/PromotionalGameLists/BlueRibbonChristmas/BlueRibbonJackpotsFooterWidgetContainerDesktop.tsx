@@ -15,8 +15,13 @@ export function BlueRibbonJackpotsFooterWidgetContainerDesktop() {
   }
 
   return (
-    <React.Fragment>
-      <Flex direction="horizontal" align="center" justify="center">
+    <Flex direction="horizontal" align="center" justify="center">
+      <Flex
+        direction="horizontal"
+        align="center"
+        justify="center"
+        className="bg-grey-70 t-border-r-top-right--md"
+      >
         <BlueRibbonJackpotsFooterWidgetDesktop
           normalizedPots={normalizePots(composedJackpot.pots)}
         />
@@ -25,6 +30,6 @@ export function BlueRibbonJackpotsFooterWidgetContainerDesktop() {
           isDesktop
         />
       </Flex>
-    </React.Fragment>
+    </Flex>
   );
 }
