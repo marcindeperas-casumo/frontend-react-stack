@@ -13,4 +13,4 @@ export const CMS_SLUGS = {
 
 export const WALLET_BALANCE_DELAY_DURATION = 500;
 
-export const WALLET_BONUS_UNBLOCK_AFTER = 5000;
+export const WALLET_BONUS_UNBLOCK_AFTER = 10000;
