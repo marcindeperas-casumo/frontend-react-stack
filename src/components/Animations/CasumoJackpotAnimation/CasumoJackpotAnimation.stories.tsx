@@ -17,7 +17,7 @@ const amountTranslations = {
   buttonText: "Continue playing",
   continueText: "The money will be added to your account",
   jackpotWinTextRow: "YOU WON A",
-  jackpotTypeTextRow: "{{ potName }} JACKPOT",
+  jackpotTypeTextRow: "{{ potName }}",
 };
 
 const animationConfigMock = [
