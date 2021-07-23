@@ -1,6 +1,5 @@
 import React from "react";
-import { useTranslations } from "Utils/hooks";
-import { useLocale } from "Utils/hooks/__mocks__/useLocale";
+import { useTranslations, useLocale } from "Utils/hooks";
 import { animationAssetsCmsUrl } from "../constants";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
