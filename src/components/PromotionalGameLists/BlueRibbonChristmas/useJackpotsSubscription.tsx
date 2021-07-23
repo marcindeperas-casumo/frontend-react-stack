@@ -47,8 +47,6 @@ export function useJackpotsSubscription({
 
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
-      console.log(event);
-
       const notificationData = event.data.notificationAdded;
 
       if (

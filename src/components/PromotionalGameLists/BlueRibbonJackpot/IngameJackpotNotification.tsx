@@ -14,8 +14,6 @@ export const IngameJackpotNotification = () => {
     resumeGame,
   });
 
-  console.log(params);
-
   if (!params) {
     return null;
   }
