@@ -75,7 +75,7 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
           {t.opt_in_contribution_value}
         </Text>
       </Flex>
-      <Flex className={classNames("u-margin-left--md", isDesktop)}>
+      <Flex className={classNames("u-margin-left--md")}>
         <Toggle
           labelOn="ON"
           labelOff="OFF"
