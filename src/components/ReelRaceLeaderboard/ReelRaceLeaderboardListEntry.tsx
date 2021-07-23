@@ -39,7 +39,7 @@ function RemainingSpins({ remainingSpins, spinLimit }: RemainingSpinsProps) {
   return (
     <Flex.Item
       className={cx(
-        "mx-0	 c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg",
+        "mx-0 c-reel-race__remaining-spins text-grey-50 o-flex-justify--center u-padding-y--sm u-padding-x o-flex-align--center t-border-r--lg",
         {
           "opacity-100": isMobile(),
           "text-red-30 opacity-100": isRemainingSpinsRunOut(),
