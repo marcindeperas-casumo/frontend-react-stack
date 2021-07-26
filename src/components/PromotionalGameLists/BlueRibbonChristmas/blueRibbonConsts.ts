@@ -82,10 +82,7 @@ export type PotValues = {
 export type PotObject = A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
   PotValues;
 
-export type ComposedJackpot = Omit<
-  A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"],
-  "pots"
-> & {
+export type ComposedJackpot = Omit<A.BlueribbonJackpotConfig, "pots"> & {
   pots: Array<PotObject>;
 };
 
