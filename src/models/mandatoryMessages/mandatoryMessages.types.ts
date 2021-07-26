@@ -4,7 +4,7 @@ export type TMandatoryMessage = {
   createdTime: number;
   /** corresponds to CMS page slug */
   reason: string;
-  parameters: { [name: string]: any };
+  parameters: { [name: string]: string };
 };
 
 export type TCometdMandatoryMessageReceived = {

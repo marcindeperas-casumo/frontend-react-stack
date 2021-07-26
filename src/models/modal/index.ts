@@ -87,7 +87,7 @@ function useSelectMandatoryMessageModal(): ModalState {
       mustAccept: true,
       input: {
         slug: messageModalId,
-        messageId: firstMandatoryMessage.id,
+        message: firstMandatoryMessage,
       },
     },
   };

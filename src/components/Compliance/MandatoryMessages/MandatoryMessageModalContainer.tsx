@@ -2,7 +2,9 @@ import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
 import { useTranslations, useTranslationsVoca } from "Utils/hooks";
-import { useMarkAsReadMutation } from "Models/mandatoryMessages";
+import { interpolate } from "Utils";
+import { useMarkAsReadMutation, TMandatoryMessage } from "Models/mandatoryMessages";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   t: {
@@ -13,7 +15,7 @@ type Props = {
   config: {
     input: {
       slug: string;
-      messageId: string;
+      message: TMandatoryMessage;
     }
   }
 };
@@ -22,24 +24,23 @@ export function MandatoryMessageModalContainer({
   t,
   config
 }: Props) {
+  const { parameters } = config?.input?.message ?? {};
   const content = useTranslations(config?.input?.slug, true);
   const [markAsRead, { isLoading }] = useMarkAsReadMutation();
   const voca = useTranslationsVoca();
 
   return (
    <CudlModal
-    topTitle={t?.headline}
+    topTitle={interpolate(t?.headline, parameters)}
     primaryButton={{
       isLoading,
       action: () => {
-        markAsRead(config?.input.messageId);
+        markAsRead(config?.input.message.id);
       },
-      text: t?.call_to_action_button_text || voca?.BUTTON_CLOSE
+      text: interpolate(t?.call_to_action_button_text, parameters) || voca?.BUTTON_CLOSE
     }}
    >
-     <Text>
-       {content}
-     </Text>
+     <DangerousHtml html={interpolate(content, parameters)} />
    </CudlModal>
   );
 }
