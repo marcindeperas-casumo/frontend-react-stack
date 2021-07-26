@@ -374,9 +374,8 @@ export const interpolate = (
   return target
     .replace(INTERPOLATION_REGEX, replacer)
     .replace(CURRENCY_INTERPOLATION_REGEX, replacer)
-    .replace(TEMPLATE_STRING_INTERPOLATION_REGEX, replacer); 
-}
-  
+    .replace(TEMPLATE_STRING_INTERPOLATION_REGEX, replacer);
+};
 
 export const interpolateWithJSX = R.curry(
   (replacements: { [s: string]: React.ReactNode }, target: string) =>

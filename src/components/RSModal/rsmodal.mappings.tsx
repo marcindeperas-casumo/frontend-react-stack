@@ -13,6 +13,7 @@ import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
 import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
+import { MandatoryMessageModal } from "Components/Compliance/MandatoryMessages";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -39,7 +40,6 @@ import {
 import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
 import { AccountWarmUp } from "./AccountWarmUp";
-import { MandatoryMessageModal } from "Components/Compliance/MandatoryMessages";
 
 export type ModalContentComponent<T> = {
   /** object with translations for provided slug, null if still fetching */
@@ -168,17 +168,16 @@ export const mappings: Mapping = {
   },
 };
 
-export const getMandatoryMessageModalData: (modalId: ModalId) => ModalProps = R.ifElse(
+export const getMandatoryMessageModalData: (
+  modalId: ModalId
+) => ModalProps = R.ifElse(
   R.has(R.__, mappings),
   R.prop(R.__, mappings),
   R.assoc("slug", R.__, { Content: MandatoryMessageModal })
-)
+);
 
-export const getModalData: (
-  modalId: ModalId | null
-) => ModalProps = R.ifElse(
+export const getModalData: (modalId: ModalId | null) => ModalProps = R.ifElse(
   isMandatoryMessageModalId,
   getMandatoryMessageModalData,
   R.propOr({ Content: ModalLoadingState }, R.__, mappings)
 );
-

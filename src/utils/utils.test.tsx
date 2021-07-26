@@ -480,11 +480,13 @@ describe("interpolate()", () => {
   });
 
   test("should replace template string placeholders", () => {
-    const input = "I am a ${var} to be replaced with ${something}";
+    const input = "I am a ${var} to be replaced with ${something}"; // eslint-disable-line no-template-curly-in-string
     const output = "I am a variable to be replaced with 12";
 
-    expect(interpolate(input, { var: "variable", something: 12 })).toEqual(output);
-  })
+    expect(interpolate(input, { var: "variable", something: 12 })).toEqual(
+      output
+    );
+  });
 });
 
 describe("interpolateWithJSX()", () => {
