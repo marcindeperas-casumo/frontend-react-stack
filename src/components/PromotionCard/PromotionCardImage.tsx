@@ -1,7 +1,7 @@
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const imgixOpts = { w: 240, h: 140, fit: "crop", q: 80 };
+const imgixOpts = { w: 240, h: 140, fit: "crop", q: 100 };
 
 export const PromotionCardImage = ({ image }) => {
   return (
