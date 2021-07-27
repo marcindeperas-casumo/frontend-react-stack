@@ -210,6 +210,7 @@ export const TRANSLATED_ROUTES = {
     no: "kampanjer",
     fi: "kampanjat",
     de: "aktionen",
+    at: "aktionen",
     es: "promociones",
     DEFAULT: "promotions",
   },
