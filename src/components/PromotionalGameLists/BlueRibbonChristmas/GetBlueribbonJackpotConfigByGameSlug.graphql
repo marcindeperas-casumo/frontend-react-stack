@@ -1,6 +1,8 @@
 query GetBlueribbonJackpotConfigByGameSlug($gameSlug: String!) {
   blueribbonJackpotByGameSlug(gameSlug: $gameSlug) {
     externalId
+    requiresManualOptIn
+    optedIn
     title
     image
     slug
@@ -19,6 +21,13 @@ query GetBlueribbonJackpotConfigByGameSlug($gameSlug: String!) {
         icon
         splitExplanation
       }
+    }
+    notifications {
+        gameLaunch
+        optIn {
+            title
+            content
+        }
     }
   }
 }
