@@ -180,7 +180,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
     } catch (error) {
       const {
         extensions: { exception },
-      } = error.graphQLErrors[0];
+      } =
+        error.graphQLErrors && error.graphQLErrors.length > 0
+          ? error.graphQLErrors[0]
+          : null;
 
       launchErrorModal({
         rejectReasonId: exception.rejectReasonId,
