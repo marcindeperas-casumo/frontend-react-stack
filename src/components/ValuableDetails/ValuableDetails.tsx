@@ -183,7 +183,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       } =
         error.graphQLErrors && error.graphQLErrors.length > 0
           ? error.graphQLErrors[0]
-          : null;
+          : JSON.stringify(error);
 
       launchErrorModal({
         rejectReasonId: exception.rejectReasonId,
