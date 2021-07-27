@@ -14,11 +14,11 @@ export function BlueRibbonJackpotsFooterWidgetContainer() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <BlueRibbonJackpotsFooterWidget
         normalizedPots={normalizePots(composedJackpot.pots)}
       />
       <BlueRibbonManualOptInAndOptOut jackpotSlug={composedJackpot.slug} />
-    </React.Fragment>
+    </>
   );
 }

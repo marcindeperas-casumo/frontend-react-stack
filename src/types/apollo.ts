@@ -1267,11 +1267,14 @@ export interface BetProjectionsOutcomes {
 
 export interface BlueribbonJackpotConfig {
   externalId: Scalars["ID"];
+  requiresManualOptIn: Scalars["Boolean"];
+  optedIn: Scalars["Boolean"];
   slug: Scalars["String"];
   title: Scalars["String"];
   image: Scalars["String"];
   pots: Array<Pot>;
   widgetColor: WidgetColor;
+  notifications: Notifications;
 }
 
 export interface WidgetColor {
@@ -1307,6 +1310,16 @@ export interface Pot {
   winNotificationContent: Scalars["String"];
   potExplanation: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
+}
+
+export interface ComplexNotification {
+  title: Scalars["String"];
+  content: Scalars["String"];
+}
+
+export interface Notifications {
+  gameLaunch: Scalars["String"];
+  optIn: ComplexNotification;
 }
 
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
@@ -2023,6 +2036,8 @@ export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
 export type GetBlueribbonJackpotConfigByGameSlugQuery = {
   blueribbonJackpotByGameSlug?: Maybe<{
     externalId: string;
+    requiresManualOptIn: boolean;
+    optedIn: boolean;
     title: string;
     image: string;
     slug: string;
@@ -2042,6 +2057,12 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
         splitExplanation: string;
       }>;
     }>;
+    notifications: {
+      gameLaunch: string;
+      jackpotContributionCancelled: string;
+      jackpotContributionInsufficientFunds: string;
+      optIn: { title: string; content: string };
+    };
   }>;
 };
 

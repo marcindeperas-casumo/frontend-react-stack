@@ -1,5 +1,7 @@
 .c-reel-race-leaderboard-list-entry {
   box-sizing: border-box;
+  display: flex !important;
+  justify-content: space-between !important;
 }
 
 // stylelint-disable xi/selector-pattern

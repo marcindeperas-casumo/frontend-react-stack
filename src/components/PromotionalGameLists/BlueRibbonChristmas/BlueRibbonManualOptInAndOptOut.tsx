@@ -9,6 +9,7 @@ import { useTranslations } from "Utils/hooks";
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
   isLight?: boolean;
+  isDesktop?: boolean;
 }) => {
   const t = useTranslations<{
     opt_in_contribution_value: string;
@@ -21,7 +22,9 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
     props.jackpotSlug
   );
   const textColor = props.isLight ? "text-black" : "text-white";
-
+  const { isDesktop } = props;
+  const desktopClassesComposition =
+    "t-border-r-top-left--md t-border-r-top-right--md u-padding-left--lg u-padding-right--lg";
   if (!t) {
     return null;
   }
@@ -31,10 +34,14 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
       direction="horizontal"
       justify="space-between"
       align="center"
-      className={classNames("u-padding", {
-        "bg-grey-90": !props.isLight,
-        "bg-white": props.isLight,
-      })}
+      className={classNames(
+        isDesktop ? desktopClassesComposition : "",
+        "u-padding",
+        {
+          "bg-grey-90": !props.isLight,
+          "bg-white": props.isLight,
+        }
+      )}
     >
       <Flex direction="vertical">
         <Flex direction="horizontal">
@@ -68,12 +75,14 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
           {t.opt_in_contribution_value}
         </Text>
       </Flex>
-      <Toggle
-        labelOn="ON"
-        labelOff="OFF"
-        checked={status}
-        onChange={status ? optOut : optIn}
-      />
+      <Flex className={classNames("u-margin-left--md")}>
+        <Toggle
+          labelOn="ON"
+          labelOff="OFF"
+          checked={status}
+          onChange={status ? optOut : optIn}
+        />
+      </Flex>
     </Flex>
   );
 };

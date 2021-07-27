@@ -23,8 +23,11 @@ const PromotionCardListContainer = React.memo<Props>(
     const t = useTranslations<{ more_link: string }>(
       "built-pages.top-lists-translations"
     );
-
     const promotionsList = useTranslations<TPromotionListContents>(slug);
+
+    if (slug === "null") {
+      return null;
+    }
 
     if (!promotionsList || !t) {
       return <PromotionCardListSkeleton />;

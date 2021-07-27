@@ -167,7 +167,7 @@ export const ROUTES = {
   [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
     "cash/history/transactions-annual-overview/:selectedYear",
   [ROUTE_IDS.CASH_DEPOSIT]: "cash/deposit",
-  [ROUTE_IDS.PLAY_OKAY]: "play-okay",
+  [ROUTE_IDS.PLAY_OKAY]: "{{playOkay}}",
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
   [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
@@ -212,6 +212,10 @@ export const TRANSLATED_ROUTES = {
     de: "aktionen",
     es: "promociones",
     DEFAULT: "promotions",
+  },
+  PLAY_OKAY: {
+    es: "juega-bien",
+    DEFAULT: "play-okay",
   },
 } as const;
 

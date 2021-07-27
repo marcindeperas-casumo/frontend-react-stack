@@ -5,6 +5,7 @@ export {
 } from "./BlueRibbonJackpotsWidgetContainer";
 export { BlueRibbonJackpotsInGameWidgetContainer } from "./BlueRibbonJackpotsInGameWidgetContainer";
 export { BlueRibbonJackpotsFooterWidgetContainer } from "./BlueRibbonJackpotsFooterWidgetContainer";
+export { BlueRibbonJackpotsFooterWidgetContainerDesktop } from "./BlueRibbonJackpotsFooterWidgetContainerDesktop";
 export { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpotsWidget";
 export { BlueRibbonManualOptInAndOptOut } from "./BlueRibbonManualOptInAndOptOut";
 export { BlueRibbonOptInNotification } from "./BlueRibbonOptInNotification";
