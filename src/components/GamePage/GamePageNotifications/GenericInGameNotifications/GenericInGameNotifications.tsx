@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReusableNotification } from "../ReusableNotification";
+import { GenericNotification } from "./GenericNotification";
 import { useNotificationsSubscription } from "./useNotificationsSubscription";
 
 export const GenericInGameNotifications = () => {
@@ -10,6 +10,6 @@ export const GenericInGameNotifications = () => {
   }
 
   return (
-    <ReusableNotification translationSlug={`notifications.${notification}`} />
+    <GenericNotification translationSlug={`notifications.${notification}`} />
   );
 };
