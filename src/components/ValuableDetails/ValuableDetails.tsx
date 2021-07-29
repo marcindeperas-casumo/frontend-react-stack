@@ -178,16 +178,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
         navigate({ url });
       }
     } catch (error) {
-      const {
-        extensions: { exception },
-      } =
-        error.graphQLErrors && error.graphQLErrors.length > 0
-          ? error.graphQLErrors[0]
-          : JSON.stringify(error);
+      if (error.graphQLErrors && error.graphQLErrors.length > 0) {
+        const {
+          extensions: { exception },
+        } = error.graphQLErrors[0];
 
-      launchErrorModal({
-        rejectReasonId: exception.rejectReasonId,
-      });
+        launchErrorModal({
+          rejectReasonId: exception.rejectReasonId,
+        });
+      }
     }
   };
 
