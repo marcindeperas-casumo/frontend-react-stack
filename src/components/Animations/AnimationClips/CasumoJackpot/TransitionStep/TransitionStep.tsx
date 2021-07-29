@@ -36,7 +36,10 @@ export const TransitionStep = ({ onShowNext, onTransition }) => {
   const width = Math.hypot(size.width, size.height) * 2;
 
   return (
-    <div className="c-transition-layer o-position--absolute u-width--full u-height--full u-overflow--hidden">
+    <div
+      className="c-transition-layer o-position--absolute u-width--full u-height--full u-overflow--hidden"
+      style={{ zIndex: 2 }}
+    >
       <div
         style={{
           width,

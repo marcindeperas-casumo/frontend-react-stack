@@ -1,6 +1,8 @@
 import { storiesOf } from "@storybook/react";
+import { select } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
+import { wheelProps } from "../AnimationClips/CasumoJackpot/WheelStep/constants";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
 const stories = storiesOf("Animations", module).addParameters({
@@ -20,36 +22,57 @@ const amountTranslations = {
   jackpotTypeTextRow: "{{ potName }}",
 };
 
-const animationConfigMock = [
-  {
-    animationId: "casumoJackpotIntro",
-    settings: { t: introTranslations },
-  },
-  {
-    animationId: "casumoJackpotTransition",
-    isTransition: true,
-    settings: {},
-  },
-  {
-    animationId: "casumoJackpotAmount",
-    settings: {
-      t: amountTranslations,
-      amount: 12413,
-      currency: "EUR",
-      potKey: "pot1",
-      potName: "Mini",
-      locale: "en",
+function getAnimationConfigMock(wonPotKey) {
+  return [
+    {
+      animationId: "casumoJackpotIntro",
+      settings: { t: introTranslations },
     },
-  },
-];
+    {
+      animationId: "casumoJackpotTransition",
+      isTransition: true,
+      settings: {},
+    },
+    {
+      animationId: "casumoJackpotWheel",
+      settings: {
+        wonPotKey,
+        ...wheelProps,
+      },
+    },
+    {
+      animationId: "casumoJackpotTransition",
+      isTransition: true,
+      settings: {},
+    },
+    {
+      animationId: "casumoJackpotAmount",
+      settings: {
+        t: amountTranslations,
+        amount: 12413,
+        currency: "EUR",
+        potKey: wonPotKey,
+        potName: wheelProps.t[wonPotKey],
+        potColor: wheelProps.potColors[wonPotKey],
+        locale: "en",
+      },
+    },
+    {
+      animationId: "casumoJackpotTransition",
+      isTransition: true,
+      settings: {},
+    },
+  ];
+}
 
 const AnimationContainer = () => {
   const [show, setShow] = React.useState(false);
+  const pot = select("pot", ["pot1", "pot2", "pot3", "pot4"], "pot1");
 
   return show ? (
     <CasumoJackpotAnimation
       onAnimationDone={() => setShow(false)}
-      animationConfig={animationConfigMock}
+      animationConfig={getAnimationConfigMock(pot)}
     />
   ) : (
     <button onClick={() => setShow(true)}>play</button>

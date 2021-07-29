@@ -2,7 +2,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { interpolate } from "Utils";
 
-export const TopBox = ({ isSmall, height, width, t, potName }) => {
+export const TopBox = ({ isSmall, height, width, t, potName, potColor }) => {
   const letterSpacing = isSmall ? "3px" : "6px";
   const fontSize = isSmall ? "" : "u-font-lg";
 
@@ -13,8 +13,9 @@ export const TopBox = ({ isSmall, height, width, t, potName }) => {
         height,
         top: `-${height / 2}px`,
         left: `-${width / 2}px`,
+        backgroundColor: potColor,
       }}
-      className="o-position--absolute t-background-yellow-30"
+      className="o-position--absolute"
     >
       <Flex
         className={`u-text-align-center u-font-weight-bold u-height--full ${fontSize}`}
