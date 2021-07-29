@@ -3,6 +3,7 @@ import { select } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { wheelProps } from "../AnimationClips/CasumoJackpot/WheelStep/constants";
+import { svgFiles } from "../AnimationClips/CasumoJackpot/AmountStep/AmountStep.stories";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
 const stories = storiesOf("Animations", module).addParameters({
@@ -19,7 +20,7 @@ const amountTranslations = {
   buttonText: "Continue playing",
   continueText: "The money will be added to your account",
   jackpotWinTextRow: "YOU WON A",
-  jackpotTypeTextRow: "{{ potName }}",
+  jackpotTypeTextRow: "{{ potName }} JACKPOT",
 };
 
 function getAnimationConfigMock(wonPotKey) {
@@ -55,6 +56,7 @@ function getAnimationConfigMock(wonPotKey) {
         potName: wheelProps.t[wonPotKey],
         potColor: wheelProps.potColors[wonPotKey],
         locale: "en",
+        svgFiles,
       },
     },
     {

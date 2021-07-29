@@ -92,6 +92,7 @@ export const CasumoJackpotAnimationContainer = ({
     {
       animationId: "casumoJackpotAmount",
       settings: {
+        svgFiles,
         t: amountTranslations,
         amount: params.amount,
         currency: params.currency,
