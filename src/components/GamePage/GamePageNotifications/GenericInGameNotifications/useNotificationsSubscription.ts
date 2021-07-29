@@ -21,7 +21,10 @@ export function useNotificationsSubscription() {
     }) => {
       const notificationData = event.data.notificationAdded;
 
-      if (handledNotifications.find(x => x === notificationData.type)) {
+      if (
+        notificationData &&
+        handledNotifications.find(x => x === notificationData.type)
+      ) {
         notificationSet(notificationData.type);
       }
     },
