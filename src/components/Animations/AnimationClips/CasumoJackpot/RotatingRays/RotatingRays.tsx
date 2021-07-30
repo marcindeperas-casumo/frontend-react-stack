@@ -3,7 +3,10 @@ import { useScreenOrientation } from "Utils/hooks/useScreenOrientation";
 import Image from "./backgroundRaysDefault.svg";
 import "./RotatingRays.scss";
 
-export const RotatingRays = () => {
+type Props = {
+  potColor?: string;
+};
+export const RotatingRays = ({ potColor = "#FFCA30" }: Props) => {
   const { isLandscapeOriented } = useScreenOrientation();
   const size = isLandscapeOriented() ? "100vw" : "100vh";
 
@@ -12,6 +15,7 @@ export const RotatingRays = () => {
       <Image
         height={size}
         width={size}
+        style={{ color: potColor }}
         className="c-intro-step__rotating-rays o-position--absolute"
       />
     </div>

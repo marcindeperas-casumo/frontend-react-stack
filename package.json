@@ -33,6 +33,7 @@
     "@casumo/sports-search": "^3.0.1",
     "@reach/router": "^1.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
+    "@use-gesture/react": "^10.0.0-beta.17",
     "bezier-easing": "^2.1.0",
     "classnames": "^2.2.6",
     "cometd": "^3.1.9",
