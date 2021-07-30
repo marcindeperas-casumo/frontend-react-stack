@@ -161,8 +161,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
     try {
       await onConsumeValuable(id);
 
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
-      if (!isDepositBonusSelected && (this.props.valuableDetails.games || []).length) {
+      const valuableGames =
+        "games" in this.props.valuableDetails &&
+        (this.props.valuableDetails.games || []).length;
+
+      if (!isDepositBonusSelected && valuableGames) {
         return launchGame({
           // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
           slug: this.props.valuableDetails.games[0].slug,
