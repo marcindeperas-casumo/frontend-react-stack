@@ -27,7 +27,15 @@ function getAnimationConfigMock(wonPotKey) {
   return [
     {
       animationId: "casumoJackpotIntro",
-      settings: { t: introTranslations },
+      settings: {
+        t: introTranslations,
+        potSvgsForIntro: [
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot4.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot3.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot2.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot1.svg",
+        ],
+      },
     },
     {
       animationId: "casumoJackpotTransition",
