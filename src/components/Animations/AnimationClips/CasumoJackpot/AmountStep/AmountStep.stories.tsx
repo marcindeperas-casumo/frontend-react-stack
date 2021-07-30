@@ -23,6 +23,7 @@ const mockConfig = {
     amount: 12413,
     currency: "EUR",
     potKey: "pot1",
+    potColor: "#ABA7E1",
     potName: "Mini",
     locale: "en",
   },
