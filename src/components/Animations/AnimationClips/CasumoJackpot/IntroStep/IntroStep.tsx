@@ -6,7 +6,7 @@ import { useWindowSize } from "react-use";
 import { AnimationClipProps } from "Components/Animations/constants";
 import { useScreenOrientation } from "Utils/hooks";
 import { RotatingRays } from "../RotatingRays/RotatingRays";
-import { SymbolWithPots } from "./SymbolWithPots/SymbolWithPots";
+import { SymbolWithPots } from "./SymbolWithPots";
 import "./IntroStep.scss";
 
 type TIntroStepSettings = {
@@ -15,6 +15,7 @@ type TIntroStepSettings = {
     buttonText: string;
     findOutText: string;
   };
+  potSvgsForIntro: string[];
 };
 
 type TIntroStepProps = {
@@ -154,7 +155,12 @@ export const IntroStep = ({ config, onShowNext }: TIntroStepProps) => {
                 </animated.div>
               )}
               {potsSectionVisible && (
-                <SymbolWithPots isSmall={small} width={width} height={height} />
+                <SymbolWithPots
+                  isSmall={small}
+                  width={width}
+                  height={height}
+                  potSvgsForIntro={config.settings.potSvgsForIntro}
+                />
               )}
             </animated.div>
             <div

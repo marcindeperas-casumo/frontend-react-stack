@@ -3,6 +3,7 @@ import { select } from "@storybook/addon-knobs";
 import React from "react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { wheelProps } from "../AnimationClips/CasumoJackpot/WheelStep/constants";
+import { svgFiles } from "../AnimationClips/CasumoJackpot/AmountStep/AmountStep.stories";
 import { CasumoJackpotAnimation } from "./CasumoJackpotAnimation";
 
 const stories = storiesOf("Animations", module).addParameters({
@@ -19,14 +20,22 @@ const amountTranslations = {
   buttonText: "Continue playing",
   continueText: "The money will be added to your account",
   jackpotWinTextRow: "YOU WON A",
-  jackpotTypeTextRow: "{{ potName }}",
+  jackpotTypeTextRow: "{{ potName }} JACKPOT",
 };
 
 function getAnimationConfigMock(wonPotKey) {
   return [
     {
       animationId: "casumoJackpotIntro",
-      settings: { t: introTranslations },
+      settings: {
+        t: introTranslations,
+        potSvgsForIntro: [
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot4.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot3.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot2.svg",
+          "https://cms.casumo.com/wp-content/uploads/2021/07/pot1.svg",
+        ],
+      },
     },
     {
       animationId: "casumoJackpotTransition",
@@ -55,6 +64,7 @@ function getAnimationConfigMock(wonPotKey) {
         potName: wheelProps.t[wonPotKey],
         potColor: wheelProps.potColors[wonPotKey],
         locale: "en",
+        svgFiles,
       },
     },
     {
