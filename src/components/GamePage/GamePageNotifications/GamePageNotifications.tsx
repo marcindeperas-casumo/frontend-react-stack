@@ -3,7 +3,7 @@ import * as React from "react";
 import { RealMoneyPlayRequiredNotification } from "./ReusableNotification/RealMoneyPlayRequiredNotification";
 import { BlueRibbonJackpotGameNotification } from "./BlueRibbonJackpotGameNotification";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
-
+import { GenericInGameNotifications } from "./GenericInGameNotifications";
 import "./GamePageNotifications.scss";
 
 export function GamePageNotifications() {
@@ -16,6 +16,7 @@ export function GamePageNotifications() {
       <ReelRaceStartingNotification />
       <BlueRibbonJackpotGameNotification />
       <RealMoneyPlayRequiredNotification />
+      <GenericInGameNotifications />
     </Flex>
   );
 }
