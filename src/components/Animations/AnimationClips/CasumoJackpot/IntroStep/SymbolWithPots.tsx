@@ -19,6 +19,7 @@ export const SymbolWithPots = ({ height, width, isSmall, potSvgsForIntro }) => {
     potSvgsForIntro.length % 2 === 0 ? potSvgsForIntro.length / 2 : 0,
     0,
     <Flex.Item
+      key="rotatingSymbol"
       style={{
         width: rotatingSymbolSize,
         height: rotatingSymbolSize,
