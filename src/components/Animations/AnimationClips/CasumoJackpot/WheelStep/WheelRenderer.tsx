@@ -137,13 +137,8 @@ export function WheelRenderer(props: Props) {
         <animated.img
           className="o-position--absolute"
           style={{
-            opacity: props.scale.to({
-              range: [25, 30],
-              output: [0, 1],
-              extrapolate: "clamp",
-            }),
-            height: 164 * props.svgRatio,
-            width: 164 * props.svgRatio,
+            height: 187 * props.svgRatio,
+            width: 187 * props.svgRatio,
           }}
           src={props.svgFiles.movingWheelCenterpiece}
         />
