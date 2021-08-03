@@ -29,6 +29,7 @@ stories.add("Finished", () => {
     <GameLaunchOnboardingModal
       config={{ ...cmsContent }}
       acceptModal={action("accepted modal")}
+      cancelModal={action("cancel modal")}
     />
   );
 });

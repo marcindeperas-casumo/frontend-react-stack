@@ -32,7 +32,7 @@ export function GameLaunchOnboardingModal({
       <img
         src={config.content?.heroImage}
         className="o-flex__item-align--start"
-        alt="ggl-break-finished"
+        alt="onboarding-game-launch-hero-image"
       />
       <Text tag="h2" size="2xlg" className="u-font-weight-bold u-margin-bottom">
         {config.content?.onboardingTitle}
