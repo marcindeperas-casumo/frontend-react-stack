@@ -51,7 +51,9 @@ export const CasumoJackpotAnimationContainer = ({
     return {};
   });
 
-  const potSvgsForIntro = Object.keys(potColors).map(x => svgFiles[x]);
+  const potSvgsForIntro = Object.keys(potColors).map(
+    x => svgFiles[`${x}Borderless`]
+  );
 
   const introTranslations = {
     buttonText: textFields.buttonReveal,
@@ -100,7 +102,7 @@ export const CasumoJackpotAnimationContainer = ({
         currency: params.currency,
         potKey: params.pot_key,
         potName: jackpotConfig.pots.find(pot => pot.potKey === params.pot_key)
-          .name,
+          .shortName,
         potColor: potColors[params.pot_key],
         locale: locale,
       },
