@@ -18,11 +18,11 @@ export const CuratedCardFooterGameDesktop = ({
 }: CuratedCardFooterGameProps) => {
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game.slug),
+    [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(game?.slug),
   };
 
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
-    slug: game.slug,
+    slug: game?.slug || "",
   });
 
   return (

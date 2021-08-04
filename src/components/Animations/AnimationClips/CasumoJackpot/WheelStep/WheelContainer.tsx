@@ -21,15 +21,15 @@ export function WheelContainer(props: Props) {
       numberOfTraces={3}
       gap={0}
       velocityToGapRatio={1}
-      rotations={5 * 360}
+      rotations={8 * 360}
       wheelConfigPreset={{
-        frequency: 0.85,
-        damping: 0.87,
+        frequency: 6,
+        damping: 1,
         precision: 0.001,
       }}
       tickerConfigPreset={{
         frequency: 0.6,
-        damping: 0.46,
+        damping: 0.7,
       }}
       potMap={props.config.settings.potMap}
       potColors={props.config.settings.potColors}

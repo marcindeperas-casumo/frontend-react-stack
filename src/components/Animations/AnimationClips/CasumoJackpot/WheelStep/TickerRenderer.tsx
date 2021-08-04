@@ -81,6 +81,7 @@ export function TickerRenderer(props: Props) {
         >
           <animated.div
             style={{
+              paddingLeft: props.isVertical ? 0 : 20 * props.svgRatio,
               transform: props.rotate.to(deg => {
                 const reminder = deg % 360;
                 const closest = findClosest(
