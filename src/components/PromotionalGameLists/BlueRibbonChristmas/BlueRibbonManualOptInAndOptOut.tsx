@@ -40,7 +40,8 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
         {
           "bg-grey-90": !props.isLight,
           "bg-white": props.isLight,
-        }
+        },
+        "c-br-footer-widget__container-border-r"
       )}
     >
       <Flex direction="vertical">
