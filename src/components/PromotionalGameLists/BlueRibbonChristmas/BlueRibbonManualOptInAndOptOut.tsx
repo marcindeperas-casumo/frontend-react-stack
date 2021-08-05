@@ -61,10 +61,6 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
             tag="span"
             size="xs"
             className="u-padding-left--sm text-blue-50 u-display--flex"
-            onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log("T&C modal not wired up");
-            }}
           >
             <JackpotTermsAndConditionsLink
               text={t.opt_in_t_and_c_apply}
