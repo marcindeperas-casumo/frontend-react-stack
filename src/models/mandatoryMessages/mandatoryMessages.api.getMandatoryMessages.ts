@@ -54,10 +54,10 @@ export const getMandatoryMessagesApi = mandatoryMessagesApi.injectEndpoints({
           cometd.subscribe(channel, listener);
 
           await cacheEntryRemoved;
-
-          cometd.unsubscribe(channel, listener);
         } catch (e) {
           logger.warning(`${reducerPath}: ${e}`);
+        } finally {
+          cometd.unsubscribe(channel, listener);
         }
       },
     }),
