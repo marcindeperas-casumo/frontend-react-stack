@@ -35,7 +35,7 @@ export const JackpotDetailPage: React.FC<TProps> = ({
     >
       <ResponsiveImage
         src={t.details_image}
-        dpr={2}
+        dpr={window.devicePixelRatio}
         imgixOpts={{
           fit: "crop",
           w: isMobile ? 700 : 1200,
