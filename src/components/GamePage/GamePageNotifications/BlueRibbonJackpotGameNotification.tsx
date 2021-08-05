@@ -19,13 +19,13 @@ export function BlueRibbonJackpotGameNotification() {
     //   blueribbonJackpotForCurrentGame &&
     //   blueribbonJackpotForCurrentGame.optedIn
     // )
-    if (blueribbonJackpotForCurrentGame) {
-      dispatch(
-        showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
-          content: { slug: blueribbonJackpotForCurrentGame.slug },
-        })
-      );
-    }
+    //ƒ if (blueribbonJackpotForCurrentGame) {
+    dispatch(
+      showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
+        slug: "casumo-jackpots",
+      })
+    );
+    // }
   }, [blueribbonJackpotForCurrentGame, dispatch]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {
