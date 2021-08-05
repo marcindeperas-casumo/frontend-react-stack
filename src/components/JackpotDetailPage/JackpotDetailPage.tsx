@@ -18,13 +18,15 @@ type TProps = {
   optInComponent: React.ReactElement;
   widgetComponent: React.ReactElement;
   isMobile: boolean;
-  t: TJackpotDetailsPageTranslations;
+  jackpotSlug: string;
+  t: TJackpotDetailsPageTranslations & { tncLabel: string };
 };
 
 export const JackpotDetailPage: React.FC<TProps> = ({
   isMobile,
   optInComponent,
   widgetComponent,
+  jackpotSlug,
   t,
 }: TProps) => {
   return (
@@ -53,7 +55,11 @@ export const JackpotDetailPage: React.FC<TProps> = ({
             <h2>{t.details_title}</h2>
             <div className={`${topMarginClasses}`}>{t.details_intro_text}</div>
             <div className={`${topMarginClasses}`}>
-              <JackpotRules text={t.rules_text} />
+              <JackpotRules
+                jackpotSlug={jackpotSlug}
+                text={t.rules_text}
+                tncLabel={t.tncLabel}
+              />
             </div>
           </Flex.Item>
           <Flex.Item>{widgetComponent}</Flex.Item>

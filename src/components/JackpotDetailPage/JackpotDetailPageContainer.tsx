@@ -21,6 +21,10 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
     `jackpots-details-pages.${jackpotSlug}`
   );
 
+  const jackpotConfigPage = useTranslations<{
+    opt_in_t_and_c_apply: string;
+  }>(`jackpots-configs.${jackpotSlug}`);
+
   const optIn = (
     <BlueRibbonManualOptInAndOptOut jackpotSlug={jackpotSlug} isLight={true} />
   );
@@ -29,12 +33,13 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
     <BlueRibbonJackpotsWidgetContainer jackpot_slug={jackpotSlug} />
   );
 
-  return t ? (
+  return t && jackpotConfigPage ? (
     <JackpotDetailPage
       optInComponent={optIn}
       widgetComponent={widget}
       isMobile={!breakpoints.gtPhablet}
-      t={t}
+      jackpotSlug={jackpotSlug}
+      t={{ ...t, tncLabel: jackpotConfigPage.opt_in_t_and_c_apply }}
     />
   ) : null;
 };
