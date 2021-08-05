@@ -12,10 +12,6 @@ export const JackpotTermsAndConditionsLink = ({
 }: TProps) => {
   const showTermsAndConditions = (e: MouseEvent) => {
     console.log("t&c not wired up", jackpotSlug);
-    e.stopPropagation();
-    e.preventDefault();
-
-    return true;
     //launch your modal here
   };
   return <a onClick={showTermsAndConditions}>{unescape(text)}</a>;
