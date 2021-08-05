@@ -1,13 +1,32 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon } from "@casumo/cmp-icons";
+import { showModal } from "Models/modal";
+import { REACT_APP_MODAL } from "Src/constants";
 import DangerousHtml from "Components/DangerousHtml";
 import { useGameJackpotContext } from "Components/GamePage/Contexts";
 
 export function BlueRibbonJackpotGameNotification() {
   const { blueribbonJackpotForCurrentGame } = useGameJackpotContext();
   const [acknowledged, setAcknowledged] = React.useState(false);
+  const dispatch = useDispatch();
+  // TODO: if first time player and BE sending jackpot for current game/player
+  // React.useEffect()
+  React.useEffect(() => {
+    // if (
+    //   blueribbonJackpotForCurrentGame &&
+    //   blueribbonJackpotForCurrentGame.optedIn
+    // )
+    if (blueribbonJackpotForCurrentGame) {
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
+          content: { slug: blueribbonJackpotForCurrentGame.slug },
+        })
+      );
+    }
+  }, [blueribbonJackpotForCurrentGame, dispatch]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {
     return null;

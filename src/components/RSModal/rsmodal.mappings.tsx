@@ -11,6 +11,7 @@ import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
+import { GameLaunchModal } from "Components/RSModal/GameLaunchOnboarding";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -155,15 +156,17 @@ export const mappings: Mapping = {
     slug: "",
     Content: ArticleModal,
   },
+  [REACT_APP_MODAL.ID.GAMELAUNCH_MODAL]: {
+    slug: "",
+    Content: GameLaunchModal,
+  },
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",
     Content: AccountWarmUp,
   },
 };
 
-export const getModalData: (
-  modalId: ModalId | null
-) => {
+export const getModalData: (modalId: ModalId | null) => {
   slug: string;
   Content: React.ComponentType;
 } = R.propOr({ Content: ModalLoadingState }, R.__, mappings);

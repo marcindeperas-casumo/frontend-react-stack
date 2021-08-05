@@ -32,7 +32,8 @@ export type ModalId =
   | "CONTENT_HTML"
   | "REEL_RACES_TAC"
   | "ACCOUNT_WARM_UP"
-  | "ARTICLE_MODAL";
+  | "ARTICLE_MODAL"
+  | "GAMELAUNCH_MODAL";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

@@ -1,1 +1,1 @@
-export { GameLaunchOnboardingModal } from "./GameLaunchOnboardingModal";
+export { GameLaunchModal } from "./GameLaunchOnboardingModalContainer";

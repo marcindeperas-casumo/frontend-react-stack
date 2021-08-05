@@ -21,28 +21,24 @@ export function GameLaunchOnboardingModal({
         action: cancelModal,
       }}
       primaryButton={{
-        text: config.content?.onboarding_button_label || "",
+        text: config.content?.button_accept || "",
         action: acceptModal,
       }}
       secondaryButton={{
-        text: config.content?.onboarding_deny_button_label || "",
+        text: config.content?.button_deny || "",
         action: cancelModal,
       }}
     >
       <img
-        src={config.content?.heroImage}
+        src={config.content?.details_image}
         className="o-flex__item-align--start"
         alt="onboarding-game-launch-hero-image"
       />
       <Text tag="h2" size="2xlg" className="u-font-weight-bold u-margin-bottom">
-        {config.content?.onboardingTitle}
+        {config.content?.onboarding_title}
       </Text>
-      <Text className="u-line-height--15">
-        {config.content?.onboardingBodyCopy || ""}
-      </Text>
-      <Text className="u-line-height--15">
-        {config.content?.onboardingBodyCopy2 || ""}
-      </Text>
+      <Text>{config.content?.onboarding_text || ""}</Text>
+      <Text>{config.content?.rules_text || ""}</Text>
     </CudlModal>
   );
 }
