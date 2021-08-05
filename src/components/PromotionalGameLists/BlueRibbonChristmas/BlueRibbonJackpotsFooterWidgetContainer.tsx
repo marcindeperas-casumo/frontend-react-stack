@@ -1,5 +1,6 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
+import { useScreenOrientation } from "Utils/hooks";
 import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { useBlueRibbonAutoOptIn } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
@@ -13,7 +14,7 @@ export function BlueRibbonJackpotsFooterWidgetContainer() {
   const {
     blueribbonJackpotForCurrentGame: composedJackpot,
   } = useGameJackpotContext();
-
+  const { isLandscapeOriented } = useScreenOrientation();
   if (!composedJackpot) {
     return null;
   }
@@ -21,10 +22,24 @@ export function BlueRibbonJackpotsFooterWidgetContainer() {
   return (
     <>
       <Mobile>
-        <BlueRibbonJackpotsFooterWidget
-          normalizedPots={normalizePots(composedJackpot.pots)}
-        />
-        <BlueRibbonManualOptInAndOptOut jackpotSlug={composedJackpot.slug} />
+        <Flex
+          direction={isLandscapeOriented() ? "horizontal" : "vertical"}
+          className="bg-grey-70"
+          spacing="none"
+          justify="center"
+          align="center"
+        >
+          <Flex.Item className="c-br-footer-widget__container-responsive-width">
+            <BlueRibbonJackpotsFooterWidget
+              normalizedPots={normalizePots(composedJackpot.pots)}
+            />
+          </Flex.Item>
+          <Flex.Item className="c-br-footer-widget__container-responsive-width">
+            <BlueRibbonManualOptInAndOptOut
+              jackpotSlug={composedJackpot.slug}
+            />
+          </Flex.Item>
+        </Flex>
       </Mobile>
       <TabletAndDesktop>
         <Flex direction="horizontal" align="center" justify="center">
