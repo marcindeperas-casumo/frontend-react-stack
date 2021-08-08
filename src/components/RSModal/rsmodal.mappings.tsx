@@ -11,6 +11,7 @@ import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
+import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -58,6 +59,10 @@ export const mappings: Mapping = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
+  },
+  JACKPOT_TERMS_AND_CONDITIONS: {
+    slug: "",
+    Content: JackpotTermsAndConditionsModal,
   },
   GAME_ROUND_DETAILS: {
     slug: "features.bets",
