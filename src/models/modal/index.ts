@@ -9,6 +9,7 @@ export const type = {
 } as const;
 export type ModalId =
   | "GAME_ROUND_DETAILS"
+  | "JACKPOT_TERMS_AND_CONDITIONS"
   | "TERMS_AND_CONDITIONS_SPAIN"
   | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
   | "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT"
@@ -44,6 +45,7 @@ export type ModalConfig = {
   content?: any;
   gameRoundId?: any;
   isWide?: boolean;
+  slug?: string;
 };
 type ModalState = {
   modalId: ModalId | null;
