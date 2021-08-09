@@ -10,7 +10,7 @@ export function DefaultContainer({ t, config }: ContainerProps) {
     isLoading,
     buttonLabel,
     content
-  } = useDefaultState(config?.input);
+  } = useDefaultState(config?.input ?? {});
   const { parameters } = config?.input?.message ?? {};
 
   return (
