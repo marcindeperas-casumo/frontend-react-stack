@@ -357,6 +357,7 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 const CURRENCY_INTERPOLATION_REGEX = /{{2}\s*(\w+)\s* \|\s*€\s*}{2}/gm;
+const TEMPLATE_STRING_INTERPOLATION_REGEX = /\${(\w+)}/gm;
 
 const defaultTranslation = "[MISSING TRANSLATION]";
 
@@ -366,16 +367,15 @@ export const canBeInterpolated = (target: string) =>
 export const interpolate = (
   target: string = defaultTranslation,
   replacements: { [s: string]: string | number }
-) =>
-  target
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    .replace(INTERPOLATION_REGEX, (match, param) =>
-      R.propOr(match, param, replacements)
-    )
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    .replace(CURRENCY_INTERPOLATION_REGEX, (match, param) =>
-      R.propOr(match, param, replacements)
-    );
+) => {
+  const replacer = (match: string, param: string) =>
+    R.propOr<string, typeof replacements, string>(match, param, replacements);
+
+  return target
+    .replace(INTERPOLATION_REGEX, replacer)
+    .replace(CURRENCY_INTERPOLATION_REGEX, replacer)
+    .replace(TEMPLATE_STRING_INTERPOLATION_REGEX, replacer);
+};
 
 export const interpolateWithJSX = R.curry(
   (replacements: { [s: string]: React.ReactNode }, target: string) =>

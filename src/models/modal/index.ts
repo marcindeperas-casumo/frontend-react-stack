@@ -1,5 +1,6 @@
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetMandatoryMessagesQuery } from "Models/mandatoryMessages";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 export * from "./modal.selectors";
@@ -59,10 +60,54 @@ export function showModal(modalId: ModalId, config?: ModalConfig) {
     config,
   };
 }
-export function useSelectModal(): ModalState {
-  // @ts-expect-error ts-migrate(2739) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
-  return useSelector(R.prop("modal"), R.eqProps("modalId"));
+
+export const isMandatoryMessageModalId: (
+  modalId: ModalId | null
+) => boolean = R.both(R.is(String), R.startsWith("mandatory-messages."));
+
+function useSelectMandatoryMessageModal(): ModalState {
+  const { data, isLoading } = useGetMandatoryMessagesQuery();
+
+  if (isLoading) {
+    return {
+      modalId: null,
+      config: null,
+    };
+  }
+
+  if (R.isNil(data) || R.isEmpty(data)) {
+    return null;
+  }
+
+  const [firstMandatoryMessage] = data;
+  const messageModalId = `mandatory-messages.${firstMandatoryMessage.reason.toLowerCase()}` as ModalId;
+
+  return {
+    modalId: messageModalId,
+    config: {
+      mustAccept: true,
+      input: {
+        slug: messageModalId,
+        message: firstMandatoryMessage,
+      },
+    },
+  };
 }
+
+export function useSelectModal(): ModalState {
+  const mandatoryMessageModalState = useSelectMandatoryMessageModal();
+  const modalState = useSelector<any, ModalState>(
+    R.prop("modal"),
+    R.eqProps("modalId")
+  );
+
+  if (mandatoryMessageModalState) {
+    return mandatoryMessageModalState;
+  }
+
+  return modalState;
+}
+
 export function hideModal() {
   return {
     type: type.hide,

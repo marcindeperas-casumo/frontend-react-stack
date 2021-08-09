@@ -1,4 +1,5 @@
 export { useTranslations } from "./useTranslations";
+export { useTranslationsVoca } from "./useTranslationsVoca";
 export { useTranslationsGql } from "./useTranslationsGql";
 export { useDelayedCleanup } from "./useDelayedCleanup";
 export { useLocale } from "./useLocale";
