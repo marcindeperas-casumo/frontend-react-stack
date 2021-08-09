@@ -28,3 +28,9 @@ export const getMediaQuery = mediaMap =>
   Object.keys(mediaMap)
     .reduce((acc, prop) => [...acc, `(${prop}: ${mediaMap[prop]})`], ["screen"])
     .join(" and ");
+
+export const breakpointsGoals = {
+  gtMobile: { "min-width": breakpoints.phablet },
+  gtPhablet: { "min-width": breakpoints.tablet },
+  gtTablet: { "min-width": breakpoints.desktop },
+};
