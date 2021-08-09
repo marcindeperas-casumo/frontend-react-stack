@@ -20,6 +20,7 @@ export function PlayerValuableListVertical() {
     return null;
   }
 
+  //this is where the problem is
   const consumeValuable = (id: string) =>
     mutateValuable({
       variables: {
