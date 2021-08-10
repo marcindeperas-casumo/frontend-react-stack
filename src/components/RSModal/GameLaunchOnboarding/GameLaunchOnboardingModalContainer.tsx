@@ -1,12 +1,7 @@
 import React from "react";
 import { useTranslations } from "Utils/hooks";
+import { ModalContentComponent } from "../rsmodal.mappings";
 import { GameLaunchOnboardingModal } from "./GameLaunchOnboardingModal";
-
-type TProps = {
-  config: string;
-  acceptJackpot: () => void;
-  denyJackpot: () => void;
-};
 
 export type ModalTranslations = {
   button_accept: string;
@@ -18,20 +13,20 @@ export type ModalTranslations = {
 };
 
 export const GameLaunchModal = ({
-  config,
-  acceptJackpot,
-  denyJackpot,
-}: TProps) => {
-  const t = useTranslations<ModalTranslations>(
+  t,
+  acceptModal,
+  dismissModal,
+}: ModalContentComponent<{}>) => {
+  const translations = useTranslations<ModalTranslations>(
     `jackpots-details-pages.casumo-jackpots`
   );
 
   return (
-    t && (
+    translations && (
       <GameLaunchOnboardingModal
-        acceptModal={acceptJackpot}
-        cancelModal={denyJackpot}
-        t={t}
+        acceptModal={acceptModal}
+        cancelModal={dismissModal}
+        t={translations}
       />
     )
   );
