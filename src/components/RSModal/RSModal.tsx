@@ -23,7 +23,6 @@ export function Modal() {
       isWide={state.config?.isWide}
     >
       <Content
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ t: {}; closeModal: (result?: any) => void;... Remove this comment to see the full error message
         t={t}
         closeModal={closeModal}
         dismissModal={dismissModal}
