@@ -1,5 +1,6 @@
 import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Text from "@casumo/cmp-text";
 import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
 import { ModalTranslations } from "./GameLaunchOnboardingModalContainer";
@@ -29,10 +30,13 @@ export function GameLaunchOnboardingModal({
         action: cancelModal,
       }}
     >
-      <img
+      <ResponsiveImage
         src={t.details_image}
-        className="o-flex__item-align--start"
-        alt="onboarding-game-launch-hero-image"
+        dpr={window.devicePixelRatio}
+        imgixOpts={{
+          fit: "crop",
+          w: 700,
+        }}
       />
       <Text tag="h2" size="2xlg" className="u-font-weight-bold u-margin-bottom">
         {t.onboarding_title}
