@@ -25,7 +25,6 @@ export const GameLaunchModal = ({
   const t = useTranslations<ModalTranslations>(
     `jackpots-details-pages.casumo-jackpots`
   );
-  console.log("T ", t);
 
   return (
     t && (

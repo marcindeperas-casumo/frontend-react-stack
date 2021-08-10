@@ -1,6 +1,7 @@
 import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import Text from "@casumo/cmp-text";
+import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
 import { ModalTranslations } from "./GameLaunchOnboardingModalContainer";
 
 type Props = {
@@ -37,7 +38,8 @@ export function GameLaunchOnboardingModal({
         {t.onboarding_title}
       </Text>
       <Text>{t.onboarding_text || ""}</Text>
-      <Text>{t.rules_text || ""}</Text>
+      <JackpotRules text={t.rules_text || ""} tncLabel="" jackpotSlug="" />
+      <Text>{}</Text>
     </CudlModal>
   );
 }
