@@ -1184,6 +1184,7 @@ export interface CuratedCard {
   launchGameText?: Maybe<Scalars["String"]>;
   game?: Maybe<Game>;
   externalLink?: Maybe<Scalars["String"]>;
+  internalLink?: Maybe<Scalars["String"]>;
   sportsRoute?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
   smallImage?: Maybe<Scalars["String"]>;
@@ -1439,6 +1440,7 @@ export type CuratedCardQuery = {
     largeImage?: Maybe<string>;
     sportsRoute?: Maybe<string>;
     externalLink?: Maybe<string>;
+    internalLink?: Maybe<string>;
     game?: Maybe<CuratedCard_GameFragment>;
   }>;
   session: { market: string };
@@ -2059,8 +2061,6 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
     }>;
     notifications: {
       gameLaunch: string;
-      jackpotContributionCancelled: string;
-      jackpotContributionInsufficientFunds: string;
       optIn: { title: string; content: string };
     };
   }>;
