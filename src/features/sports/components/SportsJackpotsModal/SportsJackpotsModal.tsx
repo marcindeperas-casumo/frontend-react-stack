@@ -6,13 +6,11 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { useLocale, useTranslations } from "Utils/hooks";
 import { SportsJackpotsTranslations } from "Features/sports/components/SportsJackpots/SportsJackpots.types";
-import {
-  useComposedJackpotConfigData,
-  useBlueRibbonAutoOptIn,
-} from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
+import { useBlueRibbonAutoOptIn } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { currencySelector } from "Models/handshake";
 import { goToHash } from "Services/NavigationService";
 import { formatCurrency, stringToHTML } from "Utils";
+import { useComposedJackpotConfigBySlug } from "Components/PromotionalGameLists/BlueRibbonChristmas/useComposedJackpot";
 import {
   CMS_SLUG_CONFIG,
   CMS_SLUG_JACKPOTS,
@@ -25,8 +23,8 @@ type Props = {
 
 export const SportsJackpotsModal = ({ onClose }: Props) => {
   const t = useTranslations<SportsJackpotsTranslations>(CMS_SLUG_CONFIG);
-  const { composedJackpot } = useComposedJackpotConfigData({
-    jackpotSlug: CMS_SLUG_JACKPOTS,
+  const { composedJackpot } = useComposedJackpotConfigBySlug({
+    slug: CMS_SLUG_JACKPOTS,
   });
   useBlueRibbonAutoOptIn(JACKPOTS_GAME_SLUG);
   const locale = useLocale();

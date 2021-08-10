@@ -79,14 +79,11 @@ export type PotValues = {
   lastWinTs: number;
 };
 
-export type PotsObjects = A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
+export type PotObject = A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
   PotValues;
 
-export type ComposedJackpot = Omit<
-  A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"],
-  "pots"
-> & {
-  pots: Array<PotsObjects>;
+export type ComposedJackpot = Omit<A.BlueribbonJackpotConfig, "pots"> & {
+  pots: Array<PotObject>;
 };
 
 export const jackpotWidgetInGameWidth = 359;

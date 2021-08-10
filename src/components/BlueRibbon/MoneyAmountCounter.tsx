@@ -2,6 +2,8 @@ import BezierEasing from "bezier-easing";
 import React from "react";
 import { formatCurrency } from "Utils";
 
+import "./MoneyAmountCounter.scss";
+
 export const MoneyAmountCounter = ({
   amount,
   animationTime = 2000,
@@ -49,5 +51,9 @@ export const MoneyAmountCounter = ({
     minimumFractionDigits: 2,
   });
 
-  return <span>{formattedValue}</span>;
+  return (
+    <span className="c-casumo_jackpot_animation-animated_money_value">
+      {formattedValue}
+    </span>
+  );
 };

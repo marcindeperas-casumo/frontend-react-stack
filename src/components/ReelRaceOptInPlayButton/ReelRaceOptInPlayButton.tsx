@@ -1,13 +1,15 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
-import { noop } from "Utils";
+import { noop, isIosNative, isAndroidNative } from "Utils";
 import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
+import { launchGame } from "Services/LaunchGameService";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -29,13 +31,19 @@ export function ReelRaceOptInPlayButton({
     slug: reelRace.game.slug,
   });
 
+  const playCallback =
+    isIosNative() || isAndroidNative()
+      ? () => launchGame({ slug: reelRace.game.slug })
+      : // eslint-disable-next-line fp/no-mutation
+        () => (window.location.pathname = gameDetailsPath);
+
   const OptInButton = () => (
     <TrackClick
       eventName={EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED}
       data={{ state: BUTTON_STATE.OPT_IN }}
     >
       <ButtonVariant
-        size="md"
+        size="sm"
         onClick={optIn || noop}
         className="u-width--full"
       >
@@ -46,7 +54,7 @@ export function ReelRaceOptInPlayButton({
 
   const OptedInButton = () => (
     <ButtonVariant
-      size="md"
+      size="sm"
       isDisabled
       onClick={noop}
       className="u-width--full bg-grey-80 u-padding-top--sm"
@@ -61,12 +69,7 @@ export function ReelRaceOptInPlayButton({
       eventName={EVENTS.MIXPANEL_REEL_RACE_SCHEDULE_CARD_OPT_IN_CLICKED}
       data={{ state: BUTTON_STATE.PLAY }}
     >
-      <ButtonVariant
-        size="md"
-        // eslint-disable-next-line fp/no-mutation
-        onClick={() => (window.location.pathname = gameDetailsPath)}
-        className="u-width--full"
-      >
+      <ButtonVariant size="sm" onClick={playCallback} className="u-width--full">
         <PlayIcon size="sm" />
         <Text tag="span" className="u-margin-left">
           {reelRace.translations.optedInCtaSingleGameShort}
@@ -88,6 +91,8 @@ export function ReelRaceOptInPlayButton({
   };
 
   return (
-    <div className="u-width--full u-padding-left--md">{getActionButton()}</div>
+    <Flex justify="end" className="u-padding-left--md">
+      {getActionButton()}
+    </Flex>
   );
 }

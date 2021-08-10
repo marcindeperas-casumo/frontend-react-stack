@@ -1,4 +1,5 @@
 export { useTranslations } from "./useTranslations";
+export { useTranslationsVoca } from "./useTranslationsVoca";
 export { useTranslationsGql } from "./useTranslationsGql";
 export { useDelayedCleanup } from "./useDelayedCleanup";
 export { useLocale } from "./useLocale";
@@ -33,3 +34,4 @@ export { useScrollToTop } from "./useScrollToTop";
 export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export { useTranslatedUrl } from "./useTranslatedUrl";
 export { usePlayerWarmUpDetails } from "./usePlayerWarmUpDetails";
+export { useScreenOrientation } from "./useScreenOrientation";

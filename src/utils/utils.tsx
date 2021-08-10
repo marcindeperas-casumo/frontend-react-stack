@@ -357,6 +357,7 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 const CURRENCY_INTERPOLATION_REGEX = /{{2}\s*(\w+)\s* \|\s*€\s*}{2}/gm;
+const TEMPLATE_STRING_INTERPOLATION_REGEX = /\${(\w+)}/gm;
 
 const defaultTranslation = "[MISSING TRANSLATION]";
 
@@ -366,16 +367,15 @@ export const canBeInterpolated = (target: string) =>
 export const interpolate = (
   target: string = defaultTranslation,
   replacements: { [s: string]: string | number }
-) =>
-  target
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    .replace(INTERPOLATION_REGEX, (match, param) =>
-      R.propOr(match, param, replacements)
-    )
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-    .replace(CURRENCY_INTERPOLATION_REGEX, (match, param) =>
-      R.propOr(match, param, replacements)
-    );
+) => {
+  const replacer = (match: string, param: string) =>
+    R.propOr<string, typeof replacements, string>(match, param, replacements);
+
+  return target
+    .replace(INTERPOLATION_REGEX, replacer)
+    .replace(CURRENCY_INTERPOLATION_REGEX, replacer)
+    .replace(TEMPLATE_STRING_INTERPOLATION_REGEX, replacer);
+};
 
 export const interpolateWithJSX = R.curry(
   (replacements: { [s: string]: React.ReactNode }, target: string) =>
@@ -558,3 +558,56 @@ export const getOrdinalSuffix = ({
 export const persistVerticalToLocalStorage = () => {
   setInStorage(LOCAL_STORAGE_GAME_LAUNCH_LOCATION, window.location.pathname);
 };
+
+/**
+ * Iterates through array of numbers (list) and finds value that is closest to
+ * searched value (goal). This function is called in frequent bursts (ie. for
+ * each frame of animation).
+ */
+export function findClosest(list: Array<number>, goal: number) {
+  return list.reduce((prev, curr) =>
+    Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
+  );
+}
+
+/**
+ * This calculates distance travelled after decelerating to zero velocity at constant rate.
+ * iOS uses two constants: 0.99 (fast) and 0.998 (normal). Value of 0.99 means that view loses 1%
+ * of velocity per 1ms of animation, 0.998 means 0.2% per 1ms and so on.
+ * In theory 0 < decelerationRate < 1, but values smaller than 0.99 are rarely used.
+ * initialVelocity is the velocity at the end of the event, it is initial from perspective of this
+ * projection.
+ *
+ * This approach is similar to how picture in picture works on iOS - you can flick it slightly and
+ * it goes to the corner where you want it - the idea was that we could leverage that to let user
+ * spin the jackpot wheel, calculate projected position and adjust it slightly so wheel ends up
+ * highlighting the pot that was won.
+ */
+export function projectPosition(
+  initialVelocity: number,
+  decelerationRate = 0.998
+) {
+  return ((initialVelocity / 10) * decelerationRate) / (1 - decelerationRate);
+}
+
+// { key: [v1, v2] } => { v1: key, v2: key }
+export function mapValuesToKey<T extends number | string, K extends string>(
+  obj: Record<K, T[]>
+): Record<T, K> {
+  return Object.entries(obj).reduce((acc, [currKey, currVal]) => {
+    if (!Array.isArray(currVal)) {
+      return acc;
+    }
+
+    return {
+      ...acc,
+      ...currVal.reduce(
+        (acc2, curr) => ({
+          ...acc2,
+          [curr]: currKey,
+        }),
+        {}
+      ),
+    };
+  }, {});
+}

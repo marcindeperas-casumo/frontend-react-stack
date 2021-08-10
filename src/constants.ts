@@ -59,6 +59,7 @@ export const KO_EVENTS = {
 export const DEVICES = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
+  TABLET: "tablet",
 } as const;
 
 // todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
@@ -112,6 +113,7 @@ export const ROUTE_IDS = {
   LIVE_CASINO_SEARCH: "LIVE_CASINO_SEARCH",
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
+  JACKPOTS_DETAILS: "JACKPOTS_DETAILS",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
   PLAYER_VALUABLES: "PLAYER_VALUABLES",
   PLAYER_SETTINGS: "PLAYER_SETTINGS",
@@ -151,8 +153,9 @@ export const ROUTES = {
   [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
   [ROUTE_IDS.LIVE_CASINO]: "live-casino",
   [ROUTE_IDS.LIVE_CASINO_SEARCH]: "live-casino/search",
-  [ROUTE_IDS.PROMOTIONS]: "promotions",
-  [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
+  [ROUTE_IDS.PROMOTIONS]: "{{promotions}}",
+  [ROUTE_IDS.PROMOTION_DETAILS]: "{{promotions}}/:slug",
+  [ROUTE_IDS.JACKPOTS_DETAILS]: "jackpots/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
   [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
   [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
@@ -167,7 +170,7 @@ export const ROUTES = {
   [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
     "cash/history/transactions-annual-overview/:selectedYear",
   [ROUTE_IDS.CASH_DEPOSIT]: "cash/deposit",
-  [ROUTE_IDS.PLAY_OKAY]: "play-okay",
+  [ROUTE_IDS.PLAY_OKAY]: "{{playOkay}}",
   [ROUTE_IDS.FAQ]: "faq",
   [ROUTE_IDS.ABOUT_CASUMO]: "about-casumo",
   [ROUTE_IDS.CASINO_GAMES]: "{{casinoGames}}",
@@ -203,6 +206,20 @@ export const TRANSLATED_ROUTES = {
     en: "casino-games",
     es: "casino-juegos",
     DEFAULT: "games-information",
+  },
+  PROMOTIONS: {
+    dk: "kampagner",
+    sv: "kampanjer",
+    no: "kampanjer",
+    fi: "kampanjat",
+    de: "aktionen",
+    at: "aktionen",
+    es: "promociones",
+    DEFAULT: "promotions",
+  },
+  PLAY_OKAY: {
+    es: "juega-bien",
+    DEFAULT: "play-okay",
   },
 } as const;
 
@@ -461,6 +478,7 @@ export const REACT_APP_MODAL = {
     DISMISSED: "DISMISSED",
   },
   ID: {
+    JACKPOT_TERMS_AND_CONDITIONS: "JACKPOT_TERMS_AND_CONDITIONS",
     TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
     DANISH_ENTRY_OVERLAY: "DANISH_ENTRY_OVERLAY",
     PIQ_REDIRECTION_IFRAME_MODAL: "PIQ_REDIRECTION_IFRAME_MODAL",
@@ -558,7 +576,7 @@ export const topListWidgetHeight = 304;
 export const topListWidgetHeightTwoRows = 198;
 export const exclusiveTileHeight = 280;
 export const exlusiveTileWidth = 188;
-export const promotionsTileHeight = 311;
+export const promotionsTileHeight = 348;
 
 export const horizontalListsDevicePaddings = {
   default: "md",

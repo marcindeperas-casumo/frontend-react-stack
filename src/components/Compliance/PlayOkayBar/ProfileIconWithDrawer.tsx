@@ -114,8 +114,7 @@ export const ProfileIconWithDrawer = ({
           `${baseClassName}__animated-drawer`,
           `o-position--absolute u-zindex--content-overlay bg-opacity-100`,
           "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
-          "u-padding-left u-padding-left--md@desktop u-padding-right",
-          "u-overflow--hidden"
+          "u-padding-left u-padding-left--md@desktop u-padding-right overflow-auto"
         )}
       >
         <div

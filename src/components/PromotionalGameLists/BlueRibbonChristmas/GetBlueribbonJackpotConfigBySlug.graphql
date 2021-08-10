@@ -1,0 +1,28 @@
+query GetBlueribbonJackpotConfigBySlug($slug: String!) {
+  blueribbonJackpotBySlug(slug: $slug) {
+    externalId
+    title
+    image
+    slug
+    widgetColor {
+      dark
+      light
+    }
+    pots {
+      externalId
+      potKey
+      name
+      shortName
+      mainWinRatio
+      communityWinRatio
+      icon
+      potExplanation
+      sharedPot { 
+        name
+        shortName
+        icon
+        splitExplanation
+      }
+    }
+  }
+}

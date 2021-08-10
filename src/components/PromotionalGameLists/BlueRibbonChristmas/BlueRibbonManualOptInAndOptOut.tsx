@@ -5,10 +5,12 @@ import Flex from "@casumo/cmp-flex";
 import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { Toggle } from "Components/Toggle/Toggle";
 import { useTranslations } from "Utils/hooks";
+import { JackpotTermsAndConditionsLink } from "Components/JackpotDetailPage/JackpotTermsAndConditionsLink";
 
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
   isLight?: boolean;
+  isDesktop?: boolean;
 }) => {
   const t = useTranslations<{
     opt_in_contribution_value: string;
@@ -21,16 +23,27 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
     props.jackpotSlug
   );
   const textColor = props.isLight ? "text-black" : "text-white";
+  const { isDesktop } = props;
+  const desktopClassesComposition =
+    "t-border-r-top-left--md t-border-r-top-right--md u-padding-left--lg u-padding-right--lg";
+  if (!t) {
+    return null;
+  }
 
   return (
     <Flex
       direction="horizontal"
       justify="space-between"
       align="center"
-      className={classNames("u-padding-x u-padding-y--md", {
-        "bg-grey-90": !props.isLight,
-        "bg-white": props.isLight,
-      })}
+      className={classNames(
+        isDesktop ? desktopClassesComposition : "",
+        "u-padding",
+        {
+          "bg-grey-90": !props.isLight,
+          "bg-white": props.isLight,
+        },
+        "c-br-footer-widget__container-border-r"
+      )}
     >
       <Flex direction="vertical">
         <Flex direction="horizontal">
@@ -48,12 +61,11 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
             tag="span"
             size="xs"
             className="u-padding-left--sm text-blue-50 u-display--flex"
-            onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log("T&C modal not wired up");
-            }}
           >
-            {t.opt_in_t_and_c_apply}
+            <JackpotTermsAndConditionsLink
+              text={t.opt_in_t_and_c_apply}
+              jackpotSlug={props.jackpotSlug}
+            />
           </Text>
         </Flex>
         <Text
@@ -64,12 +76,14 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
           {t.opt_in_contribution_value}
         </Text>
       </Flex>
-      <Toggle
-        labelOn="ON"
-        labelOff="OFF"
-        checked={status}
-        onChange={status ? optOut : optIn}
-      />
+      <Flex className={classNames("u-margin-left--md")}>
+        <Toggle
+          labelOn="ON"
+          labelOff="OFF"
+          checked={status}
+          onChange={status ? optOut : optIn}
+        />
+      </Flex>
     </Flex>
   );
 };

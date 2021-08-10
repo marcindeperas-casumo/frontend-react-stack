@@ -20,21 +20,22 @@ export const CuratedCardFooterGame = ({
   game,
   launchButtonText,
   onLaunchGame,
-}: CuratedCardFooterGameProps) => (
-  <>
-    <MobileAndTablet>
-      <CuratedCardFooterGameMobile
-        game={game}
-        launchButtonText={launchButtonText}
-        onLaunchGame={onLaunchGame}
-      />
-    </MobileAndTablet>
-    <Desktop>
-      <CuratedCardFooterGameDesktop
-        game={game}
-        launchButtonText={launchButtonText}
-        onLaunchGame={onLaunchGame}
-      />
-    </Desktop>
-  </>
-);
+}: CuratedCardFooterGameProps) =>
+  game && (
+    <>
+      <MobileAndTablet>
+        <CuratedCardFooterGameMobile
+          game={game}
+          launchButtonText={launchButtonText}
+          onLaunchGame={onLaunchGame}
+        />
+      </MobileAndTablet>
+      <Desktop>
+        <CuratedCardFooterGameDesktop
+          game={game}
+          launchButtonText={launchButtonText}
+          onLaunchGame={onLaunchGame}
+        />
+      </Desktop>
+    </>
+  );
