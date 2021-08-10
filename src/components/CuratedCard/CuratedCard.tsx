@@ -1,4 +1,5 @@
 import { getApolloContext } from "@apollo/client";
+import { navigate } from "@reach/router";
 import Card from "@casumo/cmp-card";
 import React from "react";
 import classNames from "classnames";
@@ -16,6 +17,7 @@ import {
   getLink,
   getTrackData,
   getIsExternalLink,
+  getIsInternalLink,
   getIsWelcomeOffer,
 } from "./CuratedCard.utils";
 import { CuratedCardBackground } from "./CuratedCardBackground";
@@ -48,6 +50,7 @@ export const CuratedCard = ({
 
   const link = getLink(market, curatedCard);
   const isExternalLink = getIsExternalLink(curatedCard);
+  const isInternalLink = getIsInternalLink(curatedCard);
   const isGame = getIsGame(curatedCard);
   const isSports = getIsSports(curatedCard);
   const isWelcomeOffer = getIsWelcomeOffer(curatedCard);
@@ -72,6 +75,8 @@ export const CuratedCard = ({
     if (isExternalLink) {
       window.open(link, "_blank");
       return false;
+    } else if (isInternalLink) {
+      navigate(link);
     }
   };
 
