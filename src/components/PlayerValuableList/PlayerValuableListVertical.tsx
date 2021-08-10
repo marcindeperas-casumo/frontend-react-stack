@@ -3,7 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
-import { getDeviceType } from "utils/getDeviceType";
+import { getDeviceType } from "Utils/getDeviceType";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
