@@ -173,12 +173,13 @@ export const mappings: Mapping = {
   },
 };
 
-export const getMandatoryMessageModalData: (modalId: ModalId) => ModalProps =
-  R.ifElse(
-    R.has(R.__, mappings),
-    R.prop(R.__, mappings),
-    R.assoc("slug", R.__, { Content: MandatoryMessageModal })
-  );
+export const getMandatoryMessageModalData: (
+  modalId: ModalId
+) => ModalProps = R.ifElse(
+  R.has(R.__, mappings),
+  R.prop(R.__, mappings),
+  R.assoc("slug", R.__, { Content: MandatoryMessageModal })
+);
 
 export const getModalData: (modalId: ModalId | null) => ModalProps = R.ifElse(
   isMandatoryMessageModalId,

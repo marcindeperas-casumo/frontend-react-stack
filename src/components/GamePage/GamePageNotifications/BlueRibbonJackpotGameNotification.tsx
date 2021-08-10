@@ -15,17 +15,16 @@ export function BlueRibbonJackpotGameNotification() {
   // TODO: if first time player and BE sending jackpot for current game/player
   // React.useEffect()
   React.useEffect(() => {
-    // if (
-    //   blueribbonJackpotForCurrentGame &&
-    //   blueribbonJackpotForCurrentGame.optedIn
-    // )
-    //ƒ if (blueribbonJackpotForCurrentGame) {
-    dispatch(
-      showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
-        slug: "casumo-jackpots",
-      })
-    );
-    // }
+    if (
+      blueribbonJackpotForCurrentGame &&
+      blueribbonJackpotForCurrentGame.optedIn
+    ) {
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
+          slug: "casumo-jackpots",
+        })
+      );
+    }
   }, [blueribbonJackpotForCurrentGame, dispatch]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {

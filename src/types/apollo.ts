@@ -1718,8 +1718,7 @@ export type MustDropJackpotsGamesListQuery = {
   }>;
 };
 
-export type MustDropJackpotsWidget_MustDropJackpotFragment =
-  MustDropJackpot_MustDropJackpotFragment;
+export type MustDropJackpotsWidget_MustDropJackpotFragment = MustDropJackpot_MustDropJackpotFragment;
 
 export type MustDropJackpotsQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -2901,10 +2900,9 @@ export type FavouriteSportsSelectorContext_CompetitionFragment = {
   name: string;
 } & FavouriteCompetitionsSelectorModal_GroupFragment;
 
-export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables =
-  Exact<{
-    id: Scalars["Int"];
-  }>;
+export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables = Exact<{
+  id: Scalars["Int"];
+}>;
 
 export type FavouriteSportsSelectorContextCompetitionSuggestionsQuery = {
   topCompetitions: Array<FavouriteSportsSelectorContext_CompetitionFragment>;

@@ -127,8 +127,7 @@ export const localeSelector = createSelector(
   market => INTL_LOCALES[market]
 );
 
-type __tournamentChannelsSelector =
-  _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
+type __tournamentChannelsSelector = _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
   R.pathOr<__tournamentChannelsSelector>(
@@ -155,8 +154,7 @@ export const emailSelector = createSelector(
   R.path<__emailSelector>(["contactInfo", "email"])
 );
 
-type __socialSecurityNumberSelector =
-  _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
+type __socialSecurityNumberSelector = _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   R.path<__socialSecurityNumberSelector>([
