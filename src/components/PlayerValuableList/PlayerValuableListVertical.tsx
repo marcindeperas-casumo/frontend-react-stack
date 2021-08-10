@@ -3,6 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
+import { getDeviceType } from "utils/getDeviceType";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
@@ -20,12 +21,11 @@ export function PlayerValuableListVertical() {
     return null;
   }
 
-  //this is where the problem is
   const consumeValuable = (id: string) =>
     mutateValuable({
       variables: {
         id,
-        source: "mobile",
+        source: getDeviceType(),
       },
     });
   const {
