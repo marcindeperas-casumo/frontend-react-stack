@@ -1,17 +1,14 @@
 import { isMobile, isTablet, isDesktop } from "Components/ResponsiveLayout";
+import { DEVICES } from "Src/constants";
 
 export const getDeviceType = (): string => {
-  const mobile = "mobile";
-  const tablet = "tablet";
-  const desktop = "desktop";
-
   if (isMobile()) {
-    return mobile;
+    return DEVICES.MOBILE;
   }
   if (isTablet()) {
-    return tablet;
+    return DEVICES.TABLET;
   }
   if (isDesktop()) {
-    return desktop;
+    return DEVICES.DESKTOP;
   }
 };
