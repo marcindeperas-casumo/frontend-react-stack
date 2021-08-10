@@ -11,7 +11,10 @@ type Props = {
   };
 };
 
-export function TimeLimitsFormModalContainer({ acceptModal, config }: Props) {
+export function TimeLimitsFormModalContainer({
+  acceptModal,
+  config = {},
+}: Props) {
   const { t } = useTranslationsGql({
     form_top_header_initial: `${cmsKeyPrefix}form_top_header_initial`,
     form_top_header_edit: `${cmsKeyPrefix}form_top_header_edit`,

@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { Toggle } from "Components/Toggle/Toggle";
 import { useTranslations } from "Utils/hooks";
+import { JackpotTermsAndConditionsLink } from "Components/JackpotDetailPage/JackpotTermsAndConditionsLink";
 
 export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
@@ -40,7 +41,8 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
         {
           "bg-grey-90": !props.isLight,
           "bg-white": props.isLight,
-        }
+        },
+        "c-br-footer-widget__container-border-r"
       )}
     >
       <Flex direction="vertical">
@@ -59,12 +61,11 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
             tag="span"
             size="xs"
             className="u-padding-left--sm text-blue-50 u-display--flex"
-            onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log("T&C modal not wired up");
-            }}
           >
-            {t.opt_in_t_and_c_apply}
+            <JackpotTermsAndConditionsLink
+              text={t.opt_in_t_and_c_apply}
+              jackpotSlug={props.jackpotSlug}
+            />
           </Text>
         </Flex>
         <Text

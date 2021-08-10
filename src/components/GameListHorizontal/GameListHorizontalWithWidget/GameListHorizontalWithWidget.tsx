@@ -12,7 +12,10 @@ import {
   topListWidgetHeightTwoRows,
   horizontalListsDevicePaddings,
 } from "Src/constants";
-import { topMarginClasses } from "Components/GameListHorizontal/constants";
+import {
+  topMarginClasses,
+  xPaddingClasses,
+} from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
 export type Props = {
@@ -81,7 +84,7 @@ export const GameListHorizontalWithWidget = ({
   };
 
   return (
-    <div className={`o-wrapper ${topMarginClasses}`}>
+    <div className={`o-wrapper ${topMarginClasses} ${xPaddingClasses}`}>
       <MobileAndTablet>
         {name && (
           <ScrollableListTitleRow paddingLeft title={name} seeMore={seeMore} />

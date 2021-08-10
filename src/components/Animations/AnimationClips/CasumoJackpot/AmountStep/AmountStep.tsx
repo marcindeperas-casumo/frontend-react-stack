@@ -22,6 +22,8 @@ type TIntroStepSettings = {
   potName: string;
   locale: string;
   currency: string;
+  potColor: string;
+  svgFiles: { [potKey: string]: string };
 };
 
 type TIntroStepProps = {
@@ -63,7 +65,16 @@ export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
   const amountFontSize = small ? "u-font-xlg" : "u-font-3xlg";
   const buttonSize = small ? "md" : "lg";
 
-  const { t, amount, currency, potName, potKey, locale } = config.settings;
+  const {
+    t,
+    amount,
+    currency,
+    potName,
+    potKey,
+    locale,
+    potColor,
+    svgFiles,
+  } = config.settings;
 
   const styles1 = useSpring({
     from: { scale: 0 },
@@ -132,7 +143,7 @@ export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
                 className="o-position--absolute"
                 style={{ top: -height, left: "50%" }}
               >
-                <RotatingRays />
+                <RotatingRays potColor={potColor} />
               </div>
               {columnVisible && (
                 <animated.div style={fourthBoxStyles}>
@@ -174,6 +185,7 @@ export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
                   isSmall={small}
                   width={width}
                   height={height}
+                  potColor={potColor}
                 />
               )}
             </animated.div>
@@ -200,7 +212,10 @@ export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
                   className="o-position--absolute"
                   style={secondBoxStyles}
                 >
-                  <PotSymbol size={height} potKey={potKey} />
+                  <PotSymbol
+                    size={height}
+                    potSvgUrl={svgFiles[`${potKey}Borderless`]}
+                  />
                 </animated.div>
               </div>
             </div>

@@ -1184,6 +1184,7 @@ export interface CuratedCard {
   launchGameText?: Maybe<Scalars["String"]>;
   game?: Maybe<Game>;
   externalLink?: Maybe<Scalars["String"]>;
+  internalLink?: Maybe<Scalars["String"]>;
   sportsRoute?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
   smallImage?: Maybe<Scalars["String"]>;
@@ -1439,6 +1440,7 @@ export type CuratedCardQuery = {
     largeImage?: Maybe<string>;
     sportsRoute?: Maybe<string>;
     externalLink?: Maybe<string>;
+    internalLink?: Maybe<string>;
     game?: Maybe<CuratedCard_GameFragment>;
   }>;
   session: { market: string };
@@ -1716,7 +1718,8 @@ export type MustDropJackpotsGamesListQuery = {
   }>;
 };
 
-export type MustDropJackpotsWidget_MustDropJackpotFragment = MustDropJackpot_MustDropJackpotFragment;
+export type MustDropJackpotsWidget_MustDropJackpotFragment =
+  MustDropJackpot_MustDropJackpotFragment;
 
 export type MustDropJackpotsQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -2059,8 +2062,6 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
     }>;
     notifications: {
       gameLaunch: string;
-      jackpotContributionCancelled: string;
-      jackpotContributionInsufficientFunds: string;
       optIn: { title: string; content: string };
     };
   }>;
@@ -2900,9 +2901,10 @@ export type FavouriteSportsSelectorContext_CompetitionFragment = {
   name: string;
 } & FavouriteCompetitionsSelectorModal_GroupFragment;
 
-export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables = Exact<{
-  id: Scalars["Int"];
-}>;
+export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables =
+  Exact<{
+    id: Scalars["Int"];
+  }>;
 
 export type FavouriteSportsSelectorContextCompetitionSuggestionsQuery = {
   topCompetitions: Array<FavouriteSportsSelectorContext_CompetitionFragment>;

@@ -9,6 +9,7 @@ import {
   TCurrencyCode,
 } from "Src/constants";
 import type { TLanguage } from "Src/constants";
+import { TMandatoryMessage } from "Models/mandatoryMessages";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 import type { Handshake } from "./handshake.types";
 
@@ -126,7 +127,8 @@ export const localeSelector = createSelector(
   market => INTL_LOCALES[market]
 );
 
-type __tournamentChannelsSelector = _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
+type __tournamentChannelsSelector =
+  _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
   R.pathOr<__tournamentChannelsSelector>(
@@ -153,7 +155,8 @@ export const emailSelector = createSelector(
   R.path<__emailSelector>(["contactInfo", "email"])
 );
 
-type __socialSecurityNumberSelector = _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
+type __socialSecurityNumberSelector =
+  _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   R.path<__socialSecurityNumberSelector>([
@@ -223,4 +226,11 @@ export const commonContextSelector = createSelector(
 export const piqConfigSelector = createSelector(
   applicationHandshakeSelector,
   R.prop("common/composition/piqConfig")
+);
+
+export const mandatoryMessagesSelector: (
+  state: any
+) => Array<TMandatoryMessage> = createSelector(
+  playerSelector,
+  R.prop("mandatoryMessages")
 );

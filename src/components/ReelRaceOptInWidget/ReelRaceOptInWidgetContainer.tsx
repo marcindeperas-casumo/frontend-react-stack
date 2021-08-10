@@ -18,11 +18,11 @@ export function ReelRaceOptInWidgetContainer() {
     },
   });
 
-  const reelRaceGame = closestReelRace?.reelRaces[0];
+  const reelRaceGame = closestReelRace?.reelRaces?.[0];
   const currentGameIsClosestRROptedIn =
     reelRaceGame?.game?.slug === currentGameSlug && reelRaceGame?.optedIn;
 
-  if (closestRRLoading || currentGameIsClosestRROptedIn) {
+  if (!reelRaceGame || closestRRLoading || currentGameIsClosestRROptedIn) {
     return null;
   }
 

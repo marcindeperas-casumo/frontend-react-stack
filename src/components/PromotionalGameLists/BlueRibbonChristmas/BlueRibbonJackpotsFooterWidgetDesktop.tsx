@@ -28,7 +28,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const jackpotsRows = normalizedPots;
 
   return (
-    <div className="t-border-r-top-left u-overflow--hidden o-flex-align--center o-flex-justify--center c-br-footer-widget__container-direction">
+    <div className="t-border-r-top-left u-overflow--hidden o-flex-align--center o-flex-justify--center">
       <Flex
         direction="horizontal"
         align="center"
