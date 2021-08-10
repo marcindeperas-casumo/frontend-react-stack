@@ -2,6 +2,7 @@ import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Text from "@casumo/cmp-text";
+import { isMobile } from "Components/ResponsiveLayout";
 import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
 import { ModalTranslations } from "./GameLaunchOnboardingModalContainer";
 
@@ -35,7 +36,7 @@ export function GameLaunchOnboardingModal({
         dpr={window.devicePixelRatio}
         imgixOpts={{
           fit: "crop",
-          w: 700,
+          w: isMobile() ? 700 : 410,
         }}
       />
       <Text tag="h2" size="2xlg" className="u-font-weight-bold u-margin-bottom">
