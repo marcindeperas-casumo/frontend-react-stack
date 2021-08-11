@@ -12,8 +12,7 @@ export function BlueRibbonJackpotGameNotification() {
   const { blueribbonJackpotForCurrentGame } = useGameJackpotContext();
   const [acknowledged, setAcknowledged] = React.useState(false);
   const dispatch = useDispatch();
-  // TODO: if first time player and BE sending jackpot for current game/player
-  // React.useEffect()
+
   React.useEffect(() => {
     if (
       blueribbonJackpotForCurrentGame &&

@@ -2,8 +2,11 @@ import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Text from "@casumo/cmp-text";
+import http from "Lib/http";
 import { isMobile } from "Components/ResponsiveLayout";
 import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
+import { urls } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { useHandshake } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { ModalTranslations } from "./GameLaunchOnboardingModalContainer";
 
 type Props = {
@@ -17,6 +20,22 @@ export function GameLaunchOnboardingModal({
   cancelModal,
   t,
 }: Props) {
+  const handshake = useHandshake();
+
+  const handleAcceptModal = () => {
+    const isPotAvailable = handshake.jackpots.find(
+      pot => pot.jackpotSlug === "casumo-jackpots"
+    );
+
+    if (isPotAvailable) {
+      http
+        .post(urls.optIn, { jackpotId: isPotAvailable.jackpotId })
+        .then(({ optedIn }) => {
+          acceptModal();
+        });
+    }
+  };
+
   return (
     <CudlModal
       closeIcon={{
@@ -24,7 +43,7 @@ export function GameLaunchOnboardingModal({
       }}
       primaryButton={{
         text: t.button_accept || "",
-        action: acceptModal,
+        action: handleAcceptModal,
       }}
       secondaryButton={{
         text: t.button_deny || "",
@@ -43,7 +62,11 @@ export function GameLaunchOnboardingModal({
         {t.onboarding_title}
       </Text>
       <Text>{t.onboarding_text || ""}</Text>
-      <JackpotRules text={t.rules_text || ""} tncLabel="" jackpotSlug="" />
+      <JackpotRules
+        text={t.rules_text || ""}
+        tncLabel=""
+        jackpotSlug="casumo-jackpots"
+      />
       <Text>{}</Text>
     </CudlModal>
   );
