@@ -17,12 +17,27 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
-  const formattedPotValue = pot => {
-    return formatCurrency({
-      currency,
-      locale,
-      value: pot.value,
-    });
+  const getColorVal = index => {
+    if (index === 0) {
+      return "t-color-yellow-30";
+    } else if (index === 1) {
+      return "t-color-salmon-30";
+    } else if (index === 2) {
+      return "t-color-teal-50";
+    } else if (index === 3) {
+      return "t-color-purple-5";
+    }
+  };
+
+  const formattedPotValue = (pot, index) => {
+    return {
+      currency: formatCurrency({
+        currency,
+        locale,
+        value: pot.value,
+      }),
+      color: getColorVal(index),
+    };
   };
 
   const jackpotsRows = normalizedPots;
@@ -40,7 +55,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
       >
         {jackpotsRows.map((pot, idx) => (
           <Flex.Item key={idx}>
-            <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
+            <PotItem pot={pot} formattedValue={formattedPotValue(pot, idx)} />
           </Flex.Item>
         ))}
       </Flex>
@@ -48,8 +63,13 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   );
 }
 
+type PotItemDetails = {
+  currency: string;
+  color: string;
+};
+
 type TPotItemProps = {
-  formattedValue: string;
+  formattedValue: PotItemDetails;
   pot: PotObject;
 };
 
@@ -71,7 +91,10 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
           <Text
             size="xs"
             tag="span"
-            className="u-text-transform-uppercase text-grey-50"
+            className={classNames(
+              "u-text-transform-uppercase",
+              formattedValue.color
+            )}
           >
             {shortName}
           </Text>
@@ -80,7 +103,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
             tag="span"
             className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white"
           >
-            {formattedValue}
+            {formattedValue.currency}
           </Text>
         </Flex>
       </Flex.Item>
