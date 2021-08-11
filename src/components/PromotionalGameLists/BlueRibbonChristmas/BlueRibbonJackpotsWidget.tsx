@@ -11,7 +11,7 @@ import {
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
 } from "Src/constants";
-import type { PotsObjects } from "./blueRibbonConsts";
+import type { PotObject } from "./blueRibbonConsts";
 
 export function BlueRibbonJackpotsWidget({
   className = "",
@@ -19,7 +19,7 @@ export function BlueRibbonJackpotsWidget({
   widgetColor,
 }: {
   className?: string;
-  composedPots: Array<PotsObjects>;
+  composedPots: Array<PotObject>;
   widgetColor: {
     dark?: string;
     light?: string;

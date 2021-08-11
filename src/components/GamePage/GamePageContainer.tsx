@@ -18,7 +18,7 @@ import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
-import { isDesktop, Mobile } from "Components/ResponsiveLayout";
+import { isDesktop } from "Components/ResponsiveLayout";
 import { GameLauncher } from "Components/GameLauncher";
 import { GamePageHeader } from "Components/GamePageHeader";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
@@ -115,9 +115,7 @@ export const GamePageContainer = () => {
       footer={
         <React.Fragment>
           {shouldShowSlotControlSystem && <InfoBar />}
-          <Mobile>
-            <BlueRibbonJackpotsFooterWidgetContainer />
-          </Mobile>
+          <BlueRibbonJackpotsFooterWidgetContainer />
         </React.Fragment>
       }
       // @ts-expect-error ts-migrate(2339) FIXME: Property 'play_background' does not exist on type ... Remove this comment to see the full error message

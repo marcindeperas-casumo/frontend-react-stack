@@ -1,11 +1,18 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
+import classNames from "classnames";
 import { Redirect, Router } from "@reach/router";
 import * as A from "Types/apollo";
 import { getGamePage } from "Models/gameBrowser";
 import ComponentBuilder from "Components/ComponentBuilder";
 import { GameListPage } from "Components/GameListPage";
+import { DepositContainer } from "Components/Payments/Deposit/DepositContainer";
+import { Mobile } from "Components/ResponsiveLayout";
+import {
+  xPaddingClasses,
+  topMarginClasses,
+} from "Components/GameListHorizontal/constants";
 import { GetGameSets } from "../GameBrowser/GetGameSets.graphql";
 import { LiveCasinoSets } from "./LiveCasinoSets";
 
@@ -35,6 +42,12 @@ export const LiveCasinoGames = (props: { path: string }) => {
 
   return (
     <div className="u-padding-bottom--2xlg">
+      <Mobile>
+        <div className={classNames(xPaddingClasses, topMarginClasses)}>
+          <DepositContainer />
+        </div>
+      </Mobile>
+
       <LiveCasinoSets sets={gameSets} />
 
       <Router primary={false}>

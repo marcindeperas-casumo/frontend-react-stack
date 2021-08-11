@@ -65,6 +65,10 @@ export async function getCache() {
             // the same cache entity. You shouldn't need any additional checks.
             merge: mergeGetGamesPaginated,
           },
+          gamesSearch: {
+            keyArgs: (_, { variables }) => variables.query,
+            merge: mergeGetGamesPaginated,
+          },
         },
       },
     },

@@ -1,21 +1,17 @@
-import { useQuery } from "@apollo/client";
 import React from "react";
-import * as A from "Types/apollo";
+import * as R from "ramda";
 import { useTranslations } from "Utils/hooks";
 import type {
-  TFlattenedPromotion,
-  TPromotionTranslations,
   TPromotion,
+  TFlattenedPromotion,
+  TPromotionListContents,
 } from "../../models/promotions/promotions.types";
 import { PromotionCardList } from "./PromotionCardList";
-import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 
 type Props = {
   slug: string;
-  name?: string;
-  showSeeMoreLink?: boolean;
-  skipGql?: boolean;
+  hideShowMoreLink?: boolean;
 };
 
 const flattenPromotions = (promotions: TPromotion[]): TFlattenedPromotion[] => {
@@ -23,44 +19,34 @@ const flattenPromotions = (promotions: TPromotion[]): TFlattenedPromotion[] => {
 };
 
 const PromotionCardListContainer = React.memo<Props>(
-  ({ slug, name, showSeeMoreLink, skipGql }: Props) => {
-    const { data, loading } = useQuery<
-      A.PromotionsListQuery,
-      A.PromotionsListQueryVariables
-    >(PromotionsListQuery, {
-      variables: {
-        slug,
-      },
-      skip: skipGql === true,
-    });
-
+  ({ slug, hideShowMoreLink }: Props) => {
     const t = useTranslations<{ more_link: string }>(
       "built-pages.top-lists-translations"
     );
+    const promotionsList = useTranslations<TPromotionListContents>(slug);
 
-    const promotionsList = useTranslations<TPromotionTranslations>(slug);
+    if (slug === "null") {
+      return null;
+    }
 
-    if (loading || !promotionsList || !t) {
+    if (!promotionsList || !t) {
       return <PromotionCardListSkeleton />;
+    }
+
+    if (R.isEmpty(promotionsList.promotions)) {
+      return null;
     }
 
     const flattenedPromotionsList = flattenPromotions(
       promotionsList.promotions
     );
 
-    if (
-      promotionsList?.promotions.length ||
-      data?.promotionsList?.promotions?.length
-    ) {
-      const promotionsListToUse =
-        !data?.promotionsList?.promotions.length && promotionsList.promotions
-          ? flattenedPromotionsList
-          : data.promotionsList.promotions;
+    if (promotionsList?.promotions.length) {
       return (
         <PromotionCardList
-          seeMoreText={showSeeMoreLink && t.more_link}
-          name={name || promotionsList.list_title || data.promotionsList.name}
-          promotions={promotionsListToUse}
+          seeMoreText={!hideShowMoreLink && t?.more_link}
+          name={promotionsList?.list_title}
+          promotions={flattenedPromotionsList}
         />
       );
     }

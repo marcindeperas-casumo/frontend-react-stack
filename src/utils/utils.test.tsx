@@ -29,6 +29,8 @@ import {
   decodedUrlParams,
   bonusBalanceDisplay,
   hasAlphaCharactersOnly,
+  findClosest,
+  mapValuesToKey,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -476,6 +478,15 @@ describe("interpolate()", () => {
     const output = "I am a variable to be replaced with 12";
     expect(interpolate(input, { var: "variable", something: 12 })).toBe(output);
   });
+
+  test("should replace template string placeholders", () => {
+    const input = "I am a ${var} to be replaced with ${something}"; // eslint-disable-line no-template-curly-in-string
+    const output = "I am a variable to be replaced with 12";
+
+    expect(interpolate(input, { var: "variable", something: 12 })).toEqual(
+      output
+    );
+  });
 });
 
 describe("interpolateWithJSX()", () => {
@@ -638,5 +649,39 @@ describe("bonusBalanceDisplay to show bonus balance in different forms", () => {
       "en-en"
     );
     expect(bonusBalanceDisplayLongText).toMatch("");
+  });
+});
+
+describe("findClosest()", () => {
+  test("should find closestElement in given array", () => {
+    expect(findClosest([1, 2, 3, 4, 5], 2.11)).toBe(2);
+    expect(findClosest([262, 133, 200, 3.6666, 205, 240], 222)).toBe(205);
+  });
+});
+
+describe("mapValuesToKey()", () => {
+  test("maps list of values to key", () => {
+    expect(
+      mapValuesToKey({
+        one: ["a1", "a2"],
+        two: ["b1", "b2"],
+      })
+    ).toStrictEqual({
+      a1: "one",
+      a2: "one",
+      b1: "two",
+      b2: "two",
+    });
+    expect(
+      mapValuesToKey({
+        a: [1, 2],
+        b: [3, 4],
+      })
+    ).toStrictEqual({
+      1: "a",
+      2: "a",
+      3: "b",
+      4: "b",
+    });
   });
 });

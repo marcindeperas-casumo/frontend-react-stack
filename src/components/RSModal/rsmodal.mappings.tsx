@@ -4,6 +4,7 @@ import { REACT_APP_MODAL } from "Src/constants";
 import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
 import { overlayContentCmsSlug } from "Models/playOkay";
 import type { ModalId, ModalConfig } from "Models/modal";
+import { isMandatoryMessageModalId } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as MODAL_CMS_SLUGS } from "Models/playing/playing.constants";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
@@ -11,6 +12,8 @@ import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
+import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
+import { MandatoryMessageModal } from "Components/Compliance/MandatoryMessages";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -58,6 +61,10 @@ export const mappings: Mapping = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
+  },
+  JACKPOT_TERMS_AND_CONDITIONS: {
+    slug: "",
+    Content: JackpotTermsAndConditionsModal,
   },
   GAME_ROUND_DETAILS: {
     slug: "features.bets",
@@ -161,9 +168,16 @@ export const mappings: Mapping = {
   },
 };
 
-export const getModalData: (
-  modalId: ModalId | null
-) => {
-  slug: string;
-  Content: React.ComponentType;
-} = R.propOr({ Content: ModalLoadingState }, R.__, mappings);
+export const getMandatoryMessageModalData: (
+  modalId: ModalId
+) => ModalProps = R.ifElse(
+  R.has(R.__, mappings),
+  R.prop(R.__, mappings),
+  R.assoc("slug", R.__, { Content: MandatoryMessageModal })
+);
+
+export const getModalData: (modalId: ModalId | null) => ModalProps = R.ifElse(
+  isMandatoryMessageModalId,
+  getMandatoryMessageModalData,
+  R.propOr({ Content: ModalLoadingState }, R.__, mappings)
+);

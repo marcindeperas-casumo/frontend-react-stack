@@ -15,6 +15,7 @@ import { paymentsReducer as playerPayments } from "./payments/payments.reducer";
 import { playOkayReducer as playOkay } from "./playOkay/playOkay.rootReducer";
 import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 import { reelRacesReducer as reelRaces } from "./reelRaces";
+import { mandatoryMessagesApi } from "./mandatoryMessages";
 
 const rootReducer = combineReducers({
   router,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   playerPayments,
   fiveMinuteBreak,
   reelRaces,
+  [mandatoryMessagesApi.reducerPath]: mandatoryMessagesApi.reducer,
 });
 
 export default rootReducer;

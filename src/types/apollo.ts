@@ -32,6 +32,8 @@ export interface Query {
   articlesList?: Maybe<ArticlesList>;
   betDetails?: Maybe<BetDetails>;
   blueribbonJackpot?: Maybe<BlueribbonJackpotConfig>;
+  blueribbonJackpotByGameSlug?: Maybe<BlueribbonJackpotConfig>;
+  blueribbonJackpotBySlug?: Maybe<BlueribbonJackpotConfig>;
   competitions: Array<EventGroup>;
   curatedCard?: Maybe<CuratedCard>;
   dictionaryTerm: Scalars["String"];
@@ -43,7 +45,7 @@ export interface Query {
   games: Array<Game>;
   gamesBySlugs: Array<Game>;
   gamesList?: Maybe<GamesList>;
-  gamesSearch: GamesSearchResults;
+  gamesSearch: GamesPaginated;
   getCMSField?: Maybe<CmsText>;
   /**
    * "getCMSFieldAsJSON" is only needed for the component builder until we add type-definitions for all the
@@ -92,6 +94,14 @@ export interface QueryBetDetailsArgs {
 }
 
 export interface QueryBlueribbonJackpotArgs {
+  slug: Scalars["String"];
+}
+
+export interface QueryBlueribbonJackpotByGameSlugArgs {
+  gameSlug: Scalars["String"];
+}
+
+export interface QueryBlueribbonJackpotBySlugArgs {
   slug: Scalars["String"];
 }
 
@@ -144,8 +154,8 @@ export interface QueryGamesListArgs {
 
 export interface QueryGamesSearchArgs {
   query: Scalars["String"];
-  page?: Maybe<Scalars["Int"]>;
-  pageSize?: Maybe<Scalars["Int"]>;
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
 }
 
 export interface QueryGetCmsFieldArgs {
@@ -376,7 +386,8 @@ export type Currency =
   | "DKK"
   | "NZD"
   | "SEK"
-  | "USD";
+  | "USD"
+  | "NOK";
 
 export type Platform = "desktop" | "mobile";
 
@@ -529,11 +540,6 @@ export interface GameMedia {
   order: Scalars["Int"];
   path: Scalars["String"];
   type: Scalars["String"];
-}
-
-export interface GamesSearchResults {
-  results: Array<Maybe<Game>>;
-  resultsCount: Scalars["Int"];
 }
 
 export interface Jackpot {
@@ -1178,6 +1184,7 @@ export interface CuratedCard {
   launchGameText?: Maybe<Scalars["String"]>;
   game?: Maybe<Game>;
   externalLink?: Maybe<Scalars["String"]>;
+  internalLink?: Maybe<Scalars["String"]>;
   sportsRoute?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
   smallImage?: Maybe<Scalars["String"]>;
@@ -1261,11 +1268,14 @@ export interface BetProjectionsOutcomes {
 
 export interface BlueribbonJackpotConfig {
   externalId: Scalars["ID"];
+  requiresManualOptIn: Scalars["Boolean"];
+  optedIn: Scalars["Boolean"];
   slug: Scalars["String"];
   title: Scalars["String"];
   image: Scalars["String"];
   pots: Array<Pot>;
   widgetColor: WidgetColor;
+  notifications: Notifications;
 }
 
 export interface WidgetColor {
@@ -1301,6 +1311,16 @@ export interface Pot {
   winNotificationContent: Scalars["String"];
   potExplanation: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
+}
+
+export interface ComplexNotification {
+  title: Scalars["String"];
+  content: Scalars["String"];
+}
+
+export interface Notifications {
+  gameLaunch: Scalars["String"];
+  optIn: ComplexNotification;
 }
 
 export type CacheControlScope = "PUBLIC" | "PRIVATE";
@@ -1420,6 +1440,7 @@ export type CuratedCardQuery = {
     largeImage?: Maybe<string>;
     sportsRoute?: Maybe<string>;
     externalLink?: Maybe<string>;
+    internalLink?: Maybe<string>;
     game?: Maybe<CuratedCard_GameFragment>;
   }>;
   session: { market: string };
@@ -1547,14 +1568,15 @@ export type GameSearch_GameFragment = GameRow_GameFragment;
 
 export type GameSearchQueryVariables = Exact<{
   query: Scalars["String"];
-  page: Scalars["Int"];
-  pageSize: Scalars["Int"];
+  offset: Scalars["Int"];
+  limit: Scalars["Int"];
 }>;
 
 export type GameSearchQuery = {
   gamesSearch: {
-    resultsCount: number;
-    results: Array<Maybe<{ id: string } & GameSearch_GameFragment>>;
+    gamesCount: number;
+    offset: number;
+    games: Array<{ id: string } & GameSearch_GameFragment>;
   };
 };
 
@@ -2009,15 +2031,68 @@ export type PromotionCard_PromotionFragment = {
   ctaText?: Maybe<string>;
 };
 
-export type PromotionsListQueryVariables = Exact<{
+export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
+  gameSlug: Scalars["String"];
+}>;
+
+export type GetBlueribbonJackpotConfigByGameSlugQuery = {
+  blueribbonJackpotByGameSlug?: Maybe<{
+    externalId: string;
+    requiresManualOptIn: boolean;
+    optedIn: boolean;
+    title: string;
+    image: string;
+    slug: string;
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      communityWinRatio: number;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
+    }>;
+    notifications: {
+      gameLaunch: string;
+      optIn: { title: string; content: string };
+    };
+  }>;
+};
+
+export type GetBlueribbonJackpotConfigBySlugQueryVariables = Exact<{
   slug: Scalars["String"];
 }>;
 
-export type PromotionsListQuery = {
-  promotionsList?: Maybe<{
-    id: string;
-    name: string;
-    promotions: Array<PromotionCard_PromotionFragment>;
+export type GetBlueribbonJackpotConfigBySlugQuery = {
+  blueribbonJackpotBySlug?: Maybe<{
+    externalId: string;
+    title: string;
+    image: string;
+    slug: string;
+    widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
+    pots: Array<{
+      externalId: string;
+      potKey: string;
+      name: string;
+      shortName: string;
+      mainWinRatio: number;
+      communityWinRatio: number;
+      icon: string;
+      potExplanation: string;
+      sharedPot?: Maybe<{
+        name: string;
+        shortName: string;
+        icon: string;
+        splitExplanation: string;
+      }>;
+    }>;
   }>;
 };
 
@@ -2038,6 +2113,7 @@ export type GetJackpotConfigForWidgetQuery = {
       name: string;
       shortName: string;
       mainWinRatio: number;
+      communityWinRatio: number;
       icon: string;
       potExplanation: string;
       sharedPot?: Maybe<{

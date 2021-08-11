@@ -2,8 +2,8 @@
 //screen which has to be displayed in FULL screen mode
 
 import React from "react";
-import { BlueRibbonChristmasCampaignAnimationContainer } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonChristmasCampaignNotifications";
+import { IngameJackpotNotification } from "Components/PromotionalGameLists/BlueRibbonJackpot/IngameJackpotNotification";
 
 export const FullScreenGamePageNotifications = () => {
-  return <BlueRibbonChristmasCampaignAnimationContainer />;
+  return <IngameJackpotNotification />;
 };

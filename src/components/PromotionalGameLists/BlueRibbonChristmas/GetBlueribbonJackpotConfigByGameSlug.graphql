@@ -1,0 +1,33 @@
+query GetBlueribbonJackpotConfigByGameSlug($gameSlug: String!) {
+  blueribbonJackpotByGameSlug(gameSlug: $gameSlug) {
+    externalId
+    requiresManualOptIn
+    optedIn
+    title
+    image
+    slug
+    pots {
+      externalId
+      potKey
+      name
+      shortName
+      mainWinRatio
+      communityWinRatio
+      icon
+      potExplanation
+      sharedPot { 
+        name
+        shortName
+        icon
+        splitExplanation
+      }
+    }
+    notifications {
+        gameLaunch
+        optIn {
+            title
+            content
+        }
+    }
+  }
+}

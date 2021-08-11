@@ -7,3 +7,4 @@ export { PersistedData } from "./PersistedData";
 export { makeOptionalCallback } from "./makeOptionalCallback";
 export * from "./gamesPaginated";
 export { getCookie } from "./getCookie";
+export { getDeviceType } from "./getDeviceType";

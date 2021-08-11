@@ -5,6 +5,7 @@ import { mapContentDefinitionToComponent } from "Components/ComponentBuilder/Com
 type Props = {
   /** The array of component definition objects. */
   componentDefinitions: Array<Object>;
+  hideShowMoreLink?: boolean;
 };
 
 export class ComponentBuilderRenderer extends PureComponent<Props> {

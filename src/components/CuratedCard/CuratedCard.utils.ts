@@ -11,6 +11,7 @@ export const CURATED_TYPE = {
   JP_WELCOME_OFFER: "japan welcome offer",
   SPORTS: "sports",
   EXTERNAL_LINK: "external_link",
+  INTERNAL_LINK: "internal_link",
 } as const;
 
 export const CURATED_URL = {
@@ -25,10 +26,17 @@ export const getIsWelcomeOffer = ({ type }) =>
   type === CURATED_TYPE.WELCOME_OFFER;
 export const getIsExternalLink = ({ type }) =>
   type === CURATED_TYPE.EXTERNAL_LINK;
+export const getIsInternalLink = ({ type }) =>
+  type === CURATED_TYPE.INTERNAL_LINK;
 
 export const getLink = (
   market: string,
-  { type, promotionSlug, externalLink }: A.CuratedCardQuery["curatedCard"]
+  {
+    type,
+    promotionSlug,
+    externalLink,
+    internalLink,
+  }: A.CuratedCardQuery["curatedCard"]
 ) => {
   const url = CURATED_URL[type] || null;
   const jpMarket = market === MARKETS.jp_ja;
@@ -43,6 +51,10 @@ export const getLink = (
 
   if (type === CURATED_TYPE.EXTERNAL_LINK) {
     return externalLink;
+  }
+
+  if (type === CURATED_TYPE.INTERNAL_LINK) {
+    return internalLink;
   }
 
   return url;

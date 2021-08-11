@@ -20,6 +20,11 @@ $cudl-font-formats: woff woff2;
   "./static/fonts/lineto-circular-pro-bold",
   $weight: 700
 );
+@include cudl-font-face(
+  "Circular Pro",
+  "./static/fonts/lineto-circular-pro-black",
+  $weight: 800
+);
 
 // stylelint-disable xi/selector-pattern
 html {

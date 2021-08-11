@@ -1,5 +1,5 @@
 import { JackpotStatus } from "../blueRibbonConsts"
-
+import { normalizePots } from "../utils";
 export const jackpots = [
   {
     communityWinRatio: 0,
@@ -32,6 +32,7 @@ export const composedPots = [
     name: "Mini Jackpot",
     shortName: "Mini",
     mainWinRatio: 100,
+    communityWinRatio: 0,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mini.svg",
     potExplanation: "",
     sharedPot: null,
@@ -45,6 +46,7 @@ export const composedPots = [
     name: "Major Jackpot",
     shortName: "Major",
     mainWinRatio: 100,
+    communityWinRatio: 0,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/major.svg",
     potExplanation: "",
     sharedPot: null,
@@ -58,6 +60,7 @@ export const composedPots = [
     name: "Mega Jackpot",
     shortName: "Mega",
     mainWinRatio: 50,
+    communityWinRatio: 50,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mega.svg",
     potExplanation: "Goes to 1 winner",
     sharedPot: {
@@ -71,3 +74,5 @@ export const composedPots = [
     lastWinTs: 1623840504722,
   },
 ];
+
+export const normalizedPots = normalizePots(composedPots);

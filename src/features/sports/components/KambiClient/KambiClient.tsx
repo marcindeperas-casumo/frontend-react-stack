@@ -58,9 +58,10 @@ export default class KambiClient extends React.Component<Props, State> {
     this.initIsFirstBet();
     /* eslint-disable fp/no-mutation */
     (window as any)._kc = {
-      ...pick(["currency", "locale", "market", "playerId", "ticket"], {
+      ...pick(["currency", "locale", "playerId", "ticket"], {
         ...this.props,
       }),
+      market: this.marketToKambi(this.props.market),
       oddsFormat: this.props.market.toLowerCase().includes("gb")
         ? "fractional"
         : "decimal",
@@ -185,6 +186,9 @@ export default class KambiClient extends React.Component<Props, State> {
     if (data.sportsFirstBet) {
       this.setState({ sportsFirstBet: true });
     }
+  };
+  marketToKambi = (market: string) => {
+    return market === "JP" ? "EA" : market;
   };
   render() {
     return (
