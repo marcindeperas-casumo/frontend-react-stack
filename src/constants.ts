@@ -59,7 +59,6 @@ export const KO_EVENTS = {
 export const DEVICES = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
-  TABLET: "tablet",
 } as const;
 
 // todo: @chris.ciantar confirm if this is required anymore or not - GTM specific event field
