@@ -54,6 +54,7 @@ export const InGameRecentValuableWidget = ({
   >(UseValuable);
   const consumeValuable = (id: string) => {
     setShowModal(false);
+
     return mutateValuable({
       variables: {
         id,
