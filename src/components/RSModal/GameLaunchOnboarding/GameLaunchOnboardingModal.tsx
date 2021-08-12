@@ -31,7 +31,7 @@ export function GameLaunchOnboardingModal({
     if (isPotAvailable) {
       http
         .post(urls.optIn, { jackpotId: isPotAvailable.jackpotId })
-        .then(({ optedIn }) => {
+        .then(() => {
           acceptModal();
         });
     }
