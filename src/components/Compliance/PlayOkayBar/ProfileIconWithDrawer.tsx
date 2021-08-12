@@ -29,10 +29,6 @@ import tracker from "Services/tracker";
 import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
-import {
-  BlueRibbonJackpotsInGameWidgetContainer,
-  useDataForBlueRibbonJackpotsWidget,
-} from "Components/PromotionalGameLists/BlueRibbonChristmas";
 import { get as getFromStorage } from "Lib/storage";
 // @ts-expect-error ts-migrate(2614) FIXME: Module '"*.scss"' has no exported member 'animatio... Remove this comment to see the full error message
 // eslint-disable-next-line import/no-duplicates
@@ -50,7 +46,6 @@ export const ProfileIconWithDrawer = ({
   playerName,
 }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const blueRibbonJackpotsWidgetData = useDataForBlueRibbonJackpotsWidget();
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
@@ -122,12 +117,6 @@ export const ProfileIconWithDrawer = ({
             `${baseClassName}__animated-drawer-inner u-overflow-y--auto u-height--full u-padding-top--md u-padding-top--none@desktop`
           )}
         >
-          <div className={`${baseClassName}__item u-padding-bottom`}>
-            {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ jackpots: BlueRibbonJackpotEntry[]; t: Jac... Remove this comment to see the full error message */}
-            <BlueRibbonJackpotsInGameWidgetContainer
-              {...blueRibbonJackpotsWidgetData}
-            />
-          </div>
           {shouldShowReelRace && (
             <ReelRacesDrawerWidget
               className={`${baseClassName}__item u-padding-bottom u-padding-top--md@mobile`}
