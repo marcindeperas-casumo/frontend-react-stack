@@ -27,12 +27,12 @@ export function useOutOfHoursState({
   const [remainingSeconds, setRemainingSeconds] = React.useState(
     breakInSeconds - getElapsedSeconds()
   );
-  const [isDisabled, setIsDisabled] = React.useState(remainingSeconds > 0);
+  const isDisabled = remainingSeconds > 0;
+  const roundedRemainingSeconds = Math.round(remainingSeconds);
 
   useInterval(
     () => {
       setRemainingSeconds(breakInSeconds - getElapsedSeconds());
-      setIsDisabled(remainingSeconds > 0);
     },
     isDisabled ? 1000 : null
   );
@@ -50,7 +50,7 @@ export function useOutOfHoursState({
     markAsRead,
     isDisabled,
     buttonLabel: isDisabled
-      ? String(Math.round(remainingSeconds))
+      ? String(roundedRemainingSeconds >= 0 ? roundedRemainingSeconds : "")
       : defaultState.buttonLabel,
   };
 }

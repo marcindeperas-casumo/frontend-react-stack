@@ -1,2 +1,2 @@
 export { DefaultContainer as MandatoryMessageModal } from "./Modal/Default/DefaultContainer";
-export { mappings as modalMappings } from "./MandatoryMessages.modalMappings"
+export { mappings as modalMappings } from "./MandatoryMessages.modalMappings";

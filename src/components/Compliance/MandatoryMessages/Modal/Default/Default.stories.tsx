@@ -11,13 +11,13 @@ stories.add("Default", () => {
       topTitle="Default Modal Title"
       content="Message Content ${replacement}."
       replacements={{
-        replacement: "something else"
+        replacement: "something else",
       }}
       primaryButton={{
         text: "Close",
         isDisabled: false,
         isLoading: false,
-        action: () => action("Primary Button Clicked")
+        action: () => action("Primary Button Clicked"),
       }}
     />
   );
@@ -29,13 +29,13 @@ stories.add("Busy while marking as read", () => {
       topTitle="Default Modal Title"
       content="Message Content ${replacement}."
       replacements={{
-        replacement: "something else"
+        replacement: "something else",
       }}
       primaryButton={{
         text: "Close",
         isDisabled: false,
         isLoading: true,
-        action: () => action("Primary Button Clicked")
+        action: () => action("Primary Button Clicked"),
       }}
     />
   );

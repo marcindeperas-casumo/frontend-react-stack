@@ -6,7 +6,7 @@ export type TUseDefaultStateArgs = {
 };
 
 export type TUseDefaultState = {
-  markAsRead: () => Promise<void>;
+  markAsRead: () => Promise<any>;
   isLoading: boolean;
   isDisabled: boolean;
   content: string;

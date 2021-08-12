@@ -9,19 +9,20 @@ export function OutOfHoursContainer({ t, config }: ContainerProps) {
     isDisabled,
     isLoading,
     markAsRead,
-    buttonLabel
+    buttonLabel,
   } = useOutOfHoursState(config?.input ?? {});
 
   return (
     <Default
       topTitle={t?.headline}
+      cudlIcon={t?.cudl_icon}
       content={content}
       replacements={config?.input?.message?.parameters ?? {}}
       primaryButton={{
         text: buttonLabel,
         action: markAsRead,
         isLoading,
-        isDisabled
+        isDisabled,
       }}
     />
   );
