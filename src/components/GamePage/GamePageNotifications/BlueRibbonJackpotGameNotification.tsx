@@ -23,7 +23,7 @@ export function BlueRibbonJackpotGameNotification() {
     ) {
       dispatch(
         showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
-          slug: "casumo-jackpots",
+          slug: blueribbonJackpotForCurrentGame.slug,
         })
       );
     }
