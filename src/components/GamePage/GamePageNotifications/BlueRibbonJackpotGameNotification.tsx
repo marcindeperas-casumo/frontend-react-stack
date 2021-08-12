@@ -13,10 +13,13 @@ export function BlueRibbonJackpotGameNotification() {
   const [acknowledged, setAcknowledged] = React.useState(false);
   const dispatch = useDispatch();
 
+  const userHasSeenJackpotOffer = localStorage.getItem("JackpotOfferPresented");
+
   React.useEffect(() => {
     if (
       blueribbonJackpotForCurrentGame &&
-      !blueribbonJackpotForCurrentGame.optedIn
+      !blueribbonJackpotForCurrentGame.optedIn &&
+      !userHasSeenJackpotOffer
     ) {
       dispatch(
         showModal(REACT_APP_MODAL.ID.GAMELAUNCH_MODAL, {
@@ -24,7 +27,7 @@ export function BlueRibbonJackpotGameNotification() {
         })
       );
     }
-  }, [blueribbonJackpotForCurrentGame, dispatch]);
+  }, [blueribbonJackpotForCurrentGame, userHasSeenJackpotOffer, dispatch]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {
     return null;

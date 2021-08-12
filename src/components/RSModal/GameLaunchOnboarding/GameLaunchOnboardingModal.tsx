@@ -22,7 +22,8 @@ export function GameLaunchOnboardingModal({
 }: Props) {
   const handshake = useHandshake();
 
-  const handleAcceptModal = () => {
+  const handleAcceptModal = event => {
+    event.stopPropagation();
     const isPotAvailable = handshake.jackpots.find(
       pot => pot.jackpotSlug === "casumo-jackpots"
     );
@@ -36,10 +37,16 @@ export function GameLaunchOnboardingModal({
     }
   };
 
+  const handleCancelModal = event => {
+    event.stopPropagation();
+    localStorage.setItem("JackpotOfferPresented", "true");
+    cancelModal();
+  };
+
   return (
     <CudlModal
       closeIcon={{
-        action: cancelModal,
+        action: handleCancelModal,
       }}
       primaryButton={{
         text: t.button_accept || "",
@@ -47,7 +54,7 @@ export function GameLaunchOnboardingModal({
       }}
       secondaryButton={{
         text: t.button_deny || "",
-        action: cancelModal,
+        action: handleCancelModal,
       }}
     >
       <ResponsiveImage
