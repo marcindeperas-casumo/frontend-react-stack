@@ -4,7 +4,6 @@ import Text from "@casumo/cmp-text";
 import { ButtonInverted } from "@casumo/cmp-button";
 import React from "react";
 import * as A from "Types/apollo";
-import { getDeviceType } from "Utils/getDeviceType";
 import ImageLazy from "Components/Image/ImageLazy";
 import { ValuableCard } from "Components/ValuableCard";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
@@ -54,10 +53,11 @@ export const InGameRecentValuableWidget = ({
   >(UseValuable);
   const consumeValuable = (id: string) => {
     setShowModal(false);
+
     return mutateValuable({
       variables: {
         id,
-        source: getDeviceType(),
+        source: "mobile",
       },
     }).then(() => {
       onValuableConsumed();
