@@ -10,7 +10,7 @@ import {
   TUseDefaultState,
   TUseDefaultStateArgs,
 } from "../../Default/useDefaultState.types";
-import { breakInSeconds } from "./OutOfHours.constants";
+import { BREAK_DURATION_IN_SECONDS } from "./OutOfHours.constants";
 
 export function useOutOfHoursState({
   message,
@@ -23,16 +23,16 @@ export function useOutOfHoursState({
     message
       ? DateTime.fromMillis(message?.createdTime).diffNow("seconds").negate()
           .seconds
-      : breakInSeconds;
+      : BREAK_DURATION_IN_SECONDS;
   const [remainingSeconds, setRemainingSeconds] = React.useState(
-    breakInSeconds - getElapsedSeconds()
+    BREAK_DURATION_IN_SECONDS - getElapsedSeconds()
   );
   const isDisabled = remainingSeconds > 0;
   const roundedRemainingSeconds = Math.round(remainingSeconds);
 
   useInterval(
     () => {
-      setRemainingSeconds(breakInSeconds - getElapsedSeconds());
+      setRemainingSeconds(BREAK_DURATION_IN_SECONDS - getElapsedSeconds());
     },
     isDisabled ? 1000 : null
   );

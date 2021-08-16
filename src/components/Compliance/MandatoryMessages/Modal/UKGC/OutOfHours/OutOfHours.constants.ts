@@ -1,1 +1,1 @@
-export const breakInSeconds = 2 * 60;
+export const BREAK_DURATION_IN_SECONDS = 2 * 60;
