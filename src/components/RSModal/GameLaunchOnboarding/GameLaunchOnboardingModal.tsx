@@ -24,9 +24,7 @@ export function GameLaunchOnboardingModal({
 
   const handleAcceptModal = event => {
     event.stopPropagation();
-    const isPotAvailable = handshake.jackpots.find(
-      pot => pot.jackpotSlug === "casumo-jackpots"
-    );
+    const isPotAvailable = handshake.jackpots.find(pot => pot.jackpotSlug);
 
     if (isPotAvailable) {
       http
