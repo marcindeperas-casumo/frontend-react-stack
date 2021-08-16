@@ -1,1 +1,0 @@
-export { MandatoryMessageModalContainer as MandatoryMessageModal } from "./MandatoryMessageModalContainer";

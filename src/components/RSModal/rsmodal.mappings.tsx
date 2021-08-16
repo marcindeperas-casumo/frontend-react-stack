@@ -14,7 +14,10 @@ import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
 import { GameLaunchModal } from "Components/RSModal/GameLaunchOnboarding";
 import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
-import { MandatoryMessageModal } from "Components/Compliance/MandatoryMessages";
+import {
+  MandatoryMessageModal,
+  modalMappings as mandatoryMessageModalMappings,
+} from "Components/Compliance/MandatoryMessages";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -171,6 +174,7 @@ export const mappings: Mapping = {
     slug: "",
     Content: AccountWarmUp,
   },
+  ...mandatoryMessageModalMappings,
 };
 
 export const getMandatoryMessageModalData: (
