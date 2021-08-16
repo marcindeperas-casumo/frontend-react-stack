@@ -1,5 +1,4 @@
 import "./Deposit.scss";
-import { AddIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
 import { useTranslations } from "Utils/hooks";
@@ -38,24 +37,22 @@ export const Deposit = ({ balance, bonus, locale, currency }: Props) => {
   };
 
   return (
-    <div className="bg-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin-bottom u-display--flex">
-      <div className="o-flex--vertical u-margin-right--lg">
-        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'balance_title' does not exist on type 'u... Remove this comment to see the full error message */}
-        <div className="text-grey-50 u-font-sm">{t?.balance_title}</div>
-        <div className="text-grey-90 u-font-md u-font-weight-bold">
+    <div className="bg-white t-border-r t-elevation--10 u-padding-x--md u-padding-y u-margin u-display--flex">
+      <div className="u-display--flex o-flex--vertical">
+        <div className="u-margin-right--lg text-grey-70 u-font-md u-font-weight-bold">
           {balanceFormatted}
         </div>
-      </div>
-      {bonus > 0 && (
-        <div className="o-flex--vertical text-grey-50 c-sport-deposit__bonus">
-          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'bonus_title' does not exist on type 'unk... Remove this comment to see the full error message */}
-          <div className="u-font-sm">{t?.bonus_title}</div>
-          <div className="u-font-md">{bonusFormatted}</div>
+        {/* {bonus > 0 && ( */}
+        <div className="text-grey-50 c-sport-deposit__bonus u-font-sm u-font-weight-bold">
+          +{bonusFormatted} {t?.bonus_title}
         </div>
-      )}
-      <div className="u-display--flex c-sport-deposit__separator" />
+      </div>
+      {/* )} */}
+      <div className="u-display--flex u-display--flex-end c-sport-deposit__separator" />
       <div className="o-flex-align--end">
-        <ButtonPrimary size="sm" icon={<AddIcon />} onClick={goToDeposit} />
+        <ButtonPrimary size="md" onClick={goToDeposit}>
+          {t?.cta_deposit}
+        </ButtonPrimary>
       </div>
     </div>
   );
