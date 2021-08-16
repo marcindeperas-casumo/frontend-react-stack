@@ -3,7 +3,10 @@ import { action } from "@storybook/addon-actions";
 import * as React from "react";
 import { DefaultModal } from "./DefaultModal";
 
-const stories = storiesOf("Compliance/MandatoryMessages/Modal/DefaultModal", module);
+const stories = storiesOf(
+  "Compliance/MandatoryMessages/Modal/DefaultModal",
+  module
+);
 
 stories.add("default", () => {
   return (
