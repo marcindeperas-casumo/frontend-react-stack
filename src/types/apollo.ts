@@ -2029,6 +2029,7 @@ export type PromotionCard_PromotionFragment = {
   tag?: Maybe<string>;
   teaserCaveats?: Maybe<string>;
   ctaText?: Maybe<string>;
+  external_link?: Maybe<string>;
 };
 
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
