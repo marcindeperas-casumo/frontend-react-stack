@@ -12,7 +12,7 @@ stories.add("Blocked (9s remaining)", () => {
   return (
     <Default
       topTitle="Out Of Hours UK"
-      content="Message Content ${replacement}."
+      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
       replacements={{
         replacement: "something else",
       }}
@@ -30,7 +30,7 @@ stories.add("Unblocked", () => {
   return (
     <Default
       topTitle="Out Of Hours UK"
-      content="Message Content ${replacement}."
+      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
       replacements={{
         replacement: "something else",
       }}

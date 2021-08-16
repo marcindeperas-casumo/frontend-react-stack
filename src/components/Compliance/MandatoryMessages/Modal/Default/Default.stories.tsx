@@ -9,7 +9,7 @@ stories.add("Default", () => {
   return (
     <Default
       topTitle="Default Modal Title"
-      content="Message Content ${replacement}."
+      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
       replacements={{
         replacement: "something else",
       }}
@@ -27,7 +27,7 @@ stories.add("Busy while marking as read", () => {
   return (
     <Default
       topTitle="Default Modal Title"
-      content="Message Content ${replacement}."
+      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
       replacements={{
         replacement: "something else",
       }}
