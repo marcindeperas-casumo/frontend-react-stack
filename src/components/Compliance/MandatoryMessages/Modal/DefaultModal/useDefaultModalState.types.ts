@@ -1,11 +1,11 @@
 import { TMandatoryMessage } from "Models/mandatoryMessages";
 
-export type TUseDefaultStateArgs = {
+export type TUseDefaultModalStateArgs = {
   message?: TMandatoryMessage;
   slug?: string;
 };
 
-export type TUseDefaultState = {
+export type TUseDefaultModalState = {
   markAsRead: () => Promise<any>;
   isLoading: boolean;
   isDisabled: boolean;

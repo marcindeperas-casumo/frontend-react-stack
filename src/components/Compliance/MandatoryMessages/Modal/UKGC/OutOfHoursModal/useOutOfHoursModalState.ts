@@ -5,20 +5,23 @@ import { DateTime } from "luxon";
 import { playingSelector } from "Models/playing";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
-import { useDefaultState } from "../../Default/useDefaultState";
+import { useDefaultModalState } from "../../DefaultModal/useDefaultModalState";
 import {
-  TUseDefaultState,
-  TUseDefaultStateArgs,
-} from "../../Default/useDefaultState.types";
-import { BREAK_DURATION_IN_SECONDS } from "./OutOfHours.constants";
+  TUseDefaultModalState,
+  TUseDefaultModalStateArgs,
+} from "../../DefaultModal/useDefaultModalState.types";
+import { BREAK_DURATION_IN_SECONDS } from "./OutOfHoursModal.constants";
 
-export function useOutOfHoursState({
+export function useOutOfHoursModalState({
   message,
   slug,
-}: TUseDefaultStateArgs): TUseDefaultState {
+}: TUseDefaultModalStateArgs): TUseDefaultModalState {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const { isPlaying } = useSelector(playingSelector);
-  const { markAsRead, ...defaultState } = useDefaultState({ message, slug });
+  const { markAsRead, ...defaultState } = useDefaultModalState({
+    message,
+    slug,
+  });
   const getElapsedSeconds = () =>
     message
       ? DateTime.fromMillis(message?.createdTime).diffNow("seconds").negate()

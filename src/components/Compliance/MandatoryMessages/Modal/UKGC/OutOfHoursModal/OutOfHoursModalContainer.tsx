@@ -1,19 +1,19 @@
 import * as React from "react";
-import { ContainerProps } from "../../Default/Default.types";
-import { Default } from "../../Default/Default";
-import { useOutOfHoursState } from "./useOutOfHoursState";
+import { ContainerProps } from "../../DefaultModal/DefaultModal.types";
+import { DefaultModal } from "../../DefaultModal/DefaultModal";
+import { useOutOfHoursModalState } from "./useOutOfHoursModalState";
 
-export function OutOfHoursContainer({ t, config }: ContainerProps) {
+export function OutOfHoursModalContainer({ t, config }: ContainerProps) {
   const {
     content,
     isDisabled,
     isLoading,
     markAsRead,
     buttonLabel,
-  } = useOutOfHoursState(config?.input ?? {});
+  } = useOutOfHoursModalState(config?.input ?? {});
 
   return (
-    <Default
+    <DefaultModal
       topTitle={t?.headline}
       cudlIcon={t?.cudl_icon}
       content={content}

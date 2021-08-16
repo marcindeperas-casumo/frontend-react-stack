@@ -4,9 +4,9 @@ import CudlModal from "@casumo/cmp-modal";
 import * as cudlIcons from "@casumo/cmp-icons";
 import { interpolate } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
-import { Props } from "./Default.types";
+import { Props } from "./DefaultModal.types";
 
-export function Default({
+export function DefaultModal({
   topTitle,
   cudlIcon,
   primaryButton,

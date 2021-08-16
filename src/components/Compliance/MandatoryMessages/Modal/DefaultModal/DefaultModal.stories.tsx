@@ -1,35 +1,14 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import * as React from "react";
-import { Default } from "./../../Default/Default";
+import { DefaultModal } from "./DefaultModal";
 
-const stories = storiesOf(
-  "Compliance/MandatoryMessages/Modal/UKGC/OutOfHours",
-  module
-);
+const stories = storiesOf("Compliance/MandatoryMessages/Modal/DefaultModal", module);
 
-stories.add("Blocked (9s remaining)", () => {
+stories.add("default", () => {
   return (
-    <Default
-      topTitle="Out Of Hours UK"
-      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
-      replacements={{
-        replacement: "something else",
-      }}
-      primaryButton={{
-        text: "9",
-        isDisabled: true,
-        isLoading: false,
-        action: () => action("Primary Button Clicked"),
-      }}
-    />
-  );
-});
-
-stories.add("Unblocked", () => {
-  return (
-    <Default
-      topTitle="Out Of Hours UK"
+    <DefaultModal
+      topTitle="Default Modal Title"
       content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
       replacements={{
         replacement: "something else",
@@ -38,6 +17,24 @@ stories.add("Unblocked", () => {
         text: "Close",
         isDisabled: false,
         isLoading: false,
+        action: () => action("Primary Button Clicked"),
+      }}
+    />
+  );
+});
+
+stories.add("Busy while marking as read", () => {
+  return (
+    <DefaultModal
+      topTitle="Default Modal Title"
+      content="Message Content ${replacement}." // eslint-disable-line no-template-curly-in-string
+      replacements={{
+        replacement: "something else",
+      }}
+      primaryButton={{
+        text: "Close",
+        isDisabled: false,
+        isLoading: true,
         action: () => action("Primary Button Clicked"),
       }}
     />

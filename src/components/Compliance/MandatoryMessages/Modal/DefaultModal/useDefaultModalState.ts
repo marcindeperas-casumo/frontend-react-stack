@@ -2,14 +2,14 @@ import { useTranslations, useTranslationsVoca } from "Utils/hooks";
 import { interpolate } from "Utils";
 import { useMarkAsReadMutation } from "Models/mandatoryMessages";
 import {
-  TUseDefaultStateArgs,
-  TUseDefaultState,
-} from "./useDefaultState.types";
+  TUseDefaultModalStateArgs,
+  TUseDefaultModalState,
+} from "./useDefaultModalState.types";
 
-export function useDefaultState({
+export function useDefaultModalState({
   message,
   slug,
-}: TUseDefaultStateArgs): TUseDefaultState {
+}: TUseDefaultModalStateArgs): TUseDefaultModalState {
   const content = useTranslations(slug, true);
   const [markAsRead, { isLoading }] = useMarkAsReadMutation();
   const voca = useTranslationsVoca();
