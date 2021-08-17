@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import Scrollable from "@casumo/cmp-scrollable";
 import * as React from "react";
 import * as A from "Types/apollo";
-import { getDeviceType } from "Utils/getDeviceType";
+import { getPlatform } from "Utils";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -31,7 +31,7 @@ export function PlayerValuableListHorizontal() {
     mutateValuable({
       variables: {
         id,
-        source: getDeviceType(),
+        source: getPlatform(),
       },
     });
   const [selectedValuable, setSelectedValuable] = React.useState(null);

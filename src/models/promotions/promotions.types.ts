@@ -8,6 +8,7 @@ export type TPromotionFields = {
   teaser_text: string;
   teaser_caveats: string;
   cta_text: string;
+  external_link?: string;
 };
 
 export type TPromotion = {
