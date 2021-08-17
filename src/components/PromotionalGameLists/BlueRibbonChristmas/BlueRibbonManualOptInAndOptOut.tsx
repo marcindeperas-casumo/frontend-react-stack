@@ -45,23 +45,20 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
         "c-br-footer-widget__container-border-r"
       )}
     >
-      <Flex direction="vertical">
-        <Flex direction="horizontal">
+      <Flex direction="vertical" className="o-flex--wrap">
+        <Flex direction="horizontal" className="o-flex--wrap" spacing="sm">
           <Text
             tag="span"
             size="xs"
             className={classNames(
-              "u-font-weight-bold u-display--flex",
+              "u-font-weight-bold",
+              "u-padding-right--sm",
               textColor
             )}
           >
             {t.opt_in_cta}
           </Text>
-          <Text
-            tag="span"
-            size="xs"
-            className="u-padding-left--sm text-blue-50 u-display--flex"
-          >
+          <Text tag="span" size="xs" className="text-blue-50 o-flex__block">
             <JackpotTermsAndConditionsLink
               text={t.opt_in_t_and_c_apply}
               jackpotSlug={props.jackpotSlug}
@@ -77,12 +74,7 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
         </Text>
       </Flex>
       <Flex className={classNames("u-margin-left--md")}>
-        <Toggle
-          labelOn="ON"
-          labelOff="OFF"
-          checked={status}
-          onChange={status ? optOut : optIn}
-        />
+        <Toggle checked={status} onChange={status ? optOut : optIn} translate />
       </Flex>
     </Flex>
   );
