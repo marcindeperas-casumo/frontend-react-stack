@@ -10,6 +10,7 @@ import { EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
 import { launchGame } from "Services/LaunchGameService";
+import "./ReelRaceOptInPlayButton.scss";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -59,7 +60,10 @@ export function ReelRaceOptInPlayButton({
       onClick={noop}
       className="u-width--full bg-grey-80 u-padding-top--sm"
     >
-      <CheckIcon size="md" className="text-white u-margin-bottom--sm" />
+      <CheckIcon
+        size="md"
+        className="u-margin-bottom--sm text-white u-margin-bottom--sm icon-scale-third"
+      />
       <Text tag="span">{reelRace.translations.optedIn}</Text>
     </ButtonVariant>
   );
@@ -70,7 +74,10 @@ export function ReelRaceOptInPlayButton({
       data={{ state: BUTTON_STATE.PLAY }}
     >
       <ButtonVariant size="sm" onClick={playCallback} className="u-width--full">
-        <PlayIcon size="sm" />
+        <PlayIcon
+          size="sm"
+          className="u-margin-bottom--sm u-margin-right icon-scale-third"
+        />
         <Text tag="span" className="u-margin-left">
           {reelRace.translations.optedInCtaSingleGameShort}
         </Text>
