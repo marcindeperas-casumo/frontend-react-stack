@@ -17,18 +17,6 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
-  const getColorVal = index => {
-    if (index === 0) {
-      return "t-color-yellow-30";
-    } else if (index === 1) {
-      return "t-color-salmon-30";
-    } else if (index === 2) {
-      return "t-color-teal-50";
-    } else if (index === 3) {
-      return "t-color-purple-5";
-    }
-  };
-
   const formattedPotValue = (pot, index) => {
     return {
       currency: formatCurrency({
@@ -36,7 +24,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
         locale,
         value: pot.value,
       }),
-      color: getColorVal(index),
+      color: pot.pot_title_color,
     };
   };
 
