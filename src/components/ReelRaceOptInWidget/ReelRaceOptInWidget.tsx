@@ -99,14 +99,14 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           "w-[230px]",
           "o-flex--horizontal",
           "u-padding-y--lg",
-          "margin-l-n-22"
+          "u-margin-left-negative--22"
         )}
         justify="space-between"
       >
         <Flex
           direction="vertical"
           align="center"
-          className="o-flex--1 u-text-align-center t-border-right border-grey-5 border-opacity-03"
+          className="o-flex--1 u-text-align-center t-border-right border-grey-5 u-border-opacity--03"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
             {t.spins}
@@ -133,7 +133,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
         <Flex
           direction="vertical"
           align="center"
-          className="o-flex--1 u-text-align-center t-border-left border-grey-5 border-opacity-03"
+          className="o-flex--1 u-text-align-center t-border-left border-grey-5 u-border-opacity--03"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
             {extraTranslations?.leaderboard_prize}
