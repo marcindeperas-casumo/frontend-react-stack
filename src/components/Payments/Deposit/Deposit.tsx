@@ -7,6 +7,11 @@ import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS, TCurrencyCode } from "Src/constants";
 import { navigateToDeposit } from "../utils";
 
+type DepositTranslations = {
+  bonus_title: string | undefined;
+  cta_deposit: string | undefined;
+};
+
 type Props = {
   balance: number;
   bonus: number;
@@ -15,7 +20,7 @@ type Props = {
 };
 
 export const Deposit = ({ balance, bonus, locale, currency }: Props) => {
-  const t = useTranslations("iframe-solution");
+  const t = useTranslations<DepositTranslations>("iframe-solution");
 
   const balanceFormatted = formatCurrency({
     locale,
@@ -42,11 +47,9 @@ export const Deposit = ({ balance, bonus, locale, currency }: Props) => {
         <div className="u-margin-right--lg text-grey-70 u-font-md u-font-weight-bold">
           {balanceFormatted}
         </div>
-        {bonus > 0 && (
-          <div className="text-grey-50 c-sport-deposit__bonus u-font-sm u-font-weight-bold">
-            +{bonusFormatted} {t?.bonus_title}
-          </div>
-        )}
+        <div className="text-grey-50 c-sport-deposit__bonus u-font-sm u-font-weight-bold">
+          +{bonusFormatted} {t?.bonus_title}
+        </div>
       </div>
       <div className="u-display--flex u-display--flex-end c-sport-deposit__separator" />
       <div className="o-flex-align--end">
