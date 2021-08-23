@@ -18,13 +18,11 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const currency = useSelector(currencySelector);
 
   const formattedPotValue = pot => {
-    return {
-      currency: formatCurrency({
-        currency,
-        locale,
-        value: pot.value,
-      }),
-    };
+    return formatCurrency({
+      currency,
+      locale,
+      value: pot.value,
+    });
   };
 
   const jackpotsRows = normalizedPots;
@@ -50,12 +48,8 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   );
 }
 
-type PotItemDetails = {
-  currency: string;
-};
-
 type TPotItemProps = {
-  formattedValue: PotItemDetails;
+  formattedValue: string;
   pot: PotObject;
 };
 
@@ -86,7 +80,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
             tag="span"
             className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white"
           >
-            {formattedValue.currency}
+            {formattedValue}
           </Text>
         </Flex>
       </Flex.Item>
