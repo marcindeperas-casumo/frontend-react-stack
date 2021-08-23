@@ -2109,6 +2109,7 @@ export type GetJackpotConfigForWidgetQuery = {
     image: string;
     slug: string;
     widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
+    potTitleColor: string;
     pots: Array<{
       externalId: string;
       potKey: string;
