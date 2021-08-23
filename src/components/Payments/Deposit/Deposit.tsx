@@ -42,12 +42,12 @@ export const Deposit = ({ balance, bonus, locale, currency }: Props) => {
         <div className="u-margin-right--lg text-grey-70 u-font-md u-font-weight-bold">
           {balanceFormatted}
         </div>
-        {/* {bonus > 0 && ( */}
-        <div className="text-grey-50 c-sport-deposit__bonus u-font-sm u-font-weight-bold">
-          +{bonusFormatted} {t?.bonus_title}
-        </div>
+        {bonus > 0 && (
+          <div className="text-grey-50 c-sport-deposit__bonus u-font-sm u-font-weight-bold">
+            +{bonusFormatted} {t?.bonus_title}
+          </div>
+        )}
       </div>
-      {/* )} */}
       <div className="u-display--flex u-display--flex-end c-sport-deposit__separator" />
       <div className="o-flex-align--end">
         <ButtonPrimary size="md" onClick={goToDeposit}>
