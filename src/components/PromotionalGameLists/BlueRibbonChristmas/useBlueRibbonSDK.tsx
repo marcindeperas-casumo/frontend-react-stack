@@ -1,7 +1,9 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useParams } from "@reach/router";
+import { useApolloClient } from "@apollo/client";
 import { useSelector } from "react-redux";
+import * as A from "Types/apollo";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
 import {
@@ -19,6 +21,7 @@ import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
 import { urls, baseConfig } from "./blueRibbonConsts";
 import type { HandshakeResponse } from "./blueRibbonConsts";
+import { GetBlueribbonJackpotConfigByGameSlug } from "./GetBlueribbonJackpotConfigByGameSlug.graphql";
 
 let sdkMutable: SDKInterface | null; // eslint-disable-line fp/no-let
 
@@ -194,19 +197,58 @@ export function useHandshake() {
   return handshake;
 }
 
-export function useManualJackpotOptInAndOptOut(jackpotSlug: string) {
+export function useManualJackpotOptInAndOptOut(
+  jackpotSlug: string,
+  gameSlug?: string
+) {
   const handshake = useHandshake();
+  const apolloClient = useApolloClient();
 
-  const optIn = (jackpotId: string) => () => {
-    return http.post(urls.optIn, { jackpotId }).then(({ optedIn }) => {
-      setRes(curr => ({ ...curr, status: optedIn }));
-    });
-  };
-  const optOut = (jackpotId: string) => () => {
-    return http.post(urls.optOut, { jackpotId }).then(({ optedOut }) => {
-      setRes(curr => ({ ...curr, status: !optedOut })); // "optedOut: true" means you opted out
-    });
-  };
+  const changeOptedInStatus = React.useCallback(
+    (optedIn: boolean) => {
+      if (!gameSlug) {
+        return;
+      }
+      const {
+        blueribbonJackpotByGameSlug,
+      } = apolloClient.readQuery<A.GetBlueribbonJackpotConfigByGameSlugQuery>({
+        query: GetBlueribbonJackpotConfigByGameSlug,
+        variables: { gameSlug },
+      });
+
+      return apolloClient.writeQuery({
+        query: GetBlueribbonJackpotConfigByGameSlug,
+        data: {
+          blueribbonJackpotByGameSlug: {
+            ...blueribbonJackpotByGameSlug,
+            optedIn,
+          },
+        },
+        variables: { gameSlug },
+      });
+    },
+    [gameSlug, apolloClient]
+  );
+
+  const optIn = React.useCallback(
+    (jackpotId: string) => {
+      return http.post(urls.optIn, { jackpotId }).then(({ optedIn }) => {
+        setRes(curr => ({ ...curr, status: optedIn }));
+        changeOptedInStatus(optedIn);
+      });
+    },
+    [changeOptedInStatus]
+  );
+  const optOut = React.useCallback(
+    (jackpotId: string) => {
+      return http.post(urls.optOut, { jackpotId }).then(({ optedOut }) => {
+        const optedIn = !optedOut; // "optedOut: true" means you opted out
+        setRes(curr => ({ ...curr, status: optedIn }));
+        changeOptedInStatus(optedIn);
+      });
+    },
+    [changeOptedInStatus]
+  );
   const [res, setRes] = React.useState({
     optIn: () => {},
     optOut: () => {},
@@ -221,13 +263,13 @@ export function useManualJackpotOptInAndOptOut(jackpotSlug: string) {
 
       if (chosenJackpot) {
         setRes({
-          optIn: optIn(chosenJackpot.jackpotId),
-          optOut: optOut(chosenJackpot.jackpotId),
+          optIn: () => optIn(chosenJackpot.jackpotId),
+          optOut: () => optOut(chosenJackpot.jackpotId),
           status: chosenJackpot.optedIn,
         });
       }
     }
-  }, [handshake, jackpotSlug]);
+  }, [handshake, jackpotSlug, optIn, optOut]);
 
   return res;
 }

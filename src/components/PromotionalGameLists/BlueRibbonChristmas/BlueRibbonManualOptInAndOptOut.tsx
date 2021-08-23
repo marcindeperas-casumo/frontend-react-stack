@@ -11,6 +11,7 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
   jackpotSlug: string;
   isLight?: boolean;
   isDesktop?: boolean;
+  gameSlug?: string;
 }) => {
   const t = useTranslations<{
     opt_in_contribution_value: string;
@@ -20,7 +21,8 @@ export const BlueRibbonManualOptInAndOptOut = (props: {
     opt_in_t_and_c_apply: string;
   }>(`jackpots-configs.${props.jackpotSlug}`);
   const { optIn, optOut, status } = useManualJackpotOptInAndOptOut(
-    props.jackpotSlug
+    props.jackpotSlug,
+    props.gameSlug
   );
   const textColor = props.isLight ? "text-black" : "text-white";
   const { isDesktop } = props;
