@@ -17,14 +17,13 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
-  const formattedPotValue = (pot, index) => {
+  const formattedPotValue = pot => {
     return {
       currency: formatCurrency({
         currency,
         locale,
         value: pot.value,
       }),
-      color: pot.potTitleColor,
     };
   };
 
@@ -43,7 +42,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
       >
         {jackpotsRows.map((pot, idx) => (
           <Flex.Item key={idx}>
-            <PotItem pot={pot} formattedValue={formattedPotValue(pot, idx)} />
+            <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
           </Flex.Item>
         ))}
       </Flex>
@@ -53,7 +52,6 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
 
 type PotItemDetails = {
   currency: string;
-  color: string;
 };
 
 type TPotItemProps = {
@@ -62,7 +60,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
-  const { icon, shortName } = pot;
+  const { icon, shortName, potTitleColor } = pot;
   return (
     <Flex direction="horizontal" align="center" justify="center" spacing="sm">
       <Flex.Item className="u-height--xlg">
@@ -79,10 +77,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
           <Text
             size="xs"
             tag="span"
-            className={classNames(
-              "u-text-transform-uppercase",
-              formattedValue.color
-            )}
+            className={classNames("u-text-transform-uppercase", potTitleColor)}
           >
             {shortName}
           </Text>
