@@ -24,7 +24,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
         locale,
         value: pot.value,
       }),
-      color: pot.pot_title_color,
+      color: pot.potTitleColor,
     };
   };
 
