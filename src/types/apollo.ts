@@ -1184,8 +1184,8 @@ export interface CuratedCard {
   launchGameText?: Maybe<Scalars["String"]>;
   game?: Maybe<Game>;
   externalLink?: Maybe<Scalars["String"]>;
-  internalLink?: Maybe<Scalars["String"]>;
   sportsRoute?: Maybe<Scalars["String"]>;
+  internalLink?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
   smallImage?: Maybe<Scalars["String"]>;
   /** @deprecated Please use the image field instead. */
@@ -1310,6 +1310,7 @@ export interface Pot {
   winNotificationTitle: Scalars["String"];
   winNotificationContent: Scalars["String"];
   potExplanation: Scalars["String"];
+  potTitleColor: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -2029,7 +2030,6 @@ export type PromotionCard_PromotionFragment = {
   tag?: Maybe<string>;
   teaserCaveats?: Maybe<string>;
   ctaText?: Maybe<string>;
-  external_link?: Maybe<string>;
 };
 
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
@@ -2051,6 +2051,7 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
       shortName: string;
       mainWinRatio: number;
       communityWinRatio: number;
+      potTitleColor: string;
       icon: string;
       potExplanation: string;
       sharedPot?: Maybe<{
@@ -2117,7 +2118,6 @@ export type GetJackpotConfigForWidgetQuery = {
       communityWinRatio: number;
       icon: string;
       potExplanation: string;
-      potTitleColor: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
