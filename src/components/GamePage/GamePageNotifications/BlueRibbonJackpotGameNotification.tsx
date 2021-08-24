@@ -18,7 +18,8 @@ export function BlueRibbonJackpotGameNotification() {
   React.useEffect(() => {
     if (
       blueribbonJackpotForCurrentGame &&
-      blueribbonJackpotForCurrentGame.optedIn
+      !blueribbonJackpotForCurrentGame.optedIn &&
+      !userHasSeenJackpotOffer
     ) {
       dispatch(
         showModal(REACT_APP_MODAL.ID.JACKPOT_INGAME_ONBOARDING, {
