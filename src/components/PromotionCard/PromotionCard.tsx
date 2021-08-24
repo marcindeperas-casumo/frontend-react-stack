@@ -16,11 +16,17 @@ type TProps = {
 
 export const PromotionCard = ({ promotion }: TProps) => {
   const promoTranslations = promotion as TFlattenedPromotion;
+  const { external_link } = promotion;
 
-  const link = `promotions/${promotion.slug || promoTranslations.slug}`;
+  const link =
+    external_link || `promotions/${promotion.slug || promoTranslations.slug}`;
   return (
     <>
-      <a className="o-ratio u-margin-bottom--sm cursor-pointer" href={link}>
+      <a
+        target={external_link ? "blank" : ""}
+        className="o-ratio u-margin-bottom--sm cursor-pointer"
+        href={link}
+      >
         <TrackView
           eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
           data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
@@ -42,13 +48,14 @@ export const PromotionCard = ({ promotion }: TProps) => {
                 badge={promoTranslations.badge}
                 dates={promoTranslations.dates}
                 ctaText={promoTranslations.cta_text}
+                isExternalLink={Boolean(external_link)}
               />
             )}
           />
         </TrackClick>
       </a>
       {promoTranslations.teaser_caveats && (
-        <a href={link}>
+        <a target={external_link ? "blank" : ""} href={link}>
           <Text className="text-grey-50 italic px-sm line-clamp-1" size="2xs">
             {promoTranslations.teaser_caveats}
           </Text>

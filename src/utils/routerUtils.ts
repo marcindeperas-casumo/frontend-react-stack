@@ -15,6 +15,7 @@ const pickRouteTranslation = (
 
 export const routeTranslator = (language: string) => {
   const translatedRoutes = {
+    promotions: pickRouteTranslation(language, TRANSLATED_ROUTES.PROMOTIONS),
     games: pickRouteTranslation(language, TRANSLATED_ROUTES.GAMES),
     play: pickRouteTranslation(language, TRANSLATED_ROUTES.PLAY),
     casinoGames: pickRouteTranslation(language, TRANSLATED_ROUTES.CASINO_GAMES),

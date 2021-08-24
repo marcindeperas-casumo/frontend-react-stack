@@ -16,6 +16,13 @@ const t = {
   jackpotTypeTextRow: "{{ potName }} JACKPOT",
 };
 
+export const svgFiles = {
+  pot4Borderless: "https://cms.casumo.com/wp-content/uploads/2021/07/pot4.svg",
+  pot3Borderless: "https://cms.casumo.com/wp-content/uploads/2021/07/pot3.svg",
+  pot2Borderless: "https://cms.casumo.com/wp-content/uploads/2021/07/pot2.svg",
+  pot1Borderless: "https://cms.casumo.com/wp-content/uploads/2021/07/pot1.svg",
+};
+
 const mockConfig = {
   animationId: "mock",
   settings: {
@@ -26,6 +33,7 @@ const mockConfig = {
     potColor: "#ABA7E1",
     potName: "Mini",
     locale: "en",
+    svgFiles,
   },
 };
 

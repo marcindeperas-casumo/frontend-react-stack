@@ -25,7 +25,11 @@ export const TopBox = ({ isSmall, height, width, t, potName, potColor }) => {
         spacing={isSmall ? "xs" : ""}
         style={{ letterSpacing }}
       >
-        <Flex.Item className="t-color-white">{t.jackpotWinTextRow}</Flex.Item>
+        <Flex.Item className="t-color-white">
+          {interpolate(t.jackpotWinTextRow, {
+            potName: potName.toUpperCase(),
+          })}
+        </Flex.Item>
         <Flex.Item className="t-color-purple-80">
           {interpolate(t.jackpotTypeTextRow, {
             potName: potName.toUpperCase(),

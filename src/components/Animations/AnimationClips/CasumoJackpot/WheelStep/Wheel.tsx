@@ -114,7 +114,7 @@ export function Wheel(props: Props) {
       const currentRotation = value.rotate;
       const destination = springs.rotate.animation.to as number;
 
-      if (Math.abs(destination - currentRotation) < 0.05) {
+      if (Math.abs(destination - currentRotation) < 1) {
         apiScale.start(() => ({
           to: {
             scale: 100,
@@ -127,16 +127,17 @@ export function Wheel(props: Props) {
     from: { scale: 0 },
     config: props.tickerConfigPreset,
     onRest: () => {
-      props.onAnimationEnd();
+      setTimeout(() => {
+        props.onAnimationEnd();
+      }, 100);
       animated.current = !props.isWheelConfigurator; // eslint-disable-line fp/no-mutation
       // temporary for easier storybook testing
       if (props.isWheelConfigurator) {
-        setTimeout(() => {
-          apiScale.start(() => ({
-            to: { scale: 0 },
-            immediate: true,
-          }));
-        }, 100);
+        api.pause();
+        apiScale.start(() => ({
+          to: { scale: 0 },
+          immediate: true,
+        }));
       }
     },
   }));
@@ -154,6 +155,7 @@ export function Wheel(props: Props) {
     const rotationDiff = closestWinningRotation - reminder;
     const fixedProjectedPosition = pos + rotationDiff;
 
+    api.resume();
     api.start({
       to: {
         rotate: fixedProjectedPosition,
