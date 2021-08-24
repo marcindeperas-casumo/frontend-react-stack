@@ -12,6 +12,7 @@ export const PromotionCardContent = ({
   badge,
   dates,
   ctaText,
+  isExternalLink,
 }) => {
   return (
     <>
@@ -56,6 +57,7 @@ export const PromotionCardContent = ({
                 size="sm"
                 variant="primary"
                 href={link}
+                target={isExternalLink ? "blank" : ""}
               >
                 {ctaText}
               </ButtonPrimary>

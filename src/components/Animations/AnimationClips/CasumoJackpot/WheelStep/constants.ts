@@ -1,7 +1,6 @@
 export const wheelProps = {
   svgFiles: {
-    jackpotWheel:
-      "https://cms.casumo.com/wp-content/uploads/2021/07/casumoJackpotWheel.png",
+    jackpotWheel: "https://cms.casumo.com/wp-content/uploads/2021/07/4pots.png",
     movingWheelCenterpiece:
       "https://cms.casumo.com/wp-content/uploads/2021/07/casumoJackpotWheelCenter.svg",
     staticWheelCenterpiece:

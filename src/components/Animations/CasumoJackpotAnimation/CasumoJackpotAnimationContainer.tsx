@@ -51,6 +51,10 @@ export const CasumoJackpotAnimationContainer = ({
     return {};
   });
 
+  const potSvgsForIntro = Object.keys(potColors).map(
+    x => svgFiles[`${x}Borderless`]
+  );
+
   const introTranslations = {
     buttonText: textFields.buttonReveal,
     findOutText: textFields.revealText,
@@ -67,7 +71,7 @@ export const CasumoJackpotAnimationContainer = ({
   const animationConfig = [
     {
       animationId: "casumoJackpotIntro",
-      settings: { t: introTranslations },
+      settings: { t: introTranslations, potSvgsForIntro },
     },
     {
       animationId: "casumoJackpotTransition",
@@ -92,12 +96,13 @@ export const CasumoJackpotAnimationContainer = ({
     {
       animationId: "casumoJackpotAmount",
       settings: {
+        svgFiles,
         t: amountTranslations,
         amount: params.amount,
         currency: params.currency,
         potKey: params.pot_key,
         potName: jackpotConfig.pots.find(pot => pot.potKey === params.pot_key)
-          .name,
+          .shortName,
         potColor: potColors[params.pot_key],
         locale: locale,
       },
