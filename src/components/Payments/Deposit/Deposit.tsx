@@ -7,6 +7,7 @@ import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS, TCurrencyCode } from "Src/constants";
 import { navigateToDeposit } from "../utils";
 
+// define the translation object
 type DepositTranslations = {
   bonus_title: string | undefined;
   cta_deposit: string | undefined;
