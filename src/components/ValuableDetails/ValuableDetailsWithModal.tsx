@@ -23,7 +23,8 @@ export const ValuableDetailsWithModal = ({
   <AbstractModal
     isOpen={isOpen}
     hideModal={onClose}
-    className="c-valuable-details-modal u-height--full u-width--full t-border-r--md u-overflow--hidden"
+    className="c-valuable-details-modal u-height--full u-width--full t-border-r--md u-overflow--hidden c-valuable-details__abstract-modal-extra"
+    overlayClassName="c-valuable-details__abstract-modal-extra"
     closeTimeoutMS={100}
   >
     <ValuableDetailsContainer {...props}>{children}</ValuableDetailsContainer>
