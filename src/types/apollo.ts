@@ -996,6 +996,7 @@ export interface Promotion {
   tag?: Maybe<Scalars["String"]>;
   teaserCaveats?: Maybe<Scalars["String"]>;
   ctaText?: Maybe<Scalars["String"]>;
+  external_link?: Maybe<Scalars["String"]>;
 }
 
 export interface PromotionsList {
@@ -2030,6 +2031,7 @@ export type PromotionCard_PromotionFragment = {
   tag?: Maybe<string>;
   teaserCaveats?: Maybe<string>;
   ctaText?: Maybe<string>;
+  external_link?: Maybe<string>;
 };
 
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
@@ -2109,7 +2111,6 @@ export type GetJackpotConfigForWidgetQuery = {
     image: string;
     slug: string;
     widgetColor: { dark?: Maybe<string>; light?: Maybe<string> };
-    potTitleColor: string;
     pots: Array<{
       externalId: string;
       potKey: string;
@@ -2119,6 +2120,7 @@ export type GetJackpotConfigForWidgetQuery = {
       communityWinRatio: number;
       icon: string;
       potExplanation: string;
+      potTitleColor: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
