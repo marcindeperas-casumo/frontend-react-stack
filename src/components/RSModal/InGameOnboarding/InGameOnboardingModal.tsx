@@ -3,28 +3,33 @@ import CudlModal from "@casumo/cmp-modal";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Text from "@casumo/cmp-text";
 import http from "Lib/http";
+import { ModalConfig } from "Models/modal";
 import { isMobile } from "Components/ResponsiveLayout";
 import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
 import { urls } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { useHandshake } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
-import { ModalTranslations } from "./GameLaunchOnboardingModalContainer";
+import { ModalTranslations } from "./InGameOnboardingModalContainer";
 
 type Props = {
   acceptModal: () => void;
   cancelModal: () => void;
   t: ModalTranslations;
+  config: ModalConfig;
 };
 
-export function GameLaunchOnboardingModal({
+export function InGameOnboardingModal({
   acceptModal,
   cancelModal,
   t,
+  config,
 }: Props) {
   const handshake = useHandshake();
 
   const handleAcceptModal = event => {
     event.stopPropagation();
-    const isPotAvailable = handshake.jackpots.find(pot => pot.jackpotSlug);
+    const isPotAvailable = handshake.jackpots.find(
+      pot => pot.jackpotSlug === config.slug
+    );
 
     if (isPotAvailable) {
       http
@@ -70,7 +75,7 @@ export function GameLaunchOnboardingModal({
       <JackpotRules
         text={t.rules_text || ""}
         tncLabel=""
-        jackpotSlug="casumo-jackpots"
+        jackpotSlug={config.slug}
       />
       <Text>{}</Text>
     </CudlModal>

@@ -12,7 +12,7 @@ import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
-import { GameLaunchModal } from "Components/RSModal/GameLaunchOnboarding";
+import { InGameOnboardingModalContainer } from "Components/RSModal/InGameOnboarding";
 import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
 import {
   MandatoryMessageModal,
@@ -166,9 +166,9 @@ export const mappings: Mapping = {
     slug: "",
     Content: ArticleModal,
   },
-  [REACT_APP_MODAL.ID.GAMELAUNCH_MODAL]: {
+  [REACT_APP_MODAL.ID.JACKPOT_INGAME_ONBOARDING]: {
     slug: "",
-    Content: GameLaunchModal,
+    Content: InGameOnboardingModalContainer,
   },
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",

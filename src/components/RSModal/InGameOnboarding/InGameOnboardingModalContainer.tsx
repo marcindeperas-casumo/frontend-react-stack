@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslations } from "Utils/hooks";
 import { ModalContentComponent } from "../rsmodal.mappings";
-import { GameLaunchOnboardingModal } from "./GameLaunchOnboardingModal";
+import { InGameOnboardingModal } from "./InGameOnboardingModal";
 
 export type ModalTranslations = {
   button_accept: string;
@@ -12,21 +12,23 @@ export type ModalTranslations = {
   rules_text: string;
 };
 
-export const GameLaunchModal = ({
+export const InGameOnboardingModalContainer = ({
   t,
+  config,
   acceptModal,
   dismissModal,
 }: ModalContentComponent<{}>) => {
   const translations = useTranslations<ModalTranslations>(
-    `jackpots-details-pages.casumo-jackpots`
+    `jackpots-details-pages.${config.slug}`
   );
 
   return (
     translations && (
-      <GameLaunchOnboardingModal
+      <InGameOnboardingModal
         acceptModal={acceptModal}
         cancelModal={dismissModal}
         t={translations}
+        config={config}
       />
     )
   );

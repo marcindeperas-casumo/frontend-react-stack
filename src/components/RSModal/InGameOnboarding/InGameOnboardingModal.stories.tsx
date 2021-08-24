@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import MockDate from "mockdate";
 import * as React from "react";
 import { isChromatic } from "Storybook/isNotChromatic";
-import { GameLaunchOnboardingModal } from "./GameLaunchOnboardingModal";
+import { InGameOnboardingModal } from "./InGameOnboardingModal";
 
 if (isChromatic) {
   MockDate.set(new Date("2020-01-01T14:54:10").toString());
@@ -24,8 +24,9 @@ const cmsContent = {
 const stories = storiesOf("RSModal/GameLaunch", module);
 stories.add("Finished", () => {
   return (
-    <GameLaunchOnboardingModal
+    <InGameOnboardingModal
       t={{ ...cmsContent }}
+      config={{ slug: "casumo-jackpots" }}
       acceptModal={action("accepted modal")}
       cancelModal={action("cancel modal")}
     />

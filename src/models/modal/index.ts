@@ -35,7 +35,7 @@ export type ModalId =
   | "REEL_RACES_TAC"
   | "ACCOUNT_WARM_UP"
   | "ARTICLE_MODAL"
-  | "GAMELAUNCH_MODAL";
+  | "JACKPOT_INGAME_ONBOARDING";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
