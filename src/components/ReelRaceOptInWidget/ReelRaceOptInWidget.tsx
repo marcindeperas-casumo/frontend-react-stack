@@ -82,7 +82,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
             height={60}
           />
         </Flex.Item>
-        <Flex.Item>
+        <Flex.Item className="u-margin-left--md">
           <Text className="text-yellow-30 font-bold u-margin-bottom--sm u-margin-top--none">
             {t.competeFor &&
               interpolate(t.competeFor, {
@@ -95,25 +95,22 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
 
       <Flex
         className={cx(
-          "-ml-md",
-          "w-[200px]",
+          "",
+          "w-[230px]",
           "o-flex--horizontal",
-          "u-padding-y--lg"
+          "u-padding-y--lg",
+          "u-margin-left-negative--22"
         )}
         justify="space-between"
       >
         <Flex
           direction="vertical"
           align="center"
-          className="o-flex--1 u-text-align-center t-border-right border-grey-5"
+          className="o-flex--1 u-text-align-center t-border-right border-grey-5 u-border-opacity--03"
         >
-          <Text
-            tag="div"
-            size="xs"
-            className="u-font-weight-bold text-grey-50 u-text-transform-uppercase"
-          >
+          <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
             {t.spins}
-          </Text>
+          </div>
           <Text tag="div" className="u-font-weight-bold">
             {reelRace.spinLimit}
           </Text>
@@ -136,7 +133,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
         <Flex
           direction="vertical"
           align="center"
-          className="o-flex--1 u-text-align-center t-border-left border-grey-5"
+          className="o-flex--1 u-text-align-center t-border-left border-grey-5 u-border-opacity--03"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
             {extraTranslations?.leaderboard_prize}
