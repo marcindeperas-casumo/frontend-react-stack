@@ -74,7 +74,7 @@ export function InGameOnboardingModal({
       <Text>{t.onboarding_text || ""}</Text>
       <JackpotRules
         text={t.rules_text || ""}
-        tncLabel=""
+        tncLabel={t.tncLabel || ""}
         jackpotSlug={config.slug}
       />
       <Text>{}</Text>

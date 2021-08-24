@@ -10,10 +10,10 @@ export type ModalTranslations = {
   onboarding_title: string;
   onboarding_text: string;
   rules_text: string;
+  tncLabel: string;
 };
 
 export const InGameOnboardingModalContainer = ({
-  t,
   config,
   acceptModal,
   dismissModal,

@@ -19,6 +19,7 @@ const cmsContent = {
     "By opting-in you agree to contribute 10 cents per round to the total prize pool. T&C apply",
   button_accept: "Play with jackpots",
   button_deny: "Play normally",
+  tncLabel: "Test label",
 };
 
 const stories = storiesOf("RSModal/GameLaunch", module);

@@ -12,6 +12,7 @@ export type TJackpotDetailsPageTranslations = {
   details_title: string;
   details_intro_text: string;
   rules_text: string;
+  tncLabel: string;
 };
 
 type TProps = {
