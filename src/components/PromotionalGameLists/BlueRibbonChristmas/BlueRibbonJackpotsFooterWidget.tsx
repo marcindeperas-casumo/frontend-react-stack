@@ -36,9 +36,9 @@ export function BlueRibbonJackpotsFooterWidget({
 
   const { gameProviderModel } = useGameModelContext();
   React.useEffect(() => {
-    setTimeout(() => {
+    if (gameProviderModel) {
       gameProviderModel.fitToParentSize();
-    });
+    }
   }, [gameProviderModel]);
 
   const jackpotsRows =
