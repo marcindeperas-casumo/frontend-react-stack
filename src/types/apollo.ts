@@ -2090,6 +2090,7 @@ export type GetBlueribbonJackpotConfigBySlugQuery = {
       communityWinRatio: number;
       icon: string;
       potExplanation: string;
+      potTitleColor: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;

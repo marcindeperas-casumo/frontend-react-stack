@@ -3,6 +3,7 @@ import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
 import * as React from "react";
 import { useSelector } from "react-redux";
+import classNames from "classnames";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
@@ -55,6 +56,7 @@ export function BlueRibbonJackpotsWidget({
               })}
               label={composedPot.name}
               image={composedPot.icon}
+              potTitleColor={composedPot.potTitleColor}
             />
           );
         }
@@ -112,12 +114,14 @@ type JackpotRowProps = {
   label: string;
   image: string;
   explanation?: string;
+  potTitleColor?: string;
 };
 function JackpotRow({
   formattedValue,
   label,
   image,
   explanation,
+  potTitleColor,
 }: JackpotRowProps) {
   return (
     <Media
@@ -135,7 +139,10 @@ function JackpotRow({
         <>
           <Text
             size="2xs"
-            className="u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase text-white"
+            className={classNames(
+              "u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase text-white",
+              potTitleColor
+            )}
           >
             {label}
           </Text>
