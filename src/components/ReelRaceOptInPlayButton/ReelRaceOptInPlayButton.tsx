@@ -59,7 +59,10 @@ export function ReelRaceOptInPlayButton({
       onClick={noop}
       className="u-width--full bg-grey-80 u-padding-top--sm"
     >
-      <CheckIcon size="md" className="text-white u-margin-bottom--sm" />
+      <CheckIcon
+        size="md"
+        className="u-margin-bottom--sm text-white u-margin-bottom--sm u-transform-scale--third"
+      />
       <Text tag="span">{reelRace.translations.optedIn}</Text>
     </ButtonVariant>
   );
@@ -70,7 +73,10 @@ export function ReelRaceOptInPlayButton({
       data={{ state: BUTTON_STATE.PLAY }}
     >
       <ButtonVariant size="sm" onClick={playCallback} className="u-width--full">
-        <PlayIcon size="sm" />
+        <PlayIcon
+          size="sm"
+          className="u-margin-bottom--sm u-margin-right u-transform-scale--third"
+        />
         <Text tag="span" className="u-margin-left">
           {reelRace.translations.optedInCtaSingleGameShort}
         </Text>
