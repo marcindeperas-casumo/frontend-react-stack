@@ -2,17 +2,14 @@ import * as React from "react";
 import CudlModal from "@casumo/cmp-modal";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Text from "@casumo/cmp-text";
-import http from "Lib/http";
 import { ModalConfig } from "Models/modal";
 import { isMobile } from "Components/ResponsiveLayout";
 import { JackpotRules } from "Components/JackpotDetailPage/JackpotRules";
-import { urls } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
-import { useHandshake } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { ModalTranslations } from "./InGameOnboardingModalContainer";
 
 type Props = {
-  acceptModal: () => void;
-  cancelModal: () => void;
+  acceptModal: (event: any) => void;
+  cancelModal: (event: any) => void;
   t: ModalTranslations;
   config: ModalConfig;
 };
@@ -23,41 +20,19 @@ export function InGameOnboardingModal({
   t,
   config,
 }: Props) {
-  const handshake = useHandshake();
-
-  const handleAcceptModal = event => {
-    event.stopPropagation();
-    const isPotAvailable = handshake.jackpots.find(
-      pot => pot.jackpotSlug === config.slug
-    );
-
-    if (isPotAvailable) {
-      http
-        .post(urls.optIn, { jackpotId: isPotAvailable.jackpotId })
-        .then(() => {
-          acceptModal();
-        });
-    }
-  };
-
-  const handleCancelModal = event => {
-    event.stopPropagation();
-    localStorage.setItem("JackpotOfferPresented", "true");
-    cancelModal();
-  };
-
+ 
   return (
     <CudlModal
       closeIcon={{
-        action: handleCancelModal,
+        action: cancelModal,
       }}
       primaryButton={{
         text: t.button_accept || "",
-        action: handleAcceptModal,
+        action: acceptModal,
       }}
       secondaryButton={{
         text: t.button_deny || "",
-        action: handleCancelModal,
+        action: cancelModal,
       }}
     >
       <ResponsiveImage
@@ -77,7 +52,6 @@ export function InGameOnboardingModal({
         tncLabel={t.tncLabel || ""}
         jackpotSlug={config.slug}
       />
-      <Text>{}</Text>
     </CudlModal>
   );
 }

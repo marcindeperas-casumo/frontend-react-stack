@@ -1,5 +1,8 @@
 import React from "react";
+import http from "Lib/http";
 import { useTranslations } from "Utils/hooks";
+import { urls } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { useHandshake } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { ModalContentComponent } from "../rsmodal.mappings";
 import { InGameOnboardingModal } from "./InGameOnboardingModal";
 
@@ -22,11 +25,35 @@ export const InGameOnboardingModalContainer = ({
     `jackpots-details-pages.${config.slug}`
   );
 
+  const handshake = useHandshake();
+
+  const handleAcceptModal = event => {
+    event.stopPropagation();
+    const isPotAvailable = handshake.jackpots.find(
+      pot => pot.jackpotSlug === config.slug
+    );
+
+    if (isPotAvailable) {
+      http
+        .post(urls.optIn, { jackpotId: isPotAvailable.jackpotId })
+        .then(() => {
+          acceptModal();
+          localStorage.setItem("JackpotOfferPresented", "true");
+        });
+    }
+  };
+
+  const handleCancelModal = event => {
+    event.stopPropagation();
+    localStorage.setItem("JackpotOfferPresented", "true");
+    dismissModal();
+  };
+
   return (
     translations && (
       <InGameOnboardingModal
-        acceptModal={acceptModal}
-        cancelModal={dismissModal}
+        acceptModal={handleAcceptModal}
+        cancelModal={handleCancelModal}
         t={translations}
         config={config}
       />

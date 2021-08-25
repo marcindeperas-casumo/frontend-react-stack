@@ -35,7 +35,7 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
       widgetComponent={widget}
       isMobile={!breakpoints.gtPhablet}
       jackpotSlug={jackpotSlug}
-      t={{ ...t, tncLabel: t.tncLabel }}
+      t={t}
     />
   ) : null;
 };

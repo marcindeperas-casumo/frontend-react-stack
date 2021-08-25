@@ -26,7 +26,7 @@ const stories = storiesOf("RSModal/GameLaunch", module);
 stories.add("Finished", () => {
   return (
     <InGameOnboardingModal
-      t={{ ...cmsContent }}
+      t={cmsContent}
       config={{ slug: "casumo-jackpots" }}
       acceptModal={action("accepted modal")}
       cancelModal={action("cancel modal")}
