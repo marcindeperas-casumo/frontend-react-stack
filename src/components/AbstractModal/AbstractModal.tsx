@@ -41,7 +41,10 @@ export class AbstractModal extends React.PureComponent<Props> {
               ? className
               : "c-abstract-modal--default u-height--full u-width--full"
           )}
-          overlayClassName={classNames("c-abstract-modal__overlay", overlayClassName)}
+          overlayClassName={classNames(
+            "c-abstract-modal__overlay",
+            overlayClassName
+          )}
           {...rest}
         >
           <div className="u-height--full u-overflow--auto u-scrollbar-regular u-overflow-scrolling--touch">
