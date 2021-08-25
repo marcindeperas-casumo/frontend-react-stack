@@ -1,3 +1,5 @@
+$color-dark-orange: #965c30;
+
 .c-valuable-card-thumbnail__state {
   vertical-align: bottom;
 }
@@ -13,7 +15,7 @@
 
 // stylelint-disable xi/selector-pattern
 .c-valuable-symbol--fill > svg {
-  fill: #965c30;
-  stroke: #965c30;
+  fill: $color-dark-orange;
+  stroke: $color-dark-orange;
   stroke-width: 3%;
 }
