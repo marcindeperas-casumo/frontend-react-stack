@@ -20,7 +20,6 @@ export function InGameOnboardingModal({
   t,
   config,
 }: Props) {
- 
   return (
     <CudlModal
       closeIcon={{

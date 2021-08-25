@@ -1,10 +1,8 @@
 import React from "react";
-import http from "Lib/http";
 import { useTranslations } from "Utils/hooks";
-import { urls } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
+import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 import { ModalContentComponent } from "../rsmodal.mappings";
 import { InGameOnboardingModal } from "./InGameOnboardingModal";
-import { useManualJackpotOptInAndOptOut } from "Components/PromotionalGameLists/BlueRibbonChristmas/useBlueRibbonSDK";
 
 export type ModalTranslations = {
   button_accept: string;
