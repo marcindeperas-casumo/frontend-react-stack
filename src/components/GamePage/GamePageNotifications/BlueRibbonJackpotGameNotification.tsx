@@ -1,13 +1,33 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { CloseIcon } from "@casumo/cmp-icons";
+import { showModal } from "Models/modal";
+import { REACT_APP_MODAL } from "Src/constants";
 import DangerousHtml from "Components/DangerousHtml";
 import { useGameJackpotContext } from "Components/GamePage/Contexts";
 
 export function BlueRibbonJackpotGameNotification() {
   const { blueribbonJackpotForCurrentGame } = useGameJackpotContext();
   const [acknowledged, setAcknowledged] = React.useState(false);
+  const dispatch = useDispatch();
+
+  const userHasSeenJackpotOffer = localStorage.getItem("JackpotOfferPresented");
+
+  React.useEffect(() => {
+    if (
+      blueribbonJackpotForCurrentGame &&
+      !blueribbonJackpotForCurrentGame.optedIn &&
+      !userHasSeenJackpotOffer
+    ) {
+      dispatch(
+        showModal(REACT_APP_MODAL.ID.JACKPOT_INGAME_ONBOARDING, {
+          slug: blueribbonJackpotForCurrentGame.slug,
+        })
+      );
+    }
+  }, [blueribbonJackpotForCurrentGame, userHasSeenJackpotOffer, dispatch]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {
     return null;
