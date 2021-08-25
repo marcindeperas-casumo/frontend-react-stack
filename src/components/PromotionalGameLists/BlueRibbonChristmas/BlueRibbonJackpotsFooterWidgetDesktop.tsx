@@ -54,7 +54,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
-  const { icon, shortName } = pot;
+  const { icon, shortName, potTitleColor } = pot;
   return (
     <Flex direction="horizontal" align="center" justify="center" spacing="sm">
       <Flex.Item className="u-height--xlg">
@@ -71,7 +71,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
           <Text
             size="xs"
             tag="span"
-            className="u-text-transform-uppercase text-grey-50"
+            className={classNames("u-text-transform-uppercase", potTitleColor)}
           >
             {shortName}
           </Text>

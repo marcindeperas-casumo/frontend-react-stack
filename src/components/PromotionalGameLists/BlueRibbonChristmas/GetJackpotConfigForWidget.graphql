@@ -17,6 +17,7 @@ query GetJackpotConfigForWidget($slug: String!) {
       communityWinRatio
       icon
       potExplanation
+      potTitleColor
       sharedPot { 
         name
         shortName
