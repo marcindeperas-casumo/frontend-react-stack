@@ -20,6 +20,6 @@ describe("Sports/Deposit", () => {
       <Deposit balance={12345} bonus={0} locale="en-IN" currency="INR" />
     );
 
-    expect(rendered.find(".c-sport-deposit__bonus")).toHaveLength(0);
+    expect(rendered.find(".c-sport-deposit__bonus")).toHaveLength(1);
   });
 });
