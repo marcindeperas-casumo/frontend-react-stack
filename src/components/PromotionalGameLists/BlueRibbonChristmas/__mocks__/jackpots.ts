@@ -35,6 +35,7 @@ export const composedPots = [
     communityWinRatio: 0,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mini.svg",
     potExplanation: "",
+    potTitleColor: "",
     sharedPot: null,
     value: 10,
     status: "COLD" as JackpotStatus,
@@ -49,6 +50,7 @@ export const composedPots = [
     communityWinRatio: 0,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/major.svg",
     potExplanation: "",
+    potTitleColor: "",
     sharedPot: null,
     value: 63.2,
     status: "WARM" as JackpotStatus,
@@ -63,6 +65,7 @@ export const composedPots = [
     communityWinRatio: 50,
     icon: "https://cms.casumo.com/wp-content/uploads/2020/10/mega.svg",
     potExplanation: "Goes to 1 winner",
+    potTitleColor: "",
     sharedPot: {
       name: "Community pot",
       shortName: "Community",

@@ -47,7 +47,7 @@ export function BlueRibbonJackpotsFooterWidgetContainer() {
             direction="horizontal"
             align="center"
             justify="center"
-            className="bg-grey-70 t-border-r-top-right--md"
+            className="bg-grey-70 t-border-r-top-right--md t-border-r-top-left--md"
           >
             <BlueRibbonJackpotsFooterWidgetDesktop
               normalizedPots={normalizePots(composedJackpot.pots)}

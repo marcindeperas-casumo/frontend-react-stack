@@ -241,6 +241,7 @@ export const composedJackpotFull: ComposedJackpot = {
       lastWinTs: 1592733025,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
     {
       status: "CHILLY",
@@ -255,6 +256,7 @@ export const composedJackpotFull: ComposedJackpot = {
       lastWinTs: 1592733025,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
   ],
   requiresManualOptIn: true,
@@ -288,6 +290,7 @@ export const composedJackpotMatchLastDayWin: ComposedJackpot = {
       lastWinTs: 1908263169,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
     {
       status: "CHILLY",
@@ -302,6 +305,7 @@ export const composedJackpotMatchLastDayWin: ComposedJackpot = {
       lastWinTs: 1592733025,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
   ],
   requiresManualOptIn: true,
@@ -335,6 +339,7 @@ export const composedJackpotMegaLastDayWin: ComposedJackpot = {
       lastWinTs: 1592733025,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
     {
       status: "CHILLY",
@@ -349,6 +354,7 @@ export const composedJackpotMegaLastDayWin: ComposedJackpot = {
       lastWinTs: 1908263169,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
   ],
   requiresManualOptIn: true,
@@ -382,6 +388,7 @@ export const composedJackpotAllLastDayWin: ComposedJackpot = {
       lastWinTs: 1908263169,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
     {
       status: "CHILLY",
@@ -396,6 +403,7 @@ export const composedJackpotAllLastDayWin: ComposedJackpot = {
       lastWinTs: 1908263169,
       icon: "",
       potExplanation: "",
+      potTitleColor: "",
     },
   ],
   requiresManualOptIn: true,
