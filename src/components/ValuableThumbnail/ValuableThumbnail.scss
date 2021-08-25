@@ -10,3 +10,10 @@
 .c-valuable-card-thumbnail-coin {
   width: 100%;
 }
+
+// stylelint-disable xi/selector-pattern
+.c-valuable-symbol--fill > svg {
+  fill: #965c30;
+  stroke: #965c30;
+  stroke-width: 3%;
+}

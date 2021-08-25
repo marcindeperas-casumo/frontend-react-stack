@@ -104,7 +104,7 @@ export const ValuableThumbnail = ({
               currency={currency}
               spinType={spinType}
               valuableType={valuableType}
-              size={size === "small" ? "sm" : "md"}
+              size={"default"}
             />
           </Flex>
         </div>
