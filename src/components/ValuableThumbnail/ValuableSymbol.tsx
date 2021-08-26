@@ -1,13 +1,14 @@
 import {
   CouponIcon,
-  WalletTabDollarUnselectedIcon,
-  WalletTabEuroUnselectedIcon,
-  WalletTabSterlingUnselectedIcon,
-  WalletTabKroneUnselectedIcon,
-  WalletTabRupeeUnselectedIcon,
   DepositBonusIcon,
+  DollarIcon,
+  EuroIcon,
+  KronaIcon,
+  PoundIcon,
+  RupeeIcon,
 } from "@casumo/cmp-icons";
 import React from "react";
+import classNames from "classnames";
 import * as A from "Types/apollo";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
@@ -19,15 +20,15 @@ import {
 } from "./icons";
 
 const ALL_CURRENCIES_ICONS = {
-  [CURRENCIES.CAD]: WalletTabDollarUnselectedIcon,
-  [CURRENCIES.EUR]: WalletTabEuroUnselectedIcon,
-  [CURRENCIES.GBP]: WalletTabSterlingUnselectedIcon,
-  [CURRENCIES.INR]: WalletTabRupeeUnselectedIcon,
-  [CURRENCIES.NOK]: WalletTabKroneUnselectedIcon,
-  [CURRENCIES.SEK]: WalletTabKroneUnselectedIcon,
-  [CURRENCIES.DKK]: WalletTabKroneUnselectedIcon,
-  [CURRENCIES.NZD]: WalletTabDollarUnselectedIcon,
-  [CURRENCIES.USD]: WalletTabDollarUnselectedIcon,
+  [CURRENCIES.CAD]: DollarIcon,
+  [CURRENCIES.EUR]: EuroIcon,
+  [CURRENCIES.GBP]: PoundIcon,
+  [CURRENCIES.INR]: RupeeIcon,
+  [CURRENCIES.NOK]: KronaIcon,
+  [CURRENCIES.SEK]: KronaIcon,
+  [CURRENCIES.DKK]: KronaIcon,
+  [CURRENCIES.NZD]: DollarIcon,
+  [CURRENCIES.USD]: DollarIcon,
 };
 
 const VALUABLE_ICON = {
@@ -80,6 +81,10 @@ export const ValuableSymbol = ({
   const CASH_RELATED_REWARDS = ["bonusMoney", "freeMoney"];
   const SPINS_RELATED_REWARDS = ["spins"];
 
+  const isCashRelated =
+    CASH_RELATED_VALUABLES.includes(valuableType) ||
+    CASH_RELATED_REWARDS.includes(awardType);
+
   const ValuableSymbolComponent = (() => {
     const isSpinRelated =
       VALUABLE_TYPES.SPINS === valuableType ||
@@ -88,10 +93,6 @@ export const ValuableSymbol = ({
     if (isSpinRelated) {
       return ValuableIcon[spinType || VALUABLE_SPIN_TYPES.BASIC_SPINS];
     }
-
-    const isCashRelated =
-      CASH_RELATED_VALUABLES.includes(valuableType) ||
-      CASH_RELATED_REWARDS.includes(awardType);
 
     if (isCashRelated) {
       return ValuableIcon[currency] || ValuableIcon[CURRENCIES.EUR];
@@ -104,7 +105,9 @@ export const ValuableSymbol = ({
     <ValuableSymbolComponent
       type={valuableType}
       size={size}
-      className="u-width--full"
+      className={classNames("u-width--full", {
+        "c-valuable-symbol--fill ": isCashRelated,
+      })}
     />
   );
 };
