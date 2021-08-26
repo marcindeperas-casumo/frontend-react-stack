@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
-import { useGameModelContext } from "Components/GamePage/Contexts";
 import type { PotObject } from "./blueRibbonConsts";
 import "./blueRibbonJackpotsFooterWidget.scss";
 
@@ -33,13 +32,6 @@ export function BlueRibbonJackpotsFooterWidget({
       setVisibleSection(x => 1 - x);
     }
   }, 5000);
-
-  const { gameProviderModel } = useGameModelContext();
-  React.useEffect(() => {
-    if (gameProviderModel) {
-      gameProviderModel.fitToParentSize();
-    }
-  }, [gameProviderModel]);
 
   const jackpotsRows =
     normalizedPots.length > 2
