@@ -36,7 +36,7 @@ export function InGameOnboardingModal({
     >
       <ResponsiveImage
         src={t.details_image}
-        dpr={window.devicePixelRatio}
+        dpr={Math.ceil(window.devicePixelRatio)}
         imgixOpts={{
           fit: "crop",
           w: isMobile() ? 700 : 410,
