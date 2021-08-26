@@ -1,3 +1,5 @@
+$color-dark-orange: #965c30;
+
 .c-valuable-card-thumbnail__state {
   vertical-align: bottom;
 }
@@ -9,4 +11,11 @@
 }
 .c-valuable-card-thumbnail-coin {
   width: 100%;
+}
+
+// stylelint-disable xi/selector-pattern
+.c-valuable-symbol--fill > svg {
+  fill: $color-dark-orange;
+  stroke: $color-dark-orange;
+  stroke-width: 3%;
 }
