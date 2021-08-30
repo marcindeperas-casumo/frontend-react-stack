@@ -5,7 +5,7 @@ const imgixOpts = {
   w: 240,
   h: 140,
   fit: "crop",
-  dpr: window.devicePixelRatio,
+  dpr: Math.ceil(window.devicePixelRatio),
   q: 100,
 };
 
