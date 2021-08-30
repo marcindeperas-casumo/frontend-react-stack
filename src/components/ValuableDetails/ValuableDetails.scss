@@ -37,7 +37,6 @@ $shadow-width: 130px;
 
   &__valuable-card {
     width: $card-details-width;
-    z-index: 1;
 
     &::after {
       background: #303838;
@@ -62,5 +61,9 @@ $shadow-width: 130px;
     @include cudl-breakpoint(tablet) {
       height: 590px;
     }
+  }
+
+  &__abstract-modal-extra {
+    z-index: 1 !important;
   }
 }
