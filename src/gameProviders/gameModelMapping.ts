@@ -47,7 +47,7 @@ export const models = {
   [PROVIDERS.NETENT_GAME_INCLUSION]: NetentGame,
   [PROVIDERS.NETENT_EMBEDDED]: EmbeddedNetentGame,
   [PROVIDERS.NYX_HTML5]: NyxGame,
-  [PROVIDERS.NYX_FLASH]: BaseIframeGame,
+  [PROVIDERS.NYX_FLASH]: NyxGame,
   [PROVIDERS.PLAYNGO_DESKTOP]: PlayNGoDesktopGame,
   [PROVIDERS.PLAYNGO_MOBILE]: PlayNGoMobileGame,
   [PROVIDERS.THUNDERKICK_DESKTOP]: ThunderkickGame,
