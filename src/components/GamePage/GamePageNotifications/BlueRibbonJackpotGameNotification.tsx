@@ -10,6 +10,7 @@ import { useGameJackpotContext } from "Components/GamePage/Contexts";
 
 export function BlueRibbonJackpotGameNotification() {
   const { blueribbonJackpotForCurrentGame } = useGameJackpotContext();
+  const [prevOptedIn, prevOptedInSet] = React.useState<boolean>();
   const [acknowledged, setAcknowledged] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -28,6 +29,13 @@ export function BlueRibbonJackpotGameNotification() {
       );
     }
   }, [blueribbonJackpotForCurrentGame, userHasSeenJackpotOffer, dispatch]);
+
+  React.useEffect(() => {
+    if (prevOptedIn !== blueribbonJackpotForCurrentGame.optedIn) {
+      setAcknowledged(false);
+    }
+    prevOptedInSet(blueribbonJackpotForCurrentGame.optedIn);
+  }, [prevOptedIn, blueribbonJackpotForCurrentGame]);
 
   if (!blueribbonJackpotForCurrentGame || acknowledged) {
     return null;
