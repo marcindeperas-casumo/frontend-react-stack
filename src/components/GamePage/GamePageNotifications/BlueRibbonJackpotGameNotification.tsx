@@ -31,6 +31,10 @@ export function BlueRibbonJackpotGameNotification() {
   }, [blueribbonJackpotForCurrentGame, userHasSeenJackpotOffer, dispatch]);
 
   React.useEffect(() => {
+    if (!blueribbonJackpotForCurrentGame) {
+      return;
+    }
+
     if (prevOptedIn !== blueribbonJackpotForCurrentGame.optedIn) {
       setAcknowledged(false);
     }
