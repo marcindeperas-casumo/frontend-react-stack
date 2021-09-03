@@ -2,14 +2,30 @@ import { HandshakeResponse } from "Components/PromotionalGameLists/BlueRibbonChr
 import { createReducer } from "Utils";
 import { types } from "./constants";
 
-type TJackpotsReduxStore = HandshakeResponse;
+export type TJackpotsReduxStore = {
+  handshake: HandshakeResponse;
+  eligibleGamesBySlug: {
+    [key: string]: string;
+  };
+};
 
-export const DEFAULT_STATE: TJackpotsReduxStore = null;
+export const DEFAULT_STATE: TJackpotsReduxStore = {
+  handshake: null,
+  eligibleGamesBySlug: {},
+};
 
 const handlers = {
   [types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE]: (state, { response }) => ({
     ...state,
     ...response,
+    eligibleGamesBySlug: (response?.jackpots || []).reduce((acc, jackpot) => {
+      return {
+        ...acc,
+        ...jackpot.matchedGames.reduce((games, game) => {
+          return { ...games, [game.slug]: jackpot.jackpotSlug };
+        }, {}),
+      };
+    }, {}),
   }),
 };
 
