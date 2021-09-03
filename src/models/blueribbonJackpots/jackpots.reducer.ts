@@ -16,8 +16,7 @@ export const DEFAULT_STATE: TJackpotsReduxStore = {
 
 const handlers = {
   [types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE]: (state, { response }) => ({
-    ...state,
-    ...response,
+    handshake: response,
     eligibleGamesBySlug: (response?.jackpots || []).reduce((acc, jackpot) => {
       return {
         ...acc,
