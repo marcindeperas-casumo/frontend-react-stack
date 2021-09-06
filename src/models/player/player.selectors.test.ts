@@ -81,7 +81,7 @@ describe("Player selectors", () => {
       expect(playerWalletAmountSelector(state)).toEqual(wallet.amount);
     });
 
-    test("Should get null when balance does not exist", () => {
+    test("Should get null when balance does not exist in wallet", () => {
       expect(playerWalletAmountSelector(state2)).toEqual(null);
     });
   });
