@@ -14,17 +14,23 @@ export const DEFAULT_STATE: TJackpotsReduxStore = {
   eligibleGamesBySlug: {},
 };
 
+export const handshakeToGameJackpotSlugMapper = jackpots =>
+  jackpots.reduce((acc, jackpot) => {
+    return {
+      ...acc,
+      ...jackpot.matchedGames.reduce((games, game) => {
+        return { ...games, [game.slug]: jackpot.jackpotSlug };
+      }, {}),
+    };
+  }, {});
+
 const handlers = {
   [types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE]: (state, { response }) => ({
+    ...state,
     handshake: response,
-    eligibleGamesBySlug: (response?.jackpots || []).reduce((acc, jackpot) => {
-      return {
-        ...acc,
-        ...jackpot.matchedGames.reduce((games, game) => {
-          return { ...games, [game.slug]: jackpot.jackpotSlug };
-        }, {}),
-      };
-    }, {}),
+    eligibleGamesBySlug: handshakeToGameJackpotSlugMapper(
+      response?.jackpots || []
+    ),
   }),
 };
 
