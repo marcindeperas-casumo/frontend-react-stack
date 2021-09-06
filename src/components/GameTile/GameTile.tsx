@@ -15,7 +15,7 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 import "./GameTile.scss";
-import { JackpotMarkImage } from "../JackpotMarkImage/JckpotMarkImage";
+import { JackpotMarkImage } from "../JackpotMarkImage/JackpotMarkImage";
 
 export type GameTileTranslations = {
   play_button_text_game_tile: string;

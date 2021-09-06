@@ -7,7 +7,7 @@ import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import { useTranslatedUrl } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
-import { JackpotMarkImage } from "Components/JackpotMarkImage/JckpotMarkImage";
+import { JackpotMarkImage } from "Components/JackpotMarkImage/JackpotMarkImage";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
 import "./GameRow.scss";
