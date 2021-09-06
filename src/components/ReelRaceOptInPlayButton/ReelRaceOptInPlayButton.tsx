@@ -53,7 +53,13 @@ export function ReelRaceOptInPlayButton({
       // eslint-disable-next-line fp/no-mutation
       return () => (window.location.pathname = gameDetailsPath);
     },
-    [userEmail, gameDetailsPath, isGameEmbedded, reactNativeLaunch, reelRace.game.slug]
+    [
+      userEmail,
+      gameDetailsPath,
+      isGameEmbedded,
+      reactNativeLaunch,
+      reelRace.game.slug,
+    ]
   );
 
   const OptInButton = () => (
