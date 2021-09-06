@@ -7,6 +7,7 @@ import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import { useTranslatedUrl } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
+import { JackpotMarkImage } from "Components/JackpotMarkImage/JckpotMarkImage";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
 import "./GameRow.scss";
@@ -61,7 +62,7 @@ export const GameRow = (props: Props) => {
       >
         <Flex
           className={classNames(
-            "o-flex__item--no-shrink u-padding-bottom--md",
+            "o-flex__item--no-shrink u-padding-bottom--md o-position--relative",
             {
               "t-greyscale c-game-row__game-thumb--maintenance":
                 game.isInMaintenance,
@@ -75,6 +76,7 @@ export const GameRow = (props: Props) => {
             width={GameRow.ICON_SIZE}
             height={GameRow.ICON_SIZE}
           />
+          <JackpotMarkImage type="tile" gameSlug={game.slug} />
         </Flex>
         <Flex
           direction="vertical"

@@ -15,6 +15,7 @@ import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 import "./GameTile.scss";
+import { JackpotMarkImage } from "../JackpotMarkImage/JckpotMarkImage";
 
 export type GameTileTranslations = {
   play_button_text_game_tile: string;
@@ -27,6 +28,7 @@ export type Props = {
   ratio?: string;
   t?: GameTileTranslations;
   gameDetailsPath?: string;
+  jackpotMark: string;
   locale?: string;
 };
 
@@ -43,6 +45,7 @@ export const GameTile = ({
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
   gameDetailsPath,
+  jackpotMark,
   locale,
 }: Props) => {
   const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =
@@ -100,6 +103,7 @@ export const GameTile = ({
           name={name}
           imgixOpts={imgixOpts}
         />
+        {jackpotMark && <JackpotMarkImage type="tile" gameSlug={game.slug} />}
         {jackpot && <JackpotAmountButton />}
         <div className="o-ratio__content c-game-tile-container u-cursor--pointer o-position--absolute u-zindex--content-overlay">
           <Flex
