@@ -550,6 +550,7 @@ export const POLL_INTERVAL = {
 export const EMBEDDED_GAMES = {
   ACTIVE: false,
   TESTERS: [
+    "mariusz.klinger+valuables@casumo.com",
     "mariusz.klinger+test@casumo.com",
     "boguslaw.parol@casumo.com",
     "lukasz.kowalski@casumo.com",
@@ -568,7 +569,7 @@ export const EMBEDDED_GAMES = {
     "integrations+7@casumo.com",
     "peter.noer+THERKILD418@casumo.com",
     "theis.warmdahl+dk5@casumo.com",
-  ],
+  ] as string[],
 } as const;
 
 export const topListWidgetWidth = 328;

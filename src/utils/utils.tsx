@@ -68,6 +68,12 @@ export const isEmbeddedOn = (userEmail: string) => {
 export const decodedUrlParams = (json: Object) =>
   R.mergeAll(Object.keys(json).map(key => ({ [key]: atob(json[key]) })));
 
+export const objToURLParams = data =>
+  Object.keys(data)
+    .filter(key => Boolean(data[key]))
+    .map(key => `${key}=${encodeURIComponent(data[key])}`)
+    .join("&");
+
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
 
 export const getPlatform = (): AppDevice => {

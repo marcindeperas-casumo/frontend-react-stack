@@ -3,13 +3,16 @@ import Text from "@casumo/cmp-text";
 import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
-import { noop, isIosNative, isAndroidNative } from "Utils";
-import { EVENTS, ROUTE_IDS } from "Src/constants";
+import { noop, isIosNative, isAndroidNative, useLaunchGame } from "Utils";
+import { EMBEDDED_GAMES, EVENTS, ROUTE_IDS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
-import { launchGame } from "Services/LaunchGameService";
+import { launchGame as koLaunchGame } from "Services/LaunchGameService";
+import { useGameInfo } from "Utils/hooks/useGameInfo";
+import { emailSelector } from "Models/handshake";
+import reduxStore from "Services/reduxStore";
+import { useTranslatedUrl } from "Utils/hooks";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
@@ -27,15 +30,31 @@ export function ReelRaceOptInPlayButton({
   const inProgress = reelRace.startTime < Number(new Date());
   const ButtonVariant = variant === "primary" ? ButtonPrimary : ButtonSecondary;
 
+  const { launchGame: reactNativeLaunch } = useLaunchGame(reelRace.game);
+  const { isGameEmbedded } = useGameInfo(reelRace.game.slug);
+  const state = reduxStore.getState();
+  const userEmail = emailSelector(state);
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.PLAY, {
     slug: reelRace.game.slug,
   });
 
-  const playCallback =
-    isIosNative() || isAndroidNative()
-      ? () => launchGame({ slug: reelRace.game.slug })
-      : // eslint-disable-next-line fp/no-mutation
-        () => (window.location.pathname = gameDetailsPath);
+  // TODO: React Native Bridge test - TRET-753
+  const playCallback = React.useMemo(
+    function getPlayCallback() {
+      const useReactNativeBridge = EMBEDDED_GAMES.TESTERS.includes(userEmail);
+
+      if (isIosNative() || isAndroidNative()) {
+        if (useReactNativeBridge && !isGameEmbedded) {
+          return reactNativeLaunch;
+        }
+
+        return () => koLaunchGame({ slug: reelRace.game.slug });
+      }
+      // eslint-disable-next-line fp/no-mutation
+      return () => (window.location.pathname = gameDetailsPath);
+    },
+    [userEmail, gameDetailsPath, isGameEmbedded, reactNativeLaunch, reelRace.game.slug]
+  );
 
   const OptInButton = () => (
     <TrackClick

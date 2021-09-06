@@ -13,6 +13,7 @@ type LaunchProps = {
   gameName: string;
   playForFun: boolean;
   platform: string;
+  appVersion: string;
 };
 
 type HTTPClient = typeof clientHttp;
@@ -34,7 +35,7 @@ export const getGameProviderName = (
   );
 
 export const getGameLaunchParameters = (
-  { gameName, playForFun, platform }: LaunchProps,
+  { gameName, playForFun, platform, appVersion }: LaunchProps,
   http: HTTPClient = clientHttp
 ) =>
   http.post(
@@ -43,6 +44,7 @@ export const getGameLaunchParameters = (
       gameName,
       playForFun,
       platform,
+      appVersion,
     },
     {
       headers: {
