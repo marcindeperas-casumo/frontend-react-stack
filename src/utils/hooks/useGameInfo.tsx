@@ -12,7 +12,7 @@ export function useGameInfo(slug: string) {
 
   const getGameInfoHooked = React.useCallback(
     async () => await getGameInfo(slug, playerCountry, jurisdiction, platform),
-    [slug]
+    [slug, jurisdiction, platform, playerCountry]
   );
 
   const [gameInfo, setGameInfo] = React.useState<TGameInfo | undefined>(
