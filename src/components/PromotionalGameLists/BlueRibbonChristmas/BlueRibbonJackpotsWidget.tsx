@@ -112,8 +112,8 @@ export function BlueRibbonJackpotsWidget({
       o-inset-right--none 
       o-inset-top--auto 
       o-inset-bottom--none 
-      u-margin-right 
-      u-margin-bottom"
+      u-margin-right--md 
+      u-margin-bottom--md"
       >
         <img
           className="u-display--block t-border-r--circle"
