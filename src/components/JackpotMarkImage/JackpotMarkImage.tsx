@@ -9,8 +9,8 @@ const THUMB_SIZE = "25px";
 const TILE_SIZE = "25px";
 
 const styles = {
-  thumb: { width: THUMB_SIZE, top: "10px", left: "10px" },
-  tile: { width: TILE_SIZE, top: "-10px", left: "-10px" },
+  thumb: { width: THUMB_SIZE, top: "-10px", left: "-10px" },
+  tile: { width: TILE_SIZE, top: "10px", left: "10px" },
 };
 
 export const JackpotMarkImage = ({ url, type }: TProps) => {

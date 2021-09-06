@@ -7,7 +7,7 @@ import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import { useTranslatedUrl } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
-import { JackpotMarkImage } from "Components/JackpotMarkImage/JackpotMarkImage";
+import { JackpotMarkImageContainer } from "Components/JackpotMarkImage/JackpotMarkImageContainer";
 import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
 import "./GameRow.scss";
@@ -76,7 +76,7 @@ export const GameRow = (props: Props) => {
             width={GameRow.ICON_SIZE}
             height={GameRow.ICON_SIZE}
           />
-          <JackpotMarkImage type="tile" gameSlug={game.slug} />
+          <JackpotMarkImageContainer type="thumb" gameSlug={game.slug} />
         </Flex>
         <Flex
           direction="vertical"
