@@ -35,7 +35,7 @@ function getIcon(game: TGetIconPartial): string {
 type TGamePartial = Partial<{
   slug: string;
   name: string;
-  originalUrl?: string;
+  originalUrl: string;
   thumbnail: string;
   logo: string;
   gameStudio: string;
