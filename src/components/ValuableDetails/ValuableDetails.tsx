@@ -175,6 +175,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           playForFun: false,
         });
       }
+      // TODO - more TOREMOVE But This needs to work on production
 
       if (isDepositBonusSelected) {
         depositBonusSelected({ badgeId: id });
