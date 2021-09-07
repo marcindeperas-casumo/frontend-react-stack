@@ -166,9 +166,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
         (this.props.valuableDetails.games || []).length;
 
       if (!isDepositBonusSelected && valuableGames) {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+        const gameSlug = this.props.valuableDetails.games.length // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+          ? this.props.valuableDetails?.games[0]?.slug // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+          : this.props.valuableDetails?.game?.slug;
         return launchGame({
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
-          slug: this.props.valuableDetails.games[0].slug,
+          slug: gameSlug,
           playForFun: false,
         });
       }
