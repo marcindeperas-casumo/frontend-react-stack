@@ -1,3 +1,4 @@
+import { redirectTo } from "@reach/router";
 import { getPlatform } from "Utils";
 import { useTranslatedUrl } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
@@ -74,8 +75,7 @@ export async function launchGame(
     },
     function fallback() {
       // Fallback to normal game opening if we fail to send the message
-      // eslint-disable-next-line fp/no-mutation
-      window.location.href = `/${gameDetailsPath}`;
+      redirectTo(`/${gameDetailsPath}`);
     }
   );
 }

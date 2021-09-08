@@ -1,38 +1,17 @@
-import * as React from "react";
-import { useSelector } from "react-redux";
-import { countrySelector } from "Models/handshake";
-import { getGameInfo, TGameInfo } from "Src/api/api.games";
-import { getPlatform } from "Utils";
-import { useJurisdiction } from "./useJurisdiction";
+import { useQuery } from "@apollo/client";
+import * as A from "Types/apollo";
+import { GameDetailsQuery } from "Components/GameDetails/GameDetails.graphql";
 
 export function useGameInfo(slug: string) {
-  const playerCountry = useSelector(countrySelector);
-  const { jurisdiction } = useJurisdiction();
-  const platform = getPlatform();
-
-  const getGameInfoHooked = React.useCallback(
-    async () => await getGameInfo(slug, playerCountry, jurisdiction, platform),
-    [slug, jurisdiction, platform, playerCountry]
-  );
-
-  const [gameInfo, setGameInfo] = React.useState<TGameInfo | undefined>(
-    undefined
-  );
-
-  React.useEffect(() => {
-    (async function () {
-      try {
-        const game = await getGameInfoHooked();
-        setGameInfo(game);
-      } catch {
-        // 404: the game is not available for current params
-        setGameInfo(undefined);
-      }
-    })();
-  }, [slug, getGameInfoHooked]);
+  const { loading, data, error } = useQuery<
+    A.GameDetailsQuery,
+    A.GameDetailsQueryVariables
+  >(GameDetailsQuery, {
+    variables: { slug },
+  });
 
   return {
-    gameInfo,
-    isGameEmbedded: Boolean(gameInfo),
+    gameInfo: data,
+    isGameEmbedded: !loading && (Boolean(data) || error),
   };
 }

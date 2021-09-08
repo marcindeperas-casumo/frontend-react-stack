@@ -1,6 +1,5 @@
-import { objToURLParams } from "Utils";
+import { stringify } from "qs";
 
-// TODO: ported from KO stack, needs improvements
 const imageDomainMappings = {
   "cms.casumo.com/wp-content/uploads": "images.casumo.com",
 };
@@ -10,21 +9,9 @@ function ImageOptimizer(extraDomainSourceMappings = {}) {
     ...imageDomainMappings,
     ...extraDomainSourceMappings,
   };
-  // eslint-disable-next-line fp/no-let
-  let dpr = window.devicePixelRatio ? window.devicePixelRatio : 1;
-
-  if (dpr % 1 !== 0) {
-    const [, reminder] = `${dpr}`.split(".");
-
-    // eslint-disable-next-line fp/no-mutation
-    dpr =
-      reminder.length > 1 && reminder.slice(1, 2) !== "0"
-        ? dpr.toFixed(2)
-        : dpr.toFixed(1);
-  }
 
   const defaultOptions = {
-    dpr,
+    dpr: window.devicePixelRatio || 1,
     format: "auto",
   };
 
@@ -40,7 +27,10 @@ function ImageOptimizer(extraDomainSourceMappings = {}) {
     const processedImageOptions = ignoreDefaults
       ? imageOptions
       : { ...defaultOptions, ...imageOptions };
-    const filteredParams = objToURLParams(processedImageOptions);
+
+    const filteredParams = stringify(processedImageOptions, {
+      skipNulls: true,
+    });
 
     return `${optimizedImagePath}?${filteredParams}`;
   };

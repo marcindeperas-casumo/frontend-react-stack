@@ -12,6 +12,7 @@ describe("ImageOptimizer", () => {
     w: 160,
     h: 160,
     markalign: "top center",
+    someNullish: undefined,
   };
 
   test("should return correct URL for Golden_Osiris", () => {
@@ -46,5 +47,7 @@ describe("ImageOptimizer", () => {
     expect(imageOptimizer.getOptimizedUrl(gameThumbnail, completedParams)).toBe(
       expected
     );
+
+    expect(expected.includes("undefined")).toBeFalsy();
   });
 });
