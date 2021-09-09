@@ -1,5 +1,6 @@
 import { useQuery, useApolloClient, ApolloClient } from "@apollo/client";
 import React, { useEffect } from "react";
+import { SportsHome } from "@casumo/sports-home";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,
@@ -106,6 +107,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
             ) : (
               <SportsNav currentHash={currentHash} market={market} />
             )}
+            {currentHash === homeHash && <SportsHome text="Popular events" />}
             {currentHash === homeHash && <SportsJackpots />}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
