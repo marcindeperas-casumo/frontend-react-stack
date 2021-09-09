@@ -106,15 +106,7 @@ export function BlueRibbonJackpotsWidget({
           </Flex>
         );
       })}
-      <Flex.Item
-        className="o-position--absolute 
-      o-inset-left--auto 
-      o-inset-right--none 
-      o-inset-top--auto 
-      o-inset-bottom--none 
-      u-margin-right--md 
-      u-margin-bottom--md"
-      >
+      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--auto o-inset-bottom--none u-margin-right--md u-margin-bottom--md">
         <img
           className="u-display--block t-border-r--circle"
           width={56}
