@@ -22,7 +22,6 @@ describe("RedTigerGame", () => {
   });
 
   test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(true);
     expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
     expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
   });

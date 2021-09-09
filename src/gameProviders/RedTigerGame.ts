@@ -24,7 +24,6 @@ export class RedTigerGame extends BaseIframeGame {
     this.api.commands.resume = COMMANDS.RESUME;
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
-    this.api.features.instantPause = true;
 
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
