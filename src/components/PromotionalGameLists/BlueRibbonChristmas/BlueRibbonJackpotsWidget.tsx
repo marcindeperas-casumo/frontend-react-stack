@@ -18,6 +18,7 @@ export function BlueRibbonJackpotsWidget({
   className = "",
   composedPots,
   widgetColor,
+  jackpotLogo,
 }: {
   className?: string;
   composedPots: Array<PotObject>;
@@ -25,15 +26,15 @@ export function BlueRibbonJackpotsWidget({
     dark?: string;
     light?: string;
   };
+  jackpotLogo?: string;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-
   return (
     <Flex
       direction="vertical"
       justify="center"
-      className={`o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
+      className={`o-position--relative o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
       style={{
         backgroundColor: widgetColor.light,
         width: topListWidgetWidth,
@@ -105,6 +106,15 @@ export function BlueRibbonJackpotsWidget({
           </Flex>
         );
       })}
+      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--auto o-inset-bottom--none u-margin-right--md u-margin-bottom--md">
+        <img
+          className="u-display--block t-border-r--circle"
+          width={56}
+          height={56}
+          alt=""
+          src={jackpotLogo}
+        />
+      </Flex.Item>
     </Flex>
   );
 }
