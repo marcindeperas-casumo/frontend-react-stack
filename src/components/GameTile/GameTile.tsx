@@ -27,7 +27,7 @@ export type Props = {
   ratio?: string;
   t?: GameTileTranslations;
   gameDetailsPath?: string;
-  tileJackpotMark: ReactElement;
+  tileJackpotMark?: ReactElement;
   locale?: string;
 };
 
@@ -44,7 +44,7 @@ export const GameTile = ({
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
   gameDetailsPath,
-  tileJackpotMark,
+  tileJackpotMark = null,
   locale,
 }: Props) => {
   const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =

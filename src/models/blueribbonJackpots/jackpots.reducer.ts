@@ -9,7 +9,7 @@ export type TJackpotsReduxStore = {
   };
 };
 
-export const DEFAULT_STATE: TJackpotsReduxStore = {
+const DEFAULT_STATE: TJackpotsReduxStore = {
   handshake: null,
   eligibleGamesBySlug: {},
 };
