@@ -162,16 +162,21 @@ export class ValuableDetails extends React.PureComponent<Props> {
       await onConsumeValuable(id);
 
       const valuableGames =
-        "games" in this.props.valuableDetails &&
-        (this.props.valuableDetails.games || []).length;
+        "game" in this.props.valuableDetails ||
+        ("games" in this.props.valuableDetails &&
+          (this.props.valuableDetails.games || []).length);
 
       if (!isDepositBonusSelected && valuableGames) {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+        const gameSlug = this.props.valuableDetails?.games?.length // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+          ? this.props.valuableDetails?.games[0]?.slug // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
+          : this.props.valuableDetails?.game?.slug;
         return launchGame({
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'games' does not exist on type 'ValuableD... Remove this comment to see the full error message
-          slug: this.props.valuableDetails.games[0].slug,
+          slug: gameSlug,
           playForFun: false,
         });
       }
+      // TODO - more TOREMOVE But This needs to work on production
 
       if (isDepositBonusSelected) {
         depositBonusSelected({ badgeId: id });
