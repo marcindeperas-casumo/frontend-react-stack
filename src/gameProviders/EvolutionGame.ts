@@ -7,7 +7,7 @@ export const EVOLUTION_SCRIPT_URL = {
   [ENVIRONMENTS.TEST]:
     "https://uat1-casumo.evolutiongaming.com/mobile/js/iframe.js",
   [ENVIRONMENTS.PRODUCTION]:
-    "https://evo-livecasino.casumo.com/mobile/js/iframe.js",
+    "https://casumo.evo-games.com/mobile/js/iframe.js",
 };
 
 declare const EvolutionGaming: { init: Function };
