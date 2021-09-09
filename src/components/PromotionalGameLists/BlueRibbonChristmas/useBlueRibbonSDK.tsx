@@ -19,8 +19,8 @@ import type {
 } from "Types/blueRibbonSDK";
 import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
+import { blueRibbonHandshakeSelector } from "Models/blueribbonJackpots/jackpots.selectors";
 import { urls, baseConfig } from "./blueRibbonConsts";
-import type { HandshakeResponse } from "./blueRibbonConsts";
 import { GetBlueribbonJackpotConfigByGameSlug } from "./GetBlueribbonJackpotConfigByGameSlug.graphql";
 
 let sdkMutable: SDKInterface | null; // eslint-disable-line fp/no-let
@@ -185,16 +185,7 @@ export function usePotStateChangeEvent() {
 }
 
 export function useHandshake() {
-  const [handshake, setHandshake] = React.useState<HandshakeResponse | null>(
-    null
-  );
-  React.useEffect(() => {
-    fetch(urls.handshake)
-      .then(raw => raw.json())
-      .then(setHandshake);
-  }, []);
-
-  return handshake;
+  return useSelector(blueRibbonHandshakeSelector);
 }
 
 export function useManualJackpotOptInAndOptOut(
@@ -249,6 +240,7 @@ export function useManualJackpotOptInAndOptOut(
     },
     [changeOptedInStatus]
   );
+
   const [res, setRes] = React.useState({
     optIn: () => {},
     optOut: () => {},

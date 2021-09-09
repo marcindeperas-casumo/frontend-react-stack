@@ -17,7 +17,9 @@ export const useTranslations: __useTranslations = (
   const dispatch = useDispatch();
   React.useEffect(
     () => {
-      dispatch(fetchPageBySlug(slug));
+      if (slug) {
+        dispatch(fetchPageBySlug(slug));
+      }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [slug]
