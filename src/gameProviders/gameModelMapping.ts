@@ -24,6 +24,7 @@ import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
 import { LeapGame } from "./LeapGame";
 import { SkyWindGame } from "./SkyWindGame";
+import { PlaytechGame } from "./PlaytechGame";
 
 export type GameProps = {
   providerType: GameProviderType;
@@ -47,7 +48,7 @@ export const models = {
   [PROVIDERS.NETENT_GAME_INCLUSION]: NetentGame,
   [PROVIDERS.NETENT_EMBEDDED]: EmbeddedNetentGame,
   [PROVIDERS.NYX_HTML5]: NyxGame,
-  [PROVIDERS.NYX_FLASH]: BaseIframeGame,
+  [PROVIDERS.NYX_FLASH]: NyxGame,
   [PROVIDERS.PLAYNGO_DESKTOP]: PlayNGoDesktopGame,
   [PROVIDERS.PLAYNGO_MOBILE]: PlayNGoMobileGame,
   [PROVIDERS.THUNDERKICK_DESKTOP]: ThunderkickGame,
@@ -64,8 +65,8 @@ export const models = {
   [PROVIDERS.RGS_FLASH]: BaseIframeGame,
   [PROVIDERS.PUSHGAMING_MOBILE]: PushGame,
   [PROVIDERS.PUSHGAMING_DESKTOP]: PushGame,
-  [PROVIDERS.PLAYTECH_DESKTOP]: BaseIframeGame,
-  [PROVIDERS.PLAYTECH_MOBILE]: BaseIframeGame,
+  [PROVIDERS.PLAYTECH_DESKTOP]: PlaytechGame,
+  [PROVIDERS.PLAYTECH_MOBILE]: PlaytechGame,
   [PROVIDERS.PRAGMATIC_DESKTOP]: PragmaticGame,
   [PROVIDERS.PRAGMATIC_MOBILE]: PragmaticGame,
   [PROVIDERS.MAHJONG_DESKTOP]: MahjongGame,
