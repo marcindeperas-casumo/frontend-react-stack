@@ -11,8 +11,6 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     this.api.commands.resume = COMMANDS.RESUME;
     this.api.events.onGameRoundStart = EVENTS.ON_GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.ON_GAME_ROUND_END;
-    this.targetDomain = props.origin || window.location.origin;
-
     this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
   }
 
@@ -20,7 +18,7 @@ export class PlayNGoMobileGame extends BaseIframeGame {
     const { url = null, isEmbedded } = this.props.gameData;
     const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
     const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
-    const encodedOrigin = encodeURIComponent(this.targetDomain);
+    const encodedOrigin = encodeURIComponent(this.origin);
 
     if (url) {
       const paramsToAdd = [
@@ -46,26 +44,42 @@ export class PlayNGoMobileGame extends BaseIframeGame {
   onMessageHandler(event: IframeMessageEvent) {
     super.onMessageHandler(event);
 
-    const { current: gameElement } = this.props.gameRef;
-
     if (
-      gameElement instanceof HTMLIFrameElement &&
-      event.data.type === "initialized"
+      this.extractEventId(event.data) ===
+      this.extractEventId(EVENTS.ON_BACK_TO_LOBBY)
     ) {
-      gameElement.contentWindow.postMessage({ addEvent: "roundStarted" }, "*");
-      gameElement.contentWindow.postMessage({ addEvent: "gameIdle" }, "*");
-      gameElement.contentWindow.postMessage({ addEvent: "backToLobby" }, "*");
-    }
-
-    if (
-      gameElement instanceof HTMLIFrameElement &&
-      event.data.type === "backToLobby"
-    ) {
+      // When you press the lobby button in the game, the game will logout and
+      // be destroyed but not redirected, we have to handle this on mobile
       this.goToLobby();
     }
   }
 
   extractEventId(data: any) {
     return data.type;
+  }
+
+  onMount() {
+    super.onMount();
+    const { current: gameElement } = this.props.gameRef;
+
+    gameElement?.addEventListener("load", event => {
+      if (!(gameElement instanceof HTMLIFrameElement)) {
+        return;
+      }
+
+      [
+        EVENTS.ON_GAME_ROUND_START,
+        EVENTS.ON_GAME_ROUND_END,
+        EVENTS.ON_BACK_TO_LOBBY,
+      ].forEach(({ type }) => {
+        gameElement.contentWindow.postMessage(
+          {
+            messageType: "addEventListener",
+            eventType: type,
+          },
+          this.targetDomain
+        );
+      });
+    });
   }
 }

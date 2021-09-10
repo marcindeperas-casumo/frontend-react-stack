@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 import { fetchAppHandshake, isAuthenticated } from "Models/handshake";
 import { initFetchActiveSessionAction } from "Models/slotControlSystem";
 import { waitForSelector } from "Utils";
+import { fetchBlueRibbonHandshake } from "Models/blueribbonJackpots/jackpots.actions";
 
 export function* appSaga() {
   // Once the app starts, we start off by dispatching an action to fetch the
@@ -14,6 +15,9 @@ export function* appSaga() {
   // in mode
   // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   yield call(waitForSelector, isAuthenticated);
+
+  // async dispatch of blueribbon handshake on app init as we need it globally
+  yield put(fetchBlueRibbonHandshake());
 
   yield put(initFetchActiveSessionAction());
 }
