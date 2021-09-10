@@ -28,7 +28,7 @@ if (env.BRANCH_NAME == "master") {
         .with(DeployHelmService) { it.deploy('live') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
         .customStep('Rollbar send source maps', { rollbarSendSourceMaps() })
-                .build('nvm-ec2-builder')
+                .build('frontend-react-stack-nvm-ec2-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
 Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda:
@@ -75,7 +75,7 @@ Started by: *${env.gitAuthor}* :eyes:
         .with(Docker) { it.publishDockerImage() }
         .with(Release) { it.release() }
         .with(DeployHelmService) { it.deploy('test') }
-        .build('nvm-ec2-builder')
+        .build('frontend-react-stack-nvm-ec2-builder')
 }
 
 def rollbarDeployTracking() {
