@@ -2,6 +2,7 @@ import { redirectTo } from "@reach/router";
 import { getPlatform } from "Utils";
 import { useTranslatedUrl } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
+import logger from "Services/logger";
 import {
   getGameProviderName,
   getGameLaunchParameters,
@@ -48,36 +49,43 @@ export async function launchGame(
   isPractice = false
 ) {
   const platform = getPlatform();
-  const { providerGameName } = await getGameProviderName(game.slug, platform);
 
-  const { responseData } = await getGameLaunchParameters({
-    gameName: providerGameName,
-    playForFun: isPractice,
-    platform,
-    appVersion: window?.native?.version || "",
-  });
+  function fallback() {
+    // Fallback to normal game opening if we fail to send the message
+    redirectTo(`/${gameDetailsPath}`);
+  }
 
-  sendMessage(
-    MESSAGES_CHANNELS.LAUNCH_GAME,
-    {
-      id: game.slug,
-      name: game.name,
-      url: gameDetailsPath,
-      provider: responseData?.providedSession?.parameters?.providerType,
-      isPractice: isPractice,
-      originalUrl: gameDetailsPath,
-      thumbnail: game.thumbnail,
-      logo: game.logo,
-      // TODO: embedded run mode is not available on React stack yet,
-      // to run embedded game use KO native bridge,
-      runMode: DEFAULT_RUN_MODE,
-      icon: getIcon(game),
-    },
-    function fallback() {
-      // Fallback to normal game opening if we fail to send the message
-      redirectTo(`/${gameDetailsPath}`);
-    }
-  );
+  try {
+    const { providerGameName } = await getGameProviderName(game.slug, platform);
+    const { responseData } = await getGameLaunchParameters({
+      gameName: providerGameName,
+      playForFun: isPractice,
+      platform,
+      appVersion: window?.native?.version || "",
+    });
+
+    sendMessage(
+      MESSAGES_CHANNELS.LAUNCH_GAME,
+      {
+        id: game.slug,
+        name: game.name,
+        url: gameDetailsPath,
+        provider: responseData?.providedSession?.parameters?.providerType,
+        isPractice: isPractice,
+        originalUrl: gameDetailsPath,
+        thumbnail: game.thumbnail,
+        logo: game.logo,
+        // TODO: embedded run mode is not available on React stack yet,
+        // to run embedded game use KO native bridge,
+        runMode: DEFAULT_RUN_MODE,
+        icon: getIcon(game),
+      },
+      fallback
+    );
+  } catch {
+    logger.error("Native bridge on React: failed to launch the game", game);
+    fallback();
+  }
 }
 
 export function useLaunchGame(game: TGamePartial, isPractice = false) {
