@@ -20,6 +20,12 @@ $curated-card-ratios: (
 .o-ratio--curated-card.o-ratio--curated-card::before {
   @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
 }
+// stylelint-disable xi/selector-pattern
+.c-curated-card-footer-tc-link > a {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 /* stylelint-disable */
 :export {

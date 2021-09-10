@@ -4,7 +4,7 @@ import { Button } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { Link } from "@reach/router";
-import React from "react";
+import React, { ReactElement } from "react";
 import { formatCurrency } from "Utils";
 import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
@@ -27,6 +27,7 @@ export type Props = {
   ratio?: string;
   t?: GameTileTranslations;
   gameDetailsPath?: string;
+  tileJackpotMark?: ReactElement;
   locale?: string;
 };
 
@@ -43,6 +44,7 @@ export const GameTile = ({
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
   gameDetailsPath,
+  tileJackpotMark = null,
   locale,
 }: Props) => {
   const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =
@@ -90,6 +92,7 @@ export const GameTile = ({
           "u-cursor--pointer",
           `o-ratio--${ratio}`,
           "c-game-tile-top-wrapper",
+          "o-position--relative",
           className
         )}
         onClick={() => launchGame({ slug: game.slug })}
@@ -100,6 +103,7 @@ export const GameTile = ({
           name={name}
           imgixOpts={imgixOpts}
         />
+        {tileJackpotMark}
         {jackpot && <JackpotAmountButton />}
         <div className="o-ratio__content c-game-tile-container u-cursor--pointer o-position--absolute u-zindex--content-overlay">
           <Flex
