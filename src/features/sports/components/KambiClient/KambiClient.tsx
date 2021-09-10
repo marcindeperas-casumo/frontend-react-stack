@@ -62,9 +62,7 @@ export default class KambiClient extends React.Component<Props, State> {
         ...this.props,
       }),
       market: this.marketToKambi(this.props.market),
-      oddsFormat: this.props.market.toLowerCase().includes("gb")
-        ? "fractional"
-        : "decimal",
+      oddsFormat: "decimal",
     };
     // pre-setup the widget api
     getKambiWidgetAPI();
