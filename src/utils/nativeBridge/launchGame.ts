@@ -8,7 +8,7 @@ import {
   getGameLaunchParameters,
 } from "Api/api.gameLaunch";
 import { imageOptimizer } from "./ImageOptimizer";
-import { MESSAGES_CHANNELS } from "./channels.constants";
+import { CHANNELS } from "./channels.constants";
 import { sendMessage } from "./sendMessage";
 
 export const WEB_INTERNAL = "webInternal";
@@ -52,7 +52,7 @@ export async function launchGame(
 
   function fallback() {
     // Fallback to normal game opening if we fail to send the message
-    redirectTo(`/${gameDetailsPath}`);
+    redirectTo(gameDetailsPath);
   }
 
   try {
@@ -65,7 +65,7 @@ export async function launchGame(
     });
 
     sendMessage(
-      MESSAGES_CHANNELS.LAUNCH_GAME,
+      CHANNELS.LAUNCH_GAME,
       {
         id: game.slug,
         name: game.name,
@@ -96,7 +96,9 @@ export function useLaunchGame(game: TGamePartial, isPractice = false) {
     slug: game.slug,
   });
 
+  const fullUrl = `${window.location.origin}/${gameDetailsPath}`;
+
   return {
-    launchGame: () => launchGame(game, gameDetailsPath, isPractice),
+    launchGame: () => launchGame(game, fullUrl, isPractice),
   };
 }
