@@ -6,8 +6,7 @@ import { IFRAME_ID } from "./constants";
 export const EVOLUTION_SCRIPT_URL = {
   [ENVIRONMENTS.TEST]:
     "https://uat1-casumo.evolutiongaming.com/mobile/js/iframe.js",
-  [ENVIRONMENTS.PRODUCTION]:
-    "https://casumo.evo-games.com/mobile/js/iframe.js",
+  [ENVIRONMENTS.PRODUCTION]: "https://casumo.evo-games.com/mobile/js/iframe.js",
 };
 
 declare const EvolutionGaming: { init: Function };
