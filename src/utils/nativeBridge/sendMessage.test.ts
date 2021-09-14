@@ -1,4 +1,4 @@
-import MESSAGES_CHANNELS from "./channels.constants";
+import { CHANNELS } from "./channels.constants";
 import { DEFAULT_RUN_MODE } from "./launchGame";
 import sendMessage from "./sendMessage";
 
@@ -76,7 +76,7 @@ describe("SendMessage function should", () => {
   test("invoke Android specific window's callback", () => {
     const callbackSpy = setAndroidWindow();
 
-    sendMessage(MESSAGES_CHANNELS.LAUNCH_GAME, params, () => undefined);
+    sendMessage(CHANNELS.LAUNCH_GAME, params, () => undefined);
 
     jest.runAllTimers();
 
@@ -86,7 +86,7 @@ describe("SendMessage function should", () => {
   test("invoke iOS specific window's callback", () => {
     const callbackSpy = setIOSWindow();
 
-    sendMessage(MESSAGES_CHANNELS.LAUNCH_GAME, params, () => undefined);
+    sendMessage(CHANNELS.LAUNCH_GAME, params, () => undefined);
 
     jest.runAllTimers();
 
