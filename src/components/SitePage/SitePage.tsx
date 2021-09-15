@@ -9,7 +9,7 @@ import ComponentBuilderContainer from "Components/ComponentBuilder";
 export const SitePage = ({ slug }) => {
   return (
     <div>
-      <ComponentBuilderContainer slug={slug} />
+      <ComponentBuilderContainer slug={'site-page.casumo-jackpots'} />
     </div>
   );
 };

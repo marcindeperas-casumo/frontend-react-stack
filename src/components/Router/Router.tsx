@@ -83,7 +83,7 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)}
         />
         <LazyJackpotDetail path={translateRoute(ROUTE_IDS.JACKPOTS_DETAILS)} />
-        <LazyJackpotDetails path={translateRoute(ROUTE_IDS.JACKPOT_DETAILS)} />
+        <LazyJackpotDetails path={translateRoute(ROUTE_IDS.JACKPOTS_DETAILS)} />
         <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
         <LazyPlayerValuables
           path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)}

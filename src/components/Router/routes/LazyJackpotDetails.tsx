@@ -7,6 +7,8 @@ export const LazyJackpotDetails = props => {
     ...props,
     jackpotSlug: props.slug,
   };
+
+  console.log("DEtails ");
   return (
     <LazyPortal
       hostElementId="react-host-jackpot-details"
