@@ -12,6 +12,7 @@ export function useGameInfo(slug: string) {
 
   return {
     gameInfo: data,
-    isGameEmbedded: !loading && (Boolean(data) && Boolean(data.game) && !!error),
+    isGameEmbedded:
+      !loading && Boolean(data) && Boolean(data.game) && Boolean(error),
   };
 }
