@@ -27,6 +27,7 @@ import {
   LazyTopNav,
   LazyLiveCasinoTopNav,
   LazyJackpotDetail,
+  LazyJackpotDetails,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -82,6 +83,7 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)}
         />
         <LazyJackpotDetail path={translateRoute(ROUTE_IDS.JACKPOTS_DETAILS)} />
+        <LazyJackpotDetails path={translateRoute(ROUTE_IDS.JACKPOT_DETAILS)} />
         <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
         <LazyPlayerValuables
           path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)}
