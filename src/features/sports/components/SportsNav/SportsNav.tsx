@@ -22,20 +22,24 @@ export type Labels = {
 const renderSportsNav = (
   liveState: LiveState,
   data,
-  isAuthenticated: boolean
+  isAuthenticated: boolean,
+  market: string
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
 
   const trackOnClickLive = state => {
     tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
       [EVENT_PROPS.SPORTS_STATE]: state,
+      [EVENT_PROPS.MARKET]: market,
     });
   };
 
-  const trackOnSportsNavigationSelected = path => {
+  const trackOnSportsNavigationSelected = (hash, order) => {
     tracker.track(EVENTS.MIXPANEL_SPORTS_NAV_SELECTED, {
-      [EVENT_PROPS.SPORTS_SELECTED_NAV]: path,
+      [EVENT_PROPS.SPORTS_SELECTED_NAV]: hash,
       [EVENT_PROPS.SPORTS_IS_LIVE_ACTIVE]: isLiveActive,
+      [EVENT_PROPS.SPORTS_NAV_BUTTON_ORDER]: order,
+      [EVENT_PROPS.MARKET]: market,
     });
   };
 
@@ -113,14 +117,25 @@ export const SportsNav = ({
         subNav: [],
       };
 
+      const orderedData = {
+        ...data,
+        sportsNavigation: data.sportsNavigation.map((o, i) => ({
+          ...o,
+          sport: {
+            ...o.sport,
+            order: i,
+          },
+        })),
+      };
+
       setNavData(
         virtualsMarkets.includes(market)
           ? assoc(
               "sportsNavigation",
-              insert(2, virtualsItem, data.sportsNavigation),
-              data
+              insert(2, virtualsItem, orderedData.sportsNavigation),
+              orderedData
             )
-          : data
+          : orderedData
       );
     }
   }, [data, market]);
@@ -152,6 +167,7 @@ export const SportsNav = ({
   return renderSportsNav(
     [isLiveActive, setIsLiveActive],
     navData,
-    isAuthenticated
+    isAuthenticated,
+    market
   );
 };

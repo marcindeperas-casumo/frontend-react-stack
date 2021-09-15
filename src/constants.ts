@@ -434,6 +434,7 @@ export const EVENT_PROPS = {
   SPORTS_STATE: "State",
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
+  SPORTS_NAV_BUTTON_ORDER: "order",
   SPORTS_PAGE_TYPE: "type",
   SPORTS_PAGE_TITLE: "title",
   SPORTS_PAGE_PATH: "path",
@@ -457,6 +458,7 @@ export const EVENT_PROPS = {
   CATEGORY: "category",
   BALANCE: "balance",
   BET_VALUE: "bet value",
+  MARKET: "market",
 } as const;
 
 export const EVENT_LOCATIONS = {

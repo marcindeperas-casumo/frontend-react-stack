@@ -9,7 +9,6 @@
     width: 100vw;
   }
   @include cudl-breakpoint(tablet) {
-    height: auto;
     margin: 10vh auto;
     max-height: 80vh;
     width: 425px;
