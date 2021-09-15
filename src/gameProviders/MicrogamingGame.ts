@@ -1,7 +1,6 @@
 import { ENVIRONMENTS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-import { GAME_ACTIVITY_STATUS_SOURCE } from "./constants";
 import { appendToGameUrl } from "./utils";
 
 export const TARGET_DOMAINS = {
@@ -24,9 +23,7 @@ export class MicrogamingGame extends BaseIframeGame {
     this.api.commands.pause = COMMANDS.PAUSE;
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
-    this.targetDomain = TARGET_DOMAINS[this.props.environment];
-
-    this.gameActivityStatusSource = GAME_ACTIVITY_STATUS_SOURCE.GAME;
+    this.targetDomain = TARGET_DOMAINS[props.environment];
   }
 
   get componentProps() {

@@ -18,6 +18,9 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   const t = useTranslations<{ more_link: string }>(
     "built-pages.top-lists-translations"
   );
+  const jackpotConfigs = useTranslations<{
+    jackpot_image: string;
+  }>(`jackpots-configs.${props.jackpot_slug}`);
 
   useBlueRibbonSDKAnonymous();
 
@@ -52,6 +55,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
         <BlueRibbonJackpotsWidget
           composedPots={composedJackpot.pots}
           widgetColor={composedJackpot.widgetColor}
+          jackpotLogo={jackpotConfigs.jackpot_image}
         />
       )}
     />
