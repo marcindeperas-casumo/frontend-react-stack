@@ -6,10 +6,12 @@ import ComponentBuilderContainer from "Components/ComponentBuilder";
 
 // const getSlugForPage = page => `${slugRoot}.${page}`;
 
-export const SitePage = ({ slug }) => {
+export const ExplainerPage = ({ slug }) => {
   return (
     <div>
-      <ComponentBuilderContainer slug={'site-page.casumo-jackpots'} />
+      <ComponentBuilderContainer
+        slug={"built-pages.what-are-casumo-jackpots"}
+      />
     </div>
   );
 };
