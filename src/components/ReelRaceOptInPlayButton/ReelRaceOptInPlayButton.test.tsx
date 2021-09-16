@@ -50,7 +50,11 @@ describe("ReelRaceOptInPlayButton", () => {
 
     const rendered = mount(
       <MockStore>
-        <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} playCallback={play} />
+        <ReelRaceOptInPlayButton
+          reelRace={reelRace}
+          optIn={onOptIn}
+          playCallback={play}
+        />
       </MockStore>
     );
 
@@ -69,7 +73,11 @@ describe("ReelRaceOptInPlayButton", () => {
 
     const rendered = mount(
       <MockStore>
-        <ReelRaceOptInPlayButton reelRace={optedInRR} optIn={onOptIn} playCallback={play} />
+        <ReelRaceOptInPlayButton
+          reelRace={optedInRR}
+          optIn={onOptIn}
+          playCallback={play}
+        />
       </MockStore>
     );
 
