@@ -46,9 +46,11 @@ const reelRace = {
 describe("ReelRaceOptInPlayButton", () => {
   test("should call optIn callback", () => {
     const onOptIn = jest.fn();
+    const play = jest.fn();
+
     const rendered = mount(
       <MockStore>
-        <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} />
+        <ReelRaceOptInPlayButton reelRace={reelRace} optIn={onOptIn} playCallback={play} />
       </MockStore>
     );
 
@@ -57,13 +59,35 @@ describe("ReelRaceOptInPlayButton", () => {
     expect(onOptIn).toHaveBeenCalledTimes(1);
   });
 
+  test("should call play callback", () => {
+    const onOptIn = jest.fn();
+    const play = jest.fn();
+    const optedInRR = {
+      ...reelRace,
+      optedIn: true,
+    };
+
+    const rendered = mount(
+      <MockStore>
+        <ReelRaceOptInPlayButton reelRace={optedInRR} optIn={onOptIn} playCallback={play} />
+      </MockStore>
+    );
+
+    expect(play).toHaveBeenCalledTimes(0);
+    rendered.find(ButtonPrimary).simulate("click");
+    expect(play).toHaveBeenCalledTimes(1);
+  });
+
   test("should render button using secondary theme", () => {
     const onOptIn = jest.fn();
+    const play = jest.fn();
+
     const rendered = mount(
       <MockStore>
         <ReelRaceOptInPlayButton
           reelRace={reelRace}
           optIn={onOptIn}
+          playCallback={play}
           variant="secondary"
         />
       </MockStore>
