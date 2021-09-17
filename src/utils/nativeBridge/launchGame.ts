@@ -38,7 +38,7 @@ type TGamePartial = Partial<{
   slug: string;
   name: string;
   originalUrl: string;
-  thumbnail: string;
+  backgroundImage: string;
   logo: string;
   gameStudio: string;
 }>;
@@ -73,7 +73,7 @@ export async function launchGame(
         provider: responseData?.providedSession?.parameters?.providerType,
         isPractice: isPractice,
         originalUrl: gameDetailsPath,
-        thumbnail: game.thumbnail,
+        thumbnail: game.backgroundImage,
         logo: game.logo,
         // TODO: embedded run mode is not available on React stack yet,
         // to run embedded game use KO native bridge,
