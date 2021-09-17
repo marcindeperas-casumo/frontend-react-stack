@@ -1,1 +1,1 @@
-export { ExplainerPage } from "./ExplainerPage";
+export { ExplainerPageContainer } from "./ExplainerPageContainer";

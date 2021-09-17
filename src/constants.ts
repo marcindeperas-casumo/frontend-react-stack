@@ -156,7 +156,7 @@ export const ROUTES = {
   [ROUTE_IDS.PROMOTIONS]: "{{promotions}}",
   [ROUTE_IDS.PROMOTION_DETAILS]: "{{promotions}}/:slug",
   [ROUTE_IDS.JACKPOTS_DETAILS]: "jackpots/:slug",
-  [ROUTE_IDS.JACKPOT_EXPLAINER]: "{{jackpots}}/what-are-casumo-jackpots",
+  [ROUTE_IDS.JACKPOT_EXPLAINER]: "jackpot-explainer/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
   [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
   [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",

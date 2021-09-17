@@ -1,17 +1,20 @@
 import React from "react";
-import ComponentBuilderContainer from "Components/ComponentBuilder";
+import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
+import { TPromotionVerticalCampaigns } from "Components/PromotionPage/PromotionPage.types";
 
-// "site-page.casumo-jackpots"
-// const slugRoot = "site-page.casumo-jackpots";
-
-// const getSlugForPage = page => `${slugRoot}.${page}`;
-
-export const ExplainerPage = ({ slug }) => {
+type TProps = {
+  promotionLists: TPromotionVerticalCampaigns;
+};
+// todo: refactor page to be a 'built-in' page in cms (content builder) composed with promotions
+export const ExplainerPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
-      <ComponentBuilderContainer
-        slug={"built-pages.what-are-casumo-jackpots"}
-      />
+      <div className="u-padding-top--3xlg@desktop u-margin-bottom--3xlg">
+        <ComponentBuilderRenderer
+          componentDefinitions={promotionLists}
+          hideShowMoreLink
+        />
+      </div>
     </div>
   );
 };

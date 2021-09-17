@@ -7,13 +7,13 @@ export const LazyJackpotExplainer = props => {
     ...props,
     jackpotSlug: props.slug,
   };
-console.log("Lazy jackpot");
+  console.log("Explainer lazy comp");
   return (
     <LazyPortal
-      hostElementId="react-host-jackpot-details"
+      hostElementId="react-host-jackpot-explainer"
       loader={() => import("Components/ExplainerPage")}
       fallback={<PromotionPageSkeleton />}
-      namedExport="LazyJackpotExplainerContainer"
+      namedExport="ExplainerPageContainer"
       props={augmentedProps}
     />
   );
