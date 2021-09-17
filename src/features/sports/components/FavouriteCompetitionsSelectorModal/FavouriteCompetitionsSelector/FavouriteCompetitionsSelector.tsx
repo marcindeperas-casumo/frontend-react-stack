@@ -113,20 +113,22 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       </Heading>
       <List
         items={popularRegionGroups}
-        render={group => (
-          // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
-          <Region
-            key={group.id}
-            group={group}
-            groupId={group.id}
-            sportName={props.groupName}
-            sportId={props.groupId}
-            isOnboarding={props.isOnboarding}
-            isExpanded={group === popularRegionGroups[0]}
-            isSelected={props.isCompetitionSelected}
-            onClick={props.toggleCompetition}
-          />
-        )}
+        render={group =>
+          group ? (
+            // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
+            <Region
+              key={group.id}
+              group={group}
+              groupId={group.id}
+              sportName={props.groupName}
+              sportId={props.groupId}
+              isOnboarding={props.isOnboarding}
+              isExpanded={group === popularRegionGroups[0]}
+              isSelected={props.isCompetitionSelected}
+              onClick={props.toggleCompetition}
+            />
+          ) : null
+        }
       />
 
       <Heading>
@@ -134,20 +136,22 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
       </Heading>
       <List
         items={otherRegionGroups}
-        render={group => (
-          // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
-          <Region
-            key={group.id}
-            sportName={props.groupName}
-            sportId={props.groupId}
-            isOnboarding={props.isOnboarding}
-            group={group}
-            groupId={group.id}
-            isExpanded={false}
-            isSelected={props.isCompetitionSelected}
-            onClick={props.toggleCompetition}
-          />
-        )}
+        render={group =>
+          group ? (
+            // @ts-expect-error ts-migrate(2786) FIXME: 'Region' cannot be used as a JSX component.
+            <Region
+              key={group.id}
+              sportName={props.groupName}
+              sportId={props.groupId}
+              isOnboarding={props.isOnboarding}
+              group={group}
+              groupId={group.id}
+              isExpanded={false}
+              isSelected={props.isCompetitionSelected}
+              onClick={props.toggleCompetition}
+            />
+          ) : null
+        }
       />
     </>
   );
