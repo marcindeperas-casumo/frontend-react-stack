@@ -16,9 +16,6 @@ const valuableItemRenderer = (
   onItemClick?,
   isItemSelectable?
 ) => {
-  if (!valuable) {
-    return null;
-  }
   const itemDescription =
     valuable.__typename === "PlayerValuableSpins"
       ? valuable.description
