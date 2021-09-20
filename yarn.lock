@@ -2870,9 +2870,9 @@
     "@casumo/cmp-flex" "^4.1.1"
 
 "@casumo/cmp-list@^2.0.0":
-  version "2.0.13"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-list/2.0.13/397be7b1e7f5d48c70b0883b03df795e89e39a7aeda7cdaa58326a3c168479c5#390674e9faf9d8411146db4cab436595c3714a2c"
-  integrity sha512-VzYlCQL6jCMJTO1Za4BbYqNsyraniCiiGvXzQrl3M5GABenCcogtginKN7jaCgmh99JqNG384QVVXRTFerBz8Q==
+  version "2.0.14"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-list/2.0.14/245ef28b79e500ce93cf2c5a1350ae397d183ba0e5962318c9794d508687b981#84f49e1735ddd371360b21af921ac25b5b3e5726"
+  integrity sha512-1GkvMpr2UE8sVIaXT3PMy3Zk/d08u2QE/L8xH9b4kmwSe1YIsbsZJuJ6DwJZQyqrXObLA2kr6Gk6v3F0HN5+ZA==
   dependencies:
     "@casumo/cmp-button" "^3.2.5"
     "@casumo/cmp-flex" "^4.1.1"
