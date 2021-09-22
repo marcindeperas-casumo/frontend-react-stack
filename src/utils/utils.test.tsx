@@ -31,6 +31,7 @@ import {
   hasAlphaCharactersOnly,
   findClosest,
   mapValuesToKey,
+  isTLDMarketSpecific,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -683,5 +684,18 @@ describe("mapValuesToKey()", () => {
       3: "b",
       4: "b",
     });
+  });
+});
+
+describe("isTLDMarketSpecific()", () => {
+  test("true for market TLDs", () => {
+    expect(isTLDMarketSpecific("es")).toBe(true);
+    expect(isTLDMarketSpecific("de")).toBe(true);
+  });
+  test("false for non-market TLDs", () => {
+    expect(isTLDMarketSpecific("com")).toBe(false);
+    expect(isTLDMarketSpecific("dev")).toBe(false);
+    expect(isTLDMarketSpecific("net")).toBe(false);
+    expect(isTLDMarketSpecific("local")).toBe(false);
   });
 });
