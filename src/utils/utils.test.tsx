@@ -694,8 +694,13 @@ describe("isTLDMarketSpecific()", () => {
   });
   test("false for non-market TLDs", () => {
     expect(isTLDMarketSpecific("com")).toBe(false);
-    expect(isTLDMarketSpecific("dev")).toBe(false);
     expect(isTLDMarketSpecific("net")).toBe(false);
+    expect(isTLDMarketSpecific("dev")).toBe(false);
     expect(isTLDMarketSpecific("local")).toBe(false);
+    expect(isTLDMarketSpecific("tech")).toBe(false);
+  });
+  test("false for 🙄 unit test TLDs", () => {
+    expect(isTLDMarketSpecific("localhost")).toBe(false);
+    expect(isTLDMarketSpecific("http://localhost")).toBe(false);
   });
 });
