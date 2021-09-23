@@ -19,7 +19,21 @@ const getState = market => ({
   },
 });
 
+const locationBackup = window.location;
+
 describe("useTranslatedUrl", () => {
+  beforeEach(() => {
+    // eslint-disable-next-line fp/no-delete
+    delete window.location;
+    window.location = {
+      ...locationBackup,
+      hostname: "casumo.com",
+    };
+  });
+  afterEach(() => {
+    window.location = locationBackup;
+  });
+
   test("should return proper url for default EN_GB market", () => {
     const wrapper = mount(
       <MockStore state={{}}>
@@ -30,15 +44,12 @@ describe("useTranslatedUrl", () => {
       </MockStore>
     );
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
-    const hook = wrapper.find("div").props().hook;
+    const hook = wrapper.find("div").props()["hook"];
 
     expect(hook).toBe("en-gb/play/my-game-slug");
   });
 
   test("should return proper url for IN market", () => {
-    window.location.hostname = "casumo.com";
-
     const wrapper = mount(
       <MockStore state={getState(MARKETS.in_en)}>
         <HookWrapper
@@ -52,11 +63,7 @@ describe("useTranslatedUrl", () => {
   });
 
   test("should translated url for TLD-specific market (ES)", () => {
-    // eslint-disable-next-line fp/no-delete
-    delete window.location;
-    window.location = {
-      hostname: "casumo.es",
-    } as Location;
+    window.location.hostname = "casumo.es";
 
     const wrapper = mount(
       <MockStore state={getState(MARKETS.es_es)}>
@@ -70,7 +77,9 @@ describe("useTranslatedUrl", () => {
     expectHook(wrapper).toBe("jugar/my-game-slug");
   });
 
-  test("should translated url for NON-TLD-specific market (DE)", () => {
+  test("should translated url for TLD-specific market (DE)", () => {
+    window.location.hostname = "casumo.de";
+
     const wrapper = mount(
       <MockStore state={getState(MARKETS.de_de)}>
         <HookWrapper
