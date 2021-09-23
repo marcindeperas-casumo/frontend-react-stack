@@ -36,7 +36,7 @@ export function ReelRaceOptInPlayButtonContainer(props: TProps) {
         return () => koLaunchGame({ slug: game.slug });
       }
 
-      return () => window.location.href = `/${gameDetailsPath}`;
+      return () => (window.location.href = `/${gameDetailsPath}`);
     },
     [gameDetailsPath, isGameEmbedded, reactNativeLaunch, game.slug]
   );
