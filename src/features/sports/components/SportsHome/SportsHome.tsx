@@ -8,7 +8,7 @@ import { getKambiSupportedLanguage } from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
-import { SportsHomeEvent, SportsHomeTranslations, SportsHomeType } from "./types";
+import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
 const renderSportsHome = data => {
   return (
@@ -31,7 +31,7 @@ export const SportsHome = ({
   sports: string;
   language: string;
   locale: string;
-  t: SportsHomeTranslations;
+  t: SportsHomeTranslationsDictionary;
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -41,7 +41,7 @@ export const SportsHome = ({
     locale: locale,
     t: t,
   };
-  const { error, data, refetch } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
+  const { error, data } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
@@ -60,7 +60,10 @@ export const SportsHome = ({
     }
   }, [language]);
 
-  const [sportsPopularBetsData, setSportsPopularBetsData] = React.useState<SportsHomeType>();
+  const [
+    sportsPopularBetsData,
+    setSportsPopularBetsData,
+  ] = React.useState<SportsHomeType>();
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -77,14 +80,17 @@ export const SportsHome = ({
           eventIdsArgs,
           kambiLocale
         );
-        
-        const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(kambiOfferings.data.events, kambiOfferings.data.betOffers);
-        
+
+        const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
+          kambiOfferings.data.events,
+          kambiOfferings.data.betOffers
+        );
+
         const sportsHomeType = {
           events: offerringData,
           fractional: true,
           locale: locale,
-          translations: t
+          translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
         } as SportsHomeType;
 
         // organise sports data include Kambi Offerrings REST API Data
@@ -92,21 +98,15 @@ export const SportsHome = ({
       }
     };
     fetchData();
-  }, [data, market]);
+  }, [data, kambiLocale, kambiOffering, locale, market, t]);
 
   if (error) {
     return <ErrorMessage direction="horizontal" />;
   }
 
   if (data && !data.sportsPopularBets.popularEvents.length) {
-    return (
-      <ErrorMessage
-        direction="horizontal"
-        //retry={() => clickRetryRefetchNavigation()}
-      />
-    );
+    return <ErrorMessage direction="horizontal" />;
   }
 
-  return renderSportsHome(null);
+  return renderSportsHome(sportsPopularBetsData);
 };
-

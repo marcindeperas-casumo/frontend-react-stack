@@ -4,6 +4,15 @@ export type SportsHomeTranslations = {
   title: string;
 };
 
+export type SportsHomeTranslationsDictionary = {
+  dictionary: TranslationDictionaryItem[];
+};
+
+export type TranslationDictionaryItem = {
+  key: string;
+  value: string;
+};
+
 export type SportsHomeOutcome = {
   id: number;
   type: string;

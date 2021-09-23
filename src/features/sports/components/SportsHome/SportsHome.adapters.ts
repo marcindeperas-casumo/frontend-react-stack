@@ -4,6 +4,8 @@ import {
   KambiEvent,
   SportsHomeEvent,
   SportsHomeOutcome,
+  SportsHomeTranslations,
+  SportsHomeTranslationsDictionary,
 } from "./types";
 
 class SportsHomeAdapters {
@@ -39,6 +41,16 @@ class SportsHomeAdapters {
         fractional: outcome.oddsFractional,
       } as SportsHomeOutcome;
     });
+  }
+
+  convertToSportsHomeTranslations(
+    data: SportsHomeTranslationsDictionary
+  ): SportsHomeTranslations {
+    return {
+      live: data.dictionary.find(x => x.key === "sports_home_live")?.value,
+      draw: data.dictionary.find(x => x.key === "sports_home_draw")?.value,
+      title: data.dictionary.find(x => x.key === "sports_home_title")?.value,
+    } as SportsHomeTranslations;
   }
 }
 
