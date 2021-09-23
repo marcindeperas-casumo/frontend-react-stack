@@ -1,5 +1,3 @@
-import type { Props as SportsIconProps } from "Features/sports/components/SportsIcon";
-
 export type SportsHomeTranslations = {
   live: string;
   draw: string;
@@ -29,6 +27,8 @@ export type SportsHomeEvent = {
 export type SportsHomeType = {
   translations: SportsHomeTranslations;
   events: SportsHomeEvent[];
+  fractional: boolean;
+  locale: string;
 };
 
 // Kambi Offering Api Types
@@ -64,7 +64,7 @@ export interface KambiEvent {
   start: string;
   group: string;
   groupId: number;
-  sport: string;
+  sport: number;
 }
 
 export interface KambiOfferingResponse {
