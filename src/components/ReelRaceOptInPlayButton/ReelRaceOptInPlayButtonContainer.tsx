@@ -36,6 +36,7 @@ export function ReelRaceOptInPlayButtonContainer(props: TProps) {
         return () => koLaunchGame({ slug: game.slug });
       }
 
+      // eslint-disable-next-line fp/no-mutation
       return () => (window.location.href = `/${gameDetailsPath}`);
     },
     [gameDetailsPath, isGameEmbedded, reactNativeLaunch, game.slug]
