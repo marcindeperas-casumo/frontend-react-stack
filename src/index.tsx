@@ -21,6 +21,16 @@ import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 import "./styles/index.css";
 
+// window.native = {
+//   android: true,
+//   version: "ios/{test2}", // "ios/{2.40.5}",
+//   casumoAndroidMessaging: {
+//     launchGame: msg => {
+//       console.log("------", msg);
+//     },
+//   },
+// };
+
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 BridgeToNavigationService();
