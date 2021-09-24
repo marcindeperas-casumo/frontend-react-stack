@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import * as sportsHome from "@casumo/sports-home";
 import * as React from "react";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -11,11 +10,7 @@ import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
 const renderSportsHome = data => {
-  return (
-    <div>
-      <sportsHome.SportsHome text="Popular events" />
-    </div>
-  );
+  return <div>{/* <sportsHome.SportsHome text="Popular events" /> */}</div>;
 };
 
 export const SportsHome = ({
