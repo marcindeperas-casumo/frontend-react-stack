@@ -73,7 +73,7 @@ export interface KambiEvent {
   start: string;
   group: string;
   groupId: number;
-  sport: number;
+  sport: string;
 }
 
 export interface KambiOfferingResponse {
