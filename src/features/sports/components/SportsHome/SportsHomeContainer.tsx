@@ -1,4 +1,3 @@
-import { getKambiWidgetAPI } from "Features/sports/kambi";
 import React from "react";
 import {
   useLanguage,
