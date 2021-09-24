@@ -31,3 +31,6 @@ yarn-error.log*
 pact/pacts/
 pact/logs/
 .settings/
+
+# local env files to be used in local development 
+.env

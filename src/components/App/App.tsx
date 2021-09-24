@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import {
+  subscribeToPusherEvent,
+  unsubscribeFromPusherChannel,
+  alertPusherData,
+} from "Services/PusherPubSubService";
 import logger from "Services/logger";
+import { usePusher } from "Utils/hooks";
 import { AppLiS } from "./AppLiS";
 import { AppLoS } from "./AppLoS";
 
@@ -14,11 +20,26 @@ type Props = {
   isAuthenticatedHandshake: boolean;
   isAppHandshakeLoaded: Boolean;
 };
+
 export const App = (props: Props) => {
   const { onAppStarted, playerId, sessionId, isAuthenticatedHandshake } = props;
   const [isAuthenticated, setIsAuthenticated] = useState(
     isAuthenticatedHandshake
   );
+  const [pusher] = usePusher(sessionId);
+
+  useEffect(() => {
+    subscribeToPusherEvent(
+      pusher,
+      "test-channel",
+      "test-event",
+      alertPusherData
+    );
+    return () => {
+      unsubscribeFromPusherChannel(pusher, "test-channel");
+    };
+  }, [pusher, pusher.key]);
+
   // IM-274: ephemeral fix rm localforage indexeddb
   useEffect(() => {
     try {
