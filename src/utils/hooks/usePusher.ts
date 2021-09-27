@@ -77,7 +77,7 @@ export const usePusher = (sessionId: string) => {
       }
     };
 
-    if (sessionId) {
+    if (sessionId && process.env.NODE_ENV === "development") {
       getDataAndCreatePusherObj();
     }
   }, [sessionId]);
