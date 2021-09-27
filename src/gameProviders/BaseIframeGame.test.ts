@@ -41,7 +41,7 @@ describe("BaseIframeGame", () => {
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
     urlPrefix: DEFAULT_LANGUAGE,
-    origin: window.location.origin,
+    origin: "https://www.casumotest.com",
   });
 
   test("should set gameData params and gameRef in constructor", () => {
@@ -59,7 +59,7 @@ describe("BaseIframeGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games"
+      "https://www.casumotest.com/gamelaunchers/navigation-bubbler.html?target=en/games"
     );
   });
 

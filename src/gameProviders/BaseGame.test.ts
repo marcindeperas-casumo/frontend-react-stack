@@ -15,7 +15,7 @@ describe("BaseGame", () => {
     language: DEFAULT_LANGUAGE,
     environment: ENVIRONMENTS.TEST,
     urlPrefix: DEFAULT_LANGUAGE,
-    origin: window.location.origin,
+    origin: "https://www.casumotest.com",
   });
 
   test("should set gameData params and gameRef in constructor", () => {
@@ -33,13 +33,13 @@ describe("BaseGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games"
+      "https://www.casumotest.com/gamelaunchers/navigation-bubbler.html?target=en/games"
     );
   });
 
   test("should not have market prefix in the lobby url when run on TLD specific markets", () => {
     const esLang = LANGUAGES.es_es;
-    const origin = "casumo.es";
+    const origin = "https://www.casumotest.es";
 
     const esModel = new BaseGame({
       gameData,

@@ -461,7 +461,8 @@ export const timeRemainingBeforeStart = (time: number): number => {
 /**
  * returns true if current market has it's own TLD
  */
-export const isTLDMarketSpecific: (s: string) => boolean = R.equals("es");
+export const isTLDMarketSpecific: (s: string) => boolean = tld =>
+  !["com", "net", "dev", "local", "tech"].includes(tld);
 
 export const hasAlphaCharactersOnly = (str: string): boolean => {
   return !/[a-z]+/i.test(str);
