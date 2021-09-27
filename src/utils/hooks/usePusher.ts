@@ -55,6 +55,10 @@ const login = (fusionUrl: string, externalSessionId: string) => {
   );
 };
 
+const isCasumoTest = (): boolean => {
+  return window.location.host.includes("test");
+};
+
 export const usePusher = (sessionId: string) => {
   const [pusher, setPusher] = useState<PusherObjTypes>({} as PusherObjTypes);
 
@@ -77,7 +81,7 @@ export const usePusher = (sessionId: string) => {
       }
     };
 
-    if (sessionId && process.env.NODE_ENV === "development") {
+    if (sessionId && isCasumoTest()) {
       getDataAndCreatePusherObj();
     }
   }, [sessionId]);
