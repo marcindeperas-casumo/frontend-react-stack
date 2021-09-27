@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
+import * as sportsHome from "@casumo/sports-home";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { TMarket } from "Src/constants";
@@ -9,8 +10,23 @@ import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
-const renderSportsHome = data => {
-  return <div>{/* <sportsHome.SportsHome text="Popular events" /> */}</div>;
+const renderSportsHome = (data: SportsHomeType) => {
+  if (!data) {
+    return null;
+  } else {
+    return (
+      <div>
+        <sportsHome.SportsHome
+          events={data.events}
+          fractional={data.fractional}
+          translations={data.translations}
+          locale={data.locale}
+          eventClick={null}
+          outcomeClick={null}
+        />
+      </div>
+    );
+  }
 };
 
 export const SportsHome = ({
@@ -31,7 +47,7 @@ export const SportsHome = ({
   const variables = {
     numberOfEvents: numberOfEvents,
     sports: sports,
-    market: market,
+    market: "ES",
     language: language,
     locale: locale,
     t: t,
