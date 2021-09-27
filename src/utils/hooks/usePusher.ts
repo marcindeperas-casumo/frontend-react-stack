@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import http from "Lib/http";
+import logger from "Services/logger";
 
 export type PusherObjTypes = {
   channels: any; // TODO: add channels typings
@@ -10,8 +11,8 @@ export type PusherObjTypes = {
   key: string;
   sessionID: number;
   timeline: any; // TODO: Add timeline typings
-  subscribe(channeName): any; // TODO: Add subscribe typings
-  unsubscribe(channeName): any; // TODO: Add unsubscribe typings
+  subscribe(channelName): any; // TODO: Add subscribe typings
+  unsubscribe(channelName): any; // TODO: Add unsubscribe typings
 };
 
 type FTPusherIntegrationDataTypes = {
@@ -76,7 +77,7 @@ export const usePusher = (sessionId: string) => {
 
         setPusher(pusherInstance);
       } catch (error) {
-        console.log(error); // eslint-disable-line no-console
+        logger.error(error);
         setPusher({} as PusherObjTypes);
       }
     };

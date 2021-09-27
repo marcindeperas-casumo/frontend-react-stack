@@ -1,3 +1,4 @@
+import logger from "Services/logger";
 import { MODALS } from "Src/constants";
 import { PusherObjTypes } from "Utils/hooks/usePusher";
 import { launchModal } from "./LaunchModalService";
@@ -20,7 +21,7 @@ export const subscribeToPusherEvent = (
       });
     }
   } catch (error) {
-    console.log(error); // eslint-disable-line no-console
+    logger.error(error);
   }
 };
 
@@ -33,12 +34,12 @@ export const unsubscribeFromPusherChannel = (
       pusher.unsubscribe(channelName);
     }
   } catch (error) {
-    console.log(error); // eslint-disable-line no-console
+    logger.error(error);
   }
 };
 
 // this function is used only as a POC for Pusher.js services
 export const alertPusherData = (data: any) => {
-  console.log("Pusher event callback: ", data); // eslint-disable-line no-console
+  logger.log(data);
   launchModal({ modal: MODALS.ACCOUNT_SETTINGS.SHOW_ACCOUNT_ACTIVITY });
 };
