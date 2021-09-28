@@ -1,6 +1,6 @@
 import logger from "Services/logger";
 import { MODALS } from "Src/constants";
-import { PusherObjTypes } from "Utils/hooks/usePusher";
+import { TPusherObject } from "Utils/hooks/usePusher";
 import { launchModal } from "./LaunchModalService";
 
 const pusherKeyExists = (key: string): boolean => {
@@ -8,7 +8,7 @@ const pusherKeyExists = (key: string): boolean => {
 };
 
 export const subscribeToPusherEvent = (
-  pusher: PusherObjTypes,
+  pusher: TPusherObject,
   channelName: string,
   channelEvent: string,
   cb: Function
@@ -26,7 +26,7 @@ export const subscribeToPusherEvent = (
 };
 
 export const unsubscribeFromPusherChannel = (
-  pusher: PusherObjTypes,
+  pusher: TPusherObject,
   channelName: string
 ): void => {
   try {
