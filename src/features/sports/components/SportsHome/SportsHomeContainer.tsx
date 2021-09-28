@@ -8,7 +8,7 @@ import {
 import { SportsHome } from "./SportsHome";
 import { SportsHomeTranslationsDictionary } from "./types";
 
-export const NUMBER_OF_EVENTS = 10;
+export const NUMBER_OF_EVENTS = 4;
 export const SPORTS = "FOOTBALL";
 export const KAMBI_SPORTS_SLUG = "sports.dictionary";
 
