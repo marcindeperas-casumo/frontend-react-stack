@@ -16,7 +16,7 @@ type TProps = {
 
 export const PromotionCard = ({ promotion }: TProps) => {
   const promoTranslations = promotion as TFlattenedPromotion;
-  const { external_link } = promotion;
+  const { external_link } = promoTranslations;
 
   const link =
     external_link || `promotions/${promotion.slug || promoTranslations.slug}`;
