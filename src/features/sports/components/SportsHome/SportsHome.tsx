@@ -38,7 +38,7 @@ export const SportsHome = ({
   t,
 }: {
   numberOfEvents: number;
-  market?: TMarket;
+  market?: string;
   sports: string;
   language: string;
   locale: string;
@@ -47,7 +47,7 @@ export const SportsHome = ({
   const variables = {
     numberOfEvents: numberOfEvents,
     sports: sports,
-    market: "ES",
+    market: market,
     language: language,
     locale: locale,
     t: t,
@@ -89,7 +89,8 @@ export const SportsHome = ({
         const kambiOfferings = await SportsHomeService.getOfferings(
           kambiOffering,
           eventIdsArgs,
-          kambiLocale
+          kambiLocale,
+          market
         );
 
         const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
