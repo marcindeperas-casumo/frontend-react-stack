@@ -3,7 +3,6 @@ import * as React from "react";
 import * as sportsHome from "@casumo/sports-home";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { TMarket } from "Src/constants";
 import {
   getKambiSupportedLanguage,
   getKambiWidgetAPI,
