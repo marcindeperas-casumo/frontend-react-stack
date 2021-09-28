@@ -3,19 +3,19 @@ import Pusher from "pusher-js";
 import http from "Lib/http";
 import logger from "Services/logger";
 
-export type PusherObjTypes = {
-  channels: any; // TODO: add channels typings
-  config: any; // TODO: add config typings
-  connection: any; //TODO: add connection typings;
-  global_emitter: any; //TODO: add global_emitter typings;
+export type TPusherObject = {
+  channels: any; // TODO: TRET-1076 Finish types definition for TPusherObject
+  config: any; // TODO: TRET-1076 Finish types definition for TPusherObject
+  connection: any; //T ODO: TRET-1076 Finish types definition for TPusherObject
+  global_emitter: any; // TODO: TRET-1076 Finish types definition for TPusherObject
   key: string;
   sessionID: number;
-  timeline: any; // TODO: Add timeline typings
-  subscribe(channelName): any; // TODO: Add subscribe typings
-  unsubscribe(channelName): any; // TODO: Add unsubscribe typings
+  timeline: any; // TODO: TRET-1076 Finish types definition for TPusherObject
+  subscribe(channelName): any; // TODO: TRET-1076 Finish types definition for TPusherObject
+  unsubscribe(channelName): any; // TODO: TRET-1076 Finish types definition for TPusherObject
 };
 
-type FTPusherIntegrationDataTypes = {
+type TPusherIntegration = {
   crmUrl: string;
   fusionUrl: string;
   prismaUrl: string;
@@ -23,17 +23,19 @@ type FTPusherIntegrationDataTypes = {
   pusherRegion: string;
 };
 
-type FTDataTypes = {
+type TFastTrackCasumoIntegration = {
   externalSessionId: string;
   playerId: string;
 };
 
-const getBaseEndpoints = (): Promise<FTPusherIntegrationDataTypes> => {
+const getBaseEndpoints = (): Promise<TPusherIntegration> => {
   const CONFIG_URL = `https://am-events-staging.fasttrack-solutions.com/api/v1/config/casumo`;
   return http.get(CONFIG_URL, {});
 };
 
-const getExternalSessionID = (sessionId: string): Promise<FTDataTypes> => {
+const getExternalSessionID = (
+  sessionId: string
+): Promise<TFastTrackCasumoIntegration> => {
   const externalSessionURL = `/casino-player/fasttrack-realtime-integration/api/v1/session-mapping`;
   return http.get(
     externalSessionURL,
@@ -61,7 +63,7 @@ const isCasumoTest = (): boolean => {
 };
 
 export const usePusher = (sessionId: string) => {
-  const [pusher, setPusher] = useState<PusherObjTypes>({} as PusherObjTypes);
+  const [pusher, setPusher] = useState<TPusherObject>({} as TPusherObject);
 
   useEffect(() => {
     const getDataAndCreatePusherObj = async () => {
@@ -78,7 +80,7 @@ export const usePusher = (sessionId: string) => {
         setPusher(pusherInstance);
       } catch (error) {
         logger.error(error);
-        setPusher({} as PusherObjTypes);
+        setPusher({} as TPusherObject);
       }
     };
 
