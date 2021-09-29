@@ -33,7 +33,7 @@ export const App = (props: Props) => {
     subscribeToPusherEvent(
       pusher,
       "test-channel",
-      "test-event", 
+      "test-event",
       alertPusherData
     );
     return () => {
