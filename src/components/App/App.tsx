@@ -29,10 +29,11 @@ export const App = (props: Props) => {
   const [pusher] = usePusher(sessionId);
 
   useEffect(() => {
+    // playerId as event name or part of channel name
     subscribeToPusherEvent(
       pusher,
       "test-channel",
-      "test-event",
+      "test-event", 
       alertPusherData
     );
     return () => {
