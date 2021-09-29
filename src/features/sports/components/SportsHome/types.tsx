@@ -19,6 +19,7 @@ export type SportsHomeOutcome = {
   label: string;
   odds: number;
   fractional: string;
+  isDisabled: boolean;
 };
 
 export type SportsHomeEvent = {
