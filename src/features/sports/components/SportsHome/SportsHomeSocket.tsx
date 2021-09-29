@@ -16,7 +16,7 @@ export const socket = io(socketAddress, {
 export let vars = {
   lang: "",
   offering: "",
-  subscribedEventsArray: [],
+  subscribed: false,
 };
 
 export const setVars = (key, value) => {
@@ -26,44 +26,27 @@ export const setVars = (key, value) => {
 
 export const getVars = key => vars[key];
 
-export const subscribeEvent = (id: number) => {
-  if (
-    vars.lang &&
-    vars.offering &&
-    vars.subscribedEventsArray.indexOf(id) === -1
-  ) {
+export const subscribeEvents = () => {
+  if (vars.lang && vars.offering && !vars.subscribed) {
     socket.emit("subscribe", {
-      topic: `v2018.${vars.offering}.${vars.lang}.ev.${id}.json`,
+      topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
     socket.emit("subscribe", {
-      topic: `v2018.${vars.offering}.ev.${id}.json`,
+      topic: `v2018.${vars.offering}.ev.json`,
     });
-    setVars("subscribedEventsArray", [...vars.subscribedEventsArray, id]);
+    setVars("subscribedEventsArray", true);
   }
 };
 
-export const unsubscribeEvent = (id: number) => {
-  if (
-    vars.lang &&
-    vars.offering &&
-    vars.subscribedEventsArray.indexOf(id) !== -1
-  ) {
+export const unsubscribeEvents = () => {
+  if (vars.lang && vars.offering && vars.subscribed) {
     socket.emit("unsubscribe", {
-      topic: `v2018.${vars.offering}.${vars.lang}.ev.${id}.json`,
+      topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
     socket.emit("unsubscribe", {
-      topic: `v2018.${vars.offering}.ev.${id}.json`,
+      topic: `v2018.${vars.offering}.ev.json`,
     });
-    setVars(
-      "subscribedEventsArray",
-      vars.subscribedEventsArray.map(el => el !== id)
-    );
-  }
-};
-
-export const unsubscribeAllEvents = () => {
-  if (vars.lang && vars.offering && vars.subscribedEventsArray.length > 0) {
-    vars.subscribedEventsArray.forEach(eventId => unsubscribeEvent(eventId));
+    setVars("subscribedEventsArray", false);
   }
 };
 
@@ -85,9 +68,4 @@ socket.on("error", error => {
 
 socket.on("reconnect_attempt", attemptNumber => {
   console.log("Socket reconnect attempt " + attemptNumber);
-});
-
-socket.on("message", data => {
-  const msg = JSON.parse(data);
-  console.log("On message", msg);
 });

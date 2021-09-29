@@ -10,10 +10,9 @@ import {
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
 import {
   socket,
-  subscribeEvent,
-  unsubscribeEvent,
+  subscribeEvents,
+  unsubscribeEvents,
   setVars,
-  unsubscribeAllEvents,
 } from "./SportsHomeSocket";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
@@ -106,10 +105,19 @@ export const SportsHome = ({
 
   socket.open();
 
+  socket.on("message", dataSocket => {
+    const msg = JSON.parse(dataSocket);
+
+    if (msg.mt === 7) {
+
+    }
+
+    console.log("***", msg);
+  });
+
   React.useEffect(
     () => () => {
-      console.log("***unmount triggered");
-      unsubscribeAllEvents();
+      unsubscribeEvents();
     },
     []
   );
@@ -121,8 +129,6 @@ export const SportsHome = ({
         const eventIds = data.sportsPopularBets.popularEvents[0].events.map(
           popularEvent => popularEvent.eventId
         );
-
-        eventIds.forEach(eventId => subscribeEvent(eventId));
 
         const eventIdsArgs = eventIds.join();
 
@@ -150,6 +156,7 @@ export const SportsHome = ({
       }
     };
     fetchData();
+    subscribeEvents();
   }, [data, kambiLocale, kambiOffering, locale, market, t]);
 
   if (error) {
