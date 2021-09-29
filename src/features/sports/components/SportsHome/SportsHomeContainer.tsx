@@ -16,14 +16,22 @@ export const SportsHomeContainer = () => {
   const language = useLanguage();
   const locale = useLocale();
 
-  return (
-    <SportsHome
-      numberOfEvents={NUMBER_OF_EVENTS}
-      market={last(locale.split("-"))}
-      sports={SPORTS}
-      language={language}
-      locale={locale}
-      t={t}
-    />
+  const isPopularWidgetsEnabled = Boolean(
+    JSON.parse(localStorage.getItem("showMostPopularEventsWidget"))
   );
+
+  if (isPopularWidgetsEnabled) {
+    return (
+      <SportsHome
+        numberOfEvents={NUMBER_OF_EVENTS}
+        market={last(locale.split("-"))}
+        sports={SPORTS}
+        language={language}
+        locale={locale}
+        t={t}
+      />
+    );
+  } else {
+    return null;
+  }
 };
