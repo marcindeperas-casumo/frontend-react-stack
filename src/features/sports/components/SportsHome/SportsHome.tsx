@@ -9,6 +9,7 @@ import { getOffering } from "Features/sports/kambi/getKambiOffering";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
+import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 
 const renderSportsHome = (data: SportsHomeType) => {
   if (!data) {
@@ -36,6 +37,7 @@ export const SportsHome = ({
   language,
   locale,
   t,
+  oddsFormatEvent,
 }: {
   numberOfEvents: number;
   market?: string;
@@ -43,6 +45,7 @@ export const SportsHome = ({
   language: string;
   locale: string;
   t: SportsHomeTranslationsDictionary;
+  oddsFormatEvent: OddsFormatEvent;
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -51,6 +54,7 @@ export const SportsHome = ({
     language: language,
     locale: locale,
     t: t,
+    oddsFormatEvent: oddsFormatEvent,
   };
   const { error, data } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
     variables,
@@ -90,17 +94,17 @@ export const SportsHome = ({
           kambiOffering,
           eventIdsArgs,
           kambiLocale,
-          market
+          market,
         );
 
         const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
           kambiOfferings.data.events,
-          kambiOfferings.data.betOffers
+          kambiOfferings.data.betOffers,
         );
 
         const sportsHomeType = {
           events: offerringData,
-          fractional: true,
+          fractional: oddsFormatEvent.oddsFormat === "fractional",
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
         } as SportsHomeType;

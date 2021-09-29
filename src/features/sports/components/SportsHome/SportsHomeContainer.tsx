@@ -1,5 +1,7 @@
 import { last } from "ramda";
 import React from "react";
+import { useSelector } from "react-redux";
+import { oddsFormatSelector } from "Models/sportsEvents/sportsEvents.selectors";
 import { useLanguage, useLocale, useTranslations } from "Utils/hooks";
 import { SportsHome } from "./SportsHome";
 import { SportsHomeTranslationsDictionary } from "./types";
@@ -15,6 +17,7 @@ export const SportsHomeContainer = () => {
 
   const language = useLanguage();
   const locale = useLocale();
+  const oddsFormatEvent = useSelector(oddsFormatSelector);
 
   return (
     <SportsHome
@@ -24,6 +27,7 @@ export const SportsHomeContainer = () => {
       language={language}
       locale={locale}
       t={t}
+      oddsFormatEvent={oddsFormatEvent}
     />
   );
 };
