@@ -3,13 +3,31 @@ import * as React from "react";
 import * as sportsHome from "@casumo/sports-home";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { TMarket } from "Src/constants";
-import { getKambiSupportedLanguage } from "Features/sports/kambi";
+import {
+  getKambiSupportedLanguage,
+  getKambiWidgetAPI,
+} from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
+
+const eventClick = async (eventId: number) => {
+  const wapi = await getKambiWidgetAPI();
+
+  wapi.navigateClient(`event/${eventId}`);
+};
+
+const outcomeClick = async (outcomeId: number) => {
+  const wapi = await getKambiWidgetAPI();
+
+  wapi.set(wapi.BETSLIP_OUTCOMES, {
+    updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
+    outcomes: [outcomeId],
+    couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_COMBINATION,
+  });
+};
 
 const renderSportsHome = (data: SportsHomeType) => {
   if (!data) {
@@ -19,12 +37,13 @@ const renderSportsHome = (data: SportsHomeType) => {
       <div>
         <sportsHome.SportsHome
           events={data.events}
-          fractional={data.fractional}
+          fractional={false}
           translations={data.translations}
           locale={data.locale}
-          eventClick={null}
-          outcomeClick={null}
+          eventClick={eventClick}
+          outcomeClick={outcomeClick}
         />
+        <div className="hover:bg-grey-20 display-none" />
       </div>
     );
   }
