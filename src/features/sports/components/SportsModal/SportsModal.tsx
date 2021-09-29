@@ -12,7 +12,9 @@ type Props = {
 };
 
 const Content = ({ children, className }: Props) => (
-  <Flex.Block className={classNames("c-sports-modal__content u-padding-x--md", className)}>
+  <Flex.Block
+    className={classNames("c-sports-modal__content u-padding-x--md", className)}
+  >
     <div className="c-sports-modal__content-inner">{children}</div>
   </Flex.Block>
 );
