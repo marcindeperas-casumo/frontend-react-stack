@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as sportsHome from "@casumo/sports-home";
+import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
@@ -18,7 +19,6 @@ import {
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
-import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 
 const eventClick = async (eventId: number) => {
   const wapi = await getKambiWidgetAPI();
@@ -132,12 +132,12 @@ export const SportsHome = ({
           kambiOffering,
           eventIdsArgs,
           kambiLocale,
-          market,
+          market
         );
 
         const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
           kambiOfferings.data.events,
-          kambiOfferings.data.betOffers,
+          kambiOfferings.data.betOffers
         );
 
         const sportsHomeType = {
@@ -152,7 +152,15 @@ export const SportsHome = ({
       }
     };
     fetchData();
-  }, [data, kambiLocale, kambiOffering, locale, market, t]);
+  }, [
+    data,
+    kambiLocale,
+    kambiOffering,
+    locale,
+    market,
+    oddsFormatEvent.oddsFormat,
+    t,
+  ]);
 
   if (error) {
     return <ErrorMessage direction="horizontal" />;
