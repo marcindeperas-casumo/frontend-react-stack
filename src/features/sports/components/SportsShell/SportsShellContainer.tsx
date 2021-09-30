@@ -13,6 +13,7 @@ import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";
+import { SportsHome } from "Features/sports/components/SportsHome";
 import { SportsJackpots } from "Features/sports/components/SportsJackpots";
 import Modals from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
@@ -106,6 +107,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
             ) : (
               <SportsNav currentHash={currentHash} market={market} />
             )}
+            {currentHash === homeHash && <SportsHome />}
             {currentHash === homeHash && <SportsJackpots />}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />

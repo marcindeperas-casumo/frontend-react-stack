@@ -44,3 +44,14 @@ export const KAMBI_SUPPORTED_LANGUAGES = [
   "en_ZA",
   "pt_PT",
 ];
+
+export const KAMBI_OFFERINGS = {
+  CA: "caca",
+  DE: "cade",
+  GB: "cauk",
+  SE: "case",
+  ES: "caes",
+  IE: "caie",
+  JP: "caea",
+  DEFAULT: "ca",
+};

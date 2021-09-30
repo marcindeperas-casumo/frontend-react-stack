@@ -77,6 +77,7 @@ export interface Query {
   sportsCmsImage?: Maybe<Scalars["String"]>;
   sportsFirstBet: Scalars["Boolean"];
   sportsNavigation: Array<NavigationItem>;
+  sportsPopularBets?: Maybe<SportsPopularBets>;
   /** TopCompetitions returns the most popular subgroups of a group, currently based on number of events */
   topCompetitions: Array<EventGroup>;
   /** Top searches returns the event groups for the groupIds marked as popular */
@@ -225,6 +226,12 @@ export interface QuerySportsCmsImageArgs {
 export interface QuerySportsNavigationArgs {
   live?: Maybe<Scalars["Boolean"]>;
   locale?: Maybe<Scalars["String"]>;
+}
+
+export interface QuerySportsPopularBetsArgs {
+  market: Scalars["String"];
+  numberOfEvents: Scalars["Int"];
+  sports: Scalars["String"];
 }
 
 export interface QueryTopCompetitionsArgs {
@@ -996,7 +1003,6 @@ export interface Promotion {
   tag?: Maybe<Scalars["String"]>;
   teaserCaveats?: Maybe<Scalars["String"]>;
   ctaText?: Maybe<Scalars["String"]>;
-  external_link?: Maybe<Scalars["String"]>;
 }
 
 export interface PromotionsList {
@@ -1265,6 +1271,20 @@ export interface BetProjectionsOutcomes {
   eventName?: Maybe<Scalars["String"]>;
   criterionName?: Maybe<Scalars["String"]>;
   outcomeLabel?: Maybe<Scalars["String"]>;
+}
+
+export interface SportsPopularBets {
+  popularEvents?: Maybe<Array<Maybe<SportsPopularBetsCategory>>>;
+}
+
+export interface SportsPopularBetsCategory {
+  name?: Maybe<Scalars["String"]>;
+  events?: Maybe<Array<Maybe<SportsPopularBet>>>;
+}
+
+export interface SportsPopularBet {
+  eventId?: Maybe<Scalars["Int"]>;
+  sport?: Maybe<Scalars["String"]>;
 }
 
 export interface BlueribbonJackpotConfig {
@@ -2031,7 +2051,6 @@ export type PromotionCard_PromotionFragment = {
   tag?: Maybe<string>;
   teaserCaveats?: Maybe<string>;
   ctaText?: Maybe<string>;
-  external_link?: Maybe<string>;
 };
 
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
@@ -3041,6 +3060,27 @@ export type GroupPill_GroupFragment = {
 export type SportsFirstBetQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SportsFirstBetQuery = { sportsFirstBet: boolean };
+
+export type PopularBetsQueryVariables = Exact<{
+  market: Scalars["String"];
+  numberOfEvents: Scalars["Int"];
+  sports: Scalars["String"];
+}>;
+
+export type PopularBetsQuery = {
+  sportsPopularBets?: Maybe<{
+    popularEvents?: Maybe<
+      Array<
+        Maybe<{
+          name?: Maybe<string>;
+          events?: Maybe<
+            Array<Maybe<{ eventId?: Maybe<number>; sport?: Maybe<string> }>>
+          >;
+        }>
+      >
+    >;
+  }>;
+};
 
 export type UserNavigationQueryVariables = Exact<{
   live: Scalars["Boolean"];

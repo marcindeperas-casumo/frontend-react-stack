@@ -14,4 +14,17 @@ export default {
   mixpanelToken: "ec4c2a09353dbe7faf59a46a4ddab0cb",
   mixpanelProjectName: "react-stack",
   graphqlUrl: "/graphql/casumo/",
+  kambiOfferingApi: `${generateKambiOfferingApiUrl()}/offering/v2018/`,
 };
+
+function generateKambiOfferingApiUrl() {
+  if (process.env.ENVIRONMENT === "production") {
+    return "https://eu-offering.kambicdn.org";
+  }
+
+  if (process.env.ENVIRONMENT === "stage") {
+    return "https://cts-api.kambi.com";
+  }
+
+  return "https://ctn-api.kambi.com";
+}
