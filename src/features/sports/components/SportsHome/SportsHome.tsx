@@ -45,7 +45,7 @@ const renderSportsHome = (
     return (
       <div>
         <sportsHome.SportsHome
-          events={data.events}
+          events={data?.events}
           numberOfEventsToShow={numberOfEventsToShow}
           fractional={false}
           translations={data.translations}
@@ -125,7 +125,7 @@ export const SportsHome = ({
     const fetchData = async () => {
       if (data?.sportsPopularBets?.popularEvents.length && market) {
         // use data to fetch event details from Kambi Offerrings REST API Data
-        const eventIds = data.sportsPopularBets.popularEvents[0].events.map(
+        const eventIds = data.sportsPopularBets.popularEvents[0].events?.map(
           popularEvent => popularEvent.eventId
         );
 
@@ -167,6 +167,6 @@ export const SportsHome = ({
 
   return renderSportsHome(
     sportsPopularBetsData,
-    Math.min(numberOfEventsToShow, sportsPopularBetsData.events?.length)
+    Math.min(numberOfEventsToShow, sportsPopularBetsData?.events?.length)
   );
 };
