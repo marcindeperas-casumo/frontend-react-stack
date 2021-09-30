@@ -162,5 +162,14 @@ export const messageEvent = (
       setData(data);
     }
   }
+
+  // removing outcomes for bettoffer
+  if (msg.mt === 34) {
+    const event = findEventInData(data, msg.esu.id);
+    if (event) {
+      event.live = msg.esu.state === "STARTED";
+      setData(data);
+    }
+  }
 };
 /* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
