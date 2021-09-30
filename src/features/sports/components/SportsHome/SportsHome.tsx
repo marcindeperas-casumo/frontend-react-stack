@@ -85,7 +85,7 @@ export const SportsHome = ({
     locale: locale,
     t: t,
   };
-  const { error, data } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
+  const { error, data, refetch } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
@@ -113,7 +113,13 @@ export const SportsHome = ({
 
   socket.on("message", dataSocket => {
     JSON.parse(dataSocket).forEach(msg => {
-      messageEvent(msg, setSportsPopularBetsData, sportsPopularBetsData);
+      messageEvent(
+        msg,
+        setSportsPopularBetsData,
+        sportsPopularBetsData,
+        refetch,
+        numberOfEventsToShow
+      );
     });
   });
   socket.open();

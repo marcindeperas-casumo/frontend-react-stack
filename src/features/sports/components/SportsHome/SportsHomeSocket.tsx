@@ -75,12 +75,18 @@ const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
   return null;
 };
 
+const countEventsShowed = (data: SportsHomeType) => {
+  return data.events.filter(event => event.show === true).length;
+};
+
 export const messageEvent = (
   msg: any,
   setData: (data: SportsHomeType) => void,
-  data: SportsHomeType
+  data: SportsHomeType,
+  refetch: () => void,
+  numberOfEventsToShow: number
 ) => {
-  // score change
+  // score change - for football only atm
   if (msg.mt === 16) {
     const event = findEventInData(data, msg.score.eventId);
     if (event && event.sport === "FOOTBALL") {
@@ -89,7 +95,7 @@ export const messageEvent = (
     }
   }
 
-  // outcomes change
+  // outcomes change - replacing odds
   if (msg.mt === 11) {
     const event = findEventInData(data, msg.boou.eventId);
     if (event) {
@@ -98,6 +104,18 @@ export const messageEvent = (
         eventOutcome.odds = outcome.odds;
         eventOutcome.fractional = outcome.oddsFractional;
       });
+      setData(data);
+    }
+  }
+
+  // removing event - hiding event, refetch if needed
+  if (msg.mt === 18) {
+    const event = findEventInData(data, msg.er.eventId);
+    if (event) {
+      event.show = false;
+      if (countEventsShowed(data) < numberOfEventsToShow) {
+        refetch();
+      }
       setData(data);
     }
   }
