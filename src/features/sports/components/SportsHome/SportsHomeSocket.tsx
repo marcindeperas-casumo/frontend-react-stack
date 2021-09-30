@@ -153,5 +153,14 @@ export const messageEvent = (
       setData(data);
     }
   }
+
+  // removing outcomes for bettoffer
+  if (msg.mt === 23) {
+    const event = findEventInData(data, msg.boor.eventId);
+    if (event && event.betOfferId === msg.boor.betOfferId) {
+      event.outcomes = [];
+      setData(data);
+    }
+  }
 };
 /* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
