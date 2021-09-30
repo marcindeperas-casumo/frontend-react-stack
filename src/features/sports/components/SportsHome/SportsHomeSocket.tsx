@@ -5,7 +5,7 @@ import {
 } from "Features/sports/components/SportsHome/types";
 
 const socketAddress =
-  process.env.NODE_ENV === "production"
+  process.env.ENVIRONMENT === "production"
     ? `wss://push.aws.kambicdn.com`
     : `wss://ctn-push.kambi.com`;
 
@@ -54,7 +54,8 @@ export const unsubscribe = () => {
   }
 };
 
-// using for loop to speedup searching
+/* eslint-disable fp/no-loops,fp/no-let,fp/no-mutation */
+// using "for" loop to speedup searching thats why disabling some lint rules
 // https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventInData = (data: SportsHomeType, eventId: number) => {
   for (let i = 0; i < data.events.length; i++) {
@@ -65,8 +66,6 @@ const findEventInData = (data: SportsHomeType, eventId: number) => {
   return null;
 };
 
-// using for loop to speedup searching
-// https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
   for (let i = 0; i < event.outcomes.length; i++) {
     if (event.outcomes[i].id === outcomeId) {
@@ -76,7 +75,6 @@ const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
   return null;
 };
 
-/* eslint-disable fp/no-mutation */
 export const messageEvent = (
   msg: any,
   setData: (data: SportsHomeType) => void,
@@ -104,4 +102,4 @@ export const messageEvent = (
     }
   }
 };
-/* eslint-enable fp/no-mutation */
+/* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation */
