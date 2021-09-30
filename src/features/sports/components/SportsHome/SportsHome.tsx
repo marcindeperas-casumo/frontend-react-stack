@@ -10,8 +10,8 @@ import {
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
 import {
   socket,
-  subscribeEvent,
-  unsubscribeAllEvents,
+  subscribe,
+  unsubscribe,
   setVars,
   messageEvent,
 } from "./SportsHomeSocket";
@@ -104,18 +104,21 @@ export const SportsHome = ({
     setSportsPopularBetsData,
   ] = React.useState<SportsHomeType>();
 
-  socket.open();
-  socket.on("message", dataSocket =>
-    messageEvent(
-      JSON.parse(dataSocket),
-      setSportsPopularBetsData,
-      sportsPopularBetsData
-    )
-  );
-
   React.useEffect(
-    () => () => {
-      unsubscribeAllEvents();
+    () => {
+      socket.open();
+      subscribe();
+      socket.on("message", dataSocket => {
+        JSON.parse(dataSocket).forEach(msg => {
+          messageEvent(
+            msg,
+            setSportsPopularBetsData,
+            sportsPopularBetsData
+          )
+        })
+      });
+
+      return () => unsubscribe();
     },
     []
   );
@@ -128,7 +131,6 @@ export const SportsHome = ({
           popularEvent => popularEvent.eventId
         );
 
-        eventIds.forEach(eventId => subscribeEvent(eventId));
         const eventIdsArgs = eventIds.join();
 
         const kambiOfferings = await SportsHomeService.getOfferings(

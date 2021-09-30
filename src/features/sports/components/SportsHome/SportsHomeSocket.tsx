@@ -20,7 +20,7 @@ export const socket = io(socketAddress, {
 export let vars = {
   lang: "",
   offering: "",
-  subscribedEventsArray: [],
+  subscribed: false,
 };
 
 export const setVars = (key, value) => {
@@ -30,70 +30,72 @@ export const setVars = (key, value) => {
 
 export const getVars = key => vars[key];
 
-export const subscribeEvent = (eventId: number) => {
+export const subscribe = () => {
   if (
     vars.lang &&
     vars.offering &&
-    vars.subscribedEventsArray.indexOf(eventId) === -1
+    !vars.subscribed
   ) {
     socket.emit("subscribe", {
-      topic: `v2018.${vars.offering}.${vars.lang}.ev.${eventId}.json`,
+      topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
     socket.emit("subscribe", {
-      topic: `v2018.${vars.offering}.ev.${eventId}.json`,
+      topic: `v2018.${vars.offering}.ev.json`,
     });
-    setVars("subscribedEventsArray", [...vars.subscribedEventsArray, eventId]);
+    setVars("subscribed", true);
   }
 };
 
-export const unsubscribeEvent = (eventId: number) => {
+export const unsubscribe = () => {
   if (
     vars.lang &&
     vars.offering &&
-    vars.subscribedEventsArray.indexOf(eventId) > -1
+    vars.subscribed
   ) {
     socket.emit("unsubscribe", {
-      topic: `v2018.${vars.offering}.${vars.lang}.ev.${eventId}.json`,
+      topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
     socket.emit("unsubscribe", {
-      topic: `v2018.${vars.offering}.ev.${eventId}.json`,
+      topic: `v2018.${vars.offering}.ev.json`,
     });
-    setVars(
-      "subscribedEventsArray",
-      vars.subscribedEventsArray.filter(event => event.id !== eventId)
-    );
+    setVars("subscribed", false);
   }
 };
 
-export const unsubscribeAllEvents = () => {
-  if (vars.lang && vars.offering && vars.subscribedEventsArray.length > 0) {
-    vars.subscribedEventsArray.map(eventId => unsubscribeEvent(eventId));
-  }
-};
-
+// using for loop to speedup searching
+// https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventInData = (data: SportsHomeType, eventId: number) => {
-  return data?.events?.find(event => event.id === eventId) || null;
+  for (let i = 0; i < data.events.length; i++) {
+    if (data.events[i].id === eventId) {
+      return data.events[i];
+    }
+  }
+  return null;
 };
 
+// using for loop to speedup searching
+// https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
-  return event?.outcomes?.find(outcome => outcome.id === outcomeId) || null;
+  for (let i = 0; i < event.outcomes.length; i++) {
+    if (event.outcomes[i].id === outcomeId) {
+      return event.outcomes[i];
+    }
+  }
+  return null;
 };
 
-/* eslint-disable fp/no-let, fp/no-mutation */
 export const messageEvent = (
-  msgArray: Array<any>,
+  msg: any,
   setData: (data: SportsHomeType) => void,
   data: SportsHomeType
 ) => {
-  let changeNeeded: boolean = false;
 
-  msgArray.forEach(msg => {
     // score change
     if (msg.mt === 16) {
       const event = findEventInData(data, msg.score.eventId);
       if (event && event.sport === "FOOTBALL") {
-        changeNeeded = true;
         event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
+        setData(data);
       }
     }
 
@@ -106,13 +108,7 @@ export const messageEvent = (
           eventOutcome.odds = outcome.odds;
           eventOutcome.fractional = outcome.oddsFractional;
         });
-        changeNeeded = true;
+        setData(data);
       }
     }
-  });
-
-  if (changeNeeded) {
-    setData(data);
-  }
 };
-/* eslint-enable fp/no-let, fp/no-mutation */
