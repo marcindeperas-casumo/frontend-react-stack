@@ -1,9 +1,14 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useGameModelContext } from "Components/GamePage/Contexts";
-import { ReelRaceOptInWidget } from "./ReelRaceOptInWidget";
+import { EMBEDDED_GAMES } from "Src/constants";
+import { emailSelector } from "Models/handshake";
+import { useGameInfo } from "Utils/hooks/useGameInfo";
+import { isAndroidNative, isIosNative } from "Utils/utils";
 import { ReelRaceOptInWidgetQuery } from "./ReelRaceOptInWidget.graphql";
+import { ReelRaceOptInWidget } from "./ReelRaceOptInWidget";
 
 export function ReelRaceOptInWidgetContainer() {
   const { slug: currentGameSlug } = useGameModelContext();
@@ -22,7 +27,19 @@ export function ReelRaceOptInWidgetContainer() {
   const currentGameIsClosestRROptedIn =
     reelRaceGame?.game?.slug === currentGameSlug && reelRaceGame?.optedIn;
 
-  if (!reelRaceGame || closestRRLoading || currentGameIsClosestRROptedIn) {
+  const userEmail = useSelector(emailSelector);
+  const isUserTester = EMBEDDED_GAMES.TESTERS.includes(userEmail);
+  const { isGameEmbedded } = useGameInfo(reelRaceGame?.game?.slug);
+  const isNative = isIosNative() || isAndroidNative();
+  const reactNativeBridgeAvailable =
+    isUserTester && !isGameEmbedded && isNative;
+
+  if (
+    !reelRaceGame ||
+    closestRRLoading ||
+    currentGameIsClosestRROptedIn ||
+    !reactNativeBridgeAvailable
+  ) {
     return null;
   }
 

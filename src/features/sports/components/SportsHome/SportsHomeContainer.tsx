@@ -19,15 +19,23 @@ export const SportsHomeContainer = () => {
   const locale = useLocale();
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
-  return (
-    <SportsHome
-      numberOfEvents={NUMBER_OF_EVENTS}
-      market={last(locale.split("-"))}
-      sports={SPORTS}
-      language={language}
-      locale={locale}
-      t={t}
-      oddsFormatEvent={oddsFormatEvent}
-    />
+  const isPopularWidgetsEnabled = Boolean(
+    JSON.parse(localStorage.getItem("showMostPopularEventsWidget"))
   );
+
+  if (isPopularWidgetsEnabled) {
+    return (
+      <SportsHome
+        numberOfEvents={NUMBER_OF_EVENTS}
+        market={last(locale.split("-"))}
+        sports={SPORTS}
+        language={language}
+        locale={locale}
+        t={t}
+        oddsFormatEvent={oddsFormatEvent}
+      />
+    );
+  } else {
+    return null;
+  }
 };

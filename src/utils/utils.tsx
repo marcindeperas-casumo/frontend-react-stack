@@ -57,7 +57,6 @@ export const isEmbeddedOn = (userEmail: string) => {
     return false;
   }
 
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   if (EMBEDDED_GAMES.TESTERS.includes(userEmail)) {
     return true;
   }

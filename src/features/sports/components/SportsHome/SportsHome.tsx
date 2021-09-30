@@ -8,6 +8,13 @@ import {
   getKambiWidgetAPI,
 } from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
+import {
+  socket,
+  subscribe,
+  unsubscribe,
+  setVars,
+  messageEvent,
+} from "./SportsHomeSocket";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
@@ -84,6 +91,7 @@ export const SportsHome = ({
   React.useEffect(() => {
     if (locale) {
       setKambiLocale(getKambiSupportedLanguage(locale.replace("-", "_")));
+      setVars("lang", locale.substr(0, 2));
     }
   }, [locale]);
 
@@ -91,6 +99,7 @@ export const SportsHome = ({
   React.useEffect(() => {
     if (language) {
       setKambiOffering(getOffering(language));
+      setVars("offering", getOffering(language));
     }
   }, [language]);
 
@@ -98,6 +107,16 @@ export const SportsHome = ({
     sportsPopularBetsData,
     setSportsPopularBetsData,
   ] = React.useState<SportsHomeType>();
+
+  socket.on("message", dataSocket => {
+    JSON.parse(dataSocket).forEach(msg => {
+      messageEvent(msg, setSportsPopularBetsData, sportsPopularBetsData);
+    });
+  });
+  socket.open();
+  subscribe();
+
+  React.useEffect(() => () => unsubscribe(), []);
 
   React.useEffect(() => {
     const fetchData = async () => {
