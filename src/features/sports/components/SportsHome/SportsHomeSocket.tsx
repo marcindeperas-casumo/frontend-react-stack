@@ -3,6 +3,7 @@ import {
   SportsHomeEvent,
   SportsHomeType,
 } from "Features/sports/components/SportsHome/types";
+import SportsHomeAdapters from "./SportsHome.adapters";
 
 const socketAddress =
   process.env.ENVIRONMENT === "production"
@@ -168,6 +169,18 @@ export const messageEvent = (
     const event = findEventInData(data, msg.esu.id);
     if (event) {
       event.live = msg.esu.state === "STARTED";
+      setData(data);
+    }
+  }
+
+  // adding odds to events
+  if (msg.mt === 22) {
+    const event = findEventInData(data, msg.booa.eventId);
+    if (event) {
+      const outcomes = msg.booa.outcomes.filter(
+        outcome => outcome.betOfferId === event.betOfferId
+      );
+      event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(outcomes);
       setData(data);
     }
   }
