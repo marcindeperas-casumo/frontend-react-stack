@@ -54,12 +54,24 @@ export const unsubscribe = () => {
   }
 };
 
-/* eslint-disable fp/no-loops,fp/no-let,fp/no-mutation */
+/* eslint-disable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
 // using "for" loop to speedup searching thats why disabling some lint rules
 // https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventInData = (data: SportsHomeType, eventId: number) => {
   for (let i = 0; i < data.events.length; i++) {
     if (data.events[i].id === eventId) {
+      return data.events[i];
+    }
+  }
+  return null;
+};
+
+const findEventByBetofferInData = (
+  data: SportsHomeType,
+  betOfferId: number
+) => {
+  for (let i = 0; i < data.events.length; i++) {
+    if (data.events[i].betOfferId === betOfferId) {
       return data.events[i];
     }
   }
@@ -119,5 +131,16 @@ export const messageEvent = (
       setData(data);
     }
   }
+
+  // removing betoffer - change all outcomes for betoffer to disabled
+  if (msg.mt === 7) {
+    const event = findEventByBetofferInData(data, msg.bor.betOfferId);
+    if (event) {
+      event.outcomes.forEach(outcome => {
+        outcome.isDisabled = true;
+      });
+      setData(data);
+    }
+  }
 };
-/* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation */
+/* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
