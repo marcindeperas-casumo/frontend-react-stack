@@ -142,5 +142,16 @@ export const messageEvent = (
       setData(data);
     }
   }
+
+  // making betoffer visible or not - change all outcomes for betoffer to disabled
+  if (msg.mt === 8) {
+    const event = findEventInData(data, msg.bosu.eventId);
+    if (event && event.betOfferId === msg.bosu.betOfferId) {
+      event.outcomes.forEach(outcome => {
+        outcome.isDisabled = msg.bosu.suspended;
+      });
+      setData(data);
+    }
+  }
 };
 /* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
