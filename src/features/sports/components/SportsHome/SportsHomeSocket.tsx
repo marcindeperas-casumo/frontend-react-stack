@@ -31,11 +31,7 @@ export const setVars = (key, value) => {
 export const getVars = key => vars[key];
 
 export const subscribe = () => {
-  if (
-    vars.lang &&
-    vars.offering &&
-    !vars.subscribed
-  ) {
+  if (vars.lang && vars.offering && !vars.subscribed) {
     socket.emit("subscribe", {
       topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
@@ -47,11 +43,7 @@ export const subscribe = () => {
 };
 
 export const unsubscribe = () => {
-  if (
-    vars.lang &&
-    vars.offering &&
-    vars.subscribed
-  ) {
+  if (vars.lang && vars.offering && vars.subscribed) {
     socket.emit("unsubscribe", {
       topic: `v2018.${vars.offering}.${vars.lang}.ev.json`,
     });
@@ -84,31 +76,32 @@ const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
   return null;
 };
 
+/* eslint-disable fp/no-mutation */
 export const messageEvent = (
   msg: any,
   setData: (data: SportsHomeType) => void,
   data: SportsHomeType
 ) => {
-
-    // score change
-    if (msg.mt === 16) {
-      const event = findEventInData(data, msg.score.eventId);
-      if (event && event.sport === "FOOTBALL") {
-        event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
-        setData(data);
-      }
+  // score change
+  if (msg.mt === 16) {
+    const event = findEventInData(data, msg.score.eventId);
+    if (event && event.sport === "FOOTBALL") {
+      event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
+      setData(data);
     }
+  }
 
-    // outcomes change
-    if (msg.mt === 11) {
-      const event = findEventInData(data, msg.boou.eventId);
-      if (event) {
-        msg.boou.outcomes.forEach(outcome => {
-          const eventOutcome = findEventOutcome(event, outcome.id);
-          eventOutcome.odds = outcome.odds;
-          eventOutcome.fractional = outcome.oddsFractional;
-        });
-        setData(data);
-      }
+  // outcomes change
+  if (msg.mt === 11) {
+    const event = findEventInData(data, msg.boou.eventId);
+    if (event) {
+      msg.boou.outcomes.forEach(outcome => {
+        const eventOutcome = findEventOutcome(event, outcome.id);
+        eventOutcome.odds = outcome.odds;
+        eventOutcome.fractional = outcome.oddsFractional;
+      });
+      setData(data);
     }
+  }
 };
+/* eslint-enable fp/no-mutation */
