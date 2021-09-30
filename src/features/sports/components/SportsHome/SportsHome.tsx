@@ -35,7 +35,10 @@ const outcomeClick = async (outcomeId: number) => {
   });
 };
 
-const renderSportsHome = (data: SportsHomeType) => {
+const renderSportsHome = (
+  data: SportsHomeType,
+  numberOfEventsToShow: number
+) => {
   if (!data) {
     return null;
   } else {
@@ -43,6 +46,7 @@ const renderSportsHome = (data: SportsHomeType) => {
       <div>
         <sportsHome.SportsHome
           events={data.events}
+          numberOfEventsToShow={numberOfEventsToShow}
           fractional={false}
           translations={data.translations}
           locale={data.locale}
@@ -57,6 +61,7 @@ const renderSportsHome = (data: SportsHomeType) => {
 
 export const SportsHome = ({
   numberOfEvents,
+  numberOfEventsToShow,
   market,
   sports,
   language,
@@ -64,6 +69,7 @@ export const SportsHome = ({
   t,
 }: {
   numberOfEvents: number;
+  numberOfEventsToShow: number;
   market?: string;
   sports: string;
   language: string;
@@ -72,6 +78,7 @@ export const SportsHome = ({
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
+    numberOfEventsToShow: numberOfEventsToShow,
     sports: sports,
     market: market,
     language: language,
@@ -158,5 +165,8 @@ export const SportsHome = ({
     return <ErrorMessage direction="horizontal" />;
   }
 
-  return renderSportsHome(sportsPopularBetsData);
+  return renderSportsHome(
+    sportsPopularBetsData,
+    Math.min(numberOfEventsToShow, sportsPopularBetsData.events?.length)
+  );
 };

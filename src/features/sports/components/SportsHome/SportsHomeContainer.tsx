@@ -4,7 +4,8 @@ import { useLanguage, useLocale, useTranslations } from "Utils/hooks";
 import { SportsHome } from "./SportsHome";
 import { SportsHomeTranslationsDictionary } from "./types";
 
-export const NUMBER_OF_EVENTS = 4;
+export const NUMBER_OF_EVENTS_TO_GET = 6;
+export const NUMBER_OF_EVENTS_TO_SHOW = 3;
 export const SPORTS = "FOOTBALL";
 export const KAMBI_SPORTS_SLUG = "sports.dictionary";
 
@@ -23,7 +24,8 @@ export const SportsHomeContainer = () => {
   if (isPopularWidgetsEnabled) {
     return (
       <SportsHome
-        numberOfEvents={NUMBER_OF_EVENTS}
+        numberOfEvents={NUMBER_OF_EVENTS_TO_GET}
+        numberOfEventsToShow={NUMBER_OF_EVENTS_TO_SHOW}
         market={last(locale.split("-"))}
         sports={SPORTS}
         language={language}

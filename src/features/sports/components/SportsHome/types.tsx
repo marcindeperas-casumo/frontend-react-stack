@@ -31,6 +31,7 @@ export type SportsHomeEvent = {
   group: string;
   startTime: string;
   score: string;
+  show: boolean;
   outcomes: SportsHomeOutcome[];
 };
 

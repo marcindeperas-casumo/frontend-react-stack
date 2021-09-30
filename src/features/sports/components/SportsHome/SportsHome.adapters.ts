@@ -24,6 +24,7 @@ class SportsHomeAdapters {
         group: event.group,
         startTime: event.start,
         score: "",
+        show: true,
         outcomes: this.convertToSportsHomeOutcomes(betOffer.outcomes),
       } as SportsHomeEvent;
     });
