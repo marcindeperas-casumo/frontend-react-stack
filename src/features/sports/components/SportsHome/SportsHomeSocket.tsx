@@ -184,5 +184,21 @@ export const messageEvent = (
       setData(data);
     }
   }
+
+  // adding betoffer
+  if (msg.mt === 6) {
+    const event = findEventInData(data, msg.bo.betOffer.eventId);
+    if (
+      event &&
+      (msg.bo.betOffer.betOfferType === 2 || msg.bo.betOffer.betOfferType === 1)
+    ) {
+      event.betOfferId = msg.bo.betOffer.eventId;
+      event.betOfferType = msg.bo.betOffer.betOfferType;
+      event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
+        msg.bo.betOffer.outcomes
+      );
+      setData(data);
+    }
+  }
 };
 /* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
