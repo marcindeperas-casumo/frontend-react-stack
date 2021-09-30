@@ -3,11 +3,9 @@ import {
   SportsHomeEvent,
   SportsHomeType,
 } from "Features/sports/components/SportsHome/types";
+import config from "Src/config";
 
-const socketAddress =
-  process.env.ENVIRONMENT === "production"
-    ? `wss://push.aws.kambicdn.com`
-    : `wss://ctn-push.kambi.com`;
+const socketAddress = config.kambiSocketUrl;
 
 export const socket = io(socketAddress, {
   transports: ["websocket"],
