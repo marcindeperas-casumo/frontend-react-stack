@@ -7,6 +7,7 @@ import {
   EVENT_PROPS,
   KO_APP_EVENT_BETSLIP_VISIBLE,
 } from "Src/constants";
+import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 
 export const KAMBI_EVENTS = {
   BETSLIP_STATUS: "kambi betslip status",
@@ -17,6 +18,7 @@ export const KAMBI_EVENTS = {
   SANDWICH_FILTER_CLICK: "kambi sandwich filter click",
   MORE_WAGERS_CLICK: "kambi kambi more wagers click",
   BET_DENIED: "kambi bet denied",
+  ODDS_FORMAT: "kambi odds format",
 } as const;
 
 const trackPageView = (page: { type: string; title: string; path: string }) => {
@@ -99,7 +101,11 @@ const emitBetslipVisibleToKoStack = (
   });
 };
 
-export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
+export function kambiClientEventHandler(
+  event: any,
+  sportsFirstBet: boolean,
+  callback?: any
+) {
   if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
     return;
   }
@@ -147,5 +153,11 @@ export function kambiClientEventHandler(event: any, sportsFirstBet: boolean) {
 
   if (event.data.event === KAMBI_EVENTS.MORE_WAGERS_CLICK) {
     trackHomeMatchClicked(event.data.kambi?.page);
+  }
+
+  if (event.data.event === KAMBI_EVENTS.ODDS_FORMAT) {
+    callback({
+      oddsFormat: event.data.kambi?.client?.oddsFormat,
+    } as OddsFormatEvent);
   }
 }
