@@ -1,7 +1,7 @@
 import { last } from "ramda";
 import React from "react";
 import { useSelector } from "react-redux";
-import { oddsFormatSelector } from "Models/sportsEvents/sportsEvents.selectors";
+import { oddsFormatSelector } from "Models/sportsEvents";
 import { useLanguage, useLocale, useTranslations } from "Utils/hooks";
 import { SportsHome } from "./SportsHome";
 import { SportsHomeTranslationsDictionary } from "./types";
