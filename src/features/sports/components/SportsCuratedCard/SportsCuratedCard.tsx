@@ -19,7 +19,7 @@ export const SportsCuratedCard = ({
   const isOnSportsLandingPage = currentHash === `#${SPORTS_HOME_PAGE_PATH}`;
   // inverted WelcomeOfferCuratedCard logic
   // we show it when the other is not active
-  if (!hasDeposited || !isOnSportsLandingPage) {
+  if (!hasDeposited || !isOnSportsLandingPage || CuratedCard === null) {
     return null;
   }
 
