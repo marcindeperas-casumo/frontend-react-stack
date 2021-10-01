@@ -114,15 +114,13 @@ export const SportsHome = ({
   React.useEffect(() => {
     socket.open();
     socket.on("message", dataSocket => {
-      JSON.parse(dataSocket).forEach(msg => {
-        messageEvent(
-          msg,
-          setSportsPopularBetsData,
-          sportsPopularBetsData,
-          refetch,
-          numberOfEventsToShow
-        );
-      });
+      messageEvent(
+        JSON.parse(dataSocket),
+        setSportsPopularBetsData,
+        sportsPopularBetsData,
+        refetch,
+        numberOfEventsToShow
+      );
     });
     subscribe();
     return () => {

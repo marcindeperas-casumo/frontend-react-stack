@@ -90,117 +90,124 @@ const countEventsShowed = (data: SportsHomeType) => {
 };
 
 export const messageEvent = (
-  msg: any,
+  message: any[],
   setData: (data: SportsHomeType) => void,
   dataReact: SportsHomeType,
   refetch: () => void,
   numberOfEventsToShow: number
 ) => {
   const data = Object.assign({}, dataReact);
+  let updateNeeded = false;
 
-  // score change - for football only atm
-  if (msg.mt === 16) {
-    const event = findEventInData(data, msg.score.eventId);
-    if (event && event.sport === "FOOTBALL") {
-      event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
-      setData(data);
-    }
-  }
-
-  // outcomes change - replacing odds
-  if (msg.mt === 11) {
-    const event = findEventInData(data, msg.boou.eventId);
-    if (event) {
-      msg.boou.outcomes.forEach(outcome => {
-        const eventOutcome = findEventOutcome(event, outcome.id);
-        if (eventOutcome) {
-          eventOutcome.odds = outcome.odds;
-          eventOutcome.fractional = outcome.oddsFractional;
-        }
-      });
-      setData(data);
-    }
-  }
-
-  // removing event - hiding event, refetch if needed
-  if (msg.mt === 18) {
-    const event = findEventInData(data, msg.er.eventId);
-    if (event) {
-      event.show = false;
-      if (countEventsShowed(data) < numberOfEventsToShow) {
-        refetch();
+  message.forEach((msg: any) => {
+    // adding betoffer
+    if (msg.mt === 6) {
+      const event = findEventInData(data, msg.boa.betOffer.eventId);
+      if (
+        event &&
+        (msg.boa.betOffer.betOfferType === 2 ||
+          msg.boa.betOffer.betOfferType === 1)
+      ) {
+        event.betOfferId = msg.boa.betOffer.eventId;
+        event.betOfferType = msg.boa.betOffer.betOfferType;
+        event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
+          msg.boa.betOffer.outcomes
+        );
+        updateNeeded = true;
       }
-      setData(data);
     }
-  }
 
-  // removing betoffer - change all outcomes for betoffer to disabled
-  if (msg.mt === 7) {
-    const event = findEventByBetofferInData(data, msg.bor.betOfferId);
-    if (event) {
-      event.outcomes.forEach(outcome => {
-        outcome.isDisabled = true;
-      });
-      setData(data);
+    // removing betoffer - change all outcomes for betoffer to disabled
+    if (msg.mt === 7) {
+      const event = findEventByBetofferInData(data, msg.bor.betOfferId);
+      if (event) {
+        event.outcomes.forEach(outcome => {
+          outcome.isDisabled = true;
+        });
+        updateNeeded = true;
+      }
     }
-  }
 
-  // making betoffer visible or not - change all outcomes for betoffer to disabled
-  if (msg.mt === 8) {
-    const event = findEventInData(data, msg.bosu.eventId);
-    if (event && event.betOfferId === msg.bosu.betOfferId) {
-      event.outcomes.forEach(outcome => {
-        outcome.isDisabled = msg.bosu.suspended;
-      });
-      setData(data);
+    // making betoffer visible or not - change all outcomes for betoffer to disabled
+    if (msg.mt === 8) {
+      const event = findEventInData(data, msg.bosu.eventId);
+      if (event && event.betOfferId === msg.bosu.betOfferId) {
+        event.outcomes.forEach(outcome => {
+          outcome.isDisabled = msg.bosu.suspended;
+        });
+        updateNeeded = true;
+      }
     }
-  }
 
-  // removing outcomes for bettoffer
-  if (msg.mt === 23) {
-    const event = findEventInData(data, msg.boor.eventId);
-    if (event && event.betOfferId === msg.boor.betOfferId) {
-      event.outcomes = [];
-      setData(data);
+    // outcomes change - replacing odds
+    if (msg.mt === 11) {
+      const event = findEventInData(data, msg.boou.eventId);
+      if (event) {
+        msg.boou.outcomes.forEach(outcome => {
+          const eventOutcome = findEventOutcome(event, outcome.id);
+          if (eventOutcome) {
+            eventOutcome.odds = outcome.odds;
+            eventOutcome.fractional = outcome.oddsFractional;
+          }
+        });
+        updateNeeded = true;
+      }
     }
-  }
 
-  // removing outcomes for bettoffer
-  if (msg.mt === 34) {
-    const event = findEventInData(data, msg.esu.id);
-    if (event) {
-      event.live = msg.esu.state === "STARTED";
-      setData(data);
+    // score change - for football only atm
+    if (msg.mt === 16) {
+      const event = findEventInData(data, msg.score.eventId);
+      if (event && event.sport === "FOOTBALL") {
+        event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
+        updateNeeded = true;
+      }
     }
-  }
 
-  // adding odds to events
-  if (msg.mt === 22) {
-    const event = findEventInData(data, msg.booa.eventId);
-    if (event) {
-      const outcomes = msg.booa.outcomes.filter(
-        outcome => outcome.betOfferId === event.betOfferId
-      );
-      event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(outcomes);
-      setData(data);
+    // removing event - hiding event, refetch if needed
+    if (msg.mt === 18) {
+      const event = findEventInData(data, msg.er.eventId);
+      if (event) {
+        event.show = false;
+        if (countEventsShowed(data) < numberOfEventsToShow) {
+          refetch();
+        }
+        updateNeeded = true;
+      }
     }
-  }
 
-  // adding betoffer
-  if (msg.mt === 6) {
-    const event = findEventInData(data, msg.boa.betOffer.eventId);
-    if (
-      event &&
-      (msg.boa.betOffer.betOfferType === 2 ||
-        msg.boa.betOffer.betOfferType === 1)
-    ) {
-      event.betOfferId = msg.boa.betOffer.eventId;
-      event.betOfferType = msg.boa.betOffer.betOfferType;
-      event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
-        msg.boa.betOffer.outcomes
-      );
-      setData(data);
+    // adding odds to events
+    if (msg.mt === 22) {
+      const event = findEventInData(data, msg.booa.eventId);
+      if (event) {
+        const outcomes = msg.booa.outcomes.filter(
+          outcome => outcome.betOfferId === event.betOfferId
+        );
+        event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(outcomes);
+        updateNeeded = true;
+      }
     }
+
+    // removing outcomes for bettoffer
+    if (msg.mt === 23) {
+      const event = findEventInData(data, msg.boor.eventId);
+      if (event && event.betOfferId === msg.boor.betOfferId) {
+        event.outcomes = [];
+        updateNeeded = true;
+      }
+    }
+
+    // removing outcomes for bettoffer
+    if (msg.mt === 34) {
+      const event = findEventInData(data, msg.esu.id);
+      if (event) {
+        event.live = msg.esu.state === "STARTED";
+        updateNeeded = true;
+      }
+    }
+  });
+
+  if (updateNeeded) {
+    setData(data);
   }
 };
 /* eslint-enable fp/no-loops,fp/no-let,fp/no-mutation,sonarjs/cognitive-complexity */
