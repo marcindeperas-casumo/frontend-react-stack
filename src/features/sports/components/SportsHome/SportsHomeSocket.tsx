@@ -5,10 +5,7 @@ import {
 } from "Features/sports/components/SportsHome/types";
 import SportsHomeAdapters from "./SportsHome.adapters";
 
-const socketAddress =
-  process.env.ENVIRONMENT === "production"
-    ? `wss://push.aws.kambicdn.com`
-    : `wss://ctn-push.kambi.com`;
+const socketAddress = `wss://push.aws.kambicdn.com`;
 
 export const socket = io(socketAddress, {
   transports: ["websocket"],
@@ -95,10 +92,12 @@ const countEventsShowed = (data: SportsHomeType) => {
 export const messageEvent = (
   msg: any,
   setData: (data: SportsHomeType) => void,
-  data: SportsHomeType,
+  dataReact: SportsHomeType,
   refetch: () => void,
   numberOfEventsToShow: number
 ) => {
+  const data = Object.assign({}, dataReact);
+
   // score change - for football only atm
   if (msg.mt === 16) {
     const event = findEventInData(data, msg.score.eventId);
@@ -187,15 +186,16 @@ export const messageEvent = (
 
   // adding betoffer
   if (msg.mt === 6) {
-    const event = findEventInData(data, msg.bo.betOffer.eventId);
+    const event = findEventInData(data, msg.boa.betOffer.eventId);
     if (
       event &&
-      (msg.bo.betOffer.betOfferType === 2 || msg.bo.betOffer.betOfferType === 1)
+      (msg.boa.betOffer.betOfferType === 2 ||
+        msg.boa.betOffer.betOfferType === 1)
     ) {
-      event.betOfferId = msg.bo.betOffer.eventId;
-      event.betOfferType = msg.bo.betOffer.betOfferType;
+      event.betOfferId = msg.boa.betOffer.eventId;
+      event.betOfferType = msg.boa.betOffer.betOfferType;
       event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
-        msg.bo.betOffer.outcomes
+        msg.boa.betOffer.outcomes
       );
       setData(data);
     }

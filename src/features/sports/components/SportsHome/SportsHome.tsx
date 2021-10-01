@@ -111,21 +111,25 @@ export const SportsHome = ({
     setSportsPopularBetsData,
   ] = React.useState<SportsHomeType>();
 
-  socket.on("message", dataSocket => {
-    JSON.parse(dataSocket).forEach(msg => {
-      messageEvent(
-        msg,
-        setSportsPopularBetsData,
-        sportsPopularBetsData,
-        refetch,
-        numberOfEventsToShow
-      );
+  React.useEffect(() => {
+    socket.open();
+    socket.on("message", dataSocket => {
+      JSON.parse(dataSocket).forEach(msg => {
+        messageEvent(
+          msg,
+          setSportsPopularBetsData,
+          sportsPopularBetsData,
+          refetch,
+          numberOfEventsToShow
+        );
+      });
     });
-  });
-  socket.open();
-  subscribe();
-
-  React.useEffect(() => () => unsubscribe(), []);
+    subscribe();
+    return () => {
+      unsubscribe();
+      socket.off();
+    };
+  }, [sportsPopularBetsData, refetch, numberOfEventsToShow]);
 
   React.useEffect(() => {
     const fetchData = async () => {
