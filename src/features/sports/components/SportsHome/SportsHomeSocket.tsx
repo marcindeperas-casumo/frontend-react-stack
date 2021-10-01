@@ -4,10 +4,7 @@ import {
   SportsHomeType,
 } from "Features/sports/components/SportsHome/types";
 import config from "Src/config";
-<<<<<<< HEAD
-=======
 import SportsHomeAdapters from "./SportsHome.adapters";
->>>>>>> 9bd99188b13a2d3fc8fe0fbe84670509d567484f
 
 const socketAddress = config.kambiSocketUrl;
 
