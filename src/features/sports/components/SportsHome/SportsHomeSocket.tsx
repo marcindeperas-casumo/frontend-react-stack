@@ -182,7 +182,9 @@ export const messageEvent = (
         const outcomes = msg.booa.outcomes.filter(
           outcome => outcome.betOfferId === event.betOfferId
         );
-        event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(outcomes);
+        event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
+          outcomes
+        );
         updateNeeded = true;
       }
     }
