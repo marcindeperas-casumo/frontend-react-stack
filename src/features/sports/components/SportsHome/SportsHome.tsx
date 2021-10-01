@@ -181,6 +181,9 @@ export const SportsHome = ({
 
   return renderSportsHome(
     sportsPopularBetsData,
-    Math.min(numberOfEventsToShow, sportsPopularBetsData?.events?.length)
+    Math.min(
+      numberOfEventsToShow,
+      sportsPopularBetsData?.events ? sportsPopularBetsData?.events.length : 0
+    )
   );
 };
