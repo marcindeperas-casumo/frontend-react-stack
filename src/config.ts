@@ -20,11 +20,13 @@ export default {
 };
 
 function generateKambiOfferingApiUrl() {
-  return isTestEnv
-    ? "https://ctn-api.kambi.com"
-    : "https://eu-offering.kambicdn.org";
+  return !isTestEnv
+    ? "https://eu-offering.kambicdn.org"
+    : "https://ctn-api.kambi.com";
 }
 
 function generateKambiSockerUrl() {
-  return isTestEnv ? "wss://ctn-push.kambi.com" : "wss://push.aws.kambicdn.com";
+  return !isTestEnv
+    ? "wss://push.aws.kambicdn.com"
+    : "wss://ctn-push.kambi.com";
 }
