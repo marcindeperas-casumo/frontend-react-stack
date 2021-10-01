@@ -35,14 +35,18 @@ const outcomeClick = async (outcomeId: number) => {
   });
 };
 
-const renderSportsHome = (data: SportsHomeType) => {
+const renderSportsHome = (
+  data: SportsHomeType,
+  numberOfEventsToShow: number
+) => {
   if (!data) {
     return null;
   } else {
     return (
       <div>
         <sportsHome.SportsHome
-          events={data.events}
+          events={data?.events}
+          numberOfEventsToShow={numberOfEventsToShow}
           fractional={false}
           translations={data.translations}
           locale={data.locale}
@@ -57,6 +61,7 @@ const renderSportsHome = (data: SportsHomeType) => {
 
 export const SportsHome = ({
   numberOfEvents,
+  numberOfEventsToShow,
   market,
   sports,
   language,
@@ -64,6 +69,7 @@ export const SportsHome = ({
   t,
 }: {
   numberOfEvents: number;
+  numberOfEventsToShow: number;
   market?: string;
   sports: string;
   language: string;
@@ -72,13 +78,14 @@ export const SportsHome = ({
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
+    numberOfEventsToShow: numberOfEventsToShow,
     sports: sports,
     market: market,
     language: language,
     locale: locale,
     t: t,
   };
-  const { error, data } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
+  const { error, data, refetch } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
     variables,
     fetchPolicy: "cache-and-network",
   });
@@ -104,21 +111,35 @@ export const SportsHome = ({
     setSportsPopularBetsData,
   ] = React.useState<SportsHomeType>();
 
-  socket.on("message", dataSocket => {
-    JSON.parse(dataSocket).forEach(msg => {
-      messageEvent(msg, setSportsPopularBetsData, sportsPopularBetsData);
-    });
-  });
-  socket.open();
-  subscribe();
+  React.useEffect(() => {
+    socket.open();
+    subscribe();
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-  React.useEffect(() => () => unsubscribe(), []);
+  React.useEffect(() => {
+    const listener = dataSocket => {
+      messageEvent(
+        JSON.parse(dataSocket),
+        setSportsPopularBetsData,
+        sportsPopularBetsData,
+        refetch,
+        numberOfEventsToShow
+      );
+    };
+    socket.on("message", listener);
+    return () => {
+      socket.off("message", listener);
+    };
+  }, [sportsPopularBetsData, refetch, numberOfEventsToShow]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       if (data?.sportsPopularBets?.popularEvents.length && market) {
         // use data to fetch event details from Kambi Offerrings REST API Data
-        const eventIds = data.sportsPopularBets.popularEvents[0].events.map(
+        const eventIds = data.sportsPopularBets.popularEvents[0].events?.map(
           popularEvent => popularEvent.eventId
         );
 
@@ -158,5 +179,11 @@ export const SportsHome = ({
     return <ErrorMessage direction="horizontal" />;
   }
 
-  return renderSportsHome(sportsPopularBetsData);
+  return renderSportsHome(
+    sportsPopularBetsData,
+    Math.min(
+      numberOfEventsToShow,
+      sportsPopularBetsData?.events ? sportsPopularBetsData?.events.length : 0
+    )
+  );
 };
