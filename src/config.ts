@@ -1,6 +1,5 @@
 // TODO: Figure out where this file containing
 // domain specific configuration should live.
-import { isDevEnv, isTestEnv } from "Utils/utils";
 import { GAME_LIST_IDS } from "./constants";
 
 export default {
@@ -20,13 +19,9 @@ export default {
 };
 
 function generateKambiOfferingApiUrl() {
-  return isTestEnv || isDevEnv
-    ? "https://ctn-api.kambi.com"
-    : "https://eu-offering.kambicdn.org";
+  return "https://eu-offering.kambicdn.org";
 }
 
 function generateKambiSockerUrl() {
-  return isTestEnv || isDevEnv
-    ? "wss://ctn-push.kambi.com"
-    : "wss://push.aws.kambicdn.com";
+  return "wss://push.aws.kambicdn.com";
 }
