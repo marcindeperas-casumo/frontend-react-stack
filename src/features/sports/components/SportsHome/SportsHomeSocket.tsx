@@ -3,9 +3,10 @@ import {
   SportsHomeEvent,
   SportsHomeType,
 } from "Features/sports/components/SportsHome/types";
+import config from "Src/config";
 import SportsHomeAdapters from "./SportsHome.adapters";
 
-const socketAddress = `wss://push.aws.kambicdn.com`;
+const socketAddress = config.kambiSocketUrl;
 
 export const socket = io(socketAddress, {
   transports: ["websocket"],

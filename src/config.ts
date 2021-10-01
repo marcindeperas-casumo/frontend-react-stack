@@ -1,5 +1,6 @@
 // TODO: Figure out where this file containing
 // domain specific configuration should live.
+import { isDevEnv, isTestEnv } from "Utils/utils";
 import { GAME_LIST_IDS } from "./constants";
 
 export default {
@@ -15,16 +16,17 @@ export default {
   mixpanelProjectName: "react-stack",
   graphqlUrl: "/graphql/casumo/",
   kambiOfferingApi: `${generateKambiOfferingApiUrl()}/offering/v2018/`,
+  kambiSocketUrl: generateKambiSockerUrl(),
 };
 
 function generateKambiOfferingApiUrl() {
-  if (process.env.ENVIRONMENT === "production") {
-    return "https://eu-offering.kambicdn.org";
-  }
+  return isTestEnv || isDevEnv
+    ? "https://ctn-api.kambi.com"
+    : "https://eu-offering.kambicdn.org";
+}
 
-  if (process.env.ENVIRONMENT === "stage") {
-    return "https://cts-api.kambi.com";
-  }
-
-  return "https://ctn-api.kambi.com";
+function generateKambiSockerUrl() {
+  return isTestEnv || isDevEnv
+    ? "wss://ctn-push.kambi.com"
+    : "wss://push.aws.kambicdn.com";
 }
