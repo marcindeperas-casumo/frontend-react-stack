@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { getApolloContext } from "@apollo/client";
 import { navigate } from "@reach/router";
 import Card from "@casumo/cmp-card";
@@ -8,7 +7,6 @@ import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
 import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
-import { countrySelector } from "Models/handshake";
 import type {
   NavigateToSportsHashType,
   NavigateByIdType,
@@ -45,11 +43,6 @@ export const CuratedCard = ({
   navigateById,
 }: Props) => {
   const { client } = React.useContext(getApolloContext());
-  const playerCountry = useSelector(countrySelector);
-
-  if (playerCountry === "nl") {
-    return null;
-  }
 
   if (!curatedCard) {
     return null;
