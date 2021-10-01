@@ -68,6 +68,7 @@ export const decodedUrlParams = (json: Object) =>
   R.mergeAll(Object.keys(json).map(key => ({ [key]: atob(json[key]) })));
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
+export const isDevEnv = () => R.includes("mobile.dev", window.location.origin);
 
 export const getPlatform = (): AppDevice => {
   const userAgent =
