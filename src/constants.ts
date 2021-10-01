@@ -269,6 +269,7 @@ export const LANGUAGES = {
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
   [MARKETS.ie_en]: "ie",
+  nl_NL: "nl", //quick fix for not showing CuratedCard for Netherland players
 } as const;
 export type TLanguage = ValueOf<typeof LANGUAGES>;
 
