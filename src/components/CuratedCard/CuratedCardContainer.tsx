@@ -43,7 +43,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
   }
 
   if (playerCountry === "nl") {
-    return null;
+    return <CuratedCardSkeleton />;
   }
 
   return (
