@@ -14,8 +14,18 @@ export const socket = io(socketAddress, {
   path: "/socket.io",
 });
 
+const BET_OFFER_ADDED = 6;
+const BET_OFFER_REMOVED = 7;
+const BET_OFFER_STATUS_UPDATED = 8;
+const BET_OFFER_ODDS_UPDATED = 11;
+const EVENT_SCORE_UPDATED = 16;
+const EVENT_REMOVED = 18;
+const BET_OFFER_ODDS_ADDED = 22;
+const BET_OFFER_ODDS_REMOVED = 23;
+const EVENT_STATE_UPDATED = 34;
+
 // eslint-disable-next-line fp/no-let
-export let vars = {
+let vars = {
   lang: "",
   offering: "",
   subscribed: false,
@@ -101,7 +111,7 @@ export const messageEvent = (
 
   message.forEach((msg: any) => {
     // adding betoffer
-    if (msg.mt === 6) {
+    if (msg.mt === BET_OFFER_ADDED) {
       const event = findEventInData(data, msg.boa.betOffer.eventId);
       if (
         event &&
@@ -118,7 +128,7 @@ export const messageEvent = (
     }
 
     // removing betoffer - change all outcomes for betoffer to disabled
-    if (msg.mt === 7) {
+    if (msg.mt === BET_OFFER_REMOVED) {
       const event = findEventByBetofferInData(data, msg.bor.betOfferId);
       if (event) {
         event.outcomes.forEach(outcome => {
@@ -129,7 +139,7 @@ export const messageEvent = (
     }
 
     // making betoffer visible or not - change all outcomes for betoffer to disabled
-    if (msg.mt === 8) {
+    if (msg.mt === BET_OFFER_STATUS_UPDATED) {
       const event = findEventInData(data, msg.bosu.eventId);
       if (event && event.betOfferId === msg.bosu.betOfferId) {
         event.outcomes.forEach(outcome => {
@@ -140,7 +150,7 @@ export const messageEvent = (
     }
 
     // outcomes change - replacing odds
-    if (msg.mt === 11) {
+    if (msg.mt === BET_OFFER_ODDS_UPDATED) {
       const event = findEventInData(data, msg.boou.eventId);
       if (event) {
         msg.boou.outcomes.forEach(outcome => {
@@ -155,7 +165,7 @@ export const messageEvent = (
     }
 
     // score change - for football only atm
-    if (msg.mt === 16) {
+    if (msg.mt === EVENT_SCORE_UPDATED) {
       const event = findEventInData(data, msg.score.eventId);
       if (event && event.sport === "FOOTBALL") {
         event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
@@ -164,7 +174,7 @@ export const messageEvent = (
     }
 
     // removing event - hiding event, refetch if needed
-    if (msg.mt === 18) {
+    if (msg.mt === EVENT_REMOVED) {
       const event = findEventInData(data, msg.er.eventId);
       if (event) {
         event.show = false;
@@ -176,7 +186,7 @@ export const messageEvent = (
     }
 
     // adding odds to events
-    if (msg.mt === 22) {
+    if (msg.mt === BET_OFFER_ODDS_ADDED) {
       const event = findEventInData(data, msg.booa.eventId);
       if (event) {
         const outcomes = msg.booa.outcomes.filter(
@@ -190,7 +200,7 @@ export const messageEvent = (
     }
 
     // removing outcomes for bettoffer
-    if (msg.mt === 23) {
+    if (msg.mt === BET_OFFER_ODDS_REMOVED) {
       const event = findEventInData(data, msg.boor.eventId);
       if (event && event.betOfferId === msg.boor.betOfferId) {
         event.outcomes = [];
@@ -199,7 +209,7 @@ export const messageEvent = (
     }
 
     // removing outcomes for bettoffer
-    if (msg.mt === 34) {
+    if (msg.mt === EVENT_STATE_UPDATED) {
       const event = findEventInData(data, msg.esu.id);
       if (event) {
         event.live = msg.esu.state === "STARTED";

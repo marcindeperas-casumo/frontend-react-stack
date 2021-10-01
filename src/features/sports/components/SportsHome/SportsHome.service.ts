@@ -10,7 +10,7 @@ class SportsHomeService {
     kambiMarket: string
   ): Promise<KambiOfferingServerResponse> {
     return await axios.get<KambiOfferingResponse>(
-      `${config.kambiOfferingApi}${kambiOffering}/betoffer/event/${eventIds}?type=1%2C2&lang=${kambiLocale}&includeParticipants=false&onlyMain=true&market=${kambiMarket}`
+      `${config.kambiOfferingApi}${kambiOffering}/betoffer/event/${eventIds}?type=2&lang=${kambiLocale}&includeParticipants=false&onlyMain=true&market=${kambiMarket}`
     );
   }
 }
