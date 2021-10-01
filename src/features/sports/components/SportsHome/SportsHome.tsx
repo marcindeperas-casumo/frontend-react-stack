@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as sportsHome from "@casumo/sports-home";
+import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
@@ -67,6 +68,7 @@ export const SportsHome = ({
   language,
   locale,
   t,
+  oddsFormatEvent,
 }: {
   numberOfEvents: number;
   numberOfEventsToShow: number;
@@ -75,6 +77,7 @@ export const SportsHome = ({
   language: string;
   locale: string;
   t: SportsHomeTranslationsDictionary;
+  oddsFormatEvent: OddsFormatEvent;
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -84,6 +87,7 @@ export const SportsHome = ({
     language: language,
     locale: locale,
     t: t,
+    oddsFormatEvent: oddsFormatEvent,
   };
   const { error, data, refetch } = useQuery(SPORTS_POPULAR_BETS_QUERY, {
     variables,
@@ -159,7 +163,7 @@ export const SportsHome = ({
 
         const sportsHomeType = {
           events: offerringData,
-          fractional: true,
+          fractional: oddsFormatEvent.oddsFormat === "fractional",
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
         } as SportsHomeType;
@@ -169,7 +173,15 @@ export const SportsHome = ({
       }
     };
     fetchData();
-  }, [data, kambiLocale, kambiOffering, locale, market, t]);
+  }, [
+    data,
+    kambiLocale,
+    kambiOffering,
+    locale,
+    market,
+    oddsFormatEvent.oddsFormat,
+    t,
+  ]);
 
   if (error) {
     return <ErrorMessage direction="horizontal" />;
