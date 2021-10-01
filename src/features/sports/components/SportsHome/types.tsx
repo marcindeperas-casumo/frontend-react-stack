@@ -30,7 +30,9 @@ export type SportsHomeEvent = {
   sport: string;
   group: string;
   startTime: string;
+  live: boolean;
   score: string;
+  show: boolean;
   outcomes: SportsHomeOutcome[];
 };
 
