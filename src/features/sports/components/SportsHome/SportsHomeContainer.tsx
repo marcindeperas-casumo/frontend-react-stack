@@ -4,8 +4,8 @@ import { useLanguage, useLocale, useTranslations } from "Utils/hooks";
 import { SportsHome } from "./SportsHome";
 import { SportsHomeTranslationsDictionary } from "./types";
 
-export const NUMBER_OF_EVENTS_TO_GET = 10;
-export const NUMBER_OF_EVENTS_TO_SHOW = 3;
+export const NUMBER_OF_EVENTS_TO_GET = 20;
+export const NUMBER_OF_EVENTS_TO_SHOW = 6;
 export const SPORTS = "FOOTBALL";
 export const KAMBI_SPORTS_SLUG = "sports.dictionary";
 

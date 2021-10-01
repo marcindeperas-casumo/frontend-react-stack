@@ -20,8 +20,8 @@ class SportsHomeAdapters {
 
       return {
         id: event.id,
-        betOfferId: betOffer.id,
-        betOfferType: betOffer.betOfferType.id,
+        betOfferId: betOffer?.id,
+        betOfferType: betOffer?.betOfferType.id,
         name: event.name,
         sport: event.sport,
         group: event.group,
@@ -29,7 +29,9 @@ class SportsHomeAdapters {
         live: live,
         score: "",
         show: true,
-        outcomes: this.convertToSportsHomeOutcomes(betOffer.outcomes),
+        outcomes: betOffer?.outcomes
+          ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
+          : [],
       } as SportsHomeEvent;
     });
   }
