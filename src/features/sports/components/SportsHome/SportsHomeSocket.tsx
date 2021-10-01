@@ -56,7 +56,7 @@ export const unsubscribe = () => {
 // using "for" loop to speedup searching thats why disabling some lint rules
 // https://nikitahl.com/how-to-find-an-item-in-a-javascript-array/
 const findEventInData = (data: SportsHomeType, eventId: number) => {
-  for (let i = 0; i < data.events.length; i++) {
+  for (let i = 0; i < data.events?.length; i++) {
     if (data.events[i].id === eventId) {
       return data.events[i];
     }
@@ -68,7 +68,7 @@ const findEventByBetofferInData = (
   data: SportsHomeType,
   betOfferId: number
 ) => {
-  for (let i = 0; i < data.events.length; i++) {
+  for (let i = 0; i < data.events?.length; i++) {
     if (data.events[i].betOfferId === betOfferId) {
       return data.events[i];
     }
@@ -77,7 +77,7 @@ const findEventByBetofferInData = (
 };
 
 const findEventOutcome = (event: SportsHomeEvent, outcomeId: number) => {
-  for (let i = 0; i < event.outcomes.length; i++) {
+  for (let i = 0; i < event.outcomes?.length; i++) {
     if (event.outcomes[i].id === outcomeId) {
       return event.outcomes[i];
     }
@@ -113,8 +113,10 @@ export const messageEvent = (
     if (event) {
       msg.boou.outcomes.forEach(outcome => {
         const eventOutcome = findEventOutcome(event, outcome.id);
-        eventOutcome.odds = outcome.odds;
-        eventOutcome.fractional = outcome.oddsFractional;
+        if (eventOutcome) {
+          eventOutcome.odds = outcome.odds;
+          eventOutcome.fractional = outcome.oddsFractional;
+        }
       });
       setData(data);
     }
