@@ -9,7 +9,7 @@ type TProps = {
 export const ExplainerPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>
-      <div className="u-padding-top--3xlg@desktop u-margin-bottom--3xlg">
+      <div className="u-padding-top--3xlg@desktop u-margin-bottom--3xlg o-flex--vertical o-flex-align--center">
         <ComponentBuilderRenderer
           componentDefinitions={promotionLists}
           hideShowMoreLink
