@@ -34,7 +34,7 @@ export class SportsModal extends React.Component<Props> {
     return (
       <Flex
         className={classNames(
-          "o-position--absolute",
+          "o-position--absolute o-inset--none@mobile",
           "c-sports-modal bg-white"
         )}
         direction="vertical"
