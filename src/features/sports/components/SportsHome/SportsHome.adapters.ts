@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   KambiBetOffer,
   KambiBetOfferOutcome,
@@ -15,16 +16,22 @@ class SportsHomeAdapters {
   ): SportsHomeEvent[] {
     return events.map<SportsHomeEvent>(event => {
       const betOffer = betOffers.find(x => x.eventId === event.id);
+      const live = moment().diff(event.start, "seconds") > 0;
+
       return {
         id: event.id,
-        betOfferId: betOffer.id,
-        betOfferType: betOffer.betOfferType.id,
+        betOfferId: betOffer?.id,
+        betOfferType: betOffer?.betOfferType.id,
         name: event.name,
         sport: event.sport,
         group: event.group,
         startTime: event.start,
+        live: live,
         score: "",
-        outcomes: this.convertToSportsHomeOutcomes(betOffer.outcomes),
+        show: true,
+        outcomes: betOffer?.outcomes
+          ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
+          : [],
       } as SportsHomeEvent;
     });
   }
