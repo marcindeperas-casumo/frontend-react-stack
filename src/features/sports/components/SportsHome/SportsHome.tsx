@@ -48,7 +48,7 @@ const renderSportsHome = (
         <sportsHome.SportsHome
           events={data?.events}
           numberOfEventsToShow={numberOfEventsToShow}
-          fractional={false}
+          fractional={data.fractional}
           translations={data.translations}
           locale={data.locale}
           eventClick={eventClick}
