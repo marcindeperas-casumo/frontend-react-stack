@@ -157,6 +157,7 @@ export const SportsHome = ({
         );
 
         const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
+          eventIds,
           kambiOfferings.data.events,
           kambiOfferings.data.betOffers
         );

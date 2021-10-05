@@ -11,10 +11,12 @@ import {
 
 class SportsHomeAdapters {
   convertToSportsHomeOfferings(
+    eventIds: number[],
     events: KambiEvent[],
     betOffers: KambiBetOffer[]
   ): SportsHomeEvent[] {
-    return events.map<SportsHomeEvent>(event => {
+    return eventIds.map<SportsHomeEvent>(eventId => {
+      const event = events.find(x => x.id === eventId);
       const betOffer = betOffers.find(x => x.eventId === event.id);
       const live = moment().diff(event.start, "seconds") > 0;
 
