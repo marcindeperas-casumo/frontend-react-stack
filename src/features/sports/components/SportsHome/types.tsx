@@ -87,3 +87,39 @@ export interface KambiOfferingResponse {
 export interface KambiOfferingServerResponse {
   data: KambiOfferingResponse;
 }
+
+export interface SportsHomeConfigurationTranslations {
+  status: string;
+  available_sports: string;
+  order_no: string;
+  mobile: SportsHomeTranslationsMobile;
+  desktop: SportsHomeTranslationsDesktop;
+  tablet: SportsHomeTranslationsTablet;
+  status_live: string;
+  available_sports_live: string;
+  order_no_live: string;
+  mobile_live: SportsHomeTranslationsMobile;
+  desktop_live: SportsHomeTranslationsDesktop;
+  tablet_live: SportsHomeTranslationsTablet;
+}
+
+export interface SportsHomeTranslationsMobile {
+  number_of_events_mobile: string;
+}
+
+export interface SportsHomeTranslationsDesktop {
+  number_of_events_desktop: string;
+}
+
+export interface SportsHomeTranslationsTablet {
+  number_of_events_tablet: string;
+}
+
+export interface SportsHomePopularBetsConfigurations {
+  isEnabled: boolean;
+  availableSports: string;
+  orderNo: number;
+  numberOfEventsMobile: number;
+  numberOfEventsTablet: number;
+  numberOfEventsDesktop: number;
+}
