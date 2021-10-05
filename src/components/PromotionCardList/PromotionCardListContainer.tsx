@@ -1,5 +1,7 @@
 import React from "react";
 import * as R from "ramda";
+import { useSelector } from "react-redux";
+import { countrySelector } from "Models/handshake";
 import { useTranslations } from "Utils/hooks";
 import type {
   TPromotion,
@@ -24,8 +26,9 @@ const PromotionCardListContainer = React.memo<Props>(
       "built-pages.top-lists-translations"
     );
     const promotionsList = useTranslations<TPromotionListContents>(slug);
+    const playerCountry = useSelector(countrySelector);
 
-    if (slug === "null") {
+    if (slug === "null" || playerCountry === "nl") {
       return null;
     }
 

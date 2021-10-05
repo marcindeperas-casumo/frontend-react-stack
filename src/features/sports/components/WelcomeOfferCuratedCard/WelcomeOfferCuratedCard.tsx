@@ -22,7 +22,12 @@ export const WelcomeOfferCuratedCard = ({
   const isSportsPlayer = vertical === VERTICALS.SPORTS;
   const isOnSportsLandingPage = currentHash === `#${SPORTS_HOME_PAGE_PATH}`;
 
-  if (!isSportsPlayer || hasDeposited || !isOnSportsLandingPage) {
+  if (
+    !isSportsPlayer ||
+    hasDeposited ||
+    !isOnSportsLandingPage ||
+    CuratedCard === null
+  ) {
     return null;
   }
 
