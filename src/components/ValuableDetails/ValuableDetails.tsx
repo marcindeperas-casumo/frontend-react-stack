@@ -237,6 +237,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const actionButtonVisible =
       valuableState === VALUABLE_STATES.USED ||
       valuableState === VALUABLE_STATES.FRESH ||
+      valuableState === VALUABLE_STATES.LOCKED ||
       ([
         VALUABLE_TYPES.CASHBACK,
         VALUABLE_TYPES.WAGERING_LOCK,
