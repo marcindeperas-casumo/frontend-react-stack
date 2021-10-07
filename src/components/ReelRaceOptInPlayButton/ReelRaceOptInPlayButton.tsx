@@ -1,21 +1,20 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import { PlayIcon, CheckIcon } from "@casumo/cmp-icons";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import { useTranslatedUrl } from "Utils/hooks";
 import * as A from "Types/apollo";
-import { noop, isIosNative, isAndroidNative } from "Utils";
-import { EVENTS, ROUTE_IDS } from "Src/constants";
+import { EVENTS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackClick from "Components/TrackClick";
-import { launchGame } from "Services/LaunchGameService";
+import { noop } from "Utils";
 
 export type TProps = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
   variant?: "primary" | "secondary";
   showOptedIn?: boolean;
   optIn: () => void;
+  playCallback: () => void;
 };
 
 export function ReelRaceOptInPlayButton({
@@ -23,19 +22,10 @@ export function ReelRaceOptInPlayButton({
   variant = "primary",
   showOptedIn = false,
   optIn,
+  playCallback,
 }: TProps) {
   const inProgress = reelRace.startTime < Number(new Date());
   const ButtonVariant = variant === "primary" ? ButtonPrimary : ButtonSecondary;
-
-  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.PLAY, {
-    slug: reelRace.game.slug,
-  });
-
-  const playCallback =
-    isIosNative() || isAndroidNative()
-      ? () => launchGame({ slug: reelRace.game.slug })
-      : // eslint-disable-next-line fp/no-mutation
-        () => (window.location.pathname = gameDetailsPath);
 
   const OptInButton = () => (
     <TrackClick

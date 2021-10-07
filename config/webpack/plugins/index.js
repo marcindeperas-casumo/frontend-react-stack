@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack');
 const defineDevModePlugin = require("./defineDevMode");
 const miniCssExtractPlugin = require("./miniCssExtract");
 const cleanPlugin = require("./clean");
@@ -13,7 +14,7 @@ module.exports = env => [
   defineDevModePlugin(env),
   ...(env.production
     ? [miniCssExtractPlugin(env)]
-    : [webpackBarPlugin, reactRefreshPlugin, hotModuleReplacementPlugin]),
+    : [webpackBarPlugin, reactRefreshPlugin, hotModuleReplacementPlugin, new Dotenv()]),
   cleanPlugin,
   manifestPlugin(env),
   htmlIndexPlugin,

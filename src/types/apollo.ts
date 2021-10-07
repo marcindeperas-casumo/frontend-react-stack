@@ -3069,6 +3069,27 @@ export type SportsFirstBetQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SportsFirstBetQuery = { sportsFirstBet: boolean };
 
+export type PopularBetsQueryVariables = Exact<{
+  market: Scalars["String"];
+  numberOfEvents: Scalars["Int"];
+  sports: Scalars["String"];
+}>;
+
+export type PopularBetsQuery = {
+  sportsPopularBets?: Maybe<{
+    popularEvents?: Maybe<
+      Array<
+        Maybe<{
+          name?: Maybe<string>;
+          events?: Maybe<
+            Array<Maybe<{ eventId?: Maybe<number>; sport?: Maybe<string> }>>
+          >;
+        }>
+      >
+    >;
+  }>;
+};
+
 export type UserNavigationQueryVariables = Exact<{
   live: Scalars["Boolean"];
 }>;
