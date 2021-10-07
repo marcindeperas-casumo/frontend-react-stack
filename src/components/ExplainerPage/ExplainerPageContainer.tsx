@@ -1,4 +1,5 @@
 import React from "react";
+import sortBy from "lodash/sortBy";
 import { useTranslations } from "Utils/hooks";
 import { ExplainerPage } from "./ExplainerPage";
 
@@ -21,7 +22,8 @@ export const ExplainerPageContainer = () => {
       hideShowMoreLink: true,
     }));
 
-    return <ExplainerPage promotionLists={alteredList} />;
+    const prioritizedLists = sortBy(alteredList);
+    return <ExplainerPage promotionLists={prioritizedLists} />;
   }
   return null;
 };
