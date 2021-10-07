@@ -242,6 +242,8 @@ export const composedJackpotFull: ComposedJackpot = {
       icon: "",
       potExplanation: "",
       potTitleColor: "",
+      potInformation: "",
+      potInformationAmount: "",
     },
     {
       status: "CHILLY",
@@ -256,6 +258,8 @@ export const composedJackpotFull: ComposedJackpot = {
       lastWinTs: 1592733025,
       icon: "",
       potExplanation: "",
+      potInformation: "",
+      potInformationAmount: "",
       potTitleColor: "",
     },
   ],
