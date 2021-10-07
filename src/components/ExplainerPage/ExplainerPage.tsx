@@ -5,7 +5,7 @@ import { TPromotionVerticalCampaigns } from "Components/PromotionPage/PromotionP
 type TProps = {
   promotionLists: TPromotionVerticalCampaigns;
 };
-// todo: refactor page to be a 'built-in' page in cms (content builder) composed with promotions
+
 export const ExplainerPage: React.FC<TProps> = ({ promotionLists }: TProps) => {
   return (
     <div>

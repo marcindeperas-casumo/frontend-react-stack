@@ -77,6 +77,7 @@ export interface Query {
   sportsCmsImage?: Maybe<Scalars["String"]>;
   sportsFirstBet: Scalars["Boolean"];
   sportsNavigation: Array<NavigationItem>;
+  sportsPopularBets?: Maybe<SportsPopularBets>;
   /** TopCompetitions returns the most popular subgroups of a group, currently based on number of events */
   topCompetitions: Array<EventGroup>;
   /** Top searches returns the event groups for the groupIds marked as popular */
@@ -225,6 +226,12 @@ export interface QuerySportsCmsImageArgs {
 export interface QuerySportsNavigationArgs {
   live?: Maybe<Scalars["Boolean"]>;
   locale?: Maybe<Scalars["String"]>;
+}
+
+export interface QuerySportsPopularBetsArgs {
+  market: Scalars["String"];
+  numberOfEvents: Scalars["Int"];
+  sports: Scalars["String"];
 }
 
 export interface QueryTopCompetitionsArgs {
@@ -996,7 +1003,6 @@ export interface Promotion {
   tag?: Maybe<Scalars["String"]>;
   teaserCaveats?: Maybe<Scalars["String"]>;
   ctaText?: Maybe<Scalars["String"]>;
-  external_link?: Maybe<Scalars["String"]>;
 }
 
 export interface PromotionsList {
@@ -1267,6 +1273,20 @@ export interface BetProjectionsOutcomes {
   outcomeLabel?: Maybe<Scalars["String"]>;
 }
 
+export interface SportsPopularBets {
+  popularEvents?: Maybe<Array<Maybe<SportsPopularBetsCategory>>>;
+}
+
+export interface SportsPopularBetsCategory {
+  name?: Maybe<Scalars["String"]>;
+  events?: Maybe<Array<Maybe<SportsPopularBet>>>;
+}
+
+export interface SportsPopularBet {
+  eventId?: Maybe<Scalars["Int"]>;
+  sport?: Maybe<Scalars["String"]>;
+}
+
 export interface BlueribbonJackpotConfig {
   externalId: Scalars["ID"];
   requiresManualOptIn: Scalars["Boolean"];
@@ -1312,6 +1332,8 @@ export interface Pot {
   winNotificationContent: Scalars["String"];
   potExplanation: Scalars["String"];
   potTitleColor: Scalars["String"];
+  potInformation: Scalars["String"];
+  potInformationAmount: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -2031,7 +2053,6 @@ export type PromotionCard_PromotionFragment = {
   tag?: Maybe<string>;
   teaserCaveats?: Maybe<string>;
   ctaText?: Maybe<string>;
-  external_link?: Maybe<string>;
 };
 
 export type GetBlueribbonJackpotConfigByGameSlugQueryVariables = Exact<{
@@ -2054,6 +2075,8 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
       mainWinRatio: number;
       communityWinRatio: number;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       icon: string;
       potExplanation: string;
       sharedPot?: Maybe<{
@@ -2091,6 +2114,8 @@ export type GetBlueribbonJackpotConfigBySlugQuery = {
       icon: string;
       potExplanation: string;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
@@ -2122,6 +2147,8 @@ export type GetJackpotConfigForWidgetQuery = {
       icon: string;
       potExplanation: string;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
