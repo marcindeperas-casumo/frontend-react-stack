@@ -1,8 +1,10 @@
 import { createReducer } from "Utils";
-import { types } from "./sportsEvents.constants";
+import { LOCAL_STORAGE_USER_SETTINGS, types } from "./sportsEvents.constants";
 
 const DEFAULT_STATE = {
-  oddsFormat: "decimal",
+  oddsFormat:
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_SETTINGS))?.oddsFormat ||
+    "decimal",
 };
 
 const handlers = {

@@ -48,6 +48,7 @@ class SportsHomeAdapters {
         label: outcome.participant,
         odds: outcome.odds,
         fractional: outcome.oddsFractional,
+        american: outcome.oddsAmerican,
         isDisabled: outcome.status !== "OPEN",
       } as SportsHomeOutcome;
     });

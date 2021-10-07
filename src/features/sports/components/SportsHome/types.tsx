@@ -19,6 +19,7 @@ export type SportsHomeOutcome = {
   label: string;
   odds: number;
   fractional: string;
+  american: string;
   isDisabled: boolean;
 };
 
@@ -39,7 +40,7 @@ export type SportsHomeEvent = {
 export type SportsHomeType = {
   translations: SportsHomeTranslations;
   events: SportsHomeEvent[];
-  fractional: boolean;
+  oddsFormat: string;
   locale: string;
 };
 
