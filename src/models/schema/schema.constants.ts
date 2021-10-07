@@ -10,4 +10,5 @@ export const ENTITY_KEYS = {
   TRANSACTIONS_ANNUAL_OVERVIEW: "transactionsBetsHistoryAnnualOverview",
   ACKNOWLEDGEMENTS: "acknowledgements",
   PLAYING: "playing",
+  SPORTS_EVENTS: "sportsEvents",
 };

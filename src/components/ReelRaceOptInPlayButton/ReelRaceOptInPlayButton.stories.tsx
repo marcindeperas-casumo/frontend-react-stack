@@ -8,6 +8,7 @@ const stories = storiesOf("ReelRaceOptInPlayButton", module);
 
 const props: TProps = {
   optIn: () => undefined,
+  playCallback: () => undefined,
   reelRace: {
     id: "666",
     startTime: 666,

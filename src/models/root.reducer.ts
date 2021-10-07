@@ -16,6 +16,7 @@ import { paymentsReducer as playerPayments } from "./payments/payments.reducer";
 import { playOkayReducer as playOkay } from "./playOkay/playOkay.rootReducer";
 import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 import { reelRacesReducer as reelRaces } from "./reelRaces";
+import { sportsEventsReducer as sportsEvents } from "./sportsEvents/sportsEvents.reducer";
 import { mandatoryMessagesApi } from "./mandatoryMessages";
 
 const rootReducer = combineReducers({
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   fiveMinuteBreak,
   reelRaces,
   blueribbonJackpot,
+  sportsEvents,
   [mandatoryMessagesApi.reducerPath]: mandatoryMessagesApi.reducer,
 });
 

@@ -57,7 +57,6 @@ export const isEmbeddedOn = (userEmail: string) => {
     return false;
   }
 
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   if (EMBEDDED_GAMES.TESTERS.includes(userEmail)) {
     return true;
   }
@@ -69,6 +68,7 @@ export const decodedUrlParams = (json: Object) =>
   R.mergeAll(Object.keys(json).map(key => ({ [key]: atob(json[key]) })));
 
 export const isTestEnv = () => R.includes("casumotest", window.location.origin);
+export const isDevEnv = () => R.includes("mobile.dev", window.location.origin);
 
 export const getPlatform = (): AppDevice => {
   const userAgent =
@@ -461,7 +461,8 @@ export const timeRemainingBeforeStart = (time: number): number => {
 /**
  * returns true if current market has it's own TLD
  */
-export const isTLDMarketSpecific: (s: string) => boolean = R.equals("es");
+export const isTLDMarketSpecific: (s: string) => boolean = tld =>
+  !["com", "net", "dev", "local", "tech"].includes(tld);
 
 export const hasAlphaCharactersOnly = (str: string): boolean => {
   return !/[a-z]+/i.test(str);

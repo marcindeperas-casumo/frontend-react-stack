@@ -5,7 +5,7 @@ import { HookWrapper } from "Utils/HookWrapper";
 import { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 
 jest.mock("../../constants", () => ({
-  ...jest.requireActual("../../constants"),
+  ...(jest.requireActual("../../constants") as object),
   URL_PREFIXES: {
     myMarket: "myMarketUrlPrefix",
   },
@@ -37,39 +37,35 @@ const state = {
     },
   },
 };
+const locationBackup = window.location;
 
 describe("useCrossCodebaseNavigation", () => {
-  const { location } = window;
-  const wrapper = mount(
-    <MockStore state={state}>
-      <HookWrapper hook={useCrossCodebaseNavigation} args={[]} />
-    </MockStore>
-  );
+  let wrapper;
 
   beforeEach(() => {
-    jest.resetAllMocks();
-
     // eslint-disable-next-line fp/no-delete
     delete window.location;
-
-    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ replace: Mock<any, any>; }' is missing the... Remove this comment to see the full error message
     window.location = {
+      ...locationBackup,
+      hostname: "casumo.com",
       replace: jest.fn(),
     };
+    wrapper = mount(
+      <MockStore state={state}>
+        <HookWrapper hook={useCrossCodebaseNavigation} args={[]} />
+      </MockStore>
+    );
   });
-
   afterEach(() => {
-    window.location = location;
+    window.location = locationBackup;
   });
 
   test("returns navigateToKO function", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
     expect(typeof navigateToKO).toEqual("function");
   });
 
   test("calls window.location.replace with path", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
 
     navigateToKO("myRouteId");
@@ -81,7 +77,6 @@ describe("useCrossCodebaseNavigation", () => {
   });
 
   test("calls window.location.replace with path with substituted url params", () => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hook' does not exist on type 'HTMLAttrib... Remove this comment to see the full error message
     const { navigateToKO } = wrapper.find("div").props().hook;
     const param1 = "substitutedParam1";
     const param2 = "substitutedParam2";

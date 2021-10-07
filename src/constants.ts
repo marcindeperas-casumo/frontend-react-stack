@@ -271,6 +271,7 @@ export const LANGUAGES = {
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
   [MARKETS.ie_en]: "ie",
+  nl_NL: "nl", //quick fix for not showing CuratedCard for the Netherland players
 } as const;
 export type TLanguage = ValueOf<typeof LANGUAGES>;
 
@@ -554,17 +555,17 @@ export const POLL_INTERVAL = {
 export const EMBEDDED_GAMES = {
   ACTIVE: false,
   TESTERS: [
-    "mariusz.klinger+test@casumo.com",
-    "boguslaw.parol@casumo.com",
+    "andre.formosa@casumo.com",
+    "daniel.gauci@casumo.com",
+    "daniel.gauci@gmail.com",
+    "mariusz.klinger+valuables@casumo.com",
+    "oleksii.pelekh@casumo.com",
     "lukasz.kowalski@casumo.com",
     "chris.scicluna@casumo.com",
     "peter.noer@casumo.com",
-    "stephen.marshall@casumo.com",
     "ms@50script.com",
     "sebastian.steek@casumo.com",
-    "boguslaw.parol+30@casumo.com",
     "andre.formosa@casumo.com",
-    "daniel.gauci@gmail.com",
     "peter.noer+TEST00070@casumo.com",
     "mark.busuttil@casumo.com",
     "alessandro.pontes@casumo.com",
@@ -572,7 +573,7 @@ export const EMBEDDED_GAMES = {
     "integrations+7@casumo.com",
     "peter.noer+THERKILD418@casumo.com",
     "theis.warmdahl+dk5@casumo.com",
-  ],
+  ] as string[],
 } as const;
 
 export const topListWidgetWidth = 328;
