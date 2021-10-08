@@ -15,5 +15,10 @@ export default ({
   "hour_plural": "{{value}} Hours",
   "day_singular": "{{value}} Day",
   "day_plural": "{{value}} Days",
-  "termsAndConditionsContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget vehicula ante, eget tincidunt lectus. Sed aliquet sapien dolor, eu pretium quam pellentesque sed. Praesent est orci, efficitur nec mi ut, efficitur blandit ligula. Etiam vestibulum sapien a sapien commodo lobortis ac et mauris. Sed feugiat varius tellus, id pharetra risus faucibus nec."
+  "termsAndConditionsTitle": "Lorem ipsum dolor sit amet",
+  "generalTermsAndConditionsTitle": "Ut eget vehicula ante, eget tincidunt lectus",
+  "marketSpecificTermsAndConditionsTitle": "Sed aliquet sapien dolor, eu pretium quam pellentesque sed",
+  "termsAndConditionsContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget vehicula ante, eget tincidunt lectus. Sed aliquet sapien dolor, eu pretium quam pellentesque sed. Praesent est orci, efficitur nec mi ut, efficitur blandit ligula. Etiam vestibulum sapien a sapien commodo lobortis ac et mauris. Sed feugiat varius tellus, id pharetra risus faucibus nec.",
+  "generalTermsAndConditionsContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget vehicula ante, eget tincidunt lectus. Sed aliquet sapien dolor, eu pretium quam pellentesque sed. Praesent est orci, efficitur nec mi ut, efficitur blandit ligula. Etiam vestibulum sapien a sapien commodo lobortis ac et mauris. Sed feugiat varius tellus, id pharetra risus faucibus nec.",
+  "marketSpecificTermsAndConditionsContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget vehicula ante, eget tincidunt lectus. Sed aliquet sapien dolor, eu pretium quam pellentesque sed. Praesent est orci, efficitur nec mi ut, efficitur blandit ligula. Etiam vestibulum sapien a sapien commodo lobortis ac et mauris. Sed feugiat varius tellus, id pharetra risus faucibus nec."
 });
