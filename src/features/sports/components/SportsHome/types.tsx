@@ -23,6 +23,13 @@ export type SportsHomeOutcome = {
   isDisabled: boolean;
 };
 
+export type SportsHomeEventPath = {
+  id: number;
+  name: string;
+  englishName: string;
+  termKey: string;
+};
+
 export type SportsHomeEvent = {
   id: number;
   betOfferId: number;
@@ -35,6 +42,7 @@ export type SportsHomeEvent = {
   score: string;
   show: boolean;
   outcomes: SportsHomeOutcome[];
+  path: SportsHomeEventPath[];
 };
 
 export type SportsHomeType = {
@@ -68,6 +76,13 @@ export interface KambiBetOfferOutcome {
   oddsFractional: string;
 }
 
+export interface KambiEventPath {
+  id: number;
+  name: string;
+  englishName: string;
+  termKey: string;
+}
+
 export interface KambiEvent {
   id: number;
   name: string;
@@ -78,6 +93,7 @@ export interface KambiEvent {
   group: string;
   groupId: number;
   sport: string;
+  path: KambiEventPath[];
 }
 
 export interface KambiOfferingResponse {

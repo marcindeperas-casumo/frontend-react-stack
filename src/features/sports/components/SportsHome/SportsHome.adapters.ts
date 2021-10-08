@@ -3,8 +3,10 @@ import {
   KambiBetOffer,
   KambiBetOfferOutcome,
   KambiEvent,
+  KambiEventPath,
   SportsHomeConfigurationTranslations,
   SportsHomeEvent,
+  SportsHomeEventPath,
   SportsHomeOutcome,
   SportsHomePopularBetsConfigurations,
   SportsHomeTranslations,
@@ -39,6 +41,7 @@ class SportsHomeAdapters {
         outcomes: betOffer?.outcomes
           ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
           : [],
+        path: event?.path ? this.convertToSportsHomeEventPath(event.path) : [],
       } as SportsHomeEvent;
     });
 
@@ -58,6 +61,19 @@ class SportsHomeAdapters {
         american: outcome.oddsAmerican,
         isDisabled: outcome.status !== "OPEN",
       } as SportsHomeOutcome;
+    });
+  }
+
+  convertToSportsHomeEventPath(
+    kambiEventPath: KambiEventPath[]
+  ): SportsHomeEventPath[] {
+    return kambiEventPath.map<SportsHomeEventPath>(eventPath => {
+      return {
+        id: eventPath.id,
+        englishName: eventPath.englishName,
+        name: eventPath.name,
+        termKey: eventPath.termKey,
+      } as SportsHomeEventPath;
     });
   }
 
