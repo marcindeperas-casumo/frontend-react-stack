@@ -37,10 +37,6 @@ export const expirationBadgeClasses = {
   default: "grey-50",
 };
 
-type Game = {
-  slug: string;
-};
-
 type BadgeInfoType = {
   key: string;
   value: number;
@@ -352,7 +348,7 @@ export const ValuableDetails = ({
                   <Text
                     size="xs"
                     key={i}
-                    className="text-blue-50 u-margin-y--sm u-text-decoration-underline u-text-align-left"
+                    className="text-blue-60 u-margin-y--sm u-text-decoration-underline u-text-align-left"
                     onClick={() => scrollToElement(i)}
                   >
                     {title}

@@ -9,9 +9,9 @@ type Props = {
   onConsumeValuable: (id: string) => Promise<void>;
 };
 
-const getTermsAndConditionSlug = (termsLink = "") => {
-  const fullSlug = /root:[a-zA-Z-]+:content/;
-  return fullSlug.test(termsLink) ? termsLink : `root:${termsLink}:content`;
+const getSlugOrDefault = (termsLink = "", field) => {
+  const fullSlug = /root:[a-zA-Z-]+:\\b${field}\\b/;
+  return fullSlug.test(termsLink) ? termsLink : `root:${termsLink}:${field}`;
 };
 
 export const ValuableDetailsContainer = (props: Props) => {
@@ -31,11 +31,17 @@ export const ValuableDetailsContainer = (props: Props) => {
     depositNowLabel: "root:valuable-details-component:fields.deposit_now",
     expirationTimeLabel:
       "root:valuable-details-component:fields.expirationTimeLabel",
-    termsAndConditionsTitle: "root:toc.casino-wo-tcs:title",
+    termsAndConditionsTitle: getSlugOrDefault(
+      props.valuableDetails.termsLink,
+      "title"
+    ),
     generalTermsAndConditionsTitle: "root:toc.general-wo-tcs:title",
     marketSpecificTermsAndConditionsTitle:
       "root:toc.market-specific-wo-tcs:title",
-    termsAndConditionsContent: "root:toc.casino-wo-tcs:content",
+    termsAndConditionsContent: getSlugOrDefault(
+      props.valuableDetails.termsLink,
+      "content"
+    ),
     generalTermsAndConditionsContent: "root:toc.general-wo-tcs:content",
     marketSpecificTermsAndConditionsContent:
       "root:toc.market-specific-wo-tcs:content",
