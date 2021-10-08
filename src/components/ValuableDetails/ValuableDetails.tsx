@@ -230,6 +230,7 @@ export const ValuableDetails = ({
 
   const durationKeyForValuable = durationKey(valuableDetails);
   const expirationBadgeInfoForValuable = expirationBadgeInfo(valuableDetails);
+  const showWageringProgressBar = wageringRequirementsExist(valuableDetails);
   const requirementTypeForValuable = requirementType(valuableDetails);
 
   const expirationValueText =
@@ -289,7 +290,7 @@ export const ValuableDetails = ({
               <DangerousHtml html={content} />
             </Text>
           </Flex.Item>
-          {wageringRequirementsExist && (
+          {showWageringProgressBar && (
             <Flex.Item className="u-margin-top--xlg">
               <ValuableWageringProgressBar
                 currency={currency}
