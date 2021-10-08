@@ -3,16 +3,15 @@ import sortBy from "lodash/sortBy";
 import { useTranslations } from "Utils/hooks";
 import { ExplainerPage } from "./ExplainerPage";
 
-export const explainerPageConfig = {
-  origin: "jackpots",
-  slug: "built-pages.what-are-casumo-jackpots",
+type TProps = {
+  jackpotSlug: string;
 };
 
-export const ExplainerPageContainer = () => {
+export const ExplainerPageContainer = ({ jackpotSlug }: TProps) => {
   const explainerPageTranslations = useTranslations<{
     content_builder: Array<Object>;
     more_link?: string;
-  }>(explainerPageConfig.slug);
+  }>(`built-pages.what-are-${jackpotSlug}`);
 
   const promotionListsSlugs = explainerPageTranslations?.content_builder;
 
