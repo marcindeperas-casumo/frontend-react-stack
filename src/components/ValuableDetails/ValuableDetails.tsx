@@ -250,13 +250,16 @@ export const ValuableDetails = ({
   });
 
   const actionButtonVisible =
-    valuableState !== VALUABLE_STATES.USED ||
+    valuableState === VALUABLE_STATES.USED ||
+    valuableState === VALUABLE_STATES.FRESH ||
+    valuableState === VALUABLE_STATES.LOCKED ||
     ([
       VALUABLE_TYPES.CASHBACK,
       VALUABLE_TYPES.WAGERING_LOCK,
       VALUABLE_TYPES.FREE_BET,
       VALUABLE_TYPES.DEPOSIT,
     ] as Array<A.ValuableType>).includes(valuableType);
+
   return (
     <div>
       <div className="o-ratio c-valuable-details t-border-r--md">

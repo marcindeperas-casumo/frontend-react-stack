@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
+import { useSelector } from "react-redux";
 import React from "react";
 import * as A from "Types/apollo";
+import { countrySelector } from "Models/handshake";
 import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemExpiredEvent } from "Components/PlayerValuableList/utils";
 import { navigateToSportsHash } from "Features/sports/utils";
@@ -22,6 +24,7 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
   >(CuratedCardQuery, {
     variables,
   });
+  const playerCountry = useSelector(countrySelector);
 
   React.useEffect(() => {
     const handler = subscribeToItemExpiredEvent(({ success }) => {
@@ -37,6 +40,10 @@ export const CuratedCardContainer = ({ className, slug }: Props) => {
 
   if (loading && !data) {
     return <CuratedCardSkeleton />;
+  }
+
+  if (playerCountry === "nl") {
+    return null;
   }
 
   return (
