@@ -203,6 +203,24 @@ describe("ValuableDetails", () => {
     actionButton.simulate("click");
     expect(onConsume).toHaveBeenCalledTimes(1);
   });
+
+  test("should show CTA button for USED state valuables ", () => {
+    mockValuable = mockValuables[3];
+    rendered = shallow(
+      <ValuableDetails
+        // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
+        valuableDetails={mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+    const actionButton = rendered.find({
+      "data-test": "valuable-action-button",
+    });
+    expect(actionButton).toBeTruthy();
+  });
 });
 const addDaysToNow = days => {
   const result = new Date(Date.now());
