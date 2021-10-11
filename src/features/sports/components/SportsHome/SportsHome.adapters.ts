@@ -1,4 +1,3 @@
-import moment from "moment";
 import {
   KambiBetOffer,
   KambiBetOfferOutcome,
@@ -23,7 +22,6 @@ class SportsHomeAdapters {
         return;
       }
       const betOffer = betOffers.find(x => x.eventId === event.id);
-      const live = moment().diff(event.start, "seconds") > 0;
 
       return {
         id: event.id,
@@ -33,7 +31,7 @@ class SportsHomeAdapters {
         sport: event.sport,
         group: event.group,
         startTime: event.start,
-        live: live,
+        live: event.state === "STARTED",
         score: "",
         show: true,
         outcomes: betOffer?.outcomes
