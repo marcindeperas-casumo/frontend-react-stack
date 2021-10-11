@@ -48,6 +48,7 @@ export type Props = {
   onConsumeValuable: (id: string) => Promise<void>;
   translations: Translations;
   children: React.ReactChild;
+  onLaunchGame?: () => Promise<void>;
 };
 
 const expiryTimeLeft = (valuableDetails): DurationProps | null => {
