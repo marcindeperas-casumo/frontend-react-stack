@@ -10,6 +10,7 @@ module.exports = {
     "<rootDir>/config/jest/enzyme.js",
     "<rootDir>/config/jest/matchMedia.js",
     "<rootDir>/config/jest/mutationObserverMock.js",
+    "<rootDir>/config/jest/checkAssertionsNumber.js",
   ],
   collectCoverageFrom: [
     "src/**/*.ts",
