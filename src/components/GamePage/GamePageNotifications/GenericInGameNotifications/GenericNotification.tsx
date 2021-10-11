@@ -40,7 +40,7 @@ export function GenericNotification({
     }
   }, [prevSlug, setPrevSlug, setAcknowledged, translationSlug]);
 
-  if (acknowledged) {
+  if (!t || acknowledged) {
     return null;
   }
 
