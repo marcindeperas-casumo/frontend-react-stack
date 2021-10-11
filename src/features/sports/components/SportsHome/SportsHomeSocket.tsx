@@ -111,7 +111,7 @@ export const messageEvent = (
   let updateNeeded = false;
 
   message.forEach((msg: any) => {
-    // adding betoffer
+    // adding betoffer just for type 2
     if (msg.mt === BET_OFFER_ADDED) {
       const event = findEventInData(data, msg.boa.betOffer.eventId);
       if (event && msg.boa.betOffer.betOfferType === 2) {
