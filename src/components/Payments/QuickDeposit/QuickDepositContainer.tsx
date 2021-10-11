@@ -1,32 +1,21 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useThrottledGameBalance } from "Components/GamePage/Hooks/useThrottledGameBalance";
-import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import {
-  localeSelector,
-  featureFlagSelector,
-  marketSelector,
-} from "Models/handshake";
-import {
-  useTranslationsGql,
-  useAvailableQuickDepositMethods,
-} from "Utils/hooks";
+import { localeSelector } from "Models/handshake";
+import { useTranslationsGql } from "Utils/hooks";
 import {
   playerWalletBonusSelector,
   playerCurrencySelector,
 } from "Models/player";
 import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
-import { showModal } from "Models/modal";
 import { formatCurrency } from "Utils";
-import { REACT_APP_MODAL } from "Src/constants";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
+import { useDepositMethods } from "Utils/hooks/useDepositMethods";
 import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
   className?: string;
 };
-
-const quickDepositDisabledMarkets = [];
 
 // TODO - to investigate if gameActive is checked and returned first wallet balance updates nicer on the ui rather than in spikes
 function gameAwareBalanceCompareFunction(prev, next, isGameActive) {
@@ -48,15 +37,7 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     cashier_link_text: `root:${CMS_SLUG.MODAL_WAGERING}:fields.cashier_link_text`,
   });
 
-  const dispatch = useDispatch();
   const locale = useSelector(localeSelector);
-  const market = useSelector(marketSelector);
-  const quickDepositFeatureFlagEnabled = useSelector(
-    featureFlagSelector("quick-deposit")
-  );
-  const showQuickDeposit =
-    !quickDepositDisabledMarkets.includes(market) ||
-    quickDepositFeatureFlagEnabled;
   const currency = useSelector(playerCurrencySelector);
   const gameActivityAwarePlayerBalance = useThrottledGameBalance(
     gameAwareBalanceCompareFunction
@@ -66,16 +47,12 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     bonusBalance,
     gameAwareBalanceCompareFunction
   );
-  const savedQuickDepositMethods = useAvailableQuickDepositMethods();
-  const hasQuickDepositMethods =
-    showQuickDeposit && savedQuickDepositMethods.length > 0;
-  const navigateToCashier = () => {
-    dispatch(showModal(REACT_APP_MODAL.ID.QUIT_GAME_NOTIFICATION));
-  };
 
-  const launchQuickDeposit = () => {
-    dispatch(setQuickDepositMethod(savedQuickDepositMethods[0]));
-  };
+  const {
+    hasQuickDepositMethods,
+    navigateToCashier,
+    launchQuickDeposit,
+  } = useDepositMethods();
 
   return (
     <QuickDeposit
