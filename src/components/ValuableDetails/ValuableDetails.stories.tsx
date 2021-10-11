@@ -1,7 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { boolean, select } from "@storybook/addon-knobs";
 import React from "react";
-import { F } from "ramda";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock";
 import {
   mockValuable as mockValuableCard,
@@ -16,6 +15,8 @@ import { ValuableDetailsWithModal } from "./ValuableDetailsWithModal";
 import { mockValuable as mockData } from "./__mocks__/Valuables.mock";
 
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
+const mockConsumeValuableCb = (id: string) =>
+  new Promise<void>(resolve => resolve());
 
 stories.add("Default", () => {
   const valuableType =
@@ -28,14 +29,13 @@ stories.add("Default", () => {
   return (
     <div style={{ width: "420px" }}>
       <MockStore state={defaultState}>
-        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableDetails
           valuableDetails={{
             ...valuableDetailsMock,
             expiryDate,
           }}
           translations={translations}
-          onConsumeValuable={F}
+          onConsumeValuable={mockConsumeValuableCb}
           onLaunchGame={() => {}}
         >
           <div style={{ width: "160px" }}>
@@ -83,11 +83,10 @@ stories.add("Deposit - Locked", () => {
   return (
     <div style={{ width: "420px" }}>
       <MockStore state={defaultState}>
-        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableDetails
           valuableDetails={valuableDetailsMock}
           translations={translations}
-          onConsumeValuable={F}
+          onConsumeValuable={mockConsumeValuableCb}
           onLaunchGame={() => {}}
         >
           <div style={{ width: "160px" }}>
