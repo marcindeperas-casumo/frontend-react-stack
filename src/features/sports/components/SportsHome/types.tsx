@@ -2,6 +2,8 @@ export type SportsHomeTranslations = {
   live: string;
   draw: string;
   title: string;
+  away: string;
+  home: string;
 };
 
 export type SportsHomeTranslationsDictionary = {
@@ -41,6 +43,8 @@ export type SportsHomeEvent = {
   live: boolean;
   score: string;
   show: boolean;
+  homeName: string;
+  awayName: string;
   outcomes: SportsHomeOutcome[];
   path: SportsHomeEventPath[];
 };
@@ -69,6 +73,7 @@ export interface KambiBetOfferType {
 export interface KambiBetOfferOutcome {
   id: number;
   label: string;
+  type: string;
   participant: string;
   odds: number;
   status: string;

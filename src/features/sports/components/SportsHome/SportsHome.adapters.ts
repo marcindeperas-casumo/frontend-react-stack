@@ -38,6 +38,8 @@ class SportsHomeAdapters {
         live: live,
         score: "",
         show: true,
+        homeName: event.homeName,
+        awayName: event.awayName,
         outcomes: betOffer?.outcomes
           ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
           : [],
@@ -54,7 +56,7 @@ class SportsHomeAdapters {
     return kambiBetOfferOutcomes.map<SportsHomeOutcome>(outcome => {
       return {
         id: outcome.id,
-        type: outcome.label,
+        type: outcome.type,
         label: outcome.participant,
         odds: outcome.odds,
         fractional: outcome.oddsFractional,
@@ -84,6 +86,8 @@ class SportsHomeAdapters {
       live: data.dictionary.find(x => x.key === "sports_home_live")?.value,
       draw: data.dictionary.find(x => x.key === "sports_home_draw")?.value,
       title: data.dictionary.find(x => x.key === "sports_home_title")?.value,
+      home: data.dictionary.find(x => x.key === "sports_home_home")?.value,
+      away: data.dictionary.find(x => x.key === "sports_home_away")?.value,
     } as SportsHomeTranslations;
   }
 
