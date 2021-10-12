@@ -34,12 +34,12 @@ export const LowBalanceNotificationContainer = () => {
   const playerId = useSelector(playerIdSelector);
   const currency = useSelector(playerCurrencySelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
-  const [showed, setShowed] = React.useState(false);
+  const [showing, setShowing] = React.useState(false);
 
   const onData = React.useCallback(
     (event: TBalanceUpdatedMessage) => {
       // show notification once per session
-      if (showed) {
+      if (showing) {
         return;
       }
 
@@ -50,10 +50,10 @@ export const LowBalanceNotificationContainer = () => {
         isWalletUpdate &&
         totalBalance.amount < LOW_BALANCES_THRESHOLDS[currency]
       ) {
-        setShowed(true);
+        setShowing(true);
       }
     },
-    [currency, showed]
+    [currency, showing]
   );
 
   const cleanup = React.useCallback(
@@ -92,7 +92,7 @@ export const LowBalanceNotificationContainer = () => {
     </>
   );
 
-  return showed ? (
+  return showing ? (
     <LowBalanceNotification
       Cta={cta}
       currency={currency}

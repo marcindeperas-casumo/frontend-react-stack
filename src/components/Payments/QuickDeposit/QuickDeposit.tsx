@@ -41,21 +41,6 @@ export const QuickDeposit = ({
   if (!t) {
     return null;
   }
-  const cashierLinkClickHandler = () => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
-    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED);
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
-    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED);
-    onCashierLinkClick();
-  };
-
-  const currencySymbolClickHandler = () => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
-    tracker.track(EVENTS.MIXPANEL_CASHIER_LINK_CLICKED);
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
-    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED);
-    onQuickDepositLinkClick();
-  };
 
   return (
     <Flex className={className} align="center">
@@ -81,7 +66,7 @@ export const QuickDeposit = ({
             align="center"
             justify="center"
             className="bg-white bg-opacity-100 t-border-r--circle o-position--relative u-width--2xlg u-height--2xlg u-cursor--pointer"
-            onClick={currencySymbolClickHandler}
+            onClick={onQuickDepositLinkClick}
           >
             <CurrencyIcon
               currency={currency}
@@ -96,7 +81,7 @@ export const QuickDeposit = ({
           <Text
             tag="span"
             className="text-grey-20 u-font-weight-bold u-text-decoration-underline u-cursor--pointer u-margin-right"
-            onClick={cashierLinkClickHandler}
+            onClick={onCashierLinkClick}
           >
             {t.cashier_link_text}
           </Text>
