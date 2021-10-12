@@ -99,6 +99,7 @@ export interface KambiEvent {
   groupId: number;
   sport: string;
   path: KambiEventPath[];
+  state: string;
 }
 
 export interface KambiOfferingResponse {
