@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as R from "ramda";
+import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/GameListHorizontalWithWidget";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
@@ -9,6 +10,7 @@ import { ROUTE_IDS } from "Src/constants";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
 import { useComposedJackpotConfigBySlug } from "./useComposedJackpot";
+import { BlueRibbonJackpotsOnboardingWidget } from "./BlueRibbonJackpotsOnboardingWidget";
 
 export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   const { composedJackpot } = useComposedJackpotConfigBySlug({
@@ -20,6 +22,9 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   );
   const jackpotConfigs = useTranslations<{
     jackpot_image: string;
+    jackpot_onboarding_title: string;
+    jackpot_onboarding_body: string;
+    jackpot_onboarding_button_copy: string;
   }>(`jackpots-configs.${props.jackpot_slug}`);
 
   useBlueRibbonSDKAnonymous();
@@ -52,11 +57,22 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
         text: t.more_link,
       }}
       Widget={() => (
-        <BlueRibbonJackpotsWidget
-          composedPots={composedJackpot.pots}
-          widgetColor={composedJackpot.widgetColor}
-          jackpotLogo={jackpotConfigs.jackpot_image}
-        />
+        <Flex direction="horizontal">
+          <BlueRibbonJackpotsWidget
+            composedPots={composedJackpot.pots}
+            widgetColor={composedJackpot.widgetColor}
+            jackpotLogo={jackpotConfigs.jackpot_image}
+          />
+          <BlueRibbonJackpotsOnboardingWidget
+            content={{
+              title: jackpotConfigs.jackpot_onboarding_title,
+              body: jackpotConfigs.jackpot_onboarding_body,
+              cta: jackpotConfigs.jackpot_onboarding_button_copy,
+            }}
+            composedPots={composedJackpot.pots}
+            widgetColor={composedJackpot.widgetColor}
+          />
+        </Flex>
       )}
     />
   );
