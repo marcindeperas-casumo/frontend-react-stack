@@ -77,6 +77,7 @@ export interface KambiEvent {
   group: string;
   groupId: number;
   sport: string;
+  state: string;
 }
 
 export interface KambiOfferingResponse {

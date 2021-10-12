@@ -55,7 +55,6 @@ describe("useComponentQueueState Hook", () => {
     expect(rendered.props()["data-test-id"]).toBe("component1");
   });
 
-  test("queue with priority and additional config", () => {});
   test("queue add and forced replace current component", () => {
     const { result } = renderHook(() =>
       useComponentQueueState({ config: mockedConfig })
