@@ -111,14 +111,10 @@ export const messageEvent = (
   let updateNeeded = false;
 
   message.forEach((msg: any) => {
-    // adding betoffer
+    // adding betoffer just for type 2
     if (msg.mt === BET_OFFER_ADDED) {
       const event = findEventInData(data, msg.boa.betOffer.eventId);
-      if (
-        event &&
-        (msg.boa.betOffer.betOfferType === 2 ||
-          msg.boa.betOffer.betOfferType === 1)
-      ) {
+      if (event && msg.boa.betOffer.betOfferType === 2) {
         event.betOfferId = msg.boa.betOffer.eventId;
         event.betOfferType = msg.boa.betOffer.betOfferType;
         event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
