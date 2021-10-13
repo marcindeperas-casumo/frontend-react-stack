@@ -48,7 +48,7 @@ const renderSportsHome = (
         <sportsHome.SportsHome
           events={data?.events}
           numberOfEventsToShow={numberOfEventsToShow}
-          fractional={data.fractional}
+          oddsFormat={data.oddsFormat}
           translations={data.translations}
           locale={data.locale}
           eventClick={eventClick}
@@ -164,7 +164,7 @@ export const SportsHome = ({
 
         const sportsHomeType = {
           events: offerringData,
-          fractional: oddsFormatEvent.oddsFormat === "fractional",
+          oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
         } as SportsHomeType;
