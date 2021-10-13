@@ -149,17 +149,24 @@ export const SportsHome = ({
 
         const eventIdsArgs = eventIds.join();
 
-        const kambiOfferings = await SportsHomeService.getOfferings(
+        const kambiOfferings = await SportsHomeService.getEvents(
           kambiOffering,
           eventIdsArgs,
           kambiLocale,
           market
         );
 
+        const kambiLiveEvents = await SportsHomeService.getLiveEvents(
+          kambiOffering,
+          eventIdsArgs,
+          kambiLocale
+        );
+
         const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
           eventIds,
           kambiOfferings.data.events,
-          kambiOfferings.data.betOffers
+          kambiOfferings.data.betOffers,
+          kambiLiveEvents.data.liveData
         );
 
         const sportsHomeType = {

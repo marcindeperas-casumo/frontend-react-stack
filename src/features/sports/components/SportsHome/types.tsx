@@ -107,8 +107,26 @@ export interface KambiOfferingResponse {
   events: KambiEvent[];
 }
 
-export interface KambiOfferingServerResponse {
+export interface KambiEventServerResponse {
   data: KambiOfferingResponse;
+}
+
+export interface KambiEventScore {
+  home: string;
+  away: string;
+  info: string;
+  who: string;
+}
+
+export interface KambiLiveEvent {
+  eventId: number;
+  score: KambiEventScore;
+}
+export interface KambiLiveEventResponse {
+  liveData: KambiLiveEvent[];
+}
+export interface KambiLiveEventServerResponse {
+  data: KambiLiveEventResponse;
 }
 
 export interface SportsHomeConfigurationTranslations {
