@@ -67,14 +67,15 @@ class SportsHomeAdapters {
   convertToSportsHomeEventPath(
     kambiEventPath: KambiEventPath[]
   ): SportsHomeEventPath[] {
-    return kambiEventPath.map<SportsHomeEventPath>(eventPath => {
-      return {
-        id: eventPath.id,
-        englishName: eventPath.englishName,
-        name: eventPath.name,
-        termKey: eventPath.termKey,
-      } as SportsHomeEventPath;
-    });
+    return kambiEventPath.map<SportsHomeEventPath>(
+      eventPath =>
+        ({
+          id: eventPath.id,
+          englishName: eventPath.englishName,
+          name: eventPath.name,
+          termKey: eventPath.termKey,
+        } as SportsHomeEventPath)
+    );
   }
 
   convertToSportsHomeTranslations(

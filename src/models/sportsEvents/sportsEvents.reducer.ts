@@ -1,10 +1,13 @@
+import { tryCatch } from "ramda";
 import { createReducer } from "Utils";
 import { LOCAL_STORAGE_USER_SETTINGS, types } from "./sportsEvents.constants";
 
 const DEFAULT_STATE = {
-  oddsFormat:
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_SETTINGS))?.oddsFormat ||
-    "decimal",
+  oddsFormat: tryCatch(
+    () =>
+      JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_SETTINGS))?.oddsFormat,
+    () => "decimal"
+  )(),
 };
 
 const handlers = {
