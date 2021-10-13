@@ -21,6 +21,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
   content,
   composedPots,
   widgetColor,
+  onClose,
 }: {
   content: JackpotOnboardingWidget;
   composedPots: Array<PotObject>;
@@ -28,6 +29,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
     dark?: string;
     light?: string;
   };
+  onClose: () => void;
 }) {
   return (
     <Flex
@@ -49,7 +51,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
         justify="end"
         className={classNames("u-margin-bottom--sm")}
       >
-        <CloseBtn className="u-cursor--pointer" onClick={() => {}} />
+        <CloseBtn className="u-cursor--pointer" onClick={onClose} />
       </Flex>
       <Text
         size="md"
