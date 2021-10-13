@@ -1,7 +1,6 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { CloseIcon } from "@casumo/cmp-icons";
-import { ButtonPrimary } from "@casumo/cmp-button";
+import { Link } from "@reach/router";
 import classNames from "classnames";
 import * as React from "react";
 import {
@@ -9,12 +8,14 @@ import {
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
 } from "Src/constants";
+import { CloseButton as CloseBtn } from "../../AbstractModal/CloseButton";
 import type { PotObject } from "./blueRibbonConsts";
 
 type JackpotOnboardingWidget = {
   title: string;
   body: string;
   cta: string;
+  backgroundImage: string;
 };
 export function BlueRibbonJackpotsOnboardingWidget({
   content,
@@ -35,6 +36,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
       className={`o-position--relative o-flex__item--no-shrink u-padding--md t-border-r--md u-overflow--hidden u-margin-left`}
       style={{
         backgroundColor: widgetColor.light,
+        backgroundImage: `url('${content.backgroundImage || ""}')`,
         width: topListWidgetWidth,
         height:
           composedPots.length < 3
@@ -42,11 +44,12 @@ export function BlueRibbonJackpotsOnboardingWidget({
             : topListWidgetHeight,
       }}
     >
-      <Flex direction="horizontal" justify="end">
-        <CloseIcon
-          className="u-padding-x--lg text-black u-cursor--pointer"
-          onClick={() => {}}
-        />
+      <Flex
+        direction="horizontal"
+        justify="end"
+        className={classNames("u-margin-bottom--sm")}
+      >
+        <CloseBtn className="u-cursor--pointer" onClick={() => {}} />
       </Flex>
       <Text
         size="md"
@@ -60,9 +63,12 @@ export function BlueRibbonJackpotsOnboardingWidget({
         {content.body}
       </Text>
 
-      <ButtonPrimary size="md" onClick={() => {}}>
+      <Link
+        className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg"
+        to={"/casumo-jackpots"}
+      >
         {content.cta}
-      </ButtonPrimary>
+      </Link>
     </Flex>
   );
 }
