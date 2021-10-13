@@ -2,8 +2,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { AddIcon } from "@casumo/cmp-icons";
 import React from "react";
-import tracker from "Services/tracker";
-import { EVENTS } from "Src/constants";
 import { CurrencyIcon } from "Components/CurrencyIcon/CurrencyIcon";
 import type { TCurrencyCode } from "Src/constants";
 import "./QuickDeposit.scss";

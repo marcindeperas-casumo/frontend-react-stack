@@ -12,6 +12,8 @@ import { formatCurrency } from "Utils";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { useDepositMethods } from "Utils/hooks/useDepositMethods";
 import { QuickDeposit } from "./QuickDeposit";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 
 type Props = {
   className?: string;
@@ -54,6 +56,18 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     launchQuickDeposit,
   } = useDepositMethods();
 
+  const cashierLinkClickHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED, {});
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED, {});
+    navigateToCashier();
+  };
+
+  const launchQuickDepositHandler = () => {
+    tracker.track(EVENTS.MIXPANEL_CASHIER_LINK_CLICKED, {});
+    tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_PROCESS_INITIATED, {});
+    launchQuickDeposit();
+  };
+
   return (
     <QuickDeposit
       t={t}
@@ -69,8 +83,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
       })}
       currency={currency}
       hasSavedPaymentMethods={hasQuickDepositMethods}
-      onCashierLinkClick={navigateToCashier}
-      onQuickDepositLinkClick={launchQuickDeposit}
+      onCashierLinkClick={cashierLinkClickHandler}
+      onQuickDepositLinkClick={launchQuickDepositHandler}
       className={className}
     />
   );

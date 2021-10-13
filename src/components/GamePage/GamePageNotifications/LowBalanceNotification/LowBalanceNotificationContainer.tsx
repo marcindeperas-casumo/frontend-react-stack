@@ -10,6 +10,8 @@ import cometd from "Models/cometd/cometd.service";
 import { useTranslationsGql } from "Utils/hooks";
 import { LowBalanceNotification } from "./LowBalanceNotification";
 import { LOW_BALANCES_THRESHOLDS } from "./lowBalance.constants";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 
 type TBalance = {
   amount: number;
@@ -75,9 +77,20 @@ export const LowBalanceNotificationContainer = () => {
     launchQuickDeposit,
   } = useDepositMethods();
 
+  const navigateToCashierTracked = () => {
+    tracker.track(EVENTS.MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT, {});
+    tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED, {});
+    navigateToCashier();
+  };
+
+  const launchQuickDepositTracked= () => {
+    tracker.track(EVENTS.MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT, {});
+    launchQuickDeposit();
+  };
+
   const showDepositHandler = hasQuickDepositMethods
-    ? launchQuickDeposit
-    : navigateToCashier;
+    ? launchQuickDepositTracked
+    : navigateToCashierTracked;
 
   const ctaSlug = "root:low-balance-notification-content:fields.cta";
   const { t, loading } = useTranslationsGql({ cta: ctaSlug });
