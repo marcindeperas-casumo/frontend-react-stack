@@ -89,7 +89,7 @@ function JackpotRow({
             {label}
           </Text>
           <Text size="xs" className="u-margin-bottom--none">
-            {`${potInformation}${potInformationAmount}`}
+            {`${potInformation} ${potInformationAmount}`}
           </Text>
         </>
       )}
