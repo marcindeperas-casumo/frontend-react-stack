@@ -1332,6 +1332,8 @@ export interface Pot {
   winNotificationContent: Scalars["String"];
   potExplanation: Scalars["String"];
   potTitleColor: Scalars["String"];
+  potInformation: Scalars["String"];
+  potInformationAmount: Scalars["String"];
   sharedPot?: Maybe<SharedPot>;
 }
 
@@ -2073,6 +2075,8 @@ export type GetBlueribbonJackpotConfigByGameSlugQuery = {
       mainWinRatio: number;
       communityWinRatio: number;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       icon: string;
       potExplanation: string;
       sharedPot?: Maybe<{
@@ -2110,6 +2114,8 @@ export type GetBlueribbonJackpotConfigBySlugQuery = {
       icon: string;
       potExplanation: string;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
@@ -2141,6 +2147,8 @@ export type GetJackpotConfigForWidgetQuery = {
       icon: string;
       potExplanation: string;
       potTitleColor: string;
+      potInformation: string;
+      potInformationAmount: string;
       sharedPot?: Maybe<{
         name: string;
         shortName: string;
