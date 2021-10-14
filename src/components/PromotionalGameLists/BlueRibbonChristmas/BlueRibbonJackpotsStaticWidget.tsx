@@ -80,6 +80,7 @@ function JackpotRow({
       renderText={() => (
         <>
           <Text
+            size="sm"
             className={classNames(
               "u-font-weight-bold u-text-transform-uppercase text-white",
               potTitleColor
