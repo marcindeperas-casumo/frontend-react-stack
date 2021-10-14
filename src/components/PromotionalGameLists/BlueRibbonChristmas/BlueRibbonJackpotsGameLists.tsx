@@ -21,6 +21,9 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
     "built-pages.top-lists-translations"
   );
   const [onboardingVisible, setOnboardingVisible] = React.useState(true);
+  const userViewedJackpotOnboardingOffer = localStorage.getItem(
+    "JackpotOnboardingOfferPresented"
+  );
 
   const jackpotConfigs = useTranslations<{
     jackpot_image: string;
@@ -50,6 +53,11 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
     return null;
   }
 
+  const onCloseOnboardingWidget = () => {
+    localStorage.setItem("JackpotOnboardingOfferPresented", "true");
+    setOnboardingVisible(false);
+  };
+
   return (
     <GameListHorizontalWithWidget
       gamesInColumn={composedJackpot.pots.length > 2 ? 3 : 2}
@@ -66,7 +74,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
             widgetColor={composedJackpot.widgetColor}
             jackpotLogo={jackpotConfigs.jackpot_image}
           />
-          {onboardingVisible && (
+          {onboardingVisible && !userViewedJackpotOnboardingOffer && (
             <BlueRibbonJackpotsOnboardingWidget
               content={{
                 backgroundImage: jackpotConfigs.jackpot_onboarding_background,
@@ -76,7 +84,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
               }}
               composedPots={composedJackpot.pots}
               widgetColor={composedJackpot.widgetColor}
-              onClose={() => setOnboardingVisible(!onboardingVisible)}
+              onClose={onCloseOnboardingWidget}
             />
           )}
         </Flex>
