@@ -16,6 +16,7 @@ type JackpotOnboardingWidget = {
   body: string;
   cta: string;
   backgroundImage: string;
+  ctaLink: string;
 };
 export function BlueRibbonJackpotsOnboardingWidget({
   content,
@@ -67,7 +68,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
 
       <Link
         className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg"
-        to={"/casumo-jackpots"}
+        to={content.ctaLink}
       >
         {content.cta}
       </Link>

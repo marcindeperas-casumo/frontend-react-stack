@@ -27,6 +27,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
 
   const jackpotConfigs = useTranslations<{
     jackpot_image: string;
+    jackpot_onboarding_cta_link: string;
     jackpot_onboarding_background: string;
     jackpot_onboarding_title: string;
     jackpot_onboarding_body: string;
@@ -73,6 +74,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
             composedPots={composedJackpot.pots}
             widgetColor={composedJackpot.widgetColor}
             jackpotLogo={jackpotConfigs.jackpot_image}
+            explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
           />
           {onboardingVisible && !userViewedJackpotOnboardingOffer && (
             <BlueRibbonJackpotsOnboardingWidget
@@ -81,6 +83,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
                 title: jackpotConfigs.jackpot_onboarding_title,
                 body: jackpotConfigs.jackpot_onboarding_body,
                 cta: jackpotConfigs.jackpot_onboarding_button_copy,
+                ctaLink: jackpotConfigs.jackpot_onboarding_cta_link,
               }}
               composedPots={composedJackpot.pots}
               widgetColor={composedJackpot.widgetColor}
