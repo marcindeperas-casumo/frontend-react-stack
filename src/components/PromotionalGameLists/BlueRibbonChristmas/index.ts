@@ -9,3 +9,4 @@ export { useDataForBlueRibbonJackpotsWidget } from "./useDataForBlueRibbonJackpo
 export { BlueRibbonManualOptInAndOptOut } from "./BlueRibbonManualOptInAndOptOut";
 export { BlueRibbonOptInNotification } from "./BlueRibbonOptInNotification";
 export { BlueRibbonJackpotsGameLists } from "./BlueRibbonJackpotsGameLists";
+export { BlueRibbonJackpotsStaticWidgetContainer } from "./BlueRibbonJackpotsStaticWidgetContainer";
