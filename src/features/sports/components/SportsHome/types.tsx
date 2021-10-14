@@ -2,6 +2,8 @@ export type SportsHomeTranslations = {
   live: string;
   draw: string;
   title: string;
+  away: string;
+  home: string;
 };
 
 export type SportsHomeTranslationsDictionary = {
@@ -19,7 +21,15 @@ export type SportsHomeOutcome = {
   label: string;
   odds: number;
   fractional: string;
+  american: string;
   isDisabled: boolean;
+};
+
+export type SportsHomeEventPath = {
+  id: number;
+  name: string;
+  englishName: string;
+  termKey: string;
 };
 
 export type SportsHomeEvent = {
@@ -33,13 +43,16 @@ export type SportsHomeEvent = {
   live: boolean;
   score: string;
   show: boolean;
+  homeName: string;
+  awayName: string;
   outcomes: SportsHomeOutcome[];
+  path: SportsHomeEventPath[];
 };
 
 export type SportsHomeType = {
   translations: SportsHomeTranslations;
   events: SportsHomeEvent[];
-  fractional: boolean;
+  oddsFormat: string;
   locale: string;
 };
 
@@ -60,11 +73,19 @@ export interface KambiBetOfferType {
 export interface KambiBetOfferOutcome {
   id: number;
   label: string;
+  type: string;
   participant: string;
   odds: number;
   status: string;
   oddsAmerican: string;
   oddsFractional: string;
+}
+
+export interface KambiEventPath {
+  id: number;
+  name: string;
+  englishName: string;
+  termKey: string;
 }
 
 export interface KambiEvent {
@@ -77,6 +98,7 @@ export interface KambiEvent {
   group: string;
   groupId: number;
   sport: string;
+  path: KambiEventPath[];
   state: string;
 }
 

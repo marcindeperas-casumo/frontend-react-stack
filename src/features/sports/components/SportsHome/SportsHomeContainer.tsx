@@ -10,7 +10,6 @@ import {
 } from "./types";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
-
 export const DEFAULT_NUMBER_OF_EVENTS_TO_SHOW = 5;
 export const NUMBER_EVENTS_TO_PULL_MULTIPLIER = 4;
 export const DEFAULT_SPORTS = "FOOTBALL";
