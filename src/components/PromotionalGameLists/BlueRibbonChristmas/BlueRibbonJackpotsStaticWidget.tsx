@@ -80,15 +80,14 @@ function JackpotRow({
       renderText={() => (
         <>
           <Text
-            size="2xs"
             className={classNames(
-              "u-margin-bottom u-font-weight-bold u-text-transform-uppercase text-white",
+              "u-font-weight-bold u-text-transform-uppercase text-white",
               potTitleColor
             )}
           >
             {label}
           </Text>
-          <Text size="xs" className="u-margin-bottom--none">
+          <Text size="sm" className="u-margin-bottom--none">
             {`${potInformation} ${potInformationAmount}`}
           </Text>
         </>
