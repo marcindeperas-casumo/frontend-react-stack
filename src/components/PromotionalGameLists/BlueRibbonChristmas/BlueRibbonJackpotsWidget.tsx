@@ -1,6 +1,7 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
+import { QuestionMarkIcon } from "@casumo/cmp-icons";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
@@ -114,6 +115,9 @@ export function BlueRibbonJackpotsWidget({
           alt=""
           src={jackpotLogo}
         />
+      </Flex.Item>
+      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--none o-inset-bottom--auto u-margin-right--md u-margin-bottom--md">
+        <QuestionMarkIcon />
       </Flex.Item>
     </Flex>
   );
