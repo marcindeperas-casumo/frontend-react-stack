@@ -2,10 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { featureFlagSelector, marketSelector } from "Models/handshake";
 import { showModal } from "Models/modal";
 import { setQuickDepositMethod } from "Models/payments/payments.actions";
-import { REACT_APP_MODAL } from "Src/constants";
+import { REACT_APP_MODAL, EVENTS } from "Src/constants";
 import { useAvailableQuickDepositMethods } from "Utils/hooks";
 import tracker from "Services/tracker";
-import { EVENTS } from "Src/constants";
 
 const quickDepositDisabledMarkets = [];
 

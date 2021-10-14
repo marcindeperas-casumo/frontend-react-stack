@@ -3,15 +3,14 @@ import { useSelector } from "react-redux";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
-import { TCurrencyCode } from "Src/constants";
+import { TCurrencyCode, EVENTS } from "Src/constants";
 import { useDepositMethods } from "Utils/hooks/useDepositMethods";
 import { playerCurrencySelector } from "Models/player";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslationsGql } from "Utils/hooks";
+import tracker from "Services/tracker";
 import { LowBalanceNotification } from "./LowBalanceNotification";
 import { LOW_BALANCES_THRESHOLDS } from "./lowBalance.constants";
-import tracker from "Services/tracker";
-import { EVENTS } from "Src/constants";
 
 type TBalance = {
   amount: number;
@@ -83,7 +82,7 @@ export const LowBalanceNotificationContainer = () => {
     navigateToCashier();
   };
 
-  const launchQuickDepositTracked= () => {
+  const launchQuickDepositTracked = () => {
     tracker.track(EVENTS.MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT, {});
     launchQuickDeposit();
   };

@@ -11,9 +11,9 @@ import { CMS_SLUGS as CMS_SLUG } from "Models/playing/playing.constants";
 import { formatCurrency } from "Utils";
 import { useGameActivityAwareValue } from "Components/GamePage/Hooks/useGameActivityAwareValue";
 import { useDepositMethods } from "Utils/hooks/useDepositMethods";
-import { QuickDeposit } from "./QuickDeposit";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
+import { QuickDeposit } from "./QuickDeposit";
 
 type Props = {
   className?: string;
