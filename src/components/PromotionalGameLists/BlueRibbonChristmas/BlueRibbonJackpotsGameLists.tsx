@@ -3,6 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
+import logger from "Services/logger";
 import { GameListHorizontalWithWidget } from "Components/GameListHorizontal/GameListHorizontalWithWidget";
 import { GameListQuery } from "Components/GameListHorizontal/GameListHorizontalDefault/GameListHorizontalDefault.graphql";
 import { useTranslatedUrl, useTranslations } from "Utils/hooks";
@@ -11,7 +12,6 @@ import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
 import { useComposedJackpotConfigBySlug } from "./useComposedJackpot";
 import { BlueRibbonJackpotsOnboardingWidget } from "./BlueRibbonJackpotsOnboardingWidget";
-import logger from "Services/logger";
 
 export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   const { composedJackpot } = useComposedJackpotConfigBySlug({
