@@ -39,7 +39,9 @@ export function BlueRibbonJackpotsOnboardingWidget({
       className={`o-position--relative o-flex__item--no-shrink u-padding--md t-border-r--md u-overflow--hidden u-margin-left`}
       style={{
         backgroundColor: widgetColor.light,
-        backgroundImage: `url('${content.backgroundImage || ""}')`,
+        backgroundImage: content.backgroundImage
+          ? `url('${content.backgroundImage}')`
+          : "none",
         width: topListWidgetWidth,
         height:
           composedPots.length < 3

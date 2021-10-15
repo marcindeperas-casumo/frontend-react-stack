@@ -130,10 +130,9 @@ export function BlueRibbonJackpotsWidget({
               direction="vertical"
               justify="center"
               align="center"
-              style={{ width: "30px", height: "30px" }}
-              className="t-border-r--circle t-background-white"
+              className="t-border-r--circle t-background-white c-icon--md"
             >
-              <QuestionMarkIcon style={{ color: "#1A212C" }} />
+              <QuestionMarkIcon className="t-color-grey-90" />
             </Flex>
           </Link>
         )}

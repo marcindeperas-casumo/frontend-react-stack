@@ -11,6 +11,7 @@ import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
 import { useComposedJackpotConfigBySlug } from "./useComposedJackpot";
 import { BlueRibbonJackpotsOnboardingWidget } from "./BlueRibbonJackpotsOnboardingWidget";
+import logger from "Services/logger";
 
 export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   const { composedJackpot } = useComposedJackpotConfigBySlug({
@@ -55,7 +56,13 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
   }
 
   const onCloseOnboardingWidget = () => {
-    localStorage.setItem("JackpotOnboardingOfferPresented", "true");
+    try {
+      localStorage.setItem("JackpotOnboardingOfferPresented", "true");
+    } catch (error) {
+      logger.error("JackpotOnboardingOfferPresented local storage error", {
+        error,
+      });
+    }
     setOnboardingVisible(false);
   };
 
