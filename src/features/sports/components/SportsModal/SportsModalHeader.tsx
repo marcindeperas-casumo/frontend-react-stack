@@ -2,12 +2,8 @@ import { ArrowLeftIcon, CloseIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import React from "react";
 import classNames from "classnames";
-
+import { SharedProps } from "./SportsModal.types";
 import "./SportsModalHeader.scss";
-
-type SharedProps = {
-  children: React.ReactChild;
-};
 
 type HeaderProps = SharedProps & {
   className?: string;
