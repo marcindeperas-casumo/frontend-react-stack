@@ -178,13 +178,15 @@ export const SportsHome = ({
           popularEvent => popularEvent.eventId
         );
 
+        const offering = await getOfferingData(
+          eventIds,
+          kambiOffering,
+          kambiLocale,
+          market
+        );
+
         const sportsHomeType = {
-          events: await getOfferingData(
-            eventIds,
-            kambiOffering,
-            kambiLocale,
-            market
-          ),
+          events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),

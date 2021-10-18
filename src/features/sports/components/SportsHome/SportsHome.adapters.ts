@@ -22,7 +22,7 @@ class SportsHomeAdapters {
       const event = events.find(x => x.id === eventId);
       if (!event) {
         return {
-          id: event.id,
+          id: eventId,
           betOfferId: 0,
           betOfferType: 0,
           name: "",
