@@ -1,9 +1,7 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
-import { QuestionMarkIcon } from "@casumo/cmp-icons";
 import * as React from "react";
-import { Link } from "@reach/router";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import { useLocale } from "Utils/hooks";
@@ -21,7 +19,6 @@ export function BlueRibbonJackpotsWidget({
   composedPots,
   widgetColor,
   jackpotLogo,
-  explainerPageUrl,
 }: {
   className?: string;
   composedPots: Array<PotObject>;
@@ -30,14 +27,9 @@ export function BlueRibbonJackpotsWidget({
     light?: string;
   };
   jackpotLogo?: string;
-  explainerPageUrl?: string;
 }) {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
-  const userViewedJackpotOnboardingOffer = localStorage.getItem(
-    "JackpotOnboardingOfferPresented"
-  );
-
   return (
     <Flex
       direction="vertical"
@@ -122,20 +114,6 @@ export function BlueRibbonJackpotsWidget({
           alt=""
           src={jackpotLogo}
         />
-      </Flex.Item>
-      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--none o-inset-bottom--auto u-margin-right--md u-margin-bottom--md">
-        {userViewedJackpotOnboardingOffer && (
-          <Link to={explainerPageUrl}>
-            <Flex
-              direction="vertical"
-              justify="center"
-              align="center"
-              className="t-border-r--circle t-background-white c-icon--md"
-            >
-              <QuestionMarkIcon className="t-color-grey-90" />
-            </Flex>
-          </Link>
-        )}
       </Flex.Item>
     </Flex>
   );
