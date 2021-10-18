@@ -4,15 +4,16 @@ import {
   KambiEvent,
   KambiEventPath,
   KambiLiveEvent,
+  KambiLiveEventStatistics,
   SportsHomeConfigurationTranslations,
   SportsHomeEvent,
   SportsHomeEventPath,
+  SportsHomeLiveEventStatistics,
   SportsHomeOutcome,
   SportsHomePopularBetsConfigurations,
   SportsHomeTranslations,
   SportsHomeTranslationsDictionary,
 } from "./types";
-
 class SportsHomeAdapters {
   convertToSportsHomeOfferings(
     eventIds: number[],
@@ -37,9 +38,11 @@ class SportsHomeAdapters {
         group: event.group,
         startTime: event.start,
         live: event.state === "STARTED",
-        score: liveEvent?.score
-          ? this.convertToSportsHomeLiveEventScore(liveEvent)
-          : "",
+        scoreHome: liveEvent?.score?.home,
+        scoreAway: liveEvent?.score?.away,
+        statistics: this.convertToSportsHomeLiveEventStatistics(
+          liveEvent?.statistics
+        ),
         show: true,
         homeName: event.homeName,
         awayName: event.awayName,
@@ -116,8 +119,16 @@ class SportsHomeAdapters {
     } as SportsHomePopularBetsConfigurations;
   }
 
-  convertToSportsHomeLiveEventScore(data: KambiLiveEvent): string {
-    return data ? `(${data.score.home} : ${data.score.away}) ` : "";
+  convertToSportsHomeLiveEventStatistics(
+    data: KambiLiveEventStatistics
+  ): SportsHomeLiveEventStatistics {
+    const homeStatistics = data?.sets?.home.filter(x => x >= 0);
+    const awayStatistics = data?.sets?.away.filter(x => x >= 0);
+
+    return {
+      homeStatistics: homeStatistics?.join(" "),
+      awayStatistics: awayStatistics?.join(" "),
+    } as SportsHomeLiveEventStatistics;
   }
 }
 
