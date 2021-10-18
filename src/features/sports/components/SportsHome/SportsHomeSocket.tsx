@@ -109,7 +109,8 @@ export const messageEvent = (
   setData: (data: SportsHomeType) => void,
   dataReact: SportsHomeType,
   refetch: () => void,
-  numberOfEventsToShow: number
+  numberOfEventsToShow: number,
+  getOneEvent: (eventId: number) => void
 ) => {
   const data = Object.assign({}, dataReact);
   let updateNeeded = false;
@@ -229,6 +230,9 @@ export const messageEvent = (
       const event = findEventInData(data, msg.esu.id);
       if (event) {
         event.live = msg.esu.state === "STARTED";
+        if (event.show === false && event.name === "") {
+          getOneEvent(event.id);
+        }
         updateNeeded = true;
       }
     }
