@@ -60,6 +60,28 @@ const renderSportsHome = (
   }
 };
 
+export const getOfferingData = async (
+  eventIds: number[],
+  kambiOffering: string,
+  kambiLocale: string,
+  market: string
+) => {
+  const eventIdsArgs = eventIds.join();
+
+  const kambiOfferings = await SportsHomeService.getOfferings(
+    kambiOffering,
+    eventIdsArgs,
+    kambiLocale,
+    market
+  );
+
+  return SportsHomeAdapters.convertToSportsHomeOfferings(
+    eventIds,
+    kambiOfferings.data.events,
+    kambiOfferings.data.betOffers
+  );
+};
+
 export const SportsHome = ({
   numberOfEvents,
   numberOfEventsToShow,
@@ -130,14 +152,23 @@ export const SportsHome = ({
         setSportsPopularBetsData,
         sportsPopularBetsData,
         refetch,
-        numberOfEventsToShow
+        numberOfEventsToShow,
+        (eventId: number) =>
+          getOfferingData([eventId], kambiOffering, kambiLocale, market)
       );
     };
     socket.on("message", listener);
     return () => {
       socket.off("message", listener);
     };
-  }, [sportsPopularBetsData, refetch, numberOfEventsToShow]);
+  }, [
+    sportsPopularBetsData,
+    refetch,
+    numberOfEventsToShow,
+    kambiOffering,
+    kambiLocale,
+    market,
+  ]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -147,23 +178,13 @@ export const SportsHome = ({
           popularEvent => popularEvent.eventId
         );
 
-        const eventIdsArgs = eventIds.join();
-
-        const kambiOfferings = await SportsHomeService.getOfferings(
-          kambiOffering,
-          eventIdsArgs,
-          kambiLocale,
-          market
-        );
-
-        const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
-          eventIds,
-          kambiOfferings.data.events,
-          kambiOfferings.data.betOffers
-        );
-
         const sportsHomeType = {
-          events: offerringData,
+          events: await getOfferingData(
+            eventIds,
+            kambiOffering,
+            kambiLocale,
+            market
+          ),
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),

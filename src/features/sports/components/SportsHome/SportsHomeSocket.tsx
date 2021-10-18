@@ -75,6 +75,15 @@ const findEventInData = (data: SportsHomeType, eventId: number) => {
   return null;
 };
 
+const findEventIndexInData = (data: SportsHomeType, eventId: number) => {
+  for (let i = 0; i < data.events?.length; i++) {
+    if (data.events[i].id === eventId) {
+      return i;
+    }
+  }
+  return null;
+};
+
 const findEventByBetofferInData = (
   data: SportsHomeType,
   betOfferId: number
@@ -105,7 +114,8 @@ export const messageEvent = (
   setData: (data: SportsHomeType) => void,
   dataReact: SportsHomeType,
   refetch: () => void,
-  numberOfEventsToShow: number
+  numberOfEventsToShow: number,
+  getOfferingData: (eventId: number) => Promise<SportsHomeEvent[]>,
 ) => {
   const data = Object.assign({}, dataReact);
   let updateNeeded = false;
@@ -210,6 +220,11 @@ export const messageEvent = (
       const event = findEventInData(data, msg.esu.id);
       if (event) {
         event.live = msg.esu.state === "STARTED";
+        if (event.show === false && event.name === "") {
+          const eventId = findEventIndexInData(data, msg.esu.id);
+
+          data.events[eventId] = getOfferingData(event.id)[0];
+        }
         updateNeeded = true;
       }
     }

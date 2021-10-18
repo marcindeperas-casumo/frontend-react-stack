@@ -21,7 +21,22 @@ class SportsHomeAdapters {
     const mappedEvents = eventIds.map<SportsHomeEvent>(eventId => {
       const event = events.find(x => x.id === eventId);
       if (!event) {
-        return;
+        return {
+          id: event.id,
+          betOfferId: 0,
+          betOfferType: 0,
+          name: "",
+          sport: "",
+          group: "",
+          startTime: "",
+          live: false,
+          score: "",
+          show: false,
+          homeName: "",
+          awayName: "",
+          outcomes: [],
+          path: [],
+        } as SportsHomeEvent;
       }
       const betOffer = betOffers.find(x => x.eventId === event.id);
 
