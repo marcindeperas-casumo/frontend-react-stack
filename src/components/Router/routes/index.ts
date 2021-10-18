@@ -21,3 +21,5 @@ export * from "./LazyTopNav";
 export * from "./LazyLiveCasinoTopNav";
 export * from "./LazyLiveCasinoPage";
 export * from "./LazyJackpotDetail";
+export * from "./LazyJackpotExplainer";
+export * from "./LazyJackpotsNav";

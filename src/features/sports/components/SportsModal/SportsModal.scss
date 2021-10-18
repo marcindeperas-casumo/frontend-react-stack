@@ -13,6 +13,11 @@
   }
 }
 
+.c-sports-modal__content {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .c-sports-modal__content-inner {
   margin: 0 auto;
 }
