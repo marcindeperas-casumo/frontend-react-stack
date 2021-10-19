@@ -38,7 +38,7 @@ export class BettingGlossaryEntry extends React.PureComponent<Props> {
         10
       );
       window.document
-        .querySelector(".c-modal__content")
+        .querySelector(".c-sports-modal__content")
         .scrollTo(
           0,
           (linkedElement as any).offsetTop +

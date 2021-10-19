@@ -60,6 +60,35 @@ const renderSportsHome = (
   }
 };
 
+export const getOfferingData = async (
+  eventIds: number[],
+  kambiOffering: string,
+  kambiLocale: string,
+  market: string
+) => {
+  const eventIdsArgs = eventIds.join();
+
+  const kambiOfferings = await SportsHomeService.getEvents(
+    kambiOffering,
+    eventIdsArgs,
+    kambiLocale,
+    market
+  );
+
+  const kambiLiveEvents = await SportsHomeService.getLiveEvents(
+    kambiOffering,
+    eventIdsArgs,
+    kambiLocale
+  );
+
+  return SportsHomeAdapters.convertToSportsHomeOfferings(
+    eventIds,
+    kambiOfferings.data.events,
+    kambiOfferings.data.betOffers,
+    kambiLiveEvents.data.liveData
+  );
+};
+
 export const SportsHome = ({
   numberOfEvents,
   numberOfEventsToShow,
@@ -124,20 +153,57 @@ export const SportsHome = ({
   }, []);
 
   React.useEffect(() => {
+    // reload one event from kambi offering API when needed
+    const getOneEvent = (eventId: number) => {
+      const oneEventArray = getOfferingData(
+        [eventId],
+        kambiOffering,
+        kambiLocale,
+        market
+      );
+
+      oneEventArray.then(eventArray => {
+        const oneEvent = eventArray[0];
+
+        if (oneEvent) {
+          const indexOfEvent = sportsPopularBetsData.events
+            .map(ev => ev.id)
+            .indexOf(eventId);
+          // eslint-disable-next-line fp/no-mutation
+          sportsPopularBetsData.events[indexOfEvent] = oneEvent;
+
+          setSportsPopularBetsData({
+            translations: sportsPopularBetsData.translations,
+            events: sportsPopularBetsData.events,
+            oddsFormat: sportsPopularBetsData.oddsFormat,
+            locale: sportsPopularBetsData.locale,
+          });
+        }
+      });
+    };
+
     const listener = dataSocket => {
       messageEvent(
         JSON.parse(dataSocket),
         setSportsPopularBetsData,
         sportsPopularBetsData,
         refetch,
-        numberOfEventsToShow
+        numberOfEventsToShow,
+        getOneEvent
       );
     };
     socket.on("message", listener);
     return () => {
       socket.off("message", listener);
     };
-  }, [sportsPopularBetsData, refetch, numberOfEventsToShow]);
+  }, [
+    sportsPopularBetsData,
+    refetch,
+    numberOfEventsToShow,
+    kambiOffering,
+    kambiLocale,
+    market,
+  ]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -147,23 +213,15 @@ export const SportsHome = ({
           popularEvent => popularEvent.eventId
         );
 
-        const eventIdsArgs = eventIds.join();
-
-        const kambiOfferings = await SportsHomeService.getOfferings(
+        const offering = await getOfferingData(
+          eventIds,
           kambiOffering,
-          eventIdsArgs,
           kambiLocale,
           market
         );
 
-        const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
-          eventIds,
-          kambiOfferings.data.events,
-          kambiOfferings.data.betOffers
-        );
-
         const sportsHomeType = {
-          events: offerringData,
+          events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),

@@ -21,9 +21,13 @@ const BET_OFFER_STATUS_UPDATED = 8;
 const BET_OFFER_ODDS_UPDATED = 11;
 const EVENT_SCORE_UPDATED = 16;
 const EVENT_REMOVED = 18;
+const EVENT_STATS_UPDATED = 17;
 const BET_OFFER_ODDS_ADDED = 22;
 const BET_OFFER_ODDS_REMOVED = 23;
 const EVENT_STATE_UPDATED = 34;
+
+const SPORT_FOOTBALL = "FOOTBALL";
+const SPORT_TENNIS = "TENNIS";
 
 // eslint-disable-next-line fp/no-let
 let vars = {
@@ -105,7 +109,8 @@ export const messageEvent = (
   setData: (data: SportsHomeType) => void,
   dataReact: SportsHomeType,
   refetch: () => void,
-  numberOfEventsToShow: number
+  numberOfEventsToShow: number,
+  getOneEvent: (eventId: number) => void
 ) => {
   const data = Object.assign({}, dataReact);
   let updateNeeded = false;
@@ -164,8 +169,23 @@ export const messageEvent = (
     // score change - for football only atm
     if (msg.mt === EVENT_SCORE_UPDATED) {
       const event = findEventInData(data, msg.score.eventId);
-      if (event && event.sport === "FOOTBALL") {
-        event.score = `(${msg.score.score.home} : ${msg.score.score.away}) `;
+      if (
+        event &&
+        (event.sport === SPORT_FOOTBALL || event.sport === SPORT_TENNIS)
+      ) {
+        event.scoreHome = msg.score.score.home;
+        event.scoreAway = msg.score.score.away;
+        updateNeeded = true;
+      }
+    }
+
+    // stat updated - for tennis only atm
+    if (msg.mt === EVENT_STATS_UPDATED) {
+      const event = findEventInData(data, msg.stats.eventId);
+      if (event && event.sport === SPORT_TENNIS) {
+        event.statistics = SportsHomeAdapters.convertToSportsHomeLiveEventStatistics(
+          msg.stats.statistics
+        );
         updateNeeded = true;
       }
     }
@@ -210,6 +230,9 @@ export const messageEvent = (
       const event = findEventInData(data, msg.esu.id);
       if (event) {
         event.live = msg.esu.state === "STARTED";
+        if (event.show === false && event.name === "") {
+          getOneEvent(event.id);
+        }
         updateNeeded = true;
       }
     }
