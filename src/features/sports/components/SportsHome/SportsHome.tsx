@@ -174,11 +174,12 @@ export const SportsHome = ({
       const func = wapi.subscribe(handleWapiEvent);
       wapi.request(wapi.BETSLIP_OUTCOMES);
 
-      return await func;
+      return func;
     };
+
     const unsubscribeBetslip = subscribeBetslip();
 
-    return async () => (await unsubscribeBetslip)();
+    return async () => (await unsubscribeBetslip).unsubscribe();
   }, []);
 
   React.useEffect(() => {
