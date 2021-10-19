@@ -216,8 +216,8 @@ export const SportsHome = ({
         const eventIdsArgs = eventIds.join();
 
         const kambiOfferings = await SportsHomeService.getEvents(
-          eventIds,
           kambiOffering,
+          eventIds,
           kambiLocale,
           market
         );
