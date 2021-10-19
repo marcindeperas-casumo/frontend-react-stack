@@ -213,30 +213,15 @@ export const SportsHome = ({
           popularEvent => popularEvent.eventId
         );
 
-        const eventIdsArgs = eventIds.join();
-
-        const kambiOfferings = await SportsHomeService.getEvents(
-          kambiOffering,
+        const offering = await getOfferingData(
           eventIds,
+          kambiOffering,
           kambiLocale,
           market
         );
 
-        const kambiLiveEvents = await SportsHomeService.getLiveEvents(
-          kambiOffering,
-          eventIdsArgs,
-          kambiLocale
-        );
-
-        const offerringData = SportsHomeAdapters.convertToSportsHomeOfferings(
-          eventIds,
-          kambiOfferings.data.events,
-          kambiOfferings.data.betOffers,
-          kambiLiveEvents.data.liveData
-        );
-
         const sportsHomeType = {
-          events: offerringData,
+          events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
           translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
