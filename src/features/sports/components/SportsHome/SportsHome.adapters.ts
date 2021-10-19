@@ -2,8 +2,10 @@ import {
   KambiBetOffer,
   KambiBetOfferOutcome,
   KambiEvent,
+  KambiEventPath,
   SportsHomeConfigurationTranslations,
   SportsHomeEvent,
+  SportsHomeEventPath,
   SportsHomeOutcome,
   SportsHomePopularBetsConfigurations,
   SportsHomeTranslations,
@@ -19,7 +21,22 @@ class SportsHomeAdapters {
     const mappedEvents = eventIds.map<SportsHomeEvent>(eventId => {
       const event = events.find(x => x.id === eventId);
       if (!event) {
-        return;
+        return {
+          id: eventId,
+          betOfferId: 0,
+          betOfferType: 0,
+          name: "",
+          sport: "",
+          group: "",
+          startTime: "",
+          live: false,
+          score: "",
+          show: false,
+          homeName: "",
+          awayName: "",
+          outcomes: [],
+          path: [],
+        } as SportsHomeEvent;
       }
       const betOffer = betOffers.find(x => x.eventId === event.id);
 
@@ -34,9 +51,12 @@ class SportsHomeAdapters {
         live: event.state === "STARTED",
         score: "",
         show: true,
+        homeName: event.homeName,
+        awayName: event.awayName,
         outcomes: betOffer?.outcomes
           ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
           : [],
+        path: event?.path ? this.convertToSportsHomeEventPath(event.path) : [],
       } as SportsHomeEvent;
     });
 
@@ -49,13 +69,28 @@ class SportsHomeAdapters {
     return kambiBetOfferOutcomes.map<SportsHomeOutcome>(outcome => {
       return {
         id: outcome.id,
-        type: outcome.label,
+        type: outcome.type,
         label: outcome.participant,
         odds: outcome.odds,
         fractional: outcome.oddsFractional,
+        american: outcome.oddsAmerican,
         isDisabled: outcome.status !== "OPEN",
       } as SportsHomeOutcome;
     });
+  }
+
+  convertToSportsHomeEventPath(
+    kambiEventPath: KambiEventPath[]
+  ): SportsHomeEventPath[] {
+    return kambiEventPath.map<SportsHomeEventPath>(
+      eventPath =>
+        ({
+          id: eventPath.id,
+          englishName: eventPath.englishName,
+          name: eventPath.name,
+          termKey: eventPath.termKey,
+        } as SportsHomeEventPath)
+    );
   }
 
   convertToSportsHomeTranslations(
@@ -65,6 +100,8 @@ class SportsHomeAdapters {
       live: data.dictionary.find(x => x.key === "sports_home_live")?.value,
       draw: data.dictionary.find(x => x.key === "sports_home_draw")?.value,
       title: data.dictionary.find(x => x.key === "sports_home_title")?.value,
+      home: data.dictionary.find(x => x.key === "sports_home_home")?.value,
+      away: data.dictionary.find(x => x.key === "sports_home_away")?.value,
     } as SportsHomeTranslations;
   }
 

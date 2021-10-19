@@ -18,6 +18,8 @@ query GetJackpotConfigForWidget($slug: String!) {
       icon
       potExplanation
       potTitleColor
+      potInformation
+      potInformationAmount
       sharedPot { 
         name
         shortName
