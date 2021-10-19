@@ -32,6 +32,11 @@ export type SportsHomeEventPath = {
   termKey: string;
 };
 
+export type SportsHomeLiveEventStatistics = {
+  homeStatistics: string;
+  awayStatistics: string;
+};
+
 export type SportsHomeEvent = {
   id: number;
   betOfferId: number;
@@ -41,7 +46,9 @@ export type SportsHomeEvent = {
   group: string;
   startTime: string;
   live: boolean;
-  score: string;
+  scoreHome: string;
+  scoreAway: string;
+  statistics: SportsHomeLiveEventStatistics;
   show: boolean;
   homeName: string;
   awayName: string;
@@ -107,8 +114,35 @@ export interface KambiOfferingResponse {
   events: KambiEvent[];
 }
 
-export interface KambiOfferingServerResponse {
+export interface KambiEventServerResponse {
   data: KambiOfferingResponse;
+}
+
+export interface KambiEventScore {
+  home: string;
+  away: string;
+  info: string;
+  who: string;
+}
+
+export interface KambiLiveEventStatisticsSets {
+  home: number[];
+  away: number[];
+}
+export interface KambiLiveEventStatistics {
+  sets: KambiLiveEventStatisticsSets;
+}
+
+export interface KambiLiveEvent {
+  eventId: number;
+  score: KambiEventScore;
+  statistics: KambiLiveEventStatistics;
+}
+export interface KambiLiveEventResponse {
+  liveData: KambiLiveEvent[];
+}
+export interface KambiLiveEventServerResponse {
+  data: KambiLiveEventResponse;
 }
 
 export interface SportsHomeConfigurationTranslations {
