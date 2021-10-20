@@ -5,6 +5,7 @@ import { MGABar } from "./MGABar";
 import { DGABar } from "./DGABar";
 import { SGABar } from "./SGABar";
 import { GGLBar } from "./GGLBar";
+import { UKGCBar } from "./UKGCBar";
 import "./PlayOkayBar.scss";
 
 type Props = {
@@ -17,6 +18,7 @@ const jurisdictionBarMapping = {
   [JURISDICTIONS.DGA]: DGABar,
   [JURISDICTIONS.SGA]: SGABar,
   [JURISDICTIONS.GGL]: GGLBar,
+  [JURISDICTIONS.UKGC]: UKGCBar,
 };
 
 export const PlayOkayBar = ({ jurisdiction }: Props) => {

@@ -15,3 +15,9 @@ export const fetchBlueRibbonHandshake = () => ({
   asyncCall: fetchBlueRibbonJackpotHandshakeCall,
   postFetch: types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE,
 });
+
+export const winAnimationRunning = isAnimationDone => ({
+  type: "WIN_ANIMATION_DONE",
+  name: types.WIN_ANIMATION_RUNNING,
+  isAnimationDone,
+});

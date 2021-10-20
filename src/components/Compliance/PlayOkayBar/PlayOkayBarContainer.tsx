@@ -9,6 +9,5 @@ export type PauseResumeProps = {
 
 export const PlayOkayBarContainer = () => {
   const { jurisdiction } = useJurisdiction();
-
   return <PlayOkayBar jurisdiction={jurisdiction} />;
 };

@@ -3,6 +3,7 @@ import { ACTION_TYPES } from "Models/player";
 
 const DEFAULT_STATE = {
   wallet: {},
+  financialPosition: {},
   realityCheck: {},
   sessionValid: true,
   logoutStarted: false,
@@ -15,7 +16,8 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     if (
       data &&
       data.walletBalanceUpdated &&
-      data.walletBalanceUpdated.updatedBalance
+      data.walletBalanceUpdated.updatedBalance &&
+      data.gameSessionNetFinancialPositionChanged
     ) {
       const wallet = {
         amount: data.walletBalanceUpdated.updatedBalance.realBalance.amount,
@@ -25,9 +27,28 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
             .iso4217CurrencyCode,
         lastBalanceUpdateReason: data.walletBalanceUpdated?.source,
       };
+
       return {
         ...state,
         wallet,
+      };
+    }
+
+    if (
+      data &&
+      data.gameSessionNetFinancialPositionChanged &&
+      data.gameSessionNetFinancialPositionChanged.totalRealBetAmount &&
+      data.gameSessionNetFinancialPositionChanged.totalRealWinAmount
+    ) {
+      const financialPosition = {
+        sessionWinnings:
+          data.gameSessionNetFinancialPositionChanged.totalRealWinAmount.amount,
+        sessionLoss:
+          data.gameSessionNetFinancialPositionChanged.totalRealBetAmount.amount,
+      };
+      return {
+        ...state,
+        financialPosition,
       };
     }
 
