@@ -20,6 +20,7 @@ import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
+const BETSLIP_OUTCOMES = "BetslipOutcomes";
 const eventClick = async (eventId: number) => {
   const wapi = await getKambiWidgetAPI();
 
@@ -165,7 +166,7 @@ export const SportsHome = ({
 
   React.useEffect(() => {
     const handleWapiEvent = ev => {
-      if (ev.type === "BetslipOutcomes" && ev?.data?.outcomes) {
+      if (ev.type === BETSLIP_OUTCOMES && ev?.data?.outcomes) {
         setBetslipOutcomesIds(ev.data.outcomes.map(outcome => outcome.id));
       }
     };
