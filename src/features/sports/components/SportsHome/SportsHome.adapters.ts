@@ -96,7 +96,7 @@ class SportsHomeAdapters {
       eventPath =>
         ({
           id: eventPath.id,
-          englishName: eventPath.englishName,
+          englishName: eventPath.name,
           name: eventPath.name,
           termKey: eventPath.termKey,
         } as SportsHomeEventPath)
