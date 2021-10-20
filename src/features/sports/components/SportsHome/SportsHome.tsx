@@ -36,7 +36,7 @@ const outcomeClick = async (outcomeId: number, selected: boolean) => {
     wapi.set(wapi.BETSLIP_OUTCOMES, {
       updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
       outcomes: [outcomeId],
-      couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_COMBINATION,
+      couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_SINGLE,
     });
   }
 };
