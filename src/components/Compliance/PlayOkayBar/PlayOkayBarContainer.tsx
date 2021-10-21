@@ -7,7 +7,13 @@ export type PauseResumeProps = {
   resumeGame: () => void;
 };
 
-export const PlayOkayBarContainer = () => {
+type Props = {
+  gameCategory: string;
+};
+
+export const PlayOkayBarContainer = ({ gameCategory }: Props) => {
   const { jurisdiction } = useJurisdiction();
-  return <PlayOkayBar jurisdiction={jurisdiction} />;
+  return (
+    <PlayOkayBar jurisdiction={jurisdiction} gameCategory={gameCategory} />
+  );
 };

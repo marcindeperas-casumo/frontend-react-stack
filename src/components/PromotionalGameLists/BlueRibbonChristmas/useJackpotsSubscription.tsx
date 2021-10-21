@@ -59,6 +59,7 @@ export function useJackpotsSubscription({
         return null;
       }
 
+      dispatch(winAnimationRunning(true));
       setJackpotWinParams(notificationData.parameters);
 
       setTimeout(() => {
@@ -81,7 +82,7 @@ export function useJackpotsSubscription({
   const acknowledge = () => {
     setJackpotWinParams(null);
 
-    dispatch(winAnimationRunning(true));
+    dispatch(winAnimationRunning(false));
     resumeGame();
   };
 

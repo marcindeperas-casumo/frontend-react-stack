@@ -36,7 +36,7 @@ const handlers = {
   }),
   [types.WIN_ANIMATION_RUNNING]: (state, action) => ({
     ...state,
-    winAnimationRunning: action.isAnimationDone,
+    winAnimationRunning: action.winAnimationStatus,
   }),
 };
 
