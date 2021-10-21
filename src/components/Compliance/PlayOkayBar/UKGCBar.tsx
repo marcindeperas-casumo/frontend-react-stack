@@ -21,7 +21,7 @@ export const UKGCBar = ({ className = "", gameCategory }: Props) => {
   return (
     <Flex justify="end" align="center" className={className}>
       <Flex.Item
-        className="c-playokay-bar__wideClock u-font-xs text-grey-5 o-flex-align--center"
+        className="c-playokay-bar__clock--wide u-font-xs text-grey-5 o-flex-align--center"
         align="center"
       >
         {!winAnimationRunning &&

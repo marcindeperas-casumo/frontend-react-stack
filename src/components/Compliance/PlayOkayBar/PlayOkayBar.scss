@@ -23,6 +23,10 @@
 
   &__clock {
     width: 6.5em;
+
+    &--wide {
+      width: 16em;
+    }
   }
 
   &__panic-button {
