@@ -33,8 +33,8 @@ export type SportsHomeEventPath = {
 };
 
 export type SportsHomeLiveEventStatistics = {
-  homeStatistics: string;
-  awayStatistics: string;
+  homeStatistics: string[];
+  awayStatistics: string[];
 };
 
 export type SportsHomeEvent = {
