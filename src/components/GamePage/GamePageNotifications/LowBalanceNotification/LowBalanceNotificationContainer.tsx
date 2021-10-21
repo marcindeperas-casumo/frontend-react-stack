@@ -45,6 +45,10 @@ export const LowBalanceNotificationContainer = () => {
       }
 
       const isWalletUpdate = event.data.walletBalanceUpdated;
+      if (!isWalletUpdate) {
+        return;
+      }
+
       const { totalBalance } = isWalletUpdate.updatedBalance;
 
       if (
