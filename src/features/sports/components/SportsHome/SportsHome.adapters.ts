@@ -96,7 +96,7 @@ class SportsHomeAdapters {
       eventPath =>
         ({
           id: eventPath.id,
-          englishName: eventPath.englishName,
+          englishName: eventPath.name,
           name: eventPath.name,
           termKey: eventPath.termKey,
         } as SportsHomeEventPath)
@@ -143,8 +143,8 @@ class SportsHomeAdapters {
     const awayStatistics = data?.sets?.away.filter(x => x >= 0);
 
     return {
-      homeStatistics: homeStatistics?.join(" "),
-      awayStatistics: awayStatistics?.join(" "),
+      homeStatistics: homeStatistics?.map(String),
+      awayStatistics: awayStatistics?.map(String),
     } as SportsHomeLiveEventStatistics;
   }
 }
