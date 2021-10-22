@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
-import { actWait } from "Utils/apolloTestUtils";
+// import { actWait } from "Utils/apolloTestUtils";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import MockStore from "Components/MockStore";
 
