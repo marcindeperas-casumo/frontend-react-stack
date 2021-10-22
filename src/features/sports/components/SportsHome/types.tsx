@@ -37,6 +37,12 @@ export type SportsHomeLiveEventStatistics = {
   awayStatistics: string[];
 };
 
+export type SportsHomeTimerType = {
+  seconds: number;
+  minutes: number;
+  disabled: boolean;
+}
+
 export type SportsHomeEvent = {
   id: number;
   betOfferId: number;
@@ -54,6 +60,7 @@ export type SportsHomeEvent = {
   awayName: string;
   outcomes: SportsHomeOutcome[];
   path: SportsHomeEventPath[];
+  timer: SportsHomeTimerType;
 };
 
 export type SportsHomeType = {
