@@ -41,7 +41,7 @@ export type SportsHomeTimerType = {
   seconds: number;
   minutes: number;
   disabled: boolean;
-}
+};
 
 export type SportsHomeEvent = {
   id: number;
