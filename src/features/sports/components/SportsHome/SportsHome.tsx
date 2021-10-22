@@ -20,25 +20,31 @@ import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
+const BETSLIP_OUTCOMES = "BetslipOutcomes";
 const eventClick = async (eventId: number) => {
   const wapi = await getKambiWidgetAPI();
 
   wapi.navigateClient(`event/${eventId}`);
 };
 
-const outcomeClick = async (outcomeId: number) => {
+const outcomeClick = async (outcomeId: number, selected: boolean) => {
   const wapi = await getKambiWidgetAPI();
 
-  wapi.set(wapi.BETSLIP_OUTCOMES, {
-    updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
-    outcomes: [outcomeId],
-    couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_COMBINATION,
-  });
+  if (selected) {
+    wapi.set(wapi.BETSLIP_OUTCOMES_REMOVE, { outcomes: [outcomeId] });
+  } else {
+    wapi.set(wapi.BETSLIP_OUTCOMES, {
+      updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
+      outcomes: [outcomeId],
+      couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_SINGLE,
+    });
+  }
 };
 
 const renderSportsHome = (
   data: SportsHomeType,
-  numberOfEventsToShow: number
+  numberOfEventsToShow: number,
+  betslipOutcomesIds: number[]
 ) => {
   if (!data) {
     return null;
@@ -47,6 +53,7 @@ const renderSportsHome = (
       <div>
         <sportsHome.SportsHome
           events={data?.events}
+          betslipOutcomesIds={betslipOutcomesIds}
           numberOfEventsToShow={numberOfEventsToShow}
           oddsFormat={data.oddsFormat}
           translations={data.translations}
@@ -68,17 +75,24 @@ export const getOfferingData = async (
 ) => {
   const eventIdsArgs = eventIds.join();
 
-  const kambiOfferings = await SportsHomeService.getOfferings(
+  const kambiOfferings = await SportsHomeService.getEvents(
     kambiOffering,
     eventIdsArgs,
     kambiLocale,
     market
   );
 
+  const kambiLiveEvents = await SportsHomeService.getLiveEvents(
+    kambiOffering,
+    eventIdsArgs,
+    kambiLocale
+  );
+
   return SportsHomeAdapters.convertToSportsHomeOfferings(
     eventIds,
     kambiOfferings.data.events,
-    kambiOfferings.data.betOffers
+    kambiOfferings.data.betOffers,
+    kambiLiveEvents.data.liveData
   );
 };
 
@@ -100,6 +114,7 @@ export const SportsHome = ({
   locale: string;
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
+  // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -137,12 +152,35 @@ export const SportsHome = ({
     setSportsPopularBetsData,
   ] = React.useState<SportsHomeType>();
 
+  const [betslipOutcomesIds, setBetslipOutcomesIds] = React.useState<number[]>(
+    []
+  );
+
   React.useEffect(() => {
     socket.open();
     subscribe();
     return () => {
       unsubscribe();
     };
+  }, []);
+
+  React.useEffect(() => {
+    const handleWapiEvent = ev => {
+      if (ev.type === BETSLIP_OUTCOMES && ev?.data?.outcomes) {
+        setBetslipOutcomesIds(ev.data.outcomes.map(outcome => outcome.id));
+      }
+    };
+    const subscribeBetslip = async () => {
+      const wapi = await getKambiWidgetAPI();
+      const func = wapi.subscribe(handleWapiEvent);
+      wapi.request(wapi.BETSLIP_OUTCOMES);
+
+      return func;
+    };
+
+    const unsubscribeBetslip = subscribeBetslip();
+
+    return async () => (await unsubscribeBetslip).unsubscribe();
   }, []);
 
   React.useEffect(() => {
@@ -248,6 +286,7 @@ export const SportsHome = ({
     Math.min(
       numberOfEventsToShow,
       sportsPopularBetsData?.events ? sportsPopularBetsData?.events.length : 0
-    )
+    ),
+    betslipOutcomesIds
   );
 };

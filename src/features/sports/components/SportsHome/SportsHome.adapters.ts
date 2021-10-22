@@ -3,20 +3,23 @@ import {
   KambiBetOfferOutcome,
   KambiEvent,
   KambiEventPath,
+  KambiLiveEvent,
+  KambiLiveEventStatistics,
   SportsHomeConfigurationTranslations,
   SportsHomeEvent,
   SportsHomeEventPath,
+  SportsHomeLiveEventStatistics,
   SportsHomeOutcome,
   SportsHomePopularBetsConfigurations,
   SportsHomeTranslations,
   SportsHomeTranslationsDictionary,
 } from "./types";
-
 class SportsHomeAdapters {
   convertToSportsHomeOfferings(
     eventIds: number[],
     events: KambiEvent[],
-    betOffers: KambiBetOffer[]
+    betOffers: KambiBetOffer[],
+    liveEvents: KambiLiveEvent[]
   ): SportsHomeEvent[] {
     const mappedEvents = eventIds.map<SportsHomeEvent>(eventId => {
       const event = events.find(x => x.id === eventId);
@@ -30,7 +33,9 @@ class SportsHomeAdapters {
           group: "",
           startTime: "",
           live: false,
-          score: "",
+          scoreAway: "",
+          scoreHome: "",
+          statistics: null,
           show: false,
           homeName: "",
           awayName: "",
@@ -39,6 +44,7 @@ class SportsHomeAdapters {
         } as SportsHomeEvent;
       }
       const betOffer = betOffers.find(x => x.eventId === event.id);
+      const liveEvent = liveEvents.find(x => x.eventId === event.id);
 
       return {
         id: event.id,
@@ -49,7 +55,11 @@ class SportsHomeAdapters {
         group: event.group,
         startTime: event.start,
         live: event.state === "STARTED",
-        score: "",
+        scoreHome: liveEvent?.score?.home,
+        scoreAway: liveEvent?.score?.away,
+        statistics: this.convertToSportsHomeLiveEventStatistics(
+          liveEvent?.statistics
+        ),
         show: true,
         homeName: event.homeName,
         awayName: event.awayName,
@@ -86,7 +96,7 @@ class SportsHomeAdapters {
       eventPath =>
         ({
           id: eventPath.id,
-          englishName: eventPath.englishName,
+          englishName: eventPath.name,
           name: eventPath.name,
           termKey: eventPath.termKey,
         } as SportsHomeEventPath)
@@ -124,6 +134,18 @@ class SportsHomeAdapters {
         parseInt(data?.tablet.number_of_events_tablet) ||
         defaultNumberOfEventsToShow,
     } as SportsHomePopularBetsConfigurations;
+  }
+
+  convertToSportsHomeLiveEventStatistics(
+    data: KambiLiveEventStatistics
+  ): SportsHomeLiveEventStatistics {
+    const homeStatistics = data?.sets?.home.filter(x => x >= 0);
+    const awayStatistics = data?.sets?.away.filter(x => x >= 0);
+
+    return {
+      homeStatistics: homeStatistics?.map(String),
+      awayStatistics: awayStatistics?.map(String),
+    } as SportsHomeLiveEventStatistics;
   }
 }
 
