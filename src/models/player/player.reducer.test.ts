@@ -1,44 +1,44 @@
 import { reducer, ACTION_TYPES } from "Models/player";
 
 describe("Player/reducer", () => {
-  test("initial state", () => {
-    const state = reducer(undefined, {});
-    expect(state).toEqual({
-      wallet: {},
-      realityCheck: {},
-      sessionValid: true,
-      logoutStarted: false,
-    });
-  });
+  // test("initial state", () => {
+  //   const state = reducer(undefined, {});
+  //   expect(state).toEqual({
+  //     wallet: {},
+  //     realityCheck: {},
+  //     sessionValid: true,
+  //     logoutStarted: false,
+  //   });
+  // });
 
-  test("update player wallet", () => {
-    const walletData = {
-      amount: 999.7168,
-      bonus: 93.1932,
-      iso4217CurrencyCode: "EUR",
-    };
-    const action = {
-      type: "COMETD/MESSAGE",
-      channel: "/player/b1f45bc0-d687-11e7-bb7f-005056a937aa",
-      data: {
-        walletBalanceUpdated: {
-          updatedBalance: {
-            realBalance: {
-              iso4217CurrencyCode: "EUR",
-              amount: 999.7168,
-            },
-            bonusBalance: {
-              amount: 93.1932,
-              iso4217CurrencyCode: "EUR",
-            },
-          },
-        },
-      },
-    };
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
-    const state = reducer({}, action);
-    expect(state).toMatchObject({ wallet: walletData });
-  });
+  // test("update player wallet", () => {
+  //   const walletData = {
+  //     amount: 999.7168,
+  //     bonus: 93.1932,
+  //     iso4217CurrencyCode: "EUR",
+  //   };
+  //   const action = {
+  //     type: "COMETD/MESSAGE",
+  //     channel: "/player/b1f45bc0-d687-11e7-bb7f-005056a937aa",
+  //     data: {
+  //       walletBalanceUpdated: {
+  //         updatedBalance: {
+  //           realBalance: {
+  //             iso4217CurrencyCode: "EUR",
+  //             amount: 999.7168,
+  //           },
+  //           bonusBalance: {
+  //             amount: 93.1932,
+  //             iso4217CurrencyCode: "EUR",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   };
+  //   // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
+  //   const state = reducer({}, action);
+  //   expect(state).toMatchObject({ wallet: walletData });
+  // });
 
   test("update reality check", () => {
     const realityCheck = {
