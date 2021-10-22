@@ -4,6 +4,7 @@ import { RealMoneyPlayRequiredNotification } from "./ReusableNotification/RealMo
 import { BlueRibbonJackpotGameNotification } from "./BlueRibbonJackpotGameNotification";
 import { ReelRaceStartingNotification } from "./ReelRaceStartingNotification";
 import { GenericInGameNotifications } from "./GenericInGameNotifications";
+import { LowBalanceNotification } from "./LowBalanceNotification";
 import "./GamePageNotifications.scss";
 
 export function GamePageNotifications() {
@@ -17,6 +18,7 @@ export function GamePageNotifications() {
       <BlueRibbonJackpotGameNotification />
       <RealMoneyPlayRequiredNotification />
       <GenericInGameNotifications />
+      <LowBalanceNotification />
     </Flex>
   );
 }

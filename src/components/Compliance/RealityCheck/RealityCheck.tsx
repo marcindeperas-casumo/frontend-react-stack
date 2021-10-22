@@ -15,6 +15,7 @@ type RealityCheckProps = {
   t: {
     reality_check_title: string;
     reality_check_message: string;
+    reality_check_amount_won_message: string;
     reality_check_amount_lost_message: string;
     reality_check_game_round_history_button_text: string;
     reality_check_continue_button_text: string;
@@ -69,16 +70,24 @@ export function RealityCheck(props: RealityCheckProps) {
   const onClickViewHistoryBets = () =>
     navigateToKO(ROUTE_IDS.TRANSACTION_HISTORY_BETS);
 
-  const formattedLostAmount = formatCurrency({
+  const amounts = {
+    win: pathOr(0, ["totalWinAmount", "amount"], realityCheck),
+    bet: pathOr(0, ["totalBetAmount", "amount"], realityCheck),
+  };
+
+  const balanceDifference = amounts.win - amounts.bet;
+  const isWin = balanceDifference >= 0;
+
+  const formattedAmount = formatCurrency({
     locale,
     currency,
-    value: Math.abs(
-      pathOr(0, ["totalWinAmount", "amount"], realityCheck) -
-        pathOr(0, ["totalBetAmount", "amount"], realityCheck)
-    ),
+    value: Math.abs(balanceDifference),
   });
   const amountLostMessage = interpolate(t.reality_check_amount_lost_message, {
-    amount: formattedLostAmount,
+    amount: formattedAmount,
+  });
+  const amountWonMessage = interpolate(t.reality_check_amount_won_message, {
+    amount: formattedAmount,
   });
   const hiTitle = interpolate(t.reality_check_title, {
     name: casumoName,
@@ -90,7 +99,7 @@ export function RealityCheck(props: RealityCheckProps) {
   const messageMinutesPlayed = interpolate(t.reality_check_message, {
     totalMinutesPlayed: timeDiffInMins,
     currentSessionDuration: timeDiffInMins,
-    netLosses: formattedLostAmount,
+    netLosses: formattedAmount,
   });
 
   return (
@@ -99,7 +108,9 @@ export function RealityCheck(props: RealityCheckProps) {
         {hiTitle} {messageMinutesPlayed}
       </Text>
       <Text tag="div" className="u-text-align-center">
-        {!isCmsEntryEmpty(amountLostMessage) && amountLostMessage}
+        {isWin
+          ? !isCmsEntryEmpty(amountWonMessage) && amountWonMessage
+          : !isCmsEntryEmpty(amountLostMessage) && amountLostMessage}
       </Text>
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
         <a
