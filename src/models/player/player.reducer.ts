@@ -16,8 +16,7 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     if (
       data &&
       data.walletBalanceUpdated &&
-      data.walletBalanceUpdated.updatedBalance &&
-      data.gameSessionNetFinancialPositionChanged
+      data.walletBalanceUpdated.updatedBalance
     ) {
       const wallet = {
         amount: data.walletBalanceUpdated.updatedBalance.realBalance.amount,
