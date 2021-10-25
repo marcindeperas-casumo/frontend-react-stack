@@ -67,6 +67,11 @@ class SportsHomeAdapters {
           ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
           : [],
         path: event?.path ? this.convertToSportsHomeEventPath(event.path) : [],
+        timer: {
+          seconds: 0,
+          minutes: 0,
+          disabled: event.state !== "STARTED",
+        },
       } as SportsHomeEvent;
     });
 
