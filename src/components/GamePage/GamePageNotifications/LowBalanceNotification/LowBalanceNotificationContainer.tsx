@@ -80,13 +80,15 @@ export const LowBalanceNotificationContainer = () => {
     launchQuickDeposit,
   } = useDepositMethods();
 
-  const navigateToCashierTracked = () => {
+  const navigateToCashierTracked = (ev: React.SyntheticEvent) => {
+    ev.stopPropagation();
     tracker.track(EVENTS.MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT, {});
     tracker.track(EVENTS.MIXPANEL_EXIT_GAME_STEP_STARTED, {});
     navigateToCashier();
   };
 
-  const launchQuickDepositTracked = () => {
+  const launchQuickDepositTracked = (ev: React.SyntheticEvent) => {
+    ev.stopPropagation();
     tracker.track(EVENTS.MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT, {});
     launchQuickDeposit();
   };

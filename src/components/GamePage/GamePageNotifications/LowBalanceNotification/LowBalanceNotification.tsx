@@ -7,7 +7,7 @@ import "./lowBalanceNotification.scss";
 type TProps = {
   Cta: React.ReactElement;
   currency: TCurrencyCode;
-  showDepositHandler: () => void;
+  showDepositHandler: (...args: any[]) => void;
 };
 
 export const LowBalanceNotification = ({
@@ -16,7 +16,7 @@ export const LowBalanceNotification = ({
   showDepositHandler,
 }: TProps) => {
   const depositIcon = (
-    <div className="u-cursor--pointer" onClick={showDepositHandler}>
+    <div className="u-cursor--pointer">
       <CurrencyIcon
         selected={true}
         currency={currency || "EUR"}
