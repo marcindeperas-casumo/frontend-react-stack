@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import type { PauseResumeProps } from "Components/Compliance/PlayOkayBar/PlayOkayBarContainer";
 import cometd from "Models/cometd/cometd.service";
 import { CHANNELS } from "Models/cometd/cometd.constants";
@@ -8,7 +8,6 @@ import { useLocale } from "Utils/hooks";
 import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { TCurrencyCode } from "Src/constants";
 import { WALLET_BONUS_UNBLOCK_AFTER } from "Models/playing/playing.constants";
-import { winAnimationRunning } from "Models/blueribbonJackpots/jackpots.actions";
 
 type JackpotWinParameters = {
   amount: string; // ie. "100.01"
@@ -45,7 +44,6 @@ export function useJackpotsSubscription({
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
   const { setBlueRibbonNotificationNeedsAccepting } = useGameJackpotContext();
-  const dispatch = useDispatch();
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
       const notificationData = event.data.notificationAdded;
@@ -59,7 +57,6 @@ export function useJackpotsSubscription({
         return null;
       }
 
-      dispatch(winAnimationRunning(true));
       setJackpotWinParams(notificationData.parameters);
 
       setTimeout(() => {
@@ -82,7 +79,6 @@ export function useJackpotsSubscription({
   const acknowledge = () => {
     setJackpotWinParams(null);
 
-    dispatch(winAnimationRunning(false));
     resumeGame();
   };
 

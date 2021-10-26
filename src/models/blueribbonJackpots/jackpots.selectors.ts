@@ -16,10 +16,5 @@ export const eligibleGamesBySlugSelector = createSelector(
   R.prop("eligibleGamesBySlug")
 );
 
-export const winAnimationSelector = createSelector(
-  blueRibbonJackpotStoreSelector,
-  R.prop("winAnimationRunning")
-);
-
 export const gameJackpotSlugSelector = (slug: string) =>
   createSelector(eligibleGamesBySlugSelector, R.prop(slug));

@@ -7,13 +7,11 @@ export type TJackpotsReduxStore = {
   eligibleGamesBySlug: {
     [key: string]: string;
   };
-  winAnimationRunning: boolean;
 };
 
 const DEFAULT_STATE: TJackpotsReduxStore = {
   handshake: null,
   eligibleGamesBySlug: {},
-  winAnimationRunning: false,
 };
 
 export const handshakeToGameJackpotSlugMapper = jackpots =>
@@ -33,10 +31,6 @@ const handlers = {
     eligibleGamesBySlug: handshakeToGameJackpotSlugMapper(
       response?.jackpots || []
     ),
-  }),
-  [types.WIN_ANIMATION_RUNNING]: (state, action) => ({
-    ...state,
-    winAnimationRunning: action.winAnimationStatus,
   }),
 };
 
