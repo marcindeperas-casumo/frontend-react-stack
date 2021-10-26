@@ -1,5 +1,5 @@
 import { ButtonSecondary } from "@casumo/cmp-button";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal } from "Models/modal";
 import http from "Lib/http";
@@ -13,16 +13,6 @@ export const PanicButton = () => {
   const content = useTranslations<{ button_label: string }>("ggl-panic-button");
   const playerId = useSelector(playerIdSelector);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (content && !window.localStorage.preGamePanicButtonOverlayShown) {
-      dispatch(
-        showModal(REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON, {
-          content,
-        })
-      );
-    }
-  }, [content]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const thanksAppleIosSafariTeam = e => e.preventDefault();
   const selfExclude24h = ({ elapsedTime }) => {

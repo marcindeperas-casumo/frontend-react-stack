@@ -36,7 +36,6 @@ import { ModalLoadingState } from "./RSModalLoading";
 import { GameRoundDetails } from "./History";
 import {
   PostPanicButtonModal,
-  PrePanicButtonModal,
   FiveMinuteBreakFinishedModal,
   FiveMinuteBreakOngoingModal,
   FiveMinuteBreakReelRaceModal,
@@ -131,10 +130,6 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.GGL_POST_PANIC_BUTTON]: {
     slug: "",
     Content: PostPanicButtonModal,
-  },
-  [REACT_APP_MODAL.ID.GGL_PRE_PANIC_BUTTON]: {
-    slug: "",
-    Content: PrePanicButtonModal,
   },
   [REACT_APP_MODAL.ID.GGL_FIVE_MINUTE_BREAK_FINISHED]: {
     slug: "",
