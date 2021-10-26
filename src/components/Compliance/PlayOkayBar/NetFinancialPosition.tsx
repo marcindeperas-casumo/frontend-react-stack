@@ -16,7 +16,7 @@ export const NetFinancialPosition = ({ netValue }: Props) => {
     >
       {netValue > 0 && <ArrowUpIcon size="xs" className="text-white" />}
       {netValue < 0 && <ArrowDownIcon size="xs" className="text-red" />}
-      <Text size="xs">{Math.abs(netValue).toFixed(2)}</Text>
+      <Text size="xs">{`£ ${Math.abs(netValue).toFixed(2)}`}</Text>
     </Flex>
   );
 };
