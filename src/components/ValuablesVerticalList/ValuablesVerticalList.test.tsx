@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
-// import { actWait } from "Utils/apolloTestUtils";
+import { actWait } from "Utils/apolloTestUtils";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import MockStore from "Components/MockStore";
 
@@ -29,22 +29,22 @@ describe("ValuablesVerticalList", () => {
     );
   });
 
-  // test("should render skeleton while loading", async () => {
-  //   rendered = mount(
-  //     <MockStore>
-  //       {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message */}
-  //       <ValuablesVerticalList
-  //         valuables={[]}
-  //         loading={true}
-  //         translations={{} as any}
-  //       />
-  //     </MockStore>
-  //   );
+  test("should render skeleton while loading", async () => {
+    rendered = mount(
+      <MockStore>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message */}
+        <ValuablesVerticalList
+          valuables={[]}
+          loading={true}
+          translations={{} as any}
+        />
+      </MockStore>
+    );
 
-  //   await actWait();
+    await actWait();
 
-  //   expect(rendered.find("svg").exists()).toBe(true);
-  // });
+    expect(rendered.find("svg").exists()).toBe(true);
+  });
 
   test("should render a list of valuable rows", () => {
     expect(getValuableRows().length).toEqual(mockedValuables.length);
