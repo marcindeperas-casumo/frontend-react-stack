@@ -49,7 +49,7 @@ const getExternalSessionID = (
 };
 
 const login = (fusionUrl: string, externalSessionId: string) => {
-  http.post(
+  return http.post(
     `${fusionUrl}/Platform/LoginAuthToken`,
     {},
     {
@@ -64,13 +64,16 @@ const isCasumoTest = (): boolean => {
 
 export const usePusher = (sessionId: string) => {
   const [pusher, setPusher] = useState<TPusherObject>({} as TPusherObject);
+  const [fastTrackPlayerId, setFastTrackPlayerId] = useState();
 
   useEffect(() => {
     const getDataAndCreatePusherObj = async () => {
       try {
         const { pusherKey, fusionUrl, pusherRegion } = await getBaseEndpoints();
         const { externalSessionId } = await getExternalSessionID(sessionId);
-        await login(fusionUrl, externalSessionId);
+        const { Data } = await login(fusionUrl, externalSessionId);
+
+        setFastTrackPlayerId(Data.User.UserId);
 
         const pusherInstance = new Pusher(pusherKey, {
           authEndpoint: `${fusionUrl}/external/pusher/casumo?authToken=${externalSessionId}`,
@@ -84,10 +87,10 @@ export const usePusher = (sessionId: string) => {
       }
     };
 
-    if (sessionId && isCasumoTest()) {
+    if (sessionId || isCasumoTest()) {
       getDataAndCreatePusherObj();
     }
   }, [sessionId]);
 
-  return [pusher];
+  return { pusher, fastTrackPlayerId };
 };
