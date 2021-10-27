@@ -136,7 +136,7 @@ export const GamePageContainer = () => {
           </div>
         )
       }
-      header={<GamePageHeader />}
+      header={<GamePageHeader gameCategory={gameCategory} />}
       loading={(!gameProviderModel || loading) && <LoaderGlobal />}
       offscreenElements={
         <React.Fragment>

@@ -74,6 +74,10 @@ export const ENVIRONMENTS = {
   PRODUCTION: "production",
 } as const;
 
+export const GAME_CATEGORIES = {
+  SLOT_MACHINE: "SLOT_MACHINE",
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
