@@ -87,7 +87,7 @@ export const usePusher = (sessionId: string) => {
       }
     };
 
-    if (sessionId || isCasumoTest()) {
+    if (sessionId && isCasumoTest()) {
       getDataAndCreatePusherObj();
     }
   }, [sessionId]);
