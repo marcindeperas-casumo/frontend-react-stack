@@ -21,7 +21,11 @@ import { openChatWindow } from "Features/chat/IntercomChatService";
 import { get as getFromStorage } from "Lib/storage";
 import "./GamePageHeader.scss";
 
-export const GamePageHeader = () => {
+type Props = {
+  gameCategory: string;
+};
+
+export const GamePageHeader = ({ gameCategory }: Props) => {
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   return (
@@ -36,7 +40,7 @@ export const GamePageHeader = () => {
           spacing="none"
         >
           <Flex.Block className="o-flex-justify--start@desktop">
-            <PlayOkayBar />
+            <PlayOkayBar gameCategory={gameCategory} />
           </Flex.Block>
           <Desktop>
             <Flex.Item className="u-margin-right--5xlg u-padding-right--5xlg">
