@@ -383,6 +383,10 @@ export const EVENTS = {
   MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
   MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
   MIXPANEL_SPORTS_ADD_TO_BETSLIP: "Sports - add to betslip",
+  MIXPANEL_SPORTS_ADD_TO_BETSLIP_CASUMO:
+    "Sports - add to betslip by casumo component",
+  MIXPANEL_SPORTS_REMOVED_FROM_BETSLIP_CASUMO:
+    "Sports - removed from betslip by casumo component",
   MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_SPORTS_DEPOSIT_CLICKED: "Sports deposit component clicked",
@@ -447,6 +451,7 @@ export const EVENT_PROPS = {
   SPORTS_SELECTED_NUMBER: "number of sports selected",
   SPORTS_EVENT_NAME: "event name",
   SPORTS_EVENT_ID: "event id",
+  SPORTS_OUTCOME_ID: "outcome id",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
