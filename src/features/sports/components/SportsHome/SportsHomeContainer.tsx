@@ -34,11 +34,7 @@ export const SportsHomeContainer = () => {
   const locale = useLocale();
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
-  const isPopularWidgetsEnabled = Boolean(
-    JSON.parse(localStorage.getItem("showMostPopularEventsWidget"))
-  );
-
-  if (isPopularWidgetsEnabled && popularBetsConfiguration.isEnabled) {
+  if (popularBetsConfiguration.isEnabled) {
     return (
       <SportsHome
         numberOfEvents={
