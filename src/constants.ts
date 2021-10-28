@@ -434,6 +434,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN: "SPORTS - celebration modal open",
   MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT:
     "Low balance notification deposit CTA Started",
+  MIXPANEL_VALUABLE_USE_CTA: "Valuable Claimed",
 } as const;
 
 export const EVENT_PROPS = {
