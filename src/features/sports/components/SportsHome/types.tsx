@@ -33,8 +33,14 @@ export type SportsHomeEventPath = {
 };
 
 export type SportsHomeLiveEventStatistics = {
-  homeStatistics: string;
-  awayStatistics: string;
+  homeStatistics: string[];
+  awayStatistics: string[];
+};
+
+export type SportsHomeTimerType = {
+  seconds: number;
+  minutes: number;
+  disabled: boolean;
 };
 
 export type SportsHomeEvent = {
@@ -54,6 +60,7 @@ export type SportsHomeEvent = {
   awayName: string;
   outcomes: SportsHomeOutcome[];
   path: SportsHomeEventPath[];
+  timer: SportsHomeTimerType;
 };
 
 export type SportsHomeType = {
