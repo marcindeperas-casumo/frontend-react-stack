@@ -44,7 +44,6 @@ export function useJackpotsSubscription({
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
   const { setBlueRibbonNotificationNeedsAccepting } = useGameJackpotContext();
-
   const subscriptionHandler = React.useCallback(
     async (event: CometdEvent) => {
       const notificationData = event.data.notificationAdded;
@@ -79,6 +78,7 @@ export function useJackpotsSubscription({
 
   const acknowledge = () => {
     setJackpotWinParams(null);
+
     resumeGame();
   };
 

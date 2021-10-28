@@ -67,6 +67,11 @@ class SportsHomeAdapters {
           ? this.convertToSportsHomeOutcomes(betOffer.outcomes)
           : [],
         path: event?.path ? this.convertToSportsHomeEventPath(event.path) : [],
+        timer: {
+          seconds: 0,
+          minutes: 0,
+          disabled: event.state !== "STARTED",
+        },
       } as SportsHomeEvent;
     });
 
@@ -96,7 +101,7 @@ class SportsHomeAdapters {
       eventPath =>
         ({
           id: eventPath.id,
-          englishName: eventPath.englishName,
+          englishName: eventPath.name,
           name: eventPath.name,
           termKey: eventPath.termKey,
         } as SportsHomeEventPath)
@@ -143,8 +148,8 @@ class SportsHomeAdapters {
     const awayStatistics = data?.sets?.away.filter(x => x >= 0);
 
     return {
-      homeStatistics: homeStatistics?.join(" "),
-      awayStatistics: awayStatistics?.join(" "),
+      homeStatistics: homeStatistics?.map(String),
+      awayStatistics: awayStatistics?.map(String),
     } as SportsHomeLiveEventStatistics;
   }
 }

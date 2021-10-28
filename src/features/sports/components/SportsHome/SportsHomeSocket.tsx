@@ -19,6 +19,8 @@ const BET_OFFER_ADDED = 6;
 const BET_OFFER_REMOVED = 7;
 const BET_OFFER_STATUS_UPDATED = 8;
 const BET_OFFER_ODDS_UPDATED = 11;
+const MATCH_CLOCK_REMOVED = 12;
+const MATCH_CLOCK_UPDATED = 15;
 const EVENT_SCORE_UPDATED = 16;
 const EVENT_REMOVED = 18;
 const EVENT_STATS_UPDATED = 17;
@@ -162,6 +164,28 @@ export const messageEvent = (
             eventOutcome.fractional = outcome.oddsFractional;
           }
         });
+        updateNeeded = true;
+      }
+    }
+
+    // removed clock mt=12
+    if (msg.mt === MATCH_CLOCK_REMOVED) {
+      const event = findEventInData(data, msg.mcr.eventId);
+      if (event) {
+        event.timer.disabled = true;
+        updateNeeded = true;
+      }
+    }
+
+    // update clock mt=15
+    if (msg.mt === MATCH_CLOCK_UPDATED) {
+      const event = findEventInData(data, msg.mcu.eventId);
+      if (event) {
+        event.timer = {
+          disabled: false,
+          seconds: msg.mcu.matchClock.second,
+          minutes: msg.mcu.matchClock.minute,
+        };
         updateNeeded = true;
       }
     }
