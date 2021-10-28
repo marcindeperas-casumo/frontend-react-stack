@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as sportsHome from "@casumo/sports-home";
+import tracker from "Services/tracker";
 import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -9,6 +10,7 @@ import {
   getKambiWidgetAPI,
 } from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
 import {
   socket,
   subscribe,
@@ -32,11 +34,17 @@ const outcomeClick = async (outcomeId: number, selected: boolean) => {
 
   if (selected) {
     wapi.set(wapi.BETSLIP_OUTCOMES_REMOVE, { outcomes: [outcomeId] });
+    tracker.track(EVENTS.MIXPANEL_SPORTS_REMOVED_FROM_BETSLIP_CASUMO, {
+      [EVENT_PROPS.SPORTS_OUTCOME_ID]: outcomeId,
+    });
   } else {
     wapi.set(wapi.BETSLIP_OUTCOMES, {
       updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
       outcomes: [outcomeId],
       couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_SINGLE,
+    });
+    tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP_CASUMO, {
+      [EVENT_PROPS.SPORTS_OUTCOME_ID]: outcomeId,
     });
   }
 };

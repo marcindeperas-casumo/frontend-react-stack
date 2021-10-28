@@ -74,6 +74,10 @@ export const ENVIRONMENTS = {
   PRODUCTION: "production",
 } as const;
 
+export const GAME_CATEGORIES = {
+  SLOT_MACHINE: "SLOT_MACHINE",
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
@@ -383,6 +387,10 @@ export const EVENTS = {
   MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
   MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
   MIXPANEL_SPORTS_ADD_TO_BETSLIP: "Sports - add to betslip",
+  MIXPANEL_SPORTS_ADD_TO_BETSLIP_CASUMO:
+    "Sports - add to betslip by casumo component",
+  MIXPANEL_SPORTS_REMOVED_FROM_BETSLIP_CASUMO:
+    "Sports - removed from betslip by casumo component",
   MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_SPORTS_DEPOSIT_CLICKED: "Sports deposit component clicked",
@@ -426,6 +434,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN: "SPORTS - celebration modal open",
   MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT:
     "Low balance notification deposit CTA Started",
+  MIXPANEL_VALUABLE_USE_CTA: "Valuable Claimed",
 } as const;
 
 export const EVENT_PROPS = {
@@ -447,6 +456,7 @@ export const EVENT_PROPS = {
   SPORTS_SELECTED_NUMBER: "number of sports selected",
   SPORTS_EVENT_NAME: "event name",
   SPORTS_EVENT_ID: "event id",
+  SPORTS_OUTCOME_ID: "outcome id",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
@@ -499,7 +509,6 @@ export const REACT_APP_MODAL = {
     WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
     GAME_PAGE_RR_LEADERBOARD: "GAME_PAGE_RR_LEADERBOARD",
     GGL_POST_PANIC_BUTTON: "GGL_POST_PANIC_BUTTON",
-    GGL_PRE_PANIC_BUTTON: "GGL_PRE_PANIC_BUTTON",
     GGL_FIVE_MINUTE_BREAK_ONGOING: "GGL_FIVE_MINUTE_BREAK_ONGOING",
     GGL_FIVE_MINUTE_BREAK_FINISHED: "GGL_FIVE_MINUTE_BREAK_FINISHED",
     GGL_FIVE_MINUTE_BREAK_REEL_RACE: "GGL_FIVE_MINUTE_BREAK_REEL_RACE",

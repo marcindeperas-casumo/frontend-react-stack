@@ -5,6 +5,7 @@ describe("Player/reducer", () => {
     const state = reducer(undefined, {});
     expect(state).toEqual({
       wallet: {},
+      financialPosition: {},
       realityCheck: {},
       sessionValid: true,
       logoutStarted: false,

@@ -11,24 +11,22 @@ if (env.BRANCH_NAME == "master") {
     try {
         new PluggablePipelineBuilder(this)
         .checkout()
-        .customStep('Install node version', {
-            shell("set +x; nvm install")
-        })
-        .customStep('Install yarn', {
-            shell("npm install --global yarn")
+        .customStep('Install node and yarn', {
+            bash "set +x; nvm install && nvm alias default \$(node -v)"
+            bash "npm install --global yarn"
         })
         .customStep('Install dependencies', {
-            shell("yarn")
+            bash "yarn"
         })
         .customStep('Build', {
-            shell("yarn build")
+            bash "yarn build"
         })
         .with(Docker) { it.publishDockerImage() }
         .with(Release) { it.release() }
         .with(DeployHelmService) { it.deploy('live') }
         .customStep('Rollbar Deploy Tracking', { rollbarDeployTracking() })
         .customStep('Rollbar send source maps', { rollbarSendSourceMaps() })
-                .build('frontend-react-stack-nvm-ec2-builder')
+        .build('nvm-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message: """
 Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda:
@@ -45,37 +43,32 @@ Started by: *${env.gitAuthor}* :eyes:
     new PluggablePipelineBuilder(this)
     .checkout()
     .customStep('Install node version', {
-        shell("set +x; nvm install")
-    })
-    .customStep('Switch nvm to use correct version', {
-        shell("nvm use")
-    })
-    .customStep('Install yarn', {
-        shell("npm install --global yarn")
+        bash "set +x; nvm install && nvm alias default \$(node -v)"
+        bash "npm install --global yarn"
     })
     .customStep('Install dependencies', {
-        shell("yarn")
+        bash "yarn"
     })
-        .parallel([
+    .parallel([
             "Tests": { it.customStepTask('Tests', {
-                shell("yarn test:ci")
+                bash "yarn test:ci"
             }) },
             "Typescript": { it.customStepTask('Typescript', {
-                shell("yarn tsc")
+                bash "yarn tsc"
             }) },
             "Lint": { it.customStepTask('Lint', {
-                shell("yarn lint")
+                bash "yarn lint"
             }) },
                 // uncomment after adding first pact test
                 // "Contract Tests"   : { it.customStepTask('Contract Tests', this.&pact) }
-        ])
+    ])
     .customStep('Build', {
-        shell("yarn build")
+        bash "yarn build"
     })
-        .with(Docker) { it.publishDockerImage() }
-        .with(Release) { it.release() }
-        .with(DeployHelmService) { it.deploy('test') }
-        .build('frontend-react-stack-nvm-ec2-builder')
+    .with(Docker) { it.publishDockerImage() }
+    .with(Release) { it.release() }
+    .with(DeployHelmService) { it.deploy('test') }
+    .build('nvm-builder')
 }
 
 def rollbarDeployTracking() {
@@ -89,17 +82,16 @@ def rollbarDeployTracking() {
         }
         """.replace('\n',  '')
 
-        shell("curl --request POST \
+        bash "curl --request POST \
             --url https://api.rollbar.com/api/1/deploy/ \
             --header 'content-type: application/json' \
-            --data '${data}'")
+            --data '${data}'"
         }
 }
 
 def rollbarSendSourceMaps() {
     withCredentials([string(credentialsId: 'ROLLBAR_REACT_STACK', variable: 'ROLLBAR_REACT_STACK')]) {
-        sh """
-        #!/bin/bash
+        bash """
         set +x
         set -e
         cd ./build/react-stack/js
@@ -123,15 +115,4 @@ def rollbarSendSourceMaps() {
         done
         """
     }
-}
-
-def shell(cmd) {
-    sh """
-    set +x
-    cd ..
-    export NVM_DIR="$HOME/.nvm"
-    . ~/.nvm/nvm.sh
-    cd -
-    set -x
-    ${cmd}"""
 }
