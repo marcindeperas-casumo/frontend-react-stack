@@ -15,7 +15,7 @@ export const PusherNotif = props => {
       <div className="o-ratio c-valuable-details t-border-r--md">
         <div className="o-ratio__content c-valuable-details__header">
           <MaskImage
-            id={`etail`}
+            id={`123`}
             imageUrl={
               "https://images.casumo.com/2019/04/background-deposit.png?w=250&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1"
             }
@@ -52,7 +52,7 @@ export const PusherNotif = props => {
 
           <Flex.Item>
             <Text tag="strong" className="text-grey-70" size="xs">
-              {props.pusherData || "Test title message"}
+              {props.pusherData || "Placeholder message"}
             </Text>
           </Flex.Item>
         </Flex>

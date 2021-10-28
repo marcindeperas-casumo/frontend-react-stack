@@ -24,17 +24,16 @@ export const AppLiS = ({ sessionId }) => {
   const hidePusherModal = () => {
     setPusherModalVisible(false);
   };
-
   useEffect(() => {
-    // playerId as event name or part of channel name
     const channelName = `private-prisma-16-${fastTrackPlayerId}`;
+    const pusherEvents = [
+      "crm_campaign",
+      "system_alerts",
+      "player_message",
+      "fraud_kyc",
+    ];
     if (fastTrackPlayerId) {
-      subscribeToPusherEvent(
-        pusher,
-        channelName,
-        "christmas_campaign_2021",
-        onPusherEvent
-      );
+      subscribeToPusherEvent(pusher, channelName, pusherEvents, onPusherEvent);
     }
     return () => {
       unsubscribeFromPusherChannel(pusher, channelName);
