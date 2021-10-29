@@ -36,7 +36,7 @@ export const CasinoGames = () => {
     },
   });
 
-  const { isMGA, isDGOJ } = useJurisdiction();
+  const { isMGA, isDGOJ, isGRA } = useJurisdiction();
 
   if (
     (loading && !data) ||
@@ -51,7 +51,7 @@ export const CasinoGames = () => {
 
   const renderRtpTable = () => {
     return (
-      !isMGA && (
+      !isMGA && !isGRA && (
         <RtpTable
           games={games}
           data={data}
@@ -103,7 +103,7 @@ export const CasinoGames = () => {
               Blackjack
             </ButtonPrimary>
           </Flex>
-          {!isMGA && <DangerousHtml html={t.rtp_description} />}
+          {!isMGA && !isGRA && <DangerousHtml html={t.rtp_description} />}
         </div>
         {renderRtpTable()}
       </>
