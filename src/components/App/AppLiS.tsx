@@ -9,7 +9,7 @@ import {
   unsubscribeFromPusherChannel,
 } from "Services/PusherPubSubService";
 import { usePusher } from "Utils/hooks";
-import { PusherModal, PusherNotif } from "Components/Pusher";
+import { PusherModal, PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
 
 export const AppLiS = ({ sessionId }) => {
@@ -52,7 +52,7 @@ export const AppLiS = ({ sessionId }) => {
       />
       {pusherModalVisible && pusherData && (
         <PusherModal isOpen={pusherModalVisible} hideModal={hidePusherModal}>
-          <PusherNotif pusherData={pusherData} />
+          <PusherNotification pusherData={pusherData} />
         </PusherModal>
       )}
       <LazyPlayerPlayOkaySettings />

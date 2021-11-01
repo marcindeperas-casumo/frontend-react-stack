@@ -1,2 +1,2 @@
 export { PusherModal } from "./PusherModal";
-export { PusherNotif } from "./PusherNotif";
+export { PusherNotification } from "./PusherNotification";
