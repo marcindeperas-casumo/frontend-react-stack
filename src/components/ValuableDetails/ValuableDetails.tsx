@@ -4,6 +4,8 @@ import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { allPass, propIs } from "ramda";
 import * as React from "react";
+import { EVENTS } from "Src/constants";
+import TrackClick from "Components/TrackClick";
 import * as A from "Types/apollo";
 import { interpolate, convertHoursToDaysRoundUp } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
@@ -48,6 +50,7 @@ export type Props = {
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: (id: string) => Promise<void>;
   translations: Translations;
+  playerId?: string;
   children: React.ReactChild;
 };
 
@@ -199,7 +202,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
   };
 
   render() {
-    const { translations, children, valuableDetails } = this.props;
+    const { translations, children, valuableDetails, playerId } = this.props;
     const {
       id,
       backgroundImage,
@@ -219,6 +222,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
       termsAndConditionsContent,
       wageringStatus,
     } = translations;
+    const trackingData = {
+      playerId: playerId,
+      valuableId: id,
+      valuableType: valuableType,
+    };
 
     const requirementType = this.requirementType;
     const expirationValueText =
@@ -348,17 +356,22 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
           {actionButtonVisible && (
             <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
-              <ButtonPrimary
-                className="u-width--full"
-                onClick={() => this.handleAction(actionButtonProps)}
-                data-test="valuable-action-button"
+              <TrackClick
+                eventName={EVENTS.MIXPANEL_VALUABLE_USE_CTA}
+                data={trackingData}
               >
-                <ActionButtonContent
-                  text={actionButtonProps.text}
-                  isLocked={valuableState === VALUABLE_STATES.LOCKED}
-                  data-test="expiration-badge-content"
-                />
-              </ButtonPrimary>
+                <ButtonPrimary
+                  className="u-width--full"
+                  onClick={() => this.handleAction(actionButtonProps)}
+                  data-test="valuable-action-button"
+                >
+                  <ActionButtonContent
+                    text={actionButtonProps.text}
+                    isLocked={valuableState === VALUABLE_STATES.LOCKED}
+                    data-test="expiration-badge-content"
+                  />
+                </ButtonPrimary>
+              </TrackClick>
             </div>
           )}
         </div>
