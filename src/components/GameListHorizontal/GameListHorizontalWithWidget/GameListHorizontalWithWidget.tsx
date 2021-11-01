@@ -21,7 +21,7 @@ import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 export type Props = {
   games: Array<A.GameRow_GameFragment | A.Jackpots_GameFragment>;
   JackpotWidget: React.ComponentType;
-  JackpotOnboardingWidget: React.ComponentType;
+  JackpotOnboardingWidget?: React.ComponentType;
   name: string | undefined;
   seeMore?: SeeMoreProps;
   gamesInColumn?: number;
