@@ -75,15 +75,20 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
         url: `/${seeMoreUrl}`,
         text: t.more_link,
       }}
-      Widget={() => (
-        <Flex direction="horizontal">
+      JackpotWidget={() => (
+        <Flex direction="horizontal" className="u-padding-right">
           <BlueRibbonJackpotsWidget
             composedPots={composedJackpot.pots}
             widgetColor={composedJackpot.widgetColor}
             jackpotLogo={jackpotConfigs.jackpot_image}
             explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
           />
-          {onboardingVisible && !userViewedJackpotOnboardingOffer && (
+        </Flex>
+      )}
+      JackpotOnboardingWidget={() =>
+        onboardingVisible &&
+        !userViewedJackpotOnboardingOffer && (
+          <Flex direction="horizontal">
             <BlueRibbonJackpotsOnboardingWidget
               content={{
                 backgroundImage: jackpotConfigs.jackpot_onboarding_background,
@@ -96,9 +101,9 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
               widgetColor={composedJackpot.widgetColor}
               onClose={onCloseOnboardingWidget}
             />
-          )}
-        </Flex>
-      )}
+          </Flex>
+        )
+      }
     />
   );
 }

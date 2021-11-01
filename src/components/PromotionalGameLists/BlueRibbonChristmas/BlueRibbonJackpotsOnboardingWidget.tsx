@@ -36,7 +36,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
     <Flex
       direction="vertical"
       justify="top"
-      className={`o-position--relative o-flex__item--no-shrink u-padding--md t-border-r--md u-overflow--hidden u-margin-left`}
+      className={`o-position--relative u-padding--md t-border-r--md u-overflow--hidden u-margin-left`}
       style={{
         backgroundColor: widgetColor.light,
         backgroundImage: content.backgroundImage
