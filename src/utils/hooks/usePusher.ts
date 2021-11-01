@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import http from "Lib/http";
 import logger from "Services/logger";
+import { PUSHER_CONSTANTS } from "Src/constants";
 
 export type TPusherObject = {
   channels: any; // TODO: TRET-1076 Finish types definition for TPusherObject
@@ -29,16 +30,14 @@ type TFastTrackCasumoIntegration = {
 };
 
 const getBaseEndpoints = (): Promise<TPusherIntegration> => {
-  const CONFIG_URL = `https://am-events-staging.fasttrack-solutions.com/api/v1/config/casumo`;
-  return http.get(CONFIG_URL, {});
+  return http.get(PUSHER_CONSTANTS.CONFIG_URL, {});
 };
 
 const getExternalSessionID = (
   sessionId: string
 ): Promise<TFastTrackCasumoIntegration> => {
-  const externalSessionURL = `/casino-player/fasttrack-realtime-integration/api/v1/session-mapping`;
   return http.get(
-    externalSessionURL,
+    PUSHER_CONSTANTS.externalSessionURL,
     {},
     {
       headers: {
@@ -49,7 +48,7 @@ const getExternalSessionID = (
 };
 
 const login = (fusionUrl: string, externalSessionId: string) => {
-  http.post(
+  return http.post(
     `${fusionUrl}/Platform/LoginAuthToken`,
     {},
     {
@@ -64,13 +63,16 @@ const isCasumoTest = (): boolean => {
 
 export const usePusher = (sessionId: string) => {
   const [pusher, setPusher] = useState<TPusherObject>({} as TPusherObject);
+  const [fastTrackPlayerId, setFastTrackPlayerId] = useState();
 
   useEffect(() => {
     const getDataAndCreatePusherObj = async () => {
       try {
         const { pusherKey, fusionUrl, pusherRegion } = await getBaseEndpoints();
         const { externalSessionId } = await getExternalSessionID(sessionId);
-        await login(fusionUrl, externalSessionId);
+        const { Data } = await login(fusionUrl, externalSessionId);
+
+        setFastTrackPlayerId(Data.User.UserId);
 
         const pusherInstance = new Pusher(pusherKey, {
           authEndpoint: `${fusionUrl}/external/pusher/casumo?authToken=${externalSessionId}`,
@@ -89,5 +91,5 @@ export const usePusher = (sessionId: string) => {
     }
   }, [sessionId]);
 
-  return [pusher];
+  return { pusher, fastTrackPlayerId };
 };
