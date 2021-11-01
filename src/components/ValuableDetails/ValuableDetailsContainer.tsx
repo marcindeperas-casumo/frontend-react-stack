@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks";
+import { playerIdSelector } from "Models/handshake";
 import { ValuableDetails } from "./ValuableDetails";
 
 type Props = {
@@ -53,6 +55,9 @@ export const ValuableDetailsContainer = (props: Props) => {
     day_singular: "root:units:fields.day_singular",
     day_plural: "root:units:fields.days",
   });
+  const playerId = useSelector(playerIdSelector);
 
-  return loading ? null : <ValuableDetails {...props} translations={t} />;
+  return loading ? null : (
+    <ValuableDetails {...props} playerId={playerId} translations={t} />
+  );
 };

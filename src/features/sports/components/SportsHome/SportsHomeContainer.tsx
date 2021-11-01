@@ -34,30 +34,26 @@ export const SportsHomeContainer = () => {
   const locale = useLocale();
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
-  const isPopularWidgetsEnabled = Boolean(
-    JSON.parse(localStorage.getItem("showMostPopularEventsWidget"))
-  );
-
-  if (isPopularWidgetsEnabled && popularBetsConfiguration.isEnabled) {
-    return (
-      <SportsHome
-        numberOfEvents={
-          SportsHomeUtilities.getNumberOfEventsPerDevice(
-            popularBetsConfiguration
-          ) * NUMBER_EVENTS_TO_PULL_MULTIPLIER
-        }
-        numberOfEventsToShow={SportsHomeUtilities.getNumberOfEventsPerDevice(
-          popularBetsConfiguration
-        )}
-        market={last(locale.split("-"))}
-        sports={popularBetsConfiguration.availableSports}
-        language={language}
-        locale={locale}
-        t={t}
-        oddsFormatEvent={oddsFormatEvent}
-      />
-    );
-  } else {
+  if (!popularBetsConfiguration.isEnabled) {
     return null;
   }
+
+  return (
+    <SportsHome
+      numberOfEvents={
+        SportsHomeUtilities.getNumberOfEventsPerDevice(
+          popularBetsConfiguration
+        ) * NUMBER_EVENTS_TO_PULL_MULTIPLIER
+      }
+      numberOfEventsToShow={SportsHomeUtilities.getNumberOfEventsPerDevice(
+        popularBetsConfiguration
+      )}
+      market={last(locale.split("-"))}
+      sports={popularBetsConfiguration.availableSports}
+      language={language}
+      locale={locale}
+      t={t}
+      oddsFormatEvent={oddsFormatEvent}
+    />
+  );
 };

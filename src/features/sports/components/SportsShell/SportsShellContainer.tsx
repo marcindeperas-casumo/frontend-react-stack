@@ -107,7 +107,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
             ) : (
               <SportsNav currentHash={currentHash} market={market} />
             )}
-            {currentHash === homeHash && <SportsHome />}
+            {currentHash === homeHash && !data.isSearchVisible && (
+              <SportsHome />
+            )}
             {currentHash === homeHash && <SportsJackpots />}
             <WelcomeOfferCuratedCard currentHash={currentHash} />
             <SportsCuratedCard currentHash={currentHash} />
