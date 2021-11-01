@@ -10,14 +10,16 @@ const pusherKeyExists = (key: string): boolean => {
 export const subscribeToPusherEvent = (
   pusher: TPusherObject,
   channelName: string,
-  channelEvent: string,
+  pusherEvents: string[],
   cb: Function
 ): void => {
   try {
     if (pusherKeyExists(pusher.key)) {
       const channel = pusher.subscribe(channelName);
-      channel.bind(channelEvent, function (data) {
-        cb(data);
+      pusherEvents.forEach(eventName => {
+        channel.bind(eventName, function (data) {
+          cb(data);
+        });
       });
     }
   } catch (error) {
