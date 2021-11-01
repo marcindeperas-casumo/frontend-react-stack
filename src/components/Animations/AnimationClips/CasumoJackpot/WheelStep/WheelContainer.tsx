@@ -18,7 +18,7 @@ export function WheelContainer(props: Props) {
     <Wheel
       t={props.config.settings.t}
       wonPotKey={props.config.settings.wonPotKey}
-      numberOfTraces={3}
+      numberOfTraces={12}
       gap={0}
       velocityToGapRatio={1}
       rotations={8 * 360}

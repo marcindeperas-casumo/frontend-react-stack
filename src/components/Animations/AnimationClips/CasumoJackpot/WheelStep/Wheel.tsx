@@ -77,6 +77,7 @@ export function useContainerMeasurer() {
 
 export function Wheel(props: Props) {
   const trailRefs = useThirtyRefs();
+  const [animationTriggered, setAnimationTriggered] = React.useState(false);
   const animated = React.useRef(false);
   const {
     containerRef,
@@ -142,9 +143,11 @@ export function Wheel(props: Props) {
     },
   }));
   const handleClick = () => {
-    if (animated.current) {
-      return;
+    if (animationTriggered) {
+      return false;
     }
+
+    setAnimationTriggered(true);
     shouldStartScaleAnimation.current = true; // eslint-disable-line fp/no-mutation
     const pos = rotate.get() + props.rotations;
     const reminder = pos % 360;
