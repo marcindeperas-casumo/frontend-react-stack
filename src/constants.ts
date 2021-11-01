@@ -457,6 +457,7 @@ export const EVENT_PROPS = {
   SPORTS_EVENT_NAME: "event name",
   SPORTS_EVENT_ID: "event id",
   SPORTS_OUTCOME_ID: "outcome id",
+  SPORTS_COMPONENT: "sports component",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
@@ -607,3 +608,17 @@ export const horizontalListDeviceTopMargin = {
 };
 
 export const LOCAL_STORAGE_GAME_LAUNCH_LOCATION = "lastGameLaunchLocation";
+
+export const PUSHER_CONSTANTS = {
+  CONFIG_URL:
+    "https://am-events-staging.fasttrack-solutions.com/api/v1/config/casumo",
+  externalSessionURL:
+    "/casino-player/fasttrack-realtime-integration/api/v1/session-mapping",
+  pusherChannelnamePrefix: "private-prisma-16-",
+  pusherEvents: [
+    "crm_campaign",
+    "system_alerts",
+    "player_message",
+    "fraud_kyc",
+  ],
+};
