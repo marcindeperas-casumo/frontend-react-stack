@@ -10,6 +10,7 @@ import {
 } from "Services/PusherPubSubService";
 import { usePusher } from "Utils/hooks";
 import { PusherModal, PusherNotif } from "Components/Pusher";
+import { PUSHER_CONSTANTS } from "Src/constants";
 
 export const AppLiS = ({ sessionId }) => {
   const { pusher, fastTrackPlayerId } = usePusher(sessionId);
@@ -25,15 +26,14 @@ export const AppLiS = ({ sessionId }) => {
     setPusherModalVisible(false);
   };
   useEffect(() => {
-    const channelName = `private-prisma-16-${fastTrackPlayerId}`;
-    const pusherEvents = [
-      "crm_campaign",
-      "system_alerts",
-      "player_message",
-      "fraud_kyc",
-    ];
+    const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;
     if (fastTrackPlayerId) {
-      subscribeToPusherEvent(pusher, channelName, pusherEvents, onPusherEvent);
+      subscribeToPusherEvent(
+        pusher,
+        channelName,
+        PUSHER_CONSTANTS.pusherEvents,
+        onPusherEvent
+      );
     }
     return () => {
       unsubscribeFromPusherChannel(pusher, channelName);
