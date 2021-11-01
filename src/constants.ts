@@ -457,6 +457,7 @@ export const EVENT_PROPS = {
   SPORTS_EVENT_NAME: "event name",
   SPORTS_EVENT_ID: "event id",
   SPORTS_OUTCOME_ID: "outcome id",
+  SPORTS_COMPONENT: "sports component",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
