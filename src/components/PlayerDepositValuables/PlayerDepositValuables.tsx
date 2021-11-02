@@ -19,9 +19,9 @@ const selectBonus = badgeId => {
 };
 
 export const PlayerDepositValuables = () => {
-  const { loading, valuables, translations } = usePlayerValuableList(
-    VALUABLE_TYPES.DEPOSIT
-  );
+  const { loading, valuables, translations } = usePlayerValuableList({
+    valuableType: VALUABLE_TYPES.DEPOSIT,
+  });
 
   if (loading || !translations) {
     return <GameRowSkeleton />;
