@@ -29,7 +29,12 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   depositNowLabel: string;
   termsAndConditionLabel: string;
   expirationTimeLabel: string;
+  termsAndConditionsTitle: string;
+  generalTermsAndConditionsTitle: string;
+  marketSpecificTermsAndConditionsTitle?: string | undefined;
   termsAndConditionsContent: string;
+  generalTermsAndConditionsContent: string;
+  marketSpecificTermsAndConditionsContent?: string | undefined;
   wageringStatus: string;
 };
 

@@ -30,6 +30,7 @@ export { useMemoCompare } from "./useMemoCompare";
 export { useMessaging } from "./useFirebaseSDK";
 export { useResize } from "./useResize";
 export { useCallOnce } from "./useCallOnce";
+export { useScrollToElement } from "./useScrollToElement";
 export { useScrollToTop } from "./useScrollToTop";
 export { useCurrentReelRaceInfo } from "./useCurrentReelRaceInfo";
 export { useTranslatedUrl } from "./useTranslatedUrl";

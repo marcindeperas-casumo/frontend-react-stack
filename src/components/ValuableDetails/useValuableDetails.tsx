@@ -34,6 +34,7 @@ export const useValuableDetails = (
         "wageringThreshold",
         "leftToWager",
         "requirementType",
+        "termsLink",
         "excludedGames",
         "title",
       ],
