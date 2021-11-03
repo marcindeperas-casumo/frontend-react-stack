@@ -25,7 +25,7 @@ export const UKGCBar = ({ className = "", gameCategory }: Props) => {
           <NetFinancialPosition netValue={netFinancialPositionValue} />
         )}
         <TimeLockedIcon size="sm" className="u-margin-right" />
-        <CurrentSessionTimer />
+        <CurrentSessionTimer startingTime={new Date().getTime()} />
       </Flex.Item>
     </Flex>
   );
