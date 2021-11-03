@@ -10,8 +10,16 @@ import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graph
 import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
-export function PlayerValuableListVertical() {
-  const { loading, valuables, translations } = usePlayerValuableList();
+type TPlayerValuableListVerticalProps = {
+  badgeRuleName?: string;
+};
+
+export function PlayerValuableListVertical({
+  badgeRuleName,
+}: TPlayerValuableListVerticalProps) {
+  const { loading, valuables, translations } = usePlayerValuableList({
+    badgeRuleName,
+  });
   const [mutateValuable] = useMutation<
     A.UseValuableMutation,
     A.UseValuableMutationVariables

@@ -685,6 +685,7 @@ export interface Player {
 
 export interface PlayerValuablesArgs {
   valuableType?: Maybe<ValuableType>;
+  badgeRuleName?: Maybe<Scalars["String"]>;
 }
 
 export interface Brand {
@@ -981,6 +982,11 @@ export interface PlayerValuableFreeBet extends PlayerValuable {
   specificTerms?: Maybe<Scalars["String"]>;
   unlockMinOdds: Scalars["Float"];
   unlockMinStake: Scalars["Float"];
+  unlockBetBuilder?: Maybe<Scalars["Boolean"]>;
+  unlockLive?: Maybe<Scalars["Boolean"]>;
+  unlockEachWay?: Maybe<Scalars["Boolean"]>;
+  unlockChannelId?: Maybe<Scalars["String"]>;
+  unlockBetStatus?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -1752,6 +1758,7 @@ export type MustDropJackpotsQuery = {
 
 export type PlayerValuablesQueryVariables = Exact<{
   valuableType?: Maybe<ValuableType>;
+  badgeRuleName?: Maybe<Scalars["String"]>;
 }>;
 
 export type PlayerValuablesQuery = {
