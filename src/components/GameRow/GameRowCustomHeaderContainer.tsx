@@ -1,9 +1,9 @@
 import * as React from "react";
-import { GameRowCustomHeaderContent } from "./GameRowCustomHeaderContent";
 import { GameRow } from "Components/GameRow/GameRow";
 import { useGameInfo } from "Utils/hooks/useGameInfo";
 import { useLaunchGame } from "Utils/nativeBridge";
 import { useTranslationsGql } from "Utils/hooks";
+import { GameRowCustomHeaderContent } from "./GameRowCustomHeaderContent";
 
 type Props = {
   header: string;
@@ -12,13 +12,17 @@ type Props = {
 
 export const GameRowCustomHeaderContainer = (props: Props) => {
   const { header, gameSlug } = props;
-  const { gameInfo } = useGameInfo(gameSlug);
+  const { gameInfo, loading: gameLoading } = useGameInfo(gameSlug);
   const { t, loading } = useTranslationsGql({
     header,
   });
 
+  if (gameLoading) {
+    return null;
+  }
+
   const gameRowProps = {
-    game: { ...gameInfo.game, gameStudio: '' },
+    game: { ...gameInfo.game, gameStudio: "" },
     renderText: () => (
       <GameRowCustomHeaderContent
         firstLine={loading ? "-" : t.header}
@@ -26,10 +30,8 @@ export const GameRowCustomHeaderContainer = (props: Props) => {
       />
     ),
     onLaunchGame: () => useLaunchGame(gameInfo.game),
-    hideRightSideComponent: true
+    hideRightSideComponent: true,
   };
 
-  return (
-    <GameRow {...gameRowProps} />
-  );
+  return <GameRow {...gameRowProps} />;
 };

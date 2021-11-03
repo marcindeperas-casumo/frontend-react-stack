@@ -57,12 +57,14 @@ stories.add("Showing with the custom title", () => {
       />
     ),
     onLaunchGame: action(gonzosQuest),
-    hideRightSideComponent: true
+    hideRightSideComponent: true,
   };
 
-  return <MockStore>
-    <GameRow {...props} />
-  </MockStore>
+  return (
+    <MockStore>
+      <GameRow {...props} />
+    </MockStore>
+  );
 });
 
 const propsSearchWithMatch = {

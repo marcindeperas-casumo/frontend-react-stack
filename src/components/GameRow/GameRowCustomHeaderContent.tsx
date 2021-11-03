@@ -1,6 +1,6 @@
 import Flex from "@casumo/cmp-flex";
-import DangerousHtml from "Components/DangerousHtml";
 import * as React from "react";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   firstLine: string;
