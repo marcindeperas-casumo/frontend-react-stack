@@ -21,5 +21,5 @@ export function useTranslationsGql<T = Object>(
   // @ts-expect-error ts-migrate(2322) FIXME: Type '{ loading: boolean; t: any[]; }' is not assi... Remove this comment to see the full error message
   return !data
     ? { loading, t: defaultTranslations }
-    : { loading, t: R.map(x => x.text, data) };
+    : { loading, t: R.map(x => x?.text || "", data) };
 }
