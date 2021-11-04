@@ -6,6 +6,7 @@ const DEFAULT_STATE = {
   financialPosition: {},
   realityCheck: {},
   sessionValid: true,
+  sessionStartedTime: null,
   logoutStarted: false,
 };
 
@@ -63,6 +64,7 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     return {
       ...state,
       sessionValid: false,
+      sessionStartedTime: null,
     };
   }
 
@@ -70,6 +72,13 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     return {
       ...state,
       logoutStarted: true,
+    };
+  }
+
+  if (action.type === ACTION_TYPES.SET_SESSION_STARTED) {
+    return {
+      ...state,
+      sessionStartedTime: new Date().getTime(),
     };
   }
 
