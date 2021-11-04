@@ -71,7 +71,7 @@ export const PusherNotification = props => {
         <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
           <ButtonPrimary
             className="u-width--full"
-            onClick={() => { }}
+            onClick={() => {}}
             data-test="valuable-action-button"
           >
             Button
