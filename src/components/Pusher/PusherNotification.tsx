@@ -57,7 +57,7 @@ export const PusherNotification = props => {
           <Flex.Item className="u-width--full">
             <PlayerValuableListVertical
               badgeRuleName={XMAS_CAMPAIGN_SLUG}
-              hideTitles={true}
+              hideTitles
             />
           </Flex.Item>
 
