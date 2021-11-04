@@ -4,10 +4,14 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import MaskImage from "Components/MaskImage";
 import DangerousHtml from "Components/DangerousHtml";
+import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
+
+// todo: maybe we want to get this from pusher
+const XMAS_CAMPAIGN_SLUG = "xmas-2021";
 
 export const PusherNotification = props => {
   return (
@@ -48,6 +52,13 @@ export const PusherNotification = props => {
 
           <Flex.Item className="u-width--1/3 u-margin-y--md">
             <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
+          </Flex.Item>
+
+          <Flex.Item className="u-width--full">
+            <PlayerValuableListVertical
+              badgeRuleName={XMAS_CAMPAIGN_SLUG}
+              hideTitles
+            />
           </Flex.Item>
 
           <Flex.Item>

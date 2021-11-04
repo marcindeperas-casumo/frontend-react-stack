@@ -5,6 +5,11 @@ export type ValuableType = A.ValuableType;
 export type ValuableState = A.PlayerValuableState;
 export type ValuableRequirementType = A.RequirementType;
 
+export type ValuableListParameters = {
+  valuableType?: ValuableType;
+  badgeRuleName?: string;
+};
+
 export type DurationTranslations = {
   hour_singular: string;
   hour_plural: string;
