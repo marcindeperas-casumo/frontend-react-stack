@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import MaskImage from "Components/MaskImage";
 import DangerousHtml from "Components/DangerousHtml";
+import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -50,6 +51,13 @@ export const PusherNotification = props => {
             <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
           </Flex.Item>
 
+          <Flex.Item className="u-width--full">
+            <PlayerValuableListVertical
+              badgeRuleName="free-spins"
+              hideTitles={true}
+            />
+          </Flex.Item>
+
           <Flex.Item>
             <Text tag="strong" className="text-grey-70" size="xs">
               {props.pusherData || "Placeholder message"}
@@ -60,7 +68,7 @@ export const PusherNotification = props => {
         <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
           <ButtonPrimary
             className="u-width--full"
-            onClick={() => {}}
+            onClick={() => { }}
             data-test="valuable-action-button"
           >
             Button
