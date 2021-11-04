@@ -10,6 +10,9 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
+// todo: maybe we want to get this from pusher
+const XMAS_CAMPAIGN_SLUG = "xmas-2021";
+
 export const PusherNotification = props => {
   return (
     <div>
@@ -53,7 +56,7 @@ export const PusherNotification = props => {
 
           <Flex.Item className="u-width--full">
             <PlayerValuableListVertical
-              badgeRuleName="free-spins"
+              badgeRuleName={XMAS_CAMPAIGN_SLUG}
               hideTitles={true}
             />
           </Flex.Item>
