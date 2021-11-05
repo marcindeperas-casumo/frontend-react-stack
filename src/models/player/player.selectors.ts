@@ -112,6 +112,11 @@ export const playerSessionIsValidSelector = createSelector(
   prop("sessionValid")
 );
 
+export const playerSessionStarted = createSelector<any, any, number>(
+  player,
+  prop("sessionStartedTime")
+);
+
 export const playerLogoutStartedSelector = createSelector(
   player,
   prop("logoutStarted")
