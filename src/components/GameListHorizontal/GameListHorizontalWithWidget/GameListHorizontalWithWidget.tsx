@@ -66,9 +66,10 @@ export const GameListHorizontalWithWidget = ({
   const desktopItemRenderer = ({ style, columnIndex, key }) => {
     return (
       <div key={key} style={style}>
-        {columnIndex === 0 && <JackpotWidget />}
         {columnIndex === 1 && <JackpotOnboardingWidget />}
-        {columnIndex > 1 &&
+        {columnIndex === 0 ? (
+          <JackpotWidget />
+        ) : (
           columns[columnIndex - 1].map(game => (
             <div
               key={game.id}
@@ -83,7 +84,8 @@ export const GameListHorizontalWithWidget = ({
                 )}
               />
             </div>
-          ))}
+          ))
+        )}
       </div>
     );
   };
