@@ -52,8 +52,8 @@ stories.add("Showing with the custom title", () => {
     game: { ...gameMock, jackpot },
     renderText: () => (
       <GameRowCustomHeaderContent
-        firstLine={"Game of the day"}
-        secondLine={gameMock.name}
+        primaryText={"Game of the day"}
+        secondaryText={gameMock.name}
       />
     ),
     onLaunchGame: action(gonzosQuest),

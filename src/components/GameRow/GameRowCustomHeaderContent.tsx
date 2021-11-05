@@ -10,10 +10,10 @@ type Props = {
 export const GameRowCustomHeaderContent = ({ primaryText, secondaryText }: Props) => (
   <Flex className="text-grey-70" direction="vertical" spacing="sm">
     <Flex.Item>
-      <p className="t-color-purple-60 u-font-weight-bold">{primaryText}</p>
-      <p className="text-grey-50">
+      <span className="t-color-purple-60 u-font-weight-bold">{primaryText}</span>
+      <div className="text-grey-50">
         <DangerousHtml html={secondaryText} />
-      </p>
+      </div>
     </Flex.Item>
   </Flex>
 );
