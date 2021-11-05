@@ -3,13 +3,14 @@ import React from "react";
 import { viewports } from "Storybook/viewports";
 import MockStore from "Components/MockStore";
 import { SumoIconContextProvider } from "Components/SumoIcon/SumoIconContext";
+import { GAME_CATEGORIES } from "Src/constants";
 import { GamePageHeader } from "./GamePageHeader";
 
 const story = () => {
   return (
     <MockStore>
       <SumoIconContextProvider>
-        <GamePageHeader />
+        <GamePageHeader gameCategory={GAME_CATEGORIES.SLOT_MACHINE} />
       </SumoIconContextProvider>
     </MockStore>
   );

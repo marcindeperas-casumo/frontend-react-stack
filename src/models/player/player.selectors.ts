@@ -17,6 +17,10 @@ const keyPayments = {
 };
 
 export const playerWalletSelector = createSelector(player, prop("wallet"));
+export const playerNetFinancialPositionSelector = createSelector(
+  player,
+  prop("financialPosition")
+);
 
 export const playerWalletAmountSelector = createSelector<any, any, number>(
   playerWalletSelector,
@@ -93,9 +97,24 @@ export const playerBalanceUpdateReasonSelector = createSelector(
   propOr(null, "lastBalanceUpdateReason")
 );
 
+export const playerNetWinningsUpdateSelector = createSelector(
+  playerNetFinancialPositionSelector,
+  propOr(null, "sessionWinnings")
+);
+
+export const playerNetLossesUpdateSelector = createSelector(
+  playerNetFinancialPositionSelector,
+  propOr(null, "sessionLoss")
+);
+
 export const playerSessionIsValidSelector = createSelector(
   player,
   prop("sessionValid")
+);
+
+export const playerSessionStarted = createSelector<any, any, number>(
+  player,
+  prop("sessionStartedTime")
 );
 
 export const playerLogoutStartedSelector = createSelector(

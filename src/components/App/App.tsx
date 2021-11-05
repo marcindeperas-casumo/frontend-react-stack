@@ -14,11 +14,13 @@ type Props = {
   isAuthenticatedHandshake: boolean;
   isAppHandshakeLoaded: Boolean;
 };
+
 export const App = (props: Props) => {
   const { onAppStarted, playerId, sessionId, isAuthenticatedHandshake } = props;
   const [isAuthenticated, setIsAuthenticated] = useState(
     isAuthenticatedHandshake
   );
+
   // IM-274: ephemeral fix rm localforage indexeddb
   useEffect(() => {
     try {
@@ -54,5 +56,5 @@ export const App = (props: Props) => {
   if (!props.isAppHandshakeLoaded) {
     return null;
   }
-  return isAuthenticated ? <AppLiS /> : <AppLoS />;
+  return isAuthenticated ? <AppLiS sessionId={sessionId} /> : <AppLoS />;
 };

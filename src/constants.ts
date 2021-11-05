@@ -74,6 +74,10 @@ export const ENVIRONMENTS = {
   PRODUCTION: "production",
 } as const;
 
+export const GAME_CATEGORIES = {
+  SLOT_MACHINE: "SLOT_MACHINE",
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
@@ -113,6 +117,7 @@ export const ROUTE_IDS = {
   PROMOTIONS: "PROMOTIONS",
   PROMOTION_DETAILS: "PROMOTION_DETAILS",
   JACKPOTS_DETAILS: "JACKPOTS_DETAILS",
+  JACKPOT_EXPLAINER: "JACKPOT_EXPLAINER",
   PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
   PLAYER_VALUABLES: "PLAYER_VALUABLES",
   PLAYER_SETTINGS: "PLAYER_SETTINGS",
@@ -155,6 +160,7 @@ export const ROUTES = {
   [ROUTE_IDS.PROMOTIONS]: "{{promotions}}",
   [ROUTE_IDS.PROMOTION_DETAILS]: "{{promotions}}/:slug",
   [ROUTE_IDS.JACKPOTS_DETAILS]: "jackpots/:slug",
+  [ROUTE_IDS.JACKPOT_EXPLAINER]: "jackpot-explainer/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
   [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
   [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
@@ -269,6 +275,7 @@ export const LANGUAGES = {
   [MARKETS.jp_ja]: "jp",
   [MARKETS.at_de]: "at",
   [MARKETS.ie_en]: "ie",
+  nl_NL: "nl", //quick fix for not showing CuratedCard for the Netherland players
 } as const;
 export type TLanguage = ValueOf<typeof LANGUAGES>;
 
@@ -380,6 +387,10 @@ export const EVENTS = {
   MIXPANEL_SPORTS_HOME_FILTER_CLICKED: "Sports Home - filter clicked",
   MIXPANEL_SPORTS_HOME_MATCH_CLICKED: "Sports Home - match clicked",
   MIXPANEL_SPORTS_ADD_TO_BETSLIP: "Sports - add to betslip",
+  MIXPANEL_SPORTS_ADD_TO_BETSLIP_CASUMO:
+    "Sports - add to betslip by casumo component",
+  MIXPANEL_SPORTS_REMOVED_FROM_BETSLIP_CASUMO:
+    "Sports - removed from betslip by casumo component",
   MIXPANEL_SPORTS_BET_PLACED: "Sports - bet placed",
   MIXPANEL_SPORTS_FIRST_BET_PLACED: "Sports - first bet placed",
   MIXPANEL_SPORTS_DEPOSIT_CLICKED: "Sports deposit component clicked",
@@ -421,6 +432,9 @@ export const EVENTS = {
   MIXPANEL_MAKE_DEPOSIT_BUTTON_CLICKED: "RETPAY - Make Deposit Button Clicked",
   MIXPANEL_EXIT_GAME_STEP_COMPLETED: "RETPAY - Exit Game Step Completed",
   MIXPANEL_SPORTS_CELEBRATION_MODAL_OPEN: "SPORTS - celebration modal open",
+  MIXPANEL_LOW_BALANCE_NOTIFICATION_CTA_DEPOSIT:
+    "Low balance notification deposit CTA Started",
+  MIXPANEL_VALUABLE_USE_CTA: "Valuable Claimed",
 } as const;
 
 export const EVENT_PROPS = {
@@ -442,6 +456,8 @@ export const EVENT_PROPS = {
   SPORTS_SELECTED_NUMBER: "number of sports selected",
   SPORTS_EVENT_NAME: "event name",
   SPORTS_EVENT_ID: "event id",
+  SPORTS_OUTCOME_ID: "outcome id",
+  SPORTS_COMPONENT: "sports component",
   LEAGUES_SELECTED: "leagues selected",
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
@@ -494,7 +510,6 @@ export const REACT_APP_MODAL = {
     WAGERING_NOTIFICATION: "WAGERING_NOTIFICATION",
     GAME_PAGE_RR_LEADERBOARD: "GAME_PAGE_RR_LEADERBOARD",
     GGL_POST_PANIC_BUTTON: "GGL_POST_PANIC_BUTTON",
-    GGL_PRE_PANIC_BUTTON: "GGL_PRE_PANIC_BUTTON",
     GGL_FIVE_MINUTE_BREAK_ONGOING: "GGL_FIVE_MINUTE_BREAK_ONGOING",
     GGL_FIVE_MINUTE_BREAK_FINISHED: "GGL_FIVE_MINUTE_BREAK_FINISHED",
     GGL_FIVE_MINUTE_BREAK_REEL_RACE: "GGL_FIVE_MINUTE_BREAK_REEL_RACE",
@@ -552,17 +567,17 @@ export const POLL_INTERVAL = {
 export const EMBEDDED_GAMES = {
   ACTIVE: false,
   TESTERS: [
-    "mariusz.klinger+test@casumo.com",
-    "boguslaw.parol@casumo.com",
+    "andre.formosa@casumo.com",
+    "daniel.gauci@casumo.com",
+    "daniel.gauci@gmail.com",
+    "mariusz.klinger+valuables@casumo.com",
+    "oleksii.pelekh@casumo.com",
     "lukasz.kowalski@casumo.com",
     "chris.scicluna@casumo.com",
     "peter.noer@casumo.com",
-    "stephen.marshall@casumo.com",
     "ms@50script.com",
     "sebastian.steek@casumo.com",
-    "boguslaw.parol+30@casumo.com",
     "andre.formosa@casumo.com",
-    "daniel.gauci@gmail.com",
     "peter.noer+TEST00070@casumo.com",
     "mark.busuttil@casumo.com",
     "alessandro.pontes@casumo.com",
@@ -570,7 +585,7 @@ export const EMBEDDED_GAMES = {
     "integrations+7@casumo.com",
     "peter.noer+THERKILD418@casumo.com",
     "theis.warmdahl+dk5@casumo.com",
-  ],
+  ] as string[],
 } as const;
 
 export const topListWidgetWidth = 328;
@@ -593,3 +608,17 @@ export const horizontalListDeviceTopMargin = {
 };
 
 export const LOCAL_STORAGE_GAME_LAUNCH_LOCATION = "lastGameLaunchLocation";
+
+export const PUSHER_CONSTANTS = {
+  CONFIG_URL:
+    "https://am-events-staging.fasttrack-solutions.com/api/v1/config/casumo",
+  externalSessionURL:
+    "/casino-player/fasttrack-realtime-integration/api/v1/session-mapping",
+  pusherChannelnamePrefix: "private-prisma-16-",
+  pusherEvents: [
+    "crm_campaign",
+    "system_alerts",
+    "player_message",
+    "fraud_kyc",
+  ],
+};

@@ -5,10 +5,12 @@ import { MGABar } from "./MGABar";
 import { DGABar } from "./DGABar";
 import { SGABar } from "./SGABar";
 import { GGLBar } from "./GGLBar";
+import { UKGCBar } from "./UKGCBar";
 import "./PlayOkayBar.scss";
 
 type Props = {
   jurisdiction: string;
+  gameCategory: string;
 };
 
 const jurisdictionBarMapping = {
@@ -17,12 +19,16 @@ const jurisdictionBarMapping = {
   [JURISDICTIONS.DGA]: DGABar,
   [JURISDICTIONS.SGA]: SGABar,
   [JURISDICTIONS.GGL]: GGLBar,
+  [JURISDICTIONS.UKGC]: UKGCBar,
 };
 
-export const PlayOkayBar = ({ jurisdiction }: Props) => {
+export const PlayOkayBar = ({ jurisdiction, gameCategory }: Props) => {
   const PlayOkarBarComponent = jurisdictionBarMapping[jurisdiction] || MGABar;
 
   return (
-    <PlayOkarBarComponent className="c-playokay-bar text-white u-padding-right o-position--relative" />
+    <PlayOkarBarComponent
+      gameCategory={gameCategory}
+      className="c-playokay-bar text-white u-padding-right o-position--relative"
+    />
   );
 };

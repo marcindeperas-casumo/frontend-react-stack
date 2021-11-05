@@ -2,12 +2,15 @@ import { useQuery } from "@apollo/client";
 import * as React from "react";
 import * as R from "ramda";
 import * as A from "Types/apollo";
-import type { ValuableType } from "Models/valuables";
+import type { ValuableListParameters } from "Models/valuables";
 import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 
-export function usePlayerValuableList(valuableType?: ValuableType) {
-  const variables = { valuableType };
+export function usePlayerValuableList({
+  valuableType,
+  badgeRuleName,
+}: ValuableListParameters = {}) {
+  const variables = { valuableType, badgeRuleName };
   const { data, loading, refetch } = useQuery<
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables

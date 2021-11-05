@@ -77,6 +77,7 @@ export function LaunchableKambiClient() {
         isHidden={!isKambiClientVisible()}
         sessionKeepAlive={mutateSessionTouch}
         onLoginCompleted={onLoginCompleted}
+        onOddsFormatChangeAction={undefined}
       />
       {!firstLoadCompleted && <KambiClientSkeleton />}
     </>

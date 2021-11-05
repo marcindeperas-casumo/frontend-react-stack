@@ -4,18 +4,20 @@ import type { ExecutionResult } from "@apollo/client";
 import React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
+import { connect } from "react-redux";
 import { BalanceBetSlip } from "Features/sports/components/BalanceBetSlip";
 import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
+import "./KambiClient.scss";
+import { oddsFormatChangeAction } from "Models/sportsEvents";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 import {
   kambiClientEventHandler,
   KAMBI_EVENTS,
 } from "./kambiClientEventHandler";
-import "./KambiClient.scss";
 const SPORTS_FIRST_BET_QUERY = gql`
   query SportsFirstBetQuery {
     sportsFirstBet
@@ -35,13 +37,14 @@ type OwnProps = {
   isBetslipVisible?: boolean;
   sessionKeepAlive?: () => Promise<ExecutionResult<A.SessionTouchMutation>>;
   onLoginCompleted?: () => void;
+  onOddsFormatChangeAction: (data: any) => void;
 };
 type State = {
   sportsFirstBet: boolean;
   isBetSlipMaximized: boolean;
 };
 type Props = OwnProps & typeof KambiClient.defaultProps;
-export default class KambiClient extends React.Component<Props, State> {
+export class KambiClient extends React.Component<Props, State> {
   static contextType = getApolloContext();
   state = {
     sportsFirstBet: false,
@@ -119,8 +122,13 @@ export default class KambiClient extends React.Component<Props, State> {
       kambiClientEventHandler(event, true);
       this.setState({ sportsFirstBet: false });
     } else {
-      kambiClientEventHandler(event, false);
+      kambiClientEventHandler(
+        event,
+        false,
+        this.props.onOddsFormatChangeAction
+      );
     }
+
     if ((event as any)?.data?.event === "kambi betslip status") {
       const isBetSlipMaximized =
         (event as any).data.kambi.betslip.position === "maximized";
@@ -211,3 +219,9 @@ export default class KambiClient extends React.Component<Props, State> {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch): any => ({
+  onOddsFormatChangeAction: data => dispatch(oddsFormatChangeAction(data)),
+});
+
+export default connect(null, mapDispatchToProps)(KambiClient);

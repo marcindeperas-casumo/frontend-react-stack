@@ -568,6 +568,14 @@ declare module "*/KambiClient.tsx" {
   export default defaultDocument;
 }
 
+declare module "*/SportsHomeQueries.ts" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const PopularBets: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/SportsNavQueries.ts" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
