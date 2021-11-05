@@ -39,7 +39,7 @@ export const GameListHorizontalWithWidget = ({
 
   const mobileItemRenderer = (i: number) => {
     if (i === 0) {
-      return <JackpotWidget key={i} />;
+      return <JackpotWidget />;
     }
 
     if (i === 1) {
@@ -66,10 +66,9 @@ export const GameListHorizontalWithWidget = ({
   const desktopItemRenderer = ({ style, columnIndex, key }) => {
     return (
       <div key={key} style={style}>
+        {columnIndex === 0 && <JackpotWidget />}
         {columnIndex === 1 && <JackpotOnboardingWidget />}
-        {columnIndex === 0 ? (
-          <JackpotWidget />
-        ) : (
+        {columnIndex > 1 &&
           columns[columnIndex - 1].map(game => (
             <div
               key={game.id}
@@ -84,8 +83,7 @@ export const GameListHorizontalWithWidget = ({
                 )}
               />
             </div>
-          ))
-        )}
+          ))}
       </div>
     );
   };

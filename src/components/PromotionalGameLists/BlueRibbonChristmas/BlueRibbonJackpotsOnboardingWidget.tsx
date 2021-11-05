@@ -1,7 +1,6 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { Link } from "@reach/router";
-import classNames from "classnames";
 import * as React from "react";
 import {
   topListWidgetWidth,
@@ -36,7 +35,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
     <Flex
       direction="vertical"
       justify="top"
-      className={`o-position--relative u-padding--md t-border-r--md u-overflow--hidden u-margin-left`}
+      className="o-position--relative u-padding--md t-border-r--md u-overflow--hidden u-margin-left"
       style={{
         backgroundColor: widgetColor.light,
         backgroundImage: content.backgroundImage
@@ -52,21 +51,17 @@ export function BlueRibbonJackpotsOnboardingWidget({
       <Flex
         direction="horizontal"
         justify="end"
-        className={classNames("u-margin-bottom--sm")}
+        className="u-margin-bottom--sm"
       >
         <CloseBtn className="u-cursor--pointer" onClick={onClose} />
       </Flex>
       <Text
         size="md"
-        className={classNames(
-          "u-margin-bottom--lg text-white u-font-weight-bold"
-        )}
+        className="u-margin-bottom--lg text-white u-font-weight-bold"
       >
         {content.title}
       </Text>
-      <Text className={classNames("u-margin-bottom--2xlg text-white")}>
-        {content.body}
-      </Text>
+      <Text className="u-margin-bottom--2xlg text-white">{content.body}</Text>
 
       <Link
         className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg"
