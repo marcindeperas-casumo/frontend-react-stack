@@ -1,45 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerPlayOkaySettings";
 import { LazyCasinoGamesRTPLight } from "Components/CasinoGames";
 import { LazyFooterTermsAndConditionsForBonuses } from "Components/Router/routes/LazyFooterTermsAndConditionsForBonuses";
-import {
-  subscribeToPusherEvent,
-  unsubscribeFromPusherChannel,
-} from "Services/PusherPubSubService";
-import { usePusher } from "Utils/hooks";
-import { PusherModal, PusherNotification } from "Components/Pusher";
-import { PUSHER_CONSTANTS } from "Src/constants";
+import { PusherModal } from "Components/Pusher";
 
 export const AppLiS = ({ sessionId }) => {
-  const { pusher, fastTrackPlayerId } = usePusher(sessionId);
-  const [pusherModalVisible, setPusherModalVisible] = useState(false);
-  const [pusherData, setPusherData] = useState(null);
-
-  const onPusherEvent = data => {
-    setPusherData(data);
-    setPusherModalVisible(true);
-  };
-
-  const hidePusherModal = () => {
-    setPusherModalVisible(false);
-  };
-  useEffect(() => {
-    const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;
-    if (fastTrackPlayerId) {
-      subscribeToPusherEvent(
-        pusher,
-        channelName,
-        PUSHER_CONSTANTS.pusherEvents,
-        onPusherEvent
-      );
-    }
-    return () => {
-      unsubscribeFromPusherChannel(pusher, channelName);
-    };
-  }, [pusher, fastTrackPlayerId]);
-
   return (
     <React.StrictMode>
       <Router></Router>
@@ -50,11 +17,7 @@ export const AppLiS = ({ sessionId }) => {
         }
         namedExport="DepositLimitsViewContainer"
       />
-      {pusherModalVisible && pusherData && (
-        <PusherModal isOpen={pusherModalVisible} hideModal={hidePusherModal}>
-          <PusherNotification pusherData={pusherData} />
-        </PusherModal>
-      )}
+      <PusherModal sessionId={sessionId} />
       <LazyPlayerPlayOkaySettings />
       <LazyCasinoGamesRTPLight />
       <LazyFooterTermsAndConditionsForBonuses />
