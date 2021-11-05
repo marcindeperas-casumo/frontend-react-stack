@@ -16,6 +16,7 @@ export const GameRowCustomHeaderContainer = (props: Props) => {
   const { t, loading } = useTranslationsGql({
     header,
   });
+  const { launchGame } = useLaunchGame(gameInfo?.game);
 
   if (gameLoading) {
     return null;
@@ -29,7 +30,7 @@ export const GameRowCustomHeaderContainer = (props: Props) => {
         secondaryText={gameInfo.game.name}
       />
     ),
-    onLaunchGame: () => useLaunchGame(gameInfo.game),
+    onLaunchGame: launchGame,
     hideRightSideComponent: true,
   };
 
