@@ -4,16 +4,53 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import MaskImage from "Components/MaskImage";
 import DangerousHtml from "Components/DangerousHtml";
+import { GameRowCustomHeader } from "Components/GameRow";
 import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
+export type PusherPaylod = {
+  CTAButton2Link: string;
+  CTAButton2Text: string;
+  CTAButtonLink: string;
+  CTAButtonText: string;
+  Data: {
+    Component: string;
+    OverrideCommunicationStatus: string;
+    "Site Block": string;
+    event_name: string;
+    game: string;
+    terms_link_text: string;
+    terms_link_url: string;
+    trigger: string;
+  };
+  Date: string;
+  DisplayType: string;
+  Event: string;
+  Expires: string;
+  FooterText: string;
+  ImageUrl: string;
+  IsRead: boolean;
+  Message: string;
+  MessageId: number;
+  PreviewText: string;
+  Title: string;
+};
+
+type Props = {
+  pusherData: PusherPaylod;
+};
+
 // todo: maybe we want to get this from pusher
 const XMAS_CAMPAIGN_SLUG = "xmas-2021";
 
-export const PusherNotification = props => {
+export const PusherNotification = ({ pusherData }: Props) => {
+  if (!pusherData) {
+    return null;
+  }
+
   return (
     <div>
       <div className="o-ratio c-valuable-details t-border-r--md">
@@ -63,8 +100,15 @@ export const PusherNotification = props => {
 
           <Flex.Item>
             <Text tag="strong" className="text-grey-70" size="xs">
-              {props.pusherData || "Placeholder message"}
+              {pusherData.Message || "Placeholder message"}
             </Text>
+          </Flex.Item>
+
+          <Flex.Item>
+            <GameRowCustomHeader
+              header="titles.game-of-the-day"
+              gameSlug={pusherData.Data.game}
+            />
           </Flex.Item>
         </Flex>
 

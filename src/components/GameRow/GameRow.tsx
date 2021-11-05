@@ -19,6 +19,7 @@ type Props = {
   className?: string;
   /** a function that renders some text */
   renderText: () => React.ReactNode;
+  hideRightSideComponent?: boolean;
 };
 
 export const GameRow = (props: Props) => {
@@ -36,6 +37,10 @@ export const GameRow = (props: Props) => {
   });
 
   const rightSideComponent = (() => {
+    if (props.hideRightSideComponent) {
+      return null;
+    }
+
     if (game.lobby) {
       return (
         <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
