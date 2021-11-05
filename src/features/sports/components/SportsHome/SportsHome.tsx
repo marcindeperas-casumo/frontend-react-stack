@@ -29,22 +29,31 @@ const eventClick = async (eventId: number) => {
   wapi.navigateClient(`event/${eventId}`);
 };
 
-const outcomeClick = async (outcomeId: number, selected: boolean) => {
+const outcomeClick = async (
+  outcomeId: number,
+  selected: boolean,
+  market: string,
+  component: string
+) => {
   const wapi = await getKambiWidgetAPI();
 
   if (selected) {
     wapi.set(wapi.BETSLIP_OUTCOMES_REMOVE, { outcomes: [outcomeId] });
     tracker.track(EVENTS.MIXPANEL_SPORTS_REMOVED_FROM_BETSLIP_CASUMO, {
       [EVENT_PROPS.SPORTS_OUTCOME_ID]: outcomeId,
+      [EVENT_PROPS.MARKET]: market,
+      [EVENT_PROPS.SPORTS_COMPONENT]: component,
     });
   } else {
     wapi.set(wapi.BETSLIP_OUTCOMES, {
       updateMode: wapi.BETSLIP_OUTCOMES_ARGS.UPDATE_APPEND,
       outcomes: [outcomeId],
-      couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_SINGLE,
+      couponType: wapi.BETSLIP_OUTCOMES_ARGS.TYPE_COMBINATION,
     });
     tracker.track(EVENTS.MIXPANEL_SPORTS_ADD_TO_BETSLIP_CASUMO, {
       [EVENT_PROPS.SPORTS_OUTCOME_ID]: outcomeId,
+      [EVENT_PROPS.MARKET]: market,
+      [EVENT_PROPS.SPORTS_COMPONENT]: component,
     });
   }
 };
@@ -52,7 +61,8 @@ const outcomeClick = async (outcomeId: number, selected: boolean) => {
 const renderSportsHome = (
   data: SportsHomeType,
   numberOfEventsToShow: number,
-  betslipOutcomesIds: number[]
+  betslipOutcomesIds: number[],
+  market: string
 ) => {
   if (!data) {
     return null;
@@ -67,7 +77,9 @@ const renderSportsHome = (
           translations={data.translations}
           locale={data.locale}
           eventClick={eventClick}
-          outcomeClick={outcomeClick}
+          outcomeClick={(outcomeId, selected) =>
+            outcomeClick(outcomeId, selected, market, "popular")
+          }
         />
         <div className="hover:bg-grey-20 display-none" />
       </div>
@@ -295,6 +307,7 @@ export const SportsHome = ({
       numberOfEventsToShow,
       sportsPopularBetsData?.events ? sportsPopularBetsData?.events.length : 0
     ),
-    betslipOutcomesIds
+    betslipOutcomesIds,
+    market
   );
 };

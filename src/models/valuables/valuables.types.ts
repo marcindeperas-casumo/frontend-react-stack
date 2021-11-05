@@ -5,6 +5,11 @@ export type ValuableType = A.ValuableType;
 export type ValuableState = A.PlayerValuableState;
 export type ValuableRequirementType = A.RequirementType;
 
+export type ValuableListParameters = {
+  valuableType?: ValuableType;
+  badgeRuleName?: string;
+};
+
 export type DurationTranslations = {
   hour_singular: string;
   hour_plural: string;
@@ -29,7 +34,12 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   depositNowLabel: string;
   termsAndConditionLabel: string;
   expirationTimeLabel: string;
+  termsAndConditionsTitle: string;
+  generalTermsAndConditionsTitle: string;
+  marketSpecificTermsAndConditionsTitle?: string | undefined;
   termsAndConditionsContent: string;
+  generalTermsAndConditionsContent: string;
+  marketSpecificTermsAndConditionsContent?: string | undefined;
   wageringStatus: string;
 };
 
