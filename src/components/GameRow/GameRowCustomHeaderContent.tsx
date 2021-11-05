@@ -3,21 +3,17 @@ import * as React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
-  firstLine: string;
-  secondLine: string;
+  primaryText: string;
+  secondaryText: string;
 };
 
-export const GameRowCustomHeaderContent = (props: Props) => {
-  const { firstLine, secondLine } = props;
-
-  return (
-    <Flex className="text-grey-70" direction="vertical" spacing="sm">
-      <Flex.Item>
-        <b className="t-color-purple-60">{firstLine}</b>
-        <p className="text-grey-50">
-          <DangerousHtml html={secondLine} />
-        </p>
-      </Flex.Item>
-    </Flex>
-  );
-};
+export const GameRowCustomHeaderContent = ({ primaryText, secondaryText }: Props) => (
+  <Flex className="text-grey-70" direction="vertical" spacing="sm">
+    <Flex.Item>
+      <p className="t-color-purple-60 u-font-weight-bold">{primaryText}</p>
+      <p className="text-grey-50">
+        <DangerousHtml html={secondaryText} />
+      </p>
+    </Flex.Item>
+  </Flex>
+);

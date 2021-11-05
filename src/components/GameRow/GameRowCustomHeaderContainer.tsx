@@ -25,8 +25,8 @@ export const GameRowCustomHeaderContainer = (props: Props) => {
     game: { ...gameInfo.game, gameStudio: "" },
     renderText: () => (
       <GameRowCustomHeaderContent
-        firstLine={loading ? "-" : t.header}
-        secondLine={gameInfo.game.name}
+        primaryText={loading ? "-" : t.header}
+        secondaryText={gameInfo.game.name}
       />
     ),
     onLaunchGame: () => useLaunchGame(gameInfo.game),
