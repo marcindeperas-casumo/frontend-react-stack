@@ -51,7 +51,8 @@ export const CasinoGames = () => {
 
   const renderRtpTable = () => {
     return (
-      !isMGA && !isGRA && (
+      !isMGA &&
+      !isGRA && (
         <RtpTable
           games={games}
           data={data}

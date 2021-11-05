@@ -13,7 +13,11 @@ const pauseGame = () => Promise.resolve();
 const resumeGame = () => {};
 
 stories.add("Default", () => {
-  const jurisdiction = select("Jurisdiction", Object.keys(JURISDICTIONS), "MGA");
+  const jurisdiction = select(
+    "Jurisdiction",
+    Object.keys(JURISDICTIONS),
+    "MGA"
+  );
 
   return (
     <MockStore queryMocks={[playerSectionsQueryMock]}>
