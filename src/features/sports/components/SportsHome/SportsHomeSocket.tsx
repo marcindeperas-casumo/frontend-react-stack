@@ -5,6 +5,8 @@ import {
 } from "Features/sports/components/SportsHome/types";
 import config from "Src/config";
 import SportsHomeAdapters from "./SportsHome.adapters";
+import SportsHomeUtilities from "./SportsHome.Utilities";
+import { SPORT_FOOTBALL, SPORT_TENNIS } from "./SportsHome.constants";
 
 const socketAddress = config.kambiSocketUrl;
 
@@ -27,9 +29,6 @@ const EVENT_STATS_UPDATED = 17;
 const BET_OFFER_ODDS_ADDED = 22;
 const BET_OFFER_ODDS_REMOVED = 23;
 const EVENT_STATE_UPDATED = 34;
-
-const SPORT_FOOTBALL = "FOOTBALL";
-const SPORT_TENNIS = "TENNIS";
 
 // eslint-disable-next-line fp/no-let
 let vars = {
@@ -106,6 +105,20 @@ const countEventsShowed = (data: SportsHomeType) => {
   return data.events.filter(event => event.show === true).length;
 };
 
+const checkForEventValidity = (
+  data: SportsHomeType,
+  event: SportsHomeEvent,
+  numberOfEventsToShow: number,
+  refetch: () => void
+) => {
+  if (event && !SportsHomeUtilities.isValidEventOutcome(event)) {
+    event.show = false;
+    if (countEventsShowed(data) < numberOfEventsToShow) {
+      refetch();
+    }
+  }
+};
+
 export const messageEvent = (
   message: any[],
   setData: (data: SportsHomeType) => void,
@@ -129,6 +142,9 @@ export const messageEvent = (
         );
         updateNeeded = true;
       }
+
+      // check if event is still valid
+      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
     }
 
     // removing betoffer - change all outcomes for betoffer to disabled
@@ -166,6 +182,9 @@ export const messageEvent = (
         });
         updateNeeded = true;
       }
+
+      // check if event is still valid
+      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
     }
 
     // removed clock mt=12
@@ -190,7 +209,7 @@ export const messageEvent = (
       }
     }
 
-    // score change - for football only atm
+    // score change - for football and tennis only atm
     if (msg.mt === EVENT_SCORE_UPDATED) {
       const event = findEventInData(data, msg.score.eventId);
       if (
@@ -238,6 +257,9 @@ export const messageEvent = (
         );
         updateNeeded = true;
       }
+
+      // check if event is still valid
+      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
     }
 
     // removing outcomes for bettoffer
