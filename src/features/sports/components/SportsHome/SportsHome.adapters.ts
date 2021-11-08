@@ -71,6 +71,7 @@ class SportsHomeAdapters {
           seconds: 0,
           minutes: 0,
           disabled: event.state !== "STARTED",
+          running: event.state === "STARTED",
         },
       } as SportsHomeEvent;
     });
