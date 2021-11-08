@@ -183,6 +183,7 @@ export const messageEvent = (
       if (event) {
         event.timer = {
           disabled: false,
+          running: msg.mcu.matchClock.running,
           seconds: msg.mcu.matchClock.second,
           minutes: msg.mcu.matchClock.minute,
         };
