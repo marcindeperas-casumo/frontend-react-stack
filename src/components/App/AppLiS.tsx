@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerPlayOkaySettings";
@@ -16,6 +16,8 @@ export const AppLiS = ({ sessionId }) => {
   const { pusher, fastTrackPlayerId } = usePusher(sessionId);
   const [pusherModalVisible, setPusherModalVisible] = useState(false);
   const [pusherData, setPusherData] = useState(null);
+  const [isPageReady, setIsPageReady] = useState(false);
+  const mounted = useRef<boolean>();
 
   const onPusherEvent = data => {
     setPusherData(data);
@@ -25,9 +27,21 @@ export const AppLiS = ({ sessionId }) => {
   const hidePusherModal = () => {
     setPusherModalVisible(false);
   };
+
+  useEffect(() => {
+    if (!mounted.current && fastTrackPlayerId && pusher) {
+      // TODO: replace with API endpoint once TRET-1231 is merged
+      fetch("https://reqres.in/api/products/3").then(() => {
+        setIsPageReady(true);
+      });
+      // eslint-disable-next-line fp/no-mutation
+      mounted.current = true;
+    }
+  });
+
   useEffect(() => {
     const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;
-    if (fastTrackPlayerId) {
+    if (fastTrackPlayerId && isPageReady) {
       subscribeToPusherEvent(
         pusher,
         channelName,
@@ -38,7 +52,7 @@ export const AppLiS = ({ sessionId }) => {
     return () => {
       unsubscribeFromPusherChannel(pusher, channelName);
     };
-  }, [pusher, fastTrackPlayerId]);
+  }, [pusher, fastTrackPlayerId, isPageReady]);
 
   return (
     <React.StrictMode>
