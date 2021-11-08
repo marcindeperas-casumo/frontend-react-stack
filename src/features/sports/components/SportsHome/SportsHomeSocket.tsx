@@ -6,7 +6,11 @@ import {
 import config from "Src/config";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
-import { SPORT_FOOTBALL, SPORT_TENNIS } from "./SportsHome.constants";
+import {
+  EVENT_STATE_STARTED,
+  SPORT_FOOTBALL,
+  SPORT_TENNIS,
+} from "./SportsHome.constants";
 
 const socketAddress = config.kambiSocketUrl;
 
@@ -141,10 +145,10 @@ export const messageEvent = (
           msg.boa.betOffer.outcomes
         );
         updateNeeded = true;
-      }
 
-      // check if event is still valid
-      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+      }
     }
 
     // removing betoffer - change all outcomes for betoffer to disabled
@@ -181,10 +185,10 @@ export const messageEvent = (
           }
         });
         updateNeeded = true;
-      }
 
-      // check if event is still valid
-      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+      }
     }
 
     // removed clock mt=12
@@ -256,10 +260,10 @@ export const messageEvent = (
           outcomes
         );
         updateNeeded = true;
-      }
 
-      // check if event is still valid
-      checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
+      }
     }
 
     // removing outcomes for bettoffer
@@ -275,7 +279,7 @@ export const messageEvent = (
     if (msg.mt === EVENT_STATE_UPDATED) {
       const event = findEventInData(data, msg.esu.id);
       if (event) {
-        event.live = msg.esu.state === "STARTED";
+        event.live = msg.esu.state === EVENT_STATE_STARTED;
         if (event.show === false && event.name === "") {
           getOneEvent(event.id);
         }
