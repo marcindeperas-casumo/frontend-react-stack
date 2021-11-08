@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import * as A from "Types/apollo";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
