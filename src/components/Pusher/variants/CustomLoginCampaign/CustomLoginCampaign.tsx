@@ -1,6 +1,6 @@
-import React from "react";
-import * as A from "Types/apollo";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import * as A from "Types/apollo";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import MaskImage from "Components/MaskImage";
@@ -10,7 +10,10 @@ import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { getPlatform } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
-import { PUSHER_MODAL_STATE } from "Components/Pusher/PusherModal";
+import {
+  PUSHER_MODAL_STATE,
+  TYPE_PUSHER_MODAL_STATE,
+} from "Components/Pusher/PusherModal";
 import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
@@ -18,10 +21,11 @@ import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
+
 type Props = {
   pusherData: PusherPaylod;
-  pusherModalState: PUSHER_MODAL_STATE;
-  setPusherModalState: (state: PUSHER_MODAL_STATE) => void;
+  pusherModalState: TYPE_PUSHER_MODAL_STATE;
+  setPusherModalState: (state: TYPE_PUSHER_MODAL_STATE) => void;
 };
 
 type ValuablePopupContentProps = {
@@ -73,21 +77,31 @@ export const CustomLoginCampaign = ({
   pusherModalState,
   setPusherModalState,
 }: Props) => {
+  const { loading, valuables, translations } = usePlayerValuableList();
+
+  const [
+    selectedValuable,
+    selectValuable,
+  ] = useState<A.ValuableDetails_PlayerValuableFragment>(null);
+
+  const showValuable = (valuable: A.ValuableDetails_PlayerValuableFragment) => {
+    selectValuable(valuable);
+    setPusherModalState(PUSHER_MODAL_STATE.SECOND_LAYER_VISIBLE);
+  };
+
+  const closeModal = () => setPusherModalState(PUSHER_MODAL_STATE.HIDDEN);
+
   if (!pusherData) {
     return null;
   }
 
-  const showValuable = () =>
-    setPusherModalState(PUSHER_MODAL_STATE.SECOND_LAYER_VISIBLE);
-  const closeModal = () => setPusherModalState(PUSHER_MODAL_STATE.HIDDEN);
-
-  const { loading, valuables, translations } = usePlayerValuableList();
-    // usePlayerValuableList({ badgeRuleName: 'XMAS_CAMPAIGN_SLUG' });
-
-  if (!loading && pusherModalState === PUSHER_MODAL_STATE.SECOND_LAYER_VISIBLE) {
+  if (
+    !loading &&
+    pusherModalState === PUSHER_MODAL_STATE.SECOND_LAYER_VISIBLE
+  ) {
     return (
       <ValuablePopupContent
-        valuable={valuables[0]}
+        valuable={selectedValuable}
         translations={translations}
         closeModal={closeModal}
       />
@@ -116,20 +130,18 @@ export const CustomLoginCampaign = ({
           align="left"
           className="u-margin-bottom--lg u-margin-top--xlg"
         >
-          {valuables.slice(0, 3).map(val => (
-            <Flex.Item>
+          {valuables.slice(0, 10).map(val => (
+            <Flex.Item key={val.id}>
               <Flex
                 style={{ width: "160px" }}
                 className={"text-yellow-30 u-cursor--pointer u-padding-x--md"}
-                onClick={showValuable}
+                onClick={() => showValuable(val)}
                 align="center"
               >
                 <Flex.Item style={{ width: "160px" }}>
                   <Cashback className="u-width--full" />
                 </Flex.Item>
-                <Flex.Item>
-                  Valuable
-                </Flex.Item>
+                <Flex.Item>Valuable</Flex.Item>
               </Flex>
             </Flex.Item>
           ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomLoginCampaign } from "./variants/CustomLoginCampaign";
-import { PUSHER_MODAL_STATE } from "./PusherModal";
+import { TYPE_PUSHER_MODAL_STATE } from "./PusherModal";
 
 export const CHRISTMANS_CAMPAIGN_2021 = "christmas_campaign_2021";
 
@@ -34,21 +34,27 @@ export type PusherPaylod = {
 
 type Props = {
   pusherData: PusherPaylod;
-  pusherModalState: PUSHER_MODAL_STATE;
-  setPusherModalState: (state: PUSHER_MODAL_STATE) => void;
+  pusherModalState: TYPE_PUSHER_MODAL_STATE;
+  setPusherModalState: (state: TYPE_PUSHER_MODAL_STATE) => void;
 };
 
-export const PusherNotification = ({ pusherData, pusherModalState, setPusherModalState }: Props) => {
+export const PusherNotification = ({
+  pusherData,
+  pusherModalState,
+  setPusherModalState,
+}: Props) => {
   if (!pusherData) {
     return null;
   }
 
   if (pusherData.Data.event_name === CHRISTMANS_CAMPAIGN_2021) {
-    return <CustomLoginCampaign
-      pusherData={pusherData}
-      pusherModalState={pusherModalState}
-      setPusherModalState={setPusherModalState}
-    />
+    return (
+      <CustomLoginCampaign
+        pusherData={pusherData}
+        pusherModalState={pusherModalState}
+        setPusherModalState={setPusherModalState}
+      />
+    );
   }
 
   return null;
