@@ -764,7 +764,14 @@ export interface Country {
 
 export type Gender = "MALE" | "FEMALE";
 
-export type PlayerJurisdiction = "SGA" | "DGA" | "UKGC" | "MGA";
+export type PlayerJurisdiction =
+  | "SGA"
+  | "DGA"
+  | "UKGC"
+  | "MGA"
+  | "DGOJ"
+  | "GGL"
+  | "GRA";
 
 export type PlayerValuableState =
   | "Fresh"
