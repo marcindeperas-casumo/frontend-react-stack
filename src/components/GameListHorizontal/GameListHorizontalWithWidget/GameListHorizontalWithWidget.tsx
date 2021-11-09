@@ -10,7 +10,6 @@ import {
   topListWidgetWidth,
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
-  horizontalListsDevicePaddings,
 } from "Src/constants";
 import {
   topMarginClasses,
