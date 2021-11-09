@@ -17,7 +17,11 @@ describe("<SportsNav/>", () => {
 
   test("should not be rendered on or #bethistory kambi routes", () => {
     const renderedOnBethistoryPage = renderMocked(
-      <SportsNav currentHash="#bethistory" />
+      <SportsNav
+        currentHash="#bethistory"
+        hasSelectedFavourites={false}
+        itemsToShow={100}
+      />
     );
 
     expect(renderedOnBethistoryPage.isEmptyRender()).toBe(true);

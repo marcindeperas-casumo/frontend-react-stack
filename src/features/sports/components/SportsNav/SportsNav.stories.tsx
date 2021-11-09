@@ -17,7 +17,11 @@ if (isNotChromatic) {
       <div className="c-sports-shell--site">
         <MockStore>
           <MockedProvider mocks={mocks.manySports} addTypename={false}>
-            <SportsNav currentHash="#filter/tennis/wta" />
+            <SportsNav
+              currentHash="#filter/tennis/wta"
+              hasSelectedFavourites={false}
+              itemsToShow={100}
+            />
           </MockedProvider>
         </MockStore>
       </div>
@@ -30,7 +34,11 @@ if (isNotChromatic) {
     () => (
       <MockStore>
         <MockedProvider mocks={mocks.manySports} addTypename={false}>
-          <SportsNav currentHash="#filter/tennis/wta" />
+          <SportsNav
+            currentHash="#filter/tennis/wta"
+            hasSelectedFavourites={false}
+            itemsToShow={100}
+          />
         </MockedProvider>
       </MockStore>
     ),
@@ -42,7 +50,11 @@ if (isNotChromatic) {
     () => (
       <MockStore>
         <MockedProvider mocks={mocks.multipleSports} addTypename={false}>
-          <SportsNav currentHash="#filter/football/england/premier_league" />
+          <SportsNav
+            currentHash="#filter/football/england/premier_league"
+            hasSelectedFavourites={false}
+            itemsToShow={100}
+          />
         </MockedProvider>
       </MockStore>
     ),
@@ -52,7 +64,11 @@ if (isNotChromatic) {
   stories.add("Single sport", () => (
     <MockStore>
       <MockedProvider mocks={mocks.singleSport} addTypename={false}>
-        <SportsNav currentHash="#filter/football" />
+        <SportsNav
+          currentHash="#filter/football"
+          hasSelectedFavourites={false}
+          itemsToShow={100}
+        />
       </MockedProvider>
     </MockStore>
   ));
@@ -61,7 +77,11 @@ if (isNotChromatic) {
     <MockStore>
       {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: boolean; request: { query: Document... Remove this comment to see the full error message */}
       <MockedProvider mocks={mocks.error} addTypename={false}>
-        <SportsNav currentHash="#filter/tennis/wta" />
+        <SportsNav
+          currentHash="#filter/tennis/wta"
+          hasSelectedFavourites={false}
+          itemsToShow={100}
+        />
       </MockedProvider>
     </MockStore>
   ));
