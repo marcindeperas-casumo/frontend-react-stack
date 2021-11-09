@@ -28,7 +28,7 @@ export function BlueRibbonJackpotsStaticWidget({
     <Flex
       direction="vertical"
       justify="center"
-      className={`o-position--relative o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
+      className={`o-position--relative o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden u-margin-right ${className}`}
       style={{
         width: topListWidgetWidth,
         backgroundColor: widgetColor.light,
