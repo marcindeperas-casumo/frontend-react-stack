@@ -8,6 +8,7 @@ import jackpots from "Components/Jackpots/__mocks__/response.jackpots.mock";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
+import { GameRowCustomHeaderContent } from "Components/GameRow/GameRowCustomHeaderContent";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("GameRow", module);
@@ -45,6 +46,26 @@ stories.add("Showing a Jackpot", () => (
     <GameRow {...propsShowingJackpot} />
   </MockStore>
 ));
+
+stories.add("Showing with the custom title", () => {
+  const props = {
+    game: { ...gameMock, jackpot },
+    renderText: () => (
+      <GameRowCustomHeaderContent
+        primaryText={"Game of the day"}
+        secondaryText={gameMock.name}
+      />
+    ),
+    onLaunchGame: action(gonzosQuest),
+    hideRightSideComponent: true,
+  };
+
+  return (
+    <MockStore>
+      <GameRow {...props} />
+    </MockStore>
+  );
+});
 
 const propsSearchWithMatch = {
   game: gameMock,

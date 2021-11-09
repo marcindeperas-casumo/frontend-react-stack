@@ -1,4 +1,19 @@
 import {
+  EVENT_STATE_STARTED,
+  OUTCOME_STATUS_OPEN,
+  TRANSLATIONS_SPORTS_HOME_AWAY,
+  TRANSLATIONS_SPORTS_HOME_AWAY_DEFAULT,
+  TRANSLATIONS_SPORTS_HOME_DRAW,
+  TRANSLATIONS_SPORTS_HOME_DRAW_DEFAULT,
+  TRANSLATIONS_SPORTS_HOME_HOME,
+  TRANSLATIONS_SPORTS_HOME_HOME_DEFAULT,
+  TRANSLATIONS_SPORTS_HOME_LIVE,
+  TRANSLATIONS_SPORTS_HOME_LIVE_DEFAULT,
+  TRANSLATIONS_SPORTS_HOME_TITLE,
+  TRANSLATIONS_SPORTS_HOME_TITLE_DEFAULT,
+} from "./SportsHome.constants";
+import SportsHomeUtilities from "./SportsHome.Utilities";
+import {
   KambiBetOffer,
   KambiBetOfferOutcome,
   KambiEvent,
@@ -22,7 +37,7 @@ class SportsHomeAdapters {
     liveEvents: KambiLiveEvent[]
   ): SportsHomeEvent[] {
     const mappedEvents = eventIds.map<SportsHomeEvent>(eventId => {
-      const event = events.find(x => x.id === eventId);
+      const event = events?.find(x => x.id === eventId);
       if (!event) {
         return {
           id: eventId,
@@ -54,7 +69,7 @@ class SportsHomeAdapters {
         sport: event.sport,
         group: event.group,
         startTime: event.start,
-        live: event.state === "STARTED",
+        live: event.state === EVENT_STATE_STARTED,
         scoreHome: liveEvent?.score?.home,
         scoreAway: liveEvent?.score?.away,
         statistics: this.convertToSportsHomeLiveEventStatistics(
@@ -70,12 +85,15 @@ class SportsHomeAdapters {
         timer: {
           seconds: 0,
           minutes: 0,
-          disabled: event.state !== "STARTED",
+          disabled: event.state !== EVENT_STATE_STARTED,
+          running: event.state === EVENT_STATE_STARTED,
         },
       } as SportsHomeEvent;
     });
 
-    return mappedEvents.filter(event => event);
+    return mappedEvents.filter(event =>
+      SportsHomeUtilities.isValidEventOutcome(event)
+    );
   }
 
   convertToSportsHomeOutcomes(
@@ -89,7 +107,7 @@ class SportsHomeAdapters {
         odds: outcome.odds,
         fractional: outcome.oddsFractional,
         american: outcome.oddsAmerican,
-        isDisabled: outcome.status !== "OPEN",
+        isDisabled: outcome.status !== OUTCOME_STATUS_OPEN,
       } as SportsHomeOutcome;
     });
   }
@@ -112,11 +130,21 @@ class SportsHomeAdapters {
     data: SportsHomeTranslationsDictionary
   ): SportsHomeTranslations {
     return {
-      live: data.dictionary.find(x => x.key === "sports_home_live")?.value,
-      draw: data.dictionary.find(x => x.key === "sports_home_draw")?.value,
-      title: data.dictionary.find(x => x.key === "sports_home_title")?.value,
-      home: data.dictionary.find(x => x.key === "sports_home_home")?.value,
-      away: data.dictionary.find(x => x.key === "sports_home_away")?.value,
+      live:
+        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_LIVE)
+          ?.value || TRANSLATIONS_SPORTS_HOME_LIVE_DEFAULT,
+      draw:
+        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_DRAW)
+          ?.value || TRANSLATIONS_SPORTS_HOME_DRAW_DEFAULT,
+      title:
+        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_TITLE)
+          ?.value || TRANSLATIONS_SPORTS_HOME_TITLE_DEFAULT,
+      home:
+        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_HOME)
+          ?.value || TRANSLATIONS_SPORTS_HOME_HOME_DEFAULT,
+      away:
+        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_AWAY)
+          ?.value || TRANSLATIONS_SPORTS_HOME_AWAY_DEFAULT,
     } as SportsHomeTranslations;
   }
 

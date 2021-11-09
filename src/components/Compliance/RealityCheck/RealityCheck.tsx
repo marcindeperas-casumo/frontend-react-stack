@@ -42,9 +42,9 @@ const CancelButton = ({
   onClickCancel,
   onClickLogout,
 }: CancelButtonProps) => {
-  const { isMGA } = useJurisdiction();
-  const onClick = isMGA ? onClickLogout : onClickCancel;
-  const label = isMGA ? logoutLabel : cancelLabel;
+  const { isMGA, isGRA } = useJurisdiction();
+  const onClick = isMGA || isGRA ? onClickLogout : onClickCancel;
+  const label = isMGA || isGRA ? logoutLabel : cancelLabel;
 
   return (
     <ButtonSecondary size="md" onClick={onClick} className="o-flex--1">
