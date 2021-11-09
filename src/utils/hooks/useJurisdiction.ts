@@ -1,15 +1,17 @@
 import { useSelector } from "react-redux";
 import { equals } from "ramda";
 import { jurisdictionSelector } from "Models/handshake";
+import { TJurisdiction } from "Src/constants";
 
 type UseJurisdictionType = {
-  jurisdiction: string;
+  jurisdiction: TJurisdiction;
   isDGOJ: boolean;
   isDGA: boolean;
   isMGA: boolean;
   isSGA: boolean;
   isUKGC: boolean;
   isGGL: boolean;
+  isGRA: boolean;
 };
 
 export function useJurisdiction(): UseJurisdictionType {
@@ -22,6 +24,7 @@ export function useJurisdiction(): UseJurisdictionType {
     isSGA: equals("SGA")(jurisdiction),
     isUKGC: equals("UKGC")(jurisdiction),
     isGGL: equals("GGL")(jurisdiction),
+    isGRA: equals("GRA")(jurisdiction),
     jurisdiction,
   };
 }

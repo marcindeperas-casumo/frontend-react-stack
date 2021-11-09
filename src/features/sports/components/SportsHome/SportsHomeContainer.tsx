@@ -10,10 +10,12 @@ import {
 } from "./types";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
-export const DEFAULT_NUMBER_OF_EVENTS_TO_SHOW = 5;
-export const NUMBER_EVENTS_TO_PULL_MULTIPLIER = 4;
-export const DEFAULT_SPORTS = "FOOTBALL";
-export const KAMBI_SPORTS_SLUG = "sports.dictionary";
+import {
+  DEFAULT_NUMBER_OF_EVENTS_TO_SHOW,
+  DEFAULT_SPORTS,
+  KAMBI_SPORTS_SLUG,
+  NUMBER_EVENTS_TO_PULL_MULTIPLIER,
+} from "./SportsHome.constants";
 
 export const SportsHomeContainer = () => {
   const t = useTranslations<SportsHomeTranslationsDictionary>(
