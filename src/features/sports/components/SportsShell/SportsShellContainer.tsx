@@ -32,7 +32,7 @@ import { SportsShellDepositWrapper } from "Features/sports/components/SportsShel
 import { SportsYouWonComponent } from "Features/sports/components/SportsYouWon";
 import { showModal } from "Features/sports/components/SportsYouWon/SportsYouWonComponent";
 import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
-import { useMarket } from "Utils/hooks";
+import { useMarket, useTranslations } from "Utils/hooks";
 
 const bridgeEventHandlers = [
   [
@@ -77,6 +77,10 @@ export const SportsShellContainer: React.FC<{}> = () => {
   const client = useApolloClient();
   const market = useMarket();
 
+  const t = useTranslations<{ number_of_items_to_show: string }>(
+    "sports.sports-home-configuration"
+  );
+
   useEffect(() => {
     bridgeEventHandlers.map(
       ([event, handler]: [string, (c: ApolloClient<{}>) => () => void]) =>
@@ -105,7 +109,12 @@ export const SportsShellContainer: React.FC<{}> = () => {
             {data.isSearchVisible ? (
               <SportsSearch />
             ) : (
-              <SportsNav currentHash={currentHash} market={market} />
+              <SportsNav
+                currentHash={currentHash}
+                market={market}
+                hasSelectedFavourites={data.hasSelectedFavourites}
+                itemsToShow={parseInt(t.number_of_items_to_show) || 100}
+              />
             )}
             {currentHash === homeHash && !data.isSearchVisible && (
               <SportsHome />
