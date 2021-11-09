@@ -123,7 +123,7 @@ export function BlueRibbonJackpotsWidget({
           src={jackpotLogo}
         />
       </Flex.Item>
-      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--none o-inset-bottom--auto u-margin-right--md u-margin-bottom--md">
+      <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--none o-inset-bottom--auto u-margin-right--md u-margin-bottom--md u-margin-top--md">
         {userViewedJackpotOnboardingOffer && (
           <Link to={explainerPageUrl}>
             <Flex
