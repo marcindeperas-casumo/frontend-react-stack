@@ -8,6 +8,7 @@ import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
 import {
   EVENT_STATE_STARTED,
+  SPORT_BASKETBALL,
   SPORT_CRICKET,
   SPORT_FOOTBALL,
   SPORT_TENNIS,
@@ -128,7 +129,8 @@ const isScoreEnabledSports = (sport: string) => {
   return (
     sport === SPORT_FOOTBALL ||
     sport === SPORT_TENNIS ||
-    sport === SPORT_CRICKET
+    sport === SPORT_CRICKET ||
+    sport === SPORT_BASKETBALL
   );
 };
 
