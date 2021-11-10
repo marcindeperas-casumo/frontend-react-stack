@@ -5,6 +5,7 @@ import { SportsNav } from "Features/sports/components/SportsNav";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 jest.mock("Utils/hooks/useIsAuthenticated");
 
+const ITEMS_TO_SHOW = 100;
 const renderMocked = children =>
   mount(
     <MockedProvider mocks={multipleSports} addTypename={false}>
@@ -17,7 +18,11 @@ describe("<SportsNav/>", () => {
 
   test("should not be rendered on or #bethistory kambi routes", () => {
     const renderedOnBethistoryPage = renderMocked(
-      <SportsNav currentHash="#bethistory" />
+      <SportsNav
+        currentHash="#bethistory"
+        hasSelectedFavourites={false}
+        itemsToShow={ITEMS_TO_SHOW}
+      />
     );
 
     expect(renderedOnBethistoryPage.isEmptyRender()).toBe(true);

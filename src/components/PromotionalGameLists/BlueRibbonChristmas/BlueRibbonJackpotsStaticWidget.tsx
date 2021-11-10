@@ -13,9 +13,14 @@ import type { PotObject } from "./blueRibbonConsts";
 export function BlueRibbonJackpotsStaticWidget({
   className = "",
   composedPots,
+  widgetColor,
   jackpotLogo,
 }: {
   className?: string;
+  widgetColor: {
+    dark?: string;
+    light?: string;
+  };
   composedPots: Array<PotObject>;
   jackpotLogo?: string;
 }) {
@@ -23,9 +28,10 @@ export function BlueRibbonJackpotsStaticWidget({
     <Flex
       direction="vertical"
       justify="center"
-      className={`o-position--relative o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden ${className}`}
+      className={`o-position--relative o-flex__item--no-shrink u-padding t-border-r--md u-overflow--hidden u-margin-right ${className}`}
       style={{
         width: topListWidgetWidth,
+        backgroundColor: widgetColor.light,
         height:
           composedPots.length < 3
             ? topListWidgetHeightTwoRows
@@ -88,7 +94,7 @@ function JackpotRow({
           >
             {label}
           </Text>
-          <Text size="sm" className="u-margin-bottom--none">
+          <Text size="sm" className="u-margin-bottom--none text-white">
             {`${potInformation} ${potInformationAmount}`}
           </Text>
         </>
