@@ -20,7 +20,8 @@ import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 
 export type Props = {
   games: Array<A.GameRow_GameFragment | A.Jackpots_GameFragment>;
-  Widget: React.ComponentType;
+  JackpotWidget: React.ComponentType;
+  JackpotOnboardingWidget?: React.ComponentType;
   name: string | undefined;
   seeMore?: SeeMoreProps;
   gamesInColumn?: number;
@@ -30,14 +31,19 @@ export const GameListHorizontalWithWidget = ({
   name,
   seeMore,
   games,
-  Widget,
+  JackpotWidget,
+  JackpotOnboardingWidget,
   gamesInColumn = 3,
 }: Props) => {
   const columns = R.splitEvery(gamesInColumn, games);
 
   const mobileItemRenderer = (i: number) => {
     if (i === 0) {
-      return <Widget key={i} />;
+      return <JackpotWidget />;
+    }
+
+    if (i === 1) {
+      return <JackpotOnboardingWidget />;
     }
 
     return columns[i - 1].map(game => (
@@ -60,8 +66,9 @@ export const GameListHorizontalWithWidget = ({
   const desktopItemRenderer = ({ style, columnIndex, key }) => {
     return (
       <div key={key} style={style}>
+        {columnIndex === 1 && <JackpotOnboardingWidget />}
         {columnIndex === 0 ? (
-          <Widget />
+          <JackpotWidget />
         ) : (
           columns[columnIndex - 1].map(game => (
             <div
