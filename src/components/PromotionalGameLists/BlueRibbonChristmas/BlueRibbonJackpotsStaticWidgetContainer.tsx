@@ -36,6 +36,7 @@ export const BlueRibbonJackpotsStaticWidgetContainer = React.memo<any>(
       <BlueRibbonJackpotsStaticWidget
         className={className}
         composedPots={composedJackpot.pots}
+        widgetColor={composedJackpot.widgetColor}
       />
     );
   }
