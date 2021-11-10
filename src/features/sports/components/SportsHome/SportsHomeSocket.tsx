@@ -5,6 +5,13 @@ import {
 } from "Features/sports/components/SportsHome/types";
 import config from "Src/config";
 import SportsHomeAdapters from "./SportsHome.adapters";
+import SportsHomeUtilities from "./SportsHome.Utilities";
+import {
+  EVENT_STATE_STARTED,
+  SPORT_CRICKET,
+  SPORT_FOOTBALL,
+  SPORT_TENNIS,
+} from "./SportsHome.constants";
 
 const socketAddress = config.kambiSocketUrl;
 
@@ -27,9 +34,6 @@ const EVENT_STATS_UPDATED = 17;
 const BET_OFFER_ODDS_ADDED = 22;
 const BET_OFFER_ODDS_REMOVED = 23;
 const EVENT_STATE_UPDATED = 34;
-
-const SPORT_FOOTBALL = "FOOTBALL";
-const SPORT_TENNIS = "TENNIS";
 
 // eslint-disable-next-line fp/no-let
 let vars = {
@@ -106,6 +110,28 @@ const countEventsShowed = (data: SportsHomeType) => {
   return data.events.filter(event => event.show === true).length;
 };
 
+const checkForEventValidity = (
+  data: SportsHomeType,
+  event: SportsHomeEvent,
+  numberOfEventsToShow: number,
+  refetch: () => void
+) => {
+  if (event && !SportsHomeUtilities.isValidEventOutcome(event)) {
+    event.show = false;
+    if (countEventsShowed(data) < numberOfEventsToShow) {
+      refetch();
+    }
+  }
+};
+
+const isScoreEnabledSports = (sport: string) => {
+  return (
+    sport === SPORT_FOOTBALL ||
+    sport === SPORT_TENNIS ||
+    sport === SPORT_CRICKET
+  );
+};
+
 export const messageEvent = (
   message: any[],
   setData: (data: SportsHomeType) => void,
@@ -128,6 +154,9 @@ export const messageEvent = (
           msg.boa.betOffer.outcomes
         );
         updateNeeded = true;
+
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
       }
     }
 
@@ -165,6 +194,9 @@ export const messageEvent = (
           }
         });
         updateNeeded = true;
+
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
       }
     }
 
@@ -183,6 +215,7 @@ export const messageEvent = (
       if (event) {
         event.timer = {
           disabled: false,
+          running: msg.mcu.matchClock.running,
           seconds: msg.mcu.matchClock.second,
           minutes: msg.mcu.matchClock.minute,
         };
@@ -190,13 +223,10 @@ export const messageEvent = (
       }
     }
 
-    // score change - for football only atm
+    // score change - for any enabled sports only atm
     if (msg.mt === EVENT_SCORE_UPDATED) {
       const event = findEventInData(data, msg.score.eventId);
-      if (
-        event &&
-        (event.sport === SPORT_FOOTBALL || event.sport === SPORT_TENNIS)
-      ) {
+      if (event && isScoreEnabledSports(event.sport)) {
         event.scoreHome = msg.score.score.home;
         event.scoreAway = msg.score.score.away;
         updateNeeded = true;
@@ -237,6 +267,9 @@ export const messageEvent = (
           outcomes
         );
         updateNeeded = true;
+
+        // check if event is still valid
+        checkForEventValidity(data, event, numberOfEventsToShow, refetch);
       }
     }
 
@@ -253,7 +286,7 @@ export const messageEvent = (
     if (msg.mt === EVENT_STATE_UPDATED) {
       const event = findEventInData(data, msg.esu.id);
       if (event) {
-        event.live = msg.esu.state === "STARTED";
+        event.live = msg.esu.state === EVENT_STATE_STARTED;
         if (event.show === false && event.name === "") {
           getOneEvent(event.id);
         }
