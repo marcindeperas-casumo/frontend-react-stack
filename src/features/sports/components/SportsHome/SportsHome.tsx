@@ -260,7 +260,7 @@ export const SportsHome = ({
     const fetchData = async () => {
       if (data?.sportsPopularBets?.popularEvents.length && market) {
         // use data to fetch event details from Kambi Offerrings REST API Data
-        const eventIds = data.sportsPopularBets.popularEvents[0].events?.map(
+        const eventIds = data.sportsPopularBets.popularEvents[0]?.events?.map(
           popularEvent => popularEvent.eventId
         );
 
