@@ -6,6 +6,7 @@ import MockStore from "Components/MockStore";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
+const ITEMS_TO_SHOW = 100;
 const stories = storiesOf("Sports/SportsNav", module);
 
 const waitForScrollablePaginated = { chromatic: { delay: 200 } };
@@ -20,7 +21,7 @@ if (isNotChromatic) {
             <SportsNav
               currentHash="#filter/tennis/wta"
               hasSelectedFavourites={false}
-              itemsToShow={100}
+              itemsToShow={ITEMS_TO_SHOW}
             />
           </MockedProvider>
         </MockStore>
@@ -37,7 +38,7 @@ if (isNotChromatic) {
           <SportsNav
             currentHash="#filter/tennis/wta"
             hasSelectedFavourites={false}
-            itemsToShow={100}
+            itemsToShow={ITEMS_TO_SHOW}
           />
         </MockedProvider>
       </MockStore>
@@ -53,7 +54,7 @@ if (isNotChromatic) {
           <SportsNav
             currentHash="#filter/football/england/premier_league"
             hasSelectedFavourites={false}
-            itemsToShow={100}
+            itemsToShow={ITEMS_TO_SHOW}
           />
         </MockedProvider>
       </MockStore>
@@ -67,7 +68,7 @@ if (isNotChromatic) {
         <SportsNav
           currentHash="#filter/football"
           hasSelectedFavourites={false}
-          itemsToShow={100}
+          itemsToShow={ITEMS_TO_SHOW}
         />
       </MockedProvider>
     </MockStore>
@@ -80,7 +81,7 @@ if (isNotChromatic) {
         <SportsNav
           currentHash="#filter/tennis/wta"
           hasSelectedFavourites={false}
-          itemsToShow={100}
+          itemsToShow={ITEMS_TO_SHOW}
         />
       </MockedProvider>
     </MockStore>

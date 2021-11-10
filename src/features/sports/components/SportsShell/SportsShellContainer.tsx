@@ -76,6 +76,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
 
   const client = useApolloClient();
   const market = useMarket();
+  const ITEMS_TO_SHOW = 100;
 
   const t = useTranslations<{ number_of_items_to_show: string }>(
     "sports.sports-home-configuration"
@@ -113,7 +114,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
                 currentHash={currentHash}
                 market={market}
                 hasSelectedFavourites={data.hasSelectedFavourites}
-                itemsToShow={parseInt(t.number_of_items_to_show) || 100}
+                itemsToShow={
+                  parseInt(t.number_of_items_to_show) || ITEMS_TO_SHOW
+                }
               />
             )}
             {currentHash === homeHash && !data.isSearchVisible && (
