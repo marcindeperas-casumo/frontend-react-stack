@@ -8,6 +8,7 @@ import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
 import {
   EVENT_STATE_STARTED,
+  SPORT_CRICKET,
   SPORT_FOOTBALL,
   SPORT_TENNIS,
 } from "./SportsHome.constants";
@@ -123,6 +124,14 @@ const checkForEventValidity = (
   }
 };
 
+const isScoreEnabledSports = (sport: string) => {
+  return (
+    sport === SPORT_FOOTBALL ||
+    sport === SPORT_TENNIS ||
+    sport === SPORT_CRICKET
+  );
+};
+
 export const messageEvent = (
   message: any[],
   setData: (data: SportsHomeType) => void,
@@ -214,13 +223,10 @@ export const messageEvent = (
       }
     }
 
-    // score change - for football and tennis only atm
+    // score change - for any enabled sports only atm
     if (msg.mt === EVENT_SCORE_UPDATED) {
       const event = findEventInData(data, msg.score.eventId);
-      if (
-        event &&
-        (event.sport === SPORT_FOOTBALL || event.sport === SPORT_TENNIS)
-      ) {
+      if (event && isScoreEnabledSports(event.sport)) {
         event.scoreHome = msg.score.score.home;
         event.scoreAway = msg.score.score.away;
         updateNeeded = true;
