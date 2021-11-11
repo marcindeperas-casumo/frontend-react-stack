@@ -5,19 +5,26 @@ import { LazyPlayerPlayOkaySettings } from "Components/Router/routes/LazyPlayerP
 import { LazyCasinoGamesRTPLight } from "Components/CasinoGames";
 import { LazyFooterTermsAndConditionsForBonuses } from "Components/Router/routes/LazyFooterTermsAndConditionsForBonuses";
 import {
+  setPageLoaded,
   subscribeToPusherEvent,
   unsubscribeFromPusherChannel,
 } from "Services/PusherPubSubService";
 import { usePusher } from "Utils/hooks";
 import { PusherModal, PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
+import logger from "Services/logger";
 
-export const AppLiS = ({ sessionId }) => {
+export const AppLiS = ({ sessionId, playerId }) => {
   const { pusher, fastTrackPlayerId } = usePusher(sessionId);
   const [pusherModalVisible, setPusherModalVisible] = useState(false);
   const [pusherData, setPusherData] = useState(null);
+  const [isPageReady, setIsPageReady] = useState(false);
 
   const onPusherEvent = data => {
+    if (data.subscribed) {
+      setIsPageReady(true);
+      return;
+    }
     setPusherData(data);
     setPusherModalVisible(true);
   };
@@ -25,9 +32,18 @@ export const AppLiS = ({ sessionId }) => {
   const hidePusherModal = () => {
     setPusherModalVisible(false);
   };
+
+  useEffect(() => {
+    if (isPageReady) {
+      setPageLoaded(sessionId, playerId).then(() => {
+        logger.info("app ready for pusher events");
+      });
+    }
+  }, [isPageReady, sessionId, playerId]);
+
   useEffect(() => {
     const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;
-    if (fastTrackPlayerId) {
+    if (fastTrackPlayerId && pusher) {
       subscribeToPusherEvent(
         pusher,
         channelName,
