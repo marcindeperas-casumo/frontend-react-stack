@@ -10,7 +10,6 @@ import {
   topListWidgetWidth,
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
-  horizontalListsDevicePaddings,
 } from "Src/constants";
 import {
   topMarginClasses,
@@ -93,16 +92,13 @@ export const GameListHorizontalWithWidget = ({
   return (
     <div className={`o-wrapper ${topMarginClasses} ${xPaddingClasses}`}>
       <MobileAndTablet>
-        {name && (
-          <ScrollableListTitleRow paddingLeft title={name} seeMore={seeMore} />
-        )}
+        {name && <ScrollableListTitleRow title={name} seeMore={seeMore} />}
         <Scrollable
           numberOfItems={
             /* +1 because widget takes up one column, and is not inside columns array */
             columns.length + 1
           }
           itemRenderer={mobileItemRenderer}
-          padding={horizontalListsDevicePaddings}
         />
       </MobileAndTablet>
       <Desktop>
