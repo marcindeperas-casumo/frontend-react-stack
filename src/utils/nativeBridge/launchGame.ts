@@ -93,7 +93,7 @@ export function useLaunchGame(game: TGamePartial, isPractice = false) {
     ? ROUTE_IDS.PRACTICE_NATIVE
     : ROUTE_IDS.PLAY_NATIVE;
   const gameDetailsPath = useTranslatedUrl(routeId, {
-    slug: game.slug,
+    slug: game?.slug,
   });
 
   const fullUrl = `${window.location.origin}/${gameDetailsPath}`;
