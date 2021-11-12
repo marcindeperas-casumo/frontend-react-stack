@@ -7,6 +7,7 @@ export const SPORT_FOOTBALL = "FOOTBALL";
 export const SPORT_TENNIS = "TENNIS";
 export const OUTCOME_TYPE_OT_TWO = "OT_TWO";
 export const OUTCOME_TYPE_OT_ONE = "OT_ONE";
+export const OUTCOME_TYPE_OT_CROSS = "OT_CROSS";
 export const OUTCOME_STATUS_OPEN = "OPEN";
 export const EVENT_STATE_STARTED = "STARTED";
 export const TRANSLATIONS_SPORTS_HOME_LIVE = "sports_home_live";
