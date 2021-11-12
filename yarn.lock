@@ -3624,10 +3624,10 @@
   dependencies:
     "@casumo/cmp-skeleton" "^1.2.7"
 
-"@casumo/sports-home@^1.2.14":
-  version "1.2.14"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-home/1.2.14/e6bc36d039114bd282b9747ab79687534cb4a21ec00ad311608d96b22a0f9197#7c60d58486b75163f1a581d08e765ba121fb713c"
-  integrity sha512-0+z97IJgf41IuZUp/RjrRyIO2r66pFtGAm9UX5joq4hx51c5XZuwlp6bzwHPWOkNrUuHx3bV7p4oGnYTqLHUrA==
+"@casumo/sports-home@^1.2.16":
+  version "1.2.16"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-home/1.2.16/083fdc819bbe2048be1dbb53fd9b4b263981c86e6c71bbeab6fc33887f185a37#8fdf3783d8c10a7dff42a3fb6ec1df98e751d0b5"
+  integrity sha512-2d3IuKb0ZaKat4QJ8JyyaKX7ImTYEbSy+Cnn7zBLB6NXLlZeKwodkFCucncy4TOeH4tjBd/YUdd32vm3C2KYOA==
   dependencies:
     "@casumo/cmp-flex" "^4.1.1"
     "@casumo/cmp-icons" "^5.0.3"
