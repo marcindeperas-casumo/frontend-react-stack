@@ -11,12 +11,14 @@ import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerVa
 import { getPlatform } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 import {
+  DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
   TYPE_PUSHER_MODAL_STATE,
 } from "Components/Pusher/PusherModal";
 import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
+import { setCookie } from "Utils/setCookie";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -90,6 +92,10 @@ export const CustomCampaign = ({
   };
 
   const closeModal = () => setPusherModalState(PUSHER_MODAL_STATE.HIDDEN);
+  const disableModal = () => {
+    closeModal();
+    setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
+  };
 
   if (!pusherData) {
     return null;
@@ -168,10 +174,10 @@ export const CustomCampaign = ({
         <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
           <ButtonPrimary
             className="u-width--full"
-            onClick={() => {}}
+            onClick={disableModal}
             data-test="valuable-action-button"
           >
-            Button
+            Disable popup for a week
           </ButtonPrimary>
         </div>
       </div>
