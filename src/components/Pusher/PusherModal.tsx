@@ -9,7 +9,10 @@ import { usePusher } from "Utils/hooks";
 import { PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
 import logger from "Services/logger";
+import { getCookie } from "Utils/getCookie";
 import { PusherPaylod } from "./PusherNotification";
+
+export const DISABLE_MODAL_COOKIE_KEY = "disablePusherModal";
 
 export const PUSHER_MODAL_STATE = {
   HIDDEN: "HIDDEN",
@@ -78,7 +81,8 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
     }
   }, [isPageReady, sessionId, playerId]);
 
-  if (!isVisible || !pusherData) {
+  const userDisabledPusherModal = Boolean(getCookie(DISABLE_MODAL_COOKIE_KEY));
+  if (!isVisible || !pusherData || userDisabledPusherModal) {
     return null;
   }
 
