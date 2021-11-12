@@ -8,8 +8,11 @@ import SportsHomeAdapters from "./SportsHome.adapters";
 import SportsHomeUtilities from "./SportsHome.Utilities";
 import {
   EVENT_STATE_STARTED,
+  SPORT_AMERICAN_FOOTBALL,
+  SPORT_BASKETBALL,
   SPORT_CRICKET,
   SPORT_FOOTBALL,
+  SPORT_ICE_HOCKEY,
   SPORT_TENNIS,
 } from "./SportsHome.constants";
 
@@ -128,7 +131,10 @@ const isScoreEnabledSports = (sport: string) => {
   return (
     sport === SPORT_FOOTBALL ||
     sport === SPORT_TENNIS ||
-    sport === SPORT_CRICKET
+    sport === SPORT_CRICKET ||
+    sport === SPORT_BASKETBALL ||
+    sport === SPORT_ICE_HOCKEY ||
+    sport === SPORT_AMERICAN_FOOTBALL
   );
 };
 
