@@ -7,8 +7,6 @@ type TProps = {
 
 export const CampaignTerms = ({ content }: TProps) => {
   return (
-    <>
-      <DangerousHtml element="div" className="u-padding--md" html={content} />
-    </>
+    <DangerousHtml element="div" className="u-padding--md" html={content} />
   );
 };
