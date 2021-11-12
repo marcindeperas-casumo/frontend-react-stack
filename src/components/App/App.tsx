@@ -56,5 +56,9 @@ export const App = (props: Props) => {
   if (!props.isAppHandshakeLoaded) {
     return null;
   }
-  return isAuthenticated ? <AppLiS sessionId={sessionId} /> : <AppLoS />;
+  return isAuthenticated ? (
+    <AppLiS playerId={playerId} sessionId={sessionId} />
+  ) : (
+    <AppLoS />
+  );
 };

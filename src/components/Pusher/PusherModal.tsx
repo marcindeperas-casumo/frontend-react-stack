@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { AbstractModal } from "Components/AbstractModal";
 import {
+  setPageLoaded,
   subscribeToPusherEvent,
   unsubscribeFromPusherChannel,
 } from "Services/PusherPubSubService";
 import { usePusher } from "Utils/hooks";
 import { PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
+import logger from "Services/logger";
 import { PusherPaylod } from "./PusherNotification";
 import { getCookie } from "Utils/getCookie";
 
@@ -26,17 +28,26 @@ const STATE_TRANSITIONS = {
     PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE,
 };
 
-type Props = { sessionId: any };
+type Props = {
+  sessionId: string;
+  playerId: string;
+};
 
-export const PusherModal = ({ sessionId }: Props) => {
+export const PusherModal = ({ sessionId, playerId }: Props) => {
   const { pusher, fastTrackPlayerId } = usePusher(sessionId);
+  const [isPageReady, setIsPageReady] = useState(false);
+  const [pusherData, setPusherData] = useState(null);
   const [
     pusherModalState,
     setPusherModalState,
   ] = useState<TYPE_PUSHER_MODAL_STATE>(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
-  const [pusherData, setPusherData] = useState(null);
 
   const onPusherEvent = (data: PusherPaylod) => {
+    if (data.subscribed) {
+      setIsPageReady(true);
+      return;
+    }
+
     setPusherData(data);
     setPusherModalState(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
   };
@@ -61,6 +72,14 @@ export const PusherModal = ({ sessionId }: Props) => {
       unsubscribeFromPusherChannel(pusher, channelName);
     };
   }, [pusher, fastTrackPlayerId]);
+
+  useEffect(() => {
+    if (isPageReady) {
+      setPageLoaded(sessionId, playerId).then(() => {
+        logger.info("app ready for pusher events");
+      });
+    }
+  }, [isPageReady, sessionId, playerId]);
 
   const userDisabledPusherModal = !!getCookie(DISABLE_MODAL_COOKIE_KEY);
   if (!isVisible || !pusherData || userDisabledPusherModal) {

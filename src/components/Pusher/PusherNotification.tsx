@@ -1,8 +1,8 @@
 import React from "react";
-import { CustomLoginCampaign } from "./variants/CustomLoginCampaign";
+import { CustomCampaign } from "./variants/CustomCampaign";
 import { TYPE_PUSHER_MODAL_STATE } from "./PusherModal";
 
-export const CHRISTMANS_CAMPAIGN_2021 = "christmas_campaign_2021";
+export const CHRISTMAS_CAMPAIGN_2021 = "christmas_campaign_2021";
 
 export type PusherPaylod = {
   CTAButton2Link: string;
@@ -13,7 +13,7 @@ export type PusherPaylod = {
     Component: string;
     OverrideCommunicationStatus: string;
     "Site Block": string;
-    event_name: typeof CHRISTMANS_CAMPAIGN_2021 & string; // more to come
+    event_name: typeof CHRISTMAS_CAMPAIGN_2021 & string; // more to come
     game: string;
     terms_link_text: string;
     terms_link_url: string;
@@ -30,6 +30,7 @@ export type PusherPaylod = {
   MessageId: number;
   PreviewText: string;
   Title: string;
+  subscribed: boolean;
 };
 
 type Props = {
@@ -47,9 +48,9 @@ export const PusherNotification = ({
     return null;
   }
 
-  if (pusherData.Data.event_name === CHRISTMANS_CAMPAIGN_2021) {
+  if (pusherData.Data.event_name === CHRISTMAS_CAMPAIGN_2021) {
     return (
-      <CustomLoginCampaign
+      <CustomCampaign
         pusherData={pusherData}
         pusherModalState={pusherModalState}
         setPusherModalState={setPusherModalState}
