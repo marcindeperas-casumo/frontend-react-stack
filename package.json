@@ -7,7 +7,7 @@
     "node": ">=12.20.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.6",
+    "@apollo/client": "3.4.0",
     "@casumo/cmp-badge": "^2.0.0",
     "@casumo/cmp-button": "^3.0.0",
     "@casumo/cmp-card": "^4.0.0",
