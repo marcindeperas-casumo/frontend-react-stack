@@ -23,4 +23,4 @@ export * from "./LazyLiveCasinoPage";
 export * from "./LazyJackpotDetail";
 export * from "./LazyJackpotExplainer";
 export * from "./LazyJackpotsNav";
-export * from "./LazyCamaignTerms";
+export * from "./LazyCampaignTerms";
