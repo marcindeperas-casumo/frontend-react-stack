@@ -8,8 +8,8 @@ import {
 import { usePusher } from "Utils/hooks";
 import { PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
-import { PusherPaylod } from "./PusherNotification";
 import logger from "Services/logger";
+import { PusherPaylod } from "./PusherNotification";
 
 export const PUSHER_MODAL_STATE = {
   HIDDEN: "HIDDEN",
@@ -26,8 +26,8 @@ const STATE_TRANSITIONS = {
 };
 
 type Props = {
-  sessionId: string,
-  playerId: string,
+  sessionId: string;
+  playerId: string;
 };
 
 export const PusherModal = ({ sessionId, playerId }: Props) => {

@@ -17,10 +17,7 @@ export const AppLiS = ({ sessionId, playerId }) => {
         }
         namedExport="DepositLimitsViewContainer"
       />
-      <PusherModal
-        sessionId={sessionId}
-        playerId={playerId}
-      />
+      <PusherModal sessionId={sessionId} playerId={playerId} />
       <LazyPlayerPlayOkaySettings />
       <LazyCasinoGamesRTPLight />
       <LazyFooterTermsAndConditionsForBonuses />
