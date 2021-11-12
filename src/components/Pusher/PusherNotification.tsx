@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomLoginCampaign } from "./variants/CustomLoginCampaign";
+import { CustomCampaign } from "./variants/CustomCampaign";
 import { TYPE_PUSHER_MODAL_STATE } from "./PusherModal";
 
 export const CHRISTMANS_CAMPAIGN_2021 = "christmas_campaign_2021";
@@ -49,7 +49,7 @@ export const PusherNotification = ({
 
   if (pusherData.Data.event_name === CHRISTMANS_CAMPAIGN_2021) {
     return (
-      <CustomLoginCampaign
+      <CustomCampaign
         pusherData={pusherData}
         pusherModalState={pusherModalState}
         setPusherModalState={setPusherModalState}
