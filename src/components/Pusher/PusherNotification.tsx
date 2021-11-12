@@ -30,6 +30,7 @@ export type PusherPaylod = {
   MessageId: number;
   PreviewText: string;
   Title: string;
+  subscribed: boolean;
 };
 
 type Props = {

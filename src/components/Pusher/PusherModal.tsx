@@ -40,6 +40,11 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
   ] = useState<TYPE_PUSHER_MODAL_STATE>(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
 
   const onPusherEvent = (data: PusherPaylod) => {
+    if (data.subscribed) {
+      setIsPageReady(true);
+      return;
+    }
+
     setPusherData(data);
     setPusherModalState(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
   };
