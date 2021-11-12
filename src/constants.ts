@@ -619,9 +619,13 @@ export const PUSHER_CONSTANTS = {
     "/casino-player/fasttrack-realtime-integration/api/v1/session-mapping",
   pusherChannelnamePrefix: "private-prisma-16-",
   pusherEvents: [
+    "pusher:subscription_succeeded",
     "crm_campaign",
     "system_alerts",
     "player_message",
     "fraud_kyc",
   ],
+  pageLoadControllerEndPoint:
+    "/casino-player/fasttrack-realtime-integration/api/v1/page-load",
+  pusherSubscriptionSuccessEvent: "pusher:subscription_succeeded",
 };
