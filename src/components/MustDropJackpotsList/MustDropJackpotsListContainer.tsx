@@ -46,7 +46,7 @@ export const MustDropJackpotsListContainer = React.memo<null>(() => {
         <GameListHorizontalWithWidget
           name={R.path(["gamesList", "name"], data)}
           games={R.pathOr([], ["gamesList", "games"], data)}
-          Widget={MustDropJackpotsWidget}
+          JackpotWidget={MustDropJackpotsWidget}
           seeMore={{
             text: t.more_link,
             url: "../jackpots",

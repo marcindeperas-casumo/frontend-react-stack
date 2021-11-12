@@ -72,7 +72,7 @@ const ValuablePopupContent = ({
   );
 };
 
-export const CustomLoginCampaign = ({
+export const CustomCampaign = ({
   pusherData,
   pusherModalState,
   setPusherModalState,
@@ -146,7 +146,7 @@ export const CustomLoginCampaign = ({
             </Flex.Item>
           ))}
 
-          <Flex.Item className=" u-margin-y--md">
+          <Flex.Item className="u-margin-y--md">
             <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
           </Flex.Item>
 

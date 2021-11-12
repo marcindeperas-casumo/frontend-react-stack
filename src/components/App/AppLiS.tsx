@@ -6,7 +6,7 @@ import { LazyCasinoGamesRTPLight } from "Components/CasinoGames";
 import { LazyFooterTermsAndConditionsForBonuses } from "Components/Router/routes/LazyFooterTermsAndConditionsForBonuses";
 import { PusherModal } from "Components/Pusher";
 
-export const AppLiS = ({ sessionId }) => {
+export const AppLiS = ({ sessionId, playerId }) => {
   return (
     <React.StrictMode>
       <Router></Router>
@@ -17,7 +17,10 @@ export const AppLiS = ({ sessionId }) => {
         }
         namedExport="DepositLimitsViewContainer"
       />
-      <PusherModal sessionId={sessionId} />
+      <PusherModal
+        sessionId={sessionId}
+        playerId={playerId}
+      />
       <LazyPlayerPlayOkaySettings />
       <LazyCasinoGamesRTPLight />
       <LazyFooterTermsAndConditionsForBonuses />

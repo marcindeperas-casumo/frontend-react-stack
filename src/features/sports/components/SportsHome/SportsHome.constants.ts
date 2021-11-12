@@ -5,6 +5,7 @@ export const DEFAULT_SPORTS = "FOOTBALL";
 export const KAMBI_SPORTS_SLUG = "sports.dictionary";
 export const SPORT_FOOTBALL = "FOOTBALL";
 export const SPORT_TENNIS = "TENNIS";
+export const SPORT_CRICKET = "CRICKET";
 export const OUTCOME_TYPE_OT_TWO = "OT_TWO";
 export const OUTCOME_TYPE_OT_ONE = "OT_ONE";
 export const OUTCOME_STATUS_OPEN = "OPEN";

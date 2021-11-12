@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AbstractModal } from "Components/AbstractModal";
 import {
+  setPageLoaded,
   subscribeToPusherEvent,
   unsubscribeFromPusherChannel,
 } from "Services/PusherPubSubService";
@@ -8,6 +9,7 @@ import { usePusher } from "Utils/hooks";
 import { PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
 import { PusherPaylod } from "./PusherNotification";
+import logger from "Services/logger";
 
 export const PUSHER_MODAL_STATE = {
   HIDDEN: "HIDDEN",
@@ -23,15 +25,19 @@ const STATE_TRANSITIONS = {
     PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE,
 };
 
-type Props = { sessionId: any };
+type Props = {
+  sessionId: string,
+  playerId: string,
+};
 
-export const PusherModal = ({ sessionId }: Props) => {
+export const PusherModal = ({ sessionId, playerId }: Props) => {
   const { pusher, fastTrackPlayerId } = usePusher(sessionId);
+  const [isPageReady, setIsPageReady] = useState(false);
+  const [pusherData, setPusherData] = useState(null);
   const [
     pusherModalState,
     setPusherModalState,
   ] = useState<TYPE_PUSHER_MODAL_STATE>(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
-  const [pusherData, setPusherData] = useState(null);
 
   const onPusherEvent = (data: PusherPaylod) => {
     setPusherData(data);
@@ -58,6 +64,14 @@ export const PusherModal = ({ sessionId }: Props) => {
       unsubscribeFromPusherChannel(pusher, channelName);
     };
   }, [pusher, fastTrackPlayerId]);
+
+  useEffect(() => {
+    if (isPageReady) {
+      setPageLoaded(sessionId, playerId).then(() => {
+        logger.info("app ready for pusher events");
+      });
+    }
+  }, [isPageReady, sessionId, playerId]);
 
   if (!isVisible || !pusherData) {
     return null;
