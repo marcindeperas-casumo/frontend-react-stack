@@ -23,7 +23,9 @@ const renderSportsNav = (
   liveState: LiveState,
   data,
   isAuthenticated: boolean,
-  market: string
+  market: string,
+  hasSelectedFavourites: boolean,
+  itemsToShow: number
 ) => {
   const [isLiveActive, setIsLiveActive] = liveState;
 
@@ -56,6 +58,8 @@ const renderSportsNav = (
             setIsLiveActive={setIsLiveActive}
             canEdit={isAuthenticated}
             onEdit={openChooseFavouritesModal}
+            hasSelectedFavourites={hasSelectedFavourites}
+            itemsToShow={itemsToShow}
           />
         )}
       </OpenModalMutation>
@@ -66,9 +70,13 @@ const renderSportsNav = (
 export const SportsNav = ({
   currentHash,
   market,
+  hasSelectedFavourites,
+  itemsToShow,
 }: {
   currentHash: string;
   market?: TMarket;
+  hasSelectedFavourites: boolean;
+  itemsToShow: number;
 }) => {
   const isAuthenticated = useIsAuthenticated();
   const [isLiveActive, setIsLiveActive] = React.useState(
@@ -168,6 +176,8 @@ export const SportsNav = ({
     [isLiveActive, setIsLiveActive],
     navData,
     isAuthenticated,
-    market
+    market,
+    hasSelectedFavourites,
+    itemsToShow
   );
 };

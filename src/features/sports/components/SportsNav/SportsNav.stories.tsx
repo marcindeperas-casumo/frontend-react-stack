@@ -6,6 +6,7 @@ import MockStore from "Components/MockStore";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
+const ITEMS_TO_SHOW = 100;
 const stories = storiesOf("Sports/SportsNav", module);
 
 const waitForScrollablePaginated = { chromatic: { delay: 200 } };
@@ -17,7 +18,11 @@ if (isNotChromatic) {
       <div className="c-sports-shell--site">
         <MockStore>
           <MockedProvider mocks={mocks.manySports} addTypename={false}>
-            <SportsNav currentHash="#filter/tennis/wta" />
+            <SportsNav
+              currentHash="#filter/tennis/wta"
+              hasSelectedFavourites={false}
+              itemsToShow={ITEMS_TO_SHOW}
+            />
           </MockedProvider>
         </MockStore>
       </div>
@@ -30,7 +35,11 @@ if (isNotChromatic) {
     () => (
       <MockStore>
         <MockedProvider mocks={mocks.manySports} addTypename={false}>
-          <SportsNav currentHash="#filter/tennis/wta" />
+          <SportsNav
+            currentHash="#filter/tennis/wta"
+            hasSelectedFavourites={false}
+            itemsToShow={ITEMS_TO_SHOW}
+          />
         </MockedProvider>
       </MockStore>
     ),
@@ -42,7 +51,11 @@ if (isNotChromatic) {
     () => (
       <MockStore>
         <MockedProvider mocks={mocks.multipleSports} addTypename={false}>
-          <SportsNav currentHash="#filter/football/england/premier_league" />
+          <SportsNav
+            currentHash="#filter/football/england/premier_league"
+            hasSelectedFavourites={false}
+            itemsToShow={ITEMS_TO_SHOW}
+          />
         </MockedProvider>
       </MockStore>
     ),
@@ -52,7 +65,11 @@ if (isNotChromatic) {
   stories.add("Single sport", () => (
     <MockStore>
       <MockedProvider mocks={mocks.singleSport} addTypename={false}>
-        <SportsNav currentHash="#filter/football" />
+        <SportsNav
+          currentHash="#filter/football"
+          hasSelectedFavourites={false}
+          itemsToShow={ITEMS_TO_SHOW}
+        />
       </MockedProvider>
     </MockStore>
   ));
@@ -61,7 +78,11 @@ if (isNotChromatic) {
     <MockStore>
       {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{ error: boolean; request: { query: Document... Remove this comment to see the full error message */}
       <MockedProvider mocks={mocks.error} addTypename={false}>
-        <SportsNav currentHash="#filter/tennis/wta" />
+        <SportsNav
+          currentHash="#filter/tennis/wta"
+          hasSelectedFavourites={false}
+          itemsToShow={ITEMS_TO_SHOW}
+        />
       </MockedProvider>
     </MockStore>
   ));

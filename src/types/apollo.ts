@@ -764,7 +764,14 @@ export interface Country {
 
 export type Gender = "MALE" | "FEMALE";
 
-export type PlayerJurisdiction = "SGA" | "DGA" | "UKGC" | "MGA";
+export type PlayerJurisdiction =
+  | "SGA"
+  | "DGA"
+  | "UKGC"
+  | "MGA"
+  | "DGOJ"
+  | "GGL"
+  | "GRA";
 
 export type PlayerValuableState =
   | "Fresh"
@@ -2717,6 +2724,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2735,6 +2743,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
   game?: Maybe<{ slug: string }>;
 };
@@ -2753,6 +2762,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableDeposit_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2770,6 +2780,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableSport_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
 };
 
@@ -2789,6 +2800,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
   games: Array<Maybe<{ title: string; slug: string }>>;
   excludedGames: Array<Maybe<{ title: string }>>;
@@ -2810,6 +2822,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
   games: Array<Maybe<{ title: string }>>;
   excludedGames: Array<Maybe<{ title: string }>>;
@@ -2830,6 +2843,7 @@ type ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   wageringThreshold?: Maybe<number>;
   leftToWager?: Maybe<number>;
   termsLink: string;
+  title: string;
   specificTerms?: Maybe<string>;
 };
 
