@@ -3,14 +3,15 @@ import { useMutation } from "@apollo/client";
 import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
-import { navigateById } from "Services/NavigationService";
 import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { getPlatform } from "Utils/utils";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
+import { ROUTE_IDS } from "Src/constants";
 import {
   DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
@@ -81,6 +82,7 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
+  const { navigateToKO } = useCrossCodebaseNavigation();
 
   const [
     selectedValuable,
@@ -100,12 +102,12 @@ export const CustomCampaign = ({
 
   const onDepositClick = () => {
     closeModal();
-    navigateById({ routeId: "history" });
+    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
 
   const onLearnMoreClick = () => {
     closeModal();
-    navigateById({ routeId: "history" });
+    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
 
   if (!pusherData) {
