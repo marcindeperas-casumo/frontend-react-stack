@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ButtonPrimary } from "@casumo/cmp-button";
+import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
+import { navigateById } from "Services/NavigationService";
 import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
@@ -97,6 +98,16 @@ export const CustomCampaign = ({
     setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
   };
 
+  const onDepositClick = () => {
+    closeModal();
+    navigateById({ routeId: "history" });
+  };
+
+  const onLearnMoreClick = () => {
+    closeModal();
+    navigateById({ routeId: "history" });
+  };
+
   if (!pusherData) {
     return null;
   }
@@ -171,14 +182,29 @@ export const CustomCampaign = ({
           </Flex.Item>
         </Flex>
 
-        <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
-          <ButtonPrimary
-            className="u-width--full"
-            onClick={disableModal}
-            data-test="valuable-action-button"
+        <div
+          style={{ justifyContent: "space-evenly" }}
+          className="c-valuable-details__footer u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile"
+        >
+          <ButtonSecondary
+            className="t-background-grey-40 u-width--1/3 u-width--1/2@mobile"
+            onClick={onLearnMoreClick}
           >
-            Disable popup for a week
+            {pusherData.CTAButtonText || "Learn more"}
+          </ButtonSecondary>
+          <ButtonPrimary
+            className="u-width--1/3 u-width--1/2@mobile"
+            onClick={onDepositClick}
+          >
+            {pusherData.CTAButton2Text || "Deposit"}
           </ButtonPrimary>
+        </div>
+        <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
+          <div className="u-font-sm text-grey-70">
+            <span className="u-cursor--pointer" onClick={disableModal}>
+              Don’t show me this message again this week.
+            </span>
+          </div>
         </div>
       </div>
     </div>
