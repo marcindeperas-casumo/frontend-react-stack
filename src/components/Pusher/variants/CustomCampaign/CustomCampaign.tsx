@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
 import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
-import { getPlatform } from "Utils/utils";
+import { getPlatform, interpolateWithJSX } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 import {
   DISABLE_MODAL_COOKIE_KEY,
@@ -19,6 +20,7 @@ import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
+import { useTranslationsGql } from "Utils/hooks";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -36,7 +38,12 @@ type ValuablePopupContentProps = {
   closeModal: () => void;
 };
 
+// Todo: move these out so that we don't have any christmas campaign
+// references, potential refactor into container/component
 export const XMAS_CAMPAIGN_SLUG = "xmas-2021";
+export const XMAS_CAMPAIGN_TERMS_SLUG = "christmas-campaign-2021";
+
+export const cmsKeyPrefix = "root:christmas-campaign-2021-data:fields";
 
 const ValuablePopupContent = ({
   valuable,
@@ -80,6 +87,10 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
+  const { t } = useTranslationsGql({
+    terms_and_conditions_label: `${cmsKeyPrefix}terms_and_conditions_label`,
+    terms_and_conditions_link_label: `${cmsKeyPrefix}terms_and_conditions_link_label`,
+  });
 
   const [
     selectedValuable,
@@ -168,6 +179,21 @@ export const CustomCampaign = ({
               header="titles.game-of-the-day"
               gameSlug={pusherData.Data.game}
             />
+          </Flex.Item>
+
+          <Flex.Item className="u-margin-top--lg">
+            <Text tag="p" className="text-grey-50">
+              {interpolateWithJSX(
+                {
+                  link: (
+                    <a href={`terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}>
+                      {t.terms_and_conditions_link_label}
+                    </a>
+                  ),
+                },
+                t.terms_and_conditions_label
+              )}
+            </Text>
           </Flex.Item>
         </Flex>
 
