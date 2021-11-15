@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import MaskImage from "Components/MaskImage";
@@ -9,7 +8,6 @@ import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { getPlatform } from "Utils/utils";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 import { ROUTE_IDS } from "Src/constants";
 import {
@@ -21,6 +19,7 @@ import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
+import { CustomCampaignCTAButtons } from "../../index";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -82,7 +81,6 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const { navigateToKO } = useCrossCodebaseNavigation();
 
   const [
     selectedValuable,
@@ -98,16 +96,6 @@ export const CustomCampaign = ({
   const disableModal = () => {
     closeModal();
     setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
-  };
-
-  const onDepositClick = () => {
-    closeModal();
-    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
-  };
-
-  const onLearnMoreClick = () => {
-    closeModal();
-    navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
   };
 
   if (!pusherData) {
@@ -183,24 +171,14 @@ export const CustomCampaign = ({
             />
           </Flex.Item>
         </Flex>
+        <CustomCampaignCTAButtons
+          Button1Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button1Text={pusherData.CTAButtonText || "Learn more"}
+          Button2Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button2Text={pusherData.CTAButton2Text || "Deposit"}
+          onCTAClick={closeModal}
+        />
 
-        <div
-          style={{ justifyContent: "space-evenly" }}
-          className="c-valuable-details__footer u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile"
-        >
-          <ButtonSecondary
-            className="t-background-grey-40 u-width--1/3 u-width--1/2@mobile"
-            onClick={onLearnMoreClick}
-          >
-            {pusherData.CTAButtonText || "Learn more"}
-          </ButtonSecondary>
-          <ButtonPrimary
-            className="u-width--1/3 u-width--1/2@mobile"
-            onClick={onDepositClick}
-          >
-            {pusherData.CTAButton2Text || "Deposit"}
-          </ButtonPrimary>
-        </div>
         <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
           <div className="u-font-sm text-grey-70">
             <span className="u-cursor--pointer" onClick={disableModal}>
