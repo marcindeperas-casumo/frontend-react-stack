@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Duration as LuxonDuration } from "luxon";
 import cx from "classnames";
-import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
@@ -34,7 +33,7 @@ export function TimeLimitsCardMobile({
   onClick,
 }: Props) {
   const { gtPhablet } = useBreakpointsWatch();
-console.log('gtPhablet', gtPhablet);
+
   if (!dailyLimit) {
     return null;
   }
@@ -45,26 +44,25 @@ console.log('gtPhablet', gtPhablet);
   );
 
   return (
-    <div className={cx(
-      "flex flex-col justify-between gap",
-      "m-lg p-lg",
-      "border-2 rounded border-grey-5",
-      {
-        "tablet:flex-row tablet:items-end": gtPhablet
-      }
-    )}>
-      <div className={cx(
-        "flex flex-col items-center gap"
-      )}>
-        <Text
-          className="font-bold text-purple-60"
-        >
-          {t.mobile_title}
-        </Text>
+    <div
+      className={cx(
+        "flex flex-col justify-between gap",
+        "m-lg p-lg",
+        "border-2 rounded border-grey-5",
+        {
+          "tablet:flex-row tablet:items-end": gtPhablet,
+        }
+      )}
+    >
+      <div className={cx("flex flex-col items-center gap")}>
+        <Text className="font-bold text-purple-60">{t.mobile_title}</Text>
         <Text size="sm" className="text-grey-50">
           {t.mobile_subtitle}
         </Text>
-        <LimitRow limit={dailyLimit} t={{ ...t, label: t.mobile_limit_daily }} />
+        <LimitRow
+          limit={dailyLimit}
+          t={{ ...t, label: t.mobile_limit_daily }}
+        />
         <LimitRow
           limit={weeklyLimit}
           t={{ ...t, label: t.mobile_limit_weekly }}
@@ -80,11 +78,7 @@ console.log('gtPhablet', gtPhablet);
           )}
         </Text>
       </div>
-      <ButtonPrimary
-        size="sm"
-        onClick={onClick}
-        className="self-end"
-      >
+      <ButtonPrimary size="sm" onClick={onClick} className="self-end">
         Change
       </ButtonPrimary>
     </div>
