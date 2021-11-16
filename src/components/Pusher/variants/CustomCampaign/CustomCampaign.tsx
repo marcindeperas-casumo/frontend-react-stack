@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
@@ -11,6 +10,7 @@ import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { getPlatform, interpolateWithJSX } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
+import { ROUTE_IDS } from "Src/constants";
 import {
   DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
@@ -21,6 +21,7 @@ import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
 import { useTranslations } from "Utils/hooks";
+import { CustomCampaignCTAButtons } from "../../index";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -202,15 +203,20 @@ export const CustomCampaign = ({
             </Text>
           </Flex.Item>
         </Flex>
+        <CustomCampaignCTAButtons
+          Button1Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button1Text={pusherData.CTAButtonText || "Learn more"}
+          Button2Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button2Text={pusherData.CTAButton2Text || "Deposit"}
+          onCTAClick={closeModal}
+        />
 
-        <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
-          <ButtonPrimary
-            className="u-width--full"
-            onClick={disableModal}
-            data-test="valuable-action-button"
-          >
-            Disable popup for a week
-          </ButtonPrimary>
+        <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
+          <div className="u-font-sm text-grey-70">
+            <span className="u-cursor--pointer" onClick={disableModal}>
+              Don’t show me this message again this week.
+            </span>
+          </div>
         </div>
       </div>
     </div>
