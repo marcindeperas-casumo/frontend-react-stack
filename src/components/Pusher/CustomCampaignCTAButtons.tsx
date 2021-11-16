@@ -17,6 +17,7 @@ export const CustomCampaignCTAButtons = ({
   Button2Link,
   onCTAClick,
 }: Props) => {
+  //to reconsider another navigation method
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   const onDepositClick = () => {
