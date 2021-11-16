@@ -93,7 +93,7 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const t = useTranslations<TTranslations>(cmsKeyPrefix);
+  const t = useTranslations<TTranslations>(CMS_KEY_PREFIX);
 
   const [
     selectedValuable,
