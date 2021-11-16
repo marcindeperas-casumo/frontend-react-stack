@@ -20,11 +20,16 @@ import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
-import { useTranslationsGql } from "Utils/hooks";
+import { useTranslations, useTranslationsGql } from "Utils/hooks";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
+
+type TTranslations = {
+  terms_and_conditions_label: string;
+  terms_and_conditions_link_label: string;
+};
 
 type Props = {
   pusherData: PusherPaylod;
@@ -43,7 +48,7 @@ type ValuablePopupContentProps = {
 export const XMAS_CAMPAIGN_SLUG = "xmas-2021";
 export const XMAS_CAMPAIGN_TERMS_SLUG = "christmas-campaign-2021";
 
-export const cmsKeyPrefix = "root:christmas-campaign-2021-data:fields";
+export const cmsKeyPrefix = "christmas-campaign-2021-data";
 
 const ValuablePopupContent = ({
   valuable,
@@ -87,10 +92,7 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const { t, loading: tLoading } = useTranslationsGql({
-    terms_and_conditions_label: `${cmsKeyPrefix}terms_and_conditions_label`,
-    terms_and_conditions_link_label: `${cmsKeyPrefix}terms_and_conditions_link_label`,
-  });
+  const t = useTranslations<TTranslations>(cmsKeyPrefix);
 
   const [
     selectedValuable,
@@ -108,7 +110,7 @@ export const CustomCampaign = ({
     setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
   };
 
-  if (!pusherData || tLoading) {
+  if (!pusherData || !t) {
     return null;
   }
 
@@ -186,7 +188,11 @@ export const CustomCampaign = ({
               {interpolateWithJSX(
                 {
                   link: (
-                    <a href={`terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}>
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={`${window.location.origin}/terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}
+                    >
                       {t.terms_and_conditions_link_label}
                     </a>
                   ),
