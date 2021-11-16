@@ -15,10 +15,9 @@ import {
   PUSHER_MODAL_STATE,
   TYPE_PUSHER_MODAL_STATE,
 } from "Components/Pusher/PusherModal";
-import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
-import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
+import { CustomCampaignValuableList } from "./ValuablesList";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -79,7 +78,11 @@ export const CustomCampaign = ({
   pusherModalState,
   setPusherModalState,
 }: Props) => {
-  const { loading, valuables, translations } = usePlayerValuableList();
+  const {
+    loading,
+    valuables,
+    translations,
+  } = usePlayerValuableList(/* { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
 
   const [
     selectedValuable,
@@ -136,32 +139,11 @@ export const CustomCampaign = ({
           align="left"
           className="u-margin-bottom--lg u-margin-top--xlg"
         >
-          {valuables.slice(0, 10).map(val => (
-            <Flex.Item key={val.id}>
-              <Flex
-                style={{ width: "160px" }}
-                className={"text-yellow-30 u-cursor--pointer u-padding-x--md"}
-                onClick={() => showValuable(val)}
-                align="center"
-              >
-                <Flex.Item style={{ width: "160px" }}>
-                  <Cashback className="u-width--full" />
-                </Flex.Item>
-                <Flex.Item>Valuable</Flex.Item>
-              </Flex>
-            </Flex.Item>
-          ))}
-
-          <Flex.Item className="u-margin-y--md">
-            <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
-          </Flex.Item>
-
-          <Flex.Item>
-            <PlayerValuableListVertical
-              badgeRuleName={XMAS_CAMPAIGN_SLUG}
-              hideTitles
-            />
-          </Flex.Item>
+          <CustomCampaignValuableList
+            pusherData={pusherData}
+            valuables={valuables}
+            showValuable={showValuable}
+          />
 
           <Flex.Item>
             <GameRowCustomHeader

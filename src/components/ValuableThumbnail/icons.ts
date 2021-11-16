@@ -5,3 +5,4 @@ export { default as SuperSpinsIcon } from "./Icons/spins-3star.svg";
 export { default as MegaSpinsIcon } from "./Icons/spins-4star.svg";
 export { default as CashbackIcon } from "./Icons/cashback.svg";
 export { default as ValuablesCardDefaultIcon } from "./Icons/empty-valuableCard.svg";
+export { default as ChristmasSpecial } from "./Icons/christmas-special.svg";

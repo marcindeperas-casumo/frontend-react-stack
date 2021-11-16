@@ -17,7 +17,7 @@ import type {
   DurationProps,
   ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
-import { ValuableSymbol } from "./ValuableSymbol";
+import { AllValuableType, ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 import Cashback from "./Icons/cashback.svg";
@@ -44,6 +44,64 @@ type Props = {
   size?: "small" | "large";
 };
 
+type ValuableCoinProps = {
+  awardType?: A.WageringLockAwardType;
+  coinValue?: number;
+  currency: string;
+  size?: "small" | "large";
+  valuableType: AllValuableType;
+  className?: string;
+};
+
+export const ValuableCoin = ({
+  awardType,
+  coinValue,
+  currency,
+  size = "large",
+  valuableType,
+  className,
+}: ValuableCoinProps) => {
+  const spinType = coinValueToSpinType(coinValue);
+  const baseClass = className || `c-valuable-card-thumbnail-coin--${size}`;
+
+  return (
+    <div
+      className={`${baseClass} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
+    >
+      <div
+        className={classNames(
+          "o-ratio__content",
+          getCoinClassModifier(valuableType, awardType)
+        )}
+      >
+        {([VALUABLE_TYPES.CASHBACK] as AllValuableType[]).includes(
+          valuableType
+        ) ? (
+          <Cashback className="u-width--full" />
+        ) : (
+          <Coin className="u-width--full" />
+        )}
+      </div>
+      <Flex
+        align="center"
+        justify="center"
+        className={classNames(
+          "o-ratio__content",
+          getCoinTextClassModifier(valuableType, awardType)
+        )}
+      >
+        <ValuableSymbol
+          awardType={awardType}
+          currency={currency}
+          spinType={spinType}
+          valuableType={valuableType}
+          size={size === "small" ? "sm" : "default"}
+        />
+      </Flex>
+    </div>
+  );
+};
+
 export const ValuableThumbnail = ({
   awardType,
   backgroundRenderer,
@@ -56,7 +114,6 @@ export const ValuableThumbnail = ({
   valuableType,
   translations,
 }: Props) => {
-  const spinType = coinValueToSpinType(coinValue);
   const stateBadgeVisible =
     size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
   const stateBadgeText = getStateBadgeText(
@@ -75,39 +132,13 @@ export const ValuableThumbnail = ({
         direction="vertical"
         justify={size === "small" ? "center" : "end"}
       >
-        <div
-          className={`c-valuable-card-thumbnail-coin--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
-        >
-          <div
-            className={classNames(
-              "o-ratio__content",
-              getCoinClassModifier(valuableType, awardType)
-            )}
-          >
-            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'ValuableType' is not assignable ... Remove this comment to see the full error message */}
-            {[VALUABLE_TYPES.CASHBACK].includes(valuableType) ? (
-              <Cashback className="u-width--full" />
-            ) : (
-              <Coin className="u-width--full" />
-            )}
-          </div>
-          <Flex
-            align="center"
-            justify="center"
-            className={classNames(
-              "o-ratio__content",
-              getCoinTextClassModifier(valuableType, awardType)
-            )}
-          >
-            <ValuableSymbol
-              awardType={awardType}
-              currency={currency}
-              spinType={spinType}
-              valuableType={valuableType}
-              size={size === "small" ? "sm" : "default"}
-            />
-          </Flex>
-        </div>
+        <ValuableCoin
+          awardType={awardType}
+          coinValue={coinValue}
+          currency={currency}
+          size={size}
+          valuableType={valuableType}
+        />
       </Flex>
       {stateBadgeVisible && (
         <div className="o-ratio__content">
@@ -150,7 +181,7 @@ function getStateBadgeText(
 }
 
 function getCoinClassModifier(
-  valuableType: A.ValuableType,
+  valuableType: AllValuableType,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch
@@ -181,7 +212,7 @@ function getCoinClassModifier(
 }
 
 function getCoinTextClassModifier(
-  valuableType: A.ValuableType,
+  valuableType: AllValuableType,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch

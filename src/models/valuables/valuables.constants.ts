@@ -6,6 +6,7 @@ export const VALUABLE_TYPES = {
   FREE_BET: "freeBet",
   CASHBACK: "cashback",
   WAGERING_LOCK: "wageringLock",
+  CHRISTMAS_SPECIAL: "christmasSpecial",
 } as const;
 
 export const VALUABLE_STATES = {

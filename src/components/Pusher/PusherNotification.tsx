@@ -18,6 +18,12 @@ export type PusherPaylod = {
     terms_link_text: string;
     terms_link_url: string;
     trigger: string;
+    cashback_reward_subtitle: string;
+    cashback_reward_title: string;
+    cashback_subtitle: string;
+    cashback_title: string;
+    deposit_lock_subtitle: string;
+    deposit_lock_title: string;
   };
   Date: string;
   DisplayType: string;
@@ -30,7 +36,7 @@ export type PusherPaylod = {
   MessageId: number;
   PreviewText: string;
   Title: string;
-  subscribed: boolean;
+  subscribed?: boolean;
 };
 
 type Props = {

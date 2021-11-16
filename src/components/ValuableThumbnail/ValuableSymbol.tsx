@@ -17,6 +17,7 @@ import {
   BonusSpinsIcon,
   SuperSpinsIcon,
   MegaSpinsIcon,
+  ChristmasSpecial,
 } from "./icons";
 
 const ALL_CURRENCIES_ICONS = {
@@ -55,12 +56,15 @@ const VALUABLE_ICON = {
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
+  [VALUABLE_TYPES.CHRISTMAS_SPECIAL]: ChristmasSpecial,
 };
+
+export type AllValuableType = A.ValuableType | "christmasSpecial";
 
 type Props = {
   awardType?: A.WageringLockAwardType;
   currency: string;
-  valuableType: A.ValuableType;
+  valuableType: AllValuableType;
   spinType?: string;
   size?: string;
 };
@@ -76,7 +80,7 @@ export const ValuableSymbol = ({
   const CASH_RELATED_VALUABLES = [
     VALUABLE_TYPES.CASH,
     VALUABLE_TYPES.CASHBACK,
-  ] as Array<A.ValuableType>;
+  ] as Array<AllValuableType>;
 
   const CASH_RELATED_REWARDS = ["bonusMoney", "freeMoney"];
   const SPINS_RELATED_REWARDS = ["spins"];
@@ -100,6 +104,10 @@ export const ValuableSymbol = ({
 
     return ValuableIcon;
   })();
+
+  if (!ValuableSymbolComponent) {
+    return null;
+  }
 
   return (
     <ValuableSymbolComponent
