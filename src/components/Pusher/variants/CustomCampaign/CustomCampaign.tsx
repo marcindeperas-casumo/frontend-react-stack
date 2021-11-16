@@ -49,7 +49,7 @@ type ValuablePopupContentProps = {
 export const XMAS_CAMPAIGN_SLUG = "xmas-2021";
 export const XMAS_CAMPAIGN_TERMS_SLUG = "christmas-campaign-2021";
 
-export const cmsKeyPrefix = "christmas-campaign-2021-data";
+export const CMS_KEY_PREFIX = "christmas-campaign-2021-data";
 
 const ValuablePopupContent = ({
   valuable,
