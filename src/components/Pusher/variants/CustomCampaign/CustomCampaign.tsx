@@ -87,7 +87,7 @@ export const CustomCampaign = ({
   setPusherModalState,
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const { t } = useTranslationsGql({
+  const { t, loading: tLoading } = useTranslationsGql({
     terms_and_conditions_label: `${cmsKeyPrefix}terms_and_conditions_label`,
     terms_and_conditions_link_label: `${cmsKeyPrefix}terms_and_conditions_link_label`,
   });
@@ -108,7 +108,7 @@ export const CustomCampaign = ({
     setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
   };
 
-  if (!pusherData) {
+  if (!pusherData || tLoading) {
     return null;
   }
 
@@ -177,12 +177,12 @@ export const CustomCampaign = ({
           <Flex.Item>
             <GameRowCustomHeader
               header="titles.game-of-the-day"
-              gameSlug={pusherData.Data.game}
+              gameSlug={pusherData?.Data?.game}
             />
           </Flex.Item>
 
           <Flex.Item className="u-margin-top--lg">
-            <Text tag="p" className="text-grey-50">
+            <Text tag="p" className="u-padding--md text-grey-50">
               {interpolateWithJSX(
                 {
                   link: (
