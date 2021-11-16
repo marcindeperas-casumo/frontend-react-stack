@@ -18,6 +18,7 @@ type Props = {
     mobile_limit_monthly: string | undefined;
     time_left_daily: string | undefined;
     coming_limit_note: string | undefined;
+    edit_limit_button: string | undefined;
   };
   dailyLimit: LoginTimeLimit | undefined;
   weeklyLimit: LoginTimeLimit | undefined;
@@ -54,7 +55,7 @@ export function TimeLimitsCardMobile({
         }
       )}
     >
-      <div className={cx("flex flex-col items-center gap")}>
+      <div className="flex flex-col items-start gap">
         <Text className="font-bold text-purple-60">{t.mobile_title}</Text>
         <Text size="sm" className="text-grey-50">
           {t.mobile_subtitle}
@@ -71,7 +72,7 @@ export function TimeLimitsCardMobile({
           limit={monthlyLimit}
           t={{ ...t, label: t.mobile_limit_monthly }}
         />
-        <Text tag="em" className="text-grey-50">
+        <Text tag="em" size="sm" className="text-grey-50">
           {interpolateWithJSX(
             { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
             t.time_left_daily
@@ -79,7 +80,7 @@ export function TimeLimitsCardMobile({
         </Text>
       </div>
       <ButtonPrimary size="sm" onClick={onClick} className="self-end">
-        Change
+        {t.edit_limit_button}
       </ButtonPrimary>
     </div>
   );
@@ -102,7 +103,7 @@ function LimitRow({ t, limit }: LimitRowProps) {
 
   return (
     <div>
-      <Text tag="span" className="text-grey-50">
+      <Text tag="span" size="sm" className="text-grey-50">
         {interpolateWithJSX(
           { time: <TimeLimitsCardDuration duration={limitDuration} /> },
           t.label
