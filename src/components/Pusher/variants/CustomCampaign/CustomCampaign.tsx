@@ -181,25 +181,6 @@ export const CustomCampaign = ({
               gameSlug={pusherData?.Data?.game}
             />
           </Flex.Item>
-
-          <Flex.Item className="u-margin-top--lg">
-            <Text tag="p" className="u-padding--md text-grey-50">
-              {interpolateWithJSX(
-                {
-                  link: (
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={`${window.location.origin}/terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}
-                    >
-                      {t.terms_and_conditions_link_label}
-                    </a>
-                  ),
-                },
-                t.terms_and_conditions_label
-              )}
-            </Text>
-          </Flex.Item>
         </Flex>
         <CustomCampaignCTAButtons
           Button1Link={ROUTE_IDS.CASH_DEPOSIT}
@@ -208,6 +189,23 @@ export const CustomCampaign = ({
           Button2Text={pusherData.CTAButton2Text || "Deposit"}
           onCTAClick={closeModal}
         />
+
+        <Text tag="p" className="u-padding--md text-grey-50">
+          {interpolateWithJSX(
+            {
+              link: (
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={`${window.location.origin}/terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}
+                >
+                  {t.terms_and_conditions_link_label}
+                </a>
+              ),
+            },
+            t.terms_and_conditions_label
+          )}
+        </Text>
 
         <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
           <div className="u-font-sm text-grey-70">
