@@ -1,9 +1,11 @@
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import * as React from "react";
 import { Duration as LuxonDuration } from "luxon";
+import cx from "classnames";
+import Text from "@casumo/cmp-text";
+import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
 import type { LoginTimeLimit } from "Models/playOkay";
+import { useBreakpointsWatch } from "Utils/hooks/useBreakpointsWatch";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 
@@ -16,6 +18,7 @@ type Props = {
     mobile_limit_monthly: string | undefined;
     time_left_daily: string | undefined;
     coming_limit_note: string | undefined;
+    edit_limit_button: string | undefined;
   };
   dailyLimit: LoginTimeLimit | undefined;
   weeklyLimit: LoginTimeLimit | undefined;
@@ -30,6 +33,8 @@ export function TimeLimitsCardMobile({
   monthlyLimit,
   onClick,
 }: Props) {
+  const { gtPhablet } = useBreakpointsWatch();
+
   if (!dailyLimit) {
     return null;
   }
@@ -40,43 +45,44 @@ export function TimeLimitsCardMobile({
   );
 
   return (
-    <Flex
-      direction="vertical"
-      align="center"
-      onClick={onClick}
-      className="u-padding--md"
+    <div
+      className={cx(
+        "flex flex-col justify-between gap",
+        "m-lg p-lg",
+        "border-2 rounded border-grey-5",
+        {
+          "tablet:flex-row tablet:items-end": gtPhablet,
+        }
+      )}
     >
-      <Flex.Item>
-        <Text
-          size="md"
-          className="u-font-weight-bold text-grey-50 u-margin-bottom--none"
-        >
-          {t.mobile_title}
-        </Text>
-      </Flex.Item>
-      <Flex.Item>
-        <Text size="sm" className="text-grey-50 u-text-align-center">
+      <div className="flex flex-col items-start gap">
+        <Text className="font-bold text-purple-60">{t.mobile_title}</Text>
+        <Text size="sm" className="text-grey-50">
           {t.mobile_subtitle}
         </Text>
-      </Flex.Item>
-      <LimitRow limit={dailyLimit} t={{ ...t, label: t.mobile_limit_daily }} />
-      <LimitRow
-        limit={weeklyLimit}
-        t={{ ...t, label: t.mobile_limit_weekly }}
-      />
-      <LimitRow
-        limit={monthlyLimit}
-        t={{ ...t, label: t.mobile_limit_monthly }}
-      />
-      <Flex.Item className="u-margin-top--lg">
-        <Text tag="em" className="text-grey-50">
+        <LimitRow
+          limit={dailyLimit}
+          t={{ ...t, label: t.mobile_limit_daily }}
+        />
+        <LimitRow
+          limit={weeklyLimit}
+          t={{ ...t, label: t.mobile_limit_weekly }}
+        />
+        <LimitRow
+          limit={monthlyLimit}
+          t={{ ...t, label: t.mobile_limit_monthly }}
+        />
+        <Text tag="em" size="sm" className="text-grey-50">
           {interpolateWithJSX(
             { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
             t.time_left_daily
           )}
         </Text>
-      </Flex.Item>
-    </Flex>
+      </div>
+      <ButtonPrimary size="sm" onClick={onClick} className="self-end">
+        {t.edit_limit_button}
+      </ButtonPrimary>
+    </div>
   );
 }
 
@@ -96,16 +102,14 @@ function LimitRow({ t, limit }: LimitRowProps) {
   const limitDuration = LuxonDuration.fromISO(limit.limit);
 
   return (
-    <>
-      <Flex.Item>
-        <Text tag="span" size="md" className="text-grey-50">
-          {interpolateWithJSX(
-            { time: <TimeLimitsCardDuration duration={limitDuration} /> },
-            t.label
-          )}
-        </Text>
-      </Flex.Item>
+    <div>
+      <Text tag="span" size="sm" className="text-grey-50">
+        {interpolateWithJSX(
+          { time: <TimeLimitsCardDuration duration={limitDuration} /> },
+          t.label
+        )}
+      </Text>
       <ComingLimitNote t={t} limit={limit} />
-    </>
+    </div>
   );
 }
