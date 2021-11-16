@@ -3,12 +3,13 @@ import { useMutation } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
+import { getPlatform, interpolateWithJSX, setCookie } from "Utils";
+import { useTranslations } from "Utils/hooks";
 import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
-import { getPlatform, interpolateWithJSX } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
 import { ROUTE_IDS } from "Src/constants";
 import {
@@ -19,8 +20,6 @@ import {
 import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
-import { setCookie } from "Utils/setCookie";
-import { useTranslations } from "Utils/hooks";
 import { CustomCampaignCTAButtons } from "../../index";
 
 const HeaderImgMask = () => (
