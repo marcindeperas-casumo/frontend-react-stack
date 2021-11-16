@@ -35,7 +35,7 @@ export function TimeLimitsCardContainer({ selectedPeriod }: Props) {
     time_left_daily: `${cmsKeyPrefix}time_left_daily`,
     time_left_weekly: `${cmsKeyPrefix}time_left_weekly`,
     time_left_monthly: `${cmsKeyPrefix}time_left_monthly`,
-    edit_limit_button: `${limitsInformationsCmsKeyPrefix}edit_limit_button`
+    edit_limit_button: `${limitsInformationsCmsKeyPrefix}edit_limit_button`,
   });
   const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
   const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
