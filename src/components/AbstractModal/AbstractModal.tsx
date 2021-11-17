@@ -10,6 +10,7 @@ type OwnProps = {
   hideModal: () => void;
   isOpen: boolean;
   className?: string;
+  hideDefaultCloseButton?: boolean;
 };
 
 type Props = OwnProps & ReactModal.Props;
@@ -17,6 +18,7 @@ type Props = OwnProps & ReactModal.Props;
 export class AbstractModal extends React.PureComponent<Props> {
   static defaultProps = {
     CloseButton: CloseBtn,
+    hideDefaultCloseButton: false,
   };
 
   render() {
@@ -27,6 +29,7 @@ export class AbstractModal extends React.PureComponent<Props> {
       isOpen,
       className,
       overlayClassName,
+      hideDefaultCloseButton,
       ...rest
     } = this.props;
 
@@ -51,7 +54,9 @@ export class AbstractModal extends React.PureComponent<Props> {
             {children}
           </div>
           <div className="c-abstract-modal__close u-padding o-position--absolute cursor-pointer">
-            <CloseButton data-test="modal-close-button" onClick={hideModal} />
+            {hideDefaultCloseButton ? null : (
+              <CloseButton data-test="modal-close-button" onClick={hideModal} />
+            )}
           </div>
         </ReactModal>
       </>

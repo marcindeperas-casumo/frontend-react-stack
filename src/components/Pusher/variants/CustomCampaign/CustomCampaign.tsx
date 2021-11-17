@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
-import MaskImage from "Components/MaskImage";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
@@ -19,11 +18,8 @@ import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { setCookie } from "Utils/setCookie";
+import { CustomCampaignTopCard } from "Components/Pusher/CustomCampaignTopCard";
 import { CustomCampaignCTAButtons } from "../../index";
-
-const HeaderImgMask = () => (
-  <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
-);
 
 type Props = {
   pusherData: PusherPaylod;
@@ -117,18 +113,14 @@ export const CustomCampaign = ({
 
   return (
     <div>
-      <div className="o-ratio c-valuable-details t-border-r--md">
-        <div className="o-ratio__content c-valuable-details__header">
-          <MaskImage
-            id={`123`}
-            imageUrl={
-              "https://images.casumo.com/2019/04/background-deposit.png?w=250&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1"
-            }
-            width={375}
-            height={334}
-          >
-            <HeaderImgMask />
-          </MaskImage>
+      <div className="">
+        <div className="">
+          <CustomCampaignTopCard
+            title={pusherData.Title}
+            description={pusherData.Message}
+            onCloseClick={closeModal}
+            imageColor={pusherData.TopImageColour}
+          />
         </div>
       </div>
       <div className="u-padding-x--md">

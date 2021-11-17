@@ -1,0 +1,16 @@
+.c-campaign-top-card {
+  background-image: url("https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png") !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 478px) {
+  .c-campaign-top-card {
+    height: 60%;
+  }
+  .c-campaign-top-card-content {
+    padding: 16px;
+  }
+}
