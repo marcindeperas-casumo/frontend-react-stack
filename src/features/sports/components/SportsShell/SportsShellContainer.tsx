@@ -86,7 +86,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
 
   const [containerScrollTop, setContainerScrollTop] = useState(0);
   const [containerOffsetTop, setContainerOffsetTop] = useState(0);
-  const [sportsNavigationFixed, setSportsNavigationFixed] = useState(false);
+  const [isSportsNavigationFixed, setIsSportsNavigationFixed] = useState(false);
 
   useEffect(() => {
     const container = document.getElementById("main-content-wrapper");
