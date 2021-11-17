@@ -14,7 +14,7 @@ export const GameRowCustomHeaderContent = ({
   <Flex className="text-grey-70" direction="vertical" spacing="sm">
     <Flex.Item>
       <span className="t-color-purple-60 u-font-weight-bold">
-        {primaryText}
+        {primaryText || "Game of the day"}
       </span>
       <div className="text-grey-50">
         <DangerousHtml html={secondaryText} />
