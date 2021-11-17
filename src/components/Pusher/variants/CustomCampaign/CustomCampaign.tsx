@@ -190,7 +190,7 @@ export const CustomCampaign = ({
           onCTAClick={closeModal}
         />
 
-        <Text tag="p" className="u-padding--md text-grey-50">
+        <Text tag="p" size="sm" className="u-padding--md text-grey-50">
           {interpolateWithJSX(
             {
               link: (
