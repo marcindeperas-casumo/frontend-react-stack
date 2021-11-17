@@ -84,7 +84,6 @@ export const SportsShellContainer: React.FC<{}> = () => {
     "sports.sports-home-configuration"
   );
 
-  const [containerScrollTop, setContainerScrollTop] = useState(0);
   const [containerOffsetTop, setContainerOffsetTop] = useState(0);
   const [sportsNavigationFixed, setSportsNavigationFixed] = useState(false);
 
@@ -94,7 +93,6 @@ export const SportsShellContainer: React.FC<{}> = () => {
       const onScroll = () => {
         const nav = document.getElementById("sports-navigation");
         if (nav) {
-          setContainerScrollTop(container.scrollTop);
           setSportsNavigationFixed(container.scrollTop > nav.offsetTop);
         }
       };
@@ -103,7 +101,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
 
       return () => container.removeEventListener("scroll", onScroll);
     }
-  }, [containerScrollTop, sportsNavigationFixed]);
+  }, []);
 
   useEffect(() => {
     bridgeEventHandlers.map(
@@ -124,7 +122,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   const promotionPrefixHash = "#promotions";
   const homeHash = "#home";
   const sportsNavigationOffset = {
-    paddingTop: sportsNavigationFixed ? `${containerOffsetTop}px` : 0,
+    marginTop: sportsNavigationFixed ? `${containerOffsetTop}px` : 0,
   };
 
   return (
