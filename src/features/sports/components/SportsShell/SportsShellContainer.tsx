@@ -85,7 +85,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   );
 
   const [containerOffsetTop, setContainerOffsetTop] = useState(0);
-  const [sportsNavigationFixed, setSportsNavigationFixed] = useState(false);
+  const [isSportsNavigationFixed, setIsSportsNavigationFixed] = useState(false);
 
   useEffect(() => {
     const container = document.getElementById("main-content-wrapper");
@@ -93,7 +93,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
       const onScroll = () => {
         const nav = document.getElementById("sports-navigation");
         if (nav) {
-          setSportsNavigationFixed(container.scrollTop > nav.offsetTop);
+          setIsSportsNavigationFixed(container.scrollTop > nav.offsetTop);
         }
       };
       setContainerOffsetTop(container.offsetTop);
@@ -122,7 +122,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   const promotionPrefixHash = "#promotions";
   const homeHash = "#home";
   const sportsNavigationOffset = {
-    marginTop: sportsNavigationFixed ? `${containerOffsetTop}px` : 0,
+    marginTop: isSportsNavigationFixed ? `${containerOffsetTop}px` : 0,
   };
 
   return (
@@ -139,7 +139,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
                   id="sports-navigation"
                   style={sportsNavigationOffset}
                   className={`bg-grey-0 ${
-                    sportsNavigationFixed ? "c-sports-navigation-fixed" : ""
+                    isSportsNavigationFixed ? "c-sports-navigation-fixed" : ""
                   }`}
                 >
                   <SportsNav
@@ -153,7 +153,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
                 </div>
                 <div
                   className={`${
-                    sportsNavigationFixed
+                    isSportsNavigationFixed
                       ? "c-sports-navigation-spacer-visible"
                       : "u-display--none"
                   }`}
