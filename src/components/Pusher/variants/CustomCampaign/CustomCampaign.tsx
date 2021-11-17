@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ButtonPrimary } from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import MaskImage from "Components/MaskImage";
@@ -10,6 +9,7 @@ import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { getPlatform } from "Utils/utils";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
+import { ROUTE_IDS } from "Src/constants";
 import {
   DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
@@ -18,6 +18,7 @@ import {
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import { setCookie } from "Utils/setCookie";
 import { CustomCampaignValuableList } from "./ValuablesList";
+import { CustomCampaignCTAButtons } from "../../index";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -82,7 +83,7 @@ export const CustomCampaign = ({
     loading,
     valuables,
     translations,
-  } = usePlayerValuableList(/* { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
+  } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
 
   const [
     selectedValuable,
@@ -133,7 +134,7 @@ export const CustomCampaign = ({
           </MaskImage>
         </div>
       </div>
-      <div className="u-padding-x--md">
+      <div>
         <Flex
           direction="vertical"
           align="left"
@@ -143,9 +144,10 @@ export const CustomCampaign = ({
             pusherData={pusherData}
             valuables={valuables}
             showValuable={showValuable}
+            closeModal={closeModal}
           />
 
-          <Flex.Item>
+          <Flex.Item className="t-border-bottom border-grey-5">
             <GameRowCustomHeader
               header="titles.game-of-the-day"
               gameSlug={pusherData.Data.game}
@@ -153,14 +155,20 @@ export const CustomCampaign = ({
           </Flex.Item>
         </Flex>
 
-        <div className="c-valuable-details__footer u-padding--md o-position--sticky o-inset-bottom--none">
-          <ButtonPrimary
-            className="u-width--full"
-            onClick={disableModal}
-            data-test="valuable-action-button"
-          >
-            Disable popup for a week
-          </ButtonPrimary>
+        <CustomCampaignCTAButtons
+          Button1Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button1Text={pusherData.CTAButtonText || "Learn more"}
+          Button2Link={ROUTE_IDS.CASH_DEPOSIT}
+          Button2Text={pusherData.CTAButton2Text || "Deposit"}
+          onCTAClick={closeModal}
+        />
+
+        <div className="u-padding-x--md u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
+          <div className="u-font-sm text-grey-70">
+            <span className="u-cursor--pointer" onClick={disableModal}>
+              Don’t show me this message again this week.
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import { AllValuableType, ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 import Cashback from "./Icons/cashback.svg";
+import { ClaimSymbol, LockSymbol } from "./icons";
 
 type Props = {
   /** Valuable type of the valuable */
@@ -44,12 +45,15 @@ type Props = {
   size?: "small" | "large";
 };
 
+export type TLockIcon = "lock" | "claim";
+
 type ValuableCoinProps = {
   awardType?: A.WageringLockAwardType;
   coinValue?: number;
   currency: string;
   size?: "small" | "large";
   valuableType: AllValuableType;
+  lockIcon?: TLockIcon;
   className?: string;
 };
 
@@ -59,6 +63,7 @@ export const ValuableCoin = ({
   currency,
   size = "large",
   valuableType,
+  lockIcon,
   className,
 }: ValuableCoinProps) => {
   const spinType = coinValueToSpinType(coinValue);
@@ -90,6 +95,8 @@ export const ValuableCoin = ({
           getCoinTextClassModifier(valuableType, awardType)
         )}
       >
+        {lockIcon === "lock" && <LockSymbol />}
+        {lockIcon === "claim" && <ClaimSymbol />}
         <ValuableSymbol
           awardType={awardType}
           currency={currency}

@@ -6,3 +6,5 @@ export { default as MegaSpinsIcon } from "./Icons/spins-4star.svg";
 export { default as CashbackIcon } from "./Icons/cashback.svg";
 export { default as ValuablesCardDefaultIcon } from "./Icons/empty-valuableCard.svg";
 export { default as ChristmasSpecial } from "./Icons/christmas-special.svg";
+export { default as LockSymbol } from "./Icons/lock-symbol.svg";
+export { default as ClaimSymbol } from "./Icons/claim-symbol.svg";

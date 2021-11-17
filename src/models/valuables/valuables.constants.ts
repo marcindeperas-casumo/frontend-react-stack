@@ -7,6 +7,8 @@ export const VALUABLE_TYPES = {
   CASHBACK: "cashback",
   WAGERING_LOCK: "wageringLock",
   CHRISTMAS_SPECIAL: "christmasSpecial",
+  CHRISTMAS_SPECIAL_DEPOSIT_SILVER: "christmasSpecial",
+  CHRISTMAS_SPECIAL_DEPOSIT_GOLD: "christmasSpecial",
 } as const;
 
 export const VALUABLE_STATES = {

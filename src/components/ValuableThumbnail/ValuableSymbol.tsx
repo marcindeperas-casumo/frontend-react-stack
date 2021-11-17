@@ -57,6 +57,7 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
   [VALUABLE_TYPES.CHRISTMAS_SPECIAL]: ChristmasSpecial,
+  [VALUABLE_TYPES.CHRISTMAS_SPECIAL]: ChristmasSpecial,
 };
 
 export type AllValuableType = A.ValuableType | "christmasSpecial";
