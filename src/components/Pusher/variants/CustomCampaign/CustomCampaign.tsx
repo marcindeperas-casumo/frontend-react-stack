@@ -195,6 +195,7 @@ export const CustomCampaign = ({
             {
               link: (
                 <a
+                  className="u-font-weight-bold text-grey-50"
                   rel="noopener noreferrer"
                   target="_blank"
                   href={`${window.location.origin}/terms/campaign/${XMAS_CAMPAIGN_TERMS_SLUG}`}
