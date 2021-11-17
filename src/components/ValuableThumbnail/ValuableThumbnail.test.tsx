@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import mockTranslations from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 import { VALUABLE_TYPES } from "Models/valuables";
 import * as utils from "Utils";
@@ -73,7 +73,7 @@ describe("ValuableThumbnail", () => {
   });
 
   test("should render cashback svg icon if valuable type is Cashback", () => {
-    rendered = shallow(
+    rendered = mount(
       <ValuableThumbnail
         {...mockCashbackValuable}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ hours: number; minutes: number; }' is not ... Remove this comment to see the full error message
