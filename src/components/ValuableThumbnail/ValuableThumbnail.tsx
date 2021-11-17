@@ -42,6 +42,7 @@ type Props = {
   expiryTimeLeft: DurationProps;
   /* Translations of the component */
   translations: Translations;
+  valuableBadgeName: string;
   size?: "small" | "large";
 };
 
@@ -54,6 +55,7 @@ type ValuableCoinProps = {
   size?: "small" | "large";
   valuableType: AllValuableType;
   lockIcon?: TLockIcon;
+  valuableBadgeName: string;
   className?: string;
 };
 
@@ -64,6 +66,7 @@ export const ValuableCoin = ({
   size = "large",
   valuableType,
   lockIcon,
+  valuableBadgeName,
   className,
 }: ValuableCoinProps) => {
   const spinType = coinValueToSpinType(coinValue);
@@ -120,6 +123,7 @@ export const ValuableThumbnail = ({
   valuableState,
   valuableType,
   translations,
+  valuableBadgeName,
 }: Props) => {
   const stateBadgeVisible =
     size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
@@ -145,6 +149,7 @@ export const ValuableThumbnail = ({
           currency={currency}
           size={size}
           valuableType={valuableType}
+          valuableBadgeName={valuableBadgeName}
         />
       </Flex>
       {stateBadgeVisible && (

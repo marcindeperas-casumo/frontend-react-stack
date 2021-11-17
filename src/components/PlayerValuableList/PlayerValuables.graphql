@@ -43,6 +43,9 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String) 
       leftToWager
       termsLink
       specificTerms
+      rule {
+        name
+      }
       ... on PlayerValuableSpins {
         description
         coinValue
@@ -98,6 +101,9 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     backgroundImage
     wageringThreshold
     leftToWager
+    rule {
+      name
+    }
     ... on PlayerValuableSpins {
       description
       coinValue

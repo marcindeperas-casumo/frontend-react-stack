@@ -53,6 +53,7 @@ export function PlayerValuableListHorizontal() {
         {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableCard
           {...valuables[i]}
+          valuableBadgeName={valuables[i]?.rule?.name}
           translations={translations}
           onCardClick={() => showModal(valuables[i])}
           className="t-elevation--10"
@@ -94,6 +95,7 @@ export function PlayerValuableListHorizontal() {
               <div className="c-valuable-details__valuable-card o-position--relative">
                 <ValuableCard
                   {...selectedValuable}
+                  valuableBadgeName={selectedValuable?.rule?.name}
                   translations={translations}
                   caveat={null}
                   className="t-elevation--30"

@@ -17,8 +17,8 @@ import {
 } from "Components/Pusher/PusherModal";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import { setCookie } from "Utils/setCookie";
-import { CustomCampaignValuableList } from "./ValuablesList";
 import { CustomCampaignCTAButtons } from "../../index";
+import { CustomCampaignValuableList } from ".";
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -66,6 +66,7 @@ const ValuablePopupContent = ({
         <ValuableCard
           translations={translations}
           {...valuable}
+          valuableBadgeName={valuable?.rule?.name}
           caveat={null}
           className="t-elevation--10"
         />
