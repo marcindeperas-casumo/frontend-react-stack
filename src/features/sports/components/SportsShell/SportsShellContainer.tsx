@@ -1,5 +1,5 @@
 import { useQuery, useApolloClient, ApolloClient } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,
@@ -33,6 +33,7 @@ import { SportsYouWonComponent } from "Features/sports/components/SportsYouWon";
 import { showModal } from "Features/sports/components/SportsYouWon/SportsYouWonComponent";
 import KambiClientSkeleton from "Features/sports/components/KambiClient/KambiClientSkeleton";
 import { useMarket, useTranslations } from "Utils/hooks";
+import "./SportsShellContainer.scss";
 
 const bridgeEventHandlers = [
   [
@@ -68,6 +69,7 @@ const bridgeEventHandlers = [
   ],
 ];
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SportsShellContainer: React.FC<{}> = () => {
   const { data, error, loading, refetch } = useQuery<
     A.SportsShellQuery,
@@ -81,6 +83,27 @@ export const SportsShellContainer: React.FC<{}> = () => {
   const t = useTranslations<{ number_of_items_to_show: string }>(
     "sports.sports-home-configuration"
   );
+
+  const [containerScrollTop, setContainerScrollTop] = useState(0);
+  const [containerOffsetTop, setContainerOffsetTop] = useState(0);
+  const [sportsNavigationFixed, setSportsNavigationFixed] = useState(false);
+
+  useEffect(() => {
+    const container = document.getElementById("main-content-wrapper");
+    if (container) {
+      const onScroll = () => {
+        const nav = document.getElementById("sports-navigation");
+        if (nav) {
+          setContainerScrollTop(container.scrollTop);
+          setSportsNavigationFixed(container.scrollTop > nav.offsetTop);
+        }
+      };
+      setContainerOffsetTop(container.offsetTop);
+      container.addEventListener("scroll", onScroll);
+
+      return () => container.removeEventListener("scroll", onScroll);
+    }
+  }, [containerScrollTop, sportsNavigationFixed]);
 
   useEffect(() => {
     bridgeEventHandlers.map(
@@ -100,6 +123,9 @@ export const SportsShellContainer: React.FC<{}> = () => {
   const virtualsPrefixHash = "#filter/virtuals";
   const promotionPrefixHash = "#promotions";
   const homeHash = "#home";
+  const sportsNavigationOffset = {
+    paddingTop: sportsNavigationFixed ? `${containerOffsetTop}px` : 0,
+  };
 
   return (
     <>
@@ -110,14 +136,31 @@ export const SportsShellContainer: React.FC<{}> = () => {
             {data.isSearchVisible ? (
               <SportsSearch />
             ) : (
-              <SportsNav
-                currentHash={currentHash}
-                market={market}
-                hasSelectedFavourites={data.hasSelectedFavourites}
-                itemsToShow={
-                  parseInt(t.number_of_items_to_show) || ITEMS_TO_SHOW
-                }
-              />
+              <>
+                <div
+                  id="sports-navigation"
+                  style={sportsNavigationOffset}
+                  className={`bg-grey-0 ${
+                    sportsNavigationFixed ? "c-sports-navigation-fixed" : ""
+                  }`}
+                >
+                  <SportsNav
+                    currentHash={currentHash}
+                    market={market}
+                    hasSelectedFavourites={data.hasSelectedFavourites}
+                    itemsToShow={
+                      parseInt(t.number_of_items_to_show) || ITEMS_TO_SHOW
+                    }
+                  />
+                </div>
+                <div
+                  className={`${
+                    sportsNavigationFixed
+                      ? "c-sports-navigation-spacer-visible"
+                      : "u-display--none"
+                  }`}
+                />
+              </>
             )}
             {currentHash === homeHash && !data.isSearchVisible && (
               <SportsHome />
