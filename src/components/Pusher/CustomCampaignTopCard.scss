@@ -2,13 +2,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 478px) {
-  .c-campaign-top-card {
-    height: 60%;
-  }
   .c-campaign-top-card-content {
     padding: 16px;
   }

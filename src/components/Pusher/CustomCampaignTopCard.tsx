@@ -22,7 +22,7 @@ export const CustomCampaignTopCard = ({
   if (title && description && imageColor) {
     return (
       <div
-        className="c-campaign-top-card o-flex--vertical u-width--full o-flex-align--end o-flex-justify--space-between u-margin-top--auto"
+        className="c-campaign-top-card u-height--full o-flex--vertical u-width--full o-flex-align--end o-flex-justify--space-between u-margin-top--auto"
         style={{
           backgroundImage: `url(${backgroundImgUrl})`,
         }}

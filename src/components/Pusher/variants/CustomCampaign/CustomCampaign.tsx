@@ -113,16 +113,13 @@ export const CustomCampaign = ({
 
   return (
     <div>
-      <div className="">
-        <div className="">
-          <CustomCampaignTopCard
-            title={pusherData.Title}
-            description={pusherData.Message}
-            onCloseClick={closeModal}
-            imageColor={pusherData.TopImageColour || "orange"}
-          />
-        </div>
-      </div>
+      <CustomCampaignTopCard
+        title={pusherData.Title}
+        description={pusherData.Message}
+        onCloseClick={closeModal}
+        imageColor={pusherData.TopImageColour || "orange"}
+      />
+
       <div className="u-padding-x--md">
         <Flex
           direction="vertical"
