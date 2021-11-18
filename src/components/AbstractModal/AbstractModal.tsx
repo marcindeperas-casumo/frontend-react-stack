@@ -54,7 +54,7 @@ export class AbstractModal extends React.PureComponent<Props> {
             {children}
           </div>
           <div className="c-abstract-modal__close u-padding o-position--absolute cursor-pointer">
-            {hideDefaultCloseButton ? null : (
+            {!hideDefaultCloseButton && (
               <CloseButton data-test="modal-close-button" onClick={hideModal} />
             )}
           </div>
