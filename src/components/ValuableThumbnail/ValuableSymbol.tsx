@@ -63,7 +63,7 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD]: ChristmasSnowflakeGold,
 };
 
-export type AllValuableType =
+export type AllValuableTypes =
   | A.ValuableType
   | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL
   | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER
@@ -72,7 +72,7 @@ export type AllValuableType =
 type Props = {
   awardType?: A.WageringLockAwardType;
   currency: string;
-  valuableType: AllValuableType;
+  valuableType: AllValuableTypes;
   spinType?: string;
   size?: string;
 };
@@ -88,7 +88,7 @@ export const ValuableSymbol = ({
   const CASH_RELATED_VALUABLES = [
     VALUABLE_TYPES.CASH,
     VALUABLE_TYPES.CASHBACK,
-  ] as Array<AllValuableType>;
+  ] as Array<AllValuableTypes>;
 
   const CASH_RELATED_REWARDS = ["bonusMoney", "freeMoney"];
   const SPINS_RELATED_REWARDS = ["spins"];

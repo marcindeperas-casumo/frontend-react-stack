@@ -19,7 +19,7 @@ import type {
   DurationProps,
   ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
-import { AllValuableType, ValuableSymbol } from "./ValuableSymbol";
+import { AllValuableTypes, ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 import Cashback from "./Icons/cashback.svg";
@@ -27,7 +27,7 @@ import { ClaimSymbol, LockSymbol } from "./icons";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: AllValuableType;
+  valuableType: AllValuableTypes;
   /** award type - applies when valuableType === Wagering Lock */
   awardType?: A.WageringLockAwardType;
   /** currency of the player */
@@ -50,7 +50,7 @@ type Props = {
 
 const getValuableTypeChristmasAware = (
   badgeRuleName: string,
-  valuableType: AllValuableType
+  valuableType: AllValuableTypes
 ) => {
   const christmasRelatedBadgeRule = {
     "christmas-fs_fb_gold": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
@@ -76,7 +76,7 @@ type ValuableCoinProps = {
   coinValue?: number;
   currency: string;
   size?: "small" | "large";
-  valuableType: AllValuableType;
+  valuableType: AllValuableTypes;
   lockIcon?: TLockIcon;
   valuableBadgeName: string;
   className?: string;
@@ -110,7 +110,7 @@ export const ValuableCoin = ({
           getCoinClassModifier(valuableType, awardType)
         )}
       >
-        {([VALUABLE_TYPES.CASHBACK] as AllValuableType[]).includes(
+        {([VALUABLE_TYPES.CASHBACK] as AllValuableTypes[]).includes(
           valuableType
         ) ? (
           <Cashback className="u-width--full" />
@@ -221,7 +221,7 @@ function getStateBadgeText(
 }
 
 function getCoinClassModifier(
-  valuableType: AllValuableType,
+  valuableType: AllValuableTypes,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch
@@ -252,7 +252,7 @@ function getCoinClassModifier(
 }
 
 function getCoinTextClassModifier(
-  valuableType: AllValuableType,
+  valuableType: AllValuableTypes,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch

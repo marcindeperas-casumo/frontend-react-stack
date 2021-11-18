@@ -10,7 +10,7 @@ import {
 import { ROUTE_IDS } from "Src/constants";
 import { useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils/routerUtils";
-import { AllValuableType } from "Components/ValuableThumbnail/ValuableSymbol";
+import { AllValuableTypes } from "Components/ValuableThumbnail/ValuableSymbol";
 import { CustomCampaignValuableList } from "./ValuablesList";
 
 type Props = {
@@ -25,7 +25,7 @@ export type ChristmasValuableEntry = {
   id: any;
   promoTitle: string;
   subtitle: string;
-  valuableType: AllValuableType;
+  valuableType: AllValuableTypes;
   currency: any;
   lockIcon: TLockIcon;
   rule: {
