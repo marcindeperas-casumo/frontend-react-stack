@@ -11,6 +11,7 @@ export const SPORT_ICE_HOCKEY = "ICE_HOCKEY";
 export const SPORT_AMERICAN_FOOTBALL = "AMERICAN_FOOTBALL";
 export const OUTCOME_TYPE_OT_TWO = "OT_TWO";
 export const OUTCOME_TYPE_OT_ONE = "OT_ONE";
+export const OUTCOME_TYPE_OT_CROSS = "OT_CROSS";
 export const OUTCOME_STATUS_OPEN = "OPEN";
 export const EVENT_STATE_STARTED = "STARTED";
 export const TRANSLATIONS_SPORTS_HOME_LIVE = "sports_home_live";
