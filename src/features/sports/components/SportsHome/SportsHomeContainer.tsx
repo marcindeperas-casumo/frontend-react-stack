@@ -58,8 +58,7 @@ export const SportsHomeContainer = () => {
           popularEventsWidgetConfigurations
         )}
         market={last(locale.split("-"))}
-        // sports={popularEventsConfiguration.availableSports}
-        sports="FOOTBALL"
+        sports={popularEventsWidgetConfigurations.availableSports}
         language={language}
         locale={locale}
         t={t}
@@ -87,8 +86,7 @@ export const SportsHomeContainer = () => {
           popularLiveEventsWidgetConfigurations
         )}
         market={last(locale.split("-"))}
-        // sports={popularLiveEventsConfiguration.availableSports}
-        sports="FOOTBALL"
+        sports={popularLiveEventsWidgetConfigurations.availableSports}
         language={language}
         locale={locale}
         t={t}
