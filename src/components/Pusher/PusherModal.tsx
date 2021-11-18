@@ -92,7 +92,7 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
       hideModal={hidePusherModal}
       className="c-valuable-details-modal u-height--full u-width--full t-border-r--md u-overflow--hidden c-valuable-details__abstract-modal-extra"
       closeTimeoutMS={100}
-      hideDefaultCloseButton
+      modifyCloseButton
     >
       <PusherNotification
         pusherData={pusherData}
