@@ -8,3 +8,5 @@ export { default as ValuablesCardDefaultIcon } from "./Icons/empty-valuableCard.
 export { default as ChristmasSpecial } from "./Icons/christmas-special.svg";
 export { default as LockSymbol } from "./Icons/lock-symbol.svg";
 export { default as ClaimSymbol } from "./Icons/claim-symbol.svg";
+export { default as ChristmasSnowflakeGold } from "./Icons/christmas-snowflake-gold.svg";
+export { default as ChristmasSnowflakeSilver } from "./Icons/christmas-snowflake-silver.svg";

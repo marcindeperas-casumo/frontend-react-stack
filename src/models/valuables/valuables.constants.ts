@@ -7,8 +7,8 @@ export const VALUABLE_TYPES = {
   CASHBACK: "cashback",
   WAGERING_LOCK: "wageringLock",
   CHRISTMAS_SPECIAL: "christmasSpecial",
-  CHRISTMAS_SPECIAL_DEPOSIT_SILVER: "christmasSpecial",
-  CHRISTMAS_SPECIAL_DEPOSIT_GOLD: "christmasSpecial",
+  CHRISTMAS_SPECIAL_DEPOSIT_SILVER: "christmasDepositSilver",
+  CHRISTMAS_SPECIAL_DEPOSIT_GOLD: "christmasDepositGold",
 } as const;
 
 export const VALUABLE_STATES = {
@@ -29,6 +29,9 @@ export const VALUABLE_REQUIREMENT_TYPES = {
   DEPOSIT: "deposit",
   KAMBI_SPORTS_BET: "kambiSportsBet",
 } as const;
+
+export const VALUABLE_CIRCLE_LOCK_ICON = "lock";
+export const VALUABLE_CIRCLE_CLAIM_ICON = "claim";
 
 export const VALUABLE_LOCKED_URL = "/player/valuables";
 export const VALUABLE_DEPOSIT_URL = "/cash/deposit";

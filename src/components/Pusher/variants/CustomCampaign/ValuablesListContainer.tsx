@@ -2,7 +2,7 @@ import React from "react";
 import * as A from "Types/apollo";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import { TLockIcon } from "Components/ValuableThumbnail";
-import { VALUABLE_TYPES } from "Models/valuables";
+import { VALUABLE_CIRCLE_CLAIM_ICON, VALUABLE_CIRCLE_LOCK_ICON, VALUABLE_TYPES } from "Models/valuables";
 import { ROUTE_IDS } from "Src/constants";
 import { useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils/routerUtils";
@@ -47,7 +47,7 @@ export const CustomCampaignValuableListContainer = ({
       ...cashVal,
       promoTitle: pusherData.Data.cashback_reward_title,
       subtitle: pusherData.Data.cashback_reward_subtitle,
-      lockIcon: "claim" as TLockIcon,
+      lockIcon: VALUABLE_CIRCLE_CLAIM_ICON as TLockIcon,
     },
     {
       __typename: REDIRECT_TYPE,
@@ -56,17 +56,20 @@ export const CustomCampaignValuableListContainer = ({
       subtitle: pusherData.Data.deposit_lock_subtitle,
       valuableType: VALUABLE_TYPES.CHRISTMAS_SPECIAL,
       coinValue: null,
-      lockIcon: "lock" as TLockIcon,
+      lockIcon: VALUABLE_CIRCLE_LOCK_ICON as TLockIcon,
       currency: null,
       rule: {
-        name: "",
+        name: "xmas21-casumojp-cashback-reward",
       },
     },
     cashBackVal && {
       ...cashBackVal,
       promoTitle: cashBackVal.title,
       subtitle: pusherData.Data.cashback_subtitle,
-      lockIcon: "lock" as TLockIcon,
+      lockIcon: VALUABLE_CIRCLE_LOCK_ICON as TLockIcon,
+      rule: {
+        name: "xmas21-casumojp-cashback-reward",
+      },
     },
   ].filter(v => Boolean(v));
 

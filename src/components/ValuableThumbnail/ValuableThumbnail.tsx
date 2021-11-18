@@ -11,6 +11,8 @@ import {
   coinValueToSpinType,
   showStateBadge,
   isAboutToExpire,
+  VALUABLE_CIRCLE_LOCK_ICON,
+  VALUABLE_CIRCLE_CLAIM_ICON,
 } from "Models/valuables";
 import type {
   ValuableState,
@@ -25,7 +27,7 @@ import { ClaimSymbol, LockSymbol } from "./icons";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: A.ValuableType;
+  valuableType: AllValuableType;
   /** award type - applies when valuableType === Wagering Lock */
   awardType?: A.WageringLockAwardType;
   /** currency of the player */
@@ -46,7 +48,23 @@ type Props = {
   size?: "small" | "large";
 };
 
-export type TLockIcon = "lock" | "claim";
+const getValuableTypeChristmasAware = (badgeRuleName: string, valuableType: AllValuableType) => {
+  const christmasRelatedBadgeRule = {
+    "christmas-fs_fb_gold": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
+    "xmas21-fs_fb_gold_locked": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
+    "christmas21-fs_fb_silver": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
+    "christmas21-fs_fb_silver_locked": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
+  };
+
+  if (!Object.keys(christmasRelatedBadgeRule).includes(badgeRuleName)) {
+    return valuableType;
+  }
+
+  return christmasRelatedBadgeRule[badgeRuleName];
+};
+
+export type TLockIcon = typeof VALUABLE_CIRCLE_LOCK_ICON
+  | typeof VALUABLE_CIRCLE_CLAIM_ICON;
 
 type ValuableCoinProps = {
   awardType?: A.WageringLockAwardType;
@@ -66,11 +84,13 @@ export const ValuableCoin = ({
   size = "large",
   valuableType,
   lockIcon,
-  valuableBadgeName,
+  valuableBadgeName = "",
   className,
 }: ValuableCoinProps) => {
   const spinType = coinValueToSpinType(coinValue);
   const baseClass = className || `c-valuable-card-thumbnail-coin--${size}`;
+  const valuableTypeChristmasAware = getValuableTypeChristmasAware(valuableBadgeName, valuableType);
+  const isLocked = valuableBadgeName.includes("lock");
 
   return (
     <div
@@ -98,13 +118,13 @@ export const ValuableCoin = ({
           getCoinTextClassModifier(valuableType, awardType)
         )}
       >
-        {lockIcon === "lock" && <LockSymbol />}
+        {(isLocked || lockIcon === "lock") && <LockSymbol />}
         {lockIcon === "claim" && <ClaimSymbol />}
         <ValuableSymbol
           awardType={awardType}
           currency={currency}
           spinType={spinType}
-          valuableType={valuableType}
+          valuableType={valuableTypeChristmasAware}
           size={size === "small" ? "sm" : "default"}
         />
       </Flex>
