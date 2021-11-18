@@ -23,7 +23,6 @@ const stories = storiesOf("CustomCampaignTopCard", module);
           <CustomCampaignTopCard
             title={data.title}
             description={data.description}
-            onCloseClick={data.onCloseClick}
             imageColor={data.imageColor}
           />
         </div>
@@ -40,7 +39,6 @@ const stories = storiesOf("CustomCampaignTopCard", module);
           <CustomCampaignTopCard
             title={data.title}
             description={data.description}
-            onCloseClick={data.onCloseClick}
             imageColor={"pink"}
           />
         </div>
