@@ -18,7 +18,7 @@ export const GameRowCustomHeaderContainer = (props: Props) => {
   });
   const { launchGame } = useLaunchGame(gameInfo?.game);
 
-  if (gameLoading) {
+  if (gameLoading || !gameInfo?.game) {
     return null;
   }
 
