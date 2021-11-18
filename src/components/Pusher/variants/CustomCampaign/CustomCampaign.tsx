@@ -116,7 +116,6 @@ export const CustomCampaign = ({
       <CustomCampaignTopCard
         title={pusherData.Title}
         description={pusherData.Message}
-        onCloseClick={closeModal}
         imageColor={pusherData.TopImageColour || "orange"}
       />
 
