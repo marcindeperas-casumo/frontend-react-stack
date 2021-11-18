@@ -119,7 +119,7 @@ export const CustomCampaign = ({
             title={pusherData.Title}
             description={pusherData.Message}
             onCloseClick={closeModal}
-            imageColor={pusherData.TopImageColour}
+            imageColor={pusherData.TopImageColour || "orange"}
           />
         </div>
       </div>

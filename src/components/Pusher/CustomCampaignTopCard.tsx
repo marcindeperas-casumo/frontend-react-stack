@@ -1,4 +1,5 @@
 import React from "react";
+import { PUSHER_CONSTANTS } from "Src/constants";
 //@ts-ignore
 import CloseIcon from "./icons/CloseBtn.png";
 import "./CustomCampaignTopCard.scss";
@@ -14,9 +15,16 @@ export const CustomCampaignTopCard = ({
   title,
   description,
   onCloseClick,
+  imageColor,
 }: Props) => {
+  const backgroundImgUrl = PUSHER_CONSTANTS.backGroundImageColors[imageColor];
   return (
-    <div className="c-campaign-top-card o-flex--vertical u-width--full o-flex-align--end o-flex-justify--space-between u-margin-top--auto">
+    <div
+      className="c-campaign-top-card o-flex--vertical u-width--full o-flex-align--end o-flex-justify--space-between u-margin-top--auto"
+      style={{
+        backgroundImage: `url( ${backgroundImgUrl})`,
+      }}
+    >
       <div className="c-campaign-top-card-close-button">
         <img
           onClick={onCloseClick}
