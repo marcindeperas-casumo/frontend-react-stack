@@ -48,12 +48,16 @@ type Props = {
   size?: "small" | "large";
 };
 
-const getValuableTypeChristmasAware = (badgeRuleName: string, valuableType: AllValuableType) => {
+const getValuableTypeChristmasAware = (
+  badgeRuleName: string,
+  valuableType: AllValuableType
+) => {
   const christmasRelatedBadgeRule = {
     "christmas-fs_fb_gold": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
     "xmas21-fs_fb_gold_locked": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
     "christmas21-fs_fb_silver": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
-    "christmas21-fs_fb_silver_locked": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
+    "christmas21-fs_fb_silver_locked":
+      VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
   };
 
   if (!Object.keys(christmasRelatedBadgeRule).includes(badgeRuleName)) {
@@ -63,7 +67,8 @@ const getValuableTypeChristmasAware = (badgeRuleName: string, valuableType: AllV
   return christmasRelatedBadgeRule[badgeRuleName];
 };
 
-export type TLockIcon = typeof VALUABLE_CIRCLE_LOCK_ICON
+export type TLockIcon =
+  | typeof VALUABLE_CIRCLE_LOCK_ICON
   | typeof VALUABLE_CIRCLE_CLAIM_ICON;
 
 type ValuableCoinProps = {
@@ -89,7 +94,10 @@ export const ValuableCoin = ({
 }: ValuableCoinProps) => {
   const spinType = coinValueToSpinType(coinValue);
   const baseClass = className || `c-valuable-card-thumbnail-coin--${size}`;
-  const valuableTypeChristmasAware = getValuableTypeChristmasAware(valuableBadgeName, valuableType);
+  const valuableTypeChristmasAware = getValuableTypeChristmasAware(
+    valuableBadgeName,
+    valuableType
+  );
   const isLocked = valuableBadgeName.includes("lock");
 
   return (

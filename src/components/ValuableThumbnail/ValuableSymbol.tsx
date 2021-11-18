@@ -19,7 +19,7 @@ import {
   MegaSpinsIcon,
   ChristmasSpecial,
   ChristmasSnowflakeGold,
-  ChristmasSnowflakeSilver
+  ChristmasSnowflakeSilver,
 } from "./icons";
 
 const ALL_CURRENCIES_ICONS = {
@@ -63,10 +63,11 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD]: ChristmasSnowflakeGold,
 };
 
-export type AllValuableType = A.ValuableType |
-  typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL |
-  typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER |
-  typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD;
+export type AllValuableType =
+  | A.ValuableType
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD;
 
 type Props = {
   awardType?: A.WageringLockAwardType;

@@ -2,7 +2,11 @@ import React from "react";
 import * as A from "Types/apollo";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
 import { TLockIcon } from "Components/ValuableThumbnail";
-import { VALUABLE_CIRCLE_CLAIM_ICON, VALUABLE_CIRCLE_LOCK_ICON, VALUABLE_TYPES } from "Models/valuables";
+import {
+  VALUABLE_CIRCLE_CLAIM_ICON,
+  VALUABLE_CIRCLE_LOCK_ICON,
+  VALUABLE_TYPES,
+} from "Models/valuables";
 import { ROUTE_IDS } from "Src/constants";
 import { useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils/routerUtils";
