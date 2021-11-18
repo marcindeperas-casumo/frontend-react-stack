@@ -6,14 +6,14 @@ import {
   OUTCOME_TYPE_OT_TWO,
 } from "./SportsHome.constants";
 import {
+  PopularEventsWidgetConfigurations,
   SportsHomeEvent,
   SportsHomeOutcome,
-  SportsHomePopularBetsConfigurations,
 } from "./types";
 
 class SportsHomeUtilities {
   getNumberOfEventsPerDevice = (
-    data: SportsHomePopularBetsConfigurations
+    data: PopularEventsWidgetConfigurations
   ): number => {
     if (isMobile()) {
       return data.numberOfEventsMobile;

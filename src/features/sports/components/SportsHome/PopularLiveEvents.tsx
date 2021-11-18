@@ -58,7 +58,7 @@ const outcomeClick = async (
   }
 };
 
-const renderSportsHome = (
+const renderPopularLiveEvents = (
   data: SportsHomeType,
   numberOfEventsToShow: number,
   betslipOutcomesIds: number[],
@@ -116,7 +116,7 @@ export const getOfferingData = async (
   );
 };
 
-export const SportsHome = ({
+export const PopularLiveEvents = ({
   numberOfEvents,
   numberOfEventsToShow,
   market,
@@ -260,7 +260,7 @@ export const SportsHome = ({
     const fetchData = async () => {
       if (data?.sportsPopularBets?.popularEvents.length && market) {
         // use data to fetch event details from Kambi Offerrings REST API Data
-        const eventIds = data.sportsPopularBets.popularEvents[0]?.events?.map(
+        const eventIds = data.sportsPopularBets.popularEvents[1]?.events?.map(
           popularEvent => popularEvent.eventId
         );
 
@@ -301,7 +301,7 @@ export const SportsHome = ({
     return <ErrorMessage direction="horizontal" />;
   }
 
-  return renderSportsHome(
+  return renderPopularLiveEvents(
     sportsPopularBetsData,
     Math.min(
       numberOfEventsToShow,

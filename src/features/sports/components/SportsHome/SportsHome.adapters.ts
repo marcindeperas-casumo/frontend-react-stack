@@ -154,19 +154,35 @@ class SportsHomeAdapters {
     defaultSports: string
   ): SportsHomePopularBetsConfigurations {
     return {
-      availableSports: data?.available_sports ?? defaultSports,
-      orderNo: parseInt(data?.order_no) || 0,
-      isEnabled: data?.status === "Enabled" ?? false,
-      numberOfEventsMobile:
-        parseInt(data?.mobile.number_of_events_mobile) ||
-        defaultNumberOfEventsToShow,
-      numberOfEventsDesktop:
-        parseInt(data?.desktop.number_of_events_desktop) ||
-        defaultNumberOfEventsToShow,
-      numberOfEventsTablet:
-        parseInt(data?.tablet.number_of_events_tablet) ||
-        defaultNumberOfEventsToShow,
-    } as SportsHomePopularBetsConfigurations;
+      PopularEventsWidgetConfigurations: {
+        availableSports: data?.available_sports ?? defaultSports,
+        orderNo: parseInt(data?.order_no) || 0,
+        isEnabled: data?.status === "Enabled" ?? false,
+        numberOfEventsMobile:
+          parseInt(data?.mobile.number_of_events_mobile) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsDesktop:
+          parseInt(data?.desktop.number_of_events_desktop) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsTablet:
+          parseInt(data?.tablet.number_of_events_tablet) ||
+          defaultNumberOfEventsToShow,
+      },
+      PopularLiveEventsWidgetConfigurations: {
+        availableSports: data?.available_sports_live ?? defaultSports,
+        orderNo: parseInt(data?.order_no) || 0,
+        isEnabled: data?.status_live === "Enabled" ?? false,
+        numberOfEventsMobile:
+          parseInt(data?.mobile_live?.number_of_events_mobile) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsDesktop:
+          parseInt(data?.desktop_live?.number_of_events_desktop) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsTablet:
+          parseInt(data?.tablet?.number_of_events_tablet) ||
+          defaultNumberOfEventsToShow,
+      },
+    };
   }
 
   convertToSportsHomeLiveEventStatistics(
