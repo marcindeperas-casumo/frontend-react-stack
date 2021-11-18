@@ -155,6 +155,7 @@ class SportsHomeAdapters {
   ): SportsHomePopularBetsConfigurations {
     return {
       PopularEventsWidgetConfigurations: {
+        title: data?.title ?? "",
         availableSports: data?.available_sports ?? defaultSports,
         orderNo: parseInt(data?.order_no) || 0,
         isEnabled: data?.status === "Enabled" ?? false,
@@ -169,6 +170,7 @@ class SportsHomeAdapters {
           defaultNumberOfEventsToShow,
       },
       PopularLiveEventsWidgetConfigurations: {
+        title: data?.title_live ?? "",
         availableSports: data?.available_sports_live ?? defaultSports,
         orderNo: parseInt(data?.order_no) || 0,
         isEnabled: data?.status_live === "Enabled" ?? false,

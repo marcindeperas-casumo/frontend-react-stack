@@ -1,3 +1,5 @@
+import { StringUnitLength } from "luxon";
+
 export type SportsHomeTranslations = {
   live: string;
   draw: string;
@@ -154,12 +156,14 @@ export interface KambiLiveEventServerResponse {
 }
 
 export interface SportsHomeConfigurationTranslations {
+  title: string;
   status: string;
   available_sports: string;
   order_no: string;
   mobile: SportsHomeTranslationsMobile;
   desktop: SportsHomeTranslationsDesktop;
   tablet: SportsHomeTranslationsTablet;
+  title_live: string;
   status_live: string;
   available_sports_live: string;
   order_no_live: string;
@@ -189,6 +193,7 @@ export interface SportsHomePopularBetsConfigurations {
 export interface SportsHomeWidget {
   orderNo: number;
   isEnabled: boolean;
+  title: string;
 }
 
 export interface PopularEventsWidgetConfigurations extends SportsHomeWidget {
