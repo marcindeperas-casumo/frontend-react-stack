@@ -1,0 +1,15 @@
+.c-campaign-top-card {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.c-campaign-top-card-content {
+  padding-top: 144px;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 478px) {
+  .c-campaign-top-card-content {
+    padding-top: 128px;
+  }
+}
