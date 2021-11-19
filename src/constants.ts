@@ -136,6 +136,7 @@ export const ROUTE_IDS = {
   CASINO_GAMES: "CASINO_GAMES",
   MAHJONG_PAGE: "MAHJONG_PAGE",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
+  CAMPAIGN_TERMS: "CAMPAIGN_TERMS",
 } as const;
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
@@ -182,6 +183,7 @@ export const ROUTES = {
   [ROUTE_IDS.MAHJONG_PAGE]: "mahjong",
   [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
+  [ROUTE_IDS.CAMPAIGN_TERMS]: "terms/campaign/:slug",
 } as const;
 
 export const TRANSLATED_ROUTES = {
@@ -554,6 +556,7 @@ export const JURISDICTIONS = {
   SGA: "SGA",
   UKGC: "UKGC",
   GGL: "GGL",
+  GRA: "GRA",
 } as const;
 export type TJurisdiction = ValueOf<typeof JURISDICTIONS>;
 
@@ -616,9 +619,19 @@ export const PUSHER_CONSTANTS = {
     "/casino-player/fasttrack-realtime-integration/api/v1/session-mapping",
   pusherChannelnamePrefix: "private-prisma-16-",
   pusherEvents: [
+    "pusher:subscription_succeeded",
     "crm_campaign",
     "system_alerts",
     "player_message",
     "fraud_kyc",
   ],
+  pageLoadControllerEndPoint:
+    "/casino-player/fasttrack-realtime-integration/api/v1/page-load",
+  pusherSubscriptionSuccessEvent: "pusher:subscription_succeeded",
+  backGroundImageColors: {
+    pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    orange: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    purple: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    light_pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+  },
 };

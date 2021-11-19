@@ -29,6 +29,7 @@ import {
   LazyJackpotDetail,
   LazyJackpotExplainer,
   LazyJackpotsNav,
+  LazyCampaignTerms,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -115,6 +116,7 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW)}
         />
         <LazyReelRacesPage path={translateRoute(ROUTE_IDS.REEL_RACES)} />
+        <LazyCampaignTerms path={translateRoute(ROUTE_IDS.CAMPAIGN_TERMS)} />
       </ReachRouter>
     </>
   );

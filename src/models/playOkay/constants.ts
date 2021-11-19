@@ -15,3 +15,6 @@ export const limitPeriod = {
 
 export const loginTimeLimitsCmsKeyPrefix =
   "root:shared.playokay.login-time-limits-v2:fields.";
+
+export const limitsInformationsCmsKeyPrefix =
+  "root:shared.playokay.limits-informations:fields.";
