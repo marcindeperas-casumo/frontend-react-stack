@@ -1,5 +1,3 @@
-import { StringUnitLength } from "luxon";
-
 export type SportsHomeTranslations = {
   live: string;
   draw: string;
