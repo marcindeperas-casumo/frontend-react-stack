@@ -299,7 +299,7 @@ export const PopularEvents = ({
     title,
   ]);
 
-  if (error || (data && !data.sportsPopularBets.popularEvents.length)) {
+  if (error || !data?.sportsPopularBets.popularEvents.length) {
     return <ErrorMessage direction="horizontal" />;
   }
 

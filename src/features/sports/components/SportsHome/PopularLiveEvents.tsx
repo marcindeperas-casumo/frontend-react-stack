@@ -137,7 +137,7 @@ export const PopularLiveEvents = ({
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
   title: string;
-// eslint-disable-next-line sonarjs/cognitive-complexity
+  // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -300,7 +300,7 @@ export const PopularLiveEvents = ({
     title,
   ]);
 
-  if (error || (data && !data.sportsPopularBets.popularEvents.length)) {
+  if (error || !data?.sportsPopularBets.popularEvents.length) {
     return <ErrorMessage direction="horizontal" />;
   }
 
