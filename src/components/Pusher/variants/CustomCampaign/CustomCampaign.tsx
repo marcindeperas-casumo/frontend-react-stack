@@ -17,7 +17,6 @@ import {
   TYPE_PUSHER_MODAL_STATE,
 } from "Components/Pusher/PusherModal";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
-import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { CustomCampaignTopCard } from "Components/Pusher/CustomCampaignTopCard";
 import { CustomCampaignCTAButtons } from "../../index";
 import { CustomCampaignValuableList } from ".";
