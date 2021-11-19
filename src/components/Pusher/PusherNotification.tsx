@@ -36,7 +36,8 @@ export type PusherPaylod = {
   MessageId: number;
   PreviewText: string;
   Title: string;
-  subscribed?: boolean;
+  subscribed: boolean;
+  TopImageColour: string;
 };
 
 type Props = {

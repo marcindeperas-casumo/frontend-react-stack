@@ -142,7 +142,7 @@ export class ValuableRow extends PureComponent<Props> {
                   valuableState={valuableState}
                   valuableType={this.props.valuableType}
                   size="small"
-                  valuableBadgeName={valuableBadgeName}
+                  valuableBadgeName={valuableBadgeName || ""}
                 />
               </div>
             </Flex.Item>
