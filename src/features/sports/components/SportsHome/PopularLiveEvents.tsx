@@ -116,6 +116,7 @@ export const getOfferingData = async (
   );
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const PopularLiveEvents = ({
   numberOfEvents,
   numberOfEventsToShow,
@@ -125,6 +126,7 @@ export const PopularLiveEvents = ({
   locale,
   t,
   oddsFormatEvent,
+  title,
 }: {
   numberOfEvents: number;
   numberOfEventsToShow: number;
@@ -134,7 +136,8 @@ export const PopularLiveEvents = ({
   locale: string;
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
-  // eslint-disable-next-line sonarjs/cognitive-complexity
+  title: string;
+// eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
@@ -275,7 +278,10 @@ export const PopularLiveEvents = ({
           events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
-          translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
+          translations: SportsHomeAdapters.convertToSportsHomeTranslations(
+            t,
+            title
+          ),
         } as SportsHomeType;
 
         // organise sports data include Kambi Offerrings REST API Data
@@ -291,13 +297,10 @@ export const PopularLiveEvents = ({
     market,
     oddsFormatEvent.oddsFormat,
     t,
+    title,
   ]);
 
-  if (error) {
-    return <ErrorMessage direction="horizontal" />;
-  }
-
-  if (data && !data.sportsPopularBets.popularEvents.length) {
+  if (error || (data && !data.sportsPopularBets.popularEvents.length)) {
     return <ErrorMessage direction="horizontal" />;
   }
 

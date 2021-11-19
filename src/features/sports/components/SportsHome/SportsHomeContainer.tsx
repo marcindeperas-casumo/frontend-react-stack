@@ -63,13 +63,14 @@ export const SportsHomeContainer = () => {
         locale={locale}
         t={t}
         oddsFormatEvent={oddsFormatEvent}
+        title={popularEventsWidgetConfigurations.title}
       />
     );
   };
 
   // configurations for the popular live events widget
   const popularLiveEventsWidgetConfigurations =
-    sportsHomeConfigurations.PopularEventsWidgetConfigurations;
+    sportsHomeConfigurations.PopularLiveEventsWidgetConfigurations;
   const renderPopularLiveEventsWidget = () => {
     if (!popularLiveEventsWidgetConfigurations.isEnabled) {
       return null;
@@ -91,6 +92,7 @@ export const SportsHomeContainer = () => {
         locale={locale}
         t={t}
         oddsFormatEvent={oddsFormatEvent}
+        title={popularLiveEventsWidgetConfigurations.title}
       />
     );
   };

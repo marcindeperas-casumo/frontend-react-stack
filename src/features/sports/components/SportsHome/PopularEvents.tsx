@@ -125,6 +125,7 @@ export const PopularEvents = ({
   locale,
   t,
   oddsFormatEvent,
+  title,
 }: {
   numberOfEvents: number;
   numberOfEventsToShow: number;
@@ -134,6 +135,7 @@ export const PopularEvents = ({
   locale: string;
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
+  title: string;
   // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
@@ -275,7 +277,10 @@ export const PopularEvents = ({
           events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
-          translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
+          translations: SportsHomeAdapters.convertToSportsHomeTranslations(
+            t,
+            title
+          ),
         } as SportsHomeType;
 
         // organise sports data include Kambi Offerrings REST API Data
@@ -291,13 +296,10 @@ export const PopularEvents = ({
     market,
     oddsFormatEvent.oddsFormat,
     t,
+    title,
   ]);
 
-  if (error) {
-    return <ErrorMessage direction="horizontal" />;
-  }
-
-  if (data && !data.sportsPopularBets.popularEvents.length) {
+  if (error || (data && !data.sportsPopularBets.popularEvents.length)) {
     return <ErrorMessage direction="horizontal" />;
   }
 
