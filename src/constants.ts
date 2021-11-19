@@ -628,4 +628,10 @@ export const PUSHER_CONSTANTS = {
   pageLoadControllerEndPoint:
     "/casino-player/fasttrack-realtime-integration/api/v1/page-load",
   pusherSubscriptionSuccessEvent: "pusher:subscription_succeeded",
+  backGroundImageColors: {
+    pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    orange: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    purple: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    light_pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+  },
 };

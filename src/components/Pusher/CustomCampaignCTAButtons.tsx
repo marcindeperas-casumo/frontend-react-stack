@@ -31,21 +31,18 @@ export const CustomCampaignCTAButtons = ({
   };
 
   return (
-    <div
-      style={{ justifyContent: "space-evenly" }}
-      className="c-valuable-details__footer u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile"
-    >
+    <div className="c-valuable-details__footer u-display--flex o-flex-align--center o-flex-justify--space-around o-flex-justify--space-around@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
       <ButtonSecondary
-        className="t-background-grey-40 u-width--1/3 u-width--1/2@mobile"
-        onClick={onLearnMoreClick}
-      >
-        {Button1Text || "Learn more"}
-      </ButtonSecondary>
-      <ButtonPrimary
-        className="u-width--1/3 u-width--1/2@mobile"
+        className="t-background-grey-40 u-width--1/3 u-width--2/5@mobile"
         onClick={onDepositClick}
       >
-        {Button2Text || "Deposit"}
+        {Button2Text || "Tell me more"}
+      </ButtonSecondary>
+      <ButtonPrimary
+        className=" u-width--1/3 u-width--2/5@mobile"
+        onClick={onLearnMoreClick}
+      >
+        {Button1Text || "Deposit"}
       </ButtonPrimary>
     </div>
   );
