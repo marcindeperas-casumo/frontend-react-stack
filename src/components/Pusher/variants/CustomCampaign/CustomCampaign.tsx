@@ -24,6 +24,7 @@ import { CustomCampaignValuableList } from ".";
 type TTranslations = {
   terms_and_conditions_label: string;
   terms_and_conditions_link_label: string;
+  opt_out: string;
 };
 
 type Props = {
@@ -184,7 +185,7 @@ export const CustomCampaign = ({
         <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
           <div className="u-font-sm text-grey-70">
             <span className="u-cursor--pointer" onClick={disableModal}>
-              Don’t show me this message again this week.
+              {t.opt_out || "Don’t show me this message again this week."}
             </span>
           </div>
         </div>

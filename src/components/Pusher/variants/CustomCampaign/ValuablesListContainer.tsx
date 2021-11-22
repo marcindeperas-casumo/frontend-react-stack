@@ -63,7 +63,7 @@ export const CustomCampaignValuableListContainer = ({
       lockIcon: VALUABLE_CIRCLE_LOCK_ICON as TLockIcon,
       currency: null,
       rule: {
-        name: "xmas21-casumojp-cashback-reward",
+        name: "",
       },
     },
     cashBackVal && {
@@ -71,9 +71,6 @@ export const CustomCampaignValuableListContainer = ({
       promoTitle: cashBackVal.title,
       subtitle: pusherData.Data.cashback_subtitle,
       lockIcon: VALUABLE_CIRCLE_LOCK_ICON as TLockIcon,
-      rule: {
-        name: "xmas21-casumojp-cashback-reward",
-      },
     },
   ].filter(v => Boolean(v));
 
