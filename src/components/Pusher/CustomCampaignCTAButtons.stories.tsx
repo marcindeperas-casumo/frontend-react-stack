@@ -8,7 +8,6 @@ const stories = storiesOf("CustomCampaignCTAButtons", module);
 const data = {
   Button1Link: "cash/deposit",
   Button1Text: "Learn more",
-  Button2Link: "cash/deposit",
   Button2Text: "Deposit",
   onCTAClick: () => null,
 };
@@ -19,7 +18,6 @@ stories.add("Default (Presentational)", () => (
       <CustomCampaignCTAButtons
         Button1Link={data.Button1Link}
         Button1Text={data.Button1Text}
-        Button2Link={data.Button2Link}
         Button2Text={data.Button2Text}
         onCTAClick={data.onCTAClick}
       />
