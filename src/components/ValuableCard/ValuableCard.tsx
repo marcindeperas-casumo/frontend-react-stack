@@ -42,6 +42,8 @@ export type Props = {
   caveat: string | undefined;
   /** The state of the valuable */
   valuableState: ValuableState;
+  /** full valuable badge, including slug */
+  valuableBadgeName: string;
   /** Function to be triggered on click of card */
   onCardClick?: () => void;
   /** translations */
@@ -106,7 +108,9 @@ export class ValuableCard extends PureComponent<Props> {
       valuableState,
       valuableType,
       translations,
+      valuableBadgeName,
     } = this.props;
+
     return (
       <>
         <div
@@ -134,6 +138,7 @@ export class ValuableCard extends PureComponent<Props> {
                 translations={translations}
                 valuableState={valuableState}
                 valuableType={valuableType}
+                valuableBadgeName={valuableBadgeName}
               />
             </Flex.Item>
             <Flex.Item className="o-flex--1 u-text-align-center u-padding-x u-margin-top--md">

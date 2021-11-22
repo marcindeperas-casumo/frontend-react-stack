@@ -75,6 +75,7 @@ export const FreebetNotificationContainer = () => {
         setIsHidden(true);
         persistIsHidden(latestLockedFreebet.id);
       }}
+      valuableBadgeName={latestLockedFreebet.rule.name}
     />
   );
 };
