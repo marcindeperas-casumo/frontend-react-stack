@@ -18,7 +18,12 @@ export const CustomCampaignCTAButtons = ({
   onCTAClick,
 }: Props) => {
   const extractXMasPromotionSlug = (buttonLink: string): string => {
-    if (!buttonLink || buttonLink === null || buttonLink === undefined || !buttonLink.includes("/") ) {
+    if (
+      !buttonLink ||
+      buttonLink === null ||
+      buttonLink === undefined ||
+      !buttonLink.includes("/")
+    ) {
       return "";
     } else {
       const buttonLinkArray = buttonLink.split("/");
