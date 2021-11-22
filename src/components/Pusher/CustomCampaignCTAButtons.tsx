@@ -17,15 +17,23 @@ export const CustomCampaignCTAButtons = ({
   Button1Link,
   onCTAClick,
 }: Props) => {
-  const Button1LinkArray = Button1Link.split("/");
-  const promotions_slug = Button1LinkArray[Button1LinkArray.length - 1];
+  const extractXMasPromotionSlug = (buttonLink: string): string => {
+    if (!buttonLink || buttonLink === null || buttonLink === undefined || !buttonLink.includes("/") ) {
+      return "";
+    } else {
+      const buttonLinkArray = buttonLink.split("/");
+      return buttonLinkArray[buttonLinkArray.length - 1];
+    }
+  };
 
   return (
     <div className="c-valuable-details__footer u-display--flex o-flex-align--center o-flex-justify--space-around o-flex-justify--space-around@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
       <Flex.Item className="t-border-r--pill t-background-grey-20 t-background-grey-50:hover o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
         <Link
           className="t-color-black u-font-weight-bold"
-          to={`/${useTranslatedUrl(ROUTE_IDS.PROMOTIONS)}/${promotions_slug}`}
+          to={`/${useTranslatedUrl(
+            ROUTE_IDS.PROMOTIONS
+          )}/${extractXMasPromotionSlug(Button1Link)}`}
           onClick={onCTAClick}
         >
           {Button2Text}
