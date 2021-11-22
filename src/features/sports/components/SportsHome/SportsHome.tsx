@@ -20,7 +20,7 @@ import {
 } from "./SportsHomeSocket";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
-import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
+import { SportsHomeTranslations, SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
 const BETSLIP_OUTCOMES = "BetslipOutcomes";
 const eventClick = async (eventId: number) => {
@@ -150,6 +150,7 @@ export const SportsHome = ({
     variables,
     fetchPolicy: "cache-and-network",
   });
+  const translations: SportsHomeTranslations = SportsHomeAdapters.convertToSportsHomeTranslations(t);
 
   const [kambiLocale, setKambiLocale] = React.useState("en_GB");
   React.useEffect(() => {
@@ -275,7 +276,7 @@ export const SportsHome = ({
           events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
-          translations: SportsHomeAdapters.convertToSportsHomeTranslations(t),
+          translations: translations,
         } as SportsHomeType;
 
         // organise sports data include Kambi Offerrings REST API Data
@@ -290,7 +291,7 @@ export const SportsHome = ({
     locale,
     market,
     oddsFormatEvent.oddsFormat,
-    t,
+    translations,
   ]);
 
   if (error) {

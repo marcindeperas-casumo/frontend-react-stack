@@ -36,7 +36,7 @@ export const SportsHomeContainer = () => {
   const locale = useLocale();
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
-  if (!popularBetsConfiguration.isEnabled) {
+  if (!popularBetsConfiguration.isEnabled || !t) {
     return null;
   }
 
