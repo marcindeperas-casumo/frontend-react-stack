@@ -108,7 +108,7 @@ export const InGameRecentValuableWidget = ({
               valuableState={latestValuable.valuableState}
               valuableType={latestValuable.valuableType}
               size="small"
-              valuableBadgeName={latestValuable.rule.name}
+              valuableBadgeName={latestValuable?.rule.name}
             />
           )}
         </div>
