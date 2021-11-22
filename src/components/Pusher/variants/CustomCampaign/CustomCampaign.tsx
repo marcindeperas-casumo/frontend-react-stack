@@ -10,7 +10,6 @@ import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
-import { ROUTE_IDS } from "Src/constants";
 import {
   DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
@@ -171,10 +170,9 @@ export const CustomCampaign = ({
           </Flex.Item>
         </Flex>
         <CustomCampaignCTAButtons
-          Button1Link={ROUTE_IDS.CASH_DEPOSIT}
-          Button1Text={pusherData.CTAButtonText || "Learn more"}
-          Button2Link={ROUTE_IDS.CASH_DEPOSIT}
-          Button2Text={pusherData.CTAButton2Text || "Deposit"}
+          Button1Link={pusherData.CTAButtonLink}
+          Button1Text={pusherData.CTAButtonText}
+          Button2Text={pusherData.CTAButton2Text}
           onCTAClick={closeModal}
         />
 

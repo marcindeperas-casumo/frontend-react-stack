@@ -1,12 +1,13 @@
 import React from "react";
-import { ButtonPrimary, ButtonSecondary } from "@casumo/cmp-button";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
+import Flex from "@casumo/cmp-flex";
+import { Link } from "@reach/router";
+import { useTranslatedUrl } from "Utils/hooks";
+import { ROUTE_IDS } from "Src/constants";
 
 type Props = {
   Button1Text: string;
   Button2Text: string;
   Button1Link: string;
-  Button2Link: string;
   onCTAClick: () => void;
 };
 
@@ -14,36 +15,32 @@ export const CustomCampaignCTAButtons = ({
   Button1Text,
   Button2Text,
   Button1Link,
-  Button2Link,
   onCTAClick,
 }: Props) => {
-  //to reconsider another navigation method
-  const { navigateToKO } = useCrossCodebaseNavigation();
-
-  const onDepositClick = () => {
-    onCTAClick();
-    navigateToKO(Button1Link);
-  };
-
-  const onLearnMoreClick = () => {
-    onCTAClick();
-    navigateToKO(Button2Link);
-  };
+  const Button1LinkArray = Button1Link.split("/");
+  const promotions_slug = Button1LinkArray[Button1LinkArray.length - 1];
 
   return (
     <div className="c-valuable-details__footer u-display--flex o-flex-align--center o-flex-justify--space-around o-flex-justify--space-around@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
-      <ButtonSecondary
-        className="t-background-grey-40 u-width--1/3 u-width--2/5@mobile"
-        onClick={onDepositClick}
-      >
-        {Button2Text || "Tell me more"}
-      </ButtonSecondary>
-      <ButtonPrimary
-        className=" u-width--1/3 u-width--2/5@mobile"
-        onClick={onLearnMoreClick}
-      >
-        {Button1Text || "Deposit"}
-      </ButtonPrimary>
+      <Flex.Item className="t-border-r--pill t-background-grey-20 t-background-grey-50:hover o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
+        <Link
+          className="t-color-black u-font-weight-bold"
+          to={`/${useTranslatedUrl(ROUTE_IDS.PROMOTIONS)}/${promotions_slug}`}
+          onClick={onCTAClick}
+        >
+          {Button2Text}
+        </Link>
+      </Flex.Item>
+
+      <Flex.Item className="t-border-r--pill t-color-black t-background-purple-50 t-background-purple-60:hover o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
+        <Link
+          className="t-color-white u-font-weight-bold"
+          to={`/${useTranslatedUrl(ROUTE_IDS.CASH_DEPOSIT)}`}
+          onClick={onCTAClick}
+        >
+          {Button1Text}
+        </Link>
+      </Flex.Item>
     </div>
   );
 };
