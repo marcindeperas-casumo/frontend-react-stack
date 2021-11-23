@@ -130,7 +130,7 @@ export const CustomCampaign = ({
       <CustomCampaignTopCard
         title={pusherData.Title}
         description={pusherData.Message}
-        imageColor={"top_card_" + pusherData.Data.top_image_colour}
+        backgroundUrl={"top_card_" + pusherData.Data.top_image_colour}
       />
 
       <div className="u-padding-x--md">

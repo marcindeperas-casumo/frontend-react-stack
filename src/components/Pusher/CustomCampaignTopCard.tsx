@@ -5,17 +5,17 @@ import "./CustomCampaignTopCard.scss";
 type Props = {
   title: string;
   description: string;
-  imageColor: string;
+  backgroundUrl: string;
 };
 
 export const CustomCampaignTopCard = ({
   title,
   description,
-  imageColor,
+  backgroundUrl,
 }: Props) => {
-  const backgroundImgUrl = PUSHER_CONSTANTS.backGroundImageColors[imageColor];
+  const backgroundImgUrl = PUSHER_CONSTANTS.backGroundImageColors[backgroundUrl];
 
-  if (title && description && imageColor) {
+  if (title && description && backgroundUrl) {
     return (
       <div
         className="c-campaign-top-card u-height--full o-flex--vertical u-width--full o-flex-align--end o-flex-justify--space-between u-margin-top--auto"
