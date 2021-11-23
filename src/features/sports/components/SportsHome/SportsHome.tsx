@@ -20,7 +20,7 @@ import {
 } from "./SportsHomeSocket";
 import SportsHomeService from "./SportsHome.service";
 import SportsHomeAdapters from "./SportsHome.adapters";
-import { SportsHomeTranslations, SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
+import { SportsHomeTranslationsDictionary, SportsHomeType } from "./types";
 
 const BETSLIP_OUTCOMES = "BetslipOutcomes";
 const eventClick = async (eventId: number) => {
