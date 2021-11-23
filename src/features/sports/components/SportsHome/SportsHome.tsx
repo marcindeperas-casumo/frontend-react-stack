@@ -150,7 +150,9 @@ export const SportsHome = ({
     variables,
     fetchPolicy: "cache-and-network",
   });
-  const translations: SportsHomeTranslations = SportsHomeAdapters.convertToSportsHomeTranslations(t);
+  const [translations] = React.useState(
+    SportsHomeAdapters.convertToSportsHomeTranslations(t)
+  );
 
   const [kambiLocale, setKambiLocale] = React.useState("en_GB");
   React.useEffect(() => {
