@@ -10,7 +10,7 @@ const data = {
   description:
     "Casumo’s 31 Days of Xmas. A deposit a day keeps surprises coming your way.",
   onCloseClick: () => null,
-  imageColor: "orange",
+  backgroundUrl: "top_card_pink",
 };
 
 const stories = storiesOf("CustomCampaignTopCard", module);
@@ -23,7 +23,7 @@ const stories = storiesOf("CustomCampaignTopCard", module);
           <CustomCampaignTopCard
             title={data.title}
             description={data.description}
-            imageColor={data.imageColor}
+            backgroundUrl={data.backgroundUrl}
           />
         </div>
       </MockStore>
@@ -39,7 +39,7 @@ const stories = storiesOf("CustomCampaignTopCard", module);
           <CustomCampaignTopCard
             title={data.title}
             description={data.description}
-            imageColor={"pink"}
+            backgroundUrl={"pink"}
           />
         </div>
       </MockStore>

@@ -18,6 +18,7 @@ export type PusherPaylod = {
     terms_link_text: string;
     terms_link_url: string;
     trigger: string;
+    top_image_colour: string;
     cashback_reward_subtitle: string;
     cashback_reward_title: string;
     cashback_subtitle: string;
@@ -37,7 +38,6 @@ export type PusherPaylod = {
   PreviewText: string;
   Title: string;
   subscribed: boolean;
-  TopImageColour: string;
 };
 
 type Props = {
