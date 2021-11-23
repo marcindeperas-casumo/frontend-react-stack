@@ -18,6 +18,7 @@ export type PusherPaylod = {
     terms_link_text: string;
     terms_link_url: string;
     trigger: string;
+    top_image_colour: string;
   };
   Date: string;
   DisplayType: string;
@@ -31,7 +32,6 @@ export type PusherPaylod = {
   PreviewText: string;
   Title: string;
   subscribed: boolean;
-  TopImageColour: string;
 };
 
 type Props = {

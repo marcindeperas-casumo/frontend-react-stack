@@ -87,7 +87,6 @@ export const CustomCampaign = ({
 }: Props) => {
   const { loading, valuables, translations } = usePlayerValuableList();
   const t = useTranslations<TTranslations>(CMS_KEY_PREFIX);
-
   const [
     selectedValuable,
     selectValuable,
@@ -126,7 +125,7 @@ export const CustomCampaign = ({
       <CustomCampaignTopCard
         title={pusherData.Title}
         description={pusherData.Message}
-        imageColor={pusherData.TopImageColour || "orange"}
+        imageColor={"top_card_" + pusherData.Data.top_image_colour}
       />
 
       <div className="u-padding-x--md">
