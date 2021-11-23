@@ -13,7 +13,8 @@ export const CustomCampaignTopCard = ({
   description,
   backgroundUrl,
 }: Props) => {
-  const backgroundImgUrl = PUSHER_CONSTANTS.backGroundImageColors[backgroundUrl];
+  const backgroundImgUrl =
+    PUSHER_CONSTANTS.backGroundImageColors[backgroundUrl];
 
   if (title && description && backgroundUrl) {
     return (
