@@ -11,20 +11,23 @@ import {
   coinValueToSpinType,
   showStateBadge,
   isAboutToExpire,
+  VALUABLE_CIRCLE_LOCK_ICON,
+  VALUABLE_CIRCLE_CLAIM_ICON,
 } from "Models/valuables";
 import type {
   ValuableState,
   DurationProps,
   ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
-import { ValuableSymbol } from "./ValuableSymbol";
+import { AllValuableTypes, ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 import Cashback from "./Icons/cashback.svg";
+import { ClaimSymbol, LockSymbol } from "./icons";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: A.ValuableType;
+  valuableType: AllValuableTypes;
   /** award type - applies when valuableType === Wagering Lock */
   awardType?: A.WageringLockAwardType;
   /** currency of the player */
@@ -41,7 +44,100 @@ type Props = {
   expiryTimeLeft: DurationProps;
   /* Translations of the component */
   translations: Translations;
+  valuableBadgeName: string;
   size?: "small" | "large";
+};
+
+const getValuableTypeChristmasAware = (
+  badgeRuleName: string,
+  valuableType: AllValuableTypes
+) => {
+  const christmasRelatedBadgeRule = {
+    "christmas-fs_fb_gold": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
+    "xmas21-fs_fb_gold_locked": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD,
+    "christmas21-fs_fb_silver": VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
+    "christmas21-fs_fb_silver_locked":
+      VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER,
+  };
+
+  if (!Object.keys(christmasRelatedBadgeRule).includes(badgeRuleName)) {
+    return valuableType;
+  }
+
+  return christmasRelatedBadgeRule[badgeRuleName];
+};
+
+export type TLockIcon =
+  | typeof VALUABLE_CIRCLE_LOCK_ICON
+  | typeof VALUABLE_CIRCLE_CLAIM_ICON;
+
+type ValuableCoinProps = {
+  awardType?: A.WageringLockAwardType;
+  coinValue?: number;
+  currency: string;
+  size?: "small" | "large";
+  valuableType: AllValuableTypes;
+  lockIcon?: TLockIcon;
+  valuableBadgeName: string;
+  className?: string;
+};
+
+export const ValuableCoin = ({
+  awardType,
+  coinValue,
+  currency,
+  size = "large",
+  valuableType,
+  lockIcon,
+  valuableBadgeName = "",
+  className,
+}: ValuableCoinProps) => {
+  const spinType = coinValueToSpinType(coinValue);
+  const baseClass = className || `c-valuable-card-thumbnail-coin--${size}`;
+  const valuableTypeChristmasAware = getValuableTypeChristmasAware(
+    valuableBadgeName,
+    valuableType
+  );
+  const isLocked = valuableBadgeName.includes("lock");
+
+  return (
+    <div
+      className={`${baseClass} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
+    >
+      <div
+        className={classNames(
+          "o-ratio__content",
+          getCoinClassModifier(valuableType, awardType)
+        )}
+      >
+        {([VALUABLE_TYPES.CASHBACK] as AllValuableTypes[]).includes(
+          valuableType
+        ) ? (
+          <Cashback className="u-width--full" />
+        ) : (
+          <Coin className="u-width--full" />
+        )}
+      </div>
+      <Flex
+        align="center"
+        justify="center"
+        className={classNames(
+          "o-ratio__content",
+          getCoinTextClassModifier(valuableType, awardType)
+        )}
+      >
+        {(isLocked || lockIcon === "lock") && <LockSymbol />}
+        {lockIcon === "claim" && <ClaimSymbol />}
+        <ValuableSymbol
+          awardType={awardType}
+          currency={currency}
+          spinType={spinType}
+          valuableType={valuableTypeChristmasAware}
+          size={size === "small" ? "sm" : "default"}
+        />
+      </Flex>
+    </div>
+  );
 };
 
 export const ValuableThumbnail = ({
@@ -55,8 +151,8 @@ export const ValuableThumbnail = ({
   valuableState,
   valuableType,
   translations,
+  valuableBadgeName,
 }: Props) => {
-  const spinType = coinValueToSpinType(coinValue);
   const stateBadgeVisible =
     size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
   const stateBadgeText = getStateBadgeText(
@@ -75,39 +171,14 @@ export const ValuableThumbnail = ({
         direction="vertical"
         justify={size === "small" ? "center" : "end"}
       >
-        <div
-          className={`c-valuable-card-thumbnail-coin--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
-        >
-          <div
-            className={classNames(
-              "o-ratio__content",
-              getCoinClassModifier(valuableType, awardType)
-            )}
-          >
-            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'ValuableType' is not assignable ... Remove this comment to see the full error message */}
-            {[VALUABLE_TYPES.CASHBACK].includes(valuableType) ? (
-              <Cashback className="u-width--full" />
-            ) : (
-              <Coin className="u-width--full" />
-            )}
-          </div>
-          <Flex
-            align="center"
-            justify="center"
-            className={classNames(
-              "o-ratio__content",
-              getCoinTextClassModifier(valuableType, awardType)
-            )}
-          >
-            <ValuableSymbol
-              awardType={awardType}
-              currency={currency}
-              spinType={spinType}
-              valuableType={valuableType}
-              size={size === "small" ? "sm" : "default"}
-            />
-          </Flex>
-        </div>
+        <ValuableCoin
+          awardType={awardType}
+          coinValue={coinValue}
+          currency={currency}
+          size={size}
+          valuableType={valuableType}
+          valuableBadgeName={valuableBadgeName}
+        />
       </Flex>
       {stateBadgeVisible && (
         <div className="o-ratio__content">
@@ -150,7 +221,7 @@ function getStateBadgeText(
 }
 
 function getCoinClassModifier(
-  valuableType: A.ValuableType,
+  valuableType: AllValuableTypes,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch
@@ -181,7 +252,7 @@ function getCoinClassModifier(
 }
 
 function getCoinTextClassModifier(
-  valuableType: A.ValuableType,
+  valuableType: AllValuableTypes,
   awardType?: A.WageringLockAwardType
 ) {
   // eslint-disable-next-line no-switch-statements/no-switch

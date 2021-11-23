@@ -14,6 +14,9 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   termsLink
   title
   specificTerms
+  rule {
+    name
+  }
   ... on PlayerValuableSpins {
     requirementType
     game {

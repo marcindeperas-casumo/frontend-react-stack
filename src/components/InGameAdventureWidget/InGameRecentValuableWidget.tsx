@@ -108,6 +108,7 @@ export const InGameRecentValuableWidget = ({
               valuableState={latestValuable.valuableState}
               valuableType={latestValuable.valuableType}
               size="small"
+              valuableBadgeName={latestValuable?.rule.name}
             />
           )}
         </div>
@@ -161,6 +162,7 @@ export const InGameRecentValuableWidget = ({
           <div className="c-valuable-details__valuable-card o-position--relative">
             <ValuableCard
               {...latestValuable}
+              valuableBadgeName={latestValuable?.rule?.name}
               translations={translations}
               caveat={null}
               className="t-elevation--30"

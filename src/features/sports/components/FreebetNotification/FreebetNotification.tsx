@@ -22,6 +22,7 @@ type Props = {
   translations?: ValuableThumbnailTranslations;
   caveat: string;
   onClose: () => void;
+  valuableBadgeName: string;
 };
 
 // The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
@@ -49,7 +50,8 @@ const renderValuableThumbnail = ({
   market,
   valuableState,
   valuableType,
-}) => (
+  valuableBadgeName,
+}: Props) => (
   <div className="u-width--4xlg bg-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
     <ValuableThumbnail
       backgroundRenderer={
@@ -65,6 +67,7 @@ const renderValuableThumbnail = ({
       valuableState={valuableState}
       valuableType={valuableType}
       size="small"
+      valuableBadgeName={valuableBadgeName}
     />
   </div>
 );

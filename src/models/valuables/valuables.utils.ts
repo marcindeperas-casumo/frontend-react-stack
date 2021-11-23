@@ -162,7 +162,7 @@ export const coinValueToSpinType = (coinValue: number = 0) => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const getExpiryTimeLeft = (timestamp: number) => {
+export const getExpiryTimeLeft = (timestamp: number = 0) => {
   const luxonDate = convertTimestampToLuxonDate(timestamp);
 
   return getDateTimeDifferenceFromNow(luxonDate);
