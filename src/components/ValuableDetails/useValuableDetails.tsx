@@ -37,6 +37,7 @@ export const useValuableDetails = (
         "termsLink",
         "excludedGames",
         "title",
+        "rule",
       ],
       valuable
     );
@@ -63,6 +64,7 @@ export const useValuableDetails = (
           <ValuableCard
             translations={translations}
             {...selectedValuable}
+            valuableBadgeName={selectedValuable?.rule?.name}
             caveat={null}
             className="t-elevation--10"
           />

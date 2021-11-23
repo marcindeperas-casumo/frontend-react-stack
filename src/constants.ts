@@ -629,9 +629,13 @@ export const PUSHER_CONSTANTS = {
     "/casino-player/fasttrack-realtime-integration/api/v1/page-load",
   pusherSubscriptionSuccessEvent: "pusher:subscription_succeeded",
   backGroundImageColors: {
-    pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
-    orange: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
-    purple: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
-    light_pink: "https://i.ibb.co/bd0zMPm/01-Modal-Artwork-Message-A-1.png",
+    top_card_pink:
+      "https://cms.casumo.com/wp-content/uploads/2021/11/05-Modal-Artwork_Message-C.png",
+    top_card_orange:
+      "https://cms.casumo.com/wp-content/uploads/2021/11/07-Modal-Artwork_Message-D.png",
+    top_card_purple:
+      "https://cms.casumo.com/wp-content/uploads/2021/11/01-Modal-Artwork_Message-A.png",
+    topcard_light_purple:
+      "https://cms.casumo.com/wp-content/uploads/2021/11/03-Modal-Artwork_Message-B.png",
   },
 };

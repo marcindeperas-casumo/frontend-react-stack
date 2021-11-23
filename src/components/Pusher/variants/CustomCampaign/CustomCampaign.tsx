@@ -10,21 +10,20 @@ import { GameRowCustomHeader } from "Components/GameRow";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
-import { ROUTE_IDS } from "Src/constants";
 import {
   DISABLE_MODAL_COOKIE_KEY,
   PUSHER_MODAL_STATE,
   TYPE_PUSHER_MODAL_STATE,
 } from "Components/Pusher/PusherModal";
-import { PlayerValuableListVertical } from "Components/PlayerValuableList";
 import { PusherPaylod } from "Components/Pusher/PusherNotification";
-import Cashback from "Components/ValuableThumbnail/Icons/cashback.svg";
 import { CustomCampaignTopCard } from "Components/Pusher/CustomCampaignTopCard";
 import { CustomCampaignCTAButtons } from "../../index";
+import { CustomCampaignValuableList } from ".";
 
 type TTranslations = {
   terms_and_conditions_label: string;
   terms_and_conditions_link_label: string;
+  opt_out: string;
 };
 
 type Props = {
@@ -73,6 +72,7 @@ const ValuablePopupContent = ({
         <ValuableCard
           translations={translations}
           {...valuable}
+          valuableBadgeName={valuable?.rule?.name}
           caveat={null}
           className="t-elevation--10"
         />
@@ -86,9 +86,12 @@ export const CustomCampaign = ({
   pusherModalState,
   setPusherModalState,
 }: Props) => {
-  const { loading, valuables, translations } = usePlayerValuableList();
+  const {
+    loading,
+    valuables,
+    translations,
+  } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
   const t = useTranslations<TTranslations>(CMS_KEY_PREFIX);
-
   const [
     selectedValuable,
     selectValuable,
@@ -127,7 +130,7 @@ export const CustomCampaign = ({
       <CustomCampaignTopCard
         title={pusherData.Title}
         description={pusherData.Message}
-        imageColor={pusherData.TopImageColour || "orange"}
+        backgroundUrl={`top_card_${pusherData.Data.top_image_colour}`}
       />
 
       <div className="u-padding-x--md">
@@ -136,45 +139,25 @@ export const CustomCampaign = ({
           align="left"
           className="u-margin-bottom--lg u-margin-top--xlg"
         >
-          {valuables.slice(0, 10).map(val => (
-            <Flex.Item key={val.id}>
-              <Flex
-                style={{ width: "160px" }}
-                className={"text-yellow-30 u-cursor--pointer u-padding-x--md"}
-                onClick={() => showValuable(val)}
-                align="center"
-              >
-                <Flex.Item style={{ width: "160px" }}>
-                  <Cashback className="u-width--full" />
-                </Flex.Item>
-                <Flex.Item>Valuable</Flex.Item>
-              </Flex>
-            </Flex.Item>
-          ))}
+          <CustomCampaignValuableList
+            pusherData={pusherData}
+            valuables={valuables}
+            showValuable={showValuable}
+            closeModal={closeModal}
+          />
 
-          <Flex.Item className="u-margin-y--md">
-            <hr className="c-valuable-details__separator t-border t-border-r--pill border-grey-0" />
-          </Flex.Item>
-
-          <Flex.Item>
-            <PlayerValuableListVertical
-              badgeRuleName={XMAS_CAMPAIGN_SLUG}
-              hideTitles
-            />
-          </Flex.Item>
-
-          <Flex.Item>
+          <Flex.Item className="t-border-bottom border-grey-5">
             <GameRowCustomHeader
               header="titles.game-of-the-day"
               gameSlug={pusherData?.Data?.game}
             />
           </Flex.Item>
         </Flex>
+
         <CustomCampaignCTAButtons
-          Button1Link={ROUTE_IDS.CASH_DEPOSIT}
-          Button1Text={pusherData.CTAButtonText || "Learn more"}
-          Button2Link={ROUTE_IDS.CASH_DEPOSIT}
-          Button2Text={pusherData.CTAButton2Text || "Deposit"}
+          Button1Link={pusherData.CTAButtonLink}
+          Button1Text={pusherData.CTAButtonText}
+          Button2Text={pusherData.CTAButton2Text}
           onCTAClick={closeModal}
         />
 
@@ -199,7 +182,7 @@ export const CustomCampaign = ({
         <div className="u-display--flex o-flex-align--center u-padding--md o-inset-bottom--none u-width--full u-font-sm u-padding-x--sm u-padding-top">
           <div className="u-font-sm text-grey-70">
             <span className="u-cursor--pointer" onClick={disableModal}>
-              Don’t show me this message again this week.
+              {t.opt_out || "Don’t show me this message again this week."}
             </span>
           </div>
         </div>

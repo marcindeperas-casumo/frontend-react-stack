@@ -91,7 +91,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
     const container = document.getElementById("main-content-wrapper");
     if (container) {
       const onScroll = () => {
-        const nav = document.getElementById("sports-navigation");
+        const nav = document.getElementById("sports-navigation-anchor");
         if (nav) {
           setIsSportsNavigationFixed(container.scrollTop > nav.offsetTop);
         }
@@ -135,6 +135,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
               <SportsSearch />
             ) : (
               <>
+                <div id="sports-navigation-anchor" />
                 <div
                   id="sports-navigation"
                   style={sportsNavigationOffset}

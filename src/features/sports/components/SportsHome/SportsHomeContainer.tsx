@@ -43,7 +43,7 @@ export const SportsHomeContainer = () => {
   const popularEventsWidgetConfigurations =
     sportsHomeConfigurations.PopularEventsWidgetConfigurations;
   const renderPopularEventsWidget = () => {
-    if (!popularEventsWidgetConfigurations.isEnabled) {
+    if (!popularEventsWidgetConfigurations.isEnabled || !t) {
       return null;
     }
 
@@ -72,7 +72,7 @@ export const SportsHomeContainer = () => {
   const popularLiveEventsWidgetConfigurations =
     sportsHomeConfigurations.PopularLiveEventsWidgetConfigurations;
   const renderPopularLiveEventsWidget = () => {
-    if (!popularLiveEventsWidgetConfigurations.isEnabled) {
+    if (!popularLiveEventsWidgetConfigurations.isEnabled || !t) {
       return null;
     }
 
