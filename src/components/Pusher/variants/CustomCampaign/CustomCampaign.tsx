@@ -146,7 +146,7 @@ export const CustomCampaign = ({
             closeModal={closeModal}
           />
 
-          <Flex.Item className="t-border-bottom border-grey-5">
+          <Flex.Item className="t-border-bottom border-grey-5 cursor-pointer">
             <GameRowCustomHeader
               header="titles.game-of-the-day"
               gameSlug={pusherData?.Data?.game}
