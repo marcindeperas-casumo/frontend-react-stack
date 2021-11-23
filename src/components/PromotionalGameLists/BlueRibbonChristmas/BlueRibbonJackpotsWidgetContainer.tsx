@@ -1,5 +1,6 @@
 import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
+import { useTranslations } from "Utils/hooks";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
@@ -24,6 +25,12 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
     const { composedJackpot } = useComposedJackpotConfigBySlug({
       slug: jackpot_slug,
     });
+
+    const jackpotConfigs = useTranslations<{
+      jackpot_image: string;
+      jackpot_onboarding_cta_link: string;
+    }>(`jackpots-configs.${jackpot_slug}`);
+
     useBlueRibbonSDKAnonymous();
 
     if (!composedJackpot?.pots) {
@@ -45,6 +52,8 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
         className={className}
         composedPots={composedJackpot.pots}
         widgetColor={composedJackpot.widgetColor}
+        jackpotLogo={jackpotConfigs.jackpot_image}
+        explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
       />
     );
   }
