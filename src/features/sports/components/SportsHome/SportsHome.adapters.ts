@@ -9,7 +9,6 @@ import {
   TRANSLATIONS_SPORTS_HOME_HOME_DEFAULT,
   TRANSLATIONS_SPORTS_HOME_LIVE,
   TRANSLATIONS_SPORTS_HOME_LIVE_DEFAULT,
-  TRANSLATIONS_SPORTS_HOME_TITLE,
   TRANSLATIONS_SPORTS_HOME_TITLE_DEFAULT,
 } from "./SportsHome.constants";
 import SportsHomeUtilities from "./SportsHome.Utilities";
@@ -127,7 +126,8 @@ class SportsHomeAdapters {
   }
 
   convertToSportsHomeTranslations(
-    data: SportsHomeTranslationsDictionary
+    data: SportsHomeTranslationsDictionary,
+    title: string
   ): SportsHomeTranslations {
     return {
       live:
@@ -136,9 +136,7 @@ class SportsHomeAdapters {
       draw:
         data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_DRAW)
           ?.value || TRANSLATIONS_SPORTS_HOME_DRAW_DEFAULT,
-      title:
-        data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_TITLE)
-          ?.value || TRANSLATIONS_SPORTS_HOME_TITLE_DEFAULT,
+      title: title || TRANSLATIONS_SPORTS_HOME_TITLE_DEFAULT,
       home:
         data.dictionary.find(x => x.key === TRANSLATIONS_SPORTS_HOME_HOME)
           ?.value || TRANSLATIONS_SPORTS_HOME_HOME_DEFAULT,
@@ -154,19 +152,37 @@ class SportsHomeAdapters {
     defaultSports: string
   ): SportsHomePopularBetsConfigurations {
     return {
-      availableSports: data?.available_sports ?? defaultSports,
-      orderNo: parseInt(data?.order_no) || 0,
-      isEnabled: data?.status === "Enabled" ?? false,
-      numberOfEventsMobile:
-        parseInt(data?.mobile.number_of_events_mobile) ||
-        defaultNumberOfEventsToShow,
-      numberOfEventsDesktop:
-        parseInt(data?.desktop.number_of_events_desktop) ||
-        defaultNumberOfEventsToShow,
-      numberOfEventsTablet:
-        parseInt(data?.tablet.number_of_events_tablet) ||
-        defaultNumberOfEventsToShow,
-    } as SportsHomePopularBetsConfigurations;
+      PopularEventsWidgetConfigurations: {
+        title: data?.title ?? "",
+        availableSports: data?.available_sports ?? defaultSports,
+        orderNo: parseInt(data?.order_no) || 0,
+        isEnabled: data?.status === "Enabled" ?? false,
+        numberOfEventsMobile:
+          parseInt(data?.mobile.number_of_events_mobile) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsDesktop:
+          parseInt(data?.desktop.number_of_events_desktop) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsTablet:
+          parseInt(data?.tablet.number_of_events_tablet) ||
+          defaultNumberOfEventsToShow,
+      },
+      PopularLiveEventsWidgetConfigurations: {
+        title: data?.title_live ?? "",
+        availableSports: data?.available_sports_live ?? defaultSports,
+        orderNo: parseInt(data?.order_no) || 0,
+        isEnabled: data?.status_live === "Enabled" ?? false,
+        numberOfEventsMobile:
+          parseInt(data?.mobile_live?.number_of_events_mobile) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsDesktop:
+          parseInt(data?.desktop_live?.number_of_events_desktop) ||
+          defaultNumberOfEventsToShow,
+        numberOfEventsTablet:
+          parseInt(data?.tablet?.number_of_events_tablet) ||
+          defaultNumberOfEventsToShow,
+      },
+    };
   }
 
   convertToSportsHomeLiveEventStatistics(

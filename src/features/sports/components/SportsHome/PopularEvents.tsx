@@ -58,7 +58,7 @@ const outcomeClick = async (
   }
 };
 
-const renderSportsHome = (
+const renderPopularEvents = (
   data: SportsHomeType,
   numberOfEventsToShow: number,
   betslipOutcomesIds: number[],
@@ -116,7 +116,7 @@ export const getOfferingData = async (
   );
 };
 
-export const SportsHome = ({
+export const PopularEvents = ({
   numberOfEvents,
   numberOfEventsToShow,
   market,
@@ -125,6 +125,7 @@ export const SportsHome = ({
   locale,
   t,
   oddsFormatEvent,
+  title,
 }: {
   numberOfEvents: number;
   numberOfEventsToShow: number;
@@ -134,6 +135,7 @@ export const SportsHome = ({
   locale: string;
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
+  title: string;
   // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
@@ -151,7 +153,7 @@ export const SportsHome = ({
     fetchPolicy: "cache-and-network",
   });
   const [translations] = React.useState(
-    SportsHomeAdapters.convertToSportsHomeTranslations(t)
+    SportsHomeAdapters.convertToSportsHomeTranslations(t, title)
   );
 
   const [kambiLocale, setKambiLocale] = React.useState("en_GB");
@@ -296,15 +298,11 @@ export const SportsHome = ({
     translations,
   ]);
 
-  if (error) {
+  if (error || !data?.sportsPopularBets.popularEvents.length) {
     return <ErrorMessage direction="horizontal" />;
   }
 
-  if (data && !data.sportsPopularBets.popularEvents.length) {
-    return <ErrorMessage direction="horizontal" />;
-  }
-
-  return renderSportsHome(
+  return renderPopularEvents(
     sportsPopularBetsData,
     Math.min(
       numberOfEventsToShow,
