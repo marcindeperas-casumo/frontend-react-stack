@@ -136,6 +136,7 @@ export const PopularLiveEvents = ({
   t: SportsHomeTranslationsDictionary;
   oddsFormatEvent: OddsFormatEvent;
   title: string;
+  // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
     numberOfEvents: numberOfEvents,
