@@ -11,6 +11,9 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   backgroundImage
   specificTerms
   termsLink
+  rule {
+    name
+  }
   ... on PlayerValuableSpins {
     coinValue
     description

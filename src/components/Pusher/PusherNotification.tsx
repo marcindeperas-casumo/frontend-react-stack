@@ -13,12 +13,18 @@ export type PusherPaylod = {
     Component: string;
     OverrideCommunicationStatus: string;
     "Site Block": string;
-    event_name: typeof CHRISTMAS_CAMPAIGN_2021 & string; // more to come
+    event_name: typeof CHRISTMAS_CAMPAIGN_2021 & string;
     game: string;
     terms_link_text: string;
     terms_link_url: string;
     trigger: string;
     top_image_colour: string;
+    cashback_reward_subtitle: string;
+    cashback_reward_title: string;
+    cashback_subtitle: string;
+    cashback_title: string;
+    deposit_lock_subtitle: string;
+    deposit_lock_title: string;
   };
   Date: string;
   DisplayType: string;

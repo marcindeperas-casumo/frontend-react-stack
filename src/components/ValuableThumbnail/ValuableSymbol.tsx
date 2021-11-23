@@ -17,6 +17,9 @@ import {
   BonusSpinsIcon,
   SuperSpinsIcon,
   MegaSpinsIcon,
+  ChristmasSpecial,
+  ChristmasSnowflakeGold,
+  ChristmasSnowflakeSilver,
 } from "./icons";
 
 const ALL_CURRENCIES_ICONS = {
@@ -55,12 +58,21 @@ const VALUABLE_ICON = {
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
+  [VALUABLE_TYPES.CHRISTMAS_SPECIAL]: ChristmasSpecial,
+  [VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER]: ChristmasSnowflakeSilver,
+  [VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD]: ChristmasSnowflakeGold,
 };
+
+export type AllValuableTypes =
+  | A.ValuableType
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_SILVER
+  | typeof VALUABLE_TYPES.CHRISTMAS_SPECIAL_DEPOSIT_GOLD;
 
 type Props = {
   awardType?: A.WageringLockAwardType;
   currency: string;
-  valuableType: A.ValuableType;
+  valuableType: AllValuableTypes;
   spinType?: string;
   size?: string;
 };
@@ -76,7 +88,7 @@ export const ValuableSymbol = ({
   const CASH_RELATED_VALUABLES = [
     VALUABLE_TYPES.CASH,
     VALUABLE_TYPES.CASHBACK,
-  ] as Array<A.ValuableType>;
+  ] as Array<AllValuableTypes>;
 
   const CASH_RELATED_REWARDS = ["bonusMoney", "freeMoney"];
   const SPINS_RELATED_REWARDS = ["spins"];
@@ -100,6 +112,10 @@ export const ValuableSymbol = ({
 
     return ValuableIcon;
   })();
+
+  if (!ValuableSymbolComponent) {
+    return null;
+  }
 
   return (
     <ValuableSymbolComponent

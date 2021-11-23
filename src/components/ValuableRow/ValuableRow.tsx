@@ -50,6 +50,7 @@ type OwnProps = {
   translations: Translations;
   isSelected?: boolean;
   expiryDate: number;
+  valuableBadgeName: string;
   /** Function to be triggered on click of card */
   onClick?: () => void;
   /** Function to be triggered on click of the more icon */
@@ -114,6 +115,7 @@ export class ValuableRow extends PureComponent<Props> {
       valuableState,
       onMoreInfo,
       isSelected,
+      valuableBadgeName,
     } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
@@ -140,6 +142,7 @@ export class ValuableRow extends PureComponent<Props> {
                   valuableState={valuableState}
                   valuableType={this.props.valuableType}
                   size="small"
+                  valuableBadgeName={valuableBadgeName}
                 />
               </div>
             </Flex.Item>
