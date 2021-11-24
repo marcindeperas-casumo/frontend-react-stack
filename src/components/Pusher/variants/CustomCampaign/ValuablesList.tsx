@@ -60,7 +60,7 @@ export const CustomCampaignValuableList = ({
                 val,
                 <>
                   <span className="t-color-purple-60 u-font-weight-bold">
-                    {val.promoTitle || "Game of the day"}
+                    {val.promoTitle}
                   </span>
                   <div className="text-grey-50">
                     <DangerousHtml html={val.subtitle} />
