@@ -32,8 +32,8 @@ export const CustomCampaignCTAButtons = ({
   };
 
   return (
-    <div className="cursor-pointer c-valuable-details__footer u-display--flex o-flex-align--center o-flex-justify--space-around o-flex-justify--space-around@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
-      <Flex.Item className="t-border-r--pill t-background-grey-20 t-background-grey-50:hover o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
+    <div className="c-valuable-details__footer cursor-pointer u-display--flex o-flex-align--center o-flex-justify--space-between o-flex-justify--space-between@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
+      <Flex.Item className="t-border-r--pill t-background-grey-20 o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
         <Link
           className="t-color-black u-font-weight-bold"
           to={`/${useTranslatedUrl(
@@ -45,7 +45,7 @@ export const CustomCampaignCTAButtons = ({
         </Link>
       </Flex.Item>
 
-      <Flex.Item className="cursor-pointer t-border-r--pill t-color-black t-background-purple-50 t-background-purple-60:hover o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
+      <Flex.Item className="cursor-pointer t-border-r--pill t-color-black t-background-purple-50 o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
         <Link
           className="t-color-white u-font-weight-bold"
           to={`/${useTranslatedUrl(ROUTE_IDS.CASH_DEPOSIT)}`}

@@ -55,7 +55,7 @@ export const CustomCampaignValuableList = ({
                 redirectRoute
               )}
             </Flex.Item>
-            <Flex.Item className="u-text-align-left u-padding-left--sm">
+            <Flex.Item className="u-text-align-left u-padding-x--md u-margin-left--none">
               {withPlayerProfileLink(
                 val,
                 <>
