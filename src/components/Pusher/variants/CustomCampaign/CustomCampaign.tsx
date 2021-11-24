@@ -92,7 +92,6 @@ export const CustomCampaign = ({
     translations,
   } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
   const t = useTranslations<TTranslations>(CMS_KEY_PREFIX);
-
   const [
     selectedValuable,
     selectValuable,
@@ -131,7 +130,7 @@ export const CustomCampaign = ({
       <CustomCampaignTopCard
         title={pusherData.Title}
         description={pusherData.Message}
-        imageColor={pusherData.TopImageColour || "orange"}
+        backgroundUrl={`top_card_${pusherData.Data.top_image_colour}`}
       />
 
       <div className="u-padding-x--md">
@@ -147,7 +146,7 @@ export const CustomCampaign = ({
             closeModal={closeModal}
           />
 
-          <Flex.Item className="t-border-bottom border-grey-5">
+          <Flex.Item className="t-border-bottom border-grey-5 cursor-pointer">
             <GameRowCustomHeader
               header="titles.game-of-the-day"
               gameSlug={pusherData?.Data?.game}

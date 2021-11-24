@@ -154,12 +154,14 @@ export interface KambiLiveEventServerResponse {
 }
 
 export interface SportsHomeConfigurationTranslations {
+  title: string;
   status: string;
   available_sports: string;
   order_no: string;
   mobile: SportsHomeTranslationsMobile;
   desktop: SportsHomeTranslationsDesktop;
   tablet: SportsHomeTranslationsTablet;
+  title_live: string;
   status_live: string;
   available_sports_live: string;
   order_no_live: string;
@@ -181,10 +183,28 @@ export interface SportsHomeTranslationsTablet {
 }
 
 export interface SportsHomePopularBetsConfigurations {
-  isEnabled: boolean;
-  availableSports: string;
+  PopularEventsWidgetConfigurations: PopularEventsWidgetConfigurations;
+  PopularLiveEventsWidgetConfigurations: PopularEventsWidgetConfigurations;
+}
+
+// every widget should extend this interface
+export interface SportsHomeWidget {
   orderNo: number;
+  isEnabled: boolean;
+  title: string;
+}
+
+export interface PopularEventsWidgetConfigurations extends SportsHomeWidget {
+  availableSports: string;
   numberOfEventsMobile: number;
   numberOfEventsTablet: number;
   numberOfEventsDesktop: number;
+}
+
+export interface PopularLiveEventsWidgetConfigurations
+  extends PopularEventsWidgetConfigurations {}
+
+export interface WidgetComponent {
+  component: any;
+  orderNo: number;
 }
