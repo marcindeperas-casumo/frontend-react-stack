@@ -49,8 +49,8 @@ export const CustomCampaignValuableListContainer = ({
   const fullChristmasList: ChristmasValuableEntry[] = [
     cashVal && {
       ...cashVal,
-      promoTitle: pusherData.Data.cashback_reward_title,
-      subtitle: pusherData.Data.cashback_reward_subtitle,
+      promoTitle: pusherData.Data.cashback_reward_title || cashVal.title,
+      subtitle: pusherData.Data.cashback_reward_subtitle || cashVal.content,
       lockIcon: VALUABLE_CIRCLE_CLAIM_ICON as TLockIcon,
     },
     {
@@ -68,8 +68,8 @@ export const CustomCampaignValuableListContainer = ({
     },
     cashBackVal && {
       ...cashBackVal,
-      promoTitle: cashBackVal.title,
-      subtitle: pusherData.Data.cashback_subtitle,
+      promoTitle: pusherData.Data.cashback_title || cashBackVal.title,
+      subtitle: pusherData.Data.cashback_subtitle || cashBackVal.content,
       lockIcon: VALUABLE_CIRCLE_LOCK_ICON as TLockIcon,
     },
   ].filter(v => Boolean(v));
