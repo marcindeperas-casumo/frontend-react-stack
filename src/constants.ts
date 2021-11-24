@@ -635,7 +635,7 @@ export const PUSHER_CONSTANTS = {
       "https://cms.casumo.com/wp-content/uploads/2021/11/07-Modal-Artwork_Message-D.png",
     top_card_purple:
       "https://cms.casumo.com/wp-content/uploads/2021/11/01-Modal-Artwork_Message-A.png",
-    topcard_light_purple:
+    top_card_light_purple:
       "https://cms.casumo.com/wp-content/uploads/2021/11/03-Modal-Artwork_Message-B.png",
   },
 };
