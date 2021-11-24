@@ -161,6 +161,7 @@ export interface SportsHomeConfigurationTranslations {
   mobile: SportsHomeTranslationsMobile;
   desktop: SportsHomeTranslationsDesktop;
   tablet: SportsHomeTranslationsTablet;
+  starting_within_days: string;
   title_live: string;
   status_live: string;
   available_sports_live: string;
@@ -168,6 +169,7 @@ export interface SportsHomeConfigurationTranslations {
   mobile_live: SportsHomeTranslationsMobile;
   desktop_live: SportsHomeTranslationsDesktop;
   tablet_live: SportsHomeTranslationsTablet;
+  starting_within_days_live: string;
 }
 
 export interface SportsHomeTranslationsMobile {
@@ -199,6 +201,7 @@ export interface PopularEventsWidgetConfigurations extends SportsHomeWidget {
   numberOfEventsMobile: number;
   numberOfEventsTablet: number;
   numberOfEventsDesktop: number;
+  startingWithinDays: number;
 }
 
 export interface PopularLiveEventsWidgetConfigurations

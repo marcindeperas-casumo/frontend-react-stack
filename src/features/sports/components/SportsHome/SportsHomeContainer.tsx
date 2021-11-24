@@ -16,6 +16,7 @@ import {
   DEFAULT_SPORTS,
   KAMBI_SPORTS_SLUG,
   NUMBER_EVENTS_TO_PULL_MULTIPLIER,
+  DEFAULT_STARTING_WITHIN_DAYS,
 } from "./SportsHome.constants";
 import { PopularLiveEvents } from "./PopularLiveEvents";
 
@@ -32,7 +33,8 @@ export const SportsHomeContainer = () => {
   const sportsHomeConfigurations = SportsHomeAdapters.convertToSportsHomePopularBetsConfiguration(
     configurations,
     DEFAULT_NUMBER_OF_EVENTS_TO_SHOW,
-    DEFAULT_SPORTS
+    DEFAULT_SPORTS,
+    DEFAULT_STARTING_WITHIN_DAYS
   );
 
   const language = useLanguage();
@@ -57,6 +59,9 @@ export const SportsHomeContainer = () => {
         numberOfEventsToShow={SportsHomeUtilities.getNumberOfEventsPerDevice(
           popularEventsWidgetConfigurations
         )}
+        startingWithinDays={
+          popularEventsWidgetConfigurations.startingWithinDays
+        }
         market={last(locale.split("-"))}
         sports={popularEventsWidgetConfigurations.availableSports}
         language={language}
@@ -86,6 +91,9 @@ export const SportsHomeContainer = () => {
         numberOfEventsToShow={SportsHomeUtilities.getNumberOfEventsPerDevice(
           popularLiveEventsWidgetConfigurations
         )}
+        startingWithinDays={
+          popularLiveEventsWidgetConfigurations.startingWithinDays
+        }
         market={last(locale.split("-"))}
         sports={popularLiveEventsWidgetConfigurations.availableSports}
         language={language}

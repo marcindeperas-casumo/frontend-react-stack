@@ -119,6 +119,7 @@ export const getOfferingData = async (
 export const PopularEvents = ({
   numberOfEvents,
   numberOfEventsToShow,
+  startingWithinDays,
   market,
   sports,
   language,
@@ -129,6 +130,7 @@ export const PopularEvents = ({
 }: {
   numberOfEvents: number;
   numberOfEventsToShow: number;
+  startingWithinDays: number;
   market?: string;
   sports: string;
   language: string;
@@ -141,6 +143,7 @@ export const PopularEvents = ({
   const variables = {
     numberOfEvents: numberOfEvents,
     numberOfEventsToShow: numberOfEventsToShow,
+    startingWithinDays: startingWithinDays,
     sports: sports,
     market: market,
     language: language,

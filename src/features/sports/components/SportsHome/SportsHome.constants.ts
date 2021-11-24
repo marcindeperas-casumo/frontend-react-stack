@@ -24,3 +24,4 @@ export const TRANSLATIONS_SPORTS_HOME_HOME = "sports_home_home";
 export const TRANSLATIONS_SPORTS_HOME_HOME_DEFAULT = "Home";
 export const TRANSLATIONS_SPORTS_HOME_AWAY = "sports_home_away";
 export const TRANSLATIONS_SPORTS_HOME_AWAY_DEFAULT = "Away";
+export const DEFAULT_STARTING_WITHIN_DAYS = 3;

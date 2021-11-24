@@ -149,7 +149,8 @@ class SportsHomeAdapters {
   convertToSportsHomePopularBetsConfiguration(
     data: SportsHomeConfigurationTranslations,
     defaultNumberOfEventsToShow: number,
-    defaultSports: string
+    defaultSports: string,
+    defaultStartingWithinDays: number
   ): SportsHomePopularBetsConfigurations {
     return {
       PopularEventsWidgetConfigurations: {
@@ -166,11 +167,13 @@ class SportsHomeAdapters {
         numberOfEventsTablet:
           parseInt(data?.tablet.number_of_events_tablet) ||
           defaultNumberOfEventsToShow,
+        startingWithinDays:
+          parseInt(data?.starting_within_days) || defaultStartingWithinDays,
       },
       PopularLiveEventsWidgetConfigurations: {
         title: data?.title_live ?? "",
         availableSports: data?.available_sports_live ?? defaultSports,
-        orderNo: parseInt(data?.order_no) || 0,
+        orderNo: parseInt(data?.order_no_live) || 0,
         isEnabled: data?.status_live === "Enabled" ?? false,
         numberOfEventsMobile:
           parseInt(data?.mobile_live?.number_of_events_mobile) ||
@@ -181,6 +184,9 @@ class SportsHomeAdapters {
         numberOfEventsTablet:
           parseInt(data?.tablet?.number_of_events_tablet) ||
           defaultNumberOfEventsToShow,
+        startingWithinDays:
+          parseInt(data?.starting_within_days_live) ||
+          defaultStartingWithinDays,
       },
     };
   }
