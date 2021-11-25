@@ -268,6 +268,15 @@ export const ValuableDetails = ({
       VALUABLE_TYPES.DEPOSIT,
     ] as Array<A.ValuableType>).includes(valuableType);
 
+  const isXmasValuable = (): boolean => {
+    if (
+      valuableDetails?.rule?.name.startsWith("xmas21") ||
+      valuableDetails?.rule?.name.startsWith("christmas21")
+    ) {
+      return true;
+    }
+    return false;
+  };
   return (
     <div>
       <div className="o-ratio c-valuable-details t-border-r--md">
@@ -277,6 +286,7 @@ export const ValuableDetails = ({
             imageUrl={backgroundImage}
             width={375}
             height={334}
+            useUncompressedImageUrl={isXmasValuable()}
           >
             <HeaderImgMask />
           </MaskImage>
