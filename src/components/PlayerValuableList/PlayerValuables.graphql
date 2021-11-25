@@ -46,6 +46,7 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String) 
       rule {
         name
       }
+      itemImage
       ... on PlayerValuableSpins {
         description
         coinValue
@@ -83,6 +84,10 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String) 
         }
         gameCategories
       }
+      ... on PlayerValuableBundleLock {
+        tierType
+        requirementType
+      }
     }
   }
 }
@@ -104,6 +109,7 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     rule {
       name
     }
+    itemImage
     ... on PlayerValuableSpins {
       description
       coinValue
@@ -124,6 +130,10 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
       description
     }
     ... on PlayerValuableFreeBet {
+      requirementType
+    }
+    ... on PlayerValuableBundleLock {
+      tierType
       requirementType
     }
 }

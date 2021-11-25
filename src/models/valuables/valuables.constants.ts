@@ -6,6 +6,7 @@ export const VALUABLE_TYPES = {
   FREE_BET: "freeBet",
   CASHBACK: "cashback",
   WAGERING_LOCK: "wageringLock",
+  BUNDLE_LOCK: "bundleLock",
   CHRISTMAS_SPECIAL: "christmasSpecial",
   CHRISTMAS_SPECIAL_DEPOSIT_SILVER: "christmasDepositSilver",
   CHRISTMAS_SPECIAL_DEPOSIT_GOLD: "christmasDepositGold",

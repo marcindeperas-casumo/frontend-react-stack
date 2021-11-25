@@ -31,6 +31,7 @@ const FREEBET_QUERY = gql`
         title
         content
         caveat
+        itemImage
       }
     }
   }
@@ -76,6 +77,7 @@ export const FreebetNotificationContainer = () => {
         persistIsHidden(latestLockedFreebet.id);
       }}
       valuableBadgeName={latestLockedFreebet.rule.name}
+      itemImage={latestLockedFreebet.itemImage}
     />
   );
 };

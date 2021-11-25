@@ -38,6 +38,7 @@ export const useValuableDetails = (
         "excludedGames",
         "title",
         "rule",
+        "itemImage",
       ],
       valuable
     );

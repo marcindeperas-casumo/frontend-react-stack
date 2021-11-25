@@ -23,6 +23,7 @@ type Props = {
   caveat: string;
   onClose: () => void;
   valuableBadgeName: string;
+  itemImage: string;
 };
 
 // The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
@@ -51,9 +52,11 @@ const renderValuableThumbnail = ({
   valuableState,
   valuableType,
   valuableBadgeName,
+  itemImage = "",
 }: Props) => (
   <div className="u-width--4xlg bg-white u-padding--sm t-border-r u-overflow--hidden t-elevation--10">
     <ValuableThumbnail
+      itemImage={itemImage}
       backgroundRenderer={
         <ImageLazy
           className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow--hidden"

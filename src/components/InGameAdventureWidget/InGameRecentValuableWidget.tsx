@@ -85,6 +85,7 @@ export const InGameRecentValuableWidget = ({
             <div className="bg-grey-70 t-border-r c-ingame-recent-valuable__thumbnail u-width--full"></div>
           ) : (
             <ValuableThumbnail
+              itemImage={latestValuable.itemImage}
               awardType={
                 latestValuable.__typename === "PlayerValuableWageringLock"
                   ? latestValuable.awardType

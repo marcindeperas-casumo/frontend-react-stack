@@ -17,6 +17,7 @@ import {
   BonusSpinsIcon,
   SuperSpinsIcon,
   MegaSpinsIcon,
+  ChristmasBundleIcon,
   ChristmasSpecial,
   ChristmasSnowflakeGold,
   ChristmasSnowflakeSilver,
@@ -49,6 +50,7 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.CASHBACK]: {
     ...ALL_CURRENCIES_ICONS,
   },
+  [VALUABLE_TYPES.BUNDLE_LOCK]: ChristmasBundleIcon,
   [VALUABLE_TYPES.WAGERING_LOCK]: {
     ...ALL_CURRENCIES_ICONS,
     [VALUABLE_SPIN_TYPES.BASIC_SPINS]: BasicSpinsIcon,

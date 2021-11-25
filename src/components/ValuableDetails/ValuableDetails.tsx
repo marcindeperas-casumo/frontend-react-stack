@@ -112,7 +112,8 @@ const requirementType = (valuableDetails): ValuableRequirementType | null => {
     valuableDetails.__typename === "PlayerValuableCash" ||
     valuableDetails.__typename === "PlayerValuableCashback" ||
     valuableDetails.__typename === "PlayerValuableFreeBet" ||
-    valuableDetails.__typename === "PlayerValuableSpins"
+    valuableDetails.__typename === "PlayerValuableSpins" ||
+    valuableDetails.__typename === "PlayerValuableBundleLock"
   ) {
     return valuableDetails.requirementType;
   }
@@ -266,6 +267,7 @@ export const ValuableDetails = ({
       VALUABLE_TYPES.WAGERING_LOCK,
       VALUABLE_TYPES.FREE_BET,
       VALUABLE_TYPES.DEPOSIT,
+      VALUABLE_TYPES.BUNDLE_LOCK,
     ] as Array<A.ValuableType>).includes(valuableType);
 
   const isXmasValuable = (): boolean => {
