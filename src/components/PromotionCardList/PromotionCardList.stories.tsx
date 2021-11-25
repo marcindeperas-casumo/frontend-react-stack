@@ -1,18 +1,18 @@
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import { PromotionCardList } from "./PromotionCardList";
-import { promotionsListMock } from "./__mocks__/promotionsList.mock";
+// import { storiesOf } from "@storybook/react";
+// import React from "react";
+// import { PromotionCardList } from "./PromotionCardList";
+// import { promotionsListMock } from "./__mocks__/promotionsList.mock";
 
-const stories = storiesOf("PromotionCardList", module);
+// const stories = storiesOf("PromotionCardList", module);
 
-const PromotionCardsStories = () => (
-  <div style={{ width: "1200px" }}>
-    <PromotionCardList
-      name={promotionsListMock.name}
-      promotions={promotionsListMock.promotions}
-      seeMoreText="See more"
-    />
-  </div>
-);
+// const PromotionCardsStories = () => (
+//   <div style={{ width: "1200px" }}>
+//     <PromotionCardList
+//       name={promotionsListMock.name}
+//       promotions={promotionsListMock.promotions}
+//       seeMoreText="See more"
+//     />
+//   </div>
+// );
 
-stories.add("PromotionCardList", PromotionCardsStories);
+// stories.add("PromotionCardList", PromotionCardsStories);
