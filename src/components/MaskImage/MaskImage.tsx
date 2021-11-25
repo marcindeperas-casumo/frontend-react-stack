@@ -16,6 +16,8 @@ type Props = {
   imageUrl: string;
   /** The imgix options to apply to the image */
   imgixOpts?: {};
+  /** Patch for Xmas campaign to use uncompressed image */
+  useUncompressedImageUrl?: boolean;
 };
 
 const MaskImage = ({
@@ -26,9 +28,9 @@ const MaskImage = ({
   children,
   imageUrl,
   imgixOpts = {},
+  useUncompressedImageUrl = false,
 }: Props) => {
   const imgixImageUrl = getImgixUrl(imageUrl, "", imgixOpts);
-
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
@@ -46,7 +48,7 @@ const MaskImage = ({
       </defs>
       <image
         clipPath={`url(#__mask-image-${id})`}
-        href={imgixImageUrl}
+        href={useUncompressedImageUrl ? imageUrl : imgixImageUrl}
         preserveAspectRatio="none"
         x="0"
         y="0"
