@@ -50,6 +50,8 @@ export type Props = {
   translations: ValuableThumbnailTranslations;
   /** addition css classes to add to containing element */
   className?: string;
+  /** URL of item image to be displayed instead of the badge + sybol */
+  itemImage?: string;
 };
 
 const headerDimensions = {
@@ -109,6 +111,7 @@ export class ValuableCard extends PureComponent<Props> {
       valuableType,
       translations,
       valuableBadgeName,
+      itemImage,
     } = this.props;
 
     return (
@@ -129,6 +132,7 @@ export class ValuableCard extends PureComponent<Props> {
           >
             <Flex.Item>
               <ValuableThumbnail
+                itemImage={itemImage}
                 awardType={awardType}
                 backgroundRenderer={this.maskedImage}
                 coinValue={coinValue}

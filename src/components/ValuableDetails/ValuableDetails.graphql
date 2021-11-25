@@ -17,6 +17,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   rule {
     name
   }
+  itemImage
   ... on PlayerValuableSpins {
     requirementType
     game {
@@ -49,5 +50,8 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
       title
     }
     gameCategories
+  }
+  ... on PlayerValuableBundleLock {
+    requirementType
   }
 }

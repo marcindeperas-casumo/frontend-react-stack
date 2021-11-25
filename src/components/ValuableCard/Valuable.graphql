@@ -21,4 +21,7 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   ... on PlayerValuableFreeBet {
     requirementType
   }
+   ... on PlayerValuableBundleLock {
+    requirementType
+  }
 }

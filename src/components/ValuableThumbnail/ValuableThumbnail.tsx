@@ -46,6 +46,7 @@ type Props = {
   translations: Translations;
   valuableBadgeName: string;
   size?: "small" | "large";
+  itemImage?: string;
 };
 
 const getValuableTypeChristmasAware = (
@@ -67,6 +68,10 @@ const getValuableTypeChristmasAware = (
   return christmasRelatedBadgeRule[badgeRuleName];
 };
 
+const isChristmasCampaignRelated = (badgeRuleName: string) => {
+  return /christmas|xmas+/u.test(badgeRuleName);
+};
+
 export type TLockIcon =
   | typeof VALUABLE_CIRCLE_LOCK_ICON
   | typeof VALUABLE_CIRCLE_CLAIM_ICON;
@@ -80,6 +85,7 @@ type ValuableCoinProps = {
   lockIcon?: TLockIcon;
   valuableBadgeName: string;
   className?: string;
+  itemImage?: string;
 };
 
 export const ValuableCoin = ({
@@ -91,6 +97,7 @@ export const ValuableCoin = ({
   lockIcon,
   valuableBadgeName = "",
   className,
+  itemImage,
 }: ValuableCoinProps) => {
   const spinType = coinValueToSpinType(coinValue);
   const baseClass = className || `c-valuable-card-thumbnail-coin--${size}`;
@@ -104,38 +111,46 @@ export const ValuableCoin = ({
     <div
       className={`${baseClass} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
     >
-      <div
-        className={classNames(
-          "o-ratio__content",
-          getCoinClassModifier(valuableType, awardType)
-        )}
-      >
-        {([VALUABLE_TYPES.CASHBACK] as AllValuableTypes[]).includes(
-          valuableType
-        ) ? (
-          <Cashback className="u-width--full" />
-        ) : (
-          <Coin className="u-width--full" />
-        )}
-      </div>
-      <Flex
-        align="center"
-        justify="center"
-        className={classNames(
-          "o-ratio__content",
-          getCoinTextClassModifier(valuableType, awardType)
-        )}
-      >
-        {(isLocked || lockIcon === "lock") && <LockSymbol />}
-        {lockIcon === "claim" && <ClaimSymbol />}
-        <ValuableSymbol
-          awardType={awardType}
-          currency={currency}
-          spinType={spinType}
-          valuableType={valuableTypeChristmasAware}
-          size={size === "small" ? "sm" : "default"}
-        />
-      </Flex>
+      {itemImage && isChristmasCampaignRelated(valuableBadgeName) ? (
+        <div className={classNames("o-ratio__content")}>
+          <img className="u-width--full" alt="" src={itemImage} />
+        </div>
+      ) : (
+        <>
+          <div
+            className={classNames(
+              "o-ratio__content",
+              getCoinClassModifier(valuableType, awardType)
+            )}
+          >
+            {([VALUABLE_TYPES.CASHBACK] as AllValuableTypes[]).includes(
+              valuableType
+            ) ? (
+              <Cashback className="u-width--full" />
+            ) : (
+              <Coin className="u-width--full" />
+            )}
+          </div>
+          <Flex
+            align="center"
+            justify="center"
+            className={classNames(
+              "o-ratio__content",
+              getCoinTextClassModifier(valuableType, awardType)
+            )}
+          >
+            {(isLocked || lockIcon === "lock") && <LockSymbol />}
+            {lockIcon === "claim" && <ClaimSymbol />}
+            <ValuableSymbol
+              awardType={awardType}
+              currency={currency}
+              spinType={spinType}
+              valuableType={valuableTypeChristmasAware}
+              size={size === "small" ? "sm" : "default"}
+            />
+          </Flex>
+        </>
+      )}
     </div>
   );
 };
@@ -152,6 +167,7 @@ export const ValuableThumbnail = ({
   valuableType,
   translations,
   valuableBadgeName,
+  itemImage,
 }: Props) => {
   const stateBadgeVisible =
     size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
@@ -172,6 +188,7 @@ export const ValuableThumbnail = ({
         justify={size === "small" ? "center" : "end"}
       >
         <ValuableCoin
+          itemImage={itemImage}
           awardType={awardType}
           coinValue={coinValue}
           currency={currency}
@@ -228,6 +245,7 @@ function getCoinClassModifier(
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
     case VALUABLE_TYPES.CASHBACK:
+    case VALUABLE_TYPES.BUNDLE_LOCK:
       return "text-yellow-30";
     case VALUABLE_TYPES.WAGERING_LOCK:
       if (awardType === "spins") {
