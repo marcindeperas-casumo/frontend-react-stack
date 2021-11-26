@@ -4,10 +4,11 @@ import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
-import type { LoginTimeLimit } from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
 import { useBreakpointsWatch } from "Utils/hooks/useBreakpointsWatch";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
+import { ComingRevocationNote } from "./ComingRevocationNote";
 
 type Props = {
   t: {
@@ -18,11 +19,12 @@ type Props = {
     mobile_limit_monthly: string | undefined;
     time_left_daily: string | undefined;
     coming_limit_note: string | undefined;
+    coming_revocation_note: string | undefined;
     edit_limit_button: string | undefined;
   };
-  dailyLimit: LoginTimeLimit | undefined;
-  weeklyLimit: LoginTimeLimit | undefined;
-  monthlyLimit: LoginTimeLimit | undefined;
+  dailyLimit?: TLoginTimeLimit;
+  weeklyLimit?: TLoginTimeLimit;
+  monthlyLimit?: TLoginTimeLimit;
   onClick: () => void;
 };
 
@@ -34,15 +36,6 @@ export function TimeLimitsCardMobile({
   onClick,
 }: Props) {
   const { gtPhablet } = useBreakpointsWatch();
-
-  if (!dailyLimit) {
-    return null;
-  }
-
-  const dailyLimitDuration = LuxonDuration.fromISO(dailyLimit.limit);
-  const hrsLeftToday = dailyLimitDuration.minus(
-    LuxonDuration.fromISO(dailyLimit.consumedTime)
-  );
 
   return (
     <div
@@ -56,31 +49,26 @@ export function TimeLimitsCardMobile({
       )}
     >
       <div className="flex flex-col items-start gap">
-        <Text className="font-bold text-purple-60">{t.mobile_title}</Text>
+        <Text className="font-bold text-purple-60">{t?.mobile_title}</Text>
         <Text size="sm" className="text-grey-50">
-          {t.mobile_subtitle}
+          {t?.mobile_subtitle}
         </Text>
         <LimitRow
           limit={dailyLimit}
-          t={{ ...t, label: t.mobile_limit_daily }}
+          t={{ ...t, label: t?.mobile_limit_daily }}
         />
         <LimitRow
           limit={weeklyLimit}
-          t={{ ...t, label: t.mobile_limit_weekly }}
+          t={{ ...t, label: t?.mobile_limit_weekly }}
         />
         <LimitRow
           limit={monthlyLimit}
-          t={{ ...t, label: t.mobile_limit_monthly }}
+          t={{ ...t, label: t?.mobile_limit_monthly }}
         />
-        <Text tag="em" size="sm" className="text-grey-50">
-          {interpolateWithJSX(
-            { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
-            t.time_left_daily
-          )}
-        </Text>
+        <HoursLeftToday t={t} dailyLimit={dailyLimit} />
       </div>
       <ButtonPrimary size="sm" onClick={onClick} className="self-end">
-        {t.edit_limit_button}
+        {t?.edit_limit_button}
       </ButtonPrimary>
     </div>
   );
@@ -90,8 +78,9 @@ type LimitRowProps = {
   t: {
     label: string | undefined;
     coming_limit_note: string | undefined;
+    coming_revocation_note: string | undefined;
   };
-  limit: LoginTimeLimit | undefined;
+  limit: TLoginTimeLimit | undefined;
 };
 
 function LimitRow({ t, limit }: LimitRowProps) {
@@ -110,6 +99,27 @@ function LimitRow({ t, limit }: LimitRowProps) {
         )}
       </Text>
       <ComingLimitNote t={t} limit={limit} />
+      <ComingRevocationNote t={t} limit={limit} />
     </div>
+  );
+}
+
+function HoursLeftToday({ t, dailyLimit }: Pick<Props, "t" | "dailyLimit">) {
+  if (!dailyLimit) {
+    return null;
+  }
+
+  const dailyLimitDuration = LuxonDuration.fromISO(dailyLimit.limit);
+  const hrsLeftToday = dailyLimitDuration.minus(
+    LuxonDuration.fromISO(dailyLimit.consumedTime)
+  );
+
+  return (
+    <Text tag="em" size="sm" className="text-grey-50">
+      {interpolateWithJSX(
+        { time: <TimeLimitsCardDuration duration={hrsLeftToday} /> },
+        t?.time_left_daily
+      )}
+    </Text>
   );
 }

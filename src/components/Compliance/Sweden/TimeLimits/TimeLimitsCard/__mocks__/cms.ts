@@ -12,5 +12,6 @@ export default ({
   time_left_weekly: "{{time}} left this week",
   time_left_monthly: "{{time}} left this month",
   coming_limit_note: "Becomes {{time}} on {{date}}.",
+  coming_revocation_note: "Will be revoked on {{date}}.",
   edit_limit_button: "Edit"
 });

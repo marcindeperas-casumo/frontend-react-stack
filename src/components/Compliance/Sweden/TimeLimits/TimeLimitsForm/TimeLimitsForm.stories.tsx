@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import MockStore from "Components/MockStore";
-import { prepareStateMock } from "Models/playOkay";
+import { prepareLoginTimeLimitsStateMock } from "Models/playOkay";
 import cmsMock from "./__mocks__/cms";
 import { TimeLimitsForm } from "./TimeLimitsForm";
 
@@ -12,8 +12,17 @@ const stories = storiesOf(
 
 stories.add("Default", () => {
   return (
-    <MockStore state={prepareStateMock({ loginTimeLimits: { daily: true } })}>
-      <TimeLimitsForm t={cmsMock} isFetching={false} onClickCta={() => {}} />
+    <MockStore>
+      <TimeLimitsForm
+        t={cmsMock}
+        isFetching={false}
+        onClickCta={() => {}}
+        currentLoginTimeLimits={prepareLoginTimeLimitsStateMock({
+          daily: true,
+          weekly: true,
+          monthly: true,
+        })}
+      />
     </MockStore>
   );
 });

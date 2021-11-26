@@ -1,7 +1,7 @@
 import type { DepositLimitsReduxStore } from "./depositLimits";
-import type { LoginTimeLimit } from "./timeLimits/timeLimits.types";
+import type { TLoginTimeLimit } from "./timeLimits/timeLimits.types";
 
-export type Period = "Daily" | "Weekly" | "Monthly";
+export type TPeriod = "Daily" | "Weekly" | "Monthly";
 
 export type GetAllLimitsProps = {
   playerId: string;
@@ -10,16 +10,39 @@ export type GetAllLimitsProps = {
 export type SetDepositLimitProps = {
   playerId: string;
   limit: number;
-  periodSetting: Period;
+  periodSetting: TPeriod;
 };
 
 export type PlayOkayReduxStore = {
   moneyLimits?: Array<any>;
   isDepositLimitProperlySet: boolean;
-  loginTimeLimits?: Array<LoginTimeLimit>;
 };
 
 export type PlayOkayRootReduxStore = {
   depositLimits: DepositLimitsReduxStore;
   playOkay: PlayOkayReduxStore;
+};
+
+export type TGetPlayerStateByIdResponse = {
+  excludedUntil: string | null;
+  indefiniteExclusion: string | null;
+  loginTimeBlock: string | null;
+  loginTimeLimit: TLoginTimeLimit | null;
+  loginTimeLimits: Array<TLoginTimeLimit>;
+  marketingClosure: any;
+  moneyLimits: Array<any>;
+  realityCheckIntervalSeconds: number;
+  realityCheckIntervalUpdatable: boolean;
+  realityCheckZeroIntervalAllowed: boolean;
+};
+
+export type TUpdateLoginTimeLimitArgs = {
+  playerId: string;
+  limitInMinutes: number;
+  periodSetting: TPeriod;
+};
+
+export type TRevokeLoginTimeLimitArgs = {
+  playerId: string;
+  periodSetting: TPeriod;
 };

@@ -8,6 +8,7 @@ export * from "./LazyPlayerSettings";
 export * from "./LazyPlayerSettingsNotifications";
 export * from "./LazyPlayerSettingsAccountDetails";
 export * from "./LazyPlayerSettingsRealityCheck";
+export * from "./LazyPlayerPlayOkaySettings";
 export * from "./LazySports";
 export * from "./LazyTransactionHistory";
 export * from "./LazyAnnualTransactionsOverview";

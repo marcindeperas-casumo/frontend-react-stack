@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
 import { mandatoryMessagesApi } from "Models/mandatoryMessages";
+import { playOkayApi } from "Models/playOkay";
 import * as storage from "Lib/storage";
 import { STORE_REHYDRATE, STORE_PERSISTED_STATE_KEY } from "Src/constants";
 
@@ -12,7 +13,13 @@ export const createReduxStore = (preloadedState: {}) => {
     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [thunk, sagaMiddleware, mandatoryMessagesApi.middleware];
+  const middlewares = [
+    thunk,
+    sagaMiddleware,
+    mandatoryMessagesApi.middleware,
+    playOkayApi.middleware,
+  ];
+  // @ts-ignore
   const middlewareEnhancer = applyMiddleware(...middlewares);
   const enhancers = [middlewareEnhancer];
   const composedEnhancers = composeEnhancers(...enhancers);

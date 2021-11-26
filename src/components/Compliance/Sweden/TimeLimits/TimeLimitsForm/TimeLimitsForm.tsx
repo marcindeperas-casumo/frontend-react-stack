@@ -1,7 +1,10 @@
 import Flex from "@casumo/cmp-flex";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
-import type { LoginTimeLimitsFormData } from "Models/playOkay";
+import type {
+  TLoginTimeLimit,
+  TLoginTimeLimitsFormData,
+} from "Models/playOkay";
 import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
 import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
 
@@ -13,15 +16,24 @@ type Props = {
     form_hrs_per_month: string | undefined;
     form_placeholder_enter_amount: string | undefined;
   };
-  onClickCta: (limits: LoginTimeLimitsFormData) => void;
+  onClickCta: (limits: TLoginTimeLimitsFormData) => void;
   isFetching: boolean;
+  currentLoginTimeLimits: Array<TLoginTimeLimit>;
 };
 
-export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
+export function TimeLimitsForm({
+  t,
+  onClickCta,
+  isFetching,
+  currentLoginTimeLimits,
+}: Props) {
   const {
     hrsPerDay,
+    hrsPerDayChanged,
     hrsPerWeek,
+    hrsPerWeekChanged,
     hrsPerMonth,
+    hrsPerMonthChanged,
     minHrsPerDay,
     minHrsPerWeek,
     minHrsPerMonth,
@@ -35,7 +47,9 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
     weeklyLimitErrorMessage,
     monthlyLimitErrorMessage,
     anyLimitChanged,
-  } = useTimeLimitsFormState();
+  } = useTimeLimitsFormState({
+    currentLoginTimeLimits,
+  });
 
   return (
     <Flex
@@ -79,7 +93,16 @@ export function TimeLimitsForm({ t, onClickCta, isFetching }: Props) {
           )}
           className="u-width--full u-margin-top--md u-margin-top--3xlg@desktop"
           size="md"
-          onClick={() => onClickCta({ hrsPerDay, hrsPerWeek, hrsPerMonth })}
+          onClick={() =>
+            onClickCta({
+              hrsPerDay,
+              hrsPerDayChanged,
+              hrsPerWeek,
+              hrsPerWeekChanged,
+              hrsPerMonth,
+              hrsPerMonthChanged,
+            })
+          }
         >
           {t.form_cta || ""}
         </ButtonPrimary>

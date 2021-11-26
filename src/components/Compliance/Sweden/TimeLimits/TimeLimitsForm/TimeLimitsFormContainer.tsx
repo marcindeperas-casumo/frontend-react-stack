@@ -1,20 +1,14 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { playerIdSelector } from "Models/handshake";
-import { isFetched } from "Models/fetch";
-import type {
-  LoginTimeLimitsFormData,
-  SetLoginTimeLimitProps,
-} from "Models/playOkay";
+import type { TLoginTimeLimitsFormData } from "Models/playOkay";
 import {
-  saveLoginTimeLimitAction,
-  getSaveLoginTimeLimitActionName,
-  getAllLimits,
-  types,
-  limitPeriod,
-  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
+  useUpdateLoginTimeLimitMutation,
+  useGetPlayerStateByIdQuery,
+  useRevokeLoginTimeLimitMutation,
+  loginTimeLimitsCmsSlug,
 } from "Models/playOkay";
-import { useTranslationsGql } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import { TimeLimitsForm } from "./TimeLimitsForm";
 import { transformFormDataToRequestPayloads } from "./TimeLimitsForm.utils";
 
@@ -23,59 +17,48 @@ type Props = {
 };
 
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
-  const { t } = useTranslationsGql({
-    form_cta: `${cmsKeyPrefix}form_cta`,
-    form_hrs_per_day: `${cmsKeyPrefix}form_hrs_per_day`,
-    form_hrs_per_week: `${cmsKeyPrefix}form_hrs_per_week`,
-    form_hrs_per_month: `${cmsKeyPrefix}form_hrs_per_month`,
-    form_placeholder_enter_amount: `${cmsKeyPrefix}form_placeholder_enter_amount`,
-  });
-  const [ctaClicked, setCtaClicked] = React.useState(false);
-  const [refetchingAllLimits, isRefetchingAllLimits] = React.useState(false);
-  const dispatch = useDispatch();
   const playerId = useSelector(playerIdSelector);
-  const allLimitsRefetched = useSelector(
-    isFetched(types.PLAYOK_FETCH_ALL_LIMITS_START)
-  );
-  const dailyLimitSaved = useSelector(
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-    isFetched(getSaveLoginTimeLimitActionName(limitPeriod.DAILY))
-  );
-  const weeklyLimitSaved = useSelector(
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-    isFetched(getSaveLoginTimeLimitActionName(limitPeriod.WEEKLY))
-  );
-  const monthlyLimitSaved = useSelector(
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-    isFetched(getSaveLoginTimeLimitActionName(limitPeriod.MONTHLY))
-  );
-  const newLimitsSaved =
-    dailyLimitSaved && weeklyLimitSaved && monthlyLimitSaved;
+  const t = useTranslations<{
+    form_cta: string;
+    form_hrs_per_day: string;
+    form_hrs_per_week: string;
+    form_hrs_per_month: string;
+    form_placeholder_enter_amount: string;
+  }>(loginTimeLimitsCmsSlug);
+  const { loginTimeLimits } = useGetPlayerStateByIdQuery(playerId, {
+    selectFromResult: ({ data, ...rest }) => ({
+      isLoading: rest.isLoading,
+      loginTimeLimits: data?.loginTimeLimits,
+    }),
+  });
+  const [updateLoginTimeLimit] = useUpdateLoginTimeLimitMutation();
+  const [revokeLoginTimeLimit] = useRevokeLoginTimeLimitMutation();
+  const [ctaClicked, setCtaClicked] = React.useState(false);
 
-  const onClickCta = (formData: LoginTimeLimitsFormData) => {
+  const onClickCta = async (formData: TLoginTimeLimitsFormData) => {
     setCtaClicked(true);
-    transformFormDataToRequestPayloads(
-      formData,
-      playerId
-    ).map((payload: SetLoginTimeLimitProps) =>
-      dispatch(saveLoginTimeLimitAction(payload))
-    );
+
+    try {
+      await Promise.all(
+        transformFormDataToRequestPayloads(formData, playerId).map(payload =>
+          "limitInMinutes" in payload
+            ? updateLoginTimeLimit(payload).unwrap()
+            : revokeLoginTimeLimit(payload).unwrap()
+        )
+      );
+
+      onLimitsSaved();
+    } catch (e) {
+      setCtaClicked(false);
+    }
   };
 
-  React.useEffect(() => {
-    if (ctaClicked && newLimitsSaved) {
-      dispatch(getAllLimits({ playerId }));
-      isRefetchingAllLimits(true);
-    }
-  }, [newLimitsSaved, ctaClicked, dispatch, playerId]);
-
-  React.useEffect(() => {
-    if (refetchingAllLimits && allLimitsRefetched) {
-      onLimitsSaved();
-    }
-  }, [refetchingAllLimits, allLimitsRefetched, onLimitsSaved]);
-
   return (
-    <TimeLimitsForm t={t} isFetching={ctaClicked} onClickCta={onClickCta} />
+    <TimeLimitsForm
+      t={t}
+      isFetching={ctaClicked}
+      onClickCta={onClickCta}
+      currentLoginTimeLimits={loginTimeLimits}
+    />
   );
 }

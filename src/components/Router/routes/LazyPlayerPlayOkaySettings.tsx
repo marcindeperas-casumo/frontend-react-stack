@@ -1,31 +1,18 @@
 import * as React from "react";
 import LazyPortal from "Components/LazyPortal";
-import type { Period } from "Models/playOkay";
-import { limitPeriod } from "Models/playOkay";
+import type { TPeriod } from "Models/playOkay";
 
 export function LazyPlayerPlayOkaySettings() {
   return (
     <>
       <TimeLimitsCardLazyPortal />
       <TimeLimitsCardLazyPortal inReview />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.DAILY} />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.DAILY} inReview />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.WEEKLY} />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.WEEKLY} inReview />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.MONTHLY} />
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'Period'. */}
-      <TimeLimitsCardLazyPortal period={limitPeriod.MONTHLY} inReview />
     </>
   );
 }
 
 type TimeLimitsCardLazyPortalProps = {
-  period?: Period;
+  period?: TPeriod;
   inReview?: boolean;
 };
 

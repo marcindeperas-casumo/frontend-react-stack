@@ -4,7 +4,7 @@ import { ButtonPrimary } from "@casumo/cmp-button";
 import { CheckIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import * as React from "react";
-import type { LoginTimeLimit } from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
 import { interpolate } from "Utils";
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
     form_outro_copy_initial: string | undefined;
     form_outro_copy_decreasing: string | undefined;
     form_outro_copy_increasing: string | undefined;
+    form_outro_copy_revoking: string | undefined;
     form_outro_cta: string | undefined;
     period_daily: string | undefined;
     period_weekly: string | undefined;
@@ -19,9 +20,9 @@ type Props = {
   };
   initial?: boolean;
   onClickCta: () => void;
-  dailyLimit: LoginTimeLimit;
-  weeklyLimit: LoginTimeLimit;
-  monthlyLimit: LoginTimeLimit;
+  dailyLimit?: TLoginTimeLimit;
+  weeklyLimit?: TLoginTimeLimit;
+  monthlyLimit?: TLoginTimeLimit;
 };
 
 export function TimeLimitsFormOutro({
@@ -66,9 +67,9 @@ export function TimeLimitsFormOutro({
 
 type CopyProps = {
   initial?: boolean;
-  dailyLimit: LoginTimeLimit;
-  weeklyLimit: LoginTimeLimit;
-  monthlyLimit: LoginTimeLimit;
+  dailyLimit: TLoginTimeLimit | null;
+  weeklyLimit: TLoginTimeLimit | null;
+  monthlyLimit: TLoginTimeLimit | null;
   t: {
     period_daily: string | undefined;
     period_weekly: string | undefined;
@@ -76,6 +77,7 @@ type CopyProps = {
     form_outro_copy_initial: string | undefined;
     form_outro_copy_decreasing: string | undefined;
     form_outro_copy_increasing: string | undefined;
+    form_outro_copy_revoking: string | undefined;
   };
 };
 
@@ -102,17 +104,22 @@ function Copy({
 }
 
 type LimitCopyProps = {
-  limit: LoginTimeLimit;
+  limit: TLoginTimeLimit | null;
   t: {
     period_daily: string | undefined;
     period_weekly: string | undefined;
     period_monthly: string | undefined;
     form_outro_copy_decreasing: string | undefined;
     form_outro_copy_increasing: string | undefined;
+    form_outro_copy_revoking: string | undefined;
   };
 };
 
 function LimitCopy({ limit, t }: LimitCopyProps) {
+  if (!limit) {
+    return null;
+  }
+
   const replacements = {
     period: t[`period_${limit.period.toLowerCase()}`],
   };
@@ -125,6 +132,19 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
           date: DateTime.fromMillis(limit.comingLimit.activationTime).toFormat(
             "DD"
           ),
+        })}
+      </Text>
+    );
+  }
+
+  if (limit.comingRevocation) {
+    return (
+      <Text className="u-text-align-center">
+        {interpolate(t?.form_outro_copy_revoking, {
+          ...replacements,
+          date: DateTime.fromMillis(
+            limit.comingRevocation.revocationTime
+          ).toFormat("DD"),
         })}
       </Text>
     );

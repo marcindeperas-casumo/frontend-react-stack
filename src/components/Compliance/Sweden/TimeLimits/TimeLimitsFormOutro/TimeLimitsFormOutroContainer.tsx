@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
+import { playerIdSelector } from "Models/handshake";
 import {
-  dailyLoginTimeLimitSelector,
-  weeklyLoginTimeLimitSelector,
-  monthlyLoginTimeLimitSelector,
-  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
+  loginTimeLimitsCmsSlug,
+  useGetPlayerStateByIdQuery,
+  selectLoginTimeLimitFromResult,
 } from "Models/playOkay";
-import { useTranslationsGql } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import { TimeLimitsFormOutro } from "./TimeLimitsFormOutro";
 
 type Props = {
@@ -15,29 +15,35 @@ type Props = {
 };
 
 export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
-  const { t } = useTranslationsGql({
-    form_outro_copy_initial: `${cmsKeyPrefix}form_outro_copy_initial`,
-    form_outro_copy_decreasing: `${cmsKeyPrefix}form_outro_copy_decreasing`,
-    form_outro_copy_increasing: `${cmsKeyPrefix}form_outro_copy_increasing`,
-    form_outro_cta: `${cmsKeyPrefix}form_outro_cta`,
-    period_daily: `${cmsKeyPrefix}period_daily`,
-    period_weekly: `${cmsKeyPrefix}period_weekly`,
-    period_monthly: `${cmsKeyPrefix}period_monthly`,
-  });
-  const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
-  const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
-  const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
+  const playerId = useSelector(playerIdSelector);
+  const t = useTranslations<{
+    form_outro_copy_initial: string;
+    form_outro_copy_decreasing: string;
+    form_outro_copy_increasing: string;
+    form_outro_copy_revoking: string;
+    form_outro_cta: string;
+    period_daily: string;
+    period_weekly: string;
+    period_monthly: string;
+  }>(loginTimeLimitsCmsSlug);
+  const { dailyLimit, weeklyLimit, monthlyLimit } = useGetPlayerStateByIdQuery(
+    playerId,
+    {
+      selectFromResult: ({ data }) => ({
+        dailyLimit: selectLoginTimeLimitFromResult("Daily", data),
+        weeklyLimit: selectLoginTimeLimitFromResult("Weekly", data),
+        monthlyLimit: selectLoginTimeLimitFromResult("Monthly", data),
+      }),
+    }
+  );
 
   return (
     <TimeLimitsFormOutro
       t={t}
       initial={initial}
       onClickCta={onClickCta}
-      // @ts-expect-error ts-migrate(2740) FIXME: Type '{}' is missing the following properties from... Remove this comment to see the full error message
       dailyLimit={dailyLimit}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'LoginTim... Remove this comment to see the full error message
       weeklyLimit={weeklyLimit}
-      // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'LoginTim... Remove this comment to see the full error message
       monthlyLimit={monthlyLimit}
     />
   );

@@ -36,7 +36,6 @@ import {
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/playOkay";
 import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
-import { appStartedSaga as sgaTimeLimitsAppStartedSaga } from "Models/playOkay/timeLimits/timeLimits.appStarted.saga";
 import { adjustmentNotificationAddedSaga as dgojAdjustmentNotificationAddedSaga } from "Models/playOkay/depositLimits";
 import {
   methodConfigSaga as paymentMethodConfigSaga,
@@ -148,7 +147,6 @@ export default function* rootSaga() {
     takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
-  yield fork(takeLatest, appTypes.APP_STARTED, sgaTimeLimitsAppStartedSaga);
   yield fork(
     takeEvery,
     methodConfigActionTypes.PREPARE_METHOD_CONFIG,

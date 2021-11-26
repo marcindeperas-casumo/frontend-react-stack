@@ -1,10 +1,11 @@
 import * as R from "ramda";
 import type {
-  SetLoginTimeLimitProps,
-  LoginTimeLimitsFormData,
+  TLoginTimeLimitsFormData,
+  TPeriod,
+  TRevokeLoginTimeLimitArgs,
+  TUpdateLoginTimeLimitArgs,
 } from "Models/playOkay";
-
-const ifNanZero: (n: number) => number = R.when(isNaN, R.always(0));
+import { limitPeriod } from "Models/playOkay";
 
 export function textInputOnChange(setter: (n: number) => void) {
   return (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -12,24 +13,63 @@ export function textInputOnChange(setter: (n: number) => void) {
 }
 
 export function transformFormDataToRequestPayloads(
-  formData: LoginTimeLimitsFormData,
+  formData: TLoginTimeLimitsFormData,
   playerId: string
-): Array<SetLoginTimeLimitProps> {
+): Array<TUpdateLoginTimeLimitArgs | TRevokeLoginTimeLimitArgs> {
   return [
-    {
+    prepareRequestPayload({
+      hours: formData.hrsPerDay,
+      haveChanged: formData.hrsPerDayChanged,
       playerId,
-      limitInMinutes: formData.hrsPerDay * 60,
-      periodSetting: "Daily",
-    },
-    {
+      periodSetting: limitPeriod.DAILY,
+    }),
+    prepareRequestPayload({
+      hours: formData.hrsPerWeek,
+      haveChanged: formData.hrsPerWeekChanged,
       playerId,
-      limitInMinutes: formData.hrsPerWeek * 60,
-      periodSetting: "Weekly",
-    },
-    {
+      periodSetting: limitPeriod.WEEKLY,
+    }),
+    prepareRequestPayload({
+      hours: formData.hrsPerMonth,
+      haveChanged: formData.hrsPerMonthChanged,
       playerId,
-      limitInMinutes: formData.hrsPerMonth * 60,
-      periodSetting: "Monthly",
-    },
-  ];
+      periodSetting: limitPeriod.MONTHLY,
+    }),
+  ].filter(Boolean);
+}
+
+const ifNanZero: (n: number) => number = R.when(isNaN, R.always(null));
+
+type TPrepareRequestPayloadArgs = {
+  playerId: string;
+  hours: number | null;
+  haveChanged: boolean;
+  periodSetting: TPeriod;
+};
+
+function prepareRequestPayload({
+  playerId,
+  periodSetting,
+  hours,
+  haveChanged,
+}: TPrepareRequestPayloadArgs):
+  | TUpdateLoginTimeLimitArgs
+  | TRevokeLoginTimeLimitArgs
+  | null {
+  if (!haveChanged) {
+    return null;
+  }
+
+  if (hours === null) {
+    return {
+      playerId,
+      periodSetting,
+    };
+  }
+
+  return {
+    playerId,
+    periodSetting,
+    limitInMinutes: hours * 60,
+  };
 }

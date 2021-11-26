@@ -4,7 +4,6 @@ import type { PlayOkayReduxStore } from "./playOkay.types";
 
 export const DEFAULT_STATE: PlayOkayReduxStore = {
   moneyLimits: undefined,
-  loginTimeLimits: [],
   isDepositLimitProperlySet: false,
 };
 

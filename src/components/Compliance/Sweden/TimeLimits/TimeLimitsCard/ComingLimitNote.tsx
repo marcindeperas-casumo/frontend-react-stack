@@ -1,15 +1,15 @@
 import Text from "@casumo/cmp-text";
 import * as React from "react";
 import { Duration as LuxonDuration, DateTime } from "luxon";
-import type { LoginTimeLimit } from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
 import { interpolateWithJSX } from "Utils";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 
 type Props = {
   t: {
-    coming_limit_note: string;
+    coming_limit_note: string | null;
   };
-  limit: LoginTimeLimit;
+  limit: TLoginTimeLimit;
 };
 
 export function ComingLimitNote({ t, limit }: Props) {

@@ -18,6 +18,7 @@ import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 import { reelRacesReducer as reelRaces } from "./reelRaces";
 import { sportsEventsReducer as sportsEvents } from "./sportsEvents/sportsEvents.reducer";
 import { mandatoryMessagesApi } from "./mandatoryMessages";
+import { playOkayApi } from "./playOkay";
 
 const rootReducer = combineReducers({
   router,
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   blueribbonJackpot,
   sportsEvents,
   [mandatoryMessagesApi.reducerPath]: mandatoryMessagesApi.reducer,
+  [playOkayApi.reducerPath]: playOkayApi.reducer,
 });
 
 export default rootReducer;

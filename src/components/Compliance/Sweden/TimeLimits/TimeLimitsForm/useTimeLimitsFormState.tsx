@@ -1,15 +1,10 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import * as _ from "lodash";
 import { Duration } from "luxon";
-import type { LoginTimeLimit } from "Models/playOkay";
-import {
-  dailyLoginTimeLimitSelector,
-  weeklyLoginTimeLimitSelector,
-  monthlyLoginTimeLimitSelector,
-  loginTimeLimitsCmsKeyPrefix as cmsKeyPrefix,
-} from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
+import { loginTimeLimitsCmsSlug } from "Models/playOkay";
 import { interpolate } from "Utils";
-import { useTranslationsGql } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 
 const DEFAULT = {
   minHrsPerDay: 1,
@@ -18,6 +13,10 @@ const DEFAULT = {
   maxHrsPerWeek: 167,
   minHrsPerMonth: 1,
   maxHrsPerMonth: 671,
+};
+
+type Props = {
+  currentLoginTimeLimits: Array<TLoginTimeLimit>;
 };
 
 export type UseTimeLimitsFormStateType = {
@@ -37,30 +36,42 @@ export type UseTimeLimitsFormStateType = {
   weeklyLimitErrorMessage: string;
   monthlyLimitErrorMessage: string;
   anyLimitChanged: boolean;
+  hrsPerDayChanged: boolean;
+  hrsPerWeekChanged: boolean;
+  hrsPerMonthChanged: boolean;
 };
 
-export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
-  const { t } = useTranslationsGql({
-    form_value_too_low: `${cmsKeyPrefix}form_value_too_low`,
-    form_value_too_high: `${cmsKeyPrefix}form_value_too_high`,
-  });
-  const dailyLimit = useSelector(dailyLoginTimeLimitSelector);
-  const weeklyLimit = useSelector(weeklyLoginTimeLimitSelector);
-  const monthlyLimit = useSelector(monthlyLoginTimeLimitSelector);
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
-  const savedHrsPerDay = isoLimitAsHours(dailyLimit);
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
-  const savedHrsPerWeek = isoLimitAsHours(weeklyLimit);
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
-  const savedHrsPerMonth = isoLimitAsHours(monthlyLimit);
+export function useTimeLimitsFormState({
+  currentLoginTimeLimits,
+}: Props): UseTimeLimitsFormStateType {
+  const t = useTranslations<{
+    form_value_too_low: string;
+    form_value_too_high: string;
+  }>(loginTimeLimitsCmsSlug);
 
-  const [hrsPerDay, setHrsPerDay] = React.useState<number>(savedHrsPerDay);
-  const [hrsPerWeek, setHrsPerWeek] = React.useState<number>(savedHrsPerWeek);
-  const [hrsPerMonth, setHrsPerMonth] = React.useState<number>(
+  const savedHrsPerDay = isoLimitAsHours(
+    currentLoginTimeLimits.find(limit => limit.period === "Daily")
+  );
+  const savedHrsPerWeek = isoLimitAsHours(
+    currentLoginTimeLimits.find(limit => limit.period === "Weekly")
+  );
+  const savedHrsPerMonth = isoLimitAsHours(
+    currentLoginTimeLimits.find(limit => limit.period === "Monthly")
+  );
+
+  const [hrsPerDay, setHrsPerDay] = React.useState<number | null>(
+    savedHrsPerDay
+  );
+  const [hrsPerWeek, setHrsPerWeek] = React.useState<number | null>(
+    savedHrsPerWeek
+  );
+  const [hrsPerMonth, setHrsPerMonth] = React.useState<number | null>(
     savedHrsPerMonth
   );
 
-  const [minHrsPerDay] = React.useState<number>(DEFAULT.minHrsPerDay);
+  const [minHrsPerDay, setMinHrsPerDay] = React.useState<number>(
+    DEFAULT.minHrsPerDay
+  );
   const [maxHrsPerDay, setMaxHrsPerDay] = React.useState<number>(
     hrsPerWeek || DEFAULT.maxHrsPerDay
   );
@@ -93,30 +104,33 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     hrsPerMonth,
     t
   );
+  const hrsPerDayChanged = hrsPerDay !== savedHrsPerDay;
+  const hrsPerWeekChanged = hrsPerWeek !== savedHrsPerWeek;
+  const hrsPerMonthChanged = hrsPerMonth !== savedHrsPerMonth;
   const anyLimitChanged =
-    hrsPerDay !== savedHrsPerDay ||
-    hrsPerWeek !== savedHrsPerWeek ||
-    hrsPerMonth !== savedHrsPerMonth;
+    hrsPerDayChanged || hrsPerWeekChanged || hrsPerMonthChanged;
 
   React.useEffect(() => {
-    if (hrsPerDay > 0) {
-      setMinHrsPerWeek(Math.max(DEFAULT.minHrsPerWeek, hrsPerDay));
-      setMinHrsPerMonth(Math.max(DEFAULT.minHrsPerMonth, hrsPerDay));
-    }
-  }, [hrsPerDay]);
+    setMinHrsPerDay(hrsPerDay === null ? 0 : DEFAULT.minHrsPerDay);
+    setMaxHrsPerDay(
+      _.min([DEFAULT.maxHrsPerDay, hrsPerWeek, hrsPerMonth].filter(Boolean))
+    );
 
-  React.useEffect(() => {
-    if (hrsPerWeek > 0) {
-      setMaxHrsPerDay(Math.min(DEFAULT.maxHrsPerDay, hrsPerWeek));
-      setMinHrsPerMonth(Math.max(DEFAULT.minHrsPerMonth, hrsPerWeek));
-    }
-  }, [hrsPerWeek]);
+    setMinHrsPerWeek(
+      hrsPerWeek === null
+        ? 0
+        : _.max([DEFAULT.minHrsPerWeek, hrsPerDay].filter(Boolean))
+    );
+    setMaxHrsPerWeek(
+      _.min([DEFAULT.maxHrsPerWeek, hrsPerMonth].filter(Boolean))
+    );
 
-  React.useEffect(() => {
-    if (hrsPerMonth > 0) {
-      setMaxHrsPerWeek(Math.min(DEFAULT.maxHrsPerWeek, hrsPerMonth));
-    }
-  }, [hrsPerMonth]);
+    setMinHrsPerMonth(
+      hrsPerMonth === null
+        ? 0
+        : _.max([DEFAULT.minHrsPerMonth, hrsPerDay, hrsPerWeek].filter(Boolean))
+    );
+  }, [hrsPerDay, hrsPerWeek, hrsPerMonth]);
 
   return {
     hrsPerDay,
@@ -134,6 +148,9 @@ export function useTimeLimitsFormState(): UseTimeLimitsFormStateType {
     dailyLimitErrorMessage,
     weeklyLimitErrorMessage,
     monthlyLimitErrorMessage,
+    hrsPerDayChanged,
+    hrsPerWeekChanged,
+    hrsPerMonthChanged,
     anyLimitChanged,
   };
 }
@@ -157,6 +174,6 @@ export function limitErrorMessage(
   return "";
 }
 
-function isoLimitAsHours(limit: LoginTimeLimit | undefined) {
-  return limit ? Duration.fromISO(limit.limit).as("hours") : 0;
+function isoLimitAsHours(limit: TLoginTimeLimit | undefined) {
+  return limit ? Duration.fromISO(limit.limit).as("hours") : null;
 }

@@ -1,18 +1,15 @@
-import type { Period } from "../playOkay.types";
+import type { TPeriod } from "../playOkay.types";
 
-export type SetLoginTimeLimitProps = {
-  playerId: string;
-  limitInMinutes: number;
-  periodSetting: Period;
-};
-
-export type LoginTimeLimitsFormData = {
+export type TLoginTimeLimitsFormData = {
   hrsPerDay: number;
+  hrsPerDayChanged: boolean;
   hrsPerWeek: number;
+  hrsPerWeekChanged: boolean;
   hrsPerMonth: number;
+  hrsPerMonthChanged: boolean;
 };
 
-export type ComingLoginTimeLimit = {
+export type TComingLimit = {
   activationTime: number;
   automaticRevocation: boolean;
   waitingForConfirmation: boolean;
@@ -22,9 +19,15 @@ export type ComingLoginTimeLimit = {
   limit: string;
 };
 
-export type LoginTimeLimit = {
-  comingLimit: ComingLoginTimeLimit | undefined;
-  comingRevocation: any;
+export type TComingRevocation = {
+  revocationTime: number;
+  automaticRevocation: boolean;
+  waitingForConfirmation: boolean;
+};
+
+export type TLoginTimeLimit = {
+  comingLimit: TComingLimit | null;
+  comingRevocation: TComingRevocation | null;
   /**
    * ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
    */
@@ -34,6 +37,6 @@ export type LoginTimeLimit = {
    * ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
    */
   limit: string;
-  period: Period;
+  period: TPeriod;
   scheduledEndTime: number;
 };

@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
+import { adjustLimitMock } from "Models/playOkay";
 import dailyLimitMock from "Models/playOkay/timeLimits/__mocks__/dailyLimit";
 import weeklyLimitMock from "Models/playOkay/timeLimits/__mocks__/weeklyLimit";
 import monthlyLimitMock from "Models/playOkay/timeLimits/__mocks__/monthlyLimit";
@@ -12,7 +13,7 @@ const stories = storiesOf(
   module
 );
 
-stories.add("Default", () => {
+stories.add("All 3 limits decreasing right away", () => {
   return (
     <TimeLimitsFormOutro
       t={cmsMock}
@@ -21,6 +22,30 @@ stories.add("Default", () => {
       dailyLimit={dailyLimitMock}
       weeklyLimit={weeklyLimitMock}
       monthlyLimit={monthlyLimitMock}
+    />
+  );
+});
+
+stories.add("With coming limit increase", () => {
+  return (
+    <TimeLimitsFormOutro
+      t={cmsMock}
+      initial={boolean("Is initial?", false)}
+      onClickCta={() => {}}
+      dailyLimit={adjustLimitMock(dailyLimitMock, 23, true)}
+      weeklyLimit={weeklyLimitMock}
+      monthlyLimit={monthlyLimitMock}
+    />
+  );
+});
+
+stories.add("With coming revocation", () => {
+  return (
+    <TimeLimitsFormOutro
+      t={cmsMock}
+      initial={boolean("Is initial?", false)}
+      onClickCta={() => {}}
+      monthlyLimit={adjustLimitMock(monthlyLimitMock, 123, false, true)}
     />
   );
 });

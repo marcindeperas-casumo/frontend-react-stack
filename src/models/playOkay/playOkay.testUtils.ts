@@ -1,9 +1,11 @@
 import { Duration } from "luxon";
 import { is } from "ramda";
-import type { PlayOkayReduxStore, LoginTimeLimit } from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
 import dailyLimitMock from "./timeLimits/__mocks__/dailyLimit";
 import weeklyLimitMock from "./timeLimits/__mocks__/weeklyLimit";
 import monthlyLimitMock from "./timeLimits/__mocks__/monthlyLimit";
+import comingLimitMock from "./timeLimits/__mocks__/comingLimit";
+import comingRevocationMock from "./timeLimits/__mocks__/comingRevocation";
 
 type LoginTimeLimitsToInclude = {
   daily?: boolean | number;
@@ -12,11 +14,15 @@ type LoginTimeLimitsToInclude = {
 };
 
 export function adjustLimitMock(
-  limitMock: LoginTimeLimit,
-  hours?: number | boolean
-) {
+  limitMock: TLoginTimeLimit,
+  hours?: number | boolean,
+  hasComingLimit?: boolean,
+  hasComingRevocation?: boolean
+): TLoginTimeLimit {
   return {
     ...limitMock,
+    comingLimit: hasComingLimit ? comingLimitMock : null,
+    comingRevocation: hasComingRevocation ? comingRevocationMock : null,
     limit: is(Number)(hours)
       ? // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | boolean' is not assignable to type ... Remove this comment to see the full error message
         Duration.fromObject({ hours }).toString()
@@ -28,7 +34,7 @@ export function prepareLoginTimeLimitsStateMock({
   daily = false,
   weekly = false,
   monthly = false,
-}: LoginTimeLimitsToInclude): Array<LoginTimeLimit> {
+}: LoginTimeLimitsToInclude): Array<TLoginTimeLimit> {
   const state = [];
 
   if (daily) {
@@ -45,21 +51,4 @@ export function prepareLoginTimeLimitsStateMock({
   }
 
   return state;
-}
-
-export function prepareStateMock({
-  loginTimeLimits,
-}: {
-  loginTimeLimits: LoginTimeLimitsToInclude;
-}) {
-  const playOkay: PlayOkayReduxStore = {
-    isDepositLimitProperlySet: false,
-    loginTimeLimits: prepareLoginTimeLimitsStateMock(loginTimeLimits),
-  };
-
-  return {
-    playOkay: {
-      playOkay,
-    },
-  };
 }
