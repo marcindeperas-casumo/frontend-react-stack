@@ -156,7 +156,7 @@ export const CustomCampaign = ({
         </Flex>
 
         <CustomCampaignCTAButtons
-          Button1Link={pusherData.CTAButtonLink}
+          Button1Link={pusherData.CTAButton2Link}
           Button1Text={pusherData.CTAButtonText}
           Button2Text={pusherData.CTAButton2Text}
           onCTAClick={closeModal}

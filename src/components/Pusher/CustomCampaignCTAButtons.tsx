@@ -30,7 +30,6 @@ export const CustomCampaignCTAButtons = ({
       return buttonLinkArray[buttonLinkArray.length - 1];
     }
   };
-
   return (
     <div className="c-valuable-details__footer cursor-pointer u-display--flex o-flex-align--center o-flex-justify--space-between o-flex-justify--space-between@mobile u-padding--md o-inset-bottom--none o-flex-justify--space-around@mobile">
       <Flex.Item className="t-border-r--pill t-background-grey-20 o-flex-align--center o-flex-justify--center u-height--3xlg u-width--1/3 u-width--2/5@mobile">
