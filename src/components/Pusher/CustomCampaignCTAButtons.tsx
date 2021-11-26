@@ -27,7 +27,9 @@ export const CustomCampaignCTAButtons = ({
       return "";
     } else {
       const buttonLinkArray = buttonLink.split("/");
-      return buttonLinkArray[buttonLinkArray.length - 1];
+      return buttonLinkArray[buttonLinkArray.length - 1]
+        ? buttonLinkArray[buttonLinkArray.length - 1]
+        : buttonLinkArray[buttonLinkArray.length - 2];
     }
   };
   return (
