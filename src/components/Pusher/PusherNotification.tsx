@@ -3,6 +3,7 @@ import { CustomCampaign } from "./variants/CustomCampaign";
 import { TYPE_PUSHER_MODAL_STATE } from "./PusherModal";
 
 export const CHRISTMAS_CAMPAIGN_2021 = "christmas_campaign_2021";
+export const PUSHER_POPUP_COMPONENT = "modal" as const;
 
 export type PusherPaylod = {
   CTAButton2Link: string;
@@ -10,7 +11,7 @@ export type PusherPaylod = {
   CTAButtonLink: string;
   CTAButtonText: string;
   Data: {
-    Component: string;
+    Component: typeof PUSHER_POPUP_COMPONENT;
     OverrideCommunicationStatus: string;
     "Site Block": string;
     event_name: typeof CHRISTMAS_CAMPAIGN_2021 & string;

@@ -43,7 +43,7 @@ type ValuablePopupContentProps = {
 // references, potential refactor into container/component
 export const XMAS_CAMPAIGN_SLUG = "xmas-2021";
 export const XMAS_CAMPAIGN_TERMS_SLUG = "christmas-campaign-2021";
-export const CMS_KEY_PREFIX = "christmas-campaign-2021-data";
+export const XMAS_CMS_PAGE = "christmas-campaign-2021-data";
 
 const ValuablePopupContent = ({
   valuable,
@@ -92,7 +92,8 @@ export const CustomCampaign = ({
     valuables,
     translations,
   } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
-  const t = useTranslations<TTranslations>(CMS_KEY_PREFIX);
+  const t = useTranslations<TTranslations>(XMAS_CMS_PAGE);
+
   const [
     selectedValuable,
     selectValuable,
