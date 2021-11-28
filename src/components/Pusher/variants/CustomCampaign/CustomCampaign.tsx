@@ -146,12 +146,14 @@ export const CustomCampaign = ({
             valuables={valuables}
             showValuable={showValuable}
             closeModal={closeModal}
+            loading={loading}
           />
 
           <Flex.Item className="t-border-bottom border-grey-5 cursor-pointer">
             <GameRowCustomHeader
               header="titles.game-of-the-day"
               gameSlug={pusherData?.Data?.game}
+              showLoader={true}
             />
           </Flex.Item>
         </Flex>

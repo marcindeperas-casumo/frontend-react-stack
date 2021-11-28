@@ -3,6 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import { ValuableCoin } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import { NavLink } from "Components/NavLink";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import {
   ChristmasValuableEntry,
   REDIRECT_TYPE,
@@ -13,6 +14,7 @@ type Props = {
   redirectRoute: string;
   onItemClick: (val: ChristmasValuableEntry) => void;
   valuables: ChristmasValuableEntry[];
+  loading: boolean;
 };
 
 const withPlayerProfileLink = (
@@ -31,7 +33,16 @@ export const CustomCampaignValuableList = ({
   redirectRoute,
   onItemClick,
   valuables,
+  loading,
 }: Props) => {
+  if (loading) {
+    return (
+      <div style={{ height: "85px" }}>
+        <GameRowSkeleton />
+      </div>
+    );
+  }
+
   return (
     <>
       {valuables.map(val => (

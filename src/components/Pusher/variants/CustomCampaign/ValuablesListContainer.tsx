@@ -18,6 +18,7 @@ type Props = {
   valuables: A.PlayerValuablesQuery["player"]["valuables"];
   showValuable: (valuable: A.ValuableDetails_PlayerValuableFragment) => void;
   closeModal: () => void;
+  loading?: boolean;
 };
 
 export type ChristmasValuableEntry = {
@@ -40,6 +41,7 @@ export const CustomCampaignValuableListContainer = ({
   showValuable,
   closeModal,
   valuables,
+  loading = false,
 }: Props) => {
   const language = useLanguage();
   const translateRoute = routeTranslator(language);
@@ -92,6 +94,7 @@ export const CustomCampaignValuableListContainer = ({
       redirectRoute={translatedRoute}
       valuables={fullChristmasList}
       onItemClick={onItemClick}
+      loading={loading}
     />
   );
 };
