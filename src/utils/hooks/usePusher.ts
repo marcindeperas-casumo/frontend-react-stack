@@ -57,10 +57,6 @@ const login = (fusionUrl: string, externalSessionId: string) => {
   );
 };
 
-const isCasumoTest = (): boolean => {
-  return window.location.host.includes("test");
-};
-
 export const usePusher = (sessionId: string) => {
   const [pusher, setPusher] = useState<TPusherObject>({} as TPusherObject);
   const [fastTrackPlayerId, setFastTrackPlayerId] = useState();
@@ -86,7 +82,7 @@ export const usePusher = (sessionId: string) => {
       }
     };
 
-    if (sessionId && isCasumoTest()) {
+    if (sessionId) {
       getDataAndCreatePusherObj();
     }
   }, [sessionId]);
