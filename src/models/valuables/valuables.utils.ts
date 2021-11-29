@@ -30,7 +30,7 @@ import {
 export const depositRouteId = "deposit";
 export const gameBrowserRouteId = "games-top";
 export const sportsRouteId = "sports";
-
+export const dashboardRouteId = "player-valuables";
 export const isAboutToExpire = (hours: number): boolean =>
   hours >= 0 && hours <= 24;
 
@@ -63,6 +63,7 @@ export const getValuableDetailsAction = ({
   const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
   const isCashback = equals(valuableType, VALUABLE_TYPES.CASHBACK);
   const isFreeBet = equals(valuableType, VALUABLE_TYPES.FREE_BET);
+  const isBundle = equals(valuableType, VALUABLE_TYPES.BUNDLE_LOCK);
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
     // The redirection is being taken care of by the KO code, so url is not required
@@ -130,6 +131,15 @@ export const getValuableDetailsAction = ({
       ...ACTION_PROPS_DEFAULT,
       text: translations.spinsUnlockedActionLabel,
       url: "",
+    };
+  }
+
+  if (isBundle) {
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text: translations.cashUnlockedActionLabel,
+      url: dashboardRouteId,
+      closeModal: true,
     };
   }
 
