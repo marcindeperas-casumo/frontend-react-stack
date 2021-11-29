@@ -30,7 +30,8 @@ import {
 export const depositRouteId = "deposit";
 export const gameBrowserRouteId = "games-top";
 export const sportsRouteId = "sports";
-export const dashboardRouteId = "player-valuables";
+export const inventoryRouteId = "player-valuables";
+
 export const isAboutToExpire = (hours: number): boolean =>
   hours >= 0 && hours <= 24;
 
@@ -138,8 +139,7 @@ export const getValuableDetailsAction = ({
     return {
       ...ACTION_PROPS_DEFAULT,
       text: translations.cashUnlockedActionLabel,
-      url: dashboardRouteId,
-      closeModal: true,
+      url: inventoryRouteId,
     };
   }
 
