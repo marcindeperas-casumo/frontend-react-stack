@@ -14,6 +14,16 @@ type Props = {
 export const CuratedCardBackground = (props: Props) => {
   const { image, smallImage, mediumImage, largeImage } = props;
 
+  if (image) {
+    return (
+      <CuratedCardBackgroundNew
+        onClick={props.onClick}
+        link={props.link}
+        image={image}
+      />
+    );
+  }
+
   if (image && !smallImage && !mediumImage && !largeImage) {
     return (
       <CuratedCardBackgroundNew

@@ -52,7 +52,7 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
         className={className}
         composedPots={composedJackpot.pots}
         widgetColor={composedJackpot.widgetColor}
-        jackpotLogo={jackpotConfigs.jackpot_image}
+        jackpotLogo={jackpotConfigs?.jackpot_image}
         explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
       />
     );

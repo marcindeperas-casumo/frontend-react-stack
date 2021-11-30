@@ -73,14 +73,14 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
       games={R.pathOr([], ["gamesList", "games"], data)}
       seeMore={{
         url: `/${seeMoreUrl}`,
-        text: t.more_link,
+        text: t?.more_link,
       }}
       JackpotWidget={() => (
         <Flex direction="horizontal" className="u-padding-right">
           <BlueRibbonJackpotsWidget
             composedPots={composedJackpot.pots}
             widgetColor={composedJackpot.widgetColor}
-            jackpotLogo={jackpotConfigs.jackpot_image}
+            jackpotLogo={jackpotConfigs?.jackpot_image}
             explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
           />
         </Flex>

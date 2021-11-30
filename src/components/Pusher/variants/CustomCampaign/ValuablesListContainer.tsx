@@ -7,8 +7,8 @@ import {
   VALUABLE_CIRCLE_LOCK_ICON,
   VALUABLE_TYPES,
 } from "Models/valuables";
-import { ROUTE_IDS } from "Src/constants";
-import { useLanguage } from "Utils/hooks";
+import { ROUTE_IDS, URL_PREFIXES } from "Src/constants";
+import { useMarket, useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils/routerUtils";
 import { AllValuableTypes } from "Components/ValuableThumbnail/ValuableSymbol";
 import { CustomCampaignValuableList } from "./ValuablesList";
@@ -44,9 +44,13 @@ export const CustomCampaignValuableListContainer = ({
   loading = false,
 }: Props) => {
   const language = useLanguage();
+  const market = useMarket();
   const translateRoute = routeTranslator(language);
   const cashVal = valuables.find(val => val.valuableType === "cash");
   const cashBackVal = valuables.find(val => val.valuableType === "cashback");
+  const bundleLockValuable = valuables.find(
+    val => val.valuableType === "bundleLock"
+  );
 
   const fullChristmasList: ChristmasValuableEntry[] = [
     cashVal && {
@@ -55,7 +59,7 @@ export const CustomCampaignValuableListContainer = ({
       subtitle: pusherData.Data.cashback_reward_subtitle || cashVal.content,
       lockIcon: VALUABLE_CIRCLE_CLAIM_ICON as TLockIcon,
     },
-    {
+    bundleLockValuable && {
       __typename: REDIRECT_TYPE,
       id: REDIRECT_TYPE,
       promoTitle: pusherData.Data.deposit_lock_title,
@@ -85,7 +89,7 @@ export const CustomCampaignValuableListContainer = ({
     showValuable(val as A.ValuableDetails_PlayerValuableFragment);
   };
 
-  const translatedRoute = `${language}/${translateRoute(
+  const translatedRoute = `${URL_PREFIXES[market]}/${translateRoute(
     ROUTE_IDS.PLAYER_DASHBOARD
   )}`;
 

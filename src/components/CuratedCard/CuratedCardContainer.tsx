@@ -144,7 +144,7 @@ export const CuratedCardContainerBase = ({
   const gameName = pusherData?.Data?.game;
   const gameBg = t[gameName] ? t[gameName].url : t.generic.url;
 
-  const xmasData: A.CuratedCardQuery = {
+  const xmasData: A.CuratedCardQuery | any = {
     ...slugGqlData,
     curatedCard: {
       ...slugGqlData?.curatedCard,
@@ -154,6 +154,9 @@ export const CuratedCardContainerBase = ({
         ...gameInfo?.game,
       },
       image: gameBg,
+      launchGameText: pusherData?.Data?.game
+        ? t?.curated_card_cta_text
+        : slugGqlData?.curatedCard?.launchGameText,
       slug: gameName,
     },
   };
