@@ -616,8 +616,10 @@ export const horizontalListDeviceTopMargin = {
 export const LOCAL_STORAGE_GAME_LAUNCH_LOCATION = "lastGameLaunchLocation";
 
 export const PUSHER_CONSTANTS = {
-  CONFIG_URL:
+  CONFIG_URL_STAGING:
     "https://am-events-staging.fasttrack-solutions.com/api/v1/config/casumo",
+  CONFIG_URL_PRODUCTION:
+    "https://am-events.fasttrack-solutions.com/api/v1/config/casumo",
   externalSessionURL:
     "/casino-player/fasttrack-realtime-integration/api/v1/session-mapping",
   pusherChannelnamePrefix: "private-prisma-16-",

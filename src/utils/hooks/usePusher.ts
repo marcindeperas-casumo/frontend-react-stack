@@ -29,8 +29,16 @@ type TFastTrackCasumoIntegration = {
   playerId: string;
 };
 
+const getFTConfigUrl = (): string => {
+  if (process.env.NODE_ENV === "production") {
+    return PUSHER_CONSTANTS.CONFIG_URL_PRODUCTION;
+  } else {
+    return PUSHER_CONSTANTS.CONFIG_URL_STAGING;
+  }
+};
+
 const getBaseEndpoints = (): Promise<TPusherIntegration> => {
-  return http.get(PUSHER_CONSTANTS.CONFIG_URL, {});
+  return http.get(getFTConfigUrl(), {});
 };
 
 const getExternalSessionID = (
