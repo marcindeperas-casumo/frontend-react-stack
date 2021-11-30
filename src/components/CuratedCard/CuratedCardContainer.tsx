@@ -164,7 +164,7 @@ export const CuratedCardContainerBase = ({
     return (
       <CuratedCard
         className={className}
-        market={xmasData?.session.market}
+        market={xmasData?.session?.market}
         curatedCard={xmasData?.curatedCard}
         navigateToSportsHash={navigateToSportsHash}
         navigateById={navigateById}
@@ -177,7 +177,7 @@ export const CuratedCardContainerBase = ({
     return (
       <CuratedCard
         className={className}
-        market={slugGqlData?.session.market}
+        market={slugGqlData?.session?.market}
         curatedCard={slugGqlData?.curatedCard}
         navigateToSportsHash={navigateToSportsHash}
         navigateById={navigateById}

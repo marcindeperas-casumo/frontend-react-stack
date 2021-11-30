@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import { getPlatform, setCookie } from "Utils";
+import { playerCurrencySymbolSelector } from "Models/player";
 import { useTranslations } from "Utils/hooks";
 import { ValuableCard } from "Components/ValuableCard";
 import { GameRowCustomHeader } from "Components/GameRow";
@@ -93,6 +95,15 @@ export const CustomCampaign = ({
     translations,
   } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
   const t = useTranslations<TTranslations>(XMAS_CMS_PAGE);
+  const currencySymbol = useSelector(playerCurrencySymbolSelector);
+  const filteredValuables =
+    valuables && valuables.length
+      ? valuables.filter(
+          val =>
+            val?.rule?.name.includes("xmas21-") ||
+            val?.rule?.name.includes("christmas21-")
+        )
+      : valuables;
 
   const [
     selectedValuable,
@@ -109,6 +120,11 @@ export const CustomCampaign = ({
     closeModal();
     setCookie(DISABLE_MODAL_COOKIE_KEY, 1, 7);
   };
+
+  const tAndCWithCurrency =
+    t && t?.terms_and_conditions_label // eslint-disable-next-line no-template-curly-in-string
+      ? t.terms_and_conditions_label.replace("${.|CCY}", currencySymbol)
+      : "";
 
   if (!pusherData || !t) {
     return null;
@@ -143,7 +159,7 @@ export const CustomCampaign = ({
         >
           <CustomCampaignValuableList
             pusherData={pusherData}
-            valuables={valuables}
+            valuables={filteredValuables}
             showValuable={showValuable}
             closeModal={closeModal}
             loading={loading}
@@ -167,7 +183,7 @@ export const CustomCampaign = ({
 
         <Text tag="p" size="sm" className="u-padding--md text-grey-50">
           <span>
-            <DangerousHtml html={t.terms_and_conditions_label} /> &nbsp;
+            <DangerousHtml html={tAndCWithCurrency} /> &nbsp;
           </span>
           <a
             className="u-font-weight-bold text-grey-50 u-text-decoration-underline"
