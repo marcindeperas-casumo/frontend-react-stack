@@ -1,4 +1,5 @@
 import React from "react";
+import sortBy from "lodash/sortBy";
 import {
   BlueRibbonJackpotsWidgetContainer,
   BlueRibbonManualOptInAndOptOut,
@@ -20,6 +21,7 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
   const t = useTranslations<TJackpotDetailsPageTranslations>(
     `jackpots-details-pages.${jackpotSlug}`
   );
+  const promotionListsSlugs = t?.content_builder;
 
   const optIn = (
     <BlueRibbonManualOptInAndOptOut jackpotSlug={jackpotSlug} isLight={true} />
@@ -28,14 +30,24 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
   const widget = (
     <BlueRibbonJackpotsWidgetContainer jackpot_slug={jackpotSlug} />
   );
+  if (promotionListsSlugs) {
+    const alteredList = promotionListsSlugs.map(obj => ({
+      ...obj,
+      hideShowMoreLink: true,
+    }));
 
-  return t ? (
-    <JackpotDetailPage
-      optInComponent={optIn}
-      widgetComponent={widget}
-      isMobile={!breakpoints.gtPhablet}
-      jackpotSlug={jackpotSlug}
-      t={t}
-    />
-  ) : null;
+    const prioritizedLists = sortBy(alteredList);
+
+    return (
+      <JackpotDetailPage
+        optInComponent={optIn}
+        widgetComponent={widget}
+        isMobile={!breakpoints.gtPhablet}
+        jackpotSlug={jackpotSlug}
+        promotionLists={prioritizedLists}
+        t={t}
+      />
+    );
+  }
+  return null;
 };

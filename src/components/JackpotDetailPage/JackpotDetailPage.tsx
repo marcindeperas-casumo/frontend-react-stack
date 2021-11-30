@@ -1,10 +1,12 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
+import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
 import {
   topMarginClasses,
   xPaddingClasses,
 } from "Components/GameListHorizontal/constants";
+import { TPromotionVerticalCampaigns } from "Components/PromotionPage/PromotionPage.types";
 import { JackpotRules } from "./JackpotRules";
 
 export type TJackpotDetailsPageTranslations = {
@@ -13,6 +15,7 @@ export type TJackpotDetailsPageTranslations = {
   details_intro_text: string;
   rules_text: string;
   tncLabel: string;
+  content_builder: Array<object>;
 };
 
 type TProps = {
@@ -21,6 +24,7 @@ type TProps = {
   isMobile: boolean;
   jackpotSlug: string;
   t: TJackpotDetailsPageTranslations & { tncLabel: string };
+  promotionLists: TPromotionVerticalCampaigns;
 };
 
 export const JackpotDetailPage: React.FC<TProps> = ({
@@ -29,6 +33,7 @@ export const JackpotDetailPage: React.FC<TProps> = ({
   widgetComponent,
   jackpotSlug,
   t,
+  promotionLists,
 }: TProps) => {
   return (
     <div
@@ -65,6 +70,14 @@ export const JackpotDetailPage: React.FC<TProps> = ({
           </Flex.Item>
           <Flex.Item>{widgetComponent}</Flex.Item>
         </Flex>
+        <div
+          className={`u-width--full u-padding-x--xlg@desktop ${topMarginClasses} u-padding-bottom--md@desktop u-padding-bottom--md@tablet`}
+        >
+          <ComponentBuilderRenderer
+            componentDefinitions={promotionLists}
+            hideShowMoreLink
+          />
+        </div>
         <div
           className={`u-width--full u-padding-x--xlg@desktop ${topMarginClasses} u-padding-bottom--md@desktop u-padding-bottom--md@tablet`}
         >
