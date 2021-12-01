@@ -155,6 +155,9 @@ export const PopularLiveEvents = ({
     variables,
     fetchPolicy: "cache-and-network",
   });
+  const [translations] = React.useState(
+    SportsHomeAdapters.convertToSportsHomeTranslations(t, title)
+  );
 
   const [kambiLocale, setKambiLocale] = React.useState("en_GB");
   React.useEffect(() => {
@@ -280,10 +283,7 @@ export const PopularLiveEvents = ({
           events: offering,
           oddsFormat: oddsFormatEvent.oddsFormat,
           locale: locale,
-          translations: SportsHomeAdapters.convertToSportsHomeTranslations(
-            t,
-            title
-          ),
+          translations: translations,
         } as SportsHomeType;
 
         // organise sports data include Kambi Offerrings REST API Data
@@ -298,7 +298,7 @@ export const PopularLiveEvents = ({
     locale,
     market,
     oddsFormatEvent.oddsFormat,
-    t,
+    translations,
     title,
   ]);
 
