@@ -55,7 +55,7 @@ const trackHomeMatchClicked = (page: { title: string; path: string }) => {
   });
 };
 
-const trackAddToBetslip = (kambi: any) => {
+const trackAddToBetslip = (kambi: any, market: string) => {
   const bet = pathOr([], ["ecommerce", "add", "products", 0], kambi);
   const isLivePage: boolean = pathOr("", ["page", "path"], kambi)
     .split("/")
@@ -73,6 +73,7 @@ const trackAddToBetslip = (kambi: any) => {
         // @ts-expect-error ts-migrate(2339) FIXME: Property 'betslipLocationSource' does not exist on... Remove this comment to see the full error message
         bet.betslipLocationSource
       }`,
+      [EVENT_PROPS.MARKET]: market,
     });
   }
 };
@@ -104,7 +105,8 @@ const emitBetslipVisibleToKoStack = (
 export function kambiClientEventHandler(
   event: any,
   sportsFirstBet: boolean,
-  callback?: any
+  callback?: any,
+  market?: string
 ) {
   if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
     return;
@@ -136,7 +138,7 @@ export function kambiClientEventHandler(
   }
 
   if (event.data.event === KAMBI_EVENTS.ADD_TO_BETSLIP) {
-    trackAddToBetslip(event.data.kambi);
+    trackAddToBetslip(event.data.kambi, market);
   }
 
   if (event.data.event === KAMBI_EVENTS.PAGE_VIEW) {
