@@ -133,10 +133,10 @@ export const CuratedCardContainerBase = ({
 
   // Xmas 2021 logic below
   if (
-    (loading && !slugGqlData && !pusherData) ||
-    gameLoading ||
-    !t ||
-    (!slugGqlData && !pusherData)
+    loading ||
+    (!pusherData && !slugGqlData) ||
+    (gameLoading && !slugGqlData) ||
+    !t
   ) {
     return <CuratedCardSkeleton />;
   }
@@ -163,7 +163,7 @@ export const CuratedCardContainerBase = ({
 
   const isLiveCasino = pathname.includes(translateRoute(ROUTE_IDS.LIVE_CASINO));
 
-  if (pusherData && t && !isLiveCasino) {
+  if (pusherData && xmasData && t && !isLiveCasino) {
     return (
       <CuratedCard
         className={className}
