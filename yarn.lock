@@ -1247,12 +1247,12 @@
   dependencies:
     "@casumo/cmp-flex" "^4.1.2"
 
-"@casumo/cmp-chip@^2.0.18", "@casumo/cmp-chip@^2.0.8":
-  version "2.0.19"
-  resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/2.0.19/4382675a10bde5a35cf43afa9f3ae2ac58da845beb7162e796786dd045ea73fe#9784778d13b9fb43cdebf44e2f1eabbb7d091f62"
-  integrity sha512-UI5p0Knhh2nl/AbZNVf07d/n1GOAElb9xMZ3s0TYCE1+d9GSNwIDexOiLsUCTLmmbvI2GdAkc0S0LJzg1eJaHQ==
+"@casumo/cmp-chip@^2.0.20":
+  version "2.0.20"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-chip/2.0.20/344da3e4338a7798e7622743ebcab5cb47e1950418f202502b6a2f91a8cb1592#27e2e7178384935ef7f238344247e3ab7e788e3a"
+  integrity sha512-rsl4EAEOPp8cqDNX2NhMO0X523GsMN9Vr/FOONv1KhmZE8SXTcyFMZah48BNXkRJmDY4nYW2LiU1KkV2TPGyig==
   dependencies:
-    "@casumo/cmp-icons" "^5.1.1"
+    "@casumo/cmp-icons" "^5.1.2"
 
 "@casumo/cmp-flex@^3.0.6":
   version "3.0.6"
@@ -1284,10 +1284,19 @@
     "@casumo/cudl-react-prop-types" "^2.1.3"
     "@casumo/cudl-react-utils" "^1.0.7"
 
-"@casumo/cmp-icons@^5.0.1", "@casumo/cmp-icons@^5.0.3", "@casumo/cmp-icons@^5.1.1":
+"@casumo/cmp-icons@^5.0.3", "@casumo/cmp-icons@^5.1.1":
   version "5.1.1"
   resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/5.1.1/aa75e5d086f042aa1775c2a88ddfa3fbc7593f48518729143b22a0fed7e71cfd#1d8c76cc8d26979664a0ecbca666a8319691cdb5"
   integrity sha512-LnZwztPxtdOzi4/CHjttBgjbf4FBhnza17pmF/VBWMzv6YpVkkJlUg9bmHJdM0WkJIHLhWJtk01yNdcSlM396w==
+  dependencies:
+    "@casumo/cmp-icon" "^1.1.1"
+    "@casumo/cudl-react-prop-types" "^2.1.3"
+    "@casumo/cudl-react-utils" "^1.0.9"
+
+"@casumo/cmp-icons@^5.1.2":
+  version "5.1.2"
+  resolved "https://npm.pkg.github.com/download/@casumo/cmp-icons/5.1.2/fa17b75c430e0c13c229171a2fe0212a00a792c609555c8eabf968dbfe8915be#2f7a5dc138bdb80d7914c356dcb2c55c4d0390a9"
+  integrity sha512-+azwk8xvwxNzwmOf69SMe7L+ytltRSqful8fxbhJpeqIQsLJ1SY/oZehOO0RdoGOC1u7XgVtGcoA+RxX+12rZg==
   dependencies:
     "@casumo/cmp-icon" "^1.1.1"
     "@casumo/cudl-react-prop-types" "^2.1.3"
@@ -1853,14 +1862,14 @@
     luxon "^2.0.2"
     moment "^2.29.1"
 
-"@casumo/sports-navigation@^3.5.8":
-  version "3.5.8"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.5.8/33f7adfbac4471386875de7e74f8ec80e5da29924d9ccf55dccdeb8a6c6b226c#b22cec5437047e10b4a4fc9873bbb17c917b7c5a"
-  integrity sha512-UPZZdidUwGhGCkMqpF8YrCIUeANKMwmhWnpuPcHX5yfsqpBef6a7vtsstQNf2KORPcSwjcOcxYsNQYcgdSuEog==
+"@casumo/sports-navigation@^3.5.9":
+  version "3.5.9"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.5.9/d851b2985b658a944e268fc4b6834067d45669c17ce49583decae8ab34695625#e3e6fdb36e3a4598d9d77a8c0e31dfff02055e23"
+  integrity sha512-pgT3E0MltIfJ74wuDgfw0rZQjMTEbAPJJM+flJdF1FQQpujtXJxeEHPK2zyTiNPDufg6r7Asr55OFeAdjBbdOw==
   dependencies:
-    "@casumo/cmp-chip" "^2.0.18"
+    "@casumo/cmp-chip" "^2.0.20"
     "@casumo/cmp-flex" "^4.1.0"
-    "@casumo/cmp-icons" "^4.1.0"
+    "@casumo/cmp-icons" "^5.1.2"
     "@casumo/cmp-scrollable-paginated" "^1.1.4"
     "@casumo/cmp-skeleton" "^1.2.7"
     "@casumo/cmp-text" "^2.0.8"
