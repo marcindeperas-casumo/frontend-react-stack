@@ -78,6 +78,7 @@ export const CuratedCardContainerBase = ({
   const [pusherData, setPusherData] = useState<TCCPusherPayload>(null);
   const t = useTranslations<TTranslations>(XMAS_CMS_PAGE);
 
+  // This fetches game details (thumbnail and title) fro received game of day
   const { gameInfo, loading: gameLoading } = useGameInfo(
     pusherData?.Data?.game
   );

@@ -4,7 +4,8 @@
     "**/.history/**/*",
     "**/pact/**/*",
     "**/scripts/**/*",
-    "**/config/**/*"
+    "**/config/**/*",
+    "**/node_modules/**/*"
   ],
   "compilerOptions": {
     "noEmit": true,
