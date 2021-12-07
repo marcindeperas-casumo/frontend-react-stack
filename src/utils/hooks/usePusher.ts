@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { singletonHook } from "react-singleton-hook";
 import Pusher from "pusher-js";
 import http from "Lib/http";
 import logger from "Services/logger";
@@ -27,6 +28,12 @@ type TPusherIntegration = {
 type TFastTrackCasumoIntegration = {
   externalSessionId: string;
   playerId: string;
+};
+
+const init = {
+  pusher: {} as TPusherObject,
+  fastTrackPlayerId: "",
+  setSessionId: (id: string) => {},
 };
 
 const getFTConfigUrl = (): string => {
@@ -65,9 +72,12 @@ const login = (fusionUrl: string, externalSessionId: string) => {
   );
 };
 
-export const usePusher = (sessionId: string) => {
+const usePusherInstance = () => {
+  const [sessionId, setSessionId] = useState<string>("");
   const [pusher, setPusher] = useState<TPusherObject>({} as TPusherObject);
   const [fastTrackPlayerId, setFastTrackPlayerId] = useState();
+
+  const initFromSession = (id: string) => setSessionId(id);
 
   useEffect(() => {
     const getDataAndCreatePusherObj = async () => {
@@ -95,5 +105,7 @@ export const usePusher = (sessionId: string) => {
     }
   }, [sessionId]);
 
-  return { pusher, fastTrackPlayerId };
+  return { pusher, fastTrackPlayerId, setSessionId: initFromSession };
 };
+
+export const usePusher = singletonHook(init, usePusherInstance);

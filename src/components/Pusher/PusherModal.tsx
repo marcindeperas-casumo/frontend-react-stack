@@ -34,7 +34,7 @@ type Props = {
 };
 
 export const PusherModal = ({ sessionId, playerId }: Props) => {
-  const { pusher, fastTrackPlayerId } = usePusher(sessionId);
+  const { pusher, fastTrackPlayerId, setSessionId } = usePusher();
   const [isPageReady, setIsPageReady] = useState(false);
   const [pusherData, setPusherData] = useState(null);
   const [
@@ -58,6 +58,10 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
     setPusherModalState(STATE_TRANSITIONS[pusherModalState]);
 
   const isVisible = pusherModalState !== PUSHER_MODAL_STATE.HIDDEN;
+
+  useEffect(() => {
+    setSessionId(sessionId);
+  }, [sessionId, setSessionId]);
 
   useEffect(() => {
     const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;

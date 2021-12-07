@@ -74,7 +74,7 @@ export const CuratedCardContainerBase = ({
   const translateRoute = routeTranslator(language);
   const { pathname } = useLocation();
 
-  const { pusher, fastTrackPlayerId } = usePusher(sessionId);
+  const { pusher, fastTrackPlayerId, setSessionId } = usePusher();
   const [pusherData, setPusherData] = useState<TCCPusherPayload>(null);
   const t = useTranslations<TTranslations>(XMAS_CMS_PAGE);
 
@@ -92,6 +92,10 @@ export const CuratedCardContainerBase = ({
       );
     }
   };
+
+  useEffect(() => {
+    setSessionId(sessionId);
+  }, [sessionId, setSessionId]);
 
   useEffect(() => {
     const channelName = `${PUSHER_CONSTANTS.pusherChannelnamePrefix}${fastTrackPlayerId}`;
