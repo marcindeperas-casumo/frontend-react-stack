@@ -461,7 +461,6 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
             bonus: null,
             blocked: false,
             market: "gb_en",
-            activeDepositBonus: null,
             notifications: [],
             mandatoryMessages: [],
             paymentMethods: [

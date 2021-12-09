@@ -60,7 +60,6 @@ export const authenticatedResponse = {
         },
         blocked: false,
         market: "___en",
-        activeDepositBonus: null,
         notifications: [],
         mandatoryMessages: [],
         paymentMethods: [

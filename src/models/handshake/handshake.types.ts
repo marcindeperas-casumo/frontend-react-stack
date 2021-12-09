@@ -162,7 +162,6 @@ export type Handshake = {
           bonus: null; // ???
           blocked: boolean;
           market: TMarket;
-          activeDepositBonus: null; // ???
           notifications: Array<never>; // ???
           mandatoryMessages: Array<never>; // ???
           paymentMethods: Array<never>; // ???
