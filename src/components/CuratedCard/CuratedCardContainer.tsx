@@ -15,6 +15,7 @@ import {
   unsubscribeFromPusherChannel,
 } from "Services/PusherPubSubService";
 import { XMAS_CMS_PAGE } from "Components/Pusher/variants/CustomCampaign/CustomCampaign";
+import { getStorageWithTTL } from "Utils/utils";
 import { routeTranslator } from "Utils/routerUtils";
 import { useGameInfo } from "Utils/hooks/useGameInfo";
 import { CURATED_TYPE } from "./CuratedCard.utils";
@@ -83,13 +84,9 @@ export const CuratedCardContainerBase = ({
     pusherData?.Data?.game
   );
 
-  const onPusherEvent = (_data: TCCPusherPayload) => {
-    if (_data?.Data?.Component === CC_PUSHER_DATA_TYPE) {
-      setPusherData(_data);
-      sessionStorage.setItem(
-        CC_PUSHER_DATA_SESSION_STORAGE_KEY,
-        JSON.stringify(_data)
-      );
+  const onPusherEvent = (data: TCCPusherPayload) => {
+    if (data?.Data?.Component === CC_PUSHER_DATA_TYPE) {
+      setPusherData(data);
     }
   };
 
@@ -114,10 +111,15 @@ export const CuratedCardContainerBase = ({
   }, [pusher, fastTrackPlayerId]);
 
   useEffect(() => {
-    const prevPusherPayload = sessionStorage.getItem(
+    const prevPusherPayload = getStorageWithTTL(
       CC_PUSHER_DATA_SESSION_STORAGE_KEY
     );
-    onPusherEvent(JSON.parse(prevPusherPayload));
+
+    if (!prevPusherPayload) {
+      return;
+    }
+
+    onPusherEvent(prevPusherPayload);
   }, []);
 
   useEffect(() => {

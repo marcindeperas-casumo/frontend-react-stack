@@ -612,3 +612,32 @@ export function mapValuesToKey<T extends number | string, K extends string>(
     };
   }, {});
 }
+
+export const setStorageWithTTL = (key, value, ttl = 86400000) => {
+  const expiry = DateTime.local().plus(ttl);
+
+  const item = {
+    value,
+    expiry,
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+};
+
+export const getStorageWithTTL = key => {
+  const itemStr = localStorage.getItem(key);
+
+  if (!itemStr) {
+    return null;
+  }
+
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+
+  if (now.getTime() > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
+
+  return item.value;
+};

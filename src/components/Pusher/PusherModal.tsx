@@ -9,6 +9,7 @@ import { usePusher } from "Utils/hooks";
 import { PusherNotification } from "Components/Pusher";
 import { PUSHER_CONSTANTS } from "Src/constants";
 import logger from "Services/logger";
+import { setStorageWithTTL } from "Utils/utils";
 import { getCookie } from "Utils/getCookie";
 import { PusherPaylod, PUSHER_POPUP_COMPONENT } from "./PusherNotification";
 
@@ -20,6 +21,8 @@ export const PUSHER_MODAL_STATE = {
   SECOND_LAYER_VISIBLE: "SECOND_LAYER_VISIBLE",
 } as const;
 
+export const CC_PUSHER_DATA_TYPE = "curated_component" as const;
+export const CC_PUSHER_DATA_SESSION_STORAGE_KEY = "pusher_curated_component" as const;
 export type TYPE_PUSHER_MODAL_STATE = keyof typeof PUSHER_MODAL_STATE;
 
 const STATE_TRANSITIONS = {
@@ -51,6 +54,10 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
     if (data?.Data?.Component === PUSHER_POPUP_COMPONENT) {
       setPusherData(data);
       setPusherModalState(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
+    }
+
+    if (data?.Data?.Component === CC_PUSHER_DATA_TYPE) {
+      setStorageWithTTL(CC_PUSHER_DATA_SESSION_STORAGE_KEY, data, 86400000);
     }
   };
 
