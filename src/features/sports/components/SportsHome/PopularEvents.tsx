@@ -4,7 +4,6 @@ import * as sportsHome from "@casumo/sports-home";
 import tracker from "Services/tracker";
 import { OddsFormatEvent } from "Models/sportsEvents/sportsEvents.types";
 import { SPORTS_POPULAR_BETS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
-import { ErrorMessage } from "Components/ErrorMessage";
 import {
   getKambiSupportedLanguage,
   getKambiWidgetAPI,
@@ -302,7 +301,7 @@ export const PopularEvents = ({
   ]);
 
   if (error || !data?.sportsPopularBets.popularEvents.length) {
-    return <ErrorMessage direction="horizontal" />;
+    return null;
   }
 
   return renderPopularEvents(
