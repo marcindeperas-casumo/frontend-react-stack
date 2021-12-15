@@ -45,7 +45,7 @@ export const GameListHorizontalWithWidget = ({
       return <JackpotOnboardingWidget />;
     }
 
-    return columns[i - 1].map(game => (
+    return columns[i - 2].map(game => (
       <div
         key={game.id}
         className="u-padding-bottom"
