@@ -24,6 +24,7 @@ import { PragmaticGame } from "./PragmaticGame";
 import { MahjongGame } from "./MahjongGame";
 import { LeapGame } from "./LeapGame";
 import { SkyWindGame } from "./SkyWindGame";
+import { OssGame } from "./OssGame";
 
 export type GameProps = {
   providerType: GameProviderType;
@@ -35,8 +36,8 @@ export const models = {
   [PROVIDERS.EDICT_MOBILE]: EdictGame,
   [PROVIDERS.EVOLUTION_DESKTOP]: BaseIframeGame,
   [PROVIDERS.EVOLUTION_MOBILE]: EvolutionGame,
-  [PROVIDERS.ONESTOPSHOP_MOBILE]: EvolutionGame,
-  [PROVIDERS.ONESTOPSHOP_DESKTOP]: BaseIframeGame,
+  [PROVIDERS.ONESTOPSHOP_MOBILE]: OssGame,
+  [PROVIDERS.ONESTOPSHOP_DESKTOP]: OssGame,
   [PROVIDERS.EVOLUTION_IOS_EMBEDDED]: EmbeddedEvolutionGame,
   [PROVIDERS.GREENTUBE_HTML5]: GreentubeGame,
   [PROVIDERS.MICROGAMING_FLASH]: MicrogamingGame,

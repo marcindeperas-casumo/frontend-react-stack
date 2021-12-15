@@ -17,6 +17,7 @@ export { YggdrasilGame } from "./YggdrasilGame";
 export { PragmaticGame } from "./PragmaticGame";
 export { MahjongGame } from "./MahjongGame";
 export { LeapGame } from "./LeapGame";
+export { OssGame } from "./OssGame";
 export * from "./gameModelMapping";
 export * from "./constants";
 export * from "./types";
