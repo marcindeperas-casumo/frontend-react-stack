@@ -6,6 +6,7 @@ import {
   REACT_APP_EVENT_MENU_OPENED,
   REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
+  MARKETS,
 } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import SportsHashWatcher from "Components/HashWatcher";
@@ -165,7 +166,10 @@ export const SportsShellContainer: React.FC<{}> = () => {
               <SportsHome />
             )}
             {currentHash === homeHash && <SportsJackpots />}
-            <WelcomeOfferCuratedCard currentHash={currentHash} />
+            {/*TSPO-1300 removing sports WO for GB*/}
+            {market !== MARKETS.gb_en && (
+              <WelcomeOfferCuratedCard currentHash={currentHash} />
+            )}
             <SportsCuratedCard currentHash={currentHash} />
             {showModal(currentHash) && (
               <SportsYouWonComponent currentHash={currentHash} />
