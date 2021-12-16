@@ -82,11 +82,17 @@ export const SportsNav = ({
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );
-  const variables = { live: isLiveActive };
   const { error, data, refetch } = useQuery(USER_NAVIGATION_QUERY, {
-    variables,
+    variables: { live: false },
     fetchPolicy: "cache-and-network",
   });
+  const { error: errorLive, data: dataLive, refetch: refetchLive } = useQuery(
+    USER_NAVIGATION_QUERY,
+    {
+      variables: { live: true },
+      fetchPolicy: "cache-and-network",
+    }
+  );
   const [refetchCount, setRefetchCount] = React.useState(0);
   const [navData, setNavData] = React.useState();
 
@@ -103,7 +109,11 @@ export const SportsNav = ({
 
   // Virtuals button item TSPO-904, to be deleted when Kambi fixes KSD-246938
   React.useEffect(() => {
-    if (data?.sportsNavigation.length && market) {
+    if (
+      data?.sportsNavigation.length &&
+      dataLive?.sportsNavigation.length &&
+      market
+    ) {
       const virtualsMarkets = [
         "ca_en",
         "in_en",
@@ -134,6 +144,7 @@ export const SportsNav = ({
             order: i,
           },
         })),
+        sportsNavigationLive: dataLive.sportsNavigation,
       };
 
       setNavData(
@@ -146,7 +157,7 @@ export const SportsNav = ({
           : orderedData
       );
     }
-  }, [data, market]);
+  }, [data, dataLive, market]);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -154,16 +165,21 @@ export const SportsNav = ({
     return null;
   }
 
-  if (error) {
+  if (error || errorLive) {
     return <ErrorMessage direction="horizontal" />;
   }
 
   const clickRetryRefetchNavigation = () => {
     setRefetchCount(refetchCount + 1);
     refetch();
+    refetchLive();
   };
 
-  if (data && !data.sportsNavigation.length) {
+  if (
+    data &&
+    !data.sportsNavigation.length &&
+    !dataLive.sportsNavigation.length
+  ) {
     return (
       <ErrorMessage
         direction="horizontal"
