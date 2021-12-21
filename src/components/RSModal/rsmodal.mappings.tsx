@@ -13,6 +13,7 @@ import { PaymentUsePiqIframeModal } from "Components/Payments";
 import { ContentHtmlModal } from "Components/ContentHtml";
 import { ArticleModal } from "Components/ArticlesList/ArticleModal";
 import { InGameOnboardingModalContainer } from "Components/RSModal/InGameOnboarding";
+import { ExcludedGameModalContainer } from "Components/RSModal/ExcludedGame";
 import { JackpotTermsAndConditionsModal } from "Components/JackpotDetailPage/JackpotTermsAndConditionsModal";
 import {
   MandatoryMessageModal,
@@ -164,6 +165,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.JACKPOT_INGAME_ONBOARDING]: {
     slug: "",
     Content: InGameOnboardingModalContainer,
+  },
+  [REACT_APP_MODAL.ID.EXCLUDED_GAME]: {
+    slug: "",
+    Content: ExcludedGameModalContainer,
   },
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",

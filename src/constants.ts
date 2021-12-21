@@ -110,6 +110,7 @@ export const ROUTE_IDS = {
   GAMES: "GAMES",
   GAMES_SEARCH: "GAMES_SEARCH",
   GAME_DETAILS: "GAME_DETAILS",
+  GAME_EXCLUDED: "GAME_EXCLUDED",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
   GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
   LIVE_CASINO: "LIVE_CASINO",
@@ -163,6 +164,7 @@ export const ROUTES = {
   [ROUTE_IDS.PROMOTION_DETAILS]: "{{promotions}}/:slug",
   [ROUTE_IDS.JACKPOTS_DETAILS]: "jackpots/:slug",
   [ROUTE_IDS.JACKPOT_EXPLAINER]: "jackpot-explainer/:slug",
+  [ROUTE_IDS.GAME_EXCLUDED]: "game-excluded",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
   [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
   [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
@@ -523,6 +525,7 @@ export const REACT_APP_MODAL = {
     REEL_RACES_TAC: "REEL_RACES_TAC",
     ARTICLE_MODAL: "ARTICLE_MODAL",
     JACKPOT_INGAME_ONBOARDING: "JACKPOT_INGAME_ONBOARDING",
+    EXCLUDED_GAME: "EXCLUDED_GAME",
     ACCOUNT_WARM_UP: "ACCOUNT_WARM_UP",
   },
 } as const;
@@ -562,6 +565,8 @@ export const JURISDICTIONS = {
   GRA: "GRA",
 } as const;
 export type TJurisdiction = ValueOf<typeof JURISDICTIONS>;
+
+export const DEFAULT_EXCLUDED_GAME_ERROR_CODE = 601;
 
 export const POLL_INTERVAL = {
   GAMES_LIST: 1800000, //30min

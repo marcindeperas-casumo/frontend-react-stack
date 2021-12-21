@@ -1,12 +1,17 @@
 import { useRef, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import logger from "Services/logger";
 import {
   getGameLaunchParameters,
   getGameProviderName,
 } from "Api/api.gameLaunch";
+import { showModal } from "Models/modal";
 import { getGameModel } from "GameProviders";
-import { ENVIRONMENTS } from "Src/constants";
+import {
+  ENVIRONMENTS,
+  REACT_APP_MODAL,
+  DEFAULT_EXCLUDED_GAME_ERROR_CODE,
+} from "Src/constants";
 import { isTestEnv, getPlatform } from "Utils";
 import { useUrlPrefix } from "Utils/hooks";
 import { languageSelector } from "Models/handshake";
@@ -30,6 +35,7 @@ export const useGameLaunchData = ({
   const language = useSelector(languageSelector);
   const urlPrefix = useUrlPrefix();
   const platform = getPlatform();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!remoteGameLaunchData) {
@@ -44,7 +50,15 @@ export const useGameLaunchData = ({
             playForFun,
             platform,
           });
-
+          if (
+            responseData &&
+            responseData.providedSession.parameters &&
+            responseData.providedSession.parameters.errorCode ===
+              DEFAULT_EXCLUDED_GAME_ERROR_CODE
+          ) {
+            dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, {}));
+            return;
+          }
           setGameProviderModel(
             getGameModel(
               responseData.providedSession.parameters,
@@ -72,6 +86,7 @@ export const useGameLaunchData = ({
     slug,
     platform,
     urlPrefix,
+    dispatch,
   ]);
 
   const determineWhichGameProviderModel = () => {
