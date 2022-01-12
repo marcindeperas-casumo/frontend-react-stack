@@ -9,6 +9,7 @@ type Props = {
   labelOn?: string;
   labelOff?: string;
   checked?: boolean;
+  disabled?: boolean;
   translate?: boolean;
   onChange: (active: boolean) => void;
 };
@@ -17,15 +18,23 @@ type InnerToggleProps = {
   labelOn?: string;
   labelOff?: string;
   checked?: boolean;
+  disabled?: boolean;
 };
 
-const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
+const ToggleInner = ({
+  labelOn,
+  labelOff,
+  checked,
+  disabled,
+}: InnerToggleProps) => (
   <div
     className={cx(
       "c-toggle o-position--relative t-border--md u-font-weight-bold u-cursor--pointer t-border-r--pill u-overflow--hidden",
       {
-        "bg-purple-60 text-white t-border-purple-60": checked,
-        "bg-white text-grey-5 border-grey-5": !checked,
+        "bg-purple-60 text-white t-border-purple-60": !disabled && checked,
+        "bg-white text-grey-5 border-grey-5": !disabled && !checked,
+        "bg-grey-5 text-white t-border-grey-5": disabled,
+        "pointer-events-none": disabled,
       }
     )}
   >
@@ -54,13 +63,18 @@ const ToggleInner = ({ labelOn, labelOff, checked }: InnerToggleProps) => (
   </div>
 );
 
-export function Toggle({ checked, translate, ...props }: Props) {
+export function Toggle({ checked, disabled, translate, ...props }: Props) {
   const t = useTranslations<{ on: string; off: string }>("toggle");
   const labelOn = translate ? t?.on : props.labelOn;
   const labelOff = translate ? t?.off : props.labelOff;
 
   const current = (
-    <ToggleInner labelOn={labelOn} labelOff={labelOff} checked={checked} />
+    <ToggleInner
+      labelOn={labelOn}
+      labelOff={labelOff}
+      checked={checked}
+      disabled={disabled}
+    />
   );
 
   return (

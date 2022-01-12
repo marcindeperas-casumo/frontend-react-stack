@@ -31,6 +31,7 @@ import {
   LazyExcludedGamePage,
   LazyJackpotsNav,
   LazyCampaignTerms,
+  LazyPlayOkayGameTypeExclusions,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -119,6 +120,9 @@ export const Router = () => {
         />
         <LazyReelRacesPage path={translateRoute(ROUTE_IDS.REEL_RACES)} />
         <LazyCampaignTerms path={translateRoute(ROUTE_IDS.CAMPAIGN_TERMS)} />
+        <LazyPlayOkayGameTypeExclusions
+          path={translateRoute(ROUTE_IDS.PLAYER_PLAY_OKAY_SETTINGS)}
+        />
       </ReachRouter>
     </>
   );

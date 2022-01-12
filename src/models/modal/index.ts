@@ -35,7 +35,8 @@ export type ModalId =
   | "ACCOUNT_WARM_UP"
   | "ARTICLE_MODAL"
   | "JACKPOT_INGAME_ONBOARDING"
-  | "EXCLUDED_GAME";
+  | "EXCLUDED_GAME"
+  | "PLAY_OKAY_GAME_TYPE_EXCLUSION";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

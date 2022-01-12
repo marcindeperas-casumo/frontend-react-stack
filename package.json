@@ -220,7 +220,7 @@
     "stylelint-prettier": "^1.1.1",
     "stylelint-scss": "^3.8.0",
     "stylelint-selector-pattern": "^0.0.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "terser-webpack-plugin": "^4.2.3",
     "ts-jest": "^26.5.2",
     "ts-migrate": "^0.1.15",

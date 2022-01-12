@@ -19,6 +19,7 @@ import {
   MandatoryMessageModal,
   modalMappings as mandatoryMessageModalMappings,
 } from "Components/Compliance/MandatoryMessages";
+import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -173,6 +174,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.ACCOUNT_WARM_UP]: {
     slug: "",
     Content: AccountWarmUp,
+  },
+  [REACT_APP_MODAL.ID.PLAY_OKAY_GAME_TYPE_EXCLUSION]: {
+    slug: "",
+    Content: GameTypeExclusionsCardModal,
   },
   ...mandatoryMessageModalMappings,
 };

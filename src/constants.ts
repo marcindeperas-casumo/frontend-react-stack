@@ -527,6 +527,7 @@ export const REACT_APP_MODAL = {
     JACKPOT_INGAME_ONBOARDING: "JACKPOT_INGAME_ONBOARDING",
     EXCLUDED_GAME: "EXCLUDED_GAME",
     ACCOUNT_WARM_UP: "ACCOUNT_WARM_UP",
+    PLAY_OKAY_GAME_TYPE_EXCLUSION: "PLAY_OKAY_GAME_TYPE_EXCLUSION",
   },
 } as const;
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

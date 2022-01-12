@@ -19,6 +19,14 @@ stories.add("Default", () => {
           <Toggle checked={checked1} onChange={value => setChecked1(value)} />
           <p>I am {checked1 ? "checked" : "unchecked"}</p>
 
+          <h2>Disabled:</h2>
+          <Toggle
+            checked={checked1}
+            disabled
+            onChange={value => setChecked1(value)}
+          />
+          <p>I am {checked1 ? "checked" : "unchecked"}</p>
+
           <h2>Short labels: </h2>
           <Toggle
             labelOn="ON"

@@ -10,7 +10,7 @@
   "compilerOptions": {
     "noEmit": true,
     "incremental": true,
-    "target": "es6",
+    "target": "es2016",
     "module": "commonjs",
     "allowJs": true,
     "checkJs": true,

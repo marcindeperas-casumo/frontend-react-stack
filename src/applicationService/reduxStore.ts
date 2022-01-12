@@ -1,12 +1,25 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { MiddlewareAPI, isRejected, Middleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
+import logger from "Services/logger";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
 import { mandatoryMessagesApi } from "Models/mandatoryMessages";
-import { playOkayApi } from "Models/playOkay";
+import { playOkayApi, gameTypeExclusionsApi } from "Models/playOkay";
 import * as storage from "Lib/storage";
 import { STORE_REHYDRATE, STORE_PERSISTED_STATE_KEY } from "Src/constants";
+
+const rtkQueryErrorLoggerMiddleware: Middleware = (
+  api: MiddlewareAPI
+) => next => action => {
+  // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
+  if (isRejected(action)) {
+    logger.error(action.error);
+  }
+
+  return next(action);
+};
 
 export const createReduxStore = (preloadedState: {}) => {
   const composeEnhancers = __DEV__
@@ -16,8 +29,10 @@ export const createReduxStore = (preloadedState: {}) => {
   const middlewares = [
     thunk,
     sagaMiddleware,
+    rtkQueryErrorLoggerMiddleware,
     mandatoryMessagesApi.middleware,
     playOkayApi.middleware,
+    gameTypeExclusionsApi.middleware,
   ];
   // @ts-ignore
   const middlewareEnhancer = applyMiddleware(...middlewares);

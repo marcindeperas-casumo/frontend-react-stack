@@ -18,7 +18,7 @@ import { gameBrowserReducer as gameBrowser } from "./gameBrowser";
 import { reelRacesReducer as reelRaces } from "./reelRaces";
 import { sportsEventsReducer as sportsEvents } from "./sportsEvents/sportsEvents.reducer";
 import { mandatoryMessagesApi } from "./mandatoryMessages";
-import { playOkayApi } from "./playOkay";
+import { playOkayApi, gameTypeExclusionsApi } from "./playOkay";
 
 const rootReducer = combineReducers({
   router,
@@ -41,6 +41,7 @@ const rootReducer = combineReducers({
   sportsEvents,
   [mandatoryMessagesApi.reducerPath]: mandatoryMessagesApi.reducer,
   [playOkayApi.reducerPath]: playOkayApi.reducer,
+  [gameTypeExclusionsApi.reducerPath]: gameTypeExclusionsApi.reducer,
 });
 
 export default rootReducer;
