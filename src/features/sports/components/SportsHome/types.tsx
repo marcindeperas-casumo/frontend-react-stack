@@ -71,6 +71,25 @@ export type SportsHomeType = {
   locale: string;
 };
 
+export type PromoCardsType = {
+  promoCards: PromoCardType[];
+};
+
+export type PromoCardType = {
+  id: number;
+  type: string;
+  url: string;
+  enabled: boolean;
+  requiresUserLogin: boolean;
+  startDate: string;
+  endDate: string;
+  desktopBgUrl: string;
+  mobileBgUrl: string;
+  title: string;
+  description: string;
+  fragment: string;
+};
+
 // Kambi Offering Api Types
 export interface KambiBetOffer {
   id: number;
@@ -170,6 +189,9 @@ export interface SportsHomeConfigurationTranslations {
   desktop_live: SportsHomeTranslationsDesktop;
   tablet_live: SportsHomeTranslationsTablet;
   starting_within_days_live: string;
+  order_no_promo: string;
+  status_promo: string;
+  title_promo: string;
 }
 
 export interface SportsHomeTranslationsMobile {
@@ -187,6 +209,7 @@ export interface SportsHomeTranslationsTablet {
 export interface SportsHomePopularBetsConfigurations {
   PopularEventsWidgetConfigurations: PopularEventsWidgetConfigurations;
   PopularLiveEventsWidgetConfigurations: PopularEventsWidgetConfigurations;
+  PromoCardsWidgetConfigurations: PromoCardsWidgetConfigurations;
 }
 
 // every widget should extend this interface
@@ -207,7 +230,23 @@ export interface PopularEventsWidgetConfigurations extends SportsHomeWidget {
 export interface PopularLiveEventsWidgetConfigurations
   extends PopularEventsWidgetConfigurations {}
 
+export interface PromoCardsWidgetConfigurations extends SportsHomeWidget {}
 export interface WidgetComponent {
   component: any;
   orderNo: number;
+}
+
+export interface PromoCardsData {
+  id: number;
+  Url: string;
+  Type: string;
+  Title: string;
+  StartDate: string;
+  EndDate: string;
+  RequiresUserLogin: boolean;
+  DesktopBgUrl: string;
+  MobileBgUrl: string;
+  Fragment: string;
+  Enabled: boolean;
+  Description: string;
 }

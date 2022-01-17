@@ -23,3 +23,30 @@ export const SPORTS_POPULAR_BETS_QUERY = gql`
     }
   }
 `;
+
+export const SPORTS_PROMO_CARDS_QUERY = gql`
+  query PromoCardsData($locale: String!) {
+    promoCards(locale: $locale) {
+      data {
+        id
+        attributes {
+          locale
+          PromoCards {
+            id
+            Type
+            Url
+            Enabled
+            RequiresUserLogin
+            StartDate
+            EndDate
+            DesktopBgUrl
+            MobileBgUrl
+            Title
+            Description
+            Fragment
+          }
+        }
+      }
+    }
+  }
+`;

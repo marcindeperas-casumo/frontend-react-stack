@@ -3822,6 +3822,17 @@
     "@casumo/cmp-skeleton" "^1.2.7"
     "@casumo/cmp-text" "^2.0.8"
 
+"@casumo/sports-promo@^1.0.1":
+  version "1.0.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-promo/1.0.1/053d5cd18002d50b5b0424669a8cb453e054e44863f0252dddd7bf63205ee02b#4150853d85184c7cc72ac2943cee98e56ff368d0"
+  integrity sha512-yTWW5Ux6vJu2aDGiNvr0u0n/wRJmBXzY+vF+01aGo5vupmccPH9QTGgjPaO8tQ/rORgNyct3SM1+dJUFI/5/oA==
+  dependencies:
+    "@casumo/cmp-flex" "^4.1.1"
+    "@casumo/cmp-text" "^2.0.8"
+    "@casumo/is-mobile" "^1.1.0"
+    "@types/luxon" "^2.0.5"
+    luxon "^2.0.2"
+
 "@casumo/sports-search@^3.0.1":
   version "3.0.1"
   resolved "https://npm.pkg.github.com/download/@casumo/sports-search/3.0.1/810dd9beb7a411f59a0968bfe2b24cdbcc68e28cc67daabeee9fcd21417fd917#2f69b336c79122d92e2350348262b3d7aab231a8"

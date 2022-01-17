@@ -3,13 +3,9 @@ export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  {
-    [SubKey in K]?: Maybe<T[SubKey]>;
-  };
+  { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  {
-    [SubKey in K]: Maybe<T[SubKey]>;
-  };
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
   ID: string;
@@ -73,6 +69,7 @@ export interface Query {
   liveCasinoTablesById?: Maybe<LiveCasinoTable>;
   mustDropJackpots: Array<MustDropJackpot>;
   player: Player;
+  promoCards?: Maybe<PromoCardsData>;
   promotionsList?: Maybe<PromotionsList>;
   reelRaces: Array<ReelRace>;
   /** Search for events matching a given query, non english lang will search english results too" */
@@ -204,6 +201,10 @@ export interface QueryGroupsArgs {
 
 export interface QueryLiveCasinoTablesByIdArgs {
   id: Scalars["String"];
+}
+
+export interface QueryPromoCardsArgs {
+  locale?: Maybe<Scalars["String"]>;
 }
 
 export interface QueryPromotionsListArgs {
@@ -1401,6 +1402,35 @@ export interface ComplexNotification {
 export interface Notifications {
   gameLaunch: Scalars["String"];
   optIn: ComplexNotification;
+}
+
+export interface PromoCardsData {
+  data: PromoCards;
+}
+
+export interface PromoCards {
+  id?: Maybe<Scalars["Int"]>;
+  attributes: PromoCardsAttributes;
+}
+
+export interface PromoCardsAttributes {
+  locale?: Maybe<Scalars["String"]>;
+  PromoCards: Array<Maybe<PromoCard>>;
+}
+
+export interface PromoCard {
+  id: Scalars["Int"];
+  Type: Scalars["String"];
+  Enabled: Scalars["Boolean"];
+  RequiresUserLogin: Scalars["Boolean"];
+  StartDate?: Maybe<Scalars["String"]>;
+  EndDate?: Maybe<Scalars["String"]>;
+  DesktopBgUrl?: Maybe<Scalars["String"]>;
+  MobileBgUrl?: Maybe<Scalars["String"]>;
+  Fragment?: Maybe<Scalars["String"]>;
+  Title?: Maybe<Scalars["String"]>;
+  Description?: Maybe<Scalars["String"]>;
+  Url?: Maybe<Scalars["String"]>;
 }
 
 export type CacheControlScope = "PUBLIC" | "PRIVATE";

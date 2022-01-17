@@ -19,6 +19,9 @@ import {
   KambiEventPath,
   KambiLiveEvent,
   KambiLiveEventStatistics,
+  PromoCardsData,
+  PromoCardsType,
+  PromoCardType,
   SportsHomeConfigurationTranslations,
   SportsHomeEvent,
   SportsHomeEventPath,
@@ -146,6 +149,7 @@ class SportsHomeAdapters {
     } as SportsHomeTranslations;
   }
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   convertToSportsHomePopularBetsConfiguration(
     data: SportsHomeConfigurationTranslations,
     defaultNumberOfEventsToShow: number,
@@ -188,6 +192,11 @@ class SportsHomeAdapters {
           parseInt(data?.starting_within_days_live) ||
           defaultStartingWithinDays,
       },
+      PromoCardsWidgetConfigurations: {
+        title: data?.title ?? "",
+        orderNo: parseInt(data?.order_no_promo) || 0,
+        isEnabled: data?.status_promo === "Enabled" ?? false,
+      },
     };
   }
 
@@ -201,6 +210,27 @@ class SportsHomeAdapters {
       homeStatistics: homeStatistics?.map(String),
       awayStatistics: awayStatistics?.map(String),
     } as SportsHomeLiveEventStatistics;
+  }
+
+  convertToPromoCardsType(data: PromoCardsData[]): PromoCardsType {
+    return {
+      promoCards: data.map<PromoCardType>(promoCardType => {
+        return {
+          id: promoCardType.id,
+          description: promoCardType.Description,
+          desktopBgUrl: promoCardType.DesktopBgUrl,
+          mobileBgUrl: promoCardType.MobileBgUrl,
+          enabled: promoCardType.Enabled,
+          fragment: promoCardType.Fragment,
+          requiresUserLogin: promoCardType.RequiresUserLogin,
+          title: promoCardType.Title,
+          type: promoCardType.Type,
+          url: promoCardType.Url,
+          startDate: promoCardType.StartDate,
+          endDate: promoCardType.EndDate,
+        } as PromoCardType;
+      }),
+    } as PromoCardsType;
   }
 }
 

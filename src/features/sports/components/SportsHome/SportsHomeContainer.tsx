@@ -2,7 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { last, sortBy, path } from "ramda";
 import { oddsFormatSelector } from "Models/sportsEvents";
-import { useLanguage, useLocale, useTranslations } from "Utils/hooks";
+import {
+  useLanguage,
+  useLocale,
+  useMarket,
+  useTranslations,
+} from "Utils/hooks";
+import { STRAPI_LOCALES } from "Src/constants";
 import { PopularEvents } from "./PopularEvents";
 import {
   SportsHomeConfigurationTranslations,
@@ -19,6 +25,7 @@ import {
   DEFAULT_STARTING_WITHIN_DAYS,
 } from "./SportsHome.constants";
 import { PopularLiveEvents } from "./PopularLiveEvents";
+import { PromoCards } from "./PromoCards";
 
 export const SportsHomeContainer = () => {
   const t = useTranslations<SportsHomeTranslationsDictionary>(
@@ -39,6 +46,7 @@ export const SportsHomeContainer = () => {
 
   const language = useLanguage();
   const locale = useLocale();
+  const market = useMarket();
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
   // configurations for the popular events widget
@@ -105,6 +113,25 @@ export const SportsHomeContainer = () => {
     );
   };
 
+  // configurations for promo cards
+  const isPromoCardsWidgetEnabled = Boolean(
+    JSON.parse(localStorage.getItem("showPromoCardsWidget"))
+  );
+
+  const promoCardsWidgetConfigurations =
+    sportsHomeConfigurations.PromoCardsWidgetConfigurations;
+
+  const renderPromoCardsWidget = () => {
+    if (
+      !promoCardsWidgetConfigurations.isEnabled ||
+      !isPromoCardsWidgetEnabled
+    ) {
+      return null;
+    }
+
+    return <PromoCards locale={STRAPI_LOCALES[market]} />;
+  };
+
   const widgets: WidgetComponent[] = [
     {
       component: renderPopularEventsWidget,
@@ -113,6 +140,10 @@ export const SportsHomeContainer = () => {
     {
       component: renderPopularLiveEventsWidget,
       orderNo: popularLiveEventsWidgetConfigurations.orderNo,
+    },
+    {
+      component: renderPromoCardsWidget,
+      orderNo: promoCardsWidgetConfigurations.orderNo,
     },
   ];
 

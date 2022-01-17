@@ -321,6 +321,24 @@ export const URL_PREFIXES = {
   [MARKETS.at_de]: "at",
   [MARKETS.ie_en]: "ie",
 } as const;
+
+export const STRAPI_LOCALES = {
+  [MARKETS.___en]: "en-GB",
+  [MARKETS.ca_en]: "en-CA",
+  [MARKETS.de_de]: "en-GB",
+  [MARKETS.dk_da]: "en-GB",
+  [MARKETS.fi_fi]: "fi",
+  [MARKETS.gb_en]: "en-GB",
+  [MARKETS.in_en]: "en-IE",
+  [MARKETS.no_no]: "nn-NO",
+  [MARKETS.se_sv]: "sv",
+  [MARKETS.es_es]: "es-ES",
+  [MARKETS.nz_en]: "en-GB",
+  [MARKETS.jp_ja]: "ja",
+  [MARKETS.at_de]: "de-AT",
+  [MARKETS.ie_en]: "en-IE",
+} as const;
+
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £
