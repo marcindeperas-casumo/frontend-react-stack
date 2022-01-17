@@ -23,7 +23,7 @@ import { AllValuableTypes, ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 import Cashback from "./Icons/cashback.svg";
-import { ClaimSymbol, LockSymbol } from "./icons";
+import { ClaimSymbol } from "./icons";
 
 type Props = {
   /** Valuable type of the valuable */
@@ -105,7 +105,6 @@ export const ValuableCoin = ({
     valuableBadgeName,
     valuableType
   );
-  const isLocked = valuableBadgeName.includes("lock");
 
   return (
     <div
@@ -139,7 +138,6 @@ export const ValuableCoin = ({
               getCoinTextClassModifier(valuableType, awardType)
             )}
           >
-            {(isLocked || lockIcon === "lock") && <LockSymbol />}
             {lockIcon === "claim" && <ClaimSymbol />}
             <ValuableSymbol
               awardType={awardType}
