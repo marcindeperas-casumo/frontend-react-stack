@@ -46,7 +46,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
     {
       variables: {
         id: `blueribbon-${props.jackpot_slug}`,
-        numberOfGames: 50,
+        numberOfGames: 30,
       },
     }
   );
