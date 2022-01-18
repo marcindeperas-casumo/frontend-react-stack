@@ -571,8 +571,8 @@ export const FEATURE_FLAGS = {
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 } as const;
 
-export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
-export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
+export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 50;
+export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 50;
 
 export const JURISDICTIONS = {
   DGA: "DGA",
