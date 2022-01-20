@@ -4,7 +4,7 @@ import {
   DefaultCuratedCard,
   TopListCuratedCard,
 } from "Components/CuratedCard/Variants";
-import { ContentHtml } from "Components/ContentHtml";
+import { ContentHtmlContainer } from "Components/ContentHtml/ContentHtmlContainer";
 import { Jackpots } from "Components/Jackpots";
 import { MustDropJackpotsListContainer } from "Components/MustDropJackpotsList";
 import { GameListHorizontalCMS } from "Components/GameListHorizontal/GameListHorizontalCMS";
@@ -34,7 +34,7 @@ import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
 import { ArticlesListContainer } from "Components/ArticlesList";
 
 export const COMPONENT_MAPPING = {
-  HTML_CONTENT: ContentHtml,
+  HTML_CONTENT: ContentHtmlContainer,
   GAMES_LIST: GameListHorizontalCMS,
   GAMES_LIST_HORIZONTAL: GameListHorizontalCMS,
   GAMES_LIST_VERTICAL: GameListVertical,

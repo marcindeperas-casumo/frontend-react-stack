@@ -1,3 +1,4 @@
+// @ts-nocheck
 {
   "exclude": [
     "**/build/**/*",
@@ -8,6 +9,7 @@
     "**/node_modules/**/*"
   ],
   "compilerOptions": {
+    /*"lib": ["ES2021.String"], ToDo to enable for supporting ES2021 String functions once we bump up TS version */
     "noEmit": true,
     "incremental": true,
     "target": "es2016",

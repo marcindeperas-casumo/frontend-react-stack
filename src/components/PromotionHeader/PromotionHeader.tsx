@@ -3,7 +3,7 @@ import cx from "classnames";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
-import { ContentHtml } from "Components/ContentHtml";
+import { ContentHtmlContainer } from "Components/ContentHtml/ContentHtmlContainer";
 
 type TProps = {
   /** Promotion name */
@@ -82,7 +82,7 @@ const PromotionHeader: React.FC<TProps> = ({
           <PromotionTitleText title={title} dates={dates} />
         </div>
       )}
-      {summary && <ContentHtml html={summary}></ContentHtml>}
+      {summary && <ContentHtmlContainer html={summary} />}
     </div>
   );
 };

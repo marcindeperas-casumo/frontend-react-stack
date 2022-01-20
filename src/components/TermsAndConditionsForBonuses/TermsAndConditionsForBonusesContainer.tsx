@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { ContentHtml } from "Components/ContentHtml";
+import { ContentHtmlContainer } from "Components/ContentHtml/ContentHtmlContainer";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
 import { useTranslations } from "Utils/hooks";
 import {
@@ -45,7 +45,7 @@ export function TermsAndConditionsForBonusesContainer() {
 
   return (
     <>
-      <ContentHtml
+      <ContentHtmlContainer
         expandable
         html={content}
         className="u-font-xs bg-white u-padding--lg t-border-r--md text-grey-50"
