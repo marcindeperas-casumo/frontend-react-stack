@@ -88,6 +88,7 @@ export type PromoCardType = {
   title: string;
   description: string;
   fragment: string;
+  onClick(url: string, type: string): void;
 };
 
 // Kambi Offering Api Types

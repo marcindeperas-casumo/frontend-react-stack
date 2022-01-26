@@ -3822,12 +3822,14 @@
     "@casumo/cmp-skeleton" "^1.2.7"
     "@casumo/cmp-text" "^2.0.8"
 
-"@casumo/sports-promo@^1.0.1":
-  version "1.0.1"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-promo/1.0.1/053d5cd18002d50b5b0424669a8cb453e054e44863f0252dddd7bf63205ee02b#4150853d85184c7cc72ac2943cee98e56ff368d0"
-  integrity sha512-yTWW5Ux6vJu2aDGiNvr0u0n/wRJmBXzY+vF+01aGo5vupmccPH9QTGgjPaO8tQ/rORgNyct3SM1+dJUFI/5/oA==
+"@casumo/sports-promo@^1.0.2":
+  version "1.0.2"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-promo/1.0.2/ee40942037c1c11361887d6436d00bc83d5c7d0fba8ee087c215b76b3cb43437#9914210d2cd7807a27c6798de1928ef5c715d2cc"
+  integrity sha512-T+Piex8t7m8IB7KgNaqLskROLfW6xAfxRqpEiedIxOY5YtrQfO6tfKwsSDs71r4jHWkEwlYzYUXEQ6ZDCi4DZg==
   dependencies:
     "@casumo/cmp-flex" "^4.1.1"
+    "@casumo/cmp-icons" "^5.1.2"
+    "@casumo/cmp-scrollable-paginated" "^1.1.4"
     "@casumo/cmp-text" "^2.0.8"
     "@casumo/is-mobile" "^1.1.0"
     "@types/luxon" "^2.0.5"

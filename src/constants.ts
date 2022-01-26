@@ -329,7 +329,7 @@ export const STRAPI_LOCALES = {
   [MARKETS.dk_da]: "en-GB",
   [MARKETS.fi_fi]: "fi",
   [MARKETS.gb_en]: "en-GB",
-  [MARKETS.in_en]: "en-IE",
+  [MARKETS.in_en]: "en-IN",
   [MARKETS.no_no]: "nn-NO",
   [MARKETS.se_sv]: "sv",
   [MARKETS.es_es]: "es-ES",

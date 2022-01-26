@@ -212,7 +212,10 @@ class SportsHomeAdapters {
     } as SportsHomeLiveEventStatistics;
   }
 
-  convertToPromoCardsType(data: PromoCardsData[]): PromoCardsType {
+  convertToPromoCardsType(
+    data: PromoCardsData[],
+    onClick: (url: string, type: string) => void
+  ): PromoCardsType {
     return {
       promoCards: data.map<PromoCardType>(promoCardType => {
         return {
@@ -228,6 +231,7 @@ class SportsHomeAdapters {
           url: promoCardType.Url,
           startDate: promoCardType.StartDate,
           endDate: promoCardType.EndDate,
+          onClick: onClick,
         } as PromoCardType;
       }),
     } as PromoCardsType;
