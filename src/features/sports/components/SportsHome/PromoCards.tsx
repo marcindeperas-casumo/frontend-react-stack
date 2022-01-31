@@ -10,7 +10,7 @@ import SportsHomeAdapters from "./SportsHome.adapters";
 import {
   PROMOCARDS_TYPE_DEEP_LINK,
   PROMOCARDS_TYPE_DIRECT_LINK,
-  PROMOCARDS_TYPE_EXTERNAL_LINK,
+  PROMOCARDS_TYPE_LINK,
   PROMOCARDS_TYPE_NEXTOFF,
 } from "./SportsHome.constants";
 
@@ -26,7 +26,7 @@ const onClick = async (url: string, type: string) => {
     wapi.navigateClient(url);
   }
 
-  if (type === PROMOCARDS_TYPE_EXTERNAL_LINK) {
+  if (type === PROMOCARDS_TYPE_LINK) {
     navigate(url);
   }
 };
