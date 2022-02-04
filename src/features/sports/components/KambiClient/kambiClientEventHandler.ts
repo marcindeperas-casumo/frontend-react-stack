@@ -106,10 +106,19 @@ export function kambiClientEventHandler(
   event: any,
   sportsFirstBet: boolean,
   callback?: any,
-  market?: string
+  market?: string,
+  showSelfExcludedModal?: (any) => void
 ) {
   if (event.name !== "dataLayerPushed" || !event.data || !event.data.kambi) {
     return;
+  }
+
+  if (
+    event.data.event === KAMBI_EVENTS.BET_DENIED &&
+    event.data.kambi?.hit?.bet &&
+    event.data.kambi.hit.bet["denied reason"] === "account blocked"
+  ) {
+    showSelfExcludedModal({});
   }
 
   if (

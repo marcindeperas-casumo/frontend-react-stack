@@ -13,6 +13,8 @@ import { showTerms } from "Services/ShowTermsService";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import "./KambiClient.scss";
 import { oddsFormatChangeAction } from "Models/sportsEvents";
+import { showModal } from "Models/modal";
+import { REACT_APP_MODAL } from "Src/constants";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 import {
   kambiClientEventHandler,
@@ -38,6 +40,7 @@ type OwnProps = {
   sessionKeepAlive?: () => Promise<ExecutionResult<A.SessionTouchMutation>>;
   onLoginCompleted?: () => void;
   onOddsFormatChangeAction: (data: any) => void;
+  showSelfExcludedModal: (data: any) => void;
 };
 type State = {
   sportsFirstBet: boolean;
@@ -120,14 +123,21 @@ export class KambiClient extends React.Component<Props, State> {
       this.state.sportsFirstBet;
 
     if (isFirstBet) {
-      kambiClientEventHandler(event, true, () => {}, this.props.market);
+      kambiClientEventHandler(
+        event,
+        true,
+        () => {},
+        this.props.market,
+        this.props.showSelfExcludedModal
+      );
       this.setState({ sportsFirstBet: false });
     } else {
       kambiClientEventHandler(
         event,
         false,
         this.props.onOddsFormatChangeAction,
-        this.props.market
+        this.props.market,
+        this.props.showSelfExcludedModal
       );
     }
 
@@ -224,6 +234,8 @@ export class KambiClient extends React.Component<Props, State> {
 
 const mapDispatchToProps = (dispatch): any => ({
   onOddsFormatChangeAction: data => dispatch(oddsFormatChangeAction(data)),
+  showSelfExcludedModal: (config: any = {}) =>
+    dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, config)),
 });
 
 export default connect(null, mapDispatchToProps)(KambiClient);

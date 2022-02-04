@@ -78,6 +78,7 @@ export function LaunchableKambiClient() {
         sessionKeepAlive={mutateSessionTouch}
         onLoginCompleted={onLoginCompleted}
         onOddsFormatChangeAction={undefined}
+        showSelfExcludedModal={undefined}
       />
       {!firstLoadCompleted && <KambiClientSkeleton />}
     </>
