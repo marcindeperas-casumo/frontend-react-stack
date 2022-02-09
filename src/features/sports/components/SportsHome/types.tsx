@@ -88,6 +88,9 @@ export type PromoCardType = {
   title: string;
   description: string;
   fragment: string;
+  nextOffEventStartDate: string;
+  nextOffEventName: string;
+  locale: string;
   onClick(url: string, type: string): void;
 };
 
@@ -250,4 +253,31 @@ export interface PromoCardsData {
   Fragment: string;
   Enabled: boolean;
   Description: string;
+}
+
+export interface KambiLandingEventResponse {
+  id: number;
+  name: string;
+  englishName: string;
+  start: string;
+  originalStartTime: string;
+  sport: string;
+  state: string;
+}
+
+export interface KambiLandingEventsListResponse {
+  event: KambiLandingEventResponse;
+}
+
+export interface KambiLandingEventCategoriesListResponse {
+  name: string;
+  events: KambiLandingEventsListResponse[];
+}
+
+export interface KambiLandingEventsResponse {
+  result: KambiLandingEventCategoriesListResponse[];
+}
+
+export interface KambiLandingEventsServerResponse {
+  data: KambiLandingEventsResponse;
 }

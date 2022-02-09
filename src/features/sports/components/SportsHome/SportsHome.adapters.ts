@@ -17,6 +17,7 @@ import {
   KambiBetOfferOutcome,
   KambiEvent,
   KambiEventPath,
+  KambiLandingEventResponse,
   KambiLiveEvent,
   KambiLiveEventStatistics,
   PromoCardsData,
@@ -214,6 +215,8 @@ class SportsHomeAdapters {
 
   convertToPromoCardsType(
     data: PromoCardsData[],
+    locale,
+    nextOffData: KambiLandingEventResponse,
     onClick: (url: string, type: string) => void
   ): PromoCardsType {
     return {
@@ -231,6 +234,9 @@ class SportsHomeAdapters {
           url: promoCardType.Url,
           startDate: promoCardType.StartDate,
           endDate: promoCardType.EndDate,
+          nextOffEventName: nextOffData?.name,
+          nextOffEventStartDate: nextOffData?.start,
+          locale: locale,
           onClick: onClick,
         } as PromoCardType;
       }),

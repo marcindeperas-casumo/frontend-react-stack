@@ -5,6 +5,8 @@ import {
   KambiEventServerResponse,
   KambiLiveEventServerResponse,
   KambiLiveEventResponse,
+  KambiLandingEventsServerResponse,
+  KambiLandingEventsResponse,
 } from "./types";
 
 class SportsHomeService {
@@ -26,6 +28,16 @@ class SportsHomeService {
   ): Promise<KambiLiveEventServerResponse> {
     return await axios.get<KambiLiveEventResponse>(
       `${config.kambiOfferingApi}${kambiOffering}/event/livedata/${eventIds}?lang=${kambiLocale}`
+    );
+  }
+
+  async getNextOffEvent(
+    kambiOffering: string,
+    kambiMarket: string,
+    kambiLocale: string
+  ): Promise<KambiLandingEventsServerResponse> {
+    return await axios.get<KambiLandingEventsResponse>(
+      `${config.kambiOfferingApi}${kambiOffering}/betoffer/landing?lang=${kambiLocale}&market=${kambiMarket}&includeParticipants=false`
     );
   }
 }

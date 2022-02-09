@@ -129,7 +129,13 @@ export const SportsHomeContainer = () => {
       return null;
     }
 
-    return <PromoCards locale={STRAPI_LOCALES[market]} />;
+    return (
+      <PromoCards
+        locale={STRAPI_LOCALES[market]}
+        market={last(locale.split("-"))}
+        language={language}
+      />
+    );
   };
 
   const widgets: WidgetComponent[] = [

@@ -29,3 +29,5 @@ export const PROMOCARDS_TYPE_DEEP_LINK = "DEEPLINK";
 export const PROMOCARDS_TYPE_DIRECT_LINK = "DIRECTLINK";
 export const PROMOCARDS_TYPE_LINK = "LINK";
 export const PROMOCARDS_TYPE_NEXTOFF = "NEXTOFF";
+export const KAMBI_NEXTOFF_EVENT_NAME = "nextoff";
+export const KAMBI_NEXTOFF_EVENT_URL = "racing/horse_racing/next-off";
