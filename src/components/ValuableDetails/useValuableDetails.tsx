@@ -1,76 +1,41 @@
-import React, { useState } from "react";
-import { pick } from "ramda";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import type { FetchResult } from "@apollo/client";
+import { ValuableCardDetailsThumbnail } from "Components/ValuableDetails/ValuableCardDetailsThumbnail";
+import { showModal } from "Models/modal";
 import * as A from "Types/apollo";
-import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { ValuableCard } from "Components/ValuableCard";
 import type { ValuableThumbnailTranslations as Translations } from "Models/valuables";
 
 export const useValuableDetails = (
   translations: Translations,
-  onConsumeValuable: (s: string) => Promise<void>
+  onConsumeValuable: (s: string) => Promise<FetchResult<A.UseValuableMutation>>
 ) => {
-  const [selectedValuable, setSelectedValuable] = useState(null);
-  const closeModal = () => {
-    setSelectedValuable(null);
-  };
+  const dispatch = useDispatch();
+  const [
+    selectedValuable,
+    setSelectedValuable,
+  ] = useState<A.PlayerValuableList_PlayerValuableFragment | null>(null);
 
-  const showValuableDetails = (
-    valuable: A.PlayerValuableList_PlayerValuableFragment
-  ) => {
-    const valuableDetails = pick(
-      [
-        "__typename",
-        "id",
-        "awardType",
-        "backgroundImage",
-        "content",
-        "caveat",
-        "currency",
-        "market",
-        "expiryDate",
-        "specificTerms",
-        "valuableType",
-        "valuableState",
-        "wageringThreshold",
-        "leftToWager",
-        "requirementType",
-        "termsLink",
-        "excludedGames",
-        "title",
-        "rule",
-        "itemImage",
-      ],
-      valuable
-    );
-    setSelectedValuable(valuableDetails);
-  };
+  useEffect(() => {
+    if (selectedValuable) {
+      dispatch(
+        showModal(
+          "VALUABLE_DETAILS",
+          { isWide: true },
+          {
+            translations,
+            onConsumeValuable: onConsumeValuable,
+            valuableDetails: selectedValuable,
+            valuableItem: ValuableCardDetailsThumbnail(
+              translations,
+              selectedValuable
+            ),
+            onCloseModal: () => setSelectedValuable(null),
+          }
+        )
+      );
+    }
+  }, [dispatch, onConsumeValuable, selectedValuable, translations]);
 
-  if (!selectedValuable) {
-    return {
-      detailsComponent: null,
-      showValuableDetails: showValuableDetails,
-    };
-  }
-
-  return {
-    showValuableDetails,
-    detailsComponent: (
-      <ValuableDetailsWithModal
-        isOpen={Boolean(selectedValuable)}
-        onClose={closeModal}
-        onConsumeValuable={onConsumeValuable}
-        valuableDetails={selectedValuable}
-      >
-        <div className="c-valuable-details__valuable-card o-position--relative">
-          <ValuableCard
-            translations={translations}
-            {...selectedValuable}
-            valuableBadgeName={selectedValuable?.rule?.name}
-            caveat={null}
-            className="t-elevation--10"
-          />
-        </div>
-      </ValuableDetailsWithModal>
-    ),
-  };
+  return setSelectedValuable;
 };

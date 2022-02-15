@@ -1,0 +1,3 @@
+mutation RefreshPlayerDepositValuables {
+  refreshPlayerDepositValuables
+}

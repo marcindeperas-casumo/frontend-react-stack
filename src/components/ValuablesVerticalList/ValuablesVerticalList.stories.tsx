@@ -19,6 +19,7 @@ stories.add("Default", () => {
         valuables={valuables}
         // @ts-expect-error ts-migrate(2322) FIXME: Type '() => void' is not assignable to type '(s: s... Remove this comment to see the full error message
         onConsumeValuable={onConsume}
+        // @ts-expect-error
         translations={translationsMock}
       />
     </MockStore>

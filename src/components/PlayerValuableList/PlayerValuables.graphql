@@ -1,4 +1,4 @@
-query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String)  {
+query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String, $className: String)  {
   listTitleLabel: getText(
     id: "root:mobile.valuables:fields.your_valuables"
   )
@@ -26,8 +26,11 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String) 
   dontUseValuableLabel: getText(
     id: "root:mobile.deposit:fields.dont_use_valuable_label"
   )
+  bonusTermsLabel: getText(
+    id: "root:mobile.deposit:fields.bonus_terms_apply_label"
+  )
   player {
-    valuables (valuableType: $valuableType, badgeRuleName: $badgeRuleName) {
+    valuables (valuableType: $valuableType, badgeRuleName: $badgeRuleName, className: $className) {
       __typename
       id
       valuableState

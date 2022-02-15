@@ -9,8 +9,9 @@ import { subscribeToItemCreatedEvent } from "./utils";
 export function usePlayerValuableList({
   valuableType,
   badgeRuleName,
+  className,
 }: ValuableListParameters = {}) {
-  const variables = { valuableType, badgeRuleName };
+  const variables = { valuableType, badgeRuleName, className };
   const { data, loading, refetch } = useQuery<
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables

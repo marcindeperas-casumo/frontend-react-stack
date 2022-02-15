@@ -15,7 +15,6 @@ import { ValuableDetailsWithModal } from "./ValuableDetailsWithModal";
 import { mockValuable as mockData } from "./__mocks__/Valuables.mock";
 
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
-const mockPromise = (id: string) => new Promise<void>(resolve => resolve());
 
 stories.add("Default", () => {
   const valuableType =
@@ -28,13 +27,13 @@ stories.add("Default", () => {
   return (
     <div style={{ width: "420px" }}>
       <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableDetails
           valuableDetails={{
             ...valuableDetailsMock,
             expiryDate,
           }}
           translations={translations}
-          onConsumeValuable={mockPromise}
         >
           <div style={{ width: "160px" }}>
             {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
@@ -55,10 +54,10 @@ stories.add("Default - With modal", () => {
 
   return (
     <MockStore state={defaultState}>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
       <ValuableDetailsWithModal
         isOpen={true}
         onClose={() => {}}
-        onConsumeValuable={mockPromise}
         valuableDetails={valuableDetailsMock}
       >
         <div style={{ width: "160px" }}>
@@ -80,10 +79,10 @@ stories.add("Deposit - Locked", () => {
   return (
     <div style={{ width: "420px" }}>
       <MockStore state={defaultState}>
+        {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
         <ValuableDetails
           valuableDetails={valuableDetailsMock}
           translations={translations}
-          onConsumeValuable={mockPromise}
         >
           <div style={{ width: "160px" }}>
             {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}

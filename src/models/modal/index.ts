@@ -36,7 +36,8 @@ export type ModalId =
   | "ARTICLE_MODAL"
   | "JACKPOT_INGAME_ONBOARDING"
   | "EXCLUDED_GAME"
-  | "PLAY_OKAY_GAME_TYPE_EXCLUSION";
+  | "PLAY_OKAY_GAME_TYPE_EXCLUSION"
+  | "VALUABLE_DETAILS";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button
@@ -53,12 +54,18 @@ export type ModalConfig = {
 type ModalState = {
   modalId: ModalId | null;
   config: ModalConfig;
+  additionalProps?: any;
 };
 
-export function showModal(modalId: ModalId, config?: ModalConfig) {
+export function showModal(
+  modalId: ModalId,
+  config?: ModalConfig,
+  additionalProps?: any
+) {
   return {
     type: type.show,
     modalId,
+    additionalProps,
     config,
   };
 }
@@ -73,6 +80,7 @@ function useSelectMandatoryMessageModal(): ModalState {
   if (isLoading) {
     return {
       modalId: null,
+      additionalProps: null,
       config: null,
     };
   }
@@ -85,6 +93,7 @@ function useSelectMandatoryMessageModal(): ModalState {
   const messageModalId = `mandatory-messages.${firstMandatoryMessage.reason.toLowerCase()}` as ModalId;
 
   return {
+    ...DEFAULT_STATE,
     modalId: messageModalId,
     config: {
       mustAccept: true,
@@ -133,6 +142,7 @@ type Actions = ReturnType<typeof showModal> | ReturnType<typeof hideModal>;
 const DEFAULT_STATE = {
   modalId: null,
   config: {},
+  additionalProps: {},
 };
 export function modalReducer(
   state: ModalState = DEFAULT_STATE,
@@ -143,11 +153,13 @@ export function modalReducer(
     case "MODAL/SHOW":
       return {
         modalId: action.modalId,
+        additionalProps: action.additionalProps || {},
         config: action.config,
       };
     case "MODAL/HIDE":
       return {
         modalId: null,
+        additionalProps: {},
         config: {},
       };
     default:

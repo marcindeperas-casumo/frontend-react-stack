@@ -38,5 +38,5 @@ stories.add("Default", () => {
 });
 
 stories.add("Valuable Row - Shell", () => {
-  return <ValuableRowShell text="Don't use bonus" />;
+  return <ValuableRowShell onClick={action("click")} text="Don't use bonus" />;
 });

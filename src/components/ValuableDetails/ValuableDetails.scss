@@ -26,6 +26,11 @@ $shadow-width: 130px;
     width: 100px;
   }
 
+  &__close-button {
+    right: 0px;
+    top: 0px;
+  }
+
   &-modal {
     width: 666px;
 

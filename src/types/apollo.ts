@@ -278,6 +278,7 @@ export interface Mutation {
   openBetslip?: Maybe<Scalars["Boolean"]>;
   openModal?: Maybe<Scalars["Boolean"]>;
   optInForReelRace?: Maybe<ReelRace>;
+  refreshPlayerDepositValuables?: Maybe<Scalars["Boolean"]>;
   removeGameFromMyList?: Maybe<Game>;
   /** Pings the current session to keep it alive, requires the session cookie to be present in the headers */
   sessionTouch?: Maybe<Scalars["Boolean"]>;
@@ -431,6 +432,8 @@ export type Vertical =
   | "SPORTS"
   /** The player registered as a casino player (selected the casino welcome offer) */
   | "CASINO";
+
+export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export interface Game {
   id: Scalars["String"];
@@ -693,6 +696,7 @@ export interface Player {
 export interface PlayerValuablesArgs {
   valuableType?: Maybe<ValuableType>;
   badgeRuleName?: Maybe<Scalars["String"]>;
+  className?: Maybe<Scalars["String"]>;
 }
 
 export interface Brand {
@@ -1433,8 +1437,6 @@ export interface PromoCard {
   Url?: Maybe<Scalars["String"]>;
 }
 
-export type CacheControlScope = "PUBLIC" | "PRIVATE";
-
 export type Modal =
   | "SEARCH"
   | "BETTING_GLOSSARY"
@@ -1836,9 +1838,18 @@ export type MustDropJackpotsQuery = {
   mustDropJackpots: Array<MustDropJackpotsWidget_MustDropJackpotFragment>;
 };
 
+export type RefreshPlayerDepositValuablesMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type RefreshPlayerDepositValuablesMutation = {
+  refreshPlayerDepositValuables?: Maybe<boolean>;
+};
+
 export type PlayerValuablesQueryVariables = Exact<{
   valuableType?: Maybe<ValuableType>;
   badgeRuleName?: Maybe<Scalars["String"]>;
+  className?: Maybe<Scalars["String"]>;
 }>;
 
 export type PlayerValuablesQuery = {
@@ -1851,6 +1862,7 @@ export type PlayerValuablesQuery = {
   seeAllLabel: string;
   noValuablesLabel: string;
   dontUseValuableLabel: string;
+  bonusTermsLabel: string;
   player: {
     valuables: Array<
       | {
@@ -3334,6 +3346,37 @@ export type PopularBetsQuery = {
         }>
       >
     >;
+  }>;
+};
+
+export type PromoCardsDataQueryVariables = Exact<{
+  locale: Scalars["String"];
+}>;
+
+export type PromoCardsDataQuery = {
+  promoCards?: Maybe<{
+    data: {
+      id?: Maybe<number>;
+      attributes: {
+        locale?: Maybe<string>;
+        PromoCards: Array<
+          Maybe<{
+            id: number;
+            Type: string;
+            Url?: Maybe<string>;
+            Enabled: boolean;
+            RequiresUserLogin: boolean;
+            StartDate?: Maybe<string>;
+            EndDate?: Maybe<string>;
+            DesktopBgUrl?: Maybe<string>;
+            MobileBgUrl?: Maybe<string>;
+            Title?: Maybe<string>;
+            Description?: Maybe<string>;
+            Fragment?: Maybe<string>;
+          }>
+        >;
+      };
+    };
   }>;
 };
 

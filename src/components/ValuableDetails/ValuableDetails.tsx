@@ -6,6 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { FetchResult } from "@apollo/client";
 import { EVENTS } from "Src/constants";
 import TrackClick from "Components/TrackClick";
 import * as A from "Types/apollo";
@@ -47,7 +48,9 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: A.ValuableDetails_PlayerValuableFragment;
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: (id: string) => Promise<void>;
+  onConsumeValuable: (
+    id: string
+  ) => Promise<FetchResult<A.UseValuableMutation>>;
   translations: Translations;
   playerId?: string;
   children: React.ReactChild;
@@ -72,11 +75,11 @@ const expirationBadgeInfo = (valuableDetails): BadgeInfoType | null => {
   const expiresWithin24Hours = hours < 24;
   const expiresInLessThanAnHour = hours < 1;
 
-  if (expiresWithin24Hours) {
-    if (expiresInLessThanAnHour) {
-      return { key: "minutes", value: minutes };
-    }
+  if (expiresWithin24Hours && expiresInLessThanAnHour) {
+    return { key: "minutes", value: minutes };
+  }
 
+  if (expiresWithin24Hours && !expiresInLessThanAnHour) {
     return { key: "hours", value: hours };
   }
 
@@ -367,27 +370,25 @@ export const ValuableDetails = ({
           </Flex.Item>
           <Flex.Item className="u-width--full">
             {termsAndConditionsTitleItems.map((title, i) => (
-              <>
+              <React.Fragment key={`terms-title-${i}`}>
                 {title && (
                   <Text
                     size="xs"
-                    key={i}
                     className="text-blue-60 u-margin-y--sm u-text-decoration-underline u-text-align-left"
                     onClick={() => scrollToElement(i)}
                   >
                     {title}
                   </Text>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </Flex.Item>
 
           <Flex.Item className="u-width--full u-overflow-x--hidden">
             {termsAndConditionsContentItems.map((item, i) => (
-              <>
+              <React.Fragment key={`terms-${i}`}>
                 {item && (
                   <div
-                    key={i}
                     // eslint-disable-next-line fp/no-mutation
                     ref={el => (scrollableItemsRef.current[i] = el)}
                   >
@@ -400,7 +401,7 @@ export const ValuableDetails = ({
                     </Text>
                   </div>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </Flex.Item>
         </Flex>

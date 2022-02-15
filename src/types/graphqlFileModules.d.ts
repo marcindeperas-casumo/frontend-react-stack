@@ -229,6 +229,14 @@ declare module "*/MustDropJackpotsWidgetContainer.graphql" {
   export default defaultDocument;
 }
 
+declare module "*/PlayerDepositValuables.graphql" {
+  import { DocumentNode } from "graphql";
+  const defaultDocument: DocumentNode;
+  export const RefreshPlayerDepositValuables: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module "*/PlayerValuables.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
@@ -572,6 +580,7 @@ declare module "*/SportsHomeQueries.ts" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const PopularBets: DocumentNode;
+  export const PromoCardsData: DocumentNode;
 
   export default defaultDocument;
 }

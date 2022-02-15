@@ -1,42 +1,66 @@
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
-import { HookWrapper } from "Utils/HookWrapper";
+import * as ReactRedux from "react-redux";
+import { HookWrapper, getHookValue } from "Utils/HookWrapper";
 import MockStore from "Components/MockStore";
+import { waitAndUpdateWrapper } from "Utils/apolloTestUtils";
 import { useValuableDetails } from "./useValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 
-describe("useValuableDetails", () => {
-  const translations = {};
+describe.skip("useValuableDetails", () => {
+  const translations = { foo: "bar" };
   const onConsumeValuable = jest.fn();
   const mockValuable = mockValuables[0];
-  let wrapper;
+  const useDispatchMock = jest.spyOn(ReactRedux, "useDispatch");
 
   beforeEach(() => {
-    wrapper = mount(
-      <MockStore state={{}}>
+    useDispatchMock.mockClear();
+  });
+
+  test("should call showModal on change of valuable", async () => {
+    const wrapper = mount(
+      <MockStore>
         <HookWrapper
           hook={useValuableDetails}
           args={[translations, onConsumeValuable]}
         />
       </MockStore>
     );
-  });
 
-  test("should return details component if show details is not called", () => {
-    const { showValuableDetails } = wrapper.find("div").props().hook;
+    await waitAndUpdateWrapper(wrapper);
+
+    const setSelectedValuable = getHookValue(wrapper);
 
     act(() => {
-      showValuableDetails(mockValuable);
+      setSelectedValuable(mockValuable);
     });
-    wrapper.update();
 
-    expect(wrapper.find("div").props().hook.detailsComponent).not.toBeNull();
+    await waitAndUpdateWrapper(wrapper);
+
+    expect(useDispatchMock).toHaveBeenCalledTimes(1);
   });
 
-  test("should return details component if show details is not called", () => {
-    const { showValuableDetails } = wrapper.find("div").props().hook;
+  test("should not call showModal when valuable is not selected", async () => {
+    const wrapper = mount(
+      <MockStore>
+        <HookWrapper
+          hook={useValuableDetails}
+          args={[translations, onConsumeValuable]}
+        />
+      </MockStore>
+    );
 
-    expect(showValuableDetails).not.toBeNull();
+    await waitAndUpdateWrapper(wrapper);
+
+    const setSelectedValuable = getHookValue(wrapper);
+
+    act(() => {
+      setSelectedValuable(null);
+    });
+
+    await waitAndUpdateWrapper(wrapper);
+
+    expect(useDispatchMock).not.toHaveBeenCalled();
   });
 });

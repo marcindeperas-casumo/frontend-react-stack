@@ -6,8 +6,8 @@ import { getPlatform } from "Utils";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
+import { useValuableDetails } from "Components/ValuableDetails/useValuableDetails";
 import { usePlayerValuableList } from "./usePlayerValuableList";
 import { UseValuable } from "./PlayerValuables.graphql";
 
@@ -34,9 +34,7 @@ export function PlayerValuableListHorizontal() {
         source: getPlatform(),
       },
     });
-  const [selectedValuable, setSelectedValuable] = React.useState(null);
-  const showModal = setSelectedValuable;
-  const closeModal = () => setSelectedValuable(null);
+  const setSelectedValuable = useValuableDetails(translations, consumeValuable);
 
   if (loading || !translations) {
     return <GameListHorizontalSkeleton />;
@@ -55,7 +53,7 @@ export function PlayerValuableListHorizontal() {
           {...valuables[i]}
           valuableBadgeName={valuables[i]?.rule?.name}
           translations={translations}
-          onCardClick={() => showModal(valuables[i])}
+          onCardClick={() => setSelectedValuable(valuables[i])}
           className="t-elevation--10"
         />
       </div>
@@ -83,26 +81,6 @@ export function PlayerValuableListHorizontal() {
             itemRenderer={itemRenderer}
             padding={PADDING_PER_DEVICE}
           />
-
-          {selectedValuable && (
-            <ValuableDetailsWithModal
-              isOpen={Boolean(selectedValuable)}
-              onClose={closeModal}
-              // @ts-expect-error ts-migrate(2322) FIXME: Type '(id: string) => Promise<FetchResult<A.UseVal... Remove this comment to see the full error message
-              onConsumeValuable={consumeValuable}
-              valuableDetails={selectedValuable}
-            >
-              <div className="c-valuable-details__valuable-card o-position--relative">
-                <ValuableCard
-                  {...selectedValuable}
-                  valuableBadgeName={selectedValuable?.rule?.name}
-                  translations={translations}
-                  caveat={null}
-                  className="t-elevation--30"
-                />
-              </div>
-            </ValuableDetailsWithModal>
-          )}
         </>
       )}
     </div>
