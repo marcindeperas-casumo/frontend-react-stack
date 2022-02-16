@@ -14,6 +14,7 @@ export const OUTCOME_TYPE_OT_ONE = "OT_ONE";
 export const OUTCOME_TYPE_OT_CROSS = "OT_CROSS";
 export const OUTCOME_STATUS_OPEN = "OPEN";
 export const EVENT_STATE_STARTED = "STARTED";
+export const EVENT_STATE_FINISHED = "FINISHED";
 export const TRANSLATIONS_SPORTS_HOME_LIVE = "sports_home_live";
 export const TRANSLATIONS_SPORTS_HOME_LIVE_DEFAULT = "In Play";
 export const TRANSLATIONS_SPORTS_HOME_DRAW = "sports_home_draw";

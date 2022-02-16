@@ -9,11 +9,16 @@ import {
   getKambiWidgetAPI,
 } from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
-import { KambiLandingEventResponse, PromoCardsType } from "./types";
+import {
+  KambiBetOfferOutcome,
+  KambiLandingEventResponse,
+  PromoCardsType,
+} from "./types";
 import SportsHomeAdapters from "./SportsHome.adapters";
 import {
   KAMBI_NEXTOFF_EVENT_NAME,
   KAMBI_NEXTOFF_EVENT_URL,
+  OUTCOME_STATUS_OPEN,
   PROMOCARDS_TYPE_DEEP_LINK,
   PROMOCARDS_TYPE_DIRECT_LINK,
   PROMOCARDS_TYPE_LINK,
@@ -90,7 +95,108 @@ export const PromoCards = ({
     setNextOffEventData,
   ] = React.useState<KambiLandingEventResponse>();
 
+  const extractPromoCardOutcomeIds = (promoCard: any): number[] => {
+    return promoCard.Fragment.length > 1
+      ? promoCard.Fragment.split("|")?.[1].split(",").map(Number)
+      : [];
+  };
+
+  const generateOutcomeIdsQueryString = (promoCards: any[]): string => {
+    const outcomeIds = promoCards.map(x =>
+      x.Fragment.length > 1 ? x.Fragment.split("|")?.[1] : ""
+    );
+
+    const uniqueOutComeIds = [...new Set(outcomeIds.join().split(","))];
+
+    return uniqueOutComeIds.join("&id=");
+  };
+
+  function flatten(a: KambiBetOfferOutcome[], b: KambiBetOfferOutcome[]) {
+    return a.concat(b);
+  }
+
   React.useEffect(() => {
+    const fetchNextOffEvents = async (promoCards: any[]): Promise<any[]> => {
+      // check for NextOff Cards
+      if (
+        promoCards.some(promoCard => promoCard.Type === PROMOCARDS_TYPE_NEXTOFF)
+      ) {
+        // fetch nextOff Data
+        const landingEvents = await SportsHomeService.getNextOffEvent(
+          kambiOffering,
+          market,
+          kambiLocale
+        );
+
+        const nextOffEvents = landingEvents?.data?.result?.filter(
+          category => category.name === KAMBI_NEXTOFF_EVENT_NAME
+        );
+
+        if (
+          nextOffEvents &&
+          nextOffEvents.length &&
+          nextOffEvents[0].events.length > 0
+        ) {
+          setNextOffEventData(nextOffEvents[0]?.events[0]?.event);
+        } else {
+          return promoCards.filter(
+            promoCard => promoCard.Type !== PROMOCARDS_TYPE_NEXTOFF
+          );
+        }
+      }
+
+      return promoCards;
+    };
+
+    const isValidDeepLinkPromoCard = (
+      deepLinkCard: any,
+      activeOutcomeIds: number[]
+    ): boolean => {
+      return extractPromoCardOutcomeIds(deepLinkCard)?.every(outcome =>
+        activeOutcomeIds.includes(outcome)
+      );
+    };
+
+    const filterDeepLinkCards = async (promoCards: any[]): Promise<any[]> => {
+      // check for DeepLink cards
+      const deepLinkCards = promoCards.filter(
+        promoCard => promoCard.Type === PROMOCARDS_TYPE_DEEP_LINK
+      );
+
+      if (deepLinkCards && deepLinkCards.length > 0) {
+        // fetch deeplink data
+        const deepLinkOutcomes = await SportsHomeService.getBetOfferForOutcomes(
+          kambiOffering,
+          market,
+          kambiLocale,
+          generateOutcomeIdsQueryString(deepLinkCards)
+        );
+
+        if (deepLinkOutcomes?.data?.betOffers) {
+          const allOutcomes = deepLinkOutcomes?.data?.betOffers
+            ?.map(x => x.outcomes)
+            .reduce(flatten, []);
+
+          const activeOutcomeIds = allOutcomes
+            .filter(x => x.status === OUTCOME_STATUS_OPEN)
+            .map(x => x.id);
+
+          // remove cards with inactive outcomes
+          if (activeOutcomeIds) {
+            // confirm all outcomes in deeplink card are active
+            return promoCards.filter(
+              promoCard =>
+                promoCard.Type !== PROMOCARDS_TYPE_DEEP_LINK ||
+                (promoCard.Type === PROMOCARDS_TYPE_DEEP_LINK &&
+                  isValidDeepLinkPromoCard(promoCard, activeOutcomeIds))
+            );
+          }
+        }
+      }
+
+      return promoCards;
+    };
+
     const fetchData = async () => {
       if (data) {
         const fetchedPromoCards =
@@ -98,7 +204,7 @@ export const PromoCards = ({
 
         if (fetchedPromoCards && Array.isArray(fetchedPromoCards)) {
           // filter promocards
-          const filteredPromoCards = fetchedPromoCards.filter(promoCard => {
+          const validPromoCards = fetchedPromoCards.filter(promoCard => {
             return (
               promoCard.Enabled &&
               (DateTime.fromISO(promoCard.StartDate) <= DateTime.local() ||
@@ -108,26 +214,15 @@ export const PromoCards = ({
             );
           });
 
-          if (
-            filteredPromoCards.some(
-              promoCard => promoCard.Type === PROMOCARDS_TYPE_NEXTOFF
-            )
-          ) {
-            //fetch nextOff Data
-            const landingEvents = await SportsHomeService.getNextOffEvent(
-              kambiOffering,
-              market,
-              kambiLocale
-            );
+          // check for next off events and fetch data
+          const nextOffFilteredPromoCards = await fetchNextOffEvents(
+            validPromoCards
+          );
 
-            const nextOffEvents = landingEvents?.data?.result?.filter(
-              category => category.name === KAMBI_NEXTOFF_EVENT_NAME
-            );
-
-            if (nextOffEvents && nextOffEvents.length > 0) {
-              setNextOffEventData(nextOffEvents[0]?.events[0]?.event);
-            }
-          }
+          // check for deeplink cards and their respective events
+          const filteredPromoCards = await filterDeepLinkCards(
+            nextOffFilteredPromoCards
+          );
 
           setPromoCardsData(
             SportsHomeAdapters.convertToPromoCardsType(

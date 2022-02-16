@@ -40,6 +40,24 @@ class SportsHomeService {
       `${config.kambiOfferingApi}${kambiOffering}/betoffer/landing?lang=${kambiLocale}&market=${kambiMarket}&includeParticipants=false`
     );
   }
+
+  getBetOfferForOutcomes(
+    kambiOffering: string,
+    kambiMarket: string,
+    kambiLocale: string,
+    outcomeIds: string
+  ): Promise<KambiEventServerResponse> {
+    return axios
+      .get<KambiOfferingResponse>(
+        `${config.kambiOfferingApi}${kambiOffering}/betoffer/outcome?lang=${kambiLocale}&market=${kambiMarket}&includeParticipants=false&id=${outcomeIds}`
+      )
+      .catch(function (error) {
+        if (error.response.status === "404") {
+          // handle the 404 (betoffer not found)
+          return null;
+        }
+      });
+  }
 }
 
 export default new SportsHomeService();
