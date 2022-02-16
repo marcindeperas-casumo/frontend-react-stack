@@ -20,7 +20,6 @@ import {
   modalMappings as mandatoryMessageModalMappings,
 } from "Components/Compliance/MandatoryMessages";
 import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
-import { ValuableDetailsModal } from "Components/ValuableDetails";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -47,13 +46,11 @@ import { PaymentResult } from "./Payments";
 import { ReelRacesTAC } from "./ReelRacesTAC";
 import { AccountWarmUp } from "./AccountWarmUp";
 
-export type ModalContentComponent<T, P = null> = {
+export type ModalContentComponent<T> = {
   /** object with translations for provided slug, null if still fetching */
   t: T | null;
   /** object that was passed with spawn action, defaults to empty object */
   config: ModalConfig;
-  /** Any other props to pass on to the modal */
-  additionalProps?: P;
   acceptModal: (result?: any) => void;
   closeModal: (result?: any) => void;
   dismissModal: (result?: any) => void;
@@ -61,7 +58,7 @@ export type ModalContentComponent<T, P = null> = {
 
 interface ModalProps {
   slug: string; // cms slug
-  Content: React.ComponentType<ModalContentComponent<Object, Object>>;
+  Content: React.ComponentType<ModalContentComponent<Object>>;
 }
 type Mapping = Record<ModalId, ModalProps>;
 
@@ -101,10 +98,6 @@ export const mappings: Mapping = {
   SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION: {
     slug: SCS_CMS_SLUGS.TIME_REMAINING_NOTIFICATION,
     Content: TimeRemainingNotification,
-  },
-  VALUABLE_DETAILS: {
-    slug: "",
-    Content: ValuableDetailsModal,
   },
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.BEFORE_PLAYING,

@@ -4,42 +4,34 @@ import React from "react";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
+import { VALUABLE_TYPES } from "Models/valuables";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
 import { launchModal } from "Services/LaunchModalService";
+import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { MODALS } from "Src/constants";
-
-import "./PlayerDepositValuables.scss";
 
 const showBonusTerms = () => {
   launchModal({ modal: MODALS.DEPOSIT.SHOW_BONUS_TERMS });
 };
 
-type TProps = {
-  onSelectDepositBonus: (badgeId: string) => void;
-  onRefreshDepositValuables?: () => void;
+const selectBonus = badgeId => {
+  depositBonusSelected({ badgeId });
 };
 
-export const PlayerDepositValuables = ({
-  onSelectDepositBonus,
-  onRefreshDepositValuables,
-}: TProps) => {
+export const PlayerDepositValuables = () => {
   const { loading, valuables, translations } = usePlayerValuableList({
-    className: "DepositBonusUsableUsedEvent",
+    valuableType: VALUABLE_TYPES.DEPOSIT,
   });
 
-  if (loading) {
-    return (
-      <div className="u-padding-y--md u-padding-x--md">
-        <GameRowSkeleton />
-      </div>
-    );
+  if (loading || !translations) {
+    return <GameRowSkeleton />;
   }
 
   return (
     <>
       <Flex
         direction="vertical"
-        className="c-player-deposit-valuables u-padding-bottom--lg u-overflow--hidden"
+        className="u-padding-bottom--lg u-overflow--hidden u-height--screen"
         spacing="none"
       >
         <Flex.Item className="u-overflow-y--auto">
@@ -47,15 +39,13 @@ export const PlayerDepositValuables = ({
           <ValuablesVerticalList
             valuables={valuables}
             translations={translations}
-            onItemClick={onSelectDepositBonus}
+            loading={loading}
+            onItemClick={selectBonus}
             isItemSelectable={true}
           />
         </Flex.Item>
         <Flex.Item>
-          <ValuableRowShell
-            onClick={onRefreshDepositValuables}
-            text={translations.dontUseValuableLabel}
-          />
+          <ValuableRowShell text={translations.dontUseValuableLabel} />
         </Flex.Item>
       </Flex>
       <div className="o-position--sticky o-inset-bottom--none u-padding-bottom--md">
@@ -65,7 +55,7 @@ export const PlayerDepositValuables = ({
           tag="h3"
           className="text-blue-60 u-text-align-center"
         >
-          {translations.bonusTermsLabel}
+          Bonus Terms and Conditions
         </Text>
       </div>
     </>

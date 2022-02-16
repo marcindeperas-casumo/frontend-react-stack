@@ -84,6 +84,8 @@ export function PlayerValuableListVertical({
           valuables={section.data}
           title={!hideTitles && section.title}
           translations={translations}
+          loading={loading}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '(id: string) => Promise<FetchResult<A.UseVal... Remove this comment to see the full error message
           onConsumeValuable={consumeValuable}
           isItemSelectable={false}
           data-test-id={section.id}

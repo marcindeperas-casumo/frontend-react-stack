@@ -13,6 +13,5 @@ export const TypeDefsMutation = gql`
     closeAllModals: Boolean
     showSearch: Boolean
     hideSearch: Boolean
-    refreshPlayerDepositValuables: Boolean
   }
 `;

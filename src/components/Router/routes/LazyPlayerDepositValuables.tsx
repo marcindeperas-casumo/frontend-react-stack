@@ -5,7 +5,7 @@ export const LazyPlayerDepositValuables = props => (
   <LazyPortal
     hostElementId="react-host-deposit-valuables"
     loader={() => import("Components/PlayerDepositValuables")}
-    namedExport="PlayerDepositValuablesSelection"
+    namedExport="PlayerDepositValuables"
     props={props}
   />
 );

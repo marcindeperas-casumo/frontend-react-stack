@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { FetchResult } from "@apollo/client";
 import * as A from "Types/apollo";
 import { useTranslationsGql } from "Utils/hooks";
 import { playerIdSelector } from "Models/handshake";
@@ -9,9 +8,7 @@ import { ValuableDetails } from "./ValuableDetails";
 type Props = {
   children: React.ReactChild;
   valuableDetails: A.ValuableDetails_PlayerValuableFragment;
-  onConsumeValuable: (
-    id: string
-  ) => Promise<FetchResult<A.UseValuableMutation>>;
+  onConsumeValuable: (id: string) => Promise<void>;
 };
 
 const getSlugOrDefault = (termsLink = "", field) => {

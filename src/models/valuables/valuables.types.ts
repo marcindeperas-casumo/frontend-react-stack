@@ -1,4 +1,3 @@
-import { FetchResult } from "@apollo/client";
 import * as React from "react";
 import * as A from "Types/apollo";
 
@@ -9,7 +8,6 @@ export type ValuableRequirementType = A.RequirementType;
 export type ValuableListParameters = {
   valuableType?: ValuableType;
   badgeRuleName?: string;
-  className?: string;
 };
 
 export type DurationTranslations = {
@@ -64,13 +62,14 @@ type ValuableListTranslations = ValuableThumbnailTranslations & {
   seeAllLabel: string;
   noValuablesLabel: string;
   dontUseValuableLabel: string;
-  bonusTermsLabel: string;
 };
 
 export type ValuableListProps = {
   className?: string;
   /** Error message to be log in case of error*/
   error?: string;
+  /** Indicates whether the data has loaded or still being retrieved */
+  loading: boolean;
   /** Text as header */
   title?: string;
   /** Refetch valuables function */
@@ -78,7 +77,7 @@ export type ValuableListProps = {
   /** The list of valuables to be displayed as cards */
   valuables: Array<A.PlayerValuableList_PlayerValuableFragment>;
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: (s: string) => Promise<FetchResult<A.UseValuableMutation>>;
+  onConsumeValuable: (s: string) => Promise<void>;
   /** The function to be called on click of a valuable row item */
   onItemClick?: (s: string) => void;
   /** Icon to be used as selector */

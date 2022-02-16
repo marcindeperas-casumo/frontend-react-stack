@@ -1,11 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
-import List from "@casumo/cmp-list";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
-import MockStore from "Components/MockStore";
+import { actWait } from "Utils/apolloTestUtils";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
-import { ValuableRow } from "Components/ValuableRow";
-import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
+import MockStore from "Components/MockStore";
+
+const SELECTED_SVG_SELECTOR = 'div[data-test="valuable-selector-svg"]';
+const VALUABLE_ROW_SELECTOR = 'div[data-test="valuable-row"]';
 
 describe("ValuablesVerticalList", () => {
   const mockedValuables = mockValuables();
@@ -15,16 +16,34 @@ describe("ValuablesVerticalList", () => {
   beforeEach(() => {
     onMoreInfo = jest.fn();
     rendered = mount(
-      <MockStore queryMocks={[...mocks.mockedValuables]}>
+      <MockStore>
         <ValuablesVerticalList
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '({ __typename: string; id: string; valuableT... Remove this comment to see the full error message
           valuables={mockedValuables}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
+          loading={false}
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message
           translations={{}}
           onMoreInfo={onMoreInfo}
         />
       </MockStore>
     );
+  });
+
+  test("should render skeleton while loading", async () => {
+    rendered = mount(
+      <MockStore>
+        {/* @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message */}
+        <ValuablesVerticalList
+          valuables={[]}
+          loading={true}
+          translations={{} as any}
+        />
+      </MockStore>
+    );
+
+    await actWait();
+
+    expect(rendered.find("svg").exists()).toBe(true);
   });
 
   test("should render a list of valuable rows", () => {
@@ -39,28 +58,13 @@ describe("ValuablesVerticalList", () => {
       },
     ];
 
-    const queryMock = [
-      {
-        ...mocks.mockedValuables[0],
-        result: {
-          data: {
-            player: {
-              __typename: "Player",
-              valuables: mockedData,
-            },
-          },
-        },
-      },
-    ];
-
     rendered = mount(
-      <MockStore queryMocks={[...queryMock]}>
+      <MockStore>
         <ValuablesVerticalList
           // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
-
           valuables={mockedData}
           loading={false}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message
           translations={{}}
           onMoreInfo={onMoreInfo}
           isItemSelectable={false}
@@ -68,9 +72,7 @@ describe("ValuablesVerticalList", () => {
       </MockStore>
     );
 
-    expect(rendered.find(List).find(ValuableRow).prop("isSelected")).toEqual(
-      false
-    );
+    expect(getSelectedSVGCount()).toEqual(0);
   });
 
   test("should pass selected to ValuableRow if valuable is active and isItemSelectable is true", () => {
@@ -81,28 +83,13 @@ describe("ValuablesVerticalList", () => {
       },
     ];
 
-    const queryMock = [
-      {
-        ...mocks.mockedValuables[0],
-        result: {
-          data: {
-            player: {
-              __typename: "Player",
-              valuables: mockedData,
-            },
-          },
-        },
-      },
-    ];
-
     rendered = mount(
-      <MockStore queryMocks={[...queryMock]}>
+      <MockStore>
         <ValuablesVerticalList
           // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
-
           valuables={mockedData}
           loading={false}
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '({ valuableState: string; __typename: string... Remove this comment to see the full error message
+          // @ts-expect-error ts-migrate(2322) FIXME: Type '{}' is not assignable to type 'ValuableListT... Remove this comment to see the full error message
           translations={{}}
           onMoreInfo={onMoreInfo}
           isItemSelectable={true}
@@ -110,10 +97,12 @@ describe("ValuablesVerticalList", () => {
       </MockStore>
     );
 
-    expect(rendered.find(List).find(ValuableRow).prop("isSelected")).toEqual(
-      true
-    );
+    expect(getSelectedSVGCount()).toEqual(1);
   });
 
-  const getValuableRows = () => rendered.find(List).find(ValuableRow);
+  const getSelectedSVGCount = () =>
+    rendered
+      .find(SELECTED_SVG_SELECTOR)
+      .filterWhere(n => n.text() === "SVGR_Mock").length;
+  const getValuableRows = () => rendered.find(VALUABLE_ROW_SELECTOR);
 });

@@ -9,7 +9,6 @@ const expectedAction = {
   config: "object goes here",
   modalId: "SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION",
   type: "MODAL/SHOW",
-  additionalProps: undefined,
 };
 describe("Models/slotControlSystem/limitAlmostConsumedNotificationSaga()", () => {
   beforeEach(() => {

@@ -42,8 +42,6 @@ export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
 export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
-export const KO_APP_EVENT_IGNORE_DEPOSIT_BONUSES =
-  "KO_APP_EVENT/ignoreDepositBonuses";
 export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
 export const KO_APP_EVENT_BETSLIP_VISIBLE = "KO_APP_EVENT/betslipVisible";
 

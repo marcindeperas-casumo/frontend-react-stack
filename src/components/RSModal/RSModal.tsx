@@ -24,7 +24,6 @@ export function Modal() {
     >
       <Content
         t={t}
-        additionalProps={state.additionalProps}
         closeModal={closeModal}
         dismissModal={dismissModal}
         acceptModal={acceptModal}

@@ -10,7 +10,7 @@ type Props = {
   /** Close button callback */
   onClose: () => void;
   valuableDetails: A.ValuableDetails_PlayerValuableFragment;
-  onConsumeValuable: (id: string) => Promise<any>;
+  onConsumeValuable: (id: string) => Promise<void>;
   children: React.ReactChild;
 };
 

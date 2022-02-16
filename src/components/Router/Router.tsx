@@ -99,9 +99,7 @@ export const Router = () => {
         <LazyPlayerValuables
           path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)}
         />
-        <LazyPlayerDepositValuables
-          path={translateRoute(ROUTE_IDS.CASH_DEPOSIT)}
-        />
+        <LazyPlayerDepositValuables path={translateRoute(ROUTE_IDS.DEPOSIT)} />
         <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
         <LazyPlayerSettingsNotifications
           path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}
