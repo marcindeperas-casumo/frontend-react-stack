@@ -77,7 +77,7 @@ const renderPopularLiveEvents = (
           locale={data.locale}
           eventClick={eventClick}
           outcomeClick={(outcomeId, selected) =>
-            outcomeClick(outcomeId, selected, market, "popular")
+            outcomeClick(outcomeId, selected, market, "live events")
           }
         />
         <div className="hover:bg-grey-20 display-none" />
