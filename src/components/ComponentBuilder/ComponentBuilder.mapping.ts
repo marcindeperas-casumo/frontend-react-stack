@@ -30,6 +30,7 @@ import {
   BlueRibbonJackpotsGameLists,
   BlueRibbonJackpotsStaticWidgetContainer,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas";
+import { PromotionalGameListsContainer } from "Components/PromotionalGameLists/GenericGameList";
 import { ComponentBuilderDeposit } from "Components/Payments/Deposit";
 import { ArticlesListContainer } from "Components/ArticlesList";
 
@@ -66,5 +67,6 @@ export const COMPONENT_MAPPING = {
   BLUE_RIBBON_XMAS: BlueRibbonChristmasContainer,
   CASUMO_BLIZZARD_JACKPOTS_WIDGET: BlueRibbonJackpotsWidgetPromotionPage,
   BLUE_RIBBON_JACKPOTS_GAME_LIST: BlueRibbonJackpotsGameLists,
+  GENERIC_PROMOTIONAL_GAME_LIST: PromotionalGameListsContainer,
   LIVE_JACKPOTS: BlueRibbonJackpotsStaticWidgetContainer,
 };

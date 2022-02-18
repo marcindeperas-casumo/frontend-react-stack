@@ -41,7 +41,7 @@ export const GameListHorizontalWithWidget = ({
       return <JackpotWidget />;
     }
 
-    if (i === 1) {
+    if (i === 1 && JackpotOnboardingWidget) {
       return <JackpotOnboardingWidget />;
     }
 
@@ -65,7 +65,9 @@ export const GameListHorizontalWithWidget = ({
   const desktopItemRenderer = ({ style, columnIndex, key }) => {
     return (
       <div key={key} style={style}>
-        {columnIndex === 1 && <JackpotOnboardingWidget />}
+        {columnIndex === 1 && JackpotOnboardingWidget && (
+          <JackpotOnboardingWidget />
+        )}
         {columnIndex === 0 ? (
           <JackpotWidget />
         ) : (
