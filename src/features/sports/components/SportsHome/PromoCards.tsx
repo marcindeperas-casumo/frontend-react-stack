@@ -194,7 +194,9 @@ export const PromoCards = ({
         }
       }
 
-      return promoCards;
+      return promoCards.filter(
+        promoCard => promoCard.Type !== PROMOCARDS_TYPE_DEEP_LINK
+      );
     };
 
     const fetchData = async () => {
