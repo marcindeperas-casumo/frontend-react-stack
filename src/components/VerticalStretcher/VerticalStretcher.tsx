@@ -16,23 +16,45 @@ export type Props = {
   quickDepositInProgress: boolean;
   fullScreenElement?: HTMLElement;
 };
-const heightWithForcedScrol = "calc(100vh + 100px)";
+const heightWithForcedScrol = "calc(100vh + 20px)";
 const screenHeight = "100vh";
+const resetTop = "0px";
+const extraMarginTop = "50px";
+
 const expandBody = () => {
-  if (document.body) {
+  if (document.body && Math.abs(window.orientation as number) === 0) {
     /* eslint-disable-next-line fp/no-mutation */
     document.body.style.height = heightWithForcedScrol;
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.top = resetTop;
+  }
+
+  // Landscape mode rules
+  if (Math.abs(window.orientation as number) === 90) {
+    /* eslint-disable-next-line fp/no-mutation */
+    document.body.style.height = screenHeight;
+    // eslint-disable-next-line fp/no-mutation
+    document.body.style.top = extraMarginTop;
+    window.scrollTo(0, 0);
   }
 };
 const shrinkBody = () => {
-  if (document.body) {
-    /* eslint-disable-next-line fp/no-mutation */
+  if (document.body && Math.abs(window.orientation as number) === 0) {
+    // eslint-disable-next-line fp/no-mutation
+    document.body.style.top = resetTop;
+  }
+
+  // Landscape mode rules
+  if (Math.abs(window.orientation as number) === 90) {
+    // eslint-disable-next-line fp/no-mutation
+    document.body.style.top = extraMarginTop;
+    // eslint-disable-next-line fp/no-mutation
     document.body.style.height = screenHeight;
   }
 };
 export const VerticalStretcher = ({
   children,
-  swipeUpPanelEnabled = true,
+  swipeUpPanelEnabled = false,
   gameProviderModel,
   quickDepositInProgress,
   fullScreenElement = document.body,
@@ -44,7 +66,10 @@ export const VerticalStretcher = ({
   const isNative = isNativeByUserAgent();
   const isMobile = isMobileByPlatform();
   const debouncedScrollToTop = debounce(() => {
-    if (!quickDepositInProgress) {
+    if (
+      !quickDepositInProgress &&
+      Math.abs(window.orientation as number) === 0
+    ) {
       window.scrollTo(0, 0);
     }
   }, 100);
@@ -61,7 +86,7 @@ export const VerticalStretcher = ({
        * browsers and rounded up height fractions
        */
       const deviceNotInFullScreenMode =
-        Math.abs(window.innerHeight - (measure?.clientHeight || 0)) > 1;
+        Math.abs(window.innerHeight - (measure?.clientHeight || 0)) > 30;
       // don't resize body when quick-deposit is displayed
       if (quickDepositInProgress) {
         return;
