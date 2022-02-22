@@ -5,7 +5,6 @@ import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { interpolateWithJSX } from "Utils";
 import type { TLoginTimeLimit } from "Models/playOkay";
-import { useBreakpointsWatch } from "Utils/hooks/useBreakpointsWatch";
 import { TimeLimitsCardDuration } from "./TimeLimitsCardDuration";
 import { ComingLimitNote } from "./ComingLimitNote";
 import { ComingRevocationNote } from "./ComingRevocationNote";
@@ -35,17 +34,12 @@ export function TimeLimitsCardMobile({
   monthlyLimit,
   onClick,
 }: Props) {
-  const { gtPhablet } = useBreakpointsWatch();
-
   return (
     <div
       className={cx(
-        "flex flex-col justify-between gap",
+        "flex flex-col justify-between gap tablet:flex-row tablet:items-end",
         "m-lg p-lg",
-        "border-2 rounded border-grey-5",
-        {
-          "tablet:flex-row tablet:items-end": gtPhablet,
-        }
+        "border-2 rounded border-grey-5"
       )}
     >
       <div className="flex flex-col items-start gap">

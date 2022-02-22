@@ -1,4 +1,4 @@
-import Flex from "@casumo/cmp-flex";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
@@ -16,38 +16,18 @@ type Props = {
 
 export function TimeLimitsFormIntro({ t, onClickCta }: Props) {
   return (
-    <Flex
-      direction="vertical"
-      spacing="md"
-      className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
-    >
-      <Flex.Item>
-        <PlayOkayIcon />
-      </Flex.Item>
-      <Flex.Item>
-        <Text size="md" className="u-font-weight-black text-purple-80">
-          {t.form_intro_header}
-        </Text>
-      </Flex.Item>
-      <Flex.Item className="u-margin-bottom--5xlg">
-        <Flex direction="horizontal" spacing="md">
-          <Flex.Item>
-            <TimeLimitIcon className="o-flex__item--no-shrink" />
-          </Flex.Item>
-          <Flex.Item>
-            <Text>{t.form_intro_copy}</Text>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item>
-        <ButtonPrimary
-          onClick={onClickCta}
-          size="md"
-          className="u-width--full u-margin-top--5xlg"
-        >
-          {t.form_intro_cta || ""}
-        </ButtonPrimary>
-      </Flex.Item>
-    </Flex>
+    <div className={cx("flex flex-col gap-md", "p-md tablet:p-lg")}>
+      <PlayOkayIcon />
+      <Text size="md" className="font-black text-purple-80">
+        {t?.form_intro_header}
+      </Text>
+      <div className="flex flex-row gap-md mb-5xlg">
+        <TimeLimitIcon className="flex-shrink-0" />
+        <Text>{t?.form_intro_copy}</Text>
+      </div>
+      <ButtonPrimary onClick={onClickCta} size="md" className="w-full mt-5xlg">
+        {t?.form_intro_cta || ""}
+      </ButtonPrimary>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import Flex from "@casumo/cmp-flex";
+import cx from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
 import type {
@@ -52,11 +52,8 @@ export function TimeLimitsForm({
   });
 
   return (
-    <Flex
-      direction="vertical"
-      align="stretch"
-      spacing="md"
-      className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
+    <div
+      className={cx("flex flex-col gap-md items-stretch", "p-md tablet:p-lg")}
     >
       <TimeLimitsFormRow
         value={hrsPerDay}
@@ -82,31 +79,29 @@ export function TimeLimitsForm({
         errorMessage={monthlyLimitErrorMessage}
         t={{ ...t, hrs_per_period: t.form_hrs_per_month }}
       />
-      <Flex.Item>
-        <ButtonPrimary
-          isLoading={isFetching}
-          isDisabled={Boolean(
-            !anyLimitChanged ||
-              dailyLimitErrorMessage ||
-              weeklyLimitErrorMessage ||
-              monthlyLimitErrorMessage
-          )}
-          className="u-width--full u-margin-top--md u-margin-top--3xlg@desktop"
-          size="md"
-          onClick={() =>
-            onClickCta({
-              hrsPerDay,
-              hrsPerDayChanged,
-              hrsPerWeek,
-              hrsPerWeekChanged,
-              hrsPerMonth,
-              hrsPerMonthChanged,
-            })
-          }
-        >
-          {t.form_cta || ""}
-        </ButtonPrimary>
-      </Flex.Item>
-    </Flex>
+      <ButtonPrimary
+        isLoading={isFetching}
+        isDisabled={Boolean(
+          !anyLimitChanged ||
+            dailyLimitErrorMessage ||
+            weeklyLimitErrorMessage ||
+            monthlyLimitErrorMessage
+        )}
+        className="w-full mt-md desktop:mt-3xlg"
+        size="md"
+        onClick={() =>
+          onClickCta({
+            hrsPerDay,
+            hrsPerDayChanged,
+            hrsPerWeek,
+            hrsPerWeekChanged,
+            hrsPerMonth,
+            hrsPerMonthChanged,
+          })
+        }
+      >
+        {t.form_cta || ""}
+      </ButtonPrimary>
+    </div>
   );
 }

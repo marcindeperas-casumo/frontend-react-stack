@@ -1,7 +1,6 @@
-import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import TextInput from "@casumo/cmp-text-input";
 import * as React from "react";
-import { TextInput } from "Components/Compliance/TextInput";
 import { textInputOnChange } from "./TimeLimitsForm.utils";
 
 type Props = {
@@ -25,33 +24,24 @@ export function TimeLimitsFormRow({
   t,
 }: Props) {
   return (
-    <Flex.Item>
-      <Flex align="center" spacing="md">
-        <Flex.Item className="u-width--1/2">
-          <TextInput
-            currencySign=""
-            type="number"
-            placeholder={t.form_placeholder_enter_amount || ""}
-            value={value}
-            min={min}
-            max={max}
-            fontClassName="u-font"
-            colorClassName="text-green-30"
-            inputClassName="u-text-align-right u-padding-bottom--sm"
-            onChange={textInputOnChange(setter)}
-          />
-        </Flex.Item>
-        <Flex.Item className="u-padding-bottom--sm">
-          <Text tag="span" className="u-text-nowrap">
-            {t.hrs_per_period}
-          </Text>
-        </Flex.Item>
-      </Flex>
-      {errorMessage && (
-        <Text size="sm" className="text-red-30">
-          {errorMessage}
-        </Text>
-      )}
-    </Flex.Item>
+    <div className="flex flex-row gap-md items-baseline">
+      <div className="w-1/2 ">
+        <TextInput
+          currencySign=""
+          type="number"
+          placeholder={t.form_placeholder_enter_amount || ""}
+          value={value ?? ""}
+          min={min}
+          max={max}
+          variant={errorMessage ? "invalid" : "valid"}
+          helperText={errorMessage}
+          inputClassName="text-right"
+          onChange={textInputOnChange(setter)}
+        />
+      </div>
+      <Text tag="span" className="whitespace-nowrap pb-sm">
+        {t.hrs_per_period}
+      </Text>
+    </div>
   );
 }

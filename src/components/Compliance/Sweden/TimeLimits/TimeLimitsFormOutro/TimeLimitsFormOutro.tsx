@@ -1,4 +1,4 @@
-import Flex from "@casumo/cmp-flex";
+import cx from "classnames";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import { CheckIcon } from "@casumo/cmp-icons";
@@ -34,34 +34,19 @@ export function TimeLimitsFormOutro({
   monthlyLimit,
 }: Props) {
   return (
-    <Flex
-      direction="vertical"
-      spacing="md"
-      align="stretch"
-      className="u-padding--md u-padding--lg@desktop u-padding--lg@tablet"
-    >
-      <Flex.Item className="u-text-align-center">
-        <CheckIcon size="lg" className="text-green-30" />
-      </Flex.Item>
-      <Flex.Item className="u-margin-bottom--5xlg">
-        <Copy
-          t={t}
-          initial={initial}
-          dailyLimit={dailyLimit}
-          weeklyLimit={weeklyLimit}
-          monthlyLimit={monthlyLimit}
-        />
-      </Flex.Item>
-      <Flex.Item>
-        <ButtonPrimary
-          onClick={onClickCta}
-          size="md"
-          className="u-width--full u-margin-top--5xlg"
-        >
-          {t.form_outro_cta || ""}
-        </ButtonPrimary>
-      </Flex.Item>
-    </Flex>
+    <div className={cx("flex flex-col gap-md", "p-md tablet:p-lg")}>
+      <CheckIcon size="lg" className="place-self-center text-green-30" />
+      <Copy
+        t={t}
+        initial={initial}
+        dailyLimit={dailyLimit}
+        weeklyLimit={weeklyLimit}
+        monthlyLimit={monthlyLimit}
+      />
+      <ButtonPrimary onClick={onClickCta} size="md" className="w-full mt-5xlg">
+        {t.form_outro_cta || ""}
+      </ButtonPrimary>
+    </div>
   );
 }
 
@@ -90,16 +75,16 @@ function Copy({
 }: CopyProps) {
   if (initial) {
     return (
-      <Text className="u-text-align-center">{t.form_outro_copy_initial}</Text>
+      <Text className="text-center mb-5xlg">{t.form_outro_copy_initial}</Text>
     );
   }
 
   return (
-    <>
+    <div className="mb-5xlg">
       <LimitCopy t={t} limit={dailyLimit} />
       <LimitCopy t={t} limit={weeklyLimit} />
       <LimitCopy t={t} limit={monthlyLimit} />
-    </>
+    </div>
   );
 }
 
@@ -126,7 +111,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
 
   if (limit.comingLimit) {
     return (
-      <Text className="u-text-align-center">
+      <Text className="text-center">
         {interpolate(t.form_outro_copy_increasing || "", {
           ...replacements,
           date: DateTime.fromMillis(limit.comingLimit.activationTime).toFormat(
@@ -139,7 +124,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
 
   if (limit.comingRevocation) {
     return (
-      <Text className="u-text-align-center">
+      <Text className="text-center">
         {interpolate(t?.form_outro_copy_revoking, {
           ...replacements,
           date: DateTime.fromMillis(
@@ -151,7 +136,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
   }
 
   return (
-    <Text className="u-text-align-center">
+    <Text className="text-center">
       {interpolate(t.form_outro_copy_decreasing || "", replacements)}
     </Text>
   );

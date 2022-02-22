@@ -20,6 +20,7 @@ import {
   modalMappings as mandatoryMessageModalMappings,
 } from "Components/Compliance/MandatoryMessages";
 import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
+import { TimeLimitsFormModal } from "../Compliance/Sweden/TimeLimits";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
@@ -29,7 +30,6 @@ import {
   PeriodicReminderNotification,
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
-import { TimeLimitsFormModalContainer } from "./TimeLimits/TimeLimitsFormModalContainer";
 import { QuitGameNotification } from "./Slots/QuitGameNotification";
 import { BonusBalanceInGameNotification } from "./Slots/BonusBalanceInGameNotification";
 import { ReelRaceLeaderboardModal } from "./Slots/ReelRaceLeaderboardModal";
@@ -113,7 +113,7 @@ export const mappings: Mapping = {
   },
   [REACT_APP_MODAL.ID.TIME_LIMITS_FORM]: {
     slug: "",
-    Content: TimeLimitsFormModalContainer,
+    Content: TimeLimitsFormModal,
   },
   [REACT_APP_MODAL.ID.WAGERING_NOTIFICATION]: {
     slug: MODAL_CMS_SLUGS.MODAL_WAGERING,

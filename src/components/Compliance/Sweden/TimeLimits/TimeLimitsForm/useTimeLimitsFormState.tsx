@@ -113,7 +113,15 @@ export function useTimeLimitsFormState({
   React.useEffect(() => {
     setMinHrsPerDay(hrsPerDay === null ? 0 : DEFAULT.minHrsPerDay);
     setMaxHrsPerDay(
-      _.min([DEFAULT.maxHrsPerDay, hrsPerWeek, hrsPerMonth].filter(Boolean))
+      _.min(
+        [
+          DEFAULT.maxHrsPerDay,
+          hrsPerWeek,
+          hrsPerMonth,
+          savedHrsPerWeek,
+          savedHrsPerMonth,
+        ].filter(Boolean)
+      )
     );
 
     setMinHrsPerWeek(
@@ -122,7 +130,9 @@ export function useTimeLimitsFormState({
         : _.max([DEFAULT.minHrsPerWeek, hrsPerDay].filter(Boolean))
     );
     setMaxHrsPerWeek(
-      _.min([DEFAULT.maxHrsPerWeek, hrsPerMonth].filter(Boolean))
+      _.min(
+        [DEFAULT.maxHrsPerWeek, hrsPerMonth, savedHrsPerMonth].filter(Boolean)
+      )
     );
 
     setMinHrsPerMonth(
@@ -130,7 +140,7 @@ export function useTimeLimitsFormState({
         ? 0
         : _.max([DEFAULT.minHrsPerMonth, hrsPerDay, hrsPerWeek].filter(Boolean))
     );
-  }, [hrsPerDay, hrsPerWeek, hrsPerMonth]);
+  }, [hrsPerDay, hrsPerWeek, hrsPerMonth, savedHrsPerWeek, savedHrsPerMonth]);
 
   return {
     hrsPerDay,
@@ -165,10 +175,10 @@ export function limitErrorMessage(
   }
 ): string {
   if (newValue < minValue) {
-    return interpolate(t.form_value_too_low || "", { minValue });
+    return interpolate(t?.form_value_too_low || "", { minValue });
   }
   if (newValue > maxValue) {
-    return interpolate(t.form_value_too_high || "", { maxValue });
+    return interpolate(t?.form_value_too_high || "", { maxValue });
   }
 
   return "";

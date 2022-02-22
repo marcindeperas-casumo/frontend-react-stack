@@ -68,25 +68,26 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
   });
 
-  test("it updates maxHrsPerDay and minHrsPerMonth when hrsPerWeek changes", () => {
+  test("it updates maxHrsPerDay and does not update minHrsPerMonth when hrsPerWeek changes but others are unset", () => {
+    const newHrsPerWeek = 19;
     const loginTimeLimits = {};
     const wrapper = prepareWrapper(
       prepareLoginTimeLimitsStateMock(loginTimeLimits)
     );
 
     act(() => {
-      findHookProp(wrapper).setHrsPerWeek(19);
+      findHookProp(wrapper).setHrsPerWeek(newHrsPerWeek);
       jest.runAllTimers();
       wrapper.update();
     });
 
     expectHook(wrapper).toMatchObject({
-      maxHrsPerDay: 19,
+      maxHrsPerDay: newHrsPerWeek,
       minHrsPerMonth: 0,
     });
   });
 
-  test("it updates maxHrsPerWeek when hrsPerMonth changes", () => {
+  test("when hrsPerMonth is lifted, maxHrsPerWeek remains the same as saved hrsPerMonth", () => {
     const daily = 1;
     const weekly = 1;
     const monthly = 1;
@@ -102,14 +103,14 @@ describe("Components/Compliance/Sweden/TimeLimits/useTimeLimitsFormState()", () 
     });
 
     expectHook(wrapper).toMatchObject({
-      maxHrsPerWeek: 17,
+      maxHrsPerWeek: monthly,
     });
   });
 
-  test("it updates maxHrsPerWeek when hrsPerMonth changes but only to the max allowed value", () => {
+  test("when hrsPerMonth is lifted, it updates maxHrsPerWeek but only to the max allowed value", () => {
     const daily = 1;
     const weekly = 1;
-    const monthly = 1;
+    const monthly = 200;
     const loginTimeLimits = { daily, weekly, monthly };
     const wrapper = prepareWrapper(
       prepareLoginTimeLimitsStateMock(loginTimeLimits)

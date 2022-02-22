@@ -10,7 +10,7 @@ export function TimeLimitsCardDuration({ duration }: Props) {
   const durationInHours = duration.shiftTo("hours");
 
   return (
-    <span className="u-font-weight-bold">
+    <span className="font-bold">
       <Duration
         preferAbbreviated
         duration={durationInHours
