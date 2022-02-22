@@ -582,6 +582,7 @@ export const JURISDICTIONS = {
   UKGC: "UKGC",
   GGL: "GGL",
   GRA: "GRA",
+  AGCO: "AGCO",
 } as const;
 export type TJurisdiction = ValueOf<typeof JURISDICTIONS>;
 

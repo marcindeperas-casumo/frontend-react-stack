@@ -38,6 +38,7 @@ describe("useJurisdiction", () => {
       isUKGC: false,
       isGGL: false,
       isGRA: false,
+      isAGCO: false,
       jurisdiction,
     });
   });
@@ -59,6 +60,7 @@ describe("useJurisdiction", () => {
       isUKGC: false,
       isGGL: false,
       isGRA: false,
+      isAGCO: false,
       jurisdiction,
     });
   });
