@@ -3,6 +3,8 @@ import { SportsPromo } from "@casumo/sports-promo";
 import * as React from "react";
 import { navigate } from "@reach/router";
 import { DateTime } from "luxon";
+import tracker from "Services/tracker";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
 import { SPORTS_PROMO_CARDS_QUERY } from "Features/sports/components/SportsHome/SportsHomeQueries";
 import {
   getKambiSupportedLanguage,
@@ -26,18 +28,32 @@ import {
 } from "./SportsHome.constants";
 import SportsHomeService from "./SportsHome.service";
 
-const onClick = async (url: string, type: string) => {
+const trackClick = (typeText: string) => {
+  tracker.track(EVENTS.MIXPANEL_SPORTS_HOME_CARD_CLICKED, {
+    [EVENT_PROPS.TYPE]: typeText,
+    [EVENT_PROPS.SPORTS_COMPONENT]: "casumo promo cards",
+  });
+};
+
+const onClick = async (
+  url: string,
+  type: string,
+  title: string = "no title for this card"
+) => {
   const wapi = await getKambiWidgetAPI();
 
   if ([PROMOCARDS_TYPE_DEEP_LINK, PROMOCARDS_TYPE_DIRECT_LINK].includes(type)) {
+    trackClick(`CoreUX Promo Card: ${type} - ${title}`);
     wapi.navigateClient(url);
   }
 
   if (type === PROMOCARDS_TYPE_NEXTOFF) {
+    trackClick("CoreUX Promo Card: Starting Within");
     wapi.navigateClient(KAMBI_NEXTOFF_EVENT_URL);
   }
 
   if (type === PROMOCARDS_TYPE_LINK) {
+    trackClick(`CoreUX Promo Card: Link - ${url}`);
     navigate(url);
   }
 };

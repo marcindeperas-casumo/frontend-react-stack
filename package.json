@@ -30,7 +30,7 @@
     "@casumo/is-mobile": "^1.1.0",
     "@casumo/sports-client": "^3.0.3",
     "@casumo/sports-home": "^1.2.18",
-    "@casumo/sports-promo": "^1.0.5",
+    "@casumo/sports-promo": "^1.1.0",
     "@casumo/sports-navigation": "^3.5.12",
     "@casumo/sports-search": "^3.0.1",
     "@reach/router": "^1.3.3",
