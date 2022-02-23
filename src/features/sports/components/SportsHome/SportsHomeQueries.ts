@@ -32,9 +32,8 @@ export const SPORTS_PROMO_CARDS_QUERY = gql`
         attributes {
           locale
           PromoCards {
-            id
             Type
-            Url
+            URL
             Enabled
             RequiresUserLogin
             StartDate

@@ -278,6 +278,7 @@ export interface Mutation {
   openBetslip?: Maybe<Scalars["Boolean"]>;
   openModal?: Maybe<Scalars["Boolean"]>;
   optInForReelRace?: Maybe<ReelRace>;
+  refreshPlayerDepositValuables?: Maybe<Scalars["Boolean"]>;
   removeGameFromMyList?: Maybe<Game>;
   /** Pings the current session to keep it alive, requires the session cookie to be present in the headers */
   sessionTouch?: Maybe<Scalars["Boolean"]>;
@@ -431,6 +432,8 @@ export type Vertical =
   | "SPORTS"
   /** The player registered as a casino player (selected the casino welcome offer) */
   | "CASINO";
+
+export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export interface Game {
   id: Scalars["String"];
@@ -693,6 +696,7 @@ export interface Player {
 export interface PlayerValuablesArgs {
   valuableType?: Maybe<ValuableType>;
   badgeRuleName?: Maybe<Scalars["String"]>;
+  className?: Maybe<Scalars["String"]>;
 }
 
 export interface Brand {
@@ -1430,10 +1434,8 @@ export interface PromoCard {
   Fragment?: Maybe<Scalars["String"]>;
   Title?: Maybe<Scalars["String"]>;
   Description?: Maybe<Scalars["String"]>;
-  Url?: Maybe<Scalars["String"]>;
+  URL?: Maybe<Scalars["String"]>;
 }
-
-export type CacheControlScope = "PUBLIC" | "PRIVATE";
 
 export type Modal =
   | "SEARCH"
@@ -3334,6 +3336,36 @@ export type PopularBetsQuery = {
         }>
       >
     >;
+  }>;
+};
+
+export type PromoCardsDataQueryVariables = Exact<{
+  locale: Scalars["String"];
+}>;
+
+export type PromoCardsDataQuery = {
+  promoCards?: Maybe<{
+    data: {
+      id?: Maybe<number>;
+      attributes: {
+        locale?: Maybe<string>;
+        PromoCards: Array<
+          Maybe<{
+            Type: string;
+            URL?: Maybe<string>;
+            Enabled: boolean;
+            RequiresUserLogin: boolean;
+            StartDate?: Maybe<string>;
+            EndDate?: Maybe<string>;
+            DesktopBgUrl?: Maybe<string>;
+            MobileBgUrl?: Maybe<string>;
+            Title?: Maybe<string>;
+            Description?: Maybe<string>;
+            Fragment?: Maybe<string>;
+          }>
+        >;
+      };
+    };
   }>;
 };
 

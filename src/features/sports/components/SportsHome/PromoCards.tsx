@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { SportsPromo } from "@casumo/sports-promo";
 import * as React from "react";
-import { navigate } from "@reach/router";
 import { DateTime } from "luxon";
 import tracker from "Services/tracker";
 import { EVENT_PROPS, EVENTS } from "Src/constants";
@@ -54,7 +53,8 @@ const onClick = async (
 
   if (type === PROMOCARDS_TYPE_LINK) {
     trackClick(`CoreUX Promo Card: Link - ${url}`);
-    navigate(url);
+    // eslint-disable-next-line fp/no-mutation
+    window.location.href = url;
   }
 };
 

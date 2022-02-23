@@ -231,7 +231,7 @@ class SportsHomeAdapters {
           requiresUserLogin: promoCardType.RequiresUserLogin,
           title: promoCardType.Title,
           type: promoCardType.Type,
-          url: promoCardType.Url,
+          url: promoCardType.URL,
           startDate: promoCardType.StartDate,
           endDate: promoCardType.EndDate,
           nextOffEventName: nextOffData?.name,

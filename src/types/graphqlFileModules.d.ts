@@ -572,6 +572,7 @@ declare module "*/SportsHomeQueries.ts" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const PopularBets: DocumentNode;
+  export const PromoCardsData: DocumentNode;
 
   export default defaultDocument;
 }

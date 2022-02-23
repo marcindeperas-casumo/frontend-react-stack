@@ -242,7 +242,7 @@ export interface WidgetComponent {
 
 export interface PromoCardsData {
   id: number;
-  Url: string;
+  URL: string;
   Type: string;
   Title: string;
   StartDate: string;
