@@ -2,7 +2,8 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
-import type { ActiveSessionType } from "Models/slotControlSystem";
+import { TLoginSessionSummary, TSlotSessionSummary } from "Models/loginSession";
+import { TCurrencyCode } from "Src/constants";
 import { SessionDetailsBody } from "./SessionDetailsBody";
 import { LoginSessionDetailsSection } from "./LoginSessionDetailsSection";
 
@@ -20,19 +21,27 @@ type Props = {
       }
     | undefined;
   onClickButton: () => void;
-  activeSession: ActiveSessionType | undefined;
+  loginSessionSummary: TLoginSessionSummary | null;
+  slotSessionSummary: TSlotSessionSummary | null;
   locale: string;
-  playEndedTime: number;
+  currency: TCurrencyCode;
 };
 
-export function SessionDetailsForLogout(props: Props) {
-  const { t, onClickButton, activeSession, locale, playEndedTime } = props;
-
+export function SessionDetailsForLogout({
+  t,
+  onClickButton,
+  slotSessionSummary,
+  loginSessionSummary,
+  locale,
+  currency,
+}: Props) {
   return (
     <Flex direction="vertical">
       <div className="u-padding--sm bg-grey-0" />
-      <LoginSessionDetailsSection />
-      {activeSession && (
+      {loginSessionSummary && (
+        <LoginSessionDetailsSection loginSessionSummary={loginSessionSummary} />
+      )}
+      {slotSessionSummary && (
         <>
           <div className="u-padding--sm u-margin-top--lg bg-grey-0" />
           <Text className="text-grey-50 u-padding--md u-padding-bottom--lg">
@@ -41,12 +50,12 @@ export function SessionDetailsForLogout(props: Props) {
           <SessionDetailsBody
             t={t}
             locale={locale}
-            currency={activeSession.stats.currency}
-            playStartedTime={activeSession.startedTime}
-            playEndedTime={playEndedTime}
-            moneyWon={activeSession.stats.totalWins}
-            moneyLeft={activeSession.stats.remainingBalance}
-            moneyWagered={activeSession.stats.totalBets}
+            currency={currency}
+            playStartedTime={slotSessionSummary.startedTime}
+            playEndedTime={slotSessionSummary.endedTime}
+            moneyWon={slotSessionSummary.totalWins}
+            moneyLeft={slotSessionSummary.remainingBalance}
+            moneyWagered={slotSessionSummary.totalBets}
           />
         </>
       )}

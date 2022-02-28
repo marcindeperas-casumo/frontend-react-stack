@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import * as React from "react";
 import MockStore from "Components/MockStore";
-import activeSessionMock from "Models/slotControlSystem/__mocks__/activeSession.mock";
+import { summaryWithSlotSession } from "Models/loginSession/__mocks__/summaryMocks";
 import { SessionDetailsForLogout } from "./SessionDetailsForLogout";
 
 const t = {
@@ -25,8 +25,17 @@ stories.add("Default", () => {
       <SessionDetailsForLogout
         t={t}
         locale="en-GB"
-        playEndedTime={activeSessionMock.startedTime + 100 * 1000}
-        activeSession={activeSessionMock}
+        currency="EUR"
+        loginSessionSummary={
+          "loginSessionSummary" in summaryWithSlotSession
+            ? summaryWithSlotSession.loginSessionSummary
+            : null
+        }
+        slotSessionSummary={
+          "slotSessionSummary" in summaryWithSlotSession
+            ? summaryWithSlotSession.slotSessionSummary
+            : null
+        }
         onClickButton={action("onClickButton")}
       />
     </MockStore>

@@ -305,6 +305,9 @@ export const INTL_LOCALES = {
   [MARKETS.at_de]: "de-AT",
   [MARKETS.ie_en]: "en-IE",
 } as const;
+
+export type TLocale = typeof INTL_LOCALES[keyof typeof INTL_LOCALES];
+
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "en-ca",
