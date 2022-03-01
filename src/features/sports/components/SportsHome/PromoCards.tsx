@@ -10,6 +10,7 @@ import {
   getKambiWidgetAPI,
 } from "Features/sports/kambi";
 import { getOffering } from "Features/sports/kambi/getKambiOffering";
+import DangerousHtml from "Components/DangerousHtml";
 import {
   KambiBetOfferOutcome,
   KambiLandingEventResponse,
@@ -58,7 +59,7 @@ const onClick = async (
   }
 };
 
-const renderPromoCards = (data: PromoCardsType) => {
+const renderPromoCards = (data: PromoCardsType, tcDisclaimer: string) => {
   if (!data) {
     return null;
   }
@@ -66,6 +67,11 @@ const renderPromoCards = (data: PromoCardsType) => {
   return (
     <div>
       <SportsPromo promoCards={data?.promoCards} />
+      {tcDisclaimer && tcDisclaimer.length > 0 && (
+        <div className="ml-md">
+          <DangerousHtml html={tcDisclaimer} />
+        </div>
+      )}
     </div>
   );
 };
@@ -74,16 +80,19 @@ export const PromoCards = ({
   locale,
   market,
   language,
+  tcDisclaimer,
 }: {
   locale: string;
   market: string;
   language: string;
+  tcDisclaimer: string;
   // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const variables = {
     locale: locale,
     market: market,
     language: language,
+    tcDisclaimer: tcDisclaimer,
   };
 
   const { error, data } = useQuery(SPORTS_PROMO_CARDS_QUERY, {
@@ -260,5 +269,5 @@ export const PromoCards = ({
     return null;
   }
 
-  return renderPromoCards(promoCardsData);
+  return renderPromoCards(promoCardsData, tcDisclaimer);
 };

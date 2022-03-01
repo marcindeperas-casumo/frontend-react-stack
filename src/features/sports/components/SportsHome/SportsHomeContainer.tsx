@@ -134,6 +134,7 @@ export const SportsHomeContainer = () => {
         locale={STRAPI_LOCALES[market]}
         market={last(locale.split("-"))}
         language={language}
+        tcDisclaimer={promoCardsWidgetConfigurations.tcDisclaimer}
       />
     );
   };
@@ -142,14 +143,17 @@ export const SportsHomeContainer = () => {
     {
       component: renderPopularEventsWidget,
       orderNo: popularEventsWidgetConfigurations.orderNo,
+      isEnabled: popularEventsWidgetConfigurations.isEnabled,
     },
     {
       component: renderPopularLiveEventsWidget,
       orderNo: popularLiveEventsWidgetConfigurations.orderNo,
+      isEnabled: popularLiveEventsWidgetConfigurations.isEnabled,
     },
     {
       component: renderPromoCardsWidget,
       orderNo: promoCardsWidgetConfigurations.orderNo,
+      isEnabled: promoCardsWidgetConfigurations.isEnabled,
     },
   ];
 
@@ -160,7 +164,7 @@ export const SportsHomeContainer = () => {
       {sortedWidgets.map((widget, key) => (
         <>
           {widget.component()}
-          {key < sortedWidgets.length - 1 ? (
+          {key < sortedWidgets.length - 1 && widget.isEnabled ? (
             <div className="u-margin-x--md u-margin-y--sm t-border-top--lg t-border-grey-5 t-border-r--sm" />
           ) : null}
         </>

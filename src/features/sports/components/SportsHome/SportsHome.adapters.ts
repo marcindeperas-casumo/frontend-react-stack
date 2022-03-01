@@ -197,6 +197,7 @@ class SportsHomeAdapters {
         title: data?.title ?? "",
         orderNo: parseInt(data?.order_no_promo) || 0,
         isEnabled: data?.status_promo === "Enabled" ?? false,
+        tcDisclaimer: data?.["tc_disclaimer_promo"] ?? "",
       },
     };
   }

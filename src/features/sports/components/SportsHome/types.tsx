@@ -196,6 +196,7 @@ export interface SportsHomeConfigurationTranslations {
   order_no_promo: string;
   status_promo: string;
   title_promo: string;
+  tc_disclaimer_promo: string;
 }
 
 export interface SportsHomeTranslationsMobile {
@@ -234,10 +235,13 @@ export interface PopularEventsWidgetConfigurations extends SportsHomeWidget {
 export interface PopularLiveEventsWidgetConfigurations
   extends PopularEventsWidgetConfigurations {}
 
-export interface PromoCardsWidgetConfigurations extends SportsHomeWidget {}
+export interface PromoCardsWidgetConfigurations extends SportsHomeWidget {
+  tcDisclaimer: string;
+}
 export interface WidgetComponent {
   component: any;
   orderNo: number;
+  isEnabled: boolean;
 }
 
 export interface PromoCardsData {
