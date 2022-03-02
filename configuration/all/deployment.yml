@@ -4,6 +4,11 @@ helmChart:
 
 replicas: 2
 
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+
 healthcheckProbe:
   path: /ping
 
