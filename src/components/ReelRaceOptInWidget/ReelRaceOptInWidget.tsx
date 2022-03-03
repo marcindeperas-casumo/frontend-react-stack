@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useInterval } from "react-use";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
@@ -26,21 +26,26 @@ type TState = {
 };
 
 export function ReelRaceOptInWidget({ reelRace }: Props) {
-  const [state, setState] = React.useState<TState>({
+  const [state, setState] = useState<TState>({
     remaining: DEFAULT_REMAINING,
     rrInProgress: false,
   });
 
-  useInterval(() => {
-    setState(curr => ({
-      rrInProgress: reelRace.startTime < Number(new Date()),
-      remaining: getRemainingTime(
-        reelRace.startTime,
-        reelRace.endTime,
-        curr.rrInProgress
-      ),
-    }));
-  }, 1000);
+  const updateOnTick = useCallback(
+    () =>
+      setState(curr => ({
+        rrInProgress: reelRace.startTime < Number(new Date()),
+        remaining: getRemainingTime(
+          reelRace.startTime,
+          reelRace.endTime,
+          curr.rrInProgress
+        ),
+      })),
+    [reelRace]
+  );
+
+  useEffect(updateOnTick, [updateOnTick]);
+  useInterval(updateOnTick, 1000);
 
   const prizesCounter = reelRace.formattedPrizes.length;
   const isPromoted = reelRace.promoted;
@@ -146,7 +151,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
 
       <Flex className="o-flex--1" justify="space-between">
         <Flex direction="vertical">
-          <div className="text-[10px] u-font-weight-bold text-white text-grey-50">
+          <div className="text-[10px] u-font-weight-bold text-white">
             {state.rrInProgress ? t.endingIn : t.startingIn}
           </div>
           <Text

@@ -30,6 +30,7 @@ import { MobileAndTablet, isDesktop } from "Components/ResponsiveLayout";
 //@lukKowalski: enable when payments are done import { QuickDepositContainer as QuickDeposit } from "../../QuickDeposit/QuickDepositContainer";
 import { SumoIcon } from "Components/SumoIcon/SumoIcon";
 import { get as getFromStorage } from "Lib/storage";
+import { useNextReelRace } from "Utils/hooks/useNextReelRaces";
 // @ts-expect-error ts-migrate(2614) FIXME: Module '"*.scss"' has no exported member 'animatio... Remove this comment to see the full error message
 // eslint-disable-next-line import/no-duplicates
 import { animation_duration } from "./ProfileIconWithDrawer.scss";
@@ -49,9 +50,12 @@ export const ProfileIconWithDrawer = ({
   const { pauseGame, resumeGame } = useGameModelContext();
   const { pinnedWidgets, togglePin } = usePinnedWidgetsContext();
   const currentRace = useCurrentReelRaceInfo();
+  const { nextRR } = useNextReelRace();
+
   useCallOnce(currentRace?.isInProgress && currentRace?.optedIn, () => {
     togglePin(DRAWERS.REEL_RACES);
   });
+
   const animationDuration = Number(animation_duration);
 
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
@@ -153,7 +157,7 @@ export const ProfileIconWithDrawer = ({
             className={`${baseClassName}__item u-padding-bottom`}
           />
 
-          {!isNativeByUserAgent() && <ReelRaceOptInWidget />}
+          {!isNativeByUserAgent() && <ReelRaceOptInWidget nextRR={nextRR} />}
         </div>
       </CSSTransition>
     </React.Fragment>
