@@ -2,11 +2,9 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logger from "Services/logger";
 import { getGameLaunchParameters } from "Api/api.gameLaunch";
-import { showModal } from "Models/modal";
 import { getGameModel } from "GameProviders";
 import {
   ENVIRONMENTS,
-  REACT_APP_MODAL,
   DEFAULT_EXCLUDED_GAME_ERROR_CODE,
   GAMEPLAY_MODES,
 } from "Src/constants";
@@ -17,7 +15,7 @@ import { languageSelector } from "Models/handshake";
 type Props = {
   slug: string;
   playForFun: boolean;
-  remoteGameLaunchData: Object | undefined;
+  remoteGameLaunchData?: Object | undefined;
 };
 
 /* eslint-disable sonarjs/cognitive-complexity */
@@ -49,7 +47,7 @@ export const useGameLaunchData = ({
             responseData &&
             responseData.code === DEFAULT_EXCLUDED_GAME_ERROR_CODE
           ) {
-            dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, {}));
+            setFailed(true);
             return;
           }
 

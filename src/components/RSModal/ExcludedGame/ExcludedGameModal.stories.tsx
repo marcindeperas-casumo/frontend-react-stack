@@ -25,6 +25,7 @@ stories.add("ExcludedGame", () => {
       t={cmsContent}
       config={{ slug: "casumo-jackpots" }}
       closeModal={() => {}}
+      onClick={() => {}}
     />
   );
 });

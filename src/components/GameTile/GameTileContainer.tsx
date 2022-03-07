@@ -1,5 +1,10 @@
 import React from "react";
-import { useTranslations, useTranslatedUrl } from "Utils/hooks";
+import { useDispatch } from "react-redux";
+import {
+  useTranslations,
+  useTranslatedUrl,
+  useGameLaunchData,
+} from "Utils/hooks";
 import * as A from "Types/apollo";
 import { ROUTE_IDS } from "Src/constants";
 import { JackpotMarkImageContainer } from "Components/JackpotMarkImage/JackpotMarkImageContainer";
@@ -16,6 +21,11 @@ export type GameTileContainerProps = {
 export const GameTileContainer = (props: GameTileContainerProps) => {
   const { slug } = props.game;
 
+  const { error } = useGameLaunchData({
+    playForFun: false,
+    slug,
+  });
+  const dispatch = useDispatch();
   const t = useTranslations<{
     play_button_text_game_tile: string;
   }>(`${CMS_SLUGS.LOBBY}.${CMS_SLUGS.GAMES_LIST}`);
@@ -31,6 +41,8 @@ export const GameTileContainer = (props: GameTileContainerProps) => {
       t={t}
       tileJackpotMark={tileJackpotMark}
       gameDetailsPath={`/${gameDetailsPath}`}
+      gameExcluded={error}
+      dispatch={dispatch}
       {...props}
     />
   );
