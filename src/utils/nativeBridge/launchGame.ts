@@ -3,10 +3,7 @@ import { getPlatform } from "Utils";
 import { useTranslatedUrl } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
 import logger from "Services/logger";
-import {
-  getGameProviderName,
-  getGameLaunchParameters,
-} from "Api/api.gameLaunch";
+import { getGameLaunchParameters } from "Api/api.gameLaunch";
 import { imageOptimizer } from "./ImageOptimizer";
 import { CHANNELS } from "./channels.constants";
 import { sendMessage } from "./sendMessage";
@@ -56,11 +53,10 @@ export async function launchGame(
   }
 
   try {
-    const { providerGameName } = await getGameProviderName(game.slug, platform);
-    const { responseData } = await getGameLaunchParameters({
-      gameName: providerGameName,
-      playForFun: isPractice,
-      platform,
+    const responseData = await getGameLaunchParameters({
+      gameSlug: game.slug,
+      playMode: isPractice ? "FUN" : "REAL",
+      device: platform,
       appVersion: window?.native?.version || "",
     });
 
@@ -70,7 +66,7 @@ export async function launchGame(
         id: game.slug,
         name: game.name,
         url: gameDetailsPath,
-        provider: responseData?.providedSession?.parameters?.providerType,
+        provider: responseData?.gameProvider?.type,
         isPractice: isPractice,
         originalUrl: gameDetailsPath,
         thumbnail: game.backgroundImage,

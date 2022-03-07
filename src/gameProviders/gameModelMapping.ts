@@ -27,7 +27,7 @@ import { SkyWindGame } from "./SkyWindGame";
 import { OssGame } from "./OssGame";
 
 export type GameProps = {
-  providerType: GameProviderType;
+  type: GameProviderType;
   url?: string;
 };
 
@@ -84,11 +84,11 @@ export const getGameModel = (
   environment: string,
   urlPrefix: string
 ): GameProviderModel => {
-  const GameModel = models[gameData.providerType] || BaseGame;
+  const GameModel = models[gameData.type] || BaseGame;
 
   // Reconstruct netent gamedata payload from QS to json
   const isNetent = () => {
-    return includes(gameData?.providerType, [
+    return includes(gameData?.type, [
       PROVIDERS.NETENT_LIVE,
       PROVIDERS.NETENT_GAME_INCLUSION,
       PROVIDERS.NETENT_FLASH,

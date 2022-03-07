@@ -590,6 +590,10 @@ export const JURISDICTIONS = {
 export type TJurisdiction = ValueOf<typeof JURISDICTIONS>;
 
 export const DEFAULT_EXCLUDED_GAME_ERROR_CODE = 601;
+export const GAMEPLAY_MODES = {
+  FUN: "FUN",
+  REAL: "REAL",
+};
 
 export const POLL_INTERVAL = {
   GAMES_LIST: 1800000, //30min

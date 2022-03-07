@@ -1,16 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logger from "Services/logger";
-import {
-  getGameLaunchParameters,
-  getGameProviderName,
-} from "Api/api.gameLaunch";
+import { getGameLaunchParameters } from "Api/api.gameLaunch";
 import { showModal } from "Models/modal";
 import { getGameModel } from "GameProviders";
 import {
   ENVIRONMENTS,
   REACT_APP_MODAL,
   DEFAULT_EXCLUDED_GAME_ERROR_CODE,
+  GAMEPLAY_MODES,
 } from "Src/constants";
 import { isTestEnv, getPlatform } from "Utils";
 import { useUrlPrefix } from "Utils/hooks";
@@ -41,32 +39,27 @@ export const useGameLaunchData = ({
     if (!remoteGameLaunchData) {
       (async () => {
         try {
-          const { providerGameName } = await getGameProviderName(
-            slug,
-            platform
-          );
-          const { responseData } = await getGameLaunchParameters({
-            gameName: providerGameName,
-            playForFun,
-            platform,
+          const responseData = await getGameLaunchParameters({
+            gameSlug: slug,
+            playMode: playForFun ? GAMEPLAY_MODES.FUN : GAMEPLAY_MODES.REAL,
+            device: platform,
+            appVersion: window?.native?.version || "",
           });
           if (
             responseData &&
-            responseData.providedSession.parameters &&
-            responseData.providedSession.parameters.errorCode ===
-              DEFAULT_EXCLUDED_GAME_ERROR_CODE
+            responseData.code === DEFAULT_EXCLUDED_GAME_ERROR_CODE
           ) {
             dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, {}));
             return;
           }
+
+          const gameProps = {
+            url: responseData.url,
+            ...responseData.gameProvider,
+          };
+
           setGameProviderModel(
-            getGameModel(
-              responseData.providedSession.parameters,
-              gameRef,
-              language,
-              environment,
-              urlPrefix
-            )
+            getGameModel(gameProps, gameRef, language, environment, urlPrefix)
           );
         } catch (e) {
           logger.error("Game launch failed", e);
