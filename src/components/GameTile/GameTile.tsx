@@ -12,10 +12,9 @@ import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Compone
 import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import { EVENTS, EVENT_PROPS, REACT_APP_MODAL } from "Src/constants";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 import "./GameTile.scss";
-import { showModal } from "Models/modal";
 
 export type GameTileTranslations = {
   play_button_text_game_tile: string;
@@ -30,8 +29,6 @@ export type Props = {
   gameDetailsPath?: string;
   tileJackpotMark?: ReactElement;
   locale?: string;
-  gameExcluded?: boolean;
-  dispatch?: Function;
 };
 
 export const DEFAULT_CLASSES =
@@ -49,16 +46,14 @@ export const GameTile = ({
   gameDetailsPath,
   tileJackpotMark = null,
   locale,
-  gameExcluded,
-  dispatch,
 }: Props) => {
   const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =
     game || {};
+
   const JackpotAmountButton = () => {
     const currency = jackpot?.value?.currency;
     const currentLocale = locale;
     const amount = jackpot?.value?.amount;
-
     if (!jackpot) {
       return null;
     }
@@ -75,13 +70,6 @@ export const GameTile = ({
     );
   };
 
-  const gameLauncher = () => {
-    if (!gameExcluded) {
-      launchGame({ slug: game.slug });
-    } else {
-      dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, {}));
-    }
-  };
   if (isInMaintenance) {
     return (
       <GameTileInMaintenance
@@ -107,7 +95,7 @@ export const GameTile = ({
           "o-position--relative",
           className
         )}
-        onClick={gameLauncher}
+        onClick={() => launchGame({ slug: game.slug })}
       >
         <GameTileImage
           logoBackground={backgroundImage}

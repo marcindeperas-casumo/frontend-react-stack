@@ -1,7 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useTranslatedUrl, useTranslations } from "Utils/hooks";
-import { hideModal } from "Models/modal";
 import { ROUTE_IDS } from "Src/constants";
 import { ModalContentComponent } from "../rsmodal.mappings";
 import { ExcludedGameModal } from "./ExcludedGameModal";
@@ -21,25 +19,14 @@ export const ExcludedGameModalContainer = ({
     "game-excluded-page.game-excluded-details-page"
   );
   const playOkayPath = useTranslatedUrl(ROUTE_IDS.PLAYER_PLAY_OKAY_SETTINGS);
-  const dispatch = useDispatch();
+
   const clickHandler = () => {
     // had to use window.location as regular router functions were not working here
     // eslint-disable-next-line fp/no-mutation
     window.location.href = `${window.location.origin}/${playOkayPath}`;
   };
 
-  const closeModal = () => {
-    dispatch(hideModal());
-  };
-
   return (
-    t && (
-      <ExcludedGameModal
-        t={t}
-        config={config}
-        onClick={clickHandler}
-        closeModal={closeModal}
-      />
-    )
+    t && <ExcludedGameModal t={t} config={config} closeModal={clickHandler} />
   );
 };
