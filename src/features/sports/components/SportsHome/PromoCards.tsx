@@ -76,6 +76,35 @@ const renderPromoCards = (data: PromoCardsType, tcDisclaimer: string) => {
   );
 };
 
+const isValidNextOffEvent = (
+  nextOffEvent: KambiLandingEventResponse,
+  locale: string
+) => {
+  return DateTime.fromISO(nextOffEvent.start)
+    .setLocale(locale)
+    .hasSame(DateTime.local(), "day");
+};
+
+const extractPromoCardOutcomeIds = (promoCard: any): number[] => {
+  return promoCard.Fragment.length > 1
+    ? promoCard.Fragment.split("|")?.[1].split(",").map(Number)
+    : [];
+};
+
+const generateOutcomeIdsQueryString = (promoCards: any[]): string => {
+  const outcomeIds = promoCards.map(x =>
+    x.Fragment.length > 1 ? x.Fragment.split("|")?.[1] : ""
+  );
+
+  const uniqueOutComeIds = [...new Set(outcomeIds.join().split(","))];
+
+  return uniqueOutComeIds.join("&id=");
+};
+
+function flatten(a: KambiBetOfferOutcome[], b: KambiBetOfferOutcome[]) {
+  return a.concat(b);
+}
+
 export const PromoCards = ({
   locale,
   market,
@@ -120,26 +149,6 @@ export const PromoCards = ({
     setNextOffEventData,
   ] = React.useState<KambiLandingEventResponse>();
 
-  const extractPromoCardOutcomeIds = (promoCard: any): number[] => {
-    return promoCard.Fragment.length > 1
-      ? promoCard.Fragment.split("|")?.[1].split(",").map(Number)
-      : [];
-  };
-
-  const generateOutcomeIdsQueryString = (promoCards: any[]): string => {
-    const outcomeIds = promoCards.map(x =>
-      x.Fragment.length > 1 ? x.Fragment.split("|")?.[1] : ""
-    );
-
-    const uniqueOutComeIds = [...new Set(outcomeIds.join().split(","))];
-
-    return uniqueOutComeIds.join("&id=");
-  };
-
-  function flatten(a: KambiBetOfferOutcome[], b: KambiBetOfferOutcome[]) {
-    return a.concat(b);
-  }
-
   React.useEffect(() => {
     const fetchNextOffEvents = async (promoCards: any[]): Promise<any[]> => {
       // check for NextOff Cards
@@ -158,9 +167,9 @@ export const PromoCards = ({
         );
 
         if (
-          nextOffEvents &&
-          nextOffEvents.length &&
-          nextOffEvents[0].events.length > 0
+          nextOffEvents?.length &&
+          nextOffEvents[0]?.events?.length > 0 &&
+          isValidNextOffEvent(nextOffEvents[0]?.events[0]?.event, locale)
         ) {
           setNextOffEventData(nextOffEvents[0]?.events[0]?.event);
         } else {
