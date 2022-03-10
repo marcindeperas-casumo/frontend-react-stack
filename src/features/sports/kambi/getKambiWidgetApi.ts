@@ -1,5 +1,6 @@
 import { once } from "ramda";
 import { injectScript } from "Utils";
+import { getKambiWidgetAPI } from "Features/sports/kambi/index";
 export type KambiWidgetApi = {
   [s: string]: any;
 };
@@ -27,5 +28,9 @@ const apiPromise = new Promise(resolve => {
 const getKambiWidgetApi = (): Promise<KambiWidgetApi> => {
   injectKambiWidgetAPI();
   return apiPromise;
+};
+export const kambiNavigate = async (hash: string) => {
+  const wapi = await getKambiWidgetAPI();
+  wapi.navigateClient(hash);
 };
 export default getKambiWidgetApi;
