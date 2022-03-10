@@ -6,11 +6,18 @@ import { getKambiSupportedLanguage } from "Features/sports/kambi";
 import { useLocale } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { SESSION_TOUCH, LAUNCH_KAMBI_MUTATION } from "Models/apollo/mutations";
+import { SESSION_TOUCH } from "Models/apollo/mutations";
 import { LAUNCHABLE_KAMBI_CLIENT_QUERY } from "Models/apollo/queries";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
+import { isMobile } from "Components/ResponsiveLayout";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
+import KambiClientService from "./KambiClient.service";
+import { LaunchableKambiClientData } from "./types";
+import {
+  KAMBI_CLIENT_DESKTOP,
+  KAMBI_CLIENT_MOBILE,
+} from "./KambiClient.constants";
 
 export function LaunchableKambiClient() {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
@@ -20,15 +27,25 @@ export function LaunchableKambiClient() {
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
-  const [mutateLaunchKambi, { loading, error, data }] = useMutation(
-    LAUNCH_KAMBI_MUTATION
-  );
   const { data: kambiData } = useQuery(LAUNCHABLE_KAMBI_CLIENT_QUERY);
   const [mutateSessionTouch] = useMutation(SESSION_TOUCH);
 
+  const [data, setKambiLaunchData] = useState<LaunchableKambiClientData>(null);
+
   useEffect(() => {
-    mutateLaunchKambi();
-  }, [mutateLaunchKambi]);
+    const fetchKambiLaunchClient = async () => {
+      const kambiLaunchClientData = await KambiClientService.getKambiClientLaunchSports(
+        isMobile() ? KAMBI_CLIENT_MOBILE : KAMBI_CLIENT_DESKTOP
+      );
+
+      if (kambiLaunchClientData?.data) {
+        setKambiLaunchData(kambiLaunchClientData.data);
+      } else {
+        return <ErrorMessage />;
+      }
+    };
+    fetchKambiLaunchClient();
+  }, []);
 
   useEffect(() => {
     if (locale) {
@@ -44,23 +61,11 @@ export function LaunchableKambiClient() {
   const isKambiClientVisible = () =>
     kambiData.kambiClientVisible && firstLoadCompleted;
 
-  if (error) {
-    return <ErrorMessage />;
-  }
-
-  if (
-    loading ||
-    !data ||
-    !data.launchKambi ||
-    !currency ||
-    !kambiLocale ||
-    !kambiMarket ||
-    !kambiData
-  ) {
+  if (!data || !currency || !kambiLocale || !kambiMarket || !kambiData) {
     return <KambiClientSkeleton />;
   }
 
-  const { clientBootstrapUrl, providerPlayerId, ticket } = data.launchKambi;
+  const { bootstrapUrl, providerPlayerId, ticket } = data;
 
   return (
     <>
@@ -69,7 +74,7 @@ export function LaunchableKambiClient() {
         currency={currency}
         market={kambiMarket.toUpperCase()}
         locale={kambiLocale}
-        bootstrapUrl={clientBootstrapUrl}
+        bootstrapUrl={bootstrapUrl}
         playerId={providerPlayerId}
         ticket={ticket}
         homeRoute={SPORTS_HOME_PAGE_PATH}

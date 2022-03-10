@@ -1,0 +1,2 @@
+export const KAMBI_CLIENT_MOBILE = "MOBILE";
+export const KAMBI_CLIENT_DESKTOP = "DESKTOP";
