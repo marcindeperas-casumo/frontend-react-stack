@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import bridge from "Src/DurandalReactBridge";
-import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import {
+  REACT_APP_EVENT_ON_LOGIN,
+  REACT_APP_EVENT_PAYMENT_METHOD_SELECTED,
+} from "Src/constants";
 import logger from "Services/logger";
 import { AppLiS } from "./AppLiS";
 import { AppLoS } from "./AppLoS";
@@ -53,6 +56,11 @@ export const App = (props: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerId, sessionId]);
+  useEffect(() => {
+    bridge.on(REACT_APP_EVENT_PAYMENT_METHOD_SELECTED, minDepositAmount =>
+      window.sessionStorage.setItem("paymentMinDepositAmount", minDepositAmount)
+    );
+  }, []);
   if (!props.isAppHandshakeLoaded) {
     return null;
   }

@@ -697,6 +697,7 @@ export interface PlayerValuablesArgs {
   valuableType?: Maybe<ValuableType>;
   badgeRuleName?: Maybe<Scalars["String"]>;
   className?: Maybe<Scalars["String"]>;
+  minDepositAmount?: Maybe<Scalars["Float"]>;
 }
 
 export interface Brand {
@@ -825,6 +826,7 @@ export interface PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -849,6 +851,7 @@ export interface PlayerValuableCash extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageredGame?: Maybe<Game>;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -878,6 +881,7 @@ export interface PlayerValuableSpins extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageredGame?: Maybe<Game>;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -905,6 +909,7 @@ export interface PlayerValuableDeposit extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringFactor?: Maybe<Scalars["Float"]>;
   wageringThreshold?: Maybe<Scalars["Float"]>;
@@ -929,6 +934,7 @@ export interface PlayerValuableSport extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -957,6 +963,7 @@ export interface PlayerValuableCashback extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -985,6 +992,7 @@ export interface PlayerValuableWageringLock extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -1011,6 +1019,7 @@ export interface PlayerValuableBundleLock extends PlayerValuable {
   termsLink: Scalars["String"];
   specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -1043,6 +1052,7 @@ export interface PlayerValuableFreeBet extends PlayerValuable {
   unlockChannelId?: Maybe<Scalars["String"]>;
   unlockBetStatus?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
   wageringThreshold?: Maybe<Scalars["Float"]>;
 }
@@ -1838,9 +1848,19 @@ export type MustDropJackpotsQuery = {
   mustDropJackpots: Array<MustDropJackpotsWidget_MustDropJackpotFragment>;
 };
 
+export type RefreshPlayerDepositValuablesMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type RefreshPlayerDepositValuablesMutation = {
+  refreshPlayerDepositValuables?: Maybe<boolean>;
+};
+
 export type PlayerValuablesQueryVariables = Exact<{
   valuableType?: Maybe<ValuableType>;
   badgeRuleName?: Maybe<Scalars["String"]>;
+  className?: Maybe<Scalars["String"]>;
+  minDepositAmount?: Maybe<Scalars["Float"]>;
 }>;
 
 export type PlayerValuablesQuery = {
@@ -1853,6 +1873,7 @@ export type PlayerValuablesQuery = {
   seeAllLabel: string;
   noValuablesLabel: string;
   dontUseValuableLabel: string;
+  bonusTermsLabel: string;
   player: {
     valuables: Array<
       | {
@@ -1860,6 +1881,7 @@ export type PlayerValuablesQuery = {
           requirementType?: Maybe<RequirementType>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1882,6 +1904,7 @@ export type PlayerValuablesQuery = {
           requirementType?: Maybe<RequirementType>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1902,6 +1925,7 @@ export type PlayerValuablesQuery = {
           __typename: "PlayerValuableDeposit";
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1921,6 +1945,7 @@ export type PlayerValuablesQuery = {
           __typename: "PlayerValuableSport";
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1943,6 +1968,7 @@ export type PlayerValuablesQuery = {
           gameCategories: Array<Maybe<string>>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1967,6 +1993,7 @@ export type PlayerValuablesQuery = {
           gameCategories: Array<Maybe<string>>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -1990,6 +2017,7 @@ export type PlayerValuablesQuery = {
           requirementType?: Maybe<RequirementType>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -2010,6 +2038,7 @@ export type PlayerValuablesQuery = {
           requirementType?: Maybe<RequirementType>;
           id: string;
           valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
           expiryDate: number;
           valuableType: ValuableType;
           title: string;
@@ -2034,6 +2063,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableCash_Fragment = {
   requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2055,6 +2085,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableSpins_Fragment = {
   requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2074,6 +2105,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableDeposit_Fragment = {
   __typename: "PlayerValuableDeposit";
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2092,6 +2124,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableSport_Fragment = {
   __typename: "PlayerValuableSport";
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2112,6 +2145,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableCashback_Fragment = {
   requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2132,6 +2166,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableWageringLock_Fragment = {
   description: string;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2152,6 +2187,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableBundleLock_Fragment = {
   requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;
@@ -2171,6 +2207,7 @@ type PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   requirementType?: Maybe<RequirementType>;
   id: string;
   valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
   expiryDate: number;
   valuableType: ValuableType;
   title: string;

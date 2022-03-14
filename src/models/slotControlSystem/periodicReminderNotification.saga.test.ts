@@ -9,6 +9,7 @@ const expectedAction = {
   config: "object goes here",
   modalId: "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION",
   type: "MODAL/SHOW",
+  additionalProps: undefined,
 };
 describe("Models/slotControlSystem/periodicReminderNotificationSaga()", () => {
   beforeEach(() => {

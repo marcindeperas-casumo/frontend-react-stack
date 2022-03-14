@@ -40,12 +40,14 @@ export function ModalHeader(props: Props) {
       ) : (
         noIcon
       )}
-      <Text
-        tag="span"
-        className="u-padding-y--lg u-font-weight-bold text-black o-flex__block u-text-align-center"
-      >
-        {props.title || <ModalTitleSkeleton />}
-      </Text>
+      {props.title && (
+        <Text
+          tag="span"
+          className="u-padding-y--lg u-font-weight-bold t-color-black o-flex__block u-text-align-center"
+        >
+          {props.title}
+        </Text>
+      )}
       {props.showCloseButton ? (
         <CloseIcon
           className="u-padding-x--lg text-black u-cursor--pointer"

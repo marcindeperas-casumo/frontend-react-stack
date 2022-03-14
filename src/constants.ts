@@ -27,6 +27,8 @@ export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 export const REACT_APP_EVENT_INIT_MANUAL_LOGOUT =
   "REACT_APP_EVENT/initManualLogout";
+export const REACT_APP_EVENT_PAYMENT_METHOD_SELECTED =
+  "REACT_APP_EVENT/paymentMethodSelected";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
@@ -42,6 +44,8 @@ export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
 export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
+export const KO_APP_EVENT_IGNORE_DEPOSIT_BONUSES =
+  "KO_APP_EVENT/ignoreDepositBonuses";
 export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
 export const KO_APP_EVENT_BETSLIP_VISIBLE = "KO_APP_EVENT/betslipVisible";
 

@@ -9,6 +9,7 @@ const expectedAction = {
   config: "object goes here",
   modalId: "SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION",
   type: "MODAL/SHOW",
+  additionalProps: undefined,
 };
 describe("Models/slotControlSystem/timeRemainingNotificationSaga()", () => {
   beforeEach(() => {

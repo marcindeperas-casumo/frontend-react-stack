@@ -3,27 +3,28 @@ import Text from "@casumo/cmp-text";
 import React from "react";
 import classNames from "classnames";
 import { ValuableRowContainer as ValuableRow } from "Components/ValuableRow";
-import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import type { ValuableListProps } from "Models/valuables";
 import { VALUABLE_STATES } from "Models/valuables";
 import { useValuableDetails } from "Components/ValuableDetails/useValuableDetails";
 
-const valuableItemRenderer = (
+const ValuableItemRenderer = (
   valuable,
   translations,
   onMoreInfo,
   onConsumeValuable,
-  onItemClick?,
+  onItemClick,
   isItemSelectable?
 ) => {
-  const itemDescription =
-    valuable.__typename === "PlayerValuableSpins"
-      ? valuable.description
-      : valuable.content;
-  const moreInfo = () => onMoreInfo(valuable);
-  const itemClick = onItemClick ? () => onItemClick(valuable.id) : moreInfo;
+  const itemDescription = valuable.content;
+
+  const onClick = onItemClick
+    ? () => onItemClick(valuable.id)
+    : () => onMoreInfo(valuable);
+
   const isSelected =
-    isItemSelectable && valuable.valuableState === VALUABLE_STATES.USED;
+    isItemSelectable &&
+    (valuable.valuableState === VALUABLE_STATES.USED ||
+      valuable.parentValuableState === VALUABLE_STATES.USED);
 
   return (
     <div className="u-padding-y--md">
@@ -32,8 +33,8 @@ const valuableItemRenderer = (
         translations={translations}
         {...valuable}
         description={itemDescription}
-        onMoreInfo={moreInfo}
-        onClick={itemClick}
+        onMoreInfo={() => onMoreInfo(valuable)}
+        onClick={onClick}
         isSelected={isSelected}
       />
     </div>
@@ -44,20 +45,15 @@ export const ValuablesVerticalList = ({
   title,
   valuables,
   translations,
-  loading,
   className,
   onConsumeValuable,
   onItemClick,
   isItemSelectable,
 }: ValuableListProps) => {
-  const { detailsComponent, showValuableDetails } = useValuableDetails(
+  const setSelectedValuable = useValuableDetails(
     translations,
     onConsumeValuable
   );
-
-  if (loading || !translations) {
-    return <GameRowSkeleton />;
-  }
 
   return (
     <div className={classNames(className, "bg-white")}>
@@ -71,10 +67,10 @@ export const ValuablesVerticalList = ({
           itemSpacing="none"
           items={valuables}
           render={valuable =>
-            valuableItemRenderer(
+            ValuableItemRenderer(
               valuable,
               translations,
-              showValuableDetails,
+              setSelectedValuable,
               onConsumeValuable,
               onItemClick,
               isItemSelectable
@@ -82,7 +78,6 @@ export const ValuablesVerticalList = ({
           }
         />
       )}
-      {detailsComponent}
     </div>
   );
 };
