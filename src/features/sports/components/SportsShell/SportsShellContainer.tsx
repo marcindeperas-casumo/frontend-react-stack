@@ -178,10 +178,10 @@ export const SportsShellContainer: React.FC<{}> = () => {
             {currentHash.startsWith(promotionPrefixHash) && (
               <PromotionDetailPage currentHash={currentHash} />
             )}
+            <KambiClient currentHash={currentHash} />
           </div>
         )}
       </SportsHashWatcher>
-      <KambiClient />
       <Modals />
       <SportsFooter />
     </>

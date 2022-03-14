@@ -3,12 +3,13 @@ import React, { useState, useEffect } from "react";
 import { last } from "ramda";
 import { useSelector } from "react-redux";
 import { getKambiSupportedLanguage } from "Features/sports/kambi";
-import { useLocale } from "Utils/hooks";
+import { useLocale, useMarket } from "Utils/hooks";
 import { currencySelector } from "Models/handshake";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { SESSION_TOUCH } from "Models/apollo/mutations";
 import { LAUNCHABLE_KAMBI_CLIENT_QUERY } from "Models/apollo/queries";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
+import { shouldWeHideClientOnHomePage } from "Features/sports/components/KambiClient/KambiClientVisibleHomePage";
 import { isMobile } from "Components/ResponsiveLayout";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
@@ -19,11 +20,16 @@ import {
   KAMBI_CLIENT_MOBILE,
 } from "./KambiClient.constants";
 
-export function LaunchableKambiClient() {
+type Props = {
+  currentHash: string;
+};
+
+export function LaunchableKambiClient({ currentHash }: Props) {
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
   const [kambiMarket, setKambiMarket] = useState("GB");
   const [kambiLocale, setKambiLocale] = useState("en_GB");
 
+  const casumoMarket = useMarket();
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
@@ -59,7 +65,9 @@ export function LaunchableKambiClient() {
     document.querySelectorAll(".scroll-y").forEach(el => (el.scrollTop = 0));
   const onLoginCompleted = () => setFirstLoadCompleted(true);
   const isKambiClientVisible = () =>
-    kambiData.kambiClientVisible && firstLoadCompleted;
+    kambiData.kambiClientVisible &&
+    firstLoadCompleted &&
+    !shouldWeHideClientOnHomePage(currentHash, casumoMarket);
 
   if (!data || !currency || !kambiLocale || !kambiMarket || !kambiData) {
     return <KambiClientSkeleton />;
