@@ -3810,10 +3810,10 @@
     luxon "^2.0.2"
     moment "^2.29.1"
 
-"@casumo/sports-navigation@^3.5.12":
-  version "3.5.12"
-  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.5.12/0df920f55cbc80ec648bbc7a39cc08fb98e4003e989e21c1c2cc344428fd4320#0942270ffde3a67b4039b47a74d277eaa31c3774"
-  integrity sha512-GGaxESRxzPgbm5Y87Tj2d6rtRqNX56NmCzKBGvOe/y7Q4RzDVbSrHVBAw/BcvCl61nW63TGtHNXUEI1Q2ugXVQ==
+"@casumo/sports-navigation@^3.6.0":
+  version "3.6.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/sports-navigation/3.6.0/f048ac302cbf29be30e7971496eca83202c7e6fbac6ff0df494450d4c805889d#75c375b156f00e2f9d3d29c5e78927ff8e18c35b"
+  integrity sha512-nknsBiWrabQ43KKeCve9rdMIAEEpt9D61c1o6vRJEWVWaenJhRIYSx/3gCVyDxQfDbOzSbX/eG+pKv/4lvN7kQ==
   dependencies:
     "@casumo/cmp-chip" "^2.0.20"
     "@casumo/cmp-flex" "^4.1.0"
