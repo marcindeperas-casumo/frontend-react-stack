@@ -11,6 +11,13 @@ jest.mock("Utils/hooks/useTranslationsGql", () => ({
   }),
 }));
 
+jest.mock("Components/GoogleTagManager", () => ({
+  useGoogleTagManager: () => ({
+    trackEvent: () => {},
+    loading: false,
+  }),
+}));
+
 const suggestions = {
   games: ["game", "suggestions"],
   location: "latestPlayedGames",

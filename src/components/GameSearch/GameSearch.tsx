@@ -17,6 +17,7 @@ import {
   GamesVirtualListTitle,
 } from "Components/GamesVirtualList";
 import { xPaddingClasses } from "Components/GameListHorizontal/constants";
+import { useGoogleTagManager } from "Components/GoogleTagManager";
 
 import "./GameSearch.scss";
 
@@ -113,6 +114,19 @@ export const GameSearch = (props: Props) => {
     inputPromptPlaceholder,
   } = props;
   const noResults = !loading && searchResultsCount === 0 && query.length > 0;
+  const gtm = useGoogleTagManager();
+
+  React.useEffect(() => {
+    if (!loading && query.length > 0) {
+      gtm.trackEvent({
+        event: "search",
+        payload: {
+          search_string: query,
+        },
+      });
+    }
+  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
+
   React.useEffect(() => {
     if (!loading) {
       setListHash(query);
