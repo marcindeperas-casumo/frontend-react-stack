@@ -13,6 +13,7 @@ export type TLiveCasinoCardContent = {
   play_now: string;
   table_temporarily_unavailable: string;
   table_unavailable: string;
+  opens_at: string;
   provider_logos: Array<{
     provider_name: string;
     logo: string;

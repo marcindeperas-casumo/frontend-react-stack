@@ -609,10 +609,8 @@ export interface LiveCasinoTable {
 
 export type TableState = "OPEN" | "CLOSED" | "UNASSIGNED";
 
-export type OperationHoursType = "FULLTIME" | "BOUNDED";
-
 export interface OperationHours {
-  type: OperationHoursType;
+  type?: Maybe<Scalars["String"]>;
   startTime?: Maybe<Scalars["String"]>;
   endTime?: Maybe<Scalars["String"]>;
 }
@@ -1777,6 +1775,12 @@ export type LiveCasinoCard_Lobby_BetsFragment = {
   max?: Maybe<number>;
 };
 
+export type LiveCasinoCard_Lobby_OperationHoursFragment = {
+  type?: Maybe<Scalars["String"]>;
+  startTime?: Maybe<Scalars["String"]>;
+  endTime?: Maybe<Scalars["String"]>;
+};
+
 export type LiveCasinoCard_LobbyFragment = {
   id?: Maybe<string>;
   tableId?: Maybe<string>;
@@ -1788,7 +1792,9 @@ export type LiveCasinoCard_LobbyFragment = {
   image?: Maybe<string>;
   type?: Maybe<string>;
   betBehind?: Maybe<boolean>;
+  state?: Maybe<string>;
   bets?: Maybe<LiveCasinoCard_Lobby_BetsFragment>;
+  operationHours?: Maybe<LiveCasinoCard_Lobby_OperationHoursFragment>;
 };
 
 export type LiveCasinoCardFragment = {

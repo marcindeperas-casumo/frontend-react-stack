@@ -7,8 +7,8 @@ import cx from "classnames";
 import React, { PureComponent } from "react";
 import { prop } from "ramda";
 import { launchGame } from "Services/LaunchGameService";
-import { convertHTMLToString, renderBets } from "Utils";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { convertHTMLToString, interpolate, renderBets } from "Utils";
+import { EVENTS, EVENT_PROPS, LIVE_CASINO_STATES } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
@@ -60,6 +60,17 @@ export class LiveCasinoCard extends PureComponent<Props> {
             t={this.props.t}
           />
         </Flex>
+        {this.liveCasinoLobby?.state === LIVE_CASINO_STATES.CLOSED &&
+          this.liveCasinoLobby?.operationHours &&
+          this.liveCasinoLobby?.operationHours.startTime && (
+            <div className="c-live-casino-card-maintenance__notification left-1/4 u-font-sm u-text-align-center o-position--absolute u-width--2/4 t-border-r o-inset-bottom--none u-margin-bottom--lg u-height--2xlg text-black u-font-weight-bold t-opacity--75 bg-white">
+              <span>
+                {interpolate(this.props.t?.opens_at, {
+                  time: this.liveCasinoLobby.operationHours.startTime,
+                })}
+              </span>
+            </div>
+          )}
         {isInMaintenance && (
           <div className="c-live-casino-card-maintenance__notification u-font-sm u-text-align-center o-position--absolute u-width--full o-inset-bottom--none u-height--2xlg text-white u-font-weight-bold t-opacity--75 bg-black">
             <span>{this.props.t?.table_temporarily_unavailable}</span>

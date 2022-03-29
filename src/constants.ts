@@ -599,6 +599,11 @@ export const GAMEPLAY_MODES = {
   REAL: "REAL",
 };
 
+export const LIVE_CASINO_STATES = {
+  OPEN: "OPEN",
+  CLOSED: "CLOSED",
+};
+
 export const POLL_INTERVAL = {
   GAMES_LIST: 1800000, //30min
   JACKPOTS: 30000,

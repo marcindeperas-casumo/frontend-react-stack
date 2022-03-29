@@ -4,6 +4,12 @@ fragment LiveCasinoCard_Lobby_Bets on Bets {
   max
 }
 
+fragment LiveCasinoCard_Lobby_OperationHours on OperationHours {
+  type
+  startTime
+  endTime
+}
+
 fragment LiveCasinoCard_Lobby on LiveCasinoTable {
   id
   tableId
@@ -15,6 +21,10 @@ fragment LiveCasinoCard_Lobby on LiveCasinoTable {
   image
   type
   betBehind
+  state
+  operationHours {
+    ...LiveCasinoCard_Lobby_OperationHours
+  }
   bets {
     ...LiveCasinoCard_Lobby_Bets
   }
