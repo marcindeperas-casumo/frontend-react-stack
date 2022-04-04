@@ -21,7 +21,7 @@ import {
 } from "Components/Compliance/MandatoryMessages";
 import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
 import { ValuableDetailsModal } from "Components/ValuableDetails";
-import { TimeLimitsFormModal } from "../Compliance/Sweden/TimeLimits";
+import { TimeLimitsFormModal } from "../Compliance/SGA/TimeLimits";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,

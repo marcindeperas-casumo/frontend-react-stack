@@ -13,7 +13,7 @@ export const AppLiS = ({ sessionId, playerId }) => {
       <LazyPortal
         hostElementId="react-host-deposit-limits"
         loader={() =>
-          import("Components/Compliance/DepositLimits/DepositLimitsView")
+          import("Components/Compliance/DGOJ/DepositLimits/DepositLimitsView")
         }
         namedExport="DepositLimitsViewContainer"
       />

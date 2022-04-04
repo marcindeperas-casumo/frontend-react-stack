@@ -26,7 +26,7 @@ function TimeLimitsCardLazyPortal({
         period ? period.toLowerCase() + "-" : ""
       }login-time-limits-card`}
       loader={() =>
-        import("Components/Compliance/Sweden/TimeLimits/TimeLimitsCard")
+        import("Components/Compliance/SGA/TimeLimits/TimeLimitsCard")
       }
       namedExport="TimeLimitsCardContainer"
       props={{
