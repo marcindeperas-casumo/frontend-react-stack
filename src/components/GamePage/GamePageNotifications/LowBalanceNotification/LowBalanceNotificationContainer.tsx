@@ -1,16 +1,17 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ButtonPrimary } from "@casumo/cmp-button";
+import { avgBetApi } from "Models/avgBet";
 import { CHANNELS } from "Models/cometd/cometd.constants";
 import { playerIdSelector } from "Models/handshake";
+import { playerCurrencySelector } from "Models/player";
 import { TCurrencyCode, EVENTS } from "Src/constants";
 import { useDepositMethods } from "Utils/hooks/useDepositMethods";
-import { playerCurrencySelector } from "Models/player";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslationsGql } from "Utils/hooks";
 import tracker from "Services/tracker";
 import { LowBalanceNotification } from "./LowBalanceNotification";
-import { LOW_BALANCES_THRESHOLDS } from "./lowBalance.constants";
+import { SPIN_AMOUNT_THRESHOLDS } from "./lowBalance.constants";
 
 type TBalance = {
   amount: number;
@@ -36,6 +37,13 @@ export const LowBalanceNotificationContainer = () => {
   const currency = useSelector(playerCurrencySelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
   const [showing, setShowing] = React.useState(false);
+  const [totalBalance, setTotalBalance] = React.useState<number>(undefined);
+
+  const {
+    data: avgBetData,
+    isFetching,
+    refetch,
+  } = avgBetApi.useGetAverageBetQuery();
 
   const onData = React.useCallback(
     (event: TBalanceUpdatedMessage) => {
@@ -45,20 +53,16 @@ export const LowBalanceNotificationContainer = () => {
       }
 
       const isWalletUpdate = event.data.walletBalanceUpdated;
-      if (!isWalletUpdate) {
+      if (!isWalletUpdate || isFetching) {
         return;
       }
 
-      const { totalBalance } = isWalletUpdate.updatedBalance;
+      refetch();
 
-      if (
-        isWalletUpdate &&
-        totalBalance.amount < LOW_BALANCES_THRESHOLDS[currency]
-      ) {
-        setShowing(true);
-      }
+      const { totalBalance: tb } = isWalletUpdate.updatedBalance;
+      setTotalBalance(tb.amount);
     },
-    [currency, showing]
+    [showing, refetch, isFetching]
   );
 
   const cleanup = React.useCallback(
@@ -67,6 +71,18 @@ export const LowBalanceNotificationContainer = () => {
     },
     [channel, onData]
   );
+
+  React.useEffect(() => {
+    const expectedBet = avgBetData?.averageBet?.amount;
+    const totaBalanceFetched = typeof totalBalance !== "undefined";
+    if (isFetching || !expectedBet || !totaBalanceFetched) {
+      return;
+    }
+
+    if (totalBalance < expectedBet * SPIN_AMOUNT_THRESHOLDS) {
+      setShowing(true);
+    }
+  }, [isFetching, avgBetData?.averageBet?.amount, totalBalance]);
 
   React.useEffect(() => {
     cometd.subscribe(channel, onData);
