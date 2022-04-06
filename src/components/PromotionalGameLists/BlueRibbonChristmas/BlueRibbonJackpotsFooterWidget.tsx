@@ -9,6 +9,7 @@ import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import type { PotObject } from "./blueRibbonConsts";
 import "./blueRibbonJackpotsFooterWidget.scss";
+import { BlueRibbonJackpotValue } from "./BlueRibbonJackpotValue";
 
 export function BlueRibbonJackpotsFooterWidget({
   normalizedPots,
@@ -87,7 +88,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
-  const { icon, shortName } = pot;
+  const { icon, shortName, status } = pot;
   return (
     <Flex
       direction="horizontal"
@@ -103,10 +104,11 @@ const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
         alt={`${shortName} icon`}
         src={icon}
       />
-      <Text
+      <BlueRibbonJackpotValue
+        status={status}
         size="xs"
+        classes="u-font-weight-bold u-line-height--1 text-white"
         tag="span"
-        className="u-font-weight-bold u-line-height--1 text-white"
       >
         <Text
           size="2xs"
@@ -116,7 +118,7 @@ const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
           {shortName}
         </Text>
         {formattedValue}
-      </Text>
+      </BlueRibbonJackpotValue>
     </Flex>
   );
 };

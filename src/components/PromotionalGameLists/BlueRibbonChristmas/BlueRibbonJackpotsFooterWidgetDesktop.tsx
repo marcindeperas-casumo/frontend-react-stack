@@ -8,6 +8,7 @@ import { currencySelector } from "Models/handshake";
 import { formatCurrency } from "Utils";
 import type { PotObject } from "./blueRibbonConsts";
 import "./blueRibbonJackpotsFooterWidget.scss";
+import { BlueRibbonJackpotValue } from "./BlueRibbonJackpotValue";
 
 export function BlueRibbonJackpotsFooterWidgetDesktop({
   normalizedPots,
@@ -54,7 +55,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
-  const { icon, shortName, potTitleColor } = pot;
+  const { icon, shortName, potTitleColor, status } = pot;
   return (
     <Flex direction="horizontal" align="center" justify="center" spacing="sm">
       <Flex.Item className="u-height--xlg">
@@ -75,13 +76,14 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
           >
             {shortName}
           </Text>
-          <Text
+          <BlueRibbonJackpotValue
             size="xs"
             tag="span"
-            className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white tabular-nums"
+            classes="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white tabular-nums"
+            status={status}
           >
             {formattedValue}
-          </Text>
+          </BlueRibbonJackpotValue>
         </Flex>
       </Flex.Item>
     </Flex>

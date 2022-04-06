@@ -14,7 +14,8 @@ import {
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
 } from "Src/constants";
-import type { PotObject } from "./blueRibbonConsts";
+import type { JackpotStatus, PotObject } from "./blueRibbonConsts";
+import { BlueRibbonJackpotValue } from "./BlueRibbonJackpotValue";
 
 export function BlueRibbonJackpotsWidget({
   className = "",
@@ -66,6 +67,7 @@ export function BlueRibbonJackpotsWidget({
               label={composedPot.name}
               image={composedPot.icon}
               potTitleColor={composedPot.potTitleColor}
+              status={composedPot.status}
             />
           );
         }
@@ -86,6 +88,7 @@ export function BlueRibbonJackpotsWidget({
             label: composedPot.name,
             image: composedPot.icon,
             explanation: composedPot.potExplanation,
+            status: composedPot.status,
           },
           {
             id: "community",
@@ -98,6 +101,7 @@ export function BlueRibbonJackpotsWidget({
             label: composedPot.sharedPot.name,
             image: composedPot.sharedPot.icon,
             explanation: composedPot.sharedPot.splitExplanation,
+            status: composedPot.status,
           },
         ];
 
@@ -147,6 +151,7 @@ type JackpotRowProps = {
   image: string;
   explanation?: string;
   potTitleColor?: string;
+  status?: JackpotStatus;
 };
 function JackpotRow({
   formattedValue,
@@ -154,6 +159,7 @@ function JackpotRow({
   image,
   explanation,
   potTitleColor,
+  status,
 }: JackpotRowProps) {
   return (
     <Media
@@ -164,6 +170,7 @@ function JackpotRow({
           width={56}
           height={56}
           alt={`${label} icon`}
+          style={{ visibility: status ? "visible" : "hidden" }}
           src={image}
         />
       )}
@@ -178,12 +185,13 @@ function JackpotRow({
           >
             {label}
           </Text>
-          <Text
+          <BlueRibbonJackpotValue
+            status={status}
             size="md"
-            className="u-margin-bottom--none u-font-weight-bold text-white"
+            classes="u-margin-bottom--none u-font-weight-bold text-white"
           >
             {formattedValue}
-          </Text>
+          </BlueRibbonJackpotValue>
           {explanation && (
             <Text size="2xs" className="u-margin-bottom--none text-purple-5">
               {explanation}
