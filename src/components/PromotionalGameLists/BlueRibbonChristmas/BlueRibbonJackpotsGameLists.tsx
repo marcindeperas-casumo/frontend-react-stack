@@ -81,7 +81,7 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
             composedPots={composedJackpot.pots}
             widgetColor={composedJackpot.widgetColor}
             jackpotLogo={jackpotConfigs?.jackpot_image}
-            explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
+            explainerPageUrl={jackpotConfigs?.jackpot_onboarding_cta_link}
           />
         </Flex>
       )}
@@ -91,11 +91,11 @@ export function BlueRibbonJackpotsGameLists(props: { jackpot_slug: string }) {
           <Flex direction="horizontal">
             <BlueRibbonJackpotsOnboardingWidget
               content={{
-                backgroundImage: jackpotConfigs.jackpot_onboarding_background,
-                title: jackpotConfigs.jackpot_onboarding_title,
-                body: jackpotConfigs.jackpot_onboarding_body,
-                cta: jackpotConfigs.jackpot_onboarding_button_copy,
-                ctaLink: jackpotConfigs.jackpot_onboarding_cta_link,
+                backgroundImage: jackpotConfigs?.jackpot_onboarding_background,
+                title: jackpotConfigs?.jackpot_onboarding_title,
+                body: jackpotConfigs?.jackpot_onboarding_body,
+                cta: jackpotConfigs?.jackpot_onboarding_button_copy,
+                ctaLink: jackpotConfigs?.jackpot_onboarding_cta_link,
               }}
               composedPots={composedJackpot.pots}
               widgetColor={composedJackpot.widgetColor}

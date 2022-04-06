@@ -2,9 +2,10 @@ import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
 import { useTranslations } from "Utils/hooks";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
+import { useGameJackpotContext } from "Components/GamePage/Contexts";
 import { BlueRibbonJackpotsWidget } from "./BlueRibbonJackpotsWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
-import { useComposedJackpotConfigBySlug } from "./useComposedJackpot";
+import { normalizePots } from "./utils";
 
 export const BlueRibbonJackpotsWidgetPromotionPage = (props: {
   jackpot_slug: string;
@@ -22,9 +23,9 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
     className?: string;
     jackpot_slug: string;
   }) => {
-    const { composedJackpot } = useComposedJackpotConfigBySlug({
-      slug: jackpot_slug,
-    });
+    const {
+      blueribbonJackpotForCurrentGame: composedJackpot,
+    } = useGameJackpotContext();
 
     const jackpotConfigs = useTranslations<{
       jackpot_image: string;
@@ -50,10 +51,10 @@ export const BlueRibbonJackpotsWidgetContainer = React.memo<any>(
     return (
       <BlueRibbonJackpotsWidget
         className={className}
-        composedPots={composedJackpot.pots}
+        composedPots={normalizePots(composedJackpot.pots)}
         widgetColor={composedJackpot.widgetColor}
         jackpotLogo={jackpotConfigs?.jackpot_image}
-        explainerPageUrl={jackpotConfigs.jackpot_onboarding_cta_link}
+        explainerPageUrl={jackpotConfigs?.jackpot_onboarding_cta_link}
       />
     );
   }

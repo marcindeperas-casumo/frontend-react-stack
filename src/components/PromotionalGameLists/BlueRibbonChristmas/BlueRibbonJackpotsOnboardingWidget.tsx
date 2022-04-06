@@ -65,7 +65,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
 
       <Link
         className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg"
-        to={content.ctaLink}
+        to={content.ctaLink ? content.ctaLink : ""}
       >
         {content.cta}
       </Link>
