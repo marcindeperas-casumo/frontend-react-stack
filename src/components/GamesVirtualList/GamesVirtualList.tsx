@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as R from "ramda";
@@ -7,7 +8,6 @@ import * as A from "Types/apollo";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
-import "./GamesVirtualList.scss";
 
 export const ROW_HEIGHT = GameRow.ROW_HEIGHT;
 
@@ -28,12 +28,17 @@ type Props<T = A.GameRow_GameFragment> = {
    * Changes to games prop will be ignored
    */
   listHash: string;
+  /**
+   * Sometimes we do not want the row being rounded
+   */
+  hasRoundedBorder: boolean;
 };
 
 export class GamesVirtualList extends React.Component<Props> {
   static defaultProps = {
     pageSize: PAGE_SIZE,
     listHash: "",
+    hasRoundedBorder: true,
   };
 
   constructor(props: Props) {
@@ -77,7 +82,13 @@ export class GamesVirtualList extends React.Component<Props> {
     const game = this.props.games[index];
     return (
       <Flex
-        className="t-border-bottom text-grey-0 hover:bg-grey-0 border-current c-game-virtual-list-row"
+        className={classNames(
+          "t-border-bottom text-grey-0 hover:bg-grey-0 border-current",
+          {
+            "rounded-lg": this.props.hasRoundedBorder,
+            "rounded-none": !this.props.hasRoundedBorder,
+          }
+        )}
         key={game.id}
         index={index}
         style={style}

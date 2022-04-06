@@ -105,7 +105,7 @@ export const GameTile = ({
         />
         {tileJackpotMark}
         {jackpot && <JackpotAmountButton />}
-        <div className="o-ratio__content c-game-tile-container u-cursor--pointer o-position--absolute u-zindex--content-overlay">
+        <div className="o-ratio__content c-game-tile-container before:rounded-2xl cursor-pointer absolute z-content-overlay">
           <Flex
             direction="horizontal"
             justify="center"
@@ -117,7 +117,7 @@ export const GameTile = ({
               className="u-width--3/4 bg-white hover:bg-white text-purple-60"
               data-test="game-list-tile-launch-link"
             >
-              <div className="u-display--flex">
+              <div className="flex ml">
                 <Text className="u-font u-font-weight-bold u-margin-right u-position--relative c-game-tile-container__button-text">
                   {t?.play_button_text_game_tile}
                 </Text>

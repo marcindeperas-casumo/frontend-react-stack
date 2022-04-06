@@ -95,6 +95,7 @@ const RenderResults = ({ query, ...rest }) => (
     renderItem={gameRowHighlightSearch(query)}
     // @ts-expect-error ts-migrate(2322) FIXME: Type '{ renderItem: (game: any) => Element; render... Remove this comment to see the full error message
     renderTitle={title => <GamesVirtualListTitle title={title} />}
+    hasRoundedBorder={false}
     {...rest}
   />
 );
@@ -184,7 +185,7 @@ export const GameSearch = (props: Props) => {
 
   return (
     <div className={`o-wrapper ${xPaddingClasses}`}>
-      <div className="c-game-search bg-grey-0 c-game-search-bar o-position--sticky u-padding-y--md u-padding-y--lg@desktop">
+      <div className="c-game-search bg-grey-0 top-none z-modal sticky py-md desktop:py-lg">
         <GameSearchInput
           onChange={queryChanged}
           clearSearch={clearSearch}
