@@ -39,7 +39,7 @@ export function BlueRibbonJackpotsFooterWidgetDesktop({
         )}
       >
         {jackpotsRows.map((pot, idx) => (
-          <Flex.Item key={idx}>
+          <Flex.Item key={idx} className="flex-1 min-w-0">
             <PotItem pot={pot} formattedValue={formattedPotValue(pot)} />
           </Flex.Item>
         ))}
@@ -78,7 +78,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
           <Text
             size="xs"
             tag="span"
-            className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white"
+            className="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white tabular-nums"
           >
             {formattedValue}
           </Text>
