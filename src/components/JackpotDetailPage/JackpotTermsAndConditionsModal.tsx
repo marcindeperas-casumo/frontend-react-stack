@@ -5,6 +5,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import { useTranslations } from "Utils/hooks";
 import { ModalHeader, ModalLoadingState } from "Components/RSModal";
 import type { ModalContentComponent } from "Components/RSModal";
+import "./JackpotTermsAndConditionsModal.scss";
 
 type Props = ModalContentComponent<{}>;
 
@@ -24,7 +25,10 @@ export function JackpotTermsAndConditionsModal(props: Props) {
         showCloseButton
         closeAction={props.closeModal}
       />
-      <Flex className="u-overflow-x--hidden u-padding--md" direction="vertical">
+      <Flex
+        className="u-overflow-x--hidden u-padding--md c-jackpot-tncs-modal-content"
+        direction="vertical"
+      >
         <Text tag="div">
           <DangerousHtml html={content} element="div" />
         </Text>

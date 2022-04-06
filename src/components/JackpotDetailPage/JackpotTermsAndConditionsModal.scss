@@ -1,0 +1,43 @@
+// stylelint-disable xi/selector-pattern
+.c-jackpot-tncs-modal-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-end: 0.83em;
+    margin-block-start: 0.83em;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+  }
+
+  p {
+    display: block;
+    margin-block-end: 1em;
+    margin-block-start: 1em;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-end: 1em;
+    margin-block-start: 1em;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+    padding-inline-start: 40px;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+}
