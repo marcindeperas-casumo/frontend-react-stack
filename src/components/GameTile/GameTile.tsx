@@ -9,7 +9,6 @@ import { formatCurrency } from "Utils";
 import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
-import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -29,6 +28,7 @@ export type Props = {
   gameDetailsPath?: string;
   tileJackpotMark?: ReactElement;
   locale?: string;
+  gameLauncher?: Function;
 };
 
 export const DEFAULT_CLASSES =
@@ -46,17 +46,19 @@ export const GameTile = ({
   gameDetailsPath,
   tileJackpotMark = null,
   locale,
+  gameLauncher,
 }: Props) => {
   const { isInMaintenance, backgroundImage, logo, name, id, jackpot } =
     game || {};
-
   const JackpotAmountButton = () => {
     const currency = jackpot?.value?.currency;
     const currentLocale = locale;
     const amount = jackpot?.value?.amount;
+
     if (!jackpot) {
       return null;
     }
+
     return (
       <div className="c-game-tile-container__jackpot o-position--absolute o-inset-x--none bg-grey-90 u-text-align-center t-border-r--md text-white bg-opacity-75 u-font-sm u-font-weight-bold u-margin-left u-margin-right u-margin-top--lg u-height--lg">
         <span>
@@ -95,7 +97,7 @@ export const GameTile = ({
           "o-position--relative",
           className
         )}
-        onClick={() => launchGame({ slug: game.slug })}
+        onClick={gameLauncher}
       >
         <GameTileImage
           logoBackground={backgroundImage}

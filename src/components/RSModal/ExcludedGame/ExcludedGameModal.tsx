@@ -8,12 +8,18 @@ import { ModalTranslations } from "./ExcludedGameModalContainer";
 type Props = {
   t: ModalTranslations;
   config: ModalConfig;
+  onClick: Function;
   closeModal: Function;
 };
 
-export function ExcludedGameModal({ t, config, closeModal }: Props) {
+export function ExcludedGameModal({ t, config, closeModal, onClick }: Props) {
   return (
-    <CudlModal>
+    <CudlModal
+      closeIcon={{
+        action: closeModal,
+        className: "bg-grey-20 t-border-r--circle u-padding--sm",
+      }}
+    >
       <img
         className="u-display--block"
         width={79}
@@ -29,7 +35,7 @@ export function ExcludedGameModal({ t, config, closeModal }: Props) {
       <ButtonPrimary
         size="sm"
         className="u-width--full u-margin-bottom--lg"
-        onClick={closeModal}
+        onClick={onClick}
         style={{ marginTop: 295 }}
       >
         {t.redirect_button_text}

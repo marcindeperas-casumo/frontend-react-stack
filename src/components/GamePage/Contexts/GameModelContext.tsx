@@ -9,7 +9,7 @@ type GameModelContextType = {
   gameProviderModel: any;
   slug: string;
   playForFun: boolean;
-  error: boolean;
+  error?: string;
   game?: A.GameDetailsQuery["game"];
 };
 
@@ -26,7 +26,6 @@ export const GameModelContext = React.createContext<GameModelContextType>({
   gameProviderModel: null,
   slug: "",
   playForFun: false,
-  error: false,
   game: null,
 });
 
@@ -36,13 +35,11 @@ export const GameModelContextProvider = ({
   playForFun,
   remoteGameLaunchData,
 }: GameModelContextProviderProps) => {
-  const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
-    {
-      playForFun,
-      slug,
-      remoteGameLaunchData,
-    }
-  );
+  const { gameProviderModel, pauseGame, resumeGame } = useGameLaunchData({
+    playForFun,
+    slug,
+    remoteGameLaunchData,
+  });
   /**
    *  Pause / Resume Manual triggers for testing game pausing related features
    *  window.manualPause = pauseGame;
@@ -51,7 +48,6 @@ export const GameModelContextProvider = ({
   const { game } = useGameDetails({ slug });
   const providerValues = {
     gameProviderModel,
-    error,
     pauseGame,
     resumeGame,
     slug,

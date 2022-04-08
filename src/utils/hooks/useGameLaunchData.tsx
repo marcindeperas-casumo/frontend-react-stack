@@ -2,22 +2,22 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logger from "Services/logger";
 import { getGameLaunchParameters } from "Api/api.gameLaunch";
-import { showModal } from "Models/modal";
 import { getGameModel } from "GameProviders";
 import {
   ENVIRONMENTS,
-  REACT_APP_MODAL,
   DEFAULT_EXCLUDED_GAME_ERROR_CODE,
   GAMEPLAY_MODES,
+  REACT_APP_MODAL,
 } from "Src/constants";
 import { isTestEnv, getPlatform } from "Utils";
 import { useUrlPrefix } from "Utils/hooks";
 import { languageSelector } from "Models/handshake";
+import { showModal } from "Models/modal";
 
 type Props = {
   slug: string;
   playForFun: boolean;
-  remoteGameLaunchData: Object | undefined;
+  remoteGameLaunchData?: Object | undefined;
 };
 
 /* eslint-disable sonarjs/cognitive-complexity */
@@ -27,7 +27,6 @@ export const useGameLaunchData = ({
   remoteGameLaunchData,
 }: Props) => {
   const [gameProviderModel, setGameProviderModel] = useState(null);
-  const [failed, setFailed] = useState(false);
   const gameRef = useRef(null);
   const environment = isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION;
   const language = useSelector(languageSelector);
@@ -63,7 +62,6 @@ export const useGameLaunchData = ({
           );
         } catch (e) {
           logger.error("Game launch failed", e);
-          setFailed(true);
         }
       })();
     }
@@ -117,7 +115,6 @@ export const useGameLaunchData = ({
     gameProviderModel: determineWhichGameProviderModel(),
     pauseGame,
     resumeGame,
-    error: failed,
   };
 };
 /* eslint-enable sonarjs/cognitive-complexity */

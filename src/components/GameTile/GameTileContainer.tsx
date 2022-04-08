@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux";
 import React from "react";
 import { useTranslations, useTranslatedUrl } from "Utils/hooks";
+import { showModal } from "Models/modal";
 import * as A from "Types/apollo";
-import { ROUTE_IDS } from "Src/constants";
+import { GAME_CATEGORIES_MAP, REACT_APP_MODAL, ROUTE_IDS } from "Src/constants";
 import { JackpotMarkImageContainer } from "Components/JackpotMarkImage/JackpotMarkImageContainer";
+import { launchGame } from "Services/LaunchGameService";
+import { getGameExcludedForPlayer } from "Src/api/api.gameExclusion";
 import { CMS_SLUGS } from "../GameListPage/GameList.constants";
 import { GameTile } from "./GameTile";
 
@@ -14,14 +18,26 @@ export type GameTileContainerProps = {
 };
 
 export const GameTileContainer = (props: GameTileContainerProps) => {
-  const { slug } = props.game;
-
+  const { slug, category } = props.game;
+  const dispatch = useDispatch();
   const t = useTranslations<{
     play_button_text_game_tile: string;
   }>(`${CMS_SLUGS.LOBBY}.${CMS_SLUGS.GAMES_LIST}`);
 
   const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, { slug });
-
+  const gameLauncher = () => {
+    getGameExcludedForPlayer().then(response => {
+      if (
+        response &&
+        response.length > 0 &&
+        response[0].gameType === GAME_CATEGORIES_MAP[category]
+      ) {
+        dispatch(showModal(REACT_APP_MODAL.ID.EXCLUDED_GAME, {}));
+      } else {
+        launchGame({ slug: slug });
+      }
+    });
+  };
   const tileJackpotMark = (
     <JackpotMarkImageContainer gameSlug={slug} type="tile" />
   );
@@ -31,6 +47,7 @@ export const GameTileContainer = (props: GameTileContainerProps) => {
       t={t}
       tileJackpotMark={tileJackpotMark}
       gameDetailsPath={`/${gameDetailsPath}`}
+      gameLauncher={gameLauncher}
       {...props}
     />
   );

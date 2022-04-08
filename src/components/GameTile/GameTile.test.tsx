@@ -52,12 +52,11 @@ describe("GameTile", () => {
   test("should launchGame if component is clicked", () => {
     const rendered = mount(
       <MockStore>
-        <GameTile game={gameMock} />
+        <GameTile game={gameMock} gameLauncher={launchGame} />
       </MockStore>
     );
 
     rendered.find("Flex").first().simulate("click");
-
     expect(launchGame).toHaveBeenCalledTimes(1);
   });
 

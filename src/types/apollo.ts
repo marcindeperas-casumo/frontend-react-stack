@@ -1714,6 +1714,7 @@ export type GameTile_GameFragment = {
   logo: string;
   name: string;
   slug: string;
+  category?: Maybe<string>;
   id: string;
   jackpot?: Maybe<{
     id: string;
