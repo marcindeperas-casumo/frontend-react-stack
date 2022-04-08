@@ -19,7 +19,7 @@ export const GameSearchContainer = (props: { path?: string }) => {
       offset: 0,
       limit: 48,
     },
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
     errorPolicy: "ignore",
   });
   const fetchMoreRows = loadMoreConstructor(fetchMore);
