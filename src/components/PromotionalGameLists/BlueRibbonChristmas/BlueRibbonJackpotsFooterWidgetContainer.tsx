@@ -60,7 +60,6 @@ export function BlueRibbonJackpotsFooterWidgetContainer() {
             <BlueRibbonManualOptInAndOptOut
               jackpotSlug={composedJackpot.slug}
               gameSlug={slug}
-              isDesktop
             />
           </Flex>
         </Flex>
