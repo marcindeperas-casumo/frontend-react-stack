@@ -7,11 +7,13 @@ export type TJackpotsReduxStore = {
   eligibleGamesBySlug: {
     [key: string]: string;
   };
+  isStartGamesFeedOn: boolean;
 };
 
 const DEFAULT_STATE: TJackpotsReduxStore = {
   handshake: null,
   eligibleGamesBySlug: {},
+  isStartGamesFeedOn: false,
 };
 
 export const handshakeToGameJackpotSlugMapper = jackpots =>
@@ -31,6 +33,10 @@ const handlers = {
     eligibleGamesBySlug: handshakeToGameJackpotSlugMapper(
       response?.jackpots || []
     ),
+  }),
+  [types.TURN_ON_START_GAMES_FEED]: state => ({
+    ...state,
+    isStartGamesFeedOn: true,
   }),
 };
 
