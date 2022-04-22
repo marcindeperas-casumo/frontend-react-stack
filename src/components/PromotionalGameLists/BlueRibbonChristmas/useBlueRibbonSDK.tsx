@@ -2,7 +2,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { useParams } from "@reach/router";
 import { useApolloClient } from "@apollo/client";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
@@ -19,11 +19,7 @@ import type {
 } from "Types/blueRibbonSDK";
 import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
-import {
-  blueRibbonHandshakeSelector,
-  isStartGamesFeedOnSelector,
-} from "Models/blueribbonJackpots/jackpots.selectors";
-import { turnOnStartGamesFeed } from "Models/blueribbonJackpots/jackpots.actions";
+import { blueRibbonHandshakeSelector } from "Models/blueribbonJackpots/jackpots.selectors";
 import { urls, baseConfig } from "./blueRibbonConsts";
 import { GetBlueribbonJackpotConfigByGameSlug } from "./GetBlueribbonJackpotConfigByGameSlug.graphql";
 
@@ -77,32 +73,26 @@ export function useBlueRibbonSDKAnonymous() {
   const sdk = useBlueRibbonSDK();
   const currency = useSelector(currencySelector);
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
-  const isStartGamesFeedOn = useSelector(isStartGamesFeedOnSelector()) || false;
-  const dispatch = useDispatch();
   React.useEffect(
     function connectBlueRibbonSDK() {
-      if (!sdk || isStartGamesFeedOn) {
+      if (!sdk) {
         return;
       }
       sdk
         .connect({ currency })
         .then(() => {
           setConnectedSDK(sdk);
-          return sdk
-            .startGamesFeed({
-              games: null,
-              gamesMode: window.BlueRibbon.constants.gamesMode.LOBBY,
-            })
-            .then(() => {
-              dispatch(turnOnStartGamesFeed());
-            });
+          return sdk.startGamesFeed({
+            games: null,
+            gamesMode: window.BlueRibbon.constants.gamesMode.LOBBY,
+          });
         })
         .catch(err => {
           logger.error("Blue ribbon sdk could not connect", err);
         });
       return sdk.reset;
     },
-    [currency, sdk, isStartGamesFeedOn, dispatch]
+    [currency, sdk]
   );
   return connectedSDK;
 }
@@ -176,7 +166,7 @@ export function usePotStateChangeEvent() {
       }
     }, 200);
     return () => clearInterval(intervalId);
-  }, [sdk, pots]);
+  }, [sdk]);
   React.useEffect(() => {
     if (!sdk) {
       return;

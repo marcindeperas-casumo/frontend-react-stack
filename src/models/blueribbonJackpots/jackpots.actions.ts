@@ -15,7 +15,3 @@ export const fetchBlueRibbonHandshake = () => ({
   asyncCall: fetchBlueRibbonJackpotHandshakeCall,
   postFetch: types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE,
 });
-
-export const turnOnStartGamesFeed = () => ({
-  type: types.TURN_ON_START_GAMES_FEED,
-});

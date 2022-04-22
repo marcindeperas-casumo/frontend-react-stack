@@ -18,6 +18,3 @@ export const eligibleGamesBySlugSelector = createSelector(
 
 export const gameJackpotSlugSelector = (slug: string) =>
   createSelector(eligibleGamesBySlugSelector, R.prop(slug));
-
-export const isStartGamesFeedOnSelector = () =>
-  createSelector(blueRibbonJackpotStoreSelector, R.prop("isStartGamesFeedOn"));
