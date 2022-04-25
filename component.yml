@@ -2,8 +2,8 @@ owner: common
 description: Casumo Mobile - React Stack Proof of Concept
 change-management:
   risk-ratings:
-    confidentiality: 1
+    confidentiality: 2
     integrity: 1
-    availability: 1
+    availability: 2
     accountability: 1
 notification_group: frontend
