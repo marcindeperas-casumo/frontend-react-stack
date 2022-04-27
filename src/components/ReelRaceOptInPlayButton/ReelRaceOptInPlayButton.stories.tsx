@@ -9,6 +9,11 @@ const stories = storiesOf("ReelRaceOptInPlayButton", module);
 const props: TProps = {
   optIn: () => undefined,
   playCallback: () => undefined,
+  showExtraTAC: false,
+  onShowTAC: () => undefined,
+  tacTranslations: {
+    terms_link_text: "terms & conditions",
+  },
   reelRace: {
     id: "666",
     startTime: 666,

@@ -5,7 +5,6 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { TournamentIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
-import { useTranslations } from "Utils/hooks";
 import { interpolate } from "Utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
@@ -14,10 +13,12 @@ import {
   getRemainingTime,
   getDuration,
 } from "./reelRaceOptInWidget.utils";
+import { TTranslations } from "./ReelRaceOptInWidgetContainer";
 import "./reelRaceOptInWidget.scss";
 
 type Props = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
+  translations: TTranslations;
 };
 
 type TState = {
@@ -25,7 +26,7 @@ type TState = {
   rrInProgress: boolean;
 };
 
-export function ReelRaceOptInWidget({ reelRace }: Props) {
+export function ReelRaceOptInWidget({ reelRace, translations }: Props) {
   const [state, setState] = useState<TState>({
     remaining: DEFAULT_REMAINING,
     rrInProgress: false,
@@ -50,12 +51,6 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
   const prizesCounter = reelRace.formattedPrizes.length;
   const isPromoted = reelRace.promoted;
 
-  const t = reelRace.translations;
-  const extraTranslations = useTranslations<{
-    schedule_next_text: string;
-    leaderboard_prize: string;
-  }>("mobile.tournament-campaigns");
-
   return (
     <div
       className={cx(
@@ -69,7 +64,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
         size="sm"
         className="mb-md mt-[-16px] mx-[-16px] font-bold bg-black t-border-r-top-left t-border-r-top-right u-padding-y--md u-padding-x--md"
       >
-        {extraTranslations?.schedule_next_text}
+        {translations?.schedule_next_text}
       </Text>
       {isPromoted && (
         <TournamentIcon
@@ -89,8 +84,8 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
         </Flex.Item>
         <Flex.Item className="u-margin-left--md">
           <Text className="text-yellow-30 font-bold u-margin-bottom--sm u-margin-top--none">
-            {t.competeFor &&
-              interpolate(t.competeFor, {
+            {translations.competeFor &&
+              interpolate(translations.competeFor, {
                 prize: reelRace.formattedPrize,
               })}
           </Text>
@@ -114,7 +109,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           className="o-flex--1 u-text-align-center t-border-right border-grey-5 u-border-opacity--03"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
-            {t.spins}
+            {translations.spins}
           </div>
           <Text tag="div" className="u-font-weight-bold">
             {reelRace.spinLimit}
@@ -126,11 +121,11 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           className="o-flex--1 u-text-align-center"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
-            {t.duration}
+            {translations.duration}
           </div>
           <Text className="u-font-weight-bold" tag="div">
-            {t.durationTemplate &&
-              interpolate(t.durationTemplate, {
+            {translations.durationTemplate &&
+              interpolate(translations.durationTemplate, {
                 duration: getDuration(reelRace.startTime, reelRace.endTime),
               })}
           </Text>
@@ -141,7 +136,7 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
           className="o-flex--1 u-text-align-center t-border-left border-grey-5 u-border-opacity--03"
         >
           <div className="text-[10px] u-font-weight-bold text-grey-50 u-text-transform-uppercase">
-            {extraTranslations?.leaderboard_prize}
+            {translations?.leaderboard_prize}
           </div>
           <Text tag="div" className="u-font-weight-bold">
             #1 - {prizesCounter}
@@ -152,7 +147,9 @@ export function ReelRaceOptInWidget({ reelRace }: Props) {
       <Flex className="o-flex--1" justify="space-between">
         <Flex direction="vertical">
           <div className="text-[10px] u-font-weight-bold text-white">
-            {state.rrInProgress ? t.endingIn : t.startingIn}
+            {state.rrInProgress
+              ? translations.endingIn
+              : translations.startingIn}
           </div>
           <Text
             size="lg"

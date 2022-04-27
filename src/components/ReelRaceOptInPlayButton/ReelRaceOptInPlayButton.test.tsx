@@ -54,6 +54,11 @@ describe("ReelRaceOptInPlayButton", () => {
           reelRace={reelRace}
           optIn={onOptIn}
           playCallback={play}
+          showExtraTAC={false}
+          onShowTAC={() => undefined}
+          tacTranslations={{
+            terms_link_text: "terms & conditions",
+          }}
         />
       </MockStore>
     );
@@ -77,6 +82,11 @@ describe("ReelRaceOptInPlayButton", () => {
           reelRace={optedInRR}
           optIn={onOptIn}
           playCallback={play}
+          showExtraTAC={false}
+          onShowTAC={() => undefined}
+          tacTranslations={{
+            terms_link_text: "terms & conditions",
+          }}
         />
       </MockStore>
     );
@@ -97,6 +107,11 @@ describe("ReelRaceOptInPlayButton", () => {
           optIn={onOptIn}
           playCallback={play}
           variant="secondary"
+          showExtraTAC={false}
+          onShowTAC={() => undefined}
+          tacTranslations={{
+            terms_link_text: "terms & conditions",
+          }}
         />
       </MockStore>
     );
