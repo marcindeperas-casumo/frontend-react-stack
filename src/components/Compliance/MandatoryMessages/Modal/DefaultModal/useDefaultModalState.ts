@@ -5,12 +5,14 @@ import {
   TUseDefaultModalStateArgs,
   TUseDefaultModalState,
 } from "./useDefaultModalState.types";
+import { TTranslations } from "./DefaultModal.types";
 
 export function useDefaultModalState({
   message,
   slug,
 }: TUseDefaultModalStateArgs): TUseDefaultModalState {
   const content = useTranslations(slug, true);
+  const t = useTranslations<TTranslations>(slug);
   const [markAsRead, { isLoading }] = useMarkAsReadMutation();
   const voca = useTranslationsVoca();
 
@@ -19,6 +21,9 @@ export function useDefaultModalState({
     isLoading,
     isDisabled: false,
     content: interpolate(content, message?.parameters),
-    buttonLabel: voca?.BUTTON_CLOSE,
+    buttonLabel: interpolate(
+      t?.call_to_action_button_text || voca?.BUTTON_CLOSE,
+      message?.parameters
+    ),
   };
 }

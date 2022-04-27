@@ -34,7 +34,11 @@ export function DefaultModal({
         text: interpolate(primaryButton.text, replacements),
       }}
     >
-      <DangerousHtml html={interpolate(content, replacements)} />
+      <DangerousHtml
+        element="div"
+        className="s-content-html"
+        html={interpolate(content, replacements)}
+      />
     </CudlModal>
   );
 }

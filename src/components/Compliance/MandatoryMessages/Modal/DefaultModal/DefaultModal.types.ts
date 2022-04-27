@@ -15,12 +15,14 @@ export type Props = {
   };
 };
 
+export type TTranslations = {
+  headline: string;
+  call_to_action_button_text: string;
+  cudl_icon: string;
+};
+
 export type ContainerProps = {
-  t: {
-    headline: string;
-    call_to_action_button_text: string;
-    cudl_icon: string;
-  };
+  t: TTranslations;
   config: {
     input: {
       slug: string;

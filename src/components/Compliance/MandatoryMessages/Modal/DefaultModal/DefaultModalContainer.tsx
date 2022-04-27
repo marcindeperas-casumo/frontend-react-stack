@@ -1,5 +1,4 @@
 import * as React from "react";
-import { interpolate } from "Utils";
 import { DefaultModal } from "./DefaultModal";
 import { ContainerProps } from "./DefaultModal.types";
 import { useDefaultModalState } from "./useDefaultModalState";
@@ -19,8 +18,7 @@ export function DefaultModalContainer({ t, config }: ContainerProps) {
       primaryButton={{
         isLoading,
         action: markAsRead,
-        text:
-          interpolate(t?.call_to_action_button_text, parameters) || buttonLabel,
+        text: buttonLabel,
       }}
     />
   );
