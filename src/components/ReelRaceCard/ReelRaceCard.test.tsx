@@ -14,7 +14,7 @@ const props = {
   formattedPrize: "€20",
   formattedPrizes: ["1", "2"],
   remainingSpins: 99,
-  status: "Scheduled",
+  status: "Started",
   game: {
     id: "fa9aa550-6be1-11e4-a1d6-005056a03af2",
     name: "Jack and the Beanstalk",
@@ -64,10 +64,8 @@ describe("ReelRaceCard", () => {
       </MockStore>
     );
 
-    test('should show "Starting In" text', () => {
-      expect(rendered.html().includes(props.translations.startingIn)).toBe(
-        true
-      );
+    test('should show "Ending In" text', () => {
+      expect(rendered.html().includes(props.translations.endingIn)).toBe(true);
     });
     test('should show "Opt In" button', () => {
       expect(rendered.html().includes(props.translations.optIn)).toBe(true);

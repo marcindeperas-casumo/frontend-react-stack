@@ -25,3 +25,10 @@ export function getDuration(start: number, end: number) {
     .diff(DateTime.fromMillis(start))
     .toFormat("mm");
 }
+
+export function formatRRstartTimeForGB(time) {
+  const date = new Date(time);
+  const hours = date.getHours();
+  const minutes = date.getMinutes().toString();
+  return hours + ":" + minutes.padStart(2, "0");
+}

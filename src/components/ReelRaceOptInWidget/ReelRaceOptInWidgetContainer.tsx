@@ -2,7 +2,7 @@ import React from "react";
 import * as A from "Types/apollo";
 import { useGameModelContext } from "Components/GamePage/Contexts";
 import { isAndroidNative, isIosNative } from "Utils/utils";
-import { useTranslations } from "Utils/hooks";
+import { useTranslations, useJurisdiction } from "Utils/hooks";
 import { ReelRaceOptInWidget } from "./ReelRaceOptInWidget";
 
 type TProps = {
@@ -16,6 +16,7 @@ export type TTranslations = {
 
 export function ReelRaceOptInWidgetContainer({ nextRR: reelRaceGame }: TProps) {
   const { slug: currentGameSlug } = useGameModelContext();
+  const { isUKGC } = useJurisdiction();
 
   const currentGameIsClosestRROptedIn =
     reelRaceGame?.game?.slug === currentGameSlug && reelRaceGame?.optedIn;
@@ -33,9 +34,9 @@ export function ReelRaceOptInWidgetContainer({ nextRR: reelRaceGame }: TProps) {
   if (!reelRaceGame || currentGameIsClosestRROptedIn || isNative) {
     return null;
   }
-
   return (
     <ReelRaceOptInWidget
+      isUKGC={isUKGC}
       reelRace={reelRaceGame as A.ReelRaceCard_ReelRaceFragment}
       translations={translations}
     />

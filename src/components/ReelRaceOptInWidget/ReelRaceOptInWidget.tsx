@@ -6,18 +6,21 @@ import Flex from "@casumo/cmp-flex";
 import { TournamentIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
 import { interpolate } from "Utils";
+import { useNextReelRace } from "Utils/hooks/useNextReelRaces";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import { GameThumb } from "Components/GameThumb";
 import {
   DEFAULT_REMAINING,
   getRemainingTime,
   getDuration,
+  formatRRstartTimeForGB,
 } from "./reelRaceOptInWidget.utils";
 import { TTranslations } from "./ReelRaceOptInWidgetContainer";
 import "./reelRaceOptInWidget.scss";
 
 type Props = {
   reelRace: A.ReelRaceCard_ReelRaceFragment;
+  isUKGC: boolean;
   translations: TTranslations;
 };
 
@@ -26,11 +29,13 @@ type TState = {
   rrInProgress: boolean;
 };
 
-export function ReelRaceOptInWidget({ reelRace, translations }: Props) {
+export function ReelRaceOptInWidget({ reelRace, isUKGC, translations }: Props) {
   const [state, setState] = useState<TState>({
     remaining: DEFAULT_REMAINING,
     rrInProgress: false,
   });
+  const { nextRRGB } = useNextReelRace();
+  const timeInHMSFormat = formatRRstartTimeForGB(nextRRGB.startTime);
 
   const updateOnTick = useCallback(
     () =>
@@ -50,6 +55,10 @@ export function ReelRaceOptInWidget({ reelRace, translations }: Props) {
 
   const prizesCounter = reelRace.formattedPrizes.length;
   const isPromoted = reelRace.promoted;
+
+  const t = reelRace.translations;
+
+  const timeToNextRR = state.rrInProgress ? t.endingIn : t.startingIn;
 
   return (
     <div
@@ -147,16 +156,14 @@ export function ReelRaceOptInWidget({ reelRace, translations }: Props) {
       <Flex className="o-flex--1" justify="space-between">
         <Flex direction="vertical">
           <div className="text-[10px] u-font-weight-bold text-white">
-            {state.rrInProgress
-              ? translations.endingIn
-              : translations.startingIn}
+            {isUKGC ? "Next race starts at:" : timeToNextRR}
           </div>
           <Text
             size="lg"
             tag="div"
             className="u-font-weight-bold text-yellow-30"
           >
-            {state.remaining}
+            {isUKGC ? timeInHMSFormat : state.remaining}
           </Text>
         </Flex>
 

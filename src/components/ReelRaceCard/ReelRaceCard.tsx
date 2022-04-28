@@ -14,7 +14,9 @@ import Timer from "Components/Timer";
 import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
-import { interpolate, timeRemainingBeforeStart } from "Utils";
+import { interpolate } from "Utils";
+import { useJurisdiction } from "Utils/hooks";
+import { formatRRstartTimeForGB } from "Components/ReelRaceOptInWidget/reelRaceOptInWidget.utils";
 import { ReelRaceOptInPlayButton } from "Components/ReelRaceOptInPlayButton";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
@@ -42,61 +44,48 @@ const Column = (props: {
   </Flex>
 );
 
-const THIRTY_MINUTES = 30 * 60 * 1000;
+const countdown = (reelRace, isUKGC) => {
+  const { translations: t, endTime, startTime, status } = reelRace;
 
-export const ReelRaceCard = ({ reelRace }: Props) => {
-  const countdown = () => {
-    const { translations: t, endTime, startTime, status } = reelRace;
+  if (status === RACE_STATE.STARTED) {
+    const timeInHMSFormat = formatRRstartTimeForGB(endTime);
 
-    if (status === RACE_STATE.STARTED) {
-      return (
-        <Flex direction="vertical" spacing="none">
-          <Text tag="span" size="xs" className="text-white u-font-weight-bold">
-            {t.endingIn}
-          </Text>
-          <Text tag="span" size="lg" className="u-font-weight-bold">
+    return (
+      <Flex direction="vertical" spacing="none">
+        <Text tag="span" size="xs" className="text-white u-font-weight-bold">
+          {isUKGC ? "Race ends at: " : t.endingIn}
+        </Text>
+        <Text tag="span" size="lg" className="u-font-weight-bold">
+          {isUKGC ? (
+            timeInHMSFormat
+          ) : (
             <Timer
               endTime={endTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
             />
-          </Text>
-        </Flex>
-      );
-    }
-
-    if (timeRemainingBeforeStart(startTime) <= THIRTY_MINUTES) {
-      return (
-        <Flex direction="vertical" spacing="none">
-          <Text tag="span" size="xs" className="text-white u-font-weight-bold">
-            {t.startingIn}
-          </Text>
-          <Text tag="span" size="lg" className="u-font-weight-bold">
-            <Timer
-              endTime={startTime}
-              render={state => `${state.minutes}:${state.seconds}`}
-              onEnd={() => "00:00"}
-            />
-          </Text>
-        </Flex>
-      );
-    }
-
-    const startTimeDate = DateTime.fromMillis(startTime);
-    // @ts-expect-error ts-migrate(2365) FIXME: Operator '>' cannot be applied to types 'Duration'... Remove this comment to see the full error message
-    const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
-
-    return (
-      <Flex spacing="none">
-        <TimeLockedIcon className="u-margin-right" />
-        <Text tag="span" size="sm" className="text-white u-font-weight-bold">
-          {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat(
-            "t"
-          )}`}
+          )}
         </Text>
       </Flex>
     );
-  };
+  }
+
+  const startTimeDate = DateTime.fromMillis(startTime);
+  // @ts-expect-error ts-migrate(2365) FIXME: Operator '>' cannot be applied to types 'Duration'... Remove this comment to see the full error message
+  const isTomorrow = startTimeDate.startOf("day").diffNow("days") > 0;
+
+  return (
+    <Flex spacing="none">
+      <TimeLockedIcon className="u-margin-right" />
+      <Text tag="span" size="sm" className="text-white u-font-weight-bold">
+        {`${isTomorrow ? t.tomorrow : t.today} ${startTimeDate.toFormat("t")}`}
+      </Text>
+    </Flex>
+  );
+};
+
+export const ReelRaceCard = ({ reelRace }: Props) => {
+  const { isUKGC } = useJurisdiction();
 
   const duration = () => {
     const { endTime, startTime } = reelRace;
@@ -216,7 +205,7 @@ export const ReelRaceCard = ({ reelRace }: Props) => {
           </Flex>
 
           <Flex direction="horizontal" justify="space-between" align="end">
-            {countdown()}
+            {countdown(reelRace, isUKGC)}
             <ReelRaceOptInPlayButton reelRace={reelRace} showOptedIn />
           </Flex>
         </Flex>

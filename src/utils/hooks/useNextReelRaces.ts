@@ -9,14 +9,15 @@ export const useNextReelRace = () => {
   >(ReelRaceOptInWidgetQuery, {
     variables: {
       prioritisePromoted: false,
-      limit: 1,
+      limit: 2,
     },
   });
 
   const reelRaceGame = closestReelRace?.reelRaces?.[0];
-
+  const reelRaceGameGB = closestReelRace?.reelRaces?.[1];
   return {
     loading: closestRRLoading,
     nextRR: reelRaceGame,
+    nextRRGB: reelRaceGameGB,
   };
 };
