@@ -1,1 +1,1 @@
-export const SPIN_AMOUNT_THRESHOLDS = 10;
+export const SPIN_AMOUNT_THRESHOLDS = 5;
