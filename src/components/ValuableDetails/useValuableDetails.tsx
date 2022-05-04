@@ -31,6 +31,7 @@ export const useValuableDetails = (
               selectedValuable
             ),
             onCloseModal: () => setSelectedValuable(null),
+            onDismissModal: () => setSelectedValuable(null),
           }
         )
       );
