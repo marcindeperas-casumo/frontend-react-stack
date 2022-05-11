@@ -90,7 +90,7 @@ export function ReelRaceOptInPlayButton({
       <ButtonVariant size="sm" onClick={playCallback} className="u-width--full">
         <PlayIcon
           size="sm"
-          className="u-margin-bottom--sm u-margin-right u-transform-scale--third"
+          className="u-margin-bottom--sm u-transform-scale--third"
         />
         <Text tag="span" className="u-margin-left">
           {translations.optedInCtaSingleGameShort}
