@@ -47,24 +47,23 @@ export function PromotionalGameListsContainer(props: {
         gamesInColumn={3}
         name={promotionDetails.game_list_name}
         games={R.pathOr([], ["gamesList", "games"], data)}
-        JackpotWidget={() => (
-          <Flex direction="horizontal" className="u-padding-right">
-            <PromotionalGameListWidget
-              content={{
-                read_more_text: promotionDetails.read_more_text,
-                read_more_link: promotionDetails.read_more_link,
-                terms_and_conditions_text:
-                  promotionDetails.terms_and_conditions_text,
-                terms_and_conditions_url:
-                  promotionDetails.terms_and_conditions_url,
-                background_image: promotionDetails?.background_image?.url,
-                sticker_background_color:
-                  promotionDetails.sticker_background_color,
-              }}
-            />
-          </Flex>
-        )}
-      />
+      >
+        <Flex direction="horizontal" className="u-padding-right">
+          <PromotionalGameListWidget
+            content={{
+              read_more_text: promotionDetails.read_more_text,
+              read_more_link: promotionDetails.read_more_link,
+              terms_and_conditions_text:
+                promotionDetails.terms_and_conditions_text,
+              terms_and_conditions_url:
+                promotionDetails.terms_and_conditions_url,
+              background_image: promotionDetails?.background_image?.url,
+              sticker_background_color:
+                promotionDetails.sticker_background_color,
+            }}
+          />
+        </Flex>
+      </GameListHorizontalWithWidget>
     )
   );
 }

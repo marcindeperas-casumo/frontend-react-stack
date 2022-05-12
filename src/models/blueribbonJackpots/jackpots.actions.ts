@@ -1,4 +1,5 @@
 import {
+  ComposedJackpot,
   HandshakeResponse,
   urls,
 } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
@@ -14,4 +15,14 @@ export const fetchBlueRibbonHandshake = () => ({
   name: types.FETCH_BLUERIBBON_JACKPOTS_HANDSHAKE,
   asyncCall: fetchBlueRibbonJackpotHandshakeCall,
   postFetch: types.UPDATE_BLUERIBBON_JACKPOTS_HANDSHAKE,
+});
+
+export const setBlueRibbonJackpots = (jackpot: ComposedJackpot) => ({
+  type: types.SET_BLUE_RIBBON_JACKPOTS,
+  jackpot,
+});
+
+export const setSdkPots = jackpotPotState => ({
+  type: types.SET_SDK_POTS,
+  jackpotPotState,
 });

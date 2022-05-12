@@ -18,3 +18,19 @@ export const eligibleGamesBySlugSelector = createSelector(
 
 export const gameJackpotSlugSelector = (slug: string) =>
   createSelector(eligibleGamesBySlugSelector, R.prop(slug));
+
+export const blueRibbonJackpotsSelector = createSelector(
+  blueRibbonJackpotStoreSelector,
+  R.prop("blueRibbonjackpots")
+);
+
+export const blueRibbonJackpotBySlugSelector = (slug: string) =>
+  createSelector(
+    blueRibbonJackpotsSelector,
+    jackpots => jackpots[slug]?.composedJackpot
+  );
+
+export const sdkPotsSelector = createSelector(
+  blueRibbonJackpotStoreSelector,
+  R.prop("sdkPots")
+);

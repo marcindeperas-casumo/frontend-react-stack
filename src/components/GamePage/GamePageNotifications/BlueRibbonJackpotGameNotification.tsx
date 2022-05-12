@@ -62,7 +62,7 @@ export function BlueRibbonJackpotGameNotification() {
         <Flex.Block>
           <Text size="sm" tag="span" className="text-black">
             <DangerousHtml
-              html={blueribbonJackpotForCurrentGame.notifications.gameLaunch}
+              html={blueribbonJackpotForCurrentGame.notifications?.gameLaunch}
             />
           </Text>
         </Flex.Block>

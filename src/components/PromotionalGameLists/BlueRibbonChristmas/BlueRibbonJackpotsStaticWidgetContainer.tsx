@@ -1,5 +1,7 @@
 import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
+import { useSelector } from "react-redux";
+import { blueRibbonJackpotBySlugSelector } from "Models/blueribbonJackpots/jackpots.selectors";
 import { topListWidgetWidth, topListWidgetHeight } from "Src/constants";
 import { BlueRibbonJackpotsStaticWidget } from "./BlueRibbonJackpotsStaticWidget";
 import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
@@ -13,10 +15,11 @@ export const BlueRibbonJackpotsStaticWidgetContainer = React.memo<any>(
     className?: string;
     jackpot_slug: string;
   }) => {
-    const { composedJackpot } = useComposedJackpotConfigBySlug({
-      slug: jackpot_slug,
-    });
     useBlueRibbonSDKAnonymous();
+    useComposedJackpotConfigBySlug({ slug: jackpot_slug });
+    const composedJackpot = useSelector(
+      blueRibbonJackpotBySlugSelector(jackpot_slug)
+    );
 
     if (!composedJackpot?.pots) {
       return (

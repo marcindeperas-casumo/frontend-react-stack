@@ -77,6 +77,7 @@ export type PotValues = {
   status: JackpotStatus;
   value: number;
   lastWinTs: number;
+  isLoading?: boolean;
 };
 
 export type PotObject = A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &

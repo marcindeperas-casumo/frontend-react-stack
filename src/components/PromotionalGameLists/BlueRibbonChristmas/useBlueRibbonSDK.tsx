@@ -2,7 +2,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { useParams } from "@reach/router";
 import { useApolloClient } from "@apollo/client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import logger from "Services/logger";
 import { injectScript } from "Utils";
@@ -12,14 +12,14 @@ import {
   marketSelector,
   isProductionBackendSelector,
 } from "Models/handshake";
-import type {
-  SDKInterface,
-  BlueRibbonConfig,
-  JackpotState,
-} from "Types/blueRibbonSDK";
+import type { SDKInterface, BlueRibbonConfig } from "Types/blueRibbonSDK";
 import http from "Lib/http";
 import { LogLevel } from "Types/blueRibbonSDK";
-import { blueRibbonHandshakeSelector } from "Models/blueribbonJackpots/jackpots.selectors";
+import {
+  blueRibbonHandshakeSelector,
+  sdkPotsSelector,
+} from "Models/blueribbonJackpots/jackpots.selectors";
+import { setSdkPots } from "Models/blueribbonJackpots/jackpots.actions";
 import { urls, baseConfig } from "./blueRibbonConsts";
 import { GetBlueribbonJackpotConfigByGameSlug } from "./GetBlueribbonJackpotConfigByGameSlug.graphql";
 
@@ -69,30 +69,51 @@ export function useBlueRibbonSDK() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return sdk;
 }
+
+let isStartGamesFeedLoading = false; // eslint-disable-line fp/no-let
 export function useBlueRibbonSDKAnonymous() {
   const sdk = useBlueRibbonSDK();
   const currency = useSelector(currencySelector);
+  const sdkPots = useSelector(sdkPotsSelector);
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
+  const dispatch = useDispatch();
   React.useEffect(
     function connectBlueRibbonSDK() {
       if (!sdk) {
         return;
       }
+
+      if (R.isEmpty(sdkPots)) {
+        sdk.events.on(
+          window.BlueRibbon.constants.events.POT_STATE_CHANGED_EVENT,
+          eventDetails => dispatch(setSdkPots(eventDetails.jackpotPotState))
+        );
+      }
       sdk
         .connect({ currency })
         .then(() => {
+          if (isStartGamesFeedLoading === true) {
+            return;
+          }
+          isStartGamesFeedLoading = true; // eslint-disable-line fp/no-mutation
           setConnectedSDK(sdk);
-          return sdk.startGamesFeed({
-            games: null,
-            gamesMode: window.BlueRibbon.constants.gamesMode.LOBBY,
-          });
+          return sdk
+            .startGamesFeed({
+              games: null,
+              gamesMode: window.BlueRibbon.constants.gamesMode.LOBBY,
+            })
+            .catch(error => {
+              logger.error("Blue ribbon startGamesFeed error", error);
+            })
+            .finally(() => {
+              isStartGamesFeedLoading = false; // eslint-disable-line fp/no-mutation
+            });
         })
         .catch(err => {
           logger.error("Blue ribbon sdk could not connect", err);
         });
-      return sdk.reset;
     },
-    [currency, sdk]
+    [currency, dispatch, sdk] // eslint-disable-line react-hooks/exhaustive-deps
   );
   return connectedSDK;
 }
@@ -106,6 +127,8 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
   const sdk = useBlueRibbonSDK();
   const handshake = useHandshake();
   const [connectedSDK, setConnectedSDK] = React.useState<SDKInterface>();
+  const sdkPots = useSelector(sdkPotsSelector);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (!sdk || !slug || !handshake) {
@@ -117,6 +140,13 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
         segments: [market],
       },
     ];
+
+    if (R.isEmpty(sdkPots)) {
+      sdk.events.on(
+        window.BlueRibbon.constants.events.POT_STATE_CHANGED_EVENT,
+        eventDetails => dispatch(setSdkPots(eventDetails.jackpotPotState))
+      );
+    }
 
     sdk
       .connect({ currency, playerId: handshake.externalPlayerReference })
@@ -133,7 +163,7 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
         }
         setIsJackpotGame(true);
 
-        return sdk.startGamesFeed({
+        return await sdk.startGamesFeed({
           games: gameObj,
           gamesMode: window.BlueRibbon.constants.gamesMode.IN_GAME,
         });
@@ -142,46 +172,12 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
       .catch(err => {
         logger.error("Blue ribbon sdk could not opt in to jackpot", err);
       });
-    return sdk.reset;
-  }, [currency, market, playerId, sdk, slug, handshake]);
+  }, [currency, market, playerId, sdk, slug, handshake, dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     sdk: connectedSDK,
     isJackpotGame,
   };
-}
-export function usePotStateChangeEvent() {
-  const [sdk, setSdk] = React.useState(sdkMutable);
-  const [pots, setPots] = React.useState<{
-    [s: string]: JackpotState;
-  }>({});
-  React.useEffect(() => {
-    if (sdk) {
-      return;
-    }
-    const intervalId = setInterval(() => {
-      if (sdkMutable) {
-        setSdk(sdkMutable);
-        clearInterval(intervalId);
-      }
-    }, 200);
-    return () => clearInterval(intervalId);
-  }, [sdk]);
-  React.useEffect(() => {
-    if (!sdk) {
-      return;
-    }
-    sdk.events.on(
-      window.BlueRibbon.constants.events.POT_STATE_CHANGED_EVENT,
-      eventDetails => {
-        setPots(oldPots => ({
-          ...oldPots,
-          [eventDetails.jackpotPotState.potId]: eventDetails.jackpotPotState,
-        }));
-      }
-    );
-  }, [sdk]);
-  return pots;
 }
 
 export function useHandshake() {

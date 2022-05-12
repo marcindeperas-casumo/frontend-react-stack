@@ -46,13 +46,14 @@ export const MustDropJackpotsListContainer = React.memo<null>(() => {
         <GameListHorizontalWithWidget
           name={R.path(["gamesList", "name"], data)}
           games={R.pathOr([], ["gamesList", "games"], data)}
-          JackpotWidget={MustDropJackpotsWidget}
           seeMore={{
             text: t.more_link,
             url: "../jackpots",
             onClick: onSeeMoreClickHandler,
           }}
-        />
+        >
+          <MustDropJackpotsWidget />
+        </GameListHorizontalWithWidget>
       </TrackProvider>
     );
   }

@@ -1,6 +1,11 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { ComposedJackpot } from "Components/PromotionalGameLists/BlueRibbonChristmas/blueRibbonConsts";
 import { useComposedJackpotConfigByGameSlug } from "Components/PromotionalGameLists/BlueRibbonChristmas/useComposedJackpot";
+import {
+  blueRibbonJackpotBySlugSelector,
+  gameJackpotSlugSelector,
+} from "Models/blueribbonJackpots/jackpots.selectors";
 
 type GameJackpotContextProviderProps = {
   slug: string;
@@ -28,9 +33,14 @@ export const GameJackpotContextProvider = ({
     setBlueRibbonNotificationNeedsAccepting,
   ] = React.useState(false);
 
-  const { composedJackpot } = useComposedJackpotConfigByGameSlug({
+  useComposedJackpotConfigByGameSlug({
     gameSlug: slug,
   });
+
+  const jackpotSlug = useSelector(gameJackpotSlugSelector(slug));
+  const composedJackpot = useSelector(
+    blueRibbonJackpotBySlugSelector(jackpotSlug)
+  );
 
   const providerValues = {
     blueribbonJackpotForCurrentGame: composedJackpot,

@@ -14,7 +14,7 @@ import {
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
 } from "Src/constants";
-import type { JackpotStatus, PotObject } from "./blueRibbonConsts";
+import type { PotObject } from "./blueRibbonConsts";
 import { BlueRibbonJackpotValue } from "./BlueRibbonJackpotValue";
 
 export function BlueRibbonJackpotsWidget({
@@ -48,12 +48,12 @@ export function BlueRibbonJackpotsWidget({
         backgroundColor: widgetColor.light,
         width: topListWidgetWidth,
         height:
-          composedPots.length < 3
+          composedPots?.length < 3
             ? topListWidgetHeightTwoRows
             : topListWidgetHeight,
       }}
     >
-      {composedPots.map(composedPot => {
+      {composedPots?.map(composedPot => {
         if (!composedPot.sharedPot) {
           return (
             <JackpotRow
@@ -67,7 +67,7 @@ export function BlueRibbonJackpotsWidget({
               label={composedPot.name}
               image={composedPot.icon}
               potTitleColor={composedPot.potTitleColor}
-              status={composedPot.status}
+              isLoading={composedPot.isLoading}
             />
           );
         }
@@ -88,7 +88,7 @@ export function BlueRibbonJackpotsWidget({
             label: composedPot.name,
             image: composedPot.icon,
             explanation: composedPot.potExplanation,
-            status: composedPot.status,
+            isLoading: composedPot.isLoading,
           },
           {
             id: "community",
@@ -101,13 +101,13 @@ export function BlueRibbonJackpotsWidget({
             label: composedPot.sharedPot.name,
             image: composedPot.sharedPot.icon,
             explanation: composedPot.sharedPot.splitExplanation,
-            status: composedPot.status,
+            isLoading: composedPot.isLoading,
           },
         ];
 
         return (
           <Flex
-            key={composedPot.potKey}
+            key={composedPot.shortName}
             direction="vertical"
             className="t-border-r--md u-overflow--hidden"
             style={{ backgroundColor: widgetColor.dark }}
@@ -128,7 +128,7 @@ export function BlueRibbonJackpotsWidget({
         />
       </Flex.Item>
       <Flex.Item className="o-position--absolute o-inset-left--auto o-inset-right--none o-inset-top--none o-inset-bottom--auto u-margin-right--md u-margin-bottom--md u-margin-top--md">
-        {userViewedJackpotOnboardingOffer && (
+        {userViewedJackpotOnboardingOffer && explainerPageUrl && (
           <Link to={explainerPageUrl}>
             <Flex
               direction="vertical"
@@ -151,15 +151,15 @@ type JackpotRowProps = {
   image: string;
   explanation?: string;
   potTitleColor?: string;
-  status?: JackpotStatus;
+  isLoading?: boolean;
 };
-function JackpotRow({
+const JackpotRow = React.memo(function ({
   formattedValue,
   label,
   image,
   explanation,
   potTitleColor,
-  status,
+  isLoading,
 }: JackpotRowProps) {
   return (
     <Media
@@ -170,7 +170,6 @@ function JackpotRow({
           width={56}
           height={56}
           alt={`${label} icon`}
-          style={{ visibility: status ? "visible" : "hidden" }}
           src={image}
         />
       )}
@@ -186,7 +185,7 @@ function JackpotRow({
             {label}
           </Text>
           <BlueRibbonJackpotValue
-            status={status}
+            isLoading={isLoading}
             size="md"
             classes="u-margin-bottom--none u-font-weight-bold text-white"
           >
@@ -201,4 +200,4 @@ function JackpotRow({
       )}
     />
   );
-}
+});

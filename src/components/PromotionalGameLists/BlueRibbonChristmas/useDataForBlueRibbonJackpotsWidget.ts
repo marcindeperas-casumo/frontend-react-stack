@@ -4,13 +4,15 @@
  */
 
 import * as R from "ramda";
+import { useSelector } from "react-redux";
 import { useFetch, useTranslations } from "Utils/hooks";
+import { sdkPotsSelector } from "Models/blueribbonJackpots/jackpots.selectors";
 import { urls, jackpotWidgetContentPage } from "./blueRibbonConsts";
 import type {
   JackpotWidgetContentPage,
   JackpotStatus,
 } from "./blueRibbonConsts";
-import { usePotStateChangeEvent } from "./useBlueRibbonSDK";
+import { useBlueRibbonSDKAnonymous } from "./useBlueRibbonSDK";
 
 export type BlueRibbonJackpotEntry = {
   value: number;
@@ -24,7 +26,8 @@ export type BlueRibbonJackpotEntry = {
 export function useDataForBlueRibbonJackpotsWidget() {
   const { response } = useFetch(urls.handshake);
   const t = useTranslations<JackpotWidgetContentPage>(jackpotWidgetContentPage);
-  const pots = usePotStateChangeEvent();
+  useBlueRibbonSDKAnonymous();
+  const pots = useSelector(sdkPotsSelector);
 
   const available = R.propOr(false, "available", response);
   const jackpots: Array<BlueRibbonJackpotEntry> = R.pipe(

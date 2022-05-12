@@ -88,7 +88,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
-  const { icon, shortName, status } = pot;
+  const { icon, shortName, isLoading } = pot;
   return (
     <Flex
       direction="horizontal"
@@ -105,7 +105,7 @@ const PotItem = ({ formattedValue, pot, className }: TPotItemProps) => {
         src={icon}
       />
       <BlueRibbonJackpotValue
-        status={status}
+        isLoading={isLoading}
         size="xs"
         classes="u-font-weight-bold u-line-height--1 text-white"
         tag="span"

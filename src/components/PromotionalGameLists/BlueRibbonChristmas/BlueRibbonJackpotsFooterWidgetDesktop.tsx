@@ -55,7 +55,7 @@ type TPotItemProps = {
 };
 
 const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
-  const { icon, shortName, potTitleColor, status } = pot;
+  const { icon, shortName, potTitleColor, isLoading } = pot;
   return (
     <Flex direction="horizontal" align="center" justify="center" spacing="sm">
       <Flex.Item className="u-height--xlg">
@@ -80,7 +80,7 @@ const PotItem = ({ formattedValue, pot }: TPotItemProps) => {
             size="xs"
             tag="span"
             classes="u-font-weight-bold u-text-transform-uppercase u-line-height--1 text-white tabular-nums"
-            status={status}
+            isLoading={isLoading}
           >
             {formattedValue}
           </BlueRibbonJackpotValue>

@@ -40,7 +40,8 @@ export const BlueRibbonChristmas = React.memo<Props>(({ jackpot }: Props) => {
     <GameListHorizontalWithWidget
       name={t.section_title}
       games={R.pathOr([], ["gamesList", "games"], data)}
-      JackpotWidget={BlueRibbonJackpotsWidgetContainer}
-    />
+    >
+      <BlueRibbonJackpotsWidgetContainer />
+    </GameListHorizontalWithWidget>
   );
 });

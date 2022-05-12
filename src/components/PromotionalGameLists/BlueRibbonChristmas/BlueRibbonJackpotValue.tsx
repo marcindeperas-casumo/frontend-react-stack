@@ -1,22 +1,21 @@
 import Text from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
 import * as React from "react";
-import { JackpotStatus } from "./blueRibbonConsts";
 
 type BlueRibbonJackpotValueProps = {
   size: "md" | "xs";
   classes: string;
-  status?: JackpotStatus;
   children: React.ReactNode;
   tag?: string;
+  isLoading?: boolean;
 };
 
 export function BlueRibbonJackpotValue(props: BlueRibbonJackpotValueProps) {
-  const { size, classes, status, children, tag = "p" } = props;
+  const { size, classes, children, tag = "p", isLoading = true } = props;
 
   const isMediumSize: boolean = size === "md";
 
-  return status === undefined ? (
+  return isLoading ? (
     <Text
       size={size}
       className={classes}

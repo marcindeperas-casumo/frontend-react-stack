@@ -1,4 +1,5 @@
 import * as React from "react";
+import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
@@ -13,34 +14,64 @@ import {
   xPaddingClasses,
 } from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
+import { BlueRibbonJackpotsOnboardingWidget } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonJackpotsOnboardingWidget";
+import logger from "Services/logger";
 
 export type Props = {
   games: Array<A.GameRow_GameFragment | A.Jackpots_GameFragment>;
-  JackpotWidget: React.ComponentType;
-  JackpotOnboardingWidget?: React.ComponentType;
   name: string | undefined;
   seeMore?: SeeMoreProps;
   gamesInColumn?: number;
+  jackpotSlug?: string;
+  hasOnBoarding?: boolean;
+  children: React.ReactChild;
 };
 
 export const GameListHorizontalWithWidget = ({
   name,
   seeMore,
   games,
-  JackpotWidget,
-  JackpotOnboardingWidget,
   gamesInColumn = 3,
+  jackpotSlug,
+  hasOnBoarding = false,
+  children: WidgetComponent,
 }: Props) => {
+  const [onboardingVisible, setOnboardingVisible] = React.useState(true);
+  const userViewedJackpotOnboardingOffer = localStorage.getItem(
+    "JackpotOnboardingOfferPresented"
+  );
+
+  const onCloseOnboardingWidget = () => {
+    try {
+      localStorage.setItem("JackpotOnboardingOfferPresented", "true");
+    } catch (error) {
+      logger.error("JackpotOnboardingOfferPresented local storage error", {
+        error,
+      });
+    }
+    setOnboardingVisible(false);
+  };
+
   const columns = R.splitEvery(gamesInColumn, games);
 
   const itemRenderer = ({ style, columnIndex, key }) => {
     return (
       <div key={key} style={style}>
-        {columnIndex === 1 && JackpotOnboardingWidget && (
-          <JackpotOnboardingWidget />
-        )}
+        {columnIndex === 1 &&
+          hasOnBoarding &&
+          onboardingVisible &&
+          !userViewedJackpotOnboardingOffer && (
+            <Flex direction="horizontal">
+              <BlueRibbonJackpotsOnboardingWidget
+                jackpotSlug={jackpotSlug}
+                onClose={onCloseOnboardingWidget}
+              />
+            </Flex>
+          )}
         {columnIndex === 0 ? (
-          <JackpotWidget />
+          <Flex direction="horizontal" className="u-padding-right">
+            {WidgetComponent}
+          </Flex>
         ) : (
           columns[columnIndex - 1].map(game => (
             <div
