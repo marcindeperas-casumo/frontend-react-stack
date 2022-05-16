@@ -3,12 +3,10 @@ import * as React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
-import { EVENTS, EVENT_PROPS, ROUTE_IDS } from "Src/constants";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
-import { useTranslatedUrl } from "Utils/hooks";
 import TrackClick from "Components/TrackClick";
 import { JackpotMarkImageContainer } from "Components/JackpotMarkImage/JackpotMarkImageContainer";
-import { GameRowTrackMoreIcon } from "./GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "./GameRowTrackPlayIcon";
 import "./GameRow.scss";
 
@@ -32,10 +30,6 @@ export const GameRow = (props: Props) => {
     launchGame({ slug: game.slug });
   };
 
-  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, {
-    slug: game.slug,
-  });
-
   const rightSideComponent = (() => {
     if (props.hideRightSideComponent) {
       return null;
@@ -46,8 +40,6 @@ export const GameRow = (props: Props) => {
         <GameRowTrackPlayIcon name={game.name} onLaunchGame={onLaunchGame} />
       );
     }
-
-    return <GameRowTrackMoreIcon name={game.name} path={gameDetailsPath} />;
   })();
 
   return (

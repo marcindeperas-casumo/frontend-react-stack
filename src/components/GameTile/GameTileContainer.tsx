@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import React from "react";
-import { useTranslations, useTranslatedUrl } from "Utils/hooks";
+import { useTranslations } from "Utils/hooks";
 import { showModal } from "Models/modal";
 import * as A from "Types/apollo";
-import { GAME_CATEGORIES_MAP, REACT_APP_MODAL, ROUTE_IDS } from "Src/constants";
+import { GAME_CATEGORIES_MAP, REACT_APP_MODAL } from "Src/constants";
 import { JackpotMarkImageContainer } from "Components/JackpotMarkImage/JackpotMarkImageContainer";
 import { launchGame } from "Services/LaunchGameService";
 import { getGameExcludedForPlayer } from "Src/api/api.gameExclusion";
@@ -24,7 +24,6 @@ export const GameTileContainer = (props: GameTileContainerProps) => {
     play_button_text_game_tile: string;
   }>(`${CMS_SLUGS.LOBBY}.${CMS_SLUGS.GAMES_LIST}`);
 
-  const gameDetailsPath = useTranslatedUrl(ROUTE_IDS.GAME_DETAILS, { slug });
   const gameLauncher = () => {
     getGameExcludedForPlayer().then(response => {
       if (
@@ -46,7 +45,6 @@ export const GameTileContainer = (props: GameTileContainerProps) => {
     <GameTile
       t={t}
       tileJackpotMark={tileJackpotMark}
-      gameDetailsPath={`/${gameDetailsPath}`}
       gameLauncher={gameLauncher}
       {...props}
     />

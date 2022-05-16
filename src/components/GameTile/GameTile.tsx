@@ -1,12 +1,10 @@
 import Flex from "@casumo/cmp-flex";
-import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
+import { PlayIcon } from "@casumo/cmp-icons";
 import { Button } from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
-import { Link } from "@reach/router";
 import React, { ReactElement } from "react";
 import { formatCurrency } from "Utils";
-import { Mobile, TabletAndDesktop } from "Components/ResponsiveLayout";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import TrackClick from "Components/TrackClick";
@@ -25,7 +23,6 @@ export type Props = {
   imgixOpts?: Object;
   ratio?: string;
   t?: GameTileTranslations;
-  gameDetailsPath?: string;
   tileJackpotMark?: ReactElement;
   locale?: string;
   gameLauncher?: Function;
@@ -43,7 +40,6 @@ export const GameTile = ({
   },
   ratio = "game-tile",
   t = { play_button_text_game_tile: "Play" },
-  gameDetailsPath,
   tileJackpotMark = null,
   locale,
   gameLauncher,
@@ -128,34 +124,10 @@ export const GameTile = ({
             </Button>
           </Flex>
           <Flex
-            justify="space-between"
+            justify="end"
             align="end"
             className="u-width--full c-game-tile-container__bottom-bar o-position--absolute o-inset-bottom--none"
           >
-            <Flex.Item onClick={e => e.stopPropagation()}>
-              {/* @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call. */}
-              <TrackClick
-                eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-                data={{ [EVENT_PROPS.GAME_NAME]: name }}
-              >
-                <Mobile>
-                  <Link
-                    className="u-padding u-display--block"
-                    to={`${gameDetailsPath}`}
-                  >
-                    <MoreIcon className="text-white" />
-                  </Link>
-                </Mobile>
-                <TabletAndDesktop>
-                  <Link
-                    to={`${gameDetailsPath}`}
-                    className="u-padding u-display--block"
-                  >
-                    <MoreIcon className="text-white" />
-                  </Link>
-                </TabletAndDesktop>
-              </TrackClick>
-            </Flex.Item>
             <GameTileHeart gameId={id} gameName={name} />
           </Flex>
         </div>

@@ -76,7 +76,7 @@ describe("<GameRow />", () => {
     expect(rendered.find(GameRowTrackMoreIcon).length).toBe(0);
   });
 
-  test("renders a More info icon if not a jackpot game", () => {
+  test("doesnt renders a More info icon if not a jackpot game", () => {
     const rendered = mount(
       <MockStore>
         <GameRow
@@ -86,7 +86,7 @@ describe("<GameRow />", () => {
       </MockStore>
     );
 
-    expect(rendered.find(GameRowTrackMoreIcon).length).toBe(1);
+    expect(rendered.find(GameRowTrackMoreIcon).length).toBe(0);
     expect(rendered.find(GameRowTrackPlayIcon).length).toBe(0);
   });
 });
