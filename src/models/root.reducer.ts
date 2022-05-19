@@ -21,6 +21,7 @@ import { mandatoryMessagesApi } from "./mandatoryMessages";
 import { playOkayApi, gameTypeExclusionsApi } from "./playOkay";
 import { loginSessionApi } from "./loginSession";
 import { avgBetApi } from "./avgBet";
+import { paymentsApi } from "./payments";
 
 const rootReducer = combineReducers({
   router,
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   [gameTypeExclusionsApi.reducerPath]: gameTypeExclusionsApi.reducer,
   [loginSessionApi.reducerPath]: loginSessionApi.reducer,
   [avgBetApi.reducerPath]: avgBetApi.reducer,
+  [paymentsApi.reducerPath]: paymentsApi.reducer,
 });
 
 export default rootReducer;

@@ -8,6 +8,7 @@ import rootSaga from "Models/root.saga";
 import { mandatoryMessagesApi } from "Models/mandatoryMessages";
 import { playOkayApi, gameTypeExclusionsApi } from "Models/playOkay";
 import { loginSessionApi } from "Models/loginSession";
+import { paymentsApi } from "Models/payments";
 import * as storage from "Lib/storage";
 import { STORE_REHYDRATE, STORE_PERSISTED_STATE_KEY } from "Src/constants";
 
@@ -35,6 +36,7 @@ export const createReduxStore = (preloadedState: {}) => {
     playOkayApi.middleware,
     gameTypeExclusionsApi.middleware,
     loginSessionApi.middleware,
+    paymentsApi.middleware,
   ];
   // @ts-ignore
   const middlewareEnhancer = applyMiddleware(...middlewares);

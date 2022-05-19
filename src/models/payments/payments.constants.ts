@@ -17,3 +17,11 @@ export const requestStateMessageType = {
   SUCCESS: "SUCCESS",
   ERROR: "ERROR",
 };
+
+export const blockOrigins = {
+  KYC: "KYC",
+  PAYMENT_BLOCK: "PAYMENT_BLOCK",
+  PIQ_CATEGORY: "PIQ_CATEGORY",
+  DK_VERIFIER: "DK_VERIFIER",
+  BIN_BLOCK: "BIN_BLOCK",
+};

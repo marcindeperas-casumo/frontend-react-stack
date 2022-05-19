@@ -12,6 +12,8 @@ import {
   methodsConfigsSelector,
   TCurrencyProfiles,
   TCurrencyProfile,
+  useGetPaymentsPermissionsQuery,
+  isPaymentMethodAllowedForDeposit,
 } from "Models/payments";
 import { SUPPORTED_QUICKDEPOSIT_TYPES } from "Models/payments/methodConfig.constants";
 import type {
@@ -67,6 +69,10 @@ export const prepareQuickDepositMethod = (
 });
 
 export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => {
+  const {
+    isSuccess: isPaymentsPermissionsLoaded,
+    data: paymentsPermissions,
+  } = useGetPaymentsPermissionsQuery();
   const [availableMethods, setAvailableMethods] = React.useState([]);
   const [methodTypes, setMethodTypes] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
@@ -99,7 +105,12 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
   }, [loading, methodTypes]);
 
   React.useEffect(() => {
-    if (methodTypes && savedMethods.length && playerCountry) {
+    if (
+      methodTypes &&
+      savedMethods.length &&
+      playerCountry &&
+      isPaymentsPermissionsLoaded
+    ) {
       setAvailableMethods(
         savedMethods.reduce((quickDepositMethods, playerMethod) => {
           const config =
@@ -113,7 +124,12 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
             isMethodAvailableForQuickDeposit(config) &&
             isAvailableInCountry(config, playerCountry) &&
             // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-            !methodTypes[playerMethod.type].inMaintenanceMode
+            !methodTypes[playerMethod.type].inMaintenanceMode &&
+            isPaymentMethodAllowedForDeposit({
+              // @ts-expect-error
+              id: playerMethod.id,
+              paymentsPermissions,
+            })
           ) {
             return quickDepositMethods.concat([
               prepareQuickDepositMethod(
@@ -130,7 +146,15 @@ export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => 
         }, [])
       );
     }
-  }, [methodTypes, methodsConfigs, playerCountry, savedMethods, currency]);
+  }, [
+    methodTypes,
+    methodsConfigs,
+    playerCountry,
+    savedMethods,
+    currency,
+    paymentsPermissions,
+    isPaymentsPermissionsLoaded,
+  ]);
 
   return availableMethods;
 };

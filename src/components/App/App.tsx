@@ -5,6 +5,7 @@ import {
   REACT_APP_EVENT_PAYMENT_METHOD_SELECTED,
 } from "Src/constants";
 import logger from "Services/logger";
+import { useGetPaymentsPermissionsQuery } from "Models/payments";
 import { AppLiS } from "./AppLiS";
 import { AppLoS } from "./AppLoS";
 
@@ -23,6 +24,7 @@ export const App = (props: Props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     isAuthenticatedHandshake
   );
+  useGetPaymentsPermissionsQuery();
 
   // IM-274: ephemeral fix rm localforage indexeddb
   useEffect(() => {
