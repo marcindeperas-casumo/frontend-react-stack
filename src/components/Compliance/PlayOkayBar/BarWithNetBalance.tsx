@@ -14,7 +14,7 @@ type Props = {
   gameCategory: string;
 };
 
-export const UKGCBar = ({ className = "", gameCategory }: Props) => {
+export const BarWithNetBalance = ({ className = "", gameCategory }: Props) => {
   const dispatch = useDispatch();
   const sessionStartedTime = useSelector(playerSessionStarted);
 
