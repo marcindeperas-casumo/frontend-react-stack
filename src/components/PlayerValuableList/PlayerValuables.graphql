@@ -46,6 +46,7 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String, 
       wageringThreshold
       leftToWager
       termsLink
+      hideGenericAndMarketSpecificTerms
       specificTerms
       rule {
         name

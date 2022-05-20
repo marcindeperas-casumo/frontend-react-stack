@@ -148,6 +148,35 @@ const ActionButtonContent = ({ isLocked, text }) => {
   );
 };
 
+const termsAndConditionsCheck = ({
+  hideGenericAndMarketSpecificTerms,
+  termsAndConditionsTitle,
+  generalTermsAndConditionsTitle,
+  marketSpecificTermsAndConditionsTitle,
+  termsAndConditionsContent,
+  generalTermsAndConditionsContent,
+  marketSpecificTermsAndConditionsContent,
+}) => {
+  if (hideGenericAndMarketSpecificTerms) {
+    return {
+      termsAndConditionsTitleItems: [termsAndConditionsTitle],
+      termsAndConditionsContentItems: [termsAndConditionsContent],
+    };
+  }
+  return {
+    termsAndConditionsTitleItems: [
+      termsAndConditionsTitle,
+      generalTermsAndConditionsTitle,
+      marketSpecificTermsAndConditionsTitle,
+    ],
+    termsAndConditionsContentItems: [
+      termsAndConditionsContent,
+      generalTermsAndConditionsContent,
+      marketSpecificTermsAndConditionsContent,
+    ],
+  };
+};
+
 export const ValuableDetails = ({
   valuableDetails,
   onConsumeValuable,
@@ -164,6 +193,7 @@ export const ValuableDetails = ({
     leftToWager,
     market,
     specificTerms,
+    hideGenericAndMarketSpecificTerms,
     valuableType,
     valuableState,
     wageringThreshold,
@@ -183,17 +213,20 @@ export const ValuableDetails = ({
 
   const { scrollableItemsRef, scrollToElement } = useScrollToElement();
 
-  const termsAndConditionsTitleItems = [
+  // Checks whether Valuable CMS template has the override enabled to hide generic and market specific t&cs
+  // returns either full list of t&c titles and content, or just the ones linked in the valuable cms template (legal docs)
+  const {
+    termsAndConditionsTitleItems,
+    termsAndConditionsContentItems,
+  } = termsAndConditionsCheck({
+    hideGenericAndMarketSpecificTerms,
     termsAndConditionsTitle,
     generalTermsAndConditionsTitle,
     marketSpecificTermsAndConditionsTitle,
-  ];
-
-  const termsAndConditionsContentItems = [
     termsAndConditionsContent,
     generalTermsAndConditionsContent,
     marketSpecificTermsAndConditionsContent,
-  ];
+  });
 
   const handleAction = async (actionProps: ValuableActionProps) => {
     const { url, isDepositBonusSelected } = actionProps;
@@ -374,7 +407,7 @@ export const ValuableDetails = ({
                 {title && (
                   <Text
                     size="xs"
-                    className="text-blue-60 u-margin-y--sm u-text-decoration-underline u-text-align-left"
+                    className="text-blue-60 u-margin-y--sm u-text-decoration-underline u-cursor--pointer u-text-align-left"
                     onClick={() => scrollToElement(i)}
                   >
                     {title}
@@ -384,7 +417,7 @@ export const ValuableDetails = ({
             ))}
           </Flex.Item>
 
-          <Flex.Item className="u-width--full u-overflow-x--hidden">
+          <Flex.Item className="u-width--full u-overflow-x--hidden tandc-layout-fix">
             {termsAndConditionsContentItems.map((item, i) => (
               <React.Fragment key={`terms-${i}`}>
                 {item && (

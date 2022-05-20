@@ -72,3 +72,11 @@ $shadow-width: 130px;
     z-index: 10 !important;
   }
 }
+
+// Fix for valuable details popup content as it currently resizes according to injected content
+// stylelint-disable xi/selector-pattern
+.tandc-layout-fix {
+  display: table;
+  table-layout: fixed;
+}
+// stylelint-enable xi/selector-pattern
