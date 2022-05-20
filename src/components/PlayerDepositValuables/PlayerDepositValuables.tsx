@@ -46,7 +46,7 @@ export const PlayerDepositValuables = ({
         spacing="none"
       >
         <Flex.Item className="u-overflow-y--auto">
-          {/* @ts-expect-error ts-migrate(2741) FIXME: Property 'onConsumeValuable' is missing in type '{... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(741) FIXME: Property 'onConsumeValuable' is missing in type '{... Remove this comment to see the full error message */}
           <ValuablesVerticalList
             valuables={valuables}
             translations={translations}

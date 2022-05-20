@@ -182,6 +182,7 @@ declare module "*/LiveCasinoCard.graphql" {
   import { DocumentNode } from "graphql";
   const defaultDocument: DocumentNode;
   export const LiveCasinoCard_Lobby_Bets: DocumentNode;
+  export const LiveCasinoCard_Lobby_OperationHours: DocumentNode;
   export const LiveCasinoCard_Lobby: DocumentNode;
   export const LiveCasinoCard: DocumentNode;
 
@@ -624,8 +625,8 @@ declare module "*/mutations.sports.ts" {
   export const ToggleFavouriteGroup: DocumentNode;
   export const SetFavourites: DocumentNode;
   export const SetFavouriteCompetitions: DocumentNode;
-  export const SessionTouch: DocumentNode;
   export const LaunchKambi: DocumentNode;
+  export const SessionTouch: DocumentNode;
 
   export default defaultDocument;
 }

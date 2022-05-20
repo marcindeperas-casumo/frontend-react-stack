@@ -65,6 +65,13 @@ query PlayerValuablesQuery($valuableType: ValuableType, $badgeRuleName: String, 
       ... on PlayerValuableFreeBet {
         requirementType
       }
+      ... on PlayerValuableLiveCasinoFreeBet {
+        description
+        game {
+          title
+          slug
+        }
+      }
       ... on PlayerValuableCashback {
         description
         requirementType
@@ -136,6 +143,14 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     }
     ... on PlayerValuableFreeBet {
       requirementType
+    }
+    ... on PlayerValuableLiveCasinoFreeBet {
+      description
+      requirementType
+      game {
+        title
+        slug
+      }
     }
     ... on PlayerValuableBundleLock {
       tierType

@@ -30,6 +30,12 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   ... on PlayerValuableFreeBet {
     requirementType
   }
+  ... on PlayerValuableLiveCasinoFreeBet {
+    game {
+      title
+      slug
+    }
+  }
   ... on PlayerValuableCashback {
     requirementType
     games {

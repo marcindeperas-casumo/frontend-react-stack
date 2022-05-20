@@ -609,8 +609,10 @@ export interface LiveCasinoTable {
 
 export type TableState = "OPEN" | "CLOSED" | "UNASSIGNED";
 
+export type OperationHoursType = "FULLTIME" | "BOUNDED";
+
 export interface OperationHours {
-  type?: Maybe<Scalars["String"]>;
+  type: OperationHoursType;
   startTime?: Maybe<Scalars["String"]>;
   endTime?: Maybe<Scalars["String"]>;
 }
@@ -683,6 +685,7 @@ export interface Player {
     | PlayerValuableWageringLock
     | PlayerValuableBundleLock
     | PlayerValuableFreeBet
+    | PlayerValuableLiveCasinoFreeBet
   >;
   username: Scalars["String"];
   details: PlayerDetails;
@@ -796,6 +799,7 @@ export type ValuableType =
   | "cash"
   | "sport"
   | "freeBet"
+  | "liveCasinoFreeBet"
   | "cashback"
   | "wageringLock"
   | "bundleLock";
@@ -1049,6 +1053,34 @@ export interface PlayerValuableFreeBet extends PlayerValuable {
   unlockEachWay?: Maybe<Scalars["Boolean"]>;
   unlockChannelId?: Maybe<Scalars["String"]>;
   unlockBetStatus?: Maybe<Scalars["String"]>;
+  valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
+  valuableType: ValuableType;
+  wageringThreshold?: Maybe<Scalars["Float"]>;
+}
+
+/** Locked free-bets will have the valuableState="Locked" */
+export interface PlayerValuableLiveCasinoFreeBet extends PlayerValuable {
+  backgroundImage: Scalars["String"];
+  caveat?: Maybe<Scalars["String"]>;
+  content: Scalars["String"];
+  currency: Currency;
+  description: Scalars["String"];
+  /** @deprecated This is soon deprecated. Please use expiryDate */
+  expirationTimeInHours: Scalars["Int"];
+  expiryDate: Scalars["BigInt"];
+  created: Scalars["BigInt"];
+  id: Scalars["ID"];
+  game?: Maybe<Game>;
+  leftToWager?: Maybe<Scalars["Float"]>;
+  magnitude: Scalars["Float"];
+  market: Scalars["String"];
+  requirementType?: Maybe<RequirementType>;
+  rule: PlayerValuableRule;
+  itemImage?: Maybe<Scalars["String"]>;
+  title: Scalars["String"];
+  termsLink: Scalars["String"];
+  specificTerms?: Maybe<Scalars["String"]>;
   valuableState: PlayerValuableState;
   parentValuableState?: Maybe<PlayerValuableState>;
   valuableType: ValuableType;
@@ -1794,8 +1826,8 @@ export type LiveCasinoCard_LobbyFragment = {
   type?: Maybe<string>;
   betBehind?: Maybe<boolean>;
   state?: Maybe<string>;
-  bets?: Maybe<LiveCasinoCard_Lobby_BetsFragment>;
   operationHours?: Maybe<LiveCasinoCard_Lobby_OperationHoursFragment>;
+  bets?: Maybe<LiveCasinoCard_Lobby_BetsFragment>;
 };
 
 export type LiveCasinoCardFragment = {
@@ -2061,6 +2093,28 @@ export type PlayerValuablesQuery = {
           itemImage?: Maybe<string>;
           rule: { name: string };
         }
+      | {
+          __typename: "PlayerValuableLiveCasinoFreeBet";
+          description: string;
+          id: string;
+          valuableState: PlayerValuableState;
+          parentValuableState?: Maybe<PlayerValuableState>;
+          expiryDate: number;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          currency: Currency;
+          market: string;
+          backgroundImage: string;
+          wageringThreshold?: Maybe<number>;
+          leftToWager?: Maybe<number>;
+          termsLink: string;
+          specificTerms?: Maybe<string>;
+          itemImage?: Maybe<string>;
+          game?: Maybe<{ title: string; slug: string }>;
+          rule: { name: string };
+        }
     >;
   };
 };
@@ -2229,6 +2283,28 @@ type PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   rule: { name: string };
 };
 
+type PlayerValuableList_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment = {
+  __typename: "PlayerValuableLiveCasinoFreeBet";
+  description: string;
+  requirementType?: Maybe<RequirementType>;
+  id: string;
+  valuableState: PlayerValuableState;
+  parentValuableState?: Maybe<PlayerValuableState>;
+  expiryDate: number;
+  valuableType: ValuableType;
+  title: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  backgroundImage: string;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  itemImage?: Maybe<string>;
+  game?: Maybe<{ title: string; slug: string }>;
+  rule: { name: string };
+};
+
 export type PlayerValuableList_PlayerValuableFragment =
   | PlayerValuableList_PlayerValuable_PlayerValuableCash_Fragment
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins_Fragment
@@ -2237,7 +2313,8 @@ export type PlayerValuableList_PlayerValuableFragment =
   | PlayerValuableList_PlayerValuable_PlayerValuableCashback_Fragment
   | PlayerValuableList_PlayerValuable_PlayerValuableWageringLock_Fragment
   | PlayerValuableList_PlayerValuable_PlayerValuableBundleLock_Fragment
-  | PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment;
+  | PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment
+  | PlayerValuableList_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment;
 
 export type UseValuableMutationVariables = Exact<{
   id: Scalars["String"];
@@ -2913,6 +2990,23 @@ type ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   rule: { name: string };
 };
 
+type ValuableCard_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment = {
+  __typename: "PlayerValuableLiveCasinoFreeBet";
+  description: string;
+  id: string;
+  title: string;
+  content: string;
+  valuableState: PlayerValuableState;
+  valuableType: ValuableType;
+  currency: Currency;
+  market: string;
+  caveat?: Maybe<string>;
+  backgroundImage: string;
+  specificTerms?: Maybe<string>;
+  termsLink: string;
+  rule: { name: string };
+};
+
 export type ValuableCard_PlayerValuableFragment =
   | ValuableCard_PlayerValuable_PlayerValuableCash_Fragment
   | ValuableCard_PlayerValuable_PlayerValuableSpins_Fragment
@@ -2921,7 +3015,8 @@ export type ValuableCard_PlayerValuableFragment =
   | ValuableCard_PlayerValuable_PlayerValuableCashback_Fragment
   | ValuableCard_PlayerValuable_PlayerValuableWageringLock_Fragment
   | ValuableCard_PlayerValuable_PlayerValuableBundleLock_Fragment
-  | ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment;
+  | ValuableCard_PlayerValuable_PlayerValuableFreeBet_Fragment
+  | ValuableCard_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment;
 
 type ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment = {
   __typename: "PlayerValuableCash";
@@ -3096,6 +3191,27 @@ type ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   rule: { name: string };
 };
 
+type ValuableDetails_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment = {
+  __typename: "PlayerValuableLiveCasinoFreeBet";
+  id: string;
+  backgroundImage: string;
+  content: string;
+  caveat?: Maybe<string>;
+  currency: Currency;
+  market: string;
+  expiryDate: number;
+  valuableType: ValuableType;
+  valuableState: PlayerValuableState;
+  wageringThreshold?: Maybe<number>;
+  leftToWager?: Maybe<number>;
+  termsLink: string;
+  title: string;
+  specificTerms?: Maybe<string>;
+  itemImage?: Maybe<string>;
+  game?: Maybe<{ title: string; slug: string }>;
+  rule: { name: string };
+};
+
 export type ValuableDetails_PlayerValuableFragment =
   | ValuableDetails_PlayerValuable_PlayerValuableCash_Fragment
   | ValuableDetails_PlayerValuable_PlayerValuableSpins_Fragment
@@ -3104,7 +3220,8 @@ export type ValuableDetails_PlayerValuableFragment =
   | ValuableDetails_PlayerValuable_PlayerValuableCashback_Fragment
   | ValuableDetails_PlayerValuable_PlayerValuableWageringLock_Fragment
   | ValuableDetails_PlayerValuable_PlayerValuableBundleLock_Fragment
-  | ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment;
+  | ValuableDetails_PlayerValuable_PlayerValuableFreeBet_Fragment
+  | ValuableDetails_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment;
 
 export type GlossaryQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -3236,6 +3353,20 @@ export type Freebet_QueryVariables = Exact<{ [key: string]: never }>;
 export type Freebet_Query = {
   player: {
     valuables: Array<
+      | {
+          id: string;
+          backgroundImage: string;
+          currency: Currency;
+          expiryDate: number;
+          created: number;
+          market: string;
+          valuableState: PlayerValuableState;
+          valuableType: ValuableType;
+          title: string;
+          content: string;
+          caveat?: Maybe<string>;
+          itemImage?: Maybe<string>;
+        }
       | {
           id: string;
           backgroundImage: string;

@@ -259,6 +259,7 @@ function getCoinClassModifier(
       return "text-blue-50";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
+    case VALUABLE_TYPES.LIVE_CASINO_FREE_BET:
       return "text-green-30";
     case VALUABLE_TYPES.SPINS:
       return "text-grey-90";
@@ -290,6 +291,7 @@ function getCoinTextClassModifier(
       return "text-grey-70";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
+    case VALUABLE_TYPES.LIVE_CASINO_FREE_BET:
       return "text-grey-70";
     case VALUABLE_TYPES.SPINS:
       return "text-yellow-30";

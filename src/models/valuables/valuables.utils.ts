@@ -30,6 +30,7 @@ import {
 export const depositRouteId = "deposit";
 export const gameBrowserRouteId = "games-top";
 export const sportsRouteId = "sports";
+export const liveCasinoRouteId = "live-casino";
 export const inventoryRouteId = "player-valuables";
 
 export const isAboutToExpire = (hours: number): boolean =>
@@ -64,6 +65,10 @@ export const getValuableDetailsAction = ({
   const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
   const isCashback = equals(valuableType, VALUABLE_TYPES.CASHBACK);
   const isFreeBet = equals(valuableType, VALUABLE_TYPES.FREE_BET);
+  const isLiveCasinoFreeBet = equals(
+    valuableType,
+    VALUABLE_TYPES.LIVE_CASINO_FREE_BET
+  );
   const isBundle = equals(valuableType, VALUABLE_TYPES.BUNDLE_LOCK);
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
@@ -124,6 +129,14 @@ export const getValuableDetailsAction = ({
       ...ACTION_PROPS_DEFAULT,
       text: translations.cashUnlockedActionLabel,
       url: sportsRouteId,
+    };
+  }
+
+  if (isLiveCasinoFreeBet) {
+    return {
+      ...ACTION_PROPS_DEFAULT,
+      text: translations.cashUnlockedActionLabel, //todo: check what CTA should
+      url: liveCasinoRouteId,
     };
   }
 

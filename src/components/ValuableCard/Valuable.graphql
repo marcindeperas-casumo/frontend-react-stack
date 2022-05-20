@@ -21,7 +21,10 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   ... on PlayerValuableFreeBet {
     requirementType
   }
-   ... on PlayerValuableBundleLock {
+  ... on PlayerValuableBundleLock {
     requirementType
+  }
+  ... on PlayerValuableLiveCasinoFreeBet {
+    description
   }
 }

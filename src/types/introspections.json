@@ -8,7 +8,8 @@
       "PlayerValuableCashback",
       "PlayerValuableWageringLock",
       "PlayerValuableBundleLock",
-      "PlayerValuableFreeBet"
+      "PlayerValuableFreeBet",
+      "PlayerValuableLiveCasinoFreeBet"
     ]
   }
 }
