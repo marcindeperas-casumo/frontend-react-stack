@@ -7,7 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as A from "Types/apollo";
 import { setData, getData } from "Models/gameBrowser";
 import tracker from "Services/tracker";
-import { EVENTS, EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import {
+  EVENTS,
+  EVENT_PROPS,
+  EVENT_LOCATIONS,
+  ROUTE_IDS,
+  ROUTES,
+} from "Src/constants";
 import TrackClick from "Components/TrackClick";
 import TrackProvider from "Components/TrackProvider";
 import { loadMoreConstructor, interpolate } from "Utils";
@@ -17,10 +23,9 @@ import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
   GamesVirtualGrid,
   GamesVirtualGridSkeleton,
-  LiveCasinoGamesVirtualGrid,
-  LiveCasinoGamesVirtualGridSkeleton,
 } from "Components/GamesVirtualGrid";
 import { GameListSkeleton } from "Components/GameListSkeleton";
+import { navigate } from "Services/NavigationService";
 import {
   useCurrentGamePage,
   useSetScrollPosition,
@@ -38,7 +43,7 @@ type Props = {
   set: A.GetGameSetsQuery["gameSetsList"][number];
 };
 
-/* eslint-disable-next-line sonarjs/cognitive-complexity */
+// eslint-disable-next-line sonarjs/cognitive-complexity, max-lines-per-function
 export function GameListPage({ set, parent }: Props) {
   const t = useTranslations<{
     title: string;
@@ -50,6 +55,15 @@ export function GameListPage({ set, parent }: Props) {
   );
   const dispatch = useDispatch();
   const isLiveCasino = set.gameDisplayMode === "LIVE_CASINO";
+
+  React.useEffect(() => {
+    if (isLiveCasino) {
+      navigate({
+        url: ROUTES[ROUTE_IDS.LIVE_CASINO],
+      });
+    }
+  }, [isLiveCasino]);
+
   const [sort, setSortRaw] = React.useState<A.GamesSortOrder | null>(
     defaultSort
   );
@@ -184,54 +198,51 @@ export function GameListPage({ set, parent }: Props) {
   }
 
   return (
-    <>
-      <GameListPageFilters
-        isOpen={filtersVisible}
-        setFilters={setFilters}
-        close={() => setFiltersVisibility(false)}
-        availableFilters={set.additionalFilterGroups}
-        activeFilters={filters}
-        numberOfGames={data?.getGamesPaginated.gamesCount || 0}
-      />
+    !isLiveCasino && (
+      <>
+        <GameListPageFilters
+          isOpen={filtersVisible}
+          setFilters={setFilters}
+          close={() => setFiltersVisibility(false)}
+          availableFilters={set.additionalFilterGroups}
+          activeFilters={filters}
+          numberOfGames={data?.getGamesPaginated.gamesCount || 0}
+        />
 
-      <div className={classNames("o-wrapper", xPaddingClasses)}>
-        <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
-          {topSection}
-        </div>
-        {(() => {
-          if (!data || !data.getGamesPaginated.games) {
-            if (isLiveCasino) {
-              return <LiveCasinoGamesVirtualGridSkeleton />;
+        <div className={classNames("o-wrapper", xPaddingClasses)}>
+          <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
+            {topSection}
+          </div>
+          {(() => {
+            if (!data || !data.getGamesPaginated.games) {
+              return <GamesVirtualGridSkeleton />;
             }
 
-            return <GamesVirtualGridSkeleton />;
-          }
+            const { games, gamesCount } = data.getGamesPaginated;
+            const props = {
+              games,
+              gamesCount,
+              loadMore,
+            };
 
-          const { games, gamesCount } = data.getGamesPaginated;
-          const props = {
-            games,
-            gamesCount,
-            loadMore,
-          };
-
-          return (
-            <TrackProvider
-              data={{
-                [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
-                  location: set.key,
-                }),
-              }}
-            >
-              {isLiveCasino ? (
-                <LiveCasinoGamesVirtualGrid {...props} />
-              ) : (
+            return (
+              <TrackProvider
+                data={{
+                  [EVENT_PROPS.LOCATION]: interpolate(
+                    EVENT_LOCATIONS.GAME_SET,
+                    {
+                      location: set.key,
+                    }
+                  ),
+                }}
+              >
                 <GamesVirtualGrid {...props} />
-              )}
-            </TrackProvider>
-          );
-        })()}
-      </div>
-    </>
+              </TrackProvider>
+            );
+          })()}
+        </div>
+      </>
+    )
   );
 }
 
