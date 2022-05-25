@@ -23,6 +23,8 @@ import { GamesVirtualList } from "Components/GamesVirtualList";
 import {
   GamesVirtualGrid,
   GamesVirtualGridSkeleton,
+  LiveCasinoGamesVirtualGrid,
+  LiveCasinoGamesVirtualGridSkeleton,
 } from "Components/GamesVirtualGrid";
 import { GameListSkeleton } from "Components/GameListSkeleton";
 import { navigate } from "Services/NavigationService";
@@ -54,15 +56,16 @@ export function GameListPage({ set, parent }: Props) {
     getData(parent)
   );
   const dispatch = useDispatch();
-  const isLiveCasino = set.key === "LIVE_CASINO";
+  const isLiveCasinoLink = set.key === "LIVE_CASINO";
+  const isLiveCasinoSection = set.gameDisplayMode === "LIVE_CASINO";
 
   React.useEffect(() => {
-    if (isLiveCasino) {
+    if (isLiveCasinoLink) {
       navigate({
         url: ROUTES[ROUTE_IDS.LIVE_CASINO],
       });
     }
-  }, [isLiveCasino]);
+  }, [isLiveCasinoLink]);
 
   const [sort, setSortRaw] = React.useState<A.GamesSortOrder | null>(
     defaultSort
@@ -198,51 +201,53 @@ export function GameListPage({ set, parent }: Props) {
   }
 
   return (
-    !isLiveCasino && (
-      <>
-        <GameListPageFilters
-          isOpen={filtersVisible}
-          setFilters={setFilters}
-          close={() => setFiltersVisibility(false)}
-          availableFilters={set.additionalFilterGroups}
-          activeFilters={filters}
-          numberOfGames={data?.getGamesPaginated.gamesCount || 0}
-        />
+    <>
+      <GameListPageFilters
+        isOpen={filtersVisible}
+        setFilters={setFilters}
+        close={() => setFiltersVisibility(false)}
+        availableFilters={set.additionalFilterGroups}
+        activeFilters={filters}
+        numberOfGames={data?.getGamesPaginated.gamesCount || 0}
+      />
 
-        <div className={classNames("o-wrapper", xPaddingClasses)}>
-          <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
-            {topSection}
-          </div>
-          {(() => {
-            if (!data || !data.getGamesPaginated.games) {
-              return <GamesVirtualGridSkeleton />;
-            }
-
-            const { games, gamesCount } = data.getGamesPaginated;
-            const props = {
-              games,
-              gamesCount,
-              loadMore,
-            };
-
-            return (
-              <TrackProvider
-                data={{
-                  [EVENT_PROPS.LOCATION]: interpolate(
-                    EVENT_LOCATIONS.GAME_SET,
-                    {
-                      location: set.key,
-                    }
-                  ),
-                }}
-              >
-                <GamesVirtualGrid {...props} />
-              </TrackProvider>
-            );
-          })()}
+      <div className={classNames("o-wrapper", xPaddingClasses)}>
+        <div className="u-padding-bottom--xlg@desktop u-padding-bottom">
+          {topSection}
         </div>
-      </>
-    )
+        {(() => {
+          if (!data || !data.getGamesPaginated.games) {
+            if (isLiveCasinoSection) {
+              return <LiveCasinoGamesVirtualGridSkeleton />;
+            }
+            return <GamesVirtualGridSkeleton />;
+          }
+
+          const { games, gamesCount } = data.getGamesPaginated;
+          const props = {
+            games,
+            gamesCount,
+            loadMore,
+          };
+
+          return (
+            <TrackProvider
+              data={{
+                [EVENT_PROPS.LOCATION]: interpolate(EVENT_LOCATIONS.GAME_SET, {
+                  location: set.key,
+                }),
+              }}
+            >
+              {isLiveCasinoSection ? (
+                <LiveCasinoGamesVirtualGrid {...props} />
+              ) : (
+                <GamesVirtualGrid {...props} />
+              )}
+            </TrackProvider>
+          );
+        })()}
+      </div>
+    </>
   );
 }
 
