@@ -54,7 +54,7 @@ export function GameListPage({ set, parent }: Props) {
     getData(parent)
   );
   const dispatch = useDispatch();
-  const isLiveCasino = set.gameDisplayMode === "LIVE_CASINO";
+  const isLiveCasino = set.key === "LIVE_CASINO";
 
   React.useEffect(() => {
     if (isLiveCasino) {
