@@ -22,6 +22,7 @@ import { playOkayApi, gameTypeExclusionsApi } from "./playOkay";
 import { loginSessionApi } from "./loginSession";
 import { avgBetApi } from "./avgBet";
 import { paymentsApi } from "./payments";
+import { gamificationFeaturesApi } from "./gamificationFeatures";
 
 const rootReducer = combineReducers({
   router,
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
   [gameTypeExclusionsApi.reducerPath]: gameTypeExclusionsApi.reducer,
   [loginSessionApi.reducerPath]: loginSessionApi.reducer,
   [avgBetApi.reducerPath]: avgBetApi.reducer,
+  [gamificationFeaturesApi.reducerPath]: gamificationFeaturesApi.reducer,
   [paymentsApi.reducerPath]: paymentsApi.reducer,
 });
 

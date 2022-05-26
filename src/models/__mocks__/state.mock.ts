@@ -2935,6 +2935,18 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
       },
     },
   },
+  gamificationFeatures: {
+    queries: {
+      'getGamificationFeatures(undefined)': {
+        data: {
+          valuableAwarding:true,
+          valuableUsage:true,
+          adventure:true,
+          tournaments:true,
+        },
+      }
+    }
+  }
 });
 
 export default getStateMock();

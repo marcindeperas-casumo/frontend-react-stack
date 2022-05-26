@@ -3,6 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import * as A from "Types/apollo";
 import type { ValuableListParameters } from "Models/valuables";
+import { gamificationFeaturesApi } from "Models/gamificationFeatures";
 import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 
@@ -18,10 +19,19 @@ export function usePlayerValuableList({
     className,
     minDepositAmount,
   };
+
+  const {
+    data: gamificationFeatures,
+    isFetching,
+  } = gamificationFeaturesApi.useGetGamificationFeaturesQuery();
+
+  const canPlayerSeeValuables = gamificationFeatures?.valuableUsage;
+
   const { data, loading, refetch } = useQuery<
     A.PlayerValuablesQuery,
     A.PlayerValuablesQueryVariables
   >(PlayerValuablesQuery, {
+    skip: isFetching || !canPlayerSeeValuables,
     fetchPolicy: "no-cache",
     variables,
   });
