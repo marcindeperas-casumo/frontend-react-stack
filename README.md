@@ -71,22 +71,6 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 - Within the `frontend-react-stack` repository run `yarn test`
 - TDD is heavily encouraged!
 
-### Deploy to test
-
-```sh
-ssh <assigned-ssh-username>@test-release
-
-deploy-service frontend-react-stack <branch-name>
-```
-
-### Deploy to production
-
-```sh
-ssh <assigned-ssh-username>@live-release
-
-deploy-service frontend-react-stack master
-```
-
 ### Run the Docker container locally
 
 ```sh
