@@ -22,17 +22,15 @@ export const useGameSearchSuggestions = ({ searchResults }: Props) => {
       listId: "suggestedGames",
     },
   });
-  const {
-    data: latestPlayedGamesData,
-    loading: latestPlayedGamesLoading,
-  } = useQuery<
-    A.GameSearchSuggestionsListContainerQuery,
-    A.GameSearchSuggestionsListContainerQueryVariables
-  >(GameSearchSuggestionsListContainerQuery, {
-    variables: {
-      listId: "latestPlayedGames",
-    },
-  });
+  const { data: latestPlayedGamesData, loading: latestPlayedGamesLoading } =
+    useQuery<
+      A.GameSearchSuggestionsListContainerQuery,
+      A.GameSearchSuggestionsListContainerQueryVariables
+    >(GameSearchSuggestionsListContainerQuery, {
+      variables: {
+        listId: "latestPlayedGames",
+      },
+    });
   const { data: popularGamesData, loading: popularGamesLoading } = useQuery<
     A.GameSearchSuggestionsListContainerQuery,
     A.GameSearchSuggestionsListContainerQueryVariables

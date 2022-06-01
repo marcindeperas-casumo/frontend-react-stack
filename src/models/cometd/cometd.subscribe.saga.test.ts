@@ -15,6 +15,7 @@ describe("Models/CometD/Subscribe", () => {
 
   test("requests for creating a message stream", () => {
     const effect = generator.next();
+    // @ts-expect-error: apply fix if you know the context
     const CALL = compose(prop("CALL"), prop("value"))(effect);
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fn = prop("fn")(CALL);
@@ -35,6 +36,7 @@ describe("Models/CometD/Subscribe", () => {
 
     // Push message (would come from the message stream) and get the result of put()
     const effect = generator.next({ channel: emittedChannel, data });
+    // @ts-expect-error: apply fix if you know the context
     const PUT = compose(prop("PUT"), prop("value"))(effect);
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const action = prop("action")(PUT);

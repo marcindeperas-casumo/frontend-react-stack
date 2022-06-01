@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useSelector, useDispatch } from "react-redux";
-import { getPaymentMethodTypes } from "Api/api.payments";
 import {
   savedMethodsSelector,
   countrySelector,
@@ -68,93 +67,81 @@ export const prepareQuickDepositMethod = (
   displayName: method?.displayName,
 });
 
-export const useAvailableQuickDepositMethods = (): Array<QuickDepositMethod> => {
-  const {
-    isSuccess: isPaymentsPermissionsLoaded,
-    data: paymentsPermissions,
-  } = useGetPaymentsPermissionsQuery();
-  const [availableMethods, setAvailableMethods] = React.useState([]);
-  const [methodTypes, setMethodTypes] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
-  const savedMethods = useSelector(savedMethodsSelector);
+export const useAvailableQuickDepositMethods =
+  (): Array<QuickDepositMethod> => {
+    const {
+      isSuccess: isPaymentsPermissionsLoaded,
+      data: paymentsPermissions,
+    } = useGetPaymentsPermissionsQuery();
+    const [availableMethods, setAvailableMethods] = React.useState([]);
+    const [methodTypes] = React.useState(null);
+    const savedMethods = useSelector(savedMethodsSelector);
 
-  const playerCountry = useSelector(countrySelector);
-  const currency = useSelector(currencySelector);
-  const methodsConfigs = useSelector(
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-    methodsConfigsSelector(savedMethods.map(method => method.type))
-  ) as { [key in LocalPaymentMethodTypeKeys]: TMethodConfig }; // eslint-disable-line no-unused-vars
+    const playerCountry = useSelector(countrySelector);
+    const currency = useSelector(currencySelector);
+    const methodsConfigs = useSelector(
+      // @ts-ignore
+      methodsConfigsSelector(savedMethods.map(method => method.type))
+    ) as { [key in LocalPaymentMethodTypeKeys]: TMethodConfig }; // eslint-disable-line no-unused-vars
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    savedMethods.forEach(({ type }) => {
-      if (R.includes(type, SUPPORTED_QUICKDEPOSIT_TYPES)) {
-        dispatch(preparePaymentMethodConfig(type));
-      }
-    });
-  }, [savedMethods, dispatch]);
-
-  React.useEffect(() => {
-    if (!methodTypes && !loading) {
-      setLoading(true);
-      getPaymentMethodTypes().then(result => {
-        setMethodTypes(convertMethodTypesToMap(result));
+    React.useEffect(() => {
+      // @ts-ignore
+      savedMethods.forEach(({ type }) => {
+        if (R.includes(type, SUPPORTED_QUICKDEPOSIT_TYPES)) {
+          dispatch(preparePaymentMethodConfig(type));
+        }
       });
-    }
-  }, [loading, methodTypes]);
+    }, [savedMethods, dispatch]);
 
-  React.useEffect(() => {
-    if (
-      methodTypes &&
-      savedMethods.length &&
-      playerCountry &&
-      isPaymentsPermissionsLoaded
-    ) {
-      setAvailableMethods(
-        savedMethods.reduce((quickDepositMethods, playerMethod) => {
-          const config =
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-            methodsConfigs[playerMethod.type as LocalPaymentMethodTypeKeys];
+    React.useEffect(() => {
+      if (
+        methodTypes && // @ts-ignore
+        savedMethods.length &&
+        playerCountry &&
+        isPaymentsPermissionsLoaded
+      ) {
+        setAvailableMethods(
+          // @ts-ignore
+          savedMethods.reduce((quickDepositMethods, playerMethod) => {
+            const config =
+              methodsConfigs[playerMethod.type as LocalPaymentMethodTypeKeys];
 
-          if (
-            config &&
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'deleted' does not exist on type 'never'.
-            !playerMethod.deleted &&
-            isMethodAvailableForQuickDeposit(config) &&
-            isAvailableInCountry(config, playerCountry) &&
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-            !methodTypes[playerMethod.type].inMaintenanceMode &&
-            isPaymentMethodAllowedForDeposit({
-              // @ts-expect-error
-              id: playerMethod.id,
-              paymentsPermissions,
-            })
-          ) {
-            return quickDepositMethods.concat([
-              prepareQuickDepositMethod(
-                currency,
-                playerMethod,
-                config,
-                // @ts-expect-error ts-migrate(2339) FIXME: Property 'type' does not exist on type 'never'.
-                methodTypes[playerMethod.type]
-              ),
-            ]);
-          }
+            if (
+              config &&
+              !playerMethod.deleted &&
+              isMethodAvailableForQuickDeposit(config) &&
+              isAvailableInCountry(config, playerCountry) &&
+              !methodTypes[playerMethod.type].inMaintenanceMode &&
+              isPaymentMethodAllowedForDeposit({
+                id: playerMethod.id,
+                paymentsPermissions,
+              })
+            ) {
+              return quickDepositMethods.concat([
+                prepareQuickDepositMethod(
+                  currency,
+                  playerMethod,
+                  config,
+                  methodTypes[playerMethod.type]
+                ),
+              ]);
+            }
 
-          return quickDepositMethods;
-        }, [])
-      );
-    }
-  }, [
-    methodTypes,
-    methodsConfigs,
-    playerCountry,
-    savedMethods,
-    currency,
-    paymentsPermissions,
-    isPaymentsPermissionsLoaded,
-  ]);
+            return quickDepositMethods;
+          }, [])
+        );
+      }
+    }, [
+      methodTypes,
+      methodsConfigs,
+      playerCountry,
+      savedMethods,
+      currency,
+      paymentsPermissions,
+      isPaymentsPermissionsLoaded,
+    ]);
 
-  return availableMethods;
-};
+    return availableMethods;
+  };

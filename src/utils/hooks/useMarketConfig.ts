@@ -1,7 +1,7 @@
 import * as R from "ramda";
 import { useSelector } from "react-redux";
 import { marketSelector } from "Models/handshake";
-import { MARKETS, MARKETS_CONFIG } from "Src/constants";
+import { MARKETS, MARKETS_CONFIG, TMarket } from "Src/constants";
 
 type MarketConfigProp = "reelRacesHidden";
 
@@ -13,7 +13,7 @@ type GetMarketConfigProps = {
 export function useMarketConfig(
   prop: MarketConfigProp
 ): string | boolean | number {
-  const market = useSelector(marketSelector);
+  const market = useSelector(marketSelector) as TMarket;
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string |... Remove this comment to see the full error message
   return getMarketConfig({

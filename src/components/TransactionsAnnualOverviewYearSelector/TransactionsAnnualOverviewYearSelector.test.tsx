@@ -43,8 +43,7 @@ describe("TransactionsAnnualOverviewYearSelector", () => {
     );
 
     expect(yearSelector.children().map(el => parseInt(el.text()))).toEqual([
-      1990,
-      1991,
+      1990, 1991,
     ]);
 
     expect(yearSelector.prop("value")).toEqual(1990);

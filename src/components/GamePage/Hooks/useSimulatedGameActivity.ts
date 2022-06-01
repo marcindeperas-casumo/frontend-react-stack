@@ -8,10 +8,8 @@ export const useSimulatedGameActivity = (
   onGameActivityChange: (isActive: boolean) => void
 ) => {
   const [gameActive, setGameActive] = useState(false);
-  const [
-    simulatedGameActivityEnabled,
-    setSimulatedGameActivityEnabled,
-  ] = useState(false);
+  const [simulatedGameActivityEnabled, setSimulatedGameActivityEnabled] =
+    useState(false);
   const timeoutRef = useRef();
   const currentWalletAmount = useSelector(playerBalanceAmountSelector);
   const previousWalletAmount = useRef(currentWalletAmount);

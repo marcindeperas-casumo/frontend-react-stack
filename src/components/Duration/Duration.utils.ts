@@ -40,7 +40,6 @@ export function interpolateDurationObject(
 ): string {
   return R.pipe(
     // we could just iterate over duration but it would create issue with preserving proper order in output
-    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     R.filter(R.has(R.__, props.duration)),
     // drop items from the beginning which values in duration are lte 0
     R.dropWhile(R.pipe(R.prop(R.__, props.duration), R.lte(R.__, 0))),
@@ -56,6 +55,5 @@ export function interpolateDurationObject(
       );
     }),
     R.join(props.separator)
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(LUXON_DURATION_KEYS);
 }

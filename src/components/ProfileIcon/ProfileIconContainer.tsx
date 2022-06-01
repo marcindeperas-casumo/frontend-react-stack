@@ -3,12 +3,8 @@ import { useAdventurerContext } from "Components/GamePage/Contexts/AdventurerCon
 import { ProfileIcon } from "./ProfileIcon";
 
 export function ProfileIconContainer() {
-  const {
-    level,
-    belt,
-    inBonusMode,
-    rawProgressPercentage,
-  } = useAdventurerContext();
+  const { level, belt, inBonusMode, rawProgressPercentage } =
+    useAdventurerContext();
 
   return (
     <ProfileIcon

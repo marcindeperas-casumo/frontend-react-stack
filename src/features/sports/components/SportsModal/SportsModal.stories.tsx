@@ -24,17 +24,18 @@ const shortContent = (
 
 const longContent = repeat(shortContent, 4);
 
-const render = content => () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header>This is the header</SportsModal.Header>
+const render = content => () =>
+  (
+    <ModalsArea>
+      <SportsModal>
+        <SportsModal.Header>This is the header</SportsModal.Header>
 
-      <SportsModal.Content>{content}</SportsModal.Content>
+        <SportsModal.Content>{content}</SportsModal.Content>
 
-      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-    </SportsModal>
-  </ModalsArea>
-);
+        <SportsModal.Footer>This is the footer area</SportsModal.Footer>
+      </SportsModal>
+    </ModalsArea>
+  );
 
 stories.add("Short Content (mobile)", render(shortContent), viewports.mobile);
 stories.add("Short Content (desktop)", render(shortContent), viewports.desktop);

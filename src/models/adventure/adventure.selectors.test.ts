@@ -51,14 +51,12 @@ describe("Adventure Selectors", () => {
 
   describe("adventurerSelector()", () => {
     test("returns processed travelling adventurer object if it exists", () => {
-      const {
-        points,
-        pointsRequiredForNextLevel,
-      } = translateTravelModeToSingleLevelProgression(
-        adventurerRaw.points,
-        NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE,
-        adventurerRaw.spaceCrystals
-      );
+      const { points, pointsRequiredForNextLevel } =
+        translateTravelModeToSingleLevelProgression(
+          adventurerRaw.points,
+          NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE,
+          adventurerRaw.spaceCrystals
+        );
 
       const travellingAdventurer = {
         ...adventurer,

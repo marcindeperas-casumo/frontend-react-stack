@@ -22,6 +22,7 @@ export const ExplainerPageContainer = ({ jackpotSlug }: TProps) => {
     }));
 
     const prioritizedLists = sortBy(alteredList);
+    // @ts-expect-error: apply fix if you know the context
     return <ExplainerPage promotionLists={prioritizedLists} />;
   }
   return null;

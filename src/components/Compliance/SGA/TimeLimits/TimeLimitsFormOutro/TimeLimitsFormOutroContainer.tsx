@@ -26,8 +26,9 @@ export function TimeLimitsFormOutroContainer({ initial, onClickCta }: Props) {
     period_weekly: string;
     period_monthly: string;
   }>(loginTimeLimitsCmsSlug);
+  // @ts-ignore
   const { dailyLimit, weeklyLimit, monthlyLimit } = useGetPlayerStateByIdQuery(
-    playerId,
+    playerId as string,
     {
       selectFromResult: ({ data }) => ({
         dailyLimit: selectLoginTimeLimitFromResult("Daily", data),

@@ -180,9 +180,9 @@ describe("Models/slotControlSystem/Reducer", () => {
         activeSession: null,
       };
 
-      expect(
-        slotControlSystemReducer(state, action).slugToCategoryMap
-      ).toEqual({ [slug]: category });
+      expect(slotControlSystemReducer(state, action).slugToCategoryMap).toEqual(
+        { [slug]: category }
+      );
     });
   });
 

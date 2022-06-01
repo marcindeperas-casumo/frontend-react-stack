@@ -197,6 +197,7 @@ export class KambiClient extends React.Component<Props, State> {
     this.props.onNavigate(window.location.hash);
   };
   initIsFirstBet = async () => {
+    // @ts-expect-error: apply fix if you know the context
     const { data } = await this.context.client.query({
       query: SPORTS_FIRST_BET_QUERY,
       fetchPolicy: "network-only",

@@ -23,6 +23,7 @@ describe("useGoogleTagManager Hook", () => {
 
     act(() => result.current.init({ ...params }));
 
+    // @ts-expect-error: apply fix if you know the context
     act(() => jest.runAllTimers());
 
     expect(window["dataLayer"]).not.toBeUndefined();
@@ -39,6 +40,7 @@ describe("useGoogleTagManager Hook", () => {
 
     act(() => result.current.init({ ...params }));
 
+    // @ts-expect-error: apply fix if you know the context
     act(() => jest.runAllTimers());
 
     expect(window["dataLayer"]).not.toBeUndefined();
@@ -54,6 +56,7 @@ describe("useGoogleTagManager Hook", () => {
     act(() => result.current.init({ ...params }));
     act(() => result.current.trackEvent({ event: "userDeposit" }));
 
+    // @ts-expect-error: apply fix if you know the context
     act(() => jest.runAllTimers());
 
     expect(window["dataLayer"]).toContainEqual({ event: "userDeposit" });
@@ -65,6 +68,7 @@ describe("useGoogleTagManager Hook", () => {
     act(() => result.current.init(mockedParams));
     act(() => result.current.trackEvent({ event: "userDeposit" }));
 
+    // @ts-expect-error: apply fix if you know the context
     act(() => jest.runAllTimers());
 
     expect(window["dataLayer"]).toContainEqual({ event: "userDeposit" });

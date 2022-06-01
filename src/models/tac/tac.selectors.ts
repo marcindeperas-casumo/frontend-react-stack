@@ -13,9 +13,7 @@ const getAcknowledgement = (x: any): Acknowledgement => ({
 });
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, Evolve<{}, { first: (x: ... Remove this comment to see the full error message
-export const getAcknowledgements: (
-  state: any
-) => {
+export const getAcknowledgements: (state: any) => {
   first: Acknowledgement;
   last: Acknowledgement;
 } = createSelector(
@@ -26,10 +24,7 @@ export const getAcknowledgements: (
   })
 );
 
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, { [index: number]: unkno... Remove this comment to see the full error message
-export const getRelevantVersionsSlugs: (
-  state: any
-) => {
+export const getRelevantVersionsSlugs: (state: any) => {
   [n: number]: string;
 } = createSelector(getAcknowledgements, acks => {
   const firstVersion = R.path(["first", "version"], acks);

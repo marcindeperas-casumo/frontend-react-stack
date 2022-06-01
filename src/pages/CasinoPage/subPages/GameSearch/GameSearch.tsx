@@ -31,32 +31,31 @@ type TProps = {
   t: TCmsContent;
 };
 
-const gameRowSecondaryText = (
-  game: A.GameSearch_GameFragment,
-  t: TCmsContent
-) => () => {
-  return game.isInMaintenance ? (
-    <Text className="u-padding-top--sm text-grey-70" size="sm">
-      {t.gameInMaintenanceText}
-    </Text>
-  ) : (
-    <div className="text-grey-20">{game.gameStudio}</div>
-  );
-};
+const gameRowSecondaryText =
+  (game: A.GameSearch_GameFragment, t: TCmsContent) => () => {
+    return game.isInMaintenance ? (
+      <Text className="u-padding-top--sm text-grey-70" size="sm">
+        {t.gameInMaintenanceText}
+      </Text>
+    ) : (
+      <div className="text-grey-20">{game.gameStudio}</div>
+    );
+  };
 
-const gameRowHighlightSearch = (query: string, t: TCmsContent) => game => (
-  <GameRow
-    game={game}
-    renderText={() => (
-      <GameRowSearchText
-        name={game.name}
-        search={{ query, highlightSearchQuery: true }}
-        isInMaintenance={game.isInMaintenance}
-        renderSecondaryText={gameRowSecondaryText(game, t)}
-      />
-    )}
-  />
-);
+const gameRowHighlightSearch = (query: string, t: TCmsContent) => game =>
+  (
+    <GameRow
+      game={game}
+      renderText={() => (
+        <GameRowSearchText
+          name={game.name}
+          search={{ query, highlightSearchQuery: true }}
+          isInMaintenance={game.isInMaintenance}
+          renderSecondaryText={gameRowSecondaryText(game, t)}
+        />
+      )}
+    />
+  );
 
 export const GameSearch: React.FC<TProps> = ({
   loading,

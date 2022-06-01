@@ -10,6 +10,7 @@ type AnnualOverviewSelector = (n: number) => (o: Object) => AnnualOverviewType;
 type AnnualOverviewFetchingSelector = (n: number) => (o: Object) => boolean;
 
 export const annualOverviewSelector: AnnualOverviewSelector = year =>
+  // @ts-expect-error: apply fix if you know the context
   createSelector(
     pathOr(null, [
       "schema",
@@ -20,28 +21,31 @@ export const annualOverviewSelector: AnnualOverviewSelector = year =>
     identity
   );
 
-export const transactionsBetsHistoryContentSelector: ContentSelector = createSelector(
-  getPage(CMS_CONTENT_SLUG),
-  pipe(
-    pathOr([], ["fields", "text_fields"]),
-    reduce(
-      (acc, entry) => ({
-        ...acc,
-        [entry.key]: entry.value,
-      }),
-      {}
-    )
-  )
-);
-
-export const isAnnualOverviewFetchingSelector: AnnualOverviewFetchingSelector = year =>
+export const transactionsBetsHistoryContentSelector: ContentSelector =
   createSelector(
-    pathOr(null, [
-      "schema",
-      ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW,
-      year,
-      "meta",
-      "isFetching",
-    ]),
-    identity
+    getPage(CMS_CONTENT_SLUG),
+    pipe(
+      pathOr([], ["fields", "text_fields"]),
+      reduce(
+        (acc, entry) => ({
+          ...acc,
+          [entry.key]: entry.value,
+        }),
+        {}
+      )
+    )
   );
+
+export const isAnnualOverviewFetchingSelector: AnnualOverviewFetchingSelector =
+  year =>
+    // @ts-expect-error: apply fix if you know the context
+    createSelector(
+      pathOr(null, [
+        "schema",
+        ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW,
+        year,
+        "meta",
+        "isFetching",
+      ]),
+      identity
+    );

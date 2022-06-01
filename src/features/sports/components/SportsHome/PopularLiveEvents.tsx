@@ -174,10 +174,8 @@ export const PopularLiveEvents = ({
     }
   }, [language]);
 
-  const [
-    sportsPopularBetsData,
-    setSportsPopularBetsData,
-  ] = React.useState<SportsHomeType>();
+  const [sportsPopularBetsData, setSportsPopularBetsData] =
+    React.useState<SportsHomeType>();
 
   const [betslipOutcomesIds, setBetslipOutcomesIds] = React.useState<number[]>(
     []
@@ -191,6 +189,7 @@ export const PopularLiveEvents = ({
     };
   }, []);
 
+  // @ts-expect-error: apply fix if you know the context
   React.useEffect(() => {
     const handleWapiEvent = ev => {
       if (ev.type === BETSLIP_OUTCOMES && ev?.data?.outcomes) {

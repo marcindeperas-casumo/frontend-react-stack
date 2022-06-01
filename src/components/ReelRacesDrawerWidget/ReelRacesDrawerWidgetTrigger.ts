@@ -17,6 +17,7 @@ export const ReelRacesDrawerWidgetTrigger = () => {
 
   React.useEffect(() => {
     if (currentRace && currentRace.isInProgress && !hasIcon()) {
+      // @ts-expect-error: apply fix if you know the context
       addIcon(ReelRaceIcon);
     } else if (currentRace && currentRace.hasEnded && hasIcon()) {
       removeIcon();

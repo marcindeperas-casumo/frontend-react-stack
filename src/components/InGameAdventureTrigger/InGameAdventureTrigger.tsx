@@ -20,6 +20,7 @@ export const InGameAdventureTrigger = () => {
     if (Boolean(recentValuable) && !isShowing.current) {
       // eslint-disable-next-line fp/no-mutation
       isShowing.current = true;
+      // @ts-expect-error: apply fix if you know the context
       addIcon(ValuableReceivedIcon);
     }
   }, [addIcon, recentValuable]);

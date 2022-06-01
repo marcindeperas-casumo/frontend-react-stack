@@ -45,10 +45,8 @@ export const useQuickDepositSlipForm = ({
   const [depositValue, setDepositValue] = React.useState<number>(presetValue);
   const [cvvError, setCvvError] = React.useState();
   const [cvvValue, setCvvValue] = React.useState();
-  const [
-    formErrors,
-    setFormErrors,
-  ] = React.useState<QuickDepositSlipFormErrors>({});
+  const [formErrors, setFormErrors] =
+    React.useState<QuickDepositSlipFormErrors>({});
 
   const onAmountChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,7 +119,6 @@ export const useQuickDepositSlipForm = ({
       if (cvvError) {
         setFormErrors(
           R.mergeLeft({
-            // @ts-expect-error ts-migrate(2538) FIXME: Type 'undefined' cannot be used as an index type.
             cvv: cvvErrorTranslationKeys[cvvError],
           })
         );

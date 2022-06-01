@@ -18,12 +18,16 @@ type Props = {
 
 export const CuratedCardContainer = ({ className, slug }: Props) => {
   const variables = { slug };
-  const { data: slugGqlData, loading, refetch } = useQuery<
-    A.CuratedCardQuery,
-    A.CuratedCardQueryVariables
-  >(CuratedCardQuery, {
-    variables,
-  });
+  const {
+    data: slugGqlData,
+    loading,
+    refetch,
+  } = useQuery<A.CuratedCardQuery, A.CuratedCardQueryVariables>(
+    CuratedCardQuery,
+    {
+      variables,
+    }
+  );
   const playerCountry = useSelector(countrySelector);
 
   useEffect(() => {

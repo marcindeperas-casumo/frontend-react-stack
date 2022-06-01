@@ -128,8 +128,10 @@ const findOrUncurried = (
 
 export const findOr = R.curry(findOrUncurried);
 
-export const composePromises = (...fns: Array<any>) => (iv: Promise<any>) =>
-  fns.reduceRight(async (acc, curr) => curr(await acc), iv);
+export const composePromises =
+  (...fns: Array<any>) =>
+  (iv: Promise<any>) =>
+    fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
 export const convertHTMLToString = (s: string) =>
   new DOMParser().parseFromString(`<div>${s}</div>`, "text/html").childNodes[0]
@@ -272,6 +274,7 @@ export const injectScript = (src: string, elId?: string, inline?: boolean) =>
     }
   });
 
+// @ts-expect-error: apply fix if you know the context
 export const commaSeparated = R.compose(R.join(","), R.filter(R.identity));
 type Handlers<S> = {
   [type: string]: (state: S, action: Object) => S;
@@ -383,6 +386,7 @@ export const interpolateWithJSX = R.curry(
       R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
       R.addIndex(R.map)((x, i) => (
         <React.Fragment key={i}>
+          {/* @ts-expect-error: apply fix if you know the context */}
           {R.pipe(
             R.match(/{{2,3}\s*(\w+)\s*}{2,3}/),
             // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.

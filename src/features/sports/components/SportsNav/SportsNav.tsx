@@ -86,13 +86,14 @@ export const SportsNav = ({
     variables: { live: false },
     fetchPolicy: "cache-and-network",
   });
-  const { error: errorLive, data: dataLive, refetch: refetchLive } = useQuery(
-    USER_NAVIGATION_QUERY,
-    {
-      variables: { live: true },
-      fetchPolicy: "cache-and-network",
-    }
-  );
+  const {
+    error: errorLive,
+    data: dataLive,
+    refetch: refetchLive,
+  } = useQuery(USER_NAVIGATION_QUERY, {
+    variables: { live: true },
+    fetchPolicy: "cache-and-network",
+  });
   const [refetchCount, setRefetchCount] = React.useState(0);
   const [navData, setNavData] = React.useState();
 
@@ -103,6 +104,7 @@ export const SportsNav = ({
 
   React.useEffect(() => {
     if (refetchCount > 3) {
+      // @ts-expect-error: apply fix if you know the context
       window.location.reload(true);
     }
   }, [refetchCount]);

@@ -45,7 +45,6 @@ const ComponentBuilderRendererStory = () => (
 
 stories.add("ComponentBuilderRenderer", ComponentBuilderRendererStory, {
   info: {
-    text:
-      "This component is rendering out components defined by a data structure.",
+    text: "This component is rendering out components defined by a data structure.",
   },
 });

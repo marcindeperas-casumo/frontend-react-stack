@@ -12,6 +12,7 @@ export const configurationFormContentSelector = createSelector(
   getPage(CMS_SLUGS.BEFORE_PLAYING),
   getPage(CMS_SLUGS.UNITS),
   (configurationFormContent, unitsContent) => ({
+    // @ts-expect-error: apply fix if you know the context
     ...propOr({}, "fields", configurationFormContent),
     ...pipe(
       propOr({}, "fields"),
@@ -26,12 +27,11 @@ export const configurationFormContentSelector = createSelector(
     )(unitsContent),
   })
 );
-export const isFetchingActiveSessionSelector: (
-  s: Object
-) => boolean = createSelector(
-  getFetch(ACTION_TYPES.FETCH_SESSION_INIT),
-  fetchData => (fetchData as any)?.isFetching
-);
+export const isFetchingActiveSessionSelector: (s: Object) => boolean =
+  createSelector(
+    getFetch(ACTION_TYPES.FETCH_SESSION_INIT),
+    fetchData => (fetchData as any)?.isFetching
+  );
 export const isCreatingSessionSelector: (s: Object) => boolean = createSelector(
   getFetch(ACTION_TYPES.CREATE_SESSION_INIT),
   fetchData => (fetchData as any)?.isFetching
@@ -44,19 +44,11 @@ export const activeSessionSelector: (
   identity
 );
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, unknown, (res: unknown) ... Remove this comment to see the full error message
-export const endedSessionSelector: (
-  s: Object
-) => EndedSessionType | undefined = createSelector(
-  path(["slotControlSystem", "lastEndedSession"]),
-  identity
-);
+export const endedSessionSelector: (s: Object) => EndedSessionType | undefined =
+  createSelector(path(["slotControlSystem", "lastEndedSession"]), identity);
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, unknown, (res: unknown) ... Remove this comment to see the full error message
-export const activeExclusionSelector: (
-  s: Object
-) => ExclusionType | undefined = createSelector(
-  path(["slotControlSystem", "activeExclusion"]),
-  identity
-);
+export const activeExclusionSelector: (s: Object) => ExclusionType | undefined =
+  createSelector(path(["slotControlSystem", "activeExclusion"]), identity);
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, unknown, (res: unknown) ... Remove this comment to see the full error message
 export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
   path(["slotControlSystem", "lastUpdateTime"]),
@@ -65,6 +57,7 @@ export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
 export const slugToCategorySelector = (
   slug: string | undefined
 ): ((s: Object) => string | null) =>
+  // @ts-expect-error: apply fix if you know the context
   createSelector(
     pathOr(null, ["slotControlSystem", "slugToCategoryMap", slug]),
     identity

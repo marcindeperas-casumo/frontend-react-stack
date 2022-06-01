@@ -12,22 +12,18 @@ import { REACT_APP_MODAL } from "Src/constants";
 export function useLoginTimeLimits() {
   const { isSGA } = useJurisdiction();
   const dispatch = useDispatch();
-  const playerId = useSelector(playerIdSelector);
+  const playerId = useSelector(playerIdSelector) as string;
   const isAnyModalOpen = useSelector(isModalOpenSelector);
-  const {
-    isLoadingLimits,
-    dailyLimit,
-    weeklyLimit,
-    monthlyLimit,
-  } = useGetPlayerStateByIdQuery(playerId, {
-    skip: !isSGA,
-    selectFromResult: ({ data, isLoading }) => ({
-      isLoadingLimits: isLoading,
-      dailyLimit: selectLoginTimeLimitFromResult("Daily", data),
-      weeklyLimit: selectLoginTimeLimitFromResult("Weekly", data),
-      monthlyLimit: selectLoginTimeLimitFromResult("Monthly", data),
-    }),
-  });
+  const { isLoadingLimits, dailyLimit, weeklyLimit, monthlyLimit } =
+    useGetPlayerStateByIdQuery(playerId, {
+      skip: !isSGA,
+      selectFromResult: ({ data, isLoading }) => ({
+        isLoadingLimits: isLoading,
+        dailyLimit: selectLoginTimeLimitFromResult("Daily", data),
+        weeklyLimit: selectLoginTimeLimitFromResult("Weekly", data),
+        monthlyLimit: selectLoginTimeLimitFromResult("Monthly", data),
+      }),
+    });
 
   React.useEffect(() => {
     if (!isSGA || isLoadingLimits || isAnyModalOpen) {

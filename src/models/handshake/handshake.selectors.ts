@@ -8,7 +8,7 @@ import {
   DEFAULT_LANGUAGE,
   TCurrencyCode,
 } from "Src/constants";
-import type { TLanguage } from "Src/constants";
+import type { TLanguage, TMarket } from "Src/constants";
 import { TMandatoryMessage } from "Models/mandatoryMessages";
 import { APP_HANDSHAKE_KEY } from "./handshake.constants";
 import type { Handshake } from "./handshake.types";
@@ -29,7 +29,7 @@ export const session = createSelector(
 );
 
 type __playersSelector = ReturnType<
-  typeof applicationHandshakeSelector
+  typeof applicationHandshakeSelector // @ts-ignore
 >["common/composition/players"]["players"];
 export const playersSelector = createSelector(
   applicationHandshakeSelector,
@@ -93,11 +93,11 @@ export const hasMadeFirstDepositSelector = createSelector(
 );
 export const languageSelector = createSelector(
   marketSelector,
-  market => LANGUAGES[market] || DEFAULT_LANGUAGE
+  (market: TMarket) => LANGUAGES[market] || DEFAULT_LANGUAGE
 );
 
 type __rootContentHashesSelector = ReturnType<
-  typeof applicationHandshakeSelector
+  typeof applicationHandshakeSelector // @ts-ignore
 >["common/composition/wpInterface"]["rootContentHashes"];
 const rootContentHashesSelector = createSelector(
   applicationHandshakeSelector,
@@ -124,10 +124,11 @@ export const optedInReelRacesSelector = createSelector(
 
 export const localeSelector = createSelector(
   marketSelector,
-  market => INTL_LOCALES[market]
+  (market: TMarket) => INTL_LOCALES[market]
 );
 
-type __tournamentChannelsSelector = _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
+type __tournamentChannelsSelector = // @ts-ignore
+  _PlayerSelectorRT["tournamentCampaign"]["tournamentChannels"];
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
   R.pathOr<__tournamentChannelsSelector>(
@@ -136,25 +137,29 @@ export const tournamentChannelsSelector = createSelector(
   )
 );
 
+// @ts-ignore
 type __walletIdSelector = _PlayerSelectorRT["wallet"]["id"];
 export const walletIdSelector = createSelector(
   playerSelector,
   R.path<__walletIdSelector>(["wallet", "id"])
 );
 
+// @ts-ignore
 type __playerNameSelector = _PlayerSelectorRT["contactInfo"]["name"];
 export const playerNameSelector = createSelector(
   playerSelector,
   R.path<__playerNameSelector>(["contactInfo", "name"])
 );
 
+// @ts-ignore
 type __emailSelector = _PlayerSelectorRT["contactInfo"]["email"];
 export const emailSelector = createSelector(
   playerSelector,
   R.path<__emailSelector>(["contactInfo", "email"])
 );
 
-type __socialSecurityNumberSelector = _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
+type __socialSecurityNumberSelector = // @ts-ignore
+  _PlayerSelectorRT["contactInfo"]["socialSecurityNumber"];
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   R.path<__socialSecurityNumberSelector>([
@@ -226,6 +231,7 @@ export const piqConfigSelector = createSelector(
   R.prop("common/composition/piqConfig")
 );
 
+// @ts-ignore
 export const mandatoryMessagesSelector: (
   state: any
 ) => Array<TMandatoryMessage> = createSelector(

@@ -189,14 +189,15 @@ export const mappings: Mapping = {
   ...mandatoryMessageModalMappings,
 };
 
-export const getMandatoryMessageModalData: (
-  modalId: ModalId
-) => ModalProps = R.ifElse(
-  R.has(R.__, mappings),
-  R.prop(R.__, mappings),
-  R.assoc("slug", R.__, { Content: MandatoryMessageModal })
-);
+// @ts-expect-error: apply fix if you know the context
+export const getMandatoryMessageModalData: (modalId: ModalId) => ModalProps =
+  R.ifElse(
+    R.has(R.__, mappings),
+    R.prop(R.__, mappings),
+    R.assoc("slug", R.__, { Content: MandatoryMessageModal })
+  );
 
+// @ts-expect-error: apply fix if you know the context
 export const getModalData: (modalId: ModalId | null) => ModalProps = R.ifElse(
   isMandatoryMessageModalId,
   getMandatoryMessageModalData,

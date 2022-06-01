@@ -65,16 +65,8 @@ export const AmountStep = ({ config, onShowNext }: TIntroStepProps) => {
   const amountFontSize = small ? "u-font-xlg" : "u-font-3xlg";
   const buttonSize = small ? "md" : "lg";
 
-  const {
-    t,
-    amount,
-    currency,
-    potName,
-    potKey,
-    locale,
-    potColor,
-    svgFiles,
-  } = config.settings;
+  const { t, amount, currency, potName, potKey, locale, potColor, svgFiles } =
+    config.settings;
 
   const styles1 = useSpring({
     from: { scale: 0 },

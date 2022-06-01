@@ -78,7 +78,6 @@ export async function recordSaga({
     R.values,
     // @ts-expect-error ts-migrate(2700) FIXME: Rest types may only be created from object types.
     R.reduce((acc, { effectName: e, ...res }) => {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'toLowerCase' does not exist on type 'nev... Remove this comment to see the full error message
       const effectName = e.toLowerCase();
       return {
         ...acc,

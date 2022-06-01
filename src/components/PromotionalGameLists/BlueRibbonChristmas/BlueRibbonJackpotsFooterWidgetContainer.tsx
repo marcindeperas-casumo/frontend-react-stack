@@ -14,9 +14,8 @@ import { normalizePots } from "./utils";
 
 export function BlueRibbonJackpotsFooterWidgetContainer() {
   useBlueRibbonAutoOptIn();
-  const {
-    blueribbonJackpotForCurrentGame: composedJackpot,
-  } = useGameJackpotContext();
+  const { blueribbonJackpotForCurrentGame: composedJackpot } =
+    useGameJackpotContext();
   const { slug } = useGameModelContext();
   const { isLandscapeOriented } = useScreenOrientation();
   if (!composedJackpot) {

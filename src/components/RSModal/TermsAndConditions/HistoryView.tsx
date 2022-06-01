@@ -28,9 +28,9 @@ export function HistoryView({ versions, ...props }: PropsHistoryView) {
       <Flex className="u-padding--sm bg-grey-0" />
       {R.pipe(
         R.toPairs,
+        // @ts-expect-error: apply fix if you know the context
         R.sort(versionsByNewestFirst),
         R.map(([v, slug]) => (
-          // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'string'.
           <HistoryRow key={v} slug={slug} version={parseInt(v)} {...props} />
         ))
       )(versions)}

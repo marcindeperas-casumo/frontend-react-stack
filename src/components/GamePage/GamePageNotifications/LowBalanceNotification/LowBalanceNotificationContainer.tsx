@@ -90,11 +90,8 @@ export const LowBalanceNotificationContainer = () => {
     return cleanup;
   }, [channel, onData, cleanup]);
 
-  const {
-    hasQuickDepositMethods,
-    navigateToCashier,
-    launchQuickDeposit,
-  } = useDepositMethods();
+  const { hasQuickDepositMethods, navigateToCashier, launchQuickDeposit } =
+    useDepositMethods();
 
   const navigateToCashierTracked = (ev: React.SyntheticEvent) => {
     ev.stopPropagation();

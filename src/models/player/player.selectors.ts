@@ -1,3 +1,5 @@
+// @ts-nocheck apply fix if you know the context
+
 import { createSelector } from "reselect";
 import { propOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";

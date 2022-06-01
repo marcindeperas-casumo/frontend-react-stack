@@ -32,6 +32,9 @@ import {
   LazyJackpotsNav,
   LazyCampaignTerms,
   LazyPlayOkayGameTypeExclusions,
+  LazyAccountVerification,
+  LazyAccountVerificationInstructions,
+  LazyAccountVerificationUpload,
 } from "./routes";
 import { GameBrowser } from "./GameBrowser";
 
@@ -103,6 +106,15 @@ export const Router = () => {
           path={translateRoute(ROUTE_IDS.CASH_DEPOSIT)}
         />
         <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
+        <LazyAccountVerification
+          path={translateRoute(ROUTE_IDS.ACCOUNT_VERIFICATION)}
+        />
+        <LazyAccountVerificationInstructions
+          path={translateRoute(ROUTE_IDS.ACCOUNT_VERIFICATION_INSTRUCTIONS)}
+        />
+        <LazyAccountVerificationUpload
+          path={translateRoute(ROUTE_IDS.ACCOUNT_VERIFICATION_UPLOAD)}
+        />
         <LazyPlayerSettingsNotifications
           path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}
         />

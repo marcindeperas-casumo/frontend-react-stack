@@ -17,6 +17,7 @@ export const testSubjectIDSelector = () =>
 
 export const featureSelector = (feature: string) =>
   createSelector(ABFeatures, x => {
+    // @ts-expect-error: apply fix if you know the context
     return R.find(R.propEq("name", feature), x) || {};
   });
 

@@ -3,8 +3,7 @@ import { BaseGame } from "./BaseGame";
 
 describe("BaseGame", () => {
   const gameData = {
-    url:
-      "https://d1k6j4zyghhevb.cloudfront.net/casino/launch&partnerid=11&moneymode=fun&lang=en___&login=demo",
+    url: "https://d1k6j4zyghhevb.cloudfront.net/casino/launch&partnerid=11&moneymode=fun&lang=en___&login=demo",
     providerType: "RELAX_HTML5",
     providerName: "RELAX",
   };

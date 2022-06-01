@@ -14,11 +14,8 @@ export type Props = {
 export default class AdventureAvatarAndDetails extends PureComponent<Props> {
   getLevelLabel() {
     const { level, inBonusMode } = this.props.adventurer;
-    const {
-      max_level_label,
-      level_label,
-      bonus_mode_label,
-    } = this.props.content;
+    const { max_level_label, level_label, bonus_mode_label } =
+      this.props.content;
 
     const bonusModeIndicator = `<strong class="text-purple-5">${bonus_mode_label}</strong>`;
     const maxLevelReached = isMaxLevel(level, inBonusMode);

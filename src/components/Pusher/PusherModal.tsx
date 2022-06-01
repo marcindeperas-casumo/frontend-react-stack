@@ -22,7 +22,8 @@ export const PUSHER_MODAL_STATE = {
 } as const;
 
 export const CC_PUSHER_DATA_TYPE = "curated_component" as const;
-export const CC_PUSHER_DATA_SESSION_STORAGE_KEY = "pusher_curated_component" as const;
+export const CC_PUSHER_DATA_SESSION_STORAGE_KEY =
+  "pusher_curated_component" as const;
 export type TYPE_PUSHER_MODAL_STATE = keyof typeof PUSHER_MODAL_STATE;
 
 const STATE_TRANSITIONS = {
@@ -40,10 +41,8 @@ export const PusherModal = ({ sessionId, playerId }: Props) => {
   const { pusher, fastTrackPlayerId, setSessionId } = usePusher();
   const [isPageReady, setIsPageReady] = useState(false);
   const [pusherData, setPusherData] = useState(null);
-  const [
-    pusherModalState,
-    setPusherModalState,
-  ] = useState<TYPE_PUSHER_MODAL_STATE>(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
+  const [pusherModalState, setPusherModalState] =
+    useState<TYPE_PUSHER_MODAL_STATE>(PUSHER_MODAL_STATE.FIRST_LAYER_VISIBLE);
 
   const onPusherEvent = (data: PusherPaylod) => {
     if (data.subscribed) {

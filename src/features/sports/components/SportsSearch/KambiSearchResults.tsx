@@ -106,13 +106,13 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   persisted = {
     searchHistory: new PersistedData("sportsSearchHistory", []),
-    favouriteGroups: new PersistedData("sportsUserFavouriteGroups", [
-      // TODO(CPO): get from clientState instead
-      1000093190,
-      1000093204,
-      1000093193,
-      1000093187,
-    ]),
+    favouriteGroups: new PersistedData(
+      "sportsUserFavouriteGroups",
+      [
+        // TODO(CPO): get from clientState instead
+        1000093190, 1000093204, 1000093193, 1000093187,
+      ]
+    ),
   };
 
   constructor(props: Props) {
@@ -254,20 +254,21 @@ class KambiSearchResults extends React.Component<Props, State> {
     renderAllTextAsMatched: boolean = false,
     trackType: TrackSearchClickListType = "result"
   ) => {
-    const renderText = ({ isMatch }: { isMatch: boolean }) => (
-      value: string
-    ) => (
-      <Text
-        size="sm"
-        tag="span"
-        className={classNames(
-          "font-bold",
-          isMatch ? "text-grey-90" : "text-grey-50"
-        )}
-      >
-        {value}
-      </Text>
-    );
+    const renderText =
+      ({ isMatch }: { isMatch: boolean }) =>
+      (value: string) =>
+        (
+          <Text
+            size="sm"
+            tag="span"
+            className={classNames(
+              "font-bold",
+              isMatch ? "text-grey-90" : "text-grey-50"
+            )}
+          >
+            {value}
+          </Text>
+        );
 
     return (
       <NavigateClientMutation

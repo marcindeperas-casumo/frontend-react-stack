@@ -9,19 +9,21 @@ const stories = storiesOf("ErrorMessage", module);
 
 const retry = action("retry clicked");
 
-const renderError = (props = {}) => () => {
-  const propsWithDefaults = {
-    errorMessage: text("Error Message", "A wild error appeared!"),
-    retryMessage: text("Retry Message", "Retry"),
-    ...props,
-  };
+const renderError =
+  (props = {}) =>
+  () => {
+    const propsWithDefaults = {
+      errorMessage: text("Error Message", "A wild error appeared!"),
+      retryMessage: text("Retry Message", "Retry"),
+      ...props,
+    };
 
-  return (
-    <Flex className="bg-grey-0 u-padding--3xlg" style={{ minHeight: 420 }}>
-      <ErrorMessage {...propsWithDefaults} />
-    </Flex>
-  );
-};
+    return (
+      <Flex className="bg-grey-0 u-padding--3xlg" style={{ minHeight: 420 }}>
+        <ErrorMessage {...propsWithDefaults} />
+      </Flex>
+    );
+  };
 
 stories.add("Default View (Vertical)", renderError());
 

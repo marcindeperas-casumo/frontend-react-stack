@@ -14,19 +14,16 @@ import { TimeLimitsCardMobile } from "./TimeLimitsCardMobile";
 export function TimeLimitsCardContainer() {
   const dispatch = useDispatch();
   const playerId = useSelector(playerIdSelector);
-  const {
-    isLoading,
-    dailyLimit,
-    weeklyLimit,
-    monthlyLimit,
-  } = useGetPlayerStateByIdQuery(playerId, {
-    selectFromResult: ({ data, ...rest }) => ({
-      isLoading: rest.isLoading,
-      dailyLimit: selectLoginTimeLimitFromResult("Daily", data),
-      weeklyLimit: selectLoginTimeLimitFromResult("Weekly", data),
-      monthlyLimit: selectLoginTimeLimitFromResult("Monthly", data),
-    }),
-  });
+  // @ts-ignore todo - please adjust the missing types
+  const { isLoading, dailyLimit, weeklyLimit, monthlyLimit } =
+    useGetPlayerStateByIdQuery(playerId as string, {
+      selectFromResult: ({ data, ...rest }) => ({
+        isLoading: rest.isLoading,
+        dailyLimit: selectLoginTimeLimitFromResult("Daily", data),
+        weeklyLimit: selectLoginTimeLimitFromResult("Weekly", data),
+        monthlyLimit: selectLoginTimeLimitFromResult("Monthly", data),
+      }),
+    });
   const t = useTranslations<{
     desktop_title: string;
     coming_limit_note: string;

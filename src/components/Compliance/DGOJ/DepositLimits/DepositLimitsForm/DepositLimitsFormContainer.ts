@@ -15,5 +15,4 @@ export const DepositLimitsFormContainer = connect(
   {
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }
-  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'typeof DepositLimitsForm' is not... Remove this comment to see the full error message
 )(DepositLimitsForm);

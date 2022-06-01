@@ -3,8 +3,7 @@ import { CasumoGame, COMMANDS } from "./CasumoGame";
 
 describe("CasumoGame", () => {
   const gameData = {
-    url:
-      "https://clients.test.casumogames.com/wild-gruff-crossing/latest/index.html?serverUrl=https://client-connector.test.casumogames.com&gameName=wild-gruff-crossing-2&disableIOSFullScreen=false&accountType=REAL&playerSessionId=7ea71be9-64ea-422a-b750-6599be8b9e8c&jurisdiction=MGA&language=en",
+    url: "https://clients.test.casumogames.com/wild-gruff-crossing/latest/index.html?serverUrl=https://client-connector.test.casumogames.com&gameName=wild-gruff-crossing-2&disableIOSFullScreen=false&accountType=REAL&playerSessionId=7ea71be9-64ea-422a-b750-6599be8b9e8c&jurisdiction=MGA&language=en",
     providerType: "CASUMO_MOBILE",
     providerName: "CASUMO",
   };

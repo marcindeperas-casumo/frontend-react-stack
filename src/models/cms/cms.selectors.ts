@@ -5,14 +5,11 @@ import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
 import { isSuspiciousAccount } from "Models/handshake";
 
-export const getCms = compose(
-  defaultTo({}),
-  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
-  prop("cms"),
-  prop("schema")
-);
+// @ts-expect-error: apply fix if you know the context
+export const getCms = compose(defaultTo({}), prop("cms"), prop("schema"));
 
 export const getPage = slug =>
+  // @ts-expect-error: apply fix if you know the context
   createSelector(getCms, compose(defaultTo({}), prop(slug)));
 
 export const getField = ({ slug, field, defaultValue = null }) =>
@@ -28,12 +25,12 @@ export const getFieldIfNotSuspicious = ({ slug, field, defaultValue = null }) =>
     (isSuspicious, fieldData) => (!isSuspicious ? fieldData : defaultValue)
   );
 
-export const getFieldWithReplacements = ({
-  slug,
-  field,
-  defaultValue = "",
-}) => replacements => state =>
-  interpolate(getField({ slug, field, defaultValue })(state), replacements);
+export const getFieldWithReplacements =
+  ({ slug, field, defaultValue = "" }) =>
+  replacements =>
+  state =>
+    // @ts-expect-error: apply fix if you know the context
+    interpolate(getField({ slug, field, defaultValue })(state), replacements);
 
 export const isPageFetchingStarted = slug =>
   isFetchingStarted(getFetchTypeBySlug(slug));

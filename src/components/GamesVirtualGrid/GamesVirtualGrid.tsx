@@ -16,7 +16,6 @@ export const gameTileHeight = 192;
 const OptimizedGameTile = React.memo(
   // @ts-expect-error ts-migrate(2322) FIXME: Type 'PropsWithChildren<object>' is not assignable... Remove this comment to see the full error message
   props => <GameTile game={props} />,
-  // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   R.eqProps("id")
 );
 

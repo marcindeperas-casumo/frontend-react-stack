@@ -4,13 +4,8 @@ import { DefaultModal } from "../../DefaultModal/DefaultModal";
 import { useOutOfHoursModalState } from "./useOutOfHoursModalState";
 
 export function OutOfHoursModalContainer({ t, config }: ContainerProps) {
-  const {
-    content,
-    isDisabled,
-    isLoading,
-    markAsRead,
-    buttonLabel,
-  } = useOutOfHoursModalState(config?.input ?? {});
+  const { content, isDisabled, isLoading, markAsRead, buttonLabel } =
+    useOutOfHoursModalState(config?.input ?? {});
 
   return (
     <DefaultModal

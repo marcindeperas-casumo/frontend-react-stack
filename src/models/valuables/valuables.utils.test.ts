@@ -265,6 +265,7 @@ describe("Valuables.utils", () => {
         { created: 1576070030 },
       ];
 
+      // @ts-expect-error: apply fix if you know the context
       expect(orderValuablesByCreationTime(valuables)).toEqual([
         { created: 1576070070 },
         { created: 1576070060 },

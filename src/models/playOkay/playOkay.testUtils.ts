@@ -24,8 +24,7 @@ export function adjustLimitMock(
     comingLimit: hasComingLimit ? comingLimitMock : null,
     comingRevocation: hasComingRevocation ? comingRevocationMock : null,
     limit: is(Number)(hours)
-      ? // @ts-expect-error ts-migrate(2322) FIXME: Type 'number | boolean' is not assignable to type ... Remove this comment to see the full error message
-        Duration.fromObject({ hours }).toString()
+      ? Duration.fromObject({ hours }).toString()
       : limitMock.limit,
   };
 }

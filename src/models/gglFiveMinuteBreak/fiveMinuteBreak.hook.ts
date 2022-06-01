@@ -49,6 +49,7 @@ export function useFiveMinuteBreakRealityCheck() {
     }
   };
 
+  // @ts-expect-error: apply fix if you know the context
   React.useEffect(() => {
     if (!isGGL) {
       return;

@@ -27,7 +27,8 @@ export class SettingsNotifications extends PureComponent<Props> {
       labels: {
         subscriptions_title: subscriptionsTitle,
         subscriptions_description: subscriptionsDescription,
-        notifications_ingame_session_updates_label: notificationsInGameSessionUpdatesLabel,
+        notifications_ingame_session_updates_label:
+          notificationsInGameSessionUpdatesLabel,
         in_game_updates_off_label: inGameSessionUpdatesOffLabel,
         in_game_updates_options_label: inGameSessionUpdatesFrequencyLabel,
       },

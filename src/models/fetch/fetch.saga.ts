@@ -3,15 +3,8 @@ import http from "Lib/http";
 import * as actions from "./fetch.actions";
 
 export function* fetchSaga(action) {
-  const {
-    name,
-    method,
-    url,
-    data,
-    postFetch,
-    asyncCall,
-    asyncCallData,
-  } = action;
+  const { name, method, url, data, postFetch, asyncCall, asyncCallData } =
+    action;
 
   try {
     yield put(actions.clearError(name));

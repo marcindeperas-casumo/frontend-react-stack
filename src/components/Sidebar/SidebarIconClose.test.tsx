@@ -5,6 +5,7 @@ import { sidebarCloseAction } from "Models/sidebar";
 import { SidebarIconClose } from "./SidebarIconClose";
 
 jest.mock("Models/sidebar", () => ({
+  // @ts-expect-error: apply fix if you know the context
   ...jest.requireActual("../../models/sidebar"),
   sidebarCloseAction: jest.fn(() => ({
     type: "SIDEBAR/CLOSE",

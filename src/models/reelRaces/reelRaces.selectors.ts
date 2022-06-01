@@ -62,9 +62,8 @@ export function useGameActivityAwareLeaderboard() {
   const leaderboardOrder: Array<number> = useSelector(
     R.path(["reelRaces", "order"])
   );
-  const leaderboardObj: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"] = useSelector(
-    R.path(["reelRaces", "leaderboard"])
-  );
+  const leaderboardObj: A.ReelRaceWidgetQuery["reelRaces"][number]["leaderboard"] =
+    useSelector(R.path(["reelRaces", "leaderboard"]));
   const leaderboard = leaderboardOrder.map(x => leaderboardObj[x]);
   const sorted = R.sortBy(R.prop("position"))(leaderboard);
 

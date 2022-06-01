@@ -10,11 +10,13 @@ const handlers = {
   }),
 };
 
-const handshakeReducerFactory = key => (state = DEFAULT_STATE, action) => {
-  return handlers[action.type]
-    ? handlers[action.type](key, state, action)
-    : state;
-};
+const handshakeReducerFactory =
+  key =>
+  (state = DEFAULT_STATE, action) => {
+    return handlers[action.type]
+      ? handlers[action.type](key, state, action)
+      : state;
+  };
 
 export default combineReducers({
   app: handshakeReducerFactory(APP_HANDSHAKE_KEY),

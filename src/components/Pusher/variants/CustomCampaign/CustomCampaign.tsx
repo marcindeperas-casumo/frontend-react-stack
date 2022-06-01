@@ -89,11 +89,8 @@ export const CustomCampaign = ({
   pusherModalState,
   setPusherModalState,
 }: Props) => {
-  const {
-    loading,
-    valuables,
-    translations,
-  } = usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
+  const { loading, valuables, translations } =
+    usePlayerValuableList(/* TODO: { badgeRuleName: XMAS_CAMPAIGN_SLUG } */);
   const t = useTranslations<TTranslations>(XMAS_CMS_PAGE);
   const currencySymbol = useSelector(playerCurrencySymbolSelector);
   const filteredValuables =
@@ -105,10 +102,8 @@ export const CustomCampaign = ({
         )
       : valuables;
 
-  const [
-    selectedValuable,
-    selectValuable,
-  ] = useState<A.ValuableDetails_PlayerValuableFragment>(null);
+  const [selectedValuable, selectValuable] =
+    useState<A.ValuableDetails_PlayerValuableFragment>(null);
 
   const showValuable = (valuable: A.ValuableDetails_PlayerValuableFragment) => {
     selectValuable(valuable);

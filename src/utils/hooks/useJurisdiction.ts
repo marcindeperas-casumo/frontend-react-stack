@@ -16,7 +16,7 @@ type UseJurisdictionType = {
 };
 
 export function useJurisdiction(): UseJurisdictionType {
-  const jurisdiction = useSelector(jurisdictionSelector);
+  const jurisdiction = useSelector(jurisdictionSelector) as TJurisdiction;
 
   return {
     isDGA: equals("DGA")(jurisdiction),

@@ -18,8 +18,7 @@ const props = {
   game: {
     id: "fa9aa550-6be1-11e4-a1d6-005056a03af2",
     name: "Jack and the Beanstalk",
-    logo:
-      "https://cms.casumo.com/wp-content/uploads/2014/02/JackOfTheBeanstalk_Logo.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2014/02/JackOfTheBeanstalk_Logo.png",
     backgroundImage:
       "https://cms.casumo.com/wp-content/uploads/2014/06/JackOfTheBeanstalk_Thumb.jpg",
     slug: "jack-the-beanstalk",

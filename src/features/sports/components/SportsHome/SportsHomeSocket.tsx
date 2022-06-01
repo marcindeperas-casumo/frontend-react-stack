@@ -243,9 +243,10 @@ export const messageEvent = (
     if (msg.mt === EVENT_STATS_UPDATED) {
       const event = findEventInData(data, msg.stats.eventId);
       if (event && event.sport === SPORT_TENNIS) {
-        event.statistics = SportsHomeAdapters.convertToSportsHomeLiveEventStatistics(
-          msg.stats.statistics
-        );
+        event.statistics =
+          SportsHomeAdapters.convertToSportsHomeLiveEventStatistics(
+            msg.stats.statistics
+          );
         updateNeeded = true;
       }
     }
@@ -269,9 +270,8 @@ export const messageEvent = (
         const outcomes = msg.booa.outcomes.filter(
           outcome => outcome.betOfferId === event.betOfferId
         );
-        event.outcomes = SportsHomeAdapters.convertToSportsHomeOutcomes(
-          outcomes
-        );
+        event.outcomes =
+          SportsHomeAdapters.convertToSportsHomeOutcomes(outcomes);
         updateNeeded = true;
 
         // check if event is still valid

@@ -13,17 +13,11 @@ export type Props = {
 
 export default class AdventureProgressBar extends PureComponent<Props> {
   render() {
-    const {
-      inBonusMode,
-      level,
-      points,
-      pointsRequiredForNextLevel,
-    } = this.props.adventurer;
+    const { inBonusMode, level, points, pointsRequiredForNextLevel } =
+      this.props.adventurer;
 
-    const {
-      progression_label_standard,
-      progression_label_bonus,
-    } = this.props.content;
+    const { progression_label_standard, progression_label_bonus } =
+      this.props.content;
 
     const progressPercentage = Math.floor(
       (points / pointsRequiredForNextLevel) * 100

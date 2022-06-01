@@ -24,6 +24,7 @@ const OptInButtonConnected = connect(
         slug,
         field: optInField,
         defaultValue: defaultOptInValue,
+        // @ts-expect-error: apply fix if you know the context
       })(state),
     },
     disabled: {
@@ -32,6 +33,7 @@ const OptInButtonConnected = connect(
         slug,
         field: optOutField,
         defaultValue: defaultOptOutValue,
+        // @ts-expect-error: apply fix if you know the context
       })(state),
     },
   }),

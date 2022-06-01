@@ -1,3 +1,5 @@
+// @ts-nocheck apply fixes if you know the context
+
 import React from "react";
 import { mount } from "enzyme";
 import Portal from "./Portal";

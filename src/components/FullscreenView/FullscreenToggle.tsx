@@ -13,9 +13,8 @@ export const FullscreenToggle = ({ elementOverride }: Props) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const fullscreenElementFromContext = useContext(FullscreenViewContext);
   const fullscreenElement = elementOverride || fullscreenElementFromContext;
-  const elementSupportsFullscreen = supportsTogglingFullscreen(
-    fullscreenElement
-  );
+  const elementSupportsFullscreen =
+    supportsTogglingFullscreen(fullscreenElement);
 
   const triggerFullscreen = () => {
     if (fullscreenElement && elementSupportsFullscreen) {

@@ -11,10 +11,8 @@ export const useValuableDetails = (
   onConsumeValuable: (s: string) => Promise<FetchResult<A.UseValuableMutation>>
 ) => {
   const dispatch = useDispatch();
-  const [
-    selectedValuable,
-    setSelectedValuable,
-  ] = useState<A.PlayerValuableList_PlayerValuableFragment | null>(null);
+  const [selectedValuable, setSelectedValuable] =
+    useState<A.PlayerValuableList_PlayerValuableFragment | null>(null);
 
   useEffect(() => {
     if (selectedValuable) {

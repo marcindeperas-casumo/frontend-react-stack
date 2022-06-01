@@ -11,7 +11,8 @@ import { EVENT_PROPS, EVENTS } from "Src/constants";
 import tracker from "Services/tracker";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
-type SelectedCompetitions = Array<A.FavouriteCompetitionsSelectorModal_GroupFragment>;
+type SelectedCompetitions =
+  Array<A.FavouriteCompetitionsSelectorModal_GroupFragment>;
 
 type Props = {
   onClose: () => void;

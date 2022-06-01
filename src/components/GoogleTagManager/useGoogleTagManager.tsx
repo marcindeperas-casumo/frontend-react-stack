@@ -28,9 +28,8 @@ export const GTMHookProvider = ({ state, children }: GTMHookProviderProps) => (
 );
 
 export const useGoogleTagManager = (): GTMHook => {
-  const [dataLayerState, setDataLayerState] = React.useState<GTMScriptParams>(
-    initialState
-  );
+  const [dataLayerState, setDataLayerState] =
+    React.useState<GTMScriptParams>(initialState);
 
   const init = React.useCallback(
     (params: GTMScriptParams) =>

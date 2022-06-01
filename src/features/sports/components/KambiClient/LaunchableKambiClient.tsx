@@ -11,6 +11,7 @@ import { LAUNCHABLE_KAMBI_CLIENT_QUERY } from "Models/apollo/queries";
 import { SPORTS_HOME_PAGE_PATH } from "Features/sports/components/SportsNav/sportsNavUtils";
 import { shouldWeHideClientOnHomePage } from "Features/sports/components/KambiClient/KambiClientVisibleHomePage";
 import { isMobile } from "Components/ResponsiveLayout";
+import { TMarket } from "Src/constants";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 import KambiClientService from "./KambiClient.service";
@@ -29,7 +30,7 @@ export function LaunchableKambiClient({ currentHash }: Props) {
   const [kambiMarket, setKambiMarket] = useState("GB");
   const [kambiLocale, setKambiLocale] = useState("en_GB");
 
-  const casumoMarket = useMarket();
+  const casumoMarket = useMarket() as TMarket;
   const locale = useLocale();
   const currency = useSelector(currencySelector);
 
@@ -40,9 +41,10 @@ export function LaunchableKambiClient({ currentHash }: Props) {
 
   useEffect(() => {
     const fetchKambiLaunchClient = async () => {
-      const kambiLaunchClientData = await KambiClientService.getKambiClientLaunchSports(
-        isMobile() ? KAMBI_CLIENT_MOBILE : KAMBI_CLIENT_DESKTOP
-      );
+      const kambiLaunchClientData =
+        await KambiClientService.getKambiClientLaunchSports(
+          isMobile() ? KAMBI_CLIENT_MOBILE : KAMBI_CLIENT_DESKTOP
+        );
 
       if (kambiLaunchClientData?.data) {
         setKambiLaunchData(kambiLaunchClientData.data);

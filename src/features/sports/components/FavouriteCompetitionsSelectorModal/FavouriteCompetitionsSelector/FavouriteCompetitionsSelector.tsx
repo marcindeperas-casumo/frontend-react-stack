@@ -10,7 +10,8 @@ import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
 import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";
 
-type Competition = A.FavouriteCompetitionsSelectorQuery["group"]["groups"][number]["groups"];
+type Competition =
+  A.FavouriteCompetitionsSelectorQuery["group"]["groups"][number]["groups"];
 type Props = {
   /** Id of Group to select competitions for */
   groupId: number;

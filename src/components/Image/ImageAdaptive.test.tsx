@@ -8,6 +8,7 @@ import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 import imageData from "./__mocks__/image.json";
 
 jest.mock("../../constants", () => ({
+  // @ts-expect-error: apply fix if you know the context
   ...jest.requireActual("../../constants"),
   DEVICE_PIXEL_RATIO: 3,
 }));

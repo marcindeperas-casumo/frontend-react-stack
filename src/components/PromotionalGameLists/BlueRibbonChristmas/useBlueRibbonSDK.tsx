@@ -149,11 +149,14 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
     }
 
     sdk
+      // @ts-expect-error: apply fix if you know the context
       .connect({ currency, playerId: handshake.externalPlayerReference })
       .then(async () => {
-        const res = await sdk.operatorGames.getOperatorGamesMatchDetailsByGameIds(
-          gameObj
-        );
+        const res =
+          await sdk.operatorGames.getOperatorGamesMatchDetailsByGameIds(
+            // @ts-expect-error: apply fix if you know the context
+            gameObj
+          );
         const jackpotGameId = R.path(
           ["matchedOperatorGames", 0, "jackpotGameId"],
           res
@@ -164,6 +167,7 @@ export function useBlueRibbonAutoOptIn(jackpotSlug?: string) {
         setIsJackpotGame(true);
 
         return await sdk.startGamesFeed({
+          // @ts-expect-error: apply fix if you know the context
           games: gameObj,
           gamesMode: window.BlueRibbon.constants.gamesMode.IN_GAME,
         });
@@ -196,12 +200,11 @@ export function useManualJackpotOptInAndOptOut(
       if (!gameSlug) {
         return;
       }
-      const {
-        blueribbonJackpotByGameSlug,
-      } = apolloClient.readQuery<A.GetBlueribbonJackpotConfigByGameSlugQuery>({
-        query: GetBlueribbonJackpotConfigByGameSlug,
-        variables: { gameSlug },
-      });
+      const { blueribbonJackpotByGameSlug } =
+        apolloClient.readQuery<A.GetBlueribbonJackpotConfigByGameSlugQuery>({
+          query: GetBlueribbonJackpotConfigByGameSlug,
+          variables: { gameSlug },
+        });
 
       return apolloClient.writeQuery({
         query: GetBlueribbonJackpotConfigByGameSlug,
@@ -244,7 +247,9 @@ export function useManualJackpotOptInAndOptOut(
   });
 
   React.useEffect(() => {
+    // @ts-expect-error: apply fix if you know the context
     if (handshake?.jackpots) {
+      // @ts-expect-error: apply fix if you know the context
       const chosenJackpot = handshake.jackpots.find(
         x => jackpotSlug === x.jackpotSlug
       );

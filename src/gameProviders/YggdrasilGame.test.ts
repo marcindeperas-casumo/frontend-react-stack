@@ -3,8 +3,7 @@ import { YggdrasilGame } from "./YggdrasilGame";
 
 describe("YggdrasilGame", () => {
   const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
+    url: "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
     providerType: "YGGDRASIL_MOBILE",
     providerName: "YGGDRASIL",
   };

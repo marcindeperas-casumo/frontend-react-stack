@@ -14,13 +14,8 @@ const isFallbackValue = equals(YEAR_10K_TIMESTAMP);
 
 export function useFiveMinuteBreakIcon() {
   const { isGGL } = useJurisdiction();
-  const {
-    activeRCSession,
-    activeRCBreak,
-  }: GglRealityCheckSummary = useSelector(
-    fiveMinuteBreakSelector,
-    shallowEqual
-  );
+  const { activeRCSession, activeRCBreak }: GglRealityCheckSummary =
+    useSelector(fiveMinuteBreakSelector, shallowEqual);
   const expiringTime = activeRCSession?.expiringTime || YEAR_10K_TIMESTAMP;
   const { progressPercentage } = useAdventurerContext();
   const { addIcon, removeIcon, hasIcon } = useSumoIcon({
@@ -66,6 +61,7 @@ export function useFiveMinuteBreakIcon() {
     }
 
     if (isTimeToShowIcon && !hasIcon()) {
+      // @ts-expect-error: apply fix if you know the context
       addIcon(FiveMinuteBreakIcon);
     } else if (!isTimeToShowIcon && hasIcon()) {
       removeIcon();

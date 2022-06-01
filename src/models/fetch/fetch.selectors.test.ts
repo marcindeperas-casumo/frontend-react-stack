@@ -1,3 +1,5 @@
+// @ts-nocheck apply fix if you know the context
+
 import {
   isFetched,
   getFetch,

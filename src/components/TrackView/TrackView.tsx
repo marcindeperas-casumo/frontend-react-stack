@@ -9,7 +9,7 @@ export type Props = {
 
 export default class TrackView extends React.PureComponent<Props> {
   trackView = () => {
-    const contextData = this.context;
+    const contextData = this.context as Object;
     const {
       eventName = "View",
       data = {},

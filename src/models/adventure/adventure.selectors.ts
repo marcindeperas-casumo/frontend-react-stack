@@ -46,20 +46,12 @@ export const adventurerSelector = createSelector(
 );
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, {}, (res: {}) => {}>' is... Remove this comment to see the full error message
-export const adventurerRawSelector: (
-  state: any
-) => AdventurerRaw = createSelector(
-  pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
-  identity
-);
+export const adventurerRawSelector: (state: any) => AdventurerRaw =
+  createSelector(pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]), identity);
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<unknown, unknown, (res: unkno... Remove this comment to see the full error message
-export const adventureContentSelector: (
-  state: any
-) => AdventureContent = createSelector(
-  getPage(CMS_CONTENT_SLUG),
-  propOr({}, "fields")
-);
+export const adventureContentSelector: (state: any) => AdventureContent =
+  createSelector(getPage(CMS_CONTENT_SLUG), propOr({}, "fields"));
 
 export const isAdventurerFetchedSelector = createSelector(
   adventurerRawSelector,

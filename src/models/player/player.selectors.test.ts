@@ -98,12 +98,14 @@ describe("Player selectors", () => {
 
   describe("playerWalletCurrencySelector", () => {
     test("Getting currency", () => {
+      // @ts-expect-error: apply fix if you know the context
       expect(playerWalletCurrencySelector(state)).toEqual(
         wallet.iso4217CurrencyCode
       );
     });
 
     test("Should get nothing", () => {
+      // @ts-expect-error: apply fix if you know the context
       expect(playerWalletCurrencySelector(state2)).toEqual(undefined);
     });
   });

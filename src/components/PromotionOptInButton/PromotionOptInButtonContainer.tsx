@@ -30,11 +30,13 @@ const PromotionOptInButtonConnected = connect(
         slug,
         field: optInField,
         defaultValue: defaultOptInValue,
+        // @ts-expect-error: apply fix if you know the context
       })(state),
       eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: true,
         playerId: playerIdSelector(state),
+        // @ts-expect-error: apply fix if you know the context
         slug: routeSlugSelector(state),
       },
     },
@@ -43,11 +45,13 @@ const PromotionOptInButtonConnected = connect(
         slug,
         field: optOutField,
         defaultValue: defaultOptOutValue,
+        // @ts-expect-error: apply fix if you know the context
       })(state),
       eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: false,
         playerId: playerIdSelector(state),
+        // @ts-expect-error: apply fix if you know the context
         slug: routeSlugSelector(state),
       },
     },

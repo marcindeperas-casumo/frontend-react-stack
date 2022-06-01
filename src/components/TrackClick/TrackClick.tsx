@@ -21,7 +21,7 @@ export default class TrackClick extends React.PureComponent<Props> {
       trackHandler = tracker.track,
       className = "",
     } = this.props;
-    const contextData = this.context;
+    const contextData = this.context as Object;
     const onClick = () => trackHandler(eventName, { ...contextData, ...data });
 
     return (

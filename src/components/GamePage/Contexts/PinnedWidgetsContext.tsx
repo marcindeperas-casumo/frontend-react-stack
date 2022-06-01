@@ -10,12 +10,11 @@ type PinnedWidgetsContextProviderProps = {
   children: React.ReactNode;
 };
 
-export const PinnedWidgetsContext = React.createContext<PinnedWidgetsContextType>(
-  {
+export const PinnedWidgetsContext =
+  React.createContext<PinnedWidgetsContextType>({
     pinnedWidgets: [],
     togglePin: () => {},
-  }
-);
+  });
 
 export const PinnedWidgetsContextProvider = ({
   children,

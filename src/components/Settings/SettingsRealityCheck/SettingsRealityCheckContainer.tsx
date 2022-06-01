@@ -11,10 +11,8 @@ import { UpdateRealityCheckInterval } from "./Mutations.graphql";
 
 export function SettingsRealityCheckContainer() {
   const { jurisdiction } = useJurisdiction();
-  const [
-    localIntervalInMinutes,
-    setLocalIntervalInMinutes,
-  ] = React.useState<number>();
+  const [localIntervalInMinutes, setLocalIntervalInMinutes] =
+    React.useState<number>();
   const rcQuery = useQuery<
     A.Player_Reality_Check_Query,
     A.Player_Reality_Check_QueryVariables

@@ -23,9 +23,10 @@ export function ReelRacePreviousCardWinners({
 }: Props) {
   const isNotMobile = useIsScreenMinimumTablet();
   const [full, setFull] = React.useState<boolean>(expanded);
-  const toggleFull = React.useCallback(() => setFull(state => !state), [
-    setFull,
-  ]);
+  const toggleFull = React.useCallback(
+    () => setFull(state => !state),
+    [setFull]
+  );
   const winners = slice(
     0,
     reelRace.formattedPrizes.length,

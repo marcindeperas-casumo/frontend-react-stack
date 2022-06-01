@@ -14,6 +14,7 @@ import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOver
 
 const CURRENT_YEAR = new Date().getFullYear();
 const getRegistrationYear = state => {
+  // @ts-expect-error: apply fix if you know the context
   return new Date(registrationDateSelector(state)).getFullYear();
 };
 

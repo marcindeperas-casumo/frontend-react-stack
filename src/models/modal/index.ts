@@ -70,9 +70,8 @@ export function showModal(
   };
 }
 
-export const isMandatoryMessageModalId: (
-  modalId: ModalId | null
-) => boolean = R.both(R.is(String), R.startsWith("mandatory-messages."));
+export const isMandatoryMessageModalId: (modalId: ModalId | null) => boolean =
+  R.both(R.is(String), R.startsWith("mandatory-messages."));
 
 function useSelectMandatoryMessageModal(): ModalState {
   const { data, isLoading } = useGetMandatoryMessagesQuery();
@@ -90,7 +89,8 @@ function useSelectMandatoryMessageModal(): ModalState {
   }
 
   const [firstMandatoryMessage] = data;
-  const messageModalId = `mandatory-messages.${firstMandatoryMessage.reason.toLowerCase()}` as ModalId;
+  const messageModalId =
+    `mandatory-messages.${firstMandatoryMessage.reason.toLowerCase()}` as ModalId;
 
   return {
     ...DEFAULT_STATE,

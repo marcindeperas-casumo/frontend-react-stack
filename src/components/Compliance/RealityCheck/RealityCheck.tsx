@@ -56,14 +56,8 @@ const CancelButton = ({
 export function RealityCheck(props: RealityCheckProps) {
   const { navigateToKO } = useCrossCodebaseNavigation();
   const dispatch = useDispatch();
-  const {
-    t,
-    locale,
-    currency,
-    casumoName,
-    realityCheck,
-    onClickContinue,
-  } = props;
+  const { t, locale, currency, casumoName, realityCheck, onClickContinue } =
+    props;
 
   const logout = () => dispatch(appManualLogoutInit());
   const onClickCancel = () => navigateToKO(ROUTE_IDS.TOP_LISTS);

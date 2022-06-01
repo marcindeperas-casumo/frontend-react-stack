@@ -47,9 +47,8 @@ export const SumoIconContextProvider = ({
   children: React.ReactNode;
 }) => {
   const transitionTimer = useTimeoutFn();
-  const [isTransitionRunning, setIsTransitionRunning] = React.useState<boolean>(
-    false
-  );
+  const [isTransitionRunning, setIsTransitionRunning] =
+    React.useState<boolean>(false);
   const [props, setProps] = React.useState({});
   const [customIcons, setCustomIcons] = React.useState([]);
   const [primaryIconType, setPrimaryIconType] = React.useState(

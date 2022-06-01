@@ -70,17 +70,17 @@ const FavouriteSportsSelector = (props: Props) => (
           </Heading>
           <DictionaryTerm termKey="favourite-sports-selector.selectall">
             {allSportsGroupTitle => {
-              const allSportsGroup: A.FavouriteSportsSelectorListItem_GroupFragment = {
-                id: -1,
-                icon:
-                  "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
-                name: allSportsGroupTitle,
-                // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: number; icon: string; name: string; sp... Remove this comment to see the full error message
-                sport: "all",
-                canSelectSubgroups: false,
-                favouriteCompetitions: [],
-                activeIndicator: null,
-              };
+              const allSportsGroup: A.FavouriteSportsSelectorListItem_GroupFragment =
+                {
+                  id: -1,
+                  icon: "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
+                  name: allSportsGroupTitle,
+                  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ id: number; icon: string; name: string; sp... Remove this comment to see the full error message
+                  sport: "all",
+                  canSelectSubgroups: false,
+                  favouriteCompetitions: [],
+                  activeIndicator: null,
+                };
               return otherGroups.length > 0 ? (
                 <List
                   itemSpacing="md"

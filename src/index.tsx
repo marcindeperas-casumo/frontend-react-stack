@@ -18,6 +18,7 @@ import { Modal } from "Components/RSModal";
 import { bridgeToLaunchModalService } from "Services/LaunchModalService";
 import { BridgeToLogoutService } from "Services/BridgeToLogoutService";
 import "Services/logger"; // side effect, initializes rollbar
+import "@casumo/frontend-kyc-react/dist/main.css";
 import "./styles/index.scss";
 import "./styles/index.css";
 

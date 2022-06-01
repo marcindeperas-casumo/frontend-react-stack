@@ -26,17 +26,20 @@ const DEFAULT_RETRY_MESSAGE = "Try again";
 
 const noop = () => () => {};
 
-const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
-  <Flex.Item>
-    <ButtonPrimary
-      size="sm"
-      data-test="error-message-retry-button"
-      onClick={retry}
-    >
-      {retryMessage}
-    </ButtonPrimary>
-  </Flex.Item>
-);
+const renderRetry =
+  ({ retry, retryMessage }: RetryProps) =>
+  () =>
+    (
+      <Flex.Item>
+        <ButtonPrimary
+          size="sm"
+          data-test="error-message-retry-button"
+          onClick={retry}
+        >
+          {retryMessage}
+        </ButtonPrimary>
+      </Flex.Item>
+    );
 
 const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
   unless(equals(noop), renderRetry({ retry, retryMessage }), retry);

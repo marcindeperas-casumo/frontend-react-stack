@@ -37,10 +37,8 @@ export function useJackpotsSubscription({
 }: PauseResumeProps) {
   const locale = useLocale();
   // TODO: replace with actual functions after #1194 is merged
-  const [
-    jackpotWinParams,
-    setJackpotWinParams,
-  ] = React.useState<JackpotWinParameters>(null);
+  const [jackpotWinParams, setJackpotWinParams] =
+    React.useState<JackpotWinParameters>(null);
   const playerId = useSelector(playerIdSelector);
   const channel = `${CHANNELS.PLAYER}/${playerId}`;
   const { setBlueRibbonNotificationNeedsAccepting } = useGameJackpotContext();

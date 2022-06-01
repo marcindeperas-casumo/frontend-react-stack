@@ -20,7 +20,8 @@ export function Panel({
         "bg-white t-elevation--10 u-padding-x--md u-padding-y--lg",
         {
           "t-border-r-top-left--md t-border-r-top-right--md": roundedTop,
-          "t-border-r-bottom-left--md t-border-r-bottom-right--md": roundedBottom,
+          "t-border-r-bottom-left--md t-border-r-bottom-right--md":
+            roundedBottom,
         },
         className
       )}

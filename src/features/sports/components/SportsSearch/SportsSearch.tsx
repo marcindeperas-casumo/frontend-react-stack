@@ -34,6 +34,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   setClientVisible = (visible: boolean) => {
+    // @ts-expect-error: apply fix if you know the context
     this.context.client.mutate({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {

@@ -17,7 +17,7 @@ type Props = {
 };
 
 export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
-  const playerId = useSelector(playerIdSelector);
+  const playerId = useSelector(playerIdSelector) as string;
   const t = useTranslations<{
     form_cta: string;
     form_hrs_per_day: string;
@@ -25,6 +25,7 @@ export function TimeLimitsFormContainer({ onLimitsSaved }: Props) {
     form_hrs_per_month: string;
     form_placeholder_enter_amount: string;
   }>(loginTimeLimitsCmsSlug);
+  // @ts-ignore
   const { loginTimeLimits } = useGetPlayerStateByIdQuery(playerId, {
     selectFromResult: ({ data, ...rest }) => ({
       isLoading: rest.isLoading,

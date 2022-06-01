@@ -19,8 +19,11 @@ const PromotionCardTeaserConnected = connect(
     badge: getField({
       slug,
       field: promotionBadgeField,
+      // @ts-expect-error: apply fix if you know the context
     })(state),
+    // @ts-expect-error: apply fix if you know the context
     dates: getField({ slug, field: promotionDatesField })(state),
+    // @ts-expect-error: apply fix if you know the context
     title: getField({ slug, field: promotionTitleBadge })(state),
   }),
   // @ts-expect-error ts-migrate(2339) FIXME: Property 'slug' does not exist on type '{}'.

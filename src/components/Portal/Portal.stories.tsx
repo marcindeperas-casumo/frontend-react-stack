@@ -1,3 +1,5 @@
+// @ts-nocheck apply fixes if you know the context
+
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Portal from "Components/Portal";

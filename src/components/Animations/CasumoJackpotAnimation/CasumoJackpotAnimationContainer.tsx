@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import * as R from "ramda";
 import { useTranslations, useLocale } from "Utils/hooks";

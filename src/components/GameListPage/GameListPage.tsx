@@ -52,6 +52,7 @@ export function GameListPage({ set, parent }: Props) {
     modal_button: string;
   }>("new-game-browser.filtering");
   const page = useCurrentGamePage(parent);
+  // @ts-expect-error: apply fix if you know the context
   const { filters: defaultFilters, sort: defaultSort } = useSelector(
     getData(parent)
   );

@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import logger from "Services/logger";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
+import { kycApi, kycCommonApi } from "Models/kyc/kyc.api";
 import { mandatoryMessagesApi } from "Models/mandatoryMessages";
 import { playOkayApi, gameTypeExclusionsApi } from "Models/playOkay";
 import { loginSessionApi } from "Models/loginSession";
@@ -12,16 +13,15 @@ import { paymentsApi } from "Models/payments";
 import * as storage from "Lib/storage";
 import { STORE_REHYDRATE, STORE_PERSISTED_STATE_KEY } from "Src/constants";
 
-const rtkQueryErrorLoggerMiddleware: Middleware = (
-  api: MiddlewareAPI
-) => next => action => {
-  // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
-  if (isRejected(action)) {
-    logger.error(action.error);
-  }
+const rtkQueryErrorLoggerMiddleware: Middleware =
+  (api: MiddlewareAPI) => next => action => {
+    // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
+    if (isRejected(action)) {
+      logger.error(action.error);
+    }
 
-  return next(action);
-};
+    return next(action);
+  };
 
 export const createReduxStore = (preloadedState: {}) => {
   const composeEnhancers = __DEV__
@@ -32,6 +32,8 @@ export const createReduxStore = (preloadedState: {}) => {
     thunk,
     sagaMiddleware,
     rtkQueryErrorLoggerMiddleware,
+    kycApi.middleware,
+    kycCommonApi.middleware,
     mandatoryMessagesApi.middleware,
     playOkayApi.middleware,
     gameTypeExclusionsApi.middleware,

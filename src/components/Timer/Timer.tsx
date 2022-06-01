@@ -59,7 +59,6 @@ export default class Timer extends React.PureComponent<Props, State> {
           toAbsolute,
           // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           diffTime
-          // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         )(this.props.startTime || this.props.endTime)
       ),
     };

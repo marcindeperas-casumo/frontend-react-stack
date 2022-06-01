@@ -40,10 +40,8 @@ const formatPot = sdkPots => pot => ({
 
 export const useComposedJackpot = (query, propertyName) => {
   // TODO This useState should be removed at some point because we want to feed the store
-  const [
-    composedJackpot,
-    setComposedJackpot,
-  ] = React.useState<ComposedJackpot>();
+  const [composedJackpot, setComposedJackpot] =
+    React.useState<ComposedJackpot>();
   const sdkPots = useSelector(sdkPotsSelector);
 
   const { data, loading } = query;

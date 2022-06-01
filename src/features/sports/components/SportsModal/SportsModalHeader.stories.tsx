@@ -11,13 +11,14 @@ const stories = storiesOf("Sports/SportsModal/SportsModalHeader", module);
 const onBack = action("onBack");
 const onClose = action("onClose");
 
-const render = props => () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModalHeader {...{ ...props }} />
-    </SportsModal>
-  </ModalsArea>
-);
+const render = props => () =>
+  (
+    <ModalsArea>
+      <SportsModal>
+        <SportsModalHeader {...{ ...props }} />
+      </SportsModal>
+    </ModalsArea>
+  );
 
 const addStory = ([name, props = {}]) => {
   stories.add(

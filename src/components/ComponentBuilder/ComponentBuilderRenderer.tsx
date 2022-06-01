@@ -18,11 +18,15 @@ export class ComponentBuilderRenderer extends PureComponent<Props> {
       return null;
     }
 
-    return componentDefinitions.map<Object>((definition, i) => (
-      <ErrorBoundary key={i} withoutUserFeedback>
-        {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Object' is not assignable to par... Remove this comment to see the full error message */}
-        {mapContentDefinitionToComponent(definition)}
-      </ErrorBoundary>
-    ));
+    return (
+      <>
+        {componentDefinitions.map<Object>((definition, i) => (
+          <ErrorBoundary key={i} withoutUserFeedback>
+            {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'Object' is not assignable to par... Remove this comment to see the full error message */}
+            {mapContentDefinitionToComponent(definition)}
+          </ErrorBoundary>
+        ))}
+      </>
+    );
   }
 }

@@ -19,7 +19,7 @@ export const JackpotRules = ({ text, tncLabel, jackpotSlug }: TProps) => {
       ),
     },
     text
-  );
+  ) as React.ReactElement;
 
   return (
     <div className="u-padding t-border t-border-r t-border-grey-5">

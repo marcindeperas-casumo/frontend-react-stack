@@ -4,8 +4,7 @@ import { ThunderkickGame, COMMANDS } from "./ThunderkickGame";
 
 describe("ThunderkickGame", () => {
   const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
+    url: "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
     providerType: "THUNDERKICK_MOBILE",
     providerName: "THUNDERKICK",
   };

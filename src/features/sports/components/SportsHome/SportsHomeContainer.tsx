@@ -8,7 +8,7 @@ import {
   useMarket,
   useTranslations,
 } from "Utils/hooks";
-import { STRAPI_LOCALES } from "Src/constants";
+import { STRAPI_LOCALES, TMarket } from "Src/constants";
 import { PopularEvents } from "./PopularEvents";
 import {
   SportsHomeConfigurationTranslations,
@@ -28,25 +28,25 @@ import { PopularLiveEvents } from "./PopularLiveEvents";
 import { PromoCards } from "./PromoCards";
 
 export const SportsHomeContainer = () => {
-  const t = useTranslations<SportsHomeTranslationsDictionary>(
-    KAMBI_SPORTS_SLUG
-  );
+  const t =
+    useTranslations<SportsHomeTranslationsDictionary>(KAMBI_SPORTS_SLUG);
 
   const configurations = useTranslations<SportsHomeConfigurationTranslations>(
     "sports.sports-home-configuration"
   );
 
   // get configurations for all sports home widgets
-  const sportsHomeConfigurations = SportsHomeAdapters.convertToSportsHomePopularBetsConfiguration(
-    configurations,
-    DEFAULT_NUMBER_OF_EVENTS_TO_SHOW,
-    DEFAULT_SPORTS,
-    DEFAULT_STARTING_WITHIN_DAYS
-  );
+  const sportsHomeConfigurations =
+    SportsHomeAdapters.convertToSportsHomePopularBetsConfiguration(
+      configurations,
+      DEFAULT_NUMBER_OF_EVENTS_TO_SHOW,
+      DEFAULT_SPORTS,
+      DEFAULT_STARTING_WITHIN_DAYS
+    );
 
   const language = useLanguage();
   const locale = useLocale();
-  const market = useMarket();
+  const market = useMarket() as TMarket;
   const oddsFormatEvent = useSelector(oddsFormatSelector);
 
   // configurations for the popular events widget

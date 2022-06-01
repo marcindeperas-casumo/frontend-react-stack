@@ -36,6 +36,7 @@ describe("Slot Control System selectors", () => {
       },
     };
 
+    // @ts-expect-error: apply fix if you know the context
     expect(configurationFormContentSelector(state)).toEqual({
       ...unitsFields,
       ...modalFields,

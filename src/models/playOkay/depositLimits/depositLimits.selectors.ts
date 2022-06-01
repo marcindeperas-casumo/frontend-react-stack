@@ -17,12 +17,12 @@ const allLimitsRemoved = R.allPass([
   R.propEq("monthly", null),
 ]);
 
+// @ts-expect-error: apply fix if you know the context
 export const revocationAllowedSelector = createSelector<any, boolean, boolean>(
   R.path([...basePath, "preadjust", "revocationAllowed"]),
   revocationAllowed => revocationAllowed
 );
 
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, { pendingChanges: { limi... Remove this comment to see the full error message
 export const getPendingLimitChangesSelector: (
   state: any
 ) => PendingDepositLimitsChangesSelected = createSelector(
@@ -40,7 +40,6 @@ export const getPendingLimitChangesSelector: (
         .filter(R.has(R.__, pendingLimitChanges))
         .map(limitKind => ({
           limitKind,
-          // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
           value: R.prop(limitKind, pendingLimitChanges),
         })),
       allRemoved: allLimitsRemoved(pendingLimitChanges),
@@ -49,9 +48,7 @@ export const getPendingLimitChangesSelector: (
 );
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, { currency: unknown; loc... Remove this comment to see the full error message
-export const getCurrencyAndLocaleSelector: (
-  state: any
-) => {
+export const getCurrencyAndLocaleSelector: (state: any) => {
   currency: string;
   locale: string;
 } = createSelector(
@@ -66,7 +63,6 @@ export const getCurrencyAndLocaleSelector: (
   })
 );
 
-// @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, { limitKind: "daily" | "... Remove this comment to see the full error message
 export const getDepositLimitsForOverviewScreenSelector: (
   state: any
 ) => DepositLimitsSelected = createSelector(
@@ -79,21 +75,15 @@ export const getDepositLimitsForOverviewScreenSelector: (
 
     return limitTypes.filter(R.has(R.__, limits)).map(limitKind => ({
       limitKind,
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       value: R.prop(limitKind, limits),
-      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       remaining: R.prop(limitKind, remaining),
     }));
   }
 );
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, Pick<unknown, never>, (r... Remove this comment to see the full error message
-export const getDepositLimitsSelector: (
-  state: any
-) => DepositLimitsReduxStore = createSelector(
-  R.path(basePath),
-  R.omit(["history"])
-);
+export const getDepositLimitsSelector: (state: any) => DepositLimitsReduxStore =
+  createSelector(R.path(basePath), R.omit(["history"]));
 
 // @ts-expect-error ts-migrate(2322) FIXME: Type 'OutputSelector<any, unknown, (res: unknown) ... Remove this comment to see the full error message
 export const getDepositLimitsHistorySelector: (

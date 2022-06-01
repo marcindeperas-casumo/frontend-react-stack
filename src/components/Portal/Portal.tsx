@@ -68,6 +68,7 @@ export default class Portal extends React.PureComponent<Props> {
     this.rootEl.removeChild(this.el);
   }
 
+  // @ts-expect-error: apply fix if you know the context
   render() {
     const {
       children,

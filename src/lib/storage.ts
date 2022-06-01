@@ -3,11 +3,13 @@ import store from "store";
 const getStoreInstance = (namespace?: string) =>
   namespace ? store.namespace(namespace) : store;
 
-const callStore = (namespace?: string) => (method: string, ...args: any[]) => {
-  const storeInstance = getStoreInstance(namespace);
+const callStore =
+  (namespace?: string) =>
+  (method: string, ...args: any[]) => {
+    const storeInstance = getStoreInstance(namespace);
 
-  return storeInstance[method].call(storeInstance, ...args);
-};
+    return storeInstance[method].call(storeInstance, ...args);
+  };
 
 export const get = (key: string, defaultValue?: any, namespace?: string) => {
   return callStore(namespace)("get", key) || defaultValue;

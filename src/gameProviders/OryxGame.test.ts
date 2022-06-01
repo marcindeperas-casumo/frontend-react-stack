@@ -3,8 +3,7 @@ import { OryxGame, COMMANDS } from "./OryxGame";
 
 describe("OryxGame", () => {
   const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
+    url: "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
     providerType: "ORYX_MOBILE",
     providerName: "ORYX",
   };

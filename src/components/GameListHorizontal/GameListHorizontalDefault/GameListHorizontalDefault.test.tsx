@@ -13,8 +13,7 @@ const list = {
     i => ({
       id: `${i}`,
       url: `casumo.es/game/${i}`,
-      logo:
-        "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-bg.jpg",
+      logo: "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-bg.jpg",
       background:
         "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-logo.png",
     }),

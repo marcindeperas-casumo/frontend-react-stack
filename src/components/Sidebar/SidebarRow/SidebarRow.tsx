@@ -16,16 +16,8 @@ type Props = {
 };
 
 export const SidebarRow = (props: Props) => {
-  const {
-    text,
-    label,
-    Icon,
-    selected,
-    secondary,
-    openNewTab,
-    link,
-    action,
-  } = props;
+  const { text, label, Icon, selected, secondary, openNewTab, link, action } =
+    props;
 
   const rowClasses = classNames(
     "u-font-weight-bold",

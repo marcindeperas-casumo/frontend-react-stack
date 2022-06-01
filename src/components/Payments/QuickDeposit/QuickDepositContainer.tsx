@@ -50,11 +50,8 @@ export const QuickDepositContainer = ({ className = "" }: Props) => {
     gameAwareBalanceCompareFunction
   );
 
-  const {
-    hasQuickDepositMethods,
-    navigateToCashier,
-    launchQuickDeposit,
-  } = useDepositMethods();
+  const { hasQuickDepositMethods, navigateToCashier, launchQuickDeposit } =
+    useDepositMethods();
 
   const cashierLinkClickHandler = () => {
     tracker.track(EVENTS.MIXPANEL_QUICK_DEPOSIT_CURRENCY_SIGN_CLICKED, {});

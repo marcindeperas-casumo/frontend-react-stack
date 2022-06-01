@@ -30,14 +30,8 @@ export function ReelRaceLeaderboardModal({
     return null;
   }
 
-  const {
-    position,
-    points,
-    prizes,
-    leaderboard,
-    playerId,
-    playerName,
-  } = config.input;
+  const { position, points, prizes, leaderboard, playerId, playerName } =
+    config.input;
   // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
   const winnerName = R.prop("playerName", R.head(leaderboard));
   const playerInTop3 = position < 4;
@@ -59,6 +53,7 @@ export function ReelRaceLeaderboardModal({
           )
         : interpolateWithJSX(
             {
+              // @ts-expect-error: apply fix if you know the context
               winnerName: <span className="text-teal-50">{winnerName}</span>,
             },
             t.someoneWon

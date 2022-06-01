@@ -1,6 +1,7 @@
 import * as A from "Types/apollo";
 
-export type Competition = A.FavouriteSportsSelectorContextQuery["groups"][number]["favouriteCompetitions"][number];
+export type Competition =
+  A.FavouriteSportsSelectorContextQuery["groups"][number]["favouriteCompetitions"][number];
 
 export type StageFavouritesAPI = {
   sports: A.FavouriteSportsSelectorContextQuery["groups"];

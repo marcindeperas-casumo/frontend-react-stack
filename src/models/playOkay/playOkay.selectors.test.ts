@@ -53,6 +53,7 @@ describe("Denmark compliance playOkay selectors", () => {
     test("should return any deposit limit from playOkay money limits list", () => {
       const mockState = createMockWithData(playOkayMockWithDepositLimit);
 
+      // @ts-expect-error: apply fix if you know the context
       expect(depositLimitSelector(mockState)).toEqual(
         playOkayMockWithDepositLimit.moneyLimits[0]
       );
@@ -61,6 +62,7 @@ describe("Denmark compliance playOkay selectors", () => {
     test("should return undefined if there is no deposit limit on the list of money limits", () => {
       const mockState = createMockWithData(playOkayMockWithoutDepositLimit);
 
+      // @ts-expect-error: apply fix if you know the context
       expect(depositLimitSelector(mockState)).toBeUndefined();
     });
   });

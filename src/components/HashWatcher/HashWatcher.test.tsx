@@ -20,10 +20,8 @@ describe("HashWatcher", () => {
     window.removeEventListener = jest.fn();
     const component = shallow(<HashWatcher>{mockRenderProp}</HashWatcher>);
     component.unmount();
-    const [
-      arg1,
-      arg2,
-    ] = (window.removeEventListener as jest.Mock).mock.calls[0];
+    const [arg1, arg2] = (window.removeEventListener as jest.Mock).mock
+      .calls[0];
     expect(window.removeEventListener).toHaveBeenCalledTimes(1);
     expect(arg1).toBe("hashchange");
     expect(typeof arg2).toBe("function");

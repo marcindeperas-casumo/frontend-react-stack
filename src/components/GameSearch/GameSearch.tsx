@@ -62,25 +62,26 @@ const GameStudioText = ({ studioName }) => (
   <div className="text-grey-20">{studioName}</div>
 );
 
-const gameRowHighlightSearch = query => game => (
-  <GameRow
-    game={game}
-    renderText={() => (
-      <GameRowSearchText
-        name={game.name}
-        search={{ query, highlightSearchQuery: true }}
-        isInMaintenance={game.isInMaintenance}
-        renderSecondaryText={() =>
-          game.isInMaintenance ? (
-            <GameMaintenanceText />
-          ) : (
-            <GameStudioText studioName={game.gameStudio} />
-          )
-        }
-      />
-    )}
-  />
-);
+const gameRowHighlightSearch = query => game =>
+  (
+    <GameRow
+      game={game}
+      renderText={() => (
+        <GameRowSearchText
+          name={game.name}
+          search={{ query, highlightSearchQuery: true }}
+          isInMaintenance={game.isInMaintenance}
+          renderSecondaryText={() =>
+            game.isInMaintenance ? (
+              <GameMaintenanceText />
+            ) : (
+              <GameStudioText studioName={game.gameStudio} />
+            )
+          }
+        />
+      )}
+    />
+  );
 const SectionTitle = props => (
   <Text
     size="md"

@@ -43,8 +43,9 @@ const formatPot = (state, action) => pot => {
   const jackpotSlug = action.jackpot.slug;
   const value = state.blueRibbonjackpots[
     jackpotSlug
-  ]?.composedJackpot?.pots.find(statePot => statePot.potKey === pot.potKey)
-    .value;
+  ]?.composedJackpot?.pots.find(
+    statePot => statePot.potKey === pot.potKey
+  ).value;
 
   const newValue = pot?.value || value;
 

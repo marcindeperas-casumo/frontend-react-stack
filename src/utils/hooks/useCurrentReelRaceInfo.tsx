@@ -166,68 +166,76 @@ export const createCurrentReelRaceData = (
   };
 };
 
-const statusHandler = (
-  reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
-  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
-  setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
-  playerId: string
-) => ({ data }: { data: CometdReelRaceEnteredType }) => {
-  if (
+const statusHandler =
+  (
+    reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
+    // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
+    setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
+    playerId: string
+  ) =>
+  ({ data }: { data: CometdReelRaceEnteredType }) => {
+    if (
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
+      reelRace?.id === data.tournamentId &&
+      data.status === RACE_STATE.STARTED
+    ) {
+      const {
+        // @ts-expect-error: apply fix if you know the context
+        leaderboard: currentReelRaceLeaderboard,
+        ...currentReelRaceRest
+      } = reelRace || {};
+
+      setCurrentReelRaceData({
+        ...createCurrentReelRaceData(playerId, {
+          ...(currentReelRaceRest
+            ? {
+                ...currentReelRaceRest,
+                leaderboard: convertLeaderboardToObject(
+                  currentReelRaceLeaderboard
+                ),
+              }
+            : {}),
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ isInProgress: boolean; leaderb... Remove this comment to see the full error message
+          isInProgress: true,
+        }),
+      });
+    }
+  };
+
+const finishedHandler =
+  (
+    reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
+    // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
+    setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
+    playerId: string
+  ) =>
+  ({ data }: { data: CometdReelRaceFinishedType }) => {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
-    reelRace?.id === data.tournamentId &&
-    data.status === RACE_STATE.STARTED
-  ) {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
-    const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
-      reelRace || {};
+    if (reelRace?.id === data.tournamentId) {
+      const {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
+        leaderboard: currentReelRaceLeaderboard,
+        ...currentReelRaceRest
+      } = reelRace || {};
 
-    setCurrentReelRaceData({
-      ...createCurrentReelRaceData(playerId, {
-        ...(currentReelRaceRest
-          ? {
-              ...currentReelRaceRest,
-              leaderboard: convertLeaderboardToObject(
-                currentReelRaceLeaderboard
-              ),
-            }
-          : {}),
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ isInProgress: boolean; leaderb... Remove this comment to see the full error message
-        isInProgress: true,
-      }),
-    });
-  }
-};
-
-const finishedHandler = (
-  reelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
-  // @ts-expect-error ts-migrate(1016) FIXME: A required parameter cannot follow an optional par... Remove this comment to see the full error message
-  setCurrentReelRaceData: (x: CurrentReelRaceInfo) => void,
-  playerId: string
-) => ({ data }: { data: CometdReelRaceFinishedType }) => {
-  // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{ id: string... Remove this comment to see the full error message
-  if (reelRace?.id === data.tournamentId) {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'leaderboard' does not exist on type '{ i... Remove this comment to see the full error message
-    const { leaderboard: currentReelRaceLeaderboard, ...currentReelRaceRest } =
-      reelRace || {};
-
-    setCurrentReelRaceData({
-      ...createCurrentReelRaceData(playerId, {
-        ...(currentReelRaceRest
-          ? {
-              ...currentReelRaceRest,
-              leaderboard: convertLeaderboardToObject(
-                currentReelRaceLeaderboard
-              ),
-            }
-          : {}),
-        leaderboard: data.leaderboard,
-        // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ leaderboard: LeaderboardObject... Remove this comment to see the full error message
-        isInProgress: false,
-        hasEnded: true,
-      }),
-    });
-  }
-};
+      setCurrentReelRaceData({
+        ...createCurrentReelRaceData(playerId, {
+          ...(currentReelRaceRest
+            ? {
+                ...currentReelRaceRest,
+                leaderboard: convertLeaderboardToObject(
+                  currentReelRaceLeaderboard
+                ),
+              }
+            : {}),
+          leaderboard: data.leaderboard,
+          // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ leaderboard: LeaderboardObject... Remove this comment to see the full error message
+          isInProgress: false,
+          hasEnded: true,
+        }),
+      });
+    }
+  };
 
 const reelRaceApplies = (
   localCurrentReelRace?: A.CurrentReelRaceInfoQuery["reelRaces"] | undefined,
@@ -246,24 +254,26 @@ const reelRaceApplies = (
 export function useCurrentReelRaceInfo(
   gameSlug?: string | undefined
 ): CurrentReelRaceInfo | undefined {
-  const { data: reelRaceQueryData, loading, refetch } = useQuery<
-    A.CurrentReelRaceInfoQuery,
-    A.CurrentReelRaceInfoQueryVariables
-  >(CurrentReelRaceInfoQuery, {
-    fetchPolicy: "cache-first",
-  });
+  const {
+    data: reelRaceQueryData,
+    loading,
+    refetch,
+  } = useQuery<A.CurrentReelRaceInfoQuery, A.CurrentReelRaceInfoQueryVariables>(
+    CurrentReelRaceInfoQuery,
+    {
+      fetchPolicy: "cache-first",
+    }
+  );
   // This combined with cache-first fetch policy will make sure that we are not
   // bombarding graphql server with unnecessary requests
   useCallOnce(true, refetch);
 
-  const playerId = useSelector(playerIdSelector, shallowEqual);
+  const playerId = useSelector(playerIdSelector, shallowEqual) as string;
   const tournamentChannels = useSelector(tournamentChannelsSelector);
   const refetchTimeout = useTimeoutFn();
   const updateTimeout = useTimeoutFn();
-  const [
-    currentReelRaceData,
-    setCurrentReelRaceData,
-  ] = React.useState<CurrentReelRaceInfo | null>(null);
+  const [currentReelRaceData, setCurrentReelRaceData] =
+    React.useState<CurrentReelRaceInfo | null>(null);
 
   React.useEffect(() => {
     tournamentChannels.forEach(channel =>

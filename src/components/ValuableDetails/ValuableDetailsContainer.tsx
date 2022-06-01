@@ -58,7 +58,7 @@ export const ValuableDetailsContainer = (props: Props) => {
     day_singular: "root:units:fields.day_singular",
     day_plural: "root:units:fields.days",
   });
-  const playerId = useSelector(playerIdSelector);
+  const playerId = useSelector(playerIdSelector) as string;
 
   return loading ? null : (
     <ValuableDetails {...props} playerId={playerId} translations={t} />

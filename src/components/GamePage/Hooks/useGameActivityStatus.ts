@@ -30,10 +30,8 @@ export const useGameActivityStatus = () => {
   const { gameProviderModel } = useGameModelContext();
   const [active, setActive] = useState(false);
 
-  const {
-    enableSimulatedGameActivity,
-    disableSimulatedGameActivity,
-  } = useSimulatedGameActivity(setActive);
+  const { enableSimulatedGameActivity, disableSimulatedGameActivity } =
+    useSimulatedGameActivity(setActive);
 
   useEffect(() => {
     if (gameProviderModel && gameProviderModel.props.gameRef.current) {

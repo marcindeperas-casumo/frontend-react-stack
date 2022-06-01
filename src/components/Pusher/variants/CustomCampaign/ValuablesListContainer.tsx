@@ -7,7 +7,7 @@ import {
   VALUABLE_CIRCLE_LOCK_ICON,
   VALUABLE_TYPES,
 } from "Models/valuables";
-import { ROUTE_IDS, URL_PREFIXES } from "Src/constants";
+import { ROUTE_IDS, URL_PREFIXES, TMarket } from "Src/constants";
 import { useMarket, useLanguage } from "Utils/hooks";
 import { routeTranslator } from "Utils/routerUtils";
 import { AllValuableTypes } from "Components/ValuableThumbnail/ValuableSymbol";
@@ -44,7 +44,7 @@ export const CustomCampaignValuableListContainer = ({
   loading = false,
 }: Props) => {
   const language = useLanguage();
-  const market = useMarket();
+  const market = useMarket() as TMarket;
   const translateRoute = routeTranslator(language);
   const cashVal = valuables.find(val => val.valuableType === "cash");
   const cashBackVal = valuables.find(val => val.valuableType === "cashback");

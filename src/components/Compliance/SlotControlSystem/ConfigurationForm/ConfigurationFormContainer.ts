@@ -18,6 +18,7 @@ import { transformFormDataToRequestPayload } from "./Utils";
 
 export const ConfigurationFormContainer = connect(
   state => ({
+    // @ts-expect-error: apply fix if you know the context
     t: configurationFormContentSelector(state),
     locale: localeSelector(state),
     currency: currencySelector(state),

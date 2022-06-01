@@ -79,11 +79,8 @@ export function Wheel(props: Props) {
   const trailRefs = useThirtyRefs();
   const [animationTriggered, setAnimationTriggered] = React.useState(false);
   const animated = React.useRef(false);
-  const {
-    containerRef,
-    containerHeight,
-    containerWidth,
-  } = useContainerMeasurer();
+  const { containerRef, containerHeight, containerWidth } =
+    useContainerMeasurer();
   const shouldStartScaleAnimation = React.useRef(false);
   const { isPortraitOriented } = useScreenOrientation();
   const isVertical = isPortraitOriented();

@@ -29,13 +29,8 @@ export class GameListSkeleton extends PureComponent<Props> {
   };
 
   render() {
-    const {
-      className,
-      hasTitle,
-      numberOfItems,
-      titleXOffset,
-      titleYOffset,
-    } = this.props;
+    const { className, hasTitle, numberOfItems, titleXOffset, titleYOffset } =
+      this.props;
 
     return (
       <div className={className}>

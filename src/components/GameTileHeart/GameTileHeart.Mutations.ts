@@ -91,6 +91,7 @@ export const useRemoveGameFromMyList = (id: string) => {
               gamesList: {
                 ...cacheData.gamesList,
                 games: reject(
+                  // @ts-expect-error: apply fix if you know the context
                   game => game.id === id,
                   cacheData.gamesList.games
                 ),

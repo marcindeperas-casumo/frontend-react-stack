@@ -26,6 +26,7 @@ export const routeTranslator = (language: string) => {
     const path = ROUTES[key];
 
     if (canBeInterpolated(path)) {
+      // @ts-expect-error: apply fix if you know the context
       return interpolate(path, translatedRoutes);
     }
 

@@ -85,6 +85,7 @@ class StageFavouritesProvider extends React.Component<
       data: { groups: sports },
     }: {
       data: A.FavouriteSportsSelectorContextQuery;
+      // @ts-expect-error: apply fix if you know the context
     } = await this.context.client.query({
       query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
       fetchPolicy: "network-only",
@@ -95,6 +96,7 @@ class StageFavouritesProvider extends React.Component<
       },
     }: {
       data: A.PlayerVerticalQuery;
+      // @ts-expect-error: apply fix if you know the context
     } = await this.context.client.query({
       query: PLAYER_VERTICAL_QUERY,
       fetchPolicy: "network-only",
@@ -115,6 +117,7 @@ class StageFavouritesProvider extends React.Component<
     const promisesToCompetitionSuggestions = sports
       .filter(g => g.canSelectSubgroups && g.favouriteCompetitions.length === 0)
       .map(g => {
+        // @ts-expect-error: apply fix if you know the context
         return this.context.client
           .query({
             query: COMPETITION_SUGGESTIONS_QUERY,

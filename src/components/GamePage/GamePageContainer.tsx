@@ -50,14 +50,8 @@ type Props = {
 };
 
 export const GamePageContainer = () => {
-  const {
-    slug,
-    gameProviderModel,
-    pauseGame,
-    resumeGame,
-    playForFun,
-    error,
-  } = useGameModelContext();
+  const { slug, gameProviderModel, pauseGame, resumeGame, playForFun, error } =
+    useGameModelContext();
   useCurrentReelRaceLeaderboard(slug);
   const bonusAmount = useSelector(playerWalletBonusSelector);
   const { isDGOJ, isGGL } = useJurisdiction();

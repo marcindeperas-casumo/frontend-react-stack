@@ -27,3 +27,6 @@ export * from "./LazyJackpotsNav";
 export * from "./LazyCampaignTerms";
 export * from "./LazyExcludedGamePage";
 export * from "./LazyPlayOkayGameTypeExclusions";
+export * from "./LazyAccountVerification";
+export * from "./LazyAccountVerificationInstructions";
+export * from "./LazyAccountVerificationUpload";

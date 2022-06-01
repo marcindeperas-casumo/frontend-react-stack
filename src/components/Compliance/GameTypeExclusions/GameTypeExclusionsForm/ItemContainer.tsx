@@ -27,10 +27,8 @@ export function ItemContainer({
 }: TProps) {
   const [addExclusions, addProps] = useAddExclusionsMutation();
   const [revokeExclusions, revokeProps] = useRevokeExclusionsMutation();
-  const [
-    cancelRevocations,
-    cancelProps,
-  ] = useCancelExclusionRevocationsMutation();
+  const [cancelRevocations, cancelProps] =
+    useCancelExclusionRevocationsMutation();
 
   React.useEffect(() => {
     if (addProps.isError || revokeProps.isError || cancelProps.isError) {

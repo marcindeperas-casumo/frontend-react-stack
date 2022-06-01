@@ -151,6 +151,11 @@ export const ROUTE_IDS = {
   MAHJONG_PAGE: "MAHJONG_PAGE",
   CASINO_GAMES_SLOTS: "CASINO_GAMES_SLOTS",
   CAMPAIGN_TERMS: "CAMPAIGN_TERMS",
+  ACCOUNT_VERIFICATION: "ACCOUNT_VERIFICATION",
+  ACCOUNT_VERIFICATION_ISSUE: "ACCOUNT_VERIFICATION_ISSUE",
+  ACCOUNT_VERIFICATION_UPLOAD: "ACCOUNT_VERIFICATION_UPLOAD",
+  ACCOUNT_VERIFICATION_SURVEY: "ACCOUNT_VERIFICATION_SURVEY",
+  ACCOUNT_VERIFICATION_INSTRUCTIONS: "ACCOUNT_VERIFICATION_INSTRUCTIONS",
 } as const;
 
 // As Native needs to be able to know about those routes via the Native bridge, if the new route you are
@@ -201,8 +206,15 @@ export const ROUTES = {
   [ROUTE_IDS.CASINO_GAMES_SLOTS]: "{{casinoGames}}/slots",
   [ROUTE_IDS.REEL_RACES]: "reel-races",
   [ROUTE_IDS.CAMPAIGN_TERMS]: "terms/campaign/:slug",
+  [ROUTE_IDS.ACCOUNT_VERIFICATION]: "player/documents-verification",
+  [ROUTE_IDS.ACCOUNT_VERIFICATION_INSTRUCTIONS]:
+    "player/documents-verification/:type",
+  [ROUTE_IDS.ACCOUNT_VERIFICATION_ISSUE]: "player/documents-verification/issue",
+  [ROUTE_IDS.ACCOUNT_VERIFICATION_UPLOAD]:
+    "player/documents-verification/:type/upload",
+  [ROUTE_IDS.ACCOUNT_VERIFICATION_SURVEY]:
+    "player/documents-verification/:type/survey",
 } as const;
-
 export const TRANSLATED_ROUTES = {
   GAMES: {
     sv: "spel",

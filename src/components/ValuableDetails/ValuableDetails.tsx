@@ -215,18 +215,16 @@ export const ValuableDetails = ({
 
   // Checks whether Valuable CMS template has the override enabled to hide generic and market specific t&cs
   // returns either full list of t&c titles and content, or just the ones linked in the valuable cms template (legal docs)
-  const {
-    termsAndConditionsTitleItems,
-    termsAndConditionsContentItems,
-  } = termsAndConditionsCheck({
-    hideGenericAndMarketSpecificTerms,
-    termsAndConditionsTitle,
-    generalTermsAndConditionsTitle,
-    marketSpecificTermsAndConditionsTitle,
-    termsAndConditionsContent,
-    generalTermsAndConditionsContent,
-    marketSpecificTermsAndConditionsContent,
-  });
+  const { termsAndConditionsTitleItems, termsAndConditionsContentItems } =
+    termsAndConditionsCheck({
+      hideGenericAndMarketSpecificTerms,
+      termsAndConditionsTitle,
+      generalTermsAndConditionsTitle,
+      marketSpecificTermsAndConditionsTitle,
+      termsAndConditionsContent,
+      generalTermsAndConditionsContent,
+      marketSpecificTermsAndConditionsContent,
+    });
 
   const handleAction = async (actionProps: ValuableActionProps) => {
     const { url, isDepositBonusSelected } = actionProps;
@@ -298,13 +296,15 @@ export const ValuableDetails = ({
     valuableState === VALUABLE_STATES.USED ||
     valuableState === VALUABLE_STATES.FRESH ||
     valuableState === VALUABLE_STATES.LOCKED ||
-    ([
-      VALUABLE_TYPES.CASHBACK,
-      VALUABLE_TYPES.WAGERING_LOCK,
-      VALUABLE_TYPES.FREE_BET,
-      VALUABLE_TYPES.DEPOSIT,
-      VALUABLE_TYPES.BUNDLE_LOCK,
-    ] as Array<A.ValuableType>).includes(valuableType);
+    (
+      [
+        VALUABLE_TYPES.CASHBACK,
+        VALUABLE_TYPES.WAGERING_LOCK,
+        VALUABLE_TYPES.FREE_BET,
+        VALUABLE_TYPES.DEPOSIT,
+        VALUABLE_TYPES.BUNDLE_LOCK,
+      ] as Array<A.ValuableType>
+    ).includes(valuableType);
 
   const isXmasValuable = (): boolean => {
     if (

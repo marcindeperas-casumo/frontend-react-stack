@@ -18,9 +18,8 @@ export const useAccountWarmUp = (
     seconds: 0,
   }).normalize();
 
-  const [timeRemaining, setTimeRemaining] = React.useState<DurationLiteralType>(
-    elapsedDefault
-  );
+  const [timeRemaining, setTimeRemaining] =
+    React.useState<DurationLiteralType>(elapsedDefault);
 
   const timer = useTimeoutFn();
 

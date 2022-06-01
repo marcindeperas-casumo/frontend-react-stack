@@ -4,7 +4,7 @@ import { InMemoryCache } from "@apollo/client/cache";
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from "crypto-hash";
 import { isMobile } from "@casumo/is-mobile";
-import { DEVICES } from "Src/constants";
+import { DEVICES, TMarket } from "Src/constants";
 import {
   marketSelector,
   currencySelector,
@@ -149,7 +149,7 @@ function getLinks() {
 function getFetchExtendedWithMarketAndLocale() {
   return (uri, options) => {
     const state = reduxStore.getState();
-    const market = marketSelector(state);
+    const market = marketSelector(state) as TMarket;
     const locale = languageSelector(state);
     const url = new URL(uri, window.location.origin);
 

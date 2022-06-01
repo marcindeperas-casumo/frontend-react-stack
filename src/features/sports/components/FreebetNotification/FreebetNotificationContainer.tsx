@@ -48,9 +48,8 @@ export const FreebetNotificationContainer = () => {
     VALUABLE_STATES.LOCKED,
   ])(valuables);
   // @ts-expect-error  Type '{}' is missing the following properties from type 'PlayerValuableFreeBet': backgroundImage, content, currency, expirationTimeInHours, and 12 more.ts(2740)
-  const latestLockedFreebet: PlayerValuableFreeBet = getLatestValuable(
-    lockedFreebets
-  );
+  const latestLockedFreebet: PlayerValuableFreeBet =
+    getLatestValuable(lockedFreebets);
 
   if (
     isHidden ||

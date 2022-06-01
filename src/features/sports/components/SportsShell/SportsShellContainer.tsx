@@ -7,6 +7,7 @@ import {
   REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
   MARKETS,
+  TMarket,
 } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import SportsHashWatcher from "Components/HashWatcher";
@@ -78,7 +79,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
   >(SportsShellQuery);
 
   const client = useApolloClient();
-  const market = useMarket();
+  const market = useMarket() as TMarket;
   const ITEMS_TO_SHOW = 100;
 
   const t = useTranslations<{ number_of_items_to_show: string }>(

@@ -191,6 +191,8 @@ export const getExpiryTimeLeft = (timestamp: number = 0) => {
   return getDateTimeDifferenceFromNow(luxonDate);
 };
 
+// @ts-expect-error: apply fix if you know the context
 export const orderValuablesByCreationTime = sort(descend(prop("created")));
 
+// @ts-expect-error: apply fix if you know the context
 export const getLatestValuable = pipe(orderValuablesByCreationTime, head);

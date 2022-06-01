@@ -14,8 +14,7 @@ const getReelRaces = () => {
       game: {
         id: "3e054070-b89c-11e7-b304-005056a03af2",
         name: "Reactoonz",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_logo.png",
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_thumbnail.jpg",
         slug: "reactoonz",
@@ -51,8 +50,7 @@ const getReelRaces = () => {
       game: {
         id: "23b59520-65cb-11e9-8dbf-0242ac110002",
         name: "Dead or Alive 2",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2019/04/dead_or_alive_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2019/04/dead_or_alive_logo.png",
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2019/04/dead_or_alive_thumbnail.jpg",
         slug: "dead-or-alive-2",

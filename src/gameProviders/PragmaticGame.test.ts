@@ -3,8 +3,7 @@ import { PragmaticGame, COMMANDS } from "./PragmaticGame";
 
 describe("PragmaticGame", () => {
   const gameData = {
-    url:
-      "https://casumo.prerelease-env.biz/gs2c/playGame.do…nchers/navigation-bubbler.html?target%3Dgames/top",
+    url: "https://casumo.prerelease-env.biz/gs2c/playGame.do…nchers/navigation-bubbler.html?target%3Dgames/top",
     providerType: "PRAGMATIC_MOBILE",
     providerName: "PRAGMATIC",
   };

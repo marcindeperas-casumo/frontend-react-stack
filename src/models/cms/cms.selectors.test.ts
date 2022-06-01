@@ -15,14 +15,12 @@ describe("CMS Selectors", () => {
       const cms = { foo: "bar" };
       const state = { schema: { cms } };
 
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
       expect(getCms(state)).toEqual(cms);
     });
 
     test("returns an empty object if it is not defined", () => {
       const state = {};
 
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
       expect(getCms(state)).toEqual({});
     });
   });
@@ -73,6 +71,7 @@ describe("CMS Selectors", () => {
       const state = { fetch: {}, schema: {} };
       const selector = shouldFetchPage(page.slug);
 
+      // @ts-expect-error: apply fix if you know the context
       expect(selector(state)).toBe(true);
     });
 
@@ -81,6 +80,7 @@ describe("CMS Selectors", () => {
       const state = { fetch: { [getFetchTypeBySlug(page.slug)]: {} } };
       const selector = shouldFetchPage(page.slug);
 
+      // @ts-expect-error: apply fix if you know the context
       expect(selector(state)).toBe(false);
     });
 
@@ -88,6 +88,7 @@ describe("CMS Selectors", () => {
       const slug = "foo";
       const state = { schema: { cms: { [slug]: {} } } };
 
+      // @ts-expect-error: apply fix if you know the context
       expect(shouldFetchPage(slug)(state)).toBe(false);
     });
 
@@ -98,6 +99,7 @@ describe("CMS Selectors", () => {
         schema: { cms: { [slug]: {} } },
       };
 
+      // @ts-expect-error: apply fix if you know the context
       expect(shouldFetchPage(slug)(state)).toBe(false);
     });
   });
@@ -109,6 +111,7 @@ describe("CMS Selectors", () => {
       const { slug } = pageObject;
       const selector = getField({ slug, field: "foobar" });
 
+      // @ts-expect-error: apply fix if you know the context
       expect(selector(state)).toEqual("bar");
     });
 
@@ -118,6 +121,7 @@ describe("CMS Selectors", () => {
       const field = "foobar";
       const selector = getField({ slug, field });
 
+      // @ts-expect-error: apply fix if you know the context
       expect(selector(state)).toEqual(null);
     });
 
@@ -128,6 +132,7 @@ describe("CMS Selectors", () => {
       const defaultValue = "Alaska";
       const selector = getField({ slug, field, defaultValue });
 
+      // @ts-expect-error: apply fix if you know the context
       expect(selector(state)).toEqual(defaultValue);
     });
   });

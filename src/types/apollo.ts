@@ -2,10 +2,12 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
   ID: string;
@@ -1888,7 +1890,8 @@ export type MustDropJackpotsGamesListQuery = {
   }>;
 };
 
-export type MustDropJackpotsWidget_MustDropJackpotFragment = MustDropJackpot_MustDropJackpotFragment;
+export type MustDropJackpotsWidget_MustDropJackpotFragment =
+  MustDropJackpot_MustDropJackpotFragment;
 
 export type MustDropJackpotsQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -2301,27 +2304,28 @@ type PlayerValuableList_PlayerValuable_PlayerValuableFreeBet_Fragment = {
   rule: { name: string };
 };
 
-type PlayerValuableList_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment = {
-  __typename: "PlayerValuableLiveCasinoFreeBet";
-  description: string;
-  requirementType?: Maybe<RequirementType>;
-  id: string;
-  valuableState: PlayerValuableState;
-  parentValuableState?: Maybe<PlayerValuableState>;
-  expiryDate: number;
-  valuableType: ValuableType;
-  title: string;
-  content: string;
-  caveat?: Maybe<string>;
-  currency: Currency;
-  market: string;
-  backgroundImage: string;
-  wageringThreshold?: Maybe<number>;
-  leftToWager?: Maybe<number>;
-  itemImage?: Maybe<string>;
-  game?: Maybe<{ title: string; slug: string }>;
-  rule: { name: string };
-};
+type PlayerValuableList_PlayerValuable_PlayerValuableLiveCasinoFreeBet_Fragment =
+  {
+    __typename: "PlayerValuableLiveCasinoFreeBet";
+    description: string;
+    requirementType?: Maybe<RequirementType>;
+    id: string;
+    valuableState: PlayerValuableState;
+    parentValuableState?: Maybe<PlayerValuableState>;
+    expiryDate: number;
+    valuableType: ValuableType;
+    title: string;
+    content: string;
+    caveat?: Maybe<string>;
+    currency: Currency;
+    market: string;
+    backgroundImage: string;
+    wageringThreshold?: Maybe<number>;
+    leftToWager?: Maybe<number>;
+    itemImage?: Maybe<string>;
+    game?: Maybe<{ title: string; slug: string }>;
+    rule: { name: string };
+  };
 
 export type PlayerValuableList_PlayerValuableFragment =
   | PlayerValuableList_PlayerValuable_PlayerValuableCash_Fragment
@@ -3357,9 +3361,10 @@ export type FavouriteSportsSelectorContext_CompetitionFragment = {
   name: string;
 } & FavouriteCompetitionsSelectorModal_GroupFragment;
 
-export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables = Exact<{
-  id: Scalars["Int"];
-}>;
+export type FavouriteSportsSelectorContextCompetitionSuggestionsQueryVariables =
+  Exact<{
+    id: Scalars["Int"];
+  }>;
 
 export type FavouriteSportsSelectorContextCompetitionSuggestionsQuery = {
   topCompetitions: Array<FavouriteSportsSelectorContext_CompetitionFragment>;

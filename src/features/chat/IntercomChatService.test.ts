@@ -13,6 +13,7 @@ import {
 } from "./constants";
 
 jest.mock("../../utils/utils", () => ({
+  // @ts-expect-error: apply fix if you know the context
   ...jest.requireActual("../../utils/utils"),
   // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
   injectScript: jest.fn().mockResolvedValue(),

@@ -39,6 +39,7 @@ export const GameJackpotContextProvider = ({
 
   const jackpotSlug = useSelector(gameJackpotSlugSelector(slug));
   const composedJackpot = useSelector(
+    // @ts-expect-error: apply fix if you know the context
     blueRibbonJackpotBySlugSelector(jackpotSlug)
   );
 

@@ -13,17 +13,19 @@ const handlers = {
     mergeDeepRight(state, action.payload[entityKey]),
 };
 
-const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
-  // If the entityKey is not present in the action payload we can bail out
-  // early and return the previous state. This will ensure that identity
-  // comparison for the downstream selectors will return true since the
-  // state remained the same.
-  const doesEntityExist = Boolean(path(["payload", entityKey], action));
+const entityReducerFactory =
+  entityKey =>
+  (state = DEFAULT_STATE, action) => {
+    // If the entityKey is not present in the action payload we can bail out
+    // early and return the previous state. This will ensure that identity
+    // comparison for the downstream selectors will return true since the
+    // state remained the same.
+    const doesEntityExist = Boolean(path(["payload", entityKey], action));
 
-  return handlers[action.type] && doesEntityExist
-    ? handlers[action.type](entityKey, state, action)
-    : state;
-};
+    return handlers[action.type] && doesEntityExist
+      ? handlers[action.type](entityKey, state, action)
+      : state;
+  };
 
 const schemaReducer = combineReducers({
   [ENTITY_KEYS.CMS]: entityReducerFactory(ENTITY_KEYS.CMS),

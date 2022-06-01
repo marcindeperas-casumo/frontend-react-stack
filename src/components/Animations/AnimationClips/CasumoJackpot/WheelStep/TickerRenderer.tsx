@@ -60,69 +60,71 @@ export function TickerRenderer(props: Props) {
           }),
         }}
       >
-        {props.isVertical ? props.ticker.vertical : props.ticker.horizontal}
-        <animated.span
-          className="u-font-weight-black o-position--absolute"
-          style={{
-            fontSize: 22 * props.svgRatio,
-            color: "#FFCA30",
-            opacity: props.rotate.to({
-              range: [0, 0.1],
-              output: [1, 0],
-              extrapolate: "clamp",
-            }),
-          }}
-        >
-          {props.t.startSpinning}
-        </animated.span>
-        <animated.div
-          className="u-overflow--hidden o-position--absolute"
-          style={{ userSelect: "none" }}
-        >
-          <animated.div
+        <>
+          {props.isVertical ? props.ticker.vertical : props.ticker.horizontal}
+          <animated.span
+            className="u-font-weight-black o-position--absolute"
             style={{
-              paddingLeft: props.isVertical ? 0 : 20 * props.svgRatio,
-              transform: props.rotate.to(deg => {
-                const reminder = deg % 360;
-                const closest = findClosest(
-                  Object.keys(valueToPotMap).map(x => parseInt(x)),
-                  reminder
-                );
-                const diff = reminder - closest;
-
-                return `translateY(${diff * 4 * props.svgRatio}px)`;
+              fontSize: 22 * props.svgRatio,
+              color: "#FFCA30",
+              opacity: props.rotate.to({
+                range: [0, 0.1],
+                output: [1, 0],
+                extrapolate: "clamp",
               }),
             }}
           >
-            <animated.span
-              className="u-font-weight-black u-text-transform-uppercase"
+            {props.t.startSpinning}
+          </animated.span>
+          <animated.div
+            className="u-overflow--hidden o-position--absolute"
+            style={{ userSelect: "none" }}
+          >
+            <animated.div
               style={{
-                letterSpacing: 10 * props.svgRatio,
-                fontSize: 28 * props.svgRatio,
-                marginRight: -10 * props.svgRatio, // bug: https://stackoverflow.com/a/6949867
-                textAlign: "right",
-                color: props.scale.to({
-                  range: [0, 98],
-                  output: ["#FFFFFF", "#4C00C2"],
-                  extrapolate: "clamp",
+                paddingLeft: props.isVertical ? 0 : 20 * props.svgRatio,
+                transform: props.rotate.to(deg => {
+                  const reminder = deg % 360;
+                  const closest = findClosest(
+                    Object.keys(valueToPotMap).map(x => parseInt(x)),
+                    reminder
+                  );
+                  const diff = reminder - closest;
+
+                  return `translateY(${diff * 4 * props.svgRatio}px)`;
                 }),
               }}
             >
-              {props.rotate.to(deg => {
-                if (deg === 0) {
-                  return "";
-                }
-                const reminder = deg % 360;
-                const closest = findClosest(
-                  Object.keys(valueToPotMap).map(x => parseInt(x)),
-                  reminder
-                );
+              <animated.span
+                className="u-font-weight-black u-text-transform-uppercase"
+                style={{
+                  letterSpacing: 10 * props.svgRatio,
+                  fontSize: 28 * props.svgRatio,
+                  marginRight: -10 * props.svgRatio, // bug: https://stackoverflow.com/a/6949867
+                  textAlign: "right",
+                  color: props.scale.to({
+                    range: [0, 98],
+                    output: ["#FFFFFF", "#4C00C2"],
+                    extrapolate: "clamp",
+                  }),
+                }}
+              >
+                {props.rotate.to(deg => {
+                  if (deg === 0) {
+                    return "";
+                  }
+                  const reminder = deg % 360;
+                  const closest = findClosest(
+                    Object.keys(valueToPotMap).map(x => parseInt(x)),
+                    reminder
+                  );
 
-                return props.t[valueToPotMap[closest]];
-              })}
-            </animated.span>
+                  return props.t[valueToPotMap[closest]];
+                })}
+              </animated.span>
+            </animated.div>
           </animated.div>
-        </animated.div>
+        </>
       </animated.div>
       <animated.img
         style={{

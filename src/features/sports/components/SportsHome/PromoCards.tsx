@@ -144,10 +144,8 @@ export const PromoCards = ({
   }, [language]);
 
   const [promoCardsData, setPromoCardsData] = React.useState<PromoCardsType>();
-  const [
-    nextOffEventData,
-    setNextOffEventData,
-  ] = React.useState<KambiLandingEventResponse>();
+  const [nextOffEventData, setNextOffEventData] =
+    React.useState<KambiLandingEventResponse>();
 
   React.useEffect(() => {
     const fetchNextOffEvents = async (promoCards: any[]): Promise<any[]> => {

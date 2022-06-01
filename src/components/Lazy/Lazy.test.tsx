@@ -34,6 +34,7 @@ describe("<Lazy />", () => {
       <Lazy
         fallback={<span>Loading...</span>}
         // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/UnknownComponent' o... Remove this comment to see the full error message
+        // eslint-disable-next-line import/no-unresolved
         loader={() => import("Components/UnknownComponent")}
         props={{
           html,

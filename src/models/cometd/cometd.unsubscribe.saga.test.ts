@@ -11,6 +11,7 @@ describe("Models/CometD/Unsubscribe", () => {
 
   test("calls cometd.unsubscribe with the channel name", () => {
     const effect = generator.next();
+    // @ts-expect-error: apply fix if you know the context
     const FORK = compose(prop("FORK"), prop("value"))(effect);
     // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
     const fn = prop("fn")(FORK);

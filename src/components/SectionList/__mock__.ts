@@ -7,8 +7,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_logo.png",
         name: "Dancing in Rio",
         slug: "dancing-in-rio",
         lobby: null,
@@ -20,8 +19,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/01/divine_fortune_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/01/divine_fortune_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/01/divine_fortune_logo.png",
         name: "Divine Fortune",
         slug: "divine-fortune",
         lobby: null,
@@ -42,8 +40,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2014/11/hall-of-gods-bg-thumb.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/hall-of-gods-logo-thumb1.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2014/11/hall-of-gods-logo-thumb1.png",
         name: "Hall of Gods",
         slug: "hall-of-gods",
         lobby: null,
@@ -68,8 +65,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2018/06/irish_riches_thumbnail.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/irish-riches-logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2018/06/irish-riches-logo.png",
         name: "Irish Riches: Megaways",
         slug: "irish-riches",
         lobby: null,
@@ -86,8 +82,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/03/jackpot_diamonds_hiroller_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/03/jackpot_diamonds_hiroller_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/03/jackpot_diamonds_hiroller_logo.png",
         name: "Jackpot Diamonds",
         slug: "jackpot-diamonds",
         lobby: null,
@@ -104,8 +99,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2018/04/keystone_kops_thumbnail.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/Keystone_kops_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2018/04/Keystone_kops_logo.png",
         name: "Keystone Kops",
         slug: "keystone-kops",
         lobby: null,
@@ -122,8 +116,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2014/06/MegaFortune_Thumb.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/MegaFortune_Logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2014/02/MegaFortune_Logo.png",
         name: "Mega Fortune",
         slug: "mega-fortune",
         lobby: null,
@@ -139,8 +132,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/01/megafortune-dreams-bg2.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/01/megafortune-dreams-logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/01/megafortune-dreams-logo.png",
         name: "Mega Fortune Dreams",
         slug: "mega-fortune-dreams",
         lobby: null,
@@ -160,8 +152,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2016/06/monkeys_millions_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/monkeys_millions_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2016/06/monkeys_millions_logo.png",
         name: "Monkey’s Millions",
         slug: "monkeys-millions",
         lobby: null,
@@ -178,8 +169,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_logo.png",
         name: "Power Force Heroes",
         slug: "power-force-heroes",
         lobby: null,
@@ -196,8 +186,7 @@ export const sections = [
         backgroundImage:
           "https://cms.casumo.com/wp-content/uploads/2017/03/top_cat_bg.jpg",
         isInMaintenance: false,
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/top_cat_logo.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2017/09/top_cat_logo.png",
         name: "Top Cat",
         slug: "top-cat",
         lobby: null,

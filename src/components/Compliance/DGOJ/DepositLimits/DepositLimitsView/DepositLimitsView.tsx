@@ -136,29 +136,19 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsFormContainer
         // @ts-expect-error ts-migrate(2322) FIXME: Type '{ button_no: string; button_yes: string; can... Remove this comment to see the full error message
         t={props.t}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'LimitLock' is not assignable to type 'never'... Remove this comment to see the full error message
         lock={props.lock}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'DepositLimitsAdjustment' is not assignable t... Remove this comment to see the full error message
         pendingLimitChanges={props.pendingLimitChanges}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         currency={props.currency}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         locale={props.locale}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
         responsibleGamblingTestCanBeTaken={
           props.preadjust.responsibleGamblingTestCanBeTaken
         }
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
         increasesOrRevocationsBlocked={
           props.preadjust.increasesOrRevocationsBlocked
         }
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'AllLimitsOnlyValues' is not assignable to ty... Remove this comment to see the full error message
         limitChanges={limitChanges}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'AllLimits' is not assignable to type 'never'... Remove this comment to see the full error message
         limits={props.limits}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'never'.
         initiallyVisible={depositKind}
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '(changes: any) => void' is not assignable to... Remove this comment to see the full error message
         applyLimitsChanges={changes => {
           navigate({ route: "summary", limitChanges: changes });
         }}
@@ -269,9 +259,7 @@ export type Navigate = (o: {
   limitChanges?: AllLimitsOnlyValues;
   pages?: ConfirmationPage[];
 }) => void;
-export function useRouting(
-  initialRoute: DepositLimitsRoute = "overview"
-): [
+export function useRouting(initialRoute: DepositLimitsRoute = "overview"): [
   {
     route: DepositLimitsRoute;
     depositKind: DepositKinds;

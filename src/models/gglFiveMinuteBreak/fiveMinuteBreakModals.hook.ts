@@ -20,13 +20,8 @@ export function useFiveMinuteBreakModals({
   const dispatch = useDispatch();
   const t = useTranslations("ggl-five-minute-break");
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const {
-    activeRCSession,
-    activeRCBreak,
-  }: GglRealityCheckSummary = useSelector(
-    fiveMinuteBreakSelector,
-    shallowEqual
-  );
+  const { activeRCSession, activeRCBreak }: GglRealityCheckSummary =
+    useSelector(fiveMinuteBreakSelector, shallowEqual);
   const currentRace = useCurrentReelRaceInfo(gameSlug);
   const { modalId } = useSelectModal();
   const [visibleModal, setVisibleModal] = React.useState(null);

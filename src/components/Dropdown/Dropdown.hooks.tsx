@@ -8,6 +8,7 @@ export const useDropdown = (
 
   React.useEffect(() => {
     const onClick = (event: MouseEvent) => {
+      // @ts-expect-error: apply fix if you know the context
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }

@@ -16,12 +16,11 @@ type TPaymentMethodContextProviderProps = {
   children: React.ReactNode;
 };
 
-export const PaymentMethodContext = React.createContext<TPaymentMethodContextType>(
-  {
+export const PaymentMethodContext =
+  React.createContext<TPaymentMethodContextType>({
     selectedPaymentMethod: {},
     setSelectedPaymentMethod: (method: Partial<TPaymentMethod>) => {},
-  }
-);
+  });
 
 export const PaymentMethodContextProvider = ({
   children,

@@ -1,5 +1,5 @@
 import { useSelector, shallowEqual } from "react-redux";
-import { URL_PREFIXES } from "Src/constants";
+import { URL_PREFIXES, TMarket } from "Src/constants";
 import { marketSelector } from "Models/handshake";
 import { isTLDMarketSpecific } from "Utils";
 
@@ -10,7 +10,7 @@ export function useUrlPrefix(): string | null {
       return null;
     }
 
-    const market = marketSelector(state);
+    const market = marketSelector(state) as TMarket;
     return URL_PREFIXES[market];
   }, shallowEqual);
 }

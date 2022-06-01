@@ -41,9 +41,8 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) => {
-    const {
-      itemControlClass = "c-scrollable-list-paginated__button",
-    } = this.props;
+    const { itemControlClass = "c-scrollable-list-paginated__button" } =
+      this.props;
     const itemGenericClass = `bg-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor--pointer
       c-scrollable-list-paginated__button u-pointer--initial`;
     const previousClickHandler = () => scrollableClickHandler("previous");
@@ -80,14 +79,8 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
   };
 
   render() {
-    const {
-      itemCount,
-      title,
-      tileHeight,
-      tileWidth,
-      seeMore,
-      itemRenderer,
-    } = this.props;
+    const { itemCount, title, tileHeight, tileWidth, seeMore, itemRenderer } =
+      this.props;
 
     return (
       <div data-test="scrollable-list-paginated">

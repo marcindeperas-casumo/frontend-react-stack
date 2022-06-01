@@ -103,9 +103,8 @@ function initializeHooks(mocks) {
 
 describe("useCachedQuery", () => {
   test("shouldn't loose cache outside of fetched indexes", async () => {
-    const { cachedQueryWrapper, defaultQueryWrapper } = initializeHooks(
-      mockSameChunk
-    );
+    const { cachedQueryWrapper, defaultQueryWrapper } =
+      initializeHooks(mockSameChunk);
 
     // By default both hooks will return data from cache:
     expect(getHookValue(cachedQueryWrapper).data).toEqual(cacheData);

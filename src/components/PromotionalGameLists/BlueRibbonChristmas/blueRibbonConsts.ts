@@ -80,8 +80,9 @@ export type PotValues = {
   isLoading?: boolean;
 };
 
-export type PotObject = A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
-  PotValues;
+export type PotObject =
+  A.GetJackpotConfigForWidgetQuery["blueribbonJackpot"]["pots"][number] &
+    PotValues;
 
 export type ComposedJackpot = Omit<A.BlueribbonJackpotConfig, "pots"> & {
   pots: Array<PotObject>;

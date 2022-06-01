@@ -44,6 +44,7 @@ export const JackpotDetailPageContainer = ({ jackpotSlug }: TProps) => {
         widgetComponent={widget}
         isMobile={!breakpoints.gtPhablet}
         jackpotSlug={jackpotSlug}
+        // @ts-expect-error: apply fix if you know the context
         promotionLists={prioritizedLists}
         t={t}
       />

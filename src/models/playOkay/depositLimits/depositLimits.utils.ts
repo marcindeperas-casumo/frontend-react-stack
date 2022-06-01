@@ -35,15 +35,14 @@ export function diffLimits({
   );
 }
 
-export const checkIfConditionsApply: (
-  limitsDiff: LimitsDiff
-) => Boolean = R.pipe(
-  R.values,
-  R.any(
-    // if user increased/removed limit it needs additional approval
-    R.anyPass([R.equals("increase"), R.equals("removed")])
-  )
-);
+export const checkIfConditionsApply: (limitsDiff: LimitsDiff) => Boolean =
+  R.pipe(
+    R.values,
+    R.any(
+      // if user increased/removed limit it needs additional approval
+      R.anyPass([R.equals("increase"), R.equals("removed")])
+    )
+  );
 
 export const getSpecificKinds = R.curry((kind, diff) =>
   R.pipe(R.pickBy(R.equals(kind)), R.keys)(diff)
@@ -68,5 +67,4 @@ export const getChangedLimitsValues = ({
     ),
     // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     R.pick(R.__, after)
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   )(["daily", "weekly", "monthly"]);

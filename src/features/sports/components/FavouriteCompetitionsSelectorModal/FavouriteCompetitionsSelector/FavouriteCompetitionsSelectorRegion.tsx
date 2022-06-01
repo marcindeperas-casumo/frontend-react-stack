@@ -8,7 +8,8 @@ import CompetitionPillsList from "Features/sports/components/CompetitionPillsLis
 import { isNilOrEmpty } from "Src/utils";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 
-type Competition = A.FavouriteCompetitionsSelectorRegion_GroupFragment["groups"];
+type Competition =
+  A.FavouriteCompetitionsSelectorRegion_GroupFragment["groups"];
 
 type Props = {
   /** The region Group to render the selector for, type defined by FavouriteCompetitionsSelectorRegion.fragments.group */

@@ -20,8 +20,7 @@ const SkeletonItem = ({ height, index }) => {
     R.intersperse(heights.margin),
     R.prepend(index === 0 ? 0 : heights.margin),
     R.sum
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  )(skeletonItems);
+  )(skeletonItems) as number;
 
   return (
     <rect

@@ -20,10 +20,8 @@ export function usePlayerValuableList({
     minDepositAmount,
   };
 
-  const {
-    data: gamificationFeatures,
-    isFetching,
-  } = gamificationFeaturesApi.useGetGamificationFeaturesQuery();
+  const { data: gamificationFeatures, isFetching } =
+    gamificationFeaturesApi.useGetGamificationFeaturesQuery();
 
   const canPlayerSeeValuables = gamificationFeatures?.valuableUsage;
 
