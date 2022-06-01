@@ -1,4 +1,4 @@
-import type { DepositLimitPreadjustRules } from "Models/playOkay/depositLimits";
+import type { DepositLimitPreadjustRules } from "Models/playOkay/dgojDepositLimits";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
 import type { TAdjustLimitsAndNavigateProps } from "./adjustLimitsAndNavigate";
 

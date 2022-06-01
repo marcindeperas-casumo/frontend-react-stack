@@ -1,10 +1,10 @@
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
+import dailyLimitMock from "Models/playOkay/limits/__mocks__/dailyLimit";
+import weeklyLimitMock from "Models/playOkay/limits/__mocks__/weeklyLimit";
+import monthlyLimitMock from "Models/playOkay/limits/__mocks__/monthlyLimit";
 import { adjustLimitMock } from "Models/playOkay";
-import dailyLimitMock from "Models/playOkay/timeLimits/__mocks__/dailyLimit";
-import weeklyLimitMock from "Models/playOkay/timeLimits/__mocks__/weeklyLimit";
-import monthlyLimitMock from "Models/playOkay/timeLimits/__mocks__/monthlyLimit";
 import cmsMock from "./__mocks__/cms";
 import { TimeLimitsFormOutro } from "./TimeLimitsFormOutro";
 

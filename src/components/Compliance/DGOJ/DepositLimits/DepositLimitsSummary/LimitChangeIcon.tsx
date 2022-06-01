@@ -1,6 +1,6 @@
 import { ArrowDownIcon, ArrowUpIcon } from "@casumo/cmp-icons";
 import * as React from "react";
-import type { LimitChangeType } from "Models/playOkay/depositLimits";
+import type { LimitChangeType } from "Models/playOkay/dgojDepositLimits";
 
 export function LimitChangeIcon(props: { change: LimitChangeType }) {
   const possibilities = {

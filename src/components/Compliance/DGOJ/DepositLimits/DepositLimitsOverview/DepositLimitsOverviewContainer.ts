@@ -4,7 +4,7 @@ import {
   getCurrencyAndLocaleSelector,
   getPendingLimitChangesSelector,
   revocationAllowedSelector,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 
 export const DepositLimitsOverviewContainer = connect(state => ({

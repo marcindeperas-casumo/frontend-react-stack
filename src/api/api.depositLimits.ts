@@ -1,11 +1,11 @@
-import http from "Lib/http";
 import type {
   AllLimits,
   AllLimitsOnlyValues,
   DepositLimit,
   DepositLimitPreadjust,
   LimitAdjustmentHistory,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
+import http from "Lib/http";
 
 // See swagger: http://limits.k8s.casumotest.local/swagger-ui.html
 const BASE = "/casino-player/limits/api";

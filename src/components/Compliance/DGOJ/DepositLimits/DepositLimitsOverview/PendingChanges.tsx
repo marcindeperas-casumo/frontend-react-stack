@@ -4,8 +4,8 @@ import { ButtonSecondary } from "@casumo/cmp-button";
 import { TimeLockedIcon } from "@casumo/cmp-icons";
 import * as R from "ramda";
 import * as React from "react";
+import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/dgojDepositLimits";
 import DangerousHtml from "Components/DangerousHtml";
-import type { PendingDepositLimitsChangesSelected } from "Models/playOkay/depositLimits";
 import { formatCurrency } from "Utils";
 import { TCurrencyCode } from "Src/constants";
 

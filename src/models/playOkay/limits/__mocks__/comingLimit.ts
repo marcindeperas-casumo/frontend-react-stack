@@ -1,6 +1,4 @@
-import type { TComingLimit } from "Models/playOkay";
-
-const comingLimitMock: TComingLimit = {
+const comingLimitMock = {
   activationTime: 1591480800000,
   automaticRevocation: true,
   waitingForConfirmation: false,

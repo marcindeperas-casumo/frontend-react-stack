@@ -1,6 +1,6 @@
 import * as React from "react";
 import { mount } from "enzyme";
-import type { DepositLimitPreadjustRules } from "Models/playOkay/depositLimits";
+import type { DepositLimitPreadjustRules } from "Models/playOkay/dgojDepositLimits";
 import { AdditionalConditions } from "./AdditionalConditions";
 import preadjust from "./__mocks__/preadjust";
 

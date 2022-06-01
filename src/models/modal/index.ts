@@ -37,7 +37,8 @@ export type ModalId =
   | "JACKPOT_INGAME_ONBOARDING"
   | "EXCLUDED_GAME"
   | "PLAY_OKAY_GAME_TYPE_EXCLUSION"
-  | "VALUABLE_DETAILS";
+  | "VALUABLE_DETAILS"
+  | "PLAY_OKAY_LIMIT_GROUP_FORM";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

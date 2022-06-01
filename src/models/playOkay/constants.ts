@@ -14,3 +14,5 @@ export const limitPeriod = {
 } as const;
 
 export const loginTimeLimitsCmsSlug = "shared.playokay.login-time-limits-v2";
+
+export const playOkaySettingsCmsSlug = "shared.playokay.settings";

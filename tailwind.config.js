@@ -4,6 +4,8 @@ const spacing = require("./config/tailwind/spacing");
 const screens = require("./config/tailwind/screens");
 const zIndex = require("./config/tailwind/zIndex");
 const fontSize = require("./config/tailwind/fontSize");
+const fontFamily = require("./config/tailwind/fontFamily");
+
 
 module.exports = {
   mode: "jit",
@@ -23,6 +25,7 @@ module.exports = {
     screens,
     zIndex,
     fontSize,
+    fontFamily,
     extend: {
       backgroundColor: ["active"],
     },

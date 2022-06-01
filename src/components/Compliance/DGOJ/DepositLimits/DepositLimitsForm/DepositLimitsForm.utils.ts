@@ -1,7 +1,7 @@
 import * as R from "ramda";
 import { DateTime } from "luxon";
+import type { DepositKinds } from "Models/playOkay/dgojDepositLimits";
 import { formatCurrency, interpolate } from "Utils";
-import type { DepositKinds } from "Models/playOkay/depositLimits";
 import { limitTypes } from "..";
 import type {
   FormProps,

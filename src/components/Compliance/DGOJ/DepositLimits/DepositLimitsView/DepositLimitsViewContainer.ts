@@ -7,7 +7,7 @@ import {
   getCurrencyAndLocaleSelector,
   limitAdjust,
   limitCancel,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { DepositLimitsView } from "./DepositLimitsView";
 
 const cmsKey = "shared.playokay.dgoj.deposit-limits";

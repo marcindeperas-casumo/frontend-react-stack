@@ -1,11 +1,11 @@
 import { Duration } from "luxon";
 import { is } from "ramda";
-import type { TLoginTimeLimit } from "Models/playOkay";
-import dailyLimitMock from "./timeLimits/__mocks__/dailyLimit";
-import weeklyLimitMock from "./timeLimits/__mocks__/weeklyLimit";
-import monthlyLimitMock from "./timeLimits/__mocks__/monthlyLimit";
-import comingLimitMock from "./timeLimits/__mocks__/comingLimit";
-import comingRevocationMock from "./timeLimits/__mocks__/comingRevocation";
+import type { TLoginTimeLimit } from "Models/playOkay/limits";
+import dailyLimitMock from "./limits/__mocks__/dailyLimit";
+import weeklyLimitMock from "./limits/__mocks__/weeklyLimit";
+import monthlyLimitMock from "./limits/__mocks__/monthlyLimit";
+import comingLimitMock from "./limits/__mocks__/comingLimit";
+import comingRevocationMock from "./limits/__mocks__/comingRevocation";
 
 type LoginTimeLimitsToInclude = {
   daily?: boolean | number;

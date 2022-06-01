@@ -1,11 +1,11 @@
 import * as R from "ramda";
 import type {
-  TLoginTimeLimitsFormData,
   TPeriod,
-  TRevokeLoginTimeLimitArgs,
-  TUpdateLoginTimeLimitArgs,
+  TRevokeLoginTimeLimitArgsDeprecated,
+  TUpdateLoginTimeLimitArgsDeprecated,
 } from "Models/playOkay";
 import { limitPeriod } from "Models/playOkay";
+import { TLoginTimeLimitsFormData } from "./TimeLimitsForm";
 
 export function textInputOnChange(setter: (n: number) => void) {
   return (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -15,7 +15,9 @@ export function textInputOnChange(setter: (n: number) => void) {
 export function transformFormDataToRequestPayloads(
   formData: TLoginTimeLimitsFormData,
   playerId: string
-): Array<TUpdateLoginTimeLimitArgs | TRevokeLoginTimeLimitArgs> {
+): Array<
+  TUpdateLoginTimeLimitArgsDeprecated | TRevokeLoginTimeLimitArgsDeprecated
+> {
   return [
     prepareRequestPayload({
       hours: formData.hrsPerDay,
@@ -53,8 +55,8 @@ function prepareRequestPayload({
   hours,
   haveChanged,
 }: TPrepareRequestPayloadArgs):
-  | TUpdateLoginTimeLimitArgs
-  | TRevokeLoginTimeLimitArgs
+  | TUpdateLoginTimeLimitArgsDeprecated
+  | TRevokeLoginTimeLimitArgsDeprecated
   | null {
   if (!haveChanged) {
     return null;

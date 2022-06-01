@@ -1,6 +1,4 @@
-import type { TComingRevocation } from "Models/playOkay";
-
-const comingRevocationMock: TComingRevocation = {
+const comingRevocationMock = {
   revocationTime: 1591480800000,
   automaticRevocation: true,
   waitingForConfirmation: false,

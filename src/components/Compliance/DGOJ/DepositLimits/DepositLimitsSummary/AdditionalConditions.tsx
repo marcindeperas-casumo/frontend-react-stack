@@ -1,9 +1,9 @@
 import Text from "@casumo/cmp-text";
 import * as React from "react";
 import * as R from "ramda";
+import type { DepositLimitPreadjust } from "Models/playOkay/dgojDepositLimits";
 import { interpolateWithJSX } from "Utils";
 import { Duration } from "Components/Duration";
-import type { DepositLimitPreadjust } from "Models/playOkay/depositLimits";
 
 type Props = DepositLimitPreadjust & {
   t: {

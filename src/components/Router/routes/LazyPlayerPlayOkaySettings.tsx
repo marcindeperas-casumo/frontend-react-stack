@@ -7,6 +7,11 @@ export function LazyPlayerPlayOkaySettings() {
     <>
       <TimeLimitsCardLazyPortal />
       <TimeLimitsCardLazyPortal inReview />
+      <LazyPortal
+        hostElementId="react-host-play-okay-settings"
+        loader={() => import("Components/Compliance/PlayOkaySettings")}
+        namedExport="PlayOkaySettings"
+      />
     </>
   );
 }

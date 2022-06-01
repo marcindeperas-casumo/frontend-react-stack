@@ -4,7 +4,7 @@ import type {
   LimitLock,
   DepositKinds,
   DepositLimitsAdjustment,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { TCurrencyCode } from "Src/constants";
 
 export type ValidationTranslations = {

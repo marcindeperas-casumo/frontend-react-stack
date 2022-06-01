@@ -3,7 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ArrowUpIcon, ArrowDownIcon } from "@casumo/cmp-icons";
 import { useSelector } from "react-redux";
-import { getCurrencyAndLocaleSelector } from "Models/playOkay/depositLimits";
+import { getCurrencyAndLocaleSelector } from "Models/playOkay/dgojDepositLimits";
 import { getSymbolForCurrency } from "Utils/utils";
 import { TCurrencyCode } from "Src/constants";
 

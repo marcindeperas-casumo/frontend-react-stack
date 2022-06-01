@@ -36,7 +36,7 @@ import {
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/playOkay";
 import { periodicNotificationSaga as realityCheckPeriodicNotificationSaga } from "Models/playOkay/realityCheck";
-import { adjustmentNotificationAddedSaga as dgojAdjustmentNotificationAddedSaga } from "Models/playOkay/depositLimits";
+import { adjustmentNotificationAddedSaga as dgojAdjustmentNotificationAddedSaga } from "Models/playOkay/dgojDepositLimits";
 import {
   methodConfigSaga as paymentMethodConfigSaga,
   makePaymentTransactionSaga,

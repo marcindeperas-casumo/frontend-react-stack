@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { playerIdSelector } from "Models/handshake";
-import type { TLoginTimeLimitsFormData } from "Models/playOkay";
 import {
   useUpdateLoginTimeLimitMutation,
   useGetPlayerStateByIdQuery,
@@ -9,7 +8,7 @@ import {
   loginTimeLimitsCmsSlug,
 } from "Models/playOkay";
 import { useTranslations } from "Utils/hooks";
-import { TimeLimitsForm } from "./TimeLimitsForm";
+import { TimeLimitsForm, TLoginTimeLimitsFormData } from "./TimeLimitsForm";
 import { transformFormDataToRequestPayloads } from "./TimeLimitsForm.utils";
 
 type Props = {

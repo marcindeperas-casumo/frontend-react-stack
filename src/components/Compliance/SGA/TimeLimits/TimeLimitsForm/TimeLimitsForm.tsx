@@ -1,12 +1,18 @@
 import cx from "classnames";
 import { ButtonPrimary } from "@casumo/cmp-button";
 import * as React from "react";
-import type {
-  TLoginTimeLimit,
-  TLoginTimeLimitsFormData,
-} from "Models/playOkay";
+import type { TLoginTimeLimit } from "Models/playOkay";
 import { useTimeLimitsFormState } from "./useTimeLimitsFormState";
 import { TimeLimitsFormRow } from "./TimeLimitsFormRow";
+
+export type TLoginTimeLimitsFormData = {
+  hrsPerDay: number;
+  hrsPerDayChanged: boolean;
+  hrsPerWeek: number;
+  hrsPerWeekChanged: boolean;
+  hrsPerMonth: number;
+  hrsPerMonthChanged: boolean;
+};
 
 type Props = {
   t: {

@@ -21,6 +21,7 @@ import {
 } from "Components/Compliance/MandatoryMessages";
 import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
 import { ValuableDetailsModal } from "Components/ValuableDetails";
+import { LimitsFormModalContainer } from "Components/Compliance/GenericLimits/LimitsFormModalContainer";
 import { TimeLimitsFormModal } from "../Compliance/SGA/TimeLimits";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
@@ -185,6 +186,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.PLAY_OKAY_GAME_TYPE_EXCLUSION]: {
     slug: "",
     Content: GameTypeExclusionsCardModal,
+  },
+  [REACT_APP_MODAL.ID.PLAY_OKAY_LIMIT_GROUP_FORM]: {
+    slug: "",
+    Content: LimitsFormModalContainer,
   },
   ...mandatoryMessageModalMappings,
 };

@@ -4,8 +4,8 @@ import type {
   LimitsDiff,
   DepositKinds,
   DepositLimitPreadjustRules,
-} from "Models/playOkay/depositLimits";
-import { getSpecificKinds } from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
+import { getSpecificKinds } from "Models/playOkay/dgojDepositLimits";
 import type { ConfirmationPage } from "../DepositLimitsConfirmations";
 import type { Navigate } from "./DepositLimitsView";
 

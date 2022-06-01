@@ -9,12 +9,12 @@ import {
   diffLimits,
   checkIfConditionsApply,
   getChangedLimitsValues,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import type {
   AllLimits,
   DepositKinds,
   DepositLimitPreadjust,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { TCurrencyCode } from "Src/constants";
 import { limitTypes } from "..";
 import { LimitChangeIcon } from "./LimitChangeIcon";

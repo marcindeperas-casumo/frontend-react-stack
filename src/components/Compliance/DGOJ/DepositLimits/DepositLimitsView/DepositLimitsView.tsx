@@ -2,7 +2,10 @@ import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import * as R from "ramda";
 import { sendResponsibleGamblingTest } from "Api/api.depositLimits";
-import { diffLimits, getSpecificKinds } from "Models/playOkay/depositLimits";
+import {
+  diffLimits,
+  getSpecificKinds,
+} from "Models/playOkay/dgojDepositLimits";
 import type {
   AllLimits,
   AllLimitsOnlyValues,
@@ -10,7 +13,7 @@ import type {
   DepositLimitPreadjust,
   LimitLock,
   DepositLimitsAdjustment,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED,
@@ -167,7 +170,7 @@ export function DepositLimitsView(props: Props) {
         confirmLimitsAdjust={() =>
           adjustLimitsAndNavigate({
             limitsDiff,
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'Deposit... Remove this comment to see the full error message
+            // @ts-expect-error
             decreases,
             rules: props.preadjust.rules,
             navigate,

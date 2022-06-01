@@ -5,7 +5,7 @@ import {
   getDepositLimitsHistorySelector,
   getCurrencyAndLocaleSelector,
   getLimitsHistory,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { DepositLimitsHistory } from "./DepositLimitsHistory";
 
 const cmsKey = "shared.playokay.dgoj.deposit-limits.history";

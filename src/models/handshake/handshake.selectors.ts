@@ -39,7 +39,7 @@ export const isAuthenticated = createSelector(
   session,
   R.complement(R.anyPass([R.isNil, R.isEmpty]))
 );
-export const playerIdSelector = createSelector(session, R.prop("id"));
+export const playerIdSelector = createSelector(session, R.path<string>(["id"]));
 export const playerSelector = createSelector(
   playersSelector,
   playerIdSelector,

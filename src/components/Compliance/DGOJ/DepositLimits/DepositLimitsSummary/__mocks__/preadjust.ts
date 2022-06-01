@@ -1,4 +1,4 @@
-import type { DepositLimitPreadjust } from "Models/playOkay/depositLimits";
+import type { DepositLimitPreadjust } from "Models/playOkay/dgojDepositLimits";
 
 const mock: DepositLimitPreadjust = {
   "schema": "MONETARY_AMOUNT_PERIODS_AND_INCREASED",

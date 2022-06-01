@@ -4,7 +4,7 @@ import type {
   DepositKinds,
   DepositLimitsSelected,
   PendingDepositLimitsChangesSelected,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 import { TCurrencyCode } from "Src/constants";
 import { DepositLimitsSuspendAccount } from "../DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "../DepositLimitsHistory";

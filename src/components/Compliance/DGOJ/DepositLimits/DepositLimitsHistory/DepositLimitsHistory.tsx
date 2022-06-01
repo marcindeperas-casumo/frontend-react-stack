@@ -6,7 +6,7 @@ import * as R from "ramda";
 import { DateTime } from "luxon";
 import cx from "classnames";
 import { formatCurrency } from "Utils";
-import type { DepositLimitsHistoryType } from "Models/playOkay/depositLimits";
+import type { DepositLimitsHistoryType } from "Models/playOkay/dgojDepositLimits";
 import { TCurrencyCode } from "Src/constants";
 import { SectionHeader } from "../DepositLimitsOverview/SectionHeader";
 import "./depositLimitsHistory.scss";

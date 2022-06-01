@@ -3,7 +3,7 @@ import type {
   AllLimitsOnlyValues,
   DepositKinds,
   LimitChangeType,
-} from "Models/playOkay/depositLimits";
+} from "Models/playOkay/dgojDepositLimits";
 
 export const limitTypes: ["daily", "weekly", "monthly"] = [
   "daily",
