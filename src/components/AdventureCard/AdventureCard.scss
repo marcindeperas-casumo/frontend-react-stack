@@ -7,3 +7,7 @@ $casumo-avatar-widths: (
 .c-adventure-card__avatar {
   @include cudl-breakpoint-with($casumo-avatar-widths, width);
 }
+
+.c-adventure-card__no-progress-bar {
+  padding-bottom: 0px !important;
+}
