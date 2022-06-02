@@ -1,5 +1,5 @@
 import { useParams } from "@reach/router";
-import { mapItemToDefiningString } from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
+import { mapItemToDefiningType } from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
 import { mapConstantToParameter } from "@casumo/frontend-kyc/dist/shared/router.mappers";
 import { useGetVerificationItems } from "./useGetVerificationItems";
 
@@ -9,7 +9,9 @@ export function useGetVerificationItem() {
 
   return items
     ? items.find(
-        i => mapConstantToParameter(mapItemToDefiningString(i)) === params.type
+        i =>
+          mapConstantToParameter(mapItemToDefiningType(i)) === params.type && // @ts-ignore
+          (i.method ? i.method.id === params.id : true)
       )
     : null;
 }

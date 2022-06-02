@@ -208,12 +208,11 @@ export const ROUTES = {
   [ROUTE_IDS.CAMPAIGN_TERMS]: "terms/campaign/:slug",
   [ROUTE_IDS.ACCOUNT_VERIFICATION]: "player/documents-verification",
   [ROUTE_IDS.ACCOUNT_VERIFICATION_INSTRUCTIONS]:
-    "player/documents-verification/:type",
-  [ROUTE_IDS.ACCOUNT_VERIFICATION_ISSUE]: "player/documents-verification/issue",
+    "player/documents-verification/:type/:id",
   [ROUTE_IDS.ACCOUNT_VERIFICATION_UPLOAD]:
-    "player/documents-verification/:type/upload",
+    "player/documents-verification/:type/:id/upload",
   [ROUTE_IDS.ACCOUNT_VERIFICATION_SURVEY]:
-    "player/documents-verification/:type/survey",
+    "player/documents-verification/:type/:id/survey",
 } as const;
 export const TRANSLATED_ROUTES = {
   GAMES: {

@@ -2,16 +2,13 @@ import * as React from "react";
 import { capitalize, lowerCase } from "lodash";
 import { TVerificationItem } from "@casumo/frontend-kyc/dist/models/verification-item.types";
 import { isUploadAvailable } from "@casumo/frontend-kyc/dist/validators/verification-item.validators";
-import {
-  mapItemToDefiningType,
-  mapItemToDefiningString,
-} from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
+import { mapItemToDefiningType } from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
 import { content as listContent } from "@casumo/frontend-kyc/dist/content/kyc.list.mocks";
 import { content as itemContent } from "@casumo/frontend-kyc/dist/content/kyc.item.mocks";
 import { content as baseContent } from "@casumo/frontend-kyc/dist/content/kyc.mocks";
 import { reduceItemContentToLabels } from "@casumo/frontend-kyc/dist/mappers/content.mappers";
 import { reduceListToDictionary } from "@casumo/frontend-kyc/dist/shared/structures.mappers";
-import { mapConstantToParameter } from "@casumo/frontend-kyc/dist/shared/router.mappers";
+import { mapItemToParams } from "Models/kyc/kyc.router";
 import { useGetVerificationItems } from "Models/kyc/hooks";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
@@ -50,7 +47,7 @@ export function AccountVerificationRootContainer({
       items={items}
       content={{
         interchanges: {
-          title: "Q&A",
+          title: listContent.fields.interchanges_title,
           interchanges: listContent.fields.interchanges,
         },
         introduction: {
@@ -80,9 +77,10 @@ export function AccountVerificationRootContainer({
       }}
       onItemAction={(item: TVerificationItem) => {
         if (isUploadAvailable(item)) {
-          navigate(ROUTE_IDS.ACCOUNT_VERIFICATION_INSTRUCTIONS, {
-            type: mapConstantToParameter(mapItemToDefiningString(item)),
-          });
+          navigate(
+            ROUTE_IDS.ACCOUNT_VERIFICATION_INSTRUCTIONS,
+            mapItemToParams(item)
+          );
         }
       }}
     >

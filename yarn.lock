@@ -1932,18 +1932,18 @@
     react "^16.13.0"
     react-dom "^16.13.0"
 
-"@casumo/frontend-kyc@^2.3.2":
-  version "2.3.2"
-  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc/2.3.2/de1f948011e66b14e9b4e89420f5904684b8203e5ced289af601336165fc5b4e#6c01522d26f9991dc540bb56e095201ce123b7cc"
-  integrity sha512-oxghnLj6b6rJjIsSd84HvUTp93JIatGrSQuSTBxUxQ24QtOlo00i4xw/amv4McgDdAeyI19pA2qhobUij344WA==
-  dependencies:
-    lodash "^4.17.21"
-    ramda "^0.28.0"
-
 "@casumo/frontend-kyc@^2.3.4":
   version "2.3.4"
   resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc/2.3.4/dbb3f9dad7724532e2adbdc88190320c6cb6eeb375a8184a036f5923e7b5b7dd#6208ba4193265cfa30700841934d1d97d90af2f9"
   integrity sha512-zO1uOY1RUy13dQcCffwAVn+B60CRmg8ym/m7DpGVm722k5aSv4Ex/OFW+OEfjGubBWERX2IJsnGtosEIdbXIHA==
+  dependencies:
+    lodash "^4.17.21"
+    ramda "^0.28.0"
+
+"@casumo/frontend-kyc@^2.3.5":
+  version "2.3.5"
+  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc/2.3.5/a7cff9f1931a31337906be0078ed0e785d3aafe1cb39b1d370247d81c18b3b89#d39dcfd62a51f7ce765400eeb944c6055d49449c"
+  integrity sha512-8Ax2M5/bqnqCsqV582ZM46jvtugW+sZUSeBXmNoogK0mHsfdA+cmXhSoA16aNzVPaRXPoVvSIFsC+c6KN4+idg==
   dependencies:
     lodash "^4.17.21"
     ramda "^0.28.0"

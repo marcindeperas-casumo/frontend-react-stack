@@ -1,11 +1,7 @@
 import * as React from "react";
-import { mapConstantToParameter } from "@casumo/frontend-kyc/dist/shared/router.mappers";
 import { TVerificationItem } from "@casumo/frontend-kyc/dist/models/verification-item.types";
 import { states } from "@casumo/frontend-kyc/dist/models/verification-item.constants";
-import {
-  mapItemToDefiningString,
-  mapItemToRejectionReasons,
-} from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
+import { mapItemToRejectionReasons } from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
 import { content as pendingApprovalContent } from "@casumo/frontend-kyc/dist/content/kyc.item.state.pending-approval.mocks";
 import { TCmsPage } from "@casumo/frontend-kyc/dist/shared/content.types";
 import {
@@ -14,6 +10,7 @@ import {
   checklistStates,
 } from "@casumo/frontend-kyc-react";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { mapItemToParams } from "Models/kyc/kyc.router";
 import { ROUTE_IDS } from "Src/constants";
 
 type Props = {
@@ -76,9 +73,10 @@ export function AccountVerificationInstructionsForUploadContainer({
         content={contentApplied}
         onHeaderAction={() => navigate(ROUTE_IDS.ACCOUNT_VERIFICATION)}
         onAction={() => {
-          navigate(ROUTE_IDS.ACCOUNT_VERIFICATION_UPLOAD, {
-            type: mapConstantToParameter(mapItemToDefiningString(item)),
-          });
+          navigate(
+            ROUTE_IDS.ACCOUNT_VERIFICATION_UPLOAD,
+            mapItemToParams(item)
+          );
         }}
       />
     </div>

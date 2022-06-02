@@ -26,6 +26,7 @@ export function AccountVerificationUploadContainer() {
 
   const type = item && item.type;
   const paymentMethodId = item && item.paymentMethodId;
+  const active = item && mapItemToDefiningString(item);
 
   const content = {
     header: typeContent.fields.header,
@@ -47,7 +48,7 @@ export function AccountVerificationUploadContainer() {
 
   if (!item || !data) {
     return (
-      <AccountVerificationRootContainer>
+      <AccountVerificationRootContainer options={{ active }}>
         <div className="tablet:p-md">
           <ItemSkeleton />
         </div>
@@ -59,9 +60,7 @@ export function AccountVerificationUploadContainer() {
     // todo: replace the messages with proper ones!
 
     return (
-      <AccountVerificationRootContainer
-        options={{ active: mapItemToDefiningString(item) }}
-      >
+      <AccountVerificationRootContainer options={{ active }}>
         <div className="p-lg mt">
           <Issue
             title="Uh oh"
@@ -76,9 +75,7 @@ export function AccountVerificationUploadContainer() {
     // todo: replace the messages with proper ones!
 
     return (
-      <AccountVerificationRootContainer
-        options={{ active: mapItemToDefiningString(item) }}
-      >
+      <AccountVerificationRootContainer options={{ active }}>
         <div className="p-lg mt">
           <Issue
             title="We're sorry"
@@ -90,9 +87,7 @@ export function AccountVerificationUploadContainer() {
   }
 
   return (
-    <AccountVerificationRootContainer
-      options={{ active: mapItemToDefiningString(item) }}
-    >
+    <AccountVerificationRootContainer options={{ active }}>
       <AccountVerificationUpload
         id={`jumio-for-${item.type}`}
         redirectioUrl={data?.redirectionUrl}
