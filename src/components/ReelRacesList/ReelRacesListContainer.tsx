@@ -9,7 +9,10 @@ import { useTranslations } from "Utils/hooks";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
-export const ReelRacesListContainer = () => {
+const HALF_AN_HOUR: number = 1800000;
+const TEN_MINUTES: number = 600000;
+
+export const ReelRacesListContainer = ({ id }: { id: string }) => {
   const { data, refetch } = useQuery<
     A.ReelRaceListQuery,
     A.ReelRaceListQueryVariables
@@ -58,20 +61,38 @@ export const ReelRacesListContainer = () => {
     };
   }, [refetch, tournamentChannels]);
 
-  const t = useTranslations<{ title: string }>(
+  const t = useTranslations<{ title: string; hot_title: string }>(
     "reel-races.reel-race-templates"
   );
   const t2 = useTranslations<{ more_link: string }>(
     "built-pages.top-lists-translations"
   );
 
-  const reelRaces = data?.reelRaces || [];
+  const reelRacesFromData = data?.reelRaces || [];
+  const isHotReels = id === "hot";
+
+  const reelRaces = isHotReels
+    ? reelRacesFromData.filter(race => {
+        const difference = race.startTime - Date.now();
+        const from30MinsToStartTo10MinsLater =
+          difference <= HALF_AN_HOUR && difference >= -TEN_MINUTES;
+
+        // This is done to force a rerender 10 mins after the reel start so we can closet it.
+        if (race.promoted) {
+          setTimeout(() => {
+            refetch();
+          }, race.startTime + TEN_MINUTES);
+        }
+
+        return race.promoted && from30MinsToStartTo10MinsLater;
+      })
+    : reelRacesFromData;
 
   if (data && reelRaces && reelRaces.length && t && t2) {
     return (
       <ReelRacesList
         reelRaces={reelRaces}
-        title={t.title}
+        title={isHotReels ? t.hot_title : t.title}
         seeMore={t2.more_link}
       />
     );
