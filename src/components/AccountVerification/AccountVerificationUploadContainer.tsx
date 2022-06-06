@@ -5,6 +5,7 @@ import { mapItemToDefiningString } from "@casumo/frontend-kyc/dist/mappers/verif
 import { content as itemContent } from "@casumo/frontend-kyc/dist/content/kyc.item.mocks";
 import { content as fallbackContent } from "@casumo/frontend-kyc/dist/content/kyc.item.fallback.mocks";
 import { getTypeContent } from "@casumo/frontend-kyc/dist/mappers/content.mappers";
+import { TEvent } from "@casumo/frontend-kyc/dist/api/events.types";
 import { useGetRedirectionURLMutation } from "Models/kyc";
 import { playerIdSelector } from "Models/handshake";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -12,6 +13,28 @@ import { useGetVerificationItem } from "Models/kyc/hooks";
 import { ROUTE_IDS } from "Src/constants";
 import { AccountVerificationUpload } from "./AccountVerificationUpload";
 import { AccountVerificationRootContainer } from "./AccountVerificationRootContainer";
+
+type TMessage = { data: TEvent };
+
+const iFrameMessageHandler = ({
+  message,
+  onSuccess,
+  onError,
+}: {
+  message: TMessage;
+  onSuccess: () => void;
+  onError: () => void;
+}) => {
+  if (message?.data?.type === "kycIFrameMessage") {
+    const { payload } = message.data;
+
+    if (payload.status === "success") {
+      onSuccess();
+    } else {
+      onError();
+    }
+  }
+};
 
 export function AccountVerificationUploadContainer() {
   const item = useGetVerificationItem();
@@ -31,6 +54,21 @@ export function AccountVerificationUploadContainer() {
   const content = {
     header: typeContent.fields.header,
   };
+
+  const handler = (message: TMessage) =>
+    iFrameMessageHandler({
+      message,
+      onSuccess: () => navigate(ROUTE_IDS.ACCOUNT_VERIFICATION),
+      onError: () => navigate(ROUTE_IDS.ACCOUNT_VERIFICATION_ISSUE),
+    });
+
+  React.useEffect(() => {
+    window.addEventListener("message", handler, true);
+
+    return () => {
+      window.removeEventListener("message", handler, true);
+    };
+  });
 
   React.useEffect(() => {
     if (type) {
