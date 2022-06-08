@@ -84,6 +84,21 @@ export function AccountVerificationUploadContainer() {
     }
   }, [type, paymentMethodId, playerId, origin, getRedirectionURL]);
 
+  if (isError) {
+    // todo: replace the messages with proper ones!
+
+    return (
+      <AccountVerificationRootContainer options={{ active }}>
+        <div className="p-lg mt">
+          <Issue
+            title="We're sorry"
+            text="It seems that we could not connect to our document handling service. Please contact us by chat if this message will repeat itself."
+          />
+        </div>
+      </AccountVerificationRootContainer>
+    );
+  }
+
   if (!item || !data) {
     return (
       <AccountVerificationRootContainer options={{ active }}>
@@ -103,21 +118,6 @@ export function AccountVerificationUploadContainer() {
           <Issue
             title="Uh oh"
             text="You have reached a limit of uploads for this document. Give us some time to review them, or contact our support through chat."
-          />
-        </div>
-      </AccountVerificationRootContainer>
-    );
-  }
-
-  if (isError) {
-    // todo: replace the messages with proper ones!
-
-    return (
-      <AccountVerificationRootContainer options={{ active }}>
-        <div className="p-lg mt">
-          <Issue
-            title="We're sorry"
-            text="It seems that we could not connect to our document handling service. Please contact us by chat if this message will repeat itself."
           />
         </div>
       </AccountVerificationRootContainer>
