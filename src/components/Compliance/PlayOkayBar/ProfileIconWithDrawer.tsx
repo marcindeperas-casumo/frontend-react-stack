@@ -99,7 +99,8 @@ export const ProfileIconWithDrawer = ({
           timeout={animationDuration}
           className={cx(
             `${baseClassName}__animated-drawer-overlay`,
-            `o-position--absolute u-zindex--content-overlay`
+            `o-position--absolute u-zindex--content-overlay`,
+            `box-content`
           )}
         >
           <div className="overlay"></div>
@@ -111,6 +112,7 @@ export const ProfileIconWithDrawer = ({
         timeout={animationDuration}
         className={cx(
           `${baseClassName}__animated-drawer`,
+          `box-content`,
           `o-position--absolute u-zindex--content-overlay bg-opacity-100`,
           "o-inset-left--none o-inset-right--none o-inset-right--auto@desktop",
           "u-padding-left u-padding-left--md@desktop u-padding-right overflow-auto"
