@@ -4,6 +4,7 @@ import {
   TVerificationItemKey,
   TVerificationItemBasics,
 } from "@casumo/frontend-kyc/dist/models/verification-item.types";
+import { isSame } from "@casumo/frontend-kyc/dist/validators/verification-item.validators";
 import { TSurveyAnswer } from "@casumo/frontend-kyc/dist/models/survey.types";
 import { TVerificationItemStateSetEvent } from "@casumo/frontend-kyc/dist/api/websockets.types";
 import {
@@ -28,12 +29,12 @@ const updateItems = (
   items: Array<TVerificationItemBasics>,
   updates: TVerificationItemBasics
 ): void => {
-  const item = items.find(i => i.type === updates.type);
+  const item = items.find(i => isSame(i, updates));
 
   /* eslint-disable fp/no-mutation, fp/no-mutating-methods */
   if (item) {
     items = items.map(i => {
-      if (i.type === updates.type) {
+      if (isSame(i, updates)) {
         i.state = updates.state;
         i.userMessages = updates.userMessages || [];
 

@@ -1940,10 +1940,10 @@
     lodash "^4.17.21"
     ramda "^0.28.0"
 
-"@casumo/frontend-kyc@^2.3.6":
-  version "2.3.6"
-  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc/2.3.6/0fadbd9b5a58d1792b4644f84266c0fcf78b534a86960df1854e104a9d9e6e43#8fdfd91690c41745cac90acd50c1f8b45b800346"
-  integrity sha512-6wEH1ST1TNG2tb9S5r46anb07j4iN81t4K7/X4Sphw3TJ8AUVFm0U9D5yhf3YM91w3puZdlRMky5si5ruBpZjg==
+"@casumo/frontend-kyc@^2.4.0":
+  version "2.4.0"
+  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc/2.4.0/d8a0be30213782d26c9486eb3477b324d4c0736c069909551a93ef8004a8c035#261f0a8518263d745119767e175b5e5e5e7b72b8"
+  integrity sha512-BtVxkaI6NvIFcMpZ4wWr+dQkApIstI7cYX16M2ekke5hZPHAMUoB1Vsc4L1P0Mh6ABqzZuhizYW/dA7sJvAIOQ==
   dependencies:
     lodash "^4.17.21"
     ramda "^0.28.0"
