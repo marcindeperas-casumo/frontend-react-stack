@@ -1,8 +1,10 @@
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as React from "react";
+import { useSelector } from "react-redux";
 import cx from "classnames";
 import type { BeltType } from "Models/adventure";
+import { marketSelector } from "Models/handshake";
 import { ProgressBar } from "Components/Progress";
 import { CasumoAvatar } from "Components/CasumoAvatar";
 import BonusValuableIcon from "./bonusValuable.svg";
@@ -24,6 +26,8 @@ export const InGameAdventureWidget = ({
   pointsRequiredForNextLevel,
   progressPercentage,
 }: Props) => {
+  const market = useSelector(marketSelector);
+  const isSwedishPlayer = market === "se_sv";
   const lastFlexItem = inBonusMode ? (
     <BonusValuableIcon />
   ) : (
@@ -36,6 +40,10 @@ export const InGameAdventureWidget = ({
       </Text>
     </>
   );
+
+  if (isSwedishPlayer) {
+    return null;
+  }
 
   return (
     <div className="bg-grey-90 t-border-r u-padding-x--md u-padding-y--md">

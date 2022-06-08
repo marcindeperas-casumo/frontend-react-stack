@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Flex from "@casumo/cmp-flex";
 import cx from "classnames";
+import { marketSelector } from "Models/handshake";
 import type { Adventurer, AdventureContent } from "Models/adventure";
 import AdventureAvatarAndDetails from "./AdventureAvatarAndDetails";
 import AdventureProgressBar from "./AdventureProgressBar";
@@ -19,6 +21,8 @@ export function AdventureCard({
   content,
   showProgress,
 }: TAdventureCardProps) {
+  const market = useSelector(marketSelector);
+  const isSwedishPlayer = market === "se_sv";
   return (
     <div className="u-padding-y--md u-padding-left--md u-padding-x--md u-padding-x--none@desktop">
       <Flex
@@ -33,7 +37,7 @@ export function AdventureCard({
       >
         <AdventureAvatarAndDetails adventurer={adventurer} content={content} />
 
-        {showProgress && (
+        {showProgress && !isSwedishPlayer && (
           <AdventureProgressBar adventurer={adventurer} content={content} />
         )}
       </Flex>
