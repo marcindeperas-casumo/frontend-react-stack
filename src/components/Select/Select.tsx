@@ -27,15 +27,15 @@ export function Select<T>(props: Props<T>) {
     if (node !== null) {
       setWidth(
         node.getBoundingClientRect().width +
-          /* padding from both sides (8) + icon size (20) */
-          36
+          /* padding from icon size (20) */
+          20
       );
     }
   };
 
   const pillFontClass = "u-font-weight-bold u-font-xs u-line-height--1";
   const pillClass = classNames(
-    "c-select t-border-r--pill u-padding-x u-height--xlg",
+    "t-border-r--pill u-padding-x u-height--xlg box-content c-select !mr-none",
     pillFontClass,
     props.value ? "bg-grey-70 text-white" : "bg-grey-5 text-grey-90"
   );
