@@ -51,9 +51,7 @@ export function AccountVerificationInstructionsForUploadContainer({
         description: content.type.fields.description,
         checklist: {
           title: content.type.fields.checklist_title,
-          steps: content.type.fields.checklist_steps.map((text: string) => ({
-            text,
-          })),
+          steps: content.type.fields.checklist_steps,
         },
         checklistFails: rejectionReasons.length
           ? {

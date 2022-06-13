@@ -28,7 +28,7 @@
     "@casumo/cmp-text": "^2.0.5",
     "@casumo/cmp-text-input": "^2.0.2",
     "@casumo/cudl": "9.3.4",
-    "@casumo/frontend-kyc": "^2.4.0",
+    "@casumo/frontend-kyc": "^2.5.2",
     "@casumo/frontend-kyc-react": "^0.10.3",
     "@casumo/is-mobile": "^1.1.0",
     "@casumo/sports-client": "^3.0.3",

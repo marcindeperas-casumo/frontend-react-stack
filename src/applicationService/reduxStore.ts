@@ -6,6 +6,7 @@ import logger from "Services/logger";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
 import { kycApi, kycCommonApi } from "Models/kyc/kyc.api";
+import { cmsApi } from "Models/cms/cms.api";
 import { mandatoryMessagesApi } from "Models/mandatoryMessages";
 import { playOkayApi, gameTypeExclusionsApi } from "Models/playOkay";
 import { loginSessionApi } from "Models/loginSession";
@@ -32,6 +33,7 @@ export const createReduxStore = (preloadedState: {}) => {
     thunk,
     sagaMiddleware,
     rtkQueryErrorLoggerMiddleware,
+    cmsApi.middleware,
     kycApi.middleware,
     kycCommonApi.middleware,
     mandatoryMessagesApi.middleware,

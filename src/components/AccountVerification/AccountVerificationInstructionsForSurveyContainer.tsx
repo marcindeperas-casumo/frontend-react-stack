@@ -23,6 +23,18 @@ type Props = {
   };
 };
 
+const patchContent = (content: TCmsPage): TCmsPage => ({
+  ...content,
+  fields: {
+    ...content.fields,
+    // @ts-ignore : we apply patch here to avoid silly models reflecting CMS typo and huge CMS rework
+    collector_survey: content.fields.collector_survey.map(cs => ({
+      ...cs,
+      answers: cs.answer,
+    })),
+  },
+});
+
 export function AccountVerificationInstructionsForSurveyContainer({
   item,
   content,
@@ -30,7 +42,9 @@ export function AccountVerificationInstructionsForSurveyContainer({
   const { navigate } = useCrossCodebaseNavigation();
   const playerId = useSelector(playerIdSelector) as string;
 
-  const survey = reduceContentToSurvey(content.type.fields.collector_survey);
+  const contentPatched = patchContent(content.type);
+
+  const survey = reduceContentToSurvey(contentPatched.fields.collector_survey);
   const [submitAnswers] = useSubmitSurveyAnswersMutation();
 
   const navigateToList = () => navigate(ROUTE_IDS.ACCOUNT_VERIFICATION);
@@ -48,17 +62,17 @@ export function AccountVerificationInstructionsForSurveyContainer({
     <div className="tablet:p-md">
       <Survey
         content={{
-          header: content.type.fields.header,
-          title: content.type.fields.title,
-          description: content.type.fields.description,
+          header: contentPatched.fields.header,
+          title: contentPatched.fields.title,
+          description: contentPatched.fields.description,
           collector: {
-            title: content.type.fields.collector_title,
-            submit: content.type.fields.collector_submit,
+            title: contentPatched.fields.collector_title,
+            submit: contentPatched.fields.collector_submit,
             questions: reduceContentToCollectorQuestionLabels(
-              content.type.fields.collector_survey
+              contentPatched.fields.collector_survey
             ),
             answers: reduceContentToCollectorAnswerLabels(
-              content.type.fields.collector_survey
+              contentPatched.fields.collector_survey
             ),
           },
         }}

@@ -21,6 +21,7 @@ import { mandatoryMessagesApi } from "./mandatoryMessages";
 import { playOkayApi, gameTypeExclusionsApi } from "./playOkay";
 import { kycApi, kycCommonApi } from "./kyc";
 import { loginSessionApi } from "./loginSession";
+import { cmsApi } from "./cms";
 import { avgBetApi } from "./avgBet";
 import { paymentsApi } from "./payments";
 import { gamificationFeaturesApi } from "./gamificationFeatures";
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   sportsEvents,
   [mandatoryMessagesApi.reducerPath]: mandatoryMessagesApi.reducer,
   [playOkayApi.reducerPath]: playOkayApi.reducer,
+  [cmsApi.reducerPath]: cmsApi.reducer,
   [kycApi.reducerPath]: kycApi.reducer,
   [kycCommonApi.reducerPath]: kycCommonApi.reducer,
   [gameTypeExclusionsApi.reducerPath]: gameTypeExclusionsApi.reducer,
