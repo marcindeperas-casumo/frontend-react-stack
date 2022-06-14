@@ -291,7 +291,7 @@ function SortAndFilterSection(props: SProps) {
           ))}
           <Flex className="u-margin-right u-margin-bottom">
             <ChipFilterable onClick={props.openFilter}>
-              {props.openFilterText}
+              <span className="px-sm">{props.openFilterText}</span>
             </ChipFilterable>
           </Flex>
         </>

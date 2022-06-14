@@ -1,3 +1,5 @@
+// stylelint-disable xi/selector-pattern
+
 .c-select {
   appearance: none;
   // stylelint-disable-next-line declaration-property-value-blacklist
@@ -7,6 +9,10 @@
 
   &:focus {
     outline: none;
+  }
+
+  &.c-temporary-important-maring-right {
+    margin-right: 0 !important;
   }
 }
 
