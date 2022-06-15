@@ -197,7 +197,10 @@ export const ValuableThumbnail = ({
       </Flex>
       {stateBadgeVisible && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block bg-white u-padding-bottom u-padding-right">
+          <div
+            style={{ padding: "2px" }}
+            className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block bg-white u-padding-bottom u-padding-right"
+          >
             <ValuableStateIndicator
               state={valuableState}
               label={
