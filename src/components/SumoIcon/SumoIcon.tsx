@@ -1,10 +1,12 @@
-import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
-import Flex from "@casumo/cmp-flex";
 import * as React from "react";
 import cx from "classnames";
+import Flex from "@casumo/cmp-flex";
+import { ChevronUpIcon, ChevronDownIcon } from "@casumo/cmp-icons";
+import { isDesktop } from "Components/ResponsiveLayout";
+import { noop } from "Utils";
+import { useJurisdiction } from "Utils/hooks";
 import { SumoIconContext } from "./SumoIconContext";
 import SumoIconConfetti from "./SumoIconConfettiContainer";
-
 import "./SumoIcon.scss";
 
 export type SumoIconProps = {
@@ -26,11 +28,14 @@ export const SumoIcon = ({
     isTransitionRunning,
   } = React.useContext(SumoIconContext);
 
+  const { isSGA } = useJurisdiction();
+  const isDrawerEmpty = isDesktop() && isSGA;
+
   return (
     <>
       <SumoIconConfetti />
       <div
-        onClick={onClick}
+        onClick={isDrawerEmpty ? noop : onClick}
         className={cx(
           baseClassName,
           "o-position--relative u-height--3xlg u-width--3xlg",
@@ -73,35 +78,40 @@ export const SumoIcon = ({
             </div>
           )}
         </div>
-        <ChevronDownIcon
-          size="sm"
-          className={cx(
-            `${baseClassName}__chevron-icon`,
-            `text-black bg-opacity-100 bg-white o-position--absolute t-border-r--circle u-cursor--pointer`,
-            {
-              [`${baseClassName}__chevron-icon--visible`]: !openedState,
-              [`${baseClassName}__chevron-icon--hidden`]: openedState,
-            }
-          )}
-        />
-        <Flex
-          className={cx(
-            `${baseClassName}__close-drawer`,
-            "o-position--absolute u-height--3xlg u-width--3xlg",
-            "t-border-r--circle u-margin-right--md u-cursor--pointer",
-            "text-white o-position--absolute@mobile u-zindex--header",
-            {
-              [`${baseClassName}__close-drawer--visible`]: openedState,
-              [`${baseClassName}__close-drawer--hidden`]: !openedState,
-            }
-          )}
-          align="center"
-          justify="center"
-        >
-          <Flex.Item>
-            <ChevronUpIcon />
-          </Flex.Item>
-        </Flex>
+
+        {!isDrawerEmpty && (
+          <>
+            <ChevronDownIcon
+              size="sm"
+              className={cx(
+                `${baseClassName}__chevron-icon`,
+                `text-black bg-opacity-100 bg-white o-position--absolute t-border-r--circle u-cursor--pointer`,
+                {
+                  [`${baseClassName}__chevron-icon--visible`]: !openedState,
+                  [`${baseClassName}__chevron-icon--hidden`]: openedState,
+                }
+              )}
+            />
+            <Flex
+              className={cx(
+                `${baseClassName}__close-drawer`,
+                "o-position--absolute u-height--3xlg u-width--3xlg",
+                "t-border-r--circle u-margin-right--md u-cursor--pointer",
+                "text-white o-position--absolute@mobile u-zindex--header",
+                {
+                  [`${baseClassName}__close-drawer--visible`]: openedState,
+                  [`${baseClassName}__close-drawer--hidden`]: !openedState,
+                }
+              )}
+              align="center"
+              justify="center"
+            >
+              <Flex.Item>
+                <ChevronUpIcon />
+              </Flex.Item>
+            </Flex>
+          </>
+        )}
       </div>
     </>
   );

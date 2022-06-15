@@ -1,6 +1,6 @@
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
-import * as React from "react";
 import { ProgressCircle } from "./ProgressCircle";
 
 const stories = storiesOf("Progress/ProgressCircle", module);
@@ -14,7 +14,7 @@ stories.add("Default", () => {
   });
 
   return (
-    <div>
+    <>
       <h2>Progress bar</h2>
       <ProgressCircle value={value} className="u-width--4xlg" />
 
@@ -29,6 +29,6 @@ stories.add("Default", () => {
 
       <h2>Progress 90%</h2>
       <ProgressCircle value={90} className="u-width--4xlg" />
-    </div>
+    </>
   );
 });

@@ -11,6 +11,7 @@ type Props = {
   level: number;
   belt: BeltType;
   inBonusMode?: boolean;
+  shouldHideProgressCircle?: boolean;
   progressPercentage: number;
 };
 
@@ -20,6 +21,7 @@ export const ProfileIcon = ({
   level,
   belt,
   inBonusMode = false,
+  shouldHideProgressCircle = false,
   progressPercentage,
 }: Props) => {
   const [animating, setAnimating] = useState(false);
@@ -48,16 +50,18 @@ export const ProfileIcon = ({
           level={level}
         />
       </div>
-      <ProgressCircle
-        value={progressPercentage}
-        bgClassName="text-grey-50 text-opacity-25"
-        fgClassName={cx("text-grey-20", {
-          "c-profile-icon__progress--animating": animating,
-        })}
-        className="c-profile-icon__progress u-height--3xlg u-width--3xlg o-position--absolute"
-        width={4}
-        radius={24}
-      />
+      {!shouldHideProgressCircle && (
+        <ProgressCircle
+          value={progressPercentage}
+          bgClassName="text-grey-50 text-opacity-25"
+          fgClassName={cx("text-grey-20", {
+            "c-profile-icon__progress--animating": animating,
+          })}
+          className="c-profile-icon__progress u-height--3xlg u-width--3xlg o-position--absolute"
+          width={4}
+          radius={24}
+        />
+      )}
     </div>
   );
 };
