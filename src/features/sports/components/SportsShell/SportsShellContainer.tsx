@@ -150,7 +150,7 @@ export const SportsShellContainer: React.FC<{}> = () => {
                     market={market}
                     hasSelectedFavourites={data.hasSelectedFavourites}
                     itemsToShow={
-                      parseInt(t.number_of_items_to_show) || ITEMS_TO_SHOW
+                      parseInt(t?.number_of_items_to_show) || ITEMS_TO_SHOW
                     }
                   />
                 </div>
