@@ -25,7 +25,7 @@ export function LimitsFormOutro({ t, onClickCta, ...rest }: Props) {
       <CheckIcon size="lg" className="place-self-center text-green-30" />
       <Copy t={t} {...rest} />
       <ButtonPrimary onClick={onClickCta} size="md" className="w-full mt-5xlg">
-        {t.form_outro_cta || ""}
+        {t?.form_outro_cta || ""}
       </ButtonPrimary>
     </div>
   );
@@ -72,8 +72,8 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
   if (limit.comingChange) {
     return (
       <Text className="text-center">
-        {interpolate(t.form_outro_copy_increasing || "", {
-          period: t[`period_${limit.comingChange.period.toLowerCase()}`],
+        {interpolate(t?.form_outro_copy_increasing || "", {
+          period: t?.[`period_${limit.comingChange.period.toLowerCase()}`],
           date: DateTime.fromMillis(limit.comingChange.activationTime).toFormat(
             "DD"
           ),
@@ -86,7 +86,7 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
     return (
       <Text className="text-center">
         {interpolate(t?.form_outro_copy_revoking, {
-          period: t[`period_${limit.period.toLowerCase()}`],
+          period: t?.[`period_${limit.period.toLowerCase()}`],
           date: DateTime.fromMillis(
             limit.comingRevocation.revocationTime
           ).toFormat("DD"),
@@ -97,8 +97,8 @@ function LimitCopy({ limit, t }: LimitCopyProps) {
 
   return (
     <Text className="text-center">
-      {interpolate(t.form_outro_copy_decreasing || "", {
-        period: t[`period_${limit.period.toLowerCase()}`],
+      {interpolate(t?.form_outro_copy_decreasing || "", {
+        period: t?.[`period_${limit.period.toLowerCase()}`],
       })}
     </Text>
   );

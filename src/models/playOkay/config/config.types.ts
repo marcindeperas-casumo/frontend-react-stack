@@ -1,5 +1,6 @@
 import { TPeriod } from "../playOkay.types";
 import { TTimeLimitType, TMoneyLimitType } from "../limits";
+import { TExclusionType } from "../exclusions";
 
 export type TLimitGroup = `money/${TMoneyLimitType}` | `time/${TTimeLimitType}`;
 
@@ -10,7 +11,7 @@ export type TPeriodSelection =
   | "anytwo"
   | Array<TPeriod>;
 
-export type TLimitPeriodPermissions = {
+export type TPermissions = {
   update: boolean;
   revoke: boolean;
   cancel: boolean;
@@ -30,7 +31,7 @@ export type TLimitPeriodConfig = {
   min?: number;
   max?: number;
   default?: number;
-  permissions: TLimitPeriodPermissions;
+  permissions: TPermissions;
   field?: TLimitPeriodFieldConfig;
 };
 
@@ -41,8 +42,18 @@ export type TLimitGroupConfig = {
   available: Array<TLimitPeriodConfig>;
 };
 
+export type TExclusionConfig = {
+  type: TExclusionType;
+  permissions: TPermissions;
+  /**
+   * array of number of days
+   */
+  validPeriods: Array<number>;
+};
+
 export type TGetPlayerConfigResponse = {
   limits: Array<TLimitGroupConfig>;
+  exclusions: Array<TExclusionConfig>;
 };
 
 export type TApiToLocalLimitGroupMapping = {

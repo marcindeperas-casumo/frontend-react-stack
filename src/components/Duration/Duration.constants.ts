@@ -1,5 +1,3 @@
-export const CMS_SLUG = "i18n.durations";
-
 export const LUXON_DURATION_KEYS = [
   "years",
   "months",

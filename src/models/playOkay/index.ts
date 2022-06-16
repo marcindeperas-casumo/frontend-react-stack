@@ -8,3 +8,4 @@ export * from "./playOkay.api";
 export * from "./config";
 export * from "./gameTypeExclusions";
 export * from "./limits";
+export * from "./exclusions";

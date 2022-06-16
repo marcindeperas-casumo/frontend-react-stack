@@ -5,7 +5,9 @@ export const LazyPlayOkayGameTypeExclusions = props => (
   <LazyPortal
     hostElementId="react-host-game-type-exclusions"
     loader={() =>
-      import("Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard")
+      import(
+        "Components/Compliance/Exclusions/GameTypeExclusions/GameTypeExclusionsCard"
+      )
     }
     namedExport="GameTypeExclusionsCard"
     props={props}

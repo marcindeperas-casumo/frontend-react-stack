@@ -40,3 +40,13 @@ export type DurationTranslations = {
   millisecond_abbreviated: string;
   separator: string;
 };
+
+export type TProps = {
+  /**
+   * string is ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
+   */
+  duration: string | LuxonDurationObject;
+  preferAbbreviated?: boolean;
+  preferShort?: boolean;
+  separator?: string;
+};

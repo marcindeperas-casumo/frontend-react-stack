@@ -1,26 +1,12 @@
 import * as React from "react";
 import * as R from "ramda";
 import { Duration as LuxonDuration } from "luxon";
-import { useTranslations } from "Utils/hooks";
-import { CMS_SLUG } from "./Duration.constants";
+import { useDurationTranslations } from "Utils/hooks/useDurationTranslations";
 import { interpolateDurationObject } from "./Duration.utils";
-import type {
-  DurationTranslations,
-  LuxonDurationObject,
-} from "./Duration.types";
+import type { LuxonDurationObject, TProps } from "./Duration.types";
 
-type Props = {
-  /**
-   * string is ISO8601 duration, https://en.wikipedia.org/wiki/ISO_8601#Durations
-   */
-  duration: string | LuxonDurationObject;
-  preferAbbreviated?: boolean;
-  preferShort?: boolean;
-  separator?: string;
-};
-
-export function Duration(props: Props) {
-  const t = useTranslations<DurationTranslations>(CMS_SLUG);
+export function Duration(props: TProps) {
+  const t = useDurationTranslations();
 
   if (!t) {
     return null;

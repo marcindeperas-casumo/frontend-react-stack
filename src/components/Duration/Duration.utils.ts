@@ -12,6 +12,20 @@ import type {
   LuxonDurationObject,
 } from "./Duration.types";
 
+export function durationObjectFromNbOfDays(nbOfDays: number) {
+  return R.cond([
+    [R.pipe(R.prop("years"), R.lte(1)), R.pick(["years"])],
+    [R.pipe(R.prop("months"), R.lte(1)), R.pick(["months"])],
+    [R.pipe(R.prop("weeks"), R.lte(1)), R.pick(["weeks"])],
+    [R.T, R.pick(["days"])],
+  ])({
+    years: Math.floor(nbOfDays / 365),
+    months: Math.floor(nbOfDays / 30),
+    weeks: Math.floor(nbOfDays / 7),
+    days: nbOfDays,
+  });
+}
+
 export function durationToTranslationKey(
   durationKey: LuxonDurationKey,
   value: number,

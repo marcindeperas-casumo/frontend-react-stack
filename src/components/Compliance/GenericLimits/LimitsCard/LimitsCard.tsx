@@ -8,18 +8,15 @@ import type {
   TPeriod,
   TPlayOkaySettingsTranslations,
 } from "Models/playOkay";
-import {
-  TLimitGroup,
-  TLimitGroupConfig,
-} from "Models/playOkay/config/config.types";
+import { TLimitGroupConfig } from "Models/playOkay/config/config.types";
 import { TCurrencyCode, TLocale } from "Src/constants";
 import { PeriodRow } from "./PeriodRow";
 
 export type TProps = {
   t?: TPlayOkaySettingsTranslations;
+  isLoadingError?: boolean;
   currency: TCurrencyCode;
   locale: TLocale;
-  group: TLimitGroup;
   limitsInGroup: Array<TLimitInternalFormat>;
   limitsGroupConfig: TLimitGroupConfig;
   onClick: () => void;
@@ -28,28 +25,45 @@ export type TProps = {
 
 export function LimitsCard({
   t,
+  isLoadingError,
   currency,
   locale,
-  group,
   limitsInGroup,
   limitsGroupConfig,
   onClick,
   cancelComingLimit,
 }: TProps) {
-  const isEditable = limitsGroupConfig.available.some(
-    availableLimit => availableLimit.permissions.update
-  );
+  const isEditable =
+    !isLoadingError &&
+    limitsGroupConfig.available.some(
+      availableLimit => availableLimit.permissions.update
+    );
 
   return (
     <div className={cx("flex flex-col gap", "p-lg", "rounded-lg bg-white")}>
       <div className="flex flex-row justify-between gap items-center">
         <div>
           <Text className="font-bold text-purple-60">
-            {t?.[`title_${group.split("/")[1].toLowerCase()}`]}
+            {
+              t?.[
+                `title_${limitsGroupConfig.group.split("/")[1].toLowerCase()}`
+              ]
+            }
           </Text>
           <Text size="sm" className="text-grey-50">
-            {t?.[`subtitle_${group.split("/")[1].toLowerCase()}`]}
+            {
+              t?.[
+                `subtitle_${limitsGroupConfig.group
+                  .split("/")[1]
+                  .toLowerCase()}`
+              ]
+            }
           </Text>
+          {isLoadingError && (
+            <Text size="sm" className="text-orange-30">
+              {t?.data_not_loaded_error}
+            </Text>
+          )}
         </div>
         {isEditable && (
           <ButtonSecondary
@@ -70,7 +84,7 @@ export function LimitsCard({
           {limitsInGroup?.map(limit => (
             <PeriodRow
               key={limit.period}
-              group={group}
+              group={limitsGroupConfig.group}
               currency={currency}
               locale={locale}
               limit={limit}

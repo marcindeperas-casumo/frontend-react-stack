@@ -10,7 +10,7 @@ import {
 } from "Models/playOkay/config/config.types";
 import { TCurrencyCode } from "Src/constants";
 import { getSymbolForCurrency } from "Utils/utils";
-import { textInputOnChange, ifNanNull } from "./LimitsForm.utils";
+import { textInputOnChange, nullWhenNotNumber } from "./LimitsForm.utils";
 import { TLimitsFormProps } from "./LimitsForm.types";
 import { helperText } from "./LimitsFormRow.utils";
 
@@ -57,7 +57,7 @@ export function LimitsFormRow({
         {field?.type === "select" ? (
           <SelectField
             disabled={!editable}
-            onChange={R.pipe(parseInt, ifNanNull, setter)}
+            onChange={R.pipe(parseInt, nullWhenNotNumber, setter)}
             variant={variant}
             helperText={helperText({
               period,

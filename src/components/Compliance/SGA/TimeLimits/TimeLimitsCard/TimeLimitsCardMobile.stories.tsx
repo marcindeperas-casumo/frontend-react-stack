@@ -5,8 +5,6 @@ import dailyLimitMock from "Models/playOkay/limits/__mocks__/dailyLimit";
 import weeklyLimitMock from "Models/playOkay/limits/__mocks__/weeklyLimit";
 import monthlyLimitMock from "Models/playOkay/limits/__mocks__/monthlyLimit";
 import { adjustLimitMock } from "Models/playOkay";
-import MockStore from "Components/MockStore";
-import stateMock from "Components/Duration/__mocks__/state";
 import cmsMock from "./__mocks__/cms";
 import { TimeLimitsCardMobile } from "./TimeLimitsCardMobile";
 
@@ -17,59 +15,47 @@ const stories = storiesOf(
 
 stories.add("All limits defined, no incoming changes", () => {
   return (
-    <MockStore state={stateMock}>
-      <TimeLimitsCardMobile
-        t={cmsMock}
-        onClick={action("card clicked")}
-        dailyLimit={adjustLimitMock(dailyLimitMock)}
-        weeklyLimit={adjustLimitMock(weeklyLimitMock)}
-        monthlyLimit={adjustLimitMock(monthlyLimitMock)}
-      />
-    </MockStore>
+    <TimeLimitsCardMobile
+      t={cmsMock}
+      onClick={action("card clicked")}
+      dailyLimit={adjustLimitMock(dailyLimitMock)}
+      weeklyLimit={adjustLimitMock(weeklyLimitMock)}
+      monthlyLimit={adjustLimitMock(monthlyLimitMock)}
+    />
   );
 });
 
 stories.add("No limits defined, no incoming changes", () => {
-  return (
-    <MockStore state={stateMock}>
-      <TimeLimitsCardMobile t={cmsMock} onClick={action("card clicked")} />
-    </MockStore>
-  );
+  return <TimeLimitsCardMobile t={cmsMock} onClick={action("card clicked")} />;
 });
 
 stories.add("Weekly limit defined", () => {
   return (
-    <MockStore state={stateMock}>
-      <TimeLimitsCardMobile
-        t={cmsMock}
-        onClick={action("card clicked")}
-        weeklyLimit={weeklyLimitMock}
-      />
-    </MockStore>
+    <TimeLimitsCardMobile
+      t={cmsMock}
+      onClick={action("card clicked")}
+      weeklyLimit={weeklyLimitMock}
+    />
   );
 });
 
 stories.add("New Daily limit coming", () => {
   return (
-    <MockStore state={stateMock}>
-      <TimeLimitsCardMobile
-        t={cmsMock}
-        onClick={action("card clicked")}
-        dailyLimit={adjustLimitMock(dailyLimitMock, 11, true)}
-      />
-    </MockStore>
+    <TimeLimitsCardMobile
+      t={cmsMock}
+      onClick={action("card clicked")}
+      dailyLimit={adjustLimitMock(dailyLimitMock, 11, true)}
+    />
   );
 });
 
 stories.add("Monthly limit revocation coming", () => {
   return (
-    <MockStore state={stateMock}>
-      <TimeLimitsCardMobile
-        t={cmsMock}
-        onClick={action("card clicked")}
-        dailyLimit={dailyLimitMock}
-        monthlyLimit={adjustLimitMock(monthlyLimitMock, 111, false, true)}
-      />
-    </MockStore>
+    <TimeLimitsCardMobile
+      t={cmsMock}
+      onClick={action("card clicked")}
+      dailyLimit={dailyLimitMock}
+      monthlyLimit={adjustLimitMock(monthlyLimitMock, 111, false, true)}
+    />
   );
 });

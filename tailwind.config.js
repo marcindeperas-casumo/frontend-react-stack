@@ -5,6 +5,7 @@ const screens = require("./config/tailwind/screens");
 const zIndex = require("./config/tailwind/zIndex");
 const fontSize = require("./config/tailwind/fontSize");
 const fontFamily = require("./config/tailwind/fontFamily");
+const height = require("./config/tailwind/height");
 
 
 module.exports = {
@@ -28,6 +29,7 @@ module.exports = {
     fontFamily,
     extend: {
       backgroundColor: ["active"],
+      height
     },
   },
   variants: {

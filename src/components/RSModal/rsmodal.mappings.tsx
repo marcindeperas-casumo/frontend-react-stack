@@ -19,9 +19,14 @@ import {
   MandatoryMessageModal,
   modalMappings as mandatoryMessageModalMappings,
 } from "Components/Compliance/MandatoryMessages";
-import { GameTypeExclusionsCardModal } from "Components/Compliance/GameTypeExclusions/GameTypeExclusionsCard";
+import { GameTypeExclusionsCardModal } from "Components/Compliance/Exclusions/GameTypeExclusions/GameTypeExclusionsCard";
 import { ValuableDetailsModal } from "Components/ValuableDetails";
 import { LimitsFormModalContainer } from "Components/Compliance/GenericLimits/LimitsFormModalContainer";
+import { SelfExclusionOrTakeABreakModal } from "Components/Compliance/Exclusions/SelfExclusionOrTakeABreak";
+import {
+  SelfExclusionModal,
+  TakeABreakModal,
+} from "Components/Compliance/Exclusions";
 import { TimeLimitsFormModal } from "../Compliance/SGA/TimeLimits";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
@@ -190,6 +195,18 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.PLAY_OKAY_LIMIT_GROUP_FORM]: {
     slug: "",
     Content: LimitsFormModalContainer,
+  },
+  [REACT_APP_MODAL.ID.PLAY_OKAY_EXCLUSION_SE_TAB_CHOOSER]: {
+    slug: "",
+    Content: SelfExclusionOrTakeABreakModal,
+  },
+  [REACT_APP_MODAL.ID.PLAY_OKAY_SUSPEND_ACCOUNT_TAKE_A_BREAK]: {
+    slug: "",
+    Content: TakeABreakModal,
+  },
+  [REACT_APP_MODAL.ID.PLAY_OKAY_SUSPEND_ACCOUNT_SELF_EXCLUSION]: {
+    slug: "",
+    Content: SelfExclusionModal,
   },
   ...mandatoryMessageModalMappings,
 };

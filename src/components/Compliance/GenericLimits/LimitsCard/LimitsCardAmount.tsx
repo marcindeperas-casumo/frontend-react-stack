@@ -2,13 +2,14 @@ import * as React from "react";
 import * as R from "ramda";
 import { Duration } from "Components/Duration";
 import { formatCurrency } from "Utils/utils";
-import { integerToLoginBlockTime } from "Models/playOkay";
+import { integerToLoginBlockTime, TLimitGroup } from "Models/playOkay";
 import { TProps as TLimitsCardProps } from "./LimitsCard";
 
 type TProps = {
   value: number;
   className?: string;
-} & Pick<TLimitsCardProps, "locale" | "currency" | "group">;
+  group: TLimitGroup;
+} & Pick<TLimitsCardProps, "locale" | "currency">;
 
 export function LimitsCardAmount({
   value,

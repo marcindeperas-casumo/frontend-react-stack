@@ -18,7 +18,7 @@ import { TLimitGroup } from "Models/playOkay/config/config.types";
 import { LimitsCard } from "./LimitsCard";
 
 type TProps = {
-  group: TLimitGroup;
+  group: TLimitGroup | null;
 };
 
 export function LimitsCardContainer({ group }: TProps) {
@@ -26,7 +26,7 @@ export function LimitsCardContainer({ group }: TProps) {
   const currency = useSelector(currencySelector);
   const locale = useLocale();
   const playerId = useSelector(playerIdSelector);
-  const isMoneyGroup = group.startsWith("money/");
+  const isMoneyGroup = group?.startsWith("money/");
   const [cancelComingLimit] = useCancelComingLimitMutation();
   const { data: playOkayConfig } = useGetPlayerConfigQuery();
   const limitsGroupConfig = playOkayConfig?.limits.find(
@@ -35,15 +35,18 @@ export function LimitsCardContainer({ group }: TProps) {
   const limitsSelector = isMoneyGroup
     ? selectMoneyLimitsInGroup
     : selectTimeLimitsInGroup;
-  const { isLoading, limitsInGroup } = useGetPlayerStateByIdQuery(playerId, {
-    selectFromResult: ({ data, ...rest }) => ({
-      isLoading: rest.isLoading,
-      limitsInGroup: limitsSelector({
-        data,
-        group,
+  const { isLoading, isError, limitsInGroup } = useGetPlayerStateByIdQuery(
+    playerId,
+    {
+      selectFromResult: ({ data, ...rest }) => ({
+        ...rest,
+        limitsInGroup: limitsSelector({
+          data,
+          group,
+        }),
       }),
-    }),
-  });
+    }
+  );
   const t = useTranslations<TPlayOkaySettingsTranslations>(
     playOkaySettingsCmsSlug
   );
@@ -56,16 +59,16 @@ export function LimitsCardContainer({ group }: TProps) {
       })
     );
 
-  if (isLoading) {
+  if (isLoading || !group) {
     return null;
   }
 
   return (
     <LimitsCard
       t={t}
+      isLoadingError={isError}
       currency={currency}
       locale={locale}
-      group={group}
       limitsInGroup={limitsGroupConfig?.available.reduce(
         (accu, availableLimit) =>
           [

@@ -1,13 +1,14 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import { interpolateWithJSX } from "Utils";
-import type { TLimitInternalFormat } from "Models/playOkay";
+import type { TLimitGroup, TLimitInternalFormat } from "Models/playOkay";
 import { LimitsCardAmount } from "./LimitsCardAmount";
 import { TProps } from "./LimitsCard";
 
 type TLeftInPeriodProps = {
   limit: TLimitInternalFormat;
-} & Pick<TProps, "t" | "group" | "currency" | "locale">;
+  group: TLimitGroup;
+} & Pick<TProps, "t" | "currency" | "locale">;
 
 export function LeftInPeriod({
   t,

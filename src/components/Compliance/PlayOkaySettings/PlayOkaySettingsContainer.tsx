@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useGetPlayerConfigQuery } from "Models/playOkay";
 import { LimitsCardContainer } from "../GenericLimits/LimitsCard";
+import { SelfExclusionOrTakeABreakCard } from "../Exclusions/SelfExclusionOrTakeABreak";
 import { PlayOkaySettings } from "./PlayOkaySettings";
 
 export function PlayOkaySettingsContainer() {
@@ -14,6 +15,7 @@ export function PlayOkaySettingsContainer() {
           group={limitConfig.group}
         />
       ))}
+      <SelfExclusionOrTakeABreakCard />
     </PlayOkaySettings>
   );
 }

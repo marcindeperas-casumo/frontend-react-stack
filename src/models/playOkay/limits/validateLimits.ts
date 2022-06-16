@@ -38,7 +38,7 @@ export function validateLimits(props: Props) {
   return "valid";
 }
 
-function validateMandatory({
+export function validateMandatory({
   newLimits,
   config,
 }: Props): TValidateMandatoryResult {
@@ -79,7 +79,7 @@ function validateMandatory({
   }
 }
 
-function validateMinMax({
+export function validateMinMax({
   currentLimits,
   newLimits,
   config,
@@ -145,7 +145,7 @@ function validateMinMax({
   );
 }
 
-function validateTimeLoginBlock({
+export function validateTimeLoginBlock({
   newLimits,
   config,
 }: Props): TValidateMandatoryPeriodResult {

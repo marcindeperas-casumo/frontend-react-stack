@@ -1,7 +1,7 @@
 import * as React from "react";
 import cx from "classnames";
 import Text from "@casumo/cmp-text";
-import type { TLimitInternalFormat } from "Models/playOkay";
+import { TLimitInternalFormat, TLimitGroup } from "Models/playOkay";
 import { TLimitPeriodConfig } from "Models/playOkay/config/config.types";
 import { TProps } from "./LimitsCard";
 import { LimitsCardAmount } from "./LimitsCardAmount";
@@ -12,7 +12,8 @@ type TPeriodRowProps = {
   limit: TLimitInternalFormat | null;
   className: string;
   periodConfig: TLimitPeriodConfig;
-} & Pick<TProps, "t" | "group" | "currency" | "locale" | "cancelComingLimit">;
+  group: TLimitGroup;
+} & Pick<TProps, "t" | "currency" | "locale" | "cancelComingLimit">;
 
 export function PeriodRow({
   t,

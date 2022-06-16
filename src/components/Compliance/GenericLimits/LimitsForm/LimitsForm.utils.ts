@@ -37,7 +37,7 @@ export function getTranslationForValidatorResponse({
 
 export function textInputOnChange(setter: (n: number) => void) {
   return (e: React.ChangeEvent<HTMLInputElement>) =>
-    setter(ifNanNull(parseInt(e.currentTarget.value)));
+    setter(nullWhenNotNumber(parseInt(e.currentTarget.value)));
 }
 
 export function isUpdatePayload(payload: TUpdateLimitArgs | TRevokeLimitArgs) {
@@ -73,7 +73,6 @@ export function transformFormDataToRequestPayloads({
 
           return {
             ...accu,
-            periodSetting,
             ...(periodSetting === "LoginBlockStart"
               ? { start: payload.limit }
               : null),
@@ -90,9 +89,7 @@ export function transformFormDataToRequestPayloads({
   return payloads;
 }
 
-export const ifNanNull: (n: number) => number = R.when(isNaN, R.always(null));
-
-function prepareRequestPayload({
+export function prepareRequestPayload({
   limitGroup,
   currency,
   period,
@@ -194,7 +191,7 @@ export function pickLimitFromLocalState(
   return state?.find(limitInGroup => limitInGroup.period === period);
 }
 
-const nullWhenNotNumber: (arg: any) => number | null = R.unless(
-  R.is(Number),
+export const nullWhenNotNumber: (arg: any) => number | null = R.unless(
+  R.allPass([R.is(Number), R.complement(isNaN)]),
   R.always(null)
 );
