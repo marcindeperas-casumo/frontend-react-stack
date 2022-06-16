@@ -54,7 +54,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
     <Flex
       direction="vertical"
       justify="top"
-      className="o-position--relative u-padding--md t-border-r--md u-overflow--hidden u-margin-left"
+      className="o-position--relative u-padding--md t-border-r--md u-overflow--hidden u-margin-left flex fj-space-evenly"
       style={{
         backgroundColor: widgetColor?.light,
         backgroundImage: content.backgroundImage
@@ -67,11 +67,7 @@ export function BlueRibbonJackpotsOnboardingWidget({
             : topListWidgetHeight,
       }}
     >
-      <Flex
-        direction="horizontal"
-        justify="end"
-        className="u-margin-bottom--sm"
-      >
+      <Flex direction="horizontal" justify="end">
         <CloseBtn className="u-cursor--pointer" onClick={onClose} />
       </Flex>
       <Text
@@ -80,10 +76,10 @@ export function BlueRibbonJackpotsOnboardingWidget({
       >
         {content.title}
       </Text>
-      <Text className="u-margin-bottom--2xlg text-white">{content.body}</Text>
+      <Text className="u-margin-bottom--lg text-white">{content.body}</Text>
 
       <Link
-        className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg"
+        className="u-font-weight-bold text-grey-90 t-background-white u-text-align-center u-padding--md t-border-r--lg u-margin-bottom--sm"
         to={content.ctaLink ? content.ctaLink : ""}
       >
         {content.cta}
