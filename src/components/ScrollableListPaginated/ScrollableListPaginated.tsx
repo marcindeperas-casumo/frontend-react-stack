@@ -33,6 +33,7 @@ type Props = {
   title: string | undefined;
   /** The item renderer. */
   itemRenderer: (cellRendererParams: CellRendererParams) => any;
+  /** styles ClassNames */
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
@@ -54,7 +55,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
         align="center"
         className="c-scrollable-list-paginated__controls u-pointer--none"
       >
-        <Flex.Item>
+        <Flex.Item className="u-padding-left--xlg u-padding-left--none@desktop">
           {hasPreviousPage && (
             <div
               onClick={previousClickHandler}
@@ -64,7 +65,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
             </div>
           )}
         </Flex.Item>
-        <Flex.Item>
+        <Flex.Item className="u-padding-right--xlg u-padding-right--none@desktop">
           {hasNextPage && (
             <div
               onClick={nextClickHandler}
@@ -83,10 +84,10 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       this.props;
 
     return (
-      <div data-test="scrollable-list-paginated">
+      <div data-test={`scrollable-list-paginated `}>
         {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
         <ScrollablePaginated
-          className="c-scrollable-list-paginated"
+          className={`c-scrollable-list-paginated`}
           columnCount={itemCount}
           cellRenderer={itemRenderer}
           buttonRenderer={this.buttonRenderer}

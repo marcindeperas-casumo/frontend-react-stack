@@ -4,7 +4,7 @@ import { NetentGame } from "./NetentGame";
 import { NETENT_SCRIPT_URL } from "./netentConstants";
 
 jest.mock("../utils/utils", () => ({
-  // @ts-expect-error: apply fix if you know the context
+  //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
   ...jest.requireActual("../utils/utils"),
   injectScript: jest.fn().mockResolvedValue(undefined),
 }));

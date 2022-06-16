@@ -17,11 +17,7 @@ type Props = {
   paddingPerDevice?: spacerSizes | responsiveSpacerSizes;
 };
 
-export default function ScrollableListTitle({
-  title,
-  paddingLeft,
-  paddingPerDevice,
-}: Props) {
+export default function ScrollableListTitle({ title, paddingLeft }: Props) {
   const paddingLeftClasses = cx(paddingLeft && leftPaddingClasses);
 
   return (
@@ -32,6 +28,7 @@ export default function ScrollableListTitle({
         "u-padding-bottom--lg@desktop",
         "text-grey-90",
         "u-font-weight-bold",
+        "u-font u-padding-bottom--md u-padding-bottom--lg@tablet u-padding-bottom--lg@desktop text-grey-90 u-font-weight-bold u-padding-left--md u-padding-left--3xlg@tablet u-padding-left--none@desktop",
         { [paddingLeftClasses]: paddingLeft }
       )}
       data-test="scrollable-list-title"

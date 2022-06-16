@@ -8,7 +8,7 @@ import { ValuableThumbnail } from "./ValuableThumbnail";
 import { CashbackIcon } from "./icons";
 
 jest.mock("Utils", () => ({
-  // @ts-expect-error: apply fix if you know the context
+  //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
   ...jest.requireActual("../../utils/utils"),
   interpolate: jest.fn(),
 }));

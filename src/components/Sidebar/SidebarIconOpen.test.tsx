@@ -5,7 +5,7 @@ import { sidebarOpenAction } from "Models/sidebar";
 import { SidebarIconOpen } from "./SidebarIconOpen";
 
 jest.mock("Models/sidebar", () => ({
-  // @ts-expect-error: apply fix if you know the context
+  //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
   ...jest.requireActual("../../models/sidebar"),
   sidebarOpenAction: jest.fn(() => ({
     type: "SIDEBAR/OPEN",

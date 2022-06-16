@@ -12,7 +12,7 @@ export const configurationFormContentSelector = createSelector(
   getPage(CMS_SLUGS.BEFORE_PLAYING),
   getPage(CMS_SLUGS.UNITS),
   (configurationFormContent, unitsContent) => ({
-    // @ts-expect-error: apply fix if you know the context
+    //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
     ...propOr({}, "fields", configurationFormContent),
     ...pipe(
       propOr({}, "fields"),

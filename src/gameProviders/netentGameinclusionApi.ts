@@ -53,7 +53,7 @@ export const getOpenTablesByGame = tables => {
     return {
       // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
       ...mappedTables,
-      // @ts-expect-error: apply fix if you know the context
+      //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
       ...table.games.reduce((games, game) => {
         return {
           ...games,
@@ -61,7 +61,7 @@ export const getOpenTablesByGame = tables => {
             ...games[game.gameId],
             openTables: [
               ...(mappedTables[game.gameId]?.openTables || []),
-              // @ts-expect-error: apply fix if you know the context
+              //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
               ...[table.tableId],
             ],
           },

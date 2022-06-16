@@ -7,7 +7,7 @@ import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
 jest.mock("Utils", () => ({
-  // @ts-expect-error: apply fix if you know the context
+  //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
   ...jest.requireActual("../../utils/utils"),
   getDateTimeDifferenceFromNow: jest.fn(),
 }));

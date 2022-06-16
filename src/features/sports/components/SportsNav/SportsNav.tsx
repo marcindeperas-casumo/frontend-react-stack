@@ -104,7 +104,7 @@ export const SportsNav = ({
 
   React.useEffect(() => {
     if (refetchCount > 3) {
-      // @ts-expect-error: apply fix if you know the context
+      //  apply fix if you know the context (there is no need to add TEE "Ts-Expect-Error" in this case)
       window.location.reload(true);
     }
   }, [refetchCount]);

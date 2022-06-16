@@ -9,10 +9,7 @@ import {
   topListWidgetHeight,
   topListWidgetHeightTwoRows,
 } from "Src/constants";
-import {
-  topMarginClasses,
-  xPaddingClasses,
-} from "Components/GameListHorizontal/constants";
+import { topMarginClasses } from "Components/GameListHorizontal/constants";
 import type { SeeMoreProps } from "Components/ScrollableListPaginated";
 import { BlueRibbonJackpotsOnboardingWidget } from "Components/PromotionalGameLists/BlueRibbonChristmas/BlueRibbonJackpotsOnboardingWidget";
 import logger from "Services/logger";
@@ -69,8 +66,10 @@ export const GameListHorizontalWithWidget = ({
             </Flex>
           )}
         {columnIndex === 0 ? (
-          <Flex direction="horizontal" className="u-padding-right">
-            {WidgetComponent}
+          <Flex direction="horizontal" className="u-padding-right ">
+            <div className="u-padding-left--md u-padding-left--3xlg@tablet u-padding-left--none@desktop">
+              {WidgetComponent}
+            </div>
           </Flex>
         ) : (
           columns[columnIndex - 1].map(game => (
@@ -92,8 +91,9 @@ export const GameListHorizontalWithWidget = ({
       </div>
     );
   };
+
   return (
-    <div className={`o-wrapper ${topMarginClasses} ${xPaddingClasses}`}>
+    <div className={`o-wrapper ${topMarginClasses}`}>
       <ScrollableListPaginated
         title={name}
         itemCount={

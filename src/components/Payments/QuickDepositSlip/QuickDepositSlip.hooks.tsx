@@ -43,7 +43,7 @@ export const useQuickDepositSlipForm = ({
     : minAmount;
 
   const [depositValue, setDepositValue] = React.useState<number>(presetValue);
-  const [cvvError, setCvvError] = React.useState();
+  const [cvvError, setCvvError] = React.useState<any>();
   const [cvvValue, setCvvValue] = React.useState();
   const [formErrors, setFormErrors] =
     React.useState<QuickDepositSlipFormErrors>({});
@@ -72,7 +72,6 @@ export const useQuickDepositSlipForm = ({
         return;
       }
 
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
       setCvvError(e.errorType);
       setCvvValue(null);
     }
