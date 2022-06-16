@@ -15,7 +15,8 @@ export function LiveCasinoCardFooter({
   providerLogos = [],
 }: Props) {
   const logoUrl = providerLogos.find(
-    ({ provider_name }) => provider_name === provider
+    ({ provider_name }) =>
+      provider_name.toLowerCase() === provider.toLowerCase()
   )?.logo;
 
   return (
