@@ -83,8 +83,12 @@ export function AccountVerificationRootContainer({
         },
         summary: {
           header: options?.header && listContent.data.fields.header,
-          title: listContent.data.fields.title,
-          instructions: listContent.data.fields.instructions,
+          title: items.length
+            ? listContent.data.fields.title
+            : listContent.data.fields.title_empty,
+          instructions: items.length
+            ? listContent.data.fields.instructions
+            : "",
           labels: {
             types: reduceContentsToLabels([
               itemPlayerContent.data,

@@ -78,7 +78,7 @@ export function AccountVerificationRoot({
               }
             )}
           >
-            {items && items.length ? (
+            {items ? (
               <Summary
                 active={options?.active}
                 items={items}
