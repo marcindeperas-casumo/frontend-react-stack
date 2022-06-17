@@ -1906,10 +1906,10 @@
     "@casumo/cudl-zindex" "^1.0.8"
     sass-pathfinder "^0.0.5"
 
-"@casumo/frontend-kyc-react@^0.10.3":
-  version "0.10.3"
-  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc-react/0.10.3/63e456f56ed6ea8d600f35f337b249a584582fa4284abb0baaa374c455f15a47#f77acdc294b6e9f2f7d97ad76fbf40b2e7930379"
-  integrity sha512-nj3gwLGbn1PXPa4FhDJ6vHbB6blo8x8q9AVzTVeKdrZsqwIprcoKsEPayea5/yTUy+NFzD//2c+sbHEGjq1Olw==
+"@casumo/frontend-kyc-react@^0.11.1":
+  version "0.11.1"
+  resolved "https://npm.pkg.github.com/download/@casumo/frontend-kyc-react/0.11.1/fa97d8c342a1d7f95322fc7daaffdea04914b406c57c0fcfacd66c522307aa52#964d95a931f5a0393646512cca6a3714796413f1"
+  integrity sha512-Bp/UI2+rgESrsvRz+MRk8U8M7lppGqt211ujT/TrxStCXH+SO4NM2/iYw8EEYWmWfDNgaCdPovW8u2xJTqmQEA==
   dependencies:
     "@casumo/cmp-badge" "^2.1.0"
     "@casumo/cmp-button" "^3.2.4"

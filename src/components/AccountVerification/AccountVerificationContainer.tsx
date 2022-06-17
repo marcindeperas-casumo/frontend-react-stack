@@ -16,7 +16,7 @@ export function AccountVerificationContainer() {
       <AccountVerificationRootContainer
         options={{
           list: true,
-          interchanges: true,
+          interchanges: false,
           header: true,
         }}
       >
@@ -31,7 +31,7 @@ export function AccountVerificationContainer() {
     <AccountVerificationRootContainer
       options={{
         list: true,
-        interchanges: true,
+        interchanges: false,
         header: true,
       }}
     >

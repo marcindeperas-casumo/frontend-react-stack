@@ -11,6 +11,15 @@ export const AppLiS = ({ sessionId, playerId }) => {
     <React.StrictMode>
       <Router></Router>
       <LazyPortal
+        hostElementId="react-account-verification-navigation-item"
+        loader={() =>
+          import(
+            "Components/AccountVerification/AccountVerificationNavigationItemContainer"
+          )
+        }
+        namedExport="AccountVerificationNavigationItemContainer"
+      />
+      <LazyPortal
         hostElementId="react-host-deposit-limits"
         loader={() =>
           import("Components/Compliance/DGOJ/DepositLimits/DepositLimitsView")

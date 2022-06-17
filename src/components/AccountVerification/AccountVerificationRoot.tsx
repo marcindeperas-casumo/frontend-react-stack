@@ -48,7 +48,7 @@ type Props = {
 
 const optionsDefaults = {
   list: false,
-  interchanges: true,
+  interchanges: false,
   header: false,
 };
 
