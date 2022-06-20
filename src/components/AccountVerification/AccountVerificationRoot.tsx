@@ -1,5 +1,6 @@
 import * as React from "react";
 import cx from "classnames";
+import { states } from "@casumo/frontend-kyc/dist/models/verification-item.constants";
 import {
   TVerificationItem,
   TType,
@@ -81,7 +82,8 @@ export function AccountVerificationRoot({
             {items ? (
               <Summary
                 active={options?.active}
-                items={items}
+                items={items.filter(i => i.state !== states.EXPIRED)}
+                // todo: expect BE to handle the above through: https://casumo.atlassian.net/browse/TPS-2746
                 content={content.summary}
                 onInvitationAction={onInvitationAction}
                 onItemSelection={onItemAction}
