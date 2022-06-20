@@ -1,6 +1,7 @@
 import * as React from "react";
 import { TVerificationItem } from "@casumo/frontend-kyc/dist/models/verification-item.types";
 import { states } from "@casumo/frontend-kyc/dist/models/verification-item.constants";
+import { mapStickyUserMessageToContent } from "@casumo/frontend-kyc/dist/mappers/content.mappers";
 import { mapItemToRejectionReasons } from "@casumo/frontend-kyc/dist/mappers/verification-item.mappers";
 import { content as pendingApprovalContent } from "@casumo/frontend-kyc/dist/content/kyc.item.state.pending-approval.mocks";
 import { TCmsPage } from "@casumo/frontend-kyc/dist/shared/content.types";
@@ -37,6 +38,17 @@ export function AccountVerificationInstructionsForUploadContainer({
 
   const rejectionReasons = mapItemToRejectionReasons(item, content);
 
+  const stickyUserMessagesSteps = item.stickyUserMessages
+    ? item.stickyUserMessages
+        .map(message =>
+          mapStickyUserMessageToContent(
+            JSON.parse(message),
+            content.type.fields.request_reasons
+          )
+        )
+        .map((text: string) => ({ text }))
+    : null;
+
   const contentApplied = StateComponent
     ? {
         header: content.type.fields.header,
@@ -51,7 +63,10 @@ export function AccountVerificationInstructionsForUploadContainer({
         description: content.type.fields.description,
         checklist: {
           title: content.type.fields.checklist_title,
-          steps: content.type.fields.checklist_steps,
+          steps: [
+            ...(content.type.fields.checklist_steps || []),
+            ...(stickyUserMessagesSteps || []),
+          ],
         },
         checklistFails: rejectionReasons.length
           ? {
