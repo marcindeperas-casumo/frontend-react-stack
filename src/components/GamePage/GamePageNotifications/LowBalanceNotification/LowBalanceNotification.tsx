@@ -7,12 +7,14 @@ import "./lowBalanceNotification.scss";
 type TProps = {
   Cta: React.ReactElement;
   currency: TCurrencyCode;
+  footer?: React.ReactElement;
   showDepositHandler: (...args: any[]) => void;
 };
 
 export const LowBalanceNotification = ({
   Cta,
   currency,
+  footer,
   showDepositHandler,
 }: TProps) => {
   const depositIcon = (
@@ -30,6 +32,7 @@ export const LowBalanceNotification = ({
       Cta={Cta}
       translationSlug="root:low-balance-notification-content:fields.content"
       onClick={showDepositHandler}
+      footer={footer}
       Icon={depositIcon}
     />
   );

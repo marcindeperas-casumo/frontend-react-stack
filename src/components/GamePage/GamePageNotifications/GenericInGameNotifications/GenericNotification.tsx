@@ -12,6 +12,7 @@ export type Props = {
   translationSlug: string;
   Icon?: React.ReactElement;
   Cta?: React.ReactElement;
+  footer?: React.ReactElement;
   onClick?: (...args: any[]) => any;
 };
 
@@ -19,6 +20,7 @@ export function GenericNotification({
   translationSlug,
   Icon,
   Cta,
+  footer,
   onClick,
 }: Props) {
   const [acknowledged, setAcknowledged] = React.useState(false);
@@ -63,6 +65,7 @@ export function GenericNotification({
         <span>
           <Text size="sm" tag="span" className="text-black">
             <DangerousHtml html={t.content} />
+            {footer}
           </Text>
           <MobileAndTablet>
             <>

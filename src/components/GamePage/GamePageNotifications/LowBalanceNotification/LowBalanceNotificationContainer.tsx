@@ -10,8 +10,12 @@ import { useDepositMethods } from "Utils/hooks/useDepositMethods";
 import cometd from "Models/cometd/cometd.service";
 import { useTranslationsGql } from "Utils/hooks";
 import tracker from "Services/tracker";
+import { CheckboxSquare } from "Components/Checkbox/CheckboxSquare";
 import { LowBalanceNotification } from "./LowBalanceNotification";
-import { SPIN_AMOUNT_THRESHOLDS } from "./lowBalance.constants";
+import {
+  LOCAL_STORAGE_KEY,
+  SPIN_AMOUNT_THRESHOLDS,
+} from "./lowBalance.constants";
 
 type TBalance = {
   amount: number;
@@ -30,6 +34,37 @@ type TBalanceUpdatedMessage = {
       };
     };
   };
+};
+
+function disableNotification() {
+  window.localStorage.setItem(LOCAL_STORAGE_KEY, "1");
+}
+
+function isNotificationBlocked() {
+  return Boolean(window.localStorage.getItem(LOCAL_STORAGE_KEY));
+}
+
+const CTA = ({ loading, t, showDepositHandler }) => {
+  return (
+    <>
+      {!loading && (
+        <ButtonPrimary size="md" onClick={showDepositHandler}>
+          {t && t?.cta}
+        </ButtonPrimary>
+      )}
+    </>
+  );
+};
+
+const Footer = ({ closeAndRemember, t }) => {
+  return (
+    <div className="flex items-center my-md" onClick={closeAndRemember}>
+      <CheckboxSquare checked={false} onChange={() => {}} size="sm" />
+      <span className="ml-sm u-font-sm text-black">
+        {t.dontShowAgain || "Don't show me again"}
+      </span>
+    </div>
+  );
 };
 
 export const LowBalanceNotificationContainer = () => {
@@ -73,6 +108,10 @@ export const LowBalanceNotificationContainer = () => {
   );
 
   React.useEffect(() => {
+    if (isNotificationBlocked()) {
+      return;
+    }
+
     const expectedBet = avgBetData?.averageBet?.amount;
     const totaBalanceFetched = typeof totalBalance !== "undefined";
     if (isFetching || !expectedBet || !totaBalanceFetched) {
@@ -110,24 +149,31 @@ export const LowBalanceNotificationContainer = () => {
     ? launchQuickDepositTracked
     : navigateToCashierTracked;
 
-  const ctaSlug = "root:low-balance-notification-content:fields.cta";
-  const { t, loading } = useTranslationsGql({ cta: ctaSlug });
-
-  const cta = (
-    <>
-      {!loading && (
-        <ButtonPrimary size="xs" onClick={showDepositHandler}>
-          {t && t?.cta}
-        </ButtonPrimary>
-      )}
-    </>
+  const closeAndRemember = React.useCallback(
+    (ev: React.SyntheticEvent) => {
+      ev.stopPropagation();
+      setShowing(false);
+      disableNotification();
+    },
+    [setShowing]
   );
 
-  return showing ? (
+  const ctaSlug = "root:low-balance-notification-content:fields.cta";
+  const dontShowAgainSlug =
+    "root:low-balance-notification-content:fields.dont_show_again";
+  const { t, loading } = useTranslationsGql({
+    cta: ctaSlug,
+    dontShowAgain: dontShowAgainSlug,
+  });
+
+  return showing && !loading ? (
     <LowBalanceNotification
-      Cta={cta}
       currency={currency}
       showDepositHandler={showDepositHandler}
+      Cta={
+        <CTA loading={loading} t={t} showDepositHandler={showDepositHandler} />
+      }
+      footer={<Footer closeAndRemember={closeAndRemember} t={t} />}
     />
   ) : null;
 };
