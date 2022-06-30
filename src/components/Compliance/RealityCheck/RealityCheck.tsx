@@ -10,6 +10,7 @@ import { ROUTE_IDS, TCurrencyCode } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
 import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
 import { appManualLogoutInit } from "Models/app";
+import { useAcknowledgeGglPendingConfirmationMutation } from "Models/playOkay/realityCheck/realityCheck.api";
 
 type RealityCheckProps = {
   t: {
@@ -55,6 +56,8 @@ const CancelButton = ({
 
 export function RealityCheck(props: RealityCheckProps) {
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const [acknowledgeConfirmation, { isLoading }] =
+    useAcknowledgeGglPendingConfirmationMutation();
   const dispatch = useDispatch();
   const { t, locale, currency, casumoName, realityCheck, onClickContinue } =
     props;
@@ -96,6 +99,11 @@ export function RealityCheck(props: RealityCheckProps) {
     netLosses: formattedAmount,
   });
 
+  const handleContinuePlaying = () => {
+    acknowledgeConfirmation({});
+    onClickContinue();
+  };
+
   return (
     <Flex direction="vertical" align="center">
       <Text tag="div" className="u-padding u-text-align-center">
@@ -119,7 +127,7 @@ export function RealityCheck(props: RealityCheckProps) {
       <Flex direction="horizontal" justify="center">
         <ButtonPrimary
           size="md"
-          onClick={onClickContinue}
+          onClick={handleContinuePlaying}
           className="o-flex--1"
         >
           {t.reality_check_continue_button_text}
