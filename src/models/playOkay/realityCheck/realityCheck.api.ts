@@ -8,22 +8,15 @@ export const realityCheckApi = createApi({
   endpoints: builder => ({
     acknowledgeGglPendingConfirmation: builder.mutation<
       void,
-      {
-        body: {
-          playerId: string;
-          createdAt: string;
-          expireAt: string;
-          acknowledgedAt: string;
-        };
-        // playerId: string;
-        // playerJurisdiction: string;
-      }
+      { playerId: string; playerJurisdiction }
     >({
-      query: ({ body }) => ({
-        // headers: { "X-Player-Id": playerId; "X-Player-Jurisdiction": playerJurisdiction },
+      query: ({ playerId, playerJurisdiction }) => ({
+        headers: {
+          "X-Player-Id": playerId,
+          "X-Player-Jurisdiction": playerJurisdiction,
+        },
         url: `api/ggl/pending-confirmation/ack`,
         method: "POST",
-        body,
       }),
     }),
   }),

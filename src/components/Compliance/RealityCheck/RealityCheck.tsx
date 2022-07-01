@@ -56,8 +56,6 @@ const CancelButton = ({
 
 export function RealityCheck(props: RealityCheckProps) {
   const { navigateToKO } = useCrossCodebaseNavigation();
-  const [acknowledgeConfirmation, { isLoading }] =
-    useAcknowledgeGglPendingConfirmationMutation();
   const dispatch = useDispatch();
   const { t, locale, currency, casumoName, realityCheck, onClickContinue } =
     props;
@@ -99,11 +97,6 @@ export function RealityCheck(props: RealityCheckProps) {
     netLosses: formattedAmount,
   });
 
-  const handleContinuePlaying = () => {
-    acknowledgeConfirmation({});
-    onClickContinue();
-  };
-
   return (
     <Flex direction="vertical" align="center">
       <Text tag="div" className="u-padding u-text-align-center">
@@ -127,7 +120,7 @@ export function RealityCheck(props: RealityCheckProps) {
       <Flex direction="horizontal" justify="center">
         <ButtonPrimary
           size="md"
-          onClick={handleContinuePlaying}
+          onClick={onClickContinue}
           className="o-flex--1"
         >
           {t.reality_check_continue_button_text}
