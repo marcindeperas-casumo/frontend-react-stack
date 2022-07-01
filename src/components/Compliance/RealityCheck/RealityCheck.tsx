@@ -10,7 +10,6 @@ import { ROUTE_IDS, TCurrencyCode } from "Src/constants";
 import { interpolate, formatCurrency, isCmsEntryEmpty } from "Utils";
 import { useCrossCodebaseNavigation, useJurisdiction } from "Utils/hooks";
 import { appManualLogoutInit } from "Models/app";
-import { useAcknowledgeGglPendingConfirmationMutation } from "Models/playOkay/realityCheck/realityCheck.api";
 
 type RealityCheckProps = {
   t: {
